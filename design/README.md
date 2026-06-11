@@ -377,7 +377,7 @@ docs（http://localhost:13030/docs/）と同じ構成・見た目で表示。**P
   - `--category` / `--categories` オプションでカテゴリ限定レポート/strict 実行が可能
   - 除外は `design/policy/component-style-drift-exclusions.json` で管理（理由・期限必須）。運用ルールは `design/policy/component-style-drift-exclusions.md`
   - 段階適用 strict は `npm run design:verify:component-style-drift:scoped`（`design/policy/component-style-drift-strict-targets.json`）で管理。運用ルールは `design/policy/component-style-drift-strict-targets.md`
-  - 現在の strict 対象: policy 上は legacy SSOT target key として `atoms`, `molecules`, `organisms`, `templates` を指定し、component manifest に展開済みの機能別カテゴリ全体を full strict で検証
+  - 現在の strict 対象: `atoms`, `molecules`, `organisms`, `templates`（component-specs 由来の内部カテゴリキー。= 全カテゴリ）。※ `src/components/` のフォルダは機能別だが、style-hints / drift のカテゴリは component-specs 準拠のため atomic 名のまま。
   - `npm run design:verify` / `npm run design:verify:components` は component style drift の full strict 失敗を含む
 - **ハードコード色クラス検証**: ✅ 実装済み（`npm run design:verify:hardcoded-color-classes` で `src/components/**` と `app` 全体に `bg-blue-*` などの color class、`#`/`rgb`/`hsl` を直接埋め込む arbitrary color class、`shadow-[...]` / `drop-shadow-[...]` の arbitrary shadow class、さらに inline style (`backgroundImage` / `color` / `filter` など) 内の生色リテラルが残っていないか検知。`var(--token)` 参照は許可（任意 shadow class は禁止）。overlay は `bg-overlay/*` トークンへ統一し、例外ファイルは原則空運用（必要時のみ明示許可 + 未使用例外検知）。`design:verify` に統合済み）
 - **tailwind color token マップ検証**: ✅ 実装済み（`npm run design:verify:tailwind-color-tokens` で `tailwind-theme-extend.cjs` の `colors` が `--background` / `--foreground` / `--overlay` / `--info` / `--success` / `--warning` と各 semantic group（`primary.*` など）を `hsl(var(--token))` 参照で定義しているか、かつ `colors` 内に生色 literal を持ち込んでいないか検知。`design:verify` に統合済み）
