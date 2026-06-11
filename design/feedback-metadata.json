@@ -1,0 +1,46 @@
+{
+  "alert": {
+    "title": "Alert",
+    "description": "Displays a callout for user attention."
+  },
+  "progress": {
+    "title": "Progress",
+    "description": "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar."
+  },
+  "spinner": {
+    "title": "Spinner",
+    "description": "A visual indicator that content is being loaded."
+  },
+  "toast": {
+    "title": "Toast",
+    "description": "Transient feedback message with semantic variants."
+  },
+  "notificationCenter": {
+    "title": "Notification Center",
+    "description": "Popover-based inbox for unread activity and quick actions."
+  },
+  "statusBar": {
+    "title": "StatusBar",
+    "description": "Bottom fixed utility bar with left, center and right regions."
+  },
+  "progressWidget": {
+    "title": "ProgressWidget",
+    "description": "Metric card showing title, value, progress bar, and optional subtext."
+  },
+  "stepper": {
+    "title": "Stepper",
+    "description": "A multi-step progress indicator with completed, current, and upcoming states."
+  },
+  "banner": {
+    "title": "Banner",
+    "description": "Page-wide announcement bar, optionally dismissible."
+  },
+  "toastProvider": {
+    "title": "Toast Provider",
+    "description": "Global toast stack manager for showing transient feedback messages."
+  },
+  "statusScreen": {
+    "title": "StatusScreen",
+    "description": "Full-page status feedback for not-found, error, offline, forbidden, maintenance, and coming-soon states."
+  }
+}

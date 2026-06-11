@@ -1,0 +1,3895 @@
+{
+  "schemaVersion": 1,
+  "source": "design/display.pen",
+  "components": {
+    "badge": {
+      "frameId": "badgeFrame",
+      "title": "Badge",
+      "description": "Displays a badge or a component that looks like a badge.",
+      "variants": [
+        {
+          "id": "badgeDefault",
+          "name": "Badge/Default",
+          "key": "default",
+          "type": "frame",
+          "width": null,
+          "height": 20,
+          "padding": [
+            4,
+            10,
+            4,
+            10
+          ],
+          "gap": null,
+          "cornerRadius": 9999,
+          "fill": "#0c0c12",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "badgeDefaultText",
+            "content": "Badge",
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fill": "#f8fafc",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "badgeDefaultText",
+              "content": "Badge",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "fill": "#f8fafc",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        },
+        {
+          "id": "badgeSecondary",
+          "name": "Badge/Secondary",
+          "key": "secondary",
+          "type": "frame",
+          "width": null,
+          "height": 20,
+          "padding": [
+            4,
+            10,
+            4,
+            10
+          ],
+          "gap": null,
+          "cornerRadius": 9999,
+          "fill": "#f1f5f9",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "badgeSecondaryText",
+            "content": "Secondary",
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fill": "#18181b",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "badgeSecondaryText",
+              "content": "Secondary",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "fill": "#18181b",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        },
+        {
+          "id": "badgeDestructive",
+          "name": "Badge/Destructive",
+          "key": "destructive",
+          "type": "frame",
+          "width": null,
+          "height": 20,
+          "padding": [
+            4,
+            10,
+            4,
+            10
+          ],
+          "gap": null,
+          "cornerRadius": 9999,
+          "fill": "#ef4444",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "badgeDestructiveText",
+            "content": "Destructive",
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fill": "#f8fafc",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "badgeDestructiveText",
+              "content": "Destructive",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "fill": "#f8fafc",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        },
+        {
+          "id": "badgeOutline",
+          "name": "Badge/Outline",
+          "key": "outline",
+          "type": "frame",
+          "width": null,
+          "height": 20,
+          "padding": [
+            4,
+            10,
+            4,
+            10
+          ],
+          "gap": null,
+          "cornerRadius": 9999,
+          "fill": "transparent",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "badgeOutlineText",
+            "content": "Outline",
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fill": "#0c0c12",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "badgeOutlineText",
+              "content": "Outline",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "fill": "#0c0c12",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        }
+      ]
+    },
+    "icon": {
+      "frameId": "iconFrame",
+      "title": "Icon",
+      "description": "Normalizes icon size, stroke, and accessibility behavior across GunjoUI.",
+      "variants": [
+        {
+          "id": "iconSm",
+          "name": "Icon/Sm",
+          "key": "sm",
+          "type": "icon_font",
+          "width": 16,
+          "height": 16,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true,
+          "iconFontFamily": "tabler",
+          "iconFontName": "sparkles"
+        },
+        {
+          "id": "iconXs",
+          "name": "Icon/Xs",
+          "key": "xs",
+          "type": "icon_font",
+          "width": 12,
+          "height": 12,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true,
+          "iconFontFamily": "tabler",
+          "iconFontName": "sparkles"
+        },
+        {
+          "id": "iconMd",
+          "name": "Icon/Md",
+          "key": "md",
+          "type": "icon_font",
+          "width": 20,
+          "height": 20,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true,
+          "iconFontFamily": "tabler",
+          "iconFontName": "sparkles"
+        },
+        {
+          "id": "iconLg",
+          "name": "Icon/Lg",
+          "key": "lg",
+          "type": "icon_font",
+          "width": 24,
+          "height": 24,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true,
+          "iconFontFamily": "tabler",
+          "iconFontName": "sparkles"
+        },
+        {
+          "id": "iconXl",
+          "name": "Icon/Xl",
+          "key": "xl",
+          "type": "icon_font",
+          "width": 32,
+          "height": 32,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true,
+          "iconFontFamily": "tabler",
+          "iconFontName": "sparkles"
+        }
+      ]
+    },
+    "separator": {
+      "frameId": "separatorFrame",
+      "title": "Separator",
+      "description": "Visually or semantically separates content.",
+      "variants": [
+        {
+          "id": "separatorHorizontal",
+          "name": "Separator/Horizontal",
+          "key": "horizontal",
+          "type": "frame",
+          "width": 200,
+          "height": 1,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#e2e8f0",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
+        },
+        {
+          "id": "separatorVertical",
+          "name": "Separator/Vertical",
+          "key": "vertical",
+          "type": "frame",
+          "width": 1,
+          "height": 24,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#e2e8f0",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
+        }
+      ]
+    },
+    "avatar": {
+      "frameId": "avatarFrame",
+      "title": "Avatar",
+      "description": "An image element with a fallback for representing the user.",
+      "variants": [
+        {
+          "id": "avatarFallback",
+          "name": "Avatar/Fallback",
+          "key": "fallback",
+          "type": "frame",
+          "width": 40,
+          "height": 40,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 9999,
+          "fill": "#f1f5f9",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "avatarFallbackText",
+            "content": "CN",
+            "fontSize": 14,
+            "fontWeight": "500",
+            "fill": "#64748b",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "avatarFallbackText",
+              "content": "CN",
+              "fontSize": 14,
+              "fontWeight": "500",
+              "fill": "#64748b",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        },
+        {
+          "id": "avatarImage",
+          "name": "Avatar/Image",
+          "key": "image",
+          "type": "frame",
+          "width": 40,
+          "height": 40,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 9999,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "https://github.com/shadcn.png",
+            "mode": "stretch"
+          },
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
+        }
+      ]
+    },
+    "chatMessage": {
+      "frameId": "synthetic:chatMessage",
+      "title": "ChatMessage",
+      "description": "Single chat transcript row for assistant, user, system, and typing states.",
+      "variants": [
+        {
+          "id": "synthetic:assistant",
+          "name": "assistant",
+          "key": "assistant",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": 16,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:user",
+          "name": "user",
+          "key": "user",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": 16,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:system",
+          "name": "system",
+          "key": "system",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:typing",
+          "name": "typing",
+          "key": "typing",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": 16,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "kbd": {
+      "frameId": "kbdFrame",
+      "title": "Kbd",
+      "description": "Displays a keyboard shortcut key.",
+      "variants": [
+        {
+          "id": "kbdKey",
+          "name": "Kbd/Key",
+          "key": "key",
+          "type": "frame",
+          "width": null,
+          "height": 20,
+          "padding": [
+            4,
+            6,
+            4,
+            6
+          ],
+          "gap": null,
+          "cornerRadius": 4,
+          "fill": "#f1f5f9",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
+        }
+      ]
+    },
+    "img": {
+      "frameId": "imgFrame",
+      "title": "Img",
+      "description": "An enhanced image component with loading skeleton and error fallback.",
+      "variants": [
+        {
+          "id": "imgLoading",
+          "name": "Img/Loading",
+          "key": "loading",
+          "type": "frame",
+          "width": 256,
+          "height": 256,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#f1f5f9",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
+        },
+        {
+          "id": "imgLoaded",
+          "name": "Img/Loaded",
+          "key": "loaded",
+          "type": "frame",
+          "width": 256,
+          "height": 256,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": {
+            "type": "image",
+            "enabled": true,
+            "url": "https://images.unsplash.com/photo-1579353977828-2a4eab54c85a?w=512&h=512&fit=crop",
+            "mode": "stretch"
+          },
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
+        },
+        {
+          "id": "imgError",
+          "name": "Img/Error",
+          "key": "error",
+          "type": "frame",
+          "width": 256,
+          "height": 256,
+          "padding": null,
+          "gap": 8,
+          "cornerRadius": 8,
+          "fill": "#f1f5f9",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "imgErrorText",
+            "content": "Image not found",
+            "fontSize": 12,
+            "fontWeight": "normal",
+            "fill": "#94a3b8",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "imgErrorText",
+              "content": "Image not found",
+              "fontSize": 12,
+              "fontWeight": "normal",
+              "fill": "#94a3b8",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        }
+      ]
+    },
+    "imagePreview": {
+      "frameId": "synthetic:imagePreview",
+      "title": "ImagePreview",
+      "description": "Framed image preview surface for asset cards, pickers, and media inspection.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#f8fafc",
+          "stroke": "#e2e8f0",
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:contain",
+          "name": "contain",
+          "key": "contain",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#f8fafc",
+          "stroke": "#e2e8f0",
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:empty",
+          "name": "empty",
+          "key": "empty",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#f8fafc",
+          "stroke": "#e2e8f0",
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "toolPill": {
+      "frameId": "toolPillFrame",
+      "title": "ToolPill",
+      "description": "Compact icon pill used for toolbar quick actions with active and danger states.",
+      "variants": [
+        {
+          "id": "toolPillPrimary",
+          "name": "ToolPill/Primary",
+          "key": "primary",
+          "type": "frame",
+          "width": 40,
+          "height": 40,
+          "padding": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "gap": null,
+          "cornerRadius": 12,
+          "fill": "#eff6ff",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
+        },
+        {
+          "id": "toolPillSecondary",
+          "name": "ToolPill/Secondary",
+          "key": "secondary",
+          "type": "frame",
+          "width": 40,
+          "height": 40,
+          "padding": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "gap": null,
+          "cornerRadius": 12,
+          "fill": "#ffffff80",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
+        },
+        {
+          "id": "toolPillDanger",
+          "name": "ToolPill/Danger",
+          "key": "danger",
+          "type": "frame",
+          "width": 40,
+          "height": 40,
+          "padding": [
+            10,
+            10,
+            10,
+            10
+          ],
+          "gap": null,
+          "cornerRadius": 12,
+          "fill": "#fef2f2",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
+        }
+      ]
+    },
+    "skeleton": {
+      "frameId": "Brd0E",
+      "title": "Skeleton",
+      "description": "Loading placeholder for content while it is being fetched.",
+      "variants": []
+    },
+    "code": {
+      "frameId": "WFElW",
+      "title": "Code",
+      "description": "Inline code style for monospaced text content.",
+      "variants": []
+    },
+    "spacer": {
+      "frameId": "j0v7kp",
+      "title": "Spacer",
+      "description": "Flex-grow filler for pushing siblings to the edges of a flex container.",
+      "variants": []
+    },
+    "emptyState": {
+      "frameId": "d1J0n",
+      "title": "EmptyState",
+      "description": "Placeholder for lists / panels with no data, with optional CTA.",
+      "variants": []
+    },
+    "tag": {
+      "frameId": "QU8JC",
+      "title": "Tag",
+      "description": "Removable badge with × button. Useful for filter chips and tag editors.",
+      "variants": []
+    },
+    "colorSwatch": {
+      "frameId": "OmjeW",
+      "title": "ColorSwatch",
+      "description": "Color preview chip with copyable hex/rgb value.",
+      "variants": []
+    },
+    "card": {
+      "frameId": "cardFrame",
+      "title": "Card",
+      "description": "Displays a card with header, content, and footer.",
+      "variants": [
+        {
+          "id": "cardDefault",
+          "name": "Card/Default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "cardHeader",
+            "cardContent",
+            "cardFooter"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "cardDefault",
+          "type": "frame",
+          "name": "Card/Default",
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "cardHeader",
+            "cardContent",
+            "cardFooter"
+          ]
+        },
+        "header": {
+          "id": "cardHeader",
+          "type": "frame",
+          "name": "CardHeader",
+          "width": null,
+          "height": null,
+          "padding": [
+            24,
+            24,
+            24,
+            24
+          ],
+          "gap": 6,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "cardHeaderTitle",
+            "cardHeaderDesc"
+          ]
+        },
+        "headerTitle": {
+          "id": "cardHeaderTitle",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0c0c12",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 20,
+          "fontWeight": "600",
+          "content": "Create project",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "headerDescription": {
+          "id": "cardHeaderDesc",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Deploy your new project in one-click.",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "content": {
+          "id": "cardContent",
+          "type": "frame",
+          "name": "CardContent",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            24,
+            24,
+            24
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "cardContentPlaceholder"
+          ]
+        },
+        "contentPlaceholder": {
+          "id": "cardContentPlaceholder",
+          "type": "frame",
+          "name": null,
+          "width": "fill_container",
+          "height": 40,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 6,
+          "fill": "#f1f5f9",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "footer": {
+          "id": "cardFooter",
+          "type": "frame",
+          "name": "CardFooter",
+          "width": null,
+          "height": null,
+          "padding": [
+            0,
+            24,
+            24,
+            24
+          ],
+          "gap": 12,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "cardFooterCancel",
+            "cardFooterDeploy"
+          ]
+        },
+        "footerCancel": {
+          "id": "cardFooterCancel",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            16,
+            8,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "transparent",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": "center",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "cardFooterCancelText"
+          ]
+        },
+        "footerCancelText": {
+          "id": "cardFooterCancelText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0c0c12",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "500",
+          "content": "Cancel",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "footerDeploy": {
+          "id": "cardFooterDeploy",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            16,
+            8,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#0c0c12",
+          "stroke": null,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "cardFooterDeployText"
+          ]
+        },
+        "footerDeployText": {
+          "id": "cardFooterDeployText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#f8fafc",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "500",
+          "content": "Deploy",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "accordion": {
+      "frameId": "accordionFrame",
+      "title": "Accordion",
+      "description": "A vertically stacked set of interactive headings that each reveal a section of content.",
+      "variants": [
+        {
+          "id": "accordionCollapsed",
+          "name": "Accordion/Collapsed",
+          "key": "collapsed",
+          "type": "frame",
+          "width": 400,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "accordionTriggerCollapsed"
+          ]
+        },
+        {
+          "id": "accordionExpanded",
+          "name": "Accordion/Expanded",
+          "key": "expanded",
+          "type": "frame",
+          "width": 400,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "accordionTriggerExpanded",
+            "accordionContent"
+          ]
+        }
+      ],
+      "nodes": {
+        "collapsed": {
+          "id": "accordionCollapsed",
+          "type": "frame",
+          "name": "Accordion/Collapsed",
+          "width": 400,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "accordionTriggerCollapsed"
+          ]
+        },
+        "expanded": {
+          "id": "accordionExpanded",
+          "type": "frame",
+          "name": "Accordion/Expanded",
+          "width": 400,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "accordionTriggerExpanded",
+            "accordionContent"
+          ]
+        },
+        "triggerCollapsed": {
+          "id": "accordionTriggerCollapsed",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "accordionTriggerTextCollapsed",
+            "accordionChevronCollapsed"
+          ]
+        },
+        "triggerExpanded": {
+          "id": "accordionTriggerExpanded",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "accordionTriggerTextExpanded",
+            "accordionChevronExpanded"
+          ]
+        },
+        "triggerTextCollapsed": {
+          "id": "accordionTriggerTextCollapsed",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0c0c12",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "500",
+          "content": "Is it accessible?",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "triggerTextExpanded": {
+          "id": "accordionTriggerTextExpanded",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0c0c12",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "500",
+          "content": "Is it accessible?",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "chevronCollapsed": {
+          "id": "accordionChevronCollapsed",
+          "type": "icon_font",
+          "name": null,
+          "width": 16,
+          "height": 16,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": "lucide",
+          "iconFontName": "chevron-down",
+          "textGrowth": null,
+          "children": []
+        },
+        "chevronExpanded": {
+          "id": "accordionChevronExpanded",
+          "type": "icon_font",
+          "name": null,
+          "width": 16,
+          "height": 16,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": "lucide",
+          "iconFontName": "chevron-down",
+          "textGrowth": null,
+          "children": []
+        },
+        "content": {
+          "id": "accordionContent",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            0,
+            16,
+            16,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "accordionContentText"
+          ]
+        },
+        "contentText": {
+          "id": "accordionContentText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Yes. It adheres to the WAI-ARIA design pattern.",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "accordionGroup": {
+      "frameId": "synthetic:accordionGroup",
+      "title": "AccordionGroup",
+      "description": "Labeled accordion composition with a single expand-all/collapse-all toggle control for FAQ, settings, and grouped disclosure lists.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:withDescription",
+          "name": "withDescription",
+          "key": "withDescription",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:withoutControls",
+          "name": "withoutControls",
+          "key": "withoutControls",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "searchableAccordion": {
+      "frameId": "synthetic:searchableAccordion",
+      "title": "SearchableAccordion",
+      "description": "Searchable and category-filterable accordion composition for FAQ, help, and docs lists.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:withCategories",
+          "name": "withCategories",
+          "key": "withCategories",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:empty",
+          "name": "empty",
+          "key": "empty",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "list": {
+      "frameId": "listFrame",
+      "title": "List",
+      "description": "A semantic list component with customizable markers and spacing.",
+      "variants": [
+        {
+          "id": "listItemDot",
+          "name": "List/Dot",
+          "key": "dot",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "listDotIcon",
+            "listDotText"
+          ]
+        },
+        {
+          "id": "listItemCheck",
+          "name": "List/Check",
+          "key": "check",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "listCheckIcon",
+            "listCheckText"
+          ]
+        },
+        {
+          "id": "listItemCircle",
+          "name": "List/Circle",
+          "key": "circle",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "listCircleIcon",
+            "listCircleText"
+          ]
+        }
+      ],
+      "nodes": {
+        "dot": {
+          "id": "listItemDot",
+          "type": "frame",
+          "name": "List/Dot",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "listDotIcon",
+            "listDotText"
+          ]
+        },
+        "dotIcon": {
+          "id": "listDotIcon",
+          "type": "icon_font",
+          "name": null,
+          "width": 16,
+          "height": 16,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#94a3b8",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": "lucide",
+          "iconFontName": "dot",
+          "textGrowth": null,
+          "children": []
+        },
+        "dotText": {
+          "id": "listDotText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "First item",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "check": {
+          "id": "listItemCheck",
+          "type": "frame",
+          "name": "List/Check",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "listCheckIcon",
+            "listCheckText"
+          ]
+        },
+        "checkIcon": {
+          "id": "listCheckIcon",
+          "type": "icon_font",
+          "name": null,
+          "width": 16,
+          "height": 16,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#22c55e",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": "lucide",
+          "iconFontName": "check",
+          "textGrowth": null,
+          "children": []
+        },
+        "checkText": {
+          "id": "listCheckText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Completed task",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "circle": {
+          "id": "listItemCircle",
+          "type": "frame",
+          "name": "List/Circle",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "listCircleIcon",
+            "listCircleText"
+          ]
+        },
+        "circleIcon": {
+          "id": "listCircleIcon",
+          "type": "icon_font",
+          "name": null,
+          "width": 12,
+          "height": 12,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#94a3b8",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": "lucide",
+          "iconFontName": "circle",
+          "textGrowth": null,
+          "children": []
+        },
+        "circleText": {
+          "id": "listCircleText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Pending task",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "table": {
+      "frameId": "tableFrame",
+      "title": "Table",
+      "description": "A responsive table component.",
+      "variants": [
+        {
+          "id": "tableDefault",
+          "name": "Table/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 400,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "tableHeader",
+            "tableRow"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "tableDefault",
+          "type": "frame",
+          "name": "Table/Default",
+          "width": 400,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "tableHeader",
+            "tableRow"
+          ]
+        },
+        "header": {
+          "id": "tableHeader",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#f8fafc",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "tableHead1",
+            "tableHead2",
+            "tableHead3"
+          ]
+        },
+        "head1": {
+          "id": "tableHead1",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 12,
+          "fontWeight": "600",
+          "content": "Invoice",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "head2": {
+          "id": "tableHead2",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 12,
+          "fontWeight": "600",
+          "content": "Status",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "head3": {
+          "id": "tableHead3",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 12,
+          "fontWeight": "600",
+          "content": "Amount",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "row": {
+          "id": "tableRow",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "tableCell1",
+            "tableCell2",
+            "tableCell3"
+          ]
+        },
+        "cell1": {
+          "id": "tableCell1",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0c0c12",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "500",
+          "content": "INV001",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "cell2": {
+          "id": "tableCell2",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Paid",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "cell3": {
+          "id": "tableCell3",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "$250.00",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "carousel": {
+      "frameId": "carouselFrame",
+      "title": "Carousel",
+      "description": "Embla-powered slider with keyboard and arrow controls.",
+      "variants": [
+        {
+          "id": "carouselDefault",
+          "name": "Carousel/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 640,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "carouselContent",
+            "carouselPrevButton",
+            "carouselNextButton"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "carouselDefault",
+          "type": "frame",
+          "name": "Carousel/Default",
+          "width": 640,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "carouselContent",
+            "carouselPrevButton",
+            "carouselNextButton"
+          ]
+        },
+        "content": {
+          "id": "carouselContent",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 16,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "carouselItem"
+          ]
+        },
+        "item": {
+          "id": "carouselItem",
+          "type": "frame",
+          "name": null,
+          "width": 320,
+          "height": 180,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": 8,
+          "cornerRadius": 8,
+          "fill": "#f1f5f9",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "carouselItemTitleText",
+            "carouselItemBodyText"
+          ]
+        },
+        "prevButton": {
+          "id": "carouselPrevButton",
+          "type": "frame",
+          "name": null,
+          "width": 32,
+          "height": 32,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 999,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": "center",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "carouselPrevButtonText"
+          ]
+        },
+        "nextButton": {
+          "id": "carouselNextButton",
+          "type": "frame",
+          "name": null,
+          "width": 32,
+          "height": 32,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 999,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": "center",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "carouselNextButtonText"
+          ]
+        }
+      }
+    },
+    "dataTable": {
+      "frameId": "Cqduj",
+      "title": "DataTable",
+      "description": "Table + sort + filter + pagination integrated. Wraps @tanstack/react-table.",
+      "variants": [],
+      "nodes": {}
+    },
+    "actionDataTable": {
+      "frameId": "synthetic:actionDataTable",
+      "title": "ActionDataTable",
+      "description": "Selectable data table composition with bulk actions, row actions, and disabled-action feedback.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:selection",
+          "name": "selection",
+          "key": "selection",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:rowActions",
+          "name": "rowActions",
+          "key": "rowActions",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "avatarGroup": {
+      "frameId": "YwLZD",
+      "title": "AvatarGroup",
+      "description": "Stack of overlapping avatars with optional +N overflow indicator.",
+      "variants": [],
+      "nodes": {}
+    },
+    "codeBlock": {
+      "frameId": "iJ9W7",
+      "title": "CodeBlock",
+      "description": "Syntax-highlighted code block with optional filename and copy button.",
+      "variants": [],
+      "nodes": {}
+    },
+    "timeline": {
+      "frameId": "Y8NVeW",
+      "title": "Timeline",
+      "description": "Vertical time-ordered list with markers and connector lines.",
+      "variants": [],
+      "nodes": {}
+    },
+    "treeView": {
+      "frameId": "ixfpr",
+      "title": "TreeView",
+      "description": "Hierarchical tree with expand/collapse for file explorers and navigation.",
+      "variants": [],
+      "nodes": {}
+    },
+    "fileTree": {
+      "frameId": "synthetic:fileTree",
+      "title": "FileTree",
+      "description": "File and folder tree composition with metadata, row actions, and single or multiple selection.",
+      "variants": [
+        {
+          "id": "synthetic:single",
+          "name": "single",
+          "key": "single",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:multiple",
+          "name": "multiple",
+          "key": "multiple",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:actions",
+          "name": "actions",
+          "key": "actions",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "docNote": {
+      "frameId": "synthetic:docNote",
+      "title": "DocNote",
+      "description": "Supplemental note block for explanatory copy, references, and non-urgent documentation callouts.",
+      "variants": [
+        {
+          "id": "synthetic:docNoteDefault",
+          "name": "DocNote/Default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            12,
+            16,
+            12,
+            16
+          ],
+          "gap": 4,
+          "cornerRadius": 6,
+          "fill": "#f1f5f9",
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:docNoteReference",
+          "name": "DocNote/Reference",
+          "key": "reference",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            12,
+            16,
+            12,
+            16
+          ],
+          "gap": 4,
+          "cornerRadius": 6,
+          "fill": "#f8fafc",
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "markdownRenderer": {
+      "frameId": "H0mVj",
+      "title": "MarkdownRenderer",
+      "description": "Markdown to HTML rendering with GFM (tables, task lists, code).",
+      "variants": [],
+      "nodes": {}
+    },
+    "statistic": {
+      "frameId": "b3kNf",
+      "title": "Statistic",
+      "description": "KPI metric card: label + value + delta indicator.",
+      "variants": [],
+      "nodes": {}
+    },
+    "assetCard": {
+      "frameId": "synthetic:assetCard",
+      "title": "AssetCard",
+      "description": "Selectable media asset card for image libraries, files, and generated creative results with favorite, score, and preview affordances.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": 6,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "assetGrid": {
+      "frameId": "synthetic:assetGrid",
+      "title": "AssetGrid",
+      "description": "Responsive grouped media grid that renders AssetCard items with empty state, selection state, and preview hooks.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "metadataList": {
+      "frameId": "synthetic:metadataList",
+      "title": "MetadataList",
+      "description": "Definition-list style metadata rows for inspectors, file details, and compact property summaries.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "tagEditor": {
+      "frameId": "synthetic:tagEditor",
+      "title": "TagEditor",
+      "description": "Tag editing control composed from TagInput and suggestion actions for asset inspectors and filter panels.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "chartLegend": {
+      "frameId": "synthetic:chartLegend",
+      "title": "ChartLegend",
+      "description": "Legend rows for chart series, values, and token-driven markers.",
+      "variants": [
+        {
+          "id": "synthetic:horizontal",
+          "name": "horizontal",
+          "key": "horizontal",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:vertical",
+          "name": "vertical",
+          "key": "vertical",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "sparklineChart": {
+      "frameId": "synthetic:sparklineChart",
+      "title": "SparklineChart",
+      "description": "Compact HTML/CSS line, area, or stepped trend chart for dense dashboard cards with hover/focus point tooltips.",
+      "variants": [
+        {
+          "id": "synthetic:line",
+          "name": "line",
+          "key": "line",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 96,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:area",
+          "name": "area",
+          "key": "area",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 96,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:step",
+          "name": "step",
+          "key": "step",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 96,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "lineChart": {
+      "frameId": "synthetic:lineChart",
+      "title": "LineChart",
+      "description": "HTML/CSS multi-series line or area chart for time-series comparison with reference lines, legends, and hover/focus point tooltips.",
+      "variants": [
+        {
+          "id": "synthetic:line",
+          "name": "line",
+          "key": "line",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 260,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:area",
+          "name": "area",
+          "key": "area",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 260,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "ribbonChart": {
+      "frameId": "synthetic:ribbonChart",
+      "title": "RibbonChart",
+      "description": "HTML/CSS ribbon chart for comparing changing flow, volume, or segment width across periods with hover/focus point tooltips.",
+      "variants": [
+        {
+          "id": "synthetic:flow",
+          "name": "flow",
+          "key": "flow",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 260,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:stacked",
+          "name": "stacked",
+          "key": "stacked",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 260,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "radialBarChart": {
+      "frameId": "synthetic:radialBarChart",
+      "title": "RadialBarChart",
+      "description": "HTML/CSS concentric radial bar chart for comparing progress, share, or capacity across multiple series with hover/focus tooltips.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 224,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": 9999,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 176,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": 9999,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "barChart": {
+      "frameId": "synthetic:barChart",
+      "title": "BarChart",
+      "description": "Token-driven vertical or horizontal bar chart with optional average marker and hover/focus value tooltips.",
+      "variants": [
+        {
+          "id": "synthetic:vertical",
+          "name": "vertical",
+          "key": "vertical",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 192,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:horizontal",
+          "name": "horizontal",
+          "key": "horizontal",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 192,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "concentricProgressCard": {
+      "frameId": "synthetic:concentricProgressCard",
+      "title": "Concentric Progress Card",
+      "description": "HTML/CSS card for storage, quota, and multi-ring progress widgets with selectable concentric rings, metrics, and hover/focus tooltips.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "stackedBarChart": {
+      "frameId": "synthetic:stackedBarChart",
+      "title": "StackedBarChart",
+      "description": "HTML/CSS stacked vertical or horizontal bar chart for grouped segment comparisons with hover/focus segment tooltips.",
+      "variants": [
+        {
+          "id": "synthetic:vertical",
+          "name": "vertical",
+          "key": "vertical",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 224,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:horizontal",
+          "name": "horizontal",
+          "key": "horizontal",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 224,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "distributionBar": {
+      "frameId": "synthetic:distributionBar",
+      "title": "DistributionBar",
+      "description": "Stacked percentage distribution bar for segments, channels, and allocation data with hover/focus segment tooltips.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 36,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": 9999,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "miniDistributionBarCard": {
+      "frameId": "synthetic:miniDistributionBarCard",
+      "title": "Mini Distribution Bar Card",
+      "description": "HTML/CSS compact distribution card for product categories, capacity, and utilization widgets with dense ticks, selected segment details, and hover/focus tooltips.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "segmentTimelineCard": {
+      "frameId": "synthetic:segmentTimelineCard",
+      "title": "Segment Timeline Card",
+      "description": "HTML/CSS horizontal segment timeline card for sleep stages, uptime states, and categorical duration ranges with metrics, markers, and hover/focus tooltips.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "donutChart": {
+      "frameId": "synthetic:donutChart",
+      "title": "DonutChart",
+      "description": "HTML/CSS donut chart for proportional segments with optional center labels and pointer-aware segment tooltips.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": 9999,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": 9999,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "pieChart": {
+      "frameId": "synthetic:pieChart",
+      "title": "PieChart",
+      "description": "HTML/CSS pie chart for proportional segment comparisons with pointer-aware segment tooltips.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": 9999,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": 9999,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "gaugeChart": {
+      "frameId": "synthetic:gaugeChart",
+      "title": "GaugeChart",
+      "description": "HTML/CSS semi-circle gauge for scores, progress, and capacity readings with hover/focus value tooltip.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 144,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 112,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "segmentedGaugeCard": {
+      "frameId": "synthetic:segmentedGaugeCard",
+      "title": "Segmented Gauge Card",
+      "description": "HTML/CSS segmented semicircle gauge card for status, spend, risk, and progress dashboards with editable segments, target value, and hover/focus tooltips.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "radarChart": {
+      "frameId": "synthetic:radarChart",
+      "title": "RadarChart",
+      "description": "HTML/CSS radar chart for comparing single or multi-series multi-axis scores with hover/focus point tooltips.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 256,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 208,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "heatmapChart": {
+      "frameId": "synthetic:heatmapChart",
+      "title": "HeatmapChart",
+      "description": "HTML/CSS density heatmap for day, time, and cohort intensity patterns with hover/focus cell tooltips.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "activityTimelineCard": {
+      "frameId": "synthetic:activityTimelineCard",
+      "title": "Activity Timeline Card",
+      "description": "HTML/CSS timeline card for activity, sleep, and operations dashboards with editable slots, segments, metrics, and hover/focus tooltips.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "labeledDonutCard": {
+      "frameId": "synthetic:labeledDonutCard",
+      "title": "Labeled Donut Card",
+      "description": "HTML/CSS donut chart card for segment comparison with central summary, external callout rows, and hover/focus segment tooltips.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "retentionCohortCard": {
+      "frameId": "synthetic:retentionCohortCard",
+      "title": "Retention Cohort Card",
+      "description": "HTML/CSS cohort retention card for dashboard grids with editable cohorts, periods, values, and hover/focus cell tooltips.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "choroplethMap": {
+      "frameId": "synthetic:choroplethMap",
+      "title": "ChoroplethMap",
+      "description": "HTML/CSS region density map for GeoJSON-style boundaries, markers, and ranked locations with hover/focus tooltips.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "quadrantMatrix": {
+      "frameId": "synthetic:quadrantMatrix",
+      "title": "QuadrantMatrix",
+      "description": "HTML/CSS four-quadrant matrix for plotting selectable items by x/y position with ranked values and hover/focus tooltips.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "analyticsCard": {
+      "frameId": "synthetic:analyticsCard",
+      "title": "AnalyticsCard",
+      "description": "Composable metric card shell for chart previews, deltas, and supporting context.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:positive",
+          "name": "positive",
+          "key": "positive",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:riskIncrease",
+          "name": "riskIncrease",
+          "key": "riskIncrease",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:flatWithFooter",
+          "name": "flatWithFooter",
+          "key": "flatWithFooter",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    }
+  }
+}

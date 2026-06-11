@@ -1,0 +1,371 @@
+{
+  "version": "2.7",
+  "children": [
+    {
+      "type": "frame",
+      "id": "bi8Au",
+      "x": 0,
+      "y": 0,
+      "name": "Button Showcase",
+      "clip": true,
+      "width": 800,
+      "height": 600,
+      "fill": "#FFFFFF",
+      "layout": "vertical",
+      "gap": 24,
+      "padding": 32,
+      "children": [
+        {
+          "type": "text",
+          "id": "cWNAN",
+          "name": "showcaseTitle",
+          "fill": "#171717",
+          "content": "Gunjo Button Variants",
+          "fontFamily": "Inter",
+          "fontSize": 24,
+          "fontWeight": "600"
+        },
+        {
+          "type": "text",
+          "id": "xBwdA",
+          "name": "showcaseDesc",
+          "fill": "#71717a",
+          "content": "Pencil で再現した gunjo の Button コンポーネント",
+          "fontFamily": "Inter",
+          "fontSize": 14,
+          "fontWeight": "normal"
+        },
+        {
+          "type": "frame",
+          "id": "7SSWc",
+          "name": "variantRow1",
+          "width": "fill_container",
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "id": "cjcVS",
+              "type": "ref",
+              "ref": "CQspd",
+              "name": "instDefault",
+              "descendants": {
+                "NLZwe": {
+                  "content": "Primary"
+                }
+              }
+            },
+            {
+              "id": "u4sfX",
+              "type": "ref",
+              "ref": "GgmI6",
+              "name": "instDestructive",
+              "descendants": {
+                "6fHwF": {
+                  "content": "Delete"
+                }
+              }
+            },
+            {
+              "id": "Vl1iv",
+              "type": "ref",
+              "ref": "hDcb5",
+              "name": "instOutline",
+              "descendants": {
+                "sN61x": {
+                  "content": "Outline"
+                }
+              }
+            },
+            {
+              "id": "W7Kh6",
+              "type": "ref",
+              "ref": "mmKts",
+              "name": "instSecondary",
+              "descendants": {
+                "klfHa": {
+                  "content": "Secondary"
+                }
+              }
+            },
+            {
+              "id": "bH7Bl",
+              "type": "ref",
+              "ref": "D9PoG",
+              "name": "instGhost",
+              "descendants": {
+                "eO6zJ": {
+                  "content": "Ghost"
+                }
+              }
+            },
+            {
+              "id": "jJBym",
+              "type": "ref",
+              "ref": "rvWq9",
+              "name": "instLink",
+              "descendants": {
+                "LOgxI": {
+                  "content": "Link"
+                }
+              }
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Twyas",
+          "name": "sizeRow",
+          "width": "fill_container",
+          "gap": 12,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "IcHFY",
+              "name": "sizeLabel",
+              "fill": "#171717",
+              "content": "Sizes:",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "500"
+            },
+            {
+              "id": "jTg4P",
+              "type": "ref",
+              "ref": "CQspd",
+              "width": "fit_content",
+              "height": 32,
+              "padding": [
+                6,
+                12
+              ],
+              "name": "instSm",
+              "descendants": {
+                "NLZwe": {
+                  "content": "Small",
+                  "fontSize": 12
+                }
+              }
+            },
+            {
+              "id": "AY7Oe",
+              "type": "ref",
+              "ref": "CQspd",
+              "name": "instMd",
+              "descendants": {
+                "NLZwe": {
+                  "content": "Default"
+                }
+              }
+            },
+            {
+              "id": "mdb1q",
+              "type": "ref",
+              "ref": "CQspd",
+              "width": "fit_content",
+              "height": 40,
+              "padding": [
+                10,
+                32
+              ],
+              "name": "instLg",
+              "descendants": {
+                "NLZwe": {
+                  "content": "Large",
+                  "fontSize": 14
+                }
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "type": "frame",
+      "id": "TOGSn",
+      "x": 850,
+      "y": 0,
+      "name": "Gunjo Buttons",
+      "width": 360,
+      "fill": "#fafafa",
+      "layout": "vertical",
+      "gap": 24,
+      "padding": 24,
+      "children": [
+        {
+          "type": "frame",
+          "id": "CQspd",
+          "name": "Button/Default",
+          "reusable": true,
+          "height": 36,
+          "fill": "#171717",
+          "cornerRadius": 6,
+          "gap": 8,
+          "padding": [
+            8,
+            16
+          ],
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "NLZwe",
+              "name": "labelDefault",
+              "fill": "#fafafa",
+              "content": "Button",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "GgmI6",
+          "name": "Button/Destructive",
+          "reusable": true,
+          "height": 36,
+          "fill": "#ef4444",
+          "cornerRadius": 6,
+          "gap": 8,
+          "padding": [
+            8,
+            16
+          ],
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "6fHwF",
+              "name": "labelDestructive",
+              "fill": "#fafafa",
+              "content": "Delete",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "hDcb5",
+          "name": "Button/Outline",
+          "reusable": true,
+          "height": 36,
+          "fill": "transparent",
+          "cornerRadius": 6,
+          "stroke": {
+            "align": "inside",
+            "thickness": 1,
+            "fill": "#e5e5e5"
+          },
+          "gap": 8,
+          "padding": [
+            8,
+            16
+          ],
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "sN61x",
+              "name": "labelOutline",
+              "fill": "#171717",
+              "content": "Outline",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "mmKts",
+          "name": "Button/Secondary",
+          "reusable": true,
+          "height": 36,
+          "fill": "#f4f4f5",
+          "cornerRadius": 6,
+          "gap": 8,
+          "padding": [
+            8,
+            16
+          ],
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "klfHa",
+              "name": "labelSecondary",
+              "fill": "#171717",
+              "content": "Secondary",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "D9PoG",
+          "name": "Button/Ghost",
+          "reusable": true,
+          "height": 36,
+          "fill": "transparent",
+          "cornerRadius": 6,
+          "gap": 8,
+          "padding": [
+            8,
+            16
+          ],
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "eO6zJ",
+              "name": "labelGhost",
+              "fill": "#171717",
+              "content": "Ghost",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "500"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "rvWq9",
+          "name": "Button/Link",
+          "reusable": true,
+          "height": 36,
+          "fill": "transparent",
+          "cornerRadius": 6,
+          "gap": 8,
+          "padding": [
+            8,
+            16
+          ],
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "text",
+              "id": "LOgxI",
+              "name": "labelLink",
+              "fill": "#171717",
+              "content": "Link",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "500"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

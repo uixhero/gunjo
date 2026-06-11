@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" role="img" aria-labelledby="title desc">
+  <title id="title">Campaign hero sample</title>
+  <desc id="desc">A wide abstract campaign image with soft blue and coral blocks.</desc>
+  <rect width="1920" height="1080" fill="#f7f9fc"/>
+  <rect x="0" y="0" width="1920" height="1080" fill="#e8eef8"/>
+  <circle cx="1540" cy="240" r="360" fill="#f6c8ba" opacity="0.95"/>
+  <circle cx="420" cy="820" r="420" fill="#3f5fb8" opacity="0.92"/>
+  <rect x="228" y="210" width="660" height="420" rx="52" fill="#ffffff" opacity="0.92"/>
+  <rect x="288" y="286" width="420" height="38" rx="19" fill="#25304f"/>
+  <rect x="288" y="370" width="540" height="28" rx="14" fill="#63738f"/>
+  <rect x="288" y="438" width="320" height="28" rx="14" fill="#63738f" opacity="0.72"/>
+  <rect x="1210" y="540" width="430" height="230" rx="38" fill="#ffffff" opacity="0.78"/>
+  <rect x="1276" y="604" width="296" height="42" rx="21" fill="#3f5fb8"/>
+  <rect x="1276" y="690" width="210" height="26" rx="13" fill="#63738f" opacity="0.78"/>
+</svg>

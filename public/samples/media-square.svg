@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Square product sample</title>
+  <desc id="desc">A square product placeholder with geometric layers.</desc>
+  <rect width="1200" height="1200" fill="#eef2ff"/>
+  <rect x="146" y="146" width="908" height="908" rx="96" fill="#ffffff"/>
+  <rect x="262" y="314" width="424" height="424" rx="56" fill="#3f5fb8"/>
+  <rect x="514" y="470" width="356" height="356" rx="56" fill="#f5b8a6" opacity="0.96"/>
+  <circle cx="440" cy="780" r="132" fill="#0f172a" opacity="0.92"/>
+  <rect x="258" y="908" width="520" height="34" rx="17" fill="#667085"/>
+</svg>

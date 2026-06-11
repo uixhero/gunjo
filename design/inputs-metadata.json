@@ -1,0 +1,150 @@
+{
+  "button": {
+    "title": "Button",
+    "description": "Displays a button or a component that looks like a button."
+  },
+  "chatInput": {
+    "title": "ChatInput",
+    "description": "Message composer with multiline input, attachment action, send/stop controls, and disabled-state feedback."
+  },
+  "input": {
+    "title": "Input",
+    "description": "Displays a form input field or a component that looks like an input field."
+  },
+  "label": {
+    "title": "Label",
+    "description": "Renders an accessible label associated with controls."
+  },
+  "checkbox": {
+    "title": "Checkbox",
+    "description": "A control that allows the user to toggle between checked and not checked."
+  },
+  "switch": {
+    "title": "Switch",
+    "description": "A control that allows the user to toggle between checked and not checked."
+  },
+  "textarea": {
+    "title": "Textarea",
+    "description": "Displays a form textarea or a component that looks like a textarea."
+  },
+  "radioGroup": {
+    "title": "RadioGroup",
+    "description": "A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time."
+  },
+  "slider": {
+    "title": "Slider",
+    "description": "An input where the user selects a value from within a given range."
+  },
+  "select": {
+    "title": "Select",
+    "description": "Displays a list of options for the user to pick from."
+  },
+  "toggleGroup": {
+    "title": "ToggleGroup",
+    "description": "A set of two-state buttons that can be toggled on or off."
+  },
+  "toggle": {
+    "title": "Toggle",
+    "description": "Two-state pressable button (icon-style toggle)."
+  },
+  "numberInput": {
+    "title": "NumberInput",
+    "description": "Numeric input with up/down stepper buttons."
+  },
+  "passwordInput": {
+    "title": "PasswordInput",
+    "description": "Password field with show/hide toggle button."
+  },
+  "searchInput": {
+    "title": "SearchInput",
+    "description": "Input with leading search icon for search bars."
+  },
+  "inputOTP": {
+    "title": "InputOTP",
+    "description": "One-time-password input with per-digit slots and optional separator."
+  },
+  "calendar": {
+    "title": "Calendar",
+    "description": "A date field component that allows users to enter and edit date."
+  },
+  "filterButton": {
+    "title": "FilterButton",
+    "description": "Filter trigger with dashed border, count badge, and command popover list."
+  },
+  "sortButton": {
+    "title": "SortButton",
+    "description": "Three-state sort trigger (none, asc, desc) with icon + text."
+  },
+  "form": {
+    "title": "Form",
+    "description": "Compound form primitives for vertical field composition, labels, descriptions, messages, and full-width controls."
+  },
+  "combobox": {
+    "title": "Combobox",
+    "description": "Searchable select. Combines Popover + Command for filterable option lists."
+  },
+  "datePicker": {
+    "title": "DatePicker",
+    "description": "Date input with popup Calendar. Wraps Popover + Calendar primitives."
+  },
+  "dateRangePicker": {
+    "title": "DateRangePicker",
+    "description": "Pick a date range with two-month Calendar in popover."
+  },
+  "timePicker": {
+    "title": "TimePicker",
+    "description": "Hour + minute select with optional 12 / 24 hour mode."
+  },
+  "tagInput": {
+    "title": "TagInput",
+    "description": "Multi-tag input with Enter to add and × to remove."
+  },
+  "mention": {
+    "title": "Mention",
+    "description": "Textarea with @mention picker — autocompletes user names from a list."
+  },
+  "fileUploader": {
+    "title": "File Uploader",
+    "description": "Drag-and-drop file intake with compact list rendering."
+  },
+  "rangeSlider": {
+    "title": "RangeSlider",
+    "description": "Selects a minimum and maximum value within a bounded range."
+  },
+  "editableField": {
+    "title": "Editable Field",
+    "description": "Labelled field that switches between read-only display and explicit save/cancel editing."
+  },
+  "tooltipButton": {
+    "title": "TooltipButton",
+    "description": "Button composition that pairs an action with a GunjoUI Tooltip for icon, compact, or explanatory controls."
+  },
+  "copyButton": {
+    "title": "CopyButton",
+    "description": "Clipboard action button with tooltip feedback and copied-state icon or label."
+  },
+  "chatComposer": {
+    "title": "ChatComposer",
+    "description": "Container that composes ChatInput with prompt choices, workspace context, usage status, footer context, or an accessory."
+  },
+  "passwordRequirementList": {
+    "title": "PasswordRequirementList",
+    "description": "Password requirement checklist that can be used standalone or inside PasswordGroup."
+  },
+  "passwordStrengthMeter": {
+    "title": "PasswordStrengthMeter",
+    "description": "Password strength meter that displays a caller-provided score, label, and helper text."
+  },
+  "passwordGroup": {
+    "title": "PasswordGroup",
+    "description": "Password field composition with visibility control, requirement checklist, strength meter, error message, and disabled feedback."
+  },
+  "phoneInput": {
+    "title": "PhoneInput",
+    "description": "Telephone input with country calling-code affordance and caller-provided formatting hook."
+  },
+  "postalCodeInput": {
+    "title": "PostalCodeInput",
+    "description": "Postal-code input with prefix affordance and caller-provided formatting hook."
+  }
+}

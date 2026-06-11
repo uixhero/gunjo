@@ -1,0 +1,4 @@
+{
+  "$schema": "Per-component stability classification. Keys are the camelCase componentKey from the SSOT manifest. Values: 'stable' | 'beta' | 'experimental'. Components not listed default to 'experimental'. See /docs/stability for what each level means.",
+  "stability": {}
+}

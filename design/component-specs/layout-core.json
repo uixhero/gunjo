@@ -1,0 +1,841 @@
+{
+  "schemaVersion": 1,
+  "source": "design/layout.pen",
+  "components": {
+    "aspectRatio": {
+      "frameId": "K5AUnC",
+      "title": "AspectRatio",
+      "description": "Maintains a fixed aspect ratio for media containers (image, video, iframe).",
+      "variants": []
+    },
+    "container": {
+      "frameId": "y82psN",
+      "title": "Container",
+      "description": "Max-width + horizontal padding wrapper for page content.",
+      "variants": []
+    },
+    "hStack": {
+      "frameId": "Vwsvk",
+      "title": "HStack",
+      "description": "Horizontal flex layout with gap, align, and justify props.",
+      "variants": []
+    },
+    "vStack": {
+      "frameId": "sUUzz",
+      "title": "VStack",
+      "description": "Vertical flex layout with gap, align, and justify props.",
+      "variants": []
+    },
+    "cluster": {
+      "frameId": "yQE7M",
+      "title": "Cluster",
+      "description": "Wrapping flex layout — items flow horizontally and wrap onto new lines.",
+      "variants": []
+    },
+    "grid": {
+      "frameId": "BHOl8",
+      "title": "Grid",
+      "description": "CSS grid wrapper with cols, gap, and minItemWidth props.",
+      "variants": []
+    },
+    "scrollArea": {
+      "frameId": "scrollAreaFrame",
+      "title": "ScrollArea",
+      "description": "Custom scrollbar container with viewport and thumb controls.",
+      "variants": [
+        {
+          "id": "scrollAreaDefault",
+          "name": "ScrollArea/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 320,
+          "height": 240,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "scrollAreaViewport",
+            "scrollAreaScrollbar"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "scrollAreaDefault",
+          "type": "frame",
+          "name": "ScrollArea/Default",
+          "width": 320,
+          "height": 240,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "scrollAreaViewport",
+            "scrollAreaScrollbar"
+          ]
+        },
+        "viewport": {
+          "id": "scrollAreaViewport",
+          "type": "frame",
+          "name": null,
+          "width": 320,
+          "height": 240,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 6,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "scrollAreaViewportText",
+            "scrollAreaViewportHintText"
+          ]
+        },
+        "scrollbar": {
+          "id": "scrollAreaScrollbar",
+          "type": "frame",
+          "name": null,
+          "width": 10,
+          "height": 240,
+          "padding": [
+            1,
+            1,
+            1,
+            1
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "scrollAreaThumb"
+          ]
+        },
+        "thumb": {
+          "id": "scrollAreaThumb",
+          "type": "frame",
+          "name": null,
+          "width": 8,
+          "height": 80,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 999,
+          "fill": "#e2e8f0",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "resizable": {
+      "frameId": "resizableFrame",
+      "title": "Resizable",
+      "description": "Pane group with draggable handle and optional grip indicator.",
+      "variants": [
+        {
+          "id": "resizableDefault",
+          "name": "Resizable/Horizontal",
+          "key": "horizontal",
+          "type": "frame",
+          "width": 520,
+          "height": 240,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "resizablePanelGroup",
+            "resizableHandle"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "resizableDefault",
+          "type": "frame",
+          "name": "Resizable/Horizontal",
+          "width": 520,
+          "height": 240,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "resizablePanelGroup",
+            "resizableHandle"
+          ]
+        },
+        "panelGroup": {
+          "id": "resizablePanelGroup",
+          "type": "frame",
+          "name": null,
+          "width": 520,
+          "height": 240,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "resizablePanelLeft",
+            "resizablePanelRight"
+          ]
+        },
+        "handle": {
+          "id": "resizableHandle",
+          "type": "frame",
+          "name": null,
+          "width": 1,
+          "height": 240,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#e2e8f0",
+          "stroke": null,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "resizableHandleGrip"
+          ]
+        },
+        "handleGrip": {
+          "id": "resizableHandleGrip",
+          "type": "frame",
+          "name": null,
+          "width": 12,
+          "height": 16,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 2,
+          "fill": "#e2e8f0",
+          "stroke": {
+            "align": "inside",
+            "fill": "#cbd5e1",
+            "thickness": 1
+          },
+          "justifyContent": "center",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "collapsiblePanelToggle": {
+      "frameId": "synthetic:collapsiblePanelToggle",
+      "title": "CollapsiblePanelToggle",
+      "description": "Boundary control for opening and closing a collapsible panel from the left, right, top, or bottom edge.",
+      "variants": [
+        {
+          "id": "synthetic:left",
+          "name": "left",
+          "key": "left",
+          "type": "frame",
+          "width": 40,
+          "height": 40,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:right",
+          "name": "right",
+          "key": "right",
+          "type": "frame",
+          "width": 40,
+          "height": 40,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:top",
+          "name": "top",
+          "key": "top",
+          "type": "frame",
+          "width": 40,
+          "height": 40,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:bottom",
+          "name": "bottom",
+          "key": "bottom",
+          "type": "frame",
+          "width": 40,
+          "height": 40,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "inspectorPanel": {
+      "frameId": "inspectorPanelFrame",
+      "title": "Inspector Panel",
+      "description": "Structured side panel for detailed property editing.",
+      "variants": [
+        {
+          "id": "inspectorPanelDefault",
+          "name": "InspectorPanel/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 320,
+          "height": 420,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "inspectorPanelHeader",
+            "inspectorPanelBody"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "inspectorPanelDefault",
+          "type": "frame",
+          "name": "InspectorPanel/Default",
+          "width": 320,
+          "height": 420,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "inspectorPanelHeader",
+            "inspectorPanelBody"
+          ]
+        },
+        "header": {
+          "id": "inspectorPanelHeader",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": 48,
+          "padding": [
+            0,
+            16,
+            0,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#f5f5f580",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "inspectorPanelHeaderText"
+          ]
+        },
+        "headerText": {
+          "id": "inspectorPanelHeaderText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#111827",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "600",
+          "content": "Inspector",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "body": {
+          "id": "inspectorPanelBody",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": 24,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "inspectorPanelSectionTitle",
+            "inspectorPanelFieldLabel"
+          ]
+        },
+        "sectionTitle": {
+          "id": "inspectorPanelSectionTitle",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 12,
+          "fontWeight": "600",
+          "content": "Transform",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "fieldLabel": {
+          "id": "inspectorPanelFieldLabel",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0c0c12",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 12,
+          "fontWeight": "500",
+          "content": "Position",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "spatialCanvas": {
+      "frameId": "spatialCanvasFrame",
+      "title": "Spatial Canvas",
+      "description": "Large grid-based interaction surface for node and layout editing.",
+      "variants": [
+        {
+          "id": "spatialCanvasDefault",
+          "name": "SpatialCanvas/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 640,
+          "height": 360,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#f9fafb",
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "spatialCanvasHint",
+            "spatialCanvasHintDetail"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "spatialCanvasDefault",
+          "type": "frame",
+          "name": "SpatialCanvas/Default",
+          "width": 640,
+          "height": 360,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#f9fafb",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "spatialCanvasHint",
+            "spatialCanvasHintDetail"
+          ]
+        },
+        "hint": {
+          "id": "spatialCanvasHint",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "500",
+          "content": "Drop elements here",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "spatialCanvasHintDetail": {
+          "id": "spatialCanvasHintDetail",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#94a3b8",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "content": "Use drag to create connections.",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "assetInspectorPanel": {
+      "frameId": "synthetic:assetInspectorPanel",
+      "title": "AssetInspectorPanel",
+      "description": "Media library inspector panel for asset preview, title and note fields, tag editing, metadata rows, and asset actions.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "deviceFrame": {
+      "frameId": "synthetic:deviceFrame",
+      "title": "DeviceFrame",
+      "description": "Browser chrome frame with URL entry, visual chrome variants, and desktop, tablet, and mobile viewport controls for interactive pattern previews.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:windows11",
+          "name": "windows11",
+          "key": "windows11",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "marqueeFrame": {
+      "frameId": "synthetic:marqueeFrame",
+      "title": "MarqueeFrame",
+      "description": "Scaled fake-browser viewport wrapper for marquee pattern pages. It keeps pattern content and overlays scoped to the active preview viewport.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:desktop",
+          "name": "desktop",
+          "key": "desktop",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:tablet",
+          "name": "tablet",
+          "key": "tablet",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:mobile",
+          "name": "mobile",
+          "key": "mobile",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    }
+  }
+}

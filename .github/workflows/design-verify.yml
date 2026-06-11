@@ -1,0 +1,348 @@
+name: Design Verify
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  design-verify:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Initialize SSOT diff flags
+        run: |
+          echo "SSOT_BASE_AVAILABLE=false" >> "$GITHUB_ENV"
+          echo "SSOT_PR_COMMENT_PUBLISH=false" >> "$GITHUB_ENV"
+          echo "SSOT_PR_COMMENT_PUBLISH_REASON=ssot-comment:post label not set" >> "$GITHUB_ENV"
+          NO_POST_ACTION="${{ vars.SSOT_PR_COMMENT_NO_POST_ACTION || 'delete' }}"
+          if [ "${NO_POST_ACTION}" != "delete" ] && [ "${NO_POST_ACTION}" != "update" ]; then
+            NO_POST_ACTION="delete"
+          fi
+          echo "SSOT_PR_COMMENT_NO_POST_ACTION=${NO_POST_ACTION}" >> "$GITHUB_ENV"
+          MESSAGE_TEMPLATE="${{ vars.SSOT_PR_COMMENT_NO_POST_DISABLED_MESSAGE || '- status: disabled\n- reason: ssot-comment:no-post label set' }}"
+          {
+            echo "SSOT_PR_COMMENT_NO_POST_DISABLED_MESSAGE<<__SSOT_NO_POST_MESSAGE__"
+            printf '%s\n' "${MESSAGE_TEMPLATE}"
+            echo "__SSOT_NO_POST_MESSAGE__"
+          } >> "$GITHUB_ENV"
+          MODE="${{ vars.SSOT_PR_COMMENT_MODE || 'concise' }}"
+          if [ "${MODE}" != "concise" ] && [ "${MODE}" != "detailed" ]; then
+            MODE="concise"
+          fi
+          echo "SSOT_PR_COMMENT_MODE_DEFAULT=${MODE}" >> "$GITHUB_ENV"
+          echo "SSOT_PR_COMMENT_MODE=${MODE}" >> "$GITHUB_ENV"
+
+      - name: Resolve SSOT PR comment mode
+        if: github.event_name == 'pull_request'
+        run: |
+          MODE="${SSOT_PR_COMMENT_MODE_DEFAULT}"
+          PUBLISH="false"
+          PUBLISH_REASON="ssot-comment:post label not set"
+          if [ "${{ contains(github.event.pull_request.labels.*.name, 'ssot-comment:detailed') }}" = "true" ]; then
+            MODE="detailed"
+          elif [ "${{ contains(github.event.pull_request.labels.*.name, 'ssot-comment:concise') }}" = "true" ]; then
+            MODE="concise"
+          fi
+          if [ "${{ contains(github.event.pull_request.labels.*.name, 'ssot-comment:no-post') }}" = "true" ]; then
+            PUBLISH="false"
+            PUBLISH_REASON="ssot-comment:no-post label set"
+          elif [ "${{ contains(github.event.pull_request.labels.*.name, 'ssot-comment:post') }}" = "true" ]; then
+            PUBLISH="true"
+            PUBLISH_REASON="ssot-comment:post label set"
+          fi
+          echo "SSOT_PR_COMMENT_MODE=${MODE}" >> "$GITHUB_ENV"
+          echo "SSOT_PR_COMMENT_PUBLISH=${PUBLISH}" >> "$GITHUB_ENV"
+          echo "SSOT_PR_COMMENT_PUBLISH_REASON=${PUBLISH_REASON}" >> "$GITHUB_ENV"
+
+      - name: Verify design SSOT
+        run: npm run design:verify
+
+      - name: Generate SSOT progress JSON
+        run: |
+          mkdir -p artifacts
+          npm run -s design:verify:ssot-progress-report:json > artifacts/ssot-progress-report.json
+
+      - name: Fetch PR base commit
+        if: github.event_name == 'pull_request'
+        run: git fetch --no-tags --depth=1 origin ${{ github.event.pull_request.base.sha }}
+
+      - name: Generate PR base SSOT progress JSON
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        run: |
+          git worktree add --detach /tmp/ssot-base ${{ github.event.pull_request.base.sha }}
+          if npm run -s design:verify:ssot-progress-report:json -- --root /tmp/ssot-base > artifacts/ssot-progress-base.json; then
+            echo "SSOT_BASE_AVAILABLE=true" >> "$GITHUB_ENV"
+          else
+            echo "SSOT_BASE_AVAILABLE=false" >> "$GITHUB_ENV"
+            echo "Unable to generate SSOT base report for commit ${{ github.event.pull_request.base.sha }}" > artifacts/ssot-progress-base-error.txt
+          fi
+          git worktree remove --force /tmp/ssot-base || true
+
+      - name: Generate PR SSOT progress diff
+        if: github.event_name == 'pull_request' && env.SSOT_BASE_AVAILABLE == 'true'
+        run: |
+          npm run -s design:verify:ssot-progress-diff -- --base artifacts/ssot-progress-base.json --head artifacts/ssot-progress-report.json > artifacts/ssot-progress-diff.md
+          npm run -s design:verify:ssot-progress-diff -- --base artifacts/ssot-progress-base.json --head artifacts/ssot-progress-report.json --json > artifacts/ssot-progress-diff.json
+
+      - name: Enforce PR SSOT regression gate
+        id: ssot_regression_gate
+        if: github.event_name == 'pull_request' && env.SSOT_BASE_AVAILABLE == 'true'
+        run: |
+          set -o pipefail
+          npm run -s design:verify:ssot-progress-regressions -- --input artifacts/ssot-progress-diff.json --category-thresholds design/policy/ssot-progress-regression-thresholds.json --report-json artifacts/ssot-progress-regressions.json 2>&1 | tee artifacts/ssot-progress-regressions.txt
+
+      - name: Enforce SSOT progress thresholds
+        run: npm run -s design:verify:ssot-progress-thresholds -- --input artifacts/ssot-progress-report.json
+
+      - name: Generate SSOT PR comment markdown
+        if: always() && github.event_name == 'pull_request'
+        run: |
+          if [ "${SSOT_BASE_AVAILABLE}" != "true" ] || [ ! -f artifacts/ssot-progress-diff.json ]; then
+            node scripts/design-verify-ssot-progress-pr-comment.mjs --mode "${SSOT_PR_COMMENT_MODE}" --skipped-reason "base SSOT report was unavailable." > artifacts/ssot-progress-pr-comment.md
+            exit 0
+          fi
+          if [ -f artifacts/ssot-progress-regressions.json ]; then
+            node scripts/design-verify-ssot-progress-pr-comment.mjs --mode "${SSOT_PR_COMMENT_MODE}" --diff artifacts/ssot-progress-diff.json --regression-report artifacts/ssot-progress-regressions.json --regression-outcome "${{ steps.ssot_regression_gate.outcome }}" > artifacts/ssot-progress-pr-comment.md
+          else
+            node scripts/design-verify-ssot-progress-pr-comment.mjs --mode "${SSOT_PR_COMMENT_MODE}" --diff artifacts/ssot-progress-diff.json --regression-outcome "unknown" > artifacts/ssot-progress-pr-comment.md
+          fi
+
+      - name: Upload SSOT progress JSON
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ssot-progress-report
+          path: artifacts/ssot-progress-report.json
+
+      - name: Upload SSOT progress diff artifacts
+        if: always() && github.event_name == 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: ssot-progress-diff
+          path: |
+            artifacts/ssot-progress-base.json
+            artifacts/ssot-progress-base-error.txt
+            artifacts/ssot-progress-diff.md
+            artifacts/ssot-progress-diff.json
+            artifacts/ssot-progress-regressions.json
+            artifacts/ssot-progress-regressions.txt
+            artifacts/ssot-progress-pr-comment.md
+          if-no-files-found: ignore
+
+      - name: Append SSOT progress summary
+        if: always()
+        run: node scripts/design-verify-ssot-progress-summary.mjs --input artifacts/ssot-progress-report.json >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Append SSOT progress diff summary
+        if: always() && github.event_name == 'pull_request'
+        run: |
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          if [ "${SSOT_BASE_AVAILABLE}" = "true" ] && [ -f artifacts/ssot-progress-diff.md ]; then
+            cat artifacts/ssot-progress-diff.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "## SSOT Progress Diff" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "- skipped: base SSOT report could not be generated for this PR base commit." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Append SSOT regression gate summary
+        if: always() && github.event_name == 'pull_request'
+        run: |
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          if [ "${SSOT_BASE_AVAILABLE}" != "true" ]; then
+            echo "## SSOT Regression Gate" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "- skipped: base SSOT report was unavailable." >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          if [ -f artifacts/ssot-progress-regressions.json ]; then
+            node scripts/design-verify-ssot-progress-regression-summary.mjs --input artifacts/ssot-progress-regressions.json --outcome "${{ steps.ssot_regression_gate.outcome }}" --policy design/policy/ssot-progress-regression-thresholds.json >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "## SSOT Regression Gate" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "- unavailable: regression report JSON was not generated." >> "$GITHUB_STEP_SUMMARY"
+          fi
+          if [ -f artifacts/ssot-progress-regressions.txt ]; then
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo '```text' >> "$GITHUB_STEP_SUMMARY"
+            tail -n 80 artifacts/ssot-progress-regressions.txt >> "$GITHUB_STEP_SUMMARY"
+            echo '```' >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Append SSOT PR comment summary
+        if: always() && github.event_name == 'pull_request'
+        run: |
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "### SSOT PR Comment Mode" >> "$GITHUB_STEP_SUMMARY"
+          echo "- mode: \`${SSOT_PR_COMMENT_MODE}\`" >> "$GITHUB_STEP_SUMMARY"
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          if [ -f artifacts/ssot-progress-pr-comment.md ]; then
+            cat artifacts/ssot-progress-pr-comment.md >> "$GITHUB_STEP_SUMMARY"
+          else
+            echo "## SSOT PR Comment" >> "$GITHUB_STEP_SUMMARY"
+            echo "" >> "$GITHUB_STEP_SUMMARY"
+            echo "- unavailable: pr comment markdown was not generated." >> "$GITHUB_STEP_SUMMARY"
+          fi
+
+      - name: Publish SSOT PR comment
+        id: ssot_pr_comment
+        if: always() && github.event_name == 'pull_request' && env.SSOT_PR_COMMENT_PUBLISH == 'true' && github.event.pull_request.head.repo.fork == false
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require("fs");
+            const marker = "<!-- ssot-progress-pr-comment -->";
+            const filePath = "artifacts/ssot-progress-pr-comment.md";
+
+            if (!fs.existsSync(filePath)) {
+              core.setOutput("status", "skipped:no-file");
+              return;
+            }
+
+            const body = fs.readFileSync(filePath, "utf8").trim();
+            if (!body) {
+              core.setOutput("status", "skipped:empty");
+              return;
+            }
+
+            const commentBody = `${marker}\n${body}`;
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner,
+              repo,
+              issue_number,
+              per_page: 100,
+            });
+
+            const existing = comments.find(
+              (comment) => comment.user?.type === "Bot" && comment.body?.includes(marker)
+            );
+
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner,
+                repo,
+                comment_id: existing.id,
+                body: commentBody,
+              });
+              core.setOutput("status", "updated");
+              return;
+            }
+
+            await github.rest.issues.createComment({
+              owner,
+              repo,
+              issue_number,
+              body: commentBody,
+            });
+            core.setOutput("status", "created");
+
+      - name: Handle SSOT PR comment on no-post label
+        id: ssot_pr_comment_cleanup
+        if: always() && github.event_name == 'pull_request' && env.SSOT_PR_COMMENT_PUBLISH_REASON == 'ssot-comment:no-post label set' && github.event.pull_request.head.repo.fork == false
+        uses: actions/github-script@v7
+        env:
+          SSOT_PR_COMMENT_NO_POST_ACTION: ${{ env.SSOT_PR_COMMENT_NO_POST_ACTION }}
+          SSOT_PR_COMMENT_NO_POST_DISABLED_MESSAGE: ${{ env.SSOT_PR_COMMENT_NO_POST_DISABLED_MESSAGE }}
+        with:
+          script: |
+            const marker = "<!-- ssot-progress-pr-comment -->";
+            const action = process.env.SSOT_PR_COMMENT_NO_POST_ACTION === "update" ? "update" : "delete";
+            const defaultMessageTemplate = "- status: disabled\\n- reason: ssot-comment:no-post label set";
+            const messageTemplate =
+              process.env.SSOT_PR_COMMENT_NO_POST_DISABLED_MESSAGE ?? defaultMessageTemplate;
+            const renderedMessage = String(messageTemplate).replace(/\\n/g, "\n").trim();
+            const closedMessage = renderedMessage.length > 0
+              ? renderedMessage
+              : defaultMessageTemplate.replace(/\\n/g, "\n");
+            const { owner, repo } = context.repo;
+            const issue_number = context.issue.number;
+            const comments = await github.paginate(github.rest.issues.listComments, {
+              owner,
+              repo,
+              issue_number,
+              per_page: 100,
+            });
+
+            const targets = comments.filter(
+              (comment) => comment.user?.type === "Bot" && comment.body?.includes(marker)
+            );
+            if (targets.length === 0) {
+              core.setOutput("status", "none");
+              return;
+            }
+
+            if (action === "update") {
+              const closedBody = `${marker}\n## SSOT PR Comment\n\n${closedMessage}`;
+              for (const comment of targets) {
+                await github.rest.issues.updateComment({
+                  owner,
+                  repo,
+                  comment_id: comment.id,
+                  body: closedBody,
+                });
+              }
+              core.setOutput("status", `updated:${targets.length}`);
+              return;
+            }
+
+            for (const comment of targets) {
+              await github.rest.issues.deleteComment({
+                owner,
+                repo,
+                comment_id: comment.id,
+              });
+            }
+            core.setOutput("status", `deleted:${targets.length}`);
+
+      - name: Append SSOT PR comment publish status
+        if: always() && github.event_name == 'pull_request'
+        run: |
+          echo "" >> "$GITHUB_STEP_SUMMARY"
+          echo "### SSOT PR Comment Publish" >> "$GITHUB_STEP_SUMMARY"
+          if [ "${{ github.event.pull_request.head.repo.fork }}" = "true" ]; then
+            echo "- status: skipped (fork pull_request)" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          if [ "${SSOT_PR_COMMENT_PUBLISH_REASON}" = "ssot-comment:no-post label set" ]; then
+            echo "- status: cleanup (${{ steps.ssot_pr_comment_cleanup.outputs.status || 'skipped' }})" >> "$GITHUB_STEP_SUMMARY"
+            echo "- no-post action: \`${SSOT_PR_COMMENT_NO_POST_ACTION}\`" >> "$GITHUB_STEP_SUMMARY"
+            if [ "${SSOT_PR_COMMENT_NO_POST_ACTION}" = "update" ]; then
+              NO_POST_MESSAGE_PREVIEW="$(printf '%s' "${SSOT_PR_COMMENT_NO_POST_DISABLED_MESSAGE}" | tr '\n' ' ' | sed 's/[[:space:]]\+/ /g' | sed 's/^ //; s/ $//')"
+              if [ -z "${NO_POST_MESSAGE_PREVIEW}" ]; then
+                NO_POST_MESSAGE_PREVIEW="- status: disabled - reason: ssot-comment:no-post label set"
+              fi
+              if [ "${#NO_POST_MESSAGE_PREVIEW}" -gt 160 ]; then
+                NO_POST_MESSAGE_PREVIEW="${NO_POST_MESSAGE_PREVIEW:0:157}..."
+              fi
+              echo "- no-post message preview: ${NO_POST_MESSAGE_PREVIEW}" >> "$GITHUB_STEP_SUMMARY"
+            fi
+            exit 0
+          fi
+          if [ "${SSOT_PR_COMMENT_PUBLISH}" != "true" ]; then
+            echo "- status: skipped (${SSOT_PR_COMMENT_PUBLISH_REASON})" >> "$GITHUB_STEP_SUMMARY"
+            exit 0
+          fi
+          echo "- status: ${{ steps.ssot_pr_comment.outputs.status || 'skipped' }}" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Type check
+        run: npm run type-check

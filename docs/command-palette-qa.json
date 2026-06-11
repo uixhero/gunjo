@@ -1,0 +1,267 @@
+{
+  "generatedAt": "2026-06-11T02:17:49.478Z",
+  "baseUrl": "http://127.0.0.1:13030",
+  "summary": {
+    "cases": 4,
+    "passed": 4,
+    "failed": 0
+  },
+  "results": [
+    {
+      "id": "ja-desktop-keyboard",
+      "locale": "ja",
+      "viewport": "desktop",
+      "open": "shortcut",
+      "ok": true,
+      "checks": [
+        {
+          "name": "opens",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "input focused",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "mobile input font size",
+          "ok": true,
+          "detail": "14px"
+        },
+        {
+          "name": "dialog within viewport",
+          "ok": true,
+          "detail": "640x359"
+        },
+        {
+          "name": "localized empty state",
+          "ok": true,
+          "detail": "一致する結果がありません。"
+        },
+        {
+          "name": "filtered result appears",
+          "ok": true,
+          "detail": "ボタン"
+        },
+        {
+          "name": "initial keyboard selection",
+          "ok": true,
+          "detail": "ボタン"
+        },
+        {
+          "name": "arrow key changes selection",
+          "ok": true,
+          "detail": "コピーボタン"
+        },
+        {
+          "name": "arrow key returns selection",
+          "ok": true,
+          "detail": "ボタン"
+        },
+        {
+          "name": "enter navigates",
+          "ok": true,
+          "detail": "http://127.0.0.1:13030/docs/components/button selected=none"
+        },
+        {
+          "name": "escape closes",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "en-desktop-keyboard",
+      "locale": "en",
+      "viewport": "desktop",
+      "open": "shortcut",
+      "ok": true,
+      "checks": [
+        {
+          "name": "opens",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "input focused",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "mobile input font size",
+          "ok": true,
+          "detail": "14px"
+        },
+        {
+          "name": "dialog within viewport",
+          "ok": true,
+          "detail": "640x359"
+        },
+        {
+          "name": "localized empty state",
+          "ok": true,
+          "detail": "No results found."
+        },
+        {
+          "name": "filtered result appears",
+          "ok": true,
+          "detail": "Button"
+        },
+        {
+          "name": "initial keyboard selection",
+          "ok": true,
+          "detail": "Button"
+        },
+        {
+          "name": "arrow key changes selection",
+          "ok": true,
+          "detail": "CopyButton"
+        },
+        {
+          "name": "arrow key returns selection",
+          "ok": true,
+          "detail": "Button"
+        },
+        {
+          "name": "enter navigates",
+          "ok": true,
+          "detail": "http://127.0.0.1:13030/docs/components/button selected=none"
+        },
+        {
+          "name": "escape closes",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "ja-mobile-trigger",
+      "locale": "ja",
+      "viewport": "mobile",
+      "open": "button",
+      "ok": true,
+      "checks": [
+        {
+          "name": "opens",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "input focused",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "mobile input font size",
+          "ok": true,
+          "detail": "16px"
+        },
+        {
+          "name": "dialog within viewport",
+          "ok": true,
+          "detail": "357x358"
+        },
+        {
+          "name": "localized empty state",
+          "ok": true,
+          "detail": "一致する結果がありません。"
+        },
+        {
+          "name": "filtered result appears",
+          "ok": true,
+          "detail": "ボタン"
+        },
+        {
+          "name": "initial keyboard selection",
+          "ok": true,
+          "detail": "ボタン"
+        },
+        {
+          "name": "arrow key changes selection",
+          "ok": true,
+          "detail": "コピーボタン"
+        },
+        {
+          "name": "arrow key returns selection",
+          "ok": true,
+          "detail": "ボタン"
+        },
+        {
+          "name": "enter navigates",
+          "ok": true,
+          "detail": "http://127.0.0.1:13030/docs/components/button selected=none"
+        },
+        {
+          "name": "escape closes",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    },
+    {
+      "id": "en-mobile-trigger",
+      "locale": "en",
+      "viewport": "mobile",
+      "open": "button",
+      "ok": true,
+      "checks": [
+        {
+          "name": "opens",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "input focused",
+          "ok": true,
+          "detail": ""
+        },
+        {
+          "name": "mobile input font size",
+          "ok": true,
+          "detail": "16px"
+        },
+        {
+          "name": "dialog within viewport",
+          "ok": true,
+          "detail": "358x359"
+        },
+        {
+          "name": "localized empty state",
+          "ok": true,
+          "detail": "No results found."
+        },
+        {
+          "name": "filtered result appears",
+          "ok": true,
+          "detail": "Button"
+        },
+        {
+          "name": "initial keyboard selection",
+          "ok": true,
+          "detail": "Button"
+        },
+        {
+          "name": "arrow key changes selection",
+          "ok": true,
+          "detail": "CopyButton"
+        },
+        {
+          "name": "arrow key returns selection",
+          "ok": true,
+          "detail": "Button"
+        },
+        {
+          "name": "enter navigates",
+          "ok": true,
+          "detail": "http://127.0.0.1:13030/docs/components/button selected=none"
+        },
+        {
+          "name": "escape closes",
+          "ok": true,
+          "detail": ""
+        }
+      ]
+    }
+  ]
+}

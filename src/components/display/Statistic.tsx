@@ -1,0 +1,70 @@
+import * as React from "react"
+import { IconArrowDown as ArrowDown, IconArrowUp as ArrowUp, IconMinus as Minus } from "@tabler/icons-react";
+
+import { cn } from "../../lib/utils"
+
+export type StatisticTrend = "up" | "down" | "flat"
+export type StatisticTone = "positive" | "negative" | "neutral"
+
+export interface StatisticProps extends React.HTMLAttributes<HTMLDivElement> {
+    label: React.ReactNode
+    value: React.ReactNode
+    /** Optional change indicator (e.g. "+20.1%", "-3.4%"). */
+    change?: React.ReactNode
+    /** Trend direction for the change indicator. Default "flat" (muted). */
+    trend?: StatisticTrend
+    /** Visual meaning for the change indicator. Defaults from trend. */
+    tone?: StatisticTone
+    /** Optional helper text below the value or after the change. */
+    hint?: React.ReactNode
+}
+
+const TONE_CLASS: Record<StatisticTone, string> = {
+    positive: "text-success",
+    negative: "text-destructive",
+    neutral: "text-muted-foreground",
+}
+
+const TREND_ICON: Record<StatisticTrend, React.ComponentType<{ className?: string }>> = {
+    up: ArrowUp,
+    down: ArrowDown,
+    flat: Minus,
+}
+
+const Statistic = React.forwardRef<HTMLDivElement, StatisticProps>(
+    (
+        { className, label, value, change, trend = "flat", tone, hint, ...props },
+        ref
+    ) => {
+        const TrendIcon = TREND_ICON[trend]
+        const resolvedTone = tone ?? (trend === "up" ? "positive" : trend === "down" ? "negative" : "neutral")
+
+        return (
+            <div
+                ref={ref}
+                className={cn(
+                    "flex flex-col gap-1 rounded-lg border border-border bg-card p-4 text-card-foreground",
+                    className
+                )}
+                {...props}
+            >
+                <p className="text-xs font-medium text-muted-foreground">{label}</p>
+                <p className="text-2xl font-bold tracking-tight [overflow-wrap:anywhere]">{value}</p>
+                {change !== undefined ? (
+                    <div className={cn("flex flex-wrap items-center gap-x-1 gap-y-0.5 text-xs", TONE_CLASS[resolvedTone])}>
+                        <TrendIcon className="h-3 w-3" />
+                        <span className="font-medium">{change}</span>
+                        {hint ? (
+                            <span className="text-muted-foreground">{hint}</span>
+                        ) : null}
+                    </div>
+                ) : hint ? (
+                    <p className="text-xs text-muted-foreground">{hint}</p>
+                ) : null}
+            </div>
+        )
+    }
+)
+Statistic.displayName = "Statistic"
+
+export { Statistic }

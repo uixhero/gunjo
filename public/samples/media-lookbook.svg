@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 1200" role="img" aria-labelledby="title desc">
+  <title id="title">Lookbook cover sample</title>
+  <desc id="desc">A landscape editorial cover placeholder.</desc>
+  <rect width="1600" height="1200" fill="#f8fafc"/>
+  <rect x="116" y="116" width="1268" height="968" rx="76" fill="#e2e8f0"/>
+  <rect x="210" y="210" width="460" height="780" rx="54" fill="#0f172a"/>
+  <rect x="746" y="210" width="560" height="352" rx="54" fill="#3f5fb8"/>
+  <rect x="746" y="630" width="560" height="360" rx="54" fill="#f6c8ba"/>
+  <rect x="250" y="812" width="330" height="40" rx="20" fill="#ffffff"/>
+  <rect x="250" y="890" width="240" height="28" rx="14" fill="#ffffff" opacity="0.72"/>
+</svg>

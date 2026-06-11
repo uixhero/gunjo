@@ -1,0 +1,888 @@
+{
+  "generatedAt": "2026-06-11T02:14:11.334Z",
+  "baseUrl": "http://127.0.0.1:13030",
+  "viewport": {
+    "width": 1440,
+    "height": 1100
+  },
+  "themes": [
+    "light",
+    "dark"
+  ],
+  "routes": [
+    {
+      "route": "/",
+      "label": "Home"
+    },
+    {
+      "route": "/showcase",
+      "label": "Showcase"
+    },
+    {
+      "route": "/docs/introduction",
+      "label": "Docs introduction"
+    },
+    {
+      "route": "/docs/components/button",
+      "label": "Docs component representative"
+    },
+    {
+      "route": "/docs/colors",
+      "label": "Colors"
+    },
+    {
+      "route": "/docs/tokens",
+      "label": "Tokens"
+    },
+    {
+      "route": "/patterns",
+      "label": "Patterns index"
+    },
+    {
+      "route": "/patterns/dashboard/overview",
+      "label": "Dashboard pattern"
+    },
+    {
+      "route": "/patterns/auth/login",
+      "label": "Auth pattern"
+    },
+    {
+      "route": "/patterns/media-library",
+      "label": "Media library pattern"
+    },
+    {
+      "route": "/patterns/not-found",
+      "label": "Not found pattern"
+    },
+    {
+      "route": "/missing-public-readiness-page",
+      "label": "App 404"
+    }
+  ],
+  "summary": {
+    "samples": 6238,
+    "failures": 0,
+    "manualReviews": 38,
+    "pageErrors": 0
+  },
+  "pages": [
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "light",
+      "url": "http://127.0.0.1:13030/",
+      "status": 200,
+      "samples": 120,
+      "failures": [],
+      "manualReviews": [
+        {
+          "text": "群青",
+          "color": "rgba(255, 255, 255, 0.95)",
+          "reason": "hero image or overlay background",
+          "selector": "section.relative.flex > div.relative.z-10 > div.on-hero-strong.hidden > span.text-\\[140px\\].font-bold"
+        },
+        {
+          "text": "Alpha · v0.0.1-alpha.1",
+          "color": "rgba(255, 255, 255, 0.9)",
+          "reason": "hero image or overlay background",
+          "selector": "section.relative.flex > div.relative.z-10 > div.on-hero.flex > div.inline-flex.items-center"
+        },
+        {
+          "text": "Gunjo UI",
+          "color": "rgb(255, 255, 255)",
+          "reason": "hero image or overlay background",
+          "selector": "section.relative.flex > div.relative.z-10 > div.on-hero.flex > h1.text-5xl.font-extrabold"
+        },
+        {
+          "text": "静かで検証しやすい UI を作るためのコンポーネントシステム。",
+          "color": "rgba(255, 255, 255, 0.8)",
+          "reason": "hero image or overlay background",
+          "selector": "section.relative.flex > div.relative.z-10 > div.on-hero.flex > p.on-hero-muted.max-w-xl"
+        },
+        {
+          "text": "140+ コンポーネント、デザイントークン、利用ガイドライン、AI 連携ドキュメントを監査済み。GunjoUI の SSOT から同期しつつ、人間が確認できる ",
+          "color": "rgba(255, 255, 255, 0.6)",
+          "reason": "hero image or overlay background",
+          "selector": "section.relative.flex > div.relative.z-10 > div.on-hero.flex > p.on-hero-faint.max-w-xl"
+        },
+        {
+          "text": "ドキュメントから始める",
+          "color": "rgb(8, 11, 33)",
+          "reason": "hero image or overlay background",
+          "selector": "div.relative.z-10 > div.on-hero.flex > div.mt-2.flex > a.inline-flex.items-center"
+        },
+        {
+          "text": "コンポーネントを見る",
+          "color": "rgb(255, 255, 255)",
+          "reason": "hero image or overlay background",
+          "selector": "div.relative.z-10 > div.on-hero.flex > div.mt-2.flex > a.inline-flex.items-center"
+        },
+        {
+          "text": "SSOT と AI 連携",
+          "color": "rgb(12, 12, 18)",
+          "reason": "complex background: linear-gradient(rgb(255, 255, 255) 0%, oklab(0.90481 0.0073517 0.01623 /",
+          "selector": "section.border-t.border-border\\/40 > div.mx-auto.w-full > div.mb-12.max-w-2xl > h2.text-3xl.font-bold"
+        },
+        {
+          "text": "GunjoUI は .pen と design metadata を SSOT とし、トークン、コンポーネント仕様、docs 登録、export 情報へ同期しま",
+          "color": "rgb(82, 99, 122)",
+          "reason": "complex background: linear-gradient(rgb(255, 255, 255) 0%, oklab(0.90481 0.0073517 0.01623 /",
+          "selector": "section.border-t.border-border\\/40 > div.mx-auto.w-full > div.mb-12.max-w-2xl > p.text-lg.text-muted-foreground"
+        },
+        {
+          "text": "コンポーネント仕様",
+          "color": "rgb(12, 12, 18)",
+          "reason": "complex background: linear-gradient(rgb(255, 255, 255) 0%, oklab(0.90481 0.0073517 0.01623 /",
+          "selector": "div.flex.flex-col > div.flex.flex-col > div.flex.items-center > h3.font-semibold.tracking-tight"
+        },
+        {
+          "text": "各コンポーネントの Markdown 仕様をコピーでき、variant 名を推測せず AI ツールへ渡せます。",
+          "color": "rgb(82, 99, 122)",
+          "reason": "complex background: linear-gradient(rgb(255, 255, 255) 0%, oklab(0.90481 0.0073517 0.01623 /",
+          "selector": "div.grid.gap-4 > div.flex.flex-col > div.flex.flex-col > p.text-muted-foreground.text-sm"
+        },
+        {
+          "text": "JSON-Schema endpoints",
+          "color": "rgb(12, 12, 18)",
+          "reason": "complex background: linear-gradient(rgb(255, 255, 255) 0%, oklab(0.90481 0.0073517 0.01623 /",
+          "selector": "div.flex.flex-col > div.flex.flex-col > div.flex.items-center > h3.font-semibold.tracking-tight"
+        },
+        {
+          "text": "/api/specs/* でコンポーネント仕様とカタログ manifest を machine-readable に配信します。",
+          "color": "rgb(82, 99, 122)",
+          "reason": "complex background: linear-gradient(rgb(255, 255, 255) 0%, oklab(0.90481 0.0073517 0.01623 /",
+          "selector": "div.grid.gap-4 > div.flex.flex-col > div.flex.flex-col > p.text-muted-foreground.text-sm"
+        },
+        {
+          "text": ".pen ベースの SSOT",
+          "color": "rgb(12, 12, 18)",
+          "reason": "complex background: linear-gradient(rgb(255, 255, 255) 0%, oklab(0.90481 0.0073517 0.01623 /",
+          "selector": "div.flex.flex-col > div.flex.flex-col > div.flex.items-center > h3.font-semibold.tracking-tight"
+        },
+        {
+          "text": ".pen を設計ソースとし、sync が tokens、spec、generated keys、docs registry、exports へ展開します。",
+          "color": "rgb(82, 99, 122)",
+          "reason": "complex background: linear-gradient(rgb(255, 255, 255) 0%, oklab(0.90481 0.0073517 0.01623 /",
+          "selector": "div.grid.gap-4 > div.flex.flex-col > div.flex.flex-col > p.text-muted-foreground.text-sm"
+        },
+        {
+          "text": "AI 連携ドキュメント",
+          "color": "rgb(12, 12, 18)",
+          "reason": "complex background: linear-gradient(rgb(255, 255, 255) 0%, oklab(0.90481 0.0073517 0.01623 /",
+          "selector": "div.flex.flex-col > div.flex.flex-col > div.flex.items-center > h3.font-semibold.tracking-tight"
+        },
+        {
+          "text": "v0 / Cursor / Claude / Figma Make などへ渡すための考え方と入口をまとめています。",
+          "color": "rgb(82, 99, 122)",
+          "reason": "complex background: linear-gradient(rgb(255, 255, 255) 0%, oklab(0.90481 0.0073517 0.01623 /",
+          "selector": "div.grid.gap-4 > div.flex.flex-col > div.flex.flex-col > p.text-muted-foreground.text-sm"
+        }
+      ]
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "dark",
+      "url": "http://127.0.0.1:13030/",
+      "status": 200,
+      "samples": 120,
+      "failures": [],
+      "manualReviews": [
+        {
+          "text": "群青",
+          "color": "rgba(255, 255, 255, 0.95)",
+          "reason": "hero image or overlay background",
+          "selector": "section.relative.flex > div.relative.z-10 > div.on-hero-strong.hidden > span.text-\\[140px\\].font-bold"
+        },
+        {
+          "text": "Alpha · v0.0.1-alpha.1",
+          "color": "rgba(255, 255, 255, 0.9)",
+          "reason": "hero image or overlay background",
+          "selector": "section.relative.flex > div.relative.z-10 > div.on-hero.flex > div.inline-flex.items-center"
+        },
+        {
+          "text": "Gunjo UI",
+          "color": "rgb(255, 255, 255)",
+          "reason": "hero image or overlay background",
+          "selector": "section.relative.flex > div.relative.z-10 > div.on-hero.flex > h1.text-5xl.font-extrabold"
+        },
+        {
+          "text": "静かで検証しやすい UI を作るためのコンポーネントシステム。",
+          "color": "rgba(255, 255, 255, 0.8)",
+          "reason": "hero image or overlay background",
+          "selector": "section.relative.flex > div.relative.z-10 > div.on-hero.flex > p.on-hero-muted.max-w-xl"
+        },
+        {
+          "text": "140+ コンポーネント、デザイントークン、利用ガイドライン、AI 連携ドキュメントを監査済み。GunjoUI の SSOT から同期しつつ、人間が確認できる ",
+          "color": "rgba(255, 255, 255, 0.6)",
+          "reason": "hero image or overlay background",
+          "selector": "section.relative.flex > div.relative.z-10 > div.on-hero.flex > p.on-hero-faint.max-w-xl"
+        },
+        {
+          "text": "ドキュメントから始める",
+          "color": "rgb(8, 11, 33)",
+          "reason": "hero image or overlay background",
+          "selector": "div.relative.z-10 > div.on-hero.flex > div.mt-2.flex > a.inline-flex.items-center"
+        },
+        {
+          "text": "コンポーネントを見る",
+          "color": "rgb(255, 255, 255)",
+          "reason": "hero image or overlay background",
+          "selector": "div.relative.z-10 > div.on-hero.flex > div.mt-2.flex > a.inline-flex.items-center"
+        },
+        {
+          "text": "SSOT と AI 連携",
+          "color": "rgb(248, 250, 252)",
+          "reason": "complex background: linear-gradient(rgb(2, 8, 23) 0%, oklab(0.305563 0.020665 0.0159103 / 0.",
+          "selector": "section.border-t.border-border\\/40 > div.mx-auto.w-full > div.mb-12.max-w-2xl > h2.text-3xl.font-bold"
+        },
+        {
+          "text": "GunjoUI は .pen と design metadata を SSOT とし、トークン、コンポーネント仕様、docs 登録、export 情報へ同期しま",
+          "color": "rgb(148, 163, 184)",
+          "reason": "complex background: linear-gradient(rgb(2, 8, 23) 0%, oklab(0.305563 0.020665 0.0159103 / 0.",
+          "selector": "section.border-t.border-border\\/40 > div.mx-auto.w-full > div.mb-12.max-w-2xl > p.text-lg.text-muted-foreground"
+        },
+        {
+          "text": "コンポーネント仕様",
+          "color": "rgb(248, 250, 252)",
+          "reason": "complex background: linear-gradient(rgb(2, 8, 23) 0%, oklab(0.305563 0.020665 0.0159103 / 0.",
+          "selector": "div.flex.flex-col > div.flex.flex-col > div.flex.items-center > h3.font-semibold.tracking-tight"
+        },
+        {
+          "text": "各コンポーネントの Markdown 仕様をコピーでき、variant 名を推測せず AI ツールへ渡せます。",
+          "color": "rgb(148, 163, 184)",
+          "reason": "complex background: linear-gradient(rgb(2, 8, 23) 0%, oklab(0.305563 0.020665 0.0159103 / 0.",
+          "selector": "div.grid.gap-4 > div.flex.flex-col > div.flex.flex-col > p.text-muted-foreground.text-sm"
+        },
+        {
+          "text": "JSON-Schema endpoints",
+          "color": "rgb(248, 250, 252)",
+          "reason": "complex background: linear-gradient(rgb(2, 8, 23) 0%, oklab(0.305563 0.020665 0.0159103 / 0.",
+          "selector": "div.flex.flex-col > div.flex.flex-col > div.flex.items-center > h3.font-semibold.tracking-tight"
+        },
+        {
+          "text": "/api/specs/* でコンポーネント仕様とカタログ manifest を machine-readable に配信します。",
+          "color": "rgb(148, 163, 184)",
+          "reason": "complex background: linear-gradient(rgb(2, 8, 23) 0%, oklab(0.305563 0.020665 0.0159103 / 0.",
+          "selector": "div.grid.gap-4 > div.flex.flex-col > div.flex.flex-col > p.text-muted-foreground.text-sm"
+        },
+        {
+          "text": ".pen ベースの SSOT",
+          "color": "rgb(248, 250, 252)",
+          "reason": "complex background: linear-gradient(rgb(2, 8, 23) 0%, oklab(0.305563 0.020665 0.0159103 / 0.",
+          "selector": "div.flex.flex-col > div.flex.flex-col > div.flex.items-center > h3.font-semibold.tracking-tight"
+        },
+        {
+          "text": ".pen を設計ソースとし、sync が tokens、spec、generated keys、docs registry、exports へ展開します。",
+          "color": "rgb(148, 163, 184)",
+          "reason": "complex background: linear-gradient(rgb(2, 8, 23) 0%, oklab(0.305563 0.020665 0.0159103 / 0.",
+          "selector": "div.grid.gap-4 > div.flex.flex-col > div.flex.flex-col > p.text-muted-foreground.text-sm"
+        },
+        {
+          "text": "AI 連携ドキュメント",
+          "color": "rgb(248, 250, 252)",
+          "reason": "complex background: linear-gradient(rgb(2, 8, 23) 0%, oklab(0.305563 0.020665 0.0159103 / 0.",
+          "selector": "div.flex.flex-col > div.flex.flex-col > div.flex.items-center > h3.font-semibold.tracking-tight"
+        },
+        {
+          "text": "v0 / Cursor / Claude / Figma Make などへ渡すための考え方と入口をまとめています。",
+          "color": "rgb(148, 163, 184)",
+          "reason": "complex background: linear-gradient(rgb(2, 8, 23) 0%, oklab(0.305563 0.020665 0.0159103 / 0.",
+          "selector": "div.grid.gap-4 > div.flex.flex-col > div.flex.flex-col > p.text-muted-foreground.text-sm"
+        }
+      ]
+    },
+    {
+      "route": "/showcase",
+      "label": "Showcase",
+      "theme": "light",
+      "url": "http://127.0.0.1:13030/showcase",
+      "status": 200,
+      "samples": 347,
+      "failures": [],
+      "manualReviews": []
+    },
+    {
+      "route": "/showcase",
+      "label": "Showcase",
+      "theme": "dark",
+      "url": "http://127.0.0.1:13030/showcase",
+      "status": 200,
+      "samples": 347,
+      "failures": [],
+      "manualReviews": []
+    },
+    {
+      "route": "/docs/introduction",
+      "label": "Docs introduction",
+      "theme": "light",
+      "url": "http://127.0.0.1:13030/docs/introduction",
+      "status": 200,
+      "samples": 473,
+      "failures": [],
+      "manualReviews": []
+    },
+    {
+      "route": "/docs/introduction",
+      "label": "Docs introduction",
+      "theme": "dark",
+      "url": "http://127.0.0.1:13030/docs/introduction",
+      "status": 200,
+      "samples": 473,
+      "failures": [],
+      "manualReviews": []
+    },
+    {
+      "route": "/docs/components/button",
+      "label": "Docs component representative",
+      "theme": "light",
+      "url": "http://127.0.0.1:13030/docs/components/button",
+      "status": 200,
+      "samples": 532,
+      "failures": [],
+      "manualReviews": []
+    },
+    {
+      "route": "/docs/components/button",
+      "label": "Docs component representative",
+      "theme": "dark",
+      "url": "http://127.0.0.1:13030/docs/components/button",
+      "status": 200,
+      "samples": 532,
+      "failures": [],
+      "manualReviews": []
+    },
+    {
+      "route": "/docs/colors",
+      "label": "Colors",
+      "theme": "light",
+      "url": "http://127.0.0.1:13030/docs/colors",
+      "status": 200,
+      "samples": 724,
+      "failures": [],
+      "manualReviews": []
+    },
+    {
+      "route": "/docs/colors",
+      "label": "Colors",
+      "theme": "dark",
+      "url": "http://127.0.0.1:13030/docs/colors",
+      "status": 200,
+      "samples": 716,
+      "failures": [],
+      "manualReviews": []
+    },
+    {
+      "route": "/docs/tokens",
+      "label": "Tokens",
+      "theme": "light",
+      "url": "http://127.0.0.1:13030/docs/tokens",
+      "status": 200,
+      "samples": 427,
+      "failures": [],
+      "manualReviews": []
+    },
+    {
+      "route": "/docs/tokens",
+      "label": "Tokens",
+      "theme": "dark",
+      "url": "http://127.0.0.1:13030/docs/tokens",
+      "status": 200,
+      "samples": 427,
+      "failures": [],
+      "manualReviews": []
+    },
+    {
+      "route": "/patterns",
+      "label": "Patterns index",
+      "theme": "light",
+      "url": "http://127.0.0.1:13030/patterns",
+      "status": 200,
+      "samples": 100,
+      "failures": [],
+      "manualReviews": []
+    },
+    {
+      "route": "/patterns",
+      "label": "Patterns index",
+      "theme": "dark",
+      "url": "http://127.0.0.1:13030/patterns",
+      "status": 200,
+      "samples": 100,
+      "failures": [],
+      "manualReviews": []
+    },
+    {
+      "route": "/patterns/dashboard/overview",
+      "label": "Dashboard pattern",
+      "theme": "light",
+      "url": "http://127.0.0.1:13030/patterns/dashboard/overview",
+      "status": 200,
+      "samples": 186,
+      "failures": [],
+      "manualReviews": [
+        {
+          "text": "428",
+          "color": "rgb(12, 12, 18)",
+          "reason": "complex background: conic-gradient(rgb(76, 89, 174) 0%, rgb(76, 89, 174) 46.4419%, rgb(33, 1",
+          "selector": "div.flex.min-w-0 > div.relative.aspect-square > div.absolute.inset-0 > span.text-2xl.font-semibold"
+        },
+        {
+          "text": "有望",
+          "color": "rgb(82, 99, 122)",
+          "reason": "complex background: conic-gradient(rgb(76, 89, 174) 0%, rgb(76, 89, 174) 46.4419%, rgb(33, 1",
+          "selector": "div.flex.min-w-0 > div.relative.aspect-square > div.absolute.inset-0 > span.text-xs.text-muted-foreground"
+        }
+      ]
+    },
+    {
+      "route": "/patterns/dashboard/overview",
+      "label": "Dashboard pattern",
+      "theme": "dark",
+      "url": "http://127.0.0.1:13030/patterns/dashboard/overview",
+      "status": 200,
+      "samples": 186,
+      "failures": [],
+      "manualReviews": [
+        {
+          "text": "428",
+          "color": "rgb(248, 250, 252)",
+          "reason": "complex background: conic-gradient(rgb(124, 135, 208) 0%, rgb(124, 135, 208) 46.4419%, rgb(7",
+          "selector": "div.flex.min-w-0 > div.relative.aspect-square > div.absolute.inset-0 > span.text-2xl.font-semibold"
+        },
+        {
+          "text": "有望",
+          "color": "rgb(148, 163, 184)",
+          "reason": "complex background: conic-gradient(rgb(124, 135, 208) 0%, rgb(124, 135, 208) 46.4419%, rgb(7",
+          "selector": "div.flex.min-w-0 > div.relative.aspect-square > div.absolute.inset-0 > span.text-xs.text-muted-foreground"
+        }
+      ]
+    },
+    {
+      "route": "/patterns/auth/login",
+      "label": "Auth pattern",
+      "theme": "light",
+      "url": "http://127.0.0.1:13030/patterns/auth/login",
+      "status": 200,
+      "samples": 52,
+      "failures": [],
+      "manualReviews": []
+    },
+    {
+      "route": "/patterns/auth/login",
+      "label": "Auth pattern",
+      "theme": "dark",
+      "url": "http://127.0.0.1:13030/patterns/auth/login",
+      "status": 200,
+      "samples": 52,
+      "failures": [],
+      "manualReviews": []
+    },
+    {
+      "route": "/patterns/media-library",
+      "label": "Media library pattern",
+      "theme": "light",
+      "url": "http://127.0.0.1:13030/patterns/media-library",
+      "status": 200,
+      "samples": 102,
+      "failures": [],
+      "manualReviews": []
+    },
+    {
+      "route": "/patterns/media-library",
+      "label": "Media library pattern",
+      "theme": "dark",
+      "url": "http://127.0.0.1:13030/patterns/media-library",
+      "status": 200,
+      "samples": 102,
+      "failures": [],
+      "manualReviews": []
+    },
+    {
+      "route": "/patterns/not-found",
+      "label": "Not found pattern",
+      "theme": "light",
+      "url": "http://127.0.0.1:13030/patterns/not-found",
+      "status": 200,
+      "samples": 40,
+      "failures": [],
+      "manualReviews": []
+    },
+    {
+      "route": "/patterns/not-found",
+      "label": "Not found pattern",
+      "theme": "dark",
+      "url": "http://127.0.0.1:13030/patterns/not-found",
+      "status": 200,
+      "samples": 40,
+      "failures": [],
+      "manualReviews": []
+    },
+    {
+      "route": "/missing-public-readiness-page",
+      "label": "App 404",
+      "theme": "light",
+      "url": "http://127.0.0.1:13030/missing-public-readiness-page",
+      "status": 404,
+      "samples": 20,
+      "failures": [],
+      "manualReviews": []
+    },
+    {
+      "route": "/missing-public-readiness-page",
+      "label": "App 404",
+      "theme": "dark",
+      "url": "http://127.0.0.1:13030/missing-public-readiness-page",
+      "status": 404,
+      "samples": 20,
+      "failures": [],
+      "manualReviews": []
+    }
+  ],
+  "failures": [],
+  "manualReviews": [
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "light",
+      "text": "群青",
+      "color": "rgba(255, 255, 255, 0.95)",
+      "reason": "hero image or overlay background",
+      "selector": "section.relative.flex > div.relative.z-10 > div.on-hero-strong.hidden > span.text-\\[140px\\].font-bold"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "light",
+      "text": "Alpha · v0.0.1-alpha.1",
+      "color": "rgba(255, 255, 255, 0.9)",
+      "reason": "hero image or overlay background",
+      "selector": "section.relative.flex > div.relative.z-10 > div.on-hero.flex > div.inline-flex.items-center"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "light",
+      "text": "Gunjo UI",
+      "color": "rgb(255, 255, 255)",
+      "reason": "hero image or overlay background",
+      "selector": "section.relative.flex > div.relative.z-10 > div.on-hero.flex > h1.text-5xl.font-extrabold"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "light",
+      "text": "静かで検証しやすい UI を作るためのコンポーネントシステム。",
+      "color": "rgba(255, 255, 255, 0.8)",
+      "reason": "hero image or overlay background",
+      "selector": "section.relative.flex > div.relative.z-10 > div.on-hero.flex > p.on-hero-muted.max-w-xl"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "light",
+      "text": "140+ コンポーネント、デザイントークン、利用ガイドライン、AI 連携ドキュメントを監査済み。GunjoUI の SSOT から同期しつつ、人間が確認できる ",
+      "color": "rgba(255, 255, 255, 0.6)",
+      "reason": "hero image or overlay background",
+      "selector": "section.relative.flex > div.relative.z-10 > div.on-hero.flex > p.on-hero-faint.max-w-xl"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "light",
+      "text": "ドキュメントから始める",
+      "color": "rgb(8, 11, 33)",
+      "reason": "hero image or overlay background",
+      "selector": "div.relative.z-10 > div.on-hero.flex > div.mt-2.flex > a.inline-flex.items-center"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "light",
+      "text": "コンポーネントを見る",
+      "color": "rgb(255, 255, 255)",
+      "reason": "hero image or overlay background",
+      "selector": "div.relative.z-10 > div.on-hero.flex > div.mt-2.flex > a.inline-flex.items-center"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "light",
+      "text": "SSOT と AI 連携",
+      "color": "rgb(12, 12, 18)",
+      "reason": "complex background: linear-gradient(rgb(255, 255, 255) 0%, oklab(0.90481 0.0073517 0.01623 /",
+      "selector": "section.border-t.border-border\\/40 > div.mx-auto.w-full > div.mb-12.max-w-2xl > h2.text-3xl.font-bold"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "light",
+      "text": "GunjoUI は .pen と design metadata を SSOT とし、トークン、コンポーネント仕様、docs 登録、export 情報へ同期しま",
+      "color": "rgb(82, 99, 122)",
+      "reason": "complex background: linear-gradient(rgb(255, 255, 255) 0%, oklab(0.90481 0.0073517 0.01623 /",
+      "selector": "section.border-t.border-border\\/40 > div.mx-auto.w-full > div.mb-12.max-w-2xl > p.text-lg.text-muted-foreground"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "light",
+      "text": "コンポーネント仕様",
+      "color": "rgb(12, 12, 18)",
+      "reason": "complex background: linear-gradient(rgb(255, 255, 255) 0%, oklab(0.90481 0.0073517 0.01623 /",
+      "selector": "div.flex.flex-col > div.flex.flex-col > div.flex.items-center > h3.font-semibold.tracking-tight"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "light",
+      "text": "各コンポーネントの Markdown 仕様をコピーでき、variant 名を推測せず AI ツールへ渡せます。",
+      "color": "rgb(82, 99, 122)",
+      "reason": "complex background: linear-gradient(rgb(255, 255, 255) 0%, oklab(0.90481 0.0073517 0.01623 /",
+      "selector": "div.grid.gap-4 > div.flex.flex-col > div.flex.flex-col > p.text-muted-foreground.text-sm"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "light",
+      "text": "JSON-Schema endpoints",
+      "color": "rgb(12, 12, 18)",
+      "reason": "complex background: linear-gradient(rgb(255, 255, 255) 0%, oklab(0.90481 0.0073517 0.01623 /",
+      "selector": "div.flex.flex-col > div.flex.flex-col > div.flex.items-center > h3.font-semibold.tracking-tight"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "light",
+      "text": "/api/specs/* でコンポーネント仕様とカタログ manifest を machine-readable に配信します。",
+      "color": "rgb(82, 99, 122)",
+      "reason": "complex background: linear-gradient(rgb(255, 255, 255) 0%, oklab(0.90481 0.0073517 0.01623 /",
+      "selector": "div.grid.gap-4 > div.flex.flex-col > div.flex.flex-col > p.text-muted-foreground.text-sm"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "light",
+      "text": ".pen ベースの SSOT",
+      "color": "rgb(12, 12, 18)",
+      "reason": "complex background: linear-gradient(rgb(255, 255, 255) 0%, oklab(0.90481 0.0073517 0.01623 /",
+      "selector": "div.flex.flex-col > div.flex.flex-col > div.flex.items-center > h3.font-semibold.tracking-tight"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "light",
+      "text": ".pen を設計ソースとし、sync が tokens、spec、generated keys、docs registry、exports へ展開します。",
+      "color": "rgb(82, 99, 122)",
+      "reason": "complex background: linear-gradient(rgb(255, 255, 255) 0%, oklab(0.90481 0.0073517 0.01623 /",
+      "selector": "div.grid.gap-4 > div.flex.flex-col > div.flex.flex-col > p.text-muted-foreground.text-sm"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "light",
+      "text": "AI 連携ドキュメント",
+      "color": "rgb(12, 12, 18)",
+      "reason": "complex background: linear-gradient(rgb(255, 255, 255) 0%, oklab(0.90481 0.0073517 0.01623 /",
+      "selector": "div.flex.flex-col > div.flex.flex-col > div.flex.items-center > h3.font-semibold.tracking-tight"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "light",
+      "text": "v0 / Cursor / Claude / Figma Make などへ渡すための考え方と入口をまとめています。",
+      "color": "rgb(82, 99, 122)",
+      "reason": "complex background: linear-gradient(rgb(255, 255, 255) 0%, oklab(0.90481 0.0073517 0.01623 /",
+      "selector": "div.grid.gap-4 > div.flex.flex-col > div.flex.flex-col > p.text-muted-foreground.text-sm"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "dark",
+      "text": "群青",
+      "color": "rgba(255, 255, 255, 0.95)",
+      "reason": "hero image or overlay background",
+      "selector": "section.relative.flex > div.relative.z-10 > div.on-hero-strong.hidden > span.text-\\[140px\\].font-bold"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "dark",
+      "text": "Alpha · v0.0.1-alpha.1",
+      "color": "rgba(255, 255, 255, 0.9)",
+      "reason": "hero image or overlay background",
+      "selector": "section.relative.flex > div.relative.z-10 > div.on-hero.flex > div.inline-flex.items-center"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "dark",
+      "text": "Gunjo UI",
+      "color": "rgb(255, 255, 255)",
+      "reason": "hero image or overlay background",
+      "selector": "section.relative.flex > div.relative.z-10 > div.on-hero.flex > h1.text-5xl.font-extrabold"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "dark",
+      "text": "静かで検証しやすい UI を作るためのコンポーネントシステム。",
+      "color": "rgba(255, 255, 255, 0.8)",
+      "reason": "hero image or overlay background",
+      "selector": "section.relative.flex > div.relative.z-10 > div.on-hero.flex > p.on-hero-muted.max-w-xl"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "dark",
+      "text": "140+ コンポーネント、デザイントークン、利用ガイドライン、AI 連携ドキュメントを監査済み。GunjoUI の SSOT から同期しつつ、人間が確認できる ",
+      "color": "rgba(255, 255, 255, 0.6)",
+      "reason": "hero image or overlay background",
+      "selector": "section.relative.flex > div.relative.z-10 > div.on-hero.flex > p.on-hero-faint.max-w-xl"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "dark",
+      "text": "ドキュメントから始める",
+      "color": "rgb(8, 11, 33)",
+      "reason": "hero image or overlay background",
+      "selector": "div.relative.z-10 > div.on-hero.flex > div.mt-2.flex > a.inline-flex.items-center"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "dark",
+      "text": "コンポーネントを見る",
+      "color": "rgb(255, 255, 255)",
+      "reason": "hero image or overlay background",
+      "selector": "div.relative.z-10 > div.on-hero.flex > div.mt-2.flex > a.inline-flex.items-center"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "dark",
+      "text": "SSOT と AI 連携",
+      "color": "rgb(248, 250, 252)",
+      "reason": "complex background: linear-gradient(rgb(2, 8, 23) 0%, oklab(0.305563 0.020665 0.0159103 / 0.",
+      "selector": "section.border-t.border-border\\/40 > div.mx-auto.w-full > div.mb-12.max-w-2xl > h2.text-3xl.font-bold"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "dark",
+      "text": "GunjoUI は .pen と design metadata を SSOT とし、トークン、コンポーネント仕様、docs 登録、export 情報へ同期しま",
+      "color": "rgb(148, 163, 184)",
+      "reason": "complex background: linear-gradient(rgb(2, 8, 23) 0%, oklab(0.305563 0.020665 0.0159103 / 0.",
+      "selector": "section.border-t.border-border\\/40 > div.mx-auto.w-full > div.mb-12.max-w-2xl > p.text-lg.text-muted-foreground"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "dark",
+      "text": "コンポーネント仕様",
+      "color": "rgb(248, 250, 252)",
+      "reason": "complex background: linear-gradient(rgb(2, 8, 23) 0%, oklab(0.305563 0.020665 0.0159103 / 0.",
+      "selector": "div.flex.flex-col > div.flex.flex-col > div.flex.items-center > h3.font-semibold.tracking-tight"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "dark",
+      "text": "各コンポーネントの Markdown 仕様をコピーでき、variant 名を推測せず AI ツールへ渡せます。",
+      "color": "rgb(148, 163, 184)",
+      "reason": "complex background: linear-gradient(rgb(2, 8, 23) 0%, oklab(0.305563 0.020665 0.0159103 / 0.",
+      "selector": "div.grid.gap-4 > div.flex.flex-col > div.flex.flex-col > p.text-muted-foreground.text-sm"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "dark",
+      "text": "JSON-Schema endpoints",
+      "color": "rgb(248, 250, 252)",
+      "reason": "complex background: linear-gradient(rgb(2, 8, 23) 0%, oklab(0.305563 0.020665 0.0159103 / 0.",
+      "selector": "div.flex.flex-col > div.flex.flex-col > div.flex.items-center > h3.font-semibold.tracking-tight"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "dark",
+      "text": "/api/specs/* でコンポーネント仕様とカタログ manifest を machine-readable に配信します。",
+      "color": "rgb(148, 163, 184)",
+      "reason": "complex background: linear-gradient(rgb(2, 8, 23) 0%, oklab(0.305563 0.020665 0.0159103 / 0.",
+      "selector": "div.grid.gap-4 > div.flex.flex-col > div.flex.flex-col > p.text-muted-foreground.text-sm"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "dark",
+      "text": ".pen ベースの SSOT",
+      "color": "rgb(248, 250, 252)",
+      "reason": "complex background: linear-gradient(rgb(2, 8, 23) 0%, oklab(0.305563 0.020665 0.0159103 / 0.",
+      "selector": "div.flex.flex-col > div.flex.flex-col > div.flex.items-center > h3.font-semibold.tracking-tight"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "dark",
+      "text": ".pen を設計ソースとし、sync が tokens、spec、generated keys、docs registry、exports へ展開します。",
+      "color": "rgb(148, 163, 184)",
+      "reason": "complex background: linear-gradient(rgb(2, 8, 23) 0%, oklab(0.305563 0.020665 0.0159103 / 0.",
+      "selector": "div.grid.gap-4 > div.flex.flex-col > div.flex.flex-col > p.text-muted-foreground.text-sm"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "dark",
+      "text": "AI 連携ドキュメント",
+      "color": "rgb(248, 250, 252)",
+      "reason": "complex background: linear-gradient(rgb(2, 8, 23) 0%, oklab(0.305563 0.020665 0.0159103 / 0.",
+      "selector": "div.flex.flex-col > div.flex.flex-col > div.flex.items-center > h3.font-semibold.tracking-tight"
+    },
+    {
+      "route": "/",
+      "label": "Home",
+      "theme": "dark",
+      "text": "v0 / Cursor / Claude / Figma Make などへ渡すための考え方と入口をまとめています。",
+      "color": "rgb(148, 163, 184)",
+      "reason": "complex background: linear-gradient(rgb(2, 8, 23) 0%, oklab(0.305563 0.020665 0.0159103 / 0.",
+      "selector": "div.grid.gap-4 > div.flex.flex-col > div.flex.flex-col > p.text-muted-foreground.text-sm"
+    },
+    {
+      "route": "/patterns/dashboard/overview",
+      "label": "Dashboard pattern",
+      "theme": "light",
+      "text": "428",
+      "color": "rgb(12, 12, 18)",
+      "reason": "complex background: conic-gradient(rgb(76, 89, 174) 0%, rgb(76, 89, 174) 46.4419%, rgb(33, 1",
+      "selector": "div.flex.min-w-0 > div.relative.aspect-square > div.absolute.inset-0 > span.text-2xl.font-semibold"
+    },
+    {
+      "route": "/patterns/dashboard/overview",
+      "label": "Dashboard pattern",
+      "theme": "light",
+      "text": "有望",
+      "color": "rgb(82, 99, 122)",
+      "reason": "complex background: conic-gradient(rgb(76, 89, 174) 0%, rgb(76, 89, 174) 46.4419%, rgb(33, 1",
+      "selector": "div.flex.min-w-0 > div.relative.aspect-square > div.absolute.inset-0 > span.text-xs.text-muted-foreground"
+    },
+    {
+      "route": "/patterns/dashboard/overview",
+      "label": "Dashboard pattern",
+      "theme": "dark",
+      "text": "428",
+      "color": "rgb(248, 250, 252)",
+      "reason": "complex background: conic-gradient(rgb(124, 135, 208) 0%, rgb(124, 135, 208) 46.4419%, rgb(7",
+      "selector": "div.flex.min-w-0 > div.relative.aspect-square > div.absolute.inset-0 > span.text-2xl.font-semibold"
+    },
+    {
+      "route": "/patterns/dashboard/overview",
+      "label": "Dashboard pattern",
+      "theme": "dark",
+      "text": "有望",
+      "color": "rgb(148, 163, 184)",
+      "reason": "complex background: conic-gradient(rgb(124, 135, 208) 0%, rgb(124, 135, 208) 46.4419%, rgb(7",
+      "selector": "div.flex.min-w-0 > div.relative.aspect-square > div.absolute.inset-0 > span.text-xs.text-muted-foreground"
+    }
+  ],
+  "pageErrors": []
+}

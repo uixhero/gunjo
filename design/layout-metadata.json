@@ -1,0 +1,58 @@
+{
+  "aspectRatio": {
+    "title": "AspectRatio",
+    "description": "Maintains a fixed aspect ratio for media containers (image, video, iframe)."
+  },
+  "container": {
+    "title": "Container",
+    "description": "Max-width + horizontal padding wrapper for page content."
+  },
+  "hStack": {
+    "title": "HStack",
+    "description": "Horizontal flex layout with gap, align, and justify props."
+  },
+  "vStack": {
+    "title": "VStack",
+    "description": "Vertical flex layout with gap, align, and justify props."
+  },
+  "cluster": {
+    "title": "Cluster",
+    "description": "Wrapping flex layout — items flow horizontally and wrap onto new lines."
+  },
+  "grid": {
+    "title": "Grid",
+    "description": "CSS grid wrapper with cols, gap, and minItemWidth props."
+  },
+  "scrollArea": {
+    "title": "ScrollArea",
+    "description": "Custom scrollbar container with viewport and thumb controls."
+  },
+  "resizable": {
+    "title": "Resizable",
+    "description": "Pane group with draggable handle and optional grip indicator."
+  },
+  "inspectorPanel": {
+    "title": "Inspector Panel",
+    "description": "Structured side panel for detailed property editing."
+  },
+  "spatialCanvas": {
+    "title": "Spatial Canvas",
+    "description": "Large grid-based interaction surface for node and layout editing."
+  },
+  "assetInspectorPanel": {
+    "title": "AssetInspectorPanel",
+    "description": "Media library inspector panel for asset preview, title and note fields, tag editing, metadata rows, and asset actions."
+  },
+  "deviceFrame": {
+    "title": "DeviceFrame",
+    "description": "Browser chrome frame with URL entry, visual chrome variants, and desktop, tablet, and mobile viewport controls for interactive pattern previews."
+  },
+  "marqueeFrame": {
+    "title": "MarqueeFrame",
+    "description": "Scaled fake-browser viewport wrapper for marquee pattern pages. It keeps pattern content and overlays scoped to the active preview viewport."
+  },
+  "collapsiblePanelToggle": {
+    "title": "CollapsiblePanelToggle",
+    "description": "Boundary control for opening and closing a collapsible panel from the left, right, top, or bottom edge."
+  }
+}

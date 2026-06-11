@@ -1,0 +1,1837 @@
+{
+  "schemaVersion": 1,
+  "source": "design/overlay.pen",
+  "components": {
+    "dialog": {
+      "frameId": "dialogFrame",
+      "title": "Dialog",
+      "description": "Centered modal dialog with overlay, header, and footer actions.",
+      "variants": [
+        {
+          "id": "dialogDefault",
+          "name": "Dialog/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 512,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "dialogOverlay",
+            "dialogContent"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "dialogDefault",
+          "type": "frame",
+          "name": "Dialog/Default",
+          "width": 512,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "dialogOverlay",
+            "dialogContent"
+          ]
+        },
+        "overlay": {
+          "id": "dialogOverlay",
+          "type": "frame",
+          "name": null,
+          "width": 512,
+          "height": 280,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#000000cc",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "content": {
+          "id": "dialogContent",
+          "type": "frame",
+          "name": null,
+          "width": 512,
+          "height": null,
+          "padding": [
+            24,
+            24,
+            24,
+            24
+          ],
+          "gap": 16,
+          "cornerRadius": 8,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "dialogHeader",
+            "dialogFooter"
+          ]
+        },
+        "header": {
+          "id": "dialogHeader",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 6,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "dialogHeaderTitle",
+            "dialogHeaderDesc"
+          ]
+        },
+        "headerTitle": {
+          "id": "dialogHeaderTitle",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0f172a",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 18,
+          "fontWeight": "600",
+          "content": "Delete project?",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "headerDesc": {
+          "id": "dialogHeaderDesc",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "This action cannot be undone.",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "footer": {
+          "id": "dialogFooter",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "dialogFooterCancelButton",
+            "dialogFooterConfirmButton"
+          ]
+        }
+      }
+    },
+    "alertDialog": {
+      "frameId": "S6DGmk",
+      "title": "AlertDialog",
+      "description": "Modal dialog focused on confirming a destructive or important action.",
+      "variants": [],
+      "nodes": {}
+    },
+    "modal": {
+      "frameId": "modalFrame",
+      "title": "Modal",
+      "description": "Dialog surface with header, content, and optional footer actions.",
+      "variants": [
+        {
+          "id": "modalDefault",
+          "name": "Modal/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 448,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "modalHeader",
+            "modalContent",
+            "modalFooter"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "modalDefault",
+          "type": "frame",
+          "name": "Modal/Default",
+          "width": 448,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "modalHeader",
+            "modalContent",
+            "modalFooter"
+          ]
+        },
+        "header": {
+          "id": "modalHeader",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            12,
+            16,
+            12,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "modalHeaderTitle"
+          ]
+        },
+        "headerTitle": {
+          "id": "modalHeaderTitle",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0f172a",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 16,
+          "fontWeight": "600",
+          "content": "Confirm action",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "content": {
+          "id": "modalContent",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "modalContentText"
+          ]
+        },
+        "contentText": {
+          "id": "modalContentText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Are you sure you want to continue?",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "footer": {
+          "id": "modalFooter",
+          "type": "frame",
+          "name": null,
+          "width": "fit_content(0)",
+          "height": "fit_content(0)",
+          "padding": [
+            12,
+            16,
+            12,
+            16
+          ],
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": "#f8fafc80",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "sheet": {
+      "frameId": "sheetFrame",
+      "title": "Sheet",
+      "description": "Side panel variant with overlay, heading, and action area.",
+      "variants": [
+        {
+          "id": "sheetDefault",
+          "name": "Sheet/Right",
+          "key": "right",
+          "type": "frame",
+          "width": 384,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "sheetOverlay",
+            "sheetContent"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "sheetDefault",
+          "type": "frame",
+          "name": "Sheet/Right",
+          "width": 384,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "sheetOverlay",
+            "sheetContent"
+          ]
+        },
+        "overlay": {
+          "id": "sheetOverlay",
+          "type": "frame",
+          "name": null,
+          "width": 384,
+          "height": 420,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#000000cc",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "content": {
+          "id": "sheetContent",
+          "type": "frame",
+          "name": null,
+          "width": 384,
+          "height": 420,
+          "padding": [
+            24,
+            24,
+            24,
+            24
+          ],
+          "gap": 16,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "sheetHeader",
+            "sheetFooter"
+          ]
+        },
+        "header": {
+          "id": "sheetHeader",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "sheetHeaderTitle",
+            "sheetHeaderDesc"
+          ]
+        },
+        "headerTitle": {
+          "id": "sheetHeaderTitle",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0f172a",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 18,
+          "fontWeight": "600",
+          "content": "Panel title",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "headerDesc": {
+          "id": "sheetHeaderDesc",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Adjust settings from this side panel.",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "footer": {
+          "id": "sheetFooter",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "sheetFooterCancelButton",
+            "sheetFooterSaveButton"
+          ]
+        }
+      }
+    },
+    "drawer": {
+      "frameId": "Dv13Y",
+      "title": "Drawer",
+      "description": "Mobile-friendly bottom sheet with drag-to-dismiss handle (vaul-based).",
+      "variants": [],
+      "nodes": {}
+    },
+    "popover": {
+      "frameId": "popoverFrame",
+      "title": "Popover",
+      "description": "Displays rich content in a portal, triggered by a button.",
+      "variants": [
+        {
+          "id": "popoverDefault",
+          "name": "Popover/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 288,
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "popoverContentText",
+            "popoverMetaText"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "popoverDefault",
+          "type": "frame",
+          "name": "Popover/Default",
+          "width": 288,
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "popoverContentText",
+            "popoverMetaText"
+          ]
+        },
+        "contentText": {
+          "id": "popoverContentText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Place content for the popover here.",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "popoverMetaText": {
+          "id": "popoverMetaText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#94a3b8",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "content": "Tip: click outside to close.",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "tooltip": {
+      "frameId": "tooltipFrame",
+      "title": "Tooltip",
+      "description": "Compact helper text bubble for hover and focus states.",
+      "variants": [
+        {
+          "id": "tooltipDefault",
+          "name": "Tooltip/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 168,
+          "height": null,
+          "padding": [
+            6,
+            12,
+            6,
+            12
+          ],
+          "gap": null,
+          "cornerRadius": 6,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "tooltipText",
+            "tooltipHintText"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "tooltipDefault",
+          "type": "frame",
+          "name": "Tooltip/Default",
+          "width": 168,
+          "height": null,
+          "padding": [
+            6,
+            12,
+            6,
+            12
+          ],
+          "gap": null,
+          "cornerRadius": 6,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "tooltipText",
+            "tooltipHintText"
+          ]
+        },
+        "text": {
+          "id": "tooltipText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0f172a",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Save changes",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "tooltipHintText": {
+          "id": "tooltipHintText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#94a3b8",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 11,
+          "fontWeight": "500",
+          "content": "Ctrl+S",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "hoverCard": {
+      "frameId": "hoverCardFrame",
+      "title": "HoverCard",
+      "description": "Rich hover content with compact profile-like layout.",
+      "variants": [
+        {
+          "id": "hoverCardDefault",
+          "name": "HoverCard/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 256,
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": 8,
+          "cornerRadius": 6,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "hoverCardHeader"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "hoverCardDefault",
+          "type": "frame",
+          "name": "HoverCard/Default",
+          "width": 256,
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": 8,
+          "cornerRadius": 6,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "hoverCardHeader"
+          ]
+        },
+        "header": {
+          "id": "hoverCardHeader",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 4,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "hoverCardHeaderTitle",
+            "hoverCardHeaderDesc"
+          ]
+        },
+        "headerTitle": {
+          "id": "hoverCardHeaderTitle",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0f172a",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "600",
+          "content": "Jane Cooper",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "headerDesc": {
+          "id": "hoverCardHeaderDesc",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Product Designer",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "dropdownMenu": {
+      "frameId": "dropdownMenuFrame",
+      "title": "Dropdown Menu",
+      "description": "Displays a menu to the user—such as a set of actions or functions—triggered by a button.",
+      "variants": [
+        {
+          "id": "dropdownMenuDefault",
+          "name": "DropdownMenu/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 180,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "dropdownMenuLabel",
+            "dropdownMenuSeparator",
+            "dropdownMenuItem"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "dropdownMenuDefault",
+          "type": "frame",
+          "name": "DropdownMenu/Default",
+          "width": 180,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "dropdownMenuLabel",
+            "dropdownMenuSeparator",
+            "dropdownMenuItem"
+          ]
+        },
+        "label": {
+          "id": "dropdownMenuLabel",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "dropdownMenuLabelText"
+          ]
+        },
+        "labelText": {
+          "id": "dropdownMenuLabelText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 12,
+          "fontWeight": "600",
+          "content": "My Account",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "separator": {
+          "id": "dropdownMenuSeparator",
+          "type": "frame",
+          "name": null,
+          "width": "fit_content(0)",
+          "height": 1,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#e2e8f0",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "item": {
+          "id": "dropdownMenuItem",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "dropdownMenuItemText"
+          ]
+        },
+        "itemText": {
+          "id": "dropdownMenuItemText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0c0c12",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Profile",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "contextMenu": {
+      "frameId": "contextMenuFrame",
+      "title": "ContextMenu",
+      "description": "Right-click style action list with labels and nested trigger.",
+      "variants": [
+        {
+          "id": "contextMenuDefault",
+          "name": "ContextMenu/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 192,
+          "height": null,
+          "padding": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "gap": 2,
+          "cornerRadius": 6,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "contextMenuLabelText",
+            "contextMenuItem",
+            "contextMenuSeparator",
+            "contextMenuSubTrigger"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "contextMenuDefault",
+          "type": "frame",
+          "name": "ContextMenu/Default",
+          "width": 192,
+          "height": null,
+          "padding": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "gap": 2,
+          "cornerRadius": 6,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "contextMenuLabelText",
+            "contextMenuItem",
+            "contextMenuSeparator",
+            "contextMenuSubTrigger"
+          ]
+        },
+        "labelText": {
+          "id": "contextMenuLabelText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0f172a",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "600",
+          "content": "File actions",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "item": {
+          "id": "contextMenuItem",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            6,
+            8,
+            6,
+            8
+          ],
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "contextMenuItemText"
+          ]
+        },
+        "itemText": {
+          "id": "contextMenuItemText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0f172a",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Rename",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "separator": {
+          "id": "contextMenuSeparator",
+          "type": "frame",
+          "name": null,
+          "width": "fit_content(0)",
+          "height": 1,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#e2e8f0",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "subTrigger": {
+          "id": "contextMenuSubTrigger",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            6,
+            8,
+            6,
+            8
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "contextMenuSubTriggerLabelText",
+            "contextMenuSubTriggerArrowText"
+          ]
+        }
+      }
+    },
+    "chatPanel": {
+      "frameId": "synthetic:chatPanel",
+      "title": "ChatPanel",
+      "description": "Contained chat overlay surface that composes ChatMessage and ChatInput for support, assistant, or team conversation panels.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 560,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#ffffff",
+          "stroke": "#e2e8f0",
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 420,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#ffffff",
+          "stroke": "#e2e8f0",
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "floatingPanel": {
+      "frameId": "floatingPanelFrame",
+      "title": "Floating Panel",
+      "description": "Animated floating container for transient UI surfaces.",
+      "variants": [
+        {
+          "id": "floatingPanelGlass",
+          "name": "FloatingPanel/Glass",
+          "key": "glass",
+          "type": "frame",
+          "width": 360,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 16,
+          "fill": "#ffffffcc",
+          "stroke": {
+            "align": "inside",
+            "fill": "#dddddd",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "floatingPanelTitleBar",
+            "floatingPanelContent"
+          ]
+        }
+      ],
+      "nodes": {
+        "glass": {
+          "id": "floatingPanelGlass",
+          "type": "frame",
+          "name": "FloatingPanel/Glass",
+          "width": 360,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 16,
+          "fill": "#ffffffcc",
+          "stroke": {
+            "align": "inside",
+            "fill": "#dddddd",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "floatingPanelTitleBar",
+            "floatingPanelContent"
+          ]
+        },
+        "titleBar": {
+          "id": "floatingPanelTitleBar",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            12,
+            16,
+            12,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "floatingPanelTitleText"
+          ]
+        },
+        "titleText": {
+          "id": "floatingPanelTitleText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#1f2937",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "600",
+          "content": "Panel",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "content": {
+          "id": "floatingPanelContent",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "floatingPanelContentText"
+          ]
+        },
+        "contentText": {
+          "id": "floatingPanelContentText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#374151",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Panel content goes here.",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "shareModal": {
+      "frameId": "shareModalFrame",
+      "title": "Share Modal",
+      "description": "Dialog for toggling public access and copying shareable URLs.",
+      "variants": [
+        {
+          "id": "shareModalDefault",
+          "name": "ShareModal/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 448,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 12,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "shareModalHeader",
+            "shareModalContent"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "shareModalDefault",
+          "type": "frame",
+          "name": "ShareModal/Default",
+          "width": 448,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 12,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "shareModalHeader",
+            "shareModalContent"
+          ]
+        },
+        "header": {
+          "id": "shareModalHeader",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": 48,
+          "padding": [
+            12,
+            16,
+            12,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#f9fafb80",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "shareModalHeaderIcon",
+            "shareModalTitleText",
+            "shareModalCloseIcon"
+          ]
+        },
+        "titleText": {
+          "id": "shareModalTitleText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#111827",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "600",
+          "content": "Share Image",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "content": {
+          "id": "shareModalContent",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            24,
+            24,
+            24,
+            24
+          ],
+          "gap": 24,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "shareModalSectionLabel",
+            "shareModalHintText"
+          ]
+        },
+        "sectionLabel": {
+          "id": "shareModalSectionLabel",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#111827",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "500",
+          "content": "Public Link",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "hintText": {
+          "id": "shareModalHintText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#6b7280",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "content": "Sharing is disabled",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "onboardingFlow": {
+      "frameId": "s22VHM",
+      "title": "OnboardingFlow",
+      "description": "Multi-step guided flow with step indicator, content, and Back/Continue actions.",
+      "variants": [],
+      "nodes": {}
+    },
+    "mediaLightbox": {
+      "frameId": "synthetic:mediaLightbox",
+      "title": "MediaLightbox",
+      "description": "Full-screen media preview dialog with navigation, zoom controls, and asset actions.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "mediaPickerDialog": {
+      "frameId": "synthetic:mediaPickerDialog",
+      "title": "MediaPickerDialog",
+      "description": "Media selection dialog with search, AssetGrid rendering, single-select and multi-select confirmation flows.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    }
+  }
+}

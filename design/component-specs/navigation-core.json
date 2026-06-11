@@ -1,0 +1,2017 @@
+{
+  "schemaVersion": 1,
+  "source": "design/navigation.pen",
+  "components": {
+    "textLink": {
+      "frameId": "synthetic:textLink",
+      "title": "TextLink",
+      "description": "Inline text link that automatically shows an external-tab icon when it opens a new tab.",
+      "variants": [
+        {
+          "id": "synthetic:textLinkDefault",
+          "name": "TextLink/Default",
+          "key": "default",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": 4,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": {
+            "fontSize": 14,
+            "fontWeight": 500,
+            "content": "Text link",
+            "fill": "#2563eb"
+          },
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:textLinkMuted",
+          "name": "TextLink/Muted",
+          "key": "muted",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": 4,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": {
+            "fontSize": 14,
+            "fontWeight": 500,
+            "content": "Text link",
+            "fill": "#0f172a"
+          },
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "breadcrumb": {
+      "frameId": "breadcrumbFrame",
+      "title": "Breadcrumb",
+      "description": "Displays the path to the current resource using a hierarchy of links.",
+      "variants": [
+        {
+          "id": "breadcrumbDefault",
+          "name": "Breadcrumb/Default",
+          "key": "default",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "breadcrumbLink1",
+            "breadcrumbSep1",
+            "breadcrumbLink2",
+            "breadcrumbSep2",
+            "breadcrumbPage"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "breadcrumbDefault",
+          "type": "frame",
+          "name": "Breadcrumb/Default",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "breadcrumbLink1",
+            "breadcrumbSep1",
+            "breadcrumbLink2",
+            "breadcrumbSep2",
+            "breadcrumbPage"
+          ]
+        },
+        "link1": {
+          "id": "breadcrumbLink1",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Home",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "sep1": {
+          "id": "breadcrumbSep1",
+          "type": "icon_font",
+          "name": null,
+          "width": 14,
+          "height": 14,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#94a3b8",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": "lucide",
+          "iconFontName": "chevron-right",
+          "textGrowth": null,
+          "children": []
+        },
+        "link2": {
+          "id": "breadcrumbLink2",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Docs",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "sep2": {
+          "id": "breadcrumbSep2",
+          "type": "icon_font",
+          "name": null,
+          "width": 14,
+          "height": 14,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#94a3b8",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": "lucide",
+          "iconFontName": "chevron-right",
+          "textGrowth": null,
+          "children": []
+        },
+        "page": {
+          "id": "breadcrumbPage",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0c0c12",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "500",
+          "content": "Breadcrumb",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "tabs": {
+      "frameId": "tabsFrame",
+      "title": "Tabs",
+      "description": "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
+      "variants": [
+        {
+          "id": "tabsDefault",
+          "name": "Tabs/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 400,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "tabsList",
+            "tabsContent"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "tabsDefault",
+          "type": "frame",
+          "name": "Tabs/Default",
+          "width": 400,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "tabsList",
+            "tabsContent"
+          ]
+        },
+        "list": {
+          "id": "tabsList",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "gap": 4,
+          "cornerRadius": 8,
+          "fill": "#f1f5f9",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "tabsTriggerActive",
+            "tabsTrigger"
+          ]
+        },
+        "triggerActive": {
+          "id": "tabsTriggerActive",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            16,
+            8,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": 6,
+          "fill": "#FFFFFF",
+          "stroke": null,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "tabsTriggerActiveText"
+          ]
+        },
+        "triggerActiveText": {
+          "id": "tabsTriggerActiveText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0c0c12",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "500",
+          "content": "Account",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "trigger": {
+          "id": "tabsTrigger",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            16,
+            8,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "tabsTriggerText"
+          ]
+        },
+        "triggerText": {
+          "id": "tabsTriggerText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "500",
+          "content": "Password",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "content": {
+          "id": "tabsContent",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "tabsContentText"
+          ]
+        },
+        "contentText": {
+          "id": "tabsContentText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Make changes to your account here.",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "pagination": {
+      "frameId": "paginationFrame",
+      "title": "Pagination",
+      "description": "Navigation controls for traversing paged content.",
+      "variants": [
+        {
+          "id": "paginationDefault",
+          "name": "Pagination/Default",
+          "key": "default",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 4,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "paginationContent"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "paginationDefault",
+          "type": "frame",
+          "name": "Pagination/Default",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 4,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "paginationContent"
+          ]
+        },
+        "content": {
+          "id": "paginationContent",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 4,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "paginationPrevious",
+            "paginationEllipsis",
+            "paginationNext"
+          ]
+        },
+        "previous": {
+          "id": "paginationPrevious",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            10,
+            8,
+            10
+          ],
+          "gap": 4,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "paginationPreviousText"
+          ]
+        },
+        "ellipsis": {
+          "id": "paginationEllipsis",
+          "type": "frame",
+          "name": null,
+          "width": 36,
+          "height": 36,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "paginationEllipsisText"
+          ]
+        },
+        "next": {
+          "id": "paginationNext",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            10,
+            8,
+            10
+          ],
+          "gap": 4,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "paginationNextText"
+          ]
+        }
+      }
+    },
+    "documentPager": {
+      "frameId": "documentPagerFrame",
+      "title": "DocumentPager",
+      "description": "Adjacent-document navigation with preview thumbnail, category label, title, and description.",
+      "variants": [
+        {
+          "id": "documentPagerDefault",
+          "name": "DocumentPager/Default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            20,
+            0,
+            0,
+            0
+          ],
+          "gap": 12,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": "#e2e8f0",
+          "reusable": true,
+          "children": [
+            "documentPagerPrevious",
+            "documentPagerNext"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "documentPagerDefault",
+          "type": "frame",
+          "name": "DocumentPager/Default",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            20,
+            0,
+            0,
+            0
+          ],
+          "gap": 12,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": "#e2e8f0",
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "documentPagerPrevious",
+            "documentPagerNext"
+          ]
+        },
+        "previous": {
+          "id": "documentPagerPrevious",
+          "type": "frame",
+          "name": "DocumentPager/Previous",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "gap": 12,
+          "cornerRadius": 6,
+          "fill": "#ffffff",
+          "stroke": "#e2e8f0",
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "next": {
+          "id": "documentPagerNext",
+          "type": "frame",
+          "name": "DocumentPager/Next",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "gap": 12,
+          "cornerRadius": 6,
+          "fill": "#ffffff",
+          "stroke": "#e2e8f0",
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "navigationMenu": {
+      "frameId": "aMzv9",
+      "title": "NavigationMenu",
+      "description": "Top-nav with mega-menu dropdowns for site navigation.",
+      "variants": [],
+      "nodes": {}
+    },
+    "sidebar": {
+      "frameId": "V0XxoV",
+      "title": "Sidebar",
+      "description": "Full sidebar orchestrator with provider, header, nav items, and footer slots.",
+      "variants": [],
+      "nodes": {}
+    },
+    "sidebarItem": {
+      "frameId": "sidebarItemFrame",
+      "title": "SidebarItem",
+      "description": "Nested sidebar row with chevron, icon, label, and counter area.",
+      "variants": [
+        {
+          "id": "sidebarItemDefault",
+          "name": "SidebarItem/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 320,
+          "height": 36,
+          "padding": [
+            6,
+            16,
+            6,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": 6,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "sidebarItemContent",
+            "sidebarItemRight"
+          ]
+        },
+        {
+          "id": "sidebarItemActive",
+          "name": "SidebarItem/Active",
+          "key": "active",
+          "type": "frame",
+          "width": 320,
+          "height": 36,
+          "padding": [
+            6,
+            16,
+            6,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": 6,
+          "fill": "#f1f5f9",
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "sidebarItemActiveContent",
+            "sidebarItemActiveRight"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "sidebarItemDefault",
+          "type": "frame",
+          "name": "SidebarItem/Default",
+          "width": 320,
+          "height": 36,
+          "padding": [
+            6,
+            16,
+            6,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": 6,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "sidebarItemContent",
+            "sidebarItemRight"
+          ]
+        },
+        "active": {
+          "id": "sidebarItemActive",
+          "type": "frame",
+          "name": "SidebarItem/Active",
+          "width": 320,
+          "height": 36,
+          "padding": [
+            6,
+            16,
+            6,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": 6,
+          "fill": "#f1f5f9",
+          "stroke": null,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "sidebarItemActiveContent",
+            "sidebarItemActiveRight"
+          ]
+        },
+        "content": {
+          "id": "sidebarItemContent",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "sidebarItemChevronSlot",
+            "sidebarItemIconSlot",
+            "sidebarItemLabel"
+          ]
+        },
+        "chevronSlot": {
+          "id": "sidebarItemChevronSlot",
+          "type": "frame",
+          "name": null,
+          "width": 20,
+          "height": 20,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "sidebarItemChevronText"
+          ]
+        },
+        "iconSlot": {
+          "id": "sidebarItemIconSlot",
+          "type": "frame",
+          "name": null,
+          "width": 16,
+          "height": 16,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "sidebarItemIconText"
+          ]
+        },
+        "label": {
+          "id": "sidebarItemLabel",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Untitled",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "right": {
+          "id": "sidebarItemRight",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "sidebarItemDelete",
+            "sidebarItemCount"
+          ]
+        },
+        "delete": {
+          "id": "sidebarItemDelete",
+          "type": "frame",
+          "name": null,
+          "width": 24,
+          "height": 24,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "sidebarItemDeleteText"
+          ]
+        },
+        "count": {
+          "id": "sidebarItemCount",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#6b7280",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "content": "12",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "sidebarItemActiveContent": {
+          "id": "sidebarItemActiveContent",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "sidebarItemActiveChevron",
+            "sidebarItemActiveIcon",
+            "sidebarItemActiveLabel"
+          ]
+        },
+        "sidebarItemActiveRight": {
+          "id": "sidebarItemActiveRight",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "sidebarItemActiveBadge"
+          ]
+        }
+      },
+      "interaction": {
+        "cursor": "pointer"
+      }
+    },
+    "menubar": {
+      "frameId": "menubarFrame",
+      "title": "Menubar",
+      "description": "Top application menu with trigger items and nested submenu entry.",
+      "variants": [
+        {
+          "id": "menubarDefault",
+          "name": "Menubar/Default",
+          "key": "default",
+          "type": "frame",
+          "width": null,
+          "height": 40,
+          "padding": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "gap": 4,
+          "cornerRadius": 6,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "menubarTrigger",
+            "menubarContent"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "menubarDefault",
+          "type": "frame",
+          "name": "Menubar/Default",
+          "width": null,
+          "height": 40,
+          "padding": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "gap": 4,
+          "cornerRadius": 6,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "menubarTrigger",
+            "menubarContent"
+          ]
+        },
+        "trigger": {
+          "id": "menubarTrigger",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": 30,
+          "padding": [
+            6,
+            12,
+            6,
+            12
+          ],
+          "gap": null,
+          "cornerRadius": 4,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "menubarTriggerText"
+          ]
+        },
+        "content": {
+          "id": "menubarContent",
+          "type": "frame",
+          "name": null,
+          "width": 192,
+          "height": null,
+          "padding": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "gap": 2,
+          "cornerRadius": 6,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "menubarItem",
+            "menubarSeparator",
+            "menubarSubTrigger"
+          ]
+        },
+        "item": {
+          "id": "menubarItem",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            6,
+            8,
+            6,
+            8
+          ],
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "menubarItemText"
+          ]
+        },
+        "separator": {
+          "id": "menubarSeparator",
+          "type": "frame",
+          "name": null,
+          "width": "fit_content(0)",
+          "height": 1,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#e2e8f0",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "subTrigger": {
+          "id": "menubarSubTrigger",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            6,
+            8,
+            6,
+            8
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "menubarSubTriggerLabelText",
+            "menubarSubTriggerArrowText"
+          ]
+        }
+      }
+    },
+    "command": {
+      "frameId": "commandFrame",
+      "title": "Command",
+      "description": "Fast, composable, unstyled command menu for React.",
+      "variants": [
+        {
+          "id": "commandDefault",
+          "name": "Command/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 320,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "commandInput",
+            "commandList"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "commandDefault",
+          "type": "frame",
+          "name": "Command/Default",
+          "width": 320,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "commandInput",
+            "commandList"
+          ]
+        },
+        "input": {
+          "id": "commandInput",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": 40,
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "commandInputPlaceholder"
+          ]
+        },
+        "inputPlaceholder": {
+          "id": "commandInputPlaceholder",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#94a3b8",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Type a command or search...",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "list": {
+          "id": "commandList",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "commandGroupHeading",
+            "commandItem"
+          ]
+        },
+        "groupHeading": {
+          "id": "commandGroupHeading",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 12,
+          "fontWeight": "600",
+          "content": "Suggestions",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "item": {
+          "id": "commandItem",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0c0c12",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Calendar",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "appRail": {
+      "frameId": "appRailFrame",
+      "title": "App Rail",
+      "description": "Primary vertical icon rail used for application-wide navigation.",
+      "variants": [
+        {
+          "id": "appRailDefault",
+          "name": "AppRail/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 64,
+          "height": 320,
+          "padding": [
+            16,
+            0,
+            16,
+            0
+          ],
+          "gap": 16,
+          "cornerRadius": null,
+          "fill": "#111827",
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "appRailIconHome",
+            "appRailIconSearch",
+            "appRailIconFolder"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "appRailDefault",
+          "type": "frame",
+          "name": "AppRail/Default",
+          "width": 64,
+          "height": 320,
+          "padding": [
+            16,
+            0,
+            16,
+            0
+          ],
+          "gap": 16,
+          "cornerRadius": null,
+          "fill": "#111827",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "appRailIconHome",
+            "appRailIconSearch",
+            "appRailIconFolder"
+          ]
+        },
+        "iconHome": {
+          "id": "appRailIconHome",
+          "type": "icon_font",
+          "name": null,
+          "width": 20,
+          "height": 20,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#9ca3af",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": "lucide",
+          "iconFontName": "house",
+          "textGrowth": null,
+          "children": []
+        },
+        "iconSearch": {
+          "id": "appRailIconSearch",
+          "type": "icon_font",
+          "name": null,
+          "width": 20,
+          "height": 20,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#9ca3af",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": "lucide",
+          "iconFontName": "search",
+          "textGrowth": null,
+          "children": []
+        },
+        "iconFolder": {
+          "id": "appRailIconFolder",
+          "type": "icon_font",
+          "name": null,
+          "width": 20,
+          "height": 20,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#9ca3af",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": "lucide",
+          "iconFontName": "folder",
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "commandPalette": {
+      "frameId": "commandPaletteFrame",
+      "title": "Command Palette",
+      "description": "Global quick-action launcher with grouped commands and keyboard shortcuts.",
+      "variants": [
+        {
+          "id": "commandPaletteDefault",
+          "name": "CommandPalette/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 480,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "commandPaletteInput",
+            "commandPaletteGroup"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "commandPaletteDefault",
+          "type": "frame",
+          "name": "CommandPalette/Default",
+          "width": 480,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "commandPaletteInput",
+            "commandPaletteGroup"
+          ]
+        },
+        "input": {
+          "id": "commandPaletteInput",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": 40,
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "commandPaletteInputPlaceholder"
+          ]
+        },
+        "inputPlaceholder": {
+          "id": "commandPaletteInputPlaceholder",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#94a3b8",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Type a command or search...",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "group": {
+          "id": "commandPaletteGroup",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "gap": 6,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "commandPaletteGroupHeading",
+            "commandPaletteItem"
+          ]
+        },
+        "groupHeading": {
+          "id": "commandPaletteGroupHeading",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 12,
+          "fontWeight": "600",
+          "content": "Suggestions",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "item": {
+          "id": "commandPaletteItem",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": "space_between",
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "commandPaletteItemLabel",
+            "commandPaletteItemShortcut"
+          ]
+        },
+        "itemLabel": {
+          "id": "commandPaletteItemLabel",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0c0c12",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Open Settings",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "itemShortcut": {
+          "id": "commandPaletteItemShortcut",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "content": "⌘K",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "rightRail": {
+      "frameId": "rightRailFrame",
+      "title": "Right Rail",
+      "description": "Secondary side panel for contextual tools and inspector content.",
+      "variants": [
+        {
+          "id": "rightRailDefault",
+          "name": "RightRail/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 256,
+          "height": 360,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "rightRailHeader",
+            "rightRailItem"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "rightRailDefault",
+          "type": "frame",
+          "name": "RightRail/Default",
+          "width": 256,
+          "height": 360,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "rightRailHeader",
+            "rightRailItem"
+          ]
+        },
+        "header": {
+          "id": "rightRailHeader",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "rightRailHeaderText"
+          ]
+        },
+        "headerText": {
+          "id": "rightRailHeaderText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#111827",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "600",
+          "content": "Inspector",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "item": {
+          "id": "rightRailItem",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            12,
+            16,
+            12,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "rightRailItemText"
+          ]
+        },
+        "itemText": {
+          "id": "rightRailItemText",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#374151",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Layer Settings",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "pageAside": {
+      "frameId": "synthetic:pageAside",
+      "title": "PageAside",
+      "description": "Responsive page support layout that renders supporting information as a right rail on wide screens and a collapsible block on narrow screens.",
+      "variants": [
+        {
+          "id": "synthetic:pageAsideDefault",
+          "name": "PageAside/Default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": 24,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": []
+        }
+      ]
+    },
+    "header": {
+      "frameId": "n0CoF",
+      "title": "Header",
+      "description": "Top navigation bar with logo, primary nav, and right-aligned actions.",
+      "variants": [],
+      "nodes": {}
+    },
+    "footer": {
+      "frameId": "fXprq",
+      "title": "Footer",
+      "description": "Standard footer with brand, link sections, and copyright row.",
+      "variants": [],
+      "nodes": {}
+    }
+  }
+}

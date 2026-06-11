@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-labelledby="title desc">
+  <title id="title">Aoi Hana avatar</title>
+  <desc id="desc">A soft geometric avatar illustration with a blue background.</desc>
+  <defs>
+    <linearGradient id="bg" x1="24" y1="18" x2="136" y2="146" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#DCE8FF"/>
+      <stop offset="1" stop-color="#8799E8"/>
+    </linearGradient>
+    <linearGradient id="face" x1="48" y1="46" x2="112" y2="124" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#FFF4E8"/>
+      <stop offset="1" stop-color="#F4C9B4"/>
+    </linearGradient>
+  </defs>
+  <rect width="160" height="160" rx="80" fill="url(#bg)"/>
+  <path d="M43 75c0-31 17-51 39-51 23 0 40 20 40 51v17H43V75Z" fill="#24304F"/>
+  <path d="M50 75c0-25 13-43 32-43s32 18 32 43v40H50V75Z" fill="url(#face)"/>
+  <path d="M52 70c12-2 21-8 30-20 10 12 20 18 32 20-1-22-14-38-32-38S53 48 52 70Z" fill="#24304F"/>
+  <circle cx="68" cy="83" r="5" fill="#1D2742"/>
+  <circle cx="96" cy="83" r="5" fill="#1D2742"/>
+  <path d="M76 103c4 3 9 3 13 0" fill="none" stroke="#1D2742" stroke-width="4" stroke-linecap="round"/>
+  <path d="M66 124h32c13 0 24 11 24 24v12H42v-12c0-13 11-24 24-24Z" fill="#F7F9FF"/>
+  <path d="M70 124h24l-12 17-12-17Z" fill="#8799E8"/>
+</svg>

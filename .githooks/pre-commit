@@ -1,0 +1,15 @@
+#!/bin/sh
+
+echo "Running design verification..."
+npm run design:verify
+
+if [ $? -ne 0 ]; then
+  echo "pre-commit: design:verify failed"
+  exit 1
+fi
+
+# Warn (don't block) when a component change is staged without a matching
+# showcase thumbnail refresh. See scripts/check-showcase-thumbs.mjs and #58.
+node scripts/check-showcase-thumbs.mjs
+
+echo "pre-commit: passed"

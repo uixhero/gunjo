@@ -1,0 +1,247 @@
+function createSyntheticOverlaySpec({ frameId, title, description, variants }) {
+  return {
+    frameId,
+    title,
+    description,
+    variants,
+  };
+}
+
+function createSyntheticVariant(key, overrides = {}) {
+  return {
+    id: `synthetic:${key}`,
+    name: key,
+    key,
+    type: "frame",
+    width: "fill_container",
+    height: null,
+    padding: [0, 0, 0, 0],
+    gap: null,
+    cornerRadius: null,
+    fill: null,
+    stroke: null,
+    text: null,
+    texts: [],
+    children: [],
+    reusable: true,
+    ...overrides,
+  };
+}
+
+export const OVERLAY_SPEC_DEFINITIONS = [
+  // From molecules
+  {
+    key: "dialog",
+    frameId: "dialogFrame",
+    titleId: "dialogTitle",
+    descId: "dialogDesc",
+    variantsId: "dialogVariants",
+    nodeIds: {
+      default: "dialogDefault",
+      overlay: "dialogOverlay",
+      content: "dialogContent",
+      header: "dialogHeader",
+      headerTitle: "dialogHeaderTitle",
+      headerDesc: "dialogHeaderDesc",
+      footer: "dialogFooter",
+    },
+  },
+  {
+    key: "alertDialog",
+    frameId: "S6DGmk",
+    titleId: "ndqQf",
+    descId: "vE2Aj",
+    variantsId: "S6DGmk",
+    nodeIds: {},
+  },
+  {
+    key: "modal",
+    frameId: "modalFrame",
+    titleId: "modalTitle",
+    descId: "modalDesc",
+    variantsId: "modalVariants",
+    nodeIds: {
+      default: "modalDefault",
+      header: "modalHeader",
+      headerTitle: "modalHeaderTitle",
+      content: "modalContent",
+      contentText: "modalContentText",
+      footer: "modalFooter",
+    },
+  },
+  {
+    key: "sheet",
+    frameId: "sheetFrame",
+    titleId: "sheetTitle",
+    descId: "sheetDesc",
+    variantsId: "sheetVariants",
+    nodeIds: {
+      default: "sheetDefault",
+      overlay: "sheetOverlay",
+      content: "sheetContent",
+      header: "sheetHeader",
+      headerTitle: "sheetHeaderTitle",
+      headerDesc: "sheetHeaderDesc",
+      footer: "sheetFooter",
+    },
+  },
+  {
+    key: "drawer",
+    frameId: "Dv13Y",
+    titleId: "nT9xK",
+    descId: "X10Ngo",
+    variantsId: "Dv13Y",
+    nodeIds: {},
+  },
+  {
+    key: "popover",
+    frameId: "popoverFrame",
+    titleId: "popoverTitle",
+    descId: "popoverDesc",
+    variantsId: "popoverVariants",
+    nodeIds: {
+      default: "popoverDefault",
+      contentText: "popoverContentText",
+    },
+  },
+  {
+    key: "tooltip",
+    frameId: "tooltipFrame",
+    titleId: "tooltipTitle",
+    descId: "tooltipDesc",
+    variantsId: "tooltipVariants",
+    nodeIds: {
+      default: "tooltipDefault",
+      text: "tooltipText",
+    },
+  },
+  {
+    key: "hoverCard",
+    frameId: "hoverCardFrame",
+    titleId: "hoverCardTitle",
+    descId: "hoverCardDesc",
+    variantsId: "hoverCardVariants",
+    nodeIds: {
+      default: "hoverCardDefault",
+      header: "hoverCardHeader",
+      headerTitle: "hoverCardHeaderTitle",
+      headerDesc: "hoverCardHeaderDesc",
+    },
+  },
+  {
+    key: "dropdownMenu",
+    frameId: "dropdownMenuFrame",
+    titleId: "dropdownMenuTitle",
+    descId: "dropdownMenuDesc",
+    variantsId: "dropdownMenuVariants",
+    nodeIds: {
+      default: "dropdownMenuDefault",
+      label: "dropdownMenuLabel",
+      labelText: "dropdownMenuLabelText",
+      separator: "dropdownMenuSeparator",
+      item: "dropdownMenuItem",
+      itemText: "dropdownMenuItemText",
+    },
+  },
+  {
+    key: "contextMenu",
+    frameId: "contextMenuFrame",
+    titleId: "contextMenuTitle",
+    descId: "contextMenuDesc",
+    variantsId: "contextMenuVariants",
+    nodeIds: {
+      default: "contextMenuDefault",
+      labelText: "contextMenuLabelText",
+      item: "contextMenuItem",
+      itemText: "contextMenuItemText",
+      separator: "contextMenuSeparator",
+      subTrigger: "contextMenuSubTrigger",
+    },
+  },
+  {
+    key: "chatPanel",
+    syntheticSpec: createSyntheticOverlaySpec({
+      frameId: "synthetic:chatPanel",
+      title: "ChatPanel",
+      description: "Contained chat overlay surface that composes ChatMessage and ChatInput for support, assistant, or team conversation panels.",
+      variants: [
+        createSyntheticVariant("default", {
+          width: "fill_container",
+          height: 560,
+          fill: "#ffffff",
+          stroke: "#e2e8f0",
+          cornerRadius: 8,
+        }),
+        createSyntheticVariant("compact", {
+          width: "fill_container",
+          height: 420,
+          fill: "#ffffff",
+          stroke: "#e2e8f0",
+          cornerRadius: 8,
+        }),
+      ],
+    }),
+  },
+  // From organisms
+  {
+    key: "floatingPanel",
+    frameId: "floatingPanelFrame",
+    titleId: "floatingPanelTitle",
+    descId: "floatingPanelDesc",
+    variantsId: "floatingPanelVariants",
+    nodeIds: {
+      glass: "floatingPanelGlass",
+      titleBar: "floatingPanelTitleBar",
+      titleText: "floatingPanelTitleText",
+      content: "floatingPanelContent",
+      contentText: "floatingPanelContentText",
+    },
+  },
+  {
+    key: "shareModal",
+    frameId: "shareModalFrame",
+    titleId: "shareModalTitle",
+    descId: "shareModalDesc",
+    variantsId: "shareModalVariants",
+    nodeIds: {
+      default: "shareModalDefault",
+      header: "shareModalHeader",
+      titleText: "shareModalTitleText",
+      content: "shareModalContent",
+      sectionLabel: "shareModalSectionLabel",
+      hintText: "shareModalHintText",
+    },
+  },
+  {
+    key: "onboardingFlow",
+    frameId: "s22VHM",
+    titleId: "vpkRx",
+    descId: "xoWX4",
+    variantsId: "s22VHM",
+    nodeIds: {},
+  },
+  {
+    key: "mediaLightbox",
+    syntheticSpec: createSyntheticOverlaySpec({
+      frameId: "synthetic:mediaLightbox",
+      title: "MediaLightbox",
+      description: "Full-screen media preview dialog with navigation, zoom controls, and asset actions.",
+      variants: [
+        createSyntheticVariant("default"),
+        createSyntheticVariant("compact"),
+      ],
+    }),
+  },
+  {
+    key: "mediaPickerDialog",
+    syntheticSpec: createSyntheticOverlaySpec({
+      frameId: "synthetic:mediaPickerDialog",
+      title: "MediaPickerDialog",
+      description: "Media selection dialog with search, AssetGrid rendering, single-select and multi-select confirmation flows.",
+      variants: [
+        createSyntheticVariant("default"),
+        createSyntheticVariant("compact"),
+      ],
+    }),
+  },
+];

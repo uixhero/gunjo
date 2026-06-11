@@ -1,0 +1,1681 @@
+{
+  "schemaVersion": 1,
+  "source": "design/patterns.pen",
+  "components": {
+    "dashboardTemplate": {
+      "frameId": "dashboardTemplateFrame",
+      "title": "Dashboard Template",
+      "description": "Two-column dashboard shell with optional header and sidebar.",
+      "variants": [
+        {
+          "id": "dashboardTemplateDefault",
+          "name": "DashboardTemplate/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 1280,
+          "height": 720,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "dashboardTemplateHeader",
+            "dashboardTemplateBody"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "dashboardTemplateDefault",
+          "type": "frame",
+          "name": "DashboardTemplate/Default",
+          "width": 1280,
+          "height": 720,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "dashboardTemplateHeader",
+            "dashboardTemplateBody"
+          ]
+        },
+        "header": {
+          "id": "dashboardTemplateHeader",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": 56,
+          "padding": [
+            0,
+            16,
+            0,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "dashboardTemplateHeaderBrand",
+            "dashboardTemplateHeaderActions"
+          ]
+        },
+        "body": {
+          "id": "dashboardTemplateBody",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": "fill_container",
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "dashboardTemplateSidebar",
+            "dashboardTemplateMain"
+          ]
+        },
+        "sidebar": {
+          "id": "dashboardTemplateSidebar",
+          "type": "frame",
+          "name": null,
+          "width": 256,
+          "height": null,
+          "padding": [
+            16,
+            12,
+            16,
+            12
+          ],
+          "gap": 12,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "dashboardTemplateSidebarTitleText",
+            "dashboardTemplateSidebarNav"
+          ]
+        },
+        "main": {
+          "id": "dashboardTemplateMain",
+          "type": "frame",
+          "name": null,
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#f9fafb80",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "dashboardTemplateContent"
+          ]
+        },
+        "content": {
+          "id": "dashboardTemplateContent",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            24,
+            16,
+            24,
+            16
+          ],
+          "gap": 32,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "dashboardTemplateContentHeading",
+            "dashboardTemplateMetricRow",
+            "dashboardTemplateChartShell"
+          ]
+        }
+      }
+    },
+    "editorTemplate": {
+      "frameId": "editorTemplateFrame",
+      "title": "Editor Template",
+      "description": "Panel-based editing layout with top bar and side docks.",
+      "variants": [
+        {
+          "id": "editorTemplateDefault",
+          "name": "EditorTemplate/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 1280,
+          "height": 720,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "editorTemplateTopBar",
+            "editorTemplateBody"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "editorTemplateDefault",
+          "type": "frame",
+          "name": "EditorTemplate/Default",
+          "width": 1280,
+          "height": 720,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "editorTemplateTopBar",
+            "editorTemplateBody"
+          ]
+        },
+        "topBar": {
+          "id": "editorTemplateTopBar",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": 56,
+          "padding": [
+            0,
+            16,
+            0,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "editorTemplateTopBarLeft",
+            "editorTemplateTopBarRight"
+          ]
+        },
+        "body": {
+          "id": "editorTemplateBody",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": "fill_container",
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "editorTemplateLeftPanel",
+            "editorTemplateCanvas",
+            "editorTemplateRightPanel"
+          ]
+        },
+        "leftPanel": {
+          "id": "editorTemplateLeftPanel",
+          "type": "frame",
+          "name": null,
+          "width": 256,
+          "height": null,
+          "padding": [
+            14,
+            12,
+            14,
+            12
+          ],
+          "gap": 10,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "editorTemplateLeftPanelTitle",
+            "editorTemplateLeftPanelList"
+          ]
+        },
+        "canvas": {
+          "id": "editorTemplateCanvas",
+          "type": "frame",
+          "name": null,
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": 12,
+          "cornerRadius": null,
+          "fill": "#f3f4f6",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "editorTemplateCanvasToolbar",
+            "editorTemplateCanvasBoard"
+          ]
+        },
+        "rightPanel": {
+          "id": "editorTemplateRightPanel",
+          "type": "frame",
+          "name": null,
+          "width": 288,
+          "height": null,
+          "padding": [
+            14,
+            12,
+            14,
+            12
+          ],
+          "gap": 10,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "editorTemplateRightPanelTitle",
+            "editorTemplateRightPanelSection"
+          ]
+        }
+      }
+    },
+    "landingTemplate": {
+      "frameId": "landingTemplateFrame",
+      "title": "Landing Template",
+      "description": "Marketing page skeleton with sticky header and section rhythm.",
+      "variants": [
+        {
+          "id": "landingTemplateDefault",
+          "name": "LandingTemplate/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 1280,
+          "height": 720,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "landingTemplateHeader",
+            "landingTemplateHero",
+            "landingTemplateFeatureSection"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "landingTemplateDefault",
+          "type": "frame",
+          "name": "LandingTemplate/Default",
+          "width": 1280,
+          "height": 720,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "landingTemplateHeader",
+            "landingTemplateHero",
+            "landingTemplateFeatureSection"
+          ]
+        },
+        "header": {
+          "id": "landingTemplateHeader",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": 56,
+          "padding": [
+            0,
+            20,
+            0,
+            20
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#fffffff2",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "landingTemplateHeaderBrandText",
+            "landingTemplateHeaderNav"
+          ]
+        },
+        "hero": {
+          "id": "landingTemplateHero",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": 280,
+          "padding": [
+            48,
+            20,
+            48,
+            20
+          ],
+          "gap": 14,
+          "cornerRadius": null,
+          "fill": "#eff6ff",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "landingTemplateHeroBadge",
+            "landingTemplateHeroHeadline",
+            "landingTemplateHeroSubtext"
+          ]
+        },
+        "featureSection": {
+          "id": "landingTemplateFeatureSection",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            48,
+            0,
+            48,
+            0
+          ],
+          "gap": 16,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "landingTemplateFeatureSectionTitle",
+            "landingTemplateFeatureGrid"
+          ]
+        }
+      }
+    },
+    "authTemplate": {
+      "frameId": "authTemplateFrame",
+      "title": "Auth Template",
+      "description": "Split authentication layout with branded panel and centered form.",
+      "variants": [
+        {
+          "id": "authTemplateDefault",
+          "name": "AuthTemplate/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 1280,
+          "height": 720,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "authTemplateVisualPanel",
+            "authTemplateFormPanel"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "authTemplateDefault",
+          "type": "frame",
+          "name": "AuthTemplate/Default",
+          "width": 1280,
+          "height": 720,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "authTemplateVisualPanel",
+            "authTemplateFormPanel"
+          ]
+        },
+        "visualPanel": {
+          "id": "authTemplateVisualPanel",
+          "type": "frame",
+          "name": null,
+          "width": 640,
+          "height": null,
+          "padding": [
+            40,
+            40,
+            40,
+            40
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#18181b",
+          "stroke": null,
+          "justifyContent": "space_between",
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "authTemplateLogoText",
+            "authTemplateQuoteText"
+          ]
+        },
+        "formPanel": {
+          "id": "authTemplateFormPanel",
+          "type": "frame",
+          "name": null,
+          "width": 640,
+          "height": null,
+          "padding": [
+            32,
+            32,
+            32,
+            32
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": null,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "authTemplateFormContainer"
+          ]
+        },
+        "formContainer": {
+          "id": "authTemplateFormContainer",
+          "type": "frame",
+          "name": null,
+          "width": 350,
+          "height": null,
+          "padding": null,
+          "gap": 14,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "authTemplateFormTitle",
+            "authTemplateFormHint",
+            "authTemplateEmailField",
+            "authTemplatePasswordField",
+            "authTemplateSubmitButton"
+          ]
+        }
+      }
+    },
+    "kanbanTemplate": {
+      "frameId": "kanbanTemplateFrame",
+      "title": "Kanban Template",
+      "description": "Board workflow shell with optional sidebar and horizontal columns.",
+      "variants": [
+        {
+          "id": "kanbanTemplateDefault",
+          "name": "KanbanTemplate/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 1280,
+          "height": 720,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "kanbanTemplateSidebar",
+            "kanbanTemplateMain"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "kanbanTemplateDefault",
+          "type": "frame",
+          "name": "KanbanTemplate/Default",
+          "width": 1280,
+          "height": 720,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "kanbanTemplateSidebar",
+            "kanbanTemplateMain"
+          ]
+        },
+        "sidebar": {
+          "id": "kanbanTemplateSidebar",
+          "type": "frame",
+          "name": null,
+          "width": 256,
+          "height": null,
+          "padding": [
+            16,
+            12,
+            16,
+            12
+          ],
+          "gap": 12,
+          "cornerRadius": null,
+          "fill": "#f1f5f9",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "kanbanTemplateSidebarTitleText",
+            "kanbanTemplateSidebarProjectCard"
+          ]
+        },
+        "main": {
+          "id": "kanbanTemplateMain",
+          "type": "frame",
+          "name": null,
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "kanbanTemplateHeader",
+            "kanbanTemplateBoard"
+          ]
+        },
+        "header": {
+          "id": "kanbanTemplateHeader",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": 56,
+          "padding": [
+            0,
+            24,
+            0,
+            24
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#f1f5f9",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "kanbanTemplateHeaderTitleText",
+            "kanbanTemplateHeaderAction"
+          ]
+        },
+        "board": {
+          "id": "kanbanTemplateBoard",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": "fill_container",
+          "padding": [
+            24,
+            24,
+            24,
+            24
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "kanbanTemplateColumns"
+          ]
+        },
+        "columns": {
+          "id": "kanbanTemplateColumns",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": "fill_container",
+          "padding": null,
+          "gap": 24,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "kanbanTemplateColumnTodo",
+            "kanbanTemplateColumnDoing",
+            "kanbanTemplateColumnDone"
+          ]
+        }
+      }
+    },
+    "chatTemplate": {
+      "frameId": "chatTemplateFrame",
+      "title": "Chat Template",
+      "description": "Conversation layout with channel rail, message area, and detail pane.",
+      "variants": [
+        {
+          "id": "chatTemplateDefault",
+          "name": "ChatTemplate/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 1280,
+          "height": 720,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "chatTemplateSidebarList",
+            "chatTemplateMainArea",
+            "chatTemplateSidebarDetail"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "chatTemplateDefault",
+          "type": "frame",
+          "name": "ChatTemplate/Default",
+          "width": 1280,
+          "height": 720,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "chatTemplateSidebarList",
+            "chatTemplateMainArea",
+            "chatTemplateSidebarDetail"
+          ]
+        },
+        "sidebarList": {
+          "id": "chatTemplateSidebarList",
+          "type": "frame",
+          "name": null,
+          "width": 280,
+          "height": null,
+          "padding": [
+            16,
+            12,
+            16,
+            12
+          ],
+          "gap": 10,
+          "cornerRadius": null,
+          "fill": "#f1f5f9",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "chatTemplateSidebarListTitle",
+            "chatTemplateSidebarListItems"
+          ]
+        },
+        "mainArea": {
+          "id": "chatTemplateMainArea",
+          "type": "frame",
+          "name": null,
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "chatTemplateHeader",
+            "chatTemplateMessages",
+            "chatTemplateComposer"
+          ]
+        },
+        "header": {
+          "id": "chatTemplateHeader",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": 56,
+          "padding": [
+            0,
+            16,
+            0,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "chatTemplateHeaderTitleText",
+            "chatTemplateHeaderMetaText"
+          ]
+        },
+        "messages": {
+          "id": "chatTemplateMessages",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": "fill_container",
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": 10,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "chatTemplateMessageInbound",
+            "chatTemplateMessageOutbound"
+          ]
+        },
+        "composer": {
+          "id": "chatTemplateComposer",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "chatTemplateComposerInputShell",
+            "chatTemplateComposerSendBtn"
+          ]
+        },
+        "sidebarDetail": {
+          "id": "chatTemplateSidebarDetail",
+          "type": "frame",
+          "name": null,
+          "width": 300,
+          "height": null,
+          "padding": [
+            16,
+            12,
+            16,
+            12
+          ],
+          "gap": 10,
+          "cornerRadius": null,
+          "fill": "#f1f5f9",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "chatTemplateSidebarDetailTitle",
+            "chatTemplateSidebarDetailCard"
+          ]
+        }
+      }
+    },
+    "settingsTemplate": {
+      "frameId": "settingsTemplateFrame",
+      "title": "Settings Template",
+      "description": "Responsive settings layout with mobile stack and desktop split view.",
+      "variants": [
+        {
+          "id": "settingsTemplateDefault",
+          "name": "SettingsTemplate/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 1280,
+          "height": 720,
+          "padding": null,
+          "gap": 16,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "settingsTemplateMobileView",
+            "settingsTemplateDesktopView"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "settingsTemplateDefault",
+          "type": "frame",
+          "name": "SettingsTemplate/Default",
+          "width": 1280,
+          "height": 720,
+          "padding": null,
+          "gap": 16,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "settingsTemplateMobileView",
+            "settingsTemplateDesktopView"
+          ]
+        },
+        "mobileView": {
+          "id": "settingsTemplateMobileView",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": 16,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "settingsTemplateMobileTitle",
+            "settingsTemplateMobileHint"
+          ]
+        },
+        "desktopView": {
+          "id": "settingsTemplateDesktopView",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            40,
+            40,
+            64,
+            40
+          ],
+          "gap": 24,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "settingsTemplateDesktopTitle",
+            "settingsTemplateSeparator",
+            "settingsTemplateDesktopBody"
+          ]
+        },
+        "desktopTitle": {
+          "id": "settingsTemplateDesktopTitle",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0f172a",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 24,
+          "fontWeight": "700",
+          "content": "Settings",
+          "textGrowth": null,
+          "children": []
+        },
+        "separator": {
+          "id": "settingsTemplateSeparator",
+          "type": "frame",
+          "name": null,
+          "width": "fit_content(0)",
+          "height": 1,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#e5e7eb",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "desktopBody": {
+          "id": "settingsTemplateDesktopBody",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 48,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "settingsTemplateNav",
+            "settingsTemplateContent"
+          ]
+        },
+        "nav": {
+          "id": "settingsTemplateNav",
+          "type": "frame",
+          "name": null,
+          "width": 220,
+          "height": null,
+          "padding": null,
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "settingsTemplateNavItemProfile",
+            "settingsTemplateNavItemBilling",
+            "settingsTemplateNavItemNotifications"
+          ]
+        },
+        "content": {
+          "id": "settingsTemplateContent",
+          "type": "frame",
+          "name": null,
+          "width": 672,
+          "height": null,
+          "padding": null,
+          "gap": 12,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "settingsTemplateContentSectionTitle",
+            "settingsTemplateContentCard"
+          ]
+        }
+      }
+    },
+    "bannalyzeTemplate": {
+      "frameId": "bannalyzeTemplateFrame",
+      "title": "Bannalyze Template",
+      "description": "Three-region analysis workspace with center canvas and side inspectors.",
+      "variants": [
+        {
+          "id": "bannalyzeTemplateDefault",
+          "name": "BannalyzeTemplate/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 1280,
+          "height": 720,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "bannalyzeTemplateHeader",
+            "bannalyzeTemplateBody"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "bannalyzeTemplateDefault",
+          "type": "frame",
+          "name": "BannalyzeTemplate/Default",
+          "width": 1280,
+          "height": 720,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "bannalyzeTemplateHeader",
+            "bannalyzeTemplateBody"
+          ]
+        },
+        "header": {
+          "id": "bannalyzeTemplateHeader",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": 56,
+          "padding": [
+            0,
+            16,
+            0,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#fffffff2",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "bannalyzeTemplateHeaderTitleText",
+            "bannalyzeTemplateHeaderMetaText"
+          ]
+        },
+        "body": {
+          "id": "bannalyzeTemplateBody",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": "fill_container",
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "bannalyzeTemplateSidebar",
+            "bannalyzeTemplateCanvas",
+            "bannalyzeTemplateInspector"
+          ]
+        },
+        "sidebar": {
+          "id": "bannalyzeTemplateSidebar",
+          "type": "frame",
+          "name": null,
+          "width": 256,
+          "height": null,
+          "padding": [
+            16,
+            12,
+            16,
+            12
+          ],
+          "gap": 10,
+          "cornerRadius": null,
+          "fill": "#f1f5f91a",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "bannalyzeTemplateSidebarTitleText",
+            "bannalyzeTemplateSidebarAssetCard"
+          ]
+        },
+        "canvas": {
+          "id": "bannalyzeTemplateCanvas",
+          "type": "frame",
+          "name": null,
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#f1f5f933",
+          "stroke": null,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "bannalyzeTemplateCanvasInner"
+          ]
+        },
+        "canvasInner": {
+          "id": "bannalyzeTemplateCanvasInner",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 8,
+          "cornerRadius": 12,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#dbeafe",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "bannalyzeTemplateCanvasInnerTitle",
+            "bannalyzeTemplateCanvasInnerHint"
+          ]
+        },
+        "inspector": {
+          "id": "bannalyzeTemplateInspector",
+          "type": "frame",
+          "name": null,
+          "width": 320,
+          "height": null,
+          "padding": [
+            16,
+            12,
+            16,
+            12
+          ],
+          "gap": 10,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "bannalyzeTemplateInspectorTitleText",
+            "bannalyzeTemplateInspectorCard"
+          ]
+        }
+      }
+    },
+    "mediaLibraryTemplate": {
+      "frameId": "mediaLibraryTemplateFrame",
+      "title": "Media Library Template",
+      "description": "Asset management workspace with folders, grid area, and details pane.",
+      "variants": [
+        {
+          "id": "mediaLibraryTemplateDefault",
+          "name": "MediaLibraryTemplate/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 1280,
+          "height": 720,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "mediaLibraryTemplateHeader",
+            "mediaLibraryTemplateBody"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "mediaLibraryTemplateDefault",
+          "type": "frame",
+          "name": "MediaLibraryTemplate/Default",
+          "width": 1280,
+          "height": 720,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "mediaLibraryTemplateHeader",
+            "mediaLibraryTemplateBody"
+          ]
+        },
+        "header": {
+          "id": "mediaLibraryTemplateHeader",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": 56,
+          "padding": [
+            0,
+            16,
+            0,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "mediaLibraryTemplateHeaderTitleText",
+            "mediaLibraryTemplateHeaderSearch"
+          ]
+        },
+        "body": {
+          "id": "mediaLibraryTemplateBody",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": "fill_container",
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "mediaLibraryTemplateSidebar",
+            "mediaLibraryTemplateGridArea",
+            "mediaLibraryTemplateDetails"
+          ]
+        },
+        "sidebar": {
+          "id": "mediaLibraryTemplateSidebar",
+          "type": "frame",
+          "name": null,
+          "width": 256,
+          "height": null,
+          "padding": [
+            16,
+            12,
+            16,
+            12
+          ],
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": "#f1f5f91a",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "mediaLibraryTemplateSidebarTitleText",
+            "mediaLibraryTemplateSidebarAllAssetsText",
+            "mediaLibraryTemplateSidebarCampaignsText"
+          ]
+        },
+        "gridArea": {
+          "id": "mediaLibraryTemplateGridArea",
+          "type": "frame",
+          "name": null,
+          "width": "fill_container",
+          "height": "fit_content(0)",
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "mediaLibraryTemplateGridInner"
+          ]
+        },
+        "gridInner": {
+          "id": "mediaLibraryTemplateGridInner",
+          "type": "frame",
+          "name": null,
+          "width": "fill_container",
+          "height": "fill_container",
+          "padding": null,
+          "gap": 12,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "mediaLibraryTemplateGridCardA",
+            "mediaLibraryTemplateGridCardB"
+          ]
+        },
+        "details": {
+          "id": "mediaLibraryTemplateDetails",
+          "type": "frame",
+          "name": null,
+          "width": 320,
+          "height": null,
+          "padding": [
+            16,
+            12,
+            16,
+            12
+          ],
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "mediaLibraryTemplateDetailsTitleText",
+            "mediaLibraryTemplateDetailsNameText",
+            "mediaLibraryTemplateDetailsMetaText"
+          ]
+        }
+      }
+    },
+    "pricingTemplate": null,
+    "blogTemplate": null,
+    "docsTemplate": null,
+    "onboardingTemplate": null
+  }
+}

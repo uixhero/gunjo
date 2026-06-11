@@ -1,0 +1,66 @@
+{
+  "dialog": {
+    "title": "Dialog",
+    "description": "Centered modal dialog with overlay, header, and footer actions."
+  },
+  "alertDialog": {
+    "title": "AlertDialog",
+    "description": "Modal dialog focused on confirming a destructive or important action."
+  },
+  "modal": {
+    "title": "Modal",
+    "description": "Dialog surface with header, content, and optional footer actions."
+  },
+  "sheet": {
+    "title": "Sheet",
+    "description": "Side panel variant with overlay, heading, and action area."
+  },
+  "drawer": {
+    "title": "Drawer",
+    "description": "Mobile-friendly bottom sheet with drag-to-dismiss handle (vaul-based)."
+  },
+  "popover": {
+    "title": "Popover",
+    "description": "Displays rich content in a portal, triggered by a button."
+  },
+  "tooltip": {
+    "title": "Tooltip",
+    "description": "Compact helper text bubble for hover and focus states."
+  },
+  "hoverCard": {
+    "title": "HoverCard",
+    "description": "Rich hover content with compact profile-like layout."
+  },
+  "dropdownMenu": {
+    "title": "Dropdown Menu",
+    "description": "Displays a menu to the user—such as a set of actions or functions—triggered by a button."
+  },
+  "contextMenu": {
+    "title": "ContextMenu",
+    "description": "Right-click style action list with labels and nested trigger."
+  },
+  "chatPanel": {
+    "title": "ChatPanel",
+    "description": "Contained chat overlay surface that composes ChatMessage and ChatInput for support, assistant, or team conversation panels."
+  },
+  "floatingPanel": {
+    "title": "Floating Panel",
+    "description": "Animated floating container for transient UI surfaces."
+  },
+  "shareModal": {
+    "title": "Share Modal",
+    "description": "Dialog for toggling public access and copying shareable URLs."
+  },
+  "onboardingFlow": {
+    "title": "OnboardingFlow",
+    "description": "Multi-step guided flow with step indicator, content, and Back/Continue actions."
+  },
+  "mediaLightbox": {
+    "title": "MediaLightbox",
+    "description": "Full-screen media preview dialog with navigation, zoom controls, and asset actions."
+  },
+  "mediaPickerDialog": {
+    "title": "MediaPickerDialog",
+    "description": "Media selection dialog with search, AssetGrid rendering, single-select and multi-select confirmation flows."
+  }
+}

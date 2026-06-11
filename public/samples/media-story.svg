@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1080 1920" role="img" aria-labelledby="title desc">
+  <title id="title">Vertical story sample</title>
+  <desc id="desc">A portrait social story image with vertical composition.</desc>
+  <rect width="1080" height="1920" fill="#101827"/>
+  <rect x="96" y="116" width="888" height="1690" rx="72" fill="#fff7ed"/>
+  <circle cx="760" cy="420" r="230" fill="#f59e0b" opacity="0.9"/>
+  <circle cx="332" cy="1320" r="270" fill="#3f5fb8" opacity="0.92"/>
+  <rect x="190" y="280" width="430" height="54" rx="27" fill="#111827"/>
+  <rect x="190" y="410" width="540" height="34" rx="17" fill="#667085"/>
+  <rect x="190" y="496" width="380" height="34" rx="17" fill="#667085" opacity="0.72"/>
+  <rect x="190" y="1498" width="690" height="112" rx="56" fill="#111827"/>
+  <rect x="270" y="1534" width="340" height="40" rx="20" fill="#ffffff"/>
+</svg>

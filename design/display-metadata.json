@@ -1,0 +1,238 @@
+{
+  "badge": {
+    "title": "Badge",
+    "description": "Displays a badge or a component that looks like a badge."
+  },
+  "icon": {
+    "title": "Icon",
+    "description": "Normalizes icon size, stroke, and accessibility behavior across GunjoUI."
+  },
+  "separator": {
+    "title": "Separator",
+    "description": "Visually or semantically separates content."
+  },
+  "avatar": {
+    "title": "Avatar",
+    "description": "An image element with a fallback for representing the user."
+  },
+  "chatMessage": {
+    "title": "ChatMessage",
+    "description": "Single chat transcript row for assistant, user, system, and typing states."
+  },
+  "kbd": {
+    "title": "Kbd",
+    "description": "Displays a keyboard shortcut key."
+  },
+  "img": {
+    "title": "Img",
+    "description": "An enhanced image component with loading skeleton and error fallback."
+  },
+  "imagePreview": {
+    "title": "ImagePreview",
+    "description": "Framed image preview surface for asset cards, pickers, and media inspection."
+  },
+  "toolPill": {
+    "title": "ToolPill",
+    "description": "Compact icon pill used for toolbar quick actions with active and danger states."
+  },
+  "skeleton": {
+    "title": "Skeleton",
+    "description": "Loading placeholder for content while it is being fetched."
+  },
+  "code": {
+    "title": "Code",
+    "description": "Inline code style for monospaced text content."
+  },
+  "spacer": {
+    "title": "Spacer",
+    "description": "Flex-grow filler for pushing siblings to the edges of a flex container."
+  },
+  "emptyState": {
+    "title": "EmptyState",
+    "description": "Placeholder for lists / panels with no data, with optional CTA."
+  },
+  "fileTree": {
+    "title": "FileTree",
+    "description": "File and folder tree composition with metadata, row actions, and single or multiple selection."
+  },
+  "tag": {
+    "title": "Tag",
+    "description": "Removable badge with × button. Useful for filter chips and tag editors."
+  },
+  "colorSwatch": {
+    "title": "ColorSwatch",
+    "description": "Color preview chip with copyable hex/rgb value."
+  },
+  "card": {
+    "title": "Card",
+    "description": "Displays a card with header, content, and footer."
+  },
+  "accordion": {
+    "title": "Accordion",
+    "description": "A vertically stacked set of interactive headings that each reveal a section of content."
+  },
+  "accordionGroup": {
+    "title": "AccordionGroup",
+    "description": "Labeled accordion composition with a single expand-all/collapse-all toggle control for FAQ, settings, and grouped disclosure lists."
+  },
+  "list": {
+    "title": "List",
+    "description": "A semantic list component with customizable markers and spacing."
+  },
+  "table": {
+    "title": "Table",
+    "description": "A responsive table component."
+  },
+  "carousel": {
+    "title": "Carousel",
+    "description": "Embla-powered slider with keyboard and arrow controls."
+  },
+  "dataTable": {
+    "title": "DataTable",
+    "description": "Table + sort + filter + pagination integrated. Wraps @tanstack/react-table."
+  },
+  "actionDataTable": {
+    "title": "ActionDataTable",
+    "description": "Selectable data table composition with bulk actions, row actions, and disabled-action feedback."
+  },
+  "avatarGroup": {
+    "title": "AvatarGroup",
+    "description": "Stack of overlapping avatars with optional +N overflow indicator."
+  },
+  "codeBlock": {
+    "title": "CodeBlock",
+    "description": "Syntax-highlighted code block with optional filename and copy button."
+  },
+  "timeline": {
+    "title": "Timeline",
+    "description": "Vertical time-ordered list with markers and connector lines."
+  },
+  "treeView": {
+    "title": "TreeView",
+    "description": "Hierarchical tree with expand/collapse for file explorers and navigation."
+  },
+  "docNote": {
+    "title": "DocNote",
+    "description": "Supplemental note block for explanatory copy, references, and non-urgent documentation callouts."
+  },
+  "markdownRenderer": {
+    "title": "MarkdownRenderer",
+    "description": "Markdown to HTML rendering with GFM (tables, task lists, code)."
+  },
+  "statistic": {
+    "title": "Statistic",
+    "description": "KPI metric card: label + value + delta indicator."
+  },
+  "chartLegend": {
+    "title": "ChartLegend",
+    "description": "Legend rows for chart series, values, and token-driven markers."
+  },
+  "sparklineChart": {
+    "title": "SparklineChart",
+    "description": "Compact HTML/CSS line, area, or stepped trend chart for dense dashboard cards with hover/focus point tooltips."
+  },
+  "barChart": {
+    "title": "BarChart",
+    "description": "Token-driven vertical or horizontal bar chart with optional average marker and hover/focus value tooltips."
+  },
+  "distributionBar": {
+    "title": "DistributionBar",
+    "description": "Stacked percentage distribution bar for segments, channels, and allocation data with hover/focus segment tooltips."
+  },
+  "analyticsCard": {
+    "title": "AnalyticsCard",
+    "description": "Composable metric card shell for chart previews, deltas, and supporting context."
+  },
+  "donutChart": {
+    "title": "DonutChart",
+    "description": "HTML/CSS donut chart for proportional segments with optional center labels and pointer-aware segment tooltips."
+  },
+  "pieChart": {
+    "title": "PieChart",
+    "description": "HTML/CSS pie chart for proportional segment comparisons with pointer-aware segment tooltips."
+  },
+  "gaugeChart": {
+    "title": "GaugeChart",
+    "description": "HTML/CSS semi-circle gauge for scores, progress, and capacity readings with hover/focus value tooltip."
+  },
+  "heatmapChart": {
+    "title": "HeatmapChart",
+    "description": "HTML/CSS density heatmap for day, time, and cohort intensity patterns with hover/focus cell tooltips."
+  },
+  "quadrantMatrix": {
+    "title": "QuadrantMatrix",
+    "description": "HTML/CSS four-quadrant matrix for plotting selectable items by x/y position with ranked values and hover/focus tooltips."
+  },
+  "choroplethMap": {
+    "title": "ChoroplethMap",
+    "description": "HTML/CSS region density map for GeoJSON-style boundaries, markers, and ranked locations with hover/focus tooltips."
+  },
+  "radarChart": {
+    "title": "RadarChart",
+    "description": "HTML/CSS radar chart for comparing single or multi-series multi-axis scores with hover/focus point tooltips."
+  },
+  "stackedBarChart": {
+    "title": "StackedBarChart",
+    "description": "HTML/CSS stacked vertical or horizontal bar chart for grouped segment comparisons with hover/focus segment tooltips."
+  },
+  "lineChart": {
+    "title": "LineChart",
+    "description": "HTML/CSS multi-series line or area chart for time-series comparison with reference lines, legends, and hover/focus point tooltips."
+  },
+  "ribbonChart": {
+    "title": "RibbonChart",
+    "description": "HTML/CSS ribbon chart for comparing changing flow, volume, or segment width across periods with hover/focus point tooltips."
+  },
+  "radialBarChart": {
+    "title": "RadialBarChart",
+    "description": "HTML/CSS concentric radial bar chart for comparing progress, share, or capacity across multiple series with hover/focus tooltips."
+  },
+  "retentionCohortCard": {
+    "title": "Retention Cohort Card",
+    "description": "HTML/CSS cohort retention card for dashboard grids with editable cohorts, periods, values, and hover/focus cell tooltips."
+  },
+  "activityTimelineCard": {
+    "title": "Activity Timeline Card",
+    "description": "HTML/CSS timeline card for activity, sleep, and operations dashboards with editable slots, segments, metrics, and hover/focus tooltips."
+  },
+  "labeledDonutCard": {
+    "title": "Labeled Donut Card",
+    "description": "HTML/CSS donut chart card for segment comparison with central summary, external callout rows, and hover/focus segment tooltips."
+  },
+  "segmentedGaugeCard": {
+    "title": "Segmented Gauge Card",
+    "description": "HTML/CSS segmented semicircle gauge card for status, spend, risk, and progress dashboards with editable segments, target value, and hover/focus tooltips."
+  },
+  "miniDistributionBarCard": {
+    "title": "Mini Distribution Bar Card",
+    "description": "HTML/CSS compact distribution card for product categories, capacity, and utilization widgets with dense ticks, selected segment details, and hover/focus tooltips."
+  },
+  "segmentTimelineCard": {
+    "title": "Segment Timeline Card",
+    "description": "HTML/CSS horizontal segment timeline card for sleep stages, uptime states, and categorical duration ranges with metrics, markers, and hover/focus tooltips."
+  },
+  "concentricProgressCard": {
+    "title": "Concentric Progress Card",
+    "description": "HTML/CSS card for storage, quota, and multi-ring progress widgets with selectable concentric rings, metrics, and hover/focus tooltips."
+  },
+  "assetCard": {
+    "title": "AssetCard",
+    "description": "Selectable media asset card for image libraries, files, and generated creative results with favorite, score, and preview affordances."
+  },
+  "assetGrid": {
+    "title": "AssetGrid",
+    "description": "Responsive grouped media grid that renders AssetCard items with empty state, selection state, and preview hooks."
+  },
+  "metadataList": {
+    "title": "MetadataList",
+    "description": "Definition-list style metadata rows for inspectors, file details, and compact property summaries."
+  },
+  "tagEditor": {
+    "title": "TagEditor",
+    "description": "Tag editing control composed from TagInput and suggestion actions for asset inspectors and filter panels."
+  },
+  "searchableAccordion": {
+    "title": "SearchableAccordion",
+    "description": "Searchable and category-filterable accordion composition for FAQ, help, and docs lists."
+  }
+}

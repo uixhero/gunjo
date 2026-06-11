@@ -1,0 +1,2379 @@
+{
+  "schemaVersion": 1,
+  "source": "design/inputs.pen",
+  "components": {
+    "button": {
+      "frameId": "buttonFrame",
+      "title": "Button",
+      "description": "Displays a button or a component that looks like a button.",
+      "variants": [
+        {
+          "id": "ciDlZ",
+          "name": "Button/Default",
+          "key": "default",
+          "type": "frame",
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            16,
+            8,
+            16
+          ],
+          "gap": 8,
+          "cornerRadius": 8,
+          "fill": "#0c0c12",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "g3lsA",
+            "content": "Button",
+            "fontSize": 14,
+            "fontWeight": "500",
+            "fill": "#f8fafc",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "g3lsA",
+              "content": "Button",
+              "fontSize": 14,
+              "fontWeight": "500",
+              "fill": "#f8fafc",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        },
+        {
+          "id": "A7rxC",
+          "name": "Button/Destructive",
+          "key": "destructive",
+          "type": "frame",
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            16,
+            8,
+            16
+          ],
+          "gap": 8,
+          "cornerRadius": 8,
+          "fill": "#ef4444",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "itdgR",
+            "content": "Delete",
+            "fontSize": 14,
+            "fontWeight": "500",
+            "fill": "#f8fafc",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "itdgR",
+              "content": "Delete",
+              "fontSize": 14,
+              "fontWeight": "500",
+              "fill": "#f8fafc",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        },
+        {
+          "id": "k3oii",
+          "name": "Button/Outline",
+          "key": "outline",
+          "type": "frame",
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            16,
+            8,
+            16
+          ],
+          "gap": 8,
+          "cornerRadius": 8,
+          "fill": "transparent",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "2HqzO",
+            "content": "Outline",
+            "fontSize": 14,
+            "fontWeight": "500",
+            "fill": "#0c0c12",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "2HqzO",
+              "content": "Outline",
+              "fontSize": 14,
+              "fontWeight": "500",
+              "fill": "#0c0c12",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        },
+        {
+          "id": "22kjc",
+          "name": "Button/Secondary",
+          "key": "secondary",
+          "type": "frame",
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            16,
+            8,
+            16
+          ],
+          "gap": 8,
+          "cornerRadius": 8,
+          "fill": "#f1f5f9",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "p4mH1",
+            "content": "Secondary",
+            "fontSize": 14,
+            "fontWeight": "500",
+            "fill": "#18181b",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "p4mH1",
+              "content": "Secondary",
+              "fontSize": 14,
+              "fontWeight": "500",
+              "fill": "#18181b",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        },
+        {
+          "id": "HgaaR",
+          "name": "Button/Ghost",
+          "key": "ghost",
+          "type": "frame",
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            16,
+            8,
+            16
+          ],
+          "gap": 8,
+          "cornerRadius": 8,
+          "fill": "transparent",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "wk5mf",
+            "content": "Ghost",
+            "fontSize": 14,
+            "fontWeight": "500",
+            "fill": "#0c0c12",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "wk5mf",
+              "content": "Ghost",
+              "fontSize": 14,
+              "fontWeight": "500",
+              "fill": "#0c0c12",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        },
+        {
+          "id": "ntG1K",
+          "name": "Button/Link",
+          "key": "link",
+          "type": "frame",
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            16,
+            8,
+            16
+          ],
+          "gap": 8,
+          "cornerRadius": 8,
+          "fill": "transparent",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "RZYBu",
+            "content": "Link",
+            "fontSize": 14,
+            "fontWeight": "500",
+            "fill": "#0c0c12",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "RZYBu",
+              "content": "Link",
+              "fontSize": 14,
+              "fontWeight": "500",
+              "fill": "#0c0c12",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:primary",
+          "name": "Button/Primary",
+          "key": "primary",
+          "type": "frame",
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            16,
+            8,
+            16
+          ],
+          "gap": 8,
+          "cornerRadius": 8,
+          "fill": "#394794",
+          "stroke": null,
+          "text": {
+            "id": "synthetic:buttonPrimaryText",
+            "content": "Primary",
+            "fontSize": 14,
+            "fontWeight": "500",
+            "fill": "#f8fafc",
+            "underline": false
+          },
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:info",
+          "name": "Button/Info",
+          "key": "info",
+          "type": "frame",
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            16,
+            8,
+            16
+          ],
+          "gap": 8,
+          "cornerRadius": 8,
+          "fill": "#1d4ed8",
+          "stroke": null,
+          "text": {
+            "id": "synthetic:buttonInfoText",
+            "content": "Info",
+            "fontSize": 14,
+            "fontWeight": "500",
+            "fill": "#f8fafc",
+            "underline": false
+          },
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:success",
+          "name": "Button/Success",
+          "key": "success",
+          "type": "frame",
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            16,
+            8,
+            16
+          ],
+          "gap": 8,
+          "cornerRadius": 8,
+          "fill": "#15803d",
+          "stroke": null,
+          "text": {
+            "id": "synthetic:buttonSuccessText",
+            "content": "Success",
+            "fontSize": 14,
+            "fontWeight": "500",
+            "fill": "#f8fafc",
+            "underline": false
+          },
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:warning",
+          "name": "Button/Warning",
+          "key": "warning",
+          "type": "frame",
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            16,
+            8,
+            16
+          ],
+          "gap": 8,
+          "cornerRadius": 8,
+          "fill": "#b45309",
+          "stroke": null,
+          "text": {
+            "id": "synthetic:buttonWarningText",
+            "content": "Warning",
+            "fontSize": 14,
+            "fontWeight": "500",
+            "fill": "#f8fafc",
+            "underline": false
+          },
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "tooltipButton": {
+      "frameId": "synthetic:tooltipButton",
+      "title": "TooltipButton",
+      "description": "Button composition that pairs an action with a GunjoUI Tooltip for icon, compact, or explanatory controls.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "copyButton": {
+      "frameId": "synthetic:copyButton",
+      "title": "CopyButton",
+      "description": "Clipboard action button with tooltip feedback and copied-state icon or label.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:label",
+          "name": "label",
+          "key": "label",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "chatInput": {
+      "frameId": "synthetic:chatInput",
+      "title": "ChatInput",
+      "description": "Message composer with multiline input, attachment action, send/stop controls, and disabled-state feedback.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": "#e2e8f0",
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:processing",
+          "name": "processing",
+          "key": "processing",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            12,
+            12,
+            12,
+            12
+          ],
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": "#e2e8f0",
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "chatComposer": {
+      "frameId": "synthetic:chatComposer",
+      "title": "ChatComposer",
+      "description": "Container that composes ChatInput with prompt choices, workspace context, usage status, footer context, or an accessory.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": 12,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:context",
+          "name": "context",
+          "key": "context",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": 12,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:prompt",
+          "name": "prompt",
+          "key": "prompt",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": 12,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "input": {
+      "frameId": "inputFrame",
+      "title": "Input",
+      "description": "Displays a form input field or a component that looks like an input field.",
+      "variants": [
+        {
+          "id": "inputDefault",
+          "name": "Input/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 280,
+          "height": 36,
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "transparent",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "inputPlaceholder",
+            "content": "",
+            "fontSize": 14,
+            "fontWeight": "normal",
+            "fill": "#0c0c12",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "inputPlaceholder",
+              "content": "",
+              "fontSize": 14,
+              "fontWeight": "normal",
+              "fill": "#0c0c12",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        },
+        {
+          "id": "inputWithPlaceholder",
+          "name": "Input/Placeholder",
+          "key": "placeholder",
+          "type": "frame",
+          "width": 280,
+          "height": 36,
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "transparent",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "inputPlaceholderText",
+            "content": "Email",
+            "fontSize": 14,
+            "fontWeight": "normal",
+            "fill": "#64748b",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "inputPlaceholderText",
+              "content": "Email",
+              "fontSize": 14,
+              "fontWeight": "normal",
+              "fill": "#64748b",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        },
+        {
+          "id": "inputDisabled",
+          "name": "Input/Disabled",
+          "key": "disabled",
+          "type": "frame",
+          "width": 280,
+          "height": 36,
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#f1f5f9",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "inputDisabledText",
+            "content": "Disabled",
+            "fontSize": 14,
+            "fontWeight": "normal",
+            "fill": "#94a3b8",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "inputDisabledText",
+              "content": "Disabled",
+              "fontSize": 14,
+              "fontWeight": "normal",
+              "fill": "#94a3b8",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        }
+      ]
+    },
+    "label": {
+      "frameId": "labelFrame",
+      "title": "Label",
+      "description": "Renders an accessible label associated with controls.",
+      "sampleText": {
+        "id": "labelDefaultText",
+        "content": "Accept terms and conditions",
+        "fontSize": 14,
+        "fontWeight": "500",
+        "fill": "#0c0c12"
+      }
+    },
+    "checkbox": {
+      "frameId": "checkboxFrame",
+      "title": "Checkbox",
+      "description": "A control that allows the user to toggle between checked and not checked.",
+      "variants": [
+        {
+          "id": "checkboxUnchecked",
+          "name": "Checkbox/Unchecked",
+          "key": "unchecked",
+          "type": "frame",
+          "width": 20,
+          "height": 20,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 4,
+          "fill": "transparent",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
+        },
+        {
+          "id": "checkboxChecked",
+          "name": "Checkbox/Checked",
+          "key": "checked",
+          "type": "frame",
+          "width": 20,
+          "height": 20,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 4,
+          "fill": "#0c0c12",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "checkboxCheckmark",
+            "content": "✓",
+            "fontSize": 12,
+            "fontWeight": "600",
+            "fill": "#f8fafc",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "checkboxCheckmark",
+              "content": "✓",
+              "fontSize": 12,
+              "fontWeight": "600",
+              "fill": "#f8fafc",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        },
+        {
+          "id": "checkboxDisabled",
+          "name": "Checkbox/Disabled",
+          "key": "disabled",
+          "type": "frame",
+          "width": 20,
+          "height": 20,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 4,
+          "fill": "#f1f5f9",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
+        }
+      ]
+    },
+    "switch": {
+      "frameId": "switchFrame",
+      "title": "Switch",
+      "description": "A control that allows the user to toggle between checked and not checked.",
+      "variants": [
+        {
+          "id": "switchUnchecked",
+          "name": "Switch/Unchecked",
+          "key": "unchecked",
+          "type": "frame",
+          "width": 44,
+          "height": 24,
+          "padding": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "gap": null,
+          "cornerRadius": 9999,
+          "fill": "#f1f5f9",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
+        },
+        {
+          "id": "switchChecked",
+          "name": "Switch/Checked",
+          "key": "checked",
+          "type": "frame",
+          "width": 44,
+          "height": 24,
+          "padding": [
+            2,
+            2,
+            2,
+            2
+          ],
+          "gap": null,
+          "cornerRadius": 9999,
+          "fill": "#0c0c12",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
+        }
+      ]
+    },
+    "textarea": {
+      "frameId": "textareaFrame",
+      "title": "Textarea",
+      "description": "Displays a form textarea or a component that looks like a textarea.",
+      "variants": [
+        {
+          "id": "textareaDefault",
+          "name": "Textarea/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 280,
+          "height": 80,
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "transparent",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "textareaPlaceholder",
+            "content": "Type your message here.",
+            "fontSize": 14,
+            "fontWeight": "normal",
+            "fill": "#64748b",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "textareaPlaceholder",
+              "content": "Type your message here.",
+              "fontSize": 14,
+              "fontWeight": "normal",
+              "fill": "#64748b",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        },
+        {
+          "id": "textareaDisabled",
+          "name": "Textarea/Disabled",
+          "key": "disabled",
+          "type": "frame",
+          "width": 280,
+          "height": 80,
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#f1f5f9",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "textareaDisabledText",
+            "content": "Disabled",
+            "fontSize": 14,
+            "fontWeight": "normal",
+            "fill": "#94a3b8",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "textareaDisabledText",
+              "content": "Disabled",
+              "fontSize": 14,
+              "fontWeight": "normal",
+              "fill": "#94a3b8",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        }
+      ]
+    },
+    "radioGroup": {
+      "frameId": "radioGroupFrame",
+      "title": "RadioGroup",
+      "description": "A set of checkable buttons—known as radio buttons—where no more than one of the buttons can be checked at a time.",
+      "variants": [
+        {
+          "id": "radioGroupUnchecked",
+          "name": "RadioGroup/Unchecked",
+          "key": "unchecked",
+          "type": "frame",
+          "width": 16,
+          "height": 16,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "transparent",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
+        },
+        {
+          "id": "radioGroupChecked",
+          "name": "RadioGroup/Checked",
+          "key": "checked",
+          "type": "frame",
+          "width": 16,
+          "height": 16,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "transparent",
+          "stroke": {
+            "align": "inside",
+            "fill": "#0c0c12",
+            "thickness": 1
+          },
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
+        }
+      ]
+    },
+    "slider": {
+      "frameId": "sliderFrame",
+      "title": "Slider",
+      "description": "An input where the user selects a value from within a given range.",
+      "variants": [
+        {
+          "id": "sliderDefault",
+          "name": "Slider/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 200,
+          "height": 20,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 10,
+          "fill": "#e2e8f0",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
+        }
+      ]
+    },
+    "rangeSlider": {
+      "frameId": "rangeSliderFrame",
+      "title": "RangeSlider",
+      "description": "Selects a minimum and maximum value within a bounded range.",
+      "variants": [
+        {
+          "id": "rangeSliderDefault",
+          "name": "RangeSlider/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 240,
+          "height": 28,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
+        }
+      ]
+    },
+    "select": {
+      "frameId": "selectFrame",
+      "title": "Select",
+      "description": "Displays a list of options for the user to pick from.",
+      "variants": [
+        {
+          "id": "selectDefault",
+          "name": "Select/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 200,
+          "height": 36,
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "transparent",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "selectPlaceholder",
+            "content": "Select an option",
+            "fontSize": 14,
+            "fontWeight": "normal",
+            "fill": "#64748b",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "selectPlaceholder",
+              "content": "Select an option",
+              "fontSize": 14,
+              "fontWeight": "normal",
+              "fill": "#64748b",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        }
+      ]
+    },
+    "toggleGroup": {
+      "frameId": "toggleGroupFrame",
+      "title": "ToggleGroup",
+      "description": "A set of two-state buttons that can be toggled on or off.",
+      "variants": [
+        {
+          "id": "toggleGroupItemDefault",
+          "name": "ToggleGroup/Default",
+          "key": "default",
+          "type": "frame",
+          "width": null,
+          "height": 36,
+          "padding": [
+            0,
+            12,
+            0,
+            12
+          ],
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#f1f5f9",
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "toggleGroupItemText",
+            "content": "A",
+            "fontSize": 14,
+            "fontWeight": "500",
+            "fill": "#0c0c12",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "toggleGroupItemText",
+              "content": "A",
+              "fontSize": 14,
+              "fontWeight": "500",
+              "fill": "#0c0c12",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        },
+        {
+          "id": "toggleGroupItemOutline",
+          "name": "ToggleGroup/Outline",
+          "key": "outline",
+          "type": "frame",
+          "width": null,
+          "height": 36,
+          "padding": [
+            0,
+            12,
+            0,
+            12
+          ],
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "transparent",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": {
+            "id": "toggleGroupItemOutlineText",
+            "content": "B",
+            "fontSize": 14,
+            "fontWeight": "500",
+            "fill": "#0c0c12",
+            "underline": false
+          },
+          "texts": [
+            {
+              "id": "toggleGroupItemOutlineText",
+              "content": "B",
+              "fontSize": 14,
+              "fontWeight": "500",
+              "fill": "#0c0c12",
+              "underline": false
+            }
+          ],
+          "reusable": true
+        }
+      ]
+    },
+    "toggle": {
+      "frameId": "thTjM",
+      "title": "Toggle",
+      "description": "Two-state pressable button (icon-style toggle).",
+      "variants": []
+    },
+    "numberInput": {
+      "frameId": "j38LFp",
+      "title": "NumberInput",
+      "description": "Numeric input with up/down stepper buttons.",
+      "variants": []
+    },
+    "passwordInput": {
+      "frameId": "rne63",
+      "title": "PasswordInput",
+      "description": "Password field with show/hide toggle button.",
+      "variants": []
+    },
+    "passwordRequirementList": {
+      "frameId": "synthetic:passwordRequirementList",
+      "title": "PasswordRequirementList",
+      "description": "Password requirement checklist that can be used standalone or inside PasswordGroup.",
+      "variants": [],
+      "composition": {
+        "canonicalLayout": "vertical-checklist",
+        "publicParts": [
+          "PasswordRequirementList"
+        ],
+        "stateKeys": [
+          "pending",
+          "met",
+          "unmet"
+        ]
+      },
+      "notes": [
+        "PasswordInput does not own fixed password rules.",
+        "Pass requirement labels and met states from product validation logic."
+      ]
+    },
+    "passwordStrengthMeter": {
+      "frameId": "synthetic:passwordStrengthMeter",
+      "title": "PasswordStrengthMeter",
+      "description": "Password strength meter that displays a caller-provided score, label, and helper text.",
+      "variants": [],
+      "composition": {
+        "canonicalLayout": "segmented-meter",
+        "publicParts": [
+          "PasswordStrengthMeter"
+        ],
+        "scoreRange": "0..maxScore"
+      },
+      "notes": [
+        "The component renders strength state but does not calculate password entropy.",
+        "Callers provide score, label, and descriptions from their validation policy."
+      ]
+    },
+    "passwordGroup": {
+      "frameId": "synthetic:passwordGroup",
+      "title": "PasswordGroup",
+      "description": "Password field composition with visibility control, requirement checklist, strength meter, error message, and disabled feedback.",
+      "variants": [],
+      "composition": {
+        "canonicalLayout": "vertical-field-group",
+        "publicParts": [
+          "PasswordGroup",
+          "PasswordInput",
+          "PasswordRequirementList",
+          "PasswordStrengthMeter",
+          "FormGroup"
+        ],
+        "defaultGap": 6
+      },
+      "notes": [
+        "Use PasswordGroup when requirements or strength feedback are part of the same password field.",
+        "Use PasswordInput alone when a simple secret value input is enough."
+      ]
+    },
+    "phoneInput": {
+      "frameId": "synthetic:phoneInput",
+      "title": "PhoneInput",
+      "description": "Telephone input with country calling-code affordance and caller-provided formatting hook.",
+      "variants": [],
+      "composition": {
+        "canonicalLayout": "prefix-input",
+        "publicParts": [
+          "PhoneInput",
+          "Input"
+        ],
+        "controlHeight": 36
+      },
+      "notes": [
+        "The default formatter supports common Japanese mobile-style grouping.",
+        "Use formatValue for product-specific or international phone-number formatting."
+      ]
+    },
+    "postalCodeInput": {
+      "frameId": "synthetic:postalCodeInput",
+      "title": "PostalCodeInput",
+      "description": "Postal-code input with prefix affordance and caller-provided formatting hook.",
+      "variants": [],
+      "composition": {
+        "canonicalLayout": "prefix-input",
+        "publicParts": [
+          "PostalCodeInput",
+          "Input"
+        ],
+        "controlHeight": 36
+      },
+      "notes": [
+        "The default formatter supports Japanese 3-4 postal-code grouping.",
+        "Address lookup or autofill should be composed above this input."
+      ]
+    },
+    "searchInput": {
+      "frameId": "J5BDKM",
+      "title": "SearchInput",
+      "description": "Input with leading search icon for search bars.",
+      "variants": []
+    },
+    "inputOTP": {
+      "frameId": "N4befa",
+      "title": "InputOTP",
+      "description": "One-time-password input with per-digit slots and optional separator.",
+      "variants": []
+    },
+    "calendar": {
+      "frameId": "calendarFrame",
+      "title": "Calendar",
+      "description": "A date field component that allows users to enter and edit date.",
+      "variants": [
+        {
+          "id": "calendarDefault",
+          "name": "Calendar/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 320,
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "calendarHeader",
+            "calendarGrid"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "calendarDefault",
+          "type": "frame",
+          "name": "Calendar/Default",
+          "width": 320,
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#FFFFFF",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "calendarHeader",
+            "calendarGrid"
+          ]
+        },
+        "header": {
+          "id": "calendarHeader",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            0,
+            0,
+            12,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "calendarMonth"
+          ]
+        },
+        "month": {
+          "id": "calendarMonth",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0c0c12",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "600",
+          "content": "February 2025",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "grid": {
+          "id": "calendarGrid",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 4,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "Yep5W",
+            "PxLf3"
+          ]
+        }
+      }
+    },
+    "filterButton": {
+      "frameId": "filterButtonFrame",
+      "title": "FilterButton",
+      "description": "Filter trigger with dashed border, count badge, and command popover list.",
+      "variants": [
+        {
+          "id": "filterButtonDefault",
+          "name": "FilterButton/Default",
+          "key": "default",
+          "type": "frame",
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": 8,
+          "cornerRadius": 6,
+          "fill": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "filterButtonIcon",
+            "filterButtonLabel"
+          ]
+        },
+        {
+          "id": "filterButtonSelected",
+          "name": "FilterButton/Selected",
+          "key": "selected",
+          "type": "frame",
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": 8,
+          "cornerRadius": 6,
+          "fill": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "filterButtonBadge"
+          ]
+        },
+        {
+          "id": "filterButtonPopover",
+          "name": "FilterButton/Popover",
+          "key": "popover",
+          "type": "frame",
+          "width": 200,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "reusable": true,
+          "children": [
+            "filterButtonCommandItem",
+            "filterButtonCheckBox",
+            "filterButtonDivider"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "filterButtonDefault",
+          "type": "frame",
+          "name": "FilterButton/Default",
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": 8,
+          "cornerRadius": 6,
+          "fill": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "filterButtonIcon",
+            "filterButtonLabel"
+          ]
+        },
+        "selected": {
+          "id": "filterButtonSelected",
+          "type": "frame",
+          "name": "FilterButton/Selected",
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": 8,
+          "cornerRadius": 6,
+          "fill": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "filterButtonBadge"
+          ]
+        },
+        "popover": {
+          "id": "filterButtonPopover",
+          "type": "frame",
+          "name": "FilterButton/Popover",
+          "width": 200,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 8,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "filterButtonCommandItem",
+            "filterButtonCheckBox",
+            "filterButtonDivider"
+          ]
+        },
+        "icon": {
+          "id": "filterButtonIcon",
+          "type": "frame",
+          "name": null,
+          "width": 16,
+          "height": 16,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "filterButtonIconText"
+          ]
+        },
+        "label": {
+          "id": "filterButtonLabel",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0f172a",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Filter",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "badge": {
+          "id": "filterButtonBadge",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            2,
+            6,
+            2,
+            6
+          ],
+          "gap": null,
+          "cornerRadius": 4,
+          "fill": "#f1f5f9",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "filterButtonBadgeText"
+          ]
+        },
+        "commandItem": {
+          "id": "filterButtonCommandItem",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            6,
+            8,
+            6,
+            8
+          ],
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "filterButtonCommandItemText"
+          ]
+        },
+        "checkBox": {
+          "id": "filterButtonCheckBox",
+          "type": "frame",
+          "name": null,
+          "width": 16,
+          "height": 16,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 2,
+          "fill": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#2563eb",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "filterButtonCheckBoxText"
+          ]
+        },
+        "divider": {
+          "id": "filterButtonDivider",
+          "type": "frame",
+          "name": null,
+          "width": "fit_content(0)",
+          "height": 1,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#e5e7eb",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "sortButton": {
+      "frameId": "sortButtonFrame",
+      "title": "SortButton",
+      "description": "Three-state sort trigger (none, asc, desc) with icon + text.",
+      "variants": [
+        {
+          "id": "sortButtonNone",
+          "name": "SortButton/None",
+          "key": "none",
+          "type": "frame",
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": 8,
+          "cornerRadius": 6,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "sortButtonIcon",
+            "sortButtonLabel"
+          ]
+        },
+        {
+          "id": "sortButtonAsc",
+          "name": "SortButton/Asc",
+          "key": "asc",
+          "type": "frame",
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": 8,
+          "cornerRadius": 6,
+          "fill": "#eef2ff",
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "sortButtonAscIcon",
+            "sortButtonAscLabel"
+          ]
+        },
+        {
+          "id": "sortButtonDescending",
+          "name": "SortButton/Desc",
+          "key": "desc",
+          "type": "frame",
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": 8,
+          "cornerRadius": 6,
+          "fill": "#fff7ed",
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "sortButtonDescIcon",
+            "sortButtonDescLabel"
+          ]
+        }
+      ],
+      "nodes": {
+        "none": {
+          "id": "sortButtonNone",
+          "type": "frame",
+          "name": "SortButton/None",
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": 8,
+          "cornerRadius": 6,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "sortButtonIcon",
+            "sortButtonLabel"
+          ]
+        },
+        "asc": {
+          "id": "sortButtonAsc",
+          "type": "frame",
+          "name": "SortButton/Asc",
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": 8,
+          "cornerRadius": 6,
+          "fill": "#eef2ff",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "sortButtonAscIcon",
+            "sortButtonAscLabel"
+          ]
+        },
+        "desc": {
+          "id": "sortButtonDescending",
+          "type": "frame",
+          "name": "SortButton/Desc",
+          "width": null,
+          "height": 36,
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": 8,
+          "cornerRadius": 6,
+          "fill": "#fff7ed",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "sortButtonDescIcon",
+            "sortButtonDescLabel"
+          ]
+        },
+        "icon": {
+          "id": "sortButtonIcon",
+          "type": "frame",
+          "name": null,
+          "width": 16,
+          "height": 16,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "transparent",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "sortButtonNoneIcon"
+          ]
+        },
+        "label": {
+          "id": "sortButtonLabel",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#0f172a",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "normal",
+          "content": "Sort",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "sortButtonAscIcon": {
+          "id": "sortButtonAscIcon",
+          "type": "icon_font",
+          "name": null,
+          "width": 16,
+          "height": 16,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#4338ca",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": "lucide",
+          "iconFontName": "arrow-up-wide-narrow",
+          "textGrowth": null,
+          "children": []
+        },
+        "sortButtonAscLabel": {
+          "id": "sortButtonAscLabel",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#312e81",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "500",
+          "content": "Sort (Asc)",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "sortButtonDescIcon": {
+          "id": "sortButtonDescIcon",
+          "type": "icon_font",
+          "name": null,
+          "width": 16,
+          "height": 16,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#c2410c",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": "lucide",
+          "iconFontName": "arrow-down-wide-narrow",
+          "textGrowth": null,
+          "children": []
+        },
+        "sortButtonDescLabel": {
+          "id": "sortButtonDescLabel",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#9a3412",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "500",
+          "content": "Sort (Desc)",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    },
+    "editableField": {
+      "frameId": "synthetic:editableField",
+      "title": "Editable Field",
+      "description": "Labelled field that switches between read-only display and explicit save/cancel editing.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "form": {
+      "frameId": "synthetic:form",
+      "title": "Form",
+      "description": "Compound form primitives for vertical field composition, labels, descriptions, messages, and full-width controls.",
+      "variants": [],
+      "composition": {
+        "canonicalLayout": "vertical-field-group",
+        "publicParts": [
+          "Form",
+          "FormField",
+          "FormGroup",
+          "FormLabel",
+          "FormControl",
+          "FormDescription",
+          "FormMessage"
+        ],
+        "controlHeight": 36,
+        "defaultGap": 6,
+        "fieldGap": 16,
+        "fullWidthControlSlots": [
+          "combobox",
+          "date-picker",
+          "date-range-picker",
+          "editable-field",
+          "file-uploader",
+          "input",
+          "input-otp",
+          "mention",
+          "number-input",
+          "password-group",
+          "password-input",
+          "phone-input",
+          "postal-code-input",
+          "range-slider",
+          "search-input",
+          "select-control",
+          "slider",
+          "tag-input",
+          "textarea",
+          "time-picker"
+        ]
+      },
+      "notes": [
+        "Standalone Input, Textarea, Select, Slider, and related controls keep their intrinsic preview width.",
+        "Inside FormGroup, controls expand to the field width through data-slot selectors instead of one-off docs wrappers.",
+        "The canonical form control height remains 36px / h-9 unless a specific component documents a larger touch target."
+      ]
+    },
+    "combobox": {
+      "frameId": "vuR8V",
+      "title": "Combobox",
+      "description": "Searchable select. Combines Popover + Command for filterable option lists.",
+      "variants": [],
+      "nodes": {}
+    },
+    "datePicker": {
+      "frameId": "RZOgR",
+      "title": "DatePicker",
+      "description": "Date input with popup Calendar. Wraps Popover + Calendar primitives.",
+      "variants": [],
+      "nodes": {}
+    },
+    "dateRangePicker": {
+      "frameId": "kDPmC",
+      "title": "DateRangePicker",
+      "description": "Pick a date range with two-month Calendar in popover.",
+      "variants": [],
+      "nodes": {}
+    },
+    "timePicker": {
+      "frameId": "iKAYe",
+      "title": "TimePicker",
+      "description": "Hour + minute select with optional 12 / 24 hour mode.",
+      "variants": [],
+      "nodes": {}
+    },
+    "tagInput": {
+      "frameId": "howAc",
+      "title": "TagInput",
+      "description": "Multi-tag input with Enter to add and × to remove.",
+      "variants": [],
+      "nodes": {}
+    },
+    "mention": {
+      "frameId": "Fhg5j",
+      "title": "Mention",
+      "description": "Textarea with @mention picker — autocompletes user names from a list.",
+      "variants": [],
+      "nodes": {}
+    },
+    "fileUploader": {
+      "frameId": "fileUploaderFrame",
+      "title": "File Uploader",
+      "description": "Drag-and-drop file intake with compact list rendering.",
+      "variants": [
+        {
+          "id": "fileUploaderDefault",
+          "name": "FileUploader/Default",
+          "key": "default",
+          "type": "frame",
+          "width": 640,
+          "height": null,
+          "padding": null,
+          "gap": 16,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "fileUploaderDropzone",
+            "fileUploaderItem"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "fileUploaderDefault",
+          "type": "frame",
+          "name": "FileUploader/Default",
+          "width": 640,
+          "height": null,
+          "padding": null,
+          "gap": 16,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "fileUploaderDropzone",
+            "fileUploaderItem"
+          ]
+        },
+        "dropzone": {
+          "id": "fileUploaderDropzone",
+          "type": "frame",
+          "name": null,
+          "width": "fill_container",
+          "height": 128,
+          "padding": null,
+          "gap": 12,
+          "cornerRadius": 8,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#d1d5db",
+            "thickness": 2
+          },
+          "justifyContent": "center",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "fileUploaderIcon",
+            "fileUploaderPrompt",
+            "fileUploaderHint"
+          ]
+        },
+        "icon": {
+          "id": "fileUploaderIcon",
+          "type": "icon_font",
+          "name": null,
+          "width": 32,
+          "height": 32,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": "lucide",
+          "iconFontName": "upload",
+          "textGrowth": null,
+          "children": []
+        },
+        "prompt": {
+          "id": "fileUploaderPrompt",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#111827",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "600",
+          "content": "Click to upload",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "hint": {
+          "id": "fileUploaderHint",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#64748b",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "content": "Max size 5MB",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "item": {
+          "id": "fileUploaderItem",
+          "type": "frame",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "gap": 8,
+          "cornerRadius": 6,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "fileUploaderItemIcon",
+            "fileUploaderItemName",
+            "fileUploaderItemSize"
+          ]
+        },
+        "itemName": {
+          "id": "fileUploaderItemName",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#111827",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 12,
+          "fontWeight": "500",
+          "content": "document.pdf",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        }
+      }
+    }
+  }
+}

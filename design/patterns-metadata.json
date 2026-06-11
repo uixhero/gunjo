@@ -1,0 +1,54 @@
+{
+  "dashboardTemplate": {
+    "title": "Dashboard Template",
+    "description": "Two-column dashboard shell with optional header and sidebar."
+  },
+  "editorTemplate": {
+    "title": "Editor Template",
+    "description": "Panel-based editing layout with top bar and side docks."
+  },
+  "landingTemplate": {
+    "title": "Landing Template",
+    "description": "Marketing page skeleton with sticky header and section rhythm."
+  },
+  "authTemplate": {
+    "title": "Auth Template",
+    "description": "Split authentication layout with branded panel and centered form."
+  },
+  "kanbanTemplate": {
+    "title": "Kanban Template",
+    "description": "Board workflow shell with optional sidebar and horizontal columns."
+  },
+  "chatTemplate": {
+    "title": "Chat Template",
+    "description": "Conversation layout with channel rail, message area, and detail pane."
+  },
+  "settingsTemplate": {
+    "title": "Settings Template",
+    "description": "Responsive settings layout with mobile stack and desktop split view."
+  },
+  "bannalyzeTemplate": {
+    "title": "Bannalyze Template",
+    "description": "Three-region analysis workspace with center canvas and side inspectors."
+  },
+  "mediaLibraryTemplate": {
+    "title": "Media Library Template",
+    "description": "Asset management workspace with folders, grid area, and details pane."
+  },
+  "pricingTemplate": {
+    "title": "PricingTemplate",
+    "description": "Three-tier pricing layout with featured plan highlight."
+  },
+  "blogTemplate": {
+    "title": "BlogTemplate",
+    "description": "Blog post layout with category, title, byline, hero image, and prose."
+  },
+  "docsTemplate": {
+    "title": "DocsTemplate",
+    "description": "Three-pane docs layout: nav sidebar, main content, on-this-page TOC."
+  },
+  "onboardingTemplate": {
+    "title": "OnboardingTemplate",
+    "description": "Two-pane onboarding: hero panel + step flow content."
+  }
+}

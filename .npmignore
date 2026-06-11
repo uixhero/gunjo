@@ -1,0 +1,15 @@
+# Syncthing conflict residue (should be cleaned up from git separately)
+*.sync-conflict-*
+**/*.sync-conflict-*
+src/globals.sync-conflict-*.css
+
+# Editor / OS junk
+.DS_Store
+*.swp
+*~
+
+# TypeScript build cache
+*.tsbuildinfo
+
+# Internal-only documents (belt-and-suspenders, files whitelist already excludes)
+BUSINESS_OVERVIEW.md

@@ -1,0 +1,3559 @@
+{
+  "generatedAt": "2026-06-06T22:46:37.599Z",
+  "baseUrl": "http://127.0.0.1:13037",
+  "viewport": {
+    "width": 1280,
+    "height": 720,
+    "deviceScaleFactor": 2
+  },
+  "total": 306,
+  "captured": 297,
+  "failed": 9,
+  "results": [
+    {
+      "category": "Inputs",
+      "slug": "inputs",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/inputs.light.png",
+      "clip": {
+        "x": 224,
+        "y": 133,
+        "width": 832,
+        "height": 454
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "inputs",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/inputs.dark.png",
+      "clip": {
+        "x": 224,
+        "y": 133,
+        "width": 832,
+        "height": 454
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "button",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/button.light.png",
+      "clip": {
+        "x": 312,
+        "y": 310,
+        "width": 655,
+        "height": 100
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "button",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/button.dark.png",
+      "clip": {
+        "x": 312,
+        "y": 310,
+        "width": 655,
+        "height": 100
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "calendar",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/calendar.light.png",
+      "clip": {
+        "x": 448,
+        "y": 153,
+        "width": 384,
+        "height": 414
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "calendar",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/calendar.dark.png",
+      "clip": {
+        "x": 448,
+        "y": 153,
+        "width": 384,
+        "height": 414
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "chat-composer",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/chat-composer.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "chat-composer",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/chat-composer.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "chat-input",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/chat-input.light.png",
+      "clip": {
+        "x": 272,
+        "y": 250,
+        "width": 736,
+        "height": 220
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "chat-input",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/chat-input.dark.png",
+      "clip": {
+        "x": 272,
+        "y": 250,
+        "width": 736,
+        "height": 220
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "checkbox",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/checkbox.light.png",
+      "clip": {
+        "x": 531,
+        "y": 318,
+        "width": 218,
+        "height": 84
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "checkbox",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/checkbox.dark.png",
+      "clip": {
+        "x": 531,
+        "y": 318,
+        "width": 218,
+        "height": 84
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "combobox",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/combobox.light.png",
+      "clip": {
+        "x": 416,
+        "y": 289,
+        "width": 448,
+        "height": 142
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "combobox",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/combobox.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 289,
+        "width": 448,
+        "height": 142
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "copy-button",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/copy-button.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "copy-button",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/copy-button.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "date-picker",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/date-picker.light.png",
+      "clip": {
+        "x": 416,
+        "y": 285,
+        "width": 448,
+        "height": 150
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "date-picker",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/date-picker.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 285,
+        "width": 448,
+        "height": 150
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "date-range-picker",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/date-range-picker.light.png",
+      "clip": {
+        "x": 416,
+        "y": 289,
+        "width": 448,
+        "height": 142
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "date-range-picker",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/date-range-picker.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 289,
+        "width": 448,
+        "height": 142
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "editable-field",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/editable-field.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "editable-field",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/editable-field.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "file-uploader",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/file-uploader.light.png",
+      "clip": {
+        "x": 384,
+        "y": 243,
+        "width": 512,
+        "height": 234
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "file-uploader",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/file-uploader.dark.png",
+      "clip": {
+        "x": 384,
+        "y": 243,
+        "width": 512,
+        "height": 234
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "filter-button",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/filter-button.light.png",
+      "clip": {
+        "x": 548,
+        "y": 248,
+        "width": 183,
+        "height": 224
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "filter-button",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/filter-button.dark.png",
+      "clip": {
+        "x": 548,
+        "y": 248,
+        "width": 183,
+        "height": 224
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "form",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/form.light.png",
+      "clip": {
+        "x": 416,
+        "y": 252,
+        "width": 448,
+        "height": 216
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "form",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/form.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 252,
+        "width": 448,
+        "height": 216
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "input",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/input.light.png",
+      "clip": {
+        "x": 416,
+        "y": 252,
+        "width": 448,
+        "height": 216
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "input",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/input.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 252,
+        "width": 448,
+        "height": 216
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "input-otp",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/input-otp.light.png",
+      "clip": {
+        "x": 416,
+        "y": 287,
+        "width": 448,
+        "height": 146
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "input-otp",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/input-otp.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 287,
+        "width": 448,
+        "height": 146
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "label",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/label.light.png",
+      "clip": {
+        "x": 416,
+        "y": 282,
+        "width": 448,
+        "height": 156
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "label",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/label.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 282,
+        "width": 448,
+        "height": 156
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "mention",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/mention.light.png",
+      "clip": {
+        "x": 416,
+        "y": 266,
+        "width": 448,
+        "height": 188
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "mention",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/mention.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 266,
+        "width": 448,
+        "height": 188
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "number-input",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/number-input.light.png",
+      "clip": {
+        "x": 416,
+        "y": 287,
+        "width": 448,
+        "height": 145
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "number-input",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/number-input.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 287,
+        "width": 448,
+        "height": 145
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "password-input",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/password-input.light.png",
+      "clip": {
+        "x": 416,
+        "y": 289,
+        "width": 448,
+        "height": 142
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "password-input",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/password-input.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 289,
+        "width": 448,
+        "height": 142
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "radio-group",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/radio-group.light.png",
+      "clip": {
+        "x": 554,
+        "y": 308,
+        "width": 171,
+        "height": 104
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "radio-group",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/radio-group.dark.png",
+      "clip": {
+        "x": 554,
+        "y": 308,
+        "width": 171,
+        "height": 104
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "range-slider",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/range-slider.light.png",
+      "clip": {
+        "x": 416,
+        "y": 267,
+        "width": 448,
+        "height": 185
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "range-slider",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/range-slider.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 267,
+        "width": 448,
+        "height": 185
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "search-input",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/search-input.light.png",
+      "clip": {
+        "x": 416,
+        "y": 289,
+        "width": 448,
+        "height": 142
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "search-input",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/search-input.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 289,
+        "width": 448,
+        "height": 142
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "select",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/select.light.png",
+      "clip": {
+        "x": 416,
+        "y": 289,
+        "width": 448,
+        "height": 142
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "select",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/select.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 289,
+        "width": 448,
+        "height": 142
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "slider",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/slider.light.png",
+      "clip": {
+        "x": 416,
+        "y": 294,
+        "width": 448,
+        "height": 132
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "slider",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/slider.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 294,
+        "width": 448,
+        "height": 132
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "sort-button",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/sort-button.light.png",
+      "clip": {
+        "x": 566,
+        "y": 310,
+        "width": 148,
+        "height": 100
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "sort-button",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/sort-button.dark.png",
+      "clip": {
+        "x": 566,
+        "y": 310,
+        "width": 148,
+        "height": 100
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "switch",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/switch.light.png",
+      "clip": {
+        "x": 547,
+        "y": 316,
+        "width": 186,
+        "height": 88
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "switch",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/switch.dark.png",
+      "clip": {
+        "x": 547,
+        "y": 316,
+        "width": 186,
+        "height": 88
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "tag-input",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/tag-input.light.png",
+      "clip": {
+        "x": 416,
+        "y": 290,
+        "width": 448,
+        "height": 140
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "tag-input",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/tag-input.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 290,
+        "width": 448,
+        "height": 140
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "textarea",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/textarea.light.png",
+      "clip": {
+        "x": 416,
+        "y": 264,
+        "width": 448,
+        "height": 192
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "textarea",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/textarea.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 264,
+        "width": 448,
+        "height": 192
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "time-picker",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/time-picker.light.png",
+      "clip": {
+        "x": 416,
+        "y": 289,
+        "width": 448,
+        "height": 142
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "time-picker",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/time-picker.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 289,
+        "width": 448,
+        "height": 142
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "toggle",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/toggle.light.png",
+      "clip": {
+        "x": 546,
+        "y": 310,
+        "width": 188,
+        "height": 100
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "toggle",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/toggle.dark.png",
+      "clip": {
+        "x": 546,
+        "y": 310,
+        "width": 188,
+        "height": 100
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "toggle-group",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/toggle-group.light.png",
+      "clip": {
+        "x": 0,
+        "y": 270,
+        "width": 1280,
+        "height": 180
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "toggle-group",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/toggle-group.dark.png",
+      "clip": {
+        "x": 0,
+        "y": 270,
+        "width": 1280,
+        "height": 180
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "tooltip-button",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/tooltip-button.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "tooltip-button",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/tooltip-button.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "display",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/display.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "display",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/display.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "accordion",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/accordion.light.png",
+      "clip": {
+        "x": 0,
+        "y": 241,
+        "width": 1280,
+        "height": 237
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "accordion",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/accordion.dark.png",
+      "clip": {
+        "x": 0,
+        "y": 241,
+        "width": 1280,
+        "height": 237
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "accordion-group",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/accordion-group.light.png",
+      "clip": {
+        "x": 384,
+        "y": 197,
+        "width": 512,
+        "height": 326
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "accordion-group",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/accordion-group.dark.png",
+      "clip": {
+        "x": 384,
+        "y": 197,
+        "width": 512,
+        "height": 326
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "action-data-table",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/action-data-table.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "action-data-table",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/action-data-table.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "asset-card",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/asset-card.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "asset-card",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/asset-card.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "asset-grid",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/asset-grid.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "asset-grid",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/asset-grid.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "avatar",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/avatar.light.png",
+      "clip": {
+        "x": 560,
+        "y": 308,
+        "width": 160,
+        "height": 104
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "avatar",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/avatar.dark.png",
+      "clip": {
+        "x": 560,
+        "y": 308,
+        "width": 160,
+        "height": 104
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "avatar-group",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/avatar-group.light.png",
+      "clip": {
+        "x": 540,
+        "y": 256,
+        "width": 200,
+        "height": 208
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "avatar-group",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/avatar-group.dark.png",
+      "clip": {
+        "x": 540,
+        "y": 256,
+        "width": 200,
+        "height": 208
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "badge",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/badge.light.png",
+      "clip": {
+        "x": 480,
+        "y": 318,
+        "width": 320,
+        "height": 84
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "badge",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/badge.dark.png",
+      "clip": {
+        "x": 480,
+        "y": 318,
+        "width": 320,
+        "height": 84
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "card",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/card.light.png",
+      "clip": {
+        "x": 433,
+        "y": 220,
+        "width": 414,
+        "height": 280
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "card",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/card.dark.png",
+      "clip": {
+        "x": 433,
+        "y": 220,
+        "width": 414,
+        "height": 280
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "carousel",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/carousel.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "carousel",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/carousel.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "chat-message",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/chat-message.light.png",
+      "clip": {
+        "x": 272,
+        "y": 120,
+        "width": 736,
+        "height": 479
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "chat-message",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/chat-message.dark.png",
+      "clip": {
+        "x": 272,
+        "y": 120,
+        "width": 736,
+        "height": 479
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "code",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/code.light.png",
+      "clip": {
+        "x": 430,
+        "y": 281,
+        "width": 419,
+        "height": 157
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "code",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/code.dark.png",
+      "clip": {
+        "x": 430,
+        "y": 281,
+        "width": 419,
+        "height": 157
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "code-block",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/code-block.light.png",
+      "clip": {
+        "x": 352,
+        "y": 231,
+        "width": 576,
+        "height": 257
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "code-block",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/code-block.dark.png",
+      "clip": {
+        "x": 352,
+        "y": 231,
+        "width": 576,
+        "height": 257
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "color-swatch",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/color-swatch.light.png",
+      "clip": {
+        "x": 384,
+        "y": 263,
+        "width": 512,
+        "height": 194
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "color-swatch",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/color-swatch.dark.png",
+      "clip": {
+        "x": 384,
+        "y": 263,
+        "width": 512,
+        "height": 194
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "data-table",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/data-table.light.png",
+      "clip": {
+        "x": 0,
+        "y": 108,
+        "width": 1280,
+        "height": 503
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "data-table",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/data-table.dark.png",
+      "clip": {
+        "x": 0,
+        "y": 108,
+        "width": 1280,
+        "height": 503
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "doc-note",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/doc-note.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "doc-note",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/doc-note.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "empty-state",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/empty-state.light.png",
+      "clip": {
+        "x": 416,
+        "y": 209,
+        "width": 448,
+        "height": 302
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "empty-state",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/empty-state.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 209,
+        "width": 448,
+        "height": 302
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "file-tree",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/file-tree.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "file-tree",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/file-tree.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "icon",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/icon.light.png",
+      "clip": {
+        "x": 538,
+        "y": 312,
+        "width": 204,
+        "height": 96
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "icon",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/icon.dark.png",
+      "clip": {
+        "x": 538,
+        "y": 312,
+        "width": 204,
+        "height": 96
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "image-preview",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/image-preview.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "image-preview",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/image-preview.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "img",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/img.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "img",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/img.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "kbd",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/kbd.light.png",
+      "clip": {
+        "x": 0,
+        "y": 278,
+        "width": 1280,
+        "height": 164
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "kbd",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/kbd.dark.png",
+      "clip": {
+        "x": 0,
+        "y": 278,
+        "width": 1280,
+        "height": 164
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "list",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/list.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "list",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/list.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "markdown-renderer",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/markdown-renderer.light.png",
+      "clip": {
+        "x": 384,
+        "y": 9,
+        "width": 512,
+        "height": 701
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "markdown-renderer",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/markdown-renderer.dark.png",
+      "clip": {
+        "x": 384,
+        "y": 9,
+        "width": 512,
+        "height": 701
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "metadata-list",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/metadata-list.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "metadata-list",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/metadata-list.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "separator",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/separator.light.png",
+      "clip": {
+        "x": 502,
+        "y": 282,
+        "width": 275,
+        "height": 155
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "separator",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/separator.dark.png",
+      "clip": {
+        "x": 502,
+        "y": 282,
+        "width": 275,
+        "height": 155
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "skeleton",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/skeleton.light.png",
+      "clip": {
+        "x": 476,
+        "y": 298,
+        "width": 328,
+        "height": 124
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "skeleton",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/skeleton.dark.png",
+      "clip": {
+        "x": 476,
+        "y": 298,
+        "width": 328,
+        "height": 124
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "spacer",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/spacer.light.png",
+      "clip": {
+        "x": 384,
+        "y": 246,
+        "width": 512,
+        "height": 228
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "spacer",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/spacer.dark.png",
+      "clip": {
+        "x": 384,
+        "y": 246,
+        "width": 512,
+        "height": 228
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "statistic",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/statistic.light.png",
+      "clip": {
+        "x": 272,
+        "y": 216,
+        "width": 736,
+        "height": 288
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "statistic",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/statistic.dark.png",
+      "clip": {
+        "x": 272,
+        "y": 216,
+        "width": 736,
+        "height": 288
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "table",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/table.light.png",
+      "clip": {
+        "x": 0,
+        "y": 217,
+        "width": 1280,
+        "height": 286
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "table",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/table.dark.png",
+      "clip": {
+        "x": 0,
+        "y": 217,
+        "width": 1280,
+        "height": 286
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "tag",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/tag.light.png",
+      "clip": {
+        "x": 384,
+        "y": 296,
+        "width": 512,
+        "height": 128
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "tag",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/tag.dark.png",
+      "clip": {
+        "x": 384,
+        "y": 296,
+        "width": 512,
+        "height": 128
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "tag-editor",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/tag-editor.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "tag-editor",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/tag-editor.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "timeline",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/timeline.light.png",
+      "clip": {
+        "x": 384,
+        "y": 208,
+        "width": 512,
+        "height": 304
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "timeline",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/timeline.dark.png",
+      "clip": {
+        "x": 384,
+        "y": 208,
+        "width": 512,
+        "height": 304
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "tool-pill",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/tool-pill.light.png",
+      "clip": {
+        "x": 532,
+        "y": 308,
+        "width": 216,
+        "height": 104
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "tool-pill",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/tool-pill.dark.png",
+      "clip": {
+        "x": 532,
+        "y": 308,
+        "width": 216,
+        "height": 104
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "tree-view",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/tree-view.light.png",
+      "clip": {
+        "x": 448,
+        "y": 220,
+        "width": 384,
+        "height": 280
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "tree-view",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/tree-view.dark.png",
+      "clip": {
+        "x": 448,
+        "y": 220,
+        "width": 384,
+        "height": 280
+      },
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "charts",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/charts.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "charts",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/charts.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "activity-timeline-card",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/activity-timeline-card.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "activity-timeline-card",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/activity-timeline-card.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "analytics-card",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/analytics-card.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "analytics-card",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/analytics-card.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "bar-chart",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/bar-chart.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "bar-chart",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/bar-chart.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "chart-legend",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/chart-legend.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "chart-legend",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/chart-legend.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "choropleth-map",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/choropleth-map.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "choropleth-map",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/choropleth-map.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "concentric-progress-card",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/concentric-progress-card.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "concentric-progress-card",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/concentric-progress-card.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "distribution-bar",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/distribution-bar.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "distribution-bar",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/distribution-bar.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "donut-chart",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/donut-chart.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "donut-chart",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/donut-chart.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "gauge-chart",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/gauge-chart.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "gauge-chart",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/gauge-chart.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "heatmap-chart",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/heatmap-chart.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "heatmap-chart",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/heatmap-chart.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "labeled-donut-card",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/labeled-donut-card.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "labeled-donut-card",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/labeled-donut-card.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "line-chart",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/line-chart.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "line-chart",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/line-chart.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "mini-distribution-bar-card",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/mini-distribution-bar-card.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "mini-distribution-bar-card",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/mini-distribution-bar-card.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "pie-chart",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/pie-chart.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "pie-chart",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/pie-chart.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "quadrant-matrix",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/quadrant-matrix.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "quadrant-matrix",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/quadrant-matrix.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "radar-chart",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/radar-chart.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "radar-chart",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/radar-chart.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "radial-bar-chart",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/radial-bar-chart.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "radial-bar-chart",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/radial-bar-chart.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "retention-cohort-card",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/retention-cohort-card.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "retention-cohort-card",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/retention-cohort-card.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "ribbon-chart",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/ribbon-chart.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "ribbon-chart",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/ribbon-chart.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "segmented-gauge-card",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/segmented-gauge-card.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "segmented-gauge-card",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/segmented-gauge-card.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "segment-timeline-card",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/segment-timeline-card.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "segment-timeline-card",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/segment-timeline-card.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "sparkline-chart",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/sparkline-chart.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "sparkline-chart",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/sparkline-chart.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "stacked-bar-chart",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/stacked-bar-chart.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "stacked-bar-chart",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/stacked-bar-chart.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "feedback",
+      "mode": "light",
+      "status": "failed",
+      "file": null,
+      "error": "No docs preview surface found for feedback"
+    },
+    {
+      "category": "Feedback",
+      "slug": "feedback",
+      "mode": "dark",
+      "status": "failed",
+      "file": null,
+      "error": "No docs preview surface found for feedback"
+    },
+    {
+      "category": "Feedback",
+      "slug": "alert",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/alert.light.png",
+      "clip": {
+        "x": 384,
+        "y": 235,
+        "width": 512,
+        "height": 250
+      },
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "alert",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/alert.dark.png",
+      "clip": {
+        "x": 384,
+        "y": 235,
+        "width": 512,
+        "height": 250
+      },
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "banner",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/banner.light.png",
+      "clip": {
+        "x": 0,
+        "y": 204,
+        "width": 1280,
+        "height": 312
+      },
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "banner",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/banner.dark.png",
+      "clip": {
+        "x": 0,
+        "y": 204,
+        "width": 1280,
+        "height": 312
+      },
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "notification-center",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/notification-center.light.png",
+      "clip": {
+        "x": 574,
+        "y": 294,
+        "width": 132,
+        "height": 132
+      },
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "notification-center",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/notification-center.dark.png",
+      "clip": {
+        "x": 574,
+        "y": 294,
+        "width": 132,
+        "height": 132
+      },
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "progress",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/progress.light.png",
+      "clip": {
+        "x": 233,
+        "y": 320,
+        "width": 813,
+        "height": 80
+      },
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "progress",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/progress.dark.png",
+      "clip": {
+        "x": 233,
+        "y": 320,
+        "width": 813,
+        "height": 80
+      },
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "progress-widget",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/progress-widget.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "progress-widget",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/progress-widget.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "spinner",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/spinner.light.png",
+      "clip": {
+        "x": 566,
+        "y": 316,
+        "width": 148,
+        "height": 88
+      },
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "spinner",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/spinner.dark.png",
+      "clip": {
+        "x": 566,
+        "y": 316,
+        "width": 148,
+        "height": 88
+      },
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "status-bar",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/status-bar.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "status-bar",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/status-bar.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "stepper",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/stepper.light.png",
+      "clip": {
+        "x": 396,
+        "y": 164,
+        "width": 488,
+        "height": 391
+      },
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "stepper",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/stepper.dark.png",
+      "clip": {
+        "x": 396,
+        "y": 164,
+        "width": 488,
+        "height": 391
+      },
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "toast",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/toast.light.png",
+      "clip": {
+        "x": 432,
+        "y": 262,
+        "width": 416,
+        "height": 196
+      },
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "toast",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/toast.dark.png",
+      "clip": {
+        "x": 432,
+        "y": 262,
+        "width": 416,
+        "height": 196
+      },
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "toast-provider",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/toast-provider.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "toast-provider",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/toast-provider.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "navigation",
+      "mode": "light",
+      "status": "failed",
+      "file": null,
+      "error": "No docs preview surface found for navigation"
+    },
+    {
+      "category": "Navigation",
+      "slug": "navigation",
+      "mode": "dark",
+      "status": "failed",
+      "file": null,
+      "error": "No docs preview surface found for navigation"
+    },
+    {
+      "category": "Navigation",
+      "slug": "app-rail",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/app-rail.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "app-rail",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/app-rail.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "breadcrumb",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/breadcrumb.light.png",
+      "clip": {
+        "x": 320,
+        "y": 318,
+        "width": 640,
+        "height": 84
+      },
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "breadcrumb",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/breadcrumb.dark.png",
+      "clip": {
+        "x": 320,
+        "y": 318,
+        "width": 640,
+        "height": 84
+      },
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "command",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/command.light.png",
+      "clip": {
+        "x": 248,
+        "y": 166,
+        "width": 784,
+        "height": 388
+      },
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "command",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/command.dark.png",
+      "clip": {
+        "x": 248,
+        "y": 166,
+        "width": 784,
+        "height": 388
+      },
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "command-palette",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/command-palette.light.png",
+      "clip": {
+        "x": 224,
+        "y": 104,
+        "width": 832,
+        "height": 512
+      },
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "command-palette",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/command-palette.dark.png",
+      "clip": {
+        "x": 224,
+        "y": 104,
+        "width": 832,
+        "height": 512
+      },
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "document-pager",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/document-pager.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "document-pager",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/document-pager.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "footer",
+      "mode": "light",
+      "status": "failed",
+      "file": null,
+      "error": "net::ERR_ABORTED at http://127.0.0.1:13037/embed/footer"
+    },
+    {
+      "category": "Navigation",
+      "slug": "footer",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/footer.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "header",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/header.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "header",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/header.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "menubar",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/menubar.light.png",
+      "clip": {
+        "x": 503,
+        "y": 308,
+        "width": 274,
+        "height": 104
+      },
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "menubar",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/menubar.dark.png",
+      "clip": {
+        "x": 503,
+        "y": 308,
+        "width": 274,
+        "height": 104
+      },
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "navigation-menu",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/navigation-menu.light.png",
+      "clip": {
+        "x": 457,
+        "y": 310,
+        "width": 365,
+        "height": 100
+      },
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "navigation-menu",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/navigation-menu.dark.png",
+      "clip": {
+        "x": 457,
+        "y": 310,
+        "width": 365,
+        "height": 100
+      },
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "page-aside",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/page-aside.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "page-aside",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/page-aside.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "pagination",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/pagination.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "pagination",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/pagination.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "right-rail",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/right-rail.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "right-rail",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/right-rail.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "sidebar",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/sidebar.light.png",
+      "clip": {
+        "x": 0,
+        "y": 128,
+        "width": 1280,
+        "height": 464
+      },
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "sidebar",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/sidebar.dark.png",
+      "clip": {
+        "x": 0,
+        "y": 128,
+        "width": 1280,
+        "height": 464
+      },
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "sidebar-item",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/sidebar-item.light.png",
+      "clip": {
+        "x": 480,
+        "y": 241,
+        "width": 320,
+        "height": 238
+      },
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "sidebar-item",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/sidebar-item.dark.png",
+      "clip": {
+        "x": 480,
+        "y": 241,
+        "width": 320,
+        "height": 238
+      },
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "tabs",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/tabs.light.png",
+      "clip": {
+        "x": 408,
+        "y": 153,
+        "width": 464,
+        "height": 414
+      },
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "tabs",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/tabs.dark.png",
+      "clip": {
+        "x": 408,
+        "y": 153,
+        "width": 464,
+        "height": 414
+      },
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "text-link",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/text-link.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "text-link",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/text-link.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "overlay",
+      "mode": "light",
+      "status": "failed",
+      "file": null,
+      "error": "No docs preview surface found for overlay"
+    },
+    {
+      "category": "Overlay",
+      "slug": "overlay",
+      "mode": "dark",
+      "status": "failed",
+      "file": null,
+      "error": "No docs preview surface found for overlay"
+    },
+    {
+      "category": "Overlay",
+      "slug": "alert-dialog",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/alert-dialog.light.png",
+      "clip": {
+        "x": 517,
+        "y": 310,
+        "width": 246,
+        "height": 100
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "alert-dialog",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/alert-dialog.dark.png",
+      "clip": {
+        "x": 517,
+        "y": 310,
+        "width": 246,
+        "height": 100
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "chat-panel",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/chat-panel.light.png",
+      "clip": {
+        "x": 0,
+        "y": 48,
+        "width": 1280,
+        "height": 624
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "chat-panel",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/chat-panel.dark.png",
+      "clip": {
+        "x": 0,
+        "y": 48,
+        "width": 1280,
+        "height": 624
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "context-menu",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/context-menu.light.png",
+      "clip": {
+        "x": 384,
+        "y": 248,
+        "width": 512,
+        "height": 224
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "context-menu",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/context-menu.dark.png",
+      "clip": {
+        "x": 384,
+        "y": 248,
+        "width": 512,
+        "height": 224
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "dialog",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/dialog.light.png",
+      "clip": {
+        "x": 0,
+        "y": 48,
+        "width": 1280,
+        "height": 624
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "dialog",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/dialog.dark.png",
+      "clip": {
+        "x": 0,
+        "y": 48,
+        "width": 1280,
+        "height": 624
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "drawer",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/drawer.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "drawer",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/drawer.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "dropdown-menu",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/dropdown-menu.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "dropdown-menu",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/dropdown-menu.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "floating-panel",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/floating-panel.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "floating-panel",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/floating-panel.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "hover-card",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/hover-card.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "hover-card",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/hover-card.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "media-lightbox",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/media-lightbox.light.png",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "media-lightbox",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/media-lightbox.dark.png",
+      "clip": {
+        "x": 0,
+        "y": 0,
+        "width": 1280,
+        "height": 720
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "media-picker-dialog",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/media-picker-dialog.light.png",
+      "clip": {
+        "x": 0,
+        "y": 18,
+        "width": 1280,
+        "height": 684
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "media-picker-dialog",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/media-picker-dialog.dark.png",
+      "clip": {
+        "x": 0,
+        "y": 18,
+        "width": 1280,
+        "height": 684
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "modal",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/modal.light.png",
+      "clip": {
+        "x": 0,
+        "y": 138,
+        "width": 1280,
+        "height": 444
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "modal",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/modal.dark.png",
+      "clip": {
+        "x": 0,
+        "y": 138,
+        "width": 1280,
+        "height": 444
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "onboarding-flow",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/onboarding-flow.light.png",
+      "clip": {
+        "x": 352,
+        "y": 124,
+        "width": 576,
+        "height": 472
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "onboarding-flow",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/onboarding-flow.dark.png",
+      "clip": {
+        "x": 352,
+        "y": 124,
+        "width": 576,
+        "height": 472
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "popover",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/popover.light.png",
+      "clip": {
+        "x": 384,
+        "y": 277,
+        "width": 512,
+        "height": 166
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "popover",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/popover.dark.png",
+      "clip": {
+        "x": 384,
+        "y": 277,
+        "width": 512,
+        "height": 166
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "share-modal",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/share-modal.light.png",
+      "clip": {
+        "x": 0,
+        "y": 68,
+        "width": 1280,
+        "height": 584
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "share-modal",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/share-modal.dark.png",
+      "clip": {
+        "x": 0,
+        "y": 68,
+        "width": 1280,
+        "height": 584
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "sheet",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/sheet.light.png",
+      "clip": {
+        "x": 0,
+        "y": 68,
+        "width": 1280,
+        "height": 584
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "sheet",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/sheet.dark.png",
+      "clip": {
+        "x": 0,
+        "y": 68,
+        "width": 1280,
+        "height": 584
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "tooltip",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/tooltip.light.png",
+      "clip": {
+        "x": 590,
+        "y": 310,
+        "width": 100,
+        "height": 100
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "tooltip",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/tooltip.dark.png",
+      "clip": {
+        "x": 590,
+        "y": 310,
+        "width": 100,
+        "height": 100
+      },
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "layout",
+      "mode": "light",
+      "status": "failed",
+      "file": null,
+      "error": "No docs preview surface found for layout"
+    },
+    {
+      "category": "Layout",
+      "slug": "layout",
+      "mode": "dark",
+      "status": "failed",
+      "file": null,
+      "error": "No docs preview surface found for layout"
+    },
+    {
+      "category": "Layout",
+      "slug": "aspect-ratio",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/aspect-ratio.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "aspect-ratio",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/aspect-ratio.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "asset-inspector-panel",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/asset-inspector-panel.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "asset-inspector-panel",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/asset-inspector-panel.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "cluster",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/cluster.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "cluster",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/cluster.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "collapsible-panel-toggle",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/collapsible-panel-toggle.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "collapsible-panel-toggle",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/collapsible-panel-toggle.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "container",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/container.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "container",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/container.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "device-frame",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/device-frame.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "device-frame",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/device-frame.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "grid",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/grid.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "grid",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/grid.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "h-stack",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/h-stack.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "h-stack",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/h-stack.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "inspector-panel",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/inspector-panel.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "inspector-panel",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/inspector-panel.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "marquee-frame",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/marquee-frame.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "marquee-frame",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/marquee-frame.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "resizable",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/resizable.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "resizable",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/resizable.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "scroll-area",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/scroll-area.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "scroll-area",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/scroll-area.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "spatial-canvas",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/spatial-canvas.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "spatial-canvas",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/spatial-canvas.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "v-stack",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/v-stack.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Layout",
+      "slug": "v-stack",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/v-stack.dark.png",
+      "clip": null,
+      "error": null
+    }
+  ]
+}

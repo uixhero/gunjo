@@ -1,0 +1,66 @@
+{
+  "textLink": {
+    "title": "TextLink",
+    "description": "Inline text link that automatically shows an external-tab icon when it opens a new tab."
+  },
+  "breadcrumb": {
+    "title": "Breadcrumb",
+    "description": "Displays the path to the current resource using a hierarchy of links."
+  },
+  "tabs": {
+    "title": "Tabs",
+    "description": "A set of layered sections of content—known as tab panels—that are displayed one at a time."
+  },
+  "pagination": {
+    "title": "Pagination",
+    "description": "Navigation controls for traversing paged content."
+  },
+  "pageAside": {
+    "title": "PageAside",
+    "description": "Responsive page support layout that renders supporting information as a right rail on wide screens and a collapsible block on narrow screens."
+  },
+  "navigationMenu": {
+    "title": "NavigationMenu",
+    "description": "Top-nav with mega-menu dropdowns for site navigation."
+  },
+  "sidebar": {
+    "title": "Sidebar",
+    "description": "Full sidebar orchestrator with provider, header, nav items, and footer slots."
+  },
+  "sidebarItem": {
+    "title": "SidebarItem",
+    "description": "Nested sidebar row with chevron, icon, label, and counter area."
+  },
+  "menubar": {
+    "title": "Menubar",
+    "description": "Top application menu with trigger items and nested submenu entry."
+  },
+  "command": {
+    "title": "Command",
+    "description": "Fast, composable, unstyled command menu for React."
+  },
+  "appRail": {
+    "title": "App Rail",
+    "description": "Primary vertical icon rail used for application-wide navigation."
+  },
+  "commandPalette": {
+    "title": "Command Palette",
+    "description": "Global quick-action launcher with grouped commands and keyboard shortcuts."
+  },
+  "rightRail": {
+    "title": "Right Rail",
+    "description": "Secondary side panel for contextual tools and inspector content."
+  },
+  "header": {
+    "title": "Header",
+    "description": "Top navigation bar with logo, primary nav, and right-aligned actions."
+  },
+  "footer": {
+    "title": "Footer",
+    "description": "Standard footer with brand, link sections, and copyright row."
+  },
+  "documentPager": {
+    "title": "DocumentPager",
+    "description": "Adjacent-document navigation with preview thumbnail, category label, title, and description."
+  }
+}

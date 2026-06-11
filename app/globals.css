@@ -1,0 +1,136 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+@import "../src/globals.css";
+
+@layer base {
+    .hero-grid {
+        background-image:
+            linear-gradient(to right, hsl(var(--background) / 0.2) 1px, transparent 1px),
+            linear-gradient(to bottom, hsl(var(--background) / 0.2) 1px, transparent 1px);
+        background-size: 64px 64px;
+    }
+
+    .hero-gradient {
+        background: radial-gradient(
+            ellipse 100% 80% at 50% 40%,
+            hsl(var(--overlay) / 0.14) 0%,
+            hsl(var(--overlay) / 0.42) 45%,
+            hsl(var(--overlay) / 0.86) 100%
+        );
+    }
+
+    .hero-vignette {
+        background: radial-gradient(
+            ellipse 90% 70% at 50% 50%,
+            transparent 50%,
+            hsl(var(--overlay) / 0.4) 100%
+        );
+    }
+
+    .hero-title-glow {
+        filter: drop-shadow(0 0 24px hsl(var(--background) / 0.15));
+    }
+
+    /* ============== Gunjō hero ============== */
+
+    .gunjo-hero-base {
+        background: radial-gradient(
+            ellipse 90% 70% at 35% 30%,
+            hsl(var(--gunjo-deep)) 0%,
+            hsl(var(--gunjo-deeper)) 45%,
+            hsl(var(--gunjo-deepest)) 100%
+        );
+    }
+
+    .gunjo-hero-bleed {
+        background: radial-gradient(
+            circle,
+            hsl(var(--gunjo-light)) 0%,
+            transparent 70%
+        );
+    }
+
+    .gunjo-hero-kobicha {
+        background: radial-gradient(
+            circle,
+            hsl(var(--kobicha-warm)) 0%,
+            transparent 70%
+        );
+    }
+
+    .gunjo-hero-vignette {
+        background: radial-gradient(
+            ellipse 100% 100% at 50% 50%,
+            transparent 50%,
+            hsl(var(--pure-black)) 100%
+        );
+    }
+
+    /* ============== Color story swatches ============== */
+
+    .gunjo-swatch {
+        background: radial-gradient(
+            ellipse at 30% 30%,
+            hsl(var(--gunjo-bright)) 0%,
+            hsl(var(--gunjo-mid)) 50%,
+            hsl(var(--gunjo-dark)) 100%
+        );
+    }
+
+    .kobicha-swatch {
+        background: radial-gradient(
+            ellipse at 30% 30%,
+            hsl(var(--kobicha-bright)) 0%,
+            hsl(var(--kobicha-mid)) 50%,
+            hsl(var(--kobicha-deepest)) 100%
+        );
+    }
+
+}
+
+/* ============== On-hero helpers (utilities layer to beat Button/Badge variants) ============== */
+@layer utilities {
+    .on-hero {
+        color: hsl(var(--pure-white));
+    }
+
+    .on-hero-muted {
+        color: hsl(var(--pure-white) / 0.8);
+    }
+
+    .on-hero-faint {
+        color: hsl(var(--pure-white) / 0.6);
+    }
+
+    .on-hero-strong {
+        color: hsl(var(--pure-white) / 0.95);
+    }
+
+    .on-hero-cta-primary {
+        background-color: hsl(var(--pure-white)) !important;
+        color: hsl(var(--gunjo-deepest)) !important;
+    }
+
+    .on-hero-cta-primary:hover {
+        background-color: hsl(var(--pure-white) / 0.9) !important;
+        color: hsl(var(--gunjo-deepest)) !important;
+    }
+
+    .on-hero-cta-outline {
+        background-color: hsl(var(--pure-white) / 0.05) !important;
+        color: hsl(var(--pure-white)) !important;
+        border-color: hsl(var(--pure-white) / 0.3) !important;
+    }
+
+    .on-hero-cta-outline:hover {
+        background-color: hsl(var(--pure-white) / 0.15) !important;
+        color: hsl(var(--pure-white)) !important;
+    }
+
+    .on-hero-badge {
+        background-color: hsl(var(--pure-white) / 0.05);
+        color: hsl(var(--pure-white) / 0.9);
+        border-color: hsl(var(--pure-white) / 0.3);
+        backdrop-filter: blur(8px);
+    }
+}

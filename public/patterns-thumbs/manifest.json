@@ -1,0 +1,28 @@
+{
+  "generatedAt": "2026-06-06T22:52:56.179Z",
+  "baseUrl": "http://127.0.0.1:13037",
+  "viewport": {
+    "width": 1280,
+    "height": 800,
+    "deviceScaleFactor": 1
+  },
+  "total": 2,
+  "captured": 2,
+  "failed": 0,
+  "results": [
+    {
+      "slug": "not-found",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/patterns-thumbs/not-found.light.png",
+      "error": null
+    },
+    {
+      "slug": "not-found",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/patterns-thumbs/not-found.dark.png",
+      "error": null
+    }
+  ]
+}

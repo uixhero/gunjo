@@ -1,0 +1,33 @@
+---
+description: コンポーネントの全ステートをデザインで可視化するルール
+globs: design/**/*.pen
+alwaysApply: false
+---
+
+# コンポーネントのステート可視化
+
+atoms.pen / molecules.pen 等でコンポーネントを定義する際、以下のルールに従う。
+
+## 2値ステート（ON/OFF、active/disabled 等）
+
+コンポーネントに 0 か 1 の二値ステートがある場合、**全ステートをバリアントとして定義し、ショーケースで並べて表示する**。
+
+例:
+- **Switch**: Unchecked / Checked
+- **Checkbox**: Unchecked / Checked / Disabled
+- **Accordion**: Collapsed（閉）/ Expanded（開）
+- **ToggleGroup**: Default / Outline、または active / inactive
+
+## 時間軸によるステート
+
+アニメーションやローディングなど、時間経過で変化するステートがある場合、**代表的な時点を複数バリアントで表現する**。
+
+例:
+- **Spinner**: t=0, t=1, t=2, t=3 のように回転の経過を複数表示
+- **Progress**: 0%, 33%, 66%, 100% の各段階
+- **Img**: Loading / Loaded / Error
+
+## ショーケースの構成
+
+- 各バリアントにラベル（例: "Collapsed（閉）", "Expanded（開）"）を付ける
+- 横並びまたは縦並びで、全体を一覧できるようにする
