@@ -1,0 +1,16 @@
+# gitleaks config for @gunjo/ui
+# Extends the default ruleset; allowlists known false positives so CI stays green.
+title = "gunjo gitleaks config"
+
+[extend]
+useDefault = true
+
+[allowlist]
+description = "False positives: UI demo placeholder tokens and Tabler icon component names"
+regexes = [
+  # Demo/placeholder share tokens used in component examples (not real secrets)
+  '''gjo_[0-9a-fA-F]{6,}''',
+  '''abcdef123456''',
+  # @tabler/icons-react component names (e.g. IconBrandLinkedin) misread as secrets
+  '''IconBrand[A-Za-z]+''',
+]
