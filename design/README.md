@@ -334,12 +334,12 @@ docs（http://localhost:13030/docs/）と同じ構成・見た目で表示。**P
   - `npm run design:sync:from-metadata`: `*-metadata.json` → `*.pen`（Pencil のテキストノードを更新）
 - **atoms.pen → component-specs/atoms-core.json**: ✅ 実装済み（`npm run design:sync:components`）
   - 対象: ToolPill / Button / Input / Badge / Label / Checkbox / Separator / Switch / Textarea / Alert / Avatar / Kbd / Img / Progress / Spinner / RadioGroup / Slider / Select / ToggleGroup
-- **atoms-core → variant key生成ファイル**: ✅ 実装済み（`npm run design:sync:components` で `src/components/atoms/generated/variant-keys.ts` を更新）
-- **atoms-core → default variant key生成ファイル**: ✅ 実装済み（`npm run design:sync:components` で `src/components/atoms/generated/default-variant-keys.ts` を更新）
+- **atoms-core → variant key生成ファイル**: ✅ 実装済み（`npm run design:sync:components` で各 atom の所属カテゴリの `src/components/<category>/generated/variant-keys.ts` を更新。例: `inputs/`, `display/`）
+- **atoms-core → default variant key生成ファイル**: ✅ 実装済み（`npm run design:sync:components` で各カテゴリの `src/components/<category>/generated/default-variant-keys.ts` を更新）
 - **molecules.pen → component-specs/molecules-core.json**: ✅ 実装済み（`npm run design:sync:components`）
   - 対象: Card / Accordion / Tabs / List / Breadcrumb / DropdownMenu / Popover / Command / Calendar / Table / Toast / Modal / Carousel / Pagination / NotificationCenter / Dialog / Sheet / Tooltip / HoverCard / ContextMenu / Menubar / ScrollArea / Resizable / StatusBar / SidebarItem / AIChatInput / AIChatMessage / FilterButton / SortButton / ProgressWidget
-- **molecules-core → variant key生成ファイル（multi-variant components）**: ✅ 実装済み（`npm run design:sync:components` で `src/components/molecules/generated/variant-keys.ts` を更新）
-- **molecules-core → default variant key生成ファイル（multi-variant components）**: ✅ 実装済み（`npm run design:sync:components` で `src/components/molecules/generated/default-variant-keys.ts` を更新）
+- **molecules-core → variant key生成ファイル（multi-variant components）**: ✅ 実装済み（`npm run design:sync:components` で各カテゴリの `src/components/<category>/generated/variant-keys.ts` を更新）
+- **molecules-core → default variant key生成ファイル（multi-variant components）**: ✅ 実装済み（`npm run design:sync:components` で各カテゴリの `src/components/<category>/generated/default-variant-keys.ts` を更新）
 - **organisms.pen → component-specs/organisms-core.json**: ✅ 実装済み（`npm run design:sync:components`）
   - 対象: AppRail / CommandPalette / RightRail / FloatingPanel / InspectorPanel / SpatialCanvas / ShareModal / FileUploader / ToastProvider
 - **templates.pen → component-specs/templates-core.json**: ✅ 実装済み（`npm run design:sync:components`）
@@ -368,12 +368,10 @@ docs（http://localhost:13030/docs/）と同じ構成・見た目で表示。**P
 - **node snapshot coverage検証**: ✅ 実装済み（`npm run design:verify:node-snapshots` で `component-specs` の `nodes.*` が null/invalid id でないか検知）
 - **slot node coverage検証**: ✅ 実装済み（`npm run design:verify:slot-nodes` で `component-specs` の variant `children` slot id が `nodes` スナップショットに存在するか検知）
 - **atom variant key検証**: ✅ 実装済み（`npm run design:verify:atom-variant-keys` で `atoms-core` と `ButtonVariants.ts` / `ToolPill.tsx` の variant key 整合を検知）
-- **atom generated variant key検証**: ✅ 実装済み（`npm run design:verify:atom-generated-variant-keys` で `atoms-core` と `src/components/atoms/generated/variant-keys.ts` の variant key 整合を検知）
-- **atom generated variant key 利用検証**: ✅ 実装済み（`npm run design:verify:atom-generated-variant-key-usage` で multi-variant な Atom 実装が generated `*VariantKey` 型を利用しているか検知）
-- **molecule variant key検証**: ✅ 実装済み（`npm run design:verify:molecule-variant-keys` で `molecules-core` と `src/components/molecules/generated/variant-keys.ts` の variant key 整合を検知）
-- **molecule generated variant key 利用検証**: ✅ 実装済み（`npm run design:verify:molecule-generated-variant-key-usage` で multi-variant な Molecule 実装が generated `*VariantKey` 型を利用しているか検知）
-- **default variant key検証**: ✅ 実装済み（`npm run design:verify:default-variant-keys` で `atoms/molecules-core` と `generated/default-variant-keys.ts` の整合を検知）
-- **default variant key 利用検証**: ✅ 実装済み（`npm run design:verify:default-variant-key-usage` で multi-variant な Atom/Molecule 実装が generated `*DefaultVariantKey` を利用しているか検知）
+- **generated variant key検証**: ✅ 実装済み（`npm run design:verify:generated-variant-keys` で `*-core` spec と各カテゴリの `src/components/<category>/generated/variant-keys.ts` の variant key 整合を検知。atom / molecule 統合済み）
+- **generated variant key 利用検証**: ✅ 実装済み（`npm run design:verify:generated-variant-key-usage` で multi-variant な実装が generated `*VariantKey` 型を利用しているか検知）
+- **default variant key検証**: ✅ 実装済み（`npm run design:verify:default-variant-keys` で `*-core` spec と各カテゴリの `src/components/<category>/generated/default-variant-keys.ts` の整合を検知）
+- **default variant key 利用検証**: ✅ 実装済み（`npm run design:verify:default-variant-key-usage` で multi-variant な実装が generated `*DefaultVariantKey` を利用しているか検知）
 - **component style hints 検証**: ✅ 実装済み（`npm run design:verify:component-style-hints` で `component-manifest.ts` と `component-style-hints.ts` のカテゴリ / component key / variant key 整合を検知）
 - **component style drift レポート**: ✅ 実装済み（`npm run design:verify:component-style-drift-report` で generated `component-style-hints.ts` と各実装ファイルの構造クラス差分を可視化。`npm run design:verify:component-style-drift` は strict fail モード）
   - `--category` / `--categories` オプションでカテゴリ限定レポート/strict 実行が可能
@@ -381,7 +379,7 @@ docs（http://localhost:13030/docs/）と同じ構成・見た目で表示。**P
   - 段階適用 strict は `npm run design:verify:component-style-drift:scoped`（`design/policy/component-style-drift-strict-targets.json`）で管理。運用ルールは `design/policy/component-style-drift-strict-targets.md`
   - 現在の strict 対象: カテゴリ単位で `atoms`, `molecules`, `organisms`, `templates`（= 全カテゴリ）を有効化
   - `npm run design:verify` / `npm run design:verify:components` は component style drift の full strict 失敗を含む
-- **ハードコード色クラス検証**: ✅ 実装済み（`npm run design:verify:hardcoded-color-classes` で `src/components/{atoms,molecules,organisms,templates}` と `app` 全体に `bg-blue-*` などの color class、`#`/`rgb`/`hsl` を直接埋め込む arbitrary color class、`shadow-[...]` / `drop-shadow-[...]` の arbitrary shadow class、さらに inline style (`backgroundImage` / `color` / `filter` など) 内の生色リテラルが残っていないか検知。`var(--token)` 参照は許可（任意 shadow class は禁止）。overlay は `bg-overlay/*` トークンへ統一し、例外ファイルは原則空運用（必要時のみ明示許可 + 未使用例外検知）。`design:verify` に統合済み）
+- **ハードコード色クラス検証**: ✅ 実装済み（`npm run design:verify:hardcoded-color-classes` で `src/components/**` と `app` 全体に `bg-blue-*` などの color class、`#`/`rgb`/`hsl` を直接埋め込む arbitrary color class、`shadow-[...]` / `drop-shadow-[...]` の arbitrary shadow class、さらに inline style (`backgroundImage` / `color` / `filter` など) 内の生色リテラルが残っていないか検知。`var(--token)` 参照は許可（任意 shadow class は禁止）。overlay は `bg-overlay/*` トークンへ統一し、例外ファイルは原則空運用（必要時のみ明示許可 + 未使用例外検知）。`design:verify` に統合済み）
 - **tailwind color token マップ検証**: ✅ 実装済み（`npm run design:verify:tailwind-color-tokens` で `tailwind-theme-extend.cjs` の `colors` が `--background` / `--foreground` / `--overlay` / `--info` / `--success` / `--warning` と各 semantic group（`primary.*` など）を `hsl(var(--token))` 参照で定義しているか、かつ `colors` 内に生色 literal を持ち込んでいないか検知。`design:verify` に統合済み）
 - **tailwind foundation token マップ検証**: ✅ 実装済み（`npm run design:verify:tailwind-foundation-tokens` で `tailwind-theme-extend.cjs` の `borderRadius` / `boxShadow` / `transitionDuration` / `transitionTimingFunction` / `animation` が `--radius` / `--shadow-*` / `--duration-*` / `--ease-*` token 参照を維持しているか検知。`design:verify` に統合済み）
 - **tailwind theme SSOT検証**: ✅ 実装済み（`npm run design:verify:tailwind-theme-ssot` で `tailwind.config.ts` / `tailwind-preset.js` が共通 `tailwind-theme-extend.cjs` を参照しているか検知。`design:verify` に統合済み）
