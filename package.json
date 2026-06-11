@@ -12,6 +12,12 @@
   ],
   "main": "src/index.ts",
   "types": "src/index.ts",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eemlis7-ke/gunjo.git"
+  },
+  "homepage": "https://github.com/eemlis7-ke/gunjo#readme",
+  "bugs": "https://github.com/eemlis7-ke/gunjo/issues",
   "license": "MIT",
   "private": false,
   "publishConfig": {
