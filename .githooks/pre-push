@@ -1,0 +1,22 @@
+#!/bin/sh
+#
+# Block direct pushes to main — work goes through a branch + PR.
+# Free, plan-independent guardrail until branch protection / rulesets are
+# enabled on the public repo. See CLAUDE.md / HANDOFF.md.
+#
+# Escape hatch (use sparingly): git push --no-verify
+
+protected="main"
+
+while read -r _local_ref _local_sha remote_ref _remote_sha; do
+  case "$remote_ref" in
+    refs/heads/"$protected")
+      echo "✋ pre-push: direct push to '$protected' is blocked."
+      echo "   Use a branch + PR:  git switch -c <branch> && gh pr create"
+      echo "   Override once with:  git push --no-verify"
+      exit 1
+      ;;
+  esac
+done
+
+exit 0
