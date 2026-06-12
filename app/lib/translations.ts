@@ -385,7 +385,7 @@ export const translations: Record<
         taglineMain: "Gunjo UI",
         taglineSub: "A component system for building calm, inspectable interfaces.",
         subtitle:
-          "140+ audited components, design tokens, usage guidelines, and AI handoff docs — synced from the GunjoUI source of truth, but written for humans to inspect.",
+          "150+ audited components, design tokens, usage guidelines, and AI handoff docs — synced from the GunjoUI source of truth, but written for humans to inspect.",
         ctaShowcase: "Start with docs",
         ctaAi: "Browse components",
       },
@@ -409,7 +409,7 @@ export const translations: Record<
         cards: {
           showcase: {
             title: "Component catalog",
-            description: "All 140+ audited components with docs pages, preview/code parity, and category overviews.",
+            description: "All 150+ audited components with docs pages, preview/code parity, and category overviews.",
             cta: "Open Showcase",
             href: "/showcase",
           },
@@ -475,7 +475,7 @@ export const translations: Record<
     },
     intro: {
       alphaBadge: "Alpha · v0.0.1-alpha.1",
-      componentCountBadge: "140+ components",
+      componentCountBadge: "150+ components",
       ctaPrimary: "Get Started",
       ctaSecondary: "Browse Components",
       livePreviewLabel: "Live preview",
@@ -487,7 +487,7 @@ export const translations: Record<
         step2Label: "Import & render",
         step3Label: "See every component",
         step3Description:
-          "Open the Showcase to scan all 140+ components in one place.",
+          "Open the Showcase to scan all 150+ components in one place.",
         showcaseCta: "Open Showcase",
         copyLabel: "Copy",
         copiedLabel: "Copied!",
@@ -502,7 +502,7 @@ export const translations: Record<
         },
         components: {
           title: "Browse components",
-          description: "140+ components grouped by inputs, display, charts, feedback, navigation, overlay, and layout.",
+          description: "150+ components grouped by inputs, display, charts, feedback, navigation, overlay, and layout.",
           cta: "View catalog",
         },
         examples: {
@@ -931,7 +931,7 @@ export const translations: Record<
         taglineMain: "Gunjo UI",
         taglineSub: "静かで検証しやすい UI を作るためのコンポーネントシステム。",
         subtitle:
-          "140+ コンポーネント、デザイントークン、利用ガイドライン、AI 連携ドキュメントを監査済み。GunjoUI の SSOT から同期しつつ、人間が確認できる docs として整えています。",
+          "150+ コンポーネント、デザイントークン、利用ガイドライン、AI 連携ドキュメントを監査済み。GunjoUI の SSOT から同期しつつ、人間が確認できる docs として整えています。",
         ctaShowcase: "ドキュメントから始める",
         ctaAi: "コンポーネントを見る",
       },
@@ -955,7 +955,7 @@ export const translations: Record<
         cards: {
           showcase: {
             title: "コンポーネントカタログ",
-            description: "140+ コンポーネントを監査済み。docs ページ、プレビューとコード、カテゴリ概要から確認できます。",
+            description: "150+ コンポーネントを監査済み。docs ページ、プレビューとコード、カテゴリ概要から確認できます。",
             cta: "Showcase を開く",
             href: "/showcase",
           },
@@ -1021,7 +1021,7 @@ export const translations: Record<
     },
     intro: {
       alphaBadge: "Alpha · v0.0.1-alpha.1",
-      componentCountBadge: "140+ コンポーネント",
+      componentCountBadge: "150+ コンポーネント",
       ctaPrimary: "はじめる",
       ctaSecondary: "コンポーネント一覧",
       livePreviewLabel: "ライブプレビュー",
@@ -1032,7 +1032,7 @@ export const translations: Record<
         step1Label: "インストール",
         step2Label: "import して描画",
         step3Label: "全コンポーネントを見る",
-        step3Description: "Showcase で 140+ コンポーネントを 1 ページに俯瞰できます。",
+        step3Description: "Showcase で 150+ コンポーネントを 1 ページに俯瞰できます。",
         showcaseCta: "Showcase を開く",
         copyLabel: "コピー",
         copiedLabel: "コピー済み",
@@ -1047,7 +1047,7 @@ export const translations: Record<
         },
         components: {
           title: "コンポーネントを見る",
-          description: "140+ の Atoms / Molecules / Organisms / Templates をライブプレビュー付きで。",
+          description: "150+ のコンポーネントをライブプレビュー付きで。",
           cta: "カタログを開く",
         },
         examples: {

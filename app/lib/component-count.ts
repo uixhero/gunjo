@@ -23,7 +23,7 @@ const CATALOG_CATEGORIES = new Set<string>([
  * by `npm run design:sync` from the .pen metadata. Add a component (and sync)
  * and the homepage stats + showcase reflect it automatically — no edit here.
  *
- * MANUAL: the rounded prose figure "140+" used in marketing copy
+ * MANUAL: the rounded prose figure "150+" used in marketing copy
  * (app/lib/translations.ts hero/intro/designer strings, app/lib/docs-content/*)
  * is hand-written. Only bump it when COMPONENT_COUNT crosses a round threshold
  * (e.g. past 200). Keep prose ("150+") ≤ the exact figure so they never conflict.

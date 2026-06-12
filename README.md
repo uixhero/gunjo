@@ -7,7 +7,7 @@
 
 > ⚠️ **Pre-1.0.** The current `0.0.1-alpha.x` publish reserves the name and exercises the release pipeline. Until the `1.0.0` stable release the public API may change — pin your version and check the [CHANGELOG](./CHANGELOG.md) before upgrading.
 
-**Gunjo (群青)** is an SSOT-driven React + Tailwind design system — 140+ components whose **pen design source, React source, and docs are verified to stay in sync**, and which are built to be used as comfortably by AI agents as by people.
+**Gunjo (群青)** is an SSOT-driven React + Tailwind design system — 150+ components whose **pen design source, React source, and docs are verified to stay in sync**, and which are built to be used as comfortably by AI agents as by people.
 
 ## "Becoming" — about the name
 
@@ -24,7 +24,7 @@ Gunjo treats "an agent will read and use this" as a first-class requirement, not
 
 - **Single typed entry point** — every public API is re-exported from `src/index.ts`, so `import { Button, Card } from '@gunjo/ui'` is all an agent (or a person) needs to discover the surface.
 - **SSOT pipeline** — machine-readable component metadata (`design/*-metadata.json`) describes every component's variants and tokens.
-- **AI handoff & MCP** — a dedicated handoff surface (see the `/ai-handoff` section of the docs site) and Figma/MCP integration let agents consume the system directly.
+- **AI-handoff surface** — a dedicated handoff section (`/ai-handoff` in the docs, with MCP and Figma guides) for agents to pick up the system. *(A published Figma library and an MCP server are on the roadmap.)*
 
 ## Quick start
 
@@ -70,7 +70,7 @@ Gunjo is built on a simple division of labor — the kind we expect to become co
 
 - **A human sets the philosophy and direction** — what to build, what matters, the aesthetic, every judgment call.
 - **The system is built in collaboration with Claude** — implementation, exhaustive audits (accessibility, design tokens, visual drift across every component), and fast iteration.
-- **And it is designed to be consumed by AI** — a single typed entry point, an SSOT pipeline, and MCP/Figma handoff, so agents can read and use it as easily as people can.
+- **And it is designed to be consumed by AI** — a single typed entry point, an SSOT pipeline, and an AI-handoff surface, so agents can read and use it as easily as people can.
 
 This is not "an AI made a component library." It is one person setting the vision and iterating, in tight loops, with an AI partner — and being transparent about it, because we think that's the honest (and increasingly normal) way software gets made.
 
