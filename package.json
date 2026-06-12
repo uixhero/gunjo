@@ -105,6 +105,7 @@
     "design:verify:ssot-progress-thresholds": "node scripts/design-verify-ssot-progress-thresholds.mjs",
     "design:verify:ssot-pr-comment-docs": "node scripts/design-verify-ssot-pr-comment-docs.mjs",
     "design:report:component-coverage": "node scripts/design-generate-component-coverage-matrix.mjs",
+    "design:report:figma-library": "node scripts/generate-figma-library-discovery.mjs",
     "design:audit:docs-capture": "node scripts/design-capture-doc-component-screenshots.mjs",
     "design:audit:checklist": "node scripts/design-generate-visual-audit-checklist.mjs",
     "design:audit:refresh": "npm run -s design:audit:docs-capture && npm run -s design:audit:checklist",
