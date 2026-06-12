@@ -20,7 +20,7 @@ export const sectionLabelsJa: SectionLabels = {
 export const contentJa: Record<string, DocContent> = {
   introduction: {
     title: "はじめに",
-    description: "データ密度の高いアプリ向けの SSOT 駆動 React + Tailwind デザインシステム。140+ コンポーネントを Pen / source / docs の3軸で検証。",
+    description: "データ密度の高いアプリ向けの SSOT 駆動 React + Tailwind デザインシステム。150+ コンポーネントを Pen / source / docs の3軸で検証。",
     body: `GunjoUI は単一のソース・オブ・トゥルースを起点に構築されています。デザイントークンとコンポーネントバリアントは \`.pen\` デザインファイルを元に TypeScript 実装、仕様 JSON、ドキュメント登録へ同期され、すべてのプリミティブが Pen / source / docs の3軸で検証されます。ページ全体を \`.pen\` から完全自動生成するのではなく、設計データと実装・ドキュメントのずれを同期と検証で抑える仕組みです。
 
 アクセシビリティのために **Radix UI** を、スタイリングに **Tailwind CSS** を採用。npm パッケージ **\`@gunjo/ui\`** として配布（現在 early alpha = \`0.0.1-alpha.1\`、1.0 stable 前は API が変更される可能性あり）。
