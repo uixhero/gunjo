@@ -37,6 +37,10 @@ component family:
   - Component property: `Label`.
   - Layout: `Button / Overview card`, `Button / Variant matrix card`, and
     `Button / Specimen card`.
+  - Final section arrangement: 48 px inset, 32 px column gutter, 480 px
+    overview card, 672 px variant matrix card, and a full-width specimen card.
+    The section header, matrix label, and specimen label are single-source text
+    nodes to avoid duplicate or clipped labels in the library page.
   - Size and implementation-state specimens are documented in the specimen
     card; they are not part of the `variant` axis to avoid a 60-variant matrix.
 
