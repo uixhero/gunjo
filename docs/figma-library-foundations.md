@@ -27,7 +27,7 @@ completed:
   Navigation, Overlay, Layout, Patterns.
 
 The Figma file now contains page skeletons, token swatches, and the first
-component family:
+component families:
 
 - `Button` on the `Inputs` page.
   - Section node: `22:2` (`Button / Section`).
@@ -43,6 +43,16 @@ component family:
     nodes to avoid duplicate or clipped labels in the library page.
   - Size and implementation-state specimens are documented in the specimen
     card; they are not part of the `variant` axis to avoid a 60-variant matrix.
+- `TooltipButton` on the `Inputs` page.
+  - Section node: `44:2` (`TooltipButton / Section`).
+  - Component set node: `44:32`.
+  - Variants: `explained`, `icon-only`, `destructive` on the `state` axis.
+  - Layout: `TooltipButton / Overview card`, `TooltipButton / Component card`,
+    and `TooltipButton / Behavior card`.
+  - The component set represents TooltipButton-specific usage states while
+    preserving Button as the source for visual variant behavior.
+  - Tooltip placement and interaction props are documented in the behavior
+    card instead of expanding the Button variant/size matrix.
 
 ## Local Payload
 
@@ -90,13 +100,22 @@ The owner then approved exporting the additional Button component data with:
 > size/state structure, display labels, and style information from this private
 > pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional TooltipButton component data
+with:
+
+> I approve exporting the TooltipButton prop names, default values, behavior,
+> Tooltip display structure, side/align/offset information, inherited Button
+> variant/size structure, docs-derived state taxonomy, display labels, sample
+> copy, and style information from this private pre-public repository to the
+> Figma file `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
 
 1. Review the Figma file manually.
-2. Confirm the Button component set, runtime semantic colors, and specimen
-   treatment are acceptable.
+2. Confirm the Button and TooltipButton component sets, runtime semantic colors,
+   and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
