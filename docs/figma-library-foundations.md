@@ -30,13 +30,15 @@ The Figma file now contains page skeletons, token swatches, and the first
 component family:
 
 - `Button` on the `Inputs` page.
+  - Section node: `22:2` (`Button / Section`).
   - Component set node: `16:26`.
   - Variants: `default`, `primary`, `info`, `success`, `warning`,
     `destructive`, `outline`, `secondary`, `ghost`, `link`.
   - Component property: `Label`.
-  - Size and implementation-state specimens are documented next to the
-    component set; they are not part of the `variant` axis to avoid a 60-variant
-    matrix.
+  - Layout: `Button / Overview card`, `Button / Variant matrix card`, and
+    `Button / Specimen card`.
+  - Size and implementation-state specimens are documented in the specimen
+    card; they are not part of the `variant` axis to avoid a 60-variant matrix.
 
 ## Local Payload
 
