@@ -724,13 +724,13 @@ export const translations: Record<
         capabilities: {
           spec: {
             title: "Spec as prompt",
-            badge: "Phase 5",
+            badge: "Live",
             description:
               "\"Copy spec for AI\" button on every component page. Markdown that pastes cleanly into v0, Cursor, or Claude.",
           },
           endpoints: {
             title: "JSON endpoints",
-            badge: "Phase 5",
+            badge: "Live",
             description:
               "/api/specs/inputs/button returns a structured JSON spec. /api/specs/manifest returns the full catalog.",
           },
@@ -742,7 +742,7 @@ export const translations: Record<
           },
           mcp: {
             title: "MCP server",
-            badge: "Phase 7",
+            badge: "Planned",
             description:
               "Coming: Claude and Cursor query the gunjo-ui namespace directly via MCP.",
           },
@@ -836,7 +836,7 @@ export const translations: Record<
             claude: {
               name: "Claude",
               description:
-                "Spec as conversation context. Phase 7 will surface specs over MCP for direct namespace access.",
+                "Spec as conversation context. MCP will surface specs for direct namespace access (planned).",
             },
             figmaMake: {
               name: "Figma Make",
@@ -852,7 +852,7 @@ export const translations: Record<
           cta: "Open cookbook",
         },
         roadmap: {
-          heading: "On the roadmap (Phase 7)",
+          heading: "On the roadmap",
           mcp: {
             title: "gunjo-ui MCP server",
             description:
@@ -944,7 +944,7 @@ export const translations: Record<
         label: "色の物語",
         gunjoTitle: "群青 — Gunjō",
         gunjoBody:
-          "未だ青ならず、青になりつつあるもの。夜明け前の色、墨のまだ乾かぬ色、形になる前の色。AI 時代のデザインシステムは、becoming する色そのもの。",
+          "未だ青ならず、青になりつつあるもの。夜明け前の色、墨のまだ乾かぬ色、形になる前の色。alpha 段階のデザインシステムは、becoming する色そのもの。",
         kobichaTitle: "媚茶 — Kobicha",
         kobichaBody:
           "becoming を支える温かい土。ホバー、選択、人の意思が介在する瞬間に温度を加える色。",
@@ -1270,13 +1270,13 @@ export const translations: Record<
         capabilities: {
           spec: {
             title: "Spec を prompt に",
-            badge: "Phase 5",
+            badge: "公開済",
             description:
               "全コンポーネントページに「Copy spec for AI」ボタン。v0 / Cursor / Claude にそのまま貼れる Markdown。",
           },
           endpoints: {
             title: "JSON エンドポイント",
-            badge: "Phase 5",
+            badge: "公開済",
             description:
               "/api/specs/inputs/button が構造化 JSON を返却。/api/specs/manifest で全カタログをまとめて取得。",
           },
@@ -1288,7 +1288,7 @@ export const translations: Record<
           },
           mcp: {
             title: "MCP サーバー",
-            badge: "Phase 7",
+            badge: "予定",
             description:
               "予定: Claude / Cursor が gunjo-ui 名前空間を MCP で直接クエリ。",
           },
@@ -1383,7 +1383,7 @@ export const translations: Record<
             claude: {
               name: "Claude",
               description:
-                "spec を会話コンテキストに。Phase 7 では MCP 経由で名前空間に直接アクセス予定。",
+                "spec を会話コンテキストに。将来的に MCP 経由で名前空間に直接アクセス予定。",
             },
             figmaMake: {
               name: "Figma Make",
@@ -1399,7 +1399,7 @@ export const translations: Record<
           cta: "Cookbook を開く",
         },
         roadmap: {
-          heading: "ロードマップ（Phase 7）",
+          heading: "ロードマップ",
           mcp: {
             title: "gunjo-ui MCP サーバー",
             description:

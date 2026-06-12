@@ -79,7 +79,7 @@ export default function AiHandoffPage() {
                 </header>
 
                 {/* Capabilities — each card anchors to its corresponding section */}
-                <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+                <section className="grid gap-4 lg:grid-cols-2 xl:grid-cols-4">
                     {CAPABILITY_KEYS.map((card) => {
                         const copy = t.capabilities[card.key];
                         return (
