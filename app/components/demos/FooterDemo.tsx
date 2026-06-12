@@ -27,7 +27,7 @@ export function FooterDemo() {
                     </FooterSection>
                     <FooterSection title="Resources">
                         <FooterLink href="#">Docs</FooterLink>
-                        <FooterLink href="https://github.com/eemlis7-ke/gunjo">GitHub</FooterLink>
+                        <FooterLink href="https://github.com/uixhero/gunjo">GitHub</FooterLink>
                         <FooterLink href="#">Blog</FooterLink>
                     </FooterSection>
                     <FooterSection title="Company">

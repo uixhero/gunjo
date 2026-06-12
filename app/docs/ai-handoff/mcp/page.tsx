@@ -88,12 +88,12 @@ export default function McpServerPage() {
                             <p className="pt-1 text-xs text-muted-foreground">
                                 Track progress in{" "}
                                 <a
-                                    href="https://github.com/eemlis7-ke/gunjo/issues/57"
+                                    href="https://github.com/uixhero/gunjo/issues"
                                     target="_blank"
                                     rel="noreferrer"
                                     className="font-medium underline underline-offset-2 hover:text-foreground"
                                 >
-                                    issue #57
+                                    the issue tracker
                                 </a>
                                 .
                             </p>

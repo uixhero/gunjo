@@ -1,6 +1,6 @@
 # Lucide to Tabler icon migration audit
 
-Parent issue: https://github.com/eemlis7-ke/gunjo/issues/219
+Parent issue: https://github.com/uixhero/gunjo/issues/219
 
 ## Scope
 

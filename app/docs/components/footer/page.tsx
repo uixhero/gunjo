@@ -23,7 +23,7 @@ function FooterExample({ compact = false, legalSocial = false }: { compact?: boo
         { label: isJa ? "特定商取引法に基づく表記" : "Legal notice", href: "#" },
     ];
     const socialLinks = [
-        { label: "GitHub", href: "https://github.com/eemlis7-ke/gunjo", icon: Github },
+        { label: "GitHub", href: "https://github.com/uixhero/gunjo", icon: Github },
         { label: "LinkedIn", href: "#", icon: Linkedin },
         { label: "YouTube", href: "#", icon: Youtube },
     ];
@@ -130,7 +130,7 @@ export function SiteFooter() {
         </FooterSection>
         <FooterSection title="${isJa ? "リソース" : "Resources"}">
           <FooterLink href="/docs">${isJa ? "ドキュメント" : "Docs"}</FooterLink>
-          <FooterLink href="https://github.com/eemlis7-ke/gunjo">GitHub</FooterLink>
+          <FooterLink href="https://github.com/uixhero/gunjo">GitHub</FooterLink>
         </FooterSection>
         <FooterSection title="${isJa ? "会社情報" : "Company"}">
           <FooterLink href="/about">${isJa ? "会社概要" : "About"}</FooterLink>
@@ -159,7 +159,7 @@ export function CompactFooter() {
         </FooterSection>
         <FooterSection title="${isJa ? "リソース" : "Resources"}">
           <FooterLink href="/docs">${isJa ? "ドキュメント" : "Docs"}</FooterLink>
-          <FooterLink href="https://github.com/eemlis7-ke/gunjo">GitHub</FooterLink>
+          <FooterLink href="https://github.com/uixhero/gunjo">GitHub</FooterLink>
         </FooterSection>
       </FooterColumns>
       <FooterCopyright>© 2026 Gunjo UI. All rights reserved.</FooterCopyright>
@@ -177,7 +177,7 @@ const legalLinks = [
 ]
 
 const socialLinks = [
-  { label: "GitHub", href: "https://github.com/eemlis7-ke/gunjo", icon: Github },
+  { label: "GitHub", href: "https://github.com/uixhero/gunjo", icon: Github },
   { label: "LinkedIn", href: "https://www.linkedin.com/", icon: Linkedin },
   { label: "YouTube", href: "https://www.youtube.com/", icon: Youtube },
 ]
@@ -198,7 +198,7 @@ export function FooterWithLegalAndSocial() {
         </FooterSection>
         <FooterSection title="${isJa ? "リソース" : "Resources"}">
           <FooterLink href="/docs">${isJa ? "ドキュメント" : "Docs"}</FooterLink>
-          <FooterLink href="https://github.com/eemlis7-ke/gunjo">GitHub</FooterLink>
+          <FooterLink href="https://github.com/uixhero/gunjo">GitHub</FooterLink>
         </FooterSection>
       </FooterColumns>
       <div className="grid gap-4 border-t border-border pt-4 text-xs text-muted-foreground lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-center">

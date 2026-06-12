@@ -339,7 +339,7 @@ export default function Home() {
                         </Button>
                         <Button asChild>
                             <a
-                                href="https://github.com/eemlis7-ke/gunjo"
+                                href="https://github.com/uixhero/gunjo"
                                 target="_blank"
                                 rel="noreferrer"
                                 className="gap-2"

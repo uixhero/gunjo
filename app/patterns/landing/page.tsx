@@ -130,7 +130,7 @@ function LandingPattern({ viewport }: { viewport: MarqueeViewport }) {
             footer={
                 <>
                     <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
-                        Built by Team Gunjo. The source code is available on <a href="https://github.com/eemlis7-ke/gunjo" className="font-medium underline underline-offset-4">GitHub</a>.
+                        Built by Team Gunjo. The source code is available on <a href="https://github.com/uixhero/gunjo" className="font-medium underline underline-offset-4">GitHub</a>.
                     </p>
                 </>
             }

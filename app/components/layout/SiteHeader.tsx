@@ -125,7 +125,7 @@ export function SiteHeader() {
                                 <TooltipTrigger asChild>
                                     <Button variant="ghost" size="icon" asChild>
                                         <Link
-                                            href="https://github.com/eemlis7-ke/gunjo"
+                                            href="https://github.com/uixhero/gunjo"
                                             target="_blank"
                                             rel="noreferrer"
                                             aria-label={tooltip("github")}
@@ -181,7 +181,7 @@ export function SiteHeader() {
                             <TooltipTrigger asChild>
                                 <Button variant="ghost" size="icon" asChild>
                                     <Link
-                                        href="https://github.com/eemlis7-ke/gunjo"
+                                        href="https://github.com/uixhero/gunjo"
                                         target="_blank"
                                         rel="noreferrer"
                                         aria-label={tooltip("github")}

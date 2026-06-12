@@ -83,7 +83,7 @@ This is not "an AI made a component library." It is one person setting the visio
 - [CHANGELOG.md](./CHANGELOG.md) — release history
 - [CLAUDE.md](./CLAUDE.md) — issue-driven working agreement (open an issue before non-trivial work)
 
-Work is tracked on [GitHub Issues](https://github.com/eemlis7-ke/gunjo/issues).
+Work is tracked on [GitHub Issues](https://github.com/uixhero/gunjo/issues).
 
 ## License
 

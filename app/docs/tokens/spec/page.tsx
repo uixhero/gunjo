@@ -30,7 +30,7 @@ export default function DesignSpecPage() {
                 </p>
                 <div className="flex flex-wrap gap-3 pt-2">
                     <Link
-                        href="https://github.com/eemlis7-ke/gunjo/blob/main/DESIGN.md"
+                        href="https://github.com/uixhero/gunjo/blob/main/DESIGN.md"
                         target="_blank"
                         rel="noreferrer"
                         className="inline-flex items-center gap-1.5 rounded-md border border-border bg-muted/40 px-3 py-1.5 text-sm font-medium transition-colors hover:bg-muted"

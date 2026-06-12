@@ -80,7 +80,7 @@
 ### 3.5 PR 上での実地確認結果
 
 対象 PR:
-- https://github.com/eemlis7-ke/gunjo/pull/1
+- https://github.com/uixhero/gunjo/pull/1
 
 確認した挙動:
 - `ssot-comment:post` + `ssot-comment:detailed`:

@@ -23,7 +23,7 @@ GunjoUI のセキュリティポリシー。脆弱性発見時の報告手順を
 
 リポジトリの **Security タブ → "Report a vulnerability"** から private に報告できます：
 
-https://github.com/eemlis7-ke/gunjo/security/advisories/new
+https://github.com/uixhero/gunjo/security/advisories/new
 
 GitHub が maintainer に直接通知し、修正・公開タイミングをコントロールできます。CVE 発行も支援されます。
 
