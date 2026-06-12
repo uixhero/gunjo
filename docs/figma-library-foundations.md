@@ -53,6 +53,16 @@ component families:
     preserving Button as the source for visual variant behavior.
   - Tooltip placement and interaction props are documented in the behavior
     card instead of expanding the Button variant/size matrix.
+- `CopyButton` on the `Inputs` page.
+  - Section node: `51:5` (`CopyButton / Section`).
+  - Component set node: `51:28`.
+  - Variants: `default`, `label` on the `variant` axis.
+  - Layout: `CopyButton / Overview card`, `CopyButton / Component card`, and
+    `CopyButton / Feedback card`.
+  - Clipboard feedback states `idle`, `copied`, and `failed` are represented in
+    the feedback card instead of becoming a persistent component variant axis.
+  - The component set preserves CopyButton's compact icon-only and label
+    feedback variants while composing Button, TooltipButton, and Icon behavior.
 
 ## Local Payload
 
@@ -109,13 +119,22 @@ with:
 > copy, and style information from this private pre-public repository to the
 > Figma file `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional CopyButton component data with:
+
+> I approve exporting the CopyButton prop names, default values, behavior,
+> variant names (`default`, `label`), clipboard feedback states (`idle`,
+> `copied`, `failed`), inherited and composed Button, TooltipButton, and Icon
+> display structure, docs-derived state taxonomy, display labels, sample copy,
+> and style information from this private pre-public repository to the Figma
+> file `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
 
 1. Review the Figma file manually.
-2. Confirm the Button and TooltipButton component sets, runtime semantic colors,
-   and specimen treatments are acceptable.
+2. Confirm the Button, TooltipButton, and CopyButton component sets, runtime
+   semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
