@@ -7,6 +7,8 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ThemeOverridesProvider } from "@/components/providers/ThemeOverridesProvider";
 import { LocaleProvider } from "@/components/providers/LocaleProvider";
 import { ToastProvider, TooltipProvider } from "@gunjo/ui";
+import { GoogleTagManager } from "@next/third-parties/google";
+import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"] });
 const mincho = Shippori_Mincho({
@@ -36,8 +38,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID;
+
   return (
     <html lang="en" suppressHydrationWarning>
+      {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
       <body
         className={`${inter.className} ${mincho.variable} antialiased min-h-screen bg-background text-foreground`}
       >
@@ -61,6 +66,7 @@ export default function RootLayout({
             </LocaleProvider>
           </ThemeProvider>
         </div>
+        <Analytics />
       </body>
     </html>
   );

@@ -20,3 +20,5 @@ HANDOFF.md
 
 # Local agent / editor config (machine-specific paths)
 .claude/
+.vercel
+.env*.local
