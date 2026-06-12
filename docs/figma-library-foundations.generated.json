@@ -1,0 +1,696 @@
+{
+  "generatedAt": "2026-06-12T03:39:12.268Z",
+  "source": {
+    "tokenSource": "design/tokens.pen",
+    "runtimeCss": "src/globals.css",
+    "discovery": "docs/figma-library-discovery.md"
+  },
+  "pages": [
+    "Cover",
+    "Changelog",
+    "Tokens",
+    "Inputs",
+    "Display",
+    "Charts",
+    "Feedback",
+    "Navigation",
+    "Overlay",
+    "Layout",
+    "Patterns"
+  ],
+  "collections": [
+    {
+      "name": "Gunjo Tokens",
+      "modes": [
+        "Light",
+        "Dark"
+      ],
+      "variables": [
+        {
+          "name": "color/background",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--background)"
+          },
+          "modes": {
+            "Light": "#FFFFFF",
+            "Dark": "222.2 84% 4.9%"
+          }
+        },
+        {
+          "name": "color/foreground",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "TEXT_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--foreground)"
+          },
+          "modes": {
+            "Light": "#0c0c12",
+            "Dark": "210 40% 98%"
+          }
+        },
+        {
+          "name": "color/card",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--card)"
+          },
+          "modes": {
+            "Light": "#FFFFFF",
+            "Dark": "222.2 84% 4.9%"
+          }
+        },
+        {
+          "name": "color/card-foreground",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "TEXT_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--card-foreground)"
+          },
+          "modes": {
+            "Light": "#0c0c12",
+            "Dark": "210 40% 98%"
+          }
+        },
+        {
+          "name": "color/popover",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--popover)"
+          },
+          "modes": {
+            "Light": "#FFFFFF",
+            "Dark": "222.2 84% 4.9%"
+          }
+        },
+        {
+          "name": "color/popover-foreground",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "TEXT_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--popover-foreground)"
+          },
+          "modes": {
+            "Light": "#0c0c12",
+            "Dark": "210 40% 98%"
+          }
+        },
+        {
+          "name": "color/primary",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--primary)"
+          },
+          "modes": {
+            "Light": "#4D5AAF",
+            "Dark": "232 47% 65%"
+          }
+        },
+        {
+          "name": "color/primary-foreground",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "TEXT_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--primary-foreground)"
+          },
+          "modes": {
+            "Light": "#f8fafc",
+            "Dark": "234 60% 8%"
+          }
+        },
+        {
+          "name": "color/secondary",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--secondary)"
+          },
+          "modes": {
+            "Light": "#f1f5f9",
+            "Dark": "217.2 32.6% 17.5%"
+          }
+        },
+        {
+          "name": "color/secondary-foreground",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "TEXT_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--secondary-foreground)"
+          },
+          "modes": {
+            "Light": "#18181b",
+            "Dark": "210 40% 98%"
+          }
+        },
+        {
+          "name": "color/muted",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--muted)"
+          },
+          "modes": {
+            "Light": "#f1f5f9",
+            "Dark": "217.2 32.6% 17.5%"
+          }
+        },
+        {
+          "name": "color/muted-foreground",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "TEXT_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--muted-foreground)"
+          },
+          "modes": {
+            "Light": "#64748b",
+            "Dark": "215 20.2% 65.1%"
+          }
+        },
+        {
+          "name": "color/accent",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--accent)"
+          },
+          "modes": {
+            "Light": "#E8DDD3",
+            "Dark": "14 22% 19%"
+          }
+        },
+        {
+          "name": "color/accent-foreground",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "TEXT_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--accent-foreground)"
+          },
+          "modes": {
+            "Light": "#3A2A25",
+            "Dark": "29 31% 87%"
+          }
+        },
+        {
+          "name": "color/destructive",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--destructive)"
+          },
+          "modes": {
+            "Light": "#ef4444",
+            "Dark": "0 72% 51%"
+          }
+        },
+        {
+          "name": "color/destructive-foreground",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "TEXT_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--destructive-foreground)"
+          },
+          "modes": {
+            "Light": "#f8fafc",
+            "Dark": "210 40% 98%"
+          }
+        },
+        {
+          "name": "color/border",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "STROKE_COLOR"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--border)"
+          },
+          "modes": {
+            "Light": "#e2e8f0",
+            "Dark": "217.2 32.6% 17.5%"
+          }
+        },
+        {
+          "name": "color/input",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "STROKE_COLOR"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--input)"
+          },
+          "modes": {
+            "Light": "#e2e8f0",
+            "Dark": "217.2 32.6% 17.5%"
+          }
+        },
+        {
+          "name": "color/ring",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "STROKE_COLOR"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--ring)"
+          },
+          "modes": {
+            "Light": "#4D5AAF",
+            "Dark": "232 47% 65%"
+          }
+        },
+        {
+          "name": "color/overlay",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--overlay)"
+          },
+          "modes": {
+            "Light": "#000000",
+            "Dark": "0 0% 0%"
+          }
+        },
+        {
+          "name": "color/info",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--info)"
+          },
+          "modes": {
+            "Light": "#3b82f6",
+            "Dark": "213 94% 68%"
+          }
+        },
+        {
+          "name": "color/success",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--success)"
+          },
+          "modes": {
+            "Light": "#22c55e",
+            "Dark": "142 69% 58%"
+          }
+        },
+        {
+          "name": "color/warning",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--warning)"
+          },
+          "modes": {
+            "Light": "#eab308",
+            "Dark": "43 96% 56%"
+          }
+        },
+        {
+          "name": "shadow/sm",
+          "resolvedType": "STRING",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--shadow-sm)"
+          },
+          "modes": {
+            "Light": "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+            "Dark": "0 1px 2px 0 rgb(0 0 0 / 0.2)"
+          }
+        },
+        {
+          "name": "shadow/base",
+          "resolvedType": "STRING",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--shadow)"
+          },
+          "modes": {
+            "Light": "0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)",
+            "Dark": "0 1px 3px 0 rgb(0 0 0 / 0.2), 0 1px 2px -1px rgb(0 0 0 / 0.2)"
+          }
+        },
+        {
+          "name": "shadow/md",
+          "resolvedType": "STRING",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--shadow-md)"
+          },
+          "modes": {
+            "Light": "0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)",
+            "Dark": "0 4px 6px -1px rgb(0 0 0 / 0.2), 0 2px 4px -2px rgb(0 0 0 / 0.2)"
+          }
+        },
+        {
+          "name": "shadow/lg",
+          "resolvedType": "STRING",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--shadow-lg)"
+          },
+          "modes": {
+            "Light": "0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1)",
+            "Dark": "0 10px 15px -3px rgb(0 0 0 / 0.2), 0 4px 6px -4px rgb(0 0 0 / 0.2)"
+          }
+        },
+        {
+          "name": "shadow/xl",
+          "resolvedType": "STRING",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--shadow-xl)"
+          },
+          "modes": {
+            "Light": "0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1)",
+            "Dark": "0 20px 25px -5px rgb(0 0 0 / 0.2), 0 8px 10px -6px rgb(0 0 0 / 0.2)"
+          }
+        },
+        {
+          "name": "shadow/2xl",
+          "resolvedType": "STRING",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--shadow-2xl)"
+          },
+          "modes": {
+            "Light": "0 25px 50px -12px rgb(0 0 0 / 0.25)",
+            "Dark": "0 25px 50px -12px rgb(0 0 0 / 0.4)"
+          }
+        },
+        {
+          "name": "shadow/inner",
+          "resolvedType": "STRING",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--shadow-inner)"
+          },
+          "modes": {
+            "Light": "inset 0 2px 4px 0 rgb(0 0 0 / 0.05)",
+            "Dark": "inset 0 2px 4px 0 rgb(0 0 0 / 0.1)"
+          }
+        },
+        {
+          "name": "shadow/none",
+          "resolvedType": "STRING",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--shadow-none)"
+          },
+          "modes": {
+            "Light": "none",
+            "Dark": "none"
+          }
+        },
+        {
+          "name": "motion/duration/75",
+          "resolvedType": "FLOAT",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--duration-75)"
+          },
+          "modes": {
+            "Light": 75,
+            "Dark": 75
+          }
+        },
+        {
+          "name": "motion/duration/100",
+          "resolvedType": "FLOAT",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--duration-100)"
+          },
+          "modes": {
+            "Light": 100,
+            "Dark": 100
+          }
+        },
+        {
+          "name": "motion/duration/150",
+          "resolvedType": "FLOAT",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--duration-150)"
+          },
+          "modes": {
+            "Light": 150,
+            "Dark": 150
+          }
+        },
+        {
+          "name": "motion/duration/200",
+          "resolvedType": "FLOAT",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--duration-200)"
+          },
+          "modes": {
+            "Light": 200,
+            "Dark": 200
+          }
+        },
+        {
+          "name": "motion/duration/300",
+          "resolvedType": "FLOAT",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--duration-300)"
+          },
+          "modes": {
+            "Light": 300,
+            "Dark": 300
+          }
+        },
+        {
+          "name": "motion/duration/500",
+          "resolvedType": "FLOAT",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--duration-500)"
+          },
+          "modes": {
+            "Light": 500,
+            "Dark": 500
+          }
+        },
+        {
+          "name": "motion/duration/700",
+          "resolvedType": "FLOAT",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--duration-700)"
+          },
+          "modes": {
+            "Light": 700,
+            "Dark": 700
+          }
+        },
+        {
+          "name": "motion/duration/1000",
+          "resolvedType": "FLOAT",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--duration-1000)"
+          },
+          "modes": {
+            "Light": 1000,
+            "Dark": 1000
+          }
+        },
+        {
+          "name": "motion/ease/linear",
+          "resolvedType": "STRING",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--ease-linear)"
+          },
+          "modes": {
+            "Light": "linear",
+            "Dark": "linear"
+          }
+        },
+        {
+          "name": "motion/ease/in",
+          "resolvedType": "STRING",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--ease-in)"
+          },
+          "modes": {
+            "Light": "cubic-bezier(0.4, 0, 1, 1)",
+            "Dark": "cubic-bezier(0.4, 0, 1, 1)"
+          }
+        },
+        {
+          "name": "motion/ease/out",
+          "resolvedType": "STRING",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--ease-out)"
+          },
+          "modes": {
+            "Light": "cubic-bezier(0, 0, 0.2, 1)",
+            "Dark": "cubic-bezier(0, 0, 0.2, 1)"
+          }
+        },
+        {
+          "name": "motion/ease/in-out",
+          "resolvedType": "STRING",
+          "scopes": [],
+          "codeSyntax": {
+            "WEB": "var(--ease-in-out)"
+          },
+          "modes": {
+            "Light": "cubic-bezier(0.4, 0, 0.2, 1)",
+            "Dark": "cubic-bezier(0.4, 0, 0.2, 1)"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Gunjo Runtime",
+      "modes": [
+        "Value"
+      ],
+      "variables": [
+        {
+          "name": "radius/base",
+          "resolvedType": "FLOAT",
+          "scopes": [
+            "CORNER_RADIUS"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--radius)"
+          },
+          "modes": {
+            "Value": 8
+          },
+          "note": "Runtime CSS variable required for component corner-radius binding; not currently emitted by design/tokens.pen."
+        }
+      ]
+    }
+  ],
+  "textStyles": [
+    {
+      "name": "Gunjo/Display",
+      "fontFamily": "Inter",
+      "fontStyle": "Bold",
+      "fontSize": 40,
+      "lineHeight": 48
+    },
+    {
+      "name": "Gunjo/Heading 1",
+      "fontFamily": "Inter",
+      "fontStyle": "Bold",
+      "fontSize": 32,
+      "lineHeight": 40
+    },
+    {
+      "name": "Gunjo/Heading 2",
+      "fontFamily": "Inter",
+      "fontStyle": "Semi Bold",
+      "fontSize": 24,
+      "lineHeight": 32
+    },
+    {
+      "name": "Gunjo/Body",
+      "fontFamily": "Inter",
+      "fontStyle": "Regular",
+      "fontSize": 16,
+      "lineHeight": 24
+    },
+    {
+      "name": "Gunjo/Body Small",
+      "fontFamily": "Inter",
+      "fontStyle": "Regular",
+      "fontSize": 14,
+      "lineHeight": 20
+    },
+    {
+      "name": "Gunjo/Label",
+      "fontFamily": "Inter",
+      "fontStyle": "Medium",
+      "fontSize": 14,
+      "lineHeight": 20
+    },
+    {
+      "name": "Gunjo/Caption",
+      "fontFamily": "Inter",
+      "fontStyle": "Medium",
+      "fontSize": 12,
+      "lineHeight": 16
+    }
+  ],
+  "effectStyles": [
+    "Gunjo/Shadow/sm",
+    "Gunjo/Shadow/base",
+    "Gunjo/Shadow/md",
+    "Gunjo/Shadow/lg",
+    "Gunjo/Shadow/xl",
+    "Gunjo/Shadow/2xl",
+    "Gunjo/Shadow/inner",
+    "Gunjo/Shadow/none"
+  ],
+  "summary": {
+    "pageCount": 11,
+    "tokenVariableCount": 43,
+    "runtimeVariableCount": 1,
+    "textStyleCount": 7,
+    "effectStyleCount": 8
+  }
+}
