@@ -101,6 +101,20 @@ component families:
   - Docs-derived `Off`, `On`, and `Disabled` states are documented as
     specimens, including the disabled Label copy and disabled reason tooltip
     text.
+- `RadioGroup` on the `Inputs` page.
+  - Section node: `76:13` (`RadioGroup / Section`).
+  - Component set node: `76:27` (`RadioGroupItem`).
+  - Variants: `unchecked`, `checked` on the `variant` axis.
+  - Layout: `RadioGroup / Overview card`, `RadioGroup / Component card`, and
+    `RadioGroup / Specimen card`.
+  - The `RadioGroupItem` component set records the 16 px item size, 8 px
+    radius, token-bound stroke colors, 10 px checked inner dot, focus-visible
+    ring treatment, disabled opacity behavior, and the
+    `value`/`defaultValue`/`onValueChange`/`name` group prop structure plus
+    item-level `value`/`disabled` props.
+  - Docs-derived `rich-options`, `horizontal`, and `disabled-option` states are
+    documented as group specimens, including Label copy and disabled reason
+    tooltip text.
 
 ## Local Payload
 
@@ -197,14 +211,26 @@ The owner then approved exporting the additional Switch component data with:
 > `secondary`, `ring`) from this private pre-public repository to the Figma file
 > `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional RadioGroup component data with:
+
+> I approve exporting the RadioGroup / RadioGroupItem variant names
+> (`unchecked`, `checked`), `value`/`defaultValue`/`onValueChange`/`name` group
+> prop structure, item-level `value`/`disabled` prop structure, docs-derived
+> state taxonomy (`rich-options`, `horizontal`, `disabled-option`), dimensions,
+> radius, stroke, inner dot display, focus ring, disabled opacity, display
+> labels and sample copy including Label and disabled reason tooltip, style
+> information, and token names and values (`foreground`, `input`, `ring`,
+> `muted-foreground`) from this private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
 
 1. Review the Figma file manually.
-2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, and Switch
-   component sets, runtime semantic colors, and specimen treatments are
-   acceptable.
+2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch, and
+   RadioGroup component sets, runtime semantic colors, and specimen treatments
+   are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
