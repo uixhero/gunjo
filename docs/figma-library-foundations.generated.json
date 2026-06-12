@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-12T03:39:12.268Z",
+  "generatedAt": "2026-06-12T12:59:39.336Z",
   "source": {
     "tokenSource": "design/tokens.pen",
     "runtimeCss": "src/globals.css",
@@ -31,7 +31,8 @@
           "resolvedType": "COLOR",
           "scopes": [
             "FRAME_FILL",
-            "SHAPE_FILL"
+            "SHAPE_FILL",
+            "TEXT_FILL"
           ],
           "codeSyntax": {
             "WEB": "var(--background)"
@@ -45,6 +46,8 @@
           "name": "color/foreground",
           "resolvedType": "COLOR",
           "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL",
             "TEXT_FILL"
           ],
           "codeSyntax": {
@@ -599,6 +602,181 @@
             "Light": "cubic-bezier(0.4, 0, 0.2, 1)",
             "Dark": "cubic-bezier(0.4, 0, 0.2, 1)"
           }
+        },
+        {
+          "name": "color/primary-strong",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--primary-strong)"
+          },
+          "modes": {
+            "Light": "232 47% 38%",
+            "Dark": "232 55% 72%"
+          },
+          "note": "Runtime CSS semantic color required for component binding; not currently emitted by design/tokens.pen."
+        },
+        {
+          "name": "color/primary-strong-foreground",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "TEXT_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--primary-strong-foreground)"
+          },
+          "modes": {
+            "Light": "210 40% 98%",
+            "Dark": "234 60% 8%"
+          },
+          "note": "Runtime CSS semantic color required for component binding; not currently emitted by design/tokens.pen."
+        },
+        {
+          "name": "color/info-strong",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--info-strong)"
+          },
+          "modes": {
+            "Light": "224 76% 48%",
+            "Dark": "213 94% 68%"
+          },
+          "note": "Runtime CSS semantic color required for component binding; not currently emitted by design/tokens.pen."
+        },
+        {
+          "name": "color/info-strong-foreground",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "TEXT_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--info-strong-foreground)"
+          },
+          "modes": {
+            "Light": "210 40% 98%",
+            "Dark": "222 47% 11%"
+          },
+          "note": "Runtime CSS semantic color required for component binding; not currently emitted by design/tokens.pen."
+        },
+        {
+          "name": "color/success-strong",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--success-strong)"
+          },
+          "modes": {
+            "Light": "142 72% 29%",
+            "Dark": "142 69% 58%"
+          },
+          "note": "Runtime CSS semantic color required for component binding; not currently emitted by design/tokens.pen."
+        },
+        {
+          "name": "color/success-strong-foreground",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "TEXT_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--success-strong-foreground)"
+          },
+          "modes": {
+            "Light": "210 40% 98%",
+            "Dark": "144 61% 9%"
+          },
+          "note": "Runtime CSS semantic color required for component binding; not currently emitted by design/tokens.pen."
+        },
+        {
+          "name": "color/warning-strong",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--warning-strong)"
+          },
+          "modes": {
+            "Light": "32 95% 35%",
+            "Dark": "43 96% 56%"
+          },
+          "note": "Runtime CSS semantic color required for component binding; not currently emitted by design/tokens.pen."
+        },
+        {
+          "name": "color/warning-strong-foreground",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "TEXT_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--warning-strong-foreground)"
+          },
+          "modes": {
+            "Light": "210 40% 98%",
+            "Dark": "26 83% 14%"
+          },
+          "note": "Runtime CSS semantic color required for component binding; not currently emitted by design/tokens.pen."
+        },
+        {
+          "name": "color/destructive-strong",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "FRAME_FILL",
+            "SHAPE_FILL",
+            "TEXT_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--destructive-strong)"
+          },
+          "modes": {
+            "Light": "0 72% 43%",
+            "Dark": "0 72% 43%"
+          },
+          "note": "Runtime CSS semantic color required for component binding; not currently emitted by design/tokens.pen."
+        },
+        {
+          "name": "color/destructive-strong-foreground",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "TEXT_FILL"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--destructive-strong-foreground)"
+          },
+          "modes": {
+            "Light": "210 40% 98%",
+            "Dark": "210 40% 98%"
+          },
+          "note": "Runtime CSS semantic color required for component binding; not currently emitted by design/tokens.pen."
+        },
+        {
+          "name": "color/destructive-border",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "STROKE_COLOR"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--destructive-border)"
+          },
+          "modes": {
+            "Light": "0 93% 84%",
+            "Dark": "0 55% 36%"
+          },
+          "note": "Runtime CSS semantic color required for component binding; not currently emitted by design/tokens.pen."
         }
       ]
     },
@@ -688,7 +866,9 @@
   ],
   "summary": {
     "pageCount": 11,
-    "tokenVariableCount": 43,
+    "tokenVariableCount": 54,
+    "sourceTokenVariableCount": 43,
+    "runtimeColorVariableCount": 11,
     "runtimeVariableCount": 1,
     "textStyleCount": 7,
     "effectStyleCount": 8

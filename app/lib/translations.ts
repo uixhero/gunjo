@@ -944,7 +944,7 @@ export const translations: Record<
         label: "色の物語",
         gunjoTitle: "群青 — Gunjō",
         gunjoBody:
-          "未だ青ならず、青になりつつあるもの。夜明け前の色、墨のまだ乾かぬ色、形になる前の色。alpha 段階のデザインシステムは、becoming する色そのもの。",
+          "未だ青ならず、青になりつつあるもの。夜明け前の色、墨のまだ乾かぬ色、形になる前の色。AI 時代のデザインシステムは、becoming する色そのもの。",
         kobichaTitle: "媚茶 — Kobicha",
         kobichaBody:
           "becoming を支える温かい土。ホバー、選択、人の意思が介在する瞬間に温度を加える色。",

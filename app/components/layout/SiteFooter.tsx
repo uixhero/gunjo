@@ -3,6 +3,7 @@
 import * as React from "react";
 import { usePathname } from "next/navigation";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { GunjoLogo } from "@/components/layout/GunjoLogo";
 import {
     Footer,
     FooterBrand,
@@ -53,17 +54,10 @@ export function SiteFooter({
                         : "container flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between"
                 }
             >
-                <FooterBrand className="gap-1">
-                    <div className="flex items-center gap-2">
-                        <div className="flex h-6 w-6 items-center justify-center rounded-md bg-primary text-xs font-bold text-primary-foreground">
-                            G
-                        </div>
-                        <span className="text-sm font-medium text-foreground">
-                            {header("siteName")}
-                        </span>
-                    </div>
+                <FooterBrand className="gap-2">
+                    <GunjoLogo className="h-7 w-[3.3rem]" label={header("siteName")} />
                     <FooterCopyright className="border-0 p-0">
-                        © 2026 GunjoUI. Becoming blue.
+                        © 2026 4px LLC. Becoming blue.
                     </FooterCopyright>
                 </FooterBrand>
 
