@@ -21,7 +21,7 @@ GunjoUI への貢献に興味を持っていただきありがとうございま
 |---|---|---|
 | **バグ報告** | コンポーネントの視覚崩れ、TypeScript 型エラー、SSR 問題 | 🟢 歓迎 |
 | **ドキュメント改善** | adoption.md / dependencies.md 等の typo / 不正確な記述 | 🟢 歓迎 |
-| **新コンポーネント追加** | 既存 atom / molecule / organism の拡張 | 🟡 alpha 中は要相談（[Discussions](https://github.com/eemlis7-ke/gunjo/discussions) で先に話す） |
+| **新コンポーネント追加** | 既存 atom / molecule / organism の拡張 | 🟡 alpha 中は要相談（[Discussions](https://github.com/uixhero/gunjo/discussions) で先に話す） |
 | **API 設計変更** | 既存 prop の rename、compound pattern への移行 | 🔴 alpha 中は控えめに、`1.0.0` 設計議論として |
 | **採用先での実例** | adoption.md に従った実プロジェクトでの動作報告 | 🟢 大歓迎 |
 | **i18n / 翻訳** | docs サイトの英訳・他言語化 | 🟢 歓迎 |
@@ -37,7 +37,7 @@ GunjoUI への貢献に興味を持っていただきありがとうございま
 ### クローン & 起動
 
 ```bash
-git clone https://github.com/eemlis7-ke/gunjo.git
+git clone https://github.com/uixhero/gunjo.git
 cd gunjo
 npm install     # pre-commit hook も自動で `core.hooksPath=.githooks` に設定される
 npm run dev     # docs サイトが http://localhost:13030 で起動
@@ -93,7 +93,7 @@ GunjoUI のコア設計思想：**1 コンポーネント = pen + source + docs 
 ### 質問
 
 - まず [docs/](./docs/) を確認
-- それでも不明なら [Discussions](https://github.com/eemlis7-ke/gunjo/discussions) で（Issue ではなく）
+- それでも不明なら [Discussions](https://github.com/uixhero/gunjo/discussions) で（Issue ではなく）
 
 ## PR を出す
 

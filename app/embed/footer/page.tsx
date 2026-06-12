@@ -22,7 +22,7 @@ export default function Embed() {
         { label: isJa ? "特定商取引法に基づく表記" : "Legal notice", href: "#" },
     ];
     const socialLinks = [
-        { label: "GitHub", href: "https://github.com/eemlis7-ke/gunjo", icon: Github },
+        { label: "GitHub", href: "https://github.com/uixhero/gunjo", icon: Github },
         { label: "LinkedIn", href: "#", icon: Linkedin },
         { label: "YouTube", href: "#", icon: Youtube },
     ];

@@ -14,10 +14,10 @@
   "types": "src/index.ts",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/eemlis7-ke/gunjo.git"
+    "url": "git+https://github.com/uixhero/gunjo.git"
   },
-  "homepage": "https://github.com/eemlis7-ke/gunjo#readme",
-  "bugs": "https://github.com/eemlis7-ke/gunjo/issues",
+  "homepage": "https://github.com/uixhero/gunjo#readme",
+  "bugs": "https://github.com/uixhero/gunjo/issues",
   "author": "4px LLC (https://www.uixhero.com)",
   "license": "MIT",
   "private": false,

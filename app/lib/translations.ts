@@ -803,7 +803,7 @@ export const translations: Record<
               ],
               readmeCta: "Full SSOT runbook (design/README.md)",
               readmeUrl:
-                "https://github.com/eemlis7-ke/gunjo/blob/main/design/README.md",
+                "https://github.com/uixhero/gunjo/blob/main/design/README.md",
             },
             tooling: {
               title: "What each file is for",
@@ -1349,7 +1349,7 @@ export const translations: Record<
               ],
               readmeCta: "詳しい SSOT 運用手順（design/README.md）",
               readmeUrl:
-                "https://github.com/eemlis7-ke/gunjo/blob/main/design/README.md",
+                "https://github.com/uixhero/gunjo/blob/main/design/README.md",
             },
             tooling: {
               title: "各ファイルの役割",
