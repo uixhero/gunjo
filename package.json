@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/eemlis7-ke/gunjo#readme",
   "bugs": "https://github.com/eemlis7-ke/gunjo/issues",
+  "author": "4px LLC (https://www.uixhero.com)",
   "license": "MIT",
   "private": false,
   "publishConfig": {
