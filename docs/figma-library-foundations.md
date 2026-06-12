@@ -7,16 +7,24 @@ This document records the foundations phase after
 
 ## Status
 
-A blank Figma design file was created for the foundations pass:
+A Figma design file was created for the foundations pass:
 
 - File: `GunjoUI Library Foundations (#8)`
 - URL: https://www.figma.com/design/1hTzNSFLwOA88R15KCX9iG
 
-No GunjoUI SSOT token or component data has been written to that Figma file from
-this repository yet. The first write attempt was blocked because this repository
-is private and pre-public; exporting token/spec data into an external Figma file
-requires explicit owner approval after acknowledging that private design-system
-data is leaving the repo environment.
+The owner approved exporting foundations data from this private pre-public
+repository to the Figma file on 2026-06-12. The foundations export was then
+completed:
+
+- `Gunjo Tokens`: 43 variables, with `Light` and `Dark` modes.
+- `Gunjo Runtime`: 1 `radius/base` variable.
+- Text styles: 7 `Gunjo/*` styles.
+- Effect styles: 8 `Gunjo/Shadow/*` styles.
+- Pages: Cover, Changelog, Tokens, Inputs, Display, Charts, Feedback,
+  Navigation, Overlay, Layout, Patterns.
+
+The Figma file now contains page skeletons and token swatches only. Components
+have not been created yet.
 
 ## Local Payload
 
@@ -42,22 +50,24 @@ These files describe the exact data intended for the Figma foundations write:
 - 7 text styles under `Gunjo/*`.
 - 8 effect styles under `Gunjo/Shadow/*`.
 
-## Required Approval Before External Write
+## External Write Approval
 
-Before running a Figma write against the file above, the owner should explicitly
-confirm:
+The owner explicitly approved the external write with:
 
 > I approve exporting the GunjoUI token names, token values, page taxonomy, text
 > style names, and effect style names from this private pre-public repository to
 > the Figma file `GunjoUI Library Foundations (#8)`.
 
-After approval, the Figma write should:
+That approval covered only foundations data. Component creation still needs the
+normal per-phase review checkpoints before each component/family.
 
-1. Inspect the target file again for existing variables/styles/pages.
-2. Create or update `Gunjo Tokens` and `Gunjo Runtime` collections.
-3. Set explicit variable scopes and WEB code syntax for every variable.
-4. Create or update text and effect styles.
-5. Create page skeletons only; do not create components in the same step.
-6. Return the created/mutated IDs and a screenshot of the Cover or Tokens page.
+## Next Figma Step
+
+Before creating components:
+
+1. Review the Figma file manually.
+2. Confirm the foundations taxonomy and token names are acceptable.
+3. Start with the core component sequence from
+   `docs/figma-library-discovery.md`.
 
 Do not publish the Figma library until the owner has reviewed the file manually.
