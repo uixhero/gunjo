@@ -16,9 +16,9 @@ The owner approved exporting foundations data from this private pre-public
 repository to the Figma file on 2026-06-12. The foundations export was then
 completed:
 
-- `Gunjo Tokens`: 53 variables, with `Light` and `Dark` modes.
+- `Gunjo Tokens`: 54 variables, with `Light` and `Dark` modes.
   - 43 variables from `design/tokens.pen`.
-  - 10 runtime semantic color variables from `src/globals.css` for component
+  - 11 runtime semantic color variables from `src/globals.css` for component
     bindings.
 - `Gunjo Runtime`: 1 `radius/base` variable.
 - Text styles: 7 `Gunjo/*` styles.
@@ -63,6 +63,18 @@ component families:
     the feedback card instead of becoming a persistent component variant axis.
   - The component set preserves CopyButton's compact icon-only and label
     feedback variants while composing Button, TooltipButton, and Icon behavior.
+- `Input` on the `Inputs` page.
+  - Section node: `59:13` (`Input / Section`).
+  - Component set node: `59:30`.
+  - Variants: `default`, `placeholder`, `disabled` on the `variant` axis.
+  - Layout: `Input / Overview card`, `Input / Component card`, and
+    `Input / Specimen card`.
+  - `color/destructive-border` was added to `Gunjo Tokens` for invalid-state
+    stroke binding.
+  - Docs-derived `with-label`, `invalid`, and `disabled reason` states are
+    documented as specimens instead of persistent component variants.
+  - The specimen card records the FormGroup width rule while keeping the
+    standalone Input component at its intrinsic 280 px width.
 
 ## Local Payload
 
@@ -80,8 +92,8 @@ Generated outputs:
 These files describe the exact data intended for the Figma foundations write:
 
 - 11 pages matching the discovery taxonomy.
-- 53 variables in a `Gunjo Tokens` collection with Light and Dark modes:
-  43 from `design/tokens.pen`, plus 10 runtime semantic colors required for
+- 54 variables in a `Gunjo Tokens` collection with Light and Dark modes:
+  43 from `design/tokens.pen`, plus 11 runtime semantic colors required for
   Button and other component bindings.
 - 1 `Gunjo Runtime` radius variable for `var(--radius)`, because component
   corner-radius binding needs it and `design/tokens.pen` does not currently emit
@@ -128,13 +140,23 @@ The owner then approved exporting the additional CopyButton component data with:
 > and style information from this private pre-public repository to the Figma
 > file `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional Input component data with:
+
+> I approve exporting the Input variant names (`default`, `placeholder`,
+> `disabled`), state structure (`with-label`, `invalid`, `disabled reason`),
+> dimensions, padding, radius, placeholder/value display, FormGroup width rule,
+> token names and values (`input`, `ring`, `muted`, `muted-foreground`,
+> `background`, `foreground`, `destructive-border`), docs-derived display
+> labels, sample copy, and style information from this private pre-public
+> repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
 
 1. Review the Figma file manually.
-2. Confirm the Button, TooltipButton, and CopyButton component sets, runtime
-   semantic colors, and specimen treatments are acceptable.
+2. Confirm the Button, TooltipButton, CopyButton, and Input component sets,
+   runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 

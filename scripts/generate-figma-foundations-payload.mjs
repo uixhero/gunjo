@@ -141,6 +141,11 @@ const RUNTIME_COLOR_VARIABLES = [
     cssName: "destructive-strong-foreground",
     scopes: ["TEXT_FILL"],
   },
+  {
+    name: "color/destructive-border",
+    cssName: "destructive-border",
+    scopes: ["STROKE_COLOR"],
+  },
 ];
 
 function readJson(relativePath) {

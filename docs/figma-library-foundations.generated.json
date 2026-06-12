@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-12T07:04:56.006Z",
+  "generatedAt": "2026-06-12T12:59:39.336Z",
   "source": {
     "tokenSource": "design/tokens.pen",
     "runtimeCss": "src/globals.css",
@@ -762,6 +762,21 @@
             "Dark": "210 40% 98%"
           },
           "note": "Runtime CSS semantic color required for component binding; not currently emitted by design/tokens.pen."
+        },
+        {
+          "name": "color/destructive-border",
+          "resolvedType": "COLOR",
+          "scopes": [
+            "STROKE_COLOR"
+          ],
+          "codeSyntax": {
+            "WEB": "var(--destructive-border)"
+          },
+          "modes": {
+            "Light": "0 93% 84%",
+            "Dark": "0 55% 36%"
+          },
+          "note": "Runtime CSS semantic color required for component binding; not currently emitted by design/tokens.pen."
         }
       ]
     },
@@ -851,9 +866,9 @@
   ],
   "summary": {
     "pageCount": 11,
-    "tokenVariableCount": 53,
+    "tokenVariableCount": 54,
     "sourceTokenVariableCount": 43,
-    "runtimeColorVariableCount": 10,
+    "runtimeColorVariableCount": 11,
     "runtimeVariableCount": 1,
     "textStyleCount": 7,
     "effectStyleCount": 8

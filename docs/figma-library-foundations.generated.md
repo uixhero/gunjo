@@ -5,9 +5,9 @@
 ## Summary
 
 - Pages: 11
-- Gunjo Tokens variables: 53
+- Gunjo Tokens variables: 54
   - Source token variables: 43
-  - Runtime color variables: 10
+  - Runtime color variables: 11
 - Gunjo Runtime variables: 1
 - Text styles: 7
 - Effect styles: 8
@@ -87,6 +87,7 @@ Modes: `Light`, `Dark`
 | color/warning-strong-foreground | COLOR | `TEXT_FILL` | `var(--warning-strong-foreground)` |
 | color/destructive-strong | COLOR | `FRAME_FILL`, `SHAPE_FILL`, `TEXT_FILL` | `var(--destructive-strong)` |
 | color/destructive-strong-foreground | COLOR | `TEXT_FILL` | `var(--destructive-strong-foreground)` |
+| color/destructive-border | COLOR | `STROKE_COLOR` | `var(--destructive-border)` |
 
 ### Gunjo Runtime
 
