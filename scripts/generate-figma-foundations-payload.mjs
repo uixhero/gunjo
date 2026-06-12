@@ -90,6 +90,64 @@ const EFFECT_STYLES = [
   "Gunjo/Shadow/none",
 ];
 
+const RUNTIME_COLOR_VARIABLES = [
+  {
+    name: "color/primary-strong",
+    cssName: "primary-strong",
+    scopes: ["FRAME_FILL", "SHAPE_FILL", "TEXT_FILL"],
+  },
+  {
+    name: "color/primary-strong-foreground",
+    cssName: "primary-strong-foreground",
+    scopes: ["TEXT_FILL"],
+  },
+  {
+    name: "color/info-strong",
+    cssName: "info-strong",
+    scopes: ["FRAME_FILL", "SHAPE_FILL", "TEXT_FILL"],
+  },
+  {
+    name: "color/info-strong-foreground",
+    cssName: "info-strong-foreground",
+    scopes: ["TEXT_FILL"],
+  },
+  {
+    name: "color/success-strong",
+    cssName: "success-strong",
+    scopes: ["FRAME_FILL", "SHAPE_FILL", "TEXT_FILL"],
+  },
+  {
+    name: "color/success-strong-foreground",
+    cssName: "success-strong-foreground",
+    scopes: ["TEXT_FILL"],
+  },
+  {
+    name: "color/warning-strong",
+    cssName: "warning-strong",
+    scopes: ["FRAME_FILL", "SHAPE_FILL", "TEXT_FILL"],
+  },
+  {
+    name: "color/warning-strong-foreground",
+    cssName: "warning-strong-foreground",
+    scopes: ["TEXT_FILL"],
+  },
+  {
+    name: "color/destructive-strong",
+    cssName: "destructive-strong",
+    scopes: ["FRAME_FILL", "SHAPE_FILL", "TEXT_FILL"],
+  },
+  {
+    name: "color/destructive-strong-foreground",
+    cssName: "destructive-strong-foreground",
+    scopes: ["TEXT_FILL"],
+  },
+  {
+    name: "color/destructive-border",
+    cssName: "destructive-border",
+    scopes: ["STROKE_COLOR"],
+  },
+];
+
 function readJson(relativePath) {
   return JSON.parse(readFileSync(join(ROOT, relativePath), "utf8"));
 }
@@ -144,6 +202,7 @@ function modeValue(type, value) {
 
 function scopesForToken(key, type) {
   if (type !== "color") return [];
+  if (["background", "foreground"].includes(key)) return ["FRAME_FILL", "SHAPE_FILL", "TEXT_FILL"];
   if (key.includes("foreground")) return ["TEXT_FILL"];
   if (["border", "input", "ring"].includes(key)) return ["STROKE_COLOR"];
   return ["FRAME_FILL", "SHAPE_FILL"];
@@ -174,7 +233,20 @@ function buildTokenVariables() {
 }
 
 function buildReport() {
+  const rootCss = readCssVariables("root");
+  const darkCss = readCssVariables("dark");
   const tokenVariables = buildTokenVariables();
+  const runtimeColorVariables = RUNTIME_COLOR_VARIABLES.map((variable) => ({
+    name: variable.name,
+    resolvedType: "COLOR",
+    scopes: variable.scopes,
+    codeSyntax: { WEB: `var(--${variable.cssName})` },
+    modes: {
+      Light: rootCss[variable.cssName],
+      Dark: darkCss[variable.cssName] ?? rootCss[variable.cssName],
+    },
+    note: "Runtime CSS semantic color required for component binding; not currently emitted by design/tokens.pen.",
+  }));
   const runtimeVariables = [
     {
       name: "radius/base",
@@ -185,6 +257,7 @@ function buildReport() {
       note: "Runtime CSS variable required for component corner-radius binding; not currently emitted by design/tokens.pen.",
     },
   ];
+  const gunjoTokenVariables = [...tokenVariables, ...runtimeColorVariables];
 
   return {
     generatedAt: new Date().toISOString(),
@@ -198,7 +271,7 @@ function buildReport() {
       {
         name: "Gunjo Tokens",
         modes: ["Light", "Dark"],
-        variables: tokenVariables,
+        variables: gunjoTokenVariables,
       },
       {
         name: "Gunjo Runtime",
@@ -210,7 +283,9 @@ function buildReport() {
     effectStyles: EFFECT_STYLES,
     summary: {
       pageCount: PAGES.length,
-      tokenVariableCount: tokenVariables.length,
+      tokenVariableCount: gunjoTokenVariables.length,
+      sourceTokenVariableCount: tokenVariables.length,
+      runtimeColorVariableCount: runtimeColorVariables.length,
       runtimeVariableCount: runtimeVariables.length,
       textStyleCount: TEXT_STYLES.length,
       effectStyleCount: EFFECT_STYLES.length,
@@ -228,6 +303,8 @@ function buildMarkdown(report) {
     "",
     `- Pages: ${report.summary.pageCount}`,
     `- Gunjo Tokens variables: ${report.summary.tokenVariableCount}`,
+    `  - Source token variables: ${report.summary.sourceTokenVariableCount}`,
+    `  - Runtime color variables: ${report.summary.runtimeColorVariableCount}`,
     `- Gunjo Runtime variables: ${report.summary.runtimeVariableCount}`,
     `- Text styles: ${report.summary.textStyleCount}`,
     `- Effect styles: ${report.summary.effectStyleCount}`,

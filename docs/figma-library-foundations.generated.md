@@ -5,7 +5,9 @@
 ## Summary
 
 - Pages: 11
-- Gunjo Tokens variables: 43
+- Gunjo Tokens variables: 54
+  - Source token variables: 43
+  - Runtime color variables: 11
 - Gunjo Runtime variables: 1
 - Text styles: 7
 - Effect styles: 8
@@ -32,8 +34,8 @@ Modes: `Light`, `Dark`
 
 | Name | Type | Scopes | Code syntax |
 | --- | --- | --- | --- |
-| color/background | COLOR | `FRAME_FILL`, `SHAPE_FILL` | `var(--background)` |
-| color/foreground | COLOR | `TEXT_FILL` | `var(--foreground)` |
+| color/background | COLOR | `FRAME_FILL`, `SHAPE_FILL`, `TEXT_FILL` | `var(--background)` |
+| color/foreground | COLOR | `FRAME_FILL`, `SHAPE_FILL`, `TEXT_FILL` | `var(--foreground)` |
 | color/card | COLOR | `FRAME_FILL`, `SHAPE_FILL` | `var(--card)` |
 | color/card-foreground | COLOR | `TEXT_FILL` | `var(--card-foreground)` |
 | color/popover | COLOR | `FRAME_FILL`, `SHAPE_FILL` | `var(--popover)` |
@@ -75,6 +77,17 @@ Modes: `Light`, `Dark`
 | motion/ease/in | STRING | (hidden) | `var(--ease-in)` |
 | motion/ease/out | STRING | (hidden) | `var(--ease-out)` |
 | motion/ease/in-out | STRING | (hidden) | `var(--ease-in-out)` |
+| color/primary-strong | COLOR | `FRAME_FILL`, `SHAPE_FILL`, `TEXT_FILL` | `var(--primary-strong)` |
+| color/primary-strong-foreground | COLOR | `TEXT_FILL` | `var(--primary-strong-foreground)` |
+| color/info-strong | COLOR | `FRAME_FILL`, `SHAPE_FILL`, `TEXT_FILL` | `var(--info-strong)` |
+| color/info-strong-foreground | COLOR | `TEXT_FILL` | `var(--info-strong-foreground)` |
+| color/success-strong | COLOR | `FRAME_FILL`, `SHAPE_FILL`, `TEXT_FILL` | `var(--success-strong)` |
+| color/success-strong-foreground | COLOR | `TEXT_FILL` | `var(--success-strong-foreground)` |
+| color/warning-strong | COLOR | `FRAME_FILL`, `SHAPE_FILL`, `TEXT_FILL` | `var(--warning-strong)` |
+| color/warning-strong-foreground | COLOR | `TEXT_FILL` | `var(--warning-strong-foreground)` |
+| color/destructive-strong | COLOR | `FRAME_FILL`, `SHAPE_FILL`, `TEXT_FILL` | `var(--destructive-strong)` |
+| color/destructive-strong-foreground | COLOR | `TEXT_FILL` | `var(--destructive-strong-foreground)` |
+| color/destructive-border | COLOR | `STROKE_COLOR` | `var(--destructive-border)` |
 
 ### Gunjo Runtime
 
