@@ -88,6 +88,19 @@ component families:
   - Docs-derived `Unchecked`, `Checked`, and `Disabled` states are documented
     as specimens, including the disabled Label copy and disabled reason tooltip
     text.
+- `Switch` on the `Inputs` page.
+  - Section node: `70:13` (`Switch / Section`).
+  - Component set node: `70:28`.
+  - Variants: `unchecked`, `checked` on the `variant` axis.
+  - Layout: `Switch / Overview card`, `Switch / Component card`, and
+    `Switch / Specimen card`.
+  - The component set records the 44 x 24 px track, 2 px padding, full-radius
+    track, 20 px thumb, thumb x-position movement from 2 px to 22 px,
+    focus-visible ring treatment, disabled opacity behavior, and
+    `checked`/`defaultChecked`/`onCheckedChange`/`disabled` prop structure.
+  - Docs-derived `Off`, `On`, and `Disabled` states are documented as
+    specimens, including the disabled Label copy and disabled reason tooltip
+    text.
 
 ## Local Payload
 
@@ -173,13 +186,25 @@ The owner then approved exporting the additional Checkbox component data with:
 > `muted`, `ring`) from this private pre-public repository to the Figma file
 > `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional Switch component data with:
+
+> I approve exporting the Switch variant names (`unchecked`, `checked`),
+> `checked`/`defaultChecked`/`onCheckedChange`/`disabled` prop structure,
+> docs-derived state taxonomy (`off`, `on`, `disabled`), dimensions, padding,
+> radius, thumb display, thumb movement, focus ring, disabled opacity, display
+> labels and sample copy including Label and disabled reason tooltip, style
+> information, and token names and values (`foreground`, `background`,
+> `secondary`, `ring`) from this private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
 
 1. Review the Figma file manually.
-2. Confirm the Button, TooltipButton, CopyButton, Input, and Checkbox component
-   sets, runtime semantic colors, and specimen treatments are acceptable.
+2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, and Switch
+   component sets, runtime semantic colors, and specimen treatments are
+   acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
