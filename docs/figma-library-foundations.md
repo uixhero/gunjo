@@ -75,6 +75,19 @@ component families:
     documented as specimens instead of persistent component variants.
   - The specimen card records the FormGroup width rule while keeping the
     standalone Input component at its intrinsic 280 px width.
+- `Checkbox` on the `Inputs` page.
+  - Section node: `65:13` (`Checkbox / Section`).
+  - Component set node: `65:28`.
+  - Variants: `unchecked`, `checked`, `disabled` on the `variant` axis.
+  - Layout: `Checkbox / Overview card`, `Checkbox / Component card`, and
+    `Checkbox / Specimen card`.
+  - The component set records the 20 px control size, 4 px radius, checked
+    check mark display, `checked`/`onCheckedChange`/`disabled` prop structure,
+    and token bindings for `foreground`, `background`, `input`, `muted`, and
+    `ring`.
+  - Docs-derived `Unchecked`, `Checked`, and `Disabled` states are documented
+    as specimens, including the disabled Label copy and disabled reason tooltip
+    text.
 
 ## Local Payload
 
@@ -150,13 +163,23 @@ The owner then approved exporting the additional Input component data with:
 > labels, sample copy, and style information from this private pre-public
 > repository to the Figma file `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional Checkbox component data with:
+
+> I approve exporting the Checkbox variant names (`unchecked`, `checked`,
+> `disabled`), `checked`/`onCheckedChange`/`disabled` prop structure,
+> dimensions, radius, check mark display, docs-derived state taxonomy, display
+> labels, sample copy, style information including Label and disabled reason
+> tooltip, and token names and values (`foreground`, `background`, `input`,
+> `muted`, `ring`) from this private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
 
 1. Review the Figma file manually.
-2. Confirm the Button, TooltipButton, CopyButton, and Input component sets,
-   runtime semantic colors, and specimen treatments are acceptable.
+2. Confirm the Button, TooltipButton, CopyButton, Input, and Checkbox component
+   sets, runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
