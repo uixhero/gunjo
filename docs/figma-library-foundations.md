@@ -130,6 +130,23 @@ component families:
   - Docs-derived `with-label`, `grouped-options`, and `disabled` states are
     documented as form specimens, including FormGroup, FormLabel, FormControl,
     FormDescription, and disabled reason tooltip copy.
+- `Slider` on the `Inputs` page.
+  - Section node: `87:13` (`Slider / Section`).
+  - Component set node: `87:26`.
+  - Variants: `default` on the `variant` axis.
+  - Layout: `Slider / Overview card`, `Slider / Component card`, and
+    `Slider / Specimen card`.
+  - The component set records the 200 x 20 px range track, 10 px radius,
+    token-bound track fill, 20 px thumb, 2 px thumb border, thumb
+    foreground/background binding, focus-visible ring treatment, disabled
+    opacity behavior, and `value`/`defaultValue`/`onValueChange`/`min`/`max`/
+    `step`/`disabled` prop structure.
+  - `color/input` scope was extended from stroke-only to include `FRAME_FILL`
+    and `SHAPE_FILL`, because Slider uses the token as a track fill.
+  - Docs-derived `live-value`, `steps`, and `disabled` states are documented as
+    form specimens, including FormGroup, FormLabel, FormControl,
+    FormDescription, HStack-style label/value layout, and disabled reason
+    tooltip copy.
 
 ## Local Payload
 
@@ -251,14 +268,26 @@ The owner then approved exporting the additional Select component data with:
 > `ring`, `muted`) from this private pre-public repository to the Figma file
 > `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional Slider component data with:
+
+> I approve exporting the Slider variant names (`default`),
+> `value`/`defaultValue`/`onValueChange`/`min`/`max`/`step`/`disabled` prop
+> structure, docs-derived state taxonomy (`live-value`, `steps`, `disabled`),
+> dimensions, radius, track display, thumb display, focus ring, disabled
+> opacity, display labels and sample copy including FormGroup, FormLabel,
+> FormControl, FormDescription, HStack, and disabled reason tooltip, style
+> information, and token names and values (`input`, `foreground`,
+> `background`, `ring`, `muted-foreground`) from this private pre-public
+> repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
 
 1. Review the Figma file manually.
 2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch,
-   RadioGroup, and Select component sets, runtime semantic colors, and specimen
-   treatments are acceptable.
+   RadioGroup, Select, and Slider component sets, runtime semantic colors, and
+   specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
