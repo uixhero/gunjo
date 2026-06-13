@@ -69,27 +69,22 @@ export default function Home() {
             <section className="relative flex min-h-[calc(100vh-3.5rem)] items-center overflow-hidden">
                 <HeroBackground />
                 <div className="relative z-10 mx-auto flex w-full max-w-6xl items-center gap-8 px-6 py-20 md:gap-12 lg:gap-16">
-                    {/* Vertical kanji — visible from tablet up */}
-                    <div
-                        className="on-hero-strong hidden shrink-0 select-none md:block"
-                        style={{
-                            writingMode: "vertical-rl",
-                            fontFamily: "var(--font-mincho), serif",
-                        }}
-                    >
-                        <span className="text-[140px] font-bold leading-[0.9] tracking-[0.15em] drop-shadow-2xl lg:text-[180px]">
-                            {home.hero.kanji}
-                        </span>
-                    </div>
+                    {/* Vertical 群青 — outlined SVG (font-independent), tablet up */}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                        src="/renew/SVG/title_v_ol.svg"
+                        alt={home.hero.kanji}
+                        className="hidden h-[320px] w-auto shrink-0 select-none drop-shadow-2xl md:block lg:h-[400px]"
+                    />
 
                     {/* Content */}
                     <div className="on-hero flex max-w-2xl flex-1 flex-col gap-6">
-                        <div
-                            className="text-4xl font-bold leading-tight md:hidden"
-                            style={{ fontFamily: "var(--font-mincho), serif" }}
-                        >
-                            {home.hero.kanji}
-                        </div>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                            src="/renew/SVG/title_h_ol.svg"
+                            alt={home.hero.kanji}
+                            className="h-[64px] w-auto md:hidden"
+                        />
                         <Badge
                             variant="outline"
                             className="on-hero-badge w-fit gap-1.5"
@@ -126,6 +121,28 @@ export default function Home() {
                             </Button>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            {/* ============== Intro — the threshold (dark) ============== */}
+            <section className="relative overflow-hidden bg-[hsl(var(--pure-black))] py-48 md:py-64">
+                <div
+                    className="pointer-events-none absolute inset-0 gunjo-intro-burst"
+                    aria-hidden
+                />
+                <div
+                    className="pointer-events-none absolute inset-x-0 top-0 h-1/2 gunjo-intro-fade-top"
+                    aria-hidden
+                />
+                <div className="on-hero relative z-10 mx-auto max-w-2xl px-6 text-center">
+                    <p
+                        className="text-3xl font-medium leading-relaxed md:text-4xl"
+                        style={{ fontFamily: "var(--font-mincho), serif" }}
+                    >
+                        まだ、何者でもない。
+                        <br />
+                        だから、どんな色にもなれる。
+                    </p>
                 </div>
             </section>
 
