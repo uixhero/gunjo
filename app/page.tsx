@@ -95,7 +95,7 @@ export default function Home() {
                             className="on-hero-badge w-fit gap-1.5"
                         >
                             <Sparkles className="h-3 w-3" />
-                            Alpha · v0.0.1-alpha.1
+                            Alpha · v0.0.1-alpha.2
                         </Badge>
                         <h1
                             className="text-5xl font-extrabold leading-[1.05] tracking-tight lg:text-7xl"
