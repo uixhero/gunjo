@@ -110,13 +110,13 @@ export default function Home() {
                                 {home.hero.taglineMain}
                             </h1>
                         </div>
-                        <p className="on-hero-muted max-w-xl text-base lg:text-lg">
+                        <p className="on-hero max-w-xl text-base lg:text-lg">
                             {home.hero.subtitle}
                         </p>
                         <div className="mt-2 flex flex-wrap gap-3">
                             <Button asChild size="lg" className="on-hero-cta-primary">
-                                <Link href="/showcase">
-                                    {home.hero.ctaShowcase}
+                                <Link href="/docs/introduction">
+                                    {home.hero.ctaPrimary}
                                     <ArrowRight className="ml-1.5 h-4 w-4" />
                                 </Link>
                             </Button>
@@ -126,7 +126,7 @@ export default function Home() {
                                 variant="outline"
                                 className="on-hero-cta-outline backdrop-blur"
                             >
-                                <Link href="/docs/ai-handoff">{home.hero.ctaAi}</Link>
+                                <Link href="/showcase">{home.hero.ctaSecondary}</Link>
                             </Button>
                         </div>
                     </div>

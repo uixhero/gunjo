@@ -34,6 +34,7 @@ export function HeroBackground() {
                 <rect width="100%" height="100%" filter="url(#hero-grain)" />
             </svg>
             <div className="absolute inset-0 gunjo-hero-vignette" />
+            <div className="absolute inset-0 gunjo-hero-scrim" />
             <div className="absolute inset-x-0 bottom-0 h-[26%] gunjo-hero-fade" />
         </div>
     );

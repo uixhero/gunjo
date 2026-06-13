@@ -51,6 +51,11 @@ export function SiteHeader() {
 
     const navItems = [
         {
+            href: "/docs/introduction",
+            label: header("docs"),
+            match: (p: string) => p.startsWith("/docs"),
+        },
+        {
             href: "/showcase",
             label: header("showcase"),
             match: (p: string) => p.startsWith("/showcase"),
@@ -59,11 +64,6 @@ export function SiteHeader() {
             href: "/patterns",
             label: header("patterns"),
             match: (p: string) => p.startsWith("/patterns"),
-        },
-        {
-            href: "/docs/introduction",
-            label: header("docs"),
-            match: (p: string) => p.startsWith("/docs"),
         },
     ];
 

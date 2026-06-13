@@ -10,8 +10,8 @@ export type HomeTranslations = {
     taglineMain: string;
     taglineSub: string;
     subtitle: string;
-    ctaShowcase: string;
-    ctaAi: string;
+    ctaPrimary: string;
+    ctaSecondary: string;
   };
   showcase: {
     label: string;
@@ -382,11 +382,11 @@ export const translations: Record<
     home: {
       hero: {
         kanji: "群青",
-        taglineMain: "A design system for designers and AI.",
+        taglineMain: "A design system for you and AI.",
         taglineSub: "Not yet blue. Becoming blue.",
         subtitle: "150+ components, tokens, and AI handoff.",
-        ctaShowcase: "View the showcase",
-        ctaAi: "AI handoff",
+        ctaPrimary: "View the docs",
+        ctaSecondary: "Browse the showcase",
       },
       showcase: {
         label: "Start here",
@@ -927,11 +927,11 @@ export const translations: Record<
     home: {
       hero: {
         kanji: "群青",
-        taglineMain: "デザイナーと AI のための、\nデザインシステム。",
+        taglineMain: "あなたと AI のための、\nデザインシステム。",
         taglineSub: "未だ青ならず、青になりつつあるもの。",
         subtitle: "150+ のコンポーネント・トークン・AI 連携。",
-        ctaShowcase: "Showcase を見る",
-        ctaAi: "AI Handoff",
+        ctaPrimary: "ドキュメントを見る",
+        ctaSecondary: "ショーケースを見る",
       },
       showcase: {
         label: "Start here",

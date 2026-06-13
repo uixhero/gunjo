@@ -178,6 +178,19 @@
         );
     }
 
+    /* Readability scrim behind the hero copy — darkens the text band in the
+       centre while leaving the sun (far left) and the bright dawn (right)
+       largely intact. Guarantees AA contrast for the white copy. */
+    .gunjo-hero-scrim {
+        background: linear-gradient(
+            100deg,
+            transparent 0%,
+            hsl(var(--pure-black) / 0.46) 26%,
+            hsl(var(--pure-black) / 0.42) 54%,
+            transparent 80%
+        );
+    }
+
     @media (prefers-reduced-motion: reduce) {
         .gunjo-hero-photo,
         .gunjo-hero-lightpulse,
@@ -212,7 +225,9 @@
 @layer utilities {
     .on-hero {
         color: hsl(var(--pure-white));
-        text-shadow: 0 1px 24px hsl(var(--pure-black) / 0.45);
+        text-shadow:
+            0 1px 3px hsl(var(--pure-black) / 0.55),
+            0 2px 28px hsl(var(--pure-black) / 0.38);
     }
 
     .on-hero-muted {
@@ -230,6 +245,7 @@
     .on-hero-cta-primary {
         background-color: hsl(var(--pure-white)) !important;
         color: hsl(var(--gunjo-deepest)) !important;
+        text-shadow: none;
     }
 
     .on-hero-cta-primary:hover {
@@ -241,6 +257,7 @@
         background-color: hsl(var(--pure-white) / 0.05) !important;
         color: hsl(var(--pure-white)) !important;
         border-color: hsl(var(--pure-white) / 0.3) !important;
+        text-shadow: none;
     }
 
     .on-hero-cta-outline:hover {
