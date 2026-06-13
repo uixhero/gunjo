@@ -468,13 +468,13 @@ export const translations: Record<
       },
       becoming: {
         heading: "Alpha scope",
-        body: "GunjoUI is currently 0.0.1-alpha.1. Components and tokens are ready for inspection; patterns are intentionally limited to dashboard, auth, and media library until the remaining pattern pages are rebuilt with GunjoUI components.",
+        body: "GunjoUI is currently 0.0.1-alpha.2. Components and tokens are ready for inspection; patterns are intentionally limited to dashboard, auth, and media library until the remaining pattern pages are rebuilt with GunjoUI components.",
         changelogCta: "View CHANGELOG",
         githubCta: "Star on GitHub",
       },
     },
     intro: {
-      alphaBadge: "Alpha · v0.0.1-alpha.1",
+      alphaBadge: "Alpha · v0.0.1-alpha.2",
       componentCountBadge: "150+ components",
       ctaPrimary: "Get Started",
       ctaSecondary: "Browse Components",
@@ -1014,13 +1014,13 @@ export const translations: Record<
       },
       becoming: {
         heading: "Alpha の公開範囲",
-        body: "GunjoUI は現在 0.0.1-alpha.1。コンポーネントとトークンは確認できる状態まで監査済みです。パターンは dashboard / auth / media library に限定し、残りは GunjoUI コンポーネントで作り直してから公開します。",
+        body: "GunjoUI は現在 0.0.1-alpha.2。コンポーネントとトークンは確認できる状態まで監査済みです。パターンは dashboard / auth / media library に限定し、残りは GunjoUI コンポーネントで作り直してから公開します。",
         changelogCta: "CHANGELOG を見る",
         githubCta: "GitHub でスター",
       },
     },
     intro: {
-      alphaBadge: "Alpha · v0.0.1-alpha.1",
+      alphaBadge: "Alpha · v0.0.1-alpha.2",
       componentCountBadge: "150+ コンポーネント",
       ctaPrimary: "はじめる",
       ctaSecondary: "コンポーネント一覧",

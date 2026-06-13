@@ -40,7 +40,7 @@ const COPY_EN = {
     ],
     alphaHeading: "Where we are today",
     alphaBody:
-        "GunjoUI is in alpha (0.0.1-alpha.1). Default stability for any component not explicitly classified is Experimental. As specific components stabilize, we'll graduate them upward — see the changelog for promotions.",
+        "GunjoUI is in alpha (0.0.1-alpha.2). Default stability for any component not explicitly classified is Experimental. As specific components stabilize, we'll graduate them upward — see the changelog for promotions.",
     promotionHeading: "How a component graduates",
     promotionBullets: [
         "Stable → at least one minor release in Beta with no breaking API change, plus a documented migration path for any prior shape.",
@@ -84,7 +84,7 @@ const COPY_JA = {
     ],
     alphaHeading: "現状",
     alphaBody:
-        "GunjoUI は alpha（0.0.1-alpha.1）です。明示的に分類されていないコンポーネントのデフォルトは Experimental になります。個別のコンポーネントが安定したら段階的に格上げ — 昇格内容は changelog を参照。",
+        "GunjoUI は alpha（0.0.1-alpha.2）です。明示的に分類されていないコンポーネントのデフォルトは Experimental になります。個別のコンポーネントが安定したら段階的に格上げ — 昇格内容は changelog を参照。",
     promotionHeading: "昇格条件",
     promotionBullets: [
         "Stable → Beta で最低 1 マイナー期間 API 破壊的変更ゼロ、過去の形からの移行ドキュメント完備。",

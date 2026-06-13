@@ -9,9 +9,9 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ---
 
-## [Unreleased]
+## [0.0.1-alpha.2] — 2026-06-13
 
-次回の publish（`0.0.1-alpha.2` 想定）で配布される予定の変更。マージ済だがまだ npm に出ていない分。
+OSS 公開に合わせた alpha リリース。`0.0.1-alpha.0` / `alpha.1`（70 components）以降に追加された全コンポーネント（Tier 1/2/3 + Templates、計 42 件）と、LICENSE / `repository` フィールド / public 化などの OSS 整備を配布。npm 上の README・メタデータも刷新。**API は今後変更される可能性があります。**
 
 ### Added
 
