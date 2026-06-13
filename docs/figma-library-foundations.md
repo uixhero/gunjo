@@ -147,6 +147,24 @@ component families:
     form specimens, including FormGroup, FormLabel, FormControl,
     FormDescription, HStack-style label/value layout, and disabled reason
     tooltip copy.
+- `Textarea` on the `Inputs` page.
+  - Section node: `90:13` (`Textarea / Section`).
+  - Component set node: `90:28`.
+  - Variants: `default`, `disabled` on the `variant` axis.
+  - Component property: `Content`.
+  - Layout: `Textarea / Overview card`, `Textarea / Component card`, and
+    `Textarea / Specimen card`.
+  - The component set records the 280 x 80 px textarea surface, 12 px
+    horizontal padding, 8 px vertical padding, 8 px radius, token-bound stroke,
+    shadow-sm effect, placeholder/value display, focus-visible ring treatment,
+    disabled background/text/opacity behavior, invalid helper text treatment,
+    and `value`/`defaultValue`/`onChange`/`rows`/`placeholder`/`disabled`/
+    `aria-invalid`/`maxLength` prop structure.
+  - `color/destructive` scope was extended to include `TEXT_FILL`, because
+    Textarea invalid helper text uses the token as a text fill.
+  - Docs-derived `with-label`, `character-counter`, `invalid`, and `disabled`
+    states are documented as form specimens, including FormGroup, FormLabel,
+    FormControl, FormDescription, and disabled reason tooltip copy.
 
 ## Local Payload
 
@@ -280,14 +298,28 @@ The owner then approved exporting the additional Slider component data with:
 > `background`, `ring`, `muted-foreground`) from this private pre-public
 > repository to the Figma file `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional Textarea component data with:
+
+> I approve exporting the Textarea variant names (`default`, `disabled`),
+> `value`/`defaultValue`/`onChange`/`rows`/`placeholder`/`disabled`/
+> `aria-invalid`/`maxLength` prop structure, docs-derived state taxonomy
+> (`with-label`, `character-counter`, `invalid`, `disabled`), dimensions,
+> padding, radius, stroke, placeholder/value display, shadow, focus ring,
+> disabled background/text/opacity, invalid helper text display, display labels
+> and sample copy including FormGroup, FormLabel, FormControl,
+> FormDescription, and disabled reason tooltip, style information, and token
+> names and values (`input`, `ring`, `muted`, `muted-foreground`,
+> `foreground`, `destructive`) from this private pre-public repository to the
+> Figma file `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
 
 1. Review the Figma file manually.
 2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch,
-   RadioGroup, Select, and Slider component sets, runtime semantic colors, and
-   specimen treatments are acceptable.
+   RadioGroup, Select, Slider, and Textarea component sets, runtime semantic
+   colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
