@@ -115,6 +115,21 @@ component families:
   - Docs-derived `rich-options`, `horizontal`, and `disabled-option` states are
     documented as group specimens, including Label copy and disabled reason
     tooltip text.
+- `Select` on the `Inputs` page.
+  - Section node: `81:13` (`Select / Section`).
+  - Component set node: `81:27`.
+  - Variants: `default` on the `variant` axis.
+  - Component property: `Value`.
+  - Layout: `Select / Overview card`, `Select / Component card`, and
+    `Select / Specimen card`.
+  - The component set records the 200 x 36 px native select surface, 12 px
+    horizontal padding, 8 px radius, token-bound stroke, selected value /
+    placeholder display, chevron affordance, focus-visible ring treatment,
+    full-width wrapper behavior, disabled background/text/opacity behavior, and
+    `value`/`defaultValue`/`onChange`/`disabled` prop structure.
+  - Docs-derived `with-label`, `grouped-options`, and `disabled` states are
+    documented as form specimens, including FormGroup, FormLabel, FormControl,
+    FormDescription, and disabled reason tooltip copy.
 
 ## Local Payload
 
@@ -223,14 +238,27 @@ The owner then approved exporting the additional RadioGroup component data with:
 > `muted-foreground`) from this private pre-public repository to the Figma file
 > `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional Select component data with:
+
+> I approve exporting the Select variant names (`default`),
+> `value`/`defaultValue`/`onChange`/`disabled` prop structure, docs-derived
+> state taxonomy (`with-label`, `grouped-options`, `disabled`), dimensions,
+> padding, radius, stroke, selected value and placeholder display, chevron icon
+> display, full-width wrapper behavior, focus ring, disabled background/text/
+> opacity, display labels and sample copy including FormGroup, FormLabel,
+> FormControl, FormDescription, and disabled reason tooltip, style information,
+> and token names and values (`foreground`, `muted-foreground`, `input`,
+> `ring`, `muted`) from this private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
 
 1. Review the Figma file manually.
-2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch, and
-   RadioGroup component sets, runtime semantic colors, and specimen treatments
-   are acceptable.
+2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch,
+   RadioGroup, and Select component sets, runtime semantic colors, and specimen
+   treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
