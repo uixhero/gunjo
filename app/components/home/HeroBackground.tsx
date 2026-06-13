@@ -15,10 +15,11 @@ export function HeroBackground() {
             aria-hidden
         >
             <div className="absolute inset-0 gunjo-hero-base" />
-            <div className="absolute -left-[10%] top-[10%] h-[60vh] w-[60vw] rounded-full opacity-40 blur-[120px] gunjo-hero-bleed" />
-            <div className="absolute -right-[10%] -bottom-[10%] h-[50vh] w-[55vw] rounded-full opacity-25 blur-[140px] gunjo-hero-kobicha" />
+            <div className="absolute inset-0 gunjo-hero-photo" />
+            <div className="absolute inset-0 gunjo-hero-lightpulse" />
+            <div className="absolute inset-0 gunjo-hero-corners" />
             <svg
-                className="absolute inset-0 h-full w-full opacity-[0.08] mix-blend-overlay"
+                className="absolute inset-0 h-full w-full opacity-[0.06] mix-blend-overlay"
                 aria-hidden
             >
                 <filter id="hero-grain">
@@ -33,6 +34,8 @@ export function HeroBackground() {
                 <rect width="100%" height="100%" filter="url(#hero-grain)" />
             </svg>
             <div className="absolute inset-0 gunjo-hero-vignette" />
+            <div className="absolute inset-0 gunjo-hero-scrim" />
+            <div className="absolute inset-x-0 bottom-0 h-[26%] gunjo-hero-fade" />
         </div>
     );
 }

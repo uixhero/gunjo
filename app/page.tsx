@@ -69,27 +69,22 @@ export default function Home() {
             <section className="relative flex min-h-[calc(100vh-3.5rem)] items-center overflow-hidden">
                 <HeroBackground />
                 <div className="relative z-10 mx-auto flex w-full max-w-6xl items-center gap-8 px-6 py-20 md:gap-12 lg:gap-16">
-                    {/* Vertical kanji — visible from tablet up */}
-                    <div
-                        className="on-hero-strong hidden shrink-0 select-none md:block"
-                        style={{
-                            writingMode: "vertical-rl",
-                            fontFamily: "var(--font-mincho), serif",
-                        }}
-                    >
-                        <span className="text-[140px] font-bold leading-[0.9] tracking-[0.15em] drop-shadow-2xl lg:text-[180px]">
-                            {home.hero.kanji}
-                        </span>
-                    </div>
+                    {/* Vertical 群青 — outlined SVG (font-independent), tablet up */}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                        src="/renew/SVG/title_v_ol.svg"
+                        alt={home.hero.kanji}
+                        className="hidden h-[320px] w-auto shrink-0 select-none drop-shadow-2xl md:block lg:h-[400px]"
+                    />
 
                     {/* Content */}
                     <div className="on-hero flex max-w-2xl flex-1 flex-col gap-6">
-                        <div
-                            className="text-4xl font-bold leading-tight md:hidden"
-                            style={{ fontFamily: "var(--font-mincho), serif" }}
-                        >
-                            {home.hero.kanji}
-                        </div>
+                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                        <img
+                            src="/renew/SVG/title_h_ol.svg"
+                            alt={home.hero.kanji}
+                            className="h-[64px] w-auto md:hidden"
+                        />
                         <Badge
                             variant="outline"
                             className="on-hero-badge w-fit gap-1.5"
@@ -97,22 +92,31 @@ export default function Home() {
                             <Sparkles className="h-3 w-3" />
                             Alpha · v0.0.1-alpha.2
                         </Badge>
-                        <h1
-                            className="text-5xl font-extrabold leading-[1.05] tracking-tight lg:text-7xl"
-                            style={{ fontFamily: "var(--font-mincho), serif" }}
-                        >
-                            {home.hero.taglineMain}
-                        </h1>
-                        <p className="on-hero-muted max-w-xl text-xl lg:text-2xl">
-                            {home.hero.taglineSub}
-                        </p>
-                        <p className="on-hero-faint max-w-xl text-base">
+                        <div className="flex flex-col gap-2">
+                            <p
+                                className="on-hero-muted text-base md:text-lg"
+                                style={{ fontFamily: "var(--font-mincho), serif" }}
+                            >
+                                {home.hero.taglineSub}
+                            </p>
+                            <h1
+                                className="text-3xl font-extrabold leading-[1.18] tracking-tight md:text-4xl lg:text-5xl"
+                                style={{
+                                    fontFamily: "var(--font-mincho), serif",
+                                    whiteSpace: "pre-line",
+                                    wordBreak: "keep-all",
+                                }}
+                            >
+                                {home.hero.taglineMain}
+                            </h1>
+                        </div>
+                        <p className="on-hero max-w-xl text-base lg:text-lg">
                             {home.hero.subtitle}
                         </p>
                         <div className="mt-2 flex flex-wrap gap-3">
                             <Button asChild size="lg" className="on-hero-cta-primary">
                                 <Link href="/docs/introduction">
-                                    {home.hero.ctaShowcase}
+                                    {home.hero.ctaPrimary}
                                     <ArrowRight className="ml-1.5 h-4 w-4" />
                                 </Link>
                             </Button>
@@ -122,10 +126,42 @@ export default function Home() {
                                 variant="outline"
                                 className="on-hero-cta-outline backdrop-blur"
                             >
-                                <Link href="/showcase">{home.hero.ctaAi}</Link>
+                                <Link href="/showcase">{home.hero.ctaSecondary}</Link>
                             </Button>
                         </div>
                     </div>
+                </div>
+            </section>
+
+            {/* ============== Intro — the threshold (dark) ============== */}
+            <section className="relative overflow-hidden bg-[hsl(var(--pure-black))] py-48 md:py-64">
+                <div
+                    className="pointer-events-none absolute inset-0 gunjo-intro-burst"
+                    aria-hidden
+                />
+                <div
+                    className="pointer-events-none absolute inset-x-0 top-0 h-1/2 gunjo-intro-fade-top"
+                    aria-hidden
+                />
+                <div className="on-hero relative z-10 mx-auto max-w-2xl px-6 text-center">
+                    <p
+                        className="text-3xl font-medium leading-relaxed md:text-4xl"
+                        style={{ fontFamily: "var(--font-mincho), serif" }}
+                    >
+                        {isJa ? (
+                            <>
+                                まだ、何者でもない。
+                                <br />
+                                だからこそ、どんな色にもなれる。
+                            </>
+                        ) : (
+                            <>
+                                You are not anyone yet.
+                                <br />
+                                Which is exactly why you can become any color.
+                            </>
+                        )}
+                    </p>
                 </div>
             </section>
 

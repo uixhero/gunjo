@@ -22,3 +22,6 @@ HANDOFF.md
 .claude/
 .vercel
 .env*.local
+
+# Source images — commit the optimized webp, not the multi-MB originals
+public/renew/*.png

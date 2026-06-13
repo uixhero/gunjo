@@ -33,37 +33,170 @@
 
     /* ============== Gunjō hero ============== */
 
+    /* Dawn breaking through deep water: a bright light source lower-left,
+       depths darkening toward the upper/lower-right — the "becoming blue".
+       Light stops use literals (brighter than the muted token range) so
+       the dawn actually reads; would be tokenised if we keep this. */
     .gunjo-hero-base {
         background: radial-gradient(
-            ellipse 90% 70% at 35% 30%,
-            hsl(var(--gunjo-deep)) 0%,
-            hsl(var(--gunjo-deeper)) 45%,
+            ellipse 96% 86% at 26% 66%,
+            hsl(200 84% 74%) 0%,
+            hsl(211 72% 47%) 13%,
+            hsl(221 60% 27%) 34%,
+            hsl(var(--gunjo-deeper)) 60%,
             hsl(var(--gunjo-deepest)) 100%
         );
     }
 
-    .gunjo-hero-bleed {
+    /* The sun breaking through — near-white core bleeding into the blue. */
+    .gunjo-hero-glow {
         background: radial-gradient(
             circle,
-            hsl(var(--gunjo-light)) 0%,
-            transparent 70%
+            hsl(196 97% 95%) 0%,
+            hsl(204 88% 76% / 0.55) 22%,
+            transparent 60%
         );
     }
 
-    .gunjo-hero-kobicha {
-        background: radial-gradient(
-            circle,
-            hsl(var(--kobicha-warm)) 0%,
-            transparent 70%
+    /* Deep mass sweeping in from the right (the night not yet left). */
+    .gunjo-hero-dark {
+        background: linear-gradient(
+            150deg,
+            transparent 0%,
+            transparent 44%,
+            hsl(var(--gunjo-deepest) / 0.8) 78%,
+            hsl(var(--pure-black) / 0.96) 100%
         );
     }
 
     .gunjo-hero-vignette {
         background: radial-gradient(
-            ellipse 100% 100% at 50% 50%,
-            transparent 50%,
+            ellipse 118% 110% at 34% 62%,
+            transparent 40%,
+            hsl(var(--pure-black) / 0.42) 70%,
+            hsl(var(--pure-black) / 0.92) 100%
+        );
+    }
+
+    /* The dawn photo layered over the CSS gradient. `screen` lets the
+       bright sun add light while the dark areas fall away, so it reads as
+       light shining through. Slow breathe = light gently alive (ふわふわ). */
+    .gunjo-hero-photo {
+        background-image: url("/renew/bg001.webp");
+        background-size: cover;
+        background-position: 50% 58%;
+        opacity: 1;
+        animation: gunjo-dawn-breathe 12s ease-in-out infinite alternate;
+        will-change: transform, opacity;
+    }
+
+    @keyframes gunjo-dawn-breathe {
+        from {
+            transform: scale(1.02);
+            opacity: 0.78;
+        }
+        to {
+            transform: scale(1.09);
+            opacity: 1;
+        }
+    }
+
+    /* A bright glow at the light source that breathes brighter in sync —
+       keeps the dawn from reading muted; the light feels alive. */
+    .gunjo-hero-lightpulse {
+        background: radial-gradient(
+            circle at 28% 66%,
+            hsl(197 96% 90%) 0%,
+            hsl(205 86% 70% / 0.45) 13%,
+            transparent 40%
+        );
+        mix-blend-mode: screen;
+        animation: gunjo-light-pulse 12s ease-in-out infinite alternate;
+        will-change: opacity, filter;
+    }
+
+    @keyframes gunjo-light-pulse {
+        from {
+            opacity: 0.45;
+            filter: brightness(1);
+        }
+        to {
+            opacity: 0.85;
+            filter: brightness(1.28);
+        }
+    }
+
+    /* Soft dark in the four corners — "not everything has brightened yet". */
+    .gunjo-hero-corners {
+        background:
+            radial-gradient(ellipse 30% 28% at 0% 0%, hsl(var(--pure-black) / 0.3), transparent 70%),
+            radial-gradient(ellipse 30% 28% at 100% 0%, hsl(var(--pure-black) / 0.3), transparent 70%),
+            radial-gradient(ellipse 46% 42% at 0% 100%, hsl(var(--pure-black) / 0.45), transparent 72%),
+            radial-gradient(ellipse 46% 42% at 100% 100%, hsl(var(--pure-black) / 0.55), transparent 72%);
+    }
+
+    /* Intro threshold — the second dawn, mirrored, rising from the dark. */
+    .gunjo-intro-burst {
+        background-image: url("/renew/bg001.webp");
+        background-size: cover;
+        background-position: 50% 50%;
+        transform: rotate(180deg);
+        opacity: 1;
+        animation: gunjo-intro-breathe 14s ease-in-out infinite alternate;
+        will-change: transform, opacity;
+    }
+
+    /* Same breathe, but keeps the 180° rotation (transform would otherwise
+       be overridden by the keyframes). */
+    @keyframes gunjo-intro-breathe {
+        from {
+            transform: rotate(180deg) scale(1.02);
+            opacity: 0.93;
+        }
+        to {
+            transform: rotate(180deg) scale(1.08);
+            opacity: 1;
+        }
+    }
+
+    /* Hero fades to black at its foot, the intro burst rises out of black —
+       the deep blue connects through the dark gap between them. */
+    .gunjo-hero-fade {
+        background: linear-gradient(
+            to bottom,
+            transparent 0%,
             hsl(var(--pure-black)) 100%
         );
+    }
+
+    .gunjo-intro-fade-top {
+        background: linear-gradient(
+            to bottom,
+            hsl(var(--pure-black)) 0%,
+            hsl(var(--pure-black) / 0.4) 45%,
+            transparent 100%
+        );
+    }
+
+    /* Readability scrim behind the hero copy — darkens the text band in the
+       centre while leaving the sun (far left) and the bright dawn (right)
+       largely intact. Guarantees AA contrast for the white copy. */
+    .gunjo-hero-scrim {
+        background: linear-gradient(
+            100deg,
+            transparent 0%,
+            hsl(var(--pure-black) / 0.46) 26%,
+            hsl(var(--pure-black) / 0.42) 54%,
+            transparent 80%
+        );
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .gunjo-hero-photo,
+        .gunjo-hero-lightpulse,
+        .gunjo-intro-burst {
+            animation: none;
+        }
     }
 
     /* ============== Color story swatches ============== */
@@ -92,6 +225,9 @@
 @layer utilities {
     .on-hero {
         color: hsl(var(--pure-white));
+        text-shadow:
+            0 1px 3px hsl(var(--pure-black) / 0.55),
+            0 2px 28px hsl(var(--pure-black) / 0.38);
     }
 
     .on-hero-muted {
@@ -109,6 +245,7 @@
     .on-hero-cta-primary {
         background-color: hsl(var(--pure-white)) !important;
         color: hsl(var(--gunjo-deepest)) !important;
+        text-shadow: none;
     }
 
     .on-hero-cta-primary:hover {
@@ -120,6 +257,7 @@
         background-color: hsl(var(--pure-white) / 0.05) !important;
         color: hsl(var(--pure-white)) !important;
         border-color: hsl(var(--pure-white) / 0.3) !important;
+        text-shadow: none;
     }
 
     .on-hero-cta-outline:hover {
