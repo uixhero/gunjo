@@ -92,21 +92,30 @@ export default function Home() {
                             <Sparkles className="h-3 w-3" />
                             Alpha · v0.0.1-alpha.2
                         </Badge>
-                        <h1
-                            className="text-5xl font-extrabold leading-[1.05] tracking-tight lg:text-7xl"
-                            style={{ fontFamily: "var(--font-mincho), serif" }}
-                        >
-                            {home.hero.taglineMain}
-                        </h1>
-                        <p className="on-hero-muted max-w-xl text-xl lg:text-2xl">
-                            {home.hero.taglineSub}
-                        </p>
-                        <p className="on-hero-faint max-w-xl text-base">
+                        <div className="flex flex-col gap-2">
+                            <p
+                                className="on-hero-muted text-base md:text-lg"
+                                style={{ fontFamily: "var(--font-mincho), serif" }}
+                            >
+                                {home.hero.taglineSub}
+                            </p>
+                            <h1
+                                className="text-3xl font-extrabold leading-[1.18] tracking-tight md:text-4xl lg:text-5xl"
+                                style={{
+                                    fontFamily: "var(--font-mincho), serif",
+                                    whiteSpace: "pre-line",
+                                    wordBreak: "keep-all",
+                                }}
+                            >
+                                {home.hero.taglineMain}
+                            </h1>
+                        </div>
+                        <p className="on-hero-muted max-w-xl text-base lg:text-lg">
                             {home.hero.subtitle}
                         </p>
                         <div className="mt-2 flex flex-wrap gap-3">
                             <Button asChild size="lg" className="on-hero-cta-primary">
-                                <Link href="/docs/introduction">
+                                <Link href="/showcase">
                                     {home.hero.ctaShowcase}
                                     <ArrowRight className="ml-1.5 h-4 w-4" />
                                 </Link>
@@ -117,7 +126,7 @@ export default function Home() {
                                 variant="outline"
                                 className="on-hero-cta-outline backdrop-blur"
                             >
-                                <Link href="/showcase">{home.hero.ctaAi}</Link>
+                                <Link href="/docs/ai-handoff">{home.hero.ctaAi}</Link>
                             </Button>
                         </div>
                     </div>
@@ -139,9 +148,19 @@ export default function Home() {
                         className="text-3xl font-medium leading-relaxed md:text-4xl"
                         style={{ fontFamily: "var(--font-mincho), serif" }}
                     >
-                        まだ、何者でもない。
-                        <br />
-                        だから、どんな色にもなれる。
+                        {isJa ? (
+                            <>
+                                まだ、何者でもない。
+                                <br />
+                                だからこそ、どんな色にもなれる。
+                            </>
+                        ) : (
+                            <>
+                                You are not anyone yet.
+                                <br />
+                                Which is exactly why you can become any color.
+                            </>
+                        )}
                     </p>
                 </div>
             </section>

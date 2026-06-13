@@ -212,6 +212,7 @@
 @layer utilities {
     .on-hero {
         color: hsl(var(--pure-white));
+        text-shadow: 0 1px 24px hsl(var(--pure-black) / 0.45);
     }
 
     .on-hero-muted {

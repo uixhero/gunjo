@@ -382,17 +382,16 @@ export const translations: Record<
     home: {
       hero: {
         kanji: "群青",
-        taglineMain: "Gunjo UI",
-        taglineSub: "A component system for building calm, inspectable interfaces.",
-        subtitle:
-          "150+ audited components, design tokens, usage guidelines, and AI handoff docs — synced from the GunjoUI source of truth, but written for humans to inspect.",
-        ctaShowcase: "Start with docs",
-        ctaAi: "Browse components",
+        taglineMain: "A design system for designers and AI.",
+        taglineSub: "Not yet blue. Becoming blue.",
+        subtitle: "150+ components, tokens, and AI handoff.",
+        ctaShowcase: "View the showcase",
+        ctaAi: "AI handoff",
       },
       showcase: {
         label: "Start here",
         description:
-          "The homepage now points to the areas that matter for the alpha: component catalog, tokens, guidelines, public patterns, and AI handoff.",
+          "Tools to give your color form, fast — components, tokens, guidelines, patterns, and AI handoff.",
       },
       story: {
         label: "The color story",
@@ -467,8 +466,8 @@ export const translations: Record<
         learnMore: "Read the docs",
       },
       becoming: {
-        heading: "Alpha scope",
-        body: "GunjoUI is currently 0.0.1-alpha.2. Components and tokens are ready for inspection; patterns are intentionally limited to dashboard, auth, and media library until the remaining pattern pages are rebuilt with GunjoUI components.",
+        heading: "Your color is already there.",
+        body: "Gunjo is a blue still becoming — and so are you. Make the color only you can, from here.",
         changelogCta: "View CHANGELOG",
         githubCta: "Star on GitHub",
       },
@@ -928,17 +927,16 @@ export const translations: Record<
     home: {
       hero: {
         kanji: "群青",
-        taglineMain: "Gunjo UI",
-        taglineSub: "静かで検証しやすい UI を作るためのコンポーネントシステム。",
-        subtitle:
-          "150+ コンポーネント、デザイントークン、利用ガイドライン、AI 連携ドキュメントを監査済み。GunjoUI の SSOT から同期しつつ、人間が確認できる docs として整えています。",
-        ctaShowcase: "ドキュメントから始める",
-        ctaAi: "コンポーネントを見る",
+        taglineMain: "デザイナーと AI のための、\nデザインシステム。",
+        taglineSub: "未だ青ならず、青になりつつあるもの。",
+        subtitle: "150+ のコンポーネント・トークン・AI 連携。",
+        ctaShowcase: "Showcase を見る",
+        ctaAi: "AI Handoff",
       },
       showcase: {
         label: "Start here",
         description:
-          "alpha 公開で見るべき入口を整理しました。コンポーネント、トークン、ガイドライン、公開パターン、AI 連携へ進めます。",
+          "あなたの色を、すぐ形にする道具。コンポーネント、トークン、ガイドライン、パターン、AI 連携。",
       },
       story: {
         label: "色の物語",
@@ -1013,8 +1011,8 @@ export const translations: Record<
         learnMore: "ドキュメントを読む",
       },
       becoming: {
-        heading: "Alpha の公開範囲",
-        body: "GunjoUI は現在 0.0.1-alpha.2。コンポーネントとトークンは確認できる状態まで監査済みです。パターンは dashboard / auth / media library に限定し、残りは GunjoUI コンポーネントで作り直してから公開します。",
+        heading: "あなたの色は、もう、そこにある。",
+        body: "群青は、なりゆく途中の青。あなたも、わたしたちも。あなたにしか出せない色を、ここから。",
         changelogCta: "CHANGELOG を見る",
         githubCta: "GitHub でスター",
       },
