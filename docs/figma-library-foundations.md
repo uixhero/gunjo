@@ -165,6 +165,22 @@ component families:
   - Docs-derived `with-label`, `character-counter`, `invalid`, and `disabled`
     states are documented as form specimens, including FormGroup, FormLabel,
     FormControl, FormDescription, and disabled reason tooltip copy.
+- `Badge` on the `Display` page.
+  - Section node: `100:2` (`Badge / Section`).
+  - Component set node: `100:21`.
+  - Variants: `default`, `secondary`, `destructive`, `outline` on the
+    `variant` axis.
+  - Component property: `Label`.
+  - Layout: `Badge / Overview card`, `Badge / Component card`, and
+    `Badge / Specimen card`.
+  - The component set records the 20 px badge height, 10 px horizontal padding,
+    4 px vertical padding, rounded-full radius, border behavior, 12 px
+    semibold label, focus-visible ring guidance, and HTMLAttributes-based
+    `variant`/`children`/`className` prop structure.
+  - Docs-derived `status variants`, `icon badge`, `removable badge`,
+    `disabled badge`, `addable badge`, and `selectable badge` states are
+    documented as specimens, including Tooltip, Button, Icon, and
+    DropdownMenu composition notes.
 
 ## Local Payload
 
@@ -312,14 +328,28 @@ The owner then approved exporting the additional Textarea component data with:
 > `foreground`, `destructive`) from this private pre-public repository to the
 > Figma file `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional Badge component data with:
+
+> I approve exporting the Badge variant names (`default`, `secondary`,
+> `destructive`, `outline`), variant prop default value, HTMLAttributes-based
+> prop structure including `children` and `className`, dimensions, padding,
+> rounded-full radius, border, font size/weight, focus ring, each variant's
+> background/text/border styles, docs-derived state taxonomy and sample copy
+> (`status variants`, `icon badge`, `removable badge`, `disabled badge`,
+> `addable badge`, `selectable badge`), Tooltip / Button / Icon composition
+> information, and token names and values (`foreground`, `background`,
+> `secondary`, `secondary-foreground`, `destructive-strong`,
+> `destructive-strong-foreground`, `border`, `ring`) from this private
+> pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
 
 1. Review the Figma file manually.
 2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch,
-   RadioGroup, Select, Slider, and Textarea component sets, runtime semantic
-   colors, and specimen treatments are acceptable.
+   RadioGroup, Select, Slider, Textarea, and Badge component sets, runtime
+   semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
