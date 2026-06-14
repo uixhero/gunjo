@@ -11,11 +11,17 @@ import { GoogleTagManager } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 
 const inter = Inter({ subsets: ["latin"] });
+// Shippori Mincho is a CJK font: next/font can't subset the kanji, so with
+// preload on it emits a <link rel=preload> for every unicode-range chunk
+// (~244 files, 7.6MB) and the browser downloads them all up front — gating
+// LCP. preload:false drops those links; with display:swap the few chunks the
+// rendered headings actually need load on demand, after first paint.
 const mincho = Shippori_Mincho({
   subsets: ["latin"],
   weight: ["500", "700", "800"],
   variable: "--font-mincho",
   display: "swap",
+  preload: false,
 });
 
 export const metadata: Metadata = {
