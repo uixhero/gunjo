@@ -24,7 +24,7 @@ import {
 import { useLocale } from "@/components/providers/LocaleProvider";
 
 const HUE_PRESETS: { hue: number; label: string }[] = [
-    { hue: 232, label: "Indigo" },
+    { hue: 220, label: "Blue" },
     { hue: 217, label: "Blue" },
     { hue: 142, label: "Green" },
     { hue: 24, label: "Orange" },
@@ -145,7 +145,7 @@ export function ThemeSwitcher() {
                                             {
                                                 "--gunjo-swatch-hue": String(preset.hue),
                                                 backgroundColor:
-                                                    "hsl(var(--gunjo-swatch-hue) 39% 49%)",
+                                                    "hsl(var(--gunjo-swatch-hue) 62% 49%)",
                                             } as React.CSSProperties
                                         }
                                         aria-label={preset.label}
@@ -155,7 +155,7 @@ export function ThemeSwitcher() {
                             })}
                         </div>
                         <Slider
-                            value={overrides.primaryHue ?? 232}
+                            value={overrides.primaryHue ?? 220}
                             onChange={(e) =>
                                 setOverride(
                                     "primaryHue",

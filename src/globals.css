@@ -1,12 +1,12 @@
 @layer base {
     :root {
-        --primary-subtle: 232 55% 96%;
-        --primary-subtle-foreground: 232 43% 28%;
-        --primary: 232 39% 49%;
+        --primary-subtle: 220 60% 96%;
+        --primary-subtle-foreground: 220 43% 28%;
+        --primary: 220 62% 49%;
         --primary-foreground: 210 40% 98%;
-        --primary-strong: 232 47% 38%;
+        --primary-strong: 220 47% 38%;
         --primary-strong-foreground: 210 40% 98%;
-        --primary-border: 232 46% 82%;
+        --primary-border: 220 55% 82%;
 
         --info-subtle: 214 100% 97%;
         --info-subtle-foreground: 217 91% 28%;
@@ -61,7 +61,7 @@
 
         --border: 214 32% 91%;
         --input: 214 32% 91%;
-        --ring: 232 39% 49%;
+        --ring: 220 62% 49%;
 
         --radius: 0.5rem;
 
@@ -90,14 +90,14 @@
         /* Gunjō brand atmosphere — used by hero and color-story art only.
            Theme-independent (do not flip with .dark) so the hero keeps its
            identity across modes. */
-        --gunjo-deep: 232 50% 32%;
-        --gunjo-deeper: 233 55% 18%;
-        --gunjo-deepest: 234 60% 8%;
-        --gunjo-light: 232 50% 55%;
-        --gunjo-mid: 232 39% 49%;
-        --gunjo-bright: 232 50% 60%;
-        --gunjo-dark: 233 50% 25%;
-        --gunjo-swatch-hue: 232;
+        --gunjo-deep: 220 50% 32%;
+        --gunjo-deeper: 220 55% 18%;
+        --gunjo-deepest: 220 60% 8%;
+        --gunjo-light: 220 50% 55%;
+        --gunjo-mid: 220 62% 49%;
+        --gunjo-bright: 220 55% 60%;
+        --gunjo-dark: 220 50% 25%;
+        --gunjo-swatch-hue: 220;
         /* Dawn hero — the light breaking through the deep blue. Brighter
            than the muted gunjo range so the dawn reads; hero art only. */
         --dawn-sky: 200 84% 74%;
@@ -121,17 +121,17 @@
         --palette-white: 0 0% 100%;
         --palette-black: 0 0% 0%;
         --pure-white: 0 0% 100%;
-        --pure-black: 234 60% 4%;
+        --pure-black: 220 60% 4%;
     }
 
     .dark {
-        --primary-subtle: 232 42% 18%;
-        --primary-subtle-foreground: 232 90% 88%;
-        --primary: 232 47% 65%;
-        --primary-foreground: 234 60% 8%;
-        --primary-strong: 232 55% 72%;
-        --primary-strong-foreground: 234 60% 8%;
-        --primary-border: 232 40% 38%;
+        --primary-subtle: 218 50% 18%;
+        --primary-subtle-foreground: 218 90% 88%;
+        --primary: 218 68% 63%;
+        --primary-foreground: 220 60% 8%;
+        --primary-strong: 218 55% 72%;
+        --primary-strong-foreground: 220 60% 8%;
+        --primary-border: 218 50% 38%;
 
         --info-subtle: 220 47% 16%;
         --info-subtle-foreground: 213 94% 88%;
@@ -186,7 +186,7 @@
 
         --border: 217.2 32.6% 17.5%;
         --input: 217.2 32.6% 17.5%;
-        --ring: 232 47% 65%;
+        --ring: 218 68% 63%;
 
         --palette-red: 0 84% 60%;
         --palette-green: 142 71% 45%;

@@ -258,7 +258,7 @@ export default function Home() {
                                     {home.story.gunjoBody}
                                 </p>
                                 <code className="inline-block rounded bg-muted px-2 py-1 text-xs font-mono">
-                                    #4D5AAF · hsl(232 39% 49%)
+                                    #2F63CA · hsl(220 62% 49%)
                                 </code>
                             </div>
                         </div>

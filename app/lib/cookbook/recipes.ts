@@ -128,7 +128,7 @@ Build a landing page:
 - CTA: full-width Card with title "Ready to ship?" + Button "Sign up free".
 - Footer: minimal, with Separator above and small text + nav links.
 
-Match the design system's gunjō (#4D5AAF) primary color. Don't hardcode — use bg-primary etc.`,
+Match the design system's gunjō (#2F63CA) primary color. Don't hardcode — use bg-primary etc.`,
         expectedOutput: "A polished landing page using LandingTemplate, Card, Badge, Button, Statistic, Separator.",
         referencedComponents: ["LandingTemplate", "Card", "Badge", "Button", "Statistic", "Separator"],
     },
