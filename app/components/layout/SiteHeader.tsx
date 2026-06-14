@@ -50,15 +50,19 @@ export function SiteHeader() {
         setDrawerOpen(false);
     }, [pathname]);
 
-    // Flip the header to solid once the hero's bottom edge scrolls past the
-    // header line. Watching the actual [data-hero] element keeps this robust
-    // to the hero's height; off the homepage there's no hero, so stay solid.
+    // Flip the header to solid only once the LAST dark overlay zone scrolls
+    // past the header line. The homepage marks both the hero and the dark
+    // threshold section below it with [data-header-overlay], so the header
+    // stays transparent over the whole dawn run and never flashes solid white
+    // while a dark section is still on screen. Off the homepage there are no
+    // zones, so it stays solid.
     React.useEffect(() => {
-        const hero =
+        const zones =
             isHome && typeof document !== "undefined"
-                ? document.querySelector("[data-hero]")
-                : null;
-        if (!hero) {
+                ? document.querySelectorAll("[data-header-overlay]")
+                : [];
+        const zone = zones.length ? zones[zones.length - 1] : null;
+        if (!zone) {
             setOverHero(false);
             return;
         }
@@ -66,7 +70,7 @@ export function SiteHeader() {
         let raf = 0;
         const update = () => {
             raf = 0;
-            setOverHero(hero.getBoundingClientRect().bottom > HEADER_H);
+            setOverHero(zone.getBoundingClientRect().bottom > HEADER_H);
         };
         const onScroll = () => {
             if (!raf) raf = requestAnimationFrame(update);

@@ -66,13 +66,14 @@ export default function Home() {
     return (
         <main className="relative">
             {/* ============== Section 1 — HERO ============== */}
-            {/* data-hero: SiteHeader watches this section's bottom edge to flip
-                the header from transparent (over the hero) to solid on scroll.
-                -mt-14 pulls the hero up under the sticky 56px header so the dawn
-                runs edge-to-edge behind the transparent header; min-h-screen
-                then fills the whole viewport. Content stays clear via items-center. */}
+            {/* data-header-overlay marks a dark zone the header stays transparent
+                over; SiteHeader watches the LAST such zone's bottom (hero + the
+                dark threshold below) so it only goes solid once light content
+                arrives. -mt-14 pulls the hero up under the sticky 56px header so
+                the dawn runs edge-to-edge behind it; min-h-screen fills the
+                viewport; content stays clear via items-center. */}
             <section
-                data-hero
+                data-header-overlay
                 className="relative -mt-14 flex min-h-screen items-center overflow-hidden"
             >
                 <HeroBackground />
@@ -142,7 +143,13 @@ export default function Home() {
             </section>
 
             {/* ============== Intro — the threshold (dark) ============== */}
-            <section className="relative overflow-hidden bg-[hsl(var(--pure-black))] py-48 md:py-64">
+            {/* data-header-overlay: also a dark dawn zone — keep the header
+                transparent over it too, so it doesn't flash solid white while
+                this second dawn burst is still on screen (see the hero above). */}
+            <section
+                data-header-overlay
+                className="relative overflow-hidden bg-[hsl(var(--pure-black))] py-48 md:py-64"
+            >
                 <div
                     className="pointer-events-none absolute inset-0 gunjo-intro-burst"
                     aria-hidden
