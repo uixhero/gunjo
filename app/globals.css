@@ -35,14 +35,14 @@
 
     /* Dawn breaking through deep water: a bright light source lower-left,
        depths darkening toward the upper/lower-right — the "becoming blue".
-       Light stops use literals (brighter than the muted token range) so
-       the dawn actually reads; would be tokenised if we keep this. */
+       Light stops use the --dawn-* palette (brighter than the muted token
+       range) so the dawn actually reads. */
     .gunjo-hero-base {
         background: radial-gradient(
             ellipse 96% 86% at 26% 66%,
-            hsl(200 84% 74%) 0%,
-            hsl(211 72% 47%) 13%,
-            hsl(221 60% 27%) 34%,
+            hsl(var(--dawn-sky)) 0%,
+            hsl(var(--dawn-sea)) 13%,
+            hsl(var(--dawn-depth)) 34%,
             hsl(var(--gunjo-deeper)) 60%,
             hsl(var(--gunjo-deepest)) 100%
         );
@@ -52,8 +52,8 @@
     .gunjo-hero-glow {
         background: radial-gradient(
             circle,
-            hsl(196 97% 95%) 0%,
-            hsl(204 88% 76% / 0.55) 22%,
+            hsl(var(--dawn-sun)) 0%,
+            hsl(var(--dawn-sun-halo) / 0.55) 22%,
             transparent 60%
         );
     }
@@ -106,8 +106,8 @@
     .gunjo-hero-lightpulse {
         background: radial-gradient(
             circle at 28% 66%,
-            hsl(197 96% 90%) 0%,
-            hsl(205 86% 70% / 0.45) 13%,
+            hsl(var(--dawn-pulse)) 0%,
+            hsl(var(--dawn-pulse-halo) / 0.45) 13%,
             transparent 40%
         );
         mix-blend-mode: screen;

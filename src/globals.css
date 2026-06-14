@@ -98,6 +98,15 @@
         --gunjo-bright: 232 50% 60%;
         --gunjo-dark: 233 50% 25%;
         --gunjo-swatch-hue: 232;
+        /* Dawn hero — the light breaking through the deep blue. Brighter
+           than the muted gunjo range so the dawn reads; hero art only. */
+        --dawn-sky: 200 84% 74%;
+        --dawn-sea: 211 72% 47%;
+        --dawn-depth: 221 60% 27%;
+        --dawn-sun: 196 97% 95%;
+        --dawn-sun-halo: 204 88% 76%;
+        --dawn-pulse: 197 96% 90%;
+        --dawn-pulse-halo: 205 86% 70%;
         --kobicha-warm: 14 35% 35%;
         --kobicha-mid: 15 28% 34%;
         --kobicha-bright: 20 35% 55%;
