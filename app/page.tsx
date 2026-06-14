@@ -92,7 +92,7 @@ export default function Home() {
                         <img
                             src="/renew/SVG/title_h_ol.svg"
                             alt={home.hero.kanji}
-                            className="h-[64px] w-auto md:hidden"
+                            className="mb-4 h-[128px] w-auto self-start md:hidden"
                         />
                         <Badge
                             variant="outline"
@@ -122,8 +122,8 @@ export default function Home() {
                         <p className="on-hero max-w-xl text-base lg:text-lg">
                             {home.hero.subtitle}
                         </p>
-                        <div className="mt-2 flex flex-wrap gap-3">
-                            <Button asChild size="lg" className="on-hero-cta-primary">
+                        <div className="mt-2 flex flex-wrap gap-4">
+                            <Button asChild size="xl" className="on-hero-cta-primary">
                                 <Link href="/docs/introduction">
                                     {home.hero.ctaPrimary}
                                     <ArrowRight className="ml-1.5 h-4 w-4" />
@@ -131,7 +131,7 @@ export default function Home() {
                             </Button>
                             <Button
                                 asChild
-                                size="lg"
+                                size="xl"
                                 variant="outline"
                                 className="on-hero-cta-outline backdrop-blur"
                             >
