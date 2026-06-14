@@ -36,7 +36,7 @@ const ThemeOverridesContext = React.createContext<
 // Pulled from globals.css :root. Only saturation + lightness are reused — hue
 // is what the slider drives. Keeping the original S/L means switching hue
 // produces a balanced color, not a fluorescent disaster.
-const PRIMARY_SAT = 39;
+const PRIMARY_SAT = 62;
 const PRIMARY_LIGHT = 49;
 
 function buildCssText(overrides: ThemeOverrides): string {

@@ -189,7 +189,7 @@ These are theme-independent (do not flip in dark mode) — they're used by the h
   --popover: 0 0% 100%;
   --popover-foreground: 240 20% 6%;
 
-  --primary: 232 39% 49%;            /* Gunjō blue */
+  --primary: 220 62% 49%;            /* Gunjō blue */
   --primary-foreground: 210 40% 98%;
 
   --secondary: 210 40% 96%;
@@ -206,7 +206,7 @@ These are theme-independent (do not flip in dark mode) — they're used by the h
 
   --border: 214 32% 91%;
   --input: 214 32% 91%;
-  --ring: 232 39% 49%;
+  --ring: 220 62% 49%;
 
   --radius: 0.5rem;
 }
@@ -225,8 +225,8 @@ These are theme-independent (do not flip in dark mode) — they're used by the h
   --popover: 222.2 84% 4.9%;
   --popover-foreground: 210 40% 98%;
 
-  --primary: 232 47% 65%;            /* lifted Gunjō for contrast on dark */
-  --primary-foreground: 210 40% 98%;
+  --primary: 218 68% 63%;            /* lifted Gunjō for contrast on dark */
+  --primary-foreground: 220 60% 8%;
 
   --secondary: 217.2 32.6% 17.5%;
   --secondary-foreground: 210 40% 98%;
@@ -242,7 +242,7 @@ These are theme-independent (do not flip in dark mode) — they're used by the h
 
   --border: 217.2 32.6% 17.5%;
   --input: 217.2 32.6% 17.5%;
-  --ring: 232 47% 65%;
+  --ring: 218 68% 63%;
 }
 \`\`\`
 
