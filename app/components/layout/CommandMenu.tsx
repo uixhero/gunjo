@@ -16,7 +16,7 @@ import { navigation } from "@/lib/navigation"
 import { cn } from "@gunjo/ui"
 import { useLocale } from "@/components/providers/LocaleProvider"
 
-export function CommandMenu() {
+export function CommandMenu({ overlay = false }: { overlay?: boolean }) {
     const router = useRouter()
     const { locale, t } = useLocale()
     const [open, setOpen] = React.useState(false)
@@ -43,7 +43,8 @@ export function CommandMenu() {
             <Button
                 variant="outline"
                 className={cn(
-                    "relative w-full justify-start text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64"
+                    "relative w-full justify-start text-sm text-muted-foreground sm:pr-12 md:w-40 lg:w-64 transition-colors",
+                    overlay && "gunjo-header-search-overlay"
                 )}
                 onClick={() => setOpen(true)}
             >

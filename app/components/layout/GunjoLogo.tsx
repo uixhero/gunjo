@@ -13,7 +13,7 @@ export function GunjoLogo({ className, label = "Gunjo UI", ...props }: GunjoLogo
             <span
                 aria-hidden
                 className={cn(
-                    "block h-8 w-[3.75rem] bg-primary [mask:url('/gunjo-logo.svg')_center/contain_no-repeat] [-webkit-mask:url('/gunjo-logo.svg')_center/contain_no-repeat]",
+                    "gunjo-logo-mask block h-8 w-[3.75rem] bg-primary transition-colors [mask:url('/gunjo-logo.svg')_center/contain_no-repeat] [-webkit-mask:url('/gunjo-logo.svg')_center/contain_no-repeat]",
                     className
                 )}
                 {...props}

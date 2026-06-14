@@ -29,8 +29,12 @@ import {
 export function SiteHeader() {
     const { header, tooltip } = useLocale();
     const pathname = usePathname();
+    const isHome = pathname === "/";
     const [isInIframe, setIsInIframe] = React.useState(false);
     const [drawerOpen, setDrawerOpen] = React.useState(false);
+    // Transparent over the homepage hero, solid once scrolled past it.
+    // Starts true on the homepage so the first paint blends into the hero.
+    const [overHero, setOverHero] = React.useState(isHome);
 
     React.useEffect(() => {
         try {
@@ -45,6 +49,37 @@ export function SiteHeader() {
     React.useEffect(() => {
         setDrawerOpen(false);
     }, [pathname]);
+
+    // Flip the header to solid once the hero's bottom edge scrolls past the
+    // header line. Watching the actual [data-hero] element keeps this robust
+    // to the hero's height; off the homepage there's no hero, so stay solid.
+    React.useEffect(() => {
+        const hero =
+            isHome && typeof document !== "undefined"
+                ? document.querySelector("[data-hero]")
+                : null;
+        if (!hero) {
+            setOverHero(false);
+            return;
+        }
+        const HEADER_H = 56; // h-14
+        let raf = 0;
+        const update = () => {
+            raf = 0;
+            setOverHero(hero.getBoundingClientRect().bottom > HEADER_H);
+        };
+        const onScroll = () => {
+            if (!raf) raf = requestAnimationFrame(update);
+        };
+        update();
+        window.addEventListener("scroll", onScroll, { passive: true });
+        window.addEventListener("resize", onScroll, { passive: true });
+        return () => {
+            window.removeEventListener("scroll", onScroll);
+            window.removeEventListener("resize", onScroll);
+            if (raf) cancelAnimationFrame(raf);
+        };
+    }, [isHome, pathname]);
 
     if (pathname?.startsWith("/embed")) return null;
     if (isInIframe) return null;
@@ -68,7 +103,14 @@ export function SiteHeader() {
     ];
 
     return (
-        <Header className="sticky top-0 z-50 h-14 border-border/40 bg-background/95 px-0 py-0 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+        <Header
+            className={cn(
+                "sticky top-0 z-50 h-14 px-0 py-0 transition-colors duration-300",
+                overHero
+                    ? "gunjo-header-overlay"
+                    : "border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+            )}
+        >
             <div className="container flex h-full w-full items-center gap-3">
                 {/* Mobile / tablet drawer trigger — visible below lg */}
                 <Sheet open={drawerOpen} onOpenChange={setDrawerOpen}>
@@ -174,7 +216,7 @@ export function SiteHeader() {
                 {/* Actions — Search takes available space until md, fixed width above */}
                 <div className="flex flex-1 items-center justify-end gap-2">
                     <div className="w-full max-w-xs md:w-72">
-                        <CommandMenu />
+                        <CommandMenu overlay={overHero} />
                     </div>
                     <HeaderActions className="hidden sm:flex">
                         <Tooltip>

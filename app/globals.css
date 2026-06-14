@@ -271,4 +271,40 @@
         border-color: hsl(var(--pure-white) / 0.3);
         backdrop-filter: blur(8px);
     }
+
+    /* ============== Transparent header over the hero ============== */
+    /* Homepage only: the header sits transparent over the dawn hero with light
+       content; SiteHeader swaps to the solid header once you scroll past it. */
+    .gunjo-header-overlay {
+        background-color: transparent;
+        border-color: transparent;
+        backdrop-filter: none;
+    }
+
+    /* Light content over the dark hero — links and icon buttons inherit via
+       currentColor (incl. :hover, to beat the default hover:text-foreground). */
+    .gunjo-header-overlay :is(a, button),
+    .gunjo-header-overlay :is(a, button):hover {
+        color: hsl(var(--pure-white));
+    }
+
+    /* Wordmark mask → white. */
+    .gunjo-header-overlay .gunjo-logo-mask {
+        background-color: hsl(var(--pure-white));
+    }
+
+    /* Translucent search trigger (case A) — matches the hero badges. */
+    .gunjo-header-search-overlay {
+        background-color: hsl(var(--pure-white) / 0.06) !important;
+        border-color: hsl(var(--pure-white) / 0.25) !important;
+        color: hsl(var(--pure-white) / 0.8) !important;
+    }
+    .gunjo-header-search-overlay:hover {
+        background-color: hsl(var(--pure-white) / 0.12) !important;
+    }
+    .gunjo-header-search-overlay kbd {
+        background-color: hsl(var(--pure-white) / 0.1);
+        border-color: hsl(var(--pure-white) / 0.2);
+        color: hsl(var(--pure-white) / 0.8);
+    }
 }

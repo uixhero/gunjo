@@ -66,7 +66,12 @@ export default function Home() {
     return (
         <main className="relative">
             {/* ============== Section 1 — HERO ============== */}
-            <section className="relative flex min-h-[calc(100vh-3.5rem)] items-center overflow-hidden">
+            {/* data-hero: SiteHeader watches this section's bottom edge to flip
+                the header from transparent (over the hero) to solid on scroll. */}
+            <section
+                data-hero
+                className="relative flex min-h-[calc(100vh-3.5rem)] items-center overflow-hidden"
+            >
                 <HeroBackground />
                 <div className="relative z-10 mx-auto flex w-full max-w-6xl items-center gap-8 px-6 py-20 md:gap-12 lg:gap-16">
                     {/* Vertical 群青 — outlined SVG (font-independent), tablet up */}
