@@ -109,14 +109,70 @@ export function SiteHeader() {
     return (
         <Header
             className={cn(
-                "sticky top-0 z-50 h-14 px-0 py-0 transition-colors duration-300",
+                "sticky top-0 z-50 h-14 px-0 py-0 transition-colors duration-300 sm:px-0",
                 overHero
                     ? "gunjo-header-overlay"
                     : "border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
             )}
         >
-            <div className="container flex h-full w-full items-center gap-3">
-                {/* Mobile / tablet drawer trigger — visible below lg */}
+            <div className="mx-auto flex h-full w-full max-w-[1400px] items-center gap-3 px-4">
+                {/* Brand — always visible at the left edge. */}
+                <HeaderBrand>
+                    <Link href="/" className="flex items-center gap-2">
+                        <GunjoLogo className="h-[2.6rem] w-[4.9rem]" label={header("siteName")} />
+                    </Link>
+                </HeaderBrand>
+
+                {/* Inline horizontal nav — only at lg and up */}
+                <HeaderNav className="ml-6 hidden gap-6 text-sm font-medium lg:flex">
+                    {navItems.map((item) => {
+                        const active = item.match(pathname);
+                        return (
+                            <Link
+                                key={item.href}
+                                href={item.href}
+                                className={cn(
+                                    "text-sm transition-colors hover:text-foreground",
+                                    active
+                                        ? "font-medium text-foreground"
+                                        : "text-muted-foreground"
+                                )}
+                            >
+                                {item.label}
+                            </Link>
+                        );
+                    })}
+                </HeaderNav>
+
+                {/* Actions — Search takes available space until md, fixed width above */}
+                <div className="flex flex-1 items-center justify-end gap-2">
+                    <div className="w-full max-w-xs md:w-72">
+                        <CommandMenu overlay={overHero} />
+                    </div>
+                    <HeaderActions className="hidden sm:flex">
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <Button variant="ghost" size="icon" asChild>
+                                    <Link
+                                        href="https://github.com/uixhero/gunjo"
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        aria-label={tooltip("github")}
+                                    >
+                                        <Github className="h-4 w-4" />
+                                    </Link>
+                                </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>{tooltip("github")}</TooltipContent>
+                        </Tooltip>
+                        <LanguageToggle />
+                        <ThemeSwitcher />
+                            <ThemeToggle />
+                    </HeaderActions>
+                </div>
+
+                {/* Mobile / tablet drawer trigger — right edge of the header,
+                    below lg. Logo stays at the left, menu opens from the right. */}
                 <Sheet open={drawerOpen} onOpenChange={setDrawerOpen}>
                     <Tooltip>
                         <TooltipTrigger asChild>
@@ -133,7 +189,7 @@ export function SiteHeader() {
                         </TooltipTrigger>
                         <TooltipContent>{tooltip("openMenu")}</TooltipContent>
                     </Tooltip>
-                    <SheetContent side="left" className="w-72 p-0">
+                    <SheetContent side="right" className="w-72 p-0">
                         <SheetTitle className="sr-only">
                             {tooltip("openMenu")}
                         </SheetTitle>
@@ -188,61 +244,6 @@ export function SiteHeader() {
                         </div>
                     </SheetContent>
                 </Sheet>
-
-                {/* Brand — always visible. Wordmark hidden on tightest screens. */}
-                <HeaderBrand>
-                    <Link href="/" className="flex items-center gap-2">
-                        <GunjoLogo className="h-[2.6rem] w-[4.9rem]" label={header("siteName")} />
-                    </Link>
-                </HeaderBrand>
-
-                {/* Inline horizontal nav — only at lg and up */}
-                <HeaderNav className="ml-6 hidden gap-6 text-sm font-medium lg:flex">
-                    {navItems.map((item) => {
-                        const active = item.match(pathname);
-                        return (
-                            <Link
-                                key={item.href}
-                                href={item.href}
-                                className={cn(
-                                    "text-sm transition-colors hover:text-foreground",
-                                    active
-                                        ? "font-medium text-foreground"
-                                        : "text-muted-foreground"
-                                )}
-                            >
-                                {item.label}
-                            </Link>
-                        );
-                    })}
-                </HeaderNav>
-
-                {/* Actions — Search takes available space until md, fixed width above */}
-                <div className="flex flex-1 items-center justify-end gap-2">
-                    <div className="w-full max-w-xs md:w-72">
-                        <CommandMenu overlay={overHero} />
-                    </div>
-                    <HeaderActions className="hidden sm:flex">
-                        <Tooltip>
-                            <TooltipTrigger asChild>
-                                <Button variant="ghost" size="icon" asChild>
-                                    <Link
-                                        href="https://github.com/uixhero/gunjo"
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        aria-label={tooltip("github")}
-                                    >
-                                        <Github className="h-4 w-4" />
-                                    </Link>
-                                </Button>
-                            </TooltipTrigger>
-                            <TooltipContent>{tooltip("github")}</TooltipContent>
-                        </Tooltip>
-                        <LanguageToggle />
-                        <ThemeSwitcher />
-                            <ThemeToggle />
-                    </HeaderActions>
-                </div>
             </div>
         </Header>
     );
