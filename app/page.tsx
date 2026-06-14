@@ -67,10 +67,13 @@ export default function Home() {
         <main className="relative">
             {/* ============== Section 1 — HERO ============== */}
             {/* data-hero: SiteHeader watches this section's bottom edge to flip
-                the header from transparent (over the hero) to solid on scroll. */}
+                the header from transparent (over the hero) to solid on scroll.
+                -mt-14 pulls the hero up under the sticky 56px header so the dawn
+                runs edge-to-edge behind the transparent header; min-h-screen
+                then fills the whole viewport. Content stays clear via items-center. */}
             <section
                 data-hero
-                className="relative flex min-h-[calc(100vh-3.5rem)] items-center overflow-hidden"
+                className="relative -mt-14 flex min-h-screen items-center overflow-hidden"
             >
                 <HeroBackground />
                 <div className="relative z-10 mx-auto flex w-full max-w-6xl items-center gap-8 px-6 py-20 md:gap-12 lg:gap-16">
