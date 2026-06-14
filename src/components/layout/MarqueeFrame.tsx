@@ -27,6 +27,13 @@ export interface MarqueeFrameProps extends Omit<React.HTMLAttributes<HTMLDivElem
     onPathChange?: (path: string) => void
     storageKey?: string
     initialViewport?: MarqueeViewport
+    /**
+     * When true and there is no stored choice yet, open in the preview that
+     * matches the viewer's own device (phone → mobile, tablet → tablet) instead
+     * of always starting on the desktop frame. Lets phone visitors land on a
+     * readable frame without hunting for the tiny, scaled-down toggle.
+     */
+    defaultToDeviceViewport?: boolean
     variant?: MarqueeFrameVariantKey
     viewportSizes?: Record<MarqueeViewport, { width: number; height: number }>
     maxCanvasHeight?: number
@@ -54,6 +61,7 @@ const MarqueeFrame = React.forwardRef<HTMLDivElement, MarqueeFrameProps>(
             onPathChange,
             storageKey,
             initialViewport = "desktop",
+            defaultToDeviceViewport = false,
             variant = marqueeFrameDefaultVariantKey,
             viewportSizes = MARQUEE_VIEWPORT_SIZES,
             maxCanvasHeight = 720,
@@ -72,12 +80,28 @@ const MarqueeFrame = React.forwardRef<HTMLDivElement, MarqueeFrameProps>(
         React.useImperativeHandle(ref, () => containerRef.current as HTMLDivElement)
 
         React.useEffect(() => {
-            if (!storageKey) return
-            const stored = window.sessionStorage.getItem(storageKey)
-            if (VIEWPORTS.includes(stored as MarqueeViewport)) {
-                setViewport(stored as MarqueeViewport)
+            if (storageKey) {
+                const stored = window.sessionStorage.getItem(storageKey)
+                if (VIEWPORTS.includes(stored as MarqueeViewport)) {
+                    setViewport(stored as MarqueeViewport)
+                    return
+                }
             }
-        }, [storageKey])
+            // No saved choice yet: optionally match the viewer's own device so
+            // phone/tablet visitors don't start on the tiny scaled-down desktop
+            // frame they can't easily toggle away from.
+            if (
+                defaultToDeviceViewport &&
+                typeof window !== "undefined" &&
+                typeof window.matchMedia === "function"
+            ) {
+                if (window.matchMedia("(max-width: 639px)").matches) {
+                    setViewport("mobile")
+                } else if (window.matchMedia("(max-width: 1023px)").matches) {
+                    setViewport("tablet")
+                }
+            }
+        }, [storageKey, defaultToDeviceViewport])
 
         const { width: viewportWidth, height: viewportHeight } = viewportSizes[viewport]
 

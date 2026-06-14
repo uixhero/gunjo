@@ -58,6 +58,7 @@ export function MarqueeChrome({
             tabTitle={tabTitle}
             navigablePaths={navigablePaths}
             storageKey={storageKey}
+            defaultToDeviceViewport
             onPathChange={(nextPath) => router.push(`${routeBase}${nextPath}`)}
         >
             {children}
