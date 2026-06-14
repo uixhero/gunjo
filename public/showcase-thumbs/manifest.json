@@ -1,14 +1,14 @@
 {
-  "generatedAt": "2026-06-06T22:46:37.599Z",
-  "baseUrl": "http://127.0.0.1:13037",
+  "generatedAt": "2026-06-14T20:32:45.530Z",
+  "baseUrl": "http://127.0.0.1:13030",
   "viewport": {
     "width": 1280,
     "height": 720,
     "deviceScaleFactor": 2
   },
-  "total": 306,
-  "captured": 297,
-  "failed": 9,
+  "total": 320,
+  "captured": 312,
+  "failed": 8,
   "results": [
     {
       "category": "Inputs",
@@ -514,6 +514,34 @@
     },
     {
       "category": "Inputs",
+      "slug": "password-group",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/password-group.light.png",
+      "clip": {
+        "x": 416,
+        "y": 230,
+        "width": 448,
+        "height": 260
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "password-group",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/password-group.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 230,
+        "width": 448,
+        "height": 260
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
       "slug": "password-input",
       "mode": "light",
       "status": "captured",
@@ -537,6 +565,118 @@
         "y": 289,
         "width": 448,
         "height": 142
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "password-requirement-list",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/password-requirement-list.light.png",
+      "clip": {
+        "x": 416,
+        "y": 292,
+        "width": 448,
+        "height": 136
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "password-requirement-list",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/password-requirement-list.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 292,
+        "width": 448,
+        "height": 136
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "password-strength-meter",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/password-strength-meter.light.png",
+      "clip": {
+        "x": 416,
+        "y": 299,
+        "width": 448,
+        "height": 122
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "password-strength-meter",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/password-strength-meter.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 299,
+        "width": 448,
+        "height": 122
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "phone-input",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/phone-input.light.png",
+      "clip": {
+        "x": 416,
+        "y": 288,
+        "width": 448,
+        "height": 144
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "phone-input",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/phone-input.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 288,
+        "width": 448,
+        "height": 144
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "postal-code-input",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/postal-code-input.light.png",
+      "clip": {
+        "x": 416,
+        "y": 288,
+        "width": 448,
+        "height": 144
+      },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "postal-code-input",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/postal-code-input.dark.png",
+      "clip": {
+        "x": 416,
+        "y": 288,
+        "width": 448,
+        "height": 144
       },
       "error": null
     },
@@ -1514,6 +1654,24 @@
     },
     {
       "category": "Display",
+      "slug": "searchable-accordion",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/searchable-accordion.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "searchable-accordion",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/searchable-accordion.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Display",
       "slug": "separator",
       "mode": "light",
       "status": "captured",
@@ -2408,6 +2566,24 @@
     },
     {
       "category": "Feedback",
+      "slug": "status-screen",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/status-screen.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "status-screen",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/status-screen.dark.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Feedback",
       "slug": "stepper",
       "mode": "light",
       "status": "captured",
@@ -2620,9 +2796,10 @@
       "category": "Navigation",
       "slug": "footer",
       "mode": "light",
-      "status": "failed",
-      "file": null,
-      "error": "net::ERR_ABORTED at http://127.0.0.1:13037/embed/footer"
+      "status": "captured",
+      "file": "public/showcase-thumbs/footer.light.png",
+      "clip": null,
+      "error": null
     },
     {
       "category": "Navigation",

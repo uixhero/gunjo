@@ -1,15 +1,127 @@
 {
-  "generatedAt": "2026-06-06T22:52:56.179Z",
-  "baseUrl": "http://127.0.0.1:13037",
+  "generatedAt": "2026-06-14T20:33:26.866Z",
+  "baseUrl": "http://127.0.0.1:13030",
   "viewport": {
     "width": 1280,
     "height": 800,
     "deviceScaleFactor": 1
   },
-  "total": 2,
-  "captured": 2,
+  "total": 18,
+  "captured": 18,
   "failed": 0,
   "results": [
+    {
+      "slug": "auth",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/patterns-thumbs/auth.light.png",
+      "error": null
+    },
+    {
+      "slug": "auth",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/patterns-thumbs/auth.dark.png",
+      "error": null
+    },
+    {
+      "slug": "dashboard",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/patterns-thumbs/dashboard.light.png",
+      "error": null
+    },
+    {
+      "slug": "dashboard",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/patterns-thumbs/dashboard.dark.png",
+      "error": null
+    },
+    {
+      "slug": "editor",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/patterns-thumbs/editor.light.png",
+      "error": null
+    },
+    {
+      "slug": "editor",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/patterns-thumbs/editor.dark.png",
+      "error": null
+    },
+    {
+      "slug": "kanban",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/patterns-thumbs/kanban.light.png",
+      "error": null
+    },
+    {
+      "slug": "kanban",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/patterns-thumbs/kanban.dark.png",
+      "error": null
+    },
+    {
+      "slug": "chat",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/patterns-thumbs/chat.light.png",
+      "error": null
+    },
+    {
+      "slug": "chat",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/patterns-thumbs/chat.dark.png",
+      "error": null
+    },
+    {
+      "slug": "landing",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/patterns-thumbs/landing.light.png",
+      "error": null
+    },
+    {
+      "slug": "landing",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/patterns-thumbs/landing.dark.png",
+      "error": null
+    },
+    {
+      "slug": "bannalyze",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/patterns-thumbs/bannalyze.light.png",
+      "error": null
+    },
+    {
+      "slug": "bannalyze",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/patterns-thumbs/bannalyze.dark.png",
+      "error": null
+    },
+    {
+      "slug": "media-library",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/patterns-thumbs/media-library.light.png",
+      "error": null
+    },
+    {
+      "slug": "media-library",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/patterns-thumbs/media-library.dark.png",
+      "error": null
+    },
     {
       "slug": "not-found",
       "mode": "light",
