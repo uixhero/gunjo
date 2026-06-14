@@ -288,6 +288,25 @@
     backdrop-filter: none;
 }
 
+/* Soft top scrim: dims the hero art (especially the big white 群青) that
+   scrolls up behind the transparent header, so the white wordmark/nav stay
+   legible and don't merge into it. It sits above the hero (z-10) but below
+   the header content, and fades out below the header for a smooth edge. */
+.gunjo-header-overlay::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 auto 0;
+    height: 7rem;
+    background: linear-gradient(
+        to bottom,
+        hsl(var(--pure-black) / 0.55),
+        hsl(var(--pure-black) / 0.2) 55%,
+        transparent
+    );
+    pointer-events: none;
+    z-index: -1;
+}
+
 /* Light content over the dark hero — links and icon buttons inherit via
    currentColor (incl. :hover, to beat the default hover:text-foreground). */
 .gunjo-header-overlay :is(a, button),
