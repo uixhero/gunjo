@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-06-14T20:33:26.866Z",
+  "generatedAt": "2026-06-15T06:58:11.163Z",
   "baseUrl": "http://127.0.0.1:13030",
   "viewport": {
     "width": 1280,
     "height": 800,
-    "deviceScaleFactor": 1
+    "deviceScaleFactor": 2
   },
   "total": 18,
   "captured": 18,
