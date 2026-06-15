@@ -97,6 +97,8 @@ v4 は `tailwind.config.ts` ベースではなく CSS の `@theme` ベース。`
 
 > v4 採用で前節 3b の `@config` を使った場合は、`@import "@gunjo/ui/styles";` がその CSS 内に既にあるはずなのでここは重複させない。
 
+`create-next-app` が生成する `:root { --background; --foreground; }` や `@theme inline` の既定トークンブロックが残っている場合は、GunjoUI の token と競合しないように削除するか `@gunjo/ui/styles` の定義へ置き換える。
+
 または `app/layout.tsx`：
 
 ```tsx

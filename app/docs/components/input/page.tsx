@@ -262,6 +262,11 @@ export default function DisabledEmail() {
 	                            type: "boolean",
 	                            description: locale === "ja" ? "入力できない状態にします。" : "Whether the input is disabled.",
 	                        },
+                            {
+                                name: "className",
+                                type: "string",
+                                description: locale === "ja" ? "Input はデフォルトで親幅いっぱいに広がります。幅は FormGroup や外側の max-w-* で制約します。" : "Input fills its parent by default. Constrain width on FormGroup or an outer max-w-* wrapper.",
+                            },
                     ]}
                 />
             </div>

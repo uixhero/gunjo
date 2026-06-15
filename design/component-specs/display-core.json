@@ -306,7 +306,7 @@
           "name": "Separator/Horizontal",
           "key": "horizontal",
           "type": "frame",
-          "width": 200,
+          "width": "fill_container",
           "height": 1,
           "padding": null,
           "gap": null,

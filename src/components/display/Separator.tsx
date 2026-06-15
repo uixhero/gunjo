@@ -6,7 +6,7 @@ import type { SeparatorVariantKey } from "./generated/variant-keys"
 import { separatorDefaultVariantKey } from "./generated/default-variant-keys"
 
 const separatorOrientationClasses: Record<SeparatorVariantKey, string> = {
-    horizontal: "w-[200px] h-[1px]",
+    horizontal: "w-full h-[1px]",
     vertical: "w-[1px] h-6",
 }
 

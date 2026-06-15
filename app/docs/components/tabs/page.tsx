@@ -276,6 +276,7 @@ export function UnderlineTabs() {
                         { name: "Tabs.defaultValue", type: "string", description: isJa ? "初期表示で選択するタブの value。" : "Initial active tab value." },
                         { name: "Tabs.value", type: "string", description: isJa ? "制御コンポーネントとして扱う場合の現在値。" : "Current value for controlled tabs." },
                         { name: "Tabs.onValueChange", type: "(value: string) => void", description: isJa ? "選択タブが変わった時に呼ばれます。" : "Called when the selected tab changes." },
+                        { name: "Tabs.className", type: "string", description: isJa ? "Tabs はデフォルトで親幅いっぱいに広がります。幅は外側または Tabs 自身の max-w-* で制約します。" : "Tabs fills its parent by default. Constrain width with an outer wrapper or max-w-* on Tabs." },
                         { name: "TabsList", type: "div", description: isJa ? "関連するトリガーをまとめるリスト。" : "List wrapper for related triggers." },
                         { name: "TabsTrigger.value", type: "string", description: isJa ? "対応する TabsContent と一致させる値。" : "Value matched with the corresponding TabsContent." },
                         { name: "TabsContent.value", type: "string", description: isJa ? "対応する TabsTrigger と一致させる値。" : "Value matched with the corresponding TabsTrigger." },
