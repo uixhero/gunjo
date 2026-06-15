@@ -30,7 +30,10 @@ const ROOT = join(SCRIPT_DIR, "..");
 
 // Match the iframe dimensions the previous PreviewFrame used so the PNG
 // can drop into the existing 0.39-scale slot without a visual jump.
-const VIEWPORT = { width: 1280, height: 800, deviceScaleFactor: 1 };
+// deviceScaleFactor: 2 so the 1280-wide capture stays crisp when the
+// homepage carousel renders it near full width on HiDPI/retina screens
+// (at 1x it was upscaled ~1.7x and looked blurry).
+const VIEWPORT = { width: 1280, height: 800, deviceScaleFactor: 2 };
 
 function parseArgs(argv) {
     const options = {
