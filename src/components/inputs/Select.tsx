@@ -6,21 +6,14 @@ export interface SelectProps extends React.SelectHTMLAttributes<HTMLSelectElemen
 
 const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     ({ className, children, ...props }, ref) => {
-        const isFullWidth =
-            typeof className === "string" &&
-            className.split(/\s+/).includes("w-full")
-
         return (
             <div
-                className={cn(
-                    "relative inline-block max-w-full align-middle",
-                    isFullWidth && "block w-full"
-                )}
+                className="relative block w-full max-w-full align-middle"
                 data-slot="select"
             >
                 <select
                     className={cn(
-                        "inline-flex h-9 w-[200px] max-w-full appearance-none items-center justify-between rounded-lg border border-input bg-transparent px-3 py-2 pr-9 text-sm font-normal text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:opacity-50",
+                        "inline-flex h-9 w-full max-w-full appearance-none items-center justify-between rounded-lg border border-input bg-transparent px-3 py-2 pr-9 text-sm font-normal text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-ring disabled:cursor-not-allowed disabled:bg-muted disabled:text-muted-foreground disabled:opacity-50",
                         className
                     )}
                     ref={ref}

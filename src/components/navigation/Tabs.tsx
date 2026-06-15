@@ -10,7 +10,7 @@ const Tabs = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <TabsPrimitive.Root
         ref={ref}
-        className={cn("flex flex-col w-[400px] max-w-full rounded-lg border", className)}
+        className={cn("flex flex-col w-full max-w-full rounded-lg border", className)}
         {...props}
     />
 ))

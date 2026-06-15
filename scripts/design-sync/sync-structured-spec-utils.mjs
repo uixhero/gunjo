@@ -6,8 +6,27 @@ export function normalizeVariantKey(name) {
   return variant.trim().toLowerCase().replace(/\s+/g, "-");
 }
 
-export function normalizeStroke(stroke) {
+function normalizeStrokeThickness(strokeWidth) {
+  if (typeof strokeWidth === "number") return strokeWidth;
+  if (!strokeWidth || typeof strokeWidth !== "object") return null;
+
+  const widths = [strokeWidth.top, strokeWidth.right, strokeWidth.bottom, strokeWidth.left]
+    .filter((value) => typeof value === "number");
+  if (widths.length === 0) return null;
+  return widths.every((value) => value === widths[0]) ? widths[0] : null;
+}
+
+export function normalizeStroke(stroke, node = {}) {
   if (!stroke || typeof stroke !== "object") return null;
+
+  if (stroke.type === "color") {
+    return {
+      align: node.strokeAlignment ?? null,
+      fill: stroke.color ?? null,
+      thickness: normalizeStrokeThickness(node.strokeWidth),
+    };
+  }
+
   return {
     align: stroke.align ?? null,
     fill: stroke.fill ?? null,
@@ -30,7 +49,7 @@ export function extractNodeSnapshot(node, { includeIconFontFields = false } = {}
     gap: node.gap ?? null,
     cornerRadius: node.cornerRadius ?? null,
     fill: node.fill ?? null,
-    stroke: normalizeStroke(node.stroke),
+    stroke: normalizeStroke(node.stroke, node),
     justifyContent: node.justifyContent ?? null,
     alignItems: node.alignItems ?? null,
     fontSize: node.fontSize ?? null,
@@ -75,7 +94,7 @@ export function extractVariants(
       gap: child.gap ?? null,
       cornerRadius: child.cornerRadius ?? null,
       fill: child.fill ?? null,
-      stroke: normalizeStroke(child.stroke),
+      stroke: normalizeStroke(child.stroke, child),
       reusable: Boolean(child.reusable),
       children: Array.isArray(child.children)
         ? child.children.map((grandChild) => grandChild?.id).filter(Boolean)

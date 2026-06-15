@@ -190,7 +190,18 @@ export const INPUTS_SPEC_DEFINITIONS = [
       ],
     }),
   },
-  { key: "input", frameId: "inputFrame", titleId: "inputTitle", descId: "inputDesc", variantsId: "inputVariants" },
+  {
+    key: "input",
+    frameId: "inputFrame",
+    titleId: "inputTitle",
+    descId: "inputDesc",
+    variantsId: "inputVariants",
+    variantOverrides: {
+      default: { width: "fill_container" },
+      placeholder: { width: "fill_container" },
+      disabled: { width: "fill_container" },
+    },
+  },
   { key: "label", frameId: "labelFrame", titleId: "labelTitle", descId: "labelDesc", sampleTextId: "labelDefaultText" },
   { key: "checkbox", frameId: "checkboxFrame", titleId: "checkboxTitle", descId: "checkboxDesc", variantsId: "checkboxVariants" },
   { key: "switch", frameId: "switchFrame", titleId: "switchTitle", descId: "switchDesc", variantsId: "switchVariants" },
@@ -205,7 +216,7 @@ export const INPUTS_SPEC_DEFINITIONS = [
     descId: "selectDesc",
     variantsId: "selectVariants",
     variantOverrides: {
-      default: { height: 36 },
+      default: { width: "fill_container", height: 36 },
     },
   },
   { key: "toggleGroup", frameId: "toggleGroupFrame", titleId: "toggleGroupTitle", descId: "toggleGroupDesc", variantsId: "toggleGroupVariants" },

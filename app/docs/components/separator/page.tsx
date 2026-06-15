@@ -62,11 +62,11 @@ export function ToolbarMeta() {
 const propsByLocale = {
     ja: [
         { name: "orientation", type: "\"horizontal\" | \"vertical\"", default: "\"horizontal\"", description: "区切り線の向きです。" },
-        { name: "className", type: "string", description: "長さや余白を調整するクラスです。" },
+        { name: "className", type: "string", description: "horizontal は親幅いっぱいに広がります。長さは外側の max-w-* や className で制約します。" },
     ],
     en: [
         { name: "orientation", type: "\"horizontal\" | \"vertical\"", default: "\"horizontal\"", description: "Separator orientation." },
-        { name: "className", type: "string", description: "Optional classes for length or spacing adjustments." },
+        { name: "className", type: "string", description: "Horizontal separators fill their parent. Constrain length with an outer max-w-* wrapper or className." },
     ],
 } as const;
 

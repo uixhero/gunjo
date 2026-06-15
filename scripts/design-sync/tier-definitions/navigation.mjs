@@ -85,6 +85,9 @@ export const NAVIGATION_SPEC_DEFINITIONS = [
       content: "tabsContent",
       contentText: "tabsContentText",
     },
+    variantOverrides: {
+      default: { width: "fill_container" },
+    },
   },
   {
     key: "pagination",

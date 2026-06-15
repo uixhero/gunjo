@@ -32,6 +32,7 @@
   },
   "files": [
     "src",
+    "docs",
     "tailwind-preset.js",
     "tailwind-theme-extend.cjs",
     "design/atoms-metadata.json",

@@ -235,7 +235,7 @@
           "name": "Tabs/Default",
           "key": "default",
           "type": "frame",
-          "width": 400,
+          "width": "fill_container",
           "height": null,
           "padding": null,
           "gap": null,

@@ -91,7 +91,16 @@ export const DISPLAY_SPEC_DEFINITIONS = [
       ],
     }),
   },
-  { key: "separator", frameId: "separatorFrame", titleId: "separatorTitle", descId: "separatorDesc", variantsId: "separatorVariants" },
+  {
+    key: "separator",
+    frameId: "separatorFrame",
+    titleId: "separatorTitle",
+    descId: "separatorDesc",
+    variantsId: "separatorVariants",
+    variantOverrides: {
+      horizontal: { width: "fill_container" },
+    },
+  },
   { key: "avatar", frameId: "avatarFrame", titleId: "avatarTitle", descId: "avatarDesc", variantsId: "avatarVariants" },
   {
     key: "chatMessage",

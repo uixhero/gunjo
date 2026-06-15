@@ -801,14 +801,14 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col w-[400px] rounded-lg border",
+      "baseClasses": "flex flex-col w-full rounded-lg border",
       "baseColorHint": "fill=#FFFFFF | stroke=#e2e8f0@1px",
       "slotIds": [
         "tabsList",
         "tabsContent"
       ],
       "variantClasses": {
-        "default": "flex flex-col w-[400px] rounded-lg border"
+        "default": "flex flex-col w-full rounded-lg border"
       },
       "variantColorHints": {
         "default": "fill=#FFFFFF | stroke=#e2e8f0@1px"
@@ -1826,11 +1826,11 @@ export const componentStyleHints = {
         "vertical"
       ],
       "defaultVariantKey": "horizontal",
-      "baseClasses": "w-[200px] h-[1px]",
+      "baseClasses": "w-full h-[1px]",
       "baseColorHint": "fill=#e2e8f0",
       "slotIds": [],
       "variantClasses": {
-        "horizontal": "w-[200px] h-[1px]",
+        "horizontal": "w-full h-[1px]",
         "vertical": "w-[1px] h-6"
       },
       "variantColorHints": {
@@ -2207,13 +2207,13 @@ export const componentStyleHints = {
         "disabled"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "inline-flex items-center w-[280px] h-9 py-2 px-3 rounded-lg border bg-transparent text-sm font-normal",
+      "baseClasses": "inline-flex items-center w-full h-9 py-2 px-3 rounded-lg border bg-transparent text-sm font-normal",
       "baseColorHint": "fill=transparent | stroke=#e2e8f0@1px | text=#0c0c12",
       "slotIds": [],
       "variantClasses": {
-        "default": "inline-flex items-center w-[280px] h-9 py-2 px-3 rounded-lg border bg-transparent text-sm font-normal",
-        "placeholder": "inline-flex items-center w-[280px] h-9 py-2 px-3 rounded-lg border bg-transparent text-sm font-normal",
-        "disabled": "inline-flex items-center w-[280px] h-9 py-2 px-3 rounded-lg border text-sm font-normal"
+        "default": "inline-flex items-center w-full h-9 py-2 px-3 rounded-lg border bg-transparent text-sm font-normal",
+        "placeholder": "inline-flex items-center w-full h-9 py-2 px-3 rounded-lg border bg-transparent text-sm font-normal",
+        "disabled": "inline-flex items-center w-full h-9 py-2 px-3 rounded-lg border text-sm font-normal"
       },
       "variantColorHints": {
         "default": "fill=transparent | stroke=#e2e8f0@1px | text=#0c0c12",
@@ -2356,11 +2356,11 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "inline-flex items-center w-[200px] h-9 py-2 px-3 rounded-lg border bg-transparent text-sm font-normal",
+      "baseClasses": "inline-flex items-center w-full h-9 py-2 px-3 rounded-lg border bg-transparent text-sm font-normal",
       "baseColorHint": "fill=transparent | stroke=#e2e8f0@1px | text=#64748b",
       "slotIds": [],
       "variantClasses": {
-        "default": "inline-flex items-center w-[200px] h-9 py-2 px-3 rounded-lg border bg-transparent text-sm font-normal"
+        "default": "inline-flex items-center w-full h-9 py-2 px-3 rounded-lg border bg-transparent text-sm font-normal"
       },
       "variantColorHints": {
         "default": "fill=transparent | stroke=#e2e8f0@1px | text=#64748b"

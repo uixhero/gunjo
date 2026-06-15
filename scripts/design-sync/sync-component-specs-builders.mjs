@@ -44,7 +44,7 @@ function extractVariants(variantsNode) {
       gap: child.gap ?? null,
       cornerRadius: child.cornerRadius ?? null,
       fill: child.fill ?? null,
-      stroke: normalizeStroke(child.stroke),
+      stroke: normalizeStroke(child.stroke, child),
       iconFontFamily: child.iconFontFamily ?? null,
       iconFontName: child.iconFontName ?? null,
       text: extractTextSpec(child),
