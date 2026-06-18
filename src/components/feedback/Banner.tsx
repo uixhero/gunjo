@@ -5,7 +5,7 @@ import { IconX as X } from "@tabler/icons-react";
 import { cva, type VariantProps } from "class-variance-authority"
 
 import { cn } from "../../lib/utils"
-import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "../overlay/Tooltip"
 
 export const bannerVariants = cva(
     "flex h-10 w-full items-center justify-between gap-3 px-4 py-0 text-sm",
@@ -67,19 +67,21 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
             <div className="flex items-center gap-2">
                 {action}
                 {onDismiss ? (
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <button
-                                type="button"
-                                onClick={onDismiss}
-                                aria-label={dismissLabel}
-                                className="inline-flex h-6 w-6 items-center justify-center rounded opacity-80 transition-colors hover:bg-foreground/10 hover:opacity-100"
-                            >
-                                <X className="h-4 w-4" />
-                            </button>
-                        </TooltipTrigger>
-                        <TooltipContent>{dismissLabel}</TooltipContent>
-                    </Tooltip>
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <button
+                                    type="button"
+                                    onClick={onDismiss}
+                                    aria-label={dismissLabel}
+                                    className="inline-flex h-6 w-6 items-center justify-center rounded opacity-80 transition-colors hover:bg-foreground/10 hover:opacity-100"
+                                >
+                                    <X className="h-4 w-4" />
+                                </button>
+                            </TooltipTrigger>
+                            <TooltipContent>{dismissLabel}</TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
                 ) : null}
             </div>
         </div>
