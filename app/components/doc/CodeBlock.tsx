@@ -15,14 +15,30 @@ export function CodeBlock({ code, language = "tsx" }: CodeBlockProps) {
     const [html, setHtml] = useState<string>("");
 
     useEffect(() => {
+        let cancelled = false;
+
         codeToHtml(code, {
             lang: language,
             theme: "github-dark",
-        }).then(setHtml);
+        }).then((highlightedHtml) => {
+            if (!cancelled) {
+                setHtml(highlightedHtml);
+            }
+        });
+
+        return () => {
+            cancelled = true;
+        };
     }, [code, language]);
 
     if (!html) {
-        return <div className={codeBlockClassName}>Loading...</div>;
+        return (
+            <div className={codeBlockClassName}>
+                <pre>
+                    <code className={`language-${language}`}>{code}</code>
+                </pre>
+            </div>
+        );
     }
 
     return <div dangerouslySetInnerHTML={{ __html: html }} className={codeBlockClassName} />;
