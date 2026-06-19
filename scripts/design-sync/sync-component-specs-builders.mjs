@@ -1,5 +1,11 @@
 import { findNodeById, normalizePadding } from "./shared.mjs";
-import { normalizeStroke, normalizeVariantKey } from "./sync-structured-spec-utils.mjs";
+import {
+  normalizeIconFontFamily,
+  normalizeIconFontName,
+  normalizeNodeType,
+  normalizeStroke,
+  normalizeVariantKey,
+} from "./sync-structured-spec-utils.mjs";
 
 function extractTextSpec(node) {
   if (!Array.isArray(node?.children)) return null;
@@ -32,12 +38,12 @@ function extractTextSpecs(node) {
 function extractVariants(variantsNode) {
   const children = Array.isArray(variantsNode?.children) ? variantsNode.children : [];
   return children
-    .filter((child) => child?.type === "frame" || child?.type === "icon_font")
+    .filter((child) => child?.type === "frame" || child?.type === "icon_font" || child?.type === "icon")
     .map((child) => ({
       id: child.id ?? null,
       name: child.name ?? null,
       key: normalizeVariantKey(child.name ?? ""),
-      type: child.type ?? null,
+      type: normalizeNodeType(child.type),
       width: child.width ?? null,
       height: child.height ?? null,
       padding: normalizePadding(child.padding),
@@ -45,8 +51,8 @@ function extractVariants(variantsNode) {
       cornerRadius: child.cornerRadius ?? null,
       fill: child.fill ?? null,
       stroke: normalizeStroke(child.stroke, child),
-      iconFontFamily: child.iconFontFamily ?? null,
-      iconFontName: child.iconFontName ?? null,
+      iconFontFamily: normalizeIconFontFamily(child),
+      iconFontName: normalizeIconFontName(child),
       text: extractTextSpec(child),
       texts: extractTextSpecs(child),
       reusable: Boolean(child.reusable),

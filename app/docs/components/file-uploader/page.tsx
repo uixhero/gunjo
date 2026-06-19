@@ -21,6 +21,7 @@ import {
     Spinner,
 } from "@gunjo/ui";
 import { IconAlertTriangle, IconCircleCheck } from "@tabler/icons-react";
+import { useState } from "react";
 
 const labelsByLocale = {
     ja: {
@@ -28,6 +29,7 @@ const labelsByLocale = {
         drop: "またはドラッグ＆ドロップ",
         removeFile: "ファイルを削除",
         fileTooLarge: "ファイルサイズが上限を超えています",
+        fileTypeNotAccepted: "対応していないファイル形式です",
         maxSize: (sizeMb: number) => `最大 ${sizeMb}MB`,
     },
     en: {
@@ -35,6 +37,7 @@ const labelsByLocale = {
         drop: "or drag and drop",
         removeFile: "Remove file",
         fileTooLarge: "File too large",
+        fileTypeNotAccepted: "File type not accepted",
         maxSize: (sizeMb: number) => `Max size ${sizeMb}MB`,
     },
 } as const;
@@ -91,19 +94,24 @@ export default function FileUploaderPage() {
     const content = getDocContent("components/file-uploader", locale);
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
     const labels = labelsByLocale[locale];
+    const [attachments, setAttachments] = useState<File[]>([]);
     const disabledReason = locale === "ja"
         ? "ストレージ容量を確認するまでアップロードを停止しています。"
         : "Uploads are paused until storage capacity is confirmed.";
 
     const code = `import { FileUploader, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+import { useState } from "react";
 
 export function FileUploaderDemo() {
+  const [files, setFiles] = useState<File[]>([]);
+
   return (
     <FormGroup className="w-full max-w-md">
       <FormLabel>${locale === "ja" ? "添付ファイル" : "Attachments"}</FormLabel>
       <FormControl>
         <FileUploader
-          onValueChange={(files) => console.log(files)}
+          value={files}
+          onValueChange={setFiles}
           maxFiles={3}
           maxSize={5 * 1024 * 1024}
           labels={{
@@ -111,6 +119,7 @@ export function FileUploaderDemo() {
             drop: "${labels.drop}",
             removeFile: "${labels.removeFile}",
             fileTooLarge: "${labels.fileTooLarge}",
+            fileTypeNotAccepted: "${labels.fileTypeNotAccepted}",
             maxSize: (sizeMb) => \`${locale === "ja" ? "最大 " : "Max size "}\${sizeMb}MB\`,
           }}
         />
@@ -122,15 +131,21 @@ export function FileUploaderDemo() {
   );
 }`;
 
-    const usageCode = `import { FileUploader, FormControl, FormGroup, FormLabel } from "@gunjo/ui";
+    const usageCode = `import { FileUploader, FormControl, FormGroup, FormLabel, Progress } from "@gunjo/ui";
+import { useState } from "react";
 
 export function ImageUploader() {
+  const [files, setFiles] = useState<File[]>([]);
+  const progressByName: Record<string, number> = {};
+
   return (
     <FormGroup className="w-full max-w-md">
       <FormLabel>${locale === "ja" ? "画像" : "Images"}</FormLabel>
       <FormControl>
         <FileUploader
-          onValueChange={(files) => console.log(files)}
+          value={files}
+          onValueChange={setFiles}
+          showFileList={false}
           maxFiles={5}
           maxSize={10 * 1024 * 1024}
           accept={{
@@ -138,15 +153,36 @@ export function ImageUploader() {
           }}
         />
       </FormControl>
+      {files.length > 0 && (
+        <div className="grid gap-2">
+          {files.map((file) => (
+            <div key={file.name} className="grid gap-1 rounded-md border p-2 text-xs">
+              <div className="flex justify-between gap-3">
+                <span className="truncate font-medium">{file.name}</span>
+                <span className="text-muted-foreground">
+                  {progressByName[file.name] ?? 0}%
+                </span>
+              </div>
+              <Progress value={progressByName[file.name] ?? 0} className="h-2" />
+            </div>
+          ))}
+        </div>
+      )}
     </FormGroup>
   );
 }`;
 
     const propsData = [
         {
+            name: "value",
+            type: "File[]",
+            description: locale === "ja" ? "選択済みファイルを親で管理する controlled 値です。" : "Controlled file list owned by the parent.",
+            default: "-",
+        },
+        {
             name: "onValueChange",
             type: "(files: File[]) => void",
-            description: locale === "ja" ? "ファイルが選択またはドロップされた時に呼ばれます。" : "Callback when files are selected or dropped.",
+            description: locale === "ja" ? "選択、ドロップ、削除後の累積ファイル配列で呼ばれます。" : "Called with the accumulated file list after select, drop, or remove.",
             default: "-",
         },
         {
@@ -174,9 +210,21 @@ export function ImageUploader() {
             default: "false",
         },
         {
+            name: "showFileList",
+            type: "boolean",
+            description: locale === "ja" ? "内部ファイル一覧を表示するかを指定します。外部リストや独自進捗を描画する場合は false にします。" : "Whether to render the internal file list. Set false when rendering a custom list or upload progress outside.",
+            default: "true",
+        },
+        {
+            name: "fileProgress",
+            type: "Record<string, FileUploaderFileProgress> | (file, index) => FileUploaderFileProgress",
+            description: locale === "ja" ? "利用側が管理するファイルごとの進捗、状態、エラーを内部リストに表示します。" : "Displays caller-owned progress, status, and error state in the internal file list.",
+            default: "-",
+        },
+        {
             name: "labels",
-            type: "{ browse?: ReactNode; drop?: ReactNode; maxSize?: (sizeMb: number) => ReactNode; removeFile?: string; fileTooLarge?: string }",
-            description: locale === "ja" ? "ドロップゾーン、削除ボタン、エラーの文言を差し替えます。" : "Overrides dropzone, remove button, and validation labels.",
+            type: "{ browse?: ReactNode; drop?: ReactNode; maxSize?: (sizeMb: number) => ReactNode; removeFile?: string; fileTooLarge?: string; fileTypeNotAccepted?: string; progress?: (fileName: string) => string; status?: Partial<Record<FileUploaderFileStatus, ReactNode>> }",
+            description: locale === "ja" ? "ドロップゾーン、削除ボタン、検証、進捗表示の文言を差し替えます。" : "Overrides dropzone, remove button, validation, and progress labels.",
             default: "-",
         },
     ];
@@ -188,7 +236,7 @@ export function ImageUploader() {
             sectionLabels={sectionLabels}
             usedComponents={[
                 { name: "FileUploader", href: "/docs/components/file-uploader" },
-                { name: "Button", href: "/docs/components/button" },
+                { name: "TooltipButton", href: "/docs/components/tooltip-button" },
                 { name: "Progress", href: "/docs/components/progress" },
                 { name: "Spinner", href: "/docs/components/spinner" },
                 { name: "Alert", href: "/docs/components/alert" },
@@ -216,9 +264,14 @@ export function ImageUploader() {
                     <FormLabel>{locale === "ja" ? "添付ファイル" : "Attachments"}</FormLabel>
                     <FormControl>
                         <FileUploader
-                            onValueChange={(files) => console.log(files)}
+                            value={attachments}
+                            onValueChange={setAttachments}
                             maxFiles={3}
                             labels={labels}
+                            fileProgress={(file, index) => attachments.length > 0 ? {
+                                progress: index === 0 ? 68 : 24,
+                                status: "uploading",
+                            } : undefined}
                         />
                     </FormControl>
                     <FormDescription>
@@ -267,21 +320,29 @@ export function ImageUploader() {
                             title: locale === "ja" ? "アップロード中" : "Uploading",
                             description:
                                 locale === "ja"
-                                    ? "処理中は進捗、読み込みアイコン、状態テキストを同じ領域に表示します。"
-                                    : "During upload, show progress, Spinner, and status text in the same area.",
+                                    ? "アップロード処理は利用側で管理し、内部リストには fileProgress を渡すか showFileList=false で独自リストを描画します。"
+                                    : "Upload work is caller-owned: pass fileProgress to the internal list or set showFileList=false and render a custom list.",
                             preview: (
                                 <div className="grid w-full max-w-md gap-3">
-                                    <FileUploader labels={labels} maxFiles={3} />
+                                    <FileUploader labels={labels} maxFiles={3} showFileList={false} />
                                     <UploadStatusCard locale={locale} status="loading" />
                                 </div>
                             ),
                             previewHeight: 320,
                             code: `import { FileUploader, Progress, Spinner } from "@gunjo/ui";
+import { useState } from "react";
 
 export function UploadingState() {
+  const [files, setFiles] = useState<File[]>([]);
+
   return (
     <div className="grid gap-3">
-      <FileUploader maxFiles={3} />
+      <FileUploader
+        value={files}
+        onValueChange={setFiles}
+        maxFiles={3}
+        showFileList={false}
+      />
       <div className="grid gap-3 rounded-md border p-3 text-sm">
         <div className="flex items-center gap-2">
           <Spinner size="sm" />
@@ -309,11 +370,14 @@ export function UploadingState() {
                             ),
                             previewHeight: 320,
                             code: `import { Alert, AlertDescription, AlertTitle, FileUploader } from "@gunjo/ui";
+import { useState } from "react";
 
 export function UploadSuccessState() {
+  const [files, setFiles] = useState<File[]>([]);
+
   return (
     <div className="grid gap-3">
-      <FileUploader maxFiles={3} />
+      <FileUploader value={files} onValueChange={setFiles} maxFiles={3} />
       <Alert>
         <AlertTitle>${locale === "ja" ? "アップロード完了" : "Upload complete"}</AlertTitle>
         <AlertDescription>${locale === "ja" ? "3件のファイルを追加しました。" : "3 files were added."}</AlertDescription>
@@ -337,11 +401,14 @@ export function UploadSuccessState() {
                             ),
                             previewHeight: 320,
                             code: `import { Alert, AlertDescription, AlertTitle, FileUploader } from "@gunjo/ui";
+import { useState } from "react";
 
 export function UploadFailureState() {
+  const [files, setFiles] = useState<File[]>([]);
+
   return (
     <div className="grid gap-3">
-      <FileUploader maxFiles={3} />
+      <FileUploader value={files} onValueChange={setFiles} maxFiles={3} />
       <Alert variant="destructive">
         <AlertTitle>${locale === "ja" ? "アップロード失敗" : "Upload failed"}</AlertTitle>
         <AlertDescription>${locale === "ja" ? "ファイルサイズが上限を超えています。" : "The file exceeds the allowed size."}</AlertDescription>

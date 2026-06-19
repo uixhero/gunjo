@@ -16,12 +16,27 @@ function normalizeStrokeThickness(strokeWidth) {
   return widths.every((value) => value === widths[0]) ? widths[0] : null;
 }
 
+function normalizeStrokeAlignment(strokeAlignment) {
+  if (strokeAlignment === "inner") return "inside";
+  if (strokeAlignment === "center") return "center";
+  if (strokeAlignment === "outer") return "outside";
+  return strokeAlignment ?? null;
+}
+
 export function normalizeStroke(stroke, node = {}) {
+  if (typeof stroke === "string" && stroke.length > 0) {
+    return {
+      align: normalizeStrokeAlignment(node.strokeAlignment),
+      fill: stroke,
+      thickness: normalizeStrokeThickness(node.strokeWidth),
+    };
+  }
+
   if (!stroke || typeof stroke !== "object") return null;
 
   if (stroke.type === "color") {
     return {
-      align: node.strokeAlignment ?? null,
+      align: normalizeStrokeAlignment(node.strokeAlignment),
       fill: stroke.color ?? null,
       thickness: normalizeStrokeThickness(node.strokeWidth),
     };
@@ -34,6 +49,18 @@ export function normalizeStroke(stroke, node = {}) {
   };
 }
 
+export function normalizeNodeType(type) {
+  return type === "icon" ? "icon_font" : type ?? null;
+}
+
+export function normalizeIconFontFamily(node) {
+  return node?.iconFontFamily ?? node?.library ?? null;
+}
+
+export function normalizeIconFontName(node) {
+  return node?.iconFontName ?? node?.icon ?? null;
+}
+
 export function extractNodeSnapshot(node, { includeIconFontFields = false } = {}) {
   if (!node || typeof node !== "object") return null;
 
@@ -41,7 +68,7 @@ export function extractNodeSnapshot(node, { includeIconFontFields = false } = {}
 
   const base = {
     id: node.id ?? null,
-    type: node.type ?? null,
+    type: normalizeNodeType(node.type),
     name: node.name ?? null,
     width: node.width ?? null,
     height: node.height ?? null,
@@ -67,8 +94,8 @@ export function extractNodeSnapshot(node, { includeIconFontFields = false } = {}
 
   return {
     ...base,
-    iconFontFamily: node.iconFontFamily ?? null,
-    iconFontName: node.iconFontName ?? null,
+    iconFontFamily: normalizeIconFontFamily(node),
+    iconFontName: normalizeIconFontName(node),
     textGrowth: node.textGrowth ?? null,
     children: children.map((child) => child?.id).filter(Boolean),
   };
@@ -76,7 +103,7 @@ export function extractNodeSnapshot(node, { includeIconFontFields = false } = {}
 
 export function extractVariants(
   variantsNode,
-  { variantNodeTypes = ["frame", "icon_font"] } = {}
+  { variantNodeTypes = ["frame", "icon_font", "icon"] } = {}
 ) {
   const children = Array.isArray(variantsNode?.children) ? variantsNode.children : [];
   const allowedTypes = new Set(variantNodeTypes);
@@ -87,7 +114,7 @@ export function extractVariants(
       id: child.id ?? null,
       name: child.name ?? null,
       key: normalizeVariantKey(child.name ?? ""),
-      type: child.type ?? null,
+      type: normalizeNodeType(child.type),
       width: child.width ?? null,
       height: child.height ?? null,
       padding: normalizePadding(child.padding),
@@ -145,7 +172,7 @@ export function buildStructuredSpec({
   descId,
   variantsId,
   nodeIds,
-  variantNodeTypes = ["frame", "icon_font"],
+  variantNodeTypes = ["frame", "icon_font", "icon"],
   includeIconFontFields = false,
   autoIncludeVariantChildrenNodes = false,
 }) {

@@ -141,7 +141,7 @@
         },
         "sep1": {
           "id": "breadcrumbSep1",
-          "type": "icon",
+          "type": "icon_font",
           "name": null,
           "width": 14,
           "height": 14,
@@ -155,8 +155,8 @@
           "fontSize": null,
           "fontWeight": null,
           "content": null,
-          "iconFontFamily": null,
-          "iconFontName": null,
+          "iconFontFamily": "lucide",
+          "iconFontName": "chevron-right",
           "textGrowth": null,
           "children": []
         },
@@ -183,7 +183,7 @@
         },
         "sep2": {
           "id": "breadcrumbSep2",
-          "type": "icon",
+          "type": "icon_font",
           "name": null,
           "width": 14,
           "height": 14,
@@ -197,8 +197,8 @@
           "fontSize": null,
           "fontWeight": null,
           "content": null,
-          "iconFontFamily": null,
-          "iconFontName": null,
+          "iconFontFamily": "lucide",
+          "iconFontName": "chevron-right",
           "textGrowth": null,
           "children": []
         },
@@ -241,7 +241,11 @@
           "gap": null,
           "cornerRadius": 8,
           "fill": "#FFFFFF",
-          "stroke": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
           "reusable": true,
           "children": [
             "tabsList",
@@ -260,7 +264,11 @@
           "gap": null,
           "cornerRadius": 8,
           "fill": "#FFFFFF",
-          "stroke": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1077,7 +1085,11 @@
           "gap": 4,
           "cornerRadius": 6,
           "fill": "#ffffff",
-          "stroke": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
           "reusable": true,
           "children": [
             "menubarTrigger",
@@ -1101,7 +1113,11 @@
           "gap": 4,
           "cornerRadius": 6,
           "fill": "#ffffff",
-          "stroke": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
           "justifyContent": null,
           "alignItems": "center",
           "fontSize": null,
@@ -1158,7 +1174,11 @@
           "gap": 2,
           "cornerRadius": 6,
           "fill": "#ffffff",
-          "stroke": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1269,7 +1289,11 @@
           "gap": null,
           "cornerRadius": 8,
           "fill": "#FFFFFF",
-          "stroke": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
           "reusable": true,
           "children": [
             "commandInput",
@@ -1288,7 +1312,11 @@
           "gap": null,
           "cornerRadius": 8,
           "fill": "#FFFFFF",
-          "stroke": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1317,7 +1345,11 @@
           "gap": null,
           "cornerRadius": null,
           "fill": null,
-          "stroke": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1487,7 +1519,7 @@
         },
         "iconHome": {
           "id": "appRailIconHome",
-          "type": "icon",
+          "type": "icon_font",
           "name": null,
           "width": 20,
           "height": 20,
@@ -1501,14 +1533,14 @@
           "fontSize": null,
           "fontWeight": null,
           "content": null,
-          "iconFontFamily": null,
-          "iconFontName": null,
+          "iconFontFamily": "lucide",
+          "iconFontName": "house",
           "textGrowth": null,
           "children": []
         },
         "iconSearch": {
           "id": "appRailIconSearch",
-          "type": "icon",
+          "type": "icon_font",
           "name": null,
           "width": 20,
           "height": 20,
@@ -1522,14 +1554,14 @@
           "fontSize": null,
           "fontWeight": null,
           "content": null,
-          "iconFontFamily": null,
-          "iconFontName": null,
+          "iconFontFamily": "lucide",
+          "iconFontName": "search",
           "textGrowth": null,
           "children": []
         },
         "iconFolder": {
           "id": "appRailIconFolder",
-          "type": "icon",
+          "type": "icon_font",
           "name": null,
           "width": 20,
           "height": 20,
@@ -1543,8 +1575,8 @@
           "fontSize": null,
           "fontWeight": null,
           "content": null,
-          "iconFontFamily": null,
-          "iconFontName": null,
+          "iconFontFamily": "lucide",
+          "iconFontName": "folder",
           "textGrowth": null,
           "children": []
         }
@@ -1566,7 +1598,11 @@
           "gap": null,
           "cornerRadius": 8,
           "fill": "#ffffff",
-          "stroke": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
           "reusable": true,
           "children": [
             "commandPaletteInput",
@@ -1585,7 +1621,11 @@
           "gap": null,
           "cornerRadius": 8,
           "fill": "#ffffff",
-          "stroke": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1614,7 +1654,11 @@
           "gap": null,
           "cornerRadius": null,
           "fill": null,
-          "stroke": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1787,7 +1831,11 @@
           "gap": null,
           "cornerRadius": null,
           "fill": "#ffffff",
-          "stroke": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
           "reusable": true,
           "children": [
             "rightRailHeader",
@@ -1806,7 +1854,11 @@
           "gap": null,
           "cornerRadius": null,
           "fill": "#ffffff",
-          "stroke": null,
+          "stroke": {
+            "align": "inside",
+            "fill": "#e5e7eb",
+            "thickness": 1
+          },
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,

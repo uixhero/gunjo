@@ -1,5 +1,5 @@
 {
-  "version": "2.7",
+  "version": "2.13",
   "children": [
     {
       "type": "frame",
@@ -20,11 +20,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -61,11 +59,9 @@
                   "width": 320,
                   "fill": "#FFFFFF",
                   "cornerRadius": 8,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#e2e8f0"
-                  },
+                  "stroke": "#e2e8f0",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
                   "layout": "vertical",
                   "gap": 4,
                   "padding": [
@@ -101,11 +97,9 @@
                   "width": 320,
                   "fill": "#fef2f2",
                   "cornerRadius": 8,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#fecaca"
-                  },
+                  "stroke": "#fecaca",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
                   "layout": "vertical",
                   "gap": 4,
                   "padding": [
@@ -157,11 +151,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -187,6 +179,7 @@
             {
               "type": "frame",
               "id": "progressVariants",
+              "width": "fill_container",
               "layout": "vertical",
               "gap": 12,
               "children": [
@@ -196,7 +189,7 @@
                   "name": "Progress/Bar",
                   "reusable": true,
                   "clip": true,
-                  "width": 200,
+                  "width": "fill_container",
                   "height": 16,
                   "fill": "#f1f5f9",
                   "cornerRadius": 9999,
@@ -205,7 +198,7 @@
                     {
                       "type": "frame",
                       "id": "progressFill",
-                      "width": "fit_content(0)",
+                      "width": "fill_container",
                       "height": 16,
                       "fill": "#0c0c12",
                       "cornerRadius": 9999
@@ -233,6 +226,7 @@
             {
               "type": "frame",
               "id": "progressShowcase",
+              "width": "fill_container",
               "layout": "vertical",
               "gap": 16,
               "children": [
@@ -255,7 +249,7 @@
                       "type": "text",
                       "id": "PaCHZ",
                       "fill": "#64748b",
-                      "content": "0% (\u958b\u59cb)",
+                      "content": "0% (開始)",
                       "fontFamily": "Inter",
                       "fontSize": 12,
                       "fontWeight": "normal"
@@ -291,7 +285,7 @@
                       "type": "text",
                       "id": "QBOgZ",
                       "fill": "#64748b",
-                      "content": "33% (\u7d4c\u904e)",
+                      "content": "33% (経過)",
                       "fontFamily": "Inter",
                       "fontSize": 12,
                       "fontWeight": "normal"
@@ -327,7 +321,7 @@
                       "type": "text",
                       "id": "FwInZ",
                       "fill": "#64748b",
-                      "content": "66% (\u7d4c\u904e)",
+                      "content": "66% (経過)",
                       "fontFamily": "Inter",
                       "fontSize": 12,
                       "fontWeight": "normal"
@@ -363,7 +357,7 @@
                       "type": "text",
                       "id": "jwLxz",
                       "fill": "#64748b",
-                      "content": "100% (\u7d42\u4e86)",
+                      "content": "100% (終了)",
                       "fontFamily": "Inter",
                       "fontSize": 12,
                       "fontWeight": "normal"
@@ -381,11 +375,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -415,36 +407,36 @@
               "gap": 12,
               "children": [
                 {
-                  "type": "icon_font",
+                  "type": "icon",
                   "id": "spinnerSm",
                   "name": "Spinner/Sm",
                   "reusable": true,
                   "width": 12,
                   "height": 12,
-                  "iconFontName": "refresh-cw",
-                  "iconFontFamily": "lucide",
+                  "icon": "refresh-cw",
+                  "library": "lucide",
                   "fill": "#64748b"
                 },
                 {
-                  "type": "icon_font",
+                  "type": "icon",
                   "id": "spinnerDefault",
                   "name": "Spinner/Default",
                   "reusable": true,
                   "width": 16,
                   "height": 16,
-                  "iconFontName": "refresh-cw",
-                  "iconFontFamily": "lucide",
+                  "icon": "refresh-cw",
+                  "library": "lucide",
                   "fill": "#64748b"
                 },
                 {
-                  "type": "icon_font",
+                  "type": "icon",
                   "id": "spinnerLg",
                   "name": "Spinner/Lg",
                   "reusable": true,
                   "width": 24,
                   "height": 24,
-                  "iconFontName": "refresh-cw",
-                  "iconFontFamily": "lucide",
+                  "icon": "refresh-cw",
+                  "library": "lucide",
                   "fill": "#64748b"
                 }
               ]
@@ -453,7 +445,7 @@
               "type": "text",
               "id": "spinnerStatesLabel",
               "fill": "#64748b",
-              "content": "\u30b5\u30a4\u30ba: sm / default / lg",
+              "content": "サイズ: sm / default / lg",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontWeight": "500"
@@ -539,7 +531,7 @@
               "type": "text",
               "id": "spinnerTimeLabel",
               "fill": "#64748b",
-              "content": "\u56de\u8ee2\u306e\u7d4c\u904e (t=0 \u2192 t=3)",
+              "content": "回転の経過 (t=0 → t=3)",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontWeight": "500"
@@ -688,11 +680,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -729,11 +719,9 @@
                   "width": 384,
                   "fill": "#ffffff",
                   "cornerRadius": 12,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#22c55e33"
-                  },
+                  "stroke": "#22c55e33",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
                   "gap": 12,
                   "padding": [
                     12,
@@ -742,12 +730,12 @@
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "toastSuccessIcon",
                       "width": 20,
                       "height": 20,
-                      "iconFontName": "circle-check",
-                      "iconFontFamily": "lucide",
+                      "icon": "circle-check",
+                      "library": "lucide",
                       "fill": "#4ade80"
                     },
                     {
@@ -760,12 +748,12 @@
                       "fontWeight": "500"
                     },
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "toastSuccessClose",
                       "width": 14,
                       "height": 14,
-                      "iconFontName": "x",
-                      "iconFontFamily": "lucide",
+                      "icon": "x",
+                      "library": "lucide",
                       "fill": "#6b7280"
                     }
                   ]
@@ -778,11 +766,9 @@
                   "width": 384,
                   "fill": "#ffffff",
                   "cornerRadius": 12,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#ef444433"
-                  },
+                  "stroke": "#ef444433",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
                   "gap": 12,
                   "padding": [
                     12,
@@ -791,12 +777,12 @@
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "toastErrorIcon",
                       "width": 20,
                       "height": 20,
-                      "iconFontName": "circle-x",
-                      "iconFontFamily": "lucide",
+                      "icon": "circle-x",
+                      "library": "lucide",
                       "fill": "#f87171"
                     },
                     {
@@ -818,11 +804,9 @@
                   "width": 384,
                   "fill": "#ffffff",
                   "cornerRadius": 12,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#3b82f633"
-                  },
+                  "stroke": "#3b82f633",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
                   "gap": 12,
                   "padding": [
                     12,
@@ -831,12 +815,12 @@
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "toastInfoIcon",
                       "width": 20,
                       "height": 20,
-                      "iconFontName": "info",
-                      "iconFontFamily": "lucide",
+                      "icon": "info",
+                      "library": "lucide",
                       "fill": "#60a5fa"
                     },
                     {
@@ -873,11 +857,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -924,12 +906,12 @@
                       "alignItems": "center",
                       "children": [
                         {
-                          "type": "icon_font",
+                          "type": "icon",
                           "id": "notificationCenterBellIcon",
                           "width": 20,
                           "height": 20,
-                          "iconFontName": "bell",
-                          "iconFontFamily": "lucide",
+                          "icon": "bell",
+                          "library": "lucide",
                           "fill": "#6b7280"
                         },
                         {
@@ -947,22 +929,18 @@
                       "id": "notificationCenterPanel",
                       "width": 320,
                       "fill": "#ffffff",
-                      "stroke": {
-                        "align": "inside",
-                        "thickness": 1,
-                        "fill": "#e2e8f0"
-                      },
+                      "stroke": "#e2e8f0",
+                      "strokeWidth": 1,
+                      "strokeAlignment": "inner",
                       "layout": "vertical",
                       "children": [
                         {
                           "type": "frame",
                           "id": "notificationCenterHeader",
                           "fill": "#f9fafb80",
-                          "stroke": {
-                            "align": "inside",
-                            "thickness": 1,
-                            "fill": "#e2e8f0"
-                          },
+                          "stroke": "#e2e8f0",
+                          "strokeWidth": 1,
+                          "strokeAlignment": "inner",
                           "padding": [
                             12,
                             16
@@ -993,11 +971,9 @@
                         {
                           "type": "frame",
                           "id": "notificationCenterListItem",
-                          "stroke": {
-                            "align": "inside",
-                            "thickness": 1,
-                            "fill": "#e2e8f0"
-                          },
+                          "stroke": "#e2e8f0",
+                          "strokeWidth": 1,
+                          "strokeAlignment": "inner",
                           "layout": "vertical",
                           "gap": 4,
                           "padding": 16,
@@ -1080,11 +1056,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -1203,11 +1177,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -1233,6 +1205,7 @@
             {
               "type": "frame",
               "id": "progressWidgetVariants",
+              "width": "fill_container",
               "layout": "vertical",
               "gap": 12,
               "children": [
@@ -1241,19 +1214,18 @@
                   "id": "progressWidgetDefault",
                   "name": "ProgressWidget/Default",
                   "reusable": true,
-                  "width": 320,
+                  "width": "fill_container",
                   "fill": "#ffffff",
                   "cornerRadius": 8,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#e2e8f0"
-                  },
+                  "stroke": "#e2e8f0",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
                   "layout": "vertical",
                   "children": [
                     {
                       "type": "frame",
                       "id": "progressWidgetHeader",
+                      "width": "fill_container",
                       "padding": [
                         16,
                         24,
@@ -1277,6 +1249,7 @@
                     {
                       "type": "frame",
                       "id": "progressWidgetContent",
+                      "width": "fill_container",
                       "layout": "vertical",
                       "gap": 8,
                       "padding": [
@@ -1298,7 +1271,7 @@
                         {
                           "type": "frame",
                           "id": "progressWidgetProgress",
-                          "width": "fit_content(0)",
+                          "width": "fill_container",
                           "height": 8,
                           "fill": "#e2e8f0",
                           "cornerRadius": 999
@@ -1321,6 +1294,7 @@
             {
               "type": "frame",
               "id": "progressWidgetShowcase",
+              "width": "fill_container",
               "gap": 12,
               "children": [
                 {
@@ -1335,8 +1309,6 @@
         {
           "type": "frame",
           "id": "c9cpWh",
-          "x": 5500,
-          "y": 1500,
           "name": "Stepper/Default",
           "reusable": true,
           "fill": "#ffffff",
@@ -1364,7 +1336,7 @@
                       "type": "text",
                       "id": "UJ1dY",
                       "fill": "#f8fafc",
-                      "content": "\u2713",
+                      "content": "✓",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontWeight": "600"
@@ -1417,11 +1389,9 @@
                   "height": 32,
                   "fill": "#ffffff",
                   "cornerRadius": 9999,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 2,
-                    "fill": "#0c0c12"
-                  },
+                  "stroke": "#0c0c12",
+                  "strokeWidth": 2,
+                  "strokeAlignment": "inner",
                   "justifyContent": "center",
                   "alignItems": "center",
                   "children": [
@@ -1512,8 +1482,6 @@
         {
           "type": "frame",
           "id": "MTvTn",
-          "x": 0,
-          "y": 16700,
           "name": "Banner/Default",
           "reusable": true,
           "width": 600,
@@ -1537,7 +1505,7 @@
                   "type": "text",
                   "id": "zTSkb",
                   "fill": "#ffffff",
-                  "content": "\ud83d\udce2",
+                  "content": "📢",
                   "fontFamily": "Inter",
                   "fontSize": 14,
                   "fontWeight": "normal"
@@ -1546,7 +1514,7 @@
                   "type": "text",
                   "id": "j7DgXQ",
                   "fill": "#ffffff",
-                  "content": "New: alpha.2 release available \u2014 see changelog",
+                  "content": "New: alpha.2 release available — see changelog",
                   "fontFamily": "Inter",
                   "fontSize": 13,
                   "fontWeight": "500"
@@ -1557,7 +1525,7 @@
               "type": "text",
               "id": "fc276",
               "fill": "#94a3b8",
-              "content": "\u00d7",
+              "content": "×",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontWeight": "normal"
@@ -1693,6 +1661,7 @@
           "type": "frame",
           "id": "KIQHy",
           "name": "showcase/progressWidget",
+          "width": "fit_content(352)",
           "fill": "#ffffff",
           "gap": 24,
           "padding": 16,
@@ -1711,11 +1680,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -1764,11 +1731,9 @@
                           "id": "toastProviderItem",
                           "fill": "#ffffff",
                           "cornerRadius": 12,
-                          "stroke": {
-                            "align": "inside",
-                            "thickness": 1,
-                            "fill": "#d1d5db"
-                          },
+                          "stroke": "#d1d5db",
+                          "strokeWidth": 1,
+                          "strokeAlignment": "inner",
                           "gap": 12,
                           "padding": [
                             12,
@@ -1777,12 +1742,12 @@
                           "alignItems": "center",
                           "children": [
                             {
-                              "type": "icon_font",
+                              "type": "icon",
                               "id": "toastProviderItemIcon",
                               "width": 20,
                               "height": 20,
-                              "iconFontName": "circle-check",
-                              "iconFontFamily": "lucide",
+                              "icon": "circle-check",
+                              "library": "lucide",
                               "fill": "#4ade80"
                             },
                             {
@@ -1880,7 +1845,7 @@
           "id": "xBwdA",
           "name": "showcaseDesc",
           "fill": "#71717a",
-          "content": "Pencil \u3067\u518d\u73fe\u3057\u305f gunjo \u306e Button \u30b3\u30f3\u30dd\u30fc\u30cd\u30f3\u30c8",
+          "content": "Pencil で再現した gunjo の Button コンポーネント",
           "fontFamily": "Inter",
           "fontSize": 14,
           "fontWeight": "normal"
@@ -2106,11 +2071,9 @@
           "height": 36,
           "fill": "transparent",
           "cornerRadius": 6,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e5e5e5"
-          },
+          "stroke": "#e5e5e5",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "gap": 8,
           "padding": [
             8,
