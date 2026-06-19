@@ -25,6 +25,15 @@ const EXTRA_EXPORTS_BY_CATEGORY = {
   inputs: ["ButtonVariants"],
 };
 
+const EXTRA_PUBLIC_EXPORT_SECTIONS = [
+  {
+    label: "Chart Types",
+    exports: [
+      "export type { ChartColor, ChartDataPoint, ChartTone } from './components/display/chart-utils';",
+    ],
+  },
+];
+
 function withoutTsx(fileName) {
   return fileName.endsWith(".tsx") ? fileName.slice(0, -4) : fileName;
 }
@@ -52,6 +61,12 @@ function renderIndexSource(sections) {
   ];
 
   for (const section of sections) {
+    lines.push(`/** ${section.label} */`);
+    lines.push(...section.exports);
+    lines.push("");
+  }
+
+  for (const section of EXTRA_PUBLIC_EXPORT_SECTIONS) {
     lines.push(`/** ${section.label} */`);
     lines.push(...section.exports);
     lines.push("");
