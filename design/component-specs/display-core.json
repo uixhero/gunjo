@@ -140,11 +140,7 @@
           "gap": null,
           "cornerRadius": 9999,
           "fill": "transparent",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "iconFontFamily": null,
           "iconFontName": null,
           "text": {
@@ -519,11 +515,7 @@
           "gap": null,
           "cornerRadius": 4,
           "fill": "#f1f5f9",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "iconFontFamily": null,
           "iconFontName": null,
           "text": null,
@@ -815,11 +807,7 @@
           "gap": null,
           "cornerRadius": 8,
           "fill": "#FFFFFF",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "reusable": true,
           "children": [
             "cardHeader",
@@ -839,11 +827,7 @@
           "gap": null,
           "cornerRadius": 8,
           "fill": "#FFFFFF",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -967,11 +951,7 @@
           "gap": null,
           "cornerRadius": 6,
           "fill": "#f1f5f9",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1026,11 +1006,7 @@
           "gap": null,
           "cornerRadius": 8,
           "fill": "transparent",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": "center",
           "alignItems": "center",
           "fontSize": null,
@@ -1131,11 +1107,7 @@
           "gap": null,
           "cornerRadius": null,
           "fill": null,
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "reusable": true,
           "children": [
             "accordionTriggerCollapsed"
@@ -1152,11 +1124,7 @@
           "gap": null,
           "cornerRadius": null,
           "fill": null,
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "reusable": true,
           "children": [
             "accordionTriggerExpanded",
@@ -1175,11 +1143,7 @@
           "gap": null,
           "cornerRadius": null,
           "fill": null,
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1202,11 +1166,7 @@
           "gap": null,
           "cornerRadius": null,
           "fill": null,
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1322,7 +1282,7 @@
         },
         "chevronCollapsed": {
           "id": "accordionChevronCollapsed",
-          "type": "icon_font",
+          "type": "icon",
           "name": null,
           "width": 16,
           "height": 16,
@@ -1336,14 +1296,14 @@
           "fontSize": null,
           "fontWeight": null,
           "content": null,
-          "iconFontFamily": "lucide",
-          "iconFontName": "chevron-down",
+          "iconFontFamily": null,
+          "iconFontName": null,
           "textGrowth": null,
           "children": []
         },
         "chevronExpanded": {
           "id": "accordionChevronExpanded",
-          "type": "icon_font",
+          "type": "icon",
           "name": null,
           "width": 16,
           "height": 16,
@@ -1357,8 +1317,8 @@
           "fontSize": null,
           "fontWeight": null,
           "content": null,
-          "iconFontFamily": "lucide",
-          "iconFontName": "chevron-down",
+          "iconFontFamily": null,
+          "iconFontName": null,
           "textGrowth": null,
           "children": []
         },
@@ -1646,7 +1606,7 @@
         },
         "dotIcon": {
           "id": "listDotIcon",
-          "type": "icon_font",
+          "type": "icon",
           "name": null,
           "width": 16,
           "height": 16,
@@ -1660,8 +1620,8 @@
           "fontSize": null,
           "fontWeight": null,
           "content": null,
-          "iconFontFamily": "lucide",
-          "iconFontName": "dot",
+          "iconFontFamily": null,
+          "iconFontName": null,
           "textGrowth": null,
           "children": []
         },
@@ -1712,7 +1672,7 @@
         },
         "checkIcon": {
           "id": "listCheckIcon",
-          "type": "icon_font",
+          "type": "icon",
           "name": null,
           "width": 16,
           "height": 16,
@@ -1726,8 +1686,8 @@
           "fontSize": null,
           "fontWeight": null,
           "content": null,
-          "iconFontFamily": "lucide",
-          "iconFontName": "check",
+          "iconFontFamily": null,
+          "iconFontName": null,
           "textGrowth": null,
           "children": []
         },
@@ -1778,7 +1738,7 @@
         },
         "circleIcon": {
           "id": "listCircleIcon",
-          "type": "icon_font",
+          "type": "icon",
           "name": null,
           "width": 12,
           "height": 12,
@@ -1792,8 +1752,8 @@
           "fontSize": null,
           "fontWeight": null,
           "content": null,
-          "iconFontFamily": "lucide",
-          "iconFontName": "circle",
+          "iconFontFamily": null,
+          "iconFontName": null,
           "textGrowth": null,
           "children": []
         },
@@ -1830,17 +1790,13 @@
           "name": "Table/Default",
           "key": "default",
           "type": "frame",
-          "width": 400,
+          "width": "fill_container",
           "height": null,
           "padding": null,
           "gap": null,
           "cornerRadius": 8,
           "fill": "#FFFFFF",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "reusable": true,
           "children": [
             "tableHeader",
@@ -1853,17 +1809,13 @@
           "id": "tableDefault",
           "type": "frame",
           "name": "Table/Default",
-          "width": 400,
+          "width": "fill_container",
           "height": null,
           "padding": null,
           "gap": null,
           "cornerRadius": 8,
           "fill": "#FFFFFF",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1881,7 +1833,7 @@
           "id": "tableHeader",
           "type": "frame",
           "name": null,
-          "width": null,
+          "width": "fill_container",
           "height": null,
           "padding": [
             12,
@@ -1974,7 +1926,7 @@
           "id": "tableRow",
           "type": "frame",
           "name": null,
-          "width": null,
+          "width": "fill_container",
           "height": null,
           "padding": [
             12,
@@ -2178,11 +2130,7 @@
           "gap": null,
           "cornerRadius": 999,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": "center",
           "alignItems": "center",
           "fontSize": null,
@@ -2205,11 +2153,7 @@
           "gap": null,
           "cornerRadius": 999,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": "center",
           "alignItems": "center",
           "fontSize": null,

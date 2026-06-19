@@ -50,5 +50,9 @@
   "onboardingTemplate": {
     "title": "OnboardingTemplate",
     "description": "Two-pane onboarding: hero panel + step flow content."
+  },
+  "responsiveAuthCardPattern": {
+    "title": "Responsive Auth Card Pattern",
+    "description": "Responsive authentication card with Japanese labels, validation, and typed submit callbacks."
   }
 }

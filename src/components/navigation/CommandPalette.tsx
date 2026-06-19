@@ -47,7 +47,7 @@ export function CommandPalette({
     return (
         <CommandDialog
             dialogTitle={dialogTitle}
-            className={cn("flex-col w-[480px] w-full max-h-[min(32rem,calc(100%-2rem))] rounded-lg border", className)}
+            className={cn("w-full max-h-[min(32rem,calc(100%-2rem))] flex-col rounded-lg border", className)}
             contentClassName={cn("max-w-[640px]", contentClassName)}
             {...props}
         >

@@ -64,11 +64,7 @@
           "gap": null,
           "cornerRadius": null,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e5e7eb",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": "space_between",
           "alignItems": "center",
           "fontSize": null,
@@ -117,11 +113,7 @@
           "gap": 12,
           "cornerRadius": null,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e5e7eb",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -246,11 +238,7 @@
           "gap": null,
           "cornerRadius": null,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e5e7eb",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": "space_between",
           "alignItems": "center",
           "fontSize": null,
@@ -300,11 +288,7 @@
           "gap": 10,
           "cornerRadius": null,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e5e7eb",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -353,11 +337,7 @@
           "gap": 10,
           "cornerRadius": null,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e5e7eb",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -435,11 +415,7 @@
           "gap": null,
           "cornerRadius": null,
           "fill": "#fffffff2",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e5e7eb",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": "space_between",
           "alignItems": "center",
           "fontSize": null,
@@ -518,8 +494,8 @@
           "name": "AuthTemplate/Default",
           "key": "default",
           "type": "frame",
-          "width": 1280,
-          "height": 720,
+          "width": "fill_container",
+          "height": null,
           "padding": null,
           "gap": null,
           "cornerRadius": null,
@@ -537,8 +513,8 @@
           "id": "authTemplateDefault",
           "type": "frame",
           "name": "AuthTemplate/Default",
-          "width": 1280,
-          "height": 720,
+          "width": "fill_container",
+          "height": null,
           "padding": null,
           "gap": null,
           "cornerRadius": null,
@@ -559,7 +535,7 @@
           "id": "authTemplateVisualPanel",
           "type": "frame",
           "name": null,
-          "width": 640,
+          "width": "fill_container",
           "height": null,
           "padding": [
             40,
@@ -586,7 +562,7 @@
           "id": "authTemplateFormPanel",
           "type": "frame",
           "name": null,
-          "width": 640,
+          "width": "fill_container",
           "height": null,
           "padding": [
             32,
@@ -632,6 +608,167 @@
             "authTemplatePasswordField",
             "authTemplateSubmitButton"
           ]
+        }
+      }
+    },
+    "responsiveAuthCardPattern": {
+      "frameId": "E6FlLl",
+      "title": "Responsive Auth Card Pattern",
+      "description": "Responsive authentication card with Japanese labels, validation, and typed submit callbacks.",
+      "variants": [
+        {
+          "id": "x3Hma",
+          "name": "ResponsiveAuthCardPattern/Default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            40,
+            16,
+            40,
+            16
+          ],
+          "gap": 24,
+          "cornerRadius": null,
+          "fill": "#000000",
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "T1VaJ",
+            "HlI3Z",
+            "dg3KD",
+            "DTyPr"
+          ]
+        }
+      ],
+      "nodes": {
+        "default": {
+          "id": "x3Hma",
+          "type": "frame",
+          "name": "ResponsiveAuthCardPattern/Default",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            40,
+            16,
+            40,
+            16
+          ],
+          "gap": 24,
+          "cornerRadius": null,
+          "fill": "#000000",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "T1VaJ",
+            "HlI3Z",
+            "dg3KD",
+            "DTyPr"
+          ]
+        },
+        "header": {
+          "id": "T1VaJ",
+          "type": "frame",
+          "name": "Header",
+          "width": 448,
+          "height": null,
+          "padding": null,
+          "gap": 4,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "A7RPBU",
+            "TtRtr"
+          ]
+        },
+        "tabs": {
+          "id": "HlI3Z",
+          "type": "frame",
+          "name": "Tabs",
+          "width": 448,
+          "height": null,
+          "padding": [
+            4,
+            4,
+            4,
+            4
+          ],
+          "gap": 4,
+          "cornerRadius": 8,
+          "fill": "#000000",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "rMufr",
+            "fFxAr"
+          ]
+        },
+        "card": {
+          "id": "dg3KD",
+          "type": "frame",
+          "name": "Auth Card",
+          "width": 448,
+          "height": null,
+          "padding": [
+            24,
+            24,
+            24,
+            24
+          ],
+          "gap": 20,
+          "cornerRadius": 8,
+          "fill": "#000000",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "textGrowth": null,
+          "children": [
+            "DALSl",
+            "E90vUz",
+            "h5lTd",
+            "eLtPM",
+            "m19NEU"
+          ]
+        },
+        "terms": {
+          "id": "DTyPr",
+          "type": "text",
+          "name": "Terms",
+          "width": 448,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#000000",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 12,
+          "fontWeight": "normal",
+          "content": "続けることで利用規約とプライバシーポリシーに同意したものとみなされます。",
+          "textGrowth": "fixed-width",
+          "children": []
         }
       }
     },
@@ -697,11 +834,7 @@
           "gap": 12,
           "cornerRadius": null,
           "fill": "#f1f5f9",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e5e7eb",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -750,11 +883,7 @@
           "gap": null,
           "cornerRadius": null,
           "fill": "#f1f5f9",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e5e7eb",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": "space_between",
           "alignItems": "center",
           "fontSize": null,
@@ -881,11 +1010,7 @@
           "gap": 10,
           "cornerRadius": null,
           "fill": "#f1f5f9",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e5e7eb",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -935,11 +1060,7 @@
           "gap": null,
           "cornerRadius": null,
           "fill": null,
-          "stroke": {
-            "align": "inside",
-            "fill": "#e5e7eb",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": "space_between",
           "alignItems": "center",
           "fontSize": null,
@@ -993,11 +1114,7 @@
           "gap": 8,
           "cornerRadius": null,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e5e7eb",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": "center",
           "fontSize": null,
@@ -1024,11 +1141,7 @@
           "gap": 10,
           "cornerRadius": null,
           "fill": "#f1f5f9",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e5e7eb",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1313,11 +1426,7 @@
           "gap": null,
           "cornerRadius": null,
           "fill": "#fffffff2",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e5e7eb",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": "space_between",
           "alignItems": "center",
           "fontSize": null,
@@ -1367,11 +1476,7 @@
           "gap": 10,
           "cornerRadius": null,
           "fill": "#f1f5f91a",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e5e7eb",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1414,11 +1519,7 @@
           "gap": 8,
           "cornerRadius": 12,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "fill": "#dbeafe",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1445,11 +1546,7 @@
           "gap": 10,
           "cornerRadius": null,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e5e7eb",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1525,11 +1622,7 @@
           "gap": null,
           "cornerRadius": null,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e5e7eb",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": "space_between",
           "alignItems": "center",
           "fontSize": null,
@@ -1579,11 +1672,7 @@
           "gap": 8,
           "cornerRadius": null,
           "fill": "#f1f5f91a",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e5e7eb",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1654,11 +1743,7 @@
           "gap": 8,
           "cornerRadius": null,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e5e7eb",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,

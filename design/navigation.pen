@@ -1,5 +1,5 @@
 {
-  "version": "2.7",
+  "version": "2.13",
   "children": [
     {
       "type": "frame",
@@ -20,11 +20,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -71,12 +69,12 @@
                       "fontWeight": "normal"
                     },
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "breadcrumbSep1",
                       "width": 14,
                       "height": 14,
-                      "iconFontName": "chevron-right",
-                      "iconFontFamily": "lucide",
+                      "icon": "chevron-right",
+                      "library": "lucide",
                       "fill": "#94a3b8"
                     },
                     {
@@ -89,12 +87,12 @@
                       "fontWeight": "normal"
                     },
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "breadcrumbSep2",
                       "width": 14,
                       "height": 14,
-                      "iconFontName": "chevron-right",
-                      "iconFontFamily": "lucide",
+                      "icon": "chevron-right",
+                      "library": "lucide",
                       "fill": "#94a3b8"
                     },
                     {
@@ -132,11 +130,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -154,7 +150,7 @@
               "type": "text",
               "id": "tabsDesc",
               "fill": "#64748b",
-              "content": "A set of layered sections of content\u2014known as tab panels\u2014that are displayed one at a time.",
+              "content": "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
               "fontFamily": "Inter",
               "fontSize": 18,
               "fontWeight": "normal"
@@ -173,11 +169,9 @@
                   "width": 400,
                   "fill": "#FFFFFF",
                   "cornerRadius": 8,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#e2e8f0"
-                  },
+                  "stroke": "#e2e8f0",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
                   "layout": "vertical",
                   "children": [
                     {
@@ -278,11 +272,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -340,7 +332,7 @@
                               "type": "text",
                               "id": "paginationPreviousText",
                               "fill": "#475569",
-                              "content": "\u2190 Prev",
+                              "content": "← Prev",
                               "fontFamily": "Inter",
                               "fontSize": 13,
                               "fontWeight": "500"
@@ -359,7 +351,7 @@
                               "type": "text",
                               "id": "paginationEllipsisText",
                               "fill": "#64748b",
-                              "content": "\u2026",
+                              "content": "…",
                               "fontFamily": "Inter",
                               "fontSize": 16,
                               "fontWeight": "600"
@@ -381,7 +373,7 @@
                               "type": "text",
                               "id": "paginationNextText",
                               "fill": "#0f172a",
-                              "content": "Next \u2192",
+                              "content": "Next →",
                               "fontFamily": "Inter",
                               "fontSize": 13,
                               "fontWeight": "500"
@@ -415,11 +407,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -456,11 +446,9 @@
                   "height": 40,
                   "fill": "#ffffff",
                   "cornerRadius": 6,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#e2e8f0"
-                  },
+                  "stroke": "#e2e8f0",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
                   "gap": 4,
                   "padding": 4,
                   "alignItems": "center",
@@ -493,11 +481,9 @@
                       "width": 192,
                       "fill": "#ffffff",
                       "cornerRadius": 6,
-                      "stroke": {
-                        "align": "inside",
-                        "thickness": 1,
-                        "fill": "#e2e8f0"
-                      },
+                      "stroke": "#e2e8f0",
+                      "strokeWidth": 1,
+                      "strokeAlignment": "inner",
                       "layout": "vertical",
                       "gap": 2,
                       "padding": 4,
@@ -553,7 +539,7 @@
                               "type": "text",
                               "id": "menubarSubTriggerArrowText",
                               "fill": "#64748b",
-                              "content": "\u203a",
+                              "content": "›",
                               "fontFamily": "Inter",
                               "fontSize": 14,
                               "fontWeight": "600"
@@ -587,11 +573,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -746,21 +730,21 @@
                       "alignItems": "center",
                       "children": [
                         {
-                          "type": "icon_font",
+                          "type": "icon",
                           "id": "sidebarItemActiveChevron",
                           "width": 16,
                           "height": 16,
-                          "iconFontName": "chevron-down",
-                          "iconFontFamily": "lucide",
+                          "icon": "chevron-down",
+                          "library": "lucide",
                           "fill": "#64748b"
                         },
                         {
-                          "type": "icon_font",
+                          "type": "icon",
                           "id": "sidebarItemActiveIcon",
                           "width": 16,
                           "height": 16,
-                          "iconFontName": "folder-open",
-                          "iconFontFamily": "lucide",
+                          "icon": "folder-open",
+                          "library": "lucide",
                           "fill": "#2563eb"
                         },
                         {
@@ -821,11 +805,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -851,6 +833,7 @@
             {
               "type": "frame",
               "id": "commandVariants",
+              "width": "fit_content(320)",
               "layout": "vertical",
               "gap": 12,
               "children": [
@@ -859,25 +842,22 @@
                   "id": "commandDefault",
                   "name": "Command/Default",
                   "reusable": true,
-                  "width": 320,
+                  "width": "fill_container",
                   "fill": "#FFFFFF",
                   "cornerRadius": 8,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#e2e8f0"
-                  },
+                  "stroke": "#e2e8f0",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
                   "layout": "vertical",
                   "children": [
                     {
                       "type": "frame",
                       "id": "commandInput",
+                      "width": "fill_container",
                       "height": 40,
-                      "stroke": {
-                        "align": "inside",
-                        "thickness": 1,
-                        "fill": "#e2e8f0"
-                      },
+                      "stroke": "#e2e8f0",
+                      "strokeWidth": 1,
+                      "strokeAlignment": "inner",
                       "padding": [
                         8,
                         12
@@ -897,6 +877,7 @@
                     {
                       "type": "frame",
                       "id": "commandList",
+                      "width": "fill_container",
                       "layout": "vertical",
                       "padding": 8,
                       "children": [
@@ -927,6 +908,7 @@
             {
               "type": "frame",
               "id": "commandShowcase",
+              "width": "fit_content(320)",
               "gap": 12,
               "children": [
                 {
@@ -941,18 +923,14 @@
         {
           "type": "frame",
           "id": "JDZtP",
-          "x": 0,
-          "y": 16006,
           "name": "Sidebar/Default",
           "reusable": true,
           "width": 240,
           "height": 380,
           "fill": "#f8fafc",
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "children": [
             {
@@ -1011,7 +989,7 @@
                       "type": "text",
                       "id": "OBEGO",
                       "fill": "#0c0c12",
-                      "content": "\ud83d\udcca",
+                      "content": "📊",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontWeight": "normal"
@@ -1044,7 +1022,7 @@
                       "type": "text",
                       "id": "ST9hv",
                       "fill": "#475569",
-                      "content": "\ud83d\udcc1",
+                      "content": "📁",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontWeight": "normal"
@@ -1077,7 +1055,7 @@
                       "type": "text",
                       "id": "Uj6EW",
                       "fill": "#475569",
-                      "content": "\u2699\ufe0f",
+                      "content": "⚙️",
                       "fontFamily": "Inter",
                       "fontSize": 14,
                       "fontWeight": "normal"
@@ -1101,11 +1079,9 @@
               "name": "sbFooter",
               "width": "fill_container",
               "fill": "#ffffff",
-              "stroke": {
-                "align": "inside",
-                "thickness": 1,
-                "fill": "#e2e8f0"
-              },
+              "stroke": "#e2e8f0",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
               "gap": 8,
               "padding": 16,
               "alignItems": "center",
@@ -1134,8 +1110,6 @@
         {
           "type": "frame",
           "id": "ZabQJ",
-          "x": 620,
-          "y": 16700,
           "name": "NavigationMenu/Default",
           "reusable": true,
           "fill": "#ffffff",
@@ -1163,7 +1137,7 @@
                   "type": "text",
                   "id": "St81c",
                   "fill": "#0c0c12",
-                  "content": "Products \u25be",
+                  "content": "Products ▾",
                   "fontFamily": "Inter",
                   "fontSize": 13,
                   "fontWeight": "500"
@@ -1185,7 +1159,7 @@
                   "type": "text",
                   "id": "VPTfF",
                   "fill": "#0c0c12",
-                  "content": "Solutions \u25be",
+                  "content": "Solutions ▾",
                   "fontFamily": "Inter",
                   "fontSize": 13,
                   "fontWeight": "normal"
@@ -1303,6 +1277,7 @@
           "type": "frame",
           "id": "i37IRR",
           "name": "showcase/command",
+          "width": "fit_content(352)",
           "fill": "#ffffff",
           "gap": 24,
           "padding": 16,
@@ -1389,11 +1364,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -1439,30 +1412,30 @@
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "appRailIconHome",
                       "width": 20,
                       "height": 20,
-                      "iconFontName": "house",
-                      "iconFontFamily": "lucide",
+                      "icon": "house",
+                      "library": "lucide",
                       "fill": "#9ca3af"
                     },
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "appRailIconSearch",
                       "width": 20,
                       "height": 20,
-                      "iconFontName": "search",
-                      "iconFontFamily": "lucide",
+                      "icon": "search",
+                      "library": "lucide",
                       "fill": "#9ca3af"
                     },
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "appRailIconFolder",
                       "width": 20,
                       "height": 20,
-                      "iconFontName": "folder",
-                      "iconFontFamily": "lucide",
+                      "icon": "folder",
+                      "library": "lucide",
                       "fill": "#9ca3af"
                     }
                   ]
@@ -1490,11 +1463,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -1520,6 +1491,7 @@
             {
               "type": "frame",
               "id": "commandPaletteVariants",
+              "width": "fit_content(480)",
               "layout": "vertical",
               "gap": 12,
               "children": [
@@ -1528,25 +1500,22 @@
                   "id": "commandPaletteDefault",
                   "name": "CommandPalette/Default",
                   "reusable": true,
-                  "width": 480,
+                  "width": "fill_container",
                   "fill": "#ffffff",
                   "cornerRadius": 8,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#e2e8f0"
-                  },
+                  "stroke": "#e2e8f0",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
                   "layout": "vertical",
                   "children": [
                     {
                       "type": "frame",
                       "id": "commandPaletteInput",
+                      "width": "fill_container",
                       "height": 40,
-                      "stroke": {
-                        "align": "inside",
-                        "thickness": 1,
-                        "fill": "#e2e8f0"
-                      },
+                      "stroke": "#e2e8f0",
+                      "strokeWidth": 1,
+                      "strokeAlignment": "inner",
                       "padding": [
                         8,
                         12
@@ -1566,6 +1535,7 @@
                     {
                       "type": "frame",
                       "id": "commandPaletteGroup",
+                      "width": "fill_container",
                       "layout": "vertical",
                       "gap": 6,
                       "padding": 8,
@@ -1582,6 +1552,7 @@
                         {
                           "type": "frame",
                           "id": "commandPaletteItem",
+                          "width": "fill_container",
                           "padding": [
                             8,
                             12
@@ -1601,7 +1572,7 @@
                               "type": "text",
                               "id": "commandPaletteItemShortcut",
                               "fill": "#64748b",
-                              "content": "\u2318K",
+                              "content": "⌘K",
                               "fontFamily": "Inter",
                               "fontSize": 12,
                               "fontWeight": "normal"
@@ -1617,6 +1588,7 @@
             {
               "type": "frame",
               "id": "commandPaletteShowcase",
+              "width": "fit_content(480)",
               "gap": 12,
               "children": [
                 {
@@ -1635,11 +1607,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -1676,11 +1646,9 @@
                   "width": 256,
                   "height": 360,
                   "fill": "#ffffff",
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#e5e7eb"
-                  },
+                  "stroke": "#e5e7eb",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
                   "layout": "vertical",
                   "children": [
                     {
@@ -1739,17 +1707,13 @@
         {
           "type": "frame",
           "id": "NUmsI",
-          "x": 0,
-          "y": 6311,
           "name": "Header/Default",
           "reusable": true,
           "width": 720,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "padding": [
             24,
             12
@@ -1830,7 +1794,7 @@
                   "type": "text",
                   "id": "n32a26",
                   "fill": "#94a3b8",
-                  "content": "\u2318K",
+                  "content": "⌘K",
                   "fontFamily": "Inter",
                   "fontSize": 12,
                   "fontWeight": "normal"
@@ -1855,8 +1819,6 @@
         {
           "type": "frame",
           "id": "rGzou",
-          "x": 0,
-          "y": 6500,
           "name": "Footer/Default",
           "reusable": true,
           "width": 720,
@@ -1980,7 +1942,7 @@
               "type": "text",
               "id": "tRons",
               "fill": "#475569",
-              "content": "\u00a9 2026 GunjoUI. All rights reserved.",
+              "content": "© 2026 GunjoUI. All rights reserved.",
               "fontFamily": "Inter",
               "fontSize": 12,
               "fontWeight": "normal"
@@ -2006,6 +1968,7 @@
           "type": "frame",
           "id": "N0A9Qo",
           "name": "showcase/commandPalette",
+          "width": "fit_content(512)",
           "fill": "#ffffff",
           "gap": 24,
           "padding": 16,
@@ -2131,7 +2094,7 @@
           "id": "xBwdA",
           "name": "showcaseDesc",
           "fill": "#71717a",
-          "content": "Pencil \u3067\u518d\u73fe\u3057\u305f gunjo \u306e Button \u30b3\u30f3\u30dd\u30fc\u30cd\u30f3\u30c8",
+          "content": "Pencil で再現した gunjo の Button コンポーネント",
           "fontFamily": "Inter",
           "fontSize": 14,
           "fontWeight": "normal"
@@ -2357,11 +2320,9 @@
           "height": 36,
           "fill": "transparent",
           "cornerRadius": 6,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e5e5e5"
-          },
+          "stroke": "#e5e5e5",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "gap": 8,
           "padding": [
             8,

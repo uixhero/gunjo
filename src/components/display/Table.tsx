@@ -11,7 +11,7 @@ const Table = React.forwardRef<
     HTMLTableElement,
     TableProps
 >(({ className, striped = false, ...props }, ref) => (
-    <div className="relative flex flex-col w-[400px] w-full overflow-auto rounded-md rounded-lg border bg-card">
+    <div className="relative flex w-full flex-col overflow-auto rounded-md rounded-lg border bg-card">
         <table
             ref={ref}
             className={cn(

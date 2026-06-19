@@ -127,6 +127,17 @@ export const componentManifest = {
       "specSource": "design/patterns.pen",
       "stability": "experimental"
     },
+    "responsiveAuthCardPattern": {
+      "title": "Responsive Auth Card Pattern",
+      "description": "Responsive authentication card with Japanese labels, validation, and typed submit callbacks.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/patterns/ResponsiveAuthCardPattern.tsx",
+      "specSource": "design/patterns.pen",
+      "stability": "experimental"
+    },
     "settingsTemplate": {
       "title": "Settings Template",
       "description": "Responsive settings layout with mobile stack and desktop split view.",

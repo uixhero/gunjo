@@ -17,7 +17,7 @@ export function AuthTemplate({
     ...props
 }: AuthTemplateProps) {
     return (
-        <div className={cn("container relative w-[1280px] h-[720px] h-screen flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0", className)} {...props}>
+        <div className={cn("relative flex h-fit min-h-screen w-full flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0", className)} {...props}>
             <div className="relative hidden h-full flex-col bg-muted p-10 text-background dark:border-r lg:flex">
                 <div className="absolute inset-0 bg-foreground" />
                 <div className="relative z-20 flex items-center text-lg font-medium">
@@ -48,8 +48,8 @@ export function AuthTemplate({
                     </blockquote>
                 </div>
             </div>
-            <div className="lg:p-8 flex items-center justify-center h-full">
-                <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
+            <div className="flex h-full w-full items-center justify-center p-6 lg:p-8">
+                <div className="mx-auto flex w-full max-w-[350px] flex-col justify-center space-y-6 sm:w-[350px]">
                     {children}
                 </div>
             </div>

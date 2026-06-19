@@ -1,5 +1,5 @@
 {
-  "version": "2.11",
+  "version": "2.13",
   "children": [
     {
       "type": "frame",
@@ -46,11 +46,9 @@
               "width": "fill_container",
               "fill": "#f8fafc",
               "cornerRadius": 12,
-              "stroke": {
-                "align": "inside",
-                "thickness": 1,
-                "fill": "#e2e8f0"
-              },
+              "stroke": "#e2e8f0",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
               "layout": "vertical",
               "gap": 24,
               "padding": 24,
@@ -93,11 +91,9 @@
                           "id": "dashboardTemplateHeader",
                           "height": 56,
                           "fill": "#ffffff",
-                          "stroke": {
-                            "align": "inside",
-                            "thickness": 1,
-                            "fill": "#e5e7eb"
-                          },
+                          "stroke": "#e5e7eb",
+                          "strokeWidth": 1,
+                          "strokeAlignment": "inner",
                           "padding": [
                             0,
                             16
@@ -180,11 +176,9 @@
                               "id": "dashboardTemplateSidebar",
                               "width": 256,
                               "fill": "#ffffff",
-                              "stroke": {
-                                "align": "inside",
-                                "thickness": 1,
-                                "fill": "#e5e7eb"
-                              },
+                              "stroke": "#e5e7eb",
+                              "strokeWidth": 1,
+                              "strokeAlignment": "inner",
                               "layout": "vertical",
                               "gap": 12,
                               "padding": [
@@ -312,11 +306,9 @@
                                           "width": 220,
                                           "fill": "#ffffff",
                                           "cornerRadius": 10,
-                                          "stroke": {
-                                            "align": "inside",
-                                            "thickness": 1,
-                                            "fill": "#e2e8f0"
-                                          },
+                                          "stroke": "#e2e8f0",
+                                          "strokeWidth": 1,
+                                          "strokeAlignment": "inner",
                                           "layout": "vertical",
                                           "gap": 4,
                                           "children": [
@@ -346,11 +338,9 @@
                                           "width": 220,
                                           "fill": "#ffffff",
                                           "cornerRadius": 10,
-                                          "stroke": {
-                                            "align": "inside",
-                                            "thickness": 1,
-                                            "fill": "#e2e8f0"
-                                          },
+                                          "stroke": "#e2e8f0",
+                                          "strokeWidth": 1,
+                                          "strokeAlignment": "inner",
                                           "layout": "vertical",
                                           "gap": 4,
                                           "children": [
@@ -380,11 +370,9 @@
                                           "width": 220,
                                           "fill": "#ffffff",
                                           "cornerRadius": 10,
-                                          "stroke": {
-                                            "align": "inside",
-                                            "thickness": 1,
-                                            "fill": "#e2e8f0"
-                                          },
+                                          "stroke": "#e2e8f0",
+                                          "strokeWidth": 1,
+                                          "strokeAlignment": "inner",
                                           "layout": "vertical",
                                           "gap": 4,
                                           "children": [
@@ -415,11 +403,9 @@
                                       "id": "dashboardTemplateChartShell",
                                       "fill": "#ffffff",
                                       "cornerRadius": 12,
-                                      "stroke": {
-                                        "align": "inside",
-                                        "thickness": 1,
-                                        "fill": "#e2e8f0"
-                                      },
+                                      "stroke": "#e2e8f0",
+                                      "strokeWidth": 1,
+                                      "strokeAlignment": "inner",
                                       "layout": "vertical",
                                       "gap": 8,
                                       "children": [
@@ -484,11 +470,9 @@
               "width": "fill_container",
               "fill": "#f8fafc",
               "cornerRadius": 12,
-              "stroke": {
-                "align": "inside",
-                "thickness": 1,
-                "fill": "#e2e8f0"
-              },
+              "stroke": "#e2e8f0",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
               "layout": "vertical",
               "gap": 24,
               "padding": 24,
@@ -531,11 +515,9 @@
                           "id": "editorTemplateTopBar",
                           "height": 56,
                           "fill": "#ffffff",
-                          "stroke": {
-                            "align": "inside",
-                            "thickness": 1,
-                            "fill": "#e5e7eb"
-                          },
+                          "stroke": "#e5e7eb",
+                          "strokeWidth": 1,
+                          "strokeAlignment": "inner",
                           "padding": [
                             0,
                             16
@@ -632,11 +614,9 @@
                               "id": "editorTemplateLeftPanel",
                               "width": 256,
                               "fill": "#ffffff",
-                              "stroke": {
-                                "align": "inside",
-                                "thickness": 1,
-                                "fill": "#e5e7eb"
-                              },
+                              "stroke": "#e5e7eb",
+                              "strokeWidth": 1,
+                              "strokeAlignment": "inner",
                               "layout": "vertical",
                               "gap": 10,
                               "padding": [
@@ -759,11 +739,9 @@
                                   "height": 520,
                                   "fill": "#ffffff",
                                   "cornerRadius": 14,
-                                  "stroke": {
-                                    "align": "inside",
-                                    "thickness": 1,
-                                    "fill": "#dbeafe"
-                                  },
+                                  "stroke": "#dbeafe",
+                                  "strokeWidth": 1,
+                                  "strokeAlignment": "inner",
                                   "layout": "vertical",
                                   "justifyContent": "center",
                                   "alignItems": "center",
@@ -786,11 +764,9 @@
                               "id": "editorTemplateRightPanel",
                               "width": 288,
                               "fill": "#ffffff",
-                              "stroke": {
-                                "align": "inside",
-                                "thickness": 1,
-                                "fill": "#e5e7eb"
-                              },
+                              "stroke": "#e5e7eb",
+                              "strokeWidth": 1,
+                              "strokeAlignment": "inner",
                               "layout": "vertical",
                               "gap": 10,
                               "padding": [
@@ -812,11 +788,9 @@
                                   "id": "editorTemplateRightPanelSection",
                                   "fill": "#f8fafc",
                                   "cornerRadius": 10,
-                                  "stroke": {
-                                    "align": "inside",
-                                    "thickness": 1,
-                                    "fill": "#e2e8f0"
-                                  },
+                                  "stroke": "#e2e8f0",
+                                  "strokeWidth": 1,
+                                  "strokeAlignment": "inner",
                                   "layout": "vertical",
                                   "gap": 8,
                                   "children": [
@@ -869,11 +843,9 @@
               "width": "fill_container",
               "fill": "#f8fafc",
               "cornerRadius": 12,
-              "stroke": {
-                "align": "inside",
-                "thickness": 1,
-                "fill": "#e2e8f0"
-              },
+              "stroke": "#e2e8f0",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
               "layout": "vertical",
               "gap": 24,
               "padding": 24,
@@ -916,11 +888,9 @@
                           "id": "landingTemplateHeader",
                           "height": 56,
                           "fill": "#fffffff2",
-                          "stroke": {
-                            "align": "inside",
-                            "thickness": 1,
-                            "fill": "#e5e7eb"
-                          },
+                          "stroke": "#e5e7eb",
+                          "strokeWidth": 1,
+                          "strokeAlignment": "inner",
                           "padding": [
                             0,
                             20
@@ -1058,11 +1028,9 @@
                                   "width": 280,
                                   "fill": "#ffffff",
                                   "cornerRadius": 12,
-                                  "stroke": {
-                                    "align": "inside",
-                                    "thickness": 1,
-                                    "fill": "#e2e8f0"
-                                  },
+                                  "stroke": "#e2e8f0",
+                                  "strokeWidth": 1,
+                                  "strokeAlignment": "inner",
                                   "layout": "vertical",
                                   "gap": 6,
                                   "children": [
@@ -1092,11 +1060,9 @@
                                   "width": 280,
                                   "fill": "#ffffff",
                                   "cornerRadius": 12,
-                                  "stroke": {
-                                    "align": "inside",
-                                    "thickness": 1,
-                                    "fill": "#e2e8f0"
-                                  },
+                                  "stroke": "#e2e8f0",
+                                  "strokeWidth": 1,
+                                  "strokeAlignment": "inner",
                                   "layout": "vertical",
                                   "gap": 6,
                                   "children": [
@@ -1126,11 +1092,9 @@
                                   "width": 280,
                                   "fill": "#ffffff",
                                   "cornerRadius": 12,
-                                  "stroke": {
-                                    "align": "inside",
-                                    "thickness": 1,
-                                    "fill": "#e2e8f0"
-                                  },
+                                  "stroke": "#e2e8f0",
+                                  "strokeWidth": 1,
+                                  "strokeAlignment": "inner",
                                   "layout": "vertical",
                                   "gap": 6,
                                   "children": [
@@ -1183,11 +1147,9 @@
               "width": "fill_container",
               "fill": "#f8fafc",
               "cornerRadius": 12,
-              "stroke": {
-                "align": "inside",
-                "thickness": 1,
-                "fill": "#e2e8f0"
-              },
+              "stroke": "#e2e8f0",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
               "layout": "vertical",
               "gap": 24,
               "padding": 24,
@@ -1213,6 +1175,7 @@
                 {
                   "type": "frame",
                   "id": "authTemplateVariants",
+                  "width": "fit_content(1280)",
                   "layout": "vertical",
                   "gap": 12,
                   "children": [
@@ -1221,13 +1184,12 @@
                       "id": "authTemplateDefault",
                       "name": "AuthTemplate/Default",
                       "reusable": true,
-                      "width": 1280,
-                      "height": 720,
+                      "width": "fill_container",
                       "children": [
                         {
                           "type": "frame",
                           "id": "authTemplateVisualPanel",
-                          "width": 640,
+                          "width": "fill_container",
                           "fill": "#18181b",
                           "layout": "vertical",
                           "padding": 40,
@@ -1256,7 +1218,7 @@
                         {
                           "type": "frame",
                           "id": "authTemplateFormPanel",
-                          "width": 640,
+                          "width": "fill_container",
                           "fill": "#ffffff",
                           "layout": "vertical",
                           "padding": 32,
@@ -1308,11 +1270,9 @@
                                       "id": "authTemplateEmailFieldInput",
                                       "fill": "#ffffff",
                                       "cornerRadius": 10,
-                                      "stroke": {
-                                        "align": "inside",
-                                        "thickness": 1,
-                                        "fill": "#d1d5db"
-                                      },
+                                      "stroke": "#d1d5db",
+                                      "strokeWidth": 1,
+                                      "strokeAlignment": "inner",
                                       "padding": [
                                         10,
                                         12
@@ -1352,11 +1312,9 @@
                                       "id": "authTemplatePasswordFieldInput",
                                       "fill": "#ffffff",
                                       "cornerRadius": 10,
-                                      "stroke": {
-                                        "align": "inside",
-                                        "thickness": 1,
-                                        "fill": "#d1d5db"
-                                      },
+                                      "stroke": "#d1d5db",
+                                      "strokeWidth": 1,
+                                      "strokeAlignment": "inner",
                                       "padding": [
                                         10,
                                         12
@@ -1406,6 +1364,7 @@
                 {
                   "type": "frame",
                   "id": "authTemplateShowcase",
+                  "width": "fit_content(1280)",
                   "gap": 12,
                   "children": [
                     {
@@ -1424,11 +1383,9 @@
               "width": "fill_container",
               "fill": "#f8fafc",
               "cornerRadius": 12,
-              "stroke": {
-                "align": "inside",
-                "thickness": 1,
-                "fill": "#e2e8f0"
-              },
+              "stroke": "#e2e8f0",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
               "layout": "vertical",
               "gap": 24,
               "padding": 24,
@@ -1470,11 +1427,9 @@
                           "id": "kanbanTemplateSidebar",
                           "width": 256,
                           "fill": "#f1f5f9",
-                          "stroke": {
-                            "align": "inside",
-                            "thickness": 1,
-                            "fill": "#e5e7eb"
-                          },
+                          "stroke": "#e5e7eb",
+                          "strokeWidth": 1,
+                          "strokeAlignment": "inner",
                           "layout": "vertical",
                           "gap": 12,
                           "padding": [
@@ -1496,11 +1451,9 @@
                               "id": "kanbanTemplateSidebarProjectCard",
                               "fill": "#ffffff",
                               "cornerRadius": 10,
-                              "stroke": {
-                                "align": "inside",
-                                "thickness": 1,
-                                "fill": "#e2e8f0"
-                              },
+                              "stroke": "#e2e8f0",
+                              "strokeWidth": 1,
+                              "strokeAlignment": "inner",
                               "layout": "vertical",
                               "gap": 4,
                               "children": [
@@ -1537,11 +1490,9 @@
                               "id": "kanbanTemplateHeader",
                               "height": 56,
                               "fill": "#f1f5f9",
-                              "stroke": {
-                                "align": "inside",
-                                "thickness": 1,
-                                "fill": "#e5e7eb"
-                              },
+                              "stroke": "#e5e7eb",
+                              "strokeWidth": 1,
+                              "strokeAlignment": "inner",
                               "padding": [
                                 0,
                                 24
@@ -1616,11 +1567,9 @@
                                           "id": "kanbanTemplateColumnTodoCard",
                                           "fill": "#ffffff",
                                           "cornerRadius": 10,
-                                          "stroke": {
-                                            "align": "inside",
-                                            "thickness": 1,
-                                            "fill": "#e2e8f0"
-                                          },
+                                          "stroke": "#e2e8f0",
+                                          "strokeWidth": 1,
+                                          "strokeAlignment": "inner",
                                           "layout": "vertical",
                                           "gap": 4,
                                           "children": [
@@ -1658,11 +1607,9 @@
                                           "id": "kanbanTemplateColumnDoingCard",
                                           "fill": "#ffffff",
                                           "cornerRadius": 10,
-                                          "stroke": {
-                                            "align": "inside",
-                                            "thickness": 1,
-                                            "fill": "#e2e8f0"
-                                          },
+                                          "stroke": "#e2e8f0",
+                                          "strokeWidth": 1,
+                                          "strokeAlignment": "inner",
                                           "layout": "vertical",
                                           "gap": 4,
                                           "children": [
@@ -1700,11 +1647,9 @@
                                           "id": "kanbanTemplateColumnDoneCard",
                                           "fill": "#ffffff",
                                           "cornerRadius": 10,
-                                          "stroke": {
-                                            "align": "inside",
-                                            "thickness": 1,
-                                            "fill": "#e2e8f0"
-                                          },
+                                          "stroke": "#e2e8f0",
+                                          "strokeWidth": 1,
+                                          "strokeAlignment": "inner",
                                           "layout": "vertical",
                                           "gap": 4,
                                           "children": [
@@ -1752,11 +1697,9 @@
               "width": "fill_container",
               "fill": "#f8fafc",
               "cornerRadius": 12,
-              "stroke": {
-                "align": "inside",
-                "thickness": 1,
-                "fill": "#e2e8f0"
-              },
+              "stroke": "#e2e8f0",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
               "layout": "vertical",
               "gap": 24,
               "padding": 24,
@@ -1799,11 +1742,9 @@
                           "id": "chatTemplateSidebarList",
                           "width": 280,
                           "fill": "#f1f5f9",
-                          "stroke": {
-                            "align": "inside",
-                            "thickness": 1,
-                            "fill": "#e5e7eb"
-                          },
+                          "stroke": "#e5e7eb",
+                          "strokeWidth": 1,
+                          "strokeAlignment": "inner",
                           "layout": "vertical",
                           "gap": 10,
                           "padding": [
@@ -1883,11 +1824,9 @@
                               "type": "frame",
                               "id": "chatTemplateHeader",
                               "height": 56,
-                              "stroke": {
-                                "align": "inside",
-                                "thickness": 1,
-                                "fill": "#e5e7eb"
-                              },
+                              "stroke": "#e5e7eb",
+                              "strokeWidth": 1,
+                              "strokeAlignment": "inner",
                               "padding": [
                                 0,
                                 16
@@ -1995,11 +1934,9 @@
                               "type": "frame",
                               "id": "chatTemplateComposer",
                               "fill": "#ffffff",
-                              "stroke": {
-                                "align": "inside",
-                                "thickness": 1,
-                                "fill": "#e5e7eb"
-                              },
+                              "stroke": "#e5e7eb",
+                              "strokeWidth": 1,
+                              "strokeAlignment": "inner",
                               "gap": 8,
                               "padding": 16,
                               "alignItems": "center",
@@ -2058,11 +1995,9 @@
                           "id": "chatTemplateSidebarDetail",
                           "width": 300,
                           "fill": "#f1f5f9",
-                          "stroke": {
-                            "align": "inside",
-                            "thickness": 1,
-                            "fill": "#e5e7eb"
-                          },
+                          "stroke": "#e5e7eb",
+                          "strokeWidth": 1,
+                          "strokeAlignment": "inner",
                           "layout": "vertical",
                           "gap": 10,
                           "padding": [
@@ -2084,11 +2019,9 @@
                               "id": "chatTemplateSidebarDetailCard",
                               "fill": "#ffffff",
                               "cornerRadius": 10,
-                              "stroke": {
-                                "align": "inside",
-                                "thickness": 1,
-                                "fill": "#e2e8f0"
-                              },
+                              "stroke": "#e2e8f0",
+                              "strokeWidth": 1,
+                              "strokeAlignment": "inner",
                               "layout": "vertical",
                               "gap": 6,
                               "children": [
@@ -2139,11 +2072,9 @@
               "width": "fill_container",
               "fill": "#f8fafc",
               "cornerRadius": 12,
-              "stroke": {
-                "align": "inside",
-                "thickness": 1,
-                "fill": "#e2e8f0"
-              },
+              "stroke": "#e2e8f0",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
               "layout": "vertical",
               "gap": 24,
               "padding": 24,
@@ -2336,11 +2267,9 @@
                                       "id": "settingsTemplateContentCard",
                                       "fill": "#ffffff",
                                       "cornerRadius": 12,
-                                      "stroke": {
-                                        "align": "inside",
-                                        "thickness": 1,
-                                        "fill": "#e2e8f0"
-                                      },
+                                      "stroke": "#e2e8f0",
+                                      "strokeWidth": 1,
+                                      "strokeAlignment": "inner",
                                       "layout": "vertical",
                                       "gap": 8,
                                       "children": [
@@ -2395,11 +2324,9 @@
               "width": "fill_container",
               "fill": "#f8fafc",
               "cornerRadius": 12,
-              "stroke": {
-                "align": "inside",
-                "thickness": 1,
-                "fill": "#e2e8f0"
-              },
+              "stroke": "#e2e8f0",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
               "layout": "vertical",
               "gap": 24,
               "padding": 24,
@@ -2443,11 +2370,9 @@
                           "id": "bannalyzeTemplateHeader",
                           "height": 56,
                           "fill": "#fffffff2",
-                          "stroke": {
-                            "align": "inside",
-                            "thickness": 1,
-                            "fill": "#e5e7eb"
-                          },
+                          "stroke": "#e5e7eb",
+                          "strokeWidth": 1,
+                          "strokeAlignment": "inner",
                           "padding": [
                             0,
                             16
@@ -2485,11 +2410,9 @@
                               "id": "bannalyzeTemplateSidebar",
                               "width": 256,
                               "fill": "#f1f5f91a",
-                              "stroke": {
-                                "align": "inside",
-                                "thickness": 1,
-                                "fill": "#e5e7eb"
-                              },
+                              "stroke": "#e5e7eb",
+                              "strokeWidth": 1,
+                              "strokeAlignment": "inner",
                               "layout": "vertical",
                               "gap": 10,
                               "padding": [
@@ -2511,11 +2434,9 @@
                                   "id": "bannalyzeTemplateSidebarAssetCard",
                                   "fill": "#ffffff",
                                   "cornerRadius": 10,
-                                  "stroke": {
-                                    "align": "inside",
-                                    "thickness": 1,
-                                    "fill": "#e2e8f0"
-                                  },
+                                  "stroke": "#e2e8f0",
+                                  "strokeWidth": 1,
+                                  "strokeAlignment": "inner",
                                   "layout": "vertical",
                                   "gap": 4,
                                   "children": [
@@ -2555,11 +2476,9 @@
                                   "id": "bannalyzeTemplateCanvasInner",
                                   "fill": "#ffffff",
                                   "cornerRadius": 12,
-                                  "stroke": {
-                                    "align": "inside",
-                                    "thickness": 1,
-                                    "fill": "#dbeafe"
-                                  },
+                                  "stroke": "#dbeafe",
+                                  "strokeWidth": 1,
+                                  "strokeAlignment": "inner",
                                   "layout": "vertical",
                                   "gap": 8,
                                   "children": [
@@ -2590,11 +2509,9 @@
                               "id": "bannalyzeTemplateInspector",
                               "width": 320,
                               "fill": "#ffffff",
-                              "stroke": {
-                                "align": "inside",
-                                "thickness": 1,
-                                "fill": "#e5e7eb"
-                              },
+                              "stroke": "#e5e7eb",
+                              "strokeWidth": 1,
+                              "strokeAlignment": "inner",
                               "layout": "vertical",
                               "gap": 10,
                               "padding": [
@@ -2616,11 +2533,9 @@
                                   "id": "bannalyzeTemplateInspectorCard",
                                   "fill": "#f8fafc",
                                   "cornerRadius": 10,
-                                  "stroke": {
-                                    "align": "inside",
-                                    "thickness": 1,
-                                    "fill": "#e2e8f0"
-                                  },
+                                  "stroke": "#e2e8f0",
+                                  "strokeWidth": 1,
+                                  "strokeAlignment": "inner",
                                   "layout": "vertical",
                                   "gap": 6,
                                   "children": [
@@ -2673,11 +2588,9 @@
               "width": "fill_container",
               "fill": "#f8fafc",
               "cornerRadius": 12,
-              "stroke": {
-                "align": "inside",
-                "thickness": 1,
-                "fill": "#e2e8f0"
-              },
+              "stroke": "#e2e8f0",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
               "layout": "vertical",
               "gap": 24,
               "padding": 24,
@@ -2721,11 +2634,9 @@
                           "id": "mediaLibraryTemplateHeader",
                           "height": 56,
                           "fill": "#ffffff",
-                          "stroke": {
-                            "align": "inside",
-                            "thickness": 1,
-                            "fill": "#e5e7eb"
-                          },
+                          "stroke": "#e5e7eb",
+                          "strokeWidth": 1,
+                          "strokeAlignment": "inner",
                           "padding": [
                             0,
                             16
@@ -2776,11 +2687,9 @@
                               "id": "mediaLibraryTemplateSidebar",
                               "width": 256,
                               "fill": "#f1f5f91a",
-                              "stroke": {
-                                "align": "inside",
-                                "thickness": 1,
-                                "fill": "#e5e7eb"
-                              },
+                              "stroke": "#e5e7eb",
+                              "strokeWidth": 1,
+                              "strokeAlignment": "inner",
                               "layout": "vertical",
                               "gap": 8,
                               "padding": [
@@ -2838,11 +2747,9 @@
                                       "width": 180,
                                       "fill": "#ffffff",
                                       "cornerRadius": 10,
-                                      "stroke": {
-                                        "align": "inside",
-                                        "thickness": 1,
-                                        "fill": "#e2e8f0"
-                                      },
+                                      "stroke": "#e2e8f0",
+                                      "strokeWidth": 1,
+                                      "strokeAlignment": "inner",
                                       "layout": "vertical",
                                       "gap": 6,
                                       "children": [
@@ -2871,11 +2778,9 @@
                                       "width": 180,
                                       "fill": "#ffffff",
                                       "cornerRadius": 10,
-                                      "stroke": {
-                                        "align": "inside",
-                                        "thickness": 1,
-                                        "fill": "#e2e8f0"
-                                      },
+                                      "stroke": "#e2e8f0",
+                                      "strokeWidth": 1,
+                                      "strokeAlignment": "inner",
                                       "layout": "vertical",
                                       "gap": 6,
                                       "children": [
@@ -2907,11 +2812,9 @@
                               "id": "mediaLibraryTemplateDetails",
                               "width": 320,
                               "fill": "#ffffff",
-                              "stroke": {
-                                "align": "inside",
-                                "thickness": 1,
-                                "fill": "#e5e7eb"
-                              },
+                              "stroke": "#e5e7eb",
+                              "strokeWidth": 1,
+                              "strokeAlignment": "inner",
                               "layout": "vertical",
                               "gap": 8,
                               "padding": [
@@ -2963,6 +2866,293 @@
                       "id": "tTuaY",
                       "type": "ref",
                       "ref": "mediaLibraryTemplateDefault"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "E6FlLl",
+              "name": "ResponsiveAuthCardPattern",
+              "width": 640,
+              "layout": "vertical",
+              "gap": 12,
+              "padding": 32,
+              "children": [
+                {
+                  "type": "text",
+                  "id": "MH71f",
+                  "name": "ResponsiveAuthCardPattern Title",
+                  "fill": "#000000",
+                  "content": "Responsive Auth Card Pattern",
+                  "fontFamily": "Inter",
+                  "fontSize": 24,
+                  "fontWeight": "600"
+                },
+                {
+                  "type": "text",
+                  "id": "Imn3A",
+                  "name": "ResponsiveAuthCardPattern Description",
+                  "fill": "#000000",
+                  "textGrowth": "fixed-width",
+                  "width": "fill_container",
+                  "content": "Responsive authentication card with Japanese labels, validation, and typed submit callbacks.",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "normal"
+                },
+                {
+                  "type": "frame",
+                  "id": "W4jaj",
+                  "name": "ResponsiveAuthCardPattern Variants",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 24,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "x3Hma",
+                      "name": "ResponsiveAuthCardPattern/Default",
+                      "reusable": true,
+                      "width": "fill_container",
+                      "fill": "#000000",
+                      "layout": "vertical",
+                      "gap": 24,
+                      "padding": [
+                        40,
+                        16
+                      ],
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "T1VaJ",
+                          "name": "Header",
+                          "width": 448,
+                          "layout": "vertical",
+                          "gap": 4,
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "A7RPBU",
+                              "name": "Brand",
+                              "fill": "#000000",
+                              "content": "Gunjo Studio",
+                              "fontFamily": "Inter",
+                              "fontSize": 24,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "TtRtr",
+                              "name": "Description",
+                              "fill": "#000000",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "ログインまたはアカウント作成をして続けます。",
+                              "textAlign": "center",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "HlI3Z",
+                          "name": "Tabs",
+                          "width": 448,
+                          "fill": "#000000",
+                          "cornerRadius": 8,
+                          "gap": 4,
+                          "padding": 4,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "rMufr",
+                              "name": "Tab ログイン",
+                              "width": "fill_container",
+                              "height": 36,
+                              "fill": "#000000",
+                              "cornerRadius": 6,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "MykPf",
+                                  "name": "Label",
+                                  "fill": "#000000",
+                                  "content": "ログイン",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "fFxAr",
+                              "name": "Tab アカウント作成",
+                              "width": "fill_container",
+                              "height": 36,
+                              "fill": "#00000000",
+                              "cornerRadius": 6,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "GFvnL",
+                                  "name": "Label",
+                                  "fill": "#000000",
+                                  "content": "アカウント作成",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "dg3KD",
+                          "name": "Auth Card",
+                          "width": 448,
+                          "fill": "#000000",
+                          "cornerRadius": 8,
+                          "stroke": "#000000",
+                          "strokeWidth": 1,
+                          "layout": "vertical",
+                          "gap": 20,
+                          "padding": 24,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "DALSl",
+                              "name": "Card Title",
+                              "fill": "#000000",
+                              "content": "おかえりなさい",
+                              "fontFamily": "Inter",
+                              "fontSize": 20,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "text",
+                              "id": "E90vUz",
+                              "name": "Card Description",
+                              "fill": "#000000",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "ワークスペースにアクセスするためログインしてください。",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "h5lTd",
+                              "name": "メールアドレス Field",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "N1lXa",
+                                  "name": "Label",
+                                  "fill": "#000000",
+                                  "content": "メールアドレス",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "msM5o",
+                                  "name": "Input",
+                                  "width": "fill_container",
+                                  "height": 40,
+                                  "fill": "#000000",
+                                  "cornerRadius": 6,
+                                  "stroke": "#000000",
+                                  "strokeWidth": 1
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "eLtPM",
+                              "name": "パスワード Field",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 8,
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "rSQV2",
+                                  "name": "Label",
+                                  "fill": "#000000",
+                                  "content": "パスワード",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "500"
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "xsDDU",
+                                  "name": "Input",
+                                  "width": "fill_container",
+                                  "height": 40,
+                                  "fill": "#000000",
+                                  "cornerRadius": 6,
+                                  "stroke": "#000000",
+                                  "strokeWidth": 1
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "m19NEU",
+                              "name": "Submit Button",
+                              "width": "fill_container",
+                              "height": 40,
+                              "fill": "#000000",
+                              "cornerRadius": 6,
+                              "justifyContent": "center",
+                              "alignItems": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "z734JT",
+                                  "name": "Label",
+                                  "fill": "#000000",
+                                  "content": "ログイン",
+                                  "fontFamily": "Inter",
+                                  "fontSize": 14,
+                                  "fontWeight": "500"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "DTyPr",
+                          "name": "Terms",
+                          "fill": "#000000",
+                          "textGrowth": "fixed-width",
+                          "width": 448,
+                          "content": "続けることで利用規約とプライバシーポリシーに同意したものとみなされます。",
+                          "textAlign": "center",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
                     }
                   ]
                 }
@@ -3032,6 +3222,7 @@
           "type": "frame",
           "id": "tlr6Q",
           "name": "showcase/authTemplate",
+          "width": "fit_content(1312)",
           "fill": "#ffffff",
           "gap": 24,
           "padding": 16,
@@ -3335,11 +3526,9 @@
       "height": 300,
       "fill": "#ffffff",
       "cornerRadius": 8,
-      "stroke": {
-        "align": "inside",
-        "thickness": 1,
-        "fill": "#e2e8f0"
-      },
+      "stroke": "#e2e8f0",
+      "strokeWidth": 1,
+      "strokeAlignment": "inner",
       "layout": "vertical",
       "gap": 16,
       "padding": 48,
@@ -3408,11 +3597,9 @@
       "height": 300,
       "fill": "#ffffff",
       "cornerRadius": 8,
-      "stroke": {
-        "align": "inside",
-        "thickness": 1,
-        "fill": "#e2e8f0"
-      },
+      "stroke": "#e2e8f0",
+      "strokeWidth": 1,
+      "strokeAlignment": "inner",
       "layout": "vertical",
       "gap": 16,
       "padding": 48,
@@ -3515,11 +3702,9 @@
               "width": 240,
               "fill": "#ffffff",
               "cornerRadius": 8,
-              "stroke": {
-                "align": "inside",
-                "thickness": 1,
-                "fill": "#e2e8f0"
-              },
+              "stroke": "#e2e8f0",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
               "layout": "vertical",
               "gap": 8,
               "padding": 24,
@@ -3560,11 +3745,9 @@
               "width": 240,
               "fill": "#0c0c12",
               "cornerRadius": 8,
-              "stroke": {
-                "align": "inside",
-                "thickness": 1,
-                "fill": "#0c0c12"
-              },
+              "stroke": "#0c0c12",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
               "layout": "vertical",
               "gap": 8,
               "padding": 24,
@@ -3605,11 +3788,9 @@
               "width": 240,
               "fill": "#ffffff",
               "cornerRadius": 8,
-              "stroke": {
-                "align": "inside",
-                "thickness": 1,
-                "fill": "#e2e8f0"
-              },
+              "stroke": "#e2e8f0",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
               "layout": "vertical",
               "gap": 8,
               "padding": 24,
@@ -3721,11 +3902,9 @@
       "height": 480,
       "fill": "#ffffff",
       "cornerRadius": 8,
-      "stroke": {
-        "align": "inside",
-        "thickness": 1,
-        "fill": "#e2e8f0"
-      },
+      "stroke": "#e2e8f0",
+      "strokeWidth": 1,
+      "strokeAlignment": "inner",
       "children": [
         {
           "type": "frame",
@@ -3733,11 +3912,9 @@
           "name": "dtSidebar",
           "width": 200,
           "fill": "#f8fafc",
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 4,
           "padding": 16,
@@ -3815,11 +3992,9 @@
           "name": "dtToc",
           "width": 160,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 6,
           "padding": 16,
@@ -3866,11 +4041,9 @@
       "height": 440,
       "fill": "#ffffff",
       "cornerRadius": 8,
-      "stroke": {
-        "align": "inside",
-        "thickness": 1,
-        "fill": "#e2e8f0"
-      },
+      "stroke": "#e2e8f0",
+      "strokeWidth": 1,
+      "strokeAlignment": "inner",
       "children": [
         {
           "type": "frame",

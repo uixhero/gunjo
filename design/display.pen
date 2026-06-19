@@ -1,5 +1,5 @@
 {
-  "version": "2.7",
+  "version": "2.13",
   "children": [
     {
       "type": "frame",
@@ -20,11 +20,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -139,11 +137,9 @@
                   "height": 20,
                   "fill": "transparent",
                   "cornerRadius": 9999,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#e2e8f0"
-                  },
+                  "stroke": "#e2e8f0",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
                   "padding": [
                     4,
                     10
@@ -221,11 +217,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -309,11 +303,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -414,11 +406,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -455,11 +445,9 @@
                   "height": 20,
                   "fill": "#f1f5f9",
                   "cornerRadius": 4,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#e2e8f0"
-                  },
+                  "stroke": "#e2e8f0",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
                   "padding": [
                     4,
                     6
@@ -509,7 +497,7 @@
                   "ref": "kbdKey",
                   "descendants": {
                     "kbdKeyText": {
-                      "content": "\u2318"
+                      "content": "⌘"
                     }
                   }
                 },
@@ -543,11 +531,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -616,12 +602,12 @@
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "imgErrorIcon",
                       "width": 32,
                       "height": 32,
-                      "iconFontName": "image",
-                      "iconFontFamily": "lucide",
+                      "icon": "image",
+                      "library": "lucide",
                       "fill": "#94a3b8"
                     },
                     {
@@ -722,11 +708,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -768,12 +752,12 @@
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "toolPillPrimaryIcon",
                       "width": 18,
                       "height": 18,
-                      "iconFontName": "plus",
-                      "iconFontFamily": "lucide",
+                      "icon": "plus",
+                      "library": "lucide",
                       "fill": "#1d4ed8"
                     }
                   ]
@@ -792,12 +776,12 @@
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "toolPillSecondaryIcon",
                       "width": 18,
                       "height": 18,
-                      "iconFontName": "copy",
-                      "iconFontFamily": "lucide",
+                      "icon": "copy",
+                      "library": "lucide",
                       "fill": "#4b5563"
                     }
                   ]
@@ -816,12 +800,12 @@
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "toolPillDangerIcon",
                       "width": 18,
                       "height": 18,
-                      "iconFontName": "trash-2",
-                      "iconFontFamily": "lucide",
+                      "icon": "trash-2",
+                      "library": "lucide",
                       "fill": "#dc2626"
                     }
                   ]
@@ -856,8 +840,6 @@
         {
           "type": "frame",
           "id": "AzeYS",
-          "x": 3500,
-          "y": 0,
           "name": "Skeleton/Rectangle",
           "reusable": true,
           "width": 200,
@@ -868,8 +850,6 @@
         {
           "type": "frame",
           "id": "ooX6x",
-          "x": 3500,
-          "y": 40,
           "name": "Skeleton/Circle",
           "reusable": true,
           "width": 40,
@@ -880,8 +860,6 @@
         {
           "type": "frame",
           "id": "RZgll",
-          "x": 3500,
-          "y": 100,
           "name": "Skeleton/Text",
           "reusable": true,
           "width": 160,
@@ -892,8 +870,6 @@
         {
           "type": "frame",
           "id": "kRPqC",
-          "x": 0,
-          "y": 8200,
           "name": "Code/Default",
           "reusable": true,
           "fill": "#f1f5f9",
@@ -919,17 +895,13 @@
         {
           "type": "frame",
           "id": "lckl1",
-          "x": 160,
-          "y": 8200,
           "name": "Code/Muted",
           "reusable": true,
           "fill": "#f8fafc",
           "cornerRadius": 4,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "padding": [
             6,
             2
@@ -951,8 +923,6 @@
         {
           "type": "frame",
           "id": "BkuMh",
-          "x": 200,
-          "y": 8400,
           "name": "Spacer/Default",
           "reusable": true,
           "width": 280,
@@ -975,11 +945,9 @@
               "width": 120,
               "height": 2,
               "fill": "#cbd5e1",
-              "stroke": {
-                "align": "inside",
-                "thickness": 1,
-                "fill": "#94a3b8"
-              }
+              "stroke": "#94a3b8",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner"
             },
             {
               "type": "frame",
@@ -994,18 +962,14 @@
         {
           "type": "frame",
           "id": "bIMqN",
-          "x": 0,
-          "y": 8620,
           "name": "EmptyState/Default",
           "reusable": true,
           "width": 280,
           "fill": "#f8fafc",
           "cornerRadius": 8,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 8,
           "padding": 24,
@@ -1068,8 +1032,6 @@
         {
           "type": "frame",
           "id": "G6IIC",
-          "x": 300,
-          "y": 8620,
           "name": "Tag/Default",
           "reusable": true,
           "fill": "#f1f5f9",
@@ -1094,7 +1056,7 @@
               "type": "text",
               "id": "TEeK2",
               "fill": "#64748b",
-              "content": "\u00d7",
+              "content": "×",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontWeight": "normal"
@@ -1104,8 +1066,6 @@
         {
           "type": "frame",
           "id": "a0IaFK",
-          "x": 400,
-          "y": 8620,
           "name": "Tag/Secondary",
           "reusable": true,
           "fill": "#0c0c12",
@@ -1130,7 +1090,7 @@
               "type": "text",
               "id": "B62u1a",
               "fill": "#cbd5e1",
-              "content": "\u00d7",
+              "content": "×",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontWeight": "normal"
@@ -1140,17 +1100,13 @@
         {
           "type": "frame",
           "id": "fA69N",
-          "x": 540,
-          "y": 8620,
           "name": "Tag/Outline",
           "reusable": true,
           "fill": "#ffffff",
           "cornerRadius": 6,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "gap": 4,
           "padding": [
             8,
@@ -1171,7 +1127,7 @@
               "type": "text",
               "id": "TLXqO",
               "fill": "#64748b",
-              "content": "\u00d7",
+              "content": "×",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontWeight": "normal"
@@ -1181,17 +1137,13 @@
         {
           "type": "frame",
           "id": "AzI7y",
-          "x": 0,
-          "y": 8871,
           "name": "ColorSwatch/Default",
           "reusable": true,
           "fill": "#ffffff",
           "cornerRadius": 6,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "gap": 8,
           "padding": 6,
           "alignItems": "center",
@@ -1405,7 +1357,7 @@
               "type": "text",
               "id": "od6PU",
               "fill": "#64748b",
-              "content": "Removable badge with \u00d7 button. Useful for filter chips and tag editors.",
+              "content": "Removable badge with × button. Useful for filter chips and tag editors.",
               "fontFamily": "Inter",
               "fontSize": 12,
               "fontWeight": "normal"
@@ -1453,11 +1405,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -1495,11 +1445,9 @@
                   "width": "fill_container",
                   "fill": "#FFFFFF",
                   "cornerRadius": 8,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#e2e8f0"
-                  },
+                  "stroke": "#e2e8f0",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
                   "layout": "vertical",
                   "children": [
                     {
@@ -1550,11 +1498,9 @@
                           "height": 40,
                           "fill": "#f1f5f9",
                           "cornerRadius": 6,
-                          "stroke": {
-                            "align": "inside",
-                            "thickness": 1,
-                            "fill": "#e2e8f0"
-                          }
+                          "stroke": "#e2e8f0",
+                          "strokeWidth": 1,
+                          "strokeAlignment": "inner"
                         }
                       ]
                     },
@@ -1578,11 +1524,9 @@
                           "height": 36,
                           "fill": "transparent",
                           "cornerRadius": 8,
-                          "stroke": {
-                            "align": "inside",
-                            "thickness": 1,
-                            "fill": "#e2e8f0"
-                          },
+                          "stroke": "#e2e8f0",
+                          "strokeWidth": 1,
+                          "strokeAlignment": "inner",
                           "padding": [
                             8,
                             16
@@ -1653,11 +1597,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -1692,11 +1634,9 @@
                   "name": "Accordion/Collapsed",
                   "reusable": true,
                   "width": 400,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#e2e8f0"
-                  },
+                  "stroke": "#e2e8f0",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
                   "layout": "vertical",
                   "children": [
                     {
@@ -1716,12 +1656,12 @@
                           "fontWeight": "500"
                         },
                         {
-                          "type": "icon_font",
+                          "type": "icon",
                           "id": "accordionChevronCollapsed",
                           "width": 16,
                           "height": 16,
-                          "iconFontName": "chevron-down",
-                          "iconFontFamily": "lucide",
+                          "icon": "chevron-down",
+                          "library": "lucide",
                           "fill": "#64748b"
                         }
                       ]
@@ -1734,11 +1674,9 @@
                   "name": "Accordion/Expanded",
                   "reusable": true,
                   "width": 400,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#e2e8f0"
-                  },
+                  "stroke": "#e2e8f0",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
                   "layout": "vertical",
                   "children": [
                     {
@@ -1758,12 +1696,12 @@
                           "fontWeight": "500"
                         },
                         {
-                          "type": "icon_font",
+                          "type": "icon",
                           "id": "accordionChevronExpanded",
                           "width": 16,
                           "height": 16,
-                          "iconFontName": "chevron-down",
-                          "iconFontFamily": "lucide",
+                          "icon": "chevron-down",
+                          "library": "lucide",
                           "fill": "#64748b"
                         }
                       ]
@@ -1798,7 +1736,7 @@
               "type": "text",
               "id": "accordionStatesLabel",
               "fill": "#64748b",
-              "content": "\u72b6\u614b: Collapsed\uff08\u9589\uff09 / Expanded\uff08\u958b\uff09",
+              "content": "状態: Collapsed（閉） / Expanded（開）",
               "fontFamily": "Inter",
               "fontSize": 14,
               "fontWeight": "500"
@@ -1823,7 +1761,7 @@
                       "type": "text",
                       "id": "IRDmX",
                       "fill": "#64748b",
-                      "content": "Collapsed\uff08\u9589\uff09",
+                      "content": "Collapsed（閉）",
                       "fontFamily": "Inter",
                       "fontSize": 12,
                       "fontWeight": "normal"
@@ -1845,7 +1783,7 @@
                       "type": "text",
                       "id": "iIWHf",
                       "fill": "#64748b",
-                      "content": "Expanded\uff08\u958b\uff09",
+                      "content": "Expanded（開）",
                       "fontFamily": "Inter",
                       "fontSize": 12,
                       "fontWeight": "normal"
@@ -1863,11 +1801,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -1905,12 +1841,12 @@
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "listDotIcon",
                       "width": 16,
                       "height": 16,
-                      "iconFontName": "dot",
-                      "iconFontFamily": "lucide",
+                      "icon": "dot",
+                      "library": "lucide",
                       "fill": "#94a3b8"
                     },
                     {
@@ -1933,12 +1869,12 @@
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "listCheckIcon",
                       "width": 16,
                       "height": 16,
-                      "iconFontName": "check",
-                      "iconFontFamily": "lucide",
+                      "icon": "check",
+                      "library": "lucide",
                       "fill": "#22c55e"
                     },
                     {
@@ -1961,12 +1897,12 @@
                   "alignItems": "center",
                   "children": [
                     {
-                      "type": "icon_font",
+                      "type": "icon",
                       "id": "listCircleIcon",
                       "width": 12,
                       "height": 12,
-                      "iconFontName": "circle",
-                      "iconFontFamily": "lucide",
+                      "icon": "circle",
+                      "library": "lucide",
                       "fill": "#94a3b8"
                     },
                     {
@@ -2047,11 +1983,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -2077,6 +2011,7 @@
             {
               "type": "frame",
               "id": "tableVariants",
+              "width": "fit_content(400)",
               "layout": "vertical",
               "gap": 12,
               "children": [
@@ -2085,19 +2020,18 @@
                   "id": "tableDefault",
                   "name": "Table/Default",
                   "reusable": true,
-                  "width": 400,
+                  "width": "fill_container",
                   "fill": "#FFFFFF",
                   "cornerRadius": 8,
-                  "stroke": {
-                    "align": "inside",
-                    "thickness": 1,
-                    "fill": "#e2e8f0"
-                  },
+                  "stroke": "#e2e8f0",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
                   "layout": "vertical",
                   "children": [
                     {
                       "type": "frame",
                       "id": "tableHeader",
+                      "width": "fill_container",
                       "fill": "#f8fafc",
                       "padding": 12,
                       "children": [
@@ -2133,6 +2067,7 @@
                     {
                       "type": "frame",
                       "id": "tableRow",
+                      "width": "fill_container",
                       "padding": 12,
                       "children": [
                         {
@@ -2171,6 +2106,7 @@
             {
               "type": "frame",
               "id": "tableShowcase",
+              "width": "fit_content(400)",
               "gap": 12,
               "children": [
                 {
@@ -2189,11 +2125,9 @@
           "width": "fill_container",
           "fill": "#f8fafc",
           "cornerRadius": 12,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e2e8f0"
-          },
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "layout": "vertical",
           "gap": 24,
           "padding": 24,
@@ -2275,11 +2209,9 @@
                       "height": 32,
                       "fill": "#ffffff",
                       "cornerRadius": 999,
-                      "stroke": {
-                        "align": "inside",
-                        "thickness": 1,
-                        "fill": "#e2e8f0"
-                      },
+                      "stroke": "#e2e8f0",
+                      "strokeWidth": 1,
+                      "strokeAlignment": "inner",
                       "justifyContent": "center",
                       "alignItems": "center",
                       "children": [
@@ -2287,7 +2219,7 @@
                           "type": "text",
                           "id": "carouselPrevButtonText",
                           "fill": "#334155",
-                          "content": "\u2039",
+                          "content": "‹",
                           "fontFamily": "Inter",
                           "fontSize": 16,
                           "fontWeight": "600"
@@ -2301,11 +2233,9 @@
                       "height": 32,
                       "fill": "#ffffff",
                       "cornerRadius": 999,
-                      "stroke": {
-                        "align": "inside",
-                        "thickness": 1,
-                        "fill": "#e2e8f0"
-                      },
+                      "stroke": "#e2e8f0",
+                      "strokeWidth": 1,
+                      "strokeAlignment": "inner",
                       "justifyContent": "center",
                       "alignItems": "center",
                       "children": [
@@ -2313,7 +2243,7 @@
                           "type": "text",
                           "id": "carouselNextButtonText",
                           "fill": "#334155",
-                          "content": "\u203a",
+                          "content": "›",
                           "fontFamily": "Inter",
                           "fontSize": 16,
                           "fontWeight": "600"
@@ -2404,6 +2334,7 @@
           "type": "frame",
           "id": "NEqXb",
           "name": "showcase/table",
+          "width": "fit_content(432)",
           "fill": "#ffffff",
           "gap": 24,
           "padding": 16,
@@ -2699,7 +2630,7 @@
           "id": "xBwdA",
           "name": "showcaseDesc",
           "fill": "#71717a",
-          "content": "Pencil \u3067\u518d\u73fe\u3057\u305f gunjo \u306e Button \u30b3\u30f3\u30dd\u30fc\u30cd\u30f3\u30c8",
+          "content": "Pencil で再現した gunjo の Button コンポーネント",
           "fontFamily": "Inter",
           "fontSize": 14,
           "fontWeight": "normal"
@@ -2925,11 +2856,9 @@
           "height": 36,
           "fill": "transparent",
           "cornerRadius": 6,
-          "stroke": {
-            "align": "inside",
-            "thickness": 1,
-            "fill": "#e5e5e5"
-          },
+          "stroke": "#e5e5e5",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
           "gap": 8,
           "padding": [
             8,

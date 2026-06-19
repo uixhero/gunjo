@@ -288,6 +288,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "not-found": "Patterns",
   onboarding: "Patterns",
   pricing: "Patterns",
+  "responsive-auth-card-pattern": "Patterns",
   settings: "Patterns",
 };
 
