@@ -56,6 +56,20 @@ export const PATTERNS_SPEC_DEFINITIONS = [
     },
   },
   {
+    key: "responsiveAuthCardPattern",
+    frameId: "E6FlLl",
+    titleId: "MH71f",
+    descId: "Imn3A",
+    variantsId: "W4jaj",
+    nodeIds: {
+      default: "x3Hma",
+      header: "T1VaJ",
+      tabs: "HlI3Z",
+      card: "dg3KD",
+      terms: "DTyPr",
+    },
+  },
+  {
     key: "kanbanTemplate",
     frameId: "kanbanTemplateFrame",
     titleId: "kanbanTemplateTitle",

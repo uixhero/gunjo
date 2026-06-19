@@ -32,6 +32,12 @@ const EXTRA_PUBLIC_EXPORT_SECTIONS = [
       "export type { ChartColor, ChartDataPoint, ChartTone } from './components/display/chart-utils';",
     ],
   },
+  {
+    label: "Table Types",
+    exports: [
+      "export type { ColumnDef } from '@tanstack/react-table';",
+    ],
+  },
 ];
 
 function withoutTsx(fileName) {

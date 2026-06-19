@@ -141,7 +141,7 @@
         },
         "sep1": {
           "id": "breadcrumbSep1",
-          "type": "icon_font",
+          "type": "icon",
           "name": null,
           "width": 14,
           "height": 14,
@@ -155,8 +155,8 @@
           "fontSize": null,
           "fontWeight": null,
           "content": null,
-          "iconFontFamily": "lucide",
-          "iconFontName": "chevron-right",
+          "iconFontFamily": null,
+          "iconFontName": null,
           "textGrowth": null,
           "children": []
         },
@@ -183,7 +183,7 @@
         },
         "sep2": {
           "id": "breadcrumbSep2",
-          "type": "icon_font",
+          "type": "icon",
           "name": null,
           "width": 14,
           "height": 14,
@@ -197,8 +197,8 @@
           "fontSize": null,
           "fontWeight": null,
           "content": null,
-          "iconFontFamily": "lucide",
-          "iconFontName": "chevron-right",
+          "iconFontFamily": null,
+          "iconFontName": null,
           "textGrowth": null,
           "children": []
         },
@@ -241,11 +241,7 @@
           "gap": null,
           "cornerRadius": 8,
           "fill": "#FFFFFF",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "reusable": true,
           "children": [
             "tabsList",
@@ -264,11 +260,7 @@
           "gap": null,
           "cornerRadius": 8,
           "fill": "#FFFFFF",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1085,11 +1077,7 @@
           "gap": 4,
           "cornerRadius": 6,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "reusable": true,
           "children": [
             "menubarTrigger",
@@ -1113,11 +1101,7 @@
           "gap": 4,
           "cornerRadius": 6,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": "center",
           "fontSize": null,
@@ -1174,11 +1158,7 @@
           "gap": 2,
           "cornerRadius": 6,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1283,17 +1263,13 @@
           "name": "Command/Default",
           "key": "default",
           "type": "frame",
-          "width": 320,
+          "width": "fill_container",
           "height": null,
           "padding": null,
           "gap": null,
           "cornerRadius": 8,
           "fill": "#FFFFFF",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "reusable": true,
           "children": [
             "commandInput",
@@ -1306,17 +1282,13 @@
           "id": "commandDefault",
           "type": "frame",
           "name": "Command/Default",
-          "width": 320,
+          "width": "fill_container",
           "height": null,
           "padding": null,
           "gap": null,
           "cornerRadius": 8,
           "fill": "#FFFFFF",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1334,7 +1306,7 @@
           "id": "commandInput",
           "type": "frame",
           "name": null,
-          "width": null,
+          "width": "fill_container",
           "height": 40,
           "padding": [
             8,
@@ -1345,11 +1317,7 @@
           "gap": null,
           "cornerRadius": null,
           "fill": null,
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1387,7 +1355,7 @@
           "id": "commandList",
           "type": "frame",
           "name": null,
-          "width": null,
+          "width": "fill_container",
           "height": null,
           "padding": [
             8,
@@ -1519,7 +1487,7 @@
         },
         "iconHome": {
           "id": "appRailIconHome",
-          "type": "icon_font",
+          "type": "icon",
           "name": null,
           "width": 20,
           "height": 20,
@@ -1533,14 +1501,14 @@
           "fontSize": null,
           "fontWeight": null,
           "content": null,
-          "iconFontFamily": "lucide",
-          "iconFontName": "house",
+          "iconFontFamily": null,
+          "iconFontName": null,
           "textGrowth": null,
           "children": []
         },
         "iconSearch": {
           "id": "appRailIconSearch",
-          "type": "icon_font",
+          "type": "icon",
           "name": null,
           "width": 20,
           "height": 20,
@@ -1554,14 +1522,14 @@
           "fontSize": null,
           "fontWeight": null,
           "content": null,
-          "iconFontFamily": "lucide",
-          "iconFontName": "search",
+          "iconFontFamily": null,
+          "iconFontName": null,
           "textGrowth": null,
           "children": []
         },
         "iconFolder": {
           "id": "appRailIconFolder",
-          "type": "icon_font",
+          "type": "icon",
           "name": null,
           "width": 20,
           "height": 20,
@@ -1575,8 +1543,8 @@
           "fontSize": null,
           "fontWeight": null,
           "content": null,
-          "iconFontFamily": "lucide",
-          "iconFontName": "folder",
+          "iconFontFamily": null,
+          "iconFontName": null,
           "textGrowth": null,
           "children": []
         }
@@ -1592,17 +1560,13 @@
           "name": "CommandPalette/Default",
           "key": "default",
           "type": "frame",
-          "width": 480,
+          "width": "fill_container",
           "height": null,
           "padding": null,
           "gap": null,
           "cornerRadius": 8,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "reusable": true,
           "children": [
             "commandPaletteInput",
@@ -1615,17 +1579,13 @@
           "id": "commandPaletteDefault",
           "type": "frame",
           "name": "CommandPalette/Default",
-          "width": 480,
+          "width": "fill_container",
           "height": null,
           "padding": null,
           "gap": null,
           "cornerRadius": 8,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1643,7 +1603,7 @@
           "id": "commandPaletteInput",
           "type": "frame",
           "name": null,
-          "width": null,
+          "width": "fill_container",
           "height": 40,
           "padding": [
             8,
@@ -1654,11 +1614,7 @@
           "gap": null,
           "cornerRadius": null,
           "fill": null,
-          "stroke": {
-            "align": "inside",
-            "fill": "#e2e8f0",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,
@@ -1696,7 +1652,7 @@
           "id": "commandPaletteGroup",
           "type": "frame",
           "name": null,
-          "width": null,
+          "width": "fill_container",
           "height": null,
           "padding": [
             8,
@@ -1746,7 +1702,7 @@
           "id": "commandPaletteItem",
           "type": "frame",
           "name": null,
-          "width": null,
+          "width": "fill_container",
           "height": null,
           "padding": [
             8,
@@ -1831,11 +1787,7 @@
           "gap": null,
           "cornerRadius": null,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e5e7eb",
-            "thickness": 1
-          },
+          "stroke": null,
           "reusable": true,
           "children": [
             "rightRailHeader",
@@ -1854,11 +1806,7 @@
           "gap": null,
           "cornerRadius": null,
           "fill": "#ffffff",
-          "stroke": {
-            "align": "inside",
-            "fill": "#e5e7eb",
-            "thickness": 1
-          },
+          "stroke": null,
           "justifyContent": null,
           "alignItems": null,
           "fontSize": null,

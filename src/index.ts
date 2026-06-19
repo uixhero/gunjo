@@ -16,6 +16,7 @@ export * from './components/patterns/LandingTemplate';
 export * from './components/patterns/MediaLibraryTemplate';
 export * from './components/patterns/OnboardingTemplate';
 export * from './components/patterns/PricingTemplate';
+export * from './components/patterns/ResponsiveAuthCardPattern';
 export * from './components/patterns/SettingsTemplate';
 
 /** Feedback */
@@ -186,6 +187,9 @@ export * from './components/inputs/ButtonVariants';
 
 /** Chart Types */
 export type { ChartColor, ChartDataPoint, ChartTone } from './components/display/chart-utils';
+
+/** Table Types */
+export type { ColumnDef } from '@tanstack/react-table';
 
 /** Utility */
 export { cn } from './lib/utils';

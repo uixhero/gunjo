@@ -8,14 +8,14 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col w-[1280px] h-[720px]",
+      "baseClasses": "flex flex-col w-full",
       "baseColorHint": null,
       "slotIds": [
         "authTemplateVisualPanel",
         "authTemplateFormPanel"
       ],
       "variantClasses": {
-        "default": "flex flex-col w-[1280px] h-[720px]"
+        "default": "flex flex-col w-full"
       },
       "variantColorHints": {}
     },
@@ -174,6 +174,26 @@ export const componentStyleHints = {
       "slotIds": [],
       "variantClasses": {},
       "variantColorHints": {}
+    },
+    "responsiveAuthCardPattern": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "flex flex-col items-center w-full py-10 px-4 gap-6",
+      "baseColorHint": "fill=#000000",
+      "slotIds": [
+        "T1VaJ",
+        "HlI3Z",
+        "dg3KD",
+        "DTyPr"
+      ],
+      "variantClasses": {
+        "default": "flex flex-col items-center w-full py-10 px-4 gap-6"
+      },
+      "variantColorHints": {
+        "default": "fill=#000000"
+      }
     },
     "settingsTemplate": {
       "variantKeys": [
@@ -629,17 +649,17 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col w-[320px] rounded-lg border",
-      "baseColorHint": "fill=#FFFFFF | stroke=#e2e8f0@1px",
+      "baseClasses": "flex flex-col w-full rounded-lg",
+      "baseColorHint": "fill=#FFFFFF",
       "slotIds": [
         "commandInput",
         "commandList"
       ],
       "variantClasses": {
-        "default": "flex flex-col w-[320px] rounded-lg border"
+        "default": "flex flex-col w-full rounded-lg"
       },
       "variantColorHints": {
-        "default": "fill=#FFFFFF | stroke=#e2e8f0@1px"
+        "default": "fill=#FFFFFF"
       }
     },
     "commandPalette": {
@@ -647,17 +667,17 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col w-[480px] rounded-lg border",
-      "baseColorHint": "fill=#ffffff | stroke=#e2e8f0@1px",
+      "baseClasses": "flex flex-col w-full rounded-lg",
+      "baseColorHint": "fill=#ffffff",
       "slotIds": [
         "commandPaletteInput",
         "commandPaletteGroup"
       ],
       "variantClasses": {
-        "default": "flex flex-col w-[480px] rounded-lg border"
+        "default": "flex flex-col w-full rounded-lg"
       },
       "variantColorHints": {
-        "default": "fill=#ffffff | stroke=#e2e8f0@1px"
+        "default": "fill=#ffffff"
       }
     },
     "documentPager": {
@@ -699,17 +719,17 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col items-center h-10 p-1 gap-1 rounded-md border",
-      "baseColorHint": "fill=#ffffff | stroke=#e2e8f0@1px",
+      "baseClasses": "flex flex-col items-center h-10 p-1 gap-1 rounded-md",
+      "baseColorHint": "fill=#ffffff",
       "slotIds": [
         "menubarTrigger",
         "menubarContent"
       ],
       "variantClasses": {
-        "default": "flex flex-col items-center h-10 p-1 gap-1 rounded-md border"
+        "default": "flex flex-col items-center h-10 p-1 gap-1 rounded-md"
       },
       "variantColorHints": {
-        "default": "fill=#ffffff | stroke=#e2e8f0@1px"
+        "default": "fill=#ffffff"
       }
     },
     "navigationMenu": {
@@ -754,17 +774,17 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col w-[256px] h-[360px] border",
-      "baseColorHint": "fill=#ffffff | stroke=#e5e7eb@1px",
+      "baseClasses": "flex flex-col w-[256px] h-[360px]",
+      "baseColorHint": "fill=#ffffff",
       "slotIds": [
         "rightRailHeader",
         "rightRailItem"
       ],
       "variantClasses": {
-        "default": "flex flex-col w-[256px] h-[360px] border"
+        "default": "flex flex-col w-[256px] h-[360px]"
       },
       "variantColorHints": {
-        "default": "fill=#ffffff | stroke=#e5e7eb@1px"
+        "default": "fill=#ffffff"
       }
     },
     "sidebar": {
@@ -801,17 +821,17 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col w-full rounded-lg border",
-      "baseColorHint": "fill=#FFFFFF | stroke=#e2e8f0@1px",
+      "baseClasses": "flex flex-col w-full rounded-lg",
+      "baseColorHint": "fill=#FFFFFF",
       "slotIds": [
         "tabsList",
         "tabsContent"
       ],
       "variantClasses": {
-        "default": "flex flex-col w-full rounded-lg border"
+        "default": "flex flex-col w-full rounded-lg"
       },
       "variantColorHints": {
-        "default": "fill=#FFFFFF | stroke=#e2e8f0@1px"
+        "default": "fill=#FFFFFF"
       }
     },
     "textLink": {
@@ -1096,19 +1116,16 @@ export const componentStyleHints = {
         "expanded"
       ],
       "defaultVariantKey": "collapsed",
-      "baseClasses": "flex flex-col w-[400px] border",
-      "baseColorHint": "stroke=#e2e8f0@1px",
+      "baseClasses": "flex flex-col w-[400px]",
+      "baseColorHint": null,
       "slotIds": [
         "accordionTriggerCollapsed"
       ],
       "variantClasses": {
-        "collapsed": "flex flex-col w-[400px] border",
-        "expanded": "flex flex-col w-[400px] border"
+        "collapsed": "flex flex-col w-[400px]",
+        "expanded": "flex flex-col w-[400px]"
       },
-      "variantColorHints": {
-        "collapsed": "stroke=#e2e8f0@1px",
-        "expanded": "stroke=#e2e8f0@1px"
-      }
+      "variantColorHints": {}
     },
     "accordionGroup": {
       "variantKeys": [
@@ -1249,13 +1266,13 @@ export const componentStyleHints = {
         "default": "inline-flex items-center h-5 py-1 px-2.5 rounded-full text-xs font-semibold",
         "secondary": "inline-flex items-center h-5 py-1 px-2.5 rounded-full text-xs font-semibold",
         "destructive": "inline-flex items-center h-5 py-1 px-2.5 rounded-full text-xs font-semibold",
-        "outline": "inline-flex items-center h-5 py-1 px-2.5 rounded-full border bg-transparent text-xs font-semibold"
+        "outline": "inline-flex items-center h-5 py-1 px-2.5 rounded-full bg-transparent text-xs font-semibold"
       },
       "variantColorHints": {
         "default": "fill=#0c0c12 | text=#f8fafc",
         "secondary": "fill=#f1f5f9 | text=#18181b",
         "destructive": "fill=#ef4444 | text=#f8fafc",
-        "outline": "fill=transparent | stroke=#e2e8f0@1px | text=#0c0c12"
+        "outline": "fill=transparent | text=#0c0c12"
       }
     },
     "barChart": {
@@ -1278,18 +1295,18 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col w-full rounded-lg border",
-      "baseColorHint": "fill=#FFFFFF | stroke=#e2e8f0@1px",
+      "baseClasses": "flex flex-col w-full rounded-lg",
+      "baseColorHint": "fill=#FFFFFF",
       "slotIds": [
         "cardHeader",
         "cardContent",
         "cardFooter"
       ],
       "variantClasses": {
-        "default": "flex flex-col w-full rounded-lg border"
+        "default": "flex flex-col w-full rounded-lg"
       },
       "variantColorHints": {
-        "default": "fill=#FFFFFF | stroke=#e2e8f0@1px"
+        "default": "fill=#FFFFFF"
       }
     },
     "carousel": {
@@ -1584,14 +1601,14 @@ export const componentStyleHints = {
         "key"
       ],
       "defaultVariantKey": "key",
-      "baseClasses": "h-5 py-1 px-1.5 rounded border",
-      "baseColorHint": "fill=#f1f5f9 | stroke=#e2e8f0@1px",
+      "baseClasses": "h-5 py-1 px-1.5 rounded",
+      "baseColorHint": "fill=#f1f5f9",
       "slotIds": [],
       "variantClasses": {
-        "key": "h-5 py-1 px-1.5 rounded border"
+        "key": "h-5 py-1 px-1.5 rounded"
       },
       "variantColorHints": {
-        "key": "fill=#f1f5f9 | stroke=#e2e8f0@1px"
+        "key": "fill=#f1f5f9"
       }
     },
     "labeledDonutCard": {
@@ -1902,17 +1919,17 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col w-[400px] rounded-lg border",
-      "baseColorHint": "fill=#FFFFFF | stroke=#e2e8f0@1px",
+      "baseClasses": "flex flex-col w-full rounded-lg",
+      "baseColorHint": "fill=#FFFFFF",
       "slotIds": [
         "tableHeader",
         "tableRow"
       ],
       "variantClasses": {
-        "default": "flex flex-col w-[400px] rounded-lg border"
+        "default": "flex flex-col w-full rounded-lg"
       },
       "variantColorHints": {
-        "default": "fill=#FFFFFF | stroke=#e2e8f0@1px"
+        "default": "fill=#FFFFFF"
       }
     },
     "tag": {

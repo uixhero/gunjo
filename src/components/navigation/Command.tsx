@@ -15,7 +15,7 @@ const Command = React.forwardRef<
     <CommandPrimitive
         ref={ref}
         className={cn(
-            "flex h-full w-[320px] w-full flex-col overflow-hidden rounded-md border bg-popover text-popover-foreground",
+            "flex h-full w-full flex-col overflow-hidden rounded-md border bg-popover text-popover-foreground",
             className
         )}
         {...props}
@@ -25,12 +25,14 @@ Command.displayName = CommandPrimitive.displayName
 
 type CommandDialogProps = React.ComponentProps<typeof CommandPrimitive.Dialog> & {
     dialogTitle?: React.ReactNode
+    dialogDescription?: React.ReactNode
     portalContainer?: HTMLElement | null
 }
 
 const CommandDialog = ({
     children,
     dialogTitle = "Command Menu",
+    dialogDescription = "Search and run a command.",
     portalContainer,
     container,
     className,
@@ -39,6 +41,10 @@ const CommandDialog = ({
     ...props
 }: CommandDialogProps) => {
     const resolvedContainer = portalContainer ?? container
+    const hasExplicitDescription = Object.prototype.hasOwnProperty.call(
+        props,
+        "aria-describedby"
+    )
 
     return (
         <CommandPrimitive.Dialog
@@ -57,6 +63,11 @@ const CommandDialog = ({
             className={cn("flex h-full w-full flex-col overflow-hidden rounded-lg border bg-popover text-left text-popover-foreground", className)}
         >
             <DialogPrimitive.Title className="sr-only">{dialogTitle}</DialogPrimitive.Title>
+            {!hasExplicitDescription ? (
+                <DialogPrimitive.Description className="sr-only">
+                    {dialogDescription}
+                </DialogPrimitive.Description>
+            ) : null}
             {children}
         </CommandPrimitive.Dialog>
     )
