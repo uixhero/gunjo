@@ -48,7 +48,7 @@ export interface PlannedIndustryPattern {
     industry: PatternIndustryKey;
 }
 
-export const PUBLIC_PATTERN_SLUGS = ["auth", "dashboard", "media-library", "not-found"] as const;
+export const PUBLIC_PATTERN_SLUGS = ["auth", "dashboard", "kanban", "media-library", "not-found"] as const;
 export type PublicPatternSlug = (typeof PUBLIC_PATTERN_SLUGS)[number];
 export const SHOW_ALL_PATTERNS = process.env.NODE_ENV !== "production";
 
@@ -108,7 +108,7 @@ export const PATTERNS: PatternEntry[] = [
     {
         slug: "kanban",
         title: "Kanban",
-        description: "Four-column board with draggable Cards.",
+        description: "Responsive kanban layout shell for columns, cards, and dnd-kit wiring.",
         family: "core",
         surface: "board",
         industry: "operations",

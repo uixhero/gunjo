@@ -4,7 +4,7 @@ import { CodeBlock } from "@/components/doc/CodeBlock";
 import { KanbanTemplateDemo } from "@/components/demos/TemplateDemos";
 import patternsMetadata from "@design/patterns-metadata.json";
 
-const usageCode = `import { KanbanTemplate, Card, CardHeader, CardTitle, CardContent } from "@gunjo/ui";
+const usageCode = `import { KanbanTemplate, Card, CardHeader, CardTitle } from "@gunjo/ui";
 
 export function KanbanPage() {
   return (
@@ -64,6 +64,19 @@ export default function KanbanPage() {
                     <KanbanTemplateDemo />
                 </div>
             </ComponentPreview>
+
+            <div className="space-y-3 rounded-lg border bg-muted/30 p-5">
+                <h2 className="text-lg font-semibold tracking-tight">Layout scope</h2>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                    KanbanTemplate provides the responsive shell for sidebar, header, and horizontally
+                    scrolling columns. It does not own card state, column data, or drag-and-drop behavior.
+                    Wire those pieces in the consuming app.
+                </p>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                    For a production board, pair this shell with <code className="font-mono text-xs">dnd-kit</code>
+                    and keep stable item ids, keyboard sensors, and SSR-safe aria ids in the board implementation.
+                </p>
+            </div>
 
             <div className="space-y-4">
                 <h2 className="text-2xl font-semibold tracking-tight">Props</h2>

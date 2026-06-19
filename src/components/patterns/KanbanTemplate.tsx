@@ -15,7 +15,7 @@ export function KanbanTemplate({
     ...props
 }: KanbanTemplateProps) {
     return (
-        <div className={cn("flex w-[1280px] h-[720px] h-screen w-full overflow-hidden", className)} {...props}>
+        <div className={cn("flex h-full min-h-0 w-full overflow-hidden", className)} {...props}>
             {sidebar && (
                 <aside className="hidden w-64 border-r bg-muted/40 md:block flex-shrink-0">
                     {sidebar}

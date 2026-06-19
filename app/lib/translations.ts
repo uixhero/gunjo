@@ -602,7 +602,7 @@ export const translations: Record<
           },
           kanban: {
             title: "Kanban",
-            description: "Four-column board with draggable Cards.",
+            description: "Responsive kanban layout shell for columns, cards, and dnd-kit wiring.",
           },
           chat: {
             title: "Chat App",
@@ -1147,7 +1147,7 @@ export const translations: Record<
           },
           kanban: {
             title: "Kanban",
-            description: "ドラッグ可能なカード付きの 4 カラムボード。",
+            description: "カラム、カード、dnd-kit 連携のためのレスポンシブな Kanban レイアウト枠。",
           },
           chat: {
             title: "Chat App",

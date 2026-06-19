@@ -1411,6 +1411,8 @@
                 {
                   "type": "frame",
                   "id": "kanbanTemplateVariants",
+                  "width": "fit_content(1280)",
+                  "height": "fit_content(720)",
                   "layout": "vertical",
                   "gap": 12,
                   "children": [
@@ -1419,8 +1421,8 @@
                       "id": "kanbanTemplateDefault",
                       "name": "KanbanTemplate/Default",
                       "reusable": true,
-                      "width": 1280,
-                      "height": 720,
+                      "width": "fill_container",
+                      "height": "fill_container",
                       "children": [
                         {
                           "type": "frame",
@@ -1483,6 +1485,7 @@
                           "type": "frame",
                           "id": "kanbanTemplateMain",
                           "width": "fill_container",
+                          "height": "fill_container",
                           "layout": "vertical",
                           "children": [
                             {
@@ -1679,6 +1682,8 @@
                 {
                   "type": "frame",
                   "id": "kanbanTemplateShowcase",
+                  "width": "fit_content(1280)",
+                  "height": "fit_content(720)",
                   "gap": 12,
                   "children": [
                     {
@@ -3238,6 +3243,8 @@
           "type": "frame",
           "id": "ojYtV",
           "name": "showcase/kanbanTemplate",
+          "width": "fit_content(1312)",
+          "height": "fit_content(752)",
           "fill": "#ffffff",
           "gap": 24,
           "padding": 16,
