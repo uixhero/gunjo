@@ -7,14 +7,20 @@ import { cn } from "../../lib/utils"
 
 const TooltipProvider = TooltipPrimitive.Provider
 
-type TooltipProps = React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Root> & {
-    /**
-     * Opens the tooltip for a short time on touch/pen press.
-     * This keeps disabled reasons and icon-only feedback available on mobile.
-     */
-    openOnPress?: boolean
-    pressOpenDuration?: number
-}
+type TooltipProviderOptions = Pick<
+    React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Provider>,
+    "delayDuration" | "skipDelayDuration" | "disableHoverableContent"
+>
+
+type TooltipProps = React.ComponentPropsWithoutRef<typeof TooltipPrimitive.Root> &
+    TooltipProviderOptions & {
+        /**
+         * Opens the tooltip for a short time on touch/pen press.
+         * This keeps disabled reasons and icon-only feedback available on mobile.
+         */
+        openOnPress?: boolean
+        pressOpenDuration?: number
+    }
 
 type TooltipInteractionContextValue = {
     openFromPress: () => void
@@ -27,6 +33,9 @@ const Tooltip = ({
     open,
     defaultOpen,
     onOpenChange,
+    delayDuration,
+    skipDelayDuration,
+    disableHoverableContent,
     openOnPress = true,
     pressOpenDuration = 2200,
     ...props
@@ -71,15 +80,21 @@ const Tooltip = ({
     const contextValue = React.useMemo(() => ({ openFromPress }), [openFromPress])
 
     return (
-        <TooltipInteractionContext.Provider value={contextValue}>
-            <TooltipPrimitive.Root
-                open={resolvedOpen}
-                onOpenChange={setOpen}
-                {...props}
-            >
-                {children}
-            </TooltipPrimitive.Root>
-        </TooltipInteractionContext.Provider>
+        <TooltipPrimitive.Provider
+            delayDuration={delayDuration}
+            skipDelayDuration={skipDelayDuration}
+            disableHoverableContent={disableHoverableContent}
+        >
+            <TooltipInteractionContext.Provider value={contextValue}>
+                <TooltipPrimitive.Root
+                    open={resolvedOpen}
+                    onOpenChange={setOpen}
+                    {...props}
+                >
+                    {children}
+                </TooltipPrimitive.Root>
+            </TooltipInteractionContext.Provider>
+        </TooltipPrimitive.Provider>
     )
 }
 
