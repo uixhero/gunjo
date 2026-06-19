@@ -1934,7 +1934,7 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
         progressWidgetSource,
         [
           /className=\{cn\("overflow-hidden", className\)\}/,
-          /className=\{cn\("flex flex-col w-\[320px\] rounded-lg border overflow-hidden", className\)\}/,
+          /className=\{cn\("[^"]*\boverflow-hidden\b[^"]*", className\)\}/,
         ],
         'ProgressWidget Card should include overflow-hidden class composition'
       );

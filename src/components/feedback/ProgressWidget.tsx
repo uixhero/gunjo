@@ -23,7 +23,7 @@ const ProgressWidget = React.forwardRef<HTMLDivElement, ProgressWidgetProps>(
         const percentage = Math.round((boundedValue / safeMax) * 100)
 
         return (
-            <Card ref={ref} className={cn("flex flex-col w-[320px] rounded-lg border overflow-hidden", className)} {...props}>
+            <Card ref={ref} className={cn("flex w-full min-w-0 flex-col rounded-lg border overflow-hidden", className)} {...props}>
                 <CardHeader className="flex flex-row items-center justify-between gap-3 space-y-0 pb-2">
                     <CardTitle className="min-w-0 truncate text-sm font-medium">{title}</CardTitle>
                     {icon && <div className="shrink-0 text-muted-foreground">{icon}</div>}
