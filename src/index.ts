@@ -184,6 +184,9 @@ export * from './components/inputs/ToggleGroup';
 export * from './components/inputs/TooltipButton';
 export * from './components/inputs/ButtonVariants';
 
+/** Chart Types */
+export type { ChartColor, ChartDataPoint, ChartTone } from './components/display/chart-utils';
+
 /** Utility */
 export { cn } from './lib/utils';
 export { componentManifest } from './components/generated/component-manifest';
