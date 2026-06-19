@@ -1,14 +1,11 @@
 "use client"
-
-import { notFound } from "next/navigation";
 import {
     KanbanTemplate,
     Button,
     Card,
     CardContent,
-    CardHeader,
-    CardTitle,
-    SidebarItem
+    SidebarItem,
+    TooltipButton
 } from "@gunjo/ui";
 import {
     IconDots as MoreHorizontal,
@@ -23,8 +20,6 @@ import {
 } from "../_lib/MarqueeChrome";
 
 export default function KanbanExample() {
-    if (process.env.NODE_ENV === "production") notFound();
-
     return (
         <MarqueeChrome
             slug="kanban"
@@ -76,7 +71,15 @@ function KanbanPattern({ viewport }: { viewport: MarqueeViewport }) {
                 <div key={col} className="flex h-full w-[350px] flex-col rounded-lg bg-muted/50 border">
                     <div className="flex items-center justify-between p-4 pb-2">
                         <h3 className="font-semibold text-sm">{col} <span className="ml-2 text-muted-foreground text-xs font-normal">3</span></h3>
-                        <Button variant="ghost" size="icon" className="h-8 w-8"><MoreHorizontal size={16} /></Button>
+                        <TooltipButton
+                            tooltip={`${col} options`}
+                            aria-label={`${col} options`}
+                            variant="ghost"
+                            size="icon"
+                            className="h-8 w-8"
+                        >
+                            <MoreHorizontal size={16} />
+                        </TooltipButton>
                     </div>
                     <div className="flex-1 overflow-y-auto p-3 space-y-3">
                         <Card className="shadow-sm hover:shadow-md transition-shadow cursor-grab active:cursor-grabbing">

@@ -111,14 +111,14 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col w-[1280px] h-[720px]",
+      "baseClasses": "flex flex-col w-full h-full",
       "baseColorHint": null,
       "slotIds": [
         "kanbanTemplateSidebar",
         "kanbanTemplateMain"
       ],
       "variantClasses": {
-        "default": "flex flex-col w-[1280px] h-[720px]"
+        "default": "flex flex-col w-full h-full"
       },
       "variantColorHints": {}
     },
