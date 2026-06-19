@@ -3,11 +3,12 @@
 import * as React from "react"
 import { addDays, addMonths, addYears, format, type Locale } from "date-fns"
 import { IconCalendar as CalendarIcon } from "@tabler/icons-react";
+import { dateMatchModifiers, type Matcher, type Modifiers } from "react-day-picker"
 
 import { cn } from "../../lib/utils"
 import { Button } from "../inputs/Button"
 import { Input } from "../inputs/Input"
-import { Calendar } from "./Calendar"
+import { Calendar, type CalendarProps } from "./Calendar"
 import { Popover, PopoverAnchor, PopoverContent, PopoverTrigger } from "../overlay/Popover"
 import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
 
@@ -27,6 +28,15 @@ export interface DatePickerProps {
     previousLabel?: string
     showTodayButton?: boolean
     closeOnSelect?: boolean
+    disabledDates?: Matcher | Matcher[]
+    modifiers?: CalendarProps["modifiers"]
+    modifiersClassNames?: CalendarProps["modifiersClassNames"]
+    startMonth?: Date
+    endMonth?: Date
+    getDisabledReason?: (date: Date, modifiers: Modifiers) => React.ReactNode
+    disabledReason?: React.ReactNode
+    disabledReasonLabel?: CalendarProps["disabledReasonLabel"]
+    disabledReasonPortalContainer?: CalendarProps["disabledReasonPortalContainer"]
 }
 
 type DateSegment = "year" | "month" | "day"
@@ -127,6 +137,15 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             previousLabel,
             showTodayButton = true,
             closeOnSelect = true,
+            disabledDates,
+            modifiers,
+            modifiersClassNames,
+            startMonth,
+            endMonth,
+            getDisabledReason,
+            disabledReason,
+            disabledReasonLabel,
+            disabledReasonPortalContainer,
         },
         ref
     ) => {
@@ -145,14 +164,18 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
 
         const calendarReferenceDate = calendarMonth ?? calendarSelectedDate ?? value ?? new Date()
         const calendarStartMonth = React.useMemo(
-            () => new Date(calendarReferenceDate.getFullYear() - 10, 0, 1),
-            [calendarReferenceDate]
+            () => startMonth ?? new Date(calendarReferenceDate.getFullYear() - 10, 0, 1),
+            [calendarReferenceDate, startMonth]
         )
         const calendarEndMonth = React.useMemo(
-            () => new Date(calendarReferenceDate.getFullYear() + 10, 11, 31),
-            [calendarReferenceDate]
+            () => endMonth ?? new Date(calendarReferenceDate.getFullYear() + 10, 11, 31),
+            [calendarReferenceDate, endMonth]
         )
         const calendarButtonLabel = open ? getCloseCalendarLabel(locale) : calendarLabel
+        const isDateDisabled = React.useCallback(
+            (date: Date | undefined) => Boolean(date && disabledDates && dateMatchModifiers(date, disabledDates)),
+            [disabledDates]
+        )
 
         const selectSegment = React.useCallback((segment: DateSegment) => {
             const [selectionStart, selectionEnd] = getSegmentRange(segment)
@@ -217,13 +240,13 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
                 }
 
                 const nextDate = parseIsoDate(trimmedValue)
-                if (!nextDate) return
+                if (!nextDate || isDateDisabled(nextDate)) return
 
                 setCalendarMonth(nextDate)
                 setCalendarSelectedDate(nextDate)
                 onValueChange?.(nextDate)
             },
-            [dateFormat, onValueChange]
+            [dateFormat, isDateDisabled, onValueChange]
         )
 
         const commitInputValue = React.useCallback((nextInputValue = inputValue) => {
@@ -242,7 +265,7 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             }
 
             const nextDate = parseIsoDate(trimmedValue)
-            if (!nextDate) {
+            if (!nextDate || isDateDisabled(nextDate)) {
                 setInvalid(true)
                 setInputValue(formatDate(value, dateFormat, locale))
                 return
@@ -253,10 +276,11 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             setCalendarMonth(nextDate)
             setCalendarSelectedDate(nextDate)
             onValueChange?.(nextDate)
-        }, [dateFormat, inputValue, locale, onValueChange, value])
+        }, [dateFormat, inputValue, isDateDisabled, locale, onValueChange, value])
 
         const handleCalendarSelect = React.useCallback(
             (nextDate: Date | undefined) => {
+                if (isDateDisabled(nextDate)) return
                 setInvalid(false)
                 setCalendarMonth(nextDate)
                 setCalendarSelectedDate(nextDate)
@@ -267,11 +291,12 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
                     keepCalendarOpenOnNextFrame()
                 }
             },
-            [closeOnSelect, keepCalendarOpenOnNextFrame, keepOpenAfterShortcut, onValueChange]
+            [closeOnSelect, isDateDisabled, keepCalendarOpenOnNextFrame, keepOpenAfterShortcut, onValueChange]
         )
 
         const handleTodaySelect = React.useCallback(() => {
             const today = new Date()
+            if (isDateDisabled(today)) return
             const nextInputValue = formatDate(today, dateFormat, locale)
             const currentDate = parseIsoDate(inputValue) ?? calendarSelectedDate ?? value
 
@@ -286,10 +311,11 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             setKeepOpenAfterShortcut(true)
             setOpen(true)
             keepCalendarOpenOnNextFrame()
-        }, [calendarSelectedDate, dateFormat, inputValue, keepCalendarOpenOnNextFrame, locale, onValueChange, value])
+        }, [calendarSelectedDate, dateFormat, inputValue, isDateDisabled, keepCalendarOpenOnNextFrame, locale, onValueChange, value])
 
         const handlePreviousShortcutSelect = React.useCallback(() => {
             if (!previousShortcutDate) return
+            if (isDateDisabled(previousShortcutDate)) return
 
             const nextInputValue = formatDate(previousShortcutDate, dateFormat, locale)
             setInvalid(false)
@@ -301,7 +327,7 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             setKeepOpenAfterShortcut(true)
             setOpen(true)
             keepCalendarOpenOnNextFrame()
-        }, [dateFormat, keepCalendarOpenOnNextFrame, locale, onValueChange, previousShortcutDate])
+        }, [dateFormat, isDateDisabled, keepCalendarOpenOnNextFrame, locale, onValueChange, previousShortcutDate])
 
         const stepInputValue = React.useCallback(
             (direction: 1 | -1, cursorPosition: number) => {
@@ -315,6 +341,7 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
                         : segment === "month"
                             ? addMonths(currentDate, direction)
                             : addDays(currentDate, direction)
+                if (isDateDisabled(nextDate)) return false
                 const nextInputValue = formatDate(nextDate, dateFormat, locale)
                 const [selectionStart, selectionEnd] = getSegmentRange(segment)
 
@@ -328,7 +355,7 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
                 })
                 return true
             },
-            [dateFormat, inputValue, locale, onValueChange, value]
+            [dateFormat, inputValue, isDateDisabled, locale, onValueChange, value]
         )
 
         return (
@@ -478,6 +505,13 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
                         startMonth={calendarStartMonth}
                         endMonth={calendarEndMonth}
                         locale={locale}
+                        disabled={disabledDates}
+                        modifiers={modifiers}
+                        modifiersClassNames={modifiersClassNames}
+                        getDisabledReason={getDisabledReason}
+                        disabledReason={disabledReason}
+                        disabledReasonLabel={disabledReasonLabel}
+                        disabledReasonPortalContainer={disabledReasonPortalContainer}
                     />
                     {showTodayButton ? (
                         <div className="flex items-stretch justify-between gap-2 border-t bg-card p-1.5">

@@ -17,9 +17,34 @@ function DatePickerStates({ locale }: { locale: "ja" | "en" }) {
     const [date, setDate] = React.useState<Date | undefined>(new Date());
     const [emptyDate, setEmptyDate] = React.useState<Date | undefined>();
     const [reviewDate, setReviewDate] = React.useState<Date | undefined>(new Date());
+    const [bookingDate, setBookingDate] = React.useState<Date | undefined>();
     const calendarLocale = locale === "ja" ? ja : enUS;
     const calendarLabel = locale === "ja" ? "カレンダーを開く" : "Open calendar";
     const disabledReason = locale === "ja" ? "請求日が確定済みのため変更できません。" : "Locked because the invoice date is final.";
+    const today = React.useMemo(() => new Date(), []);
+    const soldOutDates = React.useMemo(
+        () => [
+            new Date(today.getFullYear(), today.getMonth(), today.getDate() + 4),
+            new Date(today.getFullYear(), today.getMonth(), today.getDate() + 8),
+        ],
+        [today]
+    );
+    const disabledBookingDates = React.useMemo(
+        () => [{ before: today }, soldOutDates],
+        [soldOutDates, today]
+    );
+    const getBookingDisabledReason = React.useCallback(
+        (day: Date) => {
+            const isSoldOut = soldOutDates.some((soldOutDate) => (
+                soldOutDate.getFullYear() === day.getFullYear() &&
+                soldOutDate.getMonth() === day.getMonth() &&
+                soldOutDate.getDate() === day.getDate()
+            ));
+            if (isSoldOut) return locale === "ja" ? "満席です。" : "Fully booked.";
+            return locale === "ja" ? "過去日は選択できません。" : "Past dates are unavailable.";
+        },
+        [locale, soldOutDates]
+    );
 
     return (
         <ComponentDemoStates
@@ -146,6 +171,85 @@ export default function PersistentDateField() {
 }`,
                 },
                 {
+                    key: "disabled-dates",
+                    title: locale === "ja" ? "日付ごとの無効化" : "Disabled dates",
+                    description:
+                        locale === "ja"
+                            ? "disabledDates と modifiers を使うと、過去日や満席日を DatePicker から直接無効化できます。"
+                            : "Use disabledDates and modifiers to disable past dates or fully booked days directly from DatePicker.",
+                    preview: (
+                        <FormGroup className="w-full max-w-sm p-1">
+                            <FormLabel htmlFor="booking-date-state">{locale === "ja" ? "予約日" : "Booking date"}</FormLabel>
+                            <FormControl>
+                                <DatePicker
+                                    id="booking-date-state"
+                                    value={bookingDate}
+                                    onValueChange={setBookingDate}
+                                    locale={calendarLocale}
+                                    calendarLabel={calendarLabel}
+                                    disabledDates={disabledBookingDates}
+                                    startMonth={new Date(today.getFullYear(), today.getMonth(), 1)}
+                                    modifiers={{ soldOut: soldOutDates }}
+                                    modifiersClassNames={{
+                                        soldOut: "[&>button]:bg-destructive/10 [&>button]:text-destructive [&>button]:line-through",
+                                    }}
+                                    getDisabledReason={getBookingDisabledReason}
+                                    disabledReasonLabel={(day) => getBookingDisabledReason(day)}
+                                />
+                            </FormControl>
+                            <FormDescription>
+                                {locale === "ja" ? "過去日と満席日は選択できません。" : "Past and fully booked dates cannot be selected."}
+                            </FormDescription>
+                        </FormGroup>
+                    ),
+                    code: `import * as React from "react";
+import { DatePicker, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+
+export default function BookingDateField() {
+  const [date, setDate] = React.useState<Date | undefined>();
+  const today = React.useMemo(() => new Date(), []);
+  const soldOutDates = React.useMemo(
+    () => [
+      new Date(today.getFullYear(), today.getMonth(), today.getDate() + 4),
+      new Date(today.getFullYear(), today.getMonth(), today.getDate() + 8),
+    ],
+    [today]
+  );
+
+  const getDisabledReason = React.useCallback(
+    (day: Date) => {
+      const isSoldOut = soldOutDates.some((soldOutDate) =>
+        soldOutDate.toDateString() === day.toDateString()
+      );
+      return isSoldOut ? "Fully booked." : "Past dates are unavailable.";
+    },
+    [soldOutDates]
+  );
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="booking-date">Booking date</FormLabel>
+      <FormControl>
+        <DatePicker
+          id="booking-date"
+          value={date}
+          onValueChange={setDate}
+          disabledDates={[{ before: today }, soldOutDates]}
+          startMonth={new Date(today.getFullYear(), today.getMonth(), 1)}
+          modifiers={{ soldOut: soldOutDates }}
+          modifiersClassNames={{
+            soldOut: "[&>button]:bg-destructive/10 [&>button]:text-destructive [&>button]:line-through",
+          }}
+          getDisabledReason={getDisabledReason}
+          disabledReasonLabel={(day) => getDisabledReason(day)}
+        />
+      </FormControl>
+      <FormDescription>Past and fully booked dates cannot be selected.</FormDescription>
+    </FormGroup>
+  );
+}`,
+                },
+                {
                     key: "disabled",
                     title: locale === "ja" ? "無効" : "Disabled",
                     description:
@@ -242,6 +346,12 @@ export function DatePickerUsage() {
         { name: "previousLabel", type: "string", description: locale === "ja" ? "今日へ戻す前の日付へ戻るボタンのラベルです。未指定時は表示言語に合わせます。" : "Label for the shortcut button that returns to the date before jumping to today. Falls back to the active locale." },
         { name: "showTodayButton", type: "boolean", default: "true", description: locale === "ja" ? "カレンダー下部に今日へ戻すボタンを表示するか。" : "Whether to show the shortcut button that returns to today." },
         { name: "closeOnSelect", type: "boolean", default: "true", description: locale === "ja" ? "日付をクリックした時にカレンダーを閉じるかを指定します。選択しながら比較する用途では、開いたままにします。" : "Whether the calendar closes after selecting a date. Set false when users need to compare dates while selecting." },
+        { name: "disabledDates", type: "Matcher | Matcher[]", description: locale === "ja" ? "Calendar の disabled matcher に渡す日付単位の無効化条件です。disabled boolean とは別です。" : "Date-level disabled matcher forwarded to Calendar. Separate from the boolean disabled prop." },
+        { name: "modifiers", type: "CalendarProps['modifiers']", description: locale === "ja" ? "Calendar に渡す日付 modifier です。満席日、休日、予約可能日などの装飾に使います。" : "Date modifiers forwarded to Calendar for states such as sold out, holiday, or available." },
+        { name: "modifiersClassNames", type: "CalendarProps['modifiersClassNames']", description: locale === "ja" ? "modifier ごとの className を Calendar に渡します。" : "Class names for each Calendar modifier." },
+        { name: "startMonth", type: "Date", description: locale === "ja" ? "月・年移動で選べる最初の月を Calendar に渡します。" : "First month available in Calendar month/year navigation." },
+        { name: "endMonth", type: "Date", description: locale === "ja" ? "月・年移動で選べる最後の月を Calendar に渡します。" : "Last month available in Calendar month/year navigation." },
+        { name: "getDisabledReason", type: "(date: Date, modifiers: Modifiers) => ReactNode", description: locale === "ja" ? "無効日ごとの理由を Calendar の Tooltip に表示します。" : "Returns the per-date disabled reason shown by Calendar tooltip." },
         { name: "disabled", type: "boolean", description: locale === "ja" ? "入力とカレンダー操作を無効化します。" : "Disables the input and calendar button." },
     ];
 
