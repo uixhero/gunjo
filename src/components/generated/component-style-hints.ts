@@ -1116,14 +1116,14 @@ export const componentStyleHints = {
         "expanded"
       ],
       "defaultVariantKey": "collapsed",
-      "baseClasses": "flex flex-col w-[400px] border",
+      "baseClasses": "flex flex-col w-full border",
       "baseColorHint": "stroke=#e2e8f0@1px",
       "slotIds": [
-        "accordionTriggerCollapsed"
+        "LQCc9"
       ],
       "variantClasses": {
-        "collapsed": "flex flex-col w-[400px] border",
-        "expanded": "flex flex-col w-[400px] border"
+        "collapsed": "flex flex-col w-full border",
+        "expanded": "flex flex-col w-full border"
       },
       "variantColorHints": {
         "collapsed": "stroke=#e2e8f0@1px",

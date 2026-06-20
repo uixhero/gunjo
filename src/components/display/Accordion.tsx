@@ -38,7 +38,7 @@ const Accordion = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <AccordionPrimitive.Root
         ref={ref}
-        className={cn("flex flex-col w-[400px] border", className)}
+        className={cn("flex flex-col w-full border", className)}
         {...props}
     />
 ))

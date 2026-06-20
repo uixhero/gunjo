@@ -1625,15 +1625,15 @@
             {
               "type": "frame",
               "id": "accordionVariants",
+              "width": "fill_container",
               "layout": "vertical",
               "gap": 12,
               "children": [
                 {
                   "type": "frame",
-                  "id": "accordionCollapsed",
+                  "id": "pl9Eu",
                   "name": "Accordion/Collapsed",
-                  "reusable": true,
-                  "width": 400,
+                  "width": "fill_container",
                   "stroke": "#e2e8f0",
                   "strokeWidth": 1,
                   "strokeAlignment": "inner",
@@ -1641,14 +1641,15 @@
                   "children": [
                     {
                       "type": "frame",
-                      "id": "accordionTriggerCollapsed",
+                      "id": "LQCc9",
+                      "width": "fill_container",
                       "padding": 16,
                       "justifyContent": "space_between",
                       "alignItems": "center",
                       "children": [
                         {
                           "type": "text",
-                          "id": "accordionTriggerTextCollapsed",
+                          "id": "ULK0n",
                           "fill": "#0c0c12",
                           "content": "Is it accessible?",
                           "fontFamily": "Inter",
@@ -1657,7 +1658,7 @@
                         },
                         {
                           "type": "icon",
-                          "id": "accordionChevronCollapsed",
+                          "id": "MqjWB",
                           "width": 16,
                           "height": 16,
                           "icon": "chevron-down",
@@ -1670,10 +1671,9 @@
                 },
                 {
                   "type": "frame",
-                  "id": "accordionExpanded",
+                  "id": "y8E7V",
                   "name": "Accordion/Expanded",
-                  "reusable": true,
-                  "width": 400,
+                  "width": "fill_container",
                   "stroke": "#e2e8f0",
                   "strokeWidth": 1,
                   "strokeAlignment": "inner",
@@ -1681,14 +1681,15 @@
                   "children": [
                     {
                       "type": "frame",
-                      "id": "accordionTriggerExpanded",
+                      "id": "RSuXb",
+                      "width": "fill_container",
                       "padding": 16,
                       "justifyContent": "space_between",
                       "alignItems": "center",
                       "children": [
                         {
                           "type": "text",
-                          "id": "accordionTriggerTextExpanded",
+                          "id": "UPOUx",
                           "fill": "#0c0c12",
                           "content": "Is it accessible?",
                           "fontFamily": "Inter",
@@ -1697,7 +1698,7 @@
                         },
                         {
                           "type": "icon",
-                          "id": "accordionChevronExpanded",
+                          "id": "fYPmD",
                           "width": 16,
                           "height": 16,
                           "icon": "chevron-down",
@@ -1708,7 +1709,8 @@
                     },
                     {
                       "type": "frame",
-                      "id": "accordionContent",
+                      "id": "Yeqos",
+                      "width": "fill_container",
                       "layout": "vertical",
                       "padding": [
                         0,
@@ -1719,7 +1721,7 @@
                       "children": [
                         {
                           "type": "text",
-                          "id": "accordionContentText",
+                          "id": "i8vEM",
                           "fill": "#64748b",
                           "content": "Yes. It adheres to the WAI-ARIA design pattern.",
                           "fontFamily": "Inter",
@@ -1753,9 +1755,43 @@
                   "gap": 8,
                   "children": [
                     {
+                      "type": "frame",
                       "id": "g4MRfF",
-                      "type": "ref",
-                      "ref": "accordionCollapsed"
+                      "name": "Accordion/Collapsed",
+                      "width": 400,
+                      "stroke": "#e2e8f0",
+                      "strokeWidth": 1,
+                      "strokeAlignment": "inner",
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "pzx62",
+                          "padding": 16,
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "XkGEk",
+                              "fill": "#0c0c12",
+                              "content": "Is it accessible?",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "lPRz9",
+                              "width": 16,
+                              "height": 16,
+                              "icon": "chevron-down",
+                              "library": "lucide",
+                              "fill": "#64748b"
+                            }
+                          ]
+                        }
+                      ]
                     },
                     {
                       "type": "text",
@@ -1775,9 +1811,65 @@
                   "gap": 8,
                   "children": [
                     {
+                      "type": "frame",
                       "id": "Qk5nL",
-                      "type": "ref",
-                      "ref": "accordionExpanded"
+                      "name": "Accordion/Expanded",
+                      "width": 400,
+                      "stroke": "#e2e8f0",
+                      "strokeWidth": 1,
+                      "strokeAlignment": "inner",
+                      "layout": "vertical",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "F62iG",
+                          "padding": 16,
+                          "justifyContent": "space_between",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "t11n4c",
+                              "fill": "#0c0c12",
+                              "content": "Is it accessible?",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "icon",
+                              "id": "V3gpu",
+                              "width": 16,
+                              "height": 16,
+                              "icon": "chevron-down",
+                              "library": "lucide",
+                              "fill": "#64748b"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "GZv8d",
+                          "layout": "vertical",
+                          "padding": [
+                            0,
+                            16,
+                            16,
+                            16
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "c9r8G",
+                              "fill": "#64748b",
+                              "content": "Yes. It adheres to the WAI-ARIA design pattern.",
+                              "fontFamily": "Inter",
+                              "fontSize": 14,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
                     },
                     {
                       "type": "text",
@@ -2319,14 +2411,104 @@
           "padding": 16,
           "children": [
             {
+              "type": "frame",
               "id": "Av5ks",
-              "type": "ref",
-              "ref": "accordionCollapsed"
+              "name": "Accordion/Collapsed",
+              "width": 400,
+              "stroke": "#e2e8f0",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "kHqkz",
+                  "padding": 16,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "epBgL",
+                      "fill": "#0c0c12",
+                      "content": "Is it accessible?",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "icon",
+                      "id": "KAJ3N",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "chevron-down",
+                      "library": "lucide",
+                      "fill": "#64748b"
+                    }
+                  ]
+                }
+              ]
             },
             {
+              "type": "frame",
               "id": "bohmN",
-              "type": "ref",
-              "ref": "accordionExpanded"
+              "name": "Accordion/Expanded",
+              "width": 400,
+              "stroke": "#e2e8f0",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "layout": "vertical",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "k7AYs",
+                  "padding": 16,
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "AaLkx",
+                      "fill": "#0c0c12",
+                      "content": "Is it accessible?",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "icon",
+                      "id": "gj7jY",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "chevron-down",
+                      "library": "lucide",
+                      "fill": "#64748b"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "plrsm",
+                  "layout": "vertical",
+                  "padding": [
+                    0,
+                    16,
+                    16,
+                    16
+                  ],
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "v9fvxo",
+                      "fill": "#64748b",
+                      "content": "Yes. It adheres to the WAI-ARIA design pattern.",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
