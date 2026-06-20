@@ -1121,11 +1121,11 @@
       "description": "A vertically stacked set of interactive headings that each reveal a section of content.",
       "variants": [
         {
-          "id": "accordionCollapsed",
+          "id": "pl9Eu",
           "name": "Accordion/Collapsed",
           "key": "collapsed",
           "type": "frame",
-          "width": 400,
+          "width": "fill_container",
           "height": null,
           "padding": null,
           "gap": null,
@@ -1136,17 +1136,17 @@
             "fill": "#e2e8f0",
             "thickness": 1
           },
-          "reusable": true,
+          "reusable": false,
           "children": [
-            "accordionTriggerCollapsed"
+            "LQCc9"
           ]
         },
         {
-          "id": "accordionExpanded",
+          "id": "y8E7V",
           "name": "Accordion/Expanded",
           "key": "expanded",
           "type": "frame",
-          "width": 400,
+          "width": "fill_container",
           "height": null,
           "padding": null,
           "gap": null,
@@ -1157,19 +1157,19 @@
             "fill": "#e2e8f0",
             "thickness": 1
           },
-          "reusable": true,
+          "reusable": false,
           "children": [
-            "accordionTriggerExpanded",
-            "accordionContent"
+            "RSuXb",
+            "Yeqos"
           ]
         }
       ],
       "nodes": {
         "collapsed": {
-          "id": "accordionCollapsed",
+          "id": "pl9Eu",
           "type": "frame",
           "name": "Accordion/Collapsed",
-          "width": 400,
+          "width": "fill_container",
           "height": null,
           "padding": null,
           "gap": null,
@@ -1189,14 +1189,14 @@
           "iconFontName": null,
           "textGrowth": null,
           "children": [
-            "accordionTriggerCollapsed"
+            "LQCc9"
           ]
         },
         "expanded": {
-          "id": "accordionExpanded",
+          "id": "y8E7V",
           "type": "frame",
           "name": "Accordion/Expanded",
-          "width": 400,
+          "width": "fill_container",
           "height": null,
           "padding": null,
           "gap": null,
@@ -1216,15 +1216,15 @@
           "iconFontName": null,
           "textGrowth": null,
           "children": [
-            "accordionTriggerExpanded",
-            "accordionContent"
+            "RSuXb",
+            "Yeqos"
           ]
         },
         "triggerCollapsed": {
-          "id": "accordionTriggerCollapsed",
+          "id": "LQCc9",
           "type": "frame",
           "name": null,
-          "width": null,
+          "width": "fill_container",
           "height": null,
           "padding": [
             16,
@@ -1245,15 +1245,15 @@
           "iconFontName": null,
           "textGrowth": null,
           "children": [
-            "accordionTriggerTextCollapsed",
-            "accordionChevronCollapsed"
+            "ULK0n",
+            "MqjWB"
           ]
         },
         "triggerExpanded": {
-          "id": "accordionTriggerExpanded",
+          "id": "RSuXb",
           "type": "frame",
           "name": null,
-          "width": null,
+          "width": "fill_container",
           "height": null,
           "padding": [
             16,
@@ -1274,12 +1274,12 @@
           "iconFontName": null,
           "textGrowth": null,
           "children": [
-            "accordionTriggerTextExpanded",
-            "accordionChevronExpanded"
+            "UPOUx",
+            "fYPmD"
           ]
         },
         "triggerTextCollapsed": {
-          "id": "accordionTriggerTextCollapsed",
+          "id": "ULK0n",
           "type": "text",
           "name": null,
           "width": null,
@@ -1300,7 +1300,7 @@
           "children": []
         },
         "triggerTextExpanded": {
-          "id": "accordionTriggerTextExpanded",
+          "id": "UPOUx",
           "type": "text",
           "name": null,
           "width": null,
@@ -1321,7 +1321,7 @@
           "children": []
         },
         "chevronCollapsed": {
-          "id": "accordionChevronCollapsed",
+          "id": "MqjWB",
           "type": "icon_font",
           "name": null,
           "width": 16,
@@ -1342,7 +1342,7 @@
           "children": []
         },
         "chevronExpanded": {
-          "id": "accordionChevronExpanded",
+          "id": "fYPmD",
           "type": "icon_font",
           "name": null,
           "width": 16,
@@ -1363,10 +1363,10 @@
           "children": []
         },
         "content": {
-          "id": "accordionContent",
+          "id": "Yeqos",
           "type": "frame",
           "name": null,
-          "width": null,
+          "width": "fill_container",
           "height": null,
           "padding": [
             0,
@@ -1387,11 +1387,11 @@
           "iconFontName": null,
           "textGrowth": null,
           "children": [
-            "accordionContentText"
+            "i8vEM"
           ]
         },
         "contentText": {
-          "id": "accordionContentText",
+          "id": "i8vEM",
           "type": "text",
           "name": null,
           "width": null,
