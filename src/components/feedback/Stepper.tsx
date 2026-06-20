@@ -6,7 +6,7 @@ import { cn } from "../../lib/utils"
 const stepperVariants = cva("inline-flex items-start", {
     variants: {
         orientation: {
-            horizontal: "flex-row gap-0",
+            horizontal: "max-w-full flex-row gap-0 overflow-x-auto",
             vertical: "flex-col gap-0",
         },
     },
