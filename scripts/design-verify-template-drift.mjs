@@ -57,7 +57,7 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
     specPath: TEMPLATE_SPEC_PATH,
     run: () => {
     const defaultVariant = dashboardTemplate.variants.find((variant) => variant?.key === "default");
-    if (defaultVariant?.height === 720) {
+    if (defaultVariant) {
       assertMatch(
         errors,
         dashboardSource,
@@ -126,12 +126,18 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
     specPath: TEMPLATE_SPEC_PATH,
     run: () => {
     const defaultVariant = editorTemplate.variants.find((variant) => variant?.key === "default");
-    if (defaultVariant?.height === 720) {
+    if (defaultVariant) {
       assertMatch(
         errors,
         editorSource,
-        /\bh-screen\b/,
-        'EditorTemplate should include "h-screen"'
+        /\bh-full\b/,
+        'EditorTemplate should include "h-full"'
+      );
+      assertMatch(
+        errors,
+        editorSource,
+        /\bmin-h-0\b/,
+        'EditorTemplate should include "min-h-0"'
       );
     }
 
@@ -179,7 +185,7 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
     specPath: TEMPLATE_SPEC_PATH,
     run: () => {
     const defaultVariant = landingTemplate.variants.find((variant) => variant?.key === "default");
-    if (defaultVariant?.height === 720) {
+    if (defaultVariant) {
       assertMatch(
         errors,
         landingSource,
@@ -331,8 +337,9 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
     specPath: TEMPLATE_SPEC_PATH,
     run: () => {
     const defaultVariant = chatTemplate.variants.find((variant) => variant?.key === "default");
-    if (defaultVariant?.height === 720) {
-      assertMatch(errors, chatSource, /\bh-screen\b/, 'ChatTemplate should include "h-screen"');
+    if (defaultVariant) {
+      assertMatch(errors, chatSource, /\bh-full\b/, 'ChatTemplate should include "h-full"');
+      assertMatch(errors, chatSource, /\bmin-h-0\b/, 'ChatTemplate should include "min-h-0"');
     }
 
     const sidebarList = chatTemplate.nodes?.sidebarList;
@@ -397,9 +404,9 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
     specPath: TEMPLATE_SPEC_PATH,
     run: () => {
     const defaultVariant = settingsTemplate.variants.find((variant) => variant?.key === "default");
-    if (defaultVariant?.height === 720) {
+    if (defaultVariant) {
       assertMatch(errors, settingsSource, /\bmd:hidden\b/, 'SettingsTemplate should include "md:hidden"');
-      assertMatch(errors, settingsSource, /\bmd:block\b/, 'SettingsTemplate should include "md:block"');
+      assertMatch(errors, settingsSource, /\bmd:flex\b/, 'SettingsTemplate should include "md:flex"');
     }
 
     const mobileView = settingsTemplate.nodes?.mobileView;
@@ -481,12 +488,18 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
     specPath: TEMPLATE_SPEC_PATH,
     run: () => {
     const defaultVariant = bannalyzeTemplate.variants.find((variant) => variant?.key === "default");
-    if (defaultVariant?.height === 720) {
+    if (defaultVariant) {
       assertMatch(
         errors,
         bannalyzeSource,
-        /\bh-screen\b/,
-        'BannalyzeTemplate should include "h-screen"'
+        /\bh-full\b/,
+        'BannalyzeTemplate should include "h-full"'
+      );
+      assertMatch(
+        errors,
+        bannalyzeSource,
+        /\bmin-h-0\b/,
+        'BannalyzeTemplate should include "min-h-0"'
       );
     }
     if (defaultVariant?.fill) {
@@ -583,12 +596,18 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
     const defaultVariant = mediaLibraryTemplate.variants.find(
       (variant) => variant?.key === "default"
     );
-    if (defaultVariant?.height === 720) {
+    if (defaultVariant) {
       assertMatch(
         errors,
         mediaLibrarySource,
-        /\bh-screen\b/,
-        'MediaLibraryTemplate should include "h-screen"'
+        /\bh-full\b/,
+        'MediaLibraryTemplate should include "h-full"'
+      );
+      assertMatch(
+        errors,
+        mediaLibrarySource,
+        /\bmin-h-0\b/,
+        'MediaLibraryTemplate should include "min-h-0"'
       );
     }
     if (defaultVariant?.fill) {

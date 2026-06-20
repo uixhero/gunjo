@@ -18,7 +18,7 @@ export function SettingsTemplate({
 }: SettingsTemplateProps) {
     return (
         <>
-            <div className={cn("md:hidden flex flex-col items-center w-[1280px] h-[720px] gap-4 w-full h-auto", className)} {...props}>
+            <div className={cn("flex min-h-screen w-full flex-col items-center gap-4 md:hidden", className)} {...props}>
                 {/* Mobile View Placeholder or simple stack */}
                 <div className="p-4 space-y-4">
                     <h1 className="text-2xl font-bold">{title}</h1>
@@ -26,7 +26,7 @@ export function SettingsTemplate({
                     {children}
                 </div>
             </div>
-            <div className={cn("hidden flex flex-col items-center w-[1280px] h-[720px] gap-4 space-y-6 p-10 pb-16 md:block", className)} {...props}>
+            <div className={cn("hidden min-h-screen w-full flex-col items-center gap-4 space-y-6 p-10 pb-16 md:flex", className)} {...props}>
                 <div className="space-y-0.5">
                     <h2 className="text-2xl font-bold tracking-tight">{title}</h2>
                     <p className="text-muted-foreground">

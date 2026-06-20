@@ -15,7 +15,7 @@ export function DashboardTemplate({
     ...props
 }: DashboardTemplateProps) {
     return (
-        <div className={cn("flex flex-col w-[1280px] h-[720px] min-h-screen w-full", className)} {...props}>
+        <div className={cn("flex flex-col min-h-screen w-full", className)} {...props}>
             {header && <div className="border-b">{header}</div>}
             <div className="flex flex-1 min-h-0">
                 {sidebar && (

@@ -19,7 +19,7 @@ export function ChatTemplate({
     ...props
 }: ChatTemplateProps) {
     return (
-        <div className={cn("flex w-[1280px] h-[720px] h-screen w-full overflow-hidden bg-background", className)} {...props}>
+        <div className={cn("flex h-full min-h-0 w-full overflow-hidden bg-background", className)} {...props}>
             {/* Left Sidebar (Channels) */}
             {sidebarList && (
                 <aside className="hidden w-[280px] flex-col border-r bg-muted/30 md:flex flex-shrink-0">

@@ -17,7 +17,7 @@ export function EditorTemplate({
     ...props
 }: EditorTemplateProps) {
     return (
-        <div className={cn("flex flex-col w-[1280px] h-[720px] h-screen w-full overflow-hidden", className)} {...props}>
+        <div className={cn("flex h-full min-h-0 w-full flex-col overflow-hidden", className)} {...props}>
             {topBar && (
                 <div className="flex-shrink-0 border-b h-14 flex items-center bg-background z-10">
                     {topBar}

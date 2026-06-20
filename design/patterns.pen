@@ -74,6 +74,7 @@
                 {
                   "type": "frame",
                   "id": "dashboardTemplateVariants",
+                  "width": "fit_content(1280)",
                   "layout": "vertical",
                   "gap": 12,
                   "children": [
@@ -82,13 +83,13 @@
                       "id": "dashboardTemplateDefault",
                       "name": "DashboardTemplate/Default",
                       "reusable": true,
-                      "width": 1280,
-                      "height": 720,
+                      "width": "fill_container",
                       "layout": "vertical",
                       "children": [
                         {
                           "type": "frame",
                           "id": "dashboardTemplateHeader",
+                          "width": "fill_container",
                           "height": 56,
                           "fill": "#ffffff",
                           "stroke": "#e5e7eb",
@@ -169,7 +170,8 @@
                         {
                           "type": "frame",
                           "id": "dashboardTemplateBody",
-                          "height": "fill_container",
+                          "width": "fill_container",
+                          "height": 664,
                           "children": [
                             {
                               "type": "frame",
@@ -452,6 +454,7 @@
                 {
                   "type": "frame",
                   "id": "dashboardTemplateShowcase",
+                  "width": "fit_content(1280)",
                   "gap": 12,
                   "children": [
                     {
@@ -498,6 +501,8 @@
                 {
                   "type": "frame",
                   "id": "editorTemplateVariants",
+                  "width": "fit_content(1280)",
+                  "height": "fit_content(720)",
                   "layout": "vertical",
                   "gap": 12,
                   "children": [
@@ -506,13 +511,14 @@
                       "id": "editorTemplateDefault",
                       "name": "EditorTemplate/Default",
                       "reusable": true,
-                      "width": 1280,
-                      "height": 720,
+                      "width": "fill_container",
+                      "height": "fill_container",
                       "layout": "vertical",
                       "children": [
                         {
                           "type": "frame",
                           "id": "editorTemplateTopBar",
+                          "width": "fill_container",
                           "height": 56,
                           "fill": "#ffffff",
                           "stroke": "#e5e7eb",
@@ -607,6 +613,7 @@
                         {
                           "type": "frame",
                           "id": "editorTemplateBody",
+                          "width": "fill_container",
                           "height": "fill_container",
                           "children": [
                             {
@@ -825,6 +832,8 @@
                 {
                   "type": "frame",
                   "id": "editorTemplateShowcase",
+                  "width": "fit_content(1280)",
+                  "height": "fit_content(720)",
                   "gap": 12,
                   "children": [
                     {
@@ -871,6 +880,7 @@
                 {
                   "type": "frame",
                   "id": "landingTemplateVariants",
+                  "width": "fit_content(1280)",
                   "layout": "vertical",
                   "gap": 12,
                   "children": [
@@ -879,13 +889,13 @@
                       "id": "landingTemplateDefault",
                       "name": "LandingTemplate/Default",
                       "reusable": true,
-                      "width": 1280,
-                      "height": 720,
+                      "width": "fill_container",
                       "layout": "vertical",
                       "children": [
                         {
                           "type": "frame",
                           "id": "landingTemplateHeader",
+                          "width": "fill_container",
                           "height": 56,
                           "fill": "#fffffff2",
                           "stroke": "#e5e7eb",
@@ -960,6 +970,7 @@
                         {
                           "type": "frame",
                           "id": "landingTemplateHero",
+                          "width": "fill_container",
                           "height": 280,
                           "fill": "#eff6ff",
                           "layout": "vertical",
@@ -1001,6 +1012,7 @@
                         {
                           "type": "frame",
                           "id": "landingTemplateFeatureSection",
+                          "width": "fill_container",
                           "layout": "vertical",
                           "gap": 16,
                           "padding": [
@@ -1129,6 +1141,7 @@
                 {
                   "type": "frame",
                   "id": "landingTemplateShowcase",
+                  "width": "fit_content(1280)",
                   "gap": 12,
                   "children": [
                     {
@@ -1730,6 +1743,8 @@
                 {
                   "type": "frame",
                   "id": "chatTemplateVariants",
+                  "width": "fit_content(1280)",
+                  "height": "fit_content(720)",
                   "layout": "vertical",
                   "gap": 12,
                   "children": [
@@ -1738,14 +1753,15 @@
                       "id": "chatTemplateDefault",
                       "name": "ChatTemplate/Default",
                       "reusable": true,
-                      "width": 1280,
-                      "height": 720,
+                      "width": "fill_container",
+                      "height": "fill_container",
                       "fill": "#ffffff",
                       "children": [
                         {
                           "type": "frame",
                           "id": "chatTemplateSidebarList",
                           "width": 280,
+                          "height": "fill_container",
                           "fill": "#f1f5f9",
                           "stroke": "#e5e7eb",
                           "strokeWidth": 1,
@@ -1823,6 +1839,7 @@
                           "type": "frame",
                           "id": "chatTemplateMainArea",
                           "width": "fill_container",
+                          "height": "fill_container",
                           "layout": "vertical",
                           "children": [
                             {
@@ -1999,6 +2016,7 @@
                           "type": "frame",
                           "id": "chatTemplateSidebarDetail",
                           "width": 300,
+                          "height": "fill_container",
                           "fill": "#f1f5f9",
                           "stroke": "#e5e7eb",
                           "strokeWidth": 1,
@@ -2059,6 +2077,8 @@
                 {
                   "type": "frame",
                   "id": "chatTemplateShowcase",
+                  "width": "fit_content(1280)",
+                  "height": "fit_content(720)",
                   "gap": 12,
                   "children": [
                     {
@@ -2105,6 +2125,7 @@
                 {
                   "type": "frame",
                   "id": "settingsTemplateVariants",
+                  "width": "fit_content(1280)",
                   "layout": "vertical",
                   "gap": 12,
                   "children": [
@@ -2113,14 +2134,14 @@
                       "id": "settingsTemplateDefault",
                       "name": "SettingsTemplate/Default",
                       "reusable": true,
-                      "width": 1280,
-                      "height": 720,
+                      "width": "fill_container",
                       "layout": "vertical",
                       "gap": 16,
                       "children": [
                         {
                           "type": "frame",
                           "id": "settingsTemplateMobileView",
+                          "width": "fill_container",
                           "layout": "vertical",
                           "gap": 16,
                           "padding": 16,
@@ -2148,6 +2169,7 @@
                         {
                           "type": "frame",
                           "id": "settingsTemplateDesktopView",
+                          "width": "fill_container",
                           "layout": "vertical",
                           "gap": 24,
                           "padding": [
@@ -2311,6 +2333,7 @@
                 {
                   "type": "frame",
                   "id": "settingsTemplateShowcase",
+                  "width": "fit_content(1280)",
                   "gap": 12,
                   "children": [
                     {
@@ -2357,6 +2380,8 @@
                 {
                   "type": "frame",
                   "id": "bannalyzeTemplateVariants",
+                  "width": "fit_content(1280)",
+                  "height": "fit_content(720)",
                   "layout": "vertical",
                   "gap": 12,
                   "children": [
@@ -2365,14 +2390,15 @@
                       "id": "bannalyzeTemplateDefault",
                       "name": "BannalyzeTemplate/Default",
                       "reusable": true,
-                      "width": 1280,
-                      "height": 720,
+                      "width": "fill_container",
+                      "height": "fill_container",
                       "fill": "#ffffff",
                       "layout": "vertical",
                       "children": [
                         {
                           "type": "frame",
                           "id": "bannalyzeTemplateHeader",
+                          "width": "fill_container",
                           "height": 56,
                           "fill": "#fffffff2",
                           "stroke": "#e5e7eb",
@@ -2408,6 +2434,7 @@
                         {
                           "type": "frame",
                           "id": "bannalyzeTemplateBody",
+                          "width": "fill_container",
                           "height": "fill_container",
                           "children": [
                             {
@@ -2575,6 +2602,8 @@
                 {
                   "type": "frame",
                   "id": "bannalyzeTemplateShowcase",
+                  "width": "fit_content(1280)",
+                  "height": "fit_content(720)",
                   "gap": 12,
                   "children": [
                     {
@@ -2621,6 +2650,8 @@
                 {
                   "type": "frame",
                   "id": "mediaLibraryTemplateVariants",
+                  "width": "fit_content(1280)",
+                  "height": "fit_content(720)",
                   "layout": "vertical",
                   "gap": 12,
                   "children": [
@@ -2629,14 +2660,15 @@
                       "id": "mediaLibraryTemplateDefault",
                       "name": "MediaLibraryTemplate/Default",
                       "reusable": true,
-                      "width": 1280,
-                      "height": 720,
+                      "width": "fill_container",
+                      "height": "fill_container",
                       "fill": "#ffffff",
                       "layout": "vertical",
                       "children": [
                         {
                           "type": "frame",
                           "id": "mediaLibraryTemplateHeader",
+                          "width": "fill_container",
                           "height": 56,
                           "fill": "#ffffff",
                           "stroke": "#e5e7eb",
@@ -2685,6 +2717,7 @@
                         {
                           "type": "frame",
                           "id": "mediaLibraryTemplateBody",
+                          "width": "fill_container",
                           "height": "fill_container",
                           "children": [
                             {
@@ -2865,6 +2898,8 @@
                 {
                   "type": "frame",
                   "id": "mediaLibraryTemplateShowcase",
+                  "width": "fit_content(1280)",
+                  "height": "fit_content(720)",
                   "gap": 12,
                   "children": [
                     {
@@ -3182,6 +3217,7 @@
           "type": "frame",
           "id": "rQFjy",
           "name": "showcase/dashboardTemplate",
+          "width": "fit_content(1312)",
           "fill": "#ffffff",
           "gap": 24,
           "padding": 16,
@@ -3197,6 +3233,8 @@
           "type": "frame",
           "id": "U6rY9n",
           "name": "showcase/editorTemplate",
+          "width": "fit_content(1312)",
+          "height": "fit_content(752)",
           "fill": "#ffffff",
           "gap": 24,
           "padding": 16,
@@ -3212,6 +3250,7 @@
           "type": "frame",
           "id": "B2Frf",
           "name": "showcase/landingTemplate",
+          "width": "fit_content(1312)",
           "fill": "#ffffff",
           "gap": 24,
           "padding": 16,
@@ -3260,6 +3299,8 @@
           "type": "frame",
           "id": "ADyPQ",
           "name": "showcase/chatTemplate",
+          "width": "fit_content(1312)",
+          "height": "fit_content(752)",
           "fill": "#ffffff",
           "gap": 24,
           "padding": 16,
@@ -3275,6 +3316,7 @@
           "type": "frame",
           "id": "GWbGe",
           "name": "showcase/settingsTemplate",
+          "width": "fit_content(1312)",
           "fill": "#ffffff",
           "gap": 24,
           "padding": 16,
@@ -3290,6 +3332,8 @@
           "type": "frame",
           "id": "CKtKn",
           "name": "showcase/bannalyzeTemplate",
+          "width": "fit_content(1312)",
+          "height": "fit_content(752)",
           "fill": "#ffffff",
           "gap": 24,
           "padding": 16,
@@ -3305,6 +3349,8 @@
           "type": "frame",
           "id": "V1UhF",
           "name": "showcase/mediaLibraryTemplate",
+          "width": "fit_content(1312)",
+          "height": "fit_content(752)",
           "fill": "#ffffff",
           "gap": 24,
           "padding": 16,
