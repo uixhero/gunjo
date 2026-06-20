@@ -229,10 +229,8 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
     specPath: TEMPLATE_SPEC_PATH,
     run: () => {
     const defaultVariant = authTemplate.variants.find((variant) => variant?.key === "default");
-    if (defaultVariant?.height === 720) {
-      assertMatch(errors, authSource, /\bh-screen\b/, 'AuthTemplate should include "h-screen"');
-    }
-    if (defaultVariant?.width === 1280) {
+    if (defaultVariant) {
+      assertMatch(errors, authSource, /\bmin-h-screen\b/, 'AuthTemplate should include "min-h-screen"');
       assertMatch(
         errors,
         authSource,
@@ -281,8 +279,9 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
     specPath: TEMPLATE_SPEC_PATH,
     run: () => {
     const defaultVariant = kanbanTemplate.variants.find((variant) => variant?.key === "default");
-    if (defaultVariant?.height === 720) {
-      assertMatch(errors, kanbanSource, /\bh-screen\b/, 'KanbanTemplate should include "h-screen"');
+    if (defaultVariant) {
+      assertMatch(errors, kanbanSource, /\bh-full\b/, 'KanbanTemplate should include "h-full"');
+      assertMatch(errors, kanbanSource, /\bmin-h-0\b/, 'KanbanTemplate should include "min-h-0"');
     }
 
     const sidebar = kanbanTemplate.nodes?.sidebar;
