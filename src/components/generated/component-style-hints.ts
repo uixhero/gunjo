@@ -222,15 +222,15 @@ export const componentStyleHints = {
         "warning"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "inline-flex items-center w-[320px] py-3 px-4 gap-1 rounded-lg border text-sm font-medium",
+      "baseClasses": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-lg border text-sm font-medium",
       "baseColorHint": "fill=#FFFFFF | stroke=#e2e8f0@1px | text=#0c0c12",
       "slotIds": [],
       "variantClasses": {
-        "default": "inline-flex items-center w-[320px] py-3 px-4 gap-1 rounded-lg border text-sm font-medium",
-        "destructive": "inline-flex items-center w-[320px] py-3 px-4 gap-1 rounded-lg border text-sm font-medium",
-        "info": "inline-flex items-center w-[320px] py-3 px-4 gap-1 rounded-lg border text-sm font-medium",
-        "success": "inline-flex items-center w-[320px] py-3 px-4 gap-1 rounded-lg border text-sm font-medium",
-        "warning": "inline-flex items-center w-[320px] py-3 px-4 gap-1 rounded-lg border text-sm font-medium"
+        "default": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-lg border text-sm font-medium",
+        "destructive": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-lg border text-sm font-medium",
+        "info": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-lg border text-sm font-medium",
+        "success": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-lg border text-sm font-medium",
+        "warning": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-lg border text-sm font-medium"
       },
       "variantColorHints": {
         "default": "fill=#FFFFFF | stroke=#e2e8f0@1px | text=#0c0c12",

@@ -48,6 +48,7 @@
             {
               "type": "frame",
               "id": "alertVariants",
+              "width": "fit_content(320)",
               "layout": "vertical",
               "gap": 12,
               "children": [
@@ -56,7 +57,7 @@
                   "id": "alertDefault",
                   "name": "Alert/Default",
                   "reusable": true,
-                  "width": 320,
+                  "width": "fill_container",
                   "fill": "#FFFFFF",
                   "cornerRadius": 8,
                   "stroke": "#e2e8f0",
@@ -94,7 +95,7 @@
                   "id": "alertDestructive",
                   "name": "Alert/Destructive",
                   "reusable": true,
-                  "width": 320,
+                  "width": "fill_container",
                   "fill": "#fef2f2",
                   "cornerRadius": 8,
                   "stroke": "#fecaca",
@@ -132,6 +133,7 @@
             {
               "type": "frame",
               "id": "alertShowcase",
+              "width": "fit_content(320)",
               "layout": "vertical",
               "gap": 12,
               "children": [

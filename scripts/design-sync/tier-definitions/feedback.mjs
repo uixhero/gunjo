@@ -40,6 +40,7 @@ export const FEEDBACK_SPEC_DEFINITIONS = [
     additionalVariants: [
       createSyntheticFeedbackVariant("info", {
         name: "Alert/Info",
+        width: "fill_container",
         fill: "#eff6ff",
         stroke: { align: "inside", fill: "#bfdbfe", thickness: 1 },
         text: {
@@ -71,6 +72,7 @@ export const FEEDBACK_SPEC_DEFINITIONS = [
       }),
       createSyntheticFeedbackVariant("success", {
         name: "Alert/Success",
+        width: "fill_container",
         fill: "#f0fdf4",
         stroke: { align: "inside", fill: "#bbf7d0", thickness: 1 },
         text: {
@@ -102,6 +104,7 @@ export const FEEDBACK_SPEC_DEFINITIONS = [
       }),
       createSyntheticFeedbackVariant("warning", {
         name: "Alert/Warning",
+        width: "fill_container",
         fill: "#fef3c7",
         stroke: { align: "inside", fill: "#fcd34d", thickness: 1 },
         text: {
