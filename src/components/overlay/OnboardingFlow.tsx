@@ -12,6 +12,8 @@ export interface OnboardingStep {
     title: React.ReactNode
     description?: React.ReactNode
     content: React.ReactNode
+    /** When true, the Continue/Finish button is disabled for this step (e.g. until it is valid). */
+    nextDisabled?: boolean
 }
 
 export interface OnboardingFlowProps {
@@ -21,6 +23,14 @@ export interface OnboardingFlowProps {
     onCurrentIndexChange?: (index: number) => void
     /** Called when the user clicks Continue on the final step. */
     onComplete?: () => void
+    /**
+     * Optional gate: return `false` to block advancing from the given step index.
+     * Combined (AND) with each step's `nextDisabled`. Use this to require the current
+     * step to be valid before Continue/Finish is enabled.
+     */
+    canAdvance?: (index: number) => boolean
+    /** Tooltip shown on the Continue/Finish button while it is disabled. */
+    nextDisabledReason?: string
     /** Optional override for the back button label. */
     backLabel?: string
     /** Optional override for the next button label (non-final step). */
@@ -45,6 +55,8 @@ const OnboardingFlow = React.forwardRef<HTMLDivElement, OnboardingFlowProps>(
             currentIndex: controlledIndex,
             onCurrentIndexChange,
             onComplete,
+            canAdvance,
+            nextDisabledReason,
             backLabel = "Back",
             nextLabel = "Continue",
             completeLabel = "Finish",
@@ -71,6 +83,8 @@ const OnboardingFlow = React.forwardRef<HTMLDivElement, OnboardingFlowProps>(
         const step = steps[index]
 
         if (!step) return null
+
+        const nextBlocked = step.nextDisabled === true || canAdvance?.(index) === false
 
         return (
             <div
@@ -153,15 +167,28 @@ const OnboardingFlow = React.forwardRef<HTMLDivElement, OnboardingFlowProps>(
                             {isFirst ? <TooltipContent>{backDisabledReason}</TooltipContent> : null}
                         </Tooltip>
                     </TooltipProvider>
-                    <Button
-                        onClick={() => {
-                            if (isLast) onComplete?.()
-                            else setIndex(index + 1)
-                        }}
-                    >
-                        {isLast ? completeLabel : nextLabel}
-                        {!isLast ? <ChevronRight className="ml-1 h-4 w-4" /> : null}
-                    </Button>
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <span className={cn("inline-flex", nextBlocked ? "cursor-not-allowed" : "")}>
+                                    <Button
+                                        onClick={() => {
+                                            if (nextBlocked) return
+                                            if (isLast) onComplete?.()
+                                            else setIndex(index + 1)
+                                        }}
+                                        disabled={nextBlocked}
+                                    >
+                                        {isLast ? completeLabel : nextLabel}
+                                        {!isLast ? <ChevronRight className="ml-1 h-4 w-4" /> : null}
+                                    </Button>
+                                </span>
+                            </TooltipTrigger>
+                            {nextBlocked && nextDisabledReason ? (
+                                <TooltipContent>{nextDisabledReason}</TooltipContent>
+                            ) : null}
+                        </Tooltip>
+                    </TooltipProvider>
                 </div>
             </div>
         )
