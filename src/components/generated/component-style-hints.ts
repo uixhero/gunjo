@@ -24,14 +24,14 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col w-[1280px] h-[720px]",
+      "baseClasses": "flex flex-col w-full h-full",
       "baseColorHint": "fill=#ffffff",
       "slotIds": [
         "bannalyzeTemplateHeader",
         "bannalyzeTemplateBody"
       ],
       "variantClasses": {
-        "default": "flex flex-col w-[1280px] h-[720px]"
+        "default": "flex flex-col w-full h-full"
       },
       "variantColorHints": {
         "default": "fill=#ffffff"
@@ -51,7 +51,7 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col w-[1280px] h-[720px]",
+      "baseClasses": "flex flex-col w-full h-full",
       "baseColorHint": "fill=#ffffff",
       "slotIds": [
         "chatTemplateSidebarList",
@@ -59,7 +59,7 @@ export const componentStyleHints = {
         "chatTemplateSidebarDetail"
       ],
       "variantClasses": {
-        "default": "flex flex-col w-[1280px] h-[720px]"
+        "default": "flex flex-col w-full h-full"
       },
       "variantColorHints": {
         "default": "fill=#ffffff"
@@ -70,14 +70,14 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col w-[1280px] h-[720px]",
+      "baseClasses": "flex flex-col w-full",
       "baseColorHint": null,
       "slotIds": [
         "dashboardTemplateHeader",
         "dashboardTemplateBody"
       ],
       "variantClasses": {
-        "default": "flex flex-col w-[1280px] h-[720px]"
+        "default": "flex flex-col w-full"
       },
       "variantColorHints": {}
     },
@@ -95,14 +95,14 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col w-[1280px] h-[720px]",
+      "baseClasses": "flex flex-col w-full h-full",
       "baseColorHint": null,
       "slotIds": [
         "editorTemplateTopBar",
         "editorTemplateBody"
       ],
       "variantClasses": {
-        "default": "flex flex-col w-[1280px] h-[720px]"
+        "default": "flex flex-col w-full h-full"
       },
       "variantColorHints": {}
     },
@@ -127,7 +127,7 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col w-[1280px] h-[720px]",
+      "baseClasses": "flex flex-col w-full",
       "baseColorHint": null,
       "slotIds": [
         "landingTemplateHeader",
@@ -135,7 +135,7 @@ export const componentStyleHints = {
         "landingTemplateFeatureSection"
       ],
       "variantClasses": {
-        "default": "flex flex-col w-[1280px] h-[720px]"
+        "default": "flex flex-col w-full"
       },
       "variantColorHints": {}
     },
@@ -144,14 +144,14 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col w-[1280px] h-[720px]",
+      "baseClasses": "flex flex-col w-full h-full",
       "baseColorHint": "fill=#ffffff",
       "slotIds": [
         "mediaLibraryTemplateHeader",
         "mediaLibraryTemplateBody"
       ],
       "variantClasses": {
-        "default": "flex flex-col w-[1280px] h-[720px]"
+        "default": "flex flex-col w-full h-full"
       },
       "variantColorHints": {
         "default": "fill=#ffffff"
@@ -200,14 +200,14 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col items-center w-[1280px] h-[720px] gap-4",
+      "baseClasses": "flex flex-col items-center w-full gap-4",
       "baseColorHint": null,
       "slotIds": [
         "settingsTemplateMobileView",
         "settingsTemplateDesktopView"
       ],
       "variantClasses": {
-        "default": "flex flex-col items-center w-[1280px] h-[720px] gap-4"
+        "default": "flex flex-col items-center w-full gap-4"
       },
       "variantColorHints": {}
     }

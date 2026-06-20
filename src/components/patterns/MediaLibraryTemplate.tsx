@@ -17,7 +17,7 @@ export function MediaLibraryTemplate({
     ...props
 }: MediaLibraryTemplateProps) {
     return (
-        <div className={cn("flex flex-col w-[1280px] h-[720px] h-screen w-full overflow-hidden bg-background", className)} {...props}>
+        <div className={cn("flex h-full min-h-0 w-full flex-col overflow-hidden bg-background", className)} {...props}>
             {/* Header */}
             {header && (
                 <div className="flex-shrink-0 z-20 border-b bg-background">

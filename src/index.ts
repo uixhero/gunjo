@@ -83,6 +83,8 @@ export * from './components/overlay/Popover';
 export * from './components/overlay/ShareModal';
 export * from './components/overlay/Sheet';
 export * from './components/overlay/Tooltip';
+export * from './components/overlay/AIChatInput';
+export * from './components/overlay/AIChatMessage';
 
 /** Display */
 export * from './components/display/Accordion';

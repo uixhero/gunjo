@@ -23,7 +23,7 @@ export function LandingTemplate({
     ...props
 }: LandingTemplateProps) {
     return (
-        <div className={cn("flex flex-col w-[1280px] h-[720px] min-h-screen w-full", className)} {...props}>
+        <div className={cn("flex min-h-screen w-full flex-col", className)} {...props}>
             {/* Sticky Header */}
             {header && (
                 <div className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
