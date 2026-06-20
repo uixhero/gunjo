@@ -18,7 +18,7 @@ const alertVariantClasses: Record<AlertVariantKey, string> = {
 }
 
 const alertVariants = cva(
-    "relative inline-flex h-fit w-[320px] max-w-full flex-col items-center gap-1 rounded-lg border px-4 py-3 text-sm [&>*]:self-start [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-3 [&>svg]:text-foreground [&>svg~*]:w-full [&>svg~*]:pl-7",
+    "relative inline-flex h-fit w-full flex-col items-center gap-1 rounded-lg border px-4 py-3 text-sm [&>*]:self-start [&>svg]:absolute [&>svg]:left-4 [&>svg]:top-3 [&>svg]:text-foreground [&>svg~*]:w-full [&>svg~*]:pl-7",
     {
         variants: {
             variant: alertVariantClasses,
