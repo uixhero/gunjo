@@ -79,6 +79,7 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
     kbd: kbdSource,
     img: imgSource,
     toolPill: toolPillSource,
+    dataTable: dataTableSource,
   } = readNamedSources(displaySourceDirPath, {
     badge: "Badge.tsx",
     separator: "Separator.tsx",
@@ -86,6 +87,7 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
     kbd: "Kbd.tsx",
     img: "Img.tsx",
     toolPill: "ToolPill.tsx",
+    dataTable: "DataTable.tsx",
   });
 
   const {
@@ -1536,6 +1538,22 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
     }
     },
   });
+
+  // DataTable table-header a11y (cold-test #24, #123): column headers must carry
+  // scope="col" and sortable columns must expose aria-sort. Guards the a11y
+  // contract from regressing (DataTable has no .pen geometry — pure semantics).
+  assertMatch(
+    errors,
+    dataTableSource,
+    /scope="col"/,
+    'DataTable header <th> should include scope="col"'
+  );
+  assertMatch(
+    errors,
+    dataTableSource,
+    /aria-sort=/,
+    "DataTable sortable columns should expose aria-sort"
+  );
 
   throwVerificationErrors({
     errors,

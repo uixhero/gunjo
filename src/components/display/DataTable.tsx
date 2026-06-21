@@ -73,6 +73,13 @@ export interface DataTableProps<TData, TValue> {
     headerActions?: React.ReactNode
     /** Optional row state used for styling composed tables. */
     getRowState?: (row: TData, index: number) => string | undefined
+    /**
+     * Optional row-click handler. When set, each body row becomes focusable and
+     * activatable (click or Enter) to open a detail/edit view. Clicks that land
+     * on an interactive control inside the row (button, link, input, checkbox,
+     * select) are ignored so per-row actions and selection still work.
+     */
+    onRowClick?: (row: TData) => void
     className?: string
 }
 
@@ -81,6 +88,15 @@ type PageItem = number | "ellipsis-start" | "ellipsis-end"
 function getColumnWidth<TData, TValue>(column: Column<TData, TValue>) {
     const size = column.getSize()
     return Number.isFinite(size) && size !== 150 ? `${size}px` : undefined
+}
+
+function isInteractiveTarget(target: EventTarget | null) {
+    if (!(target instanceof Element)) return false
+    return Boolean(
+        target.closest(
+            'button, a, input, select, textarea, label, [role="button"], [role="checkbox"], [role="menuitem"], [tabindex]:not([tabindex="-1"])'
+        )
+    )
 }
 
 function getActionColumnInteractionClass(columnId: string) {
@@ -152,6 +168,7 @@ export function DataTable<TData, TValue>({
     labels,
     headerActions,
     getRowState,
+    onRowClick,
     className,
 }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = React.useState<SortingState>([])
@@ -176,8 +193,10 @@ export function DataTable<TData, TValue>({
         state: { sorting, columnFilters },
     })
 
-    const filterColumn =
-        filter !== null ? table.getColumn(filter?.columnId ?? "") : null
+    // Only resolve a filter column when a non-empty columnId is given. Treating
+    // the default (filter === undefined) as "off" avoids getColumn("") logging
+    // a "[Table] Column with id '' does not exist" warning (#124).
+    const filterColumn = filter?.columnId ? table.getColumn(filter.columnId) : null
     const pageIndex = table.getState().pagination.pageIndex
     const currentPage = pageIndex + 1
     const pageCount = table.getPageCount() || 1
@@ -319,6 +338,16 @@ export function DataTable<TData, TValue>({
                                     return (
                                         <th
                                             key={header.id}
+                                            scope="col"
+                                            aria-sort={
+                                                canSort
+                                                    ? sorted === "asc"
+                                                        ? "ascending"
+                                                        : sorted === "desc"
+                                                            ? "descending"
+                                                            : "none"
+                                                    : undefined
+                                            }
                                             className="h-10 whitespace-nowrap px-3 text-left align-middle font-medium text-muted-foreground"
                                         >
                                             {header.isPlaceholder ? null : canSort ? (
@@ -366,8 +395,32 @@ export function DataTable<TData, TValue>({
                                     return (
                                         <tr
                                             key={row.id}
-                                            className="group border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+                                            className={cn(
+                                                "group border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+                                                onRowClick &&
+                                                    "cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-ring"
+                                            )}
                                             data-state={rowState}
+                                            tabIndex={onRowClick ? 0 : undefined}
+                                            onClick={
+                                                onRowClick
+                                                    ? (event) => {
+                                                          if (isInteractiveTarget(event.target)) return
+                                                          onRowClick(row.original)
+                                                      }
+                                                    : undefined
+                                            }
+                                            onKeyDown={
+                                                onRowClick
+                                                    ? (event) => {
+                                                          if (event.target !== event.currentTarget) return
+                                                          if (event.key === "Enter") {
+                                                              event.preventDefault()
+                                                              onRowClick(row.original)
+                                                          }
+                                                      }
+                                                    : undefined
+                                            }
                                         >
                                             {row.getVisibleCells().map((cell) => (
                                                 <td
