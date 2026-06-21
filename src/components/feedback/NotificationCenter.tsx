@@ -71,7 +71,7 @@ const NotificationCenter = ({
                 </PopoverTrigger>
                 <TooltipContent>{resolvedLabels.toggle}</TooltipContent>
             </Tooltip>
-            <PopoverContent align="end" className="w-[320px] w-80 p-0" sideOffset={8}>
+            <PopoverContent align="end" className="w-[320px] p-0" sideOffset={8}>
                 <div className="flex items-center justify-between border-b px-4 py-3 bg-muted/50 backdrop-blur">
                     <h4 className="font-semibold text-sm">{resolvedLabels.title}</h4>
                     {unreadCount > 0 && onClearAll && (
@@ -94,44 +94,41 @@ const NotificationCenter = ({
                     ) : (
                         <div className="grid">
                             {notifications.map((notification) => (
-                                <div
-                                    key={notification.id}
-                                    className={cn(
-                                        "flex flex-col gap-1 border-b p-4 text-sm transition-colors hover:bg-muted/50",
-                                        !notification.read && "bg-primary-subtle"
-                                    )}
-                                    onClick={() => onLinkClick?.(notification.id)}
-                                >
-                                    <div className="flex items-start justify-between gap-2">
+                                <div key={notification.id} className="relative">
+                                    <button
+                                        type="button"
+                                        onClick={() => onLinkClick?.(notification.id)}
+                                        className={cn(
+                                            "flex flex-col gap-1 border-b p-4 text-sm w-full pr-10 text-left outline-none transition-colors hover:bg-muted/50 focus-visible:ring-1 focus-visible:ring-ring focus-visible:ring-inset",
+                                            !notification.read && "bg-primary-subtle"
+                                        )}
+                                    >
                                         <p className="font-medium leading-none text-foreground">
                                             {notification.title}
                                         </p>
-                                        {!notification.read && onMarkAsRead && (
-                                            <Tooltip>
-                                                <TooltipTrigger asChild>
-                                                    <Button
-                                                        variant="ghost"
-                                                        size="icon"
-                                                        className="h-6 w-6 -mr-2 -mt-1 text-muted-foreground hover:text-primary"
-                                                        onClick={(e) => {
-                                                            e.stopPropagation();
-                                                            onMarkAsRead(notification.id);
-                                                        }}
-                                                        aria-label={resolvedLabels.markAsRead}
-                                                    >
-                                                        <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-                                                    </Button>
-                                                </TooltipTrigger>
-                                                <TooltipContent>{resolvedLabels.markAsRead}</TooltipContent>
-                                            </Tooltip>
-                                        )}
-                                    </div>
-                                    <p className="text-muted-foreground line-clamp-2">
-                                        {notification.description}
-                                    </p>
-                                    <p className="mt-1 text-xs text-muted-foreground">
-                                        {notification.timestamp}
-                                    </p>
+                                        <p className="text-muted-foreground line-clamp-2">
+                                            {notification.description}
+                                        </p>
+                                        <p className="mt-1 text-xs text-muted-foreground">
+                                            {notification.timestamp}
+                                        </p>
+                                    </button>
+                                    {!notification.read && onMarkAsRead && (
+                                        <Tooltip>
+                                            <TooltipTrigger asChild>
+                                                <Button
+                                                    variant="ghost"
+                                                    size="icon"
+                                                    className="absolute right-2 top-3 h-6 w-6 text-muted-foreground hover:text-primary"
+                                                    onClick={() => onMarkAsRead(notification.id)}
+                                                    aria-label={resolvedLabels.markAsRead}
+                                                >
+                                                    <div className="h-1.5 w-1.5 rounded-full bg-primary" />
+                                                </Button>
+                                            </TooltipTrigger>
+                                            <TooltipContent>{resolvedLabels.markAsRead}</TooltipContent>
+                                        </Tooltip>
+                                    )}
                                 </div>
                             ))}
                         </div>
