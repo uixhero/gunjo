@@ -1586,13 +1586,13 @@ export const componentStyleHints = {
         "error"
       ],
       "defaultVariantKey": "loading",
-      "baseClasses": "w-[256px] h-[256px] rounded-lg",
+      "baseClasses": "w-full h-fit rounded-lg",
       "baseColorHint": "fill=#f1f5f9",
       "slotIds": [],
       "variantClasses": {
-        "loading": "w-[256px] h-[256px] rounded-lg",
-        "loaded": "w-[256px] h-[256px] rounded-lg",
-        "error": "inline-flex items-center w-[256px] h-[256px] gap-2 rounded-lg text-xs font-normal"
+        "loading": "w-full h-fit rounded-lg",
+        "loaded": "w-full h-fit rounded-lg",
+        "error": "inline-flex items-center w-full gap-2 rounded-lg text-xs font-normal"
       },
       "variantColorHints": {
         "loading": "fill=#f1f5f9",

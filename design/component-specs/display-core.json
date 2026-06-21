@@ -550,12 +550,12 @@
       "description": "An enhanced image component with loading skeleton and error fallback.",
       "variants": [
         {
-          "id": "imgLoading",
+          "id": "bt0LH",
           "name": "Img/Loading",
           "key": "loading",
           "type": "frame",
-          "width": 256,
-          "height": 256,
+          "width": "fill_container",
+          "height": "fit_content(0)",
           "padding": null,
           "gap": null,
           "cornerRadius": 8,
@@ -568,12 +568,12 @@
           "reusable": true
         },
         {
-          "id": "imgLoaded",
+          "id": "mcLrQ",
           "name": "Img/Loaded",
           "key": "loaded",
           "type": "frame",
-          "width": 256,
-          "height": 256,
+          "width": "fill_container",
+          "height": "fit_content(0)",
           "padding": null,
           "gap": null,
           "cornerRadius": 8,
@@ -591,12 +591,12 @@
           "reusable": true
         },
         {
-          "id": "imgError",
+          "id": "rcw4H",
           "name": "Img/Error",
           "key": "error",
           "type": "frame",
-          "width": 256,
-          "height": 256,
+          "width": "fill_container",
+          "height": null,
           "layout": "vertical",
           "padding": null,
           "gap": 8,
@@ -608,7 +608,7 @@
           "iconFontFamily": null,
           "iconFontName": null,
           "text": {
-            "id": "imgErrorText",
+            "id": "OnD1q",
             "content": "Image not found",
             "fontSize": 12,
             "fontWeight": "normal",
@@ -617,7 +617,7 @@
           },
           "texts": [
             {
-              "id": "imgErrorText",
+              "id": "OnD1q",
               "content": "Image not found",
               "fontSize": 12,
               "fontWeight": "normal",

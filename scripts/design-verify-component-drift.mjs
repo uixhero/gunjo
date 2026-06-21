@@ -4,6 +4,7 @@ import { ROOT } from "./design-sync/shared.mjs";
 import {
   assertAnyMatch,
   assertMatch,
+  assertNoMatch,
   runVerificationCli,
   throwVerificationErrors,
   withRequiredVariants,
@@ -983,15 +984,29 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
       "Img should apply opacity classes from imgOpacityClasses map"
     );
 
-    const hasSquareVariant = img.variants.some((v) => v?.width === 256 && v?.height === 256);
-    if (hasSquareVariant) {
-      assertMatch(
-        errors,
-        imgSource,
-        /\brounded-lg\b/,
-        'Img container should include "rounded-lg"'
-      );
-    }
+    // Img is fluid: it fills its container (width fill_container in the .pen)
+    // and honors aspectRatio, rather than being locked to a fixed 256x256 box.
+    // Guards against the cold-test #22 regression (#113). The prior guard keyed
+    // on a 256x256 variant silently died once the .pen went fill_container, so
+    // these are unconditional now.
+    assertMatch(
+      errors,
+      imgSource,
+      /\brounded-lg\b/,
+      'Img container should include "rounded-lg"'
+    );
+    assertMatch(
+      errors,
+      imgSource,
+      /\bw-full\b/,
+      'Img container should be fluid ("w-full"), driven by the .pen fill_container width'
+    );
+    assertNoMatch(
+      errors,
+      imgSource,
+      /\b[wh]-\[256px\]/,
+      'Img must not hard-code a 256px box (use the fluid w-full + aspectRatio)'
+    );
 
     const hasLoading = img.variants.some((v) => v?.key === "loading");
     if (hasLoading) {

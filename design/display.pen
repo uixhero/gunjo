@@ -559,26 +559,27 @@
             {
               "type": "frame",
               "id": "imgVariants",
+              "width": 1256,
               "layout": "vertical",
               "gap": 12,
               "children": [
                 {
                   "type": "frame",
-                  "id": "imgLoading",
+                  "id": "bt0LH",
                   "name": "Img/Loading",
                   "reusable": true,
-                  "width": 256,
-                  "height": 256,
+                  "width": "fill_container",
+                  "height": "fit_content(0)",
                   "fill": "#f1f5f9",
                   "cornerRadius": 8
                 },
                 {
                   "type": "frame",
-                  "id": "imgLoaded",
+                  "id": "mcLrQ",
                   "name": "Img/Loaded",
                   "reusable": true,
-                  "width": 256,
-                  "height": 256,
+                  "width": "fill_container",
+                  "height": "fit_content(0)",
                   "fill": {
                     "type": "image",
                     "enabled": true,
@@ -589,11 +590,10 @@
                 },
                 {
                   "type": "frame",
-                  "id": "imgError",
+                  "id": "rcw4H",
                   "name": "Img/Error",
                   "reusable": true,
-                  "width": 256,
-                  "height": 256,
+                  "width": "fill_container",
                   "fill": "#f1f5f9",
                   "cornerRadius": 8,
                   "layout": "vertical",
@@ -603,7 +603,8 @@
                   "children": [
                     {
                       "type": "icon",
-                      "id": "imgErrorIcon",
+                      "id": "Hcdmc",
+                      "name": "Image icon",
                       "width": 32,
                       "height": 32,
                       "icon": "image",
@@ -612,7 +613,8 @@
                     },
                     {
                       "type": "text",
-                      "id": "imgErrorText",
+                      "id": "OnD1q",
+                      "name": "Error label",
                       "fill": "#94a3b8",
                       "content": "Image not found",
                       "fontFamily": "Inter",
@@ -636,9 +638,13 @@
                   "alignItems": "center",
                   "children": [
                     {
+                      "type": "frame",
                       "id": "EolDb",
-                      "type": "ref",
-                      "ref": "imgLoading"
+                      "name": "Img/Loading",
+                      "width": 256,
+                      "height": 256,
+                      "fill": "#f1f5f9",
+                      "cornerRadius": 8
                     },
                     {
                       "type": "text",
@@ -659,9 +665,18 @@
                   "alignItems": "center",
                   "children": [
                     {
+                      "type": "frame",
                       "id": "s9RfKV",
-                      "type": "ref",
-                      "ref": "imgLoaded"
+                      "name": "Img/Loaded",
+                      "width": 256,
+                      "height": 256,
+                      "fill": {
+                        "type": "image",
+                        "enabled": true,
+                        "url": "https://images.unsplash.com/photo-1579353977828-2a4eab54c85a?w=512&h=512&fit=crop",
+                        "mode": "stretch"
+                      },
+                      "cornerRadius": 8
                     },
                     {
                       "type": "text",
@@ -682,9 +697,37 @@
                   "alignItems": "center",
                   "children": [
                     {
+                      "type": "frame",
                       "id": "aClp1",
-                      "type": "ref",
-                      "ref": "imgError"
+                      "name": "Img/Error",
+                      "width": 256,
+                      "height": 256,
+                      "fill": "#f1f5f9",
+                      "cornerRadius": 8,
+                      "layout": "vertical",
+                      "gap": 8,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "flDy9",
+                          "width": 32,
+                          "height": 32,
+                          "icon": "image",
+                          "library": "lucide",
+                          "fill": "#94a3b8"
+                        },
+                        {
+                          "type": "text",
+                          "id": "UEqJj",
+                          "fill": "#94a3b8",
+                          "content": "Image not found",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
                     },
                     {
                       "type": "text",
