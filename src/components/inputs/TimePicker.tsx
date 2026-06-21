@@ -18,6 +18,8 @@ export interface TimePickerProps {
     hourLabel?: string
     minuteLabel?: string
     periodLabel?: string
+    /** Accessible group label for the whole control. Default "Time". */
+    label?: string
 }
 
 function parse(value: string | undefined): {
@@ -46,12 +48,14 @@ const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
             hourLabel = "Hour",
             minuteLabel = "Minute",
             periodLabel = "AM/PM",
+            label = "Time",
         },
         ref
     ) => {
         const { hour, minute } = parse(value)
         const displayHour = hour ?? 0
         const displayMinute = minute ?? 0
+        const isUnset = hour === null || minute === null
 
         const hourOptions = hour12
             ? Array.from({ length: 12 }, (_, i) => i + 1)
@@ -96,6 +100,8 @@ const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
         return (
             <div
                 ref={ref}
+                role="group"
+                aria-label={label}
                 className={cn("inline-flex items-center gap-2", className)}
                 data-slot="time-picker"
             >
@@ -103,10 +109,15 @@ const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
                 <select
                     aria-label={hourLabel}
                     disabled={disabled}
-                    value={hour12 ? display12 : displayHour}
+                    value={isUnset ? "" : hour12 ? display12 : displayHour}
                     onChange={(e) => setHour(Number(e.target.value))}
                     className={selectClass}
                 >
+                    {isUnset ? (
+                        <option value="" disabled>
+                            --
+                        </option>
+                    ) : null}
                     {hourOptions.map((h) => (
                         <option key={h} value={h}>
                             {format2(h)}
@@ -119,10 +130,15 @@ const TimePicker = React.forwardRef<HTMLDivElement, TimePickerProps>(
                 <select
                     aria-label={minuteLabel}
                     disabled={disabled}
-                    value={displayMinute}
+                    value={isUnset ? "" : displayMinute}
                     onChange={(e) => setMinute(Number(e.target.value))}
                     className={selectClass}
                 >
+                    {isUnset ? (
+                        <option value="" disabled>
+                            --
+                        </option>
+                    ) : null}
                     {minuteOptions.map((m) => (
                         <option key={m} value={m}>
                             {format2(m)}
