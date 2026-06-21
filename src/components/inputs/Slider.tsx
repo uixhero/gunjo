@@ -13,7 +13,7 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
     ({ className, onChange, onValueChange, ...props }, ref) => (
         <div
             className={cn(
-                "relative flex w-[200px] touch-none select-none items-center",
+                "relative flex w-full touch-none select-none items-center",
                 className
             )}
             data-slot="slider"
