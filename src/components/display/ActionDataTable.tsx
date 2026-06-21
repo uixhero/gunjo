@@ -14,6 +14,14 @@ import { cn } from "../../lib/utils"
 import { Button, type ButtonProps } from "../inputs/Button"
 import { Checkbox } from "../inputs/Checkbox"
 import { Select } from "../inputs/Select"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+} from "../overlay/DropdownMenu"
 import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
 import { Badge } from "./Badge"
 import { DataTable, type DataTableLabels, type DataTableProps } from "./DataTable"
@@ -67,7 +75,21 @@ export interface ActionDataTableProps<TData, TValue>
     variant?: ActionDataTableVariantKey
     enableSelection?: boolean
     rowActions?: ActionDataTableRowAction<TData>[]
+    /**
+     * How row actions render: `"inline"` (default) shows each action as an icon
+     * button; `"menu"` collapses them into an accessible overflow `DropdownMenu`
+     * (the conventional row "⋯" menu for dense admin tables).
+     */
+    rowActionsVariant?: "inline" | "menu"
     bulkActions?: ActionDataTableBulkAction<TData>[]
+    /**
+     * Controlled selection: the set of selected row ids. Provide together with
+     * `onSelectionChange` to lift selection state (sync to URL, clear after a
+     * mutation, drive an external panel). Omit for uncontrolled selection.
+     */
+    selectedIds?: string[]
+    /** Called whenever the selection changes, with the full set of selected ids. */
+    onSelectionChange?: (selectedIds: string[]) => void
 }
 
 function resolveValue<TData, TValue>(value: ResolveValue<TData, TValue> | undefined, row: TData) {
@@ -159,12 +181,30 @@ export function ActionDataTable<TData, TValue>({
     variant = actionDataTableDefaultVariantKey,
     enableSelection = true,
     rowActions,
+    rowActionsVariant = "inline",
     bulkActions,
+    selectedIds: controlledSelectedIds,
+    onSelectionChange,
     className,
     ...props
 }: ActionDataTableProps<TData, TValue>) {
-    const [selectedIds, setSelectedIds] = React.useState<Set<string>>(() => new Set())
-    const rowActionColumnSize = Math.max(120, (rowActions?.length ?? 0) * 40 + 24)
+    const isSelectionControlled = controlledSelectedIds !== undefined
+    const [internalSelectedIds, setInternalSelectedIds] = React.useState<Set<string>>(
+        () => new Set(controlledSelectedIds ?? [])
+    )
+    const selectedIds = React.useMemo(
+        () => (isSelectionControlled ? new Set(controlledSelectedIds) : internalSelectedIds),
+        [isSelectionControlled, controlledSelectedIds, internalSelectedIds]
+    )
+    const commitSelection = React.useCallback(
+        (next: Set<string>) => {
+            if (!isSelectionControlled) setInternalSelectedIds(next)
+            onSelectionChange?.(Array.from(next))
+        },
+        [isSelectionControlled, onSelectionChange]
+    )
+    const rowActionColumnSize =
+        rowActionsVariant === "menu" ? 72 : Math.max(120, (rowActions?.length ?? 0) * 40 + 24)
     const getId = React.useCallback(
         (row: TData, index: number) => getRowId?.(row, index) ?? String(index),
         [getRowId]
@@ -190,7 +230,11 @@ export function ActionDataTable<TData, TValue>({
         : labels?.selectAllRows ?? "Select all rows"
 
     React.useEffect(() => {
-        setSelectedIds((current) => {
+        // Prune ids that no longer match a row. Only the uncontrolled internal
+        // state is pruned here; in controlled mode the parent owns the ids (a
+        // stale id simply matches no row and is ignored by selectedRows).
+        if (isSelectionControlled) return
+        setInternalSelectedIds((current) => {
             const validIds = new Set(rowMeta.map((meta) => meta.id))
             const next = new Set<string>()
             let changed = false
@@ -203,7 +247,7 @@ export function ActionDataTable<TData, TValue>({
             }
             return changed || next.size !== current.size ? next : current
         })
-    }, [rowMeta])
+    }, [rowMeta, isSelectionControlled])
 
     const actionColumns = React.useMemo<ColumnDef<TData, TValue>[]>(() => {
         const nextColumns: ColumnDef<TData, TValue>[] = []
@@ -225,7 +269,7 @@ export function ActionDataTable<TData, TValue>({
                                     aria-label={selectAllLabel}
                                     className={cn(partiallySelected && "bg-foreground/60")}
                                     onCheckedChange={(checked) => {
-                                        setSelectedIds(checked ? new Set(rowMeta.map((meta) => meta.id)) : new Set())
+                                        commitSelection(checked ? new Set(rowMeta.map((meta) => meta.id)) : new Set())
                                     }}
                                 />
                             </span>
@@ -248,15 +292,13 @@ export function ActionDataTable<TData, TValue>({
                                         checked={rowSelected}
                                         aria-label={rowSelectionLabel}
                                         onCheckedChange={(checked) => {
-                                            setSelectedIds((current) => {
-                                                const next = new Set(current)
-                                                if (checked) {
-                                                    next.add(meta.id)
-                                                } else {
-                                                    next.delete(meta.id)
-                                                }
-                                                return next
-                                            })
+                                            const next = new Set(selectedIds)
+                                            if (checked) {
+                                                next.add(meta.id)
+                                            } else {
+                                                next.delete(meta.id)
+                                            }
+                                            commitSelection(next)
                                         }}
                                     />
                                 </span>
@@ -280,6 +322,49 @@ export function ActionDataTable<TData, TValue>({
                 cell: ({ row }) => {
                     const meta = rowMeta[row.index]
                     if (!meta) return null
+                    if (rowActionsVariant === "menu") {
+                        const menuLabel = labels?.actions ?? "Actions"
+                        return (
+                            <div className="flex items-center justify-end">
+                                <DropdownMenu>
+                                    <DropdownMenuTrigger asChild>
+                                        <Button
+                                            type="button"
+                                            variant="ghost"
+                                            size="icon"
+                                            className="h-8 w-8"
+                                            aria-label={menuLabel}
+                                        >
+                                            <Icon icon={Dots} size="sm" />
+                                        </Button>
+                                    </DropdownMenuTrigger>
+                                    <DropdownMenuContent align="end">
+                                        <DropdownMenuLabel>{menuLabel}</DropdownMenuLabel>
+                                        <DropdownMenuSeparator />
+                                        {rowActions.map((action) => {
+                                            const disabled = Boolean(resolveValue(action.disabled, meta.row))
+                                            return (
+                                                <DropdownMenuItem
+                                                    key={action.id}
+                                                    disabled={disabled}
+                                                    className={cn(
+                                                        action.variant === "destructive" &&
+                                                            "text-destructive focus:text-destructive"
+                                                    )}
+                                                    onSelect={() => action.onSelect?.(meta.row)}
+                                                >
+                                                    {action.icon ? (
+                                                        <Icon icon={action.icon} size="sm" className="mr-2" />
+                                                    ) : null}
+                                                    {action.label}
+                                                </DropdownMenuItem>
+                                            )
+                                        })}
+                                    </DropdownMenuContent>
+                                </DropdownMenu>
+                            </div>
+                        )
+                    }
                     return (
                         <div className="flex items-center justify-end gap-1">
                             {rowActions.map((action) => {
@@ -311,8 +396,10 @@ export function ActionDataTable<TData, TValue>({
         partiallySelected,
         rowActionColumnSize,
         rowActions,
+        rowActionsVariant,
         rowMeta,
         selectAllLabel,
+        commitSelection,
         selectedIds,
         selectedRows,
     ])
@@ -342,7 +429,7 @@ export function ActionDataTable<TData, TValue>({
                                     const disabled = Boolean(resolveRowsValue(action.disabled, selectedRows))
                                     if (disabled) return
                                     action.onSelect?.(selectedRows)
-                                    setSelectedIds(new Set())
+                                    commitSelection(new Set())
                                 }}
                             >
                                 <option value="">{bulkActionPlaceholder}</option>
@@ -374,7 +461,7 @@ export function ActionDataTable<TData, TValue>({
                         key={action.id}
                         action={action}
                         rows={selectedRows}
-                        onComplete={() => setSelectedIds(new Set())}
+                        onComplete={() => commitSelection(new Set())}
                     />
                 ))}
             </div>
