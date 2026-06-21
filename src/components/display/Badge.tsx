@@ -9,6 +9,9 @@ const badgeVariantClasses: Record<BadgeVariantKey, string> = {
     secondary: "bg-secondary text-secondary-foreground",
     destructive: "bg-destructive-strong text-destructive-strong-foreground",
     outline: "border-border bg-transparent text-foreground",
+    info: "border-info-border bg-info-subtle text-info-subtle-foreground",
+    success: "border-success-border bg-success-subtle text-success-subtle-foreground",
+    warning: "border-warning-border bg-warning-subtle text-warning-subtle-foreground",
 }
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLElement> {

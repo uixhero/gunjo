@@ -898,7 +898,10 @@ export const componentManifest = {
         "default",
         "secondary",
         "destructive",
-        "outline"
+        "outline",
+        "info",
+        "success",
+        "warning"
       ],
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/Badge.tsx",

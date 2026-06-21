@@ -25,7 +25,7 @@ export type AssetGridVariantKey = (typeof assetGridVariantKeys)[number];
 export const avatarVariantKeys = ["fallback", "image"] as const;
 export type AvatarVariantKey = (typeof avatarVariantKeys)[number];
 
-export const badgeVariantKeys = ["default", "destructive", "outline", "secondary"] as const;
+export const badgeVariantKeys = ["default", "destructive", "info", "outline", "secondary", "success", "warning"] as const;
 export type BadgeVariantKey = (typeof badgeVariantKeys)[number];
 
 export const barChartVariantKeys = ["horizontal", "vertical"] as const;
