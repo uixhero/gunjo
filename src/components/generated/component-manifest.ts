@@ -1041,7 +1041,10 @@ export const componentManifest = {
       "description": "Supplemental note block for explanatory copy, references, and non-urgent documentation callouts.",
       "variantKeys": [
         "default",
-        "reference"
+        "reference",
+        "note",
+        "warning",
+        "tip"
       ],
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/DocNote.tsx",

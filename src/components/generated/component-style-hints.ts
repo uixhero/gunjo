@@ -1445,7 +1445,10 @@ export const componentStyleHints = {
     "docNote": {
       "variantKeys": [
         "default",
-        "reference"
+        "reference",
+        "note",
+        "warning",
+        "tip"
       ],
       "defaultVariantKey": "default",
       "baseClasses": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-md",
@@ -1453,11 +1456,17 @@ export const componentStyleHints = {
       "slotIds": [],
       "variantClasses": {
         "default": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-md",
-        "reference": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-md"
+        "reference": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-md",
+        "note": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-md border",
+        "warning": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-md border",
+        "tip": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-md border"
       },
       "variantColorHints": {
         "default": "fill=#f1f5f9",
-        "reference": "fill=#f8fafc"
+        "reference": "fill=#f8fafc",
+        "note": "fill=#eff6ff | stroke=#bfdbfe@1px",
+        "warning": "fill=#fef3c7 | stroke=#fcd34d@1px",
+        "tip": "fill=#f0fdf4 | stroke=#bbf7d0@1px"
       }
     },
     "donutChart": {

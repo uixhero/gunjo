@@ -7,6 +7,9 @@ import type { DocNoteVariantKey } from "./generated/variant-keys"
 const docNoteVariantClasses: Record<DocNoteVariantKey, string> = {
     default: "bg-muted/45 text-muted-foreground",
     reference: "bg-secondary/55 text-muted-foreground",
+    note: "border border-info-border bg-info-subtle text-info-subtle-foreground",
+    warning: "border border-warning-border bg-warning-subtle text-warning-subtle-foreground",
+    tip: "border border-success-border bg-success-subtle text-success-subtle-foreground",
 }
 
 export interface DocNoteProps extends React.HTMLAttributes<HTMLElement> {

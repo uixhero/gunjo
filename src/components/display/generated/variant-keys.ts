@@ -43,7 +43,7 @@ export type ChoroplethMapVariantKey = (typeof choroplethMapVariantKeys)[number];
 export const concentricProgressCardVariantKeys = ["compact", "default"] as const;
 export type ConcentricProgressCardVariantKey = (typeof concentricProgressCardVariantKeys)[number];
 
-export const docNoteVariantKeys = ["default", "reference"] as const;
+export const docNoteVariantKeys = ["default", "note", "reference", "tip", "warning"] as const;
 export type DocNoteVariantKey = (typeof docNoteVariantKeys)[number];
 
 export const donutChartVariantKeys = ["compact", "default"] as const;
