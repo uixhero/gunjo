@@ -31,6 +31,7 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
     dashboard: dashboardSource,
     editor: editorSource,
     landing: landingSource,
+    docs: docsSource,
     auth: authSource,
     kanban: kanbanSource,
     chat: chatSource,
@@ -41,6 +42,7 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
     dashboard: "DashboardTemplate.tsx",
     editor: "EditorTemplate.tsx",
     landing: "LandingTemplate.tsx",
+    docs: "DocsTemplate.tsx",
     auth: "AuthTemplate.tsx",
     kanban: "KanbanTemplate.tsx",
     chat: "ChatTemplate.tsx",
@@ -237,6 +239,36 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
     }
     },
   });
+
+  // DocsTemplate must be mobile-responsive: a single column on phones with the
+  // sidebar collapsed (the consumer supplies a drawer/Sheet), revealing the
+  // multi-column sidebar+content+TOC grid only at lg/xl. Guards against the
+  // cold-test #23 regression where a hard 200px sidebar column squished
+  // content on phones (#118).
+  assertMatch(
+    errors,
+    docsSource,
+    /\bgrid-cols-1\b/,
+    'DocsTemplate should stack to a single column on mobile ("grid-cols-1")'
+  );
+  assertMatch(
+    errors,
+    docsSource,
+    /lg:grid-cols-\[220px_minmax\(0,1fr\)\]/,
+    'DocsTemplate should reveal the sidebar+content grid at lg'
+  );
+  assertMatch(
+    errors,
+    docsSource,
+    /hidden lg:block border-r/,
+    'DocsTemplate sidebar should be hidden on mobile and shown at lg ("hidden lg:block")'
+  );
+  assertNoMatch(
+    errors,
+    docsSource,
+    /grid-cols-\[200px/,
+    'DocsTemplate must not pin a fixed sidebar column at the base breakpoint'
+  );
 
   withRequiredVariants({
     errors,
