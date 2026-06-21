@@ -35,10 +35,7 @@
     "docs",
     "tailwind-preset.js",
     "tailwind-theme-extend.cjs",
-    "design/atoms-metadata.json",
-    "design/molecules-metadata.json",
-    "design/organisms-metadata.json",
-    "design/templates-metadata.json"
+    "design/*-metadata.json"
   ],
   "scripts": {
     "type-check": "tsc --noEmit --incremental false",

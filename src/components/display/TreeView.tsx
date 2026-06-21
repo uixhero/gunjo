@@ -34,6 +34,29 @@ export interface TreeViewProps extends React.HTMLAttributes<HTMLUListElement> {
     getNodeRowProps?: (node: TreeNode) => React.HTMLAttributes<HTMLDivElement> | undefined
 }
 
+interface VisibleNode {
+    id: string
+    hasChildren: boolean
+    expanded: boolean
+    parentId: string | null
+}
+
+function flattenVisible(
+    nodes: TreeNode[],
+    expanded: Set<string>,
+    parentId: string | null = null,
+    out: VisibleNode[] = []
+): VisibleNode[] {
+    for (const node of nodes) {
+        const hasChildren = !!node.children && node.children.length > 0
+        out.push({ id: node.id, hasChildren, expanded: expanded.has(node.id), parentId })
+        if (hasChildren && expanded.has(node.id)) {
+            flattenVisible(node.children!, expanded, node.id, out)
+        }
+    }
+    return out
+}
+
 const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
     (
         {
@@ -51,7 +74,7 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
             getNodeRowProps,
             ...props
         },
-        ref
+        forwardedRef
     ) => {
         const [internalExpanded, setInternalExpanded] = React.useState<Set<string>>(
             () => new Set(defaultExpanded ?? [])
@@ -61,6 +84,13 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
         const selectedSet = React.useMemo(
             () => (selectedIds ? new Set(selectedIds) : undefined),
             [selectedIds]
+        )
+
+        const treeRef = React.useRef<HTMLUListElement>(null)
+        React.useImperativeHandle(forwardedRef, () => treeRef.current as HTMLUListElement)
+
+        const [focusedId, setFocusedId] = React.useState<string | undefined>(
+            () => selectedId ?? nodes[0]?.id
         )
 
         const setExpanded = (next: Set<string>) => {
@@ -75,12 +105,82 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
             setExpanded(next)
         }
 
+        // Roving tabindex anchor: the focused node if it is currently visible,
+        // otherwise the first visible node, so the tree always has one Tab stop.
+        const visible = flattenVisible(nodes, expanded)
+        const tabbableId =
+            focusedId && visible.some((v) => v.id === focusedId)
+                ? focusedId
+                : visible[0]?.id
+
+        const focusNode = (id: string) => {
+            setFocusedId(id)
+            treeRef.current
+                ?.querySelector<HTMLButtonElement>(`[data-tree-node="${CSS.escape(id)}"]`)
+                ?.focus()
+        }
+
+        const handleKeyDown = (event: React.KeyboardEvent<HTMLUListElement>) => {
+            if (
+                !["ArrowDown", "ArrowUp", "ArrowRight", "ArrowLeft", "Home", "End"].includes(
+                    event.key
+                )
+            )
+                return
+            const rows = flattenVisible(nodes, expanded)
+            if (rows.length === 0) return
+            const activeId =
+                (document.activeElement as HTMLElement | null)?.getAttribute?.("data-tree-node") ??
+                focusedId
+            const idx = rows.findIndex((v) => v.id === activeId)
+            const curIdx = idx >= 0 ? idx : 0
+            const cur = rows[curIdx]
+
+            switch (event.key) {
+                case "ArrowDown":
+                    event.preventDefault()
+                    focusNode(rows[Math.min(curIdx + 1, rows.length - 1)].id)
+                    break
+                case "ArrowUp":
+                    event.preventDefault()
+                    focusNode(rows[Math.max(curIdx - 1, 0)].id)
+                    break
+                case "Home":
+                    event.preventDefault()
+                    focusNode(rows[0].id)
+                    break
+                case "End":
+                    event.preventDefault()
+                    focusNode(rows[rows.length - 1].id)
+                    break
+                case "ArrowRight":
+                    if (cur.hasChildren && !cur.expanded) {
+                        event.preventDefault()
+                        toggle(cur.id)
+                    } else if (cur.hasChildren && cur.expanded && rows[curIdx + 1]) {
+                        event.preventDefault()
+                        focusNode(rows[curIdx + 1].id)
+                    }
+                    break
+                case "ArrowLeft":
+                    if (cur.hasChildren && cur.expanded) {
+                        event.preventDefault()
+                        toggle(cur.id)
+                    } else if (cur.parentId) {
+                        event.preventDefault()
+                        focusNode(cur.parentId)
+                    }
+                    break
+            }
+        }
+
         return (
             <ul
-                ref={ref}
+                ref={treeRef}
                 role="tree"
                 aria-multiselectable={selectionMode === "multiple" ? true : undefined}
                 className={cn("flex flex-col gap-0.5", className)}
+                onKeyDown={handleKeyDown}
                 {...props}
             >
                 {nodes.map((node) => (
@@ -94,6 +194,8 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                         selectedIds={selectedSet}
                         selectionMode={selectionMode}
                         onSelect={onSelectedIdChange}
+                        tabbableId={tabbableId}
+                        onFocusItem={setFocusedId}
                         renderNodeMeta={renderNodeMeta}
                         renderNodeActions={renderNodeActions}
                         getNodeRowProps={getNodeRowProps}
@@ -114,6 +216,8 @@ interface TreeViewItemProps {
     selectedIds?: Set<string>
     selectionMode: "single" | "multiple" | "none"
     onSelect?: (id: string) => void
+    tabbableId?: string
+    onFocusItem?: (id: string) => void
     renderNodeMeta?: (node: TreeNode) => React.ReactNode
     renderNodeActions?: (node: TreeNode) => React.ReactNode
     getNodeRowProps?: (node: TreeNode) => React.HTMLAttributes<HTMLDivElement> | undefined
@@ -128,6 +232,8 @@ function TreeViewItem({
     selectedIds,
     selectionMode,
     onSelect,
+    tabbableId,
+    onFocusItem,
     renderNodeMeta,
     renderNodeActions,
     getNodeRowProps,
@@ -166,6 +272,9 @@ function TreeViewItem({
             >
                 <button
                     type="button"
+                    data-tree-node={node.id}
+                    tabIndex={node.id === tabbableId ? 0 : -1}
+                    onFocus={() => onFocusItem?.(node.id)}
                     onClick={() => {
                         if (hasChildren) onToggle(node.id)
                         onSelect?.(node.id)
@@ -212,6 +321,8 @@ function TreeViewItem({
                             selectedIds={selectedIds}
                             selectionMode={selectionMode}
                             onSelect={onSelect}
+                            tabbableId={tabbableId}
+                            onFocusItem={onFocusItem}
                             renderNodeMeta={renderNodeMeta}
                             renderNodeActions={renderNodeActions}
                             getNodeRowProps={getNodeRowProps}
