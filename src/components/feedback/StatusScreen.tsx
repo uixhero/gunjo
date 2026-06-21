@@ -20,6 +20,8 @@ export interface StatusScreenProps
     action?: React.ReactNode
     /** Optional muted detail block, such as request ID or diagnostic text. */
     details?: React.ReactNode
+    /** Heading level for the title so screen-reader heading navigation works. Default 1 (full-page status). */
+    headingLevel?: 1 | 2 | 3 | 4 | 5 | 6
 }
 
 type VariantPreset = {
@@ -82,6 +84,7 @@ const StatusScreen = React.forwardRef<HTMLDivElement, StatusScreenProps>(
             description,
             action,
             details,
+            headingLevel = 1,
             children,
             ...props
         },
@@ -91,6 +94,7 @@ const StatusScreen = React.forwardRef<HTMLDivElement, StatusScreenProps>(
         const resolvedCode = code ?? preset.code
         const resolvedTitle = title ?? preset.title
         const resolvedDescription = description ?? preset.description
+        const TitleTag = `h${headingLevel}` as React.ElementType
 
         return (
             <div
@@ -126,9 +130,9 @@ const StatusScreen = React.forwardRef<HTMLDivElement, StatusScreenProps>(
                         {resolvedCode}
                     </p>
                 ) : null}
-                <p className="text-2xl font-semibold text-foreground">
+                <TitleTag className="text-2xl font-semibold text-foreground">
                     {resolvedTitle}
-                </p>
+                </TitleTag>
                 <p className="max-w-md text-sm text-muted-foreground">
                     {resolvedDescription}
                 </p>
