@@ -34,7 +34,10 @@ function Calendar({
     components,
     locale = ja,
     holidays = japaneseHolidays,
-    showHolidays = true,
+    // Japanese national holidays are opt-in: an international consumer of the
+    // public package shouldn't get them by default. Pass `showHolidays` to enable
+    // (and `locale`/`holidays` to localize). (#141)
+    showHolidays = false,
     showWeekendStyle = true,
     disabledReason,
     getDisabledReason,
