@@ -60,12 +60,25 @@ const MetadataList = React.forwardRef<HTMLDListElement, MetadataListProps>(
                     <div key={index} className={isHorizontal ? classes.horizontalRow : classes.row}>
                         <dt className="flex min-w-0 items-start gap-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
                             {item.icon ? <span className="mt-0.5 shrink-0 text-muted-foreground">{item.icon}</span> : null}
-                            <span className="min-w-0 truncate">{item.label}</span>
+                            <span
+                                className="min-w-0 truncate"
+                                title={typeof item.label === "string" ? item.label : undefined}
+                            >
+                                {item.label}
+                            </span>
                         </dt>
                         <dd className={cn("min-w-0 font-medium text-foreground", isHorizontal ? "mt-1 text-left" : "text-right", classes.value)}>
-                            <div className="truncate">{item.value}</div>
+                            <div
+                                className="truncate"
+                                title={typeof item.value === "string" ? item.value : undefined}
+                            >
+                                {item.value}
+                            </div>
                             {item.description ? (
-                                <div className="mt-0.5 truncate text-xs font-normal text-muted-foreground">
+                                <div
+                                    className="mt-0.5 truncate text-xs font-normal text-muted-foreground"
+                                    title={typeof item.description === "string" ? item.description : undefined}
+                                >
                                     {item.description}
                                 </div>
                             ) : null}
