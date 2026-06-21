@@ -13,9 +13,9 @@ const imgOpacityClasses: Record<ImgVariantKey, string> = {
 }
 
 const imgVariantClasses: Record<ImgVariantKey, string> = {
-    error: "h-[256px] w-[256px] gap-2 rounded-lg text-xs font-normal",
-    loaded: "h-[256px] w-[256px] rounded-lg",
-    loading: "h-[256px] w-[256px] rounded-lg",
+    error: "w-full gap-2 rounded-lg text-xs font-normal",
+    loaded: "h-fit w-full rounded-lg",
+    loading: "h-fit w-full rounded-lg",
 }
 
 export interface ImgProps extends React.ImgHTMLAttributes<HTMLImageElement> {
