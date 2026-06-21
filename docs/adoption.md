@@ -99,6 +99,8 @@ v4 は `tailwind.config.ts` ベースではなく CSS の `@theme` ベース。`
 
 `create-next-app` が生成する `:root { --background; --foreground; }` や `@theme inline` の既定トークンブロックが残っている場合は、GunjoUI の token と競合しないように削除するか `@gunjo/ui/styles` の定義へ置き換える。
 
+> **⚠️ Turbopack dev の注意:** Next.js 16 + Turbopack の `npm run dev` では、CSS 内の **bare specifier `@import "@gunjo/ui/styles";` が解決できず全ルートが 500** になることがある（`CssSyntaxError: Can't resolve '@gunjo/ui/styles'`。`npm run build` は成功する dev 限定の挙動）。その場合は **下の `app/layout.tsx` で JS として `import "@gunjo/ui/styles";` する形（推奨）**、または CSS 側を相対パス `@import "../node_modules/@gunjo/ui/src/globals.css";` にして回避する。
+
 または `app/layout.tsx`：
 
 ```tsx

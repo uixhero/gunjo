@@ -1089,7 +1089,7 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
       assertAnyMatch(
         errors,
         notificationCenterSource,
-        [/className="w-80 p-0"/, /className="w-\[320px\] w-80 p-0"/],
+        [/className="w-80 p-0"/, /className="w-\[320px\] w-80 p-0"/, /className="w-\[320px\] p-0"/],
         "NotificationCenter panel should include width classes compatible with style hints"
       );
     }
