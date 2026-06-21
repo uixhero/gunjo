@@ -16,8 +16,8 @@ const RadioGroupContext = React.createContext<{
 } | undefined>(undefined);
 
 const radioGroupItemStateClasses: Record<RadioGroupVariantKey, string> = {
-    checked: "border-foreground bg-transparent",
-    unchecked: "border-input bg-transparent",
+    checked: "border-foreground",
+    unchecked: "border-input",
 }
 
 export interface RadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {
@@ -119,7 +119,7 @@ const RadioGroupItem = React.forwardRef<HTMLButtonElement, RadioGroupItemProps>(
                 onClick={() => context?.onValueChange?.(value)}
                 ref={ref}
                 className={cn(
-                    "aspect-square h-4 w-4 rounded-lg border text-foreground ring-offset-background focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+                    "aspect-square h-4 w-4 rounded-lg border bg-transparent text-foreground ring-offset-background focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
                     radioGroupItemStateClasses[itemState],
                     className
                 )}
