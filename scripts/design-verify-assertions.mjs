@@ -10,6 +10,12 @@ export function assertAnyMatch(errors, content, patterns, message) {
   }
 }
 
+export function assertNoMatch(errors, content, pattern, message) {
+  if (pattern.test(content)) {
+    errors.push(message);
+  }
+}
+
 export function withRequiredVariants({
   errors,
   componentSpec,
