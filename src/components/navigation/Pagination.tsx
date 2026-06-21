@@ -54,21 +54,34 @@ const PaginationLink = ({
     className,
     isActive,
     size = "icon",
+    href,
     ...props
-}: PaginationLinkProps) => (
-    <a
-        aria-current={isActive ? "page" : undefined}
-        className={cn(
-            buttonVariants({
-                variant: isActive ? "outline" : "ghost",
-                size,
-            }),
-            "aria-disabled:pointer-events-none aria-disabled:opacity-50",
-            className
-        )}
-        {...props}
-    />
-)
+}: PaginationLinkProps) => {
+    const classes = cn(
+        buttonVariants({
+            variant: isActive ? "outline" : "ghost",
+            size,
+        }),
+        "aria-disabled:pointer-events-none aria-disabled:opacity-50",
+        className
+    )
+    const ariaCurrent = isActive ? "page" : undefined
+
+    // href present → real link (SEO/SSR). Otherwise render a real <button> so the
+    // control is keyboard-focusable and operable for client-driven pagination
+    // (a bare <a> without href is not focusable).
+    if (href !== undefined) {
+        return <a href={href} aria-current={ariaCurrent} className={classes} {...props} />
+    }
+    return (
+        <button
+            type="button"
+            aria-current={ariaCurrent}
+            className={classes}
+            {...(props as React.ButtonHTMLAttributes<HTMLButtonElement>)}
+        />
+    )
+}
 PaginationLink.displayName = "PaginationLink"
 
 const PaginationFirst = ({
