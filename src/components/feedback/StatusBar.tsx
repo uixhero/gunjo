@@ -15,7 +15,7 @@ const StatusBar = React.forwardRef<HTMLDivElement, StatusBarProps>(
             <div
                 ref={ref}
                 className={cn(
-                    "grid w-[640px] max-w-full grid-cols-2 items-center justify-between gap-x-3 gap-y-1 overflow-hidden px-4 py-1 bg-primary text-primary-foreground text-xs z-50 shadow-md sm:flex sm:flex-col sm:flex-row sm:gap-2",
+                    "grid w-[640px] max-w-full grid-cols-2 items-center justify-between gap-x-3 gap-y-1 overflow-hidden px-4 py-1 bg-primary text-primary-foreground text-xs z-50 shadow-md sm:flex sm:flex-row sm:gap-2",
                     fixed && "fixed bottom-0 left-0 right-0",
                     className
                 )}

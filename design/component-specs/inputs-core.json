@@ -24,6 +24,8 @@
           "cornerRadius": 8,
           "fill": "#0c0c12",
           "stroke": null,
+          "justifyContent": "center",
+          "alignItems": "center",
           "iconFontFamily": null,
           "iconFontName": null,
           "text": {
@@ -63,6 +65,8 @@
           "cornerRadius": 8,
           "fill": "#ef4444",
           "stroke": null,
+          "justifyContent": "center",
+          "alignItems": "center",
           "iconFontFamily": null,
           "iconFontName": null,
           "text": {
@@ -106,6 +110,8 @@
             "fill": "#e2e8f0",
             "thickness": 1
           },
+          "justifyContent": "center",
+          "alignItems": "center",
           "iconFontFamily": null,
           "iconFontName": null,
           "text": {
@@ -145,6 +151,8 @@
           "cornerRadius": 8,
           "fill": "#f1f5f9",
           "stroke": null,
+          "justifyContent": "center",
+          "alignItems": "center",
           "iconFontFamily": null,
           "iconFontName": null,
           "text": {
@@ -184,6 +192,8 @@
           "cornerRadius": 8,
           "fill": "transparent",
           "stroke": null,
+          "justifyContent": "center",
+          "alignItems": "center",
           "iconFontFamily": null,
           "iconFontName": null,
           "text": {
@@ -223,6 +233,8 @@
           "cornerRadius": 8,
           "fill": "transparent",
           "stroke": null,
+          "justifyContent": "center",
+          "alignItems": "center",
           "iconFontFamily": null,
           "iconFontName": null,
           "text": {
@@ -578,6 +590,7 @@
             "fill": "#e2e8f0",
             "thickness": 1
           },
+          "alignItems": "center",
           "iconFontFamily": null,
           "iconFontName": null,
           "text": {
@@ -621,6 +634,7 @@
             "fill": "#e2e8f0",
             "thickness": 1
           },
+          "alignItems": "center",
           "iconFontFamily": null,
           "iconFontName": null,
           "text": {
@@ -664,6 +678,7 @@
             "fill": "#e2e8f0",
             "thickness": 1
           },
+          "alignItems": "center",
           "iconFontFamily": null,
           "iconFontName": null,
           "text": {
@@ -739,6 +754,8 @@
           "cornerRadius": 4,
           "fill": "#0c0c12",
           "stroke": null,
+          "justifyContent": "center",
+          "alignItems": "center",
           "iconFontFamily": null,
           "iconFontName": null,
           "text": {
@@ -830,6 +847,8 @@
           "cornerRadius": 9999,
           "fill": "#0c0c12",
           "stroke": null,
+          "justifyContent": "end",
+          "alignItems": "center",
           "iconFontFamily": null,
           "iconFontName": null,
           "text": null,
@@ -850,6 +869,7 @@
           "type": "frame",
           "width": 280,
           "height": 80,
+          "layout": "vertical",
           "padding": [
             8,
             12,
@@ -893,6 +913,7 @@
           "type": "frame",
           "width": 280,
           "height": 80,
+          "layout": "vertical",
           "padding": [
             8,
             12,
@@ -974,6 +995,8 @@
             "fill": "#0c0c12",
             "thickness": 1
           },
+          "justifyContent": "center",
+          "alignItems": "center",
           "iconFontFamily": null,
           "iconFontName": null,
           "text": null,
@@ -999,6 +1022,7 @@
           "cornerRadius": 10,
           "fill": "#e2e8f0",
           "stroke": null,
+          "alignItems": "center",
           "iconFontFamily": null,
           "iconFontName": null,
           "text": null,
@@ -1024,6 +1048,7 @@
           "cornerRadius": null,
           "fill": null,
           "stroke": null,
+          "alignItems": "center",
           "iconFontFamily": null,
           "iconFontName": null,
           "text": null,
@@ -1058,6 +1083,8 @@
             "fill": "#e2e8f0",
             "thickness": 1
           },
+          "justifyContent": "space_between",
+          "alignItems": "center",
           "iconFontFamily": null,
           "iconFontName": null,
           "text": {
@@ -1104,6 +1131,8 @@
           "cornerRadius": 8,
           "fill": "#f1f5f9",
           "stroke": null,
+          "justifyContent": "center",
+          "alignItems": "center",
           "iconFontFamily": null,
           "iconFontName": null,
           "text": {
@@ -1147,6 +1176,8 @@
             "fill": "#e2e8f0",
             "thickness": 1
           },
+          "justifyContent": "center",
+          "alignItems": "center",
           "iconFontFamily": null,
           "iconFontName": null,
           "text": {
@@ -1308,6 +1339,7 @@
           "type": "frame",
           "width": 320,
           "height": null,
+          "layout": "vertical",
           "padding": [
             16,
             16,
@@ -1336,6 +1368,7 @@
           "name": "Calendar/Default",
           "width": 320,
           "height": null,
+          "layout": "vertical",
           "padding": [
             16,
             16,
@@ -1418,6 +1451,7 @@
           "name": null,
           "width": null,
           "height": null,
+          "layout": "vertical",
           "padding": null,
           "gap": 4,
           "cornerRadius": null,
@@ -1464,6 +1498,7 @@
             "fill": "#e2e8f0",
             "thickness": 1
           },
+          "alignItems": "center",
           "reusable": true,
           "children": [
             "filterButtonIcon",
@@ -1491,6 +1526,7 @@
             "fill": "#e2e8f0",
             "thickness": 1
           },
+          "alignItems": "center",
           "reusable": true,
           "children": [
             "filterButtonBadge"
@@ -1503,6 +1539,7 @@
           "type": "frame",
           "width": 200,
           "height": null,
+          "layout": "vertical",
           "padding": null,
           "gap": null,
           "cornerRadius": 8,
@@ -1592,6 +1629,7 @@
           "name": "FilterButton/Popover",
           "width": 200,
           "height": null,
+          "layout": "vertical",
           "padding": null,
           "gap": null,
           "cornerRadius": 8,
@@ -1787,6 +1825,7 @@
           "cornerRadius": 6,
           "fill": null,
           "stroke": null,
+          "alignItems": "center",
           "reusable": true,
           "children": [
             "sortButtonIcon",
@@ -1810,6 +1849,7 @@
           "cornerRadius": 6,
           "fill": "#eef2ff",
           "stroke": null,
+          "alignItems": "center",
           "reusable": true,
           "children": [
             "sortButtonAscIcon",
@@ -1833,6 +1873,7 @@
           "cornerRadius": 6,
           "fill": "#fff7ed",
           "stroke": null,
+          "alignItems": "center",
           "reusable": true,
           "children": [
             "sortButtonDescIcon",
@@ -2189,6 +2230,7 @@
           "type": "frame",
           "width": 640,
           "height": null,
+          "layout": "vertical",
           "padding": null,
           "gap": 16,
           "cornerRadius": null,
@@ -2208,6 +2250,7 @@
           "name": "FileUploader/Default",
           "width": 640,
           "height": null,
+          "layout": "vertical",
           "padding": null,
           "gap": 16,
           "cornerRadius": null,
@@ -2232,6 +2275,7 @@
           "name": null,
           "width": "fill_container",
           "height": 128,
+          "layout": "vertical",
           "padding": null,
           "gap": 12,
           "cornerRadius": 8,

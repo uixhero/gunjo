@@ -163,7 +163,16 @@ function buildLayoutClasses(variantSpec) {
   const hasGap = typeof variantSpec.gap === "number" && Number.isFinite(variantSpec.gap) && variantSpec.gap > 0;
 
   if (hasChildren) {
-    classes.push("flex", "flex-col");
+    const layout =
+      variantSpec.layout ??
+      (variantSpec.alignItems || variantSpec.justifyContent ? "horizontal" : null);
+    if (layout === "vertical") {
+      classes.push("flex", "flex-col");
+    } else if (layout === "horizontal") {
+      classes.push("flex", "flex-row");
+    } else {
+      classes.push("flex");
+    }
   } else if (hasGap || hasText) {
     classes.push("inline-flex");
   }

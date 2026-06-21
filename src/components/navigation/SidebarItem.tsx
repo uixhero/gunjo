@@ -75,7 +75,7 @@ export const SidebarItem = memo(({
             onDragStart={onDragStart}
             onDragEnd={onDragEnd}
             className={cn(
-                "group relative flex h-9 w-full cursor-pointer items-center rounded-md text-sm transition-colors",
+                "group relative flex h-9 w-full flex-row items-center justify-between rounded-md text-sm cursor-pointer transition-colors",
                 dragNestClass ?? variantClasses[baseVariant],
                 className
             )}
