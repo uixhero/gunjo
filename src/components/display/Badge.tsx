@@ -1,4 +1,5 @@
 import * as React from "react"
+import { IconX as X } from "@tabler/icons-react";
 import { cn } from "../../lib/utils"
 import type { BadgeVariantKey } from "./generated/variant-keys"
 import { badgeDefaultVariantKey } from "./generated/default-variant-keys"
@@ -12,18 +13,42 @@ const badgeVariantClasses: Record<BadgeVariantKey, string> = {
 
 export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
     variant?: BadgeVariantKey
+    /** When provided, renders a dismiss (×) button — use for removable filter chips. */
+    onRemove?: () => void
+    /** Accessible label for the dismiss button. Default "Remove". */
+    removeLabel?: string
 }
 
-function Badge({ className, variant = badgeDefaultVariantKey, ...props }: BadgeProps) {
+function Badge({
+    className,
+    variant = badgeDefaultVariantKey,
+    onRemove,
+    removeLabel = "Remove",
+    children,
+    ...props
+}: BadgeProps) {
     return (
         <div
             className={cn(
                 "inline-flex items-center w-fit h-5 rounded-full border border-transparent px-2.5 py-1 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+                onRemove && "gap-1 pr-1",
                 badgeVariantClasses[variant],
                 className
             )}
             {...props}
-        />
+        >
+            {children}
+            {onRemove ? (
+                <button
+                    type="button"
+                    onClick={onRemove}
+                    aria-label={removeLabel}
+                    className="-mr-0.5 flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full opacity-70 outline-none transition-opacity hover:opacity-100 focus-visible:ring-1 focus-visible:ring-ring"
+                >
+                    <X className="h-3 w-3" />
+                </button>
+            ) : null}
+        </div>
     )
 }
 
