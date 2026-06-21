@@ -23,9 +23,9 @@ const sortIconByValue: Record<SortButtonVariantKey, LucideIcon> = {
 }
 
 const sortButtonStateClasses: Record<SortButtonVariantKey, string> = {
-    none: "flex flex-col items-center h-9 py-2 px-3 gap-2 rounded-md",
-    asc: "inline-flex items-center h-9 py-2 px-3 gap-2 rounded-md",
-    desc: "inline-flex items-center h-9 py-2 px-3 gap-2 rounded-md",
+    none: "inline-flex flex-row items-center h-9 py-2 px-3 gap-2 rounded-md",
+    asc: "inline-flex flex-row items-center h-9 py-2 px-3 gap-2 rounded-md",
+    desc: "inline-flex flex-row items-center h-9 py-2 px-3 gap-2 rounded-md",
 }
 
 const SortButton = React.forwardRef<HTMLButtonElement, SortButtonProps>(

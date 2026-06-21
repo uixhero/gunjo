@@ -80,6 +80,7 @@
           "cornerRadius": null,
           "fill": null,
           "stroke": null,
+          "alignItems": "center",
           "reusable": true,
           "children": [
             "breadcrumbLink1",
@@ -237,6 +238,7 @@
           "type": "frame",
           "width": "fill_container",
           "height": null,
+          "layout": "vertical",
           "padding": null,
           "gap": null,
           "cornerRadius": 8,
@@ -260,6 +262,7 @@
           "name": "Tabs/Default",
           "width": 400,
           "height": null,
+          "layout": "vertical",
           "padding": null,
           "gap": null,
           "cornerRadius": 8,
@@ -415,6 +418,7 @@
           "name": null,
           "width": null,
           "height": null,
+          "layout": "vertical",
           "padding": [
             16,
             16,
@@ -477,6 +481,7 @@
           "cornerRadius": null,
           "fill": null,
           "stroke": null,
+          "alignItems": "center",
           "reusable": true,
           "children": [
             "paginationContent"
@@ -762,6 +767,8 @@
           "cornerRadius": 6,
           "fill": null,
           "stroke": null,
+          "justifyContent": "space_between",
+          "alignItems": "center",
           "reusable": true,
           "children": [
             "sidebarItemContent",
@@ -785,6 +792,8 @@
           "cornerRadius": 6,
           "fill": "#f1f5f9",
           "stroke": null,
+          "justifyContent": "space_between",
+          "alignItems": "center",
           "reusable": true,
           "children": [
             "sidebarItemActiveContent",
@@ -1090,6 +1099,7 @@
             "fill": "#e2e8f0",
             "thickness": 1
           },
+          "alignItems": "center",
           "reusable": true,
           "children": [
             "menubarTrigger",
@@ -1165,6 +1175,7 @@
           "name": null,
           "width": 192,
           "height": null,
+          "layout": "vertical",
           "padding": [
             4,
             4,
@@ -1285,6 +1296,7 @@
           "type": "frame",
           "width": "fill_container",
           "height": null,
+          "layout": "vertical",
           "padding": null,
           "gap": null,
           "cornerRadius": 8,
@@ -1308,6 +1320,7 @@
           "name": "Command/Default",
           "width": "fill_container",
           "height": null,
+          "layout": "vertical",
           "padding": null,
           "gap": null,
           "cornerRadius": 8,
@@ -1389,6 +1402,7 @@
           "name": null,
           "width": "fill_container",
           "height": null,
+          "layout": "vertical",
           "padding": [
             8,
             8,
@@ -1468,6 +1482,7 @@
           "type": "frame",
           "width": 64,
           "height": 320,
+          "layout": "vertical",
           "padding": [
             16,
             0,
@@ -1478,6 +1493,7 @@
           "cornerRadius": null,
           "fill": "#111827",
           "stroke": null,
+          "alignItems": "center",
           "reusable": true,
           "children": [
             "appRailIconHome",
@@ -1493,6 +1509,7 @@
           "name": "AppRail/Default",
           "width": 64,
           "height": 320,
+          "layout": "vertical",
           "padding": [
             16,
             0,
@@ -1594,6 +1611,7 @@
           "type": "frame",
           "width": "fill_container",
           "height": null,
+          "layout": "vertical",
           "padding": null,
           "gap": null,
           "cornerRadius": 8,
@@ -1617,6 +1635,7 @@
           "name": "CommandPalette/Default",
           "width": "fill_container",
           "height": null,
+          "layout": "vertical",
           "padding": null,
           "gap": null,
           "cornerRadius": 8,
@@ -1698,6 +1717,7 @@
           "name": null,
           "width": "fill_container",
           "height": null,
+          "layout": "vertical",
           "padding": [
             8,
             8,
@@ -1827,6 +1847,7 @@
           "type": "frame",
           "width": 256,
           "height": 360,
+          "layout": "vertical",
           "padding": null,
           "gap": null,
           "cornerRadius": null,
@@ -1850,6 +1871,7 @@
           "name": "RightRail/Default",
           "width": 256,
           "height": 360,
+          "layout": "vertical",
           "padding": null,
           "gap": null,
           "cornerRadius": null,

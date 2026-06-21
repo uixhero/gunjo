@@ -72,6 +72,7 @@ export function extractNodeSnapshot(node, { includeIconFontFields = false } = {}
     name: node.name ?? null,
     width: node.width ?? null,
     height: node.height ?? null,
+    ...(node.layout ? { layout: node.layout } : {}),
     padding: normalizePadding(node.padding),
     gap: node.gap ?? null,
     cornerRadius: node.cornerRadius ?? null,
@@ -117,11 +118,14 @@ export function extractVariants(
       type: normalizeNodeType(child.type),
       width: child.width ?? null,
       height: child.height ?? null,
+      ...(child.layout ? { layout: child.layout } : {}),
       padding: normalizePadding(child.padding),
       gap: child.gap ?? null,
       cornerRadius: child.cornerRadius ?? null,
       fill: child.fill ?? null,
       stroke: normalizeStroke(child.stroke, child),
+      ...(child.justifyContent ? { justifyContent: child.justifyContent } : {}),
+      ...(child.alignItems ? { alignItems: child.alignItems } : {}),
       reusable: Boolean(child.reusable),
       children: Array.isArray(child.children)
         ? child.children.map((grandChild) => grandChild?.id).filter(Boolean)

@@ -111,7 +111,7 @@ const ListItem = React.forwardRef<HTMLLIElement, ListItemProps>(
                 className={cn(
                     isStandardOrdered
                         ? "ml-4 list-inside list-decimal"
-                        : "flex list-none items-center gap-2",
+                        : "flex flex-row list-none items-center gap-2",
                     className
                 )}
                 {...props}

@@ -8,14 +8,14 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col w-full",
+      "baseClasses": "flex w-full",
       "baseColorHint": null,
       "slotIds": [
         "authTemplateVisualPanel",
         "authTemplateFormPanel"
       ],
       "variantClasses": {
-        "default": "flex flex-col w-full"
+        "default": "flex w-full"
       },
       "variantColorHints": {}
     },
@@ -51,7 +51,7 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col w-full h-full",
+      "baseClasses": "flex w-full h-full",
       "baseColorHint": "fill=#ffffff",
       "slotIds": [
         "chatTemplateSidebarList",
@@ -59,7 +59,7 @@ export const componentStyleHints = {
         "chatTemplateSidebarDetail"
       ],
       "variantClasses": {
-        "default": "flex flex-col w-full h-full"
+        "default": "flex w-full h-full"
       },
       "variantColorHints": {
         "default": "fill=#ffffff"
@@ -111,14 +111,14 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col w-full h-full",
+      "baseClasses": "flex w-full h-full",
       "baseColorHint": null,
       "slotIds": [
         "kanbanTemplateSidebar",
         "kanbanTemplateMain"
       ],
       "variantClasses": {
-        "default": "flex flex-col w-full h-full"
+        "default": "flex w-full h-full"
       },
       "variantColorHints": {}
     },
@@ -324,7 +324,7 @@ export const componentStyleHints = {
         "fixed"
       ],
       "defaultVariantKey": "fixed",
-      "baseClasses": "flex flex-col w-[640px] py-1 px-4",
+      "baseClasses": "flex flex-row w-[640px] py-1 px-4",
       "baseColorHint": "fill=#2563eb",
       "slotIds": [
         "statusBarLeft",
@@ -332,7 +332,7 @@ export const componentStyleHints = {
         "statusBarRight"
       ],
       "variantClasses": {
-        "fixed": "flex flex-col w-[640px] py-1 px-4"
+        "fixed": "flex flex-row w-[640px] py-1 px-4"
       },
       "variantColorHints": {
         "fixed": "fill=#2563eb"
@@ -377,7 +377,7 @@ export const componentStyleHints = {
         "info"
       ],
       "defaultVariantKey": "success",
-      "baseClasses": "flex flex-col items-center w-[384px] py-3 px-4 gap-3 rounded-xl border",
+      "baseClasses": "flex flex-row items-center w-[384px] py-3 px-4 gap-3 rounded-xl border",
       "baseColorHint": "fill=#ffffff | stroke=#22c55e33@1px",
       "slotIds": [
         "toastSuccessIcon",
@@ -385,9 +385,9 @@ export const componentStyleHints = {
         "toastSuccessClose"
       ],
       "variantClasses": {
-        "success": "flex flex-col items-center w-[384px] py-3 px-4 gap-3 rounded-xl border",
-        "error": "flex flex-col items-center w-[384px] py-3 px-4 gap-3 rounded-xl border",
-        "info": "flex flex-col items-center w-[384px] py-3 px-4 gap-3 rounded-xl border"
+        "success": "flex flex-row items-center w-[384px] py-3 px-4 gap-3 rounded-xl border",
+        "error": "flex flex-row items-center w-[384px] py-3 px-4 gap-3 rounded-xl border",
+        "info": "flex flex-row items-center w-[384px] py-3 px-4 gap-3 rounded-xl border"
       },
       "variantColorHints": {
         "success": "fill=#ffffff | stroke=#22c55e33@1px",
@@ -550,14 +550,14 @@ export const componentStyleHints = {
         "horizontal"
       ],
       "defaultVariantKey": "horizontal",
-      "baseClasses": "flex flex-col w-[520px] h-[240px]",
+      "baseClasses": "flex w-[520px] h-[240px]",
       "baseColorHint": null,
       "slotIds": [
         "resizablePanelGroup",
         "resizableHandle"
       ],
       "variantClasses": {
-        "horizontal": "flex flex-col w-[520px] h-[240px]"
+        "horizontal": "flex w-[520px] h-[240px]"
       },
       "variantColorHints": {}
     },
@@ -630,7 +630,7 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col items-center gap-2",
+      "baseClasses": "flex flex-row items-center gap-2",
       "baseColorHint": null,
       "slotIds": [
         "breadcrumbLink1",
@@ -640,7 +640,7 @@ export const componentStyleHints = {
         "breadcrumbPage"
       ],
       "variantClasses": {
-        "default": "flex flex-col items-center gap-2"
+        "default": "flex flex-row items-center gap-2"
       },
       "variantColorHints": {}
     },
@@ -685,14 +685,14 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col items-center w-full pt-5 pb-0 px-0 gap-3",
+      "baseClasses": "flex items-center w-full pt-5 pb-0 px-0 gap-3",
       "baseColorHint": null,
       "slotIds": [
         "documentPagerPrevious",
         "documentPagerNext"
       ],
       "variantClasses": {
-        "default": "flex flex-col items-center w-full pt-5 pb-0 px-0 gap-3"
+        "default": "flex items-center w-full pt-5 pb-0 px-0 gap-3"
       },
       "variantColorHints": {}
     },
@@ -719,14 +719,14 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col items-center h-10 p-1 gap-1 rounded-md border",
+      "baseClasses": "flex flex-row items-center h-10 p-1 gap-1 rounded-md border",
       "baseColorHint": "fill=#ffffff | stroke=#e2e8f0@1px",
       "slotIds": [
         "menubarTrigger",
         "menubarContent"
       ],
       "variantClasses": {
-        "default": "flex flex-col items-center h-10 p-1 gap-1 rounded-md border"
+        "default": "flex flex-row items-center h-10 p-1 gap-1 rounded-md border"
       },
       "variantColorHints": {
         "default": "fill=#ffffff | stroke=#e2e8f0@1px"
@@ -759,13 +759,13 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col items-center gap-1",
+      "baseClasses": "flex flex-row items-center gap-1",
       "baseColorHint": null,
       "slotIds": [
         "paginationContent"
       ],
       "variantClasses": {
-        "default": "flex flex-col items-center gap-1"
+        "default": "flex flex-row items-center gap-1"
       },
       "variantColorHints": {}
     },
@@ -802,15 +802,15 @@ export const componentStyleHints = {
         "active"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col w-[320px] h-9 py-1.5 px-4 rounded-md cursor-pointer",
+      "baseClasses": "flex flex-row w-[320px] h-9 py-1.5 px-4 rounded-md cursor-pointer",
       "baseColorHint": null,
       "slotIds": [
         "sidebarItemContent",
         "sidebarItemRight"
       ],
       "variantClasses": {
-        "default": "flex flex-col w-[320px] h-9 py-1.5 px-4 rounded-md cursor-pointer",
-        "active": "flex flex-col w-[320px] h-9 py-1.5 px-4 rounded-md cursor-pointer"
+        "default": "flex flex-row w-[320px] h-9 py-1.5 px-4 rounded-md cursor-pointer",
+        "active": "flex flex-row w-[320px] h-9 py-1.5 px-4 rounded-md cursor-pointer"
       },
       "variantColorHints": {
         "active": "fill=#f1f5f9"
@@ -1095,14 +1095,14 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col w-[168px] py-1.5 px-3 rounded-md border",
+      "baseClasses": "flex flex-row w-[168px] py-1.5 px-3 rounded-md border",
       "baseColorHint": "fill=#ffffff | stroke=#e2e8f0@1px",
       "slotIds": [
         "tooltipText",
         "tooltipHintText"
       ],
       "variantClasses": {
-        "default": "flex flex-col w-[168px] py-1.5 px-3 rounded-md border"
+        "default": "flex flex-row w-[168px] py-1.5 px-3 rounded-md border"
       },
       "variantColorHints": {
         "default": "fill=#ffffff | stroke=#e2e8f0@1px"
@@ -1651,16 +1651,16 @@ export const componentStyleHints = {
         "circle"
       ],
       "defaultVariantKey": "dot",
-      "baseClasses": "flex flex-col items-center gap-2",
+      "baseClasses": "flex flex-row items-center gap-2",
       "baseColorHint": null,
       "slotIds": [
         "listDotIcon",
         "listDotText"
       ],
       "variantClasses": {
-        "dot": "flex flex-col items-center gap-2",
-        "check": "flex flex-col items-center gap-2",
-        "circle": "flex flex-col items-center gap-2"
+        "dot": "flex flex-row items-center gap-2",
+        "check": "flex flex-row items-center gap-2",
+        "circle": "flex flex-row items-center gap-2"
       },
       "variantColorHints": {}
     },
@@ -2194,15 +2194,15 @@ export const componentStyleHints = {
         "popover"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col items-center h-9 py-2 px-3 gap-2 rounded-md border",
+      "baseClasses": "flex flex-row items-center h-9 py-2 px-3 gap-2 rounded-md border",
       "baseColorHint": "stroke=#e2e8f0@1px",
       "slotIds": [
         "filterButtonIcon",
         "filterButtonLabel"
       ],
       "variantClasses": {
-        "default": "flex flex-col items-center h-9 py-2 px-3 gap-2 rounded-md border",
-        "selected": "flex flex-col items-center h-9 py-2 px-3 gap-2 rounded-md border",
+        "default": "flex flex-row items-center h-9 py-2 px-3 gap-2 rounded-md border",
+        "selected": "flex flex-row items-center h-9 py-2 px-3 gap-2 rounded-md border",
         "popover": "flex flex-col w-[200px] rounded-lg border"
       },
       "variantColorHints": {
@@ -2408,16 +2408,16 @@ export const componentStyleHints = {
         "desc"
       ],
       "defaultVariantKey": "none",
-      "baseClasses": "flex flex-col items-center h-9 py-2 px-3 gap-2 rounded-md",
+      "baseClasses": "flex flex-row items-center h-9 py-2 px-3 gap-2 rounded-md",
       "baseColorHint": null,
       "slotIds": [
         "sortButtonIcon",
         "sortButtonLabel"
       ],
       "variantClasses": {
-        "none": "flex flex-col items-center h-9 py-2 px-3 gap-2 rounded-md",
-        "asc": "flex flex-col items-center h-9 py-2 px-3 gap-2 rounded-md",
-        "desc": "flex flex-col items-center h-9 py-2 px-3 gap-2 rounded-md"
+        "none": "flex flex-row items-center h-9 py-2 px-3 gap-2 rounded-md",
+        "asc": "flex flex-row items-center h-9 py-2 px-3 gap-2 rounded-md",
+        "desc": "flex flex-row items-center h-9 py-2 px-3 gap-2 rounded-md"
       },
       "variantColorHints": {
         "asc": "fill=#eef2ff",
