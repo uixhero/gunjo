@@ -11,8 +11,14 @@ const badgeVariantClasses: Record<BadgeVariantKey, string> = {
     outline: "border-border bg-transparent text-foreground",
 }
 
-export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
+export interface BadgeProps extends React.HTMLAttributes<HTMLElement> {
     variant?: BadgeVariantKey
+    /**
+     * The element to render. Defaults to `"div"`. Use `as="span"` to place a
+     * Badge inline inside flow content (e.g. a `<p>`), since a block `<div>` is
+     * not a valid descendant of `<p>` and throws a hydration error.
+     */
+    as?: "div" | "span"
     /** When provided, renders a dismiss (×) button — use for removable filter chips. */
     onRemove?: () => void
     /** Accessible label for the dismiss button. Default "Remove". */
@@ -22,13 +28,14 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLDivElement> {
 function Badge({
     className,
     variant = badgeDefaultVariantKey,
+    as: Comp = "div",
     onRemove,
     removeLabel = "Remove",
     children,
     ...props
 }: BadgeProps) {
     return (
-        <div
+        <Comp
             className={cn(
                 "inline-flex items-center w-fit h-5 rounded-full border border-transparent px-2.5 py-1 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
                 onRemove && "gap-1 pr-1",
@@ -48,7 +55,7 @@ function Badge({
                     <X className="h-3 w-3" />
                 </button>
             ) : null}
-        </div>
+        </Comp>
     )
 }
 
