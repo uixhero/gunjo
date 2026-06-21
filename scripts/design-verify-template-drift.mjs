@@ -4,6 +4,7 @@ import { ROOT } from "./design-sync/shared.mjs";
 import {
   assertAnyMatch,
   assertMatch,
+  assertNoMatch,
   runVerificationCli,
   throwVerificationErrors,
   withRequiredVariants,
@@ -191,6 +192,21 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
         landingSource,
         /\bmin-h-screen\b/,
         'LandingTemplate should include "min-h-screen"'
+      );
+      // Sections must compose the Container component (centered + padded),
+      // not the bare Tailwind `.container` utility, which left-pins content
+      // with no gutters. Guards against the cold-test #22 regression (#111).
+      assertMatch(
+        errors,
+        landingSource,
+        /<Container\b/,
+        'LandingTemplate should compose the Container component (not bare .container) for centered, padded sections'
+      );
+      assertNoMatch(
+        errors,
+        landingSource,
+        /className="container\b/,
+        'LandingTemplate should not use the bare Tailwind ".container" utility (use the Container component)'
       );
     }
 

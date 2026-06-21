@@ -1,5 +1,6 @@
 import * as React from "react"
 import { cn } from "../../lib/utils"
+import { Container } from "../layout/Container"
 
 interface LandingTemplateProps extends React.HTMLAttributes<HTMLDivElement> {
     header?: React.ReactNode
@@ -22,30 +23,45 @@ export function LandingTemplate({
     className,
     ...props
 }: LandingTemplateProps) {
+    // Sections compose the Container component (mx-auto + responsive padding +
+    // max-width) rather than the bare Tailwind `.container` utility, which has
+    // no centering or gutters and left-pins content at a breakpoint width.
     return (
         <div className={cn("flex min-h-screen w-full flex-col", className)} {...props}>
             {/* Sticky Header */}
             {header && (
                 <div className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-                    <div className="container flex h-14 items-center">
+                    <Container size="2xl" className="flex h-14 items-center">
                         {header}
-                    </div>
+                    </Container>
                 </div>
             )}
 
             <main className="flex-1">
                 {hero}
-                {features && <section className="container py-12 md:py-24 lg:py-32">{features}</section>}
-                {testimonials && <section className="bg-muted/50 py-12 md:py-24 lg:py-32">{testimonials}</section>}
-                {pricing && <section className="container py-12 md:py-24 lg:py-32">{pricing}</section>}
+                {features && (
+                    <Container as="section" size="2xl" className="py-12 md:py-24 lg:py-32">
+                        {features}
+                    </Container>
+                )}
+                {testimonials && (
+                    <section className="bg-muted/50 py-12 md:py-24 lg:py-32">
+                        <Container size="2xl">{testimonials}</Container>
+                    </section>
+                )}
+                {pricing && (
+                    <Container as="section" size="2xl" className="py-12 md:py-24 lg:py-32">
+                        {pricing}
+                    </Container>
+                )}
                 {cta}
             </main>
 
             {footer && (
                 <footer className="border-t py-6 md:py-0">
-                    <div className="container flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
+                    <Container size="2xl" className="flex flex-col items-center justify-between gap-4 md:h-24 md:flex-row">
                         {footer}
-                    </div>
+                    </Container>
                 </footer>
             )}
         </div>
