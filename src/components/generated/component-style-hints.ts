@@ -2391,11 +2391,11 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "w-[200px] h-5 rounded-[10px]",
+      "baseClasses": "w-full h-5 rounded-[10px]",
       "baseColorHint": "fill=#e2e8f0",
       "slotIds": [],
       "variantClasses": {
-        "default": "w-[200px] h-5 rounded-[10px]"
+        "default": "w-full h-5 rounded-[10px]"
       },
       "variantColorHints": {
         "default": "fill=#e2e8f0"

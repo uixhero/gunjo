@@ -1011,11 +1011,11 @@
       "description": "An input where the user selects a value from within a given range.",
       "variants": [
         {
-          "id": "sliderDefault",
+          "id": "Xl8i4",
           "name": "Slider/Default",
           "key": "default",
           "type": "frame",
-          "width": 200,
+          "width": "fill_container",
           "height": 20,
           "padding": null,
           "gap": null,
