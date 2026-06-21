@@ -11,6 +11,12 @@ export interface SidebarItemProps {
     icon: React.ReactNode;
     label: string;
     count?: number;
+    /**
+     * Maps `count` to its accessible meaning so a screen reader hears
+     * "Inbox, 4 unread" instead of a detached "4". Defaults to the bare number;
+     * pass e.g. `(n) => \`${n} unread\`` for an unread/notification count.
+     */
+    countLabel?: (count: number) => string;
     isActive: boolean;
     onClick: () => void;
     onDrop?: (e: React.DragEvent) => void;
@@ -35,6 +41,7 @@ export const SidebarItem = memo(({
     icon,
     label,
     count,
+    countLabel,
     isActive,
     onClick,
     onDrop,
@@ -66,6 +73,11 @@ export const SidebarItem = memo(({
             : null;
     const showChevronSlot = hasChildren || reserveChevronSpace;
     const deleteAriaLabel = typeof deleteLabel === "string" ? deleteLabel : undefined;
+    // Associate the count with the item in the button's accessible name so it
+    // isn't read as a detached number. (#134)
+    const resolvedCount =
+        count !== undefined ? (countLabel ? countLabel(count) : String(count)) : undefined;
+    const buttonAriaLabel = resolvedCount !== undefined ? `${label}, ${resolvedCount}` : undefined;
 
     return (
         <div
@@ -98,6 +110,7 @@ export const SidebarItem = memo(({
                 className="flex h-full min-w-0 flex-1 items-center gap-2 overflow-hidden py-1.5 pr-0 text-left"
                 style={{ "--sidebar-item-indent": `calc(0.5rem + ${level}rem)` } as React.CSSProperties}
                 aria-current={isActive ? "page" : undefined}
+                aria-label={buttonAriaLabel}
             >
                 {showChevronSlot ? (
                     <div
@@ -152,7 +165,7 @@ export const SidebarItem = memo(({
                 )}
 
                 {count !== undefined && (
-                    <span className="text-xs opacity-60 w-6 text-center tabular-nums text-muted-foreground translate-y-[0.5px]">{count}</span>
+                    <span aria-hidden="true" className="text-xs opacity-60 w-6 text-center tabular-nums text-muted-foreground translate-y-[0.5px]">{count}</span>
                 )}
             </div>
         </div>

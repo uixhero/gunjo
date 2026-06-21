@@ -54,7 +54,28 @@ const ResizablePanelGroup = ({
     )
 }
 
-const ResizablePanel = Panel
+// Coerce bare-number size props to percentages. The underlying
+// react-resizable-panels treats a bare number as PIXELS, which silently breaks
+// split layouts (e.g. maxSize={55} caps a pane at 55px). Treating a number as a
+// percentage matches the intuitive split-pane default; pass an explicit string
+// (e.g. "200px") for pixel sizing. (#133)
+type ResizablePanelProps = React.ComponentProps<typeof Panel>
+const toPercentSize = (value: ResizablePanelProps["defaultSize"]) =>
+    typeof value === "number" ? `${value}%` : value
+
+const ResizablePanel = ({
+    defaultSize,
+    minSize,
+    maxSize,
+    ...props
+}: ResizablePanelProps) => (
+    <Panel
+        defaultSize={toPercentSize(defaultSize)}
+        minSize={toPercentSize(minSize)}
+        maxSize={toPercentSize(maxSize)}
+        {...props}
+    />
+)
 
 const ResizableHandle = ({
     withHandle,
