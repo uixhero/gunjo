@@ -32,6 +32,7 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
     editor: editorSource,
     landing: landingSource,
     docs: docsSource,
+    pricing: pricingSource,
     auth: authSource,
     kanban: kanbanSource,
     chat: chatSource,
@@ -43,6 +44,7 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
     editor: "EditorTemplate.tsx",
     landing: "LandingTemplate.tsx",
     docs: "DocsTemplate.tsx",
+    pricing: "PricingTemplate.tsx",
     auth: "AuthTemplate.tsx",
     kanban: "KanbanTemplate.tsx",
     chat: "ChatTemplate.tsx",
@@ -268,6 +270,48 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
     docsSource,
     /grid-cols-\[200px/,
     'DocsTemplate must not pin a fixed sidebar column at the base breakpoint'
+  );
+
+  // PricingTemplate is data-driven (cold-test #14/#25, #80): a billing toggle, a
+  // featured plan with a Badge (not just color), a configurable heading level
+  // (no hardcoded <h1>), and a responsive grid that handles 4 plans. Source-based
+  // because the pricingTemplate spec is null until the .pen node ids are mapped
+  // (#138). Guards the redesign from regressing to the old fixed stub.
+  assertMatch(
+    errors,
+    pricingSource,
+    /<ToggleGroup\b/,
+    "PricingTemplate should render a billing-period ToggleGroup"
+  );
+  assertMatch(
+    errors,
+    pricingSource,
+    /<Badge\b/,
+    "PricingTemplate featured plan should render a Badge (not color-only)"
+  );
+  assertMatch(
+    errors,
+    pricingSource,
+    /\bheadingLevel\b/,
+    "PricingTemplate title should use a configurable headingLevel"
+  );
+  assertNoMatch(
+    errors,
+    pricingSource,
+    /<h1[ >]/,
+    "PricingTemplate should not hardcode an <h1> (use headingLevel)"
+  );
+  assertMatch(
+    errors,
+    pricingSource,
+    /\bgrid-cols-1\b/,
+    "PricingTemplate grid should be responsive (grid-cols-1 base)"
+  );
+  assertNoMatch(
+    errors,
+    pricingSource,
+    /md:grid-cols-3/,
+    "PricingTemplate should not pin a fixed md:grid-cols-3 (must handle 4 plans)"
   );
 
   withRequiredVariants({

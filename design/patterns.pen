@@ -3715,165 +3715,1160 @@
       "id": "hGE07",
       "x": 0,
       "y": 15440,
-      "name": "PricingTemplate/Default",
+      "name": "PricingTemplate",
       "reusable": true,
-      "width": 880,
-      "fill": "#ffffff",
+      "width": 960,
+      "fill": "#F3EBE2",
       "layout": "vertical",
-      "gap": 24,
-      "padding": 48,
-      "alignItems": "center",
+      "gap": 32,
+      "padding": [
+        56,
+        56,
+        64,
+        56
+      ],
       "children": [
         {
-          "type": "text",
-          "id": "Xs2YH",
-          "fill": "#0c0c12",
-          "content": "Pricing",
-          "fontFamily": "Inter",
-          "fontSize": 32,
-          "fontWeight": "700"
-        },
-        {
-          "type": "text",
-          "id": "y6fh3",
-          "fill": "#64748b",
-          "content": "Choose a plan that fits your team",
-          "fontFamily": "Inter",
-          "fontSize": 16,
-          "fontWeight": "normal"
+          "type": "frame",
+          "id": "zBlUu",
+          "name": "Pricing Header",
+          "width": "fill_container",
+          "layout": "vertical",
+          "gap": 14,
+          "children": [
+            {
+              "type": "text",
+              "id": "E0AKv",
+              "name": "Eyebrow",
+              "fill": "#D4916E",
+              "content": "Plans for growing teams",
+              "fontFamily": "Geist",
+              "fontSize": 13,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "WXQiF",
+              "name": "pricingTemplateTitle",
+              "fill": "#1A1A1A",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Simple pricing that scales with usage, not complexity.",
+              "fontFamily": "Funnel Sans",
+              "fontSize": 40,
+              "fontWeight": "700"
+            },
+            {
+              "type": "text",
+              "id": "PuN7Y",
+              "name": "pricingTemplateDesc",
+              "fill": "#3D3D3D",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Choose monthly for flexibility or yearly for the best unit economics. Every plan includes shared projects, role-based access, and workflow analytics.",
+              "lineHeight": 1.45,
+              "fontFamily": "Geist",
+              "fontSize": 16,
+              "fontWeight": "normal"
+            }
+          ]
         },
         {
           "type": "frame",
-          "id": "tcrGo",
-          "name": "prRow",
-          "gap": 16,
+          "id": "nqx5v",
+          "name": "pricingTemplateVariants",
+          "metadata": {
+            "type": "design-sync",
+            "syncId": "pricingTemplateVariants"
+          },
+          "width": "fill_container",
+          "layout": "vertical",
           "children": [
             {
               "type": "frame",
-              "id": "ghqLE",
-              "name": "prCard1",
-              "width": 240,
-              "fill": "#ffffff",
-              "cornerRadius": 8,
-              "stroke": "#e2e8f0",
-              "strokeWidth": 1,
-              "strokeAlignment": "inner",
+              "id": "hkX7r",
+              "name": "Default",
+              "metadata": {
+                "type": "design-sync",
+                "syncId": "pricingTemplateDefault"
+              },
+              "width": "fill_container",
               "layout": "vertical",
-              "gap": 8,
-              "padding": 24,
+              "gap": 32,
               "children": [
                 {
-                  "type": "text",
-                  "id": "mSrgE",
-                  "fill": "#0c0c12",
-                  "content": "Free",
-                  "fontFamily": "Inter",
-                  "fontSize": 14,
-                  "fontWeight": "600"
+                  "type": "frame",
+                  "id": "j0i4u",
+                  "name": "Billing Controls",
+                  "width": "fill_container",
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "x0LtUI",
+                      "name": "Billing Caption",
+                      "fill": "#6B6B6B",
+                      "content": "Billing cadence",
+                      "fontFamily": "Geist",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    },
+                    {
+                      "type": "frame",
+                      "id": "xg1Ll",
+                      "name": "Billing Toggle",
+                      "fill": "#C5BEB6",
+                      "cornerRadius": 9999,
+                      "gap": 6,
+                      "padding": 6,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "j47wA",
+                          "name": "Monthly Segment",
+                          "fill": "#1A1A1A",
+                          "cornerRadius": 9999,
+                          "padding": [
+                            10,
+                            16
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "LrxUj",
+                              "name": "Monthly Label",
+                              "fill": "#FFFFFF",
+                              "content": "Monthly",
+                              "fontFamily": "Geist",
+                              "fontSize": 14,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "B7vZc",
+                          "name": "Yearly Segment",
+                          "fill": "#F3EBE2",
+                          "cornerRadius": 9999,
+                          "gap": 8,
+                          "padding": [
+                            10,
+                            16
+                          ],
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "dh3yZ",
+                              "name": "Yearly Label",
+                              "fill": "#1A1A1A",
+                              "content": "Yearly",
+                              "fontFamily": "Geist",
+                              "fontSize": 14,
+                              "fontWeight": "600"
+                            },
+                            {
+                              "type": "frame",
+                              "id": "GViRF",
+                              "name": "Savings Pill",
+                              "fill": "#D4916E",
+                              "cornerRadius": 9999,
+                              "padding": [
+                                4,
+                                8
+                              ],
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "EwlJA",
+                                  "name": "Savings Label",
+                                  "fill": "#1A1A1A",
+                                  "content": "Save 18%",
+                                  "fontFamily": "Geist",
+                                  "fontSize": 12,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
-                  "type": "text",
-                  "id": "fH3W4",
-                  "fill": "#0c0c12",
-                  "content": "$0",
-                  "fontFamily": "Inter",
-                  "fontSize": 32,
-                  "fontWeight": "700"
-                },
-                {
-                  "type": "text",
-                  "id": "AQHFz",
-                  "fill": "#64748b",
-                  "content": "Up to 5 users",
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "b9YPE",
-              "name": "prCard2",
-              "width": 240,
-              "fill": "#0c0c12",
-              "cornerRadius": 8,
-              "stroke": "#0c0c12",
-              "strokeWidth": 1,
-              "strokeAlignment": "inner",
-              "layout": "vertical",
-              "gap": 8,
-              "padding": 24,
-              "children": [
-                {
-                  "type": "text",
-                  "id": "EqT47",
-                  "fill": "#ffffff",
-                  "content": "Pro ★",
-                  "fontFamily": "Inter",
-                  "fontSize": 14,
-                  "fontWeight": "600"
-                },
-                {
-                  "type": "text",
-                  "id": "D45bq",
-                  "fill": "#ffffff",
-                  "content": "$29",
-                  "fontFamily": "Inter",
-                  "fontSize": 32,
-                  "fontWeight": "700"
-                },
-                {
-                  "type": "text",
-                  "id": "oD4KD",
-                  "fill": "#94a3b8",
-                  "content": "Unlimited users",
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
-                }
-              ]
-            },
-            {
-              "type": "frame",
-              "id": "y6BwTX",
-              "name": "prCard3",
-              "width": 240,
-              "fill": "#ffffff",
-              "cornerRadius": 8,
-              "stroke": "#e2e8f0",
-              "strokeWidth": 1,
-              "strokeAlignment": "inner",
-              "layout": "vertical",
-              "gap": 8,
-              "padding": 24,
-              "children": [
-                {
-                  "type": "text",
-                  "id": "rlk1r",
-                  "fill": "#0c0c12",
-                  "content": "Enterprise",
-                  "fontFamily": "Inter",
-                  "fontSize": 14,
-                  "fontWeight": "600"
-                },
-                {
-                  "type": "text",
-                  "id": "DLFiw",
-                  "fill": "#0c0c12",
-                  "content": "Custom",
-                  "fontFamily": "Inter",
-                  "fontSize": 32,
-                  "fontWeight": "700"
-                },
-                {
-                  "type": "text",
-                  "id": "bcGqs",
-                  "fill": "#64748b",
-                  "content": "SLA + dedicated support",
-                  "fontFamily": "Inter",
-                  "fontSize": 13,
-                  "fontWeight": "normal"
+                  "type": "frame",
+                  "id": "c2Q5YO",
+                  "name": "Plan Grid",
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "FPR3D",
+                      "name": "Plan Row A",
+                      "width": "fill_container",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "nk6hC",
+                          "name": "Starter Card",
+                          "width": "fill_container",
+                          "fill": "#C5BEB6",
+                          "cornerRadius": 16,
+                          "stroke": "#E1D7CD",
+                          "strokeWidth": 1,
+                          "strokeAlignment": "inner",
+                          "effect": {
+                            "type": "shadow",
+                            "shadowType": "outer",
+                            "color": "#0000000a",
+                            "offset": {
+                              "x": 0,
+                              "y": 1
+                            },
+                            "blur": 3
+                          },
+                          "layout": "vertical",
+                          "gap": 20,
+                          "padding": 24,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "DVVQv",
+                              "name": "Card Top",
+                              "width": "fill_container",
+                              "justifyContent": "space_between",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "B886v",
+                                  "name": "Card Meta",
+                                  "width": "fill_container",
+                                  "layout": "vertical",
+                                  "gap": 8,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "xN7g3",
+                                      "name": "Plan Name",
+                                      "fill": "#1A1A1A",
+                                      "content": "Starter",
+                                      "fontFamily": "Geist",
+                                      "fontSize": 15,
+                                      "fontWeight": "600"
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "dmMXs",
+                                      "name": "Price Group",
+                                      "gap": 8,
+                                      "alignItems": "end",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "WnF0d",
+                                          "name": "Price",
+                                          "fill": "#1A1A1A",
+                                          "content": "$0",
+                                          "fontFamily": "IBM Plex Mono",
+                                          "fontSize": 34,
+                                          "fontWeight": "700"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "id": "qLtGw",
+                                          "name": "Period",
+                                          "fill": "#6B6B6B",
+                                          "content": "/mo",
+                                          "fontFamily": "Geist",
+                                          "fontSize": 14,
+                                          "fontWeight": "500"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "pKK2w",
+                                      "name": "Plan Description",
+                                      "fill": "#3D3D3D",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "For solo builders testing the workflow before rollout.",
+                                      "lineHeight": 1.45,
+                                      "fontFamily": "Geist",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "Esfie",
+                              "name": "Feature List",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 10,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "fEPpa",
+                                  "name": "Feature Row",
+                                  "width": "fill_container",
+                                  "gap": 10,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "ellipse",
+                                      "id": "luL7L",
+                                      "name": "Feature Dot",
+                                      "opacity": 0.88,
+                                      "fill": "#1A1A1A",
+                                      "width": 10,
+                                      "height": 10
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "tEIzJ",
+                                      "name": "Feature Text",
+                                      "fill": "#1A1A1A",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "1 workspace",
+                                      "fontFamily": "Geist",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "KhCDx",
+                                  "name": "Feature Row",
+                                  "width": "fill_container",
+                                  "gap": 10,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "ellipse",
+                                      "id": "ANmwL",
+                                      "name": "Feature Dot",
+                                      "opacity": 0.88,
+                                      "fill": "#1A1A1A",
+                                      "width": 10,
+                                      "height": 10
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "wLoum",
+                                      "name": "Feature Text",
+                                      "fill": "#1A1A1A",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "Unlimited drafts",
+                                      "fontFamily": "Geist",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "V4cOT0",
+                                  "name": "Feature Row",
+                                  "width": "fill_container",
+                                  "gap": 10,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "ellipse",
+                                      "id": "JH1w8",
+                                      "name": "Feature Dot",
+                                      "opacity": 0.88,
+                                      "fill": "#1A1A1A",
+                                      "width": 10,
+                                      "height": 10
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "A6V7t0",
+                                      "name": "Feature Text",
+                                      "fill": "#1A1A1A",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "Basic analytics",
+                                      "fontFamily": "Geist",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "i2Cet",
+                              "name": "Action Area",
+                              "width": "fill_container",
+                              "fill": "#E8DED3",
+                              "cornerRadius": 12,
+                              "stroke": "#D7CBC0",
+                              "strokeWidth": 1,
+                              "strokeAlignment": "inner",
+                              "padding": [
+                                14,
+                                16
+                              ],
+                              "justifyContent": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "o0zF6",
+                                  "name": "Action Label",
+                                  "fill": "#1A1A1A",
+                                  "content": "Start free",
+                                  "fontFamily": "Geist",
+                                  "fontSize": 14,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "CooOM",
+                          "name": "Growth Card",
+                          "width": "fill_container",
+                          "fill": "#C5BEB6",
+                          "cornerRadius": 16,
+                          "stroke": "#D4916E",
+                          "strokeWidth": 2,
+                          "strokeAlignment": "inner",
+                          "effect": {
+                            "type": "shadow",
+                            "shadowType": "outer",
+                            "color": "#D4916E22",
+                            "spread": 10
+                          },
+                          "layout": "vertical",
+                          "gap": 20,
+                          "padding": 24,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "DDtk2",
+                              "name": "Card Top",
+                              "width": "fill_container",
+                              "justifyContent": "space_between",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "i98ENG",
+                                  "name": "Card Meta",
+                                  "width": "fill_container",
+                                  "layout": "vertical",
+                                  "gap": 8,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "enlUL",
+                                      "name": "Plan Name",
+                                      "fill": "#1A1A1A",
+                                      "content": "Growth",
+                                      "fontFamily": "Geist",
+                                      "fontSize": 15,
+                                      "fontWeight": "600"
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "d7kaJZ",
+                                      "name": "Price Group",
+                                      "gap": 8,
+                                      "alignItems": "end",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "qz449",
+                                          "name": "Price",
+                                          "fill": "#1A1A1A",
+                                          "content": "$24",
+                                          "fontFamily": "IBM Plex Mono",
+                                          "fontSize": 34,
+                                          "fontWeight": "700"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "id": "NrIod",
+                                          "name": "Period",
+                                          "fill": "#6B6B6B",
+                                          "content": "/seat/mo",
+                                          "fontFamily": "Geist",
+                                          "fontSize": 14,
+                                          "fontWeight": "500"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "Uh69E",
+                                      "name": "Plan Description",
+                                      "fill": "#3D3D3D",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "For teams that need automation, approvals, and better reporting.",
+                                      "lineHeight": 1.45,
+                                      "fontFamily": "Geist",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "Jc5aK",
+                                  "name": "Popular Badge",
+                                  "fill": "#F3EBE2",
+                                  "cornerRadius": 9999,
+                                  "stroke": "#D4916E",
+                                  "strokeWidth": 1,
+                                  "strokeAlignment": "inner",
+                                  "padding": [
+                                    6,
+                                    10
+                                  ],
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "iqxfY",
+                                      "name": "Popular Label",
+                                      "fill": "#1A1A1A",
+                                      "content": "Most popular",
+                                      "fontFamily": "Geist",
+                                      "fontSize": 12,
+                                      "fontWeight": "600"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "e9RTc",
+                              "name": "Feature List",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 10,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "C3VhT",
+                                  "name": "Feature Row",
+                                  "width": "fill_container",
+                                  "gap": 10,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "ellipse",
+                                      "id": "W6Edyp",
+                                      "name": "Feature Dot",
+                                      "opacity": 0.88,
+                                      "fill": "#D4916E",
+                                      "width": 10,
+                                      "height": 10
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "tQdzE",
+                                      "name": "Feature Text",
+                                      "fill": "#1A1A1A",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "Unlimited projects",
+                                      "fontFamily": "Geist",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "HNIB4",
+                                  "name": "Feature Row",
+                                  "width": "fill_container",
+                                  "gap": 10,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "ellipse",
+                                      "id": "gVg5q",
+                                      "name": "Feature Dot",
+                                      "opacity": 0.88,
+                                      "fill": "#D4916E",
+                                      "width": 10,
+                                      "height": 10
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "O5u8AB",
+                                      "name": "Feature Text",
+                                      "fill": "#1A1A1A",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "Custom automations",
+                                      "fontFamily": "Geist",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "s3G8Me",
+                                  "name": "Feature Row",
+                                  "width": "fill_container",
+                                  "gap": 10,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "ellipse",
+                                      "id": "cNVkQ",
+                                      "name": "Feature Dot",
+                                      "opacity": 0.88,
+                                      "fill": "#D4916E",
+                                      "width": 10,
+                                      "height": 10
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "HdrfF",
+                                      "name": "Feature Text",
+                                      "fill": "#1A1A1A",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "Admin roles + exports",
+                                      "fontFamily": "Geist",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "zXxnK",
+                              "name": "Action Area",
+                              "width": "fill_container",
+                              "fill": "#F3EBE2",
+                              "cornerRadius": 12,
+                              "stroke": "#D4916E",
+                              "strokeWidth": 1,
+                              "strokeAlignment": "inner",
+                              "padding": [
+                                14,
+                                16
+                              ],
+                              "justifyContent": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "pjkxz",
+                                  "name": "Action Label",
+                                  "fill": "#1A1A1A",
+                                  "content": "Choose Growth",
+                                  "fontFamily": "Geist",
+                                  "fontSize": 14,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            },
+                            {
+                              "type": "text",
+                              "id": "ckHEc",
+                              "name": "Featured Footnote",
+                              "fill": "#6B6B6B",
+                              "textGrowth": "fixed-width",
+                              "width": "fill_container",
+                              "content": "Yearly customers get advanced insights and priority onboarding included.",
+                              "fontFamily": "Geist",
+                              "fontSize": 12,
+                              "fontWeight": "normal"
+                            }
+                          ]
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "gXihj",
+                      "name": "Plan Row B",
+                      "width": "fill_container",
+                      "gap": 16,
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "rlOnA",
+                          "name": "Scale Card",
+                          "width": "fill_container",
+                          "fill": "#C5BEB6",
+                          "cornerRadius": 16,
+                          "stroke": "#E1D7CD",
+                          "strokeWidth": 1,
+                          "strokeAlignment": "inner",
+                          "effect": {
+                            "type": "shadow",
+                            "shadowType": "outer",
+                            "color": "#0000000a",
+                            "offset": {
+                              "x": 0,
+                              "y": 1
+                            },
+                            "blur": 3
+                          },
+                          "layout": "vertical",
+                          "gap": 20,
+                          "padding": 24,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "vifU4",
+                              "name": "Card Top",
+                              "width": "fill_container",
+                              "justifyContent": "space_between",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "zBo4v",
+                                  "name": "Card Meta",
+                                  "width": "fill_container",
+                                  "layout": "vertical",
+                                  "gap": 8,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "jUo4x",
+                                      "name": "Plan Name",
+                                      "fill": "#1A1A1A",
+                                      "content": "Scale",
+                                      "fontFamily": "Geist",
+                                      "fontSize": 15,
+                                      "fontWeight": "600"
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "P6Bwf6",
+                                      "name": "Price Group",
+                                      "gap": 8,
+                                      "alignItems": "end",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "CSMU4",
+                                          "name": "Price",
+                                          "fill": "#1A1A1A",
+                                          "content": "$59",
+                                          "fontFamily": "IBM Plex Mono",
+                                          "fontSize": 34,
+                                          "fontWeight": "700"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "id": "HinW0",
+                                          "name": "Period",
+                                          "fill": "#6B6B6B",
+                                          "content": "/seat/mo",
+                                          "fontFamily": "Geist",
+                                          "fontSize": 14,
+                                          "fontWeight": "500"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "iH6jS",
+                                      "name": "Plan Description",
+                                      "fill": "#3D3D3D",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "For multi-team operations with governance and shared standards.",
+                                      "lineHeight": 1.45,
+                                      "fontFamily": "Geist",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "LVVdn",
+                              "name": "Feature List",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 10,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "MJNPi",
+                                  "name": "Feature Row",
+                                  "width": "fill_container",
+                                  "gap": 10,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "ellipse",
+                                      "id": "V5XWH",
+                                      "name": "Feature Dot",
+                                      "opacity": 0.88,
+                                      "fill": "#1A1A1A",
+                                      "width": 10,
+                                      "height": 10
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "twnIJ",
+                                      "name": "Feature Text",
+                                      "fill": "#1A1A1A",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "Portfolio dashboards",
+                                      "fontFamily": "Geist",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "k0aCy",
+                                  "name": "Feature Row",
+                                  "width": "fill_container",
+                                  "gap": 10,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "ellipse",
+                                      "id": "E1nPeI",
+                                      "name": "Feature Dot",
+                                      "opacity": 0.88,
+                                      "fill": "#1A1A1A",
+                                      "width": 10,
+                                      "height": 10
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "ZIEOR",
+                                      "name": "Feature Text",
+                                      "fill": "#1A1A1A",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "Audit history",
+                                      "fontFamily": "Geist",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "yJsyU",
+                                  "name": "Feature Row",
+                                  "width": "fill_container",
+                                  "gap": 10,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "ellipse",
+                                      "id": "TSpmX",
+                                      "name": "Feature Dot",
+                                      "opacity": 0.88,
+                                      "fill": "#1A1A1A",
+                                      "width": 10,
+                                      "height": 10
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "Hb4l5",
+                                      "name": "Feature Text",
+                                      "fill": "#1A1A1A",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "SAML and SCIM",
+                                      "fontFamily": "Geist",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "hC7fB",
+                              "name": "Action Area",
+                              "width": "fill_container",
+                              "fill": "#E8DED3",
+                              "cornerRadius": 12,
+                              "stroke": "#D7CBC0",
+                              "strokeWidth": 1,
+                              "strokeAlignment": "inner",
+                              "padding": [
+                                14,
+                                16
+                              ],
+                              "justifyContent": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "c2wK83",
+                                  "name": "Action Label",
+                                  "fill": "#1A1A1A",
+                                  "content": "Talk to sales",
+                                  "fontFamily": "Geist",
+                                  "fontSize": 14,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "XLlvv",
+                          "name": "Enterprise Card",
+                          "width": "fill_container",
+                          "fill": "#C5BEB6",
+                          "cornerRadius": 16,
+                          "stroke": "#E1D7CD",
+                          "strokeWidth": 1,
+                          "strokeAlignment": "inner",
+                          "effect": {
+                            "type": "shadow",
+                            "shadowType": "outer",
+                            "color": "#0000000a",
+                            "offset": {
+                              "x": 0,
+                              "y": 1
+                            },
+                            "blur": 3
+                          },
+                          "layout": "vertical",
+                          "gap": 20,
+                          "padding": 24,
+                          "children": [
+                            {
+                              "type": "frame",
+                              "id": "L5UCrc",
+                              "name": "Card Top",
+                              "width": "fill_container",
+                              "justifyContent": "space_between",
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "DoE2f",
+                                  "name": "Card Meta",
+                                  "width": "fill_container",
+                                  "layout": "vertical",
+                                  "gap": 8,
+                                  "children": [
+                                    {
+                                      "type": "text",
+                                      "id": "T4Afb",
+                                      "name": "Plan Name",
+                                      "fill": "#1A1A1A",
+                                      "content": "Enterprise",
+                                      "fontFamily": "Geist",
+                                      "fontSize": 15,
+                                      "fontWeight": "600"
+                                    },
+                                    {
+                                      "type": "frame",
+                                      "id": "g1VHez",
+                                      "name": "Price Group",
+                                      "gap": 8,
+                                      "alignItems": "end",
+                                      "children": [
+                                        {
+                                          "type": "text",
+                                          "id": "qyvtL",
+                                          "name": "Price",
+                                          "fill": "#1A1A1A",
+                                          "content": "Custom",
+                                          "fontFamily": "IBM Plex Mono",
+                                          "fontSize": 34,
+                                          "fontWeight": "700"
+                                        },
+                                        {
+                                          "type": "text",
+                                          "id": "nUzre",
+                                          "name": "Period",
+                                          "fill": "#6B6B6B",
+                                          "fontFamily": "Geist",
+                                          "fontSize": 14,
+                                          "fontWeight": "500"
+                                        }
+                                      ]
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "V7cKV",
+                                      "name": "Plan Description",
+                                      "fill": "#3D3D3D",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "For regulated orgs that need procurement support and tailored controls.",
+                                      "lineHeight": 1.45,
+                                      "fontFamily": "Geist",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "T03RMP",
+                              "name": "Feature List",
+                              "width": "fill_container",
+                              "layout": "vertical",
+                              "gap": 10,
+                              "children": [
+                                {
+                                  "type": "frame",
+                                  "id": "NG5x2",
+                                  "name": "Feature Row",
+                                  "width": "fill_container",
+                                  "gap": 10,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "ellipse",
+                                      "id": "F7EmV",
+                                      "name": "Feature Dot",
+                                      "opacity": 0.88,
+                                      "fill": "#1A1A1A",
+                                      "width": 10,
+                                      "height": 10
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "ZwAHF",
+                                      "name": "Feature Text",
+                                      "fill": "#1A1A1A",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "Dedicated success lead",
+                                      "fontFamily": "Geist",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "mXQsm",
+                                  "name": "Feature Row",
+                                  "width": "fill_container",
+                                  "gap": 10,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "ellipse",
+                                      "id": "J4MOyl",
+                                      "name": "Feature Dot",
+                                      "opacity": 0.88,
+                                      "fill": "#1A1A1A",
+                                      "width": 10,
+                                      "height": 10
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "ePFIt",
+                                      "name": "Feature Text",
+                                      "fill": "#1A1A1A",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "Contracted SLA",
+                                      "fontFamily": "Geist",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                },
+                                {
+                                  "type": "frame",
+                                  "id": "tQtix",
+                                  "name": "Feature Row",
+                                  "width": "fill_container",
+                                  "gap": 10,
+                                  "alignItems": "center",
+                                  "children": [
+                                    {
+                                      "type": "ellipse",
+                                      "id": "NtuTM",
+                                      "name": "Feature Dot",
+                                      "opacity": 0.88,
+                                      "fill": "#1A1A1A",
+                                      "width": 10,
+                                      "height": 10
+                                    },
+                                    {
+                                      "type": "text",
+                                      "id": "UDAEe",
+                                      "name": "Feature Text",
+                                      "fill": "#1A1A1A",
+                                      "textGrowth": "fixed-width",
+                                      "width": "fill_container",
+                                      "content": "Security review support",
+                                      "fontFamily": "Geist",
+                                      "fontSize": 14,
+                                      "fontWeight": "normal"
+                                    }
+                                  ]
+                                }
+                              ]
+                            },
+                            {
+                              "type": "frame",
+                              "id": "yE3Iy",
+                              "name": "Action Area",
+                              "width": "fill_container",
+                              "fill": "#E8DED3",
+                              "cornerRadius": 12,
+                              "stroke": "#D7CBC0",
+                              "strokeWidth": 1,
+                              "strokeAlignment": "inner",
+                              "padding": [
+                                14,
+                                16
+                              ],
+                              "justifyContent": "center",
+                              "children": [
+                                {
+                                  "type": "text",
+                                  "id": "HYH4N",
+                                  "name": "Action Label",
+                                  "fill": "#1A1A1A",
+                                  "content": "Contact enterprise",
+                                  "fontFamily": "Geist",
+                                  "fontSize": 14,
+                                  "fontWeight": "600"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
