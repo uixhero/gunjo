@@ -22,13 +22,20 @@ const DocsTemplate = React.forwardRef<HTMLDivElement, DocsTemplateProps>(
             {...props}
         >
             {header}
-            <div className="grid flex-1 grid-cols-[200px_minmax(0,1fr)] md:grid-cols-[220px_minmax(0,1fr)_180px]">
-                <aside className="border-r border-border bg-muted/40 p-4 overflow-y-auto">
+            {/*
+             * Responsive, layout-only frame: a single column on mobile (the
+             * sidebar is hidden — the consumer supplies a drawer/Sheet for
+             * mobile nav), a 2-column sidebar+content grid at lg, and the
+             * 3-column sidebar+content+TOC grid at xl. The base breakpoint must
+             * not pin a fixed sidebar column (it squished content on phones).
+             */}
+            <div className="grid flex-1 grid-cols-1 lg:grid-cols-[220px_minmax(0,1fr)] xl:grid-cols-[220px_minmax(0,1fr)_180px]">
+                <aside className="hidden lg:block border-r border-border bg-muted/40 p-4 overflow-y-auto">
                     {sidebar}
                 </aside>
                 <main className="p-6 md:p-10 overflow-x-auto">{children}</main>
                 {toc ? (
-                    <aside className="hidden md:block border-l border-border p-4 overflow-y-auto text-sm">
+                    <aside className="hidden xl:block border-l border-border p-4 overflow-y-auto text-sm">
                         {toc}
                     </aside>
                 ) : null}

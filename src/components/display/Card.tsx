@@ -28,19 +28,31 @@ const CardHeader = React.forwardRef<
 ))
 CardHeader.displayName = "CardHeader"
 
-const CardTitle = React.forwardRef<
-    HTMLParagraphElement,
-    React.HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-    <h3
-        ref={ref}
-        className={cn(
-            "text-xl font-semibold leading-none tracking-tight",
-            className
-        )}
-        {...props}
-    />
-))
+export interface CardTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
+    /**
+     * The element/heading level to render. Defaults to `"h3"`. Set this to keep
+     * a correct, skip-free heading order when a Card sits near a page heading
+     * (e.g. `as="h2"` under a page `<h1>`), or `"p"`/`"div"` for a non-heading
+     * card label. The visual style is identical regardless of element.
+     */
+    as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div"
+}
+
+const CardTitle = React.forwardRef<HTMLHeadingElement, CardTitleProps>(
+    ({ className, as = "h3", ...props }, ref) => {
+        const Comp = as as React.ElementType
+        return (
+            <Comp
+                ref={ref}
+                className={cn(
+                    "text-xl font-semibold leading-none tracking-tight",
+                    className
+                )}
+                {...props}
+            />
+        )
+    }
+)
 CardTitle.displayName = "CardTitle"
 
 const CardDescription = React.forwardRef<
