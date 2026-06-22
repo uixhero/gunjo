@@ -41,6 +41,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
             decrementLabel = "Decrement",
             layout = "spinner",
             disabled,
+            onBlur,
             ...props
         },
         ref
@@ -55,16 +56,32 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
             [min, max]
         )
 
+        // Hold a draft string while the field is empty/partial ("" / "-") so the
+        // user can clear a cell to retype without it snapping back to the old
+        // value; commit a number only when the text parses. (#198)
+        const [draft, setDraft] = React.useState<string | null>(null)
+        const display = draft !== null ? draft : (value ?? "")
+
         const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
             const raw = event.target.value
-            if (raw === "" || raw === "-") return
             const parsed = Number(raw)
-            if (Number.isNaN(parsed)) return
+            if (raw === "" || raw === "-" || Number.isNaN(parsed)) {
+                setDraft(raw)
+                return
+            }
+            setDraft(null)
             onValueChange?.(clamp(parsed))
+        }
+
+        const handleBlur = (event: React.FocusEvent<HTMLInputElement>) => {
+            // Drop the draft so the display snaps back to the committed value.
+            setDraft(null)
+            onBlur?.(event)
         }
 
         const adjust = (delta: number) => {
             const current = value ?? 0
+            setDraft(null)
             onValueChange?.(clamp(current + delta))
         }
 
@@ -96,8 +113,9 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
                         ref={ref}
                         type="number"
                         inputMode={step % 1 === 0 ? "numeric" : "decimal"}
-                        value={value ?? ""}
+                        value={display}
                         onChange={handleChange}
+                        onBlur={handleBlur}
                         disabled={disabled}
                         min={min}
                         max={max}
@@ -132,8 +150,9 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
                     ref={ref}
                     type="number"
                     inputMode={step % 1 === 0 ? "numeric" : "decimal"}
-                    value={value ?? ""}
+                    value={display}
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     disabled={disabled}
                     min={min}
                     max={max}
