@@ -49,7 +49,10 @@ const Statistic = React.forwardRef<HTMLDivElement, StatisticProps>(
                 {...props}
             >
                 <p className="text-xs font-medium text-muted-foreground">{label}</p>
-                <p className="text-2xl font-bold tracking-tight [overflow-wrap:anywhere]">{value}</p>
+                {/* `break-words` (not `anywhere`) keeps a figure's min-content width
+                    so a 2-col grid can't crush it mid-digit (−¥1,055,9 / 60);
+                    `tabular-nums` aligns the digits. Text values still wrap. (#188) */}
+                <p className="text-2xl font-bold tracking-tight tabular-nums break-words">{value}</p>
                 {change !== undefined ? (
                     <div className={cn("flex flex-wrap items-center gap-x-1 gap-y-0.5 text-xs", TONE_CLASS[resolvedTone])}>
                         <TrendIcon className="h-3 w-3" />

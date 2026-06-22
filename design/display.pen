@@ -1302,6 +1302,163 @@
         },
         {
           "type": "frame",
+          "id": "galleryBottom",
+          "name": "Gallery/Bottom",
+          "reusable": true,
+          "width": 360,
+          "fill": "#ffffff",
+          "layout": "vertical",
+          "gap": 12,
+          "padding": 0,
+          "children": [
+            {
+              "type": "frame",
+              "id": "galleryBottomMain",
+              "width": "fill_container",
+              "height": 240,
+              "fill": "#e2e8f0",
+              "cornerRadius": 8,
+              "stroke": "#cbd5e1",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "galleryBottomMainLabel",
+                  "fill": "#64748b",
+                  "content": "Main image",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "galleryBottomThumbs",
+              "width": "fill_container",
+              "fill": "#ffffff",
+              "gap": 8,
+              "padding": 0,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "galleryBottomThumbActive",
+                  "width": 72,
+                  "height": 54,
+                  "fill": "#cbd5e1",
+                  "cornerRadius": 6,
+                  "stroke": "#394794",
+                  "strokeWidth": 2,
+                  "strokeAlignment": "outer"
+                },
+                {
+                  "type": "frame",
+                  "id": "galleryBottomThumbTwo",
+                  "width": 72,
+                  "height": 54,
+                  "fill": "#e2e8f0",
+                  "cornerRadius": 6,
+                  "stroke": "#e2e8f0",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner"
+                },
+                {
+                  "type": "frame",
+                  "id": "galleryBottomThumbThree",
+                  "width": 72,
+                  "height": 54,
+                  "fill": "#f1f5f9",
+                  "cornerRadius": 6,
+                  "stroke": "#e2e8f0",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "galleryStart",
+          "name": "Gallery/Start",
+          "reusable": true,
+          "width": 460,
+          "fill": "#ffffff",
+          "gap": 12,
+          "padding": 0,
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "galleryStartThumbs",
+              "layout": "vertical",
+              "fill": "#ffffff",
+              "gap": 8,
+              "padding": 0,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "galleryStartThumbActive",
+                  "width": 56,
+                  "height": 56,
+                  "fill": "#cbd5e1",
+                  "cornerRadius": 6,
+                  "stroke": "#394794",
+                  "strokeWidth": 2,
+                  "strokeAlignment": "outer"
+                },
+                {
+                  "type": "frame",
+                  "id": "galleryStartThumbTwo",
+                  "width": 56,
+                  "height": 56,
+                  "fill": "#e2e8f0",
+                  "cornerRadius": 6,
+                  "stroke": "#e2e8f0",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner"
+                },
+                {
+                  "type": "frame",
+                  "id": "galleryStartThumbThree",
+                  "width": 56,
+                  "height": 56,
+                  "fill": "#f1f5f9",
+                  "cornerRadius": 6,
+                  "stroke": "#e2e8f0",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner"
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "galleryStartMain",
+              "width": "fill_container",
+              "height": 300,
+              "fill": "#e2e8f0",
+              "cornerRadius": 8,
+              "stroke": "#cbd5e1",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "children": [
+                {
+                  "type": "text",
+                  "id": "galleryStartMainLabel",
+                  "fill": "#64748b",
+                  "content": "Main image",
+                  "fontFamily": "Inter",
+                  "fontSize": 14,
+                  "fontWeight": "500"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
           "id": "Brd0E",
           "name": "showcase/skeleton",
           "fill": "#ffffff",
@@ -1525,6 +1682,45 @@
               "id": "KQYhq",
               "fill": "#64748b",
               "content": "Color preview chip with copyable hex/rgb value.",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "galleryFrame",
+          "name": "showcase/gallery",
+          "fill": "#ffffff",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": 16,
+          "children": [
+            {
+              "id": "galleryRefBottom",
+              "type": "ref",
+              "ref": "galleryBottom"
+            },
+            {
+              "id": "galleryRefStart",
+              "type": "ref",
+              "ref": "galleryStart"
+            },
+            {
+              "type": "text",
+              "id": "galleryTitle",
+              "fill": "#0c0c12",
+              "content": "Gallery",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "galleryDesc",
+              "fill": "#64748b",
+              "content": "Main image viewer with selectable thumbnail navigation.",
               "fontFamily": "Inter",
               "fontSize": 12,
               "fontWeight": "normal"
