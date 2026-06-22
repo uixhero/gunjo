@@ -12,12 +12,15 @@ export interface PasswordInputProps
     onShowChange?: (show: boolean) => void
     showLabel?: string
     hideLabel?: string
+    /** Classes for the inner `<input>` (the `className` prop styles the wrapper). */
+    inputClassName?: string
 }
 
 const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(
     (
         {
             className,
+            inputClassName,
             show: showProp,
             onShowChange,
             showLabel = "Show password",
@@ -52,7 +55,11 @@ const PasswordInput = React.forwardRef<HTMLInputElement, PasswordInputProps>(
                     ref={ref}
                     type={show ? "text" : "password"}
                     disabled={disabled}
-                    className="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 pr-10 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                    className={cn(
+                        "flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 pr-10 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring",
+                        "aria-invalid:border-destructive-border aria-invalid:ring-destructive-border aria-invalid:focus-visible:ring-destructive-border",
+                        inputClassName
+                    )}
                     {...props}
                 />
                 <button
