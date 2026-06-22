@@ -102,24 +102,38 @@ RadioGroup.displayName = "RadioGroup"
 
 export interface RadioGroupItemProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     value: string
+    /**
+     * Optional visible label rendered next to the radio and wired as its
+     * accessible name (`aria-labelledby`), so callers don't hand-roll a `<label>`
+     * — consistent with `Switch`/`Checkbox`. Omit for a bare radio.
+     */
+    label?: React.ReactNode
+    /** Optional helper text under the label, wired via `aria-describedby`. */
+    description?: React.ReactNode
 }
 
 const RadioGroupItem = React.forwardRef<HTMLButtonElement, RadioGroupItemProps>(
-    ({ className, value, ...props }, ref) => {
+    ({ className, value, label, description, disabled, ...props }, ref) => {
         const context = React.useContext(RadioGroupContext)
         const checked = context?.value === value
         const itemState: RadioGroupVariantKey = checked ? "checked" : radioGroupDefaultVariantKey
+        const reactId = React.useId()
+        const labelId = label ? `${reactId}-label` : undefined
+        const descriptionId = description ? `${reactId}-description` : undefined
 
-        return (
+        const control = (
             <button
                 type="button"
                 role="radio"
                 aria-checked={checked}
+                aria-labelledby={labelId}
+                aria-describedby={descriptionId}
                 tabIndex={checked ? 0 : -1}
                 onClick={() => context?.onValueChange?.(value)}
                 ref={ref}
+                disabled={disabled}
                 className={cn(
-                    "aspect-square h-4 w-4 rounded-lg border bg-transparent text-foreground ring-offset-background focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+                    "aspect-square h-4 w-4 shrink-0 rounded-lg border bg-transparent text-foreground ring-offset-background focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
                     radioGroupItemStateClasses[itemState],
                     className
                 )}
@@ -131,6 +145,33 @@ const RadioGroupItem = React.forwardRef<HTMLButtonElement, RadioGroupItemProps>(
                     </div>
                 )}
             </button>
+        )
+
+        if (!label && !description) return control
+
+        return (
+            <span className="inline-flex items-start gap-2">
+                {control}
+                <span className="flex flex-col">
+                    {label ? (
+                        <span
+                            id={labelId}
+                            className={cn(
+                                "text-sm font-medium leading-none",
+                                disabled ? "text-muted-foreground" : "cursor-pointer"
+                            )}
+                            onClick={disabled ? undefined : () => context?.onValueChange?.(value)}
+                        >
+                            {label}
+                        </span>
+                    ) : null}
+                    {description ? (
+                        <span id={descriptionId} className="mt-1 text-xs text-muted-foreground">
+                            {description}
+                        </span>
+                    ) : null}
+                </span>
+            </span>
         )
     }
 )
