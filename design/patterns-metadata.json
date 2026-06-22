@@ -36,8 +36,8 @@
     "description": "Asset management workspace with folders, grid area, and details pane."
   },
   "pricingTemplate": {
-    "title": "PricingTemplate",
-    "description": "Three-tier pricing layout with featured plan highlight."
+    "title": "Simple pricing that scales with usage, not complexity.",
+    "description": "Choose monthly for flexibility or yearly for the best unit economics. Every plan includes shared projects, role-based access, and workflow analytics."
   },
   "blogTemplate": {
     "title": "BlogTemplate",

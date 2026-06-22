@@ -18,13 +18,14 @@ import {
 //  - sampleTextId  → text-sample (label-style)
 //  - nodeIds       → structured (with extracted node geometry)
 //  - otherwise     → atom-style (variants only)
-function buildOneComponentSpec({ root, definition, structuredSpecOptions }) {
+function buildOneComponentSpec({ root, documentRoot, definition, structuredSpecOptions }) {
+  const specRoot = definition.useDocumentRoot ? documentRoot : root;
   let spec;
   if (definition.syntheticSpec) {
     spec = definition.syntheticSpec;
   } else if (definition.sampleTextId) {
     spec = buildTextSampleSpec({
-      root,
+      root: specRoot,
       frameId: definition.frameId,
       titleId: definition.titleId,
       descId: definition.descId,
@@ -32,7 +33,7 @@ function buildOneComponentSpec({ root, definition, structuredSpecOptions }) {
     });
   } else if (definition.nodeIds !== undefined) {
     spec = buildStructuredSpec({
-      root,
+      root: specRoot,
       frameId: definition.frameId,
       titleId: definition.titleId,
       descId: definition.descId,
@@ -42,7 +43,7 @@ function buildOneComponentSpec({ root, definition, structuredSpecOptions }) {
     });
   } else {
     spec = buildComponentSpec({
-      root,
+      root: specRoot,
       frameId: definition.frameId,
       titleId: definition.titleId,
       descId: definition.descId,
@@ -94,11 +95,11 @@ function applyAdditionalVariants(spec, additionalVariants) {
   };
 }
 
-function buildCategoryComponents({ root, definitions, structuredSpecOptions }) {
+function buildCategoryComponents({ root, documentRoot, definitions, structuredSpecOptions }) {
   return Object.fromEntries(
     definitions.map((definition) => [
       definition.key,
-      buildOneComponentSpec({ root, definition, structuredSpecOptions }),
+      buildOneComponentSpec({ root, documentRoot, definition, structuredSpecOptions }),
     ])
   );
 }
@@ -149,12 +150,18 @@ export function syncCategorySpecs({ root = ROOT, category } = {}) {
   if (!penRoot) {
     throw new Error(`design:sync: ${config.penPath} has no root frame`);
   }
+  const penSearchRoot = {
+    id: "__pen_root__",
+    type: "frame",
+    children: Array.isArray(pen.children) ? pen.children : [penRoot],
+  };
 
   const payload = {
     schemaVersion: 1,
     source: config.penPath,
     components: buildCategoryComponents({
       root: penRoot,
+      documentRoot: penSearchRoot,
       definitions: registryEntry.definitions,
       structuredSpecOptions: registryEntry.structuredSpecOptions,
     }),

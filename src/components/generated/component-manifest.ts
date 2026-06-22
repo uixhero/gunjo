@@ -119,10 +119,12 @@ export const componentManifest = {
       "stability": "experimental"
     },
     "pricingTemplate": {
-      "title": null,
-      "description": null,
-      "variantKeys": [],
-      "defaultVariantKey": null,
+      "title": "Simple pricing that scales with usage, not complexity.",
+      "description": "Choose monthly for flexibility or yearly for the best unit economics. Every plan includes shared projects, role-based access, and workflow analytics.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
       "sourceFile": "src/components/patterns/PricingTemplate.tsx",
       "specSource": "design/patterns.pen",
       "stability": "experimental"

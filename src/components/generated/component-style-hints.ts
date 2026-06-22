@@ -167,12 +167,19 @@ export const componentStyleHints = {
       "variantColorHints": {}
     },
     "pricingTemplate": {
-      "variantKeys": [],
-      "defaultVariantKey": null,
-      "baseClasses": "",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "flex flex-col items-center w-full gap-8",
       "baseColorHint": null,
-      "slotIds": [],
-      "variantClasses": {},
+      "slotIds": [
+        "j0i4u",
+        "c2Q5YO"
+      ],
+      "variantClasses": {
+        "default": "flex flex-col items-center w-full gap-8"
+      },
       "variantColorHints": {}
     },
     "responsiveAuthCardPattern": {
