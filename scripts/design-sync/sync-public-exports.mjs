@@ -82,6 +82,10 @@ function renderIndexSource(sections) {
   // Hand-authored runtime primitives with no design node (no `.pen`): theme
   // coordination lives here alongside `cn`, not in a spec'd category. (#171)
   lines.push("export * from './components/utility/ThemeProvider';");
+  // Number / currency / percent formatters (JPY-first) — fintech/commerce/
+  // analytics screens hand-rolled these for lack of a shipped helper. (#180)
+  lines.push("export { formatCurrency, formatNumber, formatPercent } from './lib/format';");
+  lines.push("export type { FormatCurrencyOptions, FormatNumberOptions, FormatPercentOptions } from './lib/format';");
   lines.push("export { cn } from './lib/utils';");
   lines.push("export { componentManifest } from './components/generated/component-manifest';");
   lines.push("export { componentStyleHints } from './components/generated/component-style-hints';");
