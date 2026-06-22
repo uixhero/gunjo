@@ -309,6 +309,13 @@ export function MembersTable() {
                     data={TEAM_DATA}
                     filter={{ columnId: "name", placeholder: labels.filterPlaceholder }}
                     labels={labels}
+                    renderCard={(m) => (
+                        <div className="flex flex-col gap-1">
+                            <span className="font-medium">{m.name}</span>
+                            <span className="capitalize text-muted-foreground">{m.role} · {m.status}</span>
+                            <span className="text-xs text-muted-foreground">{m.joinedAt}</span>
+                        </div>
+                    )}
                 />
             </ComponentPreview>
 
