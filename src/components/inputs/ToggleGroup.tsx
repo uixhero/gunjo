@@ -26,18 +26,37 @@ const ToggleGroup = React.forwardRef<
     React.ComponentPropsWithoutRef<typeof ToggleGroupPrimitive.Root> & {
         variant?: ToggleGroupVariantKey
         size?: ToggleGroupSize
+        /**
+         * When set, clicking the active item no longer clears the selection —
+         * Radix's empty value (`""` for single, `[]` for multiple) is ignored.
+         * Use for segmented controls that must always keep one choice
+         * (e.g. size / color variant pickers). (#170)
+         */
+        disallowEmpty?: boolean
     }
->(({ className, children, variant, size, ...props }, ref) => (
-    <ToggleGroupPrimitive.Root
-        ref={ref}
-        className={cn("flex items-center justify-center gap-1", className)}
-        {...props}
-    >
-        <ToggleGroupContext.Provider value={{ variant, size }}>
-            {children}
-        </ToggleGroupContext.Provider>
-    </ToggleGroupPrimitive.Root>
-))
+>(({ className, children, variant, size, disallowEmpty, onValueChange, ...props }, ref) => {
+    const handleValueChange = React.useCallback(
+        (next: string | string[]) => {
+            if (disallowEmpty && (next === "" || (Array.isArray(next) && next.length === 0))) return
+            // Radix narrows onValueChange by `type`; forward the raw value.
+            ;(onValueChange as ((value: string | string[]) => void) | undefined)?.(next)
+        },
+        [disallowEmpty, onValueChange]
+    )
+
+    return (
+        <ToggleGroupPrimitive.Root
+            ref={ref}
+            className={cn("flex items-center justify-center gap-1", className)}
+            onValueChange={onValueChange ? (handleValueChange as never) : undefined}
+            {...props}
+        >
+            <ToggleGroupContext.Provider value={{ variant, size }}>
+                {children}
+            </ToggleGroupContext.Provider>
+        </ToggleGroupPrimitive.Root>
+    )
+})
 
 ToggleGroup.displayName = ToggleGroupPrimitive.Root.displayName
 

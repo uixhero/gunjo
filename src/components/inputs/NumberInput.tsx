@@ -1,7 +1,12 @@
 "use client"
 
 import * as React from "react"
-import { IconChevronDown as ChevronDown, IconChevronUp as ChevronUp } from "@tabler/icons-react";
+import {
+    IconChevronDown as ChevronDown,
+    IconChevronUp as ChevronUp,
+    IconMinus as Minus,
+    IconPlus as Plus,
+} from "@tabler/icons-react";
 
 import { cn } from "../../lib/utils"
 
@@ -14,6 +19,13 @@ export interface NumberInputProps
     step?: number
     incrementLabel?: string
     decrementLabel?: string
+    /**
+     * `"spinner"` (default) renders the conventional input with stacked up/down
+     * chevrons. `"stepper"` renders a horizontal `− [value] +` control, the
+     * layout commerce quantity pickers expect. The native `<input type=number>`
+     * keeps its spinbutton semantics in both layouts. (#169)
+     */
+    layout?: "spinner" | "stepper"
 }
 
 const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
@@ -27,6 +39,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
             step = 1,
             incrementLabel = "Increment",
             decrementLabel = "Decrement",
+            layout = "spinner",
             disabled,
             ...props
         },
@@ -53,6 +66,57 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
         const adjust = (delta: number) => {
             const current = value ?? 0
             onValueChange?.(clamp(current + delta))
+        }
+
+        const atMax = max !== undefined && (value ?? 0) >= max
+        const atMin = min !== undefined && (value ?? 0) <= min
+
+        if (layout === "stepper") {
+            return (
+                <div
+                    className={cn(
+                        "inline-flex items-center rounded-md border border-input bg-transparent shadow-sm focus-within:outline-none focus-within:ring-1 focus-within:ring-ring",
+                        disabled && "opacity-50 pointer-events-none",
+                        className
+                    )}
+                    data-slot="number-input"
+                    data-layout="stepper"
+                >
+                    <button
+                        type="button"
+                        tabIndex={-1}
+                        onClick={() => adjust(-step)}
+                        disabled={disabled || atMin}
+                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-l-md text-muted-foreground hover:bg-muted hover:text-foreground disabled:opacity-50"
+                        aria-label={decrementLabel}
+                    >
+                        <Minus className="h-4 w-4" />
+                    </button>
+                    <input
+                        ref={ref}
+                        type="number"
+                        inputMode={step % 1 === 0 ? "numeric" : "decimal"}
+                        value={value ?? ""}
+                        onChange={handleChange}
+                        disabled={disabled}
+                        min={min}
+                        max={max}
+                        step={step}
+                        className="h-9 w-12 border-x border-input bg-transparent px-1 py-1 text-center text-sm placeholder:text-muted-foreground focus-visible:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
+                        {...props}
+                    />
+                    <button
+                        type="button"
+                        tabIndex={-1}
+                        onClick={() => adjust(step)}
+                        disabled={disabled || atMax}
+                        className="flex h-9 w-9 shrink-0 items-center justify-center rounded-r-md text-muted-foreground hover:bg-muted hover:text-foreground disabled:opacity-50"
+                        aria-label={incrementLabel}
+                    >
+                        <Plus className="h-4 w-4" />
+                    </button>
+                </div>
+            )
         }
 
         return (
