@@ -12,10 +12,30 @@ const formGroupVariants = cva(
 interface FormFieldContextValue {
     /** id applied to the control (so FormLabel's htmlFor matches). */
     id: string
-    descriptionId: string
+    /**
+     * id of the `FormDescription`, or `undefined` when the field renders none.
+     * `FormControl` only wires `aria-describedby` to it when defined, so a
+     * description-less field never references a non-existent id.
+     */
+    descriptionId?: string
     messageId: string
     error?: React.ReactNode
     required?: boolean
+}
+
+/** Recursively check whether `children` contains an element of `type`. */
+function containsElementType(children: React.ReactNode, type: React.ElementType): boolean {
+    let found = false
+    React.Children.forEach(children, (child) => {
+        if (found || !React.isValidElement(child)) return
+        if (child.type === type) {
+            found = true
+            return
+        }
+        const nested = (child.props as { children?: React.ReactNode }).children
+        if (nested) found = containsElementType(nested, type)
+    })
+    return found
 }
 
 const FormFieldContext = React.createContext<FormFieldContextValue | null>(null)
@@ -45,15 +65,19 @@ const FormField = React.forwardRef<HTMLDivElement, FormFieldProps>(
     ({ className, error, required, id: idProp, ...props }, ref) => {
         const reactId = React.useId()
         const id = idProp ?? `${reactId}-control`
+        // Only reserve a description id when a FormDescription is actually
+        // rendered — otherwise FormControl would point aria-describedby at a
+        // non-existent id (a11y defect surfaced by cold-test #32). (#175)
+        const hasDescription = containsElementType(props.children, FormDescription)
         const value = React.useMemo<FormFieldContextValue>(
             () => ({
                 id,
-                descriptionId: `${reactId}-description`,
+                descriptionId: hasDescription ? `${reactId}-description` : undefined,
                 messageId: `${reactId}-message`,
                 error,
                 required,
             }),
-            [id, reactId, error, required]
+            [id, reactId, error, required, hasDescription]
         )
         return (
             <FormFieldContext.Provider value={value}>
