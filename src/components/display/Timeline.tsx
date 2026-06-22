@@ -17,8 +17,9 @@ Timeline.displayName = "Timeline"
 export interface TimelineItemProps extends React.LiHTMLAttributes<HTMLLIElement> {
     /** Whether to draw a connector line below this item. Default true; set false on last item. */
     connector?: boolean
-    /** Marker variant. */
-    variant?: "default" | "muted" | "active" | "outline"
+    /** Marker variant. Semantic tones (success/warning/destructive/info) suit
+     *  status and approval timelines — they match the Badge/Button tone set. (#205) */
+    variant?: "default" | "muted" | "active" | "outline" | "success" | "warning" | "destructive" | "info"
     /** Custom marker node (icon, etc.). Overrides default dot. */
     marker?: React.ReactNode
 }
@@ -28,6 +29,10 @@ const VARIANT_CLASS = {
     muted: "bg-muted-foreground",
     active: "gunjo-timeline-marker-active border-2 border-primary-border bg-primary",
     outline: "border-2 border-foreground bg-background",
+    success: "bg-success-strong",
+    warning: "bg-warning-strong",
+    destructive: "bg-destructive-strong",
+    info: "bg-info-strong",
 } as const
 
 function hasTimelineTime(children: React.ReactNode): boolean {
