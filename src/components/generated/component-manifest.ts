@@ -1090,6 +1090,18 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "gallery": {
+      "title": "Gallery",
+      "description": "Main image plus a selectable thumbnail strip with click and keyboard swap, for product detail and media galleries.",
+      "variantKeys": [
+        "bottom",
+        "start"
+      ],
+      "defaultVariantKey": "bottom",
+      "sourceFile": "src/components/display/Gallery.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "gaugeChart": {
       "title": "GaugeChart",
       "description": "HTML/CSS semi-circle gauge for scores, progress, and capacity readings with hover/focus value tooltip.",
@@ -1284,6 +1296,19 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "rating": {
+      "title": "Rating",
+      "description": "Read-only star rating display with half-star support, optional numeric value and review count, for product, review, and feedback summaries.",
+      "variantKeys": [
+        "default",
+        "sm",
+        "lg"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/Rating.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "retentionCohortCard": {
       "title": "Retention Cohort Card",
       "description": "HTML/CSS cohort retention card for dashboard grids with editable cohorts, periods, values, and hover/focus cell tooltips.",
@@ -1406,6 +1431,19 @@ export const componentManifest = {
       "variantKeys": [],
       "defaultVariantKey": null,
       "sourceFile": "src/components/display/Statistic.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
+    "swatchGroup": {
+      "title": "SwatchGroup",
+      "description": "Selectable color swatch group (single-select) with roving keyboard focus and disabled out-of-stock swatches, for product variant and theme pickers.",
+      "variantKeys": [
+        "default",
+        "sm",
+        "lg"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/SwatchGroup.tsx",
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
