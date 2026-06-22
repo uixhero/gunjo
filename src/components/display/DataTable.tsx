@@ -80,6 +80,13 @@ export interface DataTableProps<TData, TValue> {
      * select) are ignored so per-row actions and selection still work.
      */
     onRowClick?: (row: TData) => void
+    /**
+     * When set, mobile (`< md`) renders the same sorted/paginated rows as a
+     * stacked card list instead of a horizontally-scrolling table; the `<table>`
+     * is shown from `md` up. Without it, the table is shown at every width
+     * (and scrolls horizontally on small screens). (#195)
+     */
+    renderCard?: (row: TData) => React.ReactNode
     className?: string
 }
 
@@ -169,6 +176,7 @@ export function DataTable<TData, TValue>({
     headerActions,
     getRowState,
     onRowClick,
+    renderCard,
     className,
 }: DataTableProps<TData, TValue>) {
     const [sorting, setSorting] = React.useState<SortingState>([])
@@ -302,7 +310,7 @@ export function DataTable<TData, TValue>({
                 ) : null}
             </div>
 
-            <div className="overflow-x-auto rounded-md border">
+            <div className={cn("overflow-x-auto rounded-md border", renderCard && "hidden md:block")}>
                 <table className="w-full min-w-[720px] table-fixed caption-bottom text-sm">
                     <colgroup>
                         {visibleColumns.map((column) => {
@@ -453,6 +461,54 @@ export function DataTable<TData, TValue>({
                     </tbody>
                 </table>
             </div>
+
+            {renderCard ? (
+                <div className="flex flex-col gap-2 md:hidden">
+                    {table.getRowModel().rows?.length ? (
+                        table.getRowModel().rows.map((row) => {
+                            const rowState = getRowState?.(row.original, row.index) ?? (row.getIsSelected() ? "selected" : undefined)
+                            return (
+                                <div
+                                    key={row.id}
+                                    data-state={rowState}
+                                    role={onRowClick ? "button" : undefined}
+                                    tabIndex={onRowClick ? 0 : undefined}
+                                    onClick={
+                                        onRowClick
+                                            ? (event) => {
+                                                  if (isInteractiveTarget(event.target)) return
+                                                  onRowClick(row.original)
+                                              }
+                                            : undefined
+                                    }
+                                    onKeyDown={
+                                        onRowClick
+                                            ? (event) => {
+                                                  if (event.target !== event.currentTarget) return
+                                                  if (event.key === "Enter" || event.key === " ") {
+                                                      event.preventDefault()
+                                                      onRowClick(row.original)
+                                                  }
+                                              }
+                                            : undefined
+                                    }
+                                    className={cn(
+                                        "rounded-md border p-3 text-sm transition-colors data-[state=selected]:border-ring data-[state=selected]:bg-muted",
+                                        onRowClick &&
+                                            "cursor-pointer hover:bg-muted/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                    )}
+                                >
+                                    {renderCard(row.original)}
+                                </div>
+                            )
+                        })
+                    ) : (
+                        <div className="rounded-md border px-3 py-6 text-left text-muted-foreground sm:text-center">
+                            {labels?.noResults ?? "No results."}
+                        </div>
+                    )}
+                </div>
+            ) : null}
 
             <div className="grid w-full grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-2 sm:hidden">
                 <div className="flex items-center gap-1">
