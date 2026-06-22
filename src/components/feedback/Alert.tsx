@@ -42,16 +42,27 @@ const Alert = React.forwardRef<
 ))
 Alert.displayName = "Alert"
 
-const AlertTitle = React.forwardRef<
-    HTMLParagraphElement,
-    React.HTMLAttributes<HTMLHeadingElement>
->(({ className, ...props }, ref) => (
-    <h5
-        ref={ref}
-        className={cn("flex min-h-4 items-center font-medium font-semibold leading-none tracking-tight", className)}
-        {...props}
-    />
-))
+export interface AlertTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
+    /**
+     * The element to render. Defaults to `"h5"`. Set this (e.g. `as="h2"` or
+     * `"p"`/`"div"`) to keep a skip-free heading order when an Alert sits under
+     * another heading — the visual style is identical regardless of element.
+     */
+    as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div"
+}
+
+const AlertTitle = React.forwardRef<HTMLHeadingElement, AlertTitleProps>(
+    ({ className, as = "h5", ...props }, ref) => {
+        const Comp = as as React.ElementType
+        return (
+            <Comp
+                ref={ref}
+                className={cn("flex min-h-4 items-center font-medium font-semibold leading-none tracking-tight", className)}
+                {...props}
+            />
+        )
+    }
+)
 AlertTitle.displayName = "AlertTitle"
 
 const AlertDescription = React.forwardRef<
