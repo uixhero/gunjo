@@ -86,6 +86,9 @@ function renderIndexSource(sections) {
   // analytics screens hand-rolled these for lack of a shipped helper. (#180)
   lines.push("export { formatCurrency, formatNumber, formatPercent } from './lib/format';");
   lines.push("export type { FormatCurrencyOptions, FormatNumberOptions, FormatPercentOptions } from './lib/format';");
+  // CSV export helpers — data/admin/statement screens hand-rolled BOM+quoting. (#189)
+  lines.push("export { toCsv, downloadCsv } from './lib/csv';");
+  lines.push("export type { ToCsvOptions } from './lib/csv';");
   lines.push("export { cn } from './lib/utils';");
   lines.push("export { componentManifest } from './components/generated/component-manifest';");
   lines.push("export { componentStyleHints } from './components/generated/component-style-hints';");

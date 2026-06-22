@@ -197,6 +197,8 @@ export type { ColumnDef } from '@tanstack/react-table';
 export * from './components/utility/ThemeProvider';
 export { formatCurrency, formatNumber, formatPercent } from './lib/format';
 export type { FormatCurrencyOptions, FormatNumberOptions, FormatPercentOptions } from './lib/format';
+export { toCsv, downloadCsv } from './lib/csv';
+export type { ToCsvOptions } from './lib/csv';
 export { cn } from './lib/utils';
 export { componentManifest } from './components/generated/component-manifest';
 export { componentStyleHints } from './components/generated/component-style-hints';
