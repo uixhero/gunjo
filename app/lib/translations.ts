@@ -1575,6 +1575,7 @@ export const translations: Record<
       SidebarItem: "サイドバー項目",
       SortButton: "並び替え",
       Statistic: "統計",
+      EditableDataTable: "編集可能データテーブル",
       Rating: "レーティング",
       SwatchGroup: "スウォッチグループ",
       Gallery: "ギャラリー",

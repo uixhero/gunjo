@@ -4298,6 +4298,47 @@
           "reusable": true
         }
       ]
+    },
+    "editableDataTable": {
+      "frameId": "synthetic:editableDataTable",
+      "title": "EditableDataTable",
+      "description": "Editable line-item grid: rows of consumer-rendered editor cells with add/remove row, a totals/footer row, per-cell accessible labels, and a desktop table that stacks into mobile cards. For invoices, journals, estimates, and timesheets.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:compact",
+          "name": "compact",
+          "key": "compact",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
     }
   }
 }

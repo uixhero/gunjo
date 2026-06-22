@@ -111,6 +111,7 @@ export * from './components/display/DataTable';
 export * from './components/display/DistributionBar';
 export * from './components/display/DocNote';
 export * from './components/display/DonutChart';
+export * from './components/display/EditableDataTable';
 export * from './components/display/EmptyState';
 export * from './components/display/FileTree';
 export * from './components/display/Gallery';

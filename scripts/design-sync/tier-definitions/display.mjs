@@ -729,4 +729,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
       ],
     }),
   },
+  {
+    key: "editableDataTable",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:editableDataTable",
+      title: "EditableDataTable",
+      description: "Editable line-item grid: rows of consumer-rendered editor cells with add/remove row, a totals/footer row, per-cell accessible labels, and a desktop table that stacks into mobile cards. For invoices, journals, estimates, and timesheets.",
+      variants: [
+        // Block (fill) container, no root padding (cells carry their own).
+        createSyntheticVariant("default", { padding: null }),
+        createSyntheticVariant("compact", { padding: null }),
+      ],
+    }),
+  },
 ];
