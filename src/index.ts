@@ -194,6 +194,7 @@ export type { ChartColor, ChartDataPoint, ChartTone } from './components/display
 export type { ColumnDef } from '@tanstack/react-table';
 
 /** Utility */
+export * from './components/utility/ThemeProvider';
 export { cn } from './lib/utils';
 export { componentManifest } from './components/generated/component-manifest';
 export { componentStyleHints } from './components/generated/component-style-hints';

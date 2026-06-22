@@ -79,6 +79,9 @@ function renderIndexSource(sections) {
   }
 
   lines.push("/** Utility */");
+  // Hand-authored runtime primitives with no design node (no `.pen`): theme
+  // coordination lives here alongside `cn`, not in a spec'd category. (#171)
+  lines.push("export * from './components/utility/ThemeProvider';");
   lines.push("export { cn } from './lib/utils';");
   lines.push("export { componentManifest } from './components/generated/component-manifest';");
   lines.push("export { componentStyleHints } from './components/generated/component-style-hints';");
