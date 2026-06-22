@@ -49,6 +49,9 @@ export type DocNoteVariantKey = (typeof docNoteVariantKeys)[number];
 export const donutChartVariantKeys = ["compact", "default"] as const;
 export type DonutChartVariantKey = (typeof donutChartVariantKeys)[number];
 
+export const editableDataTableVariantKeys = ["compact", "default"] as const;
+export type EditableDataTableVariantKey = (typeof editableDataTableVariantKeys)[number];
+
 export const fileTreeVariantKeys = ["actions", "multiple", "single"] as const;
 export type FileTreeVariantKey = (typeof fileTreeVariantKeys)[number];
 
@@ -150,6 +153,7 @@ export const displayVariantKeys = {
   concentricProgressCard: concentricProgressCardVariantKeys,
   docNote: docNoteVariantKeys,
   donutChart: donutChartVariantKeys,
+  editableDataTable: editableDataTableVariantKeys,
   fileTree: fileTreeVariantKeys,
   gallery: galleryVariantKeys,
   gaugeChart: gaugeChartVariantKeys,

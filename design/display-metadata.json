@@ -246,5 +246,9 @@
   "gallery": {
     "title": "Gallery",
     "description": "Main image plus a selectable thumbnail strip with click and keyboard swap, for product detail and media galleries."
+  },
+  "editableDataTable": {
+    "title": "EditableDataTable",
+    "description": "Editable line-item grid: rows of consumer-rendered editor cells with add/remove row, a totals/footer row, per-cell accessible labels, and a desktop table that stacks into mobile cards. For invoices, journals, estimates, and timesheets."
   }
 }

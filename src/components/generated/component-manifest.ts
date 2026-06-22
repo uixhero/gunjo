@@ -1068,6 +1068,18 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "editableDataTable": {
+      "title": "EditableDataTable",
+      "description": "Editable line-item grid: rows of consumer-rendered editor cells with add/remove row, a totals/footer row, per-cell accessible labels, and a desktop table that stacks into mobile cards. For invoices, journals, estimates, and timesheets.",
+      "variantKeys": [
+        "default",
+        "compact"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/EditableDataTable.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "emptyState": {
       "title": "EmptyState",
       "description": "Placeholder for lists / panels with no data, with optional CTA.",

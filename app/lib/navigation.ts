@@ -107,6 +107,7 @@ export const navigation = [
             { title: "ColorSwatch", href: "/docs/components/color-swatch" },
             { title: "DataTable", href: "/docs/components/data-table" },
             { title: "DocNote", href: "/docs/components/doc-note" },
+            { title: "EditableDataTable", href: "/docs/components/editable-data-table" },
             { title: "EmptyState", href: "/docs/components/empty-state" },
             { title: "FileTree", href: "/docs/components/file-tree" },
             { title: "Gallery", href: "/docs/components/gallery" },
