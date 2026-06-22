@@ -15,21 +15,34 @@ const checkboxStateClasses: Record<CheckboxVariantKey, string> = {
 export interface CheckboxProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
     checked?: boolean
     onCheckedChange?: (checked: boolean) => void
+    /**
+     * Optional visible label rendered next to the box and wired as its accessible
+     * name (`aria-labelledby`), so callers don't have to remember a per-instance
+     * `aria-label`. Omit for a bare checkbox.
+     */
+    label?: React.ReactNode
+    /** Optional helper text rendered under the label and wired via `aria-describedby`. */
+    description?: React.ReactNode
 }
 
 const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
-    ({ className, checked, onCheckedChange, disabled, ...props }, ref) => {
+    ({ className, checked, onCheckedChange, disabled, label, description, ...props }, ref) => {
         const checkboxState: CheckboxVariantKey = disabled
             ? "disabled"
             : checked
                 ? "checked"
                 : checkboxDefaultVariantKey
+        const reactId = React.useId()
+        const labelId = label ? `${reactId}-label` : undefined
+        const descriptionId = description ? `${reactId}-description` : undefined
 
-        return (
+        const control = (
             <button
                 type="button"
                 role="checkbox"
                 aria-checked={checked}
+                aria-labelledby={labelId}
+                aria-describedby={descriptionId}
                 onClick={() => onCheckedChange?.(!checked)}
                 ref={ref}
                 className={cn(
@@ -44,6 +57,33 @@ const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
                     <Check className="h-3 w-3" strokeWidth={3} />
                 )}
             </button>
+        )
+
+        if (!label && !description) return control
+
+        return (
+            <span className="inline-flex items-start gap-2">
+                {control}
+                <span className="flex flex-col">
+                    {label ? (
+                        <span
+                            id={labelId}
+                            className={cn(
+                                "text-sm font-medium leading-5",
+                                disabled ? "text-muted-foreground" : "cursor-pointer"
+                            )}
+                            onClick={disabled ? undefined : () => onCheckedChange?.(!checked)}
+                        >
+                            {label}
+                        </span>
+                    ) : null}
+                    {description ? (
+                        <span id={descriptionId} className="text-xs text-muted-foreground">
+                            {description}
+                        </span>
+                    ) : null}
+                </span>
+            </span>
         )
     }
 )

@@ -270,6 +270,33 @@ function TreeViewItem({
                 )}
                 style={rowStyleWithIndent}
             >
+                {/*
+                 * The disclosure chevron is its own hit-target so a folder can be
+                 * expanded/collapsed WITHOUT selecting/navigating it (it stops
+                 * propagation + toggles only). The row button still toggles+selects
+                 * as before. Keyboard expand/collapse stays on Left/Right arrows, so
+                 * the chevron is mouse-only (tabIndex -1) and not an extra tab stop. (#147)
+                 */}
+                {hasChildren ? (
+                    <button
+                        type="button"
+                        tabIndex={-1}
+                        aria-label={isOpen ? "Collapse" : "Expand"}
+                        onClick={(event) => {
+                            event.stopPropagation()
+                            onToggle(node.id)
+                        }}
+                        className="flex w-4 shrink-0 items-center justify-center self-stretch rounded-sm text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
+                    >
+                        {isOpen ? (
+                            <ChevronDown className="h-3.5 w-3.5" />
+                        ) : (
+                            <ChevronRight className="h-3.5 w-3.5" />
+                        )}
+                    </button>
+                ) : (
+                    <span className="w-4 shrink-0" aria-hidden />
+                )}
                 <button
                     type="button"
                     data-tree-node={node.id}
@@ -279,17 +306,8 @@ function TreeViewItem({
                         if (hasChildren) onToggle(node.id)
                         onSelect?.(node.id)
                     }}
-                    className="flex min-w-0 flex-1 items-center gap-1.5 rounded-sm py-1.5 pr-2 text-left outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1"
+                    className="flex min-w-0 flex-1 items-center gap-1.5 rounded-sm py-1.5 pl-1 pr-2 text-left outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1"
                 >
-                    {hasChildren ? (
-                        isOpen ? (
-                            <ChevronDown className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
-                        ) : (
-                            <ChevronRight className="h-3.5 w-3.5 shrink-0 text-muted-foreground" />
-                        )
-                    ) : (
-                        <span className="w-3.5 shrink-0" aria-hidden />
-                    )}
                     {node.icon ? (
                         <span className="flex shrink-0 items-center" aria-hidden>
                             {node.icon}
