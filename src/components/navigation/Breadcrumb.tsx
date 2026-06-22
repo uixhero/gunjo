@@ -3,13 +3,105 @@ import { Slot } from "@radix-ui/react-slot"
 import { IconChevronRight as ChevronRight, IconDots as MoreHorizontal } from "@tabler/icons-react";
 
 import { cn } from "../../lib/utils"
+import {
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuTrigger,
+} from "../overlay/DropdownMenu"
+
+export interface BreadcrumbItemData {
+    label: React.ReactNode
+    href?: string
+    onClick?: () => void
+}
 
 const Breadcrumb = React.forwardRef<
     HTMLElement,
     React.ComponentPropsWithoutRef<"nav"> & {
         separator?: React.ReactNode
+        /**
+         * Data-driven crumbs. When provided, the list renders (and auto-collapses
+         * per `maxItems`) instead of `children` — so a deep path doesn't overflow.
+         * Omit `items` to compose the primitives by hand (unchanged behaviour).
+         */
+        items?: BreadcrumbItemData[]
+        /** Collapse the middle of the path with an ellipsis menu once items exceed this. */
+        maxItems?: number
+        /** Crumbs kept at the start when collapsed (default 1). */
+        itemsBeforeCollapse?: number
+        /** Crumbs kept at the end when collapsed (default 1). */
+        itemsAfterCollapse?: number
     }
->(({ ...props }, ref) => <nav ref={ref} aria-label="breadcrumb" {...props} />)
+>(({ items, maxItems, itemsBeforeCollapse = 1, itemsAfterCollapse = 1, separator, children, ...props }, ref) => {
+    if (!items) {
+        return <nav ref={ref} aria-label="breadcrumb" {...props}>{children}</nav>
+    }
+
+    const renderCrumb = (item: BreadcrumbItemData, isLast: boolean, key: React.Key) => (
+        <React.Fragment key={key}>
+            <BreadcrumbItem>
+                {isLast ? (
+                    <BreadcrumbPage>{item.label}</BreadcrumbPage>
+                ) : item.href ? (
+                    <BreadcrumbLink href={item.href} onClick={item.onClick}>{item.label}</BreadcrumbLink>
+                ) : (
+                    <button type="button" onClick={item.onClick} className="underline underline-offset-2 transition-colors hover:text-foreground">
+                        {item.label}
+                    </button>
+                )}
+            </BreadcrumbItem>
+            {isLast ? null : <BreadcrumbSeparator>{separator}</BreadcrumbSeparator>}
+        </React.Fragment>
+    )
+
+    const collapse =
+        typeof maxItems === "number" &&
+        items.length > maxItems &&
+        items.length > itemsBeforeCollapse + itemsAfterCollapse
+    const head = collapse ? items.slice(0, itemsBeforeCollapse) : items
+    const hidden = collapse ? items.slice(itemsBeforeCollapse, items.length - itemsAfterCollapse) : []
+    const tail = collapse ? items.slice(items.length - itemsAfterCollapse) : []
+
+    return (
+        <nav ref={ref} aria-label="breadcrumb" {...props}>
+            <BreadcrumbList>
+                {head.map((item, index) =>
+                    renderCrumb(item, !collapse && index === items.length - 1, `h${index}`)
+                )}
+                {collapse ? (
+                    <>
+                        <BreadcrumbItem>
+                            <DropdownMenu>
+                                <DropdownMenuTrigger
+                                    aria-label="Show collapsed breadcrumbs"
+                                    className="flex h-9 w-9 items-center justify-center rounded-sm outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
+                                >
+                                    <MoreHorizontal className="h-4 w-4" />
+                                </DropdownMenuTrigger>
+                                <DropdownMenuContent align="start">
+                                    {hidden.map((item, index) => (
+                                        <DropdownMenuItem
+                                            key={`x${index}`}
+                                            asChild={Boolean(item.href)}
+                                            onSelect={item.href ? undefined : item.onClick}
+                                        >
+                                            {item.href ? <a href={item.href}>{item.label}</a> : <span>{item.label}</span>}
+                                        </DropdownMenuItem>
+                                    ))}
+                                </DropdownMenuContent>
+                            </DropdownMenu>
+                        </BreadcrumbItem>
+                        <BreadcrumbSeparator>{separator}</BreadcrumbSeparator>
+                    </>
+                ) : null}
+                {tail.map((item, index) =>
+                    renderCrumb(item, index === tail.length - 1, `t${index}`)
+                )}
+            </BreadcrumbList>
+        </nav>
+    )
+})
 Breadcrumb.displayName = "Breadcrumb"
 
 const BreadcrumbList = React.forwardRef<
