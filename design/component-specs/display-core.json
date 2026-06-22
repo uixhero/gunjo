@@ -2626,6 +2626,84 @@
           "texts": [],
           "children": [],
           "reusable": true
+        },
+        {
+          "id": "synthetic:docNoteNote",
+          "name": "DocNote/Note",
+          "key": "note",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            12,
+            16,
+            12,
+            16
+          ],
+          "gap": 4,
+          "cornerRadius": 6,
+          "fill": "#eff6ff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#bfdbfe",
+            "thickness": 1
+          },
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:docNoteWarning",
+          "name": "DocNote/Warning",
+          "key": "warning",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            12,
+            16,
+            12,
+            16
+          ],
+          "gap": 4,
+          "cornerRadius": 6,
+          "fill": "#fef3c7",
+          "stroke": {
+            "align": "inside",
+            "fill": "#fcd34d",
+            "thickness": 1
+          },
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:docNoteTip",
+          "name": "DocNote/Tip",
+          "key": "tip",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            12,
+            16,
+            12,
+            16
+          ],
+          "gap": 4,
+          "cornerRadius": 6,
+          "fill": "#f0fdf4",
+          "stroke": {
+            "align": "inside",
+            "fill": "#bbf7d0",
+            "thickness": 1
+          },
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
         }
       ]
     },
