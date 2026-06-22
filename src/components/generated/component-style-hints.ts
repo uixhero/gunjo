@@ -1526,6 +1526,21 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "gallery": {
+      "variantKeys": [
+        "bottom",
+        "start"
+      ],
+      "defaultVariantKey": "bottom",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "bottom": "w-full",
+        "start": "w-full"
+      },
+      "variantColorHints": {}
+    },
     "gaugeChart": {
       "variantKeys": [
         "default",
@@ -1788,6 +1803,23 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "rating": {
+      "variantKeys": [
+        "default",
+        "sm",
+        "lg"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "",
+        "sm": "",
+        "lg": ""
+      },
+      "variantColorHints": {}
+    },
     "retentionCohortCard": {
       "variantKeys": [
         "default",
@@ -1940,6 +1972,23 @@ export const componentStyleHints = {
       "baseColorHint": null,
       "slotIds": [],
       "variantClasses": {},
+      "variantColorHints": {}
+    },
+    "swatchGroup": {
+      "variantKeys": [
+        "default",
+        "sm",
+        "lg"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "",
+        "sm": "",
+        "lg": ""
+      },
       "variantColorHints": {}
     },
     "table": {

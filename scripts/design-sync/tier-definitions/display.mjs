@@ -681,4 +681,52 @@ export const DISPLAY_SPEC_DEFINITIONS = [
       ],
     }),
   },
+  // Codex authored real .pen frames for these on feat/{rating-component,
+  // swatch-group,gallery-component} (commits 13252f1/5f2d7b6/95b006f), but the
+  // three branches each edited display.pen independently from the same base and
+  // mutually conflict, so they can't be git-combined into one .pen. Shipped as
+  // synthetic specs (the established pattern for most display components — see
+  // the charts/DocNote/AnalyticsCard above); the .pen frames can be merged in
+  // later via Pencil as a non-blocking SSOT upgrade. (#168/#172/#173)
+  {
+    key: "rating",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:rating",
+      title: "Rating",
+      description: "Read-only star rating display with half-star support, optional numeric value and review count, for product, review, and feedback summaries.",
+      variants: [
+        // Inline (hug) component — no fill/padding hints.
+        createSyntheticVariant("default", { width: null, padding: null }),
+        createSyntheticVariant("sm", { width: null, padding: null }),
+        createSyntheticVariant("lg", { width: null, padding: null }),
+      ],
+    }),
+  },
+  {
+    key: "swatchGroup",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:swatchGroup",
+      title: "SwatchGroup",
+      description: "Selectable color swatch group (single-select) with roving keyboard focus and disabled out-of-stock swatches, for product variant and theme pickers.",
+      variants: [
+        // Inline (hug) group — the rounding lives on the individual swatches.
+        createSyntheticVariant("default", { width: null, padding: null }),
+        createSyntheticVariant("sm", { width: null, padding: null }),
+        createSyntheticVariant("lg", { width: null, padding: null }),
+      ],
+    }),
+  },
+  {
+    key: "gallery",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:gallery",
+      title: "Gallery",
+      description: "Main image plus a selectable thumbnail strip with click and keyboard swap, for product detail and media galleries.",
+      variants: [
+        // Block (fill) layout, no padding.
+        createSyntheticVariant("bottom", { padding: null }),
+        createSyntheticVariant("start", { padding: null }),
+      ],
+    }),
+  },
 ];

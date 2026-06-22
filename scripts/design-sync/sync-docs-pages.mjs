@@ -130,7 +130,9 @@ function buildPreviewTargets(definition) {
   return definition.metadataKeys.map((componentKey) => {
     const fileName = getComponentFileName(componentKey, sourceConfig.fileNameOverrides);
     const componentExportName = toComponentExportName(fileName);
-    const componentImportPath = `@/components/${definition.category}/${componentExportName}`;
+    // The docs site dogfoods the published package, not the raw source tree
+    // (the `@/*` alias maps to `app/*`, where these components don't live).
+    const componentImportPath = "@gunjo/ui";
     return { componentKey, componentExportName, componentImportPath };
   });
 }

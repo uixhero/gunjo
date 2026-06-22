@@ -4141,6 +4141,163 @@
           "reusable": true
         }
       ]
+    },
+    "rating": {
+      "frameId": "synthetic:rating",
+      "title": "Rating",
+      "description": "Read-only star rating display with half-star support, optional numeric value and review count, for product, review, and feedback summaries.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:sm",
+          "name": "sm",
+          "key": "sm",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:lg",
+          "name": "lg",
+          "key": "lg",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "swatchGroup": {
+      "frameId": "synthetic:swatchGroup",
+      "title": "SwatchGroup",
+      "description": "Selectable color swatch group (single-select) with roving keyboard focus and disabled out-of-stock swatches, for product variant and theme pickers.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:sm",
+          "name": "sm",
+          "key": "sm",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:lg",
+          "name": "lg",
+          "key": "lg",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "gallery": {
+      "frameId": "synthetic:gallery",
+      "title": "Gallery",
+      "description": "Main image plus a selectable thumbnail strip with click and keyboard swap, for product detail and media galleries.",
+      "variants": [
+        {
+          "id": "synthetic:bottom",
+          "name": "bottom",
+          "key": "bottom",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:start",
+          "name": "start",
+          "key": "start",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
     }
   }
 }

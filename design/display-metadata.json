@@ -234,5 +234,17 @@
   "searchableAccordion": {
     "title": "SearchableAccordion",
     "description": "Searchable and category-filterable accordion composition for FAQ, help, and docs lists."
+  },
+  "rating": {
+    "title": "Rating",
+    "description": "Read-only star rating display with half-star support, optional numeric value and review count, for product, review, and feedback summaries."
+  },
+  "swatchGroup": {
+    "title": "SwatchGroup",
+    "description": "Selectable color swatch group (single-select) with roving keyboard focus and disabled out-of-stock swatches, for product variant and theme pickers."
+  },
+  "gallery": {
+    "title": "Gallery",
+    "description": "Main image plus a selectable thumbnail strip with click and keyboard swap, for product detail and media galleries."
   }
 }

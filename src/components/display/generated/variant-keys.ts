@@ -52,6 +52,9 @@ export type DonutChartVariantKey = (typeof donutChartVariantKeys)[number];
 export const fileTreeVariantKeys = ["actions", "multiple", "single"] as const;
 export type FileTreeVariantKey = (typeof fileTreeVariantKeys)[number];
 
+export const galleryVariantKeys = ["bottom", "start"] as const;
+export type GalleryVariantKey = (typeof galleryVariantKeys)[number];
+
 export const gaugeChartVariantKeys = ["compact", "default"] as const;
 export type GaugeChartVariantKey = (typeof gaugeChartVariantKeys)[number];
 
@@ -94,6 +97,9 @@ export type RadarChartVariantKey = (typeof radarChartVariantKeys)[number];
 export const radialBarChartVariantKeys = ["compact", "default"] as const;
 export type RadialBarChartVariantKey = (typeof radialBarChartVariantKeys)[number];
 
+export const ratingVariantKeys = ["default", "lg", "sm"] as const;
+export type RatingVariantKey = (typeof ratingVariantKeys)[number];
+
 export const retentionCohortCardVariantKeys = ["compact", "default"] as const;
 export type RetentionCohortCardVariantKey = (typeof retentionCohortCardVariantKeys)[number];
 
@@ -117,6 +123,9 @@ export type SparklineChartVariantKey = (typeof sparklineChartVariantKeys)[number
 
 export const stackedBarChartVariantKeys = ["horizontal", "vertical"] as const;
 export type StackedBarChartVariantKey = (typeof stackedBarChartVariantKeys)[number];
+
+export const swatchGroupVariantKeys = ["default", "lg", "sm"] as const;
+export type SwatchGroupVariantKey = (typeof swatchGroupVariantKeys)[number];
 
 export const tagEditorVariantKeys = ["compact", "default"] as const;
 export type TagEditorVariantKey = (typeof tagEditorVariantKeys)[number];
@@ -142,6 +151,7 @@ export const displayVariantKeys = {
   docNote: docNoteVariantKeys,
   donutChart: donutChartVariantKeys,
   fileTree: fileTreeVariantKeys,
+  gallery: galleryVariantKeys,
   gaugeChart: gaugeChartVariantKeys,
   heatmapChart: heatmapChartVariantKeys,
   icon: iconVariantKeys,
@@ -156,6 +166,7 @@ export const displayVariantKeys = {
   quadrantMatrix: quadrantMatrixVariantKeys,
   radarChart: radarChartVariantKeys,
   radialBarChart: radialBarChartVariantKeys,
+  rating: ratingVariantKeys,
   retentionCohortCard: retentionCohortCardVariantKeys,
   ribbonChart: ribbonChartVariantKeys,
   searchableAccordion: searchableAccordionVariantKeys,
@@ -164,6 +175,7 @@ export const displayVariantKeys = {
   separator: separatorVariantKeys,
   sparklineChart: sparklineChartVariantKeys,
   stackedBarChart: stackedBarChartVariantKeys,
+  swatchGroup: swatchGroupVariantKeys,
   tagEditor: tagEditorVariantKeys,
   toolPill: toolPillVariantKeys,
 } as const;
