@@ -37,6 +37,13 @@ export interface ComboboxProps {
     disabled?: boolean
     clearable?: boolean
     clearLabel?: string
+    /** ARIA attributes forwarded to the trigger so a Combobox can participate in form validation. */
+    "aria-invalid"?: boolean | "true" | "false"
+    "aria-describedby"?: string
+    "aria-labelledby"?: string
+    "aria-label"?: string
+    "aria-required"?: boolean
+    required?: boolean
 }
 
 const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
@@ -55,6 +62,12 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
             disabled,
             clearable = true,
             clearLabel = "Clear selection",
+            "aria-invalid": ariaInvalid,
+            "aria-describedby": ariaDescribedby,
+            "aria-labelledby": ariaLabelledby,
+            "aria-label": ariaLabel,
+            "aria-required": ariaRequired,
+            required,
         },
         ref
     ) => {
@@ -72,11 +85,17 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
                             variant="outline"
                             role="combobox"
                             aria-expanded={open}
+                            aria-invalid={ariaInvalid}
+                            aria-describedby={ariaDescribedby}
+                            aria-labelledby={ariaLabelledby}
+                            aria-label={ariaLabel}
+                            aria-required={ariaRequired ?? required}
                             disabled={disabled}
                             data-slot="combobox"
                             className={cn(
                                 "w-full justify-between",
                                 canClear ? "pr-16" : "pr-10",
+                                "aria-invalid:border-destructive-border aria-invalid:ring-1 aria-invalid:ring-destructive-border",
                                 !selected && "text-muted-foreground",
                                 triggerClassName
                             )}
