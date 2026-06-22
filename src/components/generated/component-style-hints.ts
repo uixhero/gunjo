@@ -1266,7 +1266,10 @@ export const componentStyleHints = {
         "default",
         "secondary",
         "destructive",
-        "outline"
+        "outline",
+        "info",
+        "success",
+        "warning"
       ],
       "defaultVariantKey": "default",
       "baseClasses": "inline-flex items-center h-5 py-1 px-2.5 rounded-full text-xs font-semibold",
@@ -1276,13 +1279,19 @@ export const componentStyleHints = {
         "default": "inline-flex items-center h-5 py-1 px-2.5 rounded-full text-xs font-semibold",
         "secondary": "inline-flex items-center h-5 py-1 px-2.5 rounded-full text-xs font-semibold",
         "destructive": "inline-flex items-center h-5 py-1 px-2.5 rounded-full text-xs font-semibold",
-        "outline": "inline-flex items-center h-5 py-1 px-2.5 rounded-full border bg-transparent text-xs font-semibold"
+        "outline": "inline-flex items-center h-5 py-1 px-2.5 rounded-full border bg-transparent text-xs font-semibold",
+        "info": "inline-flex items-center h-5 py-1 px-2.5 rounded-full border text-xs font-semibold",
+        "success": "inline-flex items-center h-5 py-1 px-2.5 rounded-full border text-xs font-semibold",
+        "warning": "inline-flex items-center h-5 py-1 px-2.5 rounded-full border text-xs font-semibold"
       },
       "variantColorHints": {
         "default": "fill=#0c0c12 | text=#f8fafc",
         "secondary": "fill=#f1f5f9 | text=#18181b",
         "destructive": "fill=#ef4444 | text=#f8fafc",
-        "outline": "fill=transparent | stroke=#e2e8f0@1px | text=#0c0c12"
+        "outline": "fill=transparent | stroke=#e2e8f0@1px | text=#0c0c12",
+        "info": "fill=#EFF6FF | stroke=#BFDBFE@1px | text=#1D4ED8",
+        "success": "fill=#ECFDF5 | stroke=#BBF7D0@1px | text=#15803D",
+        "warning": "fill=#FFFBEB | stroke=#FCD34D@1px | text=#B45309"
       }
     },
     "barChart": {
@@ -1452,7 +1461,10 @@ export const componentStyleHints = {
     "docNote": {
       "variantKeys": [
         "default",
-        "reference"
+        "reference",
+        "note",
+        "warning",
+        "tip"
       ],
       "defaultVariantKey": "default",
       "baseClasses": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-md",
@@ -1460,11 +1472,17 @@ export const componentStyleHints = {
       "slotIds": [],
       "variantClasses": {
         "default": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-md",
-        "reference": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-md"
+        "reference": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-md",
+        "note": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-md border",
+        "warning": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-md border",
+        "tip": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-md border"
       },
       "variantColorHints": {
         "default": "fill=#f1f5f9",
-        "reference": "fill=#f8fafc"
+        "reference": "fill=#f8fafc",
+        "note": "fill=#eff6ff | stroke=#bfdbfe@1px",
+        "warning": "fill=#fef3c7 | stroke=#fcd34d@1px",
+        "tip": "fill=#f0fdf4 | stroke=#bbf7d0@1px"
       }
     },
     "donutChart": {

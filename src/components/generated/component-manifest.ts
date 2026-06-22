@@ -900,7 +900,10 @@ export const componentManifest = {
         "default",
         "secondary",
         "destructive",
-        "outline"
+        "outline",
+        "info",
+        "success",
+        "warning"
       ],
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/Badge.tsx",
@@ -1043,7 +1046,10 @@ export const componentManifest = {
       "description": "Supplemental note block for explanatory copy, references, and non-urgent documentation callouts.",
       "variantKeys": [
         "default",
-        "reference"
+        "reference",
+        "note",
+        "warning",
+        "tip"
       ],
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/DocNote.tsx",

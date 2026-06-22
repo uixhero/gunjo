@@ -157,6 +157,96 @@
                       "fontWeight": "600"
                     }
                   ]
+                },
+                {
+                  "type": "frame",
+                  "id": "ZJyo4",
+                  "name": "Badge/Info",
+                  "reusable": true,
+                  "height": 20,
+                  "fill": "#EFF6FF",
+                  "cornerRadius": 9999,
+                  "stroke": "#BFDBFE",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
+                  "padding": [
+                    4,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "honRM",
+                      "name": "Info Text",
+                      "fill": "#1D4ED8",
+                      "content": "Info",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "i3TE8",
+                  "name": "Badge/Success",
+                  "reusable": true,
+                  "height": 20,
+                  "fill": "#ECFDF5",
+                  "cornerRadius": 9999,
+                  "stroke": "#BBF7D0",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
+                  "padding": [
+                    4,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "B0GSF",
+                      "name": "Success Text",
+                      "fill": "#15803D",
+                      "content": "Success",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "OjsEW",
+                  "name": "Badge/Warning",
+                  "reusable": true,
+                  "height": 20,
+                  "fill": "#FFFBEB",
+                  "cornerRadius": 9999,
+                  "stroke": "#FCD34D",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
+                  "padding": [
+                    4,
+                    10
+                  ],
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "kOedS",
+                      "name": "Warning Text",
+                      "fill": "#B45309",
+                      "content": "Warning",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "600"
+                    }
+                  ]
                 }
               ]
             },

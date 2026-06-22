@@ -25,7 +25,7 @@ export type AssetGridVariantKey = (typeof assetGridVariantKeys)[number];
 export const avatarVariantKeys = ["fallback", "image"] as const;
 export type AvatarVariantKey = (typeof avatarVariantKeys)[number];
 
-export const badgeVariantKeys = ["default", "destructive", "outline", "secondary"] as const;
+export const badgeVariantKeys = ["default", "destructive", "info", "outline", "secondary", "success", "warning"] as const;
 export type BadgeVariantKey = (typeof badgeVariantKeys)[number];
 
 export const barChartVariantKeys = ["horizontal", "vertical"] as const;
@@ -43,7 +43,7 @@ export type ChoroplethMapVariantKey = (typeof choroplethMapVariantKeys)[number];
 export const concentricProgressCardVariantKeys = ["compact", "default"] as const;
 export type ConcentricProgressCardVariantKey = (typeof concentricProgressCardVariantKeys)[number];
 
-export const docNoteVariantKeys = ["default", "reference"] as const;
+export const docNoteVariantKeys = ["default", "note", "reference", "tip", "warning"] as const;
 export type DocNoteVariantKey = (typeof docNoteVariantKeys)[number];
 
 export const donutChartVariantKeys = ["compact", "default"] as const;
