@@ -21,6 +21,10 @@ export interface ComboboxOption {
     label: string
     disabled?: boolean
     disabledReason?: string
+    /** Optional group heading. When any option sets it, options render under grouped headings. */
+    group?: string
+    /** Extra search terms (besides the label) matched by the search box. */
+    keywords?: string[]
 }
 
 export interface ComboboxProps {
@@ -74,6 +78,53 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
         const [open, setOpen] = React.useState(false)
         const selected = options.find((option) => option.value === value)
         const canClear = clearable && Boolean(selected) && !disabled
+
+        const renderOption = (option: ComboboxOption) => {
+            const item = (
+                <CommandItem
+                    key={option.value}
+                    value={option.value}
+                    // Make the label (and any extra terms) searchable even though
+                    // `value` is the selection key — cmdk filters on value + keywords. (#202)
+                    keywords={[option.label, ...(option.keywords ?? [])]}
+                    disabled={option.disabled}
+                    aria-disabled={option.disabled}
+                    className={cn(
+                        option.disabled &&
+                        "cursor-not-allowed opacity-50 aria-selected:bg-transparent aria-selected:text-foreground"
+                    )}
+                    onSelect={() => {
+                        if (option.disabled) return
+                        onValueChange?.(option.value === value ? "" : option.value)
+                        setOpen(false)
+                    }}
+                >
+                    <Check className={cn("mr-2 h-4 w-4", value === option.value ? "opacity-100" : "opacity-0")} />
+                    <span className="min-w-0 flex-1 truncate">{option.label}</span>
+                </CommandItem>
+            )
+
+            if (!option.disabled || !option.disabledReason) return item
+
+            return (
+                <Tooltip key={option.value}>
+                    <TooltipTrigger asChild>
+                        <span className="block" aria-label={option.disabledReason}>
+                            {item}
+                        </span>
+                    </TooltipTrigger>
+                    <TooltipContent>{option.disabledReason}</TooltipContent>
+                </Tooltip>
+            )
+        }
+
+        // Preserve order of first appearance for grouped rendering.
+        const hasGroups = options.some((option) => option.group)
+        const groupOrder: string[] = []
+        for (const option of options) {
+            const key = option.group ?? ""
+            if (!groupOrder.includes(key)) groupOrder.push(key)
+        }
 
         return (
             <Popover open={open} onOpenChange={setOpen}>
@@ -136,52 +187,17 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
                         />
                         <CommandList>
                             <CommandEmpty>{emptyMessage}</CommandEmpty>
-                            <CommandGroup>
-                                {options.map((option) => {
-                                    const item = (
-                                        <CommandItem
-                                            key={option.value}
-                                            value={option.value}
-                                            disabled={option.disabled}
-                                            aria-disabled={option.disabled}
-                                            className={cn(
-                                                option.disabled &&
-                                                "cursor-not-allowed opacity-50 aria-selected:bg-transparent aria-selected:text-foreground"
-                                            )}
-                                            onSelect={() => {
-                                                if (option.disabled) return
-                                                onValueChange?.(
-                                                    option.value === value ? "" : option.value
-                                                )
-                                                setOpen(false)
-                                            }}
-                                        >
-                                            <Check
-                                                className={cn(
-                                                    "mr-2 h-4 w-4",
-                                                    value === option.value
-                                                        ? "opacity-100"
-                                                        : "opacity-0"
-                                                )}
-                                            />
-                                            <span className="min-w-0 flex-1 truncate">{option.label}</span>
-                                        </CommandItem>
-                                    )
-
-                                    if (!option.disabled || !option.disabledReason) return item
-
-                                    return (
-                                        <Tooltip key={option.value}>
-                                            <TooltipTrigger asChild>
-                                                <span className="block" aria-label={option.disabledReason}>
-                                                    {item}
-                                                </span>
-                                            </TooltipTrigger>
-                                            <TooltipContent>{option.disabledReason}</TooltipContent>
-                                        </Tooltip>
-                                    )
-                                })}
-                            </CommandGroup>
+                            {hasGroups ? (
+                                groupOrder.map((groupKey) => (
+                                    <CommandGroup key={groupKey || "__ungrouped"} heading={groupKey || undefined}>
+                                        {options
+                                            .filter((option) => (option.group ?? "") === groupKey)
+                                            .map(renderOption)}
+                                    </CommandGroup>
+                                ))
+                            ) : (
+                                <CommandGroup>{options.map(renderOption)}</CommandGroup>
+                            )}
                         </CommandList>
                     </Command>
                 </PopoverContent>
