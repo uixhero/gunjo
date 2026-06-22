@@ -48,6 +48,8 @@ export interface EditableColumn<TRow> {
     align?: "left" | "right" | "center"
     /** CSS width for the column (e.g. `"8rem"`, `"20%"`). */
     width?: string
+    /** CSS min-width so an editor column isn't crushed by content-heavy neighbours. (#206) */
+    minWidth?: string
     headerClassName?: string
     cellClassName?: string
 }
@@ -119,6 +121,11 @@ export function EditableDataTable<TRow>({
 
     const emptyContent = labels?.empty ?? "No rows."
 
+    const columnStyle = (column: EditableColumn<TRow>): React.CSSProperties | undefined =>
+        column.width || column.minWidth
+            ? { width: column.width, minWidth: column.minWidth }
+            : undefined
+
     return (
         <div className={cn("flex flex-col gap-3", editableDataTableVariantClasses[variant], className)} data-slot="editable-data-table">
             {/* Desktop: a real table from md up. */}
@@ -131,7 +138,7 @@ export function EditableDataTable<TRow>({
                                 <th
                                     key={column.id}
                                     scope="col"
-                                    style={column.width ? { width: column.width } : undefined}
+                                    style={columnStyle(column)}
                                     className={cn(
                                         "h-9 whitespace-nowrap font-medium text-muted-foreground",
                                         cellPad,
@@ -158,6 +165,7 @@ export function EditableDataTable<TRow>({
                                         {columns.map((column) => (
                                             <td
                                                 key={column.id}
+                                                style={columnStyle(column)}
                                                 className={cn("align-middle", cellPad, alignClasses[column.align ?? "left"], column.cellClassName)}
                                             >
                                                 {column.cell(row, cellContext(column, row, rowIndex))}

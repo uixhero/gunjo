@@ -30,6 +30,7 @@ export function EditableDataTableDemo() {
         {
             id: "name",
             header: "品目",
+            minWidth: "12rem",
             cell: (row, ctx) => (
                 <Input
                     value={row.name}

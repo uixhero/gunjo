@@ -26,6 +26,18 @@ export function TimelineDemo() {
                         @gunjo/ui@0.0.1-alpha.0 released to npm.
                     </TimelineDescription>
                 </TimelineItem>
+                <TimelineItem variant="success">
+                    <TimelineTime dateTime="2026-05-04">May 4, 2026</TimelineTime>
+                    <TimelineTitle>Approved</TimelineTitle>
+                    <TimelineDescription>
+                        Semantic tones (success / warning / destructive / info) suit status and approval timelines.
+                    </TimelineDescription>
+                </TimelineItem>
+                <TimelineItem variant="warning">
+                    <TimelineTime dateTime="2026-05-05">May 5, 2026</TimelineTime>
+                    <TimelineTitle>Sent back</TimelineTitle>
+                    <TimelineDescription>差戻し — needs a comment.</TimelineDescription>
+                </TimelineItem>
                 <TimelineItem variant="outline" connector={false}>
                     <TimelineTime dateTime="2026-05-05">May 5, 2026</TimelineTime>
                     <TimelineTitle>Component expansion</TimelineTitle>
