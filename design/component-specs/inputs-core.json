@@ -867,7 +867,7 @@
           "name": "Textarea/Default",
           "key": "default",
           "type": "frame",
-          "width": 280,
+          "width": "fill_container",
           "height": 80,
           "layout": "vertical",
           "padding": [
@@ -886,24 +886,8 @@
           },
           "iconFontFamily": null,
           "iconFontName": null,
-          "text": {
-            "id": "textareaPlaceholder",
-            "content": "Type your message here.",
-            "fontSize": 14,
-            "fontWeight": "normal",
-            "fill": "#64748b",
-            "underline": false
-          },
-          "texts": [
-            {
-              "id": "textareaPlaceholder",
-              "content": "Type your message here.",
-              "fontSize": 14,
-              "fontWeight": "normal",
-              "fill": "#64748b",
-              "underline": false
-            }
-          ],
+          "text": null,
+          "texts": [],
           "reusable": true
         },
         {
@@ -911,7 +895,7 @@
           "name": "Textarea/Disabled",
           "key": "disabled",
           "type": "frame",
-          "width": 280,
+          "width": "fill_container",
           "height": 80,
           "layout": "vertical",
           "padding": [
@@ -930,24 +914,8 @@
           },
           "iconFontFamily": null,
           "iconFontName": null,
-          "text": {
-            "id": "textareaDisabledText",
-            "content": "Disabled",
-            "fontSize": 14,
-            "fontWeight": "normal",
-            "fill": "#94a3b8",
-            "underline": false
-          },
-          "texts": [
-            {
-              "id": "textareaDisabledText",
-              "content": "Disabled",
-              "fontSize": 14,
-              "fontWeight": "normal",
-              "fill": "#94a3b8",
-              "underline": false
-            }
-          ],
+          "text": null,
+          "texts": [],
           "reusable": true
         }
       ]

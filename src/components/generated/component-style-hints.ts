@@ -2482,16 +2482,16 @@ export const componentStyleHints = {
         "disabled"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "inline-flex items-center w-[280px] h-20 py-2 px-3 rounded-lg border bg-transparent text-sm font-normal",
-      "baseColorHint": "fill=transparent | stroke=#e2e8f0@1px | text=#64748b",
+      "baseClasses": "w-full h-20 py-2 px-3 rounded-lg border bg-transparent",
+      "baseColorHint": "fill=transparent | stroke=#e2e8f0@1px",
       "slotIds": [],
       "variantClasses": {
-        "default": "inline-flex items-center w-[280px] h-20 py-2 px-3 rounded-lg border bg-transparent text-sm font-normal",
-        "disabled": "inline-flex items-center w-[280px] h-20 py-2 px-3 rounded-lg border text-sm font-normal"
+        "default": "w-full h-20 py-2 px-3 rounded-lg border bg-transparent",
+        "disabled": "w-full h-20 py-2 px-3 rounded-lg border"
       },
       "variantColorHints": {
-        "default": "fill=transparent | stroke=#e2e8f0@1px | text=#64748b",
-        "disabled": "fill=#f1f5f9 | stroke=#e2e8f0@1px | text=#94a3b8"
+        "default": "fill=transparent | stroke=#e2e8f0@1px",
+        "disabled": "fill=#f1f5f9 | stroke=#e2e8f0@1px"
       }
     },
     "timePicker": {

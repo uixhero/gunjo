@@ -205,7 +205,17 @@ export const INPUTS_SPEC_DEFINITIONS = [
   { key: "label", frameId: "labelFrame", titleId: "labelTitle", descId: "labelDesc", sampleTextId: "labelDefaultText" },
   { key: "checkbox", frameId: "checkboxFrame", titleId: "checkboxTitle", descId: "checkboxDesc", variantsId: "checkboxVariants" },
   { key: "switch", frameId: "switchFrame", titleId: "switchTitle", descId: "switchDesc", variantsId: "switchVariants" },
-  { key: "textarea", frameId: "textareaFrame", titleId: "textareaTitle", descId: "textareaDesc", variantsId: "textareaVariants" },
+  {
+    key: "textarea",
+    frameId: "textareaFrame",
+    titleId: "textareaTitle",
+    descId: "textareaDesc",
+    variantsId: "textareaVariants",
+    variantOverrides: {
+      default: { width: "fill_container", text: null, texts: [] },
+      disabled: { width: "fill_container", text: null, texts: [] },
+    },
+  },
   { key: "radioGroup", frameId: "radioGroupFrame", titleId: "radioGroupTitle", descId: "radioGroupDesc", variantsId: "radioGroupVariants" },
   { key: "slider", frameId: "sliderFrame", titleId: "sliderTitle", descId: "sliderDesc", variantsId: "sliderVariants" },
   { key: "rangeSlider", frameId: "rangeSliderFrame", titleId: "rangeSliderTitle", descId: "rangeSliderDesc", variantsId: "rangeSliderVariants" },
