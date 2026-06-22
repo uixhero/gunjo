@@ -97,7 +97,15 @@ const ChartLegend = React.forwardRef<HTMLDivElement, ChartLegendProps>(
                             aria-current={isActive ? "true" : undefined}
                             aria-label={itemLabel}
                         >
-                            <span className="inline-flex min-w-0 items-center gap-2 text-muted-foreground">
+                            <span
+                                className={cn(
+                                    "inline-flex min-w-0 items-center gap-2 text-muted-foreground",
+                                    // In the vertical layout, grow to take the row and shrink
+                                    // (truncate) first so a long value never forces the row
+                                    // past 100% width → no page-wide horizontal scroll. (#182)
+                                    variant === "vertical" && "flex-1"
+                                )}
+                            >
                                 <span
                                     className="h-2.5 w-2.5 flex-shrink-0 rounded-full"
                                     style={{
@@ -108,7 +116,7 @@ const ChartLegend = React.forwardRef<HTMLDivElement, ChartLegendProps>(
                                 <span className="truncate">{item.label}</span>
                             </span>
                             {item.value !== undefined ? (
-                                <span className="flex-shrink-0 font-medium text-foreground">
+                                <span className="min-w-0 max-w-full truncate font-medium text-foreground">
                                     {item.value}
                                 </span>
                             ) : null}

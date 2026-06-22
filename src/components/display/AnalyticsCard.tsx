@@ -11,6 +11,7 @@ import {
     CardFooter,
     CardHeader,
     CardTitle,
+    type CardTitleProps,
 } from "./Card"
 import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
 import type { AnalyticsCardVariantKey } from "./generated/variant-keys"
@@ -21,6 +22,12 @@ export type AnalyticsCardTrend = "up" | "down" | "flat"
 export interface AnalyticsCardProps
     extends Omit<React.ComponentPropsWithoutRef<typeof Card>, "title"> {
     title: React.ReactNode
+    /**
+     * Heading level / element for the title. Defaults to `"h3"`. Set to fit the
+     * surrounding outline (e.g. `"h2"` for a KPI row under a page `<h1>`), or
+     * `"p"`/`"div"` for a non-heading. Mirrors `CardTitle`'s `as`. (#181)
+     */
+    titleAs?: CardTitleProps["as"]
     description?: React.ReactNode
     value?: React.ReactNode
     delta?: React.ReactNode
@@ -85,6 +92,7 @@ const AnalyticsCard = React.forwardRef<HTMLDivElement, AnalyticsCardProps>(
         {
             className,
             title,
+            titleAs,
             description,
             value,
             delta,
@@ -105,7 +113,7 @@ const AnalyticsCard = React.forwardRef<HTMLDivElement, AnalyticsCardProps>(
             <Card ref={ref} className={cn("w-full min-w-0 p-0", styles.card, className)} {...props}>
                 <CardHeader className={cn("flex-row items-start justify-between gap-4 space-y-0", styles.header)}>
                     <div className="min-w-0 space-y-1">
-                        <CardTitle className="text-sm font-medium leading-snug">
+                        <CardTitle as={titleAs} className="text-sm font-medium leading-snug">
                             {title}
                         </CardTitle>
                         {description ? (
