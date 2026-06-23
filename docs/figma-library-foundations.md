@@ -862,6 +862,33 @@ Figma export:
   contract, anatomy notes, docs state specimens, horizontal-scroll treatment,
   runtime token notes, and source footer are aligned without visible overlap.
 
+The owner then approved exporting the additional Kbd component data with:
+
+> I approve exporting the Kbd prop names, default values, and behavior
+> (`children`, `className`, and HTMLAttributes structure; non-interactive
+> display behavior from `pointer-events-none` and `select-none`), variant name
+> (`key`) and default variant (`key`), dimensions and layout (`inline-flex`,
+> `h-5`, `w-fit`, `items-center`, `gap-1`, `py-1`, `px-1.5`,
+> `rounded-[4px]`, and `border`), typography (`font-mono`, `text-[10px]`,
+> `font-medium`), display labels and sample copy (`⌘`, `K`, `Shift`, `P`,
+> `Enter`, `検索を開くには`, `文章内のキー`, `ショートカット`, and
+> `Inline help`), docs-derived state taxonomy (`shortcut` and `inline-help`),
+> Command / Tooltip / Code usage-boundary information, and token names and
+> values (`input`, `secondary`, `muted-foreground`, with `foreground` /
+> `background` / `border` / `muted` for specimen annotation) from this private
+> pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Kbd / Section`: `173:2`
+- `Kbd` component: `173:20`
+- Placement: `Display` page, after `Table / Section`, at `(40, 19950)`,
+  `1280 x 1100`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the default key component, props/behavior
+  contract, anatomy notes, docs state specimens, usage boundaries, runtime
+  token notes, and source footer are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -871,8 +898,8 @@ Before creating the next component:
    RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, Card,
    Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, Rating,
    RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic,
-   SwatchGroup, and Table components, runtime semantic colors, and specimen
-   treatments are acceptable.
+   SwatchGroup, Table, and Kbd components, runtime semantic colors, and
+   specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
