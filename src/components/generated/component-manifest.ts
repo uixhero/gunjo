@@ -1692,6 +1692,17 @@ export const componentManifest = {
       "specSource": "design/inputs.pen",
       "stability": "experimental"
     },
+    "coSign": {
+      "title": "CoSign",
+      "description": "Two-person verification (2人確認 / ダブルチェック / co-sign): a second actor enters their id (guarded to differ from the primary), ticks the required attestations, and signs — producing a timestamped signed value the consumer reads to gate an action. For medication double-checks, controlled substances, transfusion, surgical time-outs, and finance maker-checker approvals.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/inputs/CoSign.tsx",
+      "specSource": "design/inputs.pen",
+      "stability": "experimental"
+    },
     "currencyInput": {
       "title": "CurrencyInput",
       "description": "Money editor: a currency-symbol-prefixed, thousands-grouped, right-aligned amount input that formats while typing and emits a numeric value. JPY-first; for invoices, payroll, expenses, and any fintech amount field.",

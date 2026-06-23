@@ -1497,6 +1497,7 @@ export const translations: Record<
       CurrencyInput: "金額入力",
       ScanInput: "スキャン入力",
       ScanGate: "段階スキャン",
+      CoSign: "2人確認",
       PasswordGroup: "パスワードグループ",
       PasswordInput: "パスワード入力",
       PasswordRequirementList: "パスワード要件リスト",

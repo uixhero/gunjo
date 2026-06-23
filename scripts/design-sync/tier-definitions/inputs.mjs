@@ -495,4 +495,15 @@ export const INPUTS_SPEC_DEFINITIONS = [
       ],
     }),
   },
+  {
+    key: "coSign",
+    syntheticSpec: createSyntheticInputsSpec({
+      frameId: "synthetic:coSign",
+      title: "CoSign",
+      description: "Two-person verification (2人確認 / ダブルチェック / co-sign): a second actor enters their id (guarded to differ from the primary), ticks the required attestations, and signs — producing a timestamped signed value the consumer reads to gate an action. For medication double-checks, controlled substances, transfusion, surgical time-outs, and finance maker-checker approvals.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
 ];
