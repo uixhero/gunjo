@@ -1242,6 +1242,40 @@ Figma export:
   specimens including text-only and nested submenu examples, usage boundaries,
   runtime token notes, and source footer are aligned without visible overlap.
 
+The owner then approved exporting the additional Drawer component data with:
+
+> I approve exporting the Drawer / DrawerTrigger / DrawerPortal / DrawerClose /
+> DrawerOverlay / DrawerContent / DrawerHeader / DrawerFooter / DrawerTitle /
+> DrawerDescription prop names, default values, and behavior, generated
+> variant-less structure, Vaul Drawer Root / Trigger / Portal / Close /
+> Overlay / Content / Title / Description structure, Drawer Root
+> `shouldScaleBackground=true` default and `open` / `onOpenChange` /
+> `container` structure, DrawerContent `side` values (`bottom`, `right`,
+> `left`, `top`) with default `side="bottom"`, `portalContainer`,
+> `overlayClassName`, and `className` structure, contained absolute
+> overlay/content behavior, Overlay fixed inset, `z-50`, and `bg-overlay/80`,
+> Content fixed `z-50 flex flex-col bg-background`, side-specific layout
+> classes, bottom side drag handle, Header / Footer / Title / Description
+> layout and typography, docs-derived state taxonomy and sample copy,
+> Button / Input / Label / Textarea / Dialog / Sheet related-component
+> information, and token names and values (`overlay`, `background`,
+> `foreground`, `muted`, `muted-foreground`, `border`, `ring`, `input`,
+> `secondary`, and `accent`) from this private pre-public repository to the
+> Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Drawer / Section`: `215:2`
+- `Drawer` component: `215:5`
+- Placement: `Overlay` page, after `ContextMenu / Section`, at `(40, 12660)`,
+  `1280 x 2360`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the bottom drawer component specimen, generated
+  empty-variant/manual contract, Vaul anatomy, contained overlay/content
+  behavior, side-specific docs state specimens, drag handle treatment, usage
+  boundaries, runtime token notes, and source footer are aligned without
+  visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1252,7 +1286,7 @@ Before creating the next component:
    Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, Rating,
    RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic,
    SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, Tooltip,
-   Popover, DropdownMenu, Dialog, Sheet, AlertDialog, and ContextMenu
+   Popover, DropdownMenu, Dialog, Sheet, AlertDialog, ContextMenu, and Drawer
    components, runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
