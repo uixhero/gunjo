@@ -317,6 +317,25 @@ component families:
     `full rating` states are documented as specimens, including filled, half,
     and empty star treatments and token-bound foreground / muted-foreground
     text.
+- `RevealSection` on the `Display` page.
+  - Section node: `147:2` (`RevealSection / Section`).
+  - Component node: `147:18`.
+  - Variants: `default`, with `default` as the default.
+  - Layout: `RevealSection / Overview card`,
+    `RevealSection / Component card`, `RevealSection / Specimen card`,
+    `RevealSection / Token and behavior notes`, and
+    `RevealSection / Closed-state contract`.
+  - The component records the `open=true` render contract, named-region
+    behavior, `role="region"` / `aria-label` / `aria-live="polite"` a11y
+    wiring, `data-state="open"` / `data-slot="reveal-section"` attributes,
+    and the `animate-in fade-in-0 slide-in-from-top-1 duration-200`
+    transition class set.
+  - The `open=false` state is documented as a render-none contract rather than
+    a hidden visual variant, matching the source implementation.
+  - Docs-derived `配偶者あり`, `配偶者控除の申告`, `配偶者氏名`, and
+    `配偶者の所得見積額` labels are documented as specimens, including
+    Switch and Input composition and token-bound foreground /
+    muted-foreground / muted / border / input styling.
 
 ## Local Payload
 
@@ -604,6 +623,24 @@ The owner then approved exporting the additional Rating component data with:
 > `card`) from this private pre-public repository to the Figma file
 > `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional RevealSection component data
+with:
+
+> I approve exporting the RevealSection prop names, default values, and
+> behavior (`open`, `label`, `announce=true`, `className`, `children`, and
+> HTMLAttributes including `aria-labelledby`), variant name (`default`) and
+> default variant (`default`), `open=false` conditional render-none behavior,
+> `open=true` `role="region"`, `aria-label`, `aria-live="polite"`,
+> `data-state="open"`, and `data-slot="reveal-section"` structure, named
+> region behavior, animation classes (`animate-in fade-in-0
+> slide-in-from-top-1 duration-200`), docs/demo-derived state taxonomy and
+> sample copy (`配偶者あり`, `配偶者控除の申告`, `配偶者氏名`,
+> `配偶者の所得見積額`), Switch / Input composition information, demo style
+> information (`w-full`, `rounded-md`, `border`, `bg-muted/30`, `p-4`, gap),
+> and token names and values (`foreground`, `muted-foreground`, `muted`,
+> `border`, `background`, `input`, `ring`) from this private pre-public
+> repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -611,8 +648,9 @@ Before creating the next component:
 1. Review the Figma file manually.
 2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch,
    RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, Card,
-   Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, and Rating
-   components, runtime semantic colors, and specimen treatments are acceptable.
+   Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, Rating,
+   and RevealSection components, runtime semantic colors, and specimen
+   treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
