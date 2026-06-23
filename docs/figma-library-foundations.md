@@ -760,6 +760,40 @@ Figma export:
   size scale, usage boundaries, and source footer are aligned without visible
   overlap.
 
+The owner then approved exporting the additional Statistic component data with:
+
+> I approve exporting the Statistic prop names, default values, and behavior
+> (`label`, `value`, `change`, `trend="flat"`, `tone`, `hint`, and
+> HTMLAttributes including `className`), generated no-variant and
+> no-default-variant structure, trend values (`up`, `down`, `flat`) and icon
+> structure (`IconArrowUp`, `IconArrowDown`, `IconMinus`, `h-3 w-3`), tone
+> values (`positive`, `negative`, `neutral`) and omitted-tone resolution
+> (`trend="up"` -> `positive`, `trend="down"` -> `negative`,
+> `trend="flat"` -> `neutral`), dimensions and layout (`flex flex-col
+> gap-1`, `rounded-lg`, `border`, `bg-card`, `p-4`,
+> `text-card-foreground`), label / value / change / hint typography, docs and
+> demo-derived state taxonomy and sample copy (`Monthly revenue`,
+> `No comparison`, `Positive decrease`, `Negative increase`, `Flat`,
+> `Metric group`, `月間売上`, `今月の利用量`, `エラー率`,
+> `アラート`, `処理待ち`, `+20.1%`, `-0.4pt`, `+6件`,
+> `変化なし`), DocNote-derived trend/tone semantics, AnalyticsCard /
+> ChartLegend / Card / chart usage-boundary information, and token names and
+> values (`card`, `card-foreground`, `border`, `muted-foreground`, `success`,
+> `destructive`, with `background` / `foreground` for specimen annotation) from
+> this private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Statistic / Section`: `163:2`
+- `Statistic` component: `163:18`
+- Placement: `Display` page, after `Spacer / Section`, at `(40, 16270)`,
+  `1280 x 1120`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the component card, trend/tone specimens, docs
+  state specimens, usage boundaries, runtime token notes, and source footer are
+  aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -768,8 +802,8 @@ Before creating the next component:
 2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch,
    RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, Card,
    Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, Rating,
-   RevealSection, SearchableAccordion, Skeleton, and Spacer components, runtime
-   semantic colors, and specimen treatments are acceptable.
+   RevealSection, SearchableAccordion, Skeleton, Spacer, and Statistic
+   components, runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
