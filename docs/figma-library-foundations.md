@@ -889,6 +889,44 @@ Figma export:
   contract, anatomy notes, docs state specimens, usage boundaries, runtime
   token notes, and source footer are aligned without visible overlap.
 
+The owner then approved exporting the additional Img component data with:
+
+> I approve exporting the Img prop names, default values, and behavior (`src`,
+> `alt`, `fallback`, `errorLabel="Image not found"`, `aspectRatio="auto"`,
+> `objectFit="cover"`, `showSkeleton=true`, `loading`, `className`, `onLoad`,
+> `onError`, and ImgHTMLAttributes structure), variant names (`loading`,
+> `loaded`, `error`) and default variant (`loading`), status transitions
+> (missing `src` -> `error`, complete image with `naturalWidth > 0` ->
+> `loaded`, load/error events update state), aspect-ratio values (`square`,
+> `video`, `auto`, `portrait`, `wide`) and class mapping, object-fit values
+> (`cover`, `contain`, `fill`, `none`, `scale-down`) and class mapping,
+> loading skeleton structure, error fallback structure (`IconPhoto`,
+> `errorLabel`, and optional `fallback` ReactNode), dimensions and layout
+> (`relative w-full overflow-hidden bg-secondary`, `rounded-lg`, `h-fit`,
+> `min-h-40`, `absolute inset-0`, `p-4`, `text-center`), typography
+> (`text-xs`, `font-normal`, `text-muted-foreground`), docs-derived state
+> taxonomy and sample copy (`sample-image`, `contain`, `error`,
+> `サンプル画像`, `全体を収める`, `読み込み失敗`, `Image not found`,
+> `画像が見つかりません`, `オフィスデスクの写真`,
+> `山と湖の風景写真`), ImagePreview / AssetCard usage-boundary information,
+> and token names and values (`secondary`, `muted`, `muted-foreground`, with
+> `background` / `foreground` / `border` for specimen annotation) from this
+> private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Img / Section`: `176:2`
+- `Img` component set: `176:44`
+- Placement: `Display` page, after `Kbd / Section`, at `(40, 21090)`,
+  `1280 x 1420`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  component set validation returned 3 variants (`State=loading`,
+  `State=loaded`, `State=error`); screenshot review confirmed the component
+  set, prop/state contract, anatomy notes, docs state specimens, usage
+  boundaries, runtime token notes, and source footer are aligned without
+  visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -898,7 +936,7 @@ Before creating the next component:
    RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, Card,
    Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, Rating,
    RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic,
-   SwatchGroup, Table, and Kbd components, runtime semantic colors, and
+   SwatchGroup, Table, Kbd, and Img components, runtime semantic colors, and
    specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
