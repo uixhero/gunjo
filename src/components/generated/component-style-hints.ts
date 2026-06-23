@@ -1889,6 +1889,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "referenceValue": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": ""
+      },
+      "variantColorHints": {}
+    },
     "retentionCohortCard": {
       "variantKeys": [
         "default",

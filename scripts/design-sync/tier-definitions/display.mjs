@@ -798,4 +798,15 @@ export const DISPLAY_SPEC_DEFINITIONS = [
       ],
     }),
   },
+  {
+    key: "referenceValue",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:referenceValue",
+      title: "ReferenceValue",
+      description: "A measured value judged against a reference range: classifies it as normal / high (H) / low (L) / critical (HH/LL) and renders the value with a flag code, tone and screen-reader text — the value-vs-range judgement that vitals, lab results, dose safety, SLA/quota and tolerance bands all need. Exports a pure `flagValue()` helper for tables and charts.",
+      variants: [
+        createSyntheticVariant("default", { width: null, padding: null }),
+      ],
+    }),
+  },
 ];

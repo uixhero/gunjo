@@ -125,6 +125,7 @@ export const navigation = [
             { title: "MetadataList", href: "/docs/components/metadata-list" },
             { title: "Meter", href: "/docs/components/meter" },
             { title: "Rating", href: "/docs/components/rating" },
+            { title: "ReferenceValue", href: "/docs/components/reference-value" },
             { title: "RevealSection", href: "/docs/components/reveal-section" },
             { title: "RouteStops", href: "/docs/components/route-stops" },
             { title: "SearchableAccordion", href: "/docs/components/searchable-accordion" },

@@ -176,6 +176,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   delta: "Display",
   meter: "Display",
   "route-stops": "Display",
+  "reference-value": "Display",
   statistic: "Display",
   rating: "Display",
   "swatch-group": "Display",
