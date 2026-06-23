@@ -1345,6 +1345,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "revealSection": {
+      "title": "RevealSection",
+      "description": "State-driven conditional section: show or hide a fieldset on `open` and reveal it as a properly-labelled, screen-reader-announced region. For declaration forms where sections appear based on prior answers (配偶者控除, conditional panels).",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/RevealSection.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "ribbonChart": {
       "title": "RibbonChart",
       "description": "HTML/CSS ribbon chart for comparing changing flow, volume, or segment width across periods with hover/focus point tooltips.",

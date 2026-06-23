@@ -4380,6 +4380,30 @@
           "reusable": true
         }
       ]
+    },
+    "revealSection": {
+      "frameId": "synthetic:revealSection",
+      "title": "RevealSection",
+      "description": "State-driven conditional section: show or hide a fieldset on `open` and reveal it as a properly-labelled, screen-reader-announced region. For declaration forms where sections appear based on prior answers (配偶者控除, conditional panels).",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
     }
   }
 }

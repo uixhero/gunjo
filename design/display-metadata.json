@@ -254,5 +254,9 @@
   "approvalSteps": {
     "title": "ApprovalSteps",
     "description": "Approval-route timeline: each step's state (pending / current / approved / rejected / skipped) maps to a tone, icon, and accessible label, with actor, timestamp, and comment. For expense, ringi, and review approval workflows. Built on Timeline."
+  },
+  "revealSection": {
+    "title": "RevealSection",
+    "description": "State-driven conditional section: show or hide a fieldset on `open` and reveal it as a properly-labelled, screen-reader-announced region. For declaration forms where sections appear based on prior answers (配偶者控除, conditional panels)."
   }
 }

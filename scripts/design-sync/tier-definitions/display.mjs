@@ -754,4 +754,15 @@ export const DISPLAY_SPEC_DEFINITIONS = [
       ],
     }),
   },
+  {
+    key: "revealSection",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:revealSection",
+      title: "RevealSection",
+      description: "State-driven conditional section: show or hide a fieldset on `open` and reveal it as a properly-labelled, screen-reader-announced region. For declaration forms where sections appear based on prior answers (配偶者控除, conditional panels).",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
 ];
