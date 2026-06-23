@@ -1276,6 +1276,35 @@ Figma export:
   boundaries, runtime token notes, and source footer are aligned without
   visible overlap.
 
+The owner then approved exporting the additional HoverCard component data with:
+
+> I approve exporting the HoverCard / HoverCardTrigger / HoverCardContent prop
+> names, default values, and behavior, variant name (`default`) and default
+> variant (`default`), Radix HoverCard Root / Trigger / Content / Portal
+> structure, HoverCard Root `open` / `defaultOpen` / `onOpenChange` /
+> `openDelay=700` / `closeDelay=300` structure, HoverCardContent
+> `align="center"`, `sideOffset=4`, `portalContainer`, and `className`
+> structure, contained docs preview / framed app overlay behavior, dimensions
+> and layout, animation classes and side-specific slide-in treatment, design
+> spec-derived default specimen, docs-derived state taxonomy and sample copy,
+> Avatar / Button / Tabs / Tooltip / Popover related-component information,
+> and token names and values (`popover`, `popover-foreground`, `border`,
+> `muted`, `muted-foreground`, `foreground`, `background`, `ring`, `primary`,
+> `card`, and `accent`) from this private pre-public repository to the Figma
+> file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `HoverCard / Section`: `218:2`
+- `HoverCard` component: `218:5`
+- Placement: `Overlay` page, after `Drawer / Section`, at `(40, 15060)`,
+  `1280 x 1980`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the default component specimen, generated
+  contract, Radix HoverCard anatomy, contained portal behavior, profile,
+  notification, action, and tabbed docs state specimens, usage boundaries,
+  runtime token notes, and source footer are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1286,8 +1315,9 @@ Before creating the next component:
    Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, Rating,
    RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic,
    SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, Tooltip,
-   Popover, DropdownMenu, Dialog, Sheet, AlertDialog, ContextMenu, and Drawer
-   components, runtime semantic colors, and specimen treatments are acceptable.
+   Popover, DropdownMenu, Dialog, Sheet, AlertDialog, ContextMenu, Drawer, and
+   HoverCard components, runtime semantic colors, and specimen treatments are
+   acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
