@@ -181,6 +181,22 @@ component families:
     `disabled badge`, `addable badge`, and `selectable badge` states are
     documented as specimens, including Tooltip, Button, Icon, and
     DropdownMenu composition notes.
+- `Avatar` on the `Display` page.
+  - Section node: `108:2` (`Avatar / Section`).
+  - Component set node: `108:21`.
+  - Variants: `fallback`, `image` on the `variant` axis.
+  - Component property: `Fallback`.
+  - Layout: `Avatar / Overview card`, `Avatar / Component card`, and
+    `Avatar / Specimen card`.
+  - The component set records the 40 x 40 px root, rounded-full clipping,
+    fallback typography, image object-cover behavior, Tooltip composition,
+    and Avatar Root / Image / Fallback prop structure.
+  - `color/muted-foreground` scope was extended to include `FRAME_FILL` and
+    `SHAPE_FILL`, because Avatar uses the token for the offline presence dot.
+  - Docs-derived `with image`, `fallback`, and `composed with presence` states
+    are documented as specimens, including presence values `online`, `away`,
+    `busy`, and `offline`, 10 px presence dot geometry, 2 px background border,
+    and bottom-right absolute positioning.
 
 ## Local Payload
 
@@ -342,14 +358,29 @@ The owner then approved exporting the additional Badge component data with:
 > `destructive-strong-foreground`, `border`, `ring`) from this private
 > pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional Avatar component data with:
+
+> I approve exporting the Avatar / AvatarImage / AvatarFallback variant names
+> (`fallback`, `image`), default variant (`fallback`), Avatar Root / Image /
+> Fallback prop structure, `tooltip` / `tooltipSide` / `tooltipAlign` /
+> `tooltipPortalContainer` / `tooltipContentClassName` / `presence` /
+> `presenceLabel` prop structure, presence values (`online`, `away`, `busy`,
+> `offline`), dimensions, rounded-full radius, fallback typography, image
+> object-cover behavior, presence dot position/size/border, Tooltip
+> composition information, docs-derived state taxonomy and sample copy
+> (`with image`, `fallback`, `composed with presence`), and token names and
+> values (`secondary`, `muted-foreground`, `background`, `success`,
+> `warning`, `destructive`, `foreground`) from this private pre-public
+> repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
 
 1. Review the Figma file manually.
 2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch,
-   RadioGroup, Select, Slider, Textarea, and Badge component sets, runtime
-   semantic colors, and specimen treatments are acceptable.
+   RadioGroup, Select, Slider, Textarea, Badge, and Avatar component sets,
+   runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
