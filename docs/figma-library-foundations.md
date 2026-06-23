@@ -794,6 +794,39 @@ Figma export:
   state specimens, usage boundaries, runtime token notes, and source footer are
   aligned without visible overlap.
 
+The owner then approved exporting the additional SwatchGroup component data
+with:
+
+> I approve exporting the SwatchGroup / SwatchOption prop names, default
+> values, and behavior (`options`, `value`, `onValueChange`, `size="default"`,
+> `disallowEmpty`, and HTMLAttributes including `className`; SwatchOption
+> fields `value`, `label`, `color`, `disabled`), variant names (`default`,
+> `sm`, `lg`) and default variant (`default`), size dimensions (`sm` 24 px,
+> `default` 32 px, `lg` 40 px), root `role="radiogroup"` structure, swatch
+> button `role="radio"`, `aria-checked`, `aria-label`, `disabled`,
+> `tabIndex`, and `id="swatch-${value}"` structure, roving tabindex and arrow
+> key navigation behavior, disabled-swatch skip behavior, selected / disabled /
+> focus ring styling, the fact that swatch color is product data passed through
+> `style.backgroundColor` rather than a component token, docs-derived swatch
+> values and labels (`Ink`, `Primary`, `Forest`, `Amber`,
+> `Muted (sold out)`), product variant / theme picker usage information, and
+> token names and values (`border`, `background`, `ring`, plus demo color
+> tokens `foreground`, `primary`, `success`, `warning`, `muted`) from this
+> private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `SwatchGroup / Section`: `166:2`
+- `SwatchGroup` component set: `166:51`
+- Placement: `Display` page, after `Statistic / Section`, at `(40, 17430)`,
+  `1280 x 1120`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  component set validation returned 3 variants (`Size=default`, `Size=sm`,
+  `Size=lg`); screenshot review confirmed the component set, interaction
+  states, size scale, demo color chips, usage/token notes, and source footer
+  are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -802,8 +835,9 @@ Before creating the next component:
 2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch,
    RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, Card,
    Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, Rating,
-   RevealSection, SearchableAccordion, Skeleton, Spacer, and Statistic
-   components, runtime semantic colors, and specimen treatments are acceptable.
+   RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic, and
+   SwatchGroup components, runtime semantic colors, and specimen treatments are
+   acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
