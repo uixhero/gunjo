@@ -197,6 +197,20 @@ component families:
     are documented as specimens, including presence values `online`, `away`,
     `busy`, and `offline`, 10 px presence dot geometry, 2 px background border,
     and bottom-right absolute positioning.
+- `Separator` on the `Display` page.
+  - Section node: `112:2` (`Separator / Section`).
+  - Component set node: `112:15`.
+  - Variants: `horizontal`, `vertical` on the `orientation` axis.
+  - Layout: `Separator / Overview card`, `Separator / Component card`, and
+    `Separator / Specimen card`.
+  - The component set records horizontal `w-full h-[1px]` behavior as a
+    240 px specimen, vertical `w-[1px] h-6`, `shrink-0`, bg-border fill, and
+    HTMLAttributes-based `orientation`/`className` prop structure.
+  - `color/border` scope was extended to include `FRAME_FILL` and
+    `SHAPE_FILL`, because Separator uses the token as `bg-border` fill.
+  - Docs-derived `horizontal content divider` and
+    `vertical toolbar metadata divider` states are documented as specimens,
+    including the parent-width rule for horizontal separators.
 
 ## Local Payload
 
@@ -373,14 +387,26 @@ The owner then approved exporting the additional Avatar component data with:
 > `warning`, `destructive`, `foreground`) from this private pre-public
 > repository to the Figma file `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional Separator component data with:
+
+> I approve exporting the Separator variant names (`horizontal`, `vertical`),
+> default variant (`horizontal`), HTMLAttributes-based prop structure including
+> `orientation` and `className`, dimensions (`horizontal`: `w-full h-[1px]`,
+> `vertical`: `w-[1px] h-6`), `shrink-0`, `bg-border`, the parent-width rule
+> for horizontal separators, docs-derived state taxonomy and sample copy
+> (`horizontal content divider`, `vertical toolbar metadata divider`), and the
+> token name and value for `border` from this private pre-public repository to
+> the Figma file `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
 
 1. Review the Figma file manually.
 2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch,
-   RadioGroup, Select, Slider, Textarea, Badge, and Avatar component sets,
-   runtime semantic colors, and specimen treatments are acceptable.
+   RadioGroup, Select, Slider, Textarea, Badge, Avatar, and Separator
+   component sets, runtime semantic colors, and specimen treatments are
+   acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
