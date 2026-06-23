@@ -9,13 +9,23 @@ const inputVariantClasses: Record<InputVariantKey, string> = {
     placeholder: "placeholder:text-muted-foreground",
 }
 
-export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> { }
+export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+    /** Optional visible label rendered above the control and associated via `htmlFor`. */
+    label?: React.ReactNode
+    /** Optional helper text under the control, wired via `aria-describedby`. */
+    description?: React.ReactNode
+}
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-    ({ className, type, disabled, ...props }, ref) => {
+    ({ className, type, disabled, label, description, id, "aria-describedby": ariaDescribedby, ...props }, ref) => {
         const inputState: InputVariantKey = disabled ? "disabled" : inputDefaultVariantKey
+        const reactId = React.useId()
+        const hasWrap = Boolean(label || description)
+        const controlId = id ?? (hasWrap ? `${reactId}-input` : undefined)
+        const descriptionId = description ? `${reactId}-description` : undefined
+        const describedBy = [descriptionId, ariaDescribedby].filter(Boolean).join(" ") || undefined
 
-        return (
+        const control = (
             <input
                 type={type}
                 className={cn(
@@ -26,11 +36,31 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     className
                 )}
                 ref={ref}
+                id={controlId}
                 suppressHydrationWarning
                 disabled={disabled}
+                aria-describedby={describedBy}
                 {...props}
                 data-slot="input"
             />
+        )
+
+        if (!hasWrap) return control
+
+        return (
+            <div className="flex w-full flex-col gap-1.5">
+                {label ? (
+                    <label htmlFor={controlId} className="text-sm font-medium leading-none text-foreground">
+                        {label}
+                    </label>
+                ) : null}
+                {control}
+                {description ? (
+                    <p id={descriptionId} className="text-xs text-muted-foreground">
+                        {description}
+                    </p>
+                ) : null}
+            </div>
         )
     }
 )
