@@ -178,6 +178,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   meter: "Display",
   "route-stops": "Display",
   "reference-value": "Display",
+  "signed-record": "Display",
   statistic: "Display",
   rating: "Display",
   "swatch-group": "Display",

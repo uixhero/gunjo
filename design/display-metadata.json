@@ -274,5 +274,9 @@
   "referenceValue": {
     "title": "ReferenceValue",
     "description": "A measured value judged against a reference range: classifies it as normal / high (H) / low (L) / critical (HH/LL) and renders the value with a flag code, tone and screen-reader text — the value-vs-range judgement that vitals, lab results, dose safety, SLA/quota and tolerance bands all need. Exports a pure `flagValue()` helper for tables and charts."
+  },
+  "signedRecord": {
+    "title": "SignedRecord",
+    "description": "Append-only signed legal record: a draft body that, once signed, locks read-only (recording signer + timestamp) and can only be amended by a timestamped, authored addendum — never edited. Renders the draft/signed badge, the locked affordance, the signer audit line, an addendum composer and chain, and an optional CoSign gate. For clinical notes, discharge summaries, operative records and any signed/audited document."
   }
 }

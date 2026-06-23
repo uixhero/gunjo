@@ -2023,6 +2023,19 @@ export const componentStyleHints = {
         "vertical": "fill=#e2e8f0"
       }
     },
+    "signedRecord": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
+      "variantColorHints": {}
+    },
     "skeleton": {
       "variantKeys": [],
       "defaultVariantKey": null,

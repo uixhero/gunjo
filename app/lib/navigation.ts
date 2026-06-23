@@ -131,6 +131,7 @@ export const navigation = [
             { title: "RouteStops", href: "/docs/components/route-stops" },
             { title: "SearchableAccordion", href: "/docs/components/searchable-accordion" },
             { title: "Separator", href: "/docs/components/separator" },
+            { title: "SignedRecord", href: "/docs/components/signed-record" },
             { title: "Skeleton", href: "/docs/components/skeleton" },
             { title: "Spacer", href: "/docs/components/spacer" },
             { title: "Statistic", href: "/docs/components/statistic" },

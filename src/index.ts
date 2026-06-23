@@ -145,6 +145,7 @@ export * from './components/display/SearchableAccordion';
 export * from './components/display/SegmentedGaugeCard';
 export * from './components/display/SegmentTimelineCard';
 export * from './components/display/Separator';
+export * from './components/display/SignedRecord';
 export * from './components/display/Skeleton';
 export * from './components/display/Spacer';
 export * from './components/display/SparklineChart';
