@@ -298,6 +298,25 @@ component families:
     `empty` states are documented as specimens, including the default
     `emptyMessage` copy and Table / AssetInspectorPanel / Card usage-boundary
     notes.
+- `Rating` on the `Display` page.
+  - Section node: `144:2` (`Rating / Section`).
+  - Component set node: `144:85`.
+  - Variants: `sm`, `default`, and `lg` on the `variant` axis, with
+    `default` as the default.
+  - Layout: `Rating / Overview card`, `Rating / Component card`,
+    `Rating / Specimen card`, `Rating / Token and style notes`, and
+    `Rating / Source footer`.
+  - The component set records the read-only `role="img"` root, default
+    `aria-label` pattern, half-star rounding, `max` star count, optional
+    numeric value, optional review count, and `sm` / `default` / `lg` icon
+    sizes.
+  - `color/warning` scope was extended to include `TEXT_FILL`, because Rating
+    star glyphs use the warning token as an icon/text fill in the Figma
+    component model.
+  - Docs-derived `with value + review count`, `small`, `large`, and
+    `full rating` states are documented as specimens, including filled, half,
+    and empty star treatments and token-bound foreground / muted-foreground
+    text.
 
 ## Local Payload
 
@@ -569,6 +588,22 @@ with:
 > `border`, `card`, `background`) from this private pre-public repository to
 > the Figma file `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional Rating component data with:
+
+> I approve exporting the Rating prop names, default values, and behavior
+> (`value`, `max=5`, `size=default`, `reviewCount`, `showValue`, `label`,
+> `className`), variant names (`sm`, `default`, `lg`) and default variant
+> (`default`), read-only `role="img"` and `aria-label` structure,
+> half-star rounding (`Math.round(value * 2) / 2`), star rendering structure
+> (`filled`, `half`, `empty`, `max` count, `IconStarFilled`,
+> `IconStarHalfFilled`, `IconStar`), dimensions (`sm` 14 px, `default` 16 px,
+> `lg` 20 px), gap, text size, tabular-nums, numeric value and review count
+> display, docs-derived state taxonomy and sample copy (`with value + review
+> count`, `small`, `large`, `full rating`), and token names and values
+> (`warning`, `muted-foreground`, `foreground`, `background`, `border`,
+> `card`) from this private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -576,7 +611,7 @@ Before creating the next component:
 1. Review the Figma file manually.
 2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch,
    RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, Card,
-   Accordion, AccordionGroup, List, MarkdownRenderer, and MetadataList
+   Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, and Rating
    components, runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
