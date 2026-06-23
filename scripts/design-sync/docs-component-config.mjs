@@ -168,6 +168,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "data-table": "Display",
   "action-data-table": "Display",
   "editable-data-table": "Display",
+  "approval-steps": "Display",
   statistic: "Display",
   rating: "Display",
   "swatch-group": "Display",
