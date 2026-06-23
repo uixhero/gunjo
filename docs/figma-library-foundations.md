@@ -228,6 +228,28 @@ component families:
     `article card with avatar`, `social timeline card`, `card with actions`,
     and `loading` states are documented as specimens, including Badge, Button,
     Avatar, ImagePreview, and Skeleton composition notes.
+- `Accordion` and `AccordionGroup` on the `Display` page.
+  - Section node: `122:2` (`Accordion / Section`).
+  - Accordion component set node: `122:26`.
+  - Accordion variants: `collapsed`, `expanded` on the `variant` axis, with
+    `collapsed` as the default.
+  - AccordionGroup component set node: `122:96`.
+  - AccordionGroup variants: `default`, `withDescription`, and
+    `withoutControls` on the `variant` axis, with `default` as the default.
+  - Layout: `Accordion / Overview card`, `Accordion / Component card`, and
+    `Accordion / Specimen card`.
+  - The Accordion set records the Radix-derived root/item/trigger/content
+    structure, `single`/`multiple` behavior model, trigger indicator options,
+    16 px trigger padding, 24 px indicator hit area, 16 px icon, token-bound
+    border, foreground and muted-foreground text, disabled opacity, and
+    open/close rotation and animation guidance.
+  - The AccordionGroup set records the grouped heading, description,
+    expand/collapse TooltipButton control, `values`-driven open-all behavior,
+    and `showControls` composition states.
+  - Docs-derived `single collapsible`, `plus indicator`,
+    `multiple sections open`, `disabled`, `with description`, `initial open`,
+    and `without controls` states are documented as specimens, including
+    Tooltip, TooltipButton, and Icon composition notes.
 
 ## Local Payload
 
@@ -431,15 +453,36 @@ The owner then approved exporting the additional Card component data with:
 > `foreground`, `background`, `shadow-sm`, `radius/base`) from this private
 > pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional Accordion family component data
+with:
+
+> I approve exporting the Accordion / AccordionItem / AccordionTrigger /
+> AccordionContent / AccordionGroup prop structure, Accordion variant names
+> (`collapsed`, `expanded`) and default variant (`collapsed`), AccordionGroup
+> variant names (`default`, `withDescription`, `withoutControls`) and default
+> variant (`default`), Radix Accordion-derived `type` (`single`, `multiple`),
+> `collapsible`, `disabled`, `defaultValue`, `value`, and `onValueChange`
+> structure, AccordionTrigger `indicator` (`chevron`, `plus`, `none`),
+> `openLabel` / `closeLabel` default values, AccordionGroup `values`, `label`,
+> `description`, `expandLabel`, `collapseLabel`, `controlsLabel`,
+> `showControls`, and `accordionClassName` structure, dimensions, layout,
+> animation and rotate behavior, disabled opacity, Tooltip / TooltipButton /
+> Icon composition information, docs-derived state taxonomy and sample copy
+> (`single collapsible`, `plus indicator`, `multiple sections open`,
+> `disabled`, `with description`, `initial open`, `without controls`), and
+> token names and values (`foreground`, `muted-foreground`, `border`,
+> `background`, `muted`, `ring`) from this private pre-public repository to the
+> Figma file `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
 
 1. Review the Figma file manually.
 2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch,
-   RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, and Card
-   component sets, runtime semantic colors, and specimen treatments are
-   acceptable.
+   RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, Card,
+   Accordion, and AccordionGroup component sets, runtime semantic colors, and
+   specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
