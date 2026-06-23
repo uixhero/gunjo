@@ -150,5 +150,9 @@
   "currencyInput": {
     "title": "CurrencyInput",
     "description": "Money editor: a currency-symbol-prefixed, thousands-grouped, right-aligned amount input that formats while typing and emits a numeric value. JPY-first; for invoices, payroll, expenses, and any fintech amount field."
+  },
+  "scanInput": {
+    "title": "ScanInput",
+    "description": "Barcode / QR scan field: a scan gun (or hand entry) types a code then Enter; it fires `onScan`, announces the result, auto-clears and re-focuses for the next scan, and keeps an optional running feed. For POS, stocktake, returns and goods-receiving — scan → match → tick up."
   }
 }

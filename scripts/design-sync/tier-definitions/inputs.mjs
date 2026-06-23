@@ -473,4 +473,15 @@ export const INPUTS_SPEC_DEFINITIONS = [
       ],
     }),
   },
+  {
+    key: "scanInput",
+    syntheticSpec: createSyntheticInputsSpec({
+      frameId: "synthetic:scanInput",
+      title: "ScanInput",
+      description: "Barcode / QR scan field: a scan gun (or hand entry) types a code then Enter; it fires `onScan`, announces the result, auto-clears and re-focuses for the next scan, and keeps an optional running feed. For POS, stocktake, returns and goods-receiving — scan → match → tick up.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
 ];

@@ -1495,6 +1495,7 @@ export const translations: Record<
       Label: "ラベル",
       NumberInput: "数値入力",
       CurrencyInput: "金額入力",
+      ScanInput: "スキャン入力",
       PasswordGroup: "パスワードグループ",
       PasswordInput: "パスワード入力",
       PasswordRequirementList: "パスワード要件リスト",

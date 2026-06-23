@@ -1847,6 +1847,17 @@ export const componentManifest = {
       "specSource": "design/inputs.pen",
       "stability": "experimental"
     },
+    "scanInput": {
+      "title": "ScanInput",
+      "description": "Barcode / QR scan field: a scan gun (or hand entry) types a code then Enter; it fires `onScan`, announces the result, auto-clears and re-focuses for the next scan, and keeps an optional running feed. For POS, stocktake, returns and goods-receiving — scan → match → tick up.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/inputs/ScanInput.tsx",
+      "specSource": "design/inputs.pen",
+      "stability": "experimental"
+    },
     "searchInput": {
       "title": "SearchInput",
       "description": "Input with leading search icon for search bars.",
