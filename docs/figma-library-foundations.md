@@ -827,6 +827,41 @@ Figma export:
   states, size scale, demo color chips, usage/token notes, and source footer
   are aligned without visible overlap.
 
+The owner then approved exporting the additional Table component data with:
+
+> I approve exporting the Table / TableHeader / TableBody / TableFooter /
+> TableRow / TableHead / TableCell / TableCaption prop names, default values,
+> and behavior (`Table` has `striped=false` and HTMLTableElement attributes
+> including `className`; each slot forwards the matching HTML attributes,
+> `className`, and `children`), variant name (`default`) and default variant
+> (`default`), wrapper structure (`relative flex w-full flex-col overflow-auto
+> rounded-md rounded-lg border bg-card`), table structure (`w-full
+> caption-bottom text-sm`, with striped body even rows using `bg-muted/25`),
+> Header / Body / Footer / Row / Head / Cell / Caption class structure, docs
+> and demo-derived state taxonomy and sample copy (`default amount table`,
+> `striped`, `footer`, `caption`, `horizontal scroll`, `項目`, `状態`,
+> `金額`, `担当`, `期限`, `最終更新`, `API`, `ドキュメント`,
+> `デザイン`, `アクセシビリティ確認`, `公開前レビュー`, `完了`,
+> `確認中`, `未着手`, `合計`, and
+> `リリース前確認の担当一覧です。`), horizontal-scroll `min-w-[640px]`
+> and `max-w-xs` wrapper behavior, TableFooter / TableCaption / striped rows
+> usage guidance, DataTable / MetadataList / MarkdownRenderer usage-boundary
+> information, and token names and values (`card`, `accent`, `muted`,
+> `muted-foreground`, `border`, with `foreground` / `background` for specimen
+> annotation) from this private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Table / Section`: `169:2`
+- `Table` component: `169:20`
+- Placement: `Display` page, after `SwatchGroup / Section`, at `(40, 18590)`,
+  `1280 x 1320`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the default component specimen, props/slot
+  contract, anatomy notes, docs state specimens, horizontal-scroll treatment,
+  runtime token notes, and source footer are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -835,9 +870,9 @@ Before creating the next component:
 2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch,
    RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, Card,
    Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, Rating,
-   RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic, and
-   SwatchGroup components, runtime semantic colors, and specimen treatments are
-   acceptable.
+   RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic,
+   SwatchGroup, and Table components, runtime semantic colors, and specimen
+   treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
