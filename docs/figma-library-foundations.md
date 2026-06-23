@@ -728,6 +728,38 @@ The owner then approved exporting the additional Skeleton component data with:
 > (`muted`, `card`, `border`, `background`, `foreground`) from this private
 > pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional Spacer component data with:
+
+> I approve exporting the Spacer prop names, default values, and behavior
+> (`size`, `axis="both"`, and HTMLAttributes including `className`),
+> generated no-variant and no-default-variant structure, `aria-hidden`
+> invisible spacing element structure, flex-grow behavior when `size` is
+> omitted (`axis="x"` -> `flex-grow`, `axis="y"` -> `flex-grow`,
+> `axis="both"` -> `flex-1`), fixed size classes when `size` is provided
+> (`1` = 4 px, `2` = 8 px, `3` = 12 px, `4` = 16 px, `6` = 24 px,
+> `8` = 32 px, `12` = 48 px, `16` = 64 px, `24` = 96 px) and no-flex-grow
+> behavior in fixed mode, docs/demo-derived state taxonomy and sample
+> structures (`toolbar push to edge`, `vertical panel push to bottom`,
+> `fixed horizontal spacing`, `fixed vertical rhythm`,
+> `flex-grow Spacer (push to edges)`), Button / DocNote / Separator / HStack /
+> VStack usage-boundary information, repeated equal spacing guidance that
+> prefers gap and stack components, the fact that the component itself has no
+> visual token usage, and token names and values used only for Figma specimen
+> and annotation (`foreground`, `muted-foreground`, `border`, `background`,
+> `muted`) from this private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Spacer / Section`: `160:2`
+- `Spacer` component: `160:18`
+- Placement: `Display` page, after `Skeleton / Section`, at `(40, 15240)`,
+  `1280 x 990`.
+- Validation: Figma bounds check returned `outOfBoundsCount: 0`; screenshot
+  review confirmed the invisible component treatment, flex specimens, fixed
+  size scale, usage boundaries, and source footer are aligned without visible
+  overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -736,7 +768,7 @@ Before creating the next component:
 2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch,
    RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, Card,
    Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, Rating,
-   RevealSection, SearchableAccordion, and Skeleton components, runtime
+   RevealSection, SearchableAccordion, Skeleton, and Spacer components, runtime
    semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
