@@ -848,6 +848,18 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "approvalSteps": {
+      "title": "ApprovalSteps",
+      "description": "Approval-route timeline: each step's state (pending / current / approved / rejected / skipped) maps to a tone, icon, and accessible label, with actor, timestamp, and comment. For expense, ringi, and review approval workflows. Built on Timeline.",
+      "variantKeys": [
+        "default",
+        "compact"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/ApprovalSteps.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "assetCard": {
       "title": "AssetCard",
       "description": "Selectable media asset card for image libraries, files, and generated creative results with favorite, score, and preview affordances.",

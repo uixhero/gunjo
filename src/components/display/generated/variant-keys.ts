@@ -16,6 +16,9 @@ export type ActivityTimelineCardVariantKey = (typeof activityTimelineCardVariant
 export const analyticsCardVariantKeys = ["default", "flatWithFooter", "positive", "riskIncrease"] as const;
 export type AnalyticsCardVariantKey = (typeof analyticsCardVariantKeys)[number];
 
+export const approvalStepsVariantKeys = ["compact", "default"] as const;
+export type ApprovalStepsVariantKey = (typeof approvalStepsVariantKeys)[number];
+
 export const assetCardVariantKeys = ["compact", "default"] as const;
 export type AssetCardVariantKey = (typeof assetCardVariantKeys)[number];
 
@@ -142,6 +145,7 @@ export const displayVariantKeys = {
   actionDataTable: actionDataTableVariantKeys,
   activityTimelineCard: activityTimelineCardVariantKeys,
   analyticsCard: analyticsCardVariantKeys,
+  approvalSteps: approvalStepsVariantKeys,
   assetCard: assetCardVariantKeys,
   assetGrid: assetGridVariantKeys,
   avatar: avatarVariantKeys,

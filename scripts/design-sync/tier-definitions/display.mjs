@@ -742,4 +742,16 @@ export const DISPLAY_SPEC_DEFINITIONS = [
       ],
     }),
   },
+  {
+    key: "approvalSteps",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:approvalSteps",
+      title: "ApprovalSteps",
+      description: "Approval-route timeline: each step's state (pending / current / approved / rejected / skipped) maps to a tone, icon, and accessible label, with actor, timestamp, and comment. For expense, ringi, and review approval workflows. Built on Timeline.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+        createSyntheticVariant("compact", { padding: null }),
+      ],
+    }),
+  },
 ];

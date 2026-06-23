@@ -94,6 +94,7 @@ export const navigation = [
             { title: "Accordion", href: "/docs/components/accordion" },
             { title: "AccordionGroup", href: "/docs/components/accordion-group" },
             { title: "ActionDataTable", href: "/docs/components/action-data-table" },
+            { title: "ApprovalSteps", href: "/docs/components/approval-steps" },
             { title: "AssetCard", href: "/docs/components/asset-card" },
             { title: "AssetGrid", href: "/docs/components/asset-grid" },
             { title: "Avatar", href: "/docs/components/avatar" },
