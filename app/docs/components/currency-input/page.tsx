@@ -21,6 +21,8 @@ export function Example() {
 }`;
 
 const propsData = [
+    { name: "label", type: "ReactNode", description: "Visible label rendered above the control and associated via htmlFor (like Input / Select / Textarea)." },
+    { name: "description", type: "ReactNode", description: "Helper text under the control, wired via aria-describedby." },
     { name: "value", type: "number", description: "Numeric amount (controlled)." },
     { name: "onValueChange", type: "(value: number | undefined) => void", description: "Fires with the number, or undefined when cleared." },
     { name: "currency", type: "string", default: "\"JPY\"", description: "ISO 4217 code for the symbol + grouping." },

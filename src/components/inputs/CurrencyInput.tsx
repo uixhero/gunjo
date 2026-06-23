@@ -17,6 +17,10 @@ export interface CurrencyInputProps
     showSymbol?: boolean
     min?: number
     max?: number
+    /** Optional visible label rendered above the control and associated via `htmlFor`. */
+    label?: React.ReactNode
+    /** Optional helper text under the control, wired via `aria-describedby`. */
+    description?: React.ReactNode
 }
 
 function getCurrencySymbol(locale: string, currency: string): string {
@@ -48,11 +52,19 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, CurrencyInputProps>(
             onBlur,
             disabled,
             id,
+            label,
+            description,
             "aria-invalid": ariaInvalid,
+            "aria-describedby": ariaDescribedby,
             ...props
         },
         ref
     ) => {
+        const reactId = React.useId()
+        const hasWrap = Boolean(label || description)
+        const controlId = id ?? (hasWrap ? `${reactId}-currency` : undefined)
+        const descriptionId = description ? `${reactId}-description` : undefined
+        const describedBy = [descriptionId, ariaDescribedby].filter(Boolean).join(" ") || undefined
         const symbol = React.useMemo(() => getCurrencySymbol(locale, currency), [locale, currency])
         const group = React.useCallback(
             (n: number) => new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }).format(n),
@@ -96,7 +108,7 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, CurrencyInputProps>(
             onBlur?.(event)
         }
 
-        return (
+        const control = (
             <div
                 className={cn(
                     "inline-flex h-9 w-full max-w-full items-center gap-1 rounded-lg border border-input bg-transparent px-3 py-2 text-sm shadow-sm transition-colors focus-within:outline-none focus-within:ring-1 focus-within:ring-ring",
@@ -113,7 +125,7 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, CurrencyInputProps>(
                 ) : null}
                 <input
                     ref={ref}
-                    id={id}
+                    id={controlId}
                     type="text"
                     inputMode="numeric"
                     value={display}
@@ -121,9 +133,28 @@ const CurrencyInput = React.forwardRef<HTMLInputElement, CurrencyInputProps>(
                     onBlur={handleBlur}
                     disabled={disabled}
                     aria-invalid={ariaInvalid}
+                    aria-describedby={describedBy}
                     className="w-full bg-transparent text-right font-normal tabular-nums text-foreground placeholder:text-muted-foreground focus:outline-none disabled:cursor-not-allowed"
                     {...props}
                 />
+            </div>
+        )
+
+        if (!hasWrap) return control
+
+        return (
+            <div className="flex w-full flex-col gap-1.5">
+                {label ? (
+                    <label htmlFor={controlId} className="text-sm font-medium leading-none text-foreground">
+                        {label}
+                    </label>
+                ) : null}
+                {control}
+                {description ? (
+                    <p id={descriptionId} className="text-xs text-muted-foreground">
+                        {description}
+                    </p>
+                ) : null}
             </div>
         )
     }
