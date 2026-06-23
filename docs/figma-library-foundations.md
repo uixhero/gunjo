@@ -1140,6 +1140,38 @@ Figma export:
   specimens, portal containment treatment, usage boundaries, runtime token
   notes, and source footer are aligned without visible overlap.
 
+The owner then approved exporting the additional Sheet component data with:
+
+> I approve exporting the Sheet / SheetTrigger / SheetClose / SheetPortal /
+> SheetOverlay / SheetContent / SheetHeader / SheetFooter / SheetTitle /
+> SheetDescription prop names, default values, and behavior, variant name
+> (`right`) and default variant (`right`), runtime `side` values (`top`,
+> `right`, `bottom`, `left`) with default `side="right"`, Radix Dialog Root /
+> Trigger / Close / Portal / Overlay / Content / Title / Description structure,
+> SheetContent `portalContainer`, `overlayClassName`, `closeLabel="Close"`,
+> `className`, `tabIndex=-1`, and `onOpenAutoFocus` behavior, contained portal
+> absolute positioning and transform suppression, side-specific layout classes,
+> Overlay fixed inset and `bg-overlay/80`, close button Tooltip composition,
+> aria-label, sr-only label, and focus ring, Header / Footer / Title /
+> Description layout and typography, docs-derived state taxonomy and sample
+> copy, Button / Input / Label / Switch / Tooltip / Drawer / Dialog composition
+> and usage-boundary information, and token names and values (`overlay`,
+> `background`, `foreground`, `muted`, `muted-foreground`, `border`, `ring`,
+> `secondary`, `accent`, and `input`) from this private pre-public repository
+> to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Sheet / Section`: `203:2`
+- `Sheet` component: `203:25`
+- Placement: `Overlay` page, after `Dialog / Section`, at `(40, 6940)`,
+  `1280 x 1740`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the right-side sheet component specimen,
+  prop/default contract, side-specific anatomy, docs state specimens,
+  portal containment and close-tooltip treatment, usage boundaries, runtime
+  token notes, and source footer are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1150,8 +1182,8 @@ Before creating the next component:
    Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, Rating,
    RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic,
    SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, Tooltip,
-   Popover, DropdownMenu, and Dialog components, runtime semantic colors, and
-   specimen treatments are acceptable.
+   Popover, DropdownMenu, Dialog, and Sheet components, runtime semantic colors,
+   and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
