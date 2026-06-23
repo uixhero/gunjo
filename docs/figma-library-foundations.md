@@ -357,6 +357,25 @@ component families:
   - Token-bound styling records foreground / muted-foreground text, muted tab
     rails and empty surfaces, secondary badge fill, secondary-foreground badge
     text, and border / input / ring control boundaries.
+- `Skeleton` on the `Display` page.
+  - Section node: `157:2` (`Skeleton / Section`).
+  - Component node: `157:18`.
+  - Variants: none. Default variant: none. Shape is represented as a `shape`
+    prop rather than a generated variant axis.
+  - Layout: `Skeleton / Overview card`, `Skeleton / Component card`,
+    `Skeleton / Demo specimen card`, `Skeleton / Pattern specimens`,
+    `Skeleton / Token and usage notes`, and `Skeleton / Source footer`.
+  - The component records the default `shape="rectangle"` contract,
+    `animate-pulse rounded-md bg-muted` base class, and className-driven
+    width, height, radius, and positioning overrides.
+  - Shape specimens document `rectangle`, `circle`, and `text`, including the
+    default rectangle dimensions, circular avatar treatment, and rounded text
+    line treatment.
+  - Docs-derived `example avatar + text lines`, `Card`, `List`, `Prose`,
+    `Navigation`, `Video`, and `Table rows` loading patterns are documented as
+    specimens, including Img / ImagePreview / Table usage-boundary notes.
+  - Token-bound styling records muted placeholder fills, card/background and
+    border specimen surfaces, and foreground annotation labels.
 
 ## Local Payload
 
@@ -693,6 +712,22 @@ data with:
 > `secondary`, `secondary-foreground`) from this private pre-public repository
 > to the Figma file `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional Skeleton component data with:
+
+> I approve exporting the Skeleton prop names, default values, and behavior
+> (`shape` and HTMLAttributes including `className`), generated no-variant and
+> no-default-variant structure, CVA shape values (`rectangle`, `circle`,
+> `text`) and default shape (`rectangle`), base class (`animate-pulse
+> rounded-md bg-muted`), shape dimensions and radius (`rectangle`: `h-4
+> w-full`, `circle`: `h-10 w-10 rounded-full`, `text`: `h-3.5 w-full
+> rounded-full`), `className` width, height, and radius override structure,
+> docs/demo-derived state taxonomy and sample structures (`example avatar +
+> text lines`, `Card`, `List`, `Prose`, `Navigation`, `Video`, `Table rows`),
+> loading-placeholder usage that reserves the final content area, Img /
+> ImagePreview / Table usage-boundary information, and token names and values
+> (`muted`, `card`, `border`, `background`, `foreground`) from this private
+> pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -701,8 +736,8 @@ Before creating the next component:
 2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch,
    RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, Card,
    Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, Rating,
-   RevealSection, and SearchableAccordion components, runtime semantic colors,
-   and specimen treatments are acceptable.
+   RevealSection, SearchableAccordion, and Skeleton components, runtime
+   semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
