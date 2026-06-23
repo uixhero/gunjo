@@ -211,6 +211,23 @@ component families:
   - Docs-derived `horizontal content divider` and
     `vertical toolbar metadata divider` states are documented as specimens,
     including the parent-width rule for horizontal separators.
+- `Card` on the `Display` page.
+  - Section node: `117:2` (`Card / Section`).
+  - Component set node: `117:25`.
+  - Variants: `default` on the `variant` axis.
+  - Layout: `Card / Overview card`, `Card / Component card`, and
+    `Card / Specimen card`.
+  - The component set records the Card root as a 350 px wide default variant
+    with vertical flex layout, full-width intent, rounded-lg radius, token-bound
+    `bg-card`, token-bound `text-card-foreground`, token-bound border,
+    `Gunjo/Shadow/sm`, and `CardHeader` / `CardContent` / `CardFooter` slots.
+  - The slot structure records `CardHeader` padding 24 px and 6 px gap,
+    `CardContent` padding `0 24 24 24`, `CardFooter` padding `0 24 24 24`,
+    12 px gap, and space-between alignment.
+  - Docs-derived `metric card`, `media card`, `content card`,
+    `article card with avatar`, `social timeline card`, `card with actions`,
+    and `loading` states are documented as specimens, including Badge, Button,
+    Avatar, ImagePreview, and Skeleton composition notes.
 
 ## Local Payload
 
@@ -398,13 +415,29 @@ The owner then approved exporting the additional Separator component data with:
 > token name and value for `border` from this private pre-public repository to
 > the Figma file `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional Card component data with:
+
+> I approve exporting the Card / CardHeader / CardContent / CardFooter /
+> CardTitle / CardDescription prop structure, default variant (`default`),
+> HTMLAttributes-based `className` / `children` structure, CardTitle `as` prop
+> and default value (`h3`), dimensions and layout (`flex w-full flex-col`),
+> rounded-lg radius, border, `bg-card`, `text-card-foreground`, `shadow-sm`,
+> Header / Content / Footer padding, gap, and alignment, Title / Description
+> typography, docs-derived state taxonomy and sample copy (`metric card`,
+> `media card`, `content card`, `article card with avatar`,
+> `social timeline card`, `card with actions`, `loading`), Badge / Button /
+> Avatar / ImagePreview / Skeleton composition information, and token names and
+> values (`card`, `card-foreground`, `border`, `muted-foreground`, `muted`,
+> `foreground`, `background`, `shadow-sm`, `radius/base`) from this private
+> pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
 
 1. Review the Figma file manually.
 2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch,
-   RadioGroup, Select, Slider, Textarea, Badge, Avatar, and Separator
+   RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, and Card
    component sets, runtime semantic colors, and specimen treatments are
    acceptable.
 3. Continue with the core component sequence from
