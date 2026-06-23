@@ -1578,6 +1578,7 @@ export const translations: Record<
       Statistic: "統計",
       EditableDataTable: "編集可能データテーブル",
       ApprovalSteps: "承認ステップ",
+      RevealSection: "条件付きセクション",
       Rating: "レーティング",
       SwatchGroup: "スウォッチグループ",
       Gallery: "ギャラリー",

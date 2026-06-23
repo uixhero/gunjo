@@ -121,6 +121,7 @@ export const navigation = [
             { title: "MarkdownRenderer", href: "/docs/components/markdown-renderer" },
             { title: "MetadataList", href: "/docs/components/metadata-list" },
             { title: "Rating", href: "/docs/components/rating" },
+            { title: "RevealSection", href: "/docs/components/reveal-section" },
             { title: "SearchableAccordion", href: "/docs/components/searchable-accordion" },
             { title: "Separator", href: "/docs/components/separator" },
             { title: "Skeleton", href: "/docs/components/skeleton" },
