@@ -1047,6 +1047,33 @@ Figma export:
   usage boundaries, runtime token notes, and source footer are aligned without
   visible overlap.
 
+The owner then approved exporting the additional Popover component data with:
+
+> I approve exporting the Popover / PopoverTrigger / PopoverAnchor /
+> PopoverContent prop names, default values, and behavior, variant name
+> (`default`) and default variant (`default`), Radix Popover Root / Trigger /
+> Anchor / Content / Portal structure, PopoverContent `align="center"`,
+> `sideOffset=4`, `collisionPadding=16`, `portalContainer`, and `className`
+> structure, portalContainer containment, dimensions, layout, animation classes,
+> design spec default specimen, docs-derived state taxonomy and sample copy,
+> Button / Switch / FormGroup / Input / DropdownMenu / Tooltip composition and
+> usage-boundary information, and token names and values (`popover`,
+> `popover-foreground`, `border`, `background`, `foreground`, `muted`,
+> `muted-foreground`, `ring`, `primary`, and `secondary`) from this private
+> pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Popover / Section`: `195:2`
+- `Popover` component: `195:24`
+- Placement: `Overlay` page, after `Tooltip / Section`, at `(40, 1900)`,
+  `1280 x 1540`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the default component specimen, prop/behavior
+  contract, slot anatomy, docs state specimens, portal containment treatment,
+  usage boundaries, runtime token notes, and source footer are aligned without
+  visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1056,8 +1083,9 @@ Before creating the next component:
    RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, Card,
    Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, Rating,
    RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic,
-   SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, and Tooltip
-   components, runtime semantic colors, and specimen treatments are acceptable.
+   SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, Tooltip, and
+   Popover components, runtime semantic colors, and specimen treatments are
+   acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
