@@ -17,9 +17,10 @@ const badgeVariantClasses: Record<BadgeVariantKey, string> = {
 export interface BadgeProps extends React.HTMLAttributes<HTMLElement> {
     variant?: BadgeVariantKey
     /**
-     * The element to render. Defaults to `"div"`. Use `as="span"` to place a
-     * Badge inline inside flow content (e.g. a `<p>`), since a block `<div>` is
-     * not a valid descendant of `<p>` and throws a hydration error.
+     * The element to render. Defaults to `"span"` so a Badge is valid inside
+     * flow content (e.g. a `<p>` or other phrasing context) — a status pill is
+     * phrasing content. Pass `as="div"` only if you specifically need a block
+     * element. (A `<div>` inside a `<p>` throws a hydration error.)
      */
     as?: "div" | "span"
     /** When provided, renders a dismiss (×) button — use for removable filter chips. */
@@ -31,7 +32,7 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLElement> {
 function Badge({
     className,
     variant = badgeDefaultVariantKey,
-    as: Comp = "div",
+    as: Comp = "span",
     onRemove,
     removeLabel = "Remove",
     children,
