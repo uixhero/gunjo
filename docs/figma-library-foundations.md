@@ -267,6 +267,21 @@ component families:
     `usage boundary` states are documented as specimens, including semantic
     `unordered` / `ordered` / `none`, marker, spacing, divided, Card, Icon, and
     Checkbox usage-boundary notes.
+- `MarkdownRenderer` on the `Display` page.
+  - Section node: `131:2` (`MarkdownRenderer / Section`).
+  - Component node: `131:20`.
+  - Variants: none. Default variant: none.
+  - Layout: `MarkdownRenderer / Overview card`,
+    `MarkdownRenderer / Component card`, and
+    `MarkdownRenderer / Specimen card`.
+  - The component records the default GFM-enabled Markdown rendering surface,
+    including heading, paragraph, TextLink, unordered list, blockquote, code
+    block, Table composition, and read-only task checkbox treatment.
+  - `color/primary-border` was added to `Gunjo Tokens` for the blockquote
+    border binding, using the runtime semantic values from `src/globals.css`.
+  - Docs-derived `release notes`, `GFM extensions`, and `without GFM` states
+    are documented as specimens, including DocNote, Table, TextLink, Tooltip,
+    and read-only task tooltip composition notes.
 
 ## Local Payload
 
@@ -505,6 +520,23 @@ The owner then approved exporting the additional List component data with:
 > `background`, `muted`) from this private pre-public repository to the Figma
 > file `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional MarkdownRenderer component
+data with:
+
+> I approve exporting the MarkdownRenderer prop names, default values, behavior
+> (`content`, `className`, `disableGfm=false`, `components`), no-variant and
+> no-default-variant structure, ReactMarkdown / remarkGfm GFM enabled/disabled
+> behavior, element rendering structure for headings, paragraphs, links, lists,
+> blockquote, rule, code, table, and checkbox input, Table / TextLink / Tooltip
+> / DocNote composition information, read-only task checkbox tooltip copy,
+> docs-derived state taxonomy and sample copy (`release notes`,
+> `GFM extensions`, `without GFM`), dimensions, padding, radius, border,
+> typography, spacing, code, table, list, and task checkbox style information,
+> and token names and values (`foreground`, `background`, `muted`,
+> `muted-foreground`, `border`, `primary`, `primary-border`, `card`, `accent`,
+> `popover`, `popover-foreground`) from this private pre-public repository to
+> the Figma file `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -512,8 +544,8 @@ Before creating the next component:
 1. Review the Figma file manually.
 2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch,
    RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, Card,
-   Accordion, AccordionGroup, and List component sets, runtime semantic colors,
-   and specimen treatments are acceptable.
+   Accordion, AccordionGroup, List, and MarkdownRenderer components, runtime
+   semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
