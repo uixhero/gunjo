@@ -1109,6 +1109,37 @@ Figma export:
   and disabled-reason treatment, usage boundaries, runtime token notes, and
   source footer are aligned without visible overlap.
 
+The owner then approved exporting the additional Dialog component data with:
+
+> I approve exporting the Dialog / DialogTrigger / DialogPortal / DialogClose /
+> DialogOverlay / DialogContent / DialogHeader / DialogFooter / DialogTitle /
+> DialogDescription prop names, default values, and behavior, variant name
+> (`default`) and default variant (`default`), Radix Dialog Root / Trigger /
+> Portal / Close / Overlay / Content / Title / Description structure,
+> DialogContent `portalContainer`, `overlayClassName`,
+> `showCloseButton=true`, and `closeLabel="Close"`, Overlay fixed inset and
+> contained absolute behavior, Content centered placement, dimensions, padding,
+> gap, radius, border, shadow, and animation, close button position and focus
+> ring with sr-only label, Header / Footer / Title / Description layout and
+> typography, docs-derived state taxonomy and sample copy, Button / Input /
+> Textarea / AlertDialog / Drawer composition and usage-boundary information,
+> and token names and values (`overlay`, `background`, `foreground`, `muted`,
+> `muted-foreground`, `border`, `ring`, `accent`, `input`, and `destructive`)
+> from this private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Dialog / Section`: `200:2`
+- `Dialog` component: `200:25`
+- Placement: `Overlay` page, after `DropdownMenu / Section`, at `(40, 5180)`,
+  `1280 x 1720`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the default dialog component specimen,
+  prop/default contract, overlay/content/close/header/footer anatomy, docs state
+  specimens, portal containment treatment, usage boundaries, runtime token
+  notes, and source footer are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1119,8 +1150,8 @@ Before creating the next component:
    Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, Rating,
    RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic,
    SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, Tooltip,
-   Popover, and DropdownMenu components, runtime semantic colors, and specimen
-   treatments are acceptable.
+   Popover, DropdownMenu, and Dialog components, runtime semantic colors, and
+   specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
