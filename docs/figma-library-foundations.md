@@ -250,6 +250,23 @@ component families:
     `multiple sections open`, `disabled`, `with description`, `initial open`,
     and `without controls` states are documented as specimens, including
     Tooltip, TooltipButton, and Icon composition notes.
+- `List` on the `Display` page.
+  - Section node: `128:2` (`List / Section`).
+  - Component set node: `128:26`.
+  - Variants: `dot`, `check`, and `circle` on the `variant` axis, with `dot`
+    as the default.
+  - Layout: `List / Overview card`, `List / Component card`, and
+    `List / Specimen card`.
+  - The component set records `ListItem` marker variants with 8 px marker/text
+    gap, 16 px dot and check marker boxes, 12 px circle marker treatment, and
+    token-bound muted-foreground text.
+  - `color/primary` and `color/success` scopes were extended to include
+    `TEXT_FILL`, because List marker glyphs and custom icon specimens use those
+    tokens as text/icon fills in the Figma component model.
+  - Docs-derived `checklist`, `ordered`, `divided`, `custom icon`, and
+    `usage boundary` states are documented as specimens, including semantic
+    `unordered` / `ordered` / `none`, marker, spacing, divided, Card, Icon, and
+    Checkbox usage-boundary notes.
 
 ## Local Payload
 
@@ -474,6 +491,20 @@ with:
 > `background`, `muted`, `ring`) from this private pre-public repository to the
 > Figma file `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional List component data with:
+
+> I approve exporting the List / ListItem prop structure, List variant names
+> (`check`, `circle`, `dot`) and default variant (`dot`), List semantic variant
+> (`unordered`, `ordered`, `none`), marker (`dot`, `circle`, `check`, `number`,
+> `none`), spacing (`default`, `tight`, `loose`), and `divided` structure,
+> ListItem `marker`, `icon`, and `children` structure, dimensions and layout,
+> Icon composition information, docs-derived state taxonomy and sample copy
+> (`checklist`, `ordered`, `divided`, `custom icon`, `usage boundary`), Card /
+> Icon / Checkbox usage-boundary information, and token names and values
+> (`primary`, `success`, `muted-foreground`, `border`, `foreground`,
+> `background`, `muted`) from this private pre-public repository to the Figma
+> file `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -481,8 +512,8 @@ Before creating the next component:
 1. Review the Figma file manually.
 2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch,
    RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, Card,
-   Accordion, and AccordionGroup component sets, runtime semantic colors, and
-   specimen treatments are acceptable.
+   Accordion, AccordionGroup, and List component sets, runtime semantic colors,
+   and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
