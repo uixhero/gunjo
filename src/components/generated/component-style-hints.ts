@@ -1460,6 +1460,19 @@ export const componentStyleHints = {
       "variantClasses": {},
       "variantColorHints": {}
     },
+    "delta": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": ""
+      },
+      "variantColorHints": {}
+    },
     "distributionBar": {
       "variantKeys": [
         "default"

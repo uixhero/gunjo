@@ -1042,6 +1042,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "delta": {
+      "title": "Delta",
+      "description": "Inline signed-change atom: a value with a directional arrow, a sign-driven tone, and a screen-reader (or visible) label — for gain/loss, variance (差異), and cash over/short (過不足). Fits inside a table cell, unlike the card-shaped Statistic.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/Delta.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "distributionBar": {
       "title": "DistributionBar",
       "description": "Stacked percentage distribution bar for segments, channels, and allocation data with hover/focus segment tooltips.",

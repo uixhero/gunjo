@@ -765,4 +765,15 @@ export const DISPLAY_SPEC_DEFINITIONS = [
       ],
     }),
   },
+  {
+    key: "delta",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:delta",
+      title: "Delta",
+      description: "Inline signed-change atom: a value with a directional arrow, a sign-driven tone, and a screen-reader (or visible) label — for gain/loss, variance (差異), and cash over/short (過不足). Fits inside a table cell, unlike the card-shaped Statistic.",
+      variants: [
+        createSyntheticVariant("default", { width: null, padding: null }),
+      ],
+    }),
+  },
 ];
