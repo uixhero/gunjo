@@ -1271,6 +1271,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "meter": {
+      "title": "Meter",
+      "description": "Capacity / utilisation meter (role=meter): a value-against-max bar whose tone is derived from thresholds (near-full → warning, over → destructive), with an optional incoming overlay to preview 'after this change' and a compact inline size for table cells. For warehouse fill, truck load, storage usage, quota.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/Meter.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "miniDistributionBarCard": {
       "title": "Mini Distribution Bar Card",
       "description": "HTML/CSS compact distribution card for product categories, capacity, and utilization widgets with dense ticks, selected segment details, and hover/focus tooltips.",

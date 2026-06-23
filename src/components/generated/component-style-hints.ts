@@ -1771,6 +1771,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "meter": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
+      "variantColorHints": {}
+    },
     "miniDistributionBarCard": {
       "variantKeys": [
         "default",

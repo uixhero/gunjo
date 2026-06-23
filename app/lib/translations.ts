@@ -1582,6 +1582,7 @@ export const translations: Record<
       ApprovalSteps: "承認ステップ",
       RevealSection: "条件付きセクション",
       Delta: "差分",
+      Meter: "メーター",
       Rating: "レーティング",
       SwatchGroup: "スウォッチグループ",
       Gallery: "ギャラリー",

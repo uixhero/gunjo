@@ -4428,6 +4428,30 @@
           "reusable": true
         }
       ]
+    },
+    "meter": {
+      "frameId": "synthetic:meter",
+      "title": "Meter",
+      "description": "Capacity / utilisation meter (role=meter): a value-against-max bar whose tone is derived from thresholds (near-full → warning, over → destructive), with an optional incoming overlay to preview 'after this change' and a compact inline size for table cells. For warehouse fill, truck load, storage usage, quota.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
     }
   }
 }

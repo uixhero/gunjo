@@ -262,5 +262,9 @@
   "delta": {
     "title": "Delta",
     "description": "Inline signed-change atom: a value with a directional arrow, a sign-driven tone, and a screen-reader (or visible) label — for gain/loss, variance (差異), and cash over/short (過不足). Fits inside a table cell, unlike the card-shaped Statistic."
+  },
+  "meter": {
+    "title": "Meter",
+    "description": "Capacity / utilisation meter (role=meter): a value-against-max bar whose tone is derived from thresholds (near-full → warning, over → destructive), with an optional incoming overlay to preview 'after this change' and a compact inline size for table cells. For warehouse fill, truck load, storage usage, quota."
   }
 }

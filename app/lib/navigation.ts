@@ -123,6 +123,7 @@ export const navigation = [
             { title: "List", href: "/docs/components/list" },
             { title: "MarkdownRenderer", href: "/docs/components/markdown-renderer" },
             { title: "MetadataList", href: "/docs/components/metadata-list" },
+            { title: "Meter", href: "/docs/components/meter" },
             { title: "Rating", href: "/docs/components/rating" },
             { title: "RevealSection", href: "/docs/components/reveal-section" },
             { title: "SearchableAccordion", href: "/docs/components/searchable-accordion" },
