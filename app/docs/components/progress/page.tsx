@@ -28,7 +28,7 @@ function ProgressExample({
                 <span className="font-medium">{label}</span>
                 <span className="text-muted-foreground">{valueLabel ?? `${value}%`}</span>
             </div>
-            <Progress value={value} max={max} className="h-2 w-full" aria-label={label} />
+            <Progress value={value} max={max} className="h-2 w-full" label={label} valueText={valueLabel ?? `${value}%`} />
             <p className="text-xs text-muted-foreground">{helper}</p>
         </div>
     );
