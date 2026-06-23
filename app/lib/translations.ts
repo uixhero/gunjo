@@ -1584,6 +1584,7 @@ export const translations: Record<
       Delta: "差分",
       Meter: "メーター",
       RouteStops: "配送ルート",
+      ReferenceValue: "基準値判定",
       Rating: "レーティング",
       SwatchGroup: "スウォッチグループ",
       Gallery: "ギャラリー",
