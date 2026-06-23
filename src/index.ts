@@ -128,6 +128,7 @@ export * from './components/display/LineChart';
 export * from './components/display/List';
 export * from './components/display/MarkdownRenderer';
 export * from './components/display/MetadataList';
+export * from './components/display/Meter';
 export * from './components/display/MiniDistributionBarCard';
 export * from './components/display/PieChart';
 export * from './components/display/QuadrantMatrix';
