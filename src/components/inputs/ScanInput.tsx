@@ -48,6 +48,12 @@ export interface ScanInputProps
     feedLimit?: number
     /** Leading adornment. Default a barcode icon; pass `null` to hide. */
     icon?: React.ReactNode
+    /**
+     * Announce results assertively (`role="alert"` + `aria-live="assertive"`)
+     * instead of politely. Use for safety-critical scanning where a mismatch
+     * must interrupt the screen reader. Default `false`. (#237)
+     */
+    assertive?: boolean
     /** Localized strings. */
     labels?: { feedTitle?: string; empty?: string }
 }
@@ -72,6 +78,7 @@ const ScanInput = React.forwardRef<HTMLInputElement, ScanInputProps>(
             showFeed = false,
             feedLimit = 8,
             icon,
+            assertive = false,
             labels,
             disabled,
             id,
@@ -179,7 +186,13 @@ const ScanInput = React.forwardRef<HTMLInputElement, ScanInputProps>(
 
                 {/* Always-mounted polite live region: announces each scan result.
                     Polite (not assertive) so rapid scanning doesn't interrupt itself. */}
-                <p id={resultId} role="status" aria-live="polite" aria-atomic="true" className="min-h-5 text-sm">
+                <p
+                    id={resultId}
+                    role={assertive ? "alert" : "status"}
+                    aria-live={assertive ? "assertive" : "polite"}
+                    aria-atomic="true"
+                    className="min-h-5 text-sm"
+                >
                     {result ? (
                         <span
                             className={cn(

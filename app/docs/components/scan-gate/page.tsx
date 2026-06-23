@@ -43,9 +43,9 @@ const propsData = [
   },
   {
     name: "ScanGateResult.advance",
-    type: '"next" | "stay" | "reset" | stageId',
+    type: '"next" | "stay" | "reset" | "done" | stageId',
     description:
-      'Returned from onScan to control flow. "next" advances (wraps + clears on the last stage = one cycle), "stay" remains, "reset" returns to the first stage and clears context, a stage id jumps. Default ok ? "next" : "stay".',
+      'Returned from onScan to control flow. "next" advances (wraps + clears on the last stage = one cycle, for cyclic flows like packing), "stay" remains, "reset" returns to the first stage and clears context, "done" completes a terminating flow (holds the stage, keeps context, fires onComplete — use on the last stage of a verify-then-act gate), a stage id jumps. Default ok ? "next" : "stay".',
   },
   {
     name: "ScanGateResult.value",
@@ -56,6 +56,16 @@ const propsData = [
     name: "onStageChange",
     type: "(stageId, ctx) => void",
     description: "Notified when the active stage changes.",
+  },
+  {
+    name: "onComplete",
+    type: "(ctx) => void",
+    description: 'Fired when a stage returns advance:"done" — the terminating flow is complete; ctx holds the verified values.',
+  },
+  {
+    name: "assertive",
+    type: "boolean",
+    description: 'Announce results assertively (role="alert" + aria-live="assertive") for safety-critical verify gates. Forwarded to ScanInput. Default false.',
   },
   {
     name: "showSteps",

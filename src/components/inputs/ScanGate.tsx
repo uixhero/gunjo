@@ -6,15 +6,19 @@ import { IconCheck } from "@tabler/icons-react"
 import { cn } from "../../lib/utils"
 import { ScanInput, type ScanResult } from "./ScanInput"
 
-export type ScanGateAdvance = "next" | "stay" | "reset"
+export type ScanGateAdvance = "next" | "stay" | "reset" | "done"
 
 /** What a stage's `onScan` returns. Extends `ScanResult` (ok + message) with flow control. */
 export interface ScanGateResult extends ScanResult {
     /**
      * Where to go after this scan. `"next"` advances (and wraps to the first stage,
-     * clearing context, when called from the last stage = one cycle done); `"stay"`
-     * remains; `"reset"` returns to the first stage and clears context; a stage id
-     * jumps there (keeping context). Default: `ok ? "next" : "stay"`.
+     * clearing context, when called from the last stage = one cycle done — for
+     * cyclic flows like packing); `"stay"` remains; `"reset"` returns to the first
+     * stage and clears context; `"done"` **completes a terminating flow** —
+     * holds the current stage, keeps the verified context, and fires `onComplete`
+     * (use it on the last stage of a verify-then-act gate so success doesn't
+     * silently wrap+clear); a stage id jumps there (keeping context).
+     * Default: `ok ? "next" : "stay"`.
      */
     advance?: ScanGateAdvance | (string & {})
     /** Remember this value for the stage — later stages read it via `ctx.values[stageId]`. */
@@ -62,10 +66,14 @@ export interface ScanGateProps extends Omit<React.HTMLAttributes<HTMLDivElement>
     stages: ScanGateStage[]
     /** Notified when the active stage changes. */
     onStageChange?: (stageId: string, ctx: ScanGateContext) => void
+    /** Fired when a stage returns `advance:"done"` — the terminating flow is complete; `ctx` holds the verified values. */
+    onComplete?: (ctx: ScanGateContext) => void
     /** Show the numbered step indicator. Default `true`. */
     showSteps?: boolean
     /** Focus the active stage's field on mount and on each advance (scan-gun loop). Default `true`. */
     autoFocus?: boolean
+    /** Announce results assertively (for safety-critical verify gates). Forwarded to `ScanInput`. Default `false`. (#237) */
+    assertive?: boolean
     /** Show the active `ScanInput`'s feed. Default `false`. */
     showFeed?: boolean
     feedLimit?: number
@@ -85,8 +93,10 @@ const ScanGate = React.forwardRef<ScanGateHandle, ScanGateProps>(
             className,
             stages,
             onStageChange,
+            onComplete,
             showSteps = true,
             autoFocus = true,
+            assertive = false,
             showFeed = false,
             feedLimit,
             lockMs,
@@ -137,6 +147,10 @@ const ScanGate = React.forwardRef<ScanGateHandle, ScanGateProps>(
             const advance = res.advance ?? (res.ok ? "next" : "stay")
             if (advance === "stay") {
                 // remain on the current stage
+            } else if (advance === "done") {
+                // terminating flow complete: hold the stage, keep the verified
+                // context, and notify — do NOT wrap/clear.
+                onComplete?.({ values: valuesRef.current, stageId: active.id, index: activeIndex })
             } else if (advance === "reset") {
                 setStage(0, true)
             } else if (advance === "next") {
@@ -204,6 +218,7 @@ const ScanGate = React.forwardRef<ScanGateHandle, ScanGateProps>(
                     placeholder={active.placeholder}
                     inputMode={active.inputMode}
                     onScan={handleScan}
+                    assertive={assertive}
                     showFeed={showFeed}
                     feedLimit={feedLimit}
                     lockMs={lockMs}
