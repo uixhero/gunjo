@@ -336,6 +336,27 @@ component families:
     `配偶者の所得見積額` labels are documented as specimens, including
     Switch and Input composition and token-bound foreground /
     muted-foreground / muted / border / input styling.
+- `SearchableAccordion` on the `Display` page.
+  - Section node: `152:2` (`SearchableAccordion / Section`).
+  - Component set node: `152:70`.
+  - Variants: `default`, `withCategories`, and `empty` on the `variant` axis,
+    with `default` as the default.
+  - Layout: `SearchableAccordion / Overview card`,
+    `SearchableAccordion / Component card`,
+    `SearchableAccordion / Specimen card`,
+    `SearchableAccordion / Token and behavior notes`,
+    `SearchableAccordion / Item data card`, and
+    `SearchableAccordion / Source footer`.
+  - The component set records the search, category, and open controlled /
+    uncontrolled APIs, `data-slot="searchable-accordion"`, `all` category
+    default, active-filter clearing, and compact `SearchInput`, `Tabs`,
+    `Badge`, `AccordionGroup`, and `EmptyState` representations.
+  - Docs-derived `With categories`, `Search only`, and `No results` states
+    are documented as specimens, including FAQ item data, categories,
+    keywords, result count copy, empty-state copy, and clear-filter action.
+  - Token-bound styling records foreground / muted-foreground text, muted tab
+    rails and empty surfaces, secondary badge fill, secondary-foreground badge
+    text, and border / input / ring control boundaries.
 
 ## Local Payload
 
@@ -641,6 +662,37 @@ with:
 > `border`, `background`, `input`, `ring`) from this private pre-public
 > repository to the Figma file `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional SearchableAccordion component
+data with:
+
+> I approve exporting the SearchableAccordion / SearchableAccordionItem /
+> SearchableAccordionCategory / SearchableAccordionLabels prop names, default
+> values, and behavior (`items`, `variant=default`, `searchValue`,
+> `defaultSearchValue=""`, `onSearchValueChange`, `categoryValue`,
+> `defaultCategoryValue="all"`, `onCategoryValueChange`, `openValue`,
+> `defaultOpenValue=[]`, `onOpenValueChange`, `categories`,
+> `showCategoryTabs=true`, `label`, `description`, `labels`, `emptyState`,
+> and HTMLAttributes including `className`), variant names (`default`,
+> `withCategories`, `empty`) and default variant (`default`), search matching
+> behavior across `title`, `body`, `category`, `searchText`, and `keywords`,
+> derived categories, `all` category, active-filter and clearFilters behavior,
+> `data-slot="searchable-accordion"` structure, SearchInput / Tabs / Badge /
+> AccordionGroup / AccordionItem / AccordionTrigger / AccordionContent /
+> EmptyState / Button / Icon composition information, dimensions and layout
+> (`w-full`, `p-0`, `space-y-4`, `space-y-3`, TabsList overflow-x-auto,
+> result row flex-wrap, max-w-2xl docs preview), docs-derived state taxonomy
+> and sample copy (`With categories`, `Search only`, `No results`,
+> `ヘルプ項目`, `項目を検索...`, `検索語を消去`, `すべて`,
+> `条件をクリア`, `一致する項目がありません`,
+> `検索語やカテゴリを変更してください`,
+> `請求先情報はどこで変更できますか？`,
+> `メンバー招待が届かない場合は？`,
+> `二要素認証を必須にできますか？`, `アカウント`, `チーム`,
+> `セキュリティ`), and token names and values (`foreground`,
+> `muted-foreground`, `muted`, `border`, `background`, `input`, `ring`,
+> `secondary`, `secondary-foreground`) from this private pre-public repository
+> to the Figma file `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -649,8 +701,8 @@ Before creating the next component:
 2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch,
    RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, Card,
    Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, Rating,
-   and RevealSection components, runtime semantic colors, and specimen
-   treatments are acceptable.
+   RevealSection, and SearchableAccordion components, runtime semantic colors,
+   and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
