@@ -1338,6 +1338,39 @@ Figma export:
   usage, runtime token notes, and source footer are aligned without visible
   overlap.
 
+The owner then approved exporting the additional ShareModal component data with:
+
+> I approve exporting the ShareModal / ShareData / ShareableItem prop names,
+> default values, and behavior (`isOpen`, `onClose`, `item`, `onUpdate`,
+> `apiEndpoint="/api/share"`, `onToggleShare`, `onCopyShareUrl`,
+> `onOpenShareUrl`, `portalContainer`, and `labels`), variant name
+> (`default`) and default variant (`default`), conditional `null` rendering
+> when `isOpen=false` or the component is not mounted, `item.share` sync,
+> public-link toggle behavior through `onToggleShare` or `apiEndpoint` POST
+> fallback, `onUpdate` propagation, `shareUrl` generation, clipboard copy,
+> 2000ms copied feedback, copy failure handling, open share URL behavior,
+> `createPortal` / `portalContainer` overlay containment, Overlay / Content /
+> Header / Public URL / stats / private disabled state structure, Tooltip /
+> Button / Switch / Icon composition information, docs-derived state taxonomy
+> and sample copy, and token names and values (`overlay`, `background`,
+> `foreground`, `muted`, `muted-foreground`, `border`, `ring`, `input`,
+> `primary`, `secondary`, `accent`, `destructive`, and `success`) from this
+> private pre-public repository to the Figma file `GunjoUI Library Foundations
+> (#8)`.
+
+Figma export:
+
+- `ShareModal / Section`: `228:2`
+- `ShareModal` component: `228:5`
+- Placement: `Overlay` page, after `Modal / Section`, at `(40, 19820)`,
+  `1280 x 2460`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the default component specimen, generated
+  contract, ShareData / ShareableItem API notes, public-link toggle behavior,
+  URL copy/open actions, private disabled reason tooltip treatment, docs state
+  specimens for public, private, and stats usage, runtime token notes, and
+  source footer are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1349,8 +1382,8 @@ Before creating the next component:
    RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic,
    SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, Tooltip,
    Popover, DropdownMenu, Dialog, Sheet, AlertDialog, ContextMenu, Drawer, and
-   HoverCard, and Modal components, runtime semantic colors, and specimen
-   treatments are acceptable.
+   HoverCard, Modal, and ShareModal components, runtime semantic colors, and
+   specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
