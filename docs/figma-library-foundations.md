@@ -1020,6 +1020,33 @@ Figma export:
   compositions, runtime token notes, and source footer are aligned without
   visible overlap.
 
+The owner then approved exporting the additional Tooltip component data with:
+
+> I approve exporting the Tooltip / TooltipTrigger / TooltipContent /
+> TooltipProvider prop names, default values, and behavior, variant name
+> (`default`) and default variant (`default`), Radix Tooltip Root / Provider /
+> Trigger / Content / Portal structure, controlled and uncontrolled open-state
+> behavior, mobile `openOnPress` behavior, TooltipContent side / align /
+> `sideOffset=4` / `portalContainer` / `className` structure, portalContainer
+> containment, dimensions, layout, animation classes, design spec default
+> specimen, docs-derived state taxonomy and sample copy, Button / Kbd /
+> TooltipButton / Popover composition and usage-boundary information, and token
+> names and values (`popover`, `popover-foreground`, `border`, `foreground`,
+> `muted-foreground`, `background`, `ring`, and `primary`) from this private
+> pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Tooltip / Section`: `193:2`
+- `Tooltip` component: `193:24`
+- Placement: `Overlay` page, after the existing page frame, at `(40, 360)`,
+  `1280 x 1500`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the default component specimen, prop/behavior
+  contract, slot anatomy, docs state specimens, portal containment treatment,
+  usage boundaries, runtime token notes, and source footer are aligned without
+  visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1029,8 +1056,8 @@ Before creating the next component:
    RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, Card,
    Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, Rating,
    RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic,
-   SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, and Pagination components,
-   runtime semantic colors, and specimen treatments are acceptable.
+   SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, and Tooltip
+   components, runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
