@@ -126,6 +126,7 @@ export const navigation = [
             { title: "Meter", href: "/docs/components/meter" },
             { title: "Rating", href: "/docs/components/rating" },
             { title: "RevealSection", href: "/docs/components/reveal-section" },
+            { title: "RouteStops", href: "/docs/components/route-stops" },
             { title: "SearchableAccordion", href: "/docs/components/searchable-accordion" },
             { title: "Separator", href: "/docs/components/separator" },
             { title: "Skeleton", href: "/docs/components/skeleton" },

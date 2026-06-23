@@ -787,4 +787,15 @@ export const DISPLAY_SPEC_DEFINITIONS = [
       ],
     }),
   },
+  {
+    key: "routeStops",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:routeStops",
+      title: "RouteStops",
+      description: "Ordered route / itinerary list: numbered stops with a per-stop status (pending / current / completed / failed / delayed) driving the marker and a status label, a planned-vs-actual time pair with a signed delay, the current stop wired with aria-current, and a trailing actions slot. For delivery tracking, picking walk-paths and any sequenced-stop flow.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
 ];

@@ -1583,6 +1583,7 @@ export const translations: Record<
       RevealSection: "条件付きセクション",
       Delta: "差分",
       Meter: "メーター",
+      RouteStops: "配送ルート",
       Rating: "レーティング",
       SwatchGroup: "スウォッチグループ",
       Gallery: "ギャラリー",

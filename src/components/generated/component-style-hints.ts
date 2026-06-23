@@ -1919,6 +1919,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "routeStops": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
+      "variantColorHints": {}
+    },
     "searchableAccordion": {
       "variantKeys": [
         "default",
