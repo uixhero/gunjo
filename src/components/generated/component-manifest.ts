@@ -1355,6 +1355,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "referenceValue": {
+      "title": "ReferenceValue",
+      "description": "A measured value judged against a reference range: classifies it as normal / high (H) / low (L) / critical (HH/LL) and renders the value with a flag code, tone and screen-reader text — the value-vs-range judgement that vitals, lab results, dose safety, SLA/quota and tolerance bands all need. Exports a pure `flagValue()` helper for tables and charts.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/ReferenceValue.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "retentionCohortCard": {
       "title": "Retention Cohort Card",
       "description": "HTML/CSS cohort retention card for dashboard grids with editable cohorts, periods, values, and hover/focus cell tooltips.",

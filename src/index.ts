@@ -135,6 +135,7 @@ export * from './components/display/QuadrantMatrix';
 export * from './components/display/RadarChart';
 export * from './components/display/RadialBarChart';
 export * from './components/display/Rating';
+export * from './components/display/ReferenceValue';
 export * from './components/display/RetentionCohortCard';
 export * from './components/display/RevealSection';
 export * from './components/display/RibbonChart';
