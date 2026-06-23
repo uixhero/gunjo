@@ -100,6 +100,7 @@ export const ApprovalSteps = React.forwardRef<HTMLDivElement, ApprovalStepsProps
                                 variant={config.variant}
                                 marker={marker}
                                 connector={index < steps.length - 1}
+                                aria-current={step.state === "current" ? "step" : undefined}
                                 aria-label={`${typeof step.label === "string" ? step.label : `Step ${index + 1}`}: ${stateLabel}`}
                             >
                                 <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
