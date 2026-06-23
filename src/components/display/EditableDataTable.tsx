@@ -67,8 +67,14 @@ export interface EditableDataTableProps<TRow> {
     minRows?: number
     /** Mark a row invalid for error styling; the returned text is exposed to screen readers. */
     getRowError?: (row: TRow, index: number) => string | undefined
-    /** Footer content (e.g. totals / 貸借バランス), rendered under the body on desktop and mobile. */
+    /** Footer content (e.g. totals / 貸借バランス), rendered full-width under the body on desktop and mobile. */
     footer?: React.ReactNode
+    /**
+     * Per-column footer cell (e.g. a total under the 金額 column). Renders a
+     * column-aligned `<tfoot>` row on desktop and a label/value stack on mobile.
+     * Return `null`/`undefined` for columns with no footer. (#210)
+     */
+    renderFooterCell?: (column: EditableColumn<TRow>) => React.ReactNode
     /** Mobile card body per row; defaults to stacking each column as a label + editor. */
     renderRowCard?: (row: TRow, ctx: { rowIndex: number; rowId: string }) => React.ReactNode
     /** Per-row label used in cell aria-labels. Default `Row {n}`. */
@@ -95,6 +101,7 @@ export function EditableDataTable<TRow>({
     minRows = 0,
     getRowError,
     footer,
+    renderFooterCell,
     renderRowCard,
     rowLabel,
     labels,
@@ -198,13 +205,28 @@ export function EditableDataTable<TRow>({
                             </tr>
                         )}
                     </tbody>
-                    {footer ? (
+                    {renderFooterCell || footer ? (
                         <tfoot className="border-t bg-muted/30">
-                            <tr>
-                                <td colSpan={columns.length + (onRemoveRow ? 1 : 0)} className={cn(cellPad)}>
-                                    {footer}
-                                </td>
-                            </tr>
+                            {renderFooterCell ? (
+                                <tr>
+                                    {columns.map((column) => (
+                                        <td
+                                            key={column.id}
+                                            className={cn("font-medium", cellPad, alignClasses[column.align ?? "left"], column.cellClassName)}
+                                        >
+                                            {renderFooterCell(column)}
+                                        </td>
+                                    ))}
+                                    {onRemoveRow ? <td className={cellPad} /> : null}
+                                </tr>
+                            ) : null}
+                            {footer ? (
+                                <tr>
+                                    <td colSpan={columns.length + (onRemoveRow ? 1 : 0)} className={cn(cellPad)}>
+                                        {footer}
+                                    </td>
+                                </tr>
+                            ) : null}
                         </tfoot>
                     ) : null}
                 </table>
@@ -256,7 +278,25 @@ export function EditableDataTable<TRow>({
                 ) : (
                     <div className="rounded-md border p-3 text-muted-foreground">{emptyContent}</div>
                 )}
-                {footer ? <div className="rounded-md border bg-muted/30 p-3">{footer}</div> : null}
+                {renderFooterCell || footer ? (
+                    <div className="rounded-md border bg-muted/30 p-3">
+                        {renderFooterCell ? (
+                            <dl className="flex flex-col gap-1">
+                                {columns.map((column) => {
+                                    const content = renderFooterCell(column)
+                                    if (content === null || content === undefined || content === false) return null
+                                    return (
+                                        <div key={column.id} className="flex items-center justify-between gap-2">
+                                            <dt className="text-xs text-muted-foreground">{column.header}</dt>
+                                            <dd className="font-medium tabular-nums">{content}</dd>
+                                        </div>
+                                    )
+                                })}
+                            </dl>
+                        ) : null}
+                        {footer}
+                    </div>
+                ) : null}
             </div>
 
             {onAddRow ? (
