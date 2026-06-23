@@ -108,6 +108,7 @@ export const navigation = [
             { title: "CodeBlock", href: "/docs/components/code-block" },
             { title: "ColorSwatch", href: "/docs/components/color-swatch" },
             { title: "DataTable", href: "/docs/components/data-table" },
+            { title: "Delta", href: "/docs/components/delta" },
             { title: "DocNote", href: "/docs/components/doc-note" },
             { title: "EditableDataTable", href: "/docs/components/editable-data-table" },
             { title: "EmptyState", href: "/docs/components/empty-state" },

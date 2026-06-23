@@ -109,6 +109,7 @@ export * from './components/display/CodeBlock';
 export * from './components/display/ColorSwatch';
 export * from './components/display/ConcentricProgressCard';
 export * from './components/display/DataTable';
+export * from './components/display/Delta';
 export * from './components/display/DistributionBar';
 export * from './components/display/DocNote';
 export * from './components/display/DonutChart';

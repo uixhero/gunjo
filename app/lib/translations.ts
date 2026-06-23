@@ -1579,6 +1579,7 @@ export const translations: Record<
       EditableDataTable: "編集可能データテーブル",
       ApprovalSteps: "承認ステップ",
       RevealSection: "条件付きセクション",
+      Delta: "差分",
       Rating: "レーティング",
       SwatchGroup: "スウォッチグループ",
       Gallery: "ギャラリー",

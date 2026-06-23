@@ -258,5 +258,9 @@
   "revealSection": {
     "title": "RevealSection",
     "description": "State-driven conditional section: show or hide a fieldset on `open` and reveal it as a properly-labelled, screen-reader-announced region. For declaration forms where sections appear based on prior answers (配偶者控除, conditional panels)."
+  },
+  "delta": {
+    "title": "Delta",
+    "description": "Inline signed-change atom: a value with a directional arrow, a sign-driven tone, and a screen-reader (or visible) label — for gain/loss, variance (差異), and cash over/short (過不足). Fits inside a table cell, unlike the card-shaped Statistic."
   }
 }
