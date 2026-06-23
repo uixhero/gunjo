@@ -1470,6 +1470,36 @@
       "variants": [],
       "nodes": {}
     },
+    "safetyBanner": {
+      "frameId": "synthetic:safetyBanner",
+      "title": "SafetyBanner",
+      "description": "Persistent, assertive, acknowledgeable safety alert: a loud banner for a critical condition (allergy, contraindication, panic value, over-dose) that announces assertively, requires an explicit acknowledgement, and exposes that acked state so the consumer can block a sign-off until it's cleared. Stronger than Alert (which is presentational and has no acknowledge contract).",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            12,
+            16,
+            12,
+            16
+          ],
+          "gap": 4,
+          "cornerRadius": 8,
+          "fill": null,
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
+        }
+      ]
+    },
     "toastProvider": {
       "frameId": "toastProviderFrame",
       "title": "Toast Provider",

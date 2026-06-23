@@ -225,6 +225,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   progress: "Feedback",
   spinner: "Feedback",
   banner: "Feedback",
+  "safety-banner": "Feedback",
   toast: "Feedback",
   "toast-provider": "Feedback",
   "notification-center": "Feedback",

@@ -25,6 +25,7 @@ export * from './components/feedback/Banner';
 export * from './components/feedback/NotificationCenter';
 export * from './components/feedback/Progress';
 export * from './components/feedback/ProgressWidget';
+export * from './components/feedback/SafetyBanner';
 export * from './components/feedback/Spinner';
 export * from './components/feedback/StatusBar';
 export * from './components/feedback/StatusScreen';

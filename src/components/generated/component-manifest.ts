@@ -210,6 +210,17 @@ export const componentManifest = {
       "specSource": "design/feedback.pen",
       "stability": "experimental"
     },
+    "safetyBanner": {
+      "title": "SafetyBanner",
+      "description": "Persistent, assertive, acknowledgeable safety alert: a loud banner for a critical condition (allergy, contraindication, panic value, over-dose) that announces assertively, requires an explicit acknowledgement, and exposes that acked state so the consumer can block a sign-off until it's cleared. Stronger than Alert (which is presentational and has no acknowledge contract).",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/feedback/SafetyBanner.tsx",
+      "specSource": "design/feedback.pen",
+      "stability": "experimental"
+    },
     "spinner": {
       "title": "Spinner",
       "description": "A visual indicator that content is being loaded.",
