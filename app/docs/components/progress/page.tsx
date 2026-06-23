@@ -9,18 +9,22 @@ import feedbackMetadata from "@design/feedback-metadata.json";
 import { Button, Progress } from "@gunjo/ui";
 import { useEffect, useState } from "react";
 
+type ProgressTone = "default" | "primary" | "success" | "warning" | "destructive" | "info";
+
 function ProgressExample({
     label,
     value,
     max = 100,
     helper,
     valueLabel,
+    tone,
 }: {
     label: string;
     value: number;
     max?: number;
     helper: string;
     valueLabel?: string;
+    tone?: ProgressTone;
 }) {
     return (
         <div className="w-full max-w-sm space-y-2">
@@ -28,8 +32,37 @@ function ProgressExample({
                 <span className="font-medium">{label}</span>
                 <span className="text-muted-foreground">{valueLabel ?? `${value}%`}</span>
             </div>
-            <Progress value={value} max={max} className="h-2 w-full" label={label} valueText={valueLabel ?? `${value}%`} />
+            <Progress value={value} max={max} tone={tone} className="h-2 w-full" label={label} valueText={valueLabel ?? `${value}%`} />
             <p className="text-xs text-muted-foreground">{helper}</p>
+        </div>
+    );
+}
+
+function CapacityToneExample({ locale }: { locale: "en" | "ja" }) {
+    const isJa = locale === "ja";
+    return (
+        <div className="w-full max-w-sm space-y-3">
+            <ProgressExample
+                label={isJa ? "棚 A-01 充填" : "Bin A-01 fill"}
+                value={45}
+                valueLabel="45%"
+                tone="success"
+                helper={isJa ? "余裕あり。" : "Plenty of room."}
+            />
+            <ProgressExample
+                label={isJa ? "棚 B-07 充填" : "Bin B-07 fill"}
+                value={82}
+                valueLabel="82%"
+                tone="warning"
+                helper={isJa ? "残りわずか。" : "Nearly full."}
+            />
+            <ProgressExample
+                label={isJa ? "棚 C-02 充填" : "Bin C-02 fill"}
+                value={100}
+                valueLabel="100%"
+                tone="destructive"
+                helper={isJa ? "満杯。別ロケーションへ。" : "Full — route elsewhere."}
+            />
         </div>
     );
 }
@@ -147,6 +180,17 @@ export function UploadProgress() {
     const lowCode = code
         .replace("const value = 66", "const value = 18")
         .replace(isJa ? "残り 4 ファイルを処理しています。" : "Processing 4 remaining files.", isJa ? "キューを準備しています。" : "Preparing the queue.");
+    const toneCode = `import { Progress } from "@gunjo/ui"
+
+export function BinFill() {
+  return (
+    <>
+      <Progress value={45} tone="success" label="棚 A-01 充填" valueText="45%" className="h-2" />
+      <Progress value={82} tone="warning" label="棚 B-07 充填" valueText="82%" className="h-2" />
+      <Progress value={100} tone="destructive" label="棚 C-02 充填" valueText="100%" className="h-2" />
+    </>
+  )
+}`;
     const completeCode = code
         .replace("const value = 66", "const value = 100")
         .replace(isJa ? "残り 4 ファイルを処理しています。" : "Processing 4 remaining files.", isJa ? "すべてのファイルを処理しました。" : "All files were processed.");
@@ -273,6 +317,28 @@ export function DynamicUploadProgress() {
             description: isJa ? "進捗の最大値です。value は max に対する割合で表示されます。" : "Maximum value used to calculate the displayed percentage.",
         },
         {
+            name: "tone",
+            type: '"default" | "primary" | "success" | "warning" | "destructive" | "info"',
+            default: '"default"',
+            description: isJa
+                ? "充填バーの意味色です。容量・予算・健全性など充填自体が意味を持つときに使います（既定は中立の foreground）。"
+                : "Semantic colour of the filled bar — for capacity / budget / health where the fill carries meaning (default is neutral foreground).",
+        },
+        {
+            name: "label",
+            type: "string",
+            description: isJa
+                ? "進捗バーのアクセシブルな名前です（progressbar には名前が必要）。"
+                : "Accessible name for the progress bar (a progressbar needs one).",
+        },
+        {
+            name: "valueText",
+            type: "string",
+            description: isJa
+                ? "スクリーンリーダーへ読み上げる人間可読な値です（例: 「完了 42/120」）。"
+                : "Human-readable value announced to screen readers (e.g. \"完了 42/120\").",
+        },
+        {
             name: "className",
             type: "string",
             description: isJa ? "進捗バーのサイズや余白を調整するクラスです。" : "Additional class names for sizing or spacing the bar.",
@@ -345,6 +411,16 @@ export function DynamicUploadProgress() {
                             ),
                             previewBodyWidth: "md",
                             code: lowCode,
+                        },
+                        {
+                            key: "tone",
+                            title: isJa ? "意味を持つ充填（tone）" : "Meaningful fill (tone)",
+                            description: isJa
+                                ? "容量・予算・健全性など、充填そのものが意味を持つときは tone で色を変えます（残りわずか→warning、超過→destructive）。色だけに頼らず近くのテキストでも伝えます。"
+                                : "When the fill itself carries meaning (capacity, budget, health), set tone to colour it (nearly full → warning, over → destructive). Pair it with nearby text — never colour alone.",
+                            preview: <CapacityToneExample locale={locale} />,
+                            previewBodyWidth: "md",
+                            code: toneCode,
                         },
                         {
                             key: "complete",
