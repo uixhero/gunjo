@@ -1587,6 +1587,7 @@ export const translations: Record<
       Meter: "メーター",
       RouteStops: "配送ルート",
       ReferenceValue: "基準値判定",
+      SignedRecord: "署名記録",
       Rating: "レーティング",
       SwatchGroup: "スウォッチグループ",
       Gallery: "ギャラリー",

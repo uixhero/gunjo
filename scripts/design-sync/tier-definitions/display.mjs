@@ -809,4 +809,15 @@ export const DISPLAY_SPEC_DEFINITIONS = [
       ],
     }),
   },
+  {
+    key: "signedRecord",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:signedRecord",
+      title: "SignedRecord",
+      description: "Append-only signed legal record: a draft body that, once signed, locks read-only (recording signer + timestamp) and can only be amended by a timestamped, authored addendum — never edited. Renders the draft/signed badge, the locked affordance, the signer audit line, an addendum composer and chain, and an optional CoSign gate. For clinical notes, discharge summaries, operative records and any signed/audited document.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
 ];

@@ -4500,6 +4500,30 @@
           "reusable": true
         }
       ]
+    },
+    "signedRecord": {
+      "frameId": "synthetic:signedRecord",
+      "title": "SignedRecord",
+      "description": "Append-only signed legal record: a draft body that, once signed, locks read-only (recording signer + timestamp) and can only be amended by a timestamped, authored addendum — never edited. Renders the draft/signed badge, the locked affordance, the signer audit line, an addendum composer and chain, and an optional CoSign gate. For clinical notes, discharge summaries, operative records and any signed/audited document.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
     }
   }
 }
