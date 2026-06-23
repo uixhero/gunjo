@@ -14,8 +14,10 @@ const galleryLayoutClasses: Record<GalleryVariantKey, string> = {
 }
 
 const thumbnailStripClasses: Record<GalleryVariantKey, string> = {
-    bottom: "flex-row",
-    start: "flex-row sm:flex-col",
+    // Horizontal strips scroll instead of overflowing the page — listings often
+    // have 6–20 thumbnails. The vertical (`sm:flex-col`) orientation needs none. (#262)
+    bottom: "flex-row overflow-x-auto",
+    start: "flex-row overflow-x-auto sm:flex-col sm:overflow-x-visible",
 }
 
 export interface GalleryImage {
