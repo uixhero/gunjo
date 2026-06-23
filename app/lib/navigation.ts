@@ -180,6 +180,7 @@ export const navigation = [
             { title: "NotificationCenter", href: "/docs/components/notification-center" },
             { title: "Progress", href: "/docs/components/progress" },
             { title: "ProgressWidget", href: "/docs/components/progress-widget" },
+            { title: "SafetyBanner", href: "/docs/components/safety-banner" },
             { title: "Spinner", href: "/docs/components/spinner" },
             { title: "StatusBar", href: "/docs/components/status-bar" },
             { title: "StatusScreen", href: "/docs/components/status-screen" },

@@ -1531,6 +1531,7 @@ export const translations: Record<
       AssetInspectorPanel: "アセットインスペクター",
       AvatarGroup: "アバターグループ",
       Banner: "バナー",
+      SafetyBanner: "安全バナー",
       Breadcrumb: "パンくず",
       Calendar: "カレンダー",
       Card: "カード",
