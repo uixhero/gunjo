@@ -1207,6 +1207,41 @@ Figma export:
   action/cancel treatment, usage boundaries, runtime token notes, and source
   footer are aligned without visible overlap.
 
+The owner then approved exporting the additional ContextMenu component data
+with:
+
+> I approve exporting the ContextMenu / ContextMenuTrigger /
+> ContextMenuContent / ContextMenuItem / ContextMenuCheckboxItem /
+> ContextMenuRadioItem / ContextMenuLabel / ContextMenuSeparator /
+> ContextMenuShortcut / ContextMenuGroup / ContextMenuPortal /
+> ContextMenuSub / ContextMenuSubTrigger / ContextMenuSubContent /
+> ContextMenuRadioGroup prop names, default values, and behavior, variant name
+> (`default`) and default variant (`default`), Radix ContextMenu Root /
+> Trigger / Content / Portal / Sub / RadioGroup / CheckboxItem / RadioItem /
+> ItemIndicator structure, ContextMenuContent and ContextMenuSubContent
+> `portalContainer` structure, SubTrigger `inset`, Item `inset`, `disabled`,
+> `disabledReason`, and `disabledReasonLabel` with Tooltip composition,
+> Checkbox / Radio checked and value state, Label / Separator / Shortcut
+> structure, dimensions and layout, animation classes and side-specific
+> slide-in treatment, docs-derived state taxonomy and sample copy,
+> DropdownMenu / Menubar / Tooltip related-component information, and token
+> names and values (`popover`, `popover-foreground`, `accent`,
+> `accent-foreground`, `border`, `muted-foreground`, `foreground`,
+> `background`, and `ring`) from this private pre-public repository to the
+> Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `ContextMenu / Section`: `211:2`
+- `ContextMenu` component: `211:5`
+- Placement: `Overlay` page, after `AlertDialog / Section`, at `(40, 10480)`,
+  `1280 x 2140`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the default component specimen, generated
+  contract, Radix anatomy, disabled reason tooltip treatment, docs state
+  specimens including text-only and nested submenu examples, usage boundaries,
+  runtime token notes, and source footer are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1217,8 +1252,8 @@ Before creating the next component:
    Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, Rating,
    RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic,
    SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, Tooltip,
-   Popover, DropdownMenu, Dialog, Sheet, and AlertDialog components, runtime
-   semantic colors, and specimen treatments are acceptable.
+   Popover, DropdownMenu, Dialog, Sheet, AlertDialog, and ContextMenu
+   components, runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
