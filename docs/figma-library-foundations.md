@@ -1172,6 +1172,41 @@ Figma export:
   portal containment and close-tooltip treatment, usage boundaries, runtime
   token notes, and source footer are aligned without visible overlap.
 
+The owner then approved exporting the additional AlertDialog component data
+with:
+
+> I approve exporting the AlertDialog / AlertDialogTrigger /
+> AlertDialogPortal / AlertDialogOverlay / AlertDialogContent /
+> AlertDialogHeader / AlertDialogFooter / AlertDialogTitle /
+> AlertDialogDescription / AlertDialogAction / AlertDialogCancel prop names,
+> default values, and behavior, generated variant-less structure, Radix
+> AlertDialog Root / Trigger / Portal / Overlay / Content / Title /
+> Description / Action / Cancel structure, AlertDialogContent
+> `portalContainer`, `overlayClassName`, and `className`, Overlay fixed inset
+> and `bg-overlay/80`, contained absolute overlay behavior, Content centered
+> placement, dimensions, padding, gap, radius, border, shadow, and animation,
+> Header / Footer / Title / Description layout and typography, Action
+> `buttonVariants` composition, Cancel outline composition and responsive
+> margin, docs-derived state taxonomy and sample copy, Button / Dialog / Toast
+> composition and usage-boundary information, and token names and values
+> (`overlay`, `background`, `foreground`, `muted`, `muted-foreground`,
+> `border`, `ring`, `destructive`, `destructive-foreground`,
+> `destructive-strong`, `destructive-strong-foreground`, `primary`, and
+> `primary-foreground`) from this private pre-public repository to the Figma
+> file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `AlertDialog / Section`: `208:2`
+- `AlertDialog` component: `208:25`
+- Placement: `Overlay` page, after `Sheet / Section`, at `(40, 8720)`,
+  `1280 x 1720`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the destructive confirmation component specimen,
+  generated empty-variant/manual contract, Radix anatomy, docs state specimens,
+  action/cancel treatment, usage boundaries, runtime token notes, and source
+  footer are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1182,8 +1217,8 @@ Before creating the next component:
    Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, Rating,
    RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic,
    SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, Tooltip,
-   Popover, DropdownMenu, Dialog, and Sheet components, runtime semantic colors,
-   and specimen treatments are acceptable.
+   Popover, DropdownMenu, Dialog, Sheet, and AlertDialog components, runtime
+   semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
