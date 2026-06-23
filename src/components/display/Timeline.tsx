@@ -100,11 +100,18 @@ const TimelineTitle = React.forwardRef<
 TimelineTitle.displayName = "TimelineTitle"
 
 const TimelineDescription = React.forwardRef<
-    HTMLParagraphElement,
-    React.HTMLAttributes<HTMLParagraphElement>
->(({ className, ...props }, ref) => (
-    <p
-        ref={ref}
+    HTMLElement,
+    React.HTMLAttributes<HTMLElement> & {
+        /**
+         * Element to render. Defaults to `"p"`. Pass `as="div"` when the
+         * description holds block content (actions, lists) — a `<div>`/`<button>`
+         * is not a valid descendant of `<p>` and throws a hydration error.
+         */
+        as?: "p" | "div"
+    }
+>(({ className, as: Comp = "p", ...props }, ref) => (
+    <Comp
+        ref={ref as React.Ref<HTMLParagraphElement & HTMLDivElement>}
         className={cn("text-sm text-muted-foreground", className)}
         {...props}
     />
