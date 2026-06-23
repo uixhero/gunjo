@@ -98,11 +98,12 @@ export function EditableDataTableDemo() {
                 removeRow: (i) => `${i + 1}行目を削除`,
             }}
             rowLabel={(i) => `${i + 1}行目`}
-            footer={
-                <div className="flex items-center justify-between font-medium">
+            renderFooterCell={(column) =>
+                column.id === "name" ? (
                     <span>合計</span>
+                ) : column.id === "amount" ? (
                     <span className="tabular-nums">{formatCurrency(total)}</span>
-                </div>
+                ) : null
             }
         />
     );
