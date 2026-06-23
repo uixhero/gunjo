@@ -2458,6 +2458,30 @@
           "reusable": true
         }
       ]
+    },
+    "coSign": {
+      "frameId": "synthetic:coSign",
+      "title": "CoSign",
+      "description": "Two-person verification (2人確認 / ダブルチェック / co-sign): a second actor enters their id (guarded to differ from the primary), ticks the required attestations, and signs — producing a timestamped signed value the consumer reads to gate an action. For medication double-checks, controlled substances, transfusion, surgical time-outs, and finance maker-checker approvals.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
     }
   }
 }
