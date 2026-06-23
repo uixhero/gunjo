@@ -1305,6 +1305,39 @@ Figma export:
   notification, action, and tabbed docs state specimens, usage boundaries,
   runtime token notes, and source footer are aligned without visible overlap.
 
+The owner then approved exporting the additional Modal component data with:
+
+> I approve exporting the Modal prop names, default values, and behavior
+> (`isOpen`, `onClose`, `title`, `children`, `footer`, `portalContainer`,
+> `closeLabel="Close"`, `overlayClassName`, and `className`), variant name
+> (`default`) and default variant (`default`), React `createPortal` structure,
+> `isOpen=false` conditional `null` rendering, Escape key close and body
+> overflow lock / cleanup behavior, contained `portalContainer` behavior,
+> Overlay `data-prevent-deselect`, placement, backdrop, and animation classes,
+> Content `role="dialog"`, `aria-modal`, `aria-label`, click propagation stop,
+> dimensions, border, background, shadow, and animation, Header / close button /
+> body / optional Footer layout and typography, design spec-derived default
+> specimen, docs-derived state taxonomy and sample copy, Button / FormGroup /
+> FormLabel / FormControl / FormDescription / Input / Tabs / Dialog
+> related-component information, and token names and values (`overlay`,
+> `background`, `foreground`, `card`, `muted`, `muted-foreground`, `border`,
+> `ring`, `input`, `primary`, `secondary`, `accent`, and `destructive`) from
+> this private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Modal / Section`: `222:2`
+- `Modal` component: `222:5`
+- Placement: `Overlay` page, after `HoverCard / Section`, at `(40, 17080)`,
+  `1280 x 2700`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the default component specimen, generated
+  contract, createPortal anatomy, conditional rendering and containment notes,
+  docs state specimens for standard, form, destructive, no-footer, and tabbed
+  usage, runtime token notes, and source footer are aligned without visible
+  overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1316,8 +1349,8 @@ Before creating the next component:
    RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic,
    SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, Tooltip,
    Popover, DropdownMenu, Dialog, Sheet, AlertDialog, ContextMenu, Drawer, and
-   HoverCard components, runtime semantic colors, and specimen treatments are
-   acceptable.
+   HoverCard, and Modal components, runtime semantic colors, and specimen
+   treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
