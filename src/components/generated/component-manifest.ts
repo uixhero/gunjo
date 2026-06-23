@@ -1847,6 +1847,17 @@ export const componentManifest = {
       "specSource": "design/inputs.pen",
       "stability": "experimental"
     },
+    "scanGate": {
+      "title": "ScanGate",
+      "description": "Staged barcode scan flow: ordered ScanInput stages (e.g. location→item, carton→item) where each stage resolves a confirmed context the next stage reads, auto-advancing and re-focusing between steps. For WMS picking, put-away and packing where you scan-to-confirm before scan-to-count.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/inputs/ScanGate.tsx",
+      "specSource": "design/inputs.pen",
+      "stability": "experimental"
+    },
     "scanInput": {
       "title": "ScanInput",
       "description": "Barcode / QR scan field: a scan gun (or hand entry) types a code then Enter; it fires `onScan`, announces the result, auto-clears and re-focuses for the next scan, and keeps an optional running feed. For POS, stocktake, returns and goods-receiving — scan → match → tick up.",

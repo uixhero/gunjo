@@ -2505,6 +2505,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "scanGate": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
+      "variantColorHints": {}
+    },
     "scanInput": {
       "variantKeys": [
         "default"

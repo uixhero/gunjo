@@ -75,6 +75,7 @@ export const navigation = [
             { title: "PostalCodeInput", href: "/docs/components/postal-code-input" },
             { title: "RadioGroup", href: "/docs/components/radio-group" },
             { title: "RangeSlider", href: "/docs/components/range-slider" },
+            { title: "ScanGate", href: "/docs/components/scan-gate" },
             { title: "ScanInput", href: "/docs/components/scan-input" },
             { title: "SearchInput", href: "/docs/components/search-input" },
             { title: "Select", href: "/docs/components/select" },
