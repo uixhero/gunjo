@@ -337,6 +337,13 @@ export function LoadingCard() {
             description: isJa ? "カード内に配置するヘッダー、本文、フッターなどの内容です。" : "Card content such as header, body, and footer slots.",
         },
         {
+            name: "CardTitle as",
+            type: '"h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div"',
+            description: isJa
+                ? "CardTitle が描画する見出し要素。既定は h3。ページの見出し階層に合わせて as=\"h2\" などに変更し、h1→h3 の飛びを防げます。"
+                : "Heading element CardTitle renders. Defaults to h3; set e.g. as=\"h2\" to fit the page heading order and avoid an h1→h3 jump.",
+        },
+        {
             name: "CardHeader / CardContent / CardFooter",
             type: "React.HTMLAttributes<HTMLDivElement>",
             description: isJa ? "カード内の見出し、本文、フッターを分けるためのスロットです。" : "Slots for separating header, body, and footer content inside a card.",
