@@ -282,6 +282,22 @@ component families:
   - Docs-derived `release notes`, `GFM extensions`, and `without GFM` states
     are documented as specimens, including DocNote, Table, TextLink, Tooltip,
     and read-only task tooltip composition notes.
+- `MetadataList` on the `Display` page.
+  - Section node: `136:2` (`MetadataList / Section`).
+  - Component set node: `136:52`.
+  - Variants: `default` and `compact` on the `variant` axis, with `default`
+    as the default.
+  - Layout: `MetadataList / Overview card`,
+    `MetadataList / Component card`, and
+    `MetadataList / Specimen card`.
+  - The component set records the `MetadataListItem` label/value row contract,
+    optional description and icon slots, vertical layout spacing, compact
+    density, muted uppercase labels, foreground values, and truncate/title
+    behavior.
+  - Docs-derived `default asset metadata`, `compact`, `horizontal`, and
+    `empty` states are documented as specimens, including the default
+    `emptyMessage` copy and Table / AssetInspectorPanel / Card usage-boundary
+    notes.
 
 ## Local Payload
 
@@ -537,6 +553,22 @@ data with:
 > `popover`, `popover-foreground`) from this private pre-public repository to
 > the Figma file `GunjoUI Library Foundations (#8)`.
 
+The owner then approved exporting the additional MetadataList component data
+with:
+
+> I approve exporting the MetadataList / MetadataListItem prop structure
+> (`items`, `variant`, `layout`, `emptyMessage`, `className`, `label`, `value`,
+> `description`, `icon`), variant names (`default`, `compact`) and default
+> variant (`default`), layout values (`vertical`, `horizontal`) and default
+> value (`vertical`), empty-state behavior and default emptyMessage
+> (`No metadata`), dimensions and layout, label/value/description/icon
+> typography, truncate and title-attribute behavior, docs-derived state
+> taxonomy and sample copy (`default asset metadata`, `compact`, `horizontal`,
+> `empty`), Table / AssetInspectorPanel / Card / Icon usage-boundary
+> information, and token names and values (`foreground`, `muted-foreground`,
+> `border`, `card`, `background`) from this private pre-public repository to
+> the Figma file `GunjoUI Library Foundations (#8)`.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -544,8 +576,8 @@ Before creating the next component:
 1. Review the Figma file manually.
 2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch,
    RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, Card,
-   Accordion, AccordionGroup, List, and MarkdownRenderer components, runtime
-   semantic colors, and specimen treatments are acceptable.
+   Accordion, AccordionGroup, List, MarkdownRenderer, and MetadataList
+   components, runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
