@@ -2244,6 +2244,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "currencyInput": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
+      "variantColorHints": {}
+    },
     "datePicker": {
       "variantKeys": [],
       "defaultVariantKey": null,

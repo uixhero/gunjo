@@ -122,6 +122,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "range-slider": "Inputs",
   "search-input": "Inputs",
   "number-input": "Inputs",
+  "currency-input": "Inputs",
   "password-input": "Inputs",
   "password-group": "Inputs",
   "password-requirement-list": "Inputs",
