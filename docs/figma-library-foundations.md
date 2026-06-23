@@ -958,6 +958,41 @@ Figma export:
   contract, anatomy notes, docs state specimens, usage boundaries, runtime token
   notes, and source footer are aligned without visible overlap.
 
+The owner then approved exporting the additional Breadcrumb component data
+with:
+
+> I approve exporting the Breadcrumb / BreadcrumbList / BreadcrumbItem /
+> BreadcrumbLink / BreadcrumbPage / BreadcrumbSeparator / BreadcrumbEllipsis
+> prop names, default values, and behavior (`Breadcrumb` nav HTMLAttributes
+> plus `separator`, `items`, `maxItems`, `itemsBeforeCollapse=1`,
+> `itemsAfterCollapse=1`, and `children`; `BreadcrumbItemData` label / href /
+> onClick; `BreadcrumbLink` href / `asChild=false` / `className`;
+> `BreadcrumbPage` `aria-current="page"` / `aria-disabled="true"`;
+> `BreadcrumbSeparator` children default chevron; `BreadcrumbEllipsis`
+> `label="More"`), variant name (`default`) and default variant (`default`),
+> data-driven items vs children composition behavior, `maxItems` middle
+> collapse with DropdownMenu, dimensions and layout, docs-derived state taxonomy
+> and sample copy (`home-icon`, `collapsed`, `custom-separator`,
+> `metadata-preview`, `ホーム`, `ドキュメント`, `コンポーネント`,
+> `パンくず`, `省略された階層`, `Collapsed levels`, `Breadcrumb`,
+> `Home`, `Docs`, `Components`), IconHome / IconSlash / ChevronRight /
+> IconDots, HoverCard / Button / ToastProvider / DropdownMenu composition
+> information, DocumentPager / Pagination / NavigationMenu usage-boundary
+> information, and token names and values (`foreground`, `muted-foreground`,
+> `background`, `muted`, `border`, and `ring`) from this private pre-public
+> repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Breadcrumb / Section`: `183:2`
+- `Breadcrumb` component: `183:20`
+- Placement: `Navigation` page, after `Tabs / Section`, at `(40, 1760)`,
+  `1280 x 1360`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the default component specimen, prop/collapse
+  contract, anatomy notes, docs state specimens, usage boundaries, runtime token
+  notes, and source footer are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -967,8 +1002,8 @@ Before creating the next component:
    RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, Card,
    Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, Rating,
    RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic,
-   SwatchGroup, Table, Kbd, Img, and Tabs components, runtime semantic colors,
-   and specimen treatments are acceptable.
+   SwatchGroup, Table, Kbd, Img, Tabs, and Breadcrumb components, runtime
+   semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
