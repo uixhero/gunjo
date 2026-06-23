@@ -927,6 +927,37 @@ Figma export:
   boundaries, runtime token notes, and source footer are aligned without
   visible overlap.
 
+The owner then approved exporting the additional Tabs component data with:
+
+> I approve exporting the Tabs / TabsList / TabsTrigger / TabsContent prop
+> names, default values, and behavior (Radix Tabs Root/List/Trigger/Content
+> `ComponentPropsWithoutRef` structure, `defaultValue`, `value`,
+> `onValueChange`, `orientation`, `className`, `children`, and value matching),
+> variant name (`default`) and default variant (`default`), Root structure
+> (`flex flex-col w-full max-w-full rounded-lg border`, with vertical
+> orientation using `flex-row`, `gap-4`, and `border-0`), TabsList structure,
+> TabsTrigger structure, active / focus-visible / disabled / vertical trigger
+> states, TabsContent structure, docs-derived state taxonomy and sample copy
+> (`default`, `with-counts`, `controlled`, `underline`, `概要`,
+> `アクティビティ`, `設定`, `プレビュー`, `コード`, `履歴`,
+> `Project overview`, `現在選択中のタブは「概要」です。`, and
+> `サイト内のプレビュー切り替えと同じ下線タイプです。`), Badge
+> composition information, NavigationMenu / Command usage-boundary information,
+> and token names and values (`background`, `foreground`, `muted`,
+> `muted-foreground`, `border`, `ring`, and `primary`) from this private
+> pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Tabs / Section`: `179:2`
+- `Tabs` component: `179:20`
+- Placement: `Navigation` page, after the existing page frame, at `(40, 360)`,
+  `1280 x 1360`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the default component specimen, prop/orientation
+  contract, anatomy notes, docs state specimens, usage boundaries, runtime token
+  notes, and source footer are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -936,8 +967,8 @@ Before creating the next component:
    RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, Card,
    Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, Rating,
    RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic,
-   SwatchGroup, Table, Kbd, and Img components, runtime semantic colors, and
-   specimen treatments are acceptable.
+   SwatchGroup, Table, Kbd, Img, and Tabs components, runtime semantic colors,
+   and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
