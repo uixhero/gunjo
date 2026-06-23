@@ -55,6 +55,7 @@ export const navigation = [
             { title: "Checkbox", href: "/docs/components/checkbox" },
             { title: "Combobox", href: "/docs/components/combobox" },
             { title: "CopyButton", href: "/docs/components/copy-button" },
+            { title: "CoSign", href: "/docs/components/co-sign" },
             { title: "CurrencyInput", href: "/docs/components/currency-input" },
             { title: "DatePicker", href: "/docs/components/date-picker" },
             { title: "DateRangePicker", href: "/docs/components/date-range-picker" },

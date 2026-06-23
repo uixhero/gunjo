@@ -158,5 +158,9 @@
   "scanGate": {
     "title": "ScanGate",
     "description": "Staged barcode scan flow: ordered ScanInput stages (e.g. location→item, carton→item) where each stage resolves a confirmed context the next stage reads, auto-advancing and re-focusing between steps. For WMS picking, put-away and packing where you scan-to-confirm before scan-to-count."
+  },
+  "coSign": {
+    "title": "CoSign",
+    "description": "Two-person verification (2人確認 / ダブルチェック / co-sign): a second actor enters their id (guarded to differ from the primary), ticks the required attestations, and signs — producing a timestamped signed value the consumer reads to gate an action. For medication double-checks, controlled substances, transfusion, surgical time-outs, and finance maker-checker approvals."
   }
 }
