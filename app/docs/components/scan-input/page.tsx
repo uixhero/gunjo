@@ -76,6 +76,12 @@ const propsData = [
     description: "Leading adornment. Defaults to a barcode icon; pass null to hide.",
   },
   {
+    name: "assertive",
+    type: "boolean",
+    description:
+      'Announce results assertively (role="alert" + aria-live="assertive") instead of politely — for safety-critical scanning where a mismatch must interrupt. Default false.',
+  },
+  {
     name: "className",
     type: "string",
     description: "Additional CSS class names on the field wrapper.",
