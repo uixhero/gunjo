@@ -1074,6 +1074,41 @@ Figma export:
   usage boundaries, runtime token notes, and source footer are aligned without
   visible overlap.
 
+The owner then approved exporting the additional DropdownMenu component data
+with:
+
+> I approve exporting the DropdownMenu / DropdownMenuTrigger /
+> DropdownMenuContent / DropdownMenuItem / DropdownMenuCheckboxItem /
+> DropdownMenuRadioItem / DropdownMenuLabel / DropdownMenuSeparator /
+> DropdownMenuShortcut / DropdownMenuGroup / DropdownMenuPortal /
+> DropdownMenuSub / DropdownMenuSubTrigger / DropdownMenuSubContent /
+> DropdownMenuRadioGroup prop names, default values, and behavior, variant name
+> (`default`) and default variant (`default`), Radix DropdownMenu Root /
+> Trigger / Content / Portal / Sub / RadioGroup / CheckboxItem / RadioItem /
+> ItemIndicator structure, DropdownMenuContent `sideOffset=4` and
+> `portalContainer`, SubTrigger `inset`, Item `inset`, `disabled`,
+> `disabledReason`, `disabledReasonLabel`, and
+> `disabledReasonPortalContainer` with Tooltip composition, checkbox/radio
+> checked/value state, Label / Separator / Shortcut structure, docs-derived
+> state taxonomy and sample copy, Button / Tooltip / ContextMenu / Menubar
+> composition and usage-boundary information, and token names and values
+> (`popover`, `popover-foreground`, `accent`, `accent-foreground`, `border`,
+> `muted-foreground`, `background`, `foreground`, `destructive`, and `ring`)
+> from this private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `DropdownMenu / Section`: `197:2`
+- `DropdownMenu` component: `197:24`
+- Placement: `Overlay` page, after `Popover / Section`, at `(40, 3480)`,
+  `1280 x 1660`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the default menu component specimen,
+  prop/default contract, slot anatomy, docs state specimens, portal containment
+  and disabled-reason treatment, usage boundaries, runtime token notes, and
+  source footer are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1083,9 +1118,9 @@ Before creating the next component:
    RadioGroup, Select, Slider, Textarea, Badge, Avatar, Separator, Card,
    Accordion, AccordionGroup, List, MarkdownRenderer, MetadataList, Rating,
    RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic,
-   SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, Tooltip, and
-   Popover components, runtime semantic colors, and specimen treatments are
-   acceptable.
+   SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, Tooltip,
+   Popover, and DropdownMenu components, runtime semantic colors, and specimen
+   treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
