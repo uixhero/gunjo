@@ -484,4 +484,15 @@ export const INPUTS_SPEC_DEFINITIONS = [
       ],
     }),
   },
+  {
+    key: "scanGate",
+    syntheticSpec: createSyntheticInputsSpec({
+      frameId: "synthetic:scanGate",
+      title: "ScanGate",
+      description: "Staged barcode scan flow: ordered ScanInput stages (e.g. location→item, carton→item) where each stage resolves a confirmed context the next stage reads, auto-advancing and re-focusing between steps. For WMS picking, put-away and packing where you scan-to-confirm before scan-to-count.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
 ];

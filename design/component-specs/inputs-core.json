@@ -2434,6 +2434,30 @@
           "reusable": true
         }
       ]
+    },
+    "scanGate": {
+      "frameId": "synthetic:scanGate",
+      "title": "ScanGate",
+      "description": "Staged barcode scan flow: ordered ScanInput stages (e.g. location→item, carton→item) where each stage resolves a confirmed context the next stage reads, auto-advancing and re-focusing between steps. For WMS picking, put-away and packing where you scan-to-confirm before scan-to-count.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
     }
   }
 }
