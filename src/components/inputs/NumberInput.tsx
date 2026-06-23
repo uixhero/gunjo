@@ -26,6 +26,10 @@ export interface NumberInputProps
      * keeps its spinbutton semantics in both layouts. (#169)
      */
     layout?: "spinner" | "stepper"
+    /** Optional visible label rendered above the control and associated via `htmlFor`. */
+    label?: React.ReactNode
+    /** Optional helper text under the control, wired via `aria-describedby`. */
+    description?: React.ReactNode
 }
 
 const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
@@ -42,10 +46,38 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
             layout = "spinner",
             disabled,
             onBlur,
+            id,
+            label,
+            description,
+            "aria-describedby": ariaDescribedby,
             ...props
         },
         ref
     ) => {
+        const reactId = React.useId()
+        const hasWrap = Boolean(label || description)
+        const controlId = id ?? (hasWrap ? `${reactId}-number` : undefined)
+        const descriptionId = description ? `${reactId}-description` : undefined
+        const describedBy = [descriptionId, ariaDescribedby].filter(Boolean).join(" ") || undefined
+        const wrap = (control: React.ReactElement) =>
+            hasWrap ? (
+                <div className="flex w-full flex-col gap-1.5">
+                    {label ? (
+                        <label htmlFor={controlId} className="text-sm font-medium leading-none text-foreground">
+                            {label}
+                        </label>
+                    ) : null}
+                    {control}
+                    {description ? (
+                        <p id={descriptionId} className="text-xs text-muted-foreground">
+                            {description}
+                        </p>
+                    ) : null}
+                </div>
+            ) : (
+                control
+            )
+
         const clamp = React.useCallback(
             (next: number) => {
                 let result = next
@@ -89,7 +121,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
         const atMin = min !== undefined && (value ?? 0) <= min
 
         if (layout === "stepper") {
-            return (
+            return wrap(
                 <div
                     className={cn(
                         "inline-flex items-center rounded-md border border-input bg-transparent shadow-sm focus-within:outline-none focus-within:ring-1 focus-within:ring-ring",
@@ -111,6 +143,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
                     </button>
                     <input
                         ref={ref}
+                        id={controlId}
                         type="number"
                         inputMode={step % 1 === 0 ? "numeric" : "decimal"}
                         value={display}
@@ -120,6 +153,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
                         min={min}
                         max={max}
                         step={step}
+                        aria-describedby={describedBy}
                         className="h-9 w-12 border-x border-input bg-transparent px-1 py-1 text-center text-sm placeholder:text-muted-foreground focus-visible:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                         {...props}
                     />
@@ -137,7 +171,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
             )
         }
 
-        return (
+        return wrap(
             <div
                 className={cn(
                     "inline-flex items-center rounded-md border border-input bg-transparent shadow-sm focus-within:outline-none focus-within:ring-1 focus-within:ring-ring",
@@ -148,6 +182,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
             >
                 <input
                     ref={ref}
+                    id={controlId}
                     type="number"
                     inputMode={step % 1 === 0 ? "numeric" : "decimal"}
                     value={display}
@@ -157,6 +192,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
                     min={min}
                     max={max}
                     step={step}
+                    aria-describedby={describedBy}
                     className="h-9 w-full rounded-l-md bg-transparent px-3 py-1 text-sm placeholder:text-muted-foreground focus-visible:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     {...props}
                 />

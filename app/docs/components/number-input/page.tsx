@@ -113,6 +113,16 @@ export function CountField() {
 
     const propsData = [
         {
+            name: "label",
+            type: "ReactNode",
+            description: locale === "ja" ? "コントロール上部に表示し htmlFor で関連付けるラベルです（Input / Select / Textarea と同様）。" : "Visible label rendered above the control and associated via htmlFor (like Input / Select / Textarea).",
+        },
+        {
+            name: "description",
+            type: "ReactNode",
+            description: locale === "ja" ? "コントロール下の補助テキストです。aria-describedby で関連付きます。" : "Helper text under the control, wired via aria-describedby.",
+        },
+        {
             name: "value",
             type: "number",
             description: locale === "ja" ? "外部から渡す現在の数値です。" : "Controlled numeric value.",
