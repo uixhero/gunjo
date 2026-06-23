@@ -1,0 +1,163 @@
+import * as React from "react"
+import { IconCheck, IconClock, IconX } from "@tabler/icons-react"
+
+import { cn } from "../../lib/utils"
+import { Badge } from "./Badge"
+import { Delta } from "./Delta"
+
+export type RouteStopStatus = "pending" | "current" | "completed" | "failed" | "delayed"
+
+export interface RouteStopItem {
+    /** Stable key. */
+    id: string
+    /** Number shown in the marker. Defaults to the 1-based index. */
+    seq?: number
+    /** Primary line — customer / destination. */
+    title: React.ReactNode
+    /** Secondary line — address. */
+    description?: React.ReactNode
+    /** Status drives the marker, the status label, and (for `current`) `aria-current`. */
+    status: RouteStopStatus
+    /** Planned ETA, `"HH:MM"`. */
+    plannedTime?: string
+    /** Actual arrival, `"HH:MM"`. */
+    actualTime?: string
+    /** Delay in minutes (+late / −early). Computed from the times when both are `"HH:MM"` and this is omitted. */
+    delayMinutes?: number
+    /** Extra meta (個数 etc.) shown by the title. */
+    meta?: React.ReactNode
+    /** Trailing per-stop actions (status update, reschedule). */
+    actions?: React.ReactNode
+}
+
+export interface RouteStopsProps extends Omit<React.HTMLAttributes<HTMLOListElement>, "children"> {
+    stops: RouteStopItem[]
+    /** Localized status labels. */
+    statusLabels?: Partial<Record<RouteStopStatus, string>>
+    /** Hide the planned / actual time + delay column. Default `false`. */
+    hideTimes?: boolean
+    /** Localized labels for the planned / actual times. */
+    timeLabels?: { planned?: string; actual?: string }
+}
+
+type BadgeVariant = "secondary" | "info" | "success" | "destructive" | "warning"
+
+const STATUS_CONFIG: Record<
+    RouteStopStatus,
+    { label: string; badge: BadgeVariant; marker: string; icon?: typeof IconCheck }
+> = {
+    pending: { label: "未配", badge: "secondary", marker: "bg-muted text-muted-foreground" },
+    current: { label: "配送中", badge: "info", marker: "bg-primary text-primary-foreground" },
+    completed: { label: "完了", badge: "success", marker: "bg-success-strong text-success-strong-foreground", icon: IconCheck },
+    failed: { label: "不在", badge: "destructive", marker: "bg-destructive-strong text-destructive-strong-foreground", icon: IconX },
+    delayed: { label: "遅延", badge: "warning", marker: "bg-warning-strong text-warning-strong-foreground", icon: IconClock },
+}
+
+function parseHM(t?: string): number | null {
+    if (!t) return null
+    const m = /^(\d{1,2}):(\d{2})$/.exec(t.trim())
+    if (!m) return null
+    return Number(m[1]) * 60 + Number(m[2])
+}
+
+/**
+ * Ordered route / itinerary list. Numbered stops with a per-stop status
+ * (pending / current / completed / failed / delayed) driving the marker and a
+ * status label, a planned-vs-actual time pair with a signed delay (via `Delta`),
+ * the current stop wired with `aria-current="step"`, and a trailing actions
+ * slot. For delivery tracking, picking walk-paths and any sequenced-stop flow.
+ * (#228)
+ */
+const RouteStops = React.forwardRef<HTMLOListElement, RouteStopsProps>(
+    ({ className, stops, statusLabels, hideTimes = false, timeLabels, ...props }, ref) => {
+        return (
+            <ol ref={ref} className={cn("flex w-full flex-col", className)} data-slot="route-stops" {...props}>
+                {stops.map((stop, index) => {
+                    const config = STATUS_CONFIG[stop.status]
+                    const Icon = config.icon
+                    const isLast = index === stops.length - 1
+                    const label = statusLabels?.[stop.status] ?? config.label
+
+                    const plannedMin = parseHM(stop.plannedTime)
+                    const actualMin = parseHM(stop.actualTime)
+                    const delay =
+                        stop.delayMinutes ??
+                        (plannedMin !== null && actualMin !== null ? actualMin - plannedMin : undefined)
+
+                    return (
+                        <li
+                            key={stop.id}
+                            aria-current={stop.status === "current" ? "step" : undefined}
+                            className={cn(
+                                "relative flex gap-3 rounded-md",
+                                stop.status === "current" && "bg-muted/40"
+                            )}
+                        >
+                            {/* Marker + connector */}
+                            <div className="relative flex flex-col items-center">
+                                <span
+                                    className={cn(
+                                        "z-10 mt-1 inline-flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-semibold tabular-nums",
+                                        config.marker,
+                                        stop.status === "current" && "ring-2 ring-ring ring-offset-2 ring-offset-background"
+                                    )}
+                                >
+                                    {Icon ? <Icon className="h-3.5 w-3.5" aria-hidden="true" /> : (stop.seq ?? index + 1)}
+                                </span>
+                                {!isLast ? <span className="w-px flex-1 bg-border" aria-hidden="true" /> : null}
+                            </div>
+
+                            {/* Body */}
+                            <div className="flex min-w-0 flex-1 flex-col gap-1 pb-4 pr-1 pt-1">
+                                <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
+                                    <span className="font-medium text-foreground">{stop.title}</span>
+                                    <Badge variant={config.badge}>{label}</Badge>
+                                    {stop.status === "current" ? (
+                                        <span className="text-xs font-medium text-primary">現在地</span>
+                                    ) : null}
+                                    {stop.meta != null ? (
+                                        <span className="text-xs text-muted-foreground">{stop.meta}</span>
+                                    ) : null}
+                                </div>
+
+                                {stop.description != null ? (
+                                    <p className="text-sm text-muted-foreground">{stop.description}</p>
+                                ) : null}
+
+                                {!hideTimes && (stop.plannedTime || stop.actualTime || delay !== undefined) ? (
+                                    <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs tabular-nums text-muted-foreground">
+                                        {stop.plannedTime ? (
+                                            <span>
+                                                {timeLabels?.planned ?? "予定"} {stop.plannedTime}
+                                            </span>
+                                        ) : null}
+                                        {stop.actualTime ? (
+                                            <span>
+                                                {timeLabels?.actual ?? "実績"} {stop.actualTime}
+                                            </span>
+                                        ) : null}
+                                        {delay !== undefined && delay !== 0 ? (
+                                            <Delta
+                                                value={delay}
+                                                hideArrow
+                                                format={(m) => `${Math.abs(m)}分`}
+                                                tones={{ positive: "destructive", negative: "success", zero: "muted" }}
+                                                labels={{ positive: "遅れ", negative: "早着", zero: "定刻" }}
+                                                showLabel
+                                            />
+                                        ) : null}
+                                    </div>
+                                ) : null}
+
+                                {stop.actions != null ? <div className="mt-1 flex flex-wrap gap-2">{stop.actions}</div> : null}
+                            </div>
+                        </li>
+                    )
+                })}
+            </ol>
+        )
+    }
+)
+RouteStops.displayName = "RouteStops"
+
+export { RouteStops }
