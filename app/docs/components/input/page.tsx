@@ -248,6 +248,16 @@ export default function DisabledEmail() {
                 <PropsTable
                     data={[
 	                        {
+	                            name: "label",
+	                            type: "ReactNode",
+	                            description: locale === "ja" ? "コントロール上部に表示し htmlFor で関連付けるラベルです（Select / Textarea と同様）。" : "Visible label rendered above the control and associated via htmlFor (like Select / Textarea).",
+	                        },
+	                        {
+	                            name: "description",
+	                            type: "ReactNode",
+	                            description: locale === "ja" ? "コントロール下の補助テキストです。aria-describedby で関連付きます。" : "Helper text under the control, wired via aria-describedby.",
+	                        },
+	                        {
 	                            name: "type",
 	                            type: "string",
 	                            description: locale === "ja" ? "テキスト、メールアドレス、パスワードなど、入力欄の種類を指定します。" : "The type of input, such as text, email, or password.",
