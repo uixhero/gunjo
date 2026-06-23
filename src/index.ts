@@ -182,6 +182,7 @@ export * from './components/inputs/PhoneInput';
 export * from './components/inputs/PostalCodeInput';
 export * from './components/inputs/RadioGroup';
 export * from './components/inputs/RangeSlider';
+export * from './components/inputs/ScanInput';
 export * from './components/inputs/SearchInput';
 export * from './components/inputs/Select';
 export * from './components/inputs/Slider';

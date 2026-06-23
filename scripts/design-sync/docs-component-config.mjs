@@ -123,6 +123,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "search-input": "Inputs",
   "number-input": "Inputs",
   "currency-input": "Inputs",
+  "scan-input": "Inputs",
   "password-input": "Inputs",
   "password-group": "Inputs",
   "password-requirement-list": "Inputs",
