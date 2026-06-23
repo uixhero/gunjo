@@ -115,6 +115,8 @@ export function MemoField() {
   );
 }`;
     const propsData = [
+        { name: "label", type: "ReactNode", description: locale === "ja" ? "コントロール上部に表示し htmlFor で関連付けるラベルです（Select / Checkbox と同様）。" : "Visible label rendered above the control and associated via htmlFor (like Select / Checkbox)." },
+        { name: "description", type: "ReactNode", description: locale === "ja" ? "コントロール下の補助テキストです。aria-describedby で関連付きます。" : "Helper text under the control, wired via aria-describedby." },
         { name: "value / defaultValue", type: "string", description: locale === "ja" ? "入力値です。制御・非制御のどちらでも使えます。" : "Textarea value. Use controlled or uncontrolled mode." },
         { name: "onChange", type: "React.ChangeEventHandler<HTMLTextAreaElement>", description: locale === "ja" ? "入力内容が変わった時に呼ばれます。" : "Called when the text changes." },
         { name: "rows", type: "number", description: locale === "ja" ? "表示する行数です。" : "Visible row count." },
