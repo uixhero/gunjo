@@ -462,4 +462,15 @@ export const INPUTS_SPEC_DEFINITIONS = [
       itemName: "fileUploaderItemName",
     },
   },
+  {
+    key: "currencyInput",
+    syntheticSpec: createSyntheticInputsSpec({
+      frameId: "synthetic:currencyInput",
+      title: "CurrencyInput",
+      description: "Money editor: a currency-symbol-prefixed, thousands-grouped, right-aligned amount input that formats while typing and emits a numeric value. JPY-first; for invoices, payroll, expenses, and any fintech amount field.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
 ];

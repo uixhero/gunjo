@@ -1494,6 +1494,7 @@ export const translations: Record<
       Kbd: "キー表示",
       Label: "ラベル",
       NumberInput: "数値入力",
+      CurrencyInput: "金額入力",
       PasswordGroup: "パスワードグループ",
       PasswordInput: "パスワード入力",
       PasswordRequirementList: "パスワード要件リスト",

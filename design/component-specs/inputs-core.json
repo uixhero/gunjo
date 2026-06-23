@@ -2386,6 +2386,30 @@
           "children": []
         }
       }
+    },
+    "currencyInput": {
+      "frameId": "synthetic:currencyInput",
+      "title": "CurrencyInput",
+      "description": "Money editor: a currency-symbol-prefixed, thousands-grouped, right-aligned amount input that formats while typing and emits a numeric value. JPY-first; for invoices, payroll, expenses, and any fintech amount field.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
     }
   }
 }

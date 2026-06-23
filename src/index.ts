@@ -160,6 +160,7 @@ export * from './components/inputs/ChatInput';
 export * from './components/inputs/Checkbox';
 export * from './components/inputs/Combobox';
 export * from './components/inputs/CopyButton';
+export * from './components/inputs/CurrencyInput';
 export * from './components/inputs/DatePicker';
 export * from './components/inputs/DateRangePicker';
 export * from './components/inputs/EditableField';

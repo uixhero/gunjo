@@ -1626,6 +1626,17 @@ export const componentManifest = {
       "specSource": "design/inputs.pen",
       "stability": "experimental"
     },
+    "currencyInput": {
+      "title": "CurrencyInput",
+      "description": "Money editor: a currency-symbol-prefixed, thousands-grouped, right-aligned amount input that formats while typing and emits a numeric value. JPY-first; for invoices, payroll, expenses, and any fintech amount field.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/inputs/CurrencyInput.tsx",
+      "specSource": "design/inputs.pen",
+      "stability": "experimental"
+    },
     "datePicker": {
       "title": "DatePicker",
       "description": "Date input with popup Calendar. Wraps Popover + Calendar primitives.",
