@@ -1181,6 +1181,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "gantt": {
+      "title": "Gantt",
+      "description": "Gantt / resource timeline: resource rows × a horizontal time axis with bars positioned by start/end and lane-packed within a row so overlapping bars stack instead of covering each other. Day-column gridlines + date headers, a sticky row-label gutter, an optional today line, and a contained horizontal scroll. Owns the time math (pass startDate/endDate + rows + items); today is injectable (SSR-safe). Bars are focusable buttons with a composed accessible name. For project schedules, production lines, room/equipment timelines, delivery/route plans and any rows-over-time view.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/Gantt.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "gaugeChart": {
       "title": "GaugeChart",
       "description": "HTML/CSS semi-circle gauge for scores, progress, and capacity readings with hover/focus value tooltip.",

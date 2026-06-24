@@ -121,6 +121,7 @@ export * from './components/display/EmptyState';
 export * from './components/display/EventCalendar';
 export * from './components/display/FileTree';
 export * from './components/display/Gallery';
+export * from './components/display/Gantt';
 export * from './components/display/GaugeChart';
 export * from './components/display/HeatmapChart';
 export * from './components/display/Icon';
