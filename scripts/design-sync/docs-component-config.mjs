@@ -212,6 +212,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "labeled-donut-card": "Charts",
   "line-chart": "Charts",
   "mini-distribution-bar-card": "Charts",
+  "pareto-chart": "Charts",
   "quadrant-matrix": "Charts",
   "pie-chart": "Charts",
   "radial-bar-chart": "Charts",

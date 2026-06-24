@@ -278,5 +278,9 @@
   "signedRecord": {
     "title": "SignedRecord",
     "description": "Append-only signed legal record: a draft body that, once signed, locks read-only (recording signer + timestamp) and can only be amended by a timestamped, authored addendum — never edited. Renders the draft/signed badge, the locked affordance, the signer audit line, an addendum composer and chain, and an optional CoSign gate. For clinical notes, discharge summaries, operative records and any signed/audited document."
+  },
+  "paretoChart": {
+    "title": "ParetoChart",
+    "description": "Pareto chart: descending value bars (HTML/CSS, left value axis) overlaid with a cumulative-% line (SVG) on a right 0–100% axis and a 'vital few' threshold line (80% by default), with focusable points and an accessible per-category summary. For defect / downtime / cause analysis and any 'which few drive most of the total' breakdown."
   }
 }

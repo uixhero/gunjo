@@ -161,6 +161,7 @@ export const navigation = [
             { title: "LabeledDonutCard", href: "/docs/components/labeled-donut-card" },
             { title: "LineChart", href: "/docs/components/line-chart" },
             { title: "MiniDistributionBarCard", href: "/docs/components/mini-distribution-bar-card" },
+            { title: "ParetoChart", href: "/docs/components/pareto-chart" },
             { title: "PieChart", href: "/docs/components/pie-chart" },
             { title: "QuadrantMatrix", href: "/docs/components/quadrant-matrix" },
             { title: "RadarChart", href: "/docs/components/radar-chart" },

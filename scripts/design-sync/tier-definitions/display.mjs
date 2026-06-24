@@ -477,6 +477,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "paretoChart",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:paretoChart",
+      title: "ParetoChart",
+      description: "Pareto chart: descending value bars (HTML/CSS, left value axis) overlaid with a cumulative-% line (SVG) on a right 0–100% axis and a 'vital few' threshold line (80% by default), with focusable points and an accessible per-category summary. For defect / downtime / cause analysis and any 'which few drive most of the total' breakdown.",
+      variants: [
+        createSyntheticVariant("default", { height: 220 }),
+      ],
+    }),
+  },
+  {
     key: "concentricProgressCard",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:concentricProgressCard",
