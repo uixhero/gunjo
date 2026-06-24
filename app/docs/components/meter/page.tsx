@@ -58,16 +58,22 @@ const propsData = [
   },
   {
     name: "direction",
-    type: '"higher-is-worse" | "higher-is-better"',
+    type: '"higher-is-worse" | "higher-is-better" | "fill-is-good"',
     default: '"higher-is-worse"',
     description:
-      "higher-is-worse (default) is capacity/load. higher-is-better flips it for occupancy, utilisation, SLA uptime, yield or capability — at/above target is success, just under it warns, well under is destructive.",
+      "higher-is-worse (default) is capacity/load. higher-is-better flips it for occupancy/utilisation/SLA/yield — at/above target is success. fill-is-good tones by fill toward max (no target needed) — for coverage / fulfillment / completion.",
   },
   {
     name: "target",
     type: "number",
     description:
       "Goal value (same units as value) drawn as a marker line on the track. With direction='higher-is-better' it also drives the auto tone; under the default direction it is a visual reference only.",
+  },
+  {
+    name: "formatValue",
+    type: "(value: number) => string",
+    description:
+      "Format the numbers in the visible readout (e.g. grouped JPY via formatCurrency). Overrides the default round(n,1) + unit. A percentage meter (unit='%', max 100) shows the value once instead of '/ 100%（%）'.",
   },
   {
     name: "tone",
