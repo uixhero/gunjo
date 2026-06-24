@@ -1559,6 +1559,43 @@ Figma export:
   compact usage, runtime token notes, and related-component usage boundary are
   aligned without visible overlap.
 
+The owner then approved exporting the additional ChatInput component data with:
+
+> I approve exporting the ChatInput / ChatInputLabels / ChatInputModelOption
+> prop names, default values, and behavior (`onSend`, `onStop`,
+> `isProcessing=false`, `placeholder="メッセージを入力..."`,
+> `enableAttachments=true`, `showOptionsButton=true`,
+> `showModelSelector=true`, `showVoiceButton=true`, `toolbarAccessory`,
+> `modelLabel`, `optionsContent`, `modelOptions`, `modelValue`,
+> `defaultModelValue`, `voiceActive`, `defaultVoiceActive`, and `labels`),
+> variant names (`default` and `processing`) and default variant (`default`),
+> processing state `border-primary-border` / `bg-primary-subtle` treatment,
+> internal `message`, `files`, `options`, `model`, and `voice` state,
+> textarea auto-resize behavior, Enter-to-send and IME composition guard,
+> file attachment preview and remove action, send disabled reason Tooltip,
+> stop action, Popover / DropdownMenu / Tooltip / Button / Textarea /
+> VoiceInputButton composition structure, docs-derived state taxonomy and
+> sample copy, ChatPanel / ChatComposer related usage boundaries, and token
+> names and values (`background`, `foreground`, `input`, `ring`, `primary`,
+> `primary-foreground`, `primary-strong`, `primary-subtle`,
+> `primary-border`, `muted`, `muted-foreground`, `accent`, `border`,
+> `popover`, `popover-foreground`, `destructive`,
+> `destructive-foreground`, and `secondary`) from this private pre-public
+> repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `ChatInput / Section`: `245:13`
+- `ChatInput` component: `245:20`
+- Placement: `Inputs` page, after `Textarea / Section`, at `(40, 9080)`,
+  `1280 x 2520`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the default and processing variant contract,
+  Textarea / toolbar / attachment preview anatomy, Enter / IME / disabled
+  Tooltip behavior notes, docs state specimens for default, processing,
+  disabled, attachment, and ChatComposer boundary usage, runtime token notes,
+  and related-component usage boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1571,7 +1608,7 @@ Before creating the next component:
    SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, Tooltip,
    Popover, DropdownMenu, Dialog, Sheet, AlertDialog, ContextMenu, Drawer, and
    HoverCard, Modal, ShareModal, FloatingPanel, MediaLightbox, and
-   MediaPickerDialog, OnboardingFlow, and ChatPanel components, runtime
+   MediaPickerDialog, OnboardingFlow, ChatPanel, and ChatInput components, runtime
    semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
