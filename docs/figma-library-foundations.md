@@ -1670,6 +1670,34 @@ Figma export:
   specimens for choices, workspace, and accessory usage, runtime token notes,
   and related-component usage boundary are aligned without visible overlap.
 
+The owner then approved exporting the additional Label component data with:
+
+> I approve exporting the Label prop names and behavior (`LabelProps extends
+> React.LabelHTMLAttributes<HTMLLabelElement>`, including `htmlFor`,
+> `children`, `className`, and label HTML attributes), generated variant none
+> and default variant none, dimensions and typography (`text-sm`,
+> `font-medium`, `leading-none`, and `text-foreground`), disabled peer
+> treatment (`peer-disabled:cursor-not-allowed` and
+> `peer-disabled:opacity-70`), docs-derived state taxonomy and sample copy,
+> FormLabel / FormGroup / FormControl / Input / Checkbox / RadioGroup related
+> composition and usage boundaries, and token names and values (`foreground`,
+> plus `background`, `muted`, `muted-foreground`, `border`, `input`, and
+> `ring` for specimen annotation) from this private pre-public repository to
+> the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Label / Section`: `253:13`
+- `Label` component: `253:20`
+- Placement: `Inputs` page, after `ChatComposer / Section`, at `(40, 14356)`,
+  `1280 x 1760`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the no-generated-variant contract, Label HTML
+  attribute prop structure, typography and disabled peer-state treatment, docs
+  state specimens for input labels, inline checkbox labels, and radio option
+  labels, runtime token notes, and related-component usage boundary are aligned
+  without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1683,8 +1711,8 @@ Before creating the next component:
    Popover, DropdownMenu, Dialog, Sheet, AlertDialog, ContextMenu, Drawer, and
    HoverCard, Modal, ShareModal, FloatingPanel, MediaLightbox, and
    MediaPickerDialog, OnboardingFlow, ChatPanel, ChatInput, ChatMessage, and
-   ChatComposer components, runtime semantic colors, and specimen treatments are
-   acceptable.
+   ChatComposer, and Label components, runtime semantic colors, and specimen
+   treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
