@@ -1585,6 +1585,7 @@ export const translations: Record<
       ApprovalWorkflow: "承認ワークフロー",
       CheckList: "チェックリスト",
       EventCalendar: "月間カレンダー",
+      KanbanBoard: "カンバンボード",
       RevealSection: "条件付きセクション",
       Delta: "差分",
       Meter: "メーター",

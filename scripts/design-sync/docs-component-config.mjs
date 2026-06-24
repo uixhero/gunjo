@@ -181,6 +181,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "approval-workflow": "Display",
   "check-list": "Display",
   "event-calendar": "Display",
+  "kanban-board": "Display",
   "reference-value": "Display",
   "signed-record": "Display",
   statistic: "Display",

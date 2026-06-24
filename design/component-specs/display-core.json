@@ -4482,6 +4482,30 @@
         }
       ]
     },
+    "kanbanBoard": {
+      "frameId": "synthetic:kanbanBoard",
+      "title": "KanbanBoard",
+      "description": "A kanban / status board: ordered columns (lanes) of cards, grouped from a flat items list by getColumnId, with per-column count badges, a card render-prop, optional activatable cards, empty-column placeholders, header accent dots, and a contained horizontal scroll that doesn't push the page on mobile. Each column is a labelled region and cards are real buttons when selectable (keyboard-operable). Drag-and-drop is bring-your-own. For editorial boards, CRM pipelines, support queues, task boards and any column-of-cards workflow.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
     "eventCalendar": {
       "frameId": "synthetic:eventCalendar",
       "title": "EventCalendar",

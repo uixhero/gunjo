@@ -799,6 +799,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "kanbanBoard",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:kanbanBoard",
+      title: "KanbanBoard",
+      description: "A kanban / status board: ordered columns (lanes) of cards, grouped from a flat items list by getColumnId, with per-column count badges, a card render-prop, optional activatable cards, empty-column placeholders, header accent dots, and a contained horizontal scroll that doesn't push the page on mobile. Each column is a labelled region and cards are real buttons when selectable (keyboard-operable). Drag-and-drop is bring-your-own. For editorial boards, CRM pipelines, support queues, task boards and any column-of-cards workflow.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "eventCalendar",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:eventCalendar",
