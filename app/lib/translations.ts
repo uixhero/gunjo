@@ -1584,6 +1584,7 @@ export const translations: Record<
       ApprovalSteps: "承認ステップ",
       ApprovalWorkflow: "承認ワークフロー",
       CheckList: "チェックリスト",
+      EventCalendar: "月間カレンダー",
       RevealSection: "条件付きセクション",
       Delta: "差分",
       Meter: "メーター",

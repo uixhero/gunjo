@@ -1591,6 +1591,19 @@ export const componentStyleHints = {
       "variantClasses": {},
       "variantColorHints": {}
     },
+    "eventCalendar": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
+      "variantColorHints": {}
+    },
     "fileTree": {
       "variantKeys": [
         "single",
