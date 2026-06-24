@@ -8,7 +8,7 @@ import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
-import { Badge, DataTable, type DataTableLabels } from "@gunjo/ui";
+import { Badge, Button, DataTable, type DataTableLabels } from "@gunjo/ui";
 
 type Member = {
     id: string;
@@ -44,6 +44,36 @@ const STATUS_VARIANT: Record<Member["status"], "default" | "secondary" | "destru
     invited: "secondary",
     suspended: "destructive",
 };
+
+// onRowClick demo: clicking the row body (or Enter on the focused row) selects it,
+// while clicking an interactive control inside the row (the 詳細 button) does NOT
+// fire the row click.
+function RowClickDemo() {
+    const [selected, setSelected] = React.useState<string | null>(null);
+    const [action, setAction] = React.useState<string | null>(null);
+    const cols: ColumnDef<Member>[] = [
+        { accessorKey: "name", header: "氏名" },
+        { accessorKey: "role", header: "権限" },
+        {
+            id: "actions",
+            header: "",
+            cell: ({ row }) => (
+                <Button size="sm" variant="outline" onClick={() => setAction(row.original.name)}>
+                    詳細
+                </Button>
+            ),
+        },
+    ];
+    return (
+        <div className="flex w-full flex-col gap-3">
+            <DataTable columns={cols} data={TEAM_DATA.slice(0, 4)} onRowClick={(m) => setSelected(m.name)} />
+            <p className="text-sm text-muted-foreground" aria-live="polite" data-testid="rowclick-status">
+                行クリック: <span className="font-medium text-foreground">{selected ?? "—"}</span> ／ 詳細ボタン:{" "}
+                <span className="font-medium text-foreground">{action ?? "—"}</span>
+            </p>
+        </div>
+    );
+}
 
 function getTableLabels(isJa: boolean): DataTableLabels {
     return isJa
@@ -325,6 +355,17 @@ export function MembersTable() {
                 </h2>
                 <ComponentDemoStates
                     states={[
+                        {
+                            key: "row-click",
+                            title: isJa ? "行クリック" : "Row click",
+                            description: isJa
+                                ? "onRowClick で行全体をクリック（またはフォーカス時に Enter）で開けます。行内のボタンなどインタラクティブ要素のクリックは行クリックを発火しません。"
+                                : "With onRowClick the whole row is clickable (or Enter when focused). Clicking an interactive control inside the row does not trigger the row click.",
+                            preview: <RowClickDemo />,
+                            previewHeight: "auto",
+                            previewClassName: "max-w-none",
+                            code: `<DataTable\n  columns={columns}\n  data={data}\n  onRowClick={(row) => openDetail(row)}\n/>`,
+                        },
                         {
                             key: "rich-cells",
                             title: isJa ? "バッジ付きセル" : "Rich cells",
