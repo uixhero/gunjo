@@ -1765,6 +1765,39 @@ Figma export:
   outline, and disabled usage, runtime token notes, and related-component usage
   boundary are aligned without visible overlap.
 
+The owner then approved exporting the additional Toggle component data with:
+
+> I approve exporting the Toggle prop names, default values, and behavior
+> (Radix Toggle Root `ComponentPropsWithoutRef` structure, `pressed`,
+> `defaultPressed`, `onPressedChange`, `disabled`, `aria-label`, `children`,
+> and `className`; CVA `VariantProps<typeof toggleVariants>` `variant` and
+> `size`), generated no-variant and no-default-variant structure, runtime
+> variant values (`default` and `outline`) and default variant (`default`),
+> size values (`default`, `sm`, and `lg`) and default size (`default`), base
+> layout and typography, size dimensions, default / outline variant styles,
+> pressed state, hover / focus-visible ring, disabled state, disabled pressed
+> `primary-subtle` treatment, docs-derived state taxonomy and sample copy,
+> Tooltip / TooltipTrigger / TooltipContent / ToggleGroup / TooltipButton /
+> Button related composition and usage boundaries, and token names and values
+> (`muted`, `muted-foreground`, `input`, `ring`, `background`, `foreground`,
+> `primary`, `primary-foreground`, `primary-subtle`,
+> `primary-subtle-foreground`, `accent`, `accent-foreground`, and `border`)
+> from this private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Toggle / Section`: `261:13`
+- `Toggle` component: `261:20`
+- Placement: `Inputs` page, after `ToggleGroup / Section`, at `(40, 20820)`,
+  `1280 x 2300`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the no-generated-variant contract, runtime
+  default / outline variant and size structure, pressed / disabled /
+  focus-visible state token styling, docs state specimens for default,
+  pressed, outline, size, and disabled usage, runtime token notes, and
+  related-component usage boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1778,7 +1811,7 @@ Before creating the next component:
    Popover, DropdownMenu, Dialog, Sheet, AlertDialog, ContextMenu, Drawer, and
    HoverCard, Modal, ShareModal, FloatingPanel, MediaLightbox, and
    MediaPickerDialog, OnboardingFlow, ChatPanel, ChatInput, ChatMessage, and
-   ChatComposer, Label, RangeSlider, and ToggleGroup components, runtime
+   ChatComposer, Label, RangeSlider, ToggleGroup, and Toggle components, runtime
    semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
