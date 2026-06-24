@@ -2021,6 +2021,42 @@ Figma export:
   notes, and related-component usage boundary are aligned without visible
   overlap.
 
+The owner then approved exporting the additional PostalCodeInput component data
+with:
+
+> I approve exporting the PostalCodeInput prop names, default values, and
+> behavior (`value`, `defaultValue`, `onValueChange`, `prefix="〒"`,
+> `formatValue=formatJapanesePostalCode`, `disabledReason`, `disabled`,
+> `className`, and
+> `Omit<InputProps, "type" | "value" | "defaultValue" | "onChange" |
+> "prefix">` structure), generated no-variant and no-default-variant
+> structure, spec-derived composition (`canonicalLayout="prefix-input"`, public
+> parts `PostalCodeInput` and `Input`, and `controlHeight=36`), controlled /
+> uncontrolled value state, `formatJapanesePostalCode` digit extraction,
+> 7-digit cap, and 3-4 grouping, Input forwarding (`type="text"`,
+> `inputMode="numeric"`, `value`, `onChange`, and `disabled`), prefix display
+> structure, disabledReason Tooltip wrapper behavior, dimensions and layout,
+> docs-derived state taxonomy and sample copy, PostalCodeInput / PhoneInput /
+> Input usage boundary, address lookup / autofill composition boundary, Input /
+> Form / Tooltip / PhoneInput related composition and usage boundaries, and token
+> names and values (`input`, `ring`, `muted-foreground`, `foreground`,
+> `background`, `border`, and `muted`) from this private pre-public repository
+> to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `PostalCodeInput / Section`: `284:13`
+- `PostalCodeInput` component: `284:20`
+- Placement: `Inputs` page, after `PhoneInput / Section`, at `(40, 37376)`,
+  `1280 x 2300`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the no-generated-variant
+  contract, prefix-input composition, controlled / uncontrolled value state,
+  Japanese postal-code formatting notes, Input forwarding, prefix display
+  structure, disabled reason Tooltip wrapper, docs state specimens for standard,
+  without-prefix, and disabled reason usage, runtime token notes, and
+  related-component usage boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2036,8 +2072,8 @@ Before creating the next component:
    MediaPickerDialog, OnboardingFlow, ChatPanel, ChatInput, ChatMessage, and
    ChatComposer, Label, RangeSlider, ToggleGroup, Toggle, NumberInput,
    PasswordInput, PasswordRequirementList, PasswordStrengthMeter, and
-   PasswordGroup, and PhoneInput components, runtime semantic colors, and
-   specimen treatments are acceptable.
+   PasswordGroup, PhoneInput, and PostalCodeInput components, runtime semantic
+   colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
