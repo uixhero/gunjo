@@ -97,13 +97,17 @@ function getColumnWidth<TData, TValue>(column: Column<TData, TValue>) {
     return Number.isFinite(size) && size !== 150 ? `${size}px` : undefined
 }
 
-function isInteractiveTarget(target: EventTarget | null) {
+function isInteractiveTarget(target: EventTarget | null, boundary?: Element | null) {
     if (!(target instanceof Element)) return false
-    return Boolean(
-        target.closest(
-            'button, a, input, select, textarea, label, [role="button"], [role="checkbox"], [role="menuitem"], [tabindex]:not([tabindex="-1"])'
-        )
+    const match = target.closest(
+        'button, a, input, select, textarea, label, [role="button"], [role="checkbox"], [role="menuitem"], [tabindex]:not([tabindex="-1"])'
     )
+    // The clickable row/card itself is focusable (tabIndex=0 / role="button") and
+    // therefore matches the selector — only suppress the row click when the match
+    // is an interactive element *inside* the row, not the row boundary itself.
+    // Otherwise `closest()` resolves to the row on every body click and onRowClick
+    // never fires for mouse users. (boundary = the row/card = event.currentTarget)
+    return match !== null && match !== boundary
 }
 
 function getActionColumnInteractionClass(columnId: string) {
@@ -413,7 +417,7 @@ export function DataTable<TData, TValue>({
                                             onClick={
                                                 onRowClick
                                                     ? (event) => {
-                                                          if (isInteractiveTarget(event.target)) return
+                                                          if (isInteractiveTarget(event.target, event.currentTarget)) return
                                                           onRowClick(row.original)
                                                       }
                                                     : undefined
@@ -476,7 +480,7 @@ export function DataTable<TData, TValue>({
                                     onClick={
                                         onRowClick
                                             ? (event) => {
-                                                  if (isInteractiveTarget(event.target)) return
+                                                  if (isInteractiveTarget(event.target, event.currentTarget)) return
                                                   onRowClick(row.original)
                                               }
                                             : undefined
