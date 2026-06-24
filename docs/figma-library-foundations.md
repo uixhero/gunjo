@@ -1871,6 +1871,42 @@ Figma export:
   disabled, and aria-invalid usage, runtime token notes, and related-component
   usage boundary are aligned without visible overlap.
 
+The owner then approved exporting the additional PasswordRequirementList
+component data with:
+
+> I approve exporting the PasswordRequirementList / PasswordRequirement prop
+> names, default values, and behavior (`requirements`,
+> `metLabel="Requirement met"`, `unmetLabel="Requirement not met"`,
+> `pendingLabel="Requirement pending"`, `className`, and
+> `React.HTMLAttributes<HTMLUListElement>` structure; PasswordRequirement
+> `id`, `label`, `met`, and `description`), generated no-variant and
+> no-default-variant structure, spec-derived composition
+> (`canonicalLayout="vertical-checklist"`, public part
+> `PasswordRequirementList`, and state keys `pending`, `met`, `unmet`), state
+> resolution, state-specific icon structure and `aria-label`, root `ul`
+> `data-slot="password-requirement-list"` structure, item `li` grid structure,
+> icon dimensions, label / description rendering, docs-derived state taxonomy
+> and sample copy, PasswordInput validation ownership boundary, PasswordGroup /
+> PasswordStrengthMeter / PasswordInput related composition and usage
+> boundaries, and token names and values (`success-strong`,
+> `destructive-strong`, `muted-foreground`, `foreground`, `background`,
+> `border`, and `muted`) from this private pre-public repository to the Figma
+> file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `PasswordRequirementList / Section`: `270:13`
+- `PasswordRequirementList` component: `270:20`
+- Placement: `Inputs` page, after `PasswordInput / Section`, at `(40, 27944)`,
+  `1280 x 2220`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the no-generated-variant
+  contract, vertical checklist composition, pending / met / unmet state
+  resolver, IconCheck / IconX / IconCircle state mapping, accessible label
+  notes, docs state specimens for mixed, pending, and state-label usage,
+  runtime token notes, and related-component usage boundary are aligned without
+  visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1885,8 +1921,8 @@ Before creating the next component:
    HoverCard, Modal, ShareModal, FloatingPanel, MediaLightbox, and
    MediaPickerDialog, OnboardingFlow, ChatPanel, ChatInput, ChatMessage, and
    ChatComposer, Label, RangeSlider, ToggleGroup, Toggle, and NumberInput
-   and PasswordInput components, runtime semantic colors, and specimen
-   treatments are acceptable.
+   PasswordInput, and PasswordRequirementList components, runtime semantic
+   colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
