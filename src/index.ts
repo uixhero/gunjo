@@ -105,6 +105,7 @@ export * from './components/display/Card';
 export * from './components/display/Carousel';
 export * from './components/display/ChartLegend';
 export * from './components/display/ChatMessage';
+export * from './components/display/CheckList';
 export * from './components/display/ChoroplethMap';
 export * from './components/display/Code';
 export * from './components/display/CodeBlock';

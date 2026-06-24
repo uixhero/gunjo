@@ -108,6 +108,7 @@ export const navigation = [
             { title: "Card", href: "/docs/components/card" },
             { title: "Carousel", href: "/docs/components/carousel" },
             { title: "ChatMessage", href: "/docs/components/chat-message" },
+            { title: "CheckList", href: "/docs/components/check-list" },
             { title: "Code", href: "/docs/components/code" },
             { title: "CodeBlock", href: "/docs/components/code-block" },
             { title: "ColorSwatch", href: "/docs/components/color-swatch" },

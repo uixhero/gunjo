@@ -799,6 +799,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "checkList",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:checkList",
+      title: "CheckList",
+      description: "A checklist / confirmable list: rows of a leading checkbox + label + description with a trailing slot (status badge, action, amount), bordered and divider-separated, each checkbox carrying the row label as its accessible name. Rows with no checked render as plain display rows. For document checklists, required-step / associated-procedure lists, recall/return scope confirmation, batch-approval pick lists and any 'tick these, see their status' surface. (For single/multi selection with roving keyboard nav — inbox / master-detail — that's a separate ListBox primitive.)",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "approvalWorkflow",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:approvalWorkflow",

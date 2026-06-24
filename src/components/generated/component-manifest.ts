@@ -1004,6 +1004,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "checkList": {
+      "title": "CheckList",
+      "description": "A checklist / confirmable list: rows of a leading checkbox + label + description with a trailing slot (status badge, action, amount), bordered and divider-separated, each checkbox carrying the row label as its accessible name. Rows with no checked render as plain display rows. For document checklists, required-step / associated-procedure lists, recall/return scope confirmation, batch-approval pick lists and any 'tick these, see their status' surface. (For single/multi selection with roving keyboard nav — inbox / master-detail — that's a separate ListBox primitive.)",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/CheckList.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "choroplethMap": {
       "title": "ChoroplethMap",
       "description": "HTML/CSS region density map for GeoJSON-style boundaries, markers, and ranked locations with hover/focus tooltips.",

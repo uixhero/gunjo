@@ -4482,6 +4482,30 @@
         }
       ]
     },
+    "checkList": {
+      "frameId": "synthetic:checkList",
+      "title": "CheckList",
+      "description": "A checklist / confirmable list: rows of a leading checkbox + label + description with a trailing slot (status badge, action, amount), bordered and divider-separated, each checkbox carrying the row label as its accessible name. Rows with no checked render as plain display rows. For document checklists, required-step / associated-procedure lists, recall/return scope confirmation, batch-approval pick lists and any 'tick these, see their status' surface. (For single/multi selection with roving keyboard nav — inbox / master-detail — that's a separate ListBox primitive.)",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
     "approvalWorkflow": {
       "frameId": "synthetic:approvalWorkflow",
       "title": "ApprovalWorkflow",
