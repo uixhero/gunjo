@@ -123,6 +123,7 @@ export const navigation = [
             { title: "Icon", href: "/docs/components/icon" },
             { title: "ImagePreview", href: "/docs/components/image-preview" },
             { title: "Img", href: "/docs/components/img" },
+            { title: "KanbanBoard", href: "/docs/components/kanban-board" },
             { title: "Kbd", href: "/docs/components/kbd" },
             { title: "List", href: "/docs/components/list" },
             { title: "MarkdownRenderer", href: "/docs/components/markdown-renderer" },

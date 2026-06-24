@@ -1246,6 +1246,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "kanbanBoard": {
+      "title": "KanbanBoard",
+      "description": "A kanban / status board: ordered columns (lanes) of cards, grouped from a flat items list by getColumnId, with per-column count badges, a card render-prop, optional activatable cards, empty-column placeholders, header accent dots, and a contained horizontal scroll that doesn't push the page on mobile. Each column is a labelled region and cards are real buttons when selectable (keyboard-operable). Drag-and-drop is bring-your-own. For editorial boards, CRM pipelines, support queues, task boards and any column-of-cards workflow.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/KanbanBoard.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "kbd": {
       "title": "Kbd",
       "description": "Displays a keyboard shortcut key.",
