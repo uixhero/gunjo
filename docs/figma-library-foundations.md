@@ -1479,6 +1479,45 @@ Figma export:
   selection, single selection, compact, and empty usage, runtime token notes,
   and related-component usage boundary are aligned without visible overlap.
 
+The owner then approved exporting the additional OnboardingFlow component data
+with:
+
+> I approve exporting the OnboardingFlow / OnboardingStep prop names, default
+> values, and behavior (`steps`, `currentIndex`, `onCurrentIndexChange`,
+> `onComplete`, `canAdvance`, `nextDisabledReason`, `backLabel="Back"`,
+> `nextLabel="Continue"`, `completeLabel="Finish"`,
+> `progressLabel="Onboarding progress"`, `stepLabel`,
+> `backDisabledReason="This is the first step."`, `bodyMinHeight`, and
+> `className`; `OnboardingStep` fields `id`, `title`, `description`,
+> `content`, and `nextDisabled`), generated variant none and default variant
+> none structure, controlled / uncontrolled current index behavior, index
+> clamping, missing-step `null` rendering, `nextDisabled` and `canAdvance`
+> advance blocking, final-step `onComplete`, step indicator `ol` / `li` /
+> `aria-current="step"` / `aria-label` structure, complete / active /
+> inactive indicator and connector display, Back / Continue / Finish actions,
+> first-step back disabled reason Tooltip, next disabled reason Tooltip,
+> dimensions and layout, docs-derived state taxonomy and sample copy,
+> FormGroup / FormLabel / FormControl / FormDescription / Input / Switch /
+> Button / Tooltip / Stepper related composition information, and token names
+> and values (`card`, `card-foreground`, `foreground`, `background`,
+> `border`, `muted-foreground`, `muted`, `ring`, `primary`,
+> `primary-foreground`, `primary-subtle`, `input`, `secondary`, `popover`,
+> and `popover-foreground`) from this private pre-public repository to the
+> Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `OnboardingFlow / Section`: `240:2`
+- `OnboardingFlow` component: `240:5`
+- Placement: `Overlay` page, after `MediaPickerDialog / Section`, at
+  `(40, 30940)`, `1280 x 2840`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the no-generated-variants component specimen,
+  generated contract, controlled/uncontrolled behavior notes, step indicator
+  and disabled-tooltip anatomy, docs state specimens for standard, compact,
+  controlled, and complete usage, runtime token notes, and related-component
+  usage boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1491,8 +1530,8 @@ Before creating the next component:
    SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, Tooltip,
    Popover, DropdownMenu, Dialog, Sheet, AlertDialog, ContextMenu, Drawer, and
    HoverCard, Modal, ShareModal, FloatingPanel, MediaLightbox, and
-   MediaPickerDialog components, runtime semantic colors, and specimen
-   treatments are acceptable.
+   MediaPickerDialog, and OnboardingFlow components, runtime semantic colors,
+   and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
