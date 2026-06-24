@@ -1636,6 +1636,40 @@ Figma export:
   notes, and related-component usage boundary are aligned without visible
   overlap.
 
+The owner then approved exporting the additional ChatComposer component data
+with:
+
+> I approve exporting the ChatComposer / ChatComposerLabels prop names,
+> default values, and behavior (`variant`, `inputProps`, `context`, `prompt`,
+> `status`, `footer`, `accessory`, `labels`, and `className`;
+> `labels.context`, `labels.prompt`, and `labels.status`), variant names
+> (`default`, `context`, and `prompt`) and default variant (`default`), root
+> `section` structure (`inline-flex`, `w-full`, `flex-col`, `items-center`,
+> `gap-3`, and `[&>*]:w-full`), context / prompt / status `aria-label`
+> wrapper structure, accessory relative wrapper / `pt-6` /
+> `pointer-events-none absolute right-8 top-0 z-10` placement, ChatInput
+> `inputProps` forwarding, footer slot structure, docs-derived state taxonomy
+> and sample copy, ChatInput / Popover / Tooltip / Switch / Button /
+> ChatPanel / ChatMessage related composition and usage boundaries, and token
+> names and values (`background`, `foreground`, `muted`, `muted-foreground`,
+> `border`, `input`, `ring`, `primary`, `primary-foreground`,
+> `primary-subtle`, `primary-subtle-foreground`, `primary-border`, `popover`,
+> `popover-foreground`, `secondary`, `accent`, and `card`) from this private
+> pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `ChatComposer / Section`: `250:13`
+- `ChatComposer` component: `250:20`
+- Placement: `Inputs` page, after `ChatInput / Section`, at `(40, 11648)`,
+  `1280 x 2660`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the default, context, and prompt variant
+  contract, context / prompt / status / footer / accessory slot anatomy,
+  ChatInput forwarding and accessory overlay behavior notes, docs state
+  specimens for choices, workspace, and accessory usage, runtime token notes,
+  and related-component usage boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1648,8 +1682,8 @@ Before creating the next component:
    SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, Tooltip,
    Popover, DropdownMenu, Dialog, Sheet, AlertDialog, ContextMenu, Drawer, and
    HoverCard, Modal, ShareModal, FloatingPanel, MediaLightbox, and
-   MediaPickerDialog, OnboardingFlow, ChatPanel, ChatInput, and ChatMessage
-   components, runtime semantic colors, and specimen treatments are
+   MediaPickerDialog, OnboardingFlow, ChatPanel, ChatInput, ChatMessage, and
+   ChatComposer components, runtime semantic colors, and specimen treatments are
    acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
