@@ -1798,6 +1798,41 @@ Figma export:
   pressed, outline, size, and disabled usage, runtime token notes, and
   related-component usage boundary are aligned without visible overlap.
 
+The owner then approved exporting the additional NumberInput component data
+with:
+
+> I approve exporting the NumberInput prop names, default values, and behavior
+> (`value`, `onValueChange`, `min`, `max`, `step=1`,
+> `incrementLabel="Increment"`, `decrementLabel="Decrement"`,
+> `layout="spinner"`, `disabled`, `onBlur`, and `className`;
+> `Omit<React.InputHTMLAttributes<HTMLInputElement>, "value" | "onChange" |
+> "type">` structure), generated no-variant and no-default-variant structure,
+> runtime layout values (`spinner` and `stepper`) and default layout
+> (`spinner`), controlled value and draft string state, `clamp` min/max
+> normalization, `step` adjustment, `atMin` / `atMax` button-disabled
+> behavior, native `<input type="number">` and `inputMode` behavior, spinner
+> and stepper layout anatomy, dimensions, border, focus ring, disabled opacity,
+> IconChevronUp / IconChevronDown / IconMinus / IconPlus composition,
+> docs-derived state taxonomy and sample copy, FormGroup / FormLabel /
+> FormControl / FormDescription / DisabledReasonTooltip / Input / Button /
+> RangeSlider / Slider / Form related composition and usage boundaries, and
+> token names and values (`input`, `ring`, `muted`, `muted-foreground`,
+> `background`, `foreground`, and `border`) from this private pre-public
+> repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `NumberInput / Section`: `265:13`
+- `NumberInput` component: `265:20`
+- Placement: `Inputs` page, after `Toggle / Section`, at `(40, 23168)`,
+  `1280 x 2380`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the no-generated-variant
+  contract, runtime spinner / stepper layout structure, draft state / clamp /
+  step behavior notes, docs state specimens for min/max, step size, disabled,
+  and stepper usage, runtime token notes, and related-component usage boundary
+  are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1811,8 +1846,8 @@ Before creating the next component:
    Popover, DropdownMenu, Dialog, Sheet, AlertDialog, ContextMenu, Drawer, and
    HoverCard, Modal, ShareModal, FloatingPanel, MediaLightbox, and
    MediaPickerDialog, OnboardingFlow, ChatPanel, ChatInput, ChatMessage, and
-   ChatComposer, Label, RangeSlider, ToggleGroup, and Toggle components, runtime
-   semantic colors, and specimen treatments are acceptable.
+   ChatComposer, Label, RangeSlider, ToggleGroup, Toggle, and NumberInput
+   components, runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
