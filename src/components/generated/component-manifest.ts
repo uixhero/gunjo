@@ -1284,7 +1284,7 @@ export const componentManifest = {
     },
     "meter": {
       "title": "Meter",
-      "description": "Capacity / utilisation meter (role=meter): a value-against-max bar whose tone is derived from thresholds (near-full → warning, over → destructive), with an optional incoming overlay to preview 'after this change' and a compact inline size for table cells. For warehouse fill, truck load, storage usage, quota.",
+      "description": "Capacity / utilisation meter (role=meter): a value-against-max bar whose tone is derived from thresholds (near-full → warning, over → destructive), with an optional incoming overlay to preview 'after this change' and a compact inline size for table cells. For warehouse fill, truck load, storage usage and quota — or set direction='higher-is-better' with a target marker for occupancy, utilisation, SLA uptime, yield and process-capability goals.",
       "variantKeys": [
         "default"
       ],

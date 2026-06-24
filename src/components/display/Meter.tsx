@@ -24,6 +24,20 @@ export interface MeterProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "
     incoming?: number
     /** Fractions of `max` that flip the auto tone. Default `{ warning: 0.8, over: 1 }`. */
     thresholds?: MeterThresholds
+    /**
+     * Tone direction. `"higher-is-worse"` (default) is capacity / load — near-full
+     * warns, over is destructive. `"higher-is-better"` flips it for occupancy,
+     * utilisation, SLA uptime, yield or process capability: at/above `target` is
+     * success, just under it warns, well under is destructive. (#256)
+     */
+    direction?: "higher-is-worse" | "higher-is-better"
+    /**
+     * Goal value (same units as `value`) drawn as a marker line on the track. With
+     * `direction="higher-is-better"` it also drives the auto tone (success at/above
+     * target). With the default direction it is a visual reference only (e.g. a
+     * soft cap / SLA floor). (#256)
+     */
+    target?: number
     /** Force the fill tone instead of deriving it from thresholds. */
     tone?: MeterTone
     /** Accessible name — a `meter` needs one. */
@@ -73,12 +87,30 @@ function deriveTone(frac: number, thresholds: MeterThresholds | undefined): Mete
     return "success"
 }
 
+// For `direction="higher-is-better"`: at/above `target` is success, the band just
+// under it (down to this fraction of target) warns, and below that is destructive.
+// e.g. a 90% occupancy target warns at 81–90% and fails under 81%. Without a target
+// there is nothing to judge against, so it stays success (never cries wolf).
+const HIGHER_IS_BETTER_WARNING_BAND = 0.9
+
+function deriveToneHigherIsBetter(value: number, target: number | undefined): MeterTone {
+    if (target === undefined) return "success"
+    if (value >= target) return "success"
+    if (value >= target * HIGHER_IS_BETTER_WARNING_BAND) return "warning"
+    return "destructive"
+}
+
 /**
  * Capacity / utilisation meter. A `value`-against-`max` bar (`role="meter"`)
  * whose tone is derived from thresholds (near-full → warning, over →
  * destructive), with an optional `incoming` overlay to preview the result of a
  * pending change and a compact `inline` size for table cells. For warehouse
  * fill, truck load, storage usage and quota. (#230)
+ *
+ * Set `direction="higher-is-better"` with a `target` to flip the semantics for
+ * occupancy, utilisation, SLA uptime, yield or process capability — at/above the
+ * target marker is success, just under it warns, well under is destructive. The
+ * `target` line also renders (as a reference only) under the default direction. (#256)
  */
 const Meter = React.forwardRef<HTMLDivElement, MeterProps>(
     (
@@ -88,6 +120,8 @@ const Meter = React.forwardRef<HTMLDivElement, MeterProps>(
             max = 100,
             incoming,
             thresholds,
+            direction = "higher-is-worse",
+            target,
             tone,
             label,
             valueText,
@@ -103,19 +137,28 @@ const Meter = React.forwardRef<HTMLDivElement, MeterProps>(
         const incFrac = incoming && incoming > 0 ? incoming / safeMax : 0
         const projected = frac + incFrac
 
-        const resolvedTone = tone ?? deriveTone(projected, thresholds)
+        const higherIsBetter = direction === "higher-is-better"
+        const projectedValue = value + (incFrac > 0 ? (incoming as number) : 0)
+        const resolvedTone =
+            tone ??
+            (higherIsBetter
+                ? deriveToneHigherIsBetter(projectedValue, target)
+                : deriveTone(projected, thresholds))
         const basePct = Math.min(100, Math.max(0, frac * 100))
         const incPct = incFrac > 0 ? Math.min(100 - basePct, incFrac * 100) : 0
         const pct = Math.round(frac * 100)
         const projectedPct = Math.round(projected * 100)
-        const isOver = projected > (thresholds?.over ?? 1)
+        const targetPct =
+            target !== undefined ? Math.min(100, Math.max(0, (target / safeMax) * 100)) : null
+        const isOver = !higherIsBetter && projected > (thresholds?.over ?? 1)
 
         const fmt = (n: number) => `${Math.round(n * 10) / 10}${unit}`
         const readout =
             incFrac > 0
                 ? `${fmt(value)} + ${fmt(incoming as number)} → ${projectedPct}%`
                 : `${fmt(value)} / ${fmt(safeMax)}（${pct}%）`
-        const resolvedValueText = valueText ?? readout
+        const targetText = target !== undefined ? ` (target ${fmt(target)})` : ""
+        const resolvedValueText = valueText ?? readout + targetText
 
         const bar = (
             <div
@@ -135,6 +178,13 @@ const Meter = React.forwardRef<HTMLDivElement, MeterProps>(
                     <div
                         className={cn("absolute inset-y-0 opacity-70 transition-all", TONE_FILL[resolvedTone])}
                         style={{ left: `${basePct}%`, width: `${incPct}%`, backgroundImage: STRIPES }}
+                    />
+                ) : null}
+                {targetPct !== null ? (
+                    <div
+                        aria-hidden
+                        className="absolute inset-y-[-1.5px] w-0.5 -translate-x-1/2 rounded-full bg-foreground/80 ring-1 ring-background"
+                        style={{ left: `${targetPct}%` }}
                     />
                 ) : null}
             </div>

@@ -47,11 +47,18 @@ export function MeterDemo() {
                 </div>
             </div>
 
-            {/* Auto-tone by threshold */}
+            {/* Auto-tone by threshold (higher-is-worse / capacity) */}
             <div className="flex flex-col gap-3">
                 <Meter label="棚 A-01" value={1350} max={3000} unit="点" />
                 <Meter label="棚 B-07" value={2520} max={3000} unit="点" />
                 <Meter label="棚 C-02" value={3000} max={3000} unit="点" />
+            </div>
+
+            {/* higher-is-better — at/above the target marker is success, just under it warns */}
+            <div className="flex flex-col gap-3">
+                <Meter label="入居率（目標 90%）" value={95} max={100} unit="%" direction="higher-is-better" target={90} />
+                <Meter label="設備稼働率（目標 90%）" value={86} max={100} unit="%" direction="higher-is-better" target={90} />
+                <Meter label="工程能力 Cpk（目標 1.33）" value={1.05} max={2} direction="higher-is-better" target={1.33} />
             </div>
 
             {/* Inline size — for table cells */}
