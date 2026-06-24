@@ -1420,6 +1420,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "checkList": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
+      "variantColorHints": {}
+    },
     "choroplethMap": {
       "variantKeys": [
         "default",
