@@ -1698,6 +1698,38 @@ Figma export:
   labels, runtime token notes, and related-component usage boundary are aligned
   without visible overlap.
 
+The owner then approved exporting the additional RangeSlider component data
+with:
+
+> I approve exporting the RangeSlider prop names, default values, and behavior
+> (`value`, `defaultValue`, `onValueChange`, `min=0`, `max=100`, `step=1`,
+> `minLabel="Minimum value"`, `maxLabel="Maximum value"`, `disabled`,
+> `trackClassName`, `rangeClassName`, `thumbClassName`, and `className`;
+> `Omit<React.HTMLAttributes<HTMLDivElement>, "defaultValue" | "onChange">`
+> structure), variant name (`default`) and default variant (`default`),
+> controlled / uncontrolled state, `clamp` / `roundToStep` / min-max
+> normalization, two `input type="range"` lower / upper thumb structure,
+> dimensions and layout, disabled `pointer-events-none opacity-50` treatment,
+> docs-derived state taxonomy and sample copy, FormGroup / FormLabel /
+> FormControl / FormDescription / HStack / NumberInput / DisabledReasonTooltip
+> / Slider / FilterButton related composition and usage boundaries, and token
+> names and values (`primary`, `foreground`, `background`, `input`, `muted`,
+> `muted-foreground`, `border`, and `ring`) from this private pre-public
+> repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `RangeSlider / Section`: `256:13`
+- `RangeSlider` component: `256:20`
+- Placement: `Inputs` page, after `Label / Section`, at `(40, 16164)`,
+  `1280 x 2240`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the default variant contract, controlled /
+  uncontrolled value behavior notes, two-thumb `input type="range"` anatomy,
+  track / range / thumb token styling, docs state specimens for bounded range,
+  step size, linked inputs, and disabled usage, runtime token notes, and
+  related-component usage boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1711,8 +1743,8 @@ Before creating the next component:
    Popover, DropdownMenu, Dialog, Sheet, AlertDialog, ContextMenu, Drawer, and
    HoverCard, Modal, ShareModal, FloatingPanel, MediaLightbox, and
    MediaPickerDialog, OnboardingFlow, ChatPanel, ChatInput, ChatMessage, and
-   ChatComposer, and Label components, runtime semantic colors, and specimen
-   treatments are acceptable.
+   ChatComposer, Label, and RangeSlider components, runtime semantic colors,
+   and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
