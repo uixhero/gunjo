@@ -25,12 +25,15 @@ export interface MeterProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "
     /** Fractions of `max` that flip the auto tone. Default `{ warning: 0.8, over: 1 }`. */
     thresholds?: MeterThresholds
     /**
-     * Tone direction. `"higher-is-worse"` (default) is capacity / load — near-full
-     * warns, over is destructive. `"higher-is-better"` flips it for occupancy,
-     * utilisation, SLA uptime, yield or process capability: at/above `target` is
-     * success, just under it warns, well under is destructive. (#256)
+     * Tone direction.
+     * - `"higher-is-worse"` (default) — capacity / load: near-full warns, over is destructive.
+     * - `"higher-is-better"` — occupancy / utilisation / SLA / yield / capability: at/above
+     *   `target` is success, just under warns, well under is destructive. (#256)
+     * - `"fill-is-good"` — coverage / fulfillment / completion: tone follows fill toward
+     *   `max` (the goal) with **no `target` needed** — at/near full is success, well under
+     *   is destructive. (#286)
      */
-    direction?: "higher-is-worse" | "higher-is-better"
+    direction?: "higher-is-worse" | "higher-is-better" | "fill-is-good"
     /**
      * Goal value (same units as `value`) drawn as a marker line on the track. With
      * `direction="higher-is-better"` it also drives the auto tone (success at/above
@@ -46,6 +49,12 @@ export interface MeterProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "
     valueText?: string
     /** Unit suffix for the default readout / value text (e.g. `"kg"`, `"m³"`). */
     unit?: string
+    /**
+     * Format the numbers in the **visible** readout (and the value text) — e.g.
+     * `formatValue={formatCurrency}` for grouped JPY, or a custom `"32 / 推奨32字"`.
+     * Overrides the default `round(n,1) + unit`. (#308)
+     */
+    formatValue?: (value: number) => string
     /** Size. `"inline"` is a thin bar + compact % for table cells. Default `"default"`. */
     size?: "default" | "sm" | "inline"
     /** Show the numeric readout. Default `true` (always compact for `inline`). */
@@ -111,6 +120,11 @@ function deriveToneHigherIsBetter(value: number, target: number | undefined): Me
  * occupancy, utilisation, SLA uptime, yield or process capability — at/above the
  * target marker is success, just under it warns, well under is destructive. The
  * `target` line also renders (as a reference only) under the default direction. (#256)
+ *
+ * `direction="fill-is-good"` tones by fill toward `max` (the implicit goal, no
+ * `target` needed) — for coverage / fulfillment / completion. (#286) Pass
+ * `formatValue` to format the visible readout (e.g. grouped JPY). (#308) A
+ * percentage meter (unit `"%"`, max 100) shows the value once, not `/ 100%（%）`. (#277)
  */
 const Meter = React.forwardRef<HTMLDivElement, MeterProps>(
     (
@@ -126,8 +140,10 @@ const Meter = React.forwardRef<HTMLDivElement, MeterProps>(
             label,
             valueText,
             unit = "",
+            formatValue,
             size = "default",
             showValue = true,
+            "aria-label": ariaLabel,
             ...props
         },
         ref
@@ -138,32 +154,41 @@ const Meter = React.forwardRef<HTMLDivElement, MeterProps>(
         const projected = frac + incFrac
 
         const higherIsBetter = direction === "higher-is-better"
+        const fillIsGood = direction === "fill-is-good"
         const projectedValue = value + (incFrac > 0 ? (incoming as number) : 0)
         const resolvedTone =
             tone ??
             (higherIsBetter
                 ? deriveToneHigherIsBetter(projectedValue, target)
-                : deriveTone(projected, thresholds))
+                : fillIsGood
+                  ? // fill toward max is the goal — judge against max as the implicit target
+                    deriveToneHigherIsBetter(projectedValue, safeMax)
+                  : deriveTone(projected, thresholds))
         const basePct = Math.min(100, Math.max(0, frac * 100))
         const incPct = incFrac > 0 ? Math.min(100 - basePct, incFrac * 100) : 0
         const pct = Math.round(frac * 100)
         const projectedPct = Math.round(projected * 100)
         const targetPct =
             target !== undefined ? Math.min(100, Math.max(0, (target / safeMax) * 100)) : null
-        const isOver = !higherIsBetter && projected > (thresholds?.over ?? 1)
+        const isOver = direction === "higher-is-worse" && projected > (thresholds?.over ?? 1)
 
-        const fmt = (n: number) => `${Math.round(n * 10) / 10}${unit}`
+        const fmt = (n: number) => (formatValue ? formatValue(n) : `${Math.round(n * 10) / 10}${unit}`)
+        // A percentage meter (unit "%" against a 0–100 range) doesn't need the
+        // redundant "/ 100%（pct%）" — just show the value once. (#277)
+        const isPercentMeter = !formatValue && unit === "%" && safeMax === 100
         const readout =
             incFrac > 0
                 ? `${fmt(value)} + ${fmt(incoming as number)} → ${projectedPct}%`
-                : `${fmt(value)} / ${fmt(safeMax)}（${pct}%）`
+                : isPercentMeter
+                  ? fmt(value)
+                  : `${fmt(value)} / ${fmt(safeMax)}（${pct}%）`
         const targetText = target !== undefined ? ` (target ${fmt(target)})` : ""
         const resolvedValueText = valueText ?? readout + targetText
 
         const bar = (
             <div
                 role="meter"
-                aria-label={typeof label === "string" ? label : undefined}
+                aria-label={typeof label === "string" ? label : ariaLabel}
                 aria-valuemin={0}
                 aria-valuemax={safeMax}
                 aria-valuenow={value}
@@ -196,7 +221,11 @@ const Meter = React.forwardRef<HTMLDivElement, MeterProps>(
                     <div className="min-w-0 flex-1">{bar}</div>
                     {showValue ? (
                         <span className={cn("shrink-0 text-xs tabular-nums", TONE_TEXT[resolvedTone])}>
-                            {isOver ? `${projectedPct}%↑` : `${projectedPct}%`}
+                            {formatValue
+                                ? formatValue(projectedValue)
+                                : isOver
+                                  ? `${projectedPct}%↑`
+                                  : `${projectedPct}%`}
                         </span>
                     ) : null}
                 </div>

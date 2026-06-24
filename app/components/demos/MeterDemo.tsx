@@ -61,6 +61,12 @@ export function MeterDemo() {
                 <Meter label="工程能力 Cpk（目標 1.33）" value={1.05} max={2} direction="higher-is-better" target={1.33} />
             </div>
 
+            {/* fill-is-good (coverage, no target) + formatValue (grouped readout) */}
+            <div className="flex flex-col gap-3">
+                <Meter label="受注カバー率" value={87} max={100} unit="%" direction="fill-is-good" />
+                <Meter label="予算消化（円）" value={2_340_000} max={3_000_000} direction="higher-is-worse" formatValue={(n) => `¥${n.toLocaleString("ja-JP")}`} />
+            </div>
+
             {/* Inline size — for table cells */}
             <table className="w-full text-sm">
                 <tbody>
