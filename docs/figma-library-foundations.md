@@ -1405,6 +1405,44 @@ Figma export:
   toolbar, status, and solid information panel usage, runtime token notes, and
   source footer are aligned without visible overlap.
 
+The owner then approved exporting the additional MediaLightbox component data
+with:
+
+> I approve exporting the MediaLightbox / MediaLightboxLabels prop names,
+> default values, and behavior (`open`, `onOpenChange`, `asset`,
+> `portalContainer`, `variant`, `labels`, `hasPrevious`, `hasNext`,
+> `onPrevious`, `onNext`, `onShare`, `onFavorite`, and `onDetails`), variant
+> names (`default` and `compact`) and default variant (`default`), Dialog /
+> DialogContent / DialogTitle / DialogDescription full-screen preview
+> structure, contained absolute `portalContainer` behavior with animation
+> suppression, internal state (`scale=1`, `fitWidth=false`, `rotation=0`,
+> `editing=false`) and reset behavior on asset/open changes, zoom range
+> `0.5..3.5`, `step=0.1`, zoom percent display, fit width / reset / rotate /
+> edit / save behavior, previous / next navigation, share / favorite / details
+> actions, `metadataRows` and PopoverContent display, top action toolbar /
+> editing toolbar / media viewport / bottom zoom controls structure,
+> TooltipButton / Button / Slider / Popover / Icon / AssetCardAsset
+> composition information, dimensions and layout, docs-derived state taxonomy
+> and sample copy, MediaPickerDialog / AssetCard / Popover / Tooltip related
+> information, and token names and values (`overlay`, `foreground`,
+> `background`, `border`, `muted`, `muted-foreground`, `primary`,
+> `secondary`, `accent`, `ring`, `card`, `card-foreground`, and
+> `destructive`) from this private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `MediaLightbox / Section`: `235:2`
+- `MediaLightbox` component: `235:5`
+- Placement: `Overlay` page, after `FloatingPanel / Section`, at
+  `(40, 25080)`, `1280 x 2860`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the default component specimen, generated
+  default/compact variant contract, Dialog containment notes, state reset and
+  zoom behavior, metadata popover treatment, top and bottom control anatomy,
+  docs state specimens for standard, compact, and portrait asset previews,
+  runtime token notes, and source footer are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1416,8 +1454,8 @@ Before creating the next component:
    RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic,
    SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, Tooltip,
    Popover, DropdownMenu, Dialog, Sheet, AlertDialog, ContextMenu, Drawer, and
-   HoverCard, Modal, ShareModal, and FloatingPanel components, runtime
-   semantic colors, and specimen treatments are acceptable.
+   HoverCard, Modal, ShareModal, FloatingPanel, and MediaLightbox components,
+   runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
