@@ -1371,6 +1371,40 @@ Figma export:
   specimens for public, private, and stats usage, runtime token notes, and
   source footer are aligned without visible overlap.
 
+The owner then approved exporting the additional FloatingPanel component data
+with:
+
+> I approve exporting the FloatingPanel prop names, default values, and
+> behavior (`children`, `className`, `variant="glass"`, `title`,
+> `contentClassName`, `dragEnabled=false`, `resizable=false`, `minWidth=220`,
+> `minHeight=140`, `dragHandleClassName`, and HTMLMotionProps-derived `drag`,
+> `dragListener`, `dragMomentum`, and `style`), generated variant name
+> (`glass`) and default variant (`glass`), runtime variant values (`glass`,
+> `solid`, and `ghost`), framer-motion `initial` / `animate` / `exit` /
+> `transition` structure, spring stiffness 300 and damping 30, `useDragControls`
+> header drag behavior, title-bar drag handle, `dragListener` suppression,
+> `dragMomentum=false` default, resizable `minWidth` / `minHeight` style,
+> `resize` class, bottom-right resize handle, dimensions and layout, variant
+> styles, docs-derived state taxonomy and sample copy, Tooltip / Icon / Dialog /
+> Popover related composition information, and token names and values
+> (`background`, `foreground`, `border`, `muted`, `muted-foreground`,
+> `primary`, `ring`, `secondary`, `accent`, `card`, and `card-foreground`)
+> from this private pre-public repository to the Figma file `GunjoUI Library
+> Foundations (#8)`.
+
+Figma export:
+
+- `FloatingPanel / Section`: `232:2`
+- `FloatingPanel` component: `232:5`
+- Placement: `Overlay` page, after `ShareModal / Section`, at `(40, 22320)`,
+  `1280 x 2720`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the generated `glass` component specimen,
+  runtime `solid` and `ghost` notes, framer-motion and drag/resizable contract,
+  title/content anatomy, docs state specimens for canvas, interactive,
+  toolbar, status, and solid information panel usage, runtime token notes, and
+  source footer are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1382,8 +1416,8 @@ Before creating the next component:
    RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic,
    SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, Tooltip,
    Popover, DropdownMenu, Dialog, Sheet, AlertDialog, ContextMenu, Drawer, and
-   HoverCard, Modal, and ShareModal components, runtime semantic colors, and
-   specimen treatments are acceptable.
+   HoverCard, Modal, ShareModal, and FloatingPanel components, runtime
+   semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
