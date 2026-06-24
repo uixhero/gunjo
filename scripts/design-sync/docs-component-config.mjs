@@ -180,6 +180,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "schedule-grid": "Display",
   "approval-workflow": "Display",
   "check-list": "Display",
+  "event-calendar": "Display",
   "reference-value": "Display",
   "signed-record": "Display",
   statistic: "Display",

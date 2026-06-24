@@ -117,6 +117,7 @@ export const navigation = [
             { title: "DocNote", href: "/docs/components/doc-note" },
             { title: "EditableDataTable", href: "/docs/components/editable-data-table" },
             { title: "EmptyState", href: "/docs/components/empty-state" },
+            { title: "EventCalendar", href: "/docs/components/event-calendar" },
             { title: "FileTree", href: "/docs/components/file-tree" },
             { title: "Gallery", href: "/docs/components/gallery" },
             { title: "Icon", href: "/docs/components/icon" },

@@ -799,6 +799,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "eventCalendar",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:eventCalendar",
+      title: "EventCalendar",
+      description: "Month calendar with events: a 週×曜日 day-cell grid for a month with events placed as chips on their date (capped per day with a '＋N' overflow), today marked, out-of-month days de-emphasised, role=grid semantics (weekday columnheaders, day gridcells with a composed accessible name) and roving-tabindex keyboard nav (arrows ±1 day / ±1 week, Home/End, Enter to select). Owns the month math (pass month + events); today is injectable (SSR-safe). For editorial / content calendars, schedules, bookings and any events-on-dates view.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "checkList",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:checkList",

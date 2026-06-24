@@ -4482,6 +4482,30 @@
         }
       ]
     },
+    "eventCalendar": {
+      "frameId": "synthetic:eventCalendar",
+      "title": "EventCalendar",
+      "description": "Month calendar with events: a 週×曜日 day-cell grid for a month with events placed as chips on their date (capped per day with a '＋N' overflow), today marked, out-of-month days de-emphasised, role=grid semantics (weekday columnheaders, day gridcells with a composed accessible name) and roving-tabindex keyboard nav (arrows ±1 day / ±1 week, Home/End, Enter to select). Owns the month math (pass month + events); today is injectable (SSR-safe). For editorial / content calendars, schedules, bookings and any events-on-dates view.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
     "checkList": {
       "frameId": "synthetic:checkList",
       "title": "CheckList",
