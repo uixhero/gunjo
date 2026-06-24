@@ -310,5 +310,9 @@
   "gantt": {
     "title": "Gantt",
     "description": "Gantt / resource timeline: resource rows × a horizontal time axis with bars positioned by start/end and lane-packed within a row so overlapping bars stack instead of covering each other. Day-column gridlines + date headers, a sticky row-label gutter, an optional today line, and a contained horizontal scroll. Owns the time math (pass startDate/endDate + rows + items); today is injectable (SSR-safe). Bars are focusable buttons with a composed accessible name. For project schedules, production lines, room/equipment timelines, delivery/route plans and any rows-over-time view."
+  },
+  "lineageGraph": {
+    "title": "LineageGraph",
+    "description": "Lineage / dependency graph: a layered, directed-acyclic node-link graph that handles multi-parent and multi-child edges (the fan-in / fan-out a tree can't draw). Nodes are auto-assigned to layers by longest-path depth and laid out along a flow axis (horizontal or vertical); edges are drawn as SVG connectors with arrowheads. Nodes are focusable buttons whose accessible name names their upstream/downstream neighbours. For lot genealogy / traceability (recall blast-radius), data lineage, build/dependency graphs, ETL pipelines and approval routing with joins."
   }
 }

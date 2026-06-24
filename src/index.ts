@@ -130,6 +130,7 @@ export * from './components/display/Img';
 export * from './components/display/KanbanBoard';
 export * from './components/display/Kbd';
 export * from './components/display/LabeledDonutCard';
+export * from './components/display/LineageGraph';
 export * from './components/display/LineChart';
 export * from './components/display/List';
 export * from './components/display/MarkdownRenderer';
