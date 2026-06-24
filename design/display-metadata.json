@@ -302,5 +302,9 @@
   "kanbanBoard": {
     "title": "KanbanBoard",
     "description": "A kanban / status board: ordered columns (lanes) of cards, grouped from a flat items list by getColumnId, with per-column count badges, a card render-prop, optional activatable cards, empty-column placeholders, header accent dots, and a contained horizontal scroll that doesn't push the page on mobile. Each column is a labelled region and cards are real buttons when selectable (keyboard-operable). Drag-and-drop is bring-your-own. For editorial boards, CRM pipelines, support queues, task boards and any column-of-cards workflow."
+  },
+  "weekView": {
+    "title": "WeekView",
+    "description": "Week-view time-grid calendar: day columns × an hour axis with events positioned by start/end time and overlap-packed into side-by-side columns, plus a time gutter, weekday/date headers and an optional today highlight. Owns the week math (pass weekOf + events); today is injectable (SSR-safe). Events are focusable buttons with a composed accessible name. For appointments, bookings, shift schedules, week schedulers and any time-of-day calendar."
   }
 }

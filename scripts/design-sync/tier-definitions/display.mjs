@@ -799,6 +799,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "weekView",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:weekView",
+      title: "WeekView",
+      description: "Week-view time-grid calendar: day columns × an hour axis with events positioned by start/end time and overlap-packed into side-by-side columns, plus a time gutter, weekday/date headers and an optional today highlight. Owns the week math (pass weekOf + events); today is injectable (SSR-safe). Events are focusable buttons with a composed accessible name. For appointments, bookings, shift schedules, week schedulers and any time-of-day calendar.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "kanbanBoard",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:kanbanBoard",
