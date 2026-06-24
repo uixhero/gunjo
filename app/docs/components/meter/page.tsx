@@ -20,7 +20,17 @@ const usageCode = `import { Meter } from "@gunjo/ui"
 />
 
 // compact size for a table cell
-<Meter size="inline" value={41} max={40} label="棚 D-03 充填" />`;
+<Meter size="inline" value={41} max={40} label="棚 D-03 充填" />
+
+// higher-is-better: at/above the target marker is success, just under it warns
+<Meter
+  label="入居率"
+  value={87}
+  max={100}
+  unit="%"
+  direction="higher-is-better"
+  target={90}                  // goal line drawn on the track; drives the auto tone
+/>`;
 
 const propsData = [
   {
@@ -45,6 +55,19 @@ const propsData = [
     type: "{ warning?: number; over?: number }",
     default: "{ warning: 0.8, over: 1 }",
     description: "Fractions of max that flip the auto tone (near-full → warning, over → destructive).",
+  },
+  {
+    name: "direction",
+    type: '"higher-is-worse" | "higher-is-better"',
+    default: '"higher-is-worse"',
+    description:
+      "higher-is-worse (default) is capacity/load. higher-is-better flips it for occupancy, utilisation, SLA uptime, yield or capability — at/above target is success, just under it warns, well under is destructive.",
+  },
+  {
+    name: "target",
+    type: "number",
+    description:
+      "Goal value (same units as value) drawn as a marker line on the track. With direction='higher-is-better' it also drives the auto tone; under the default direction it is a visual reference only.",
   },
   {
     name: "tone",
