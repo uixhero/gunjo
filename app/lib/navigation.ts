@@ -99,6 +99,7 @@ export const navigation = [
             { title: "AccordionGroup", href: "/docs/components/accordion-group" },
             { title: "ActionDataTable", href: "/docs/components/action-data-table" },
             { title: "ApprovalSteps", href: "/docs/components/approval-steps" },
+            { title: "ApprovalWorkflow", href: "/docs/components/approval-workflow" },
             { title: "AssetCard", href: "/docs/components/asset-card" },
             { title: "AssetGrid", href: "/docs/components/asset-grid" },
             { title: "Avatar", href: "/docs/components/avatar" },

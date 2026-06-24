@@ -1582,6 +1582,7 @@ export const translations: Record<
       Statistic: "統計",
       EditableDataTable: "編集可能データテーブル",
       ApprovalSteps: "承認ステップ",
+      ApprovalWorkflow: "承認ワークフロー",
       RevealSection: "条件付きセクション",
       Delta: "差分",
       Meter: "メーター",
