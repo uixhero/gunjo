@@ -1812,6 +1812,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "paretoChart": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full h-[220px] p-0",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full h-[220px] p-0"
+      },
+      "variantColorHints": {}
+    },
     "pieChart": {
       "variantKeys": [
         "default",

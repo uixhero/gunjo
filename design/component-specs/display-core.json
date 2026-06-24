@@ -3253,6 +3253,35 @@
         }
       ]
     },
+    "paretoChart": {
+      "frameId": "synthetic:paretoChart",
+      "title": "ParetoChart",
+      "description": "Pareto chart: descending value bars (HTML/CSS, left value axis) overlaid with a cumulative-% line (SVG) on a right 0–100% axis and a 'vital few' threshold line (80% by default), with focusable points and an accessible per-category summary. For defect / downtime / cause analysis and any 'which few drive most of the total' breakdown.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": 220,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
     "concentricProgressCard": {
       "frameId": "synthetic:concentricProgressCard",
       "title": "Concentric Progress Card",

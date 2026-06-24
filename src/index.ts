@@ -131,6 +131,7 @@ export * from './components/display/MarkdownRenderer';
 export * from './components/display/MetadataList';
 export * from './components/display/Meter';
 export * from './components/display/MiniDistributionBarCard';
+export * from './components/display/ParetoChart';
 export * from './components/display/PieChart';
 export * from './components/display/QuadrantMatrix';
 export * from './components/display/RadarChart';

@@ -1604,6 +1604,7 @@ export const translations: Record<
       LabeledDonutCard: "ラベル付きドーナツカード",
       LineChart: "折れ線チャート",
       MiniDistributionBarCard: "ミニ分布バーカード",
+      ParetoChart: "パレート図",
       PieChart: "円グラフ",
       QuadrantMatrix: "4象限マトリクス",
       RadialBarChart: "ラジアルバーチャート",
