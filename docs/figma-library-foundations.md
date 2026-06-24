@@ -1518,6 +1518,47 @@ Figma export:
   controlled, and complete usage, runtime token notes, and related-component
   usage boundary are aligned without visible overlap.
 
+The owner then approved exporting the additional ChatPanel component data with:
+
+> I approve exporting the ChatPanel / ChatPanelMessage / ChatPanelLabels prop
+> names, default values, and behavior (`variant=default`, `title="Assistant"`,
+> `description`, `messages`, `onSend`, `onStop`, `isProcessing=false`,
+> `placeholder`, `enableAttachments=true`, `emptyState`, `welcome`,
+> `onMessageAction`, `onClose`, `labels`, `inputLabels`, and `className`;
+> `ChatPanelMessage` as `id` plus `ChatMessageProps`; `labels.close`
+> default `"閉じる"` and `labels.empty` default
+> `"まだメッセージはありません。"`), variant names (`default` and
+> `compact`) and default variant (`default`), variant height rules
+> (`default` `h-[560px]`, `compact` `h-[420px]`), `messageScrollRef`
+> requestAnimationFrame scroll-to-bottom behavior, prefers-reduced-motion
+> auto-scroll behavior, section / header / message area / footer structure,
+> optional close TooltipButton, render priority from messages to welcome to
+> emptyState to default EmptyState, processing typing ChatMessage treatment,
+> ChatMessage / ChatInput / EmptyState / TooltipButton / ToastProvider
+> composition information, ChatInput prop forwarding, message action
+> forwarding with `defaultPrevented` checks, dimensions and layout,
+> docs-derived state taxonomy and sample copy, Drawer / Dialog / FloatingPanel
+> / ChatMessage / ChatInput / EmptyState / ToastProvider related composition
+> information, and token names and values (`background`, `foreground`,
+> `border`, `muted`, `muted-foreground`, `input`, `ring`, `primary`,
+> `primary-foreground`, `primary-strong`, `primary-subtle`,
+> `primary-border`, `accent`, `destructive`, `popover`,
+> `popover-foreground`, and `success`) from this private pre-public repository
+> to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `ChatPanel / Section`: `242:2`
+- `ChatPanel` component: `242:5`
+- Placement: `Overlay` page, after `OnboardingFlow / Section`, at
+  `(40, 33820)`, `1280 x 2920`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the default and compact variant contract,
+  message-scroll behavior notes, header / message area / footer anatomy,
+  ChatInput forwarding, docs state specimens for default, empty, welcome, and
+  compact usage, runtime token notes, and related-component usage boundary are
+  aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1530,8 +1571,8 @@ Before creating the next component:
    SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, Tooltip,
    Popover, DropdownMenu, Dialog, Sheet, AlertDialog, ContextMenu, Drawer, and
    HoverCard, Modal, ShareModal, FloatingPanel, MediaLightbox, and
-   MediaPickerDialog, and OnboardingFlow components, runtime semantic colors,
-   and specimen treatments are acceptable.
+   MediaPickerDialog, OnboardingFlow, and ChatPanel components, runtime
+   semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
