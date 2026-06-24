@@ -70,4 +70,6 @@ jobs:
 
       - name: Deploy to production
         if: steps.guard.outputs.configured == 'true'
-        run: vercel deploy --prebuilt --prod --token="${{ secrets.VERCEL_TOKEN }}"
+        # --archive=tgz uploads the build as a single tarball; the prebuilt
+        # output exceeds Vercel's 15k-file upload limit (~18k files) otherwise.
+        run: vercel deploy --prebuilt --prod --archive=tgz --token="${{ secrets.VERCEL_TOKEN }}"
