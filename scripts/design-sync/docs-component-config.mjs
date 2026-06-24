@@ -183,6 +183,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "event-calendar": "Display",
   "kanban-board": "Display",
   "week-view": "Display",
+  gantt: "Display",
   "reference-value": "Display",
   "signed-record": "Display",
   statistic: "Display",

@@ -120,6 +120,7 @@ export const navigation = [
             { title: "EventCalendar", href: "/docs/components/event-calendar" },
             { title: "FileTree", href: "/docs/components/file-tree" },
             { title: "Gallery", href: "/docs/components/gallery" },
+            { title: "Gantt", href: "/docs/components/gantt" },
             { title: "Icon", href: "/docs/components/icon" },
             { title: "ImagePreview", href: "/docs/components/image-preview" },
             { title: "Img", href: "/docs/components/img" },
