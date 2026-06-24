@@ -78,13 +78,19 @@ function axisText(item: ScheduleAxisItem): string {
 }
 
 /**
- * A discrete 2-D schedule grid: a row axis (e.g. periods) × a column axis (e.g.
- * days) of rich content cells, with `role="grid"` semantics (rowheaders /
- * columnheaders / gridcells with composed accessible names), sticky headers,
- * roving-tabindex arrow-key navigation, per-cell tone (a `destructive` conflict
- * ring), unavailable/empty slot handling, and a contained horizontal scroll that
- * does not push the page on mobile. For timetables, shift rosters, room/resource
- * booking grids and any periods×days matrix. (#142)
+ * A 2-D matrix grid: a row axis × a column axis of rich content cells, with a
+ * frozen first column + sticky header row, `role="grid"` semantics (rowheaders /
+ * columnheaders / gridcells with composed accessible names), roving-tabindex
+ * arrow-key navigation, per-cell tone (a `destructive` flag ring), an
+ * `unavailable` slot treatment, and a contained horizontal scroll that does not
+ * push the page on mobile.
+ *
+ * Use it for any rows×columns matrix of rich, navigable/editable cells —
+ * **timetables** (periods×days), **gradebooks** (students×subjects, a failing-
+ * grade tone per cell), **shift rosters** (staff×days), **comparison / cohort
+ * matrices**, **availability** and **room/resource booking** grids. (Not for
+ * sortable list data — that is `DataTable`; not for value-by-color heatmaps —
+ * that is `HeatmapChart`.) (#142)
  */
 const ScheduleGrid = React.forwardRef<HTMLDivElement, ScheduleGridProps>(
     (
