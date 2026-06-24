@@ -1942,6 +1942,49 @@ Figma export:
   notes, and related-component usage boundary are aligned without visible
   overlap.
 
+The owner then approved exporting the additional PasswordGroup component data
+with:
+
+> I approve exporting the PasswordGroup prop names, default values, and
+> behavior (`id`, `label="Password"`, `description`, `value`, `defaultValue`,
+> `onValueChange`, `requirements`, `strengthScore`, `strengthLabel`,
+> `strengthDescription`, `strengthValueLabel`, `error`, `disabled`,
+> `disabledReason`, `passwordInputProps`, `className`;
+> `Omit<React.HTMLAttributes<HTMLDivElement>, "defaultValue" | "onChange">`
+> structure; `passwordInputProps`
+> `Omit<PasswordInputProps, "id" | "value" | "defaultValue" | "onChange" |
+> "disabled">`), generated no-variant and no-default-variant structure,
+> spec-derived composition (`canonicalLayout="vertical-field-group"`, public
+> parts `PasswordGroup`, `PasswordInput`, `PasswordRequirementList`,
+> `PasswordStrengthMeter`, and `FormGroup`, and `defaultGap=6`), controlled /
+> uncontrolled value state, generated id and FormLabel `htmlFor` linkage,
+> PasswordInput forwarding, error `aria-invalid` / FormMessage behavior,
+> disabledReason Tooltip wrapper behavior, conditional description / strength /
+> requirements / error rendering, root `data-slot="password-group"` structure,
+> FormGroup layout and password slot width rule, docs-derived state taxonomy
+> and sample copy, PasswordGroup vs PasswordInput usage boundary, PasswordInput
+> / PasswordRequirementList / PasswordStrengthMeter / Form / Tooltip related
+> composition and usage boundaries, and token names and values (`input`, `ring`,
+> `success`, `warning`, `destructive`, `destructive-border`, `muted`,
+> `muted-foreground`, `foreground`, `background`, and `border`) from this
+> private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `PasswordGroup / Section`: `275:13`
+- `PasswordGroup` component: `275:20`
+- Placement: `Inputs` page, after `PasswordStrengthMeter / Section`, at
+  `(40, 32480)`, `1280 x 2500`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the no-generated-variant
+  contract, vertical field group composition, controlled / uncontrolled value
+  state, PasswordInput forwarding, disabled reason Tooltip wrapper, conditional
+  description / strength / requirements / error rendering, docs state specimens
+  for grouped feedback, disabled reason, and simple-input boundary, runtime
+  token notes, and related-component usage boundary are aligned without visible
+  overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1955,9 +1998,10 @@ Before creating the next component:
    Popover, DropdownMenu, Dialog, Sheet, AlertDialog, ContextMenu, Drawer, and
    HoverCard, Modal, ShareModal, FloatingPanel, MediaLightbox, and
    MediaPickerDialog, OnboardingFlow, ChatPanel, ChatInput, ChatMessage, and
-   ChatComposer, Label, RangeSlider, ToggleGroup, Toggle, and NumberInput
-   PasswordInput, PasswordRequirementList, and PasswordStrengthMeter components,
-   runtime semantic colors, and specimen treatments are acceptable.
+   ChatComposer, Label, RangeSlider, ToggleGroup, Toggle, NumberInput,
+   PasswordInput, PasswordRequirementList, PasswordStrengthMeter, and
+   PasswordGroup components, runtime semantic colors, and specimen treatments
+   are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
