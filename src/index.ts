@@ -164,6 +164,7 @@ export * from './components/display/TagEditor';
 export * from './components/display/Timeline';
 export * from './components/display/ToolPill';
 export * from './components/display/TreeView';
+export * from './components/display/WeekView';
 
 /** Inputs */
 export * from './components/inputs/Button';

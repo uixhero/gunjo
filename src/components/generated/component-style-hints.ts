@@ -2270,6 +2270,19 @@ export const componentStyleHints = {
       "slotIds": [],
       "variantClasses": {},
       "variantColorHints": {}
+    },
+    "weekView": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
+      "variantColorHints": {}
     }
   },
   "inputs": {

@@ -1586,6 +1586,7 @@ export const translations: Record<
       CheckList: "チェックリスト",
       EventCalendar: "月間カレンダー",
       KanbanBoard: "カンバンボード",
+      WeekView: "週間カレンダー",
       RevealSection: "条件付きセクション",
       Delta: "差分",
       Meter: "メーター",

@@ -1676,6 +1676,17 @@ export const componentManifest = {
       "sourceFile": "src/components/display/TreeView.tsx",
       "specSource": "design/display.pen",
       "stability": "experimental"
+    },
+    "weekView": {
+      "title": "WeekView",
+      "description": "Week-view time-grid calendar: day columns × an hour axis with events positioned by start/end time and overlap-packed into side-by-side columns, plus a time gutter, weekday/date headers and an optional today highlight. Owns the week math (pass weekOf + events); today is injectable (SSR-safe). Events are focusable buttons with a composed accessible name. For appointments, bookings, shift schedules, week schedulers and any time-of-day calendar.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/WeekView.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
     }
   },
   "inputs": {

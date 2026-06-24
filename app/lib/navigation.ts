@@ -147,6 +147,7 @@ export const navigation = [
             { title: "Timeline", href: "/docs/components/timeline" },
             { title: "ToolPill", href: "/docs/components/tool-pill" },
             { title: "TreeView", href: "/docs/components/tree-view" },
+            { title: "WeekView", href: "/docs/components/week-view" },
         ],
     },
     {
