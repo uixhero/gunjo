@@ -1907,6 +1907,41 @@ Figma export:
   runtime token notes, and related-component usage boundary are aligned without
   visible overlap.
 
+The owner then approved exporting the additional PasswordStrengthMeter component
+data with:
+
+> I approve exporting the PasswordStrengthMeter prop names, default values, and
+> behavior (`score`, `maxScore=4`, `label="Password strength"`,
+> `description`, `valueLabel`, `className`, and
+> `React.HTMLAttributes<HTMLDivElement>` structure), generated no-variant and
+> no-default-variant structure, spec-derived composition
+> (`canonicalLayout="segmented-meter"`, public part `PasswordStrengthMeter`,
+> and score range `0..maxScore`), normalized max / score behavior, segment
+> array structure, `getStrengthClass(score, maxScore)` ratio thresholds,
+> root `div` `data-slot="password-strength-meter"` structure, label/value row,
+> meter `role="meter"` and aria structure, segmented bar grid structure,
+> description rendering, docs-derived state taxonomy and sample copy, password
+> entropy calculation ownership boundary, PasswordGroup /
+> PasswordRequirementList / PasswordInput / Progress related composition and
+> usage boundaries, and token names and values (`success`, `warning`,
+> `destructive`, `muted`, `muted-foreground`, `foreground`, `background`, and
+> `border`) from this private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `PasswordStrengthMeter / Section`: `273:13`
+- `PasswordStrengthMeter` component: `273:20`
+- Placement: `Inputs` page, after `PasswordRequirementList / Section`, at
+  `(40, 30212)`, `1280 x 2220`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the no-generated-variant
+  contract, segmented-meter composition, score normalization notes, success /
+  warning / destructive / muted threshold specimens, accessible meter notes,
+  docs state specimens for strong, weak, and maxScore usage, runtime token
+  notes, and related-component usage boundary are aligned without visible
+  overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1921,8 +1956,8 @@ Before creating the next component:
    HoverCard, Modal, ShareModal, FloatingPanel, MediaLightbox, and
    MediaPickerDialog, OnboardingFlow, ChatPanel, ChatInput, ChatMessage, and
    ChatComposer, Label, RangeSlider, ToggleGroup, Toggle, and NumberInput
-   PasswordInput, and PasswordRequirementList components, runtime semantic
-   colors, and specimen treatments are acceptable.
+   PasswordInput, PasswordRequirementList, and PasswordStrengthMeter components,
+   runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
