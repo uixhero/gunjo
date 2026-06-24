@@ -1833,6 +1833,44 @@ Figma export:
   and stepper usage, runtime token notes, and related-component usage boundary
   are aligned without visible overlap.
 
+The owner then approved exporting the additional PasswordInput component data
+with:
+
+> I approve exporting the PasswordInput prop names, default values, and
+> behavior (`show`, `onShowChange`, `showLabel="Show password"`,
+> `hideLabel="Hide password"`, `inputClassName`, `className`, `disabled`, no
+> `children`, and `Omit<React.InputHTMLAttributes<HTMLInputElement>, "type">`
+> structure with standard input attributes), generated no-variant and
+> no-default-variant structure, runtime display states (`masked` and
+> `visible`) and default state (`masked`), controlled / uncontrolled show
+> state, toggle-button `type="password"` / `type="text"` switching,
+> `onShowChange` notification, button `tabIndex={-1}` and `aria-label`
+> structure, wrapper `data-slot="password-input"` and disabled treatment,
+> input dimensions, padding, `pr-10`, border, shadow, placeholder,
+> focus-visible ring, `aria-invalid` destructive-border treatment, visibility
+> button positioning and hover treatment, IconEye / IconEyeOff composition,
+> docs-derived state taxonomy and sample copy, FormGroup / FormLabel /
+> FormControl / FormDescription / DisabledReasonTooltip / Input / Button /
+> Tooltip / TooltipButton / PasswordGroup / PasswordRequirementList /
+> PasswordStrengthMeter related composition and usage boundaries, and token
+> names and values (`input`, `ring`, `muted-foreground`, `foreground`,
+> `background`, `border`, `destructive-border`, and `muted`) from this private
+> pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `PasswordInput / Section`: `268:13`
+- `PasswordInput` component: `268:20`
+- Placement: `Inputs` page, after `NumberInput / Section`, at `(40, 25596)`,
+  `1280 x 2300`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the no-generated-variant
+  contract, runtime masked / visible state structure, controlled /
+  uncontrolled visibility notes, type switching and aria-label behavior,
+  invalid / disabled treatment, docs state specimens for masked, visible,
+  disabled, and aria-invalid usage, runtime token notes, and related-component
+  usage boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1847,7 +1885,8 @@ Before creating the next component:
    HoverCard, Modal, ShareModal, FloatingPanel, MediaLightbox, and
    MediaPickerDialog, OnboardingFlow, ChatPanel, ChatInput, ChatMessage, and
    ChatComposer, Label, RangeSlider, ToggleGroup, Toggle, and NumberInput
-   components, runtime semantic colors, and specimen treatments are acceptable.
+   and PasswordInput components, runtime semantic colors, and specimen
+   treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
