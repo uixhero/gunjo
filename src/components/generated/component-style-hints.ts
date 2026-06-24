@@ -1233,6 +1233,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "approvalWorkflow": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
+      "variantColorHints": {}
+    },
     "assetCard": {
       "variantKeys": [
         "default",

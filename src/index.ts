@@ -94,6 +94,7 @@ export * from './components/display/ActionDataTable';
 export * from './components/display/ActivityTimelineCard';
 export * from './components/display/AnalyticsCard';
 export * from './components/display/ApprovalSteps';
+export * from './components/display/ApprovalWorkflow';
 export * from './components/display/AssetCard';
 export * from './components/display/AssetGrid';
 export * from './components/display/Avatar';

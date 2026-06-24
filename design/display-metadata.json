@@ -286,5 +286,9 @@
   "scheduleGrid": {
     "title": "ScheduleGrid",
     "description": "A 2-D matrix grid: a row axis × a column axis of rich content cells with a frozen first column + sticky header row, role=grid semantics (rowheaders / columnheaders / gridcells with composed accessible names), roving-tabindex arrow-key navigation, per-cell tone (a destructive flag ring), an unavailable slot treatment, and a contained horizontal scroll that does not push the page on mobile. For any rows×columns matrix of rich navigable/editable cells — timetables (periods×days), gradebooks (students×subjects), shift rosters, comparison/cohort matrices, availability and room/resource booking grids. (Not for sortable list data — that is DataTable; not for value-by-color heatmaps — that is HeatmapChart.)"
+  },
+  "approvalWorkflow": {
+    "title": "ApprovalWorkflow",
+    "description": "Interactive approval / review workflow: drives an ordered pipeline of stages through advance→next, send-back (to a prior stage with a reason, rolling back later records) and reject (terminal), recording an actor + timestamp on each transition, and renders the result with ApprovalSteps (state never colour-only). Controlled via value + onChange; advancing is gated by canAdvance. For case management, benefit/application screening, ringi/expense approval, onboarding and any staged back-office review."
   }
 }

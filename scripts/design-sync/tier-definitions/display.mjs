@@ -799,6 +799,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "approvalWorkflow",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:approvalWorkflow",
+      title: "ApprovalWorkflow",
+      description: "Interactive approval / review workflow: drives an ordered pipeline of stages through advance→next, send-back (to a prior stage with a reason, rolling back later records) and reject (terminal), recording an actor + timestamp on each transition, and renders the result with ApprovalSteps (state never colour-only). Controlled via value + onChange; advancing is gated by canAdvance. For case management, benefit/application screening, ringi/expense approval, onboarding and any staged back-office review.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "scheduleGrid",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:scheduleGrid",

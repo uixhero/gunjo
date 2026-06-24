@@ -871,6 +871,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "approvalWorkflow": {
+      "title": "ApprovalWorkflow",
+      "description": "Interactive approval / review workflow: drives an ordered pipeline of stages through advance→next, send-back (to a prior stage with a reason, rolling back later records) and reject (terminal), recording an actor + timestamp on each transition, and renders the result with ApprovalSteps (state never colour-only). Controlled via value + onChange; advancing is gated by canAdvance. For case management, benefit/application screening, ringi/expense approval, onboarding and any staged back-office review.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/ApprovalWorkflow.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "assetCard": {
       "title": "AssetCard",
       "description": "Selectable media asset card for image libraries, files, and generated creative results with favorite, score, and preview affordances.",
