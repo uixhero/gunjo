@@ -1443,6 +1443,42 @@ Figma export:
   docs state specimens for standard, compact, and portrait asset previews,
   runtime token notes, and source footer are aligned without visible overlap.
 
+The owner then approved exporting the additional MediaPickerDialog component
+data with:
+
+> I approve exporting the MediaPickerDialog / MediaPickerDialogLabels prop
+> names, default values, and behavior (`open`, `onOpenChange`, `items`,
+> `portalContainer`, `variant`, `selectedIds`, `multiSelect`, `labels`, and
+> `onConfirm`), variant names (`default` and `compact`) and default variant
+> (`default`), Dialog / DialogContent / DialogHeader / DialogTitle /
+> DialogDescription / DialogFooter structure, variant width rules, query state
+> and search input behavior, lowercase title/type search matching,
+> `internalSelectedIds` open-state sync, single-select immediate confirm and
+> close behavior, multi-select toggle and footer confirm behavior, confirm
+> label count function support, disabled confirm reason Tooltip treatment,
+> AssetGrid / AssetCard renderItem structure, `selectionMode` and
+> `imageFit="contain"` behavior, empty-state display, dimensions and layout,
+> docs-derived state taxonomy and sample copy, AssetGrid / AssetCard / Dialog /
+> Input / Tooltip / MediaLightbox related composition information, and token
+> names and values (`overlay`, `background`, `foreground`, `card`,
+> `card-foreground`, `border`, `input`, `muted`, `muted-foreground`,
+> `primary`, `primary-foreground`, `secondary`, `accent`, `ring`, and
+> `destructive`) from this private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `MediaPickerDialog / Section`: `238:2`
+- `MediaPickerDialog` component: `238:5`
+- Placement: `Overlay` page, after `MediaLightbox / Section`, at
+  `(40, 27980)`, `1280 x 2920`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the default multi-select component specimen,
+  generated default/compact contract, Dialog header/content/footer anatomy,
+  search and selection behavior notes, docs state specimens for multiple
+  selection, single selection, compact, and empty usage, runtime token notes,
+  and related-component usage boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1454,8 +1490,9 @@ Before creating the next component:
    RevealSection, SearchableAccordion, Skeleton, Spacer, Statistic,
    SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, Tooltip,
    Popover, DropdownMenu, Dialog, Sheet, AlertDialog, ContextMenu, Drawer, and
-   HoverCard, Modal, ShareModal, FloatingPanel, and MediaLightbox components,
-   runtime semantic colors, and specimen treatments are acceptable.
+   HoverCard, Modal, ShareModal, FloatingPanel, MediaLightbox, and
+   MediaPickerDialog components, runtime semantic colors, and specimen
+   treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
