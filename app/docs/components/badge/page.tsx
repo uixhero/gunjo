@@ -297,9 +297,16 @@ export function StatusBadges() {
     const propsData = [
         {
             name: "variant",
-            type: '"default" | "secondary" | "destructive" | "outline"',
+            type: '"default" | "secondary" | "destructive" | "outline" | "info" | "success" | "warning"',
             default: '"default"',
             description: locale === "ja" ? "バッジの視覚的な種類を指定します。" : "The visual style of the badge.",
+        },
+        {
+            name: "icon",
+            type: "ReactNode",
+            description: locale === "ja"
+                ? "先頭に表示するアイコン（Tabler 等の svg）。サイズと余白は自動。色だけに頼らないステータスピルを1プロパティで作れます。装飾扱い（aria-hidden）で、意味はラベルが担います。"
+                : "Leading glyph (a Tabler/svg node), sized and spaced for you — a status pill that doesn't rely on color alone, in one prop. Decorative (aria-hidden); the text label carries the meaning.",
         },
         {
             name: "children",
@@ -345,8 +352,7 @@ export function StatusBadges() {
                                 ? "状態の意味が重要な場合は、短いラベルにアイコンを添えて認識しやすくします。"
                                 : "Add an icon when the status meaning needs to be recognized quickly.",
                             preview: (
-                                <Badge className="gap-1">
-                                    <IconCheck className="h-3 w-3" />
+                                <Badge variant="success" icon={<IconCheck />}>
                                     {locale === "ja" ? "確認済み" : "Verified"}
                                 </Badge>
                             ),
@@ -356,8 +362,7 @@ import { IconCheck } from "@tabler/icons-react";
 
 export function VerifiedBadge() {
   return (
-    <Badge className="gap-1">
-      <IconCheck className="h-3 w-3" />
+    <Badge variant="success" icon={<IconCheck />}>
       確認済み
     </Badge>
   );
@@ -367,8 +372,7 @@ import { IconCheck } from "@tabler/icons-react";
 
 export function VerifiedBadge() {
   return (
-    <Badge className="gap-1">
-      <IconCheck className="h-3 w-3" />
+    <Badge variant="success" icon={<IconCheck />}>
       Verified
     </Badge>
   );

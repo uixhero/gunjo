@@ -23,6 +23,14 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLElement> {
      * element. (A `<div>` inside a `<p>` throws a hydration error.)
      */
     as?: "div" | "span"
+    /**
+     * Optional leading glyph (a Tabler icon or any svg node), sized and spaced
+     * for you. Pair it with text children for a **status pill that doesn't rely
+     * on color alone** (the recurring need across status grids / legends). The
+     * icon is decorative (`aria-hidden`) — the text label carries the meaning;
+     * for an icon-only badge pass an `aria-label`. (#276)
+     */
+    icon?: React.ReactNode
     /** When provided, renders a dismiss (×) button — use for removable filter chips. */
     onRemove?: () => void
     /** Accessible label for the dismiss button. Default "Remove". */
@@ -33,6 +41,7 @@ function Badge({
     className,
     variant = badgeDefaultVariantKey,
     as: Comp = "span",
+    icon,
     onRemove,
     removeLabel = "Remove",
     children,
@@ -42,12 +51,18 @@ function Badge({
         <Comp
             className={cn(
                 "inline-flex items-center w-fit h-5 rounded-full border border-transparent px-2.5 py-1 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
-                onRemove && "gap-1 pr-1",
+                (icon || onRemove) && "gap-1",
+                onRemove && "pr-1",
                 badgeVariantClasses[variant],
                 className
             )}
             {...props}
         >
+            {icon ? (
+                <span className="flex shrink-0 items-center [&_svg]:h-3 [&_svg]:w-3" aria-hidden="true">
+                    {icon}
+                </span>
+            ) : null}
             {children}
             {onRemove ? (
                 <button
