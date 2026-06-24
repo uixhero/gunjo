@@ -244,13 +244,13 @@ export default function GridPage() {
     const meta = layoutMetadata as Record<string, { title: string; description: string }>;
     const propsData = locale === "ja"
         ? [
-            { name: "cols", type: "1 | 2 | 3 | 4 | 5 | 6 | 12", default: "3", description: "固定列数です。minItemWidth を指定した場合は使われません。" },
+            { name: "cols", type: "ColCount | { base?, sm?, md?, lg?, xl? }", default: "3", description: "列数。固定数（cols={3}）は全幅で N 列固定のため狭い画面で溢れます。モバイル対応はレスポンシブ指定（cols={{ base: 1, md: 3 }}）か minItemWidth を。minItemWidth 指定時は無視されます。" },
             { name: "minItemWidth", type: "number", description: "auto-fit の最小セル幅です。幅に応じて列数が変わります。" },
             { name: "gap", type: "0 | 1 | 2 | 3 | 4 | 5 | 6 | 8", default: "4", description: "セル同士の余白です。" },
             { name: "className", type: "string", description: "追加の className です。" },
         ]
         : [
-            { name: "cols", type: "1 | 2 | 3 | 4 | 5 | 6 | 12", default: "3", description: "Fixed column count. Ignored when minItemWidth is provided." },
+            { name: "cols", type: "ColCount | { base?, sm?, md?, lg?, xl? }", default: "3", description: "Column count. A fixed number (cols={3}) stays N-up at every width and overflows on narrow screens — for mobile-safe layouts pass a responsive object (cols={{ base: 1, md: 3 }}) or use minItemWidth. Ignored when minItemWidth is provided." },
             { name: "minItemWidth", type: "number", description: "Minimum auto-fit cell width. The column count changes with available width." },
             { name: "gap", type: "0 | 1 | 2 | 3 | 4 | 5 | 6 | 8", default: "4", description: "Spacing between cells." },
             { name: "className", type: "string", description: "Additional class names." },
