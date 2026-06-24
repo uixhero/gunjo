@@ -1586,6 +1586,7 @@ export const translations: Record<
       Delta: "差分",
       Meter: "メーター",
       RouteStops: "配送ルート",
+      ScheduleGrid: "スケジュールグリッド",
       ReferenceValue: "基準値判定",
       SignedRecord: "署名記録",
       Rating: "レーティング",

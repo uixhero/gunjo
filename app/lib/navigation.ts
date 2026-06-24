@@ -129,6 +129,7 @@ export const navigation = [
             { title: "ReferenceValue", href: "/docs/components/reference-value" },
             { title: "RevealSection", href: "/docs/components/reveal-section" },
             { title: "RouteStops", href: "/docs/components/route-stops" },
+            { title: "ScheduleGrid", href: "/docs/components/schedule-grid" },
             { title: "SearchableAccordion", href: "/docs/components/searchable-accordion" },
             { title: "Separator", href: "/docs/components/separator" },
             { title: "SignedRecord", href: "/docs/components/signed-record" },

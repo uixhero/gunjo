@@ -1434,6 +1434,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "scheduleGrid": {
+      "title": "ScheduleGrid",
+      "description": "A discrete 2-D schedule grid: a row axis (e.g. periods) × a column axis (e.g. days) of rich content cells with role=grid semantics (rowheaders / columnheaders / gridcells with composed accessible names), sticky headers, roving-tabindex arrow-key navigation, per-cell tone (a destructive conflict ring), unavailable/empty slot handling, and a contained horizontal scroll that does not push the page on mobile. For timetables, shift rosters, room/resource booking grids and any periods×days matrix.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/ScheduleGrid.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "searchableAccordion": {
       "title": "SearchableAccordion",
       "description": "Searchable and category-filterable accordion composition for FAQ, help, and docs lists.",
