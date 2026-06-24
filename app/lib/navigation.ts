@@ -126,6 +126,7 @@ export const navigation = [
             { title: "Img", href: "/docs/components/img" },
             { title: "KanbanBoard", href: "/docs/components/kanban-board" },
             { title: "Kbd", href: "/docs/components/kbd" },
+            { title: "LineageGraph", href: "/docs/components/lineage-graph" },
             { title: "List", href: "/docs/components/list" },
             { title: "MarkdownRenderer", href: "/docs/components/markdown-renderer" },
             { title: "MetadataList", href: "/docs/components/metadata-list" },

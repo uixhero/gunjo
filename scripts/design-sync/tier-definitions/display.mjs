@@ -799,6 +799,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "lineageGraph",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:lineageGraph",
+      title: "LineageGraph",
+      description: "Lineage / dependency graph: a layered, directed-acyclic node-link graph that handles multi-parent and multi-child edges (the fan-in / fan-out a tree can't draw). Nodes are auto-assigned to layers by longest-path depth and laid out along a flow axis (horizontal or vertical); edges are drawn as SVG connectors with arrowheads. Nodes are focusable buttons whose accessible name names their upstream/downstream neighbours. For lot genealogy / traceability (recall blast-radius), data lineage, build/dependency graphs, ETL pipelines and approval routing with joins.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "gantt",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:gantt",

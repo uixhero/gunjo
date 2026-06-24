@@ -1588,6 +1588,7 @@ export const translations: Record<
       KanbanBoard: "カンバンボード",
       WeekView: "週間カレンダー",
       Gantt: "ガントチャート",
+      LineageGraph: "系譜グラフ",
       RevealSection: "条件付きセクション",
       Delta: "差分",
       Meter: "メーター",

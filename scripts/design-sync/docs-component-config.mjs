@@ -184,6 +184,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "kanban-board": "Display",
   "week-view": "Display",
   gantt: "Display",
+  "lineage-graph": "Display",
   "reference-value": "Display",
   "signed-record": "Display",
   statistic: "Display",

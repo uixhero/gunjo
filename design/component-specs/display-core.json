@@ -4482,6 +4482,30 @@
         }
       ]
     },
+    "lineageGraph": {
+      "frameId": "synthetic:lineageGraph",
+      "title": "LineageGraph",
+      "description": "Lineage / dependency graph: a layered, directed-acyclic node-link graph that handles multi-parent and multi-child edges (the fan-in / fan-out a tree can't draw). Nodes are auto-assigned to layers by longest-path depth and laid out along a flow axis (horizontal or vertical); edges are drawn as SVG connectors with arrowheads. Nodes are focusable buttons whose accessible name names their upstream/downstream neighbours. For lot genealogy / traceability (recall blast-radius), data lineage, build/dependency graphs, ETL pipelines and approval routing with joins.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
     "gantt": {
       "frameId": "synthetic:gantt",
       "title": "Gantt",
