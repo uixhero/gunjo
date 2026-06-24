@@ -282,5 +282,9 @@
   "paretoChart": {
     "title": "ParetoChart",
     "description": "Pareto chart: descending value bars (HTML/CSS, left value axis) overlaid with a cumulative-% line (SVG) on a right 0–100% axis and a 'vital few' threshold line (80% by default), with focusable points and an accessible per-category summary. For defect / downtime / cause analysis and any 'which few drive most of the total' breakdown."
+  },
+  "scheduleGrid": {
+    "title": "ScheduleGrid",
+    "description": "A discrete 2-D schedule grid: a row axis (e.g. periods) × a column axis (e.g. days) of rich content cells with role=grid semantics (rowheaders / columnheaders / gridcells with composed accessible names), sticky headers, roving-tabindex arrow-key navigation, per-cell tone (a destructive conflict ring), unavailable/empty slot handling, and a contained horizontal scroll that does not push the page on mobile. For timetables, shift rosters, room/resource booking grids and any periods×days matrix."
   }
 }

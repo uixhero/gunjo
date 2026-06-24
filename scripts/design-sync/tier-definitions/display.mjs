@@ -799,6 +799,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "scheduleGrid",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:scheduleGrid",
+      title: "ScheduleGrid",
+      description: "A discrete 2-D schedule grid: a row axis (e.g. periods) × a column axis (e.g. days) of rich content cells with role=grid semantics (rowheaders / columnheaders / gridcells with composed accessible names), sticky headers, roving-tabindex arrow-key navigation, per-cell tone (a destructive conflict ring), unavailable/empty slot handling, and a contained horizontal scroll that does not push the page on mobile. For timetables, shift rosters, room/resource booking grids and any periods×days matrix.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "routeStops",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:routeStops",
