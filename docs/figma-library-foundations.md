@@ -1985,6 +1985,42 @@ Figma export:
   token notes, and related-component usage boundary are aligned without visible
   overlap.
 
+The owner then approved exporting the additional PhoneInput component data with:
+
+> I approve exporting the PhoneInput prop names, default values, and behavior
+> (`value`, `defaultValue`, `onValueChange`, `countryCallingCode="+81"`,
+> `countryLabel="Japan"`, `formatValue=formatJapanesePhone`, `disabledReason`,
+> `disabled`, `className`, and
+> `Omit<InputProps, "type" | "value" | "defaultValue" | "onChange">`
+> structure), generated no-variant and no-default-variant structure,
+> spec-derived composition (`canonicalLayout="prefix-input"`, public parts
+> `PhoneInput` and `Input`, and `controlHeight=36`), controlled /
+> uncontrolled value state, `formatJapanesePhone` digit extraction, 11-digit
+> cap, and 3-4-4 grouping, Input forwarding (`type="tel"`,
+> `inputMode="tel"`, `value`, `onChange`, and `disabled`), country calling-code
+> prefix and sr-only `countryLabel` structure, disabledReason Tooltip wrapper
+> behavior, dimensions and layout, docs-derived state taxonomy and sample copy,
+> PhoneInput / Input / PostalCodeInput usage boundary, Input / Form / Tooltip /
+> PostalCodeInput related composition and usage boundaries, and token names and
+> values (`input`, `ring`, `muted-foreground`, `foreground`, `background`,
+> `border`, and `muted`) from this private pre-public repository to the Figma
+> file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `PhoneInput / Section`: `281:13`
+- `PhoneInput` component: `281:20`
+- Placement: `Inputs` page, after `PasswordGroup / Section`, at `(40, 35028)`,
+  `1280 x 2300`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the no-generated-variant
+  contract, prefix-input composition, controlled / uncontrolled value state,
+  Japanese phone formatting notes, Input forwarding, country calling-code prefix
+  and accessible country label structure, disabled reason Tooltip wrapper, docs
+  state specimens for standard, disabled, and formatter hook usage, runtime token
+  notes, and related-component usage boundary are aligned without visible
+  overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2000,8 +2036,8 @@ Before creating the next component:
    MediaPickerDialog, OnboardingFlow, ChatPanel, ChatInput, ChatMessage, and
    ChatComposer, Label, RangeSlider, ToggleGroup, Toggle, NumberInput,
    PasswordInput, PasswordRequirementList, PasswordStrengthMeter, and
-   PasswordGroup components, runtime semantic colors, and specimen treatments
-   are acceptable.
+   PasswordGroup, and PhoneInput components, runtime semantic colors, and
+   specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
