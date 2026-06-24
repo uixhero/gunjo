@@ -1596,6 +1596,46 @@ Figma export:
   disabled, attachment, and ChatComposer boundary usage, runtime token notes,
   and related-component usage boundary are aligned without visible overlap.
 
+The owner then approved exporting the additional ChatMessage component data
+with:
+
+> I approve exporting the ChatMessage / ChatMessageActions /
+> ChatMessageAction / ChatMessageLabels prop names, default values, and
+> behavior (`variant`, `role`, `content`, `copyValue`, `typingMessages`,
+> `avatarSrc`, `userName`, `timestamp`, `isTyping=false`, `actions`,
+> `showActions=true`, `onAction`, `labels`, and `className`;
+> `ChatMessageActions` fields `actions`, `align="start"`, and `onAction`),
+> variant names (`assistant`, `user`, `system`, and `typing`) and default
+> variant (`assistant`), role values (`assistant`, `user`, and `system`) and
+> variant resolution rules (`typing` when `isTyping` is true, otherwise
+> `role`), system message centered helper-label structure, assistant / user
+> avatar, name, timestamp, message body, and action footer structure, user
+> right-aligned filled bubble treatment, assistant unframed body treatment,
+> default actions (assistant: `copy`, `branch`, `raw`; user: `copy`,
+> `edit`), `copyValue` / `navigator.clipboard` fallback, disabled action
+> `preventDefault`, `typingMessages` type/delete animation, caret display,
+> prefers-reduced-motion behavior, docs-derived state taxonomy and sample
+> copy, Avatar / TooltipButton / ToastProvider / ChatInput / ChatPanel
+> related composition and usage boundaries, and token names and values
+> (`background`, `foreground`, `muted`, `muted-foreground`, `border`,
+> `accent`, `primary`, `primary-foreground`, `primary-border`, `ring`,
+> `popover`, `popover-foreground`, and `success`) from this private
+> pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `ChatMessage / Section`: `247:2`
+- `ChatMessage` component: `247:9`
+- Placement: `Display` page, after `Img / Section`, at `(40, 22558)`,
+  `1280 x 2600`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`;
+  screenshot review confirmed the assistant, user, system, and typing variant
+  contract, Avatar / message body / action footer anatomy, copy / disabled
+  action / typing animation behavior notes, docs state specimens for
+  assistant, user, card-content, system, and typing usage, runtime token
+  notes, and related-component usage boundary are aligned without visible
+  overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -1608,8 +1648,9 @@ Before creating the next component:
    SwatchGroup, Table, Kbd, Img, Tabs, Breadcrumb, Pagination, Tooltip,
    Popover, DropdownMenu, Dialog, Sheet, AlertDialog, ContextMenu, Drawer, and
    HoverCard, Modal, ShareModal, FloatingPanel, MediaLightbox, and
-   MediaPickerDialog, OnboardingFlow, ChatPanel, and ChatInput components, runtime
-   semantic colors, and specimen treatments are acceptable.
+   MediaPickerDialog, OnboardingFlow, ChatPanel, ChatInput, and ChatMessage
+   components, runtime semantic colors, and specimen treatments are
+   acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
