@@ -2131,6 +2131,43 @@ Figma export:
   notes, and related-component usage boundary are aligned without visible
   overlap.
 
+The owner then approved exporting the additional Calendar component data with:
+
+> I approve exporting the Calendar prop names, default values, and behavior
+> (React DayPicker `ComponentProps` plus `holidays=japaneseHolidays`,
+> `showHolidays=false`, `showWeekendStyle=true`, `disabledReason`,
+> `getDisabledReason`, `disabledReasonLabel`, `disabledReasonPortalContainer`,
+> `locale=ja`, `showOutsideDays=true`, `captionLayout="dropdown"`,
+> `fixedWeeks=true`, default start and end month range, `className`,
+> `classNames`, `components`, `modifiers`, `modifiersClassNames`, `formatters`,
+> `labels`, and DayPicker props including `mode`, `selected`, `onSelect`,
+> `disabled`, and `numberOfMonths`), default variant structure, spec-derived
+> `Calendar/Default` frame structure, docs-derived selection modes,
+> `holidayMatcher`, `calendarDateKey`, `japaneseHolidays`, Japanese locale
+> labels and year dropdown formatter, DayButton disabled reason Tooltip wrapper,
+> weekend / holiday modifiers and class names, dimensions and layout,
+> docs-derived state taxonomy and sample copy, Calendar / DatePicker /
+> DateRangePicker / Popover / Form usage boundaries, DatePicker /
+> DateRangePicker / Popover / Form / Tooltip related composition and usage
+> boundaries, and token names and values (`card`, `foreground`,
+> `muted-foreground`, `input`, `border`, `ring`, `primary`,
+> `primary-foreground`, `primary-border`, `accent`, `accent-foreground`, `info`,
+> `info-foreground`, `destructive`, `background`, and `muted`) from this private
+> pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Calendar / Section`: `291:13`
+- `Calendar` component: `291:20`
+- Placement: `Inputs` page, after `InputOTP / Section`, at `(40, 44500)`,
+  `1280 x 3140`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the default variant
+  contract, `Calendar/Default` frame structure, DayPicker prop/default notes,
+  Japanese locale labels, weekend / holiday / disabled reason behavior, single /
+  multiple / range / disabled-past specimens, runtime token notes, and related
+  component usage boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2146,7 +2183,8 @@ Before creating the next component:
    MediaPickerDialog, OnboardingFlow, ChatPanel, ChatInput, ChatMessage, and
    ChatComposer, Label, RangeSlider, ToggleGroup, Toggle, NumberInput,
    PasswordInput, PasswordRequirementList, PasswordStrengthMeter, and
-   PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, and InputOTP
+   PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, and
+   Calendar
    components, runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
