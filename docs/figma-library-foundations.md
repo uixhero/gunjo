@@ -2236,6 +2236,42 @@ Figma export:
   frame structures, disabled reason tooltip composition, runtime token notes,
   and related-component usage boundary are aligned without visible overlap.
 
+The owner then approved exporting the additional EditableField component data
+with:
+
+> I approve exporting the EditableField / EditableFieldLabels prop names, default
+> values, and behavior (`label`, `value`, `onSave`, `labels`,
+> `placeholder="-"`, `minRows=1`, `maxRows=3`, `fieldClassName`,
+> `inputClassName`, `disabled`, `error`, `className`, and
+> `Omit<React.HTMLAttributes<HTMLDivElement>, "defaultValue" | "onChange">`
+> structure), variant name (`default`) and default variant (`default`),
+> spec-derived synthetic default structure, read mode / edit mode / saving /
+> error / empty value state structure, editing and draft state behavior, value
+> change draft synchronization, commit behavior (`draft.trim()`, async
+> `onSave`, rejected saves keeping edit mode open, and saving-disabled actions),
+> textarea auto-height calculation, read surface and edit Textarea same-footprint
+> behavior, IconPencil edit action, Tooltip / Button / Textarea / Toast
+> composition structure, dimensions and layout, docs-derived state taxonomy and
+> sample copy, Input / Textarea / FormField / AssetInspectorPanel / Button /
+> Tooltip / Toast usage boundaries, and token names and values (`foreground`,
+> `background`, `muted`, `muted-foreground`, `border`, `input`, `ring`,
+> `destructive`, `destructive-border`, `primary`, `primary-foreground`,
+> `secondary`, and `secondary-foreground`) from this private pre-public
+> repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `EditableField / Section`: `300:13`
+- `EditableField` component: `300:20`
+- Placement: `Inputs` page, after `SortButton / Section`, at `(40, 52604)`,
+  `1280 x 2960`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the synthetic default
+  contract, read / edit / saving / error / empty state specimens, same-footprint
+  read and edit surfaces, textarea auto-height notes, Tooltip edit action,
+  Button / Textarea / Toast composition, runtime token notes, and
+  related-component usage boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2252,7 +2288,7 @@ Before creating the next component:
    ChatComposer, Label, RangeSlider, ToggleGroup, Toggle, NumberInput,
    PasswordInput, PasswordRequirementList, PasswordStrengthMeter, and
    PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, and
-   Calendar, FilterButton, and SortButton
+   Calendar, FilterButton, SortButton, and EditableField
    components, runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
