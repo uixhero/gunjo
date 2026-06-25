@@ -2168,6 +2168,43 @@ Figma export:
   multiple / range / disabled-past specimens, runtime token notes, and related
   component usage boundary are aligned without visible overlap.
 
+The owner then approved exporting the additional FilterButton component data
+with:
+
+> I approve exporting the FilterButton / FilterOption prop names, default values,
+> and behavior (`title="Filter"`, `icon`, `options=[]`,
+> `selectedValues=new Set()`, `onFilterChange`, `clearLabel="Clear filters"`,
+> `selectedLabel`, `contentClassName`, `contentAlign="start"`,
+> `portalContainer`, `children`, inherited `ButtonProps`, `variant="outline"`,
+> and `size="sm"`), variant names (`default`, `selected`, `popover`) and default
+> variant (`default`), `selectedValues` and `isOpen` triggerVariant resolution,
+> selection toggle and clear filters behavior, Popover / PopoverTrigger /
+> PopoverContent / Command / CommandGroup / CommandItem / CommandList / Badge /
+> Button / IconFilter / IconCheck composition structure, spec-derived
+> `FilterButton/Default`, `FilterButton/Selected`, and
+> `FilterButton/Popover` frame structures, dimensions and layout, docs-derived
+> state taxonomy and sample copy, custom content and selected count badge
+> display structure, FilterButton / Button / Badge / Popover / Command related
+> composition and usage boundaries, and token names and values (`foreground`,
+> `background`, `border`, `input`, `primary`, `primary-foreground`,
+> `primary-border`, `primary-subtle`, `primary-subtle-foreground`, `secondary`,
+> `secondary-foreground`, `muted`, `muted-foreground`, `popover`,
+> `popover-foreground`, and `ring`) from this private pre-public repository to
+> the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `FilterButton / Section`: `295:13`
+- `FilterButton` component: `295:20`
+- Placement: `Inputs` page, after `Calendar / Section`, at `(40, 47688)`,
+  `1280 x 2540`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the default / selected /
+  popover state contract, runtime triggerVariant resolution, spec-derived
+  trigger and popover frame structures, Command list and checked item treatment,
+  selected count badge, custom content specimen, runtime token notes, and
+  related-component usage boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2184,7 +2221,7 @@ Before creating the next component:
    ChatComposer, Label, RangeSlider, ToggleGroup, Toggle, NumberInput,
    PasswordInput, PasswordRequirementList, PasswordStrengthMeter, and
    PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, and
-   Calendar
+   Calendar, and FilterButton
    components, runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
