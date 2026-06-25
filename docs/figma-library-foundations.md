@@ -2093,6 +2093,44 @@ Figma export:
   notes, and related-component usage boundary are aligned without visible
   overlap.
 
+The owner then approved exporting the additional InputOTP component family data
+with:
+
+> I approve exporting the InputOTP / InputOTPGroup / InputOTPSlot /
+> InputOTPSeparator prop names, default values, and behavior (InputOTP
+> `input-otp` OTPInput `ComponentPropsWithoutRef` structure, `maxLength`,
+> `value`, `onChange`, `disabled`, `className`, `containerClassName`, and
+> `children`; InputOTPGroup `div` props; InputOTPSlot `div` props plus required
+> `index`; InputOTPSeparator `div` props), generated no-variant and
+> no-default-variant structure, spec-derived description
+> (`One-time-password input with per-digit slots and optional separator`) and
+> `variants=[]` structure, OTPInputContext slot state resolution (`char`,
+> `hasFakeCaret`, `isActive`), InputOTP root `containerClassName` and
+> `data-slot="input-otp"` structure, InputOTPSlot dimensions and active state,
+> fake caret rendering, InputOTPSeparator `role="separator"` and IconMinus
+> structure, docs-derived state taxonomy and sample copy, disabled Tooltip /
+> DisabledReasonTooltip composition, InputOTP / Input / PasswordInput /
+> NumberInput usage boundary, Input / PasswordInput / Form / NumberInput /
+> Tooltip related composition and usage boundaries, and token names and values
+> (`input`, `ring`, `foreground`, `muted-foreground`, `background`, `border`,
+> and `muted`) from this private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `InputOTP / Section`: `289:13`
+- `InputOTP` component: `289:20`
+- Placement: `Inputs` page, after `SearchInput / Section`, at `(40, 42072)`,
+  `1280 x 2380`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the no-generated-variant
+  contract, `variants=[]` structure, InputOTP / Group / Slot / Separator
+  composition, OTPInputContext slot-state notes, grouped and continuous slot
+  layouts, active ring and fake caret treatment, disabled reason composition,
+  docs state specimens for grouped, continuous, and disabled usage, runtime token
+  notes, and related-component usage boundary are aligned without visible
+  overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2108,8 +2146,8 @@ Before creating the next component:
    MediaPickerDialog, OnboardingFlow, ChatPanel, ChatInput, ChatMessage, and
    ChatComposer, Label, RangeSlider, ToggleGroup, Toggle, NumberInput,
    PasswordInput, PasswordRequirementList, PasswordStrengthMeter, and
-   PasswordGroup, PhoneInput, PostalCodeInput, and SearchInput components,
-   runtime semantic colors, and specimen treatments are acceptable.
+   PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, and InputOTP
+   components, runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
