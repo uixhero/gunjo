@@ -2057,6 +2057,42 @@ Figma export:
   without-prefix, and disabled reason usage, runtime token notes, and
   related-component usage boundary are aligned without visible overlap.
 
+The owner then approved exporting the additional SearchInput component data with:
+
+> I approve exporting the SearchInput prop names, default values, and behavior
+> (`value`, `onValueChange`, `clearable=true`, `clearLabel="Clear search"`,
+> `disabled`, `placeholder="Search..."`, `className`, and
+> `Omit<React.InputHTMLAttributes<HTMLInputElement>, "type" | "onChange">`
+> structure), generated no-variant and no-default-variant structure,
+> spec-derived description (`Input with leading search icon for search bars`)
+> and `variants=[]` structure, `showClear` resolution
+> (`clearable && !!value && !disabled`), input forwarding (`type="search"`,
+> `value ?? ""`, `onChange -> onValueChange`, `disabled`, and `placeholder`),
+> WebKit search cancel button hiding, leading IconSearch and clear IconX display
+> structure, clear button `onClick -> onValueChange("")`, `aria-label`, Tooltip
+> structure, disabled root treatment and docs-side DisabledReasonTooltip
+> composition, dimensions and layout, docs-derived state taxonomy and sample
+> copy, SearchInput / Input / Combobox / Command / FilterButton usage boundary,
+> Input / Button / FormGroup / Tooltip / DisabledReasonTooltip / Combobox /
+> Command / FilterButton related composition and usage boundaries, and token
+> names and values (`input`, `ring`, `muted-foreground`, `foreground`,
+> `background`, `border`, and `muted`) from this private pre-public repository
+> to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `SearchInput / Section`: `286:13`
+- `SearchInput` component: `286:20`
+- Placement: `Inputs` page, after `PostalCodeInput / Section`, at
+  `(40, 39724)`, `1280 x 2300`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the no-generated-variant
+  contract, `variants=[]` structure, leading search icon, clear IconX Tooltip
+  behavior, `showClear` states, disabled reason composition, docs state
+  specimens for clearable, without-clear, and disabled usage, runtime token
+  notes, and related-component usage boundary are aligned without visible
+  overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2072,8 +2108,8 @@ Before creating the next component:
    MediaPickerDialog, OnboardingFlow, ChatPanel, ChatInput, ChatMessage, and
    ChatComposer, Label, RangeSlider, ToggleGroup, Toggle, NumberInput,
    PasswordInput, PasswordRequirementList, PasswordStrengthMeter, and
-   PasswordGroup, PhoneInput, and PostalCodeInput components, runtime semantic
-   colors, and specimen treatments are acceptable.
+   PasswordGroup, PhoneInput, PostalCodeInput, and SearchInput components,
+   runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
