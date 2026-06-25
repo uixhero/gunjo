@@ -2272,6 +2272,42 @@ Figma export:
   Button / Textarea / Toast composition, runtime token notes, and
   related-component usage boundary are aligned without visible overlap.
 
+The owner then approved exporting the additional Form component family data with:
+
+> I approve exporting the Form / FormField / FormGroup / FormLabel /
+> FormControl / FormDescription / FormMessage / useFormField prop names, default
+> values, and behavior, generated no-variant and no-default-variant structure,
+> spec-derived composition (`canonicalLayout="vertical-field-group"`, public
+> parts, `controlHeight=36`, `defaultGap=6`, `fieldGap=16`, and
+> `fullWidthControlSlots`), FormFieldContext `id`, `descriptionId`,
+> `messageId`, `error`, and `required` structure, `React.useId` control id
+> generation, `containsElementType` behavior for reserving `descriptionId` only
+> when `FormDescription` is present, FormControl child clone forwarding for
+> `id`, `aria-describedby`, `aria-invalid`, and `aria-required`, FormLabel
+> `htmlFor` linkage, required star, and destructive error text, FormMessage
+> error-first rendering, `role="alert"`, and null rendering without body, Form /
+> FormField / FormGroup layout classes, FormGroup full-width `data-slot` control
+> rules, docs-derived state taxonomy and sample copy, Button / Input / Textarea /
+> Spinner / Tooltip composition, Input / Textarea / Select / Button usage
+> boundaries, and token names and values (`foreground`, `muted-foreground`,
+> `destructive`, `background`, `muted`, `border`, `input`, `ring`, `primary`,
+> `primary-foreground`, `secondary`, and `secondary-foreground`) from this
+> private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Form / Section`: `303:13`
+- `Form` component: `303:20`
+- Placement: `Inputs` page, after `EditableField / Section`, at `(40, 55612)`,
+  `1280 x 2940`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the no-generated-variant
+  contract, vertical field group composition, FormFieldContext and ARIA wiring
+  notes, full-width slot rules, client-validation and pending-submit specimens,
+  runtime token notes, and related-component usage boundary are aligned without
+  visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2288,7 +2324,7 @@ Before creating the next component:
    ChatComposer, Label, RangeSlider, ToggleGroup, Toggle, NumberInput,
    PasswordInput, PasswordRequirementList, PasswordStrengthMeter, and
    PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, and
-   Calendar, FilterButton, SortButton, and EditableField
+   Calendar, FilterButton, SortButton, EditableField, and Form
    components, runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
