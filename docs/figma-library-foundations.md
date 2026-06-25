@@ -2205,6 +2205,37 @@ Figma export:
   selected count badge, custom content specimen, runtime token notes, and
   related-component usage boundary are aligned without visible overlap.
 
+The owner then approved exporting the additional SortButton component data with:
+
+> I approve exporting the SortButton prop names, default values, and behavior
+> (`value=sortButtonDefaultVariantKey`, `onSortChange`, `label="Sort"`,
+> `variant="ghost"`, `size="sm"`, and inherited
+> `Omit<ButtonProps, "onChange">`), variant names (`none`, `asc`, `desc`) and
+> default variant (`none`), click cycling in `sortButtonVariantKeys` order
+> (`none -> asc -> desc -> none`), icon resolution by value
+> (IconArrowsSort / IconSortAscendingLetters / IconSortDescendingLetters),
+> Button props forwarding and className composition, dimensions and layout,
+> spec-derived `SortButton/None`, `SortButton/Asc`, and `SortButton/Desc` frame
+> structures, docs-derived state taxonomy and sample copy, DisabledReasonTooltip
+> composition, FilterButton / Table / Command / Button usage boundaries, and
+> token names and values (`foreground`, `background`, `muted`,
+> `muted-foreground`, `accent`, `accent-foreground`, `border`, `input`, `ring`,
+> `primary`, `primary-foreground`, `secondary`, and `secondary-foreground`) from
+> this private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `SortButton / Section`: `298:13`
+- `SortButton` component: `298:20`
+- Placement: `Inputs` page, after `FilterButton / Section`, at `(40, 50276)`,
+  `1280 x 2280`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the none / asc / desc
+  state contract, click cycle behavior, icon resolution mapping, spec-derived
+  frame structures, disabled reason tooltip composition, runtime token notes,
+  and related-component usage boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2221,7 +2252,7 @@ Before creating the next component:
    ChatComposer, Label, RangeSlider, ToggleGroup, Toggle, NumberInput,
    PasswordInput, PasswordRequirementList, PasswordStrengthMeter, and
    PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, and
-   Calendar, and FilterButton
+   Calendar, FilterButton, and SortButton
    components, runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
