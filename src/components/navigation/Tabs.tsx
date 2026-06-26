@@ -30,7 +30,9 @@ const TabsList = React.forwardRef<
     <TabsPrimitive.List
         ref={ref}
         className={cn(
-            "inline-flex min-h-12 items-center justify-center overflow-y-hidden rounded-md bg-muted p-1.5 text-muted-foreground",
+            // Horizontal: scroll-x instead of clipping when triggers (esp. CJK labels) exceed the
+            // width — never truncate a tab. justify-start so the first tab stays reachable when scrolling.
+            "inline-flex min-h-12 max-w-full items-center justify-start overflow-x-auto overflow-y-hidden rounded-md bg-muted p-1.5 text-muted-foreground [scrollbar-width:none] [&::-webkit-scrollbar]:hidden sm:justify-center",
             "data-[orientation=vertical]:min-h-0 data-[orientation=vertical]:flex-col data-[orientation=vertical]:items-stretch data-[orientation=vertical]:justify-start data-[orientation=vertical]:gap-1 data-[orientation=vertical]:overflow-visible data-[orientation=vertical]:rounded-lg data-[orientation=vertical]:bg-transparent data-[orientation=vertical]:p-0 data-[orientation=vertical]:sm:w-48",
             className
         )}
