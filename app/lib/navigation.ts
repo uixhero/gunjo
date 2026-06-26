@@ -10,6 +10,7 @@ export const navigation = [
             { title: "Installation", href: "/docs/installation" },
             { title: "Theming", href: "/docs/theming" },
             { title: "Comparison", href: "/docs/comparison" },
+            { title: "By use case", href: "/docs/by-use-case" },
             { title: "AI handoff", href: "/docs/ai-handoff" },
             { title: "Adoption Guide", href: "/docs/adoption" },
             { title: "Adoption Strategy", href: "/docs/adoption-strategy" },
