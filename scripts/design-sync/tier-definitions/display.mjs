@@ -843,6 +843,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "relationshipRow",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:relationshipRow",
+      title: "RelationshipRow",
+      description: "Two PersonCells side by side with a connector (⟷ by default) and an optional relationship label: the 'person ⟷ person' unit. Models the pairings that define people-heavy domains — manager↔report (1on1), helper↔client (訪問介護), 利用者↔担当ケアマネ (ケアプラン), approver chains, mentor↔mentee. Each side is a full PersonCell (avatar + name + secondary/tertiary + status); a trailing slot holds a badge/chevron/actions. Presentational by default — let an interactive row (a wrapping link, DataTable onRowClick) own activation rather than nesting a button.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "kanbanBoard",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:kanbanBoard",

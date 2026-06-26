@@ -1465,6 +1465,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "relationshipRow": {
+      "title": "RelationshipRow",
+      "description": "Two PersonCells side by side with a connector (⟷ by default) and an optional relationship label: the 'person ⟷ person' unit. Models the pairings that define people-heavy domains — manager↔report (1on1), helper↔client (訪問介護), 利用者↔担当ケアマネ (ケアプラン), approver chains, mentor↔mentee. Each side is a full PersonCell (avatar + name + secondary/tertiary + status); a trailing slot holds a badge/chevron/actions. Presentational by default — let an interactive row (a wrapping link, DataTable onRowClick) own activation rather than nesting a button.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/RelationshipRow.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "retentionCohortCard": {
       "title": "Retention Cohort Card",
       "description": "HTML/CSS cohort retention card for dashboard grids with editable cohorts, periods, values, and hover/focus cell tooltips.",
