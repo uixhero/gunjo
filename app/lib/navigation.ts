@@ -131,6 +131,7 @@ export const navigation = [
             { title: "MarkdownRenderer", href: "/docs/components/markdown-renderer" },
             { title: "MetadataList", href: "/docs/components/metadata-list" },
             { title: "Meter", href: "/docs/components/meter" },
+            { title: "PersonCell", href: "/docs/components/person-cell" },
             { title: "Rating", href: "/docs/components/rating" },
             { title: "ReferenceValue", href: "/docs/components/reference-value" },
             { title: "RevealSection", href: "/docs/components/reveal-section" },

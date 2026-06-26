@@ -832,6 +832,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "personCell",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:personCell",
+      title: "PersonCell",
+      description: "The atomic identity cell: an avatar paired with a name plus secondary/tertiary lines (role / department / email), an optional presence dot and a trailing slot (status badge, chevron, count, actions). Fallback initials are derived from the name (Japanese family-name aware) when no image is given; sm/md/lg sizes; everything truncates so it fits a table cell. The 'who is this person' unit repeated across directories, table rows, assignee pickers, comment attributions, approver/reviewer rows and detail panels. Presentational by default — let an interactive row (DataTable onRowClick, a wrapping link) own activation rather than nesting a button.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "kanbanBoard",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:kanbanBoard",

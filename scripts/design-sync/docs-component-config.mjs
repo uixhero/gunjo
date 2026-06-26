@@ -185,6 +185,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "week-view": "Display",
   gantt: "Display",
   "lineage-graph": "Display",
+  "person-cell": "Display",
   "reference-value": "Display",
   "signed-record": "Display",
   statistic: "Display",
