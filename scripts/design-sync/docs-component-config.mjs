@@ -187,6 +187,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "lineage-graph": "Display",
   "person-cell": "Display",
   "relationship-row": "Display",
+  "stat-group": "Display",
   "reference-value": "Display",
   "signed-record": "Display",
   statistic: "Display",

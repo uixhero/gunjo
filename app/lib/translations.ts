@@ -1591,6 +1591,7 @@ export const translations: Record<
       LineageGraph: "系譜グラフ",
       PersonCell: "人物セル",
       RelationshipRow: "関係行",
+      StatGroup: "指標グループ",
       RevealSection: "条件付きセクション",
       Delta: "差分",
       Meter: "メーター",

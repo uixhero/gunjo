@@ -160,6 +160,7 @@ export * from './components/display/Skeleton';
 export * from './components/display/Spacer';
 export * from './components/display/SparklineChart';
 export * from './components/display/StackedBarChart';
+export * from './components/display/StatGroup';
 export * from './components/display/Statistic';
 export * from './components/display/SwatchGroup';
 export * from './components/display/Table';
