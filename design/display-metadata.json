@@ -314,5 +314,9 @@
   "lineageGraph": {
     "title": "LineageGraph",
     "description": "Lineage / dependency graph: a layered, directed-acyclic node-link graph that handles multi-parent and multi-child edges (the fan-in / fan-out a tree can't draw). Nodes are auto-assigned to layers by longest-path depth and laid out along a flow axis (horizontal or vertical); edges are drawn as SVG connectors with arrowheads. Nodes are focusable buttons whose accessible name names their upstream/downstream neighbours. For lot genealogy / traceability (recall blast-radius), data lineage, build/dependency graphs, ETL pipelines and approval routing with joins."
+  },
+  "personCell": {
+    "title": "PersonCell",
+    "description": "The atomic identity cell: an avatar paired with a name plus secondary/tertiary lines (role / department / email), an optional presence dot and a trailing slot (status badge, chevron, count, actions). Fallback initials are derived from the name (Japanese family-name aware) when no image is given; sm/md/lg sizes; everything truncates so it fits a table cell. The 'who is this person' unit repeated across directories, table rows, assignee pickers, comment attributions, approver/reviewer rows and detail panels. Presentational by default — let an interactive row (DataTable onRowClick, a wrapping link) own activation rather than nesting a button."
   }
 }

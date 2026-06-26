@@ -1589,6 +1589,7 @@ export const translations: Record<
       WeekView: "週間カレンダー",
       Gantt: "ガントチャート",
       LineageGraph: "系譜グラフ",
+      PersonCell: "人物セル",
       RevealSection: "条件付きセクション",
       Delta: "差分",
       Meter: "メーター",
