@@ -4578,6 +4578,30 @@
         }
       ]
     },
+    "statGroup": {
+      "frameId": "synthetic:statGroup",
+      "title": "StatGroup",
+      "description": "The summary metric strip: a responsive grid of Statistics (Card-wrapped by default) — the KPI row almost every back-office screen opens with (件数 / 金額 / 期限 / アラート …). Fixed or responsive column counts ({ base: 2, md: 4 }). Presentational and RSC-safe (no function props) — pass plain data. For one metric use Statistic; for the row, use this.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
     "relationshipRow": {
       "frameId": "synthetic:relationshipRow",
       "title": "RelationshipRow",

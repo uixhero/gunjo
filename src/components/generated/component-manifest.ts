@@ -1636,6 +1636,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "statGroup": {
+      "title": "StatGroup",
+      "description": "The summary metric strip: a responsive grid of Statistics (Card-wrapped by default) — the KPI row almost every back-office screen opens with (件数 / 金額 / 期限 / アラート …). Fixed or responsive column counts ({ base: 2, md: 4 }). Presentational and RSC-safe (no function props) — pass plain data. For one metric use Statistic; for the row, use this.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/StatGroup.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "statistic": {
       "title": "Statistic",
       "description": "KPI metric card: label + value + delta indicator.",

@@ -2216,6 +2216,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "statGroup": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
+      "variantColorHints": {}
+    },
     "statistic": {
       "variantKeys": [],
       "defaultVariantKey": null,

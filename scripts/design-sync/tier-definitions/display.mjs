@@ -843,6 +843,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "statGroup",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:statGroup",
+      title: "StatGroup",
+      description: "The summary metric strip: a responsive grid of Statistics (Card-wrapped by default) — the KPI row almost every back-office screen opens with (件数 / 金額 / 期限 / アラート …). Fixed or responsive column counts ({ base: 2, md: 4 }). Presentational and RSC-safe (no function props) — pass plain data. For one metric use Statistic; for the row, use this.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "relationshipRow",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:relationshipRow",

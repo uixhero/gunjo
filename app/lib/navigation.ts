@@ -143,6 +143,7 @@ export const navigation = [
             { title: "SignedRecord", href: "/docs/components/signed-record" },
             { title: "Skeleton", href: "/docs/components/skeleton" },
             { title: "Spacer", href: "/docs/components/spacer" },
+            { title: "StatGroup", href: "/docs/components/stat-group" },
             { title: "Statistic", href: "/docs/components/statistic" },
             { title: "SwatchGroup", href: "/docs/components/swatch-group" },
             { title: "Table", href: "/docs/components/table" },
