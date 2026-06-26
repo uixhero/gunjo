@@ -2671,6 +2671,43 @@ Figma export:
   overlap. Additional token-row overlap validation returned
   `suspiciousOverlapCount: 0`.
 
+The next discovery target was then exported with the additional EmptyState
+component data:
+
+> I approve exporting the EmptyState prop names, default values, and behavior
+> (`icon`, required `title`, `description`, `action`, `children`,
+> `headingLevel=2`, `className`, and div HTML attributes with native `title`
+> omitted), generated no-variant and no-default-variant structure, root layout
+> and styling (`flex flex-col items-center justify-center gap-3 rounded-lg
+> border border-dashed border-border bg-muted/40 px-6 py-10 text-center`),
+> optional icon wrapper anatomy (`h-12 w-12 rounded-full bg-muted
+> text-muted-foreground`), title heading semantics (`h${headingLevel}` with
+> valid levels 1 through 6), title / description / action / children rendering
+> order, action `mt-2` placement, docs-derived state taxonomy and sample copy
+> (`検索結果なし`, `初回状態`, `読み込み失敗`, `プロジェクトがありません`,
+> `プロジェクトを作成`, `一致する結果がありません`, `フィルターを解除`,
+> `まだ素材がありません`, `アップロード`,
+> `データを読み込めませんでした`, and `再試行`), Button / Icon / AssetGrid /
+> DataTable / SearchInput composition and usage boundaries, and token names and
+> values (`muted`, `muted-foreground`, `border`, `foreground`, `background`,
+> `primary`, `primary-foreground`, `secondary`, `secondary-foreground`, `ring`,
+> `card`, `card-foreground`, and `accent`) from this private pre-public
+> repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `EmptyState / Section`: `331:2`
+- `EmptyState / Library card`: `331:3`
+- Placement: `Display` page, after `Code / Section`, at `(40, 30256)`,
+  `1280 x 1760`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; layout metadata review confirmed the no-generated
+  variant contract, default empty-state specimen, prop/default and heading
+  semantics contract, no-results / first-run / failed-load state specimens,
+  behavior notes, runtime token notes, and related-component usage boundary are
+  aligned without visible overlap. Additional token-row overlap validation
+  returned `suspiciousOverlapCount: 0`.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2689,8 +2726,8 @@ Before creating the next component:
    PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, Calendar,
    FilterButton, SortButton, EditableField, Form, Combobox, DatePicker,
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
-   ToolPill, and Code components, runtime semantic colors, and specimen
-   treatments are acceptable.
+   ToolPill, Code, and EmptyState components, runtime semantic colors, and
+   specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
