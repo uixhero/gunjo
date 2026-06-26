@@ -134,6 +134,7 @@ export const navigation = [
             { title: "PersonCell", href: "/docs/components/person-cell" },
             { title: "Rating", href: "/docs/components/rating" },
             { title: "ReferenceValue", href: "/docs/components/reference-value" },
+            { title: "RelationshipRow", href: "/docs/components/relationship-row" },
             { title: "RevealSection", href: "/docs/components/reveal-section" },
             { title: "RouteStops", href: "/docs/components/route-stops" },
             { title: "ScheduleGrid", href: "/docs/components/schedule-grid" },

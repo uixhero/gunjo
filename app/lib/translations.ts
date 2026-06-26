@@ -1590,6 +1590,7 @@ export const translations: Record<
       Gantt: "ガントチャート",
       LineageGraph: "系譜グラフ",
       PersonCell: "人物セル",
+      RelationshipRow: "関係行",
       RevealSection: "条件付きセクション",
       Delta: "差分",
       Meter: "メーター",
