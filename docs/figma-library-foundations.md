@@ -2566,6 +2566,40 @@ Figma export:
   behavior notes, runtime token notes, and related-component usage boundary are
   aligned without visible overlap.
 
+The next discovery target was then exported with the additional ImagePreview
+component data:
+
+> I approve exporting the ImagePreview prop names, default values, and behavior
+> (`src`, `alt`, `variant`, `aspectRatio="square"`, `objectFit`,
+> `loading="lazy"`, `fallback`, `noImageLabel="Image not found"`,
+> `showSkeleton=true`, `previewLabel="Open preview"`, `portalContainer`,
+> `onPreview`, `children`, `imgProps`, and div `HTMLAttributes`), generated
+> variant names (`default`, `contain`, and `empty`) and default variant
+> (`default`), effective variant resolution (`src ? variant : "empty"`),
+> effective `objectFit` rule (`contain` variant uses `contain`; otherwise
+> `cover`), aspect-ratio class mapping (`square`, `video`, `portrait`, `wide`,
+> and `auto`), Img composition and forwarded props, default no-image fallback
+> anatomy, optional preview Tooltip button behavior with `stopPropagation` and
+> `portalContainer`, overlay `children` slot behavior, docs-derived state
+> taxonomy and sample copy, Img / Icon / Tooltip / AssetCard / AssetGrid /
+> MediaLightbox composition and usage boundaries, and token names and values
+> (`muted`, `muted-foreground`, `background`, `foreground`, `border`,
+> `primary`, `ring`, `popover`, and `popover-foreground`) from this private
+> pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `ImagePreview / Section`: `326:2`
+- `ImagePreview / Library card`: `326:3`
+- Placement: `Display` page, after `ChatMessage / Section`, at `(40, 25206)`,
+  `1280 x 1706`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; layout metadata review confirmed the generated
+  `default` / `contain` / `empty` variant contract, component-set specimens,
+  prop/default and behavior contract, cover / contain / empty docs state
+  specimens, aspect-ratio and overlay-slot behavior notes, runtime token notes,
+  and related-component usage boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2583,8 +2617,9 @@ Before creating the next component:
    PasswordInput, PasswordRequirementList, PasswordStrengthMeter, and
    PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, Calendar,
    FilterButton, SortButton, EditableField, Form, Combobox, DatePicker,
-   DateRangePicker, TimePicker, TagInput, Mention, and FileUploader components,
-   runtime semantic colors, and specimen treatments are acceptable.
+   DateRangePicker, TimePicker, TagInput, Mention, FileUploader, and
+   ImagePreview components, runtime semantic colors, and specimen treatments
+   are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
