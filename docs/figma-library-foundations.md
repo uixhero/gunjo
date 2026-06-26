@@ -2461,6 +2461,39 @@ Figma export:
   behavior notes, runtime token notes, and related-component usage boundary are
   aligned without visible overlap.
 
+The owner then confirmed that this internal Figma file is the company's design
+system source and that reflecting component specs from this private repository
+into that file is the approved SSOT workflow. The next discovery target was then
+exported with the additional TagInput component data:
+
+> I approve exporting the TagInput prop names, default values, and behavior
+> (`id`, `value`, `onValueChange`, `placeholder="Add tag..."`,
+> `commitKeys=["Enter", ","]`, `dedupe=true`, `maxTags`,
+> `removeLabel="Remove tag"`, `className`, and `disabled`), generated
+> no-variant and no-default-variant structure, controlled `value` array model,
+> draft string state, Enter / comma / blur commit behavior, IME composition
+> guard, duplicate rejection, max tag limit behavior, Backspace last-tag
+> removal, Tag chip removal with `removeLabel`, FormGroup / FormLabel /
+> FormControl / FormDescription / DisabledReasonTooltip / Tag composition,
+> docs-derived state taxonomy and sample copy, Input / SearchInput / Mention /
+> Form / Tag / TagEditor usage boundaries, and token names and values (`input`,
+> `ring`, `muted-foreground`, `foreground`, `background`, `border`, `muted`,
+> `primary`, and `primary-foreground`) from this private pre-public repository
+> to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `TagInput / Section`: `320:13`
+- `TagInput` component: `320:14`
+- Placement: `Inputs` page, after `TimePicker / Section`, at `(40, 71689)`,
+  `1280 x 1606`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the no-generated-variant
+  contract, default tagged field specimen, prop/default and behavior contract,
+  editable / max-tags / disabled / empty / typing state specimens, keyboard and
+  IME behavior notes, runtime token notes, and related-component usage boundary
+  are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2478,8 +2511,8 @@ Before creating the next component:
    PasswordInput, PasswordRequirementList, PasswordStrengthMeter, and
    PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, Calendar,
    FilterButton, SortButton, EditableField, Form, Combobox, DatePicker,
-   DateRangePicker, and TimePicker components, runtime semantic colors, and
-   specimen treatments are acceptable.
+   DateRangePicker, TimePicker, and TagInput components, runtime semantic
+   colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
