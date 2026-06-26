@@ -2600,6 +2600,44 @@ Figma export:
   specimens, aspect-ratio and overlay-slot behavior notes, runtime token notes,
   and related-component usage boundary are aligned without visible overlap.
 
+The next discovery target was then exported with the additional ToolPill
+component data:
+
+> I approve exporting the ToolPill prop names, default values, and behavior
+> (`icon` required, `label`, `isActive=false`, `variant="primary"`, `size="md"`,
+> `tooltipSide="top"`, `className`, `onClick`, and button HTML attributes),
+> generated variant names (`primary`, `secondary`, and `danger`) and default
+> variant (`primary`), runtime size values (`sm`, `md`, and `lg`) with control
+> and icon dimensions, active / inactive state style resolution for each
+> variant, Tooltip wrapping behavior when `label` is provided, disabled trigger
+> span behavior, `aria-label` fallback and `sr-only` label structure, transition
+> and hover motion affordances, docs-derived state taxonomy and sample copy
+> (`横並びツールバー`, `縦並びツールバー`, `操作の種類`, `選択中`, `サイズ`,
+> `選択`, `移動`, `編集`, `削除`, `複製`, `追加`, and `消去`), Tooltip /
+> TooltipButton / Button / Icon / Tag composition and usage boundaries, and
+> token names and values (`primary-subtle`, `primary-subtle-foreground`,
+> `primary`, `primary-foreground`, `primary-border`, `secondary`,
+> `secondary-foreground`, `destructive-subtle`,
+> `destructive-subtle-foreground`, `destructive-strong`,
+> `destructive-strong-foreground`, `destructive-border`, `background`,
+> `foreground`, `muted`, `muted-foreground`, `border`, `ring`, `popover`, and
+> `popover-foreground`) from this private pre-public repository to the Figma
+> file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `ToolPill / Section`: `327:2`
+- `ToolPill / Library card`: `327:3`
+- Placement: `Display` page, after `ImagePreview / Section`, at `(40, 26960)`,
+  `1280 x 1760`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; layout metadata review confirmed the generated
+  `primary` / `secondary` / `danger` variant contract, active and inactive
+  specimens, prop/default and tooltip behavior contract, horizontal toolbar /
+  vertical toolbar / action variants / active / sizes state specimens, runtime
+  token notes, and related-component usage boundary are aligned without visible
+  overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2617,9 +2655,9 @@ Before creating the next component:
    PasswordInput, PasswordRequirementList, PasswordStrengthMeter, and
    PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, Calendar,
    FilterButton, SortButton, EditableField, Form, Combobox, DatePicker,
-   DateRangePicker, TimePicker, TagInput, Mention, FileUploader, and
-   ImagePreview components, runtime semantic colors, and specimen treatments
-   are acceptable.
+   DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
+   and ToolPill components, runtime semantic colors, and specimen treatments are
+   acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
