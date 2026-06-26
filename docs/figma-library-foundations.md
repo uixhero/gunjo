@@ -2530,6 +2530,42 @@ Figma export:
   behavior notes, runtime token notes, and related-component usage boundary are
   aligned without visible overlap.
 
+The next discovery target was then exported with the additional FileUploader
+component data:
+
+> I approve exporting the FileUploader prop names, default values, and behavior
+> (`value`, `onValueChange`, `maxFiles=1`, `maxSize=5242880`, `accept`,
+> `disabled`, `showFileList=true`, `fileProgress`, `labels`, and
+> `HTMLAttributes<HTMLDivElement>`), generated `default` variant and default
+> variant structure, FileUploaderFileStatus values (`pending`, `uploading`,
+> `complete`, and `error`), FileUploaderFileProgress and progress resolver
+> structure, controlled and uncontrolled file state handling, drag active
+> behavior, hidden file input behavior, drop / change / remove file flow,
+> `getFileUploaderFileKey`, accept flattening and MIME / wildcard / extension
+> matching, max file slicing, file size and file type validation, status and
+> progress resolution, internal file list row anatomy, TooltipButton remove
+> action, Progress / Spinner / Alert / DisabledReasonTooltip / Form composition,
+> docs-derived state taxonomy and sample copy, Input / MediaPickerDialog /
+> AssetCard / Form usage boundaries, and token names and values (`foreground`,
+> `background`, `muted`, `muted-foreground`, `border`, `primary`,
+> `primary-border`, `primary-subtle`, `success-strong`, and `destructive`) from
+> this private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `FileUploader / Section`: `324:13`
+- `FileUploader` component: `324:14`
+- Placement: `Inputs` page, after `Mention / Section`, at `(40, 75331)`,
+  `1280 x 2390`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the generated `default`
+  variant contract, default dropzone and file-list specimen, prop/default and
+  behavior contract, standard / image-only / drag-active / uploading / success /
+  failure / disabled / internal-list state specimens, accept and validation
+  behavior notes, runtime token notes, and related-component usage boundary are
+  aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2547,8 +2583,8 @@ Before creating the next component:
    PasswordInput, PasswordRequirementList, PasswordStrengthMeter, and
    PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, Calendar,
    FilterButton, SortButton, EditableField, Form, Combobox, DatePicker,
-   DateRangePicker, TimePicker, TagInput, and Mention components, runtime
-   semantic colors, and specimen treatments are acceptable.
+   DateRangePicker, TimePicker, TagInput, Mention, and FileUploader components,
+   runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
