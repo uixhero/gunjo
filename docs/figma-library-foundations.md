@@ -2708,6 +2708,44 @@ Figma export:
   aligned without visible overlap. Additional token-row overlap validation
   returned `suspiciousOverlapCount: 0`.
 
+The next discovery target was then exported with the additional Tag component
+data:
+
+> I approve exporting the Tag prop names, default values, and behavior
+> (`children`, `className`, `variant`, `size`, `onRemove`,
+> `removeLabel="Remove"`, and span HTML attributes with `onRemove` omitted),
+> generated no-variant and no-default-variant structure, runtime CVA option
+> values (`variant="default" | "secondary" | "outline" | "destructive"` and
+> `size="sm" | "default" | "lg"`), CVA default options
+> (`variant="default"` and `size="default"`), base layout and typography
+> classes (`inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-xs
+> font-medium transition-colors`), variant and size style resolution, optional
+> trailing remove button anatomy (`IconX`, `h-3 w-3`, focus ring, and
+> `aria-label={removeLabel}`), Tooltip / TooltipTrigger / TooltipContent
+> composition for remove actions, docs-derived state taxonomy and sample copy
+> (`用途別の見た目`, `サイズ`, `削除できるタグ`, `React`, `TypeScript`, `UI`,
+> `設計`, `標準`, `選択中`, `下書き`, `要確認`, `小`, `大`, and
+> `TypeScript を削除`), TagEditor / TagInput / Badge / ToolPill composition and
+> usage boundaries, and token names and values (`secondary`,
+> `secondary-foreground`, `foreground`, `background`, `border`,
+> `destructive-strong`, `destructive-strong-foreground`, `ring`, `muted`, and
+> `muted-foreground`) from this private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Tag / Section`: `332:2`
+- `Tag / Library card`: `332:3`
+- Placement: `Display` page, after `EmptyState / Section`, at `(40, 32064)`,
+  `1280 x 1710`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; layout metadata review confirmed the no-generated
+  variant contract, removable tag group specimen, prop/default and remove
+  action contract, purpose variants / sizes / removable state specimens,
+  behavior notes, runtime token notes, and related-component usage boundary are
+  aligned without visible overlap. Additional token-row and child-overflow
+  validation returned `suspiciousOverlapCount: 0` and `childOverflowCount: 0`.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2726,7 +2764,7 @@ Before creating the next component:
    PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, Calendar,
    FilterButton, SortButton, EditableField, Form, Combobox, DatePicker,
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
-   ToolPill, Code, and EmptyState components, runtime semantic colors, and
+   ToolPill, Code, EmptyState, and Tag components, runtime semantic colors, and
    specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
