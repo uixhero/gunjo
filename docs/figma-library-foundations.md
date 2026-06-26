@@ -2494,6 +2494,42 @@ Figma export:
   IME behavior notes, runtime token notes, and related-component usage boundary
   are aligned without visible overlap.
 
+The next discovery target was then exported with the additional Mention
+component data:
+
+> I approve exporting the Mention prop names, default values, and behavior
+> (`value`, `onValueChange`, `trigger="@"`, `options`, `maxSuggestions=6`,
+> `disabled`, `placeholder`, `rows=3`, and TextareaHTMLAttributes except
+> `value` / `onChange`), generated no-variant and no-default-variant structure,
+> MentionOption `id` / `label` / `hint` structure, controlled and uncontrolled
+> value handling, trigger query detection at the current cursor, whitespace
+> boundary behavior, label filtering and `maxSuggestions` slicing,
+> `activeIndex`, `suggestionsDismissed`, `suggestionSide`, and
+> `suggestionMaxHeight` state, ArrowUp / ArrowDown / Enter / Tab / Escape
+> keyboard behavior, insertMention cursor restore behavior, aria-hidden
+> highlight layer, textarea / listbox / option ARIA structure, clipping ancestor
+> and content-fit embed suggestion placement logic, FormGroup / FormLabel /
+> FormControl / FormDescription / DisabledReasonTooltip composition,
+> docs-derived state taxonomy and sample copy, Command / Combobox / TagInput /
+> Tooltip usage boundaries, and token names and values (`foreground`, `input`,
+> `ring`, `popover`, `popover-foreground`, `muted`, `muted-foreground`,
+> `primary`, `primary-subtle`, `background`, and `border`) from this private
+> pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Mention / Section`: `322:13`
+- `Mention` component: `322:14`
+- Placement: `Inputs` page, after `TagInput / Section`, at `(40, 73343)`,
+  `1280 x 1940`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the no-generated-variant
+  contract, default textarea with suggestion list specimen, prop/default and
+  behavior contract, mention suggestions / custom trigger / disabled /
+  inserted-highlight / top-placement state specimens, keyboard and placement
+  behavior notes, runtime token notes, and related-component usage boundary are
+  aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2511,8 +2547,8 @@ Before creating the next component:
    PasswordInput, PasswordRequirementList, PasswordStrengthMeter, and
    PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, Calendar,
    FilterButton, SortButton, EditableField, Form, Combobox, DatePicker,
-   DateRangePicker, TimePicker, and TagInput components, runtime semantic
-   colors, and specimen treatments are acceptable.
+   DateRangePicker, TimePicker, TagInput, and Mention components, runtime
+   semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
