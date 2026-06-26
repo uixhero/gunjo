@@ -2382,6 +2382,53 @@ Figma export:
   token notes, and related-component usage boundary are aligned without visible
   overlap.
 
+The owner then approved exporting the additional DateRangePicker component data
+with:
+
+> I approve exporting the DateRangePicker prop names, default values, and
+> behavior (`id`, `value`, `onValueChange`,
+> `placeholder="yyyy-mm-dd - yyyy-mm-dd"`, `dateFormat="yyyy-MM-dd"`,
+> `numberOfMonths=2`, `editable=true`, `disabled=false`, `locale`,
+> `calendarLabel="Open calendar"`, `todayLabel`, `previousLabel`,
+> `showTodayButton=true`, `closeOnSelect=true`, `maxRangeDays`,
+> `responsiveMonths=true`, `className`, and `triggerClassName`), generated
+> no-variant and no-default-variant structure, Popover + Input + Button +
+> Calendar + Tooltip composition, `data-slot="date-range-picker"`,
+> PopoverAnchor, PopoverTrigger, PopoverContent `align="center"` /
+> `sideOffset=8`, `onInteractOutside`, and `onOpenAutoFocus` structure, direct
+> `yyyy-MM-dd - yyyy-MM-dd` input formatting, `parseRangeInput`,
+> `normalizeRange`, validation reasons (`format`, `order`, and `length`),
+> validation messages, invalid `aria-invalid`, range segment navigation
+> (`fromYear`, `fromMonth`, `fromDay`, `toYear`, `toMonth`, and `toDay`),
+> ArrowUp / ArrowDown segment stepping, ArrowLeft / ArrowRight / Tab movement,
+> Backspace / Delete digit deletion, Enter commit, Calendar range selection,
+> `activeEndpoint`, `activeRangeStart` / `activeRangeEnd` ring, `closeOnSelect`,
+> today shortcut, previous shortcut, `responsiveMonths` small-viewport
+> one-month behavior, `maxRangeDays` constraints, dimensions and layout,
+> docs-derived state taxonomy and sample copy, Button / Calendar / Popover /
+> Tooltip / Form composition, DatePicker / Calendar / Form / Combobox usage
+> boundaries, and token names and values (`background`, `foreground`, `card`,
+> `card-foreground`, `popover`, `popover-foreground`, `muted`,
+> `muted-foreground`, `accent`, `accent-foreground`, `border`, `input`, `ring`,
+> `primary`, `primary-foreground`, `primary-border`, `info`, `info-border`,
+> `destructive`, and `destructive-border`) from this private pre-public
+> repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `DateRangePicker / Section`: `309:13`
+- `DateRangePicker` component: `309:27`
+- Placement: `Inputs` page, after `DatePicker / Section`, at `(40, 65316)`,
+  `1280 x 4382`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the no-generated-variant
+  contract, range input anatomy, two-month Calendar popover, active endpoint and
+  shortcut footer, selected / empty / persistent / disabled / validation /
+  responsive-month state specimens, range parsing and keyboard behavior notes,
+  runtime token notes, and related-component usage boundary are aligned without
+  visible overlap. The two-month Calendar specimens are stacked vertically where
+  needed so they stay inside the 1280 px section without clipping.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2397,9 +2444,9 @@ Before creating the next component:
    MediaPickerDialog, OnboardingFlow, ChatPanel, ChatInput, ChatMessage, and
    ChatComposer, Label, RangeSlider, ToggleGroup, Toggle, NumberInput,
    PasswordInput, PasswordRequirementList, PasswordStrengthMeter, and
-   PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, and
-   Calendar, FilterButton, SortButton, EditableField, Form, and Combobox
-   and DatePicker components, runtime semantic colors, and specimen treatments
+   PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, Calendar,
+   FilterButton, SortButton, EditableField, Form, Combobox, DatePicker, and
+   DateRangePicker components, runtime semantic colors, and specimen treatments
    are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
