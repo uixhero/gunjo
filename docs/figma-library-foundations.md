@@ -2342,6 +2342,46 @@ Figma export:
   runtime token notes, and related-component usage boundary are aligned without
   visible overlap.
 
+The owner then approved exporting the additional DatePicker component data with:
+
+> I approve exporting the DatePicker prop names, default values, and behavior
+> (`id`, `value`, `onValueChange`, `placeholder="yyyy-mm-dd"`,
+> `dateFormat="yyyy-MM-dd"`, `editable=true`, `disabled`, `locale`,
+> `calendarLabel="Open calendar"`, `todayLabel`, `previousLabel`,
+> `showTodayButton=true`, `closeOnSelect=true`, `disabledDates`, `modifiers`,
+> `modifiersClassNames`, `startMonth`, `endMonth`, `getDisabledReason`,
+> `disabledReason`, `disabledReasonLabel`, `disabledReasonPortalContainer`,
+> `className`, and `triggerClassName`), generated no-variant and
+> no-default-variant structure, Popover + Input + Button + Calendar + Tooltip
+> composition, `data-slot="date-picker"`, PopoverAnchor, PopoverTrigger, and
+> PopoverContent `align="end"` / `sideOffset=8` structure, direct
+> `yyyy-MM-dd` input formatting, `parseIsoDate`, invalid reset, segment
+> stepping and navigation keyboard behavior, Enter commit, Calendar single
+> selection, `closeOnSelect`, today and previous shortcuts, `disabledDates`, and
+> disabled reason tooltip behavior, dimensions and layout, docs-derived state
+> taxonomy and sample copy, Button / Calendar / Popover / Tooltip / Form
+> composition, DateRangePicker / Calendar / Form / TimePicker usage boundaries,
+> and token names and values (`background`, `foreground`, `card`,
+> `card-foreground`, `popover`, `popover-foreground`, `muted`,
+> `muted-foreground`, `accent`, `accent-foreground`, `border`, `input`, `ring`,
+> `primary`, `primary-foreground`, `destructive`, and `destructive-border`) from
+> this private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `DatePicker / Section`: `307:13`
+- `DatePicker` component: `307:27`
+- Placement: `Inputs` page, after `Combobox / Section`, at `(40, 61708)`,
+  `1280 x 3560`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the no-generated-variant
+  contract, input + calendar button anatomy, Calendar popover, today and
+  previous shortcuts, selected / empty / persistent / disabled-date / disabled /
+  invalid-input state specimens, keyboard and parsing behavior notes, runtime
+  token notes, and related-component usage boundary are aligned without visible
+  overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2359,7 +2399,8 @@ Before creating the next component:
    PasswordInput, PasswordRequirementList, PasswordStrengthMeter, and
    PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, and
    Calendar, FilterButton, SortButton, EditableField, Form, and Combobox
-   components, runtime semantic colors, and specimen treatments are acceptable.
+   and DatePicker components, runtime semantic colors, and specimen treatments
+   are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
