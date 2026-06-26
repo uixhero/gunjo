@@ -2308,6 +2308,40 @@ Figma export:
   runtime token notes, and related-component usage boundary are aligned without
   visible overlap.
 
+The owner then approved exporting the additional Combobox component data with:
+
+> I approve exporting the Combobox / ComboboxOption prop names, default values,
+> and behavior (`options`, `value`, `onValueChange`,
+> `placeholder="Select option..."`, `searchPlaceholder="Search..."`,
+> `searchClearLabel="Clear search"`, `emptyMessage="No option found."`,
+> `clearable=true`, `clearLabel="Clear selection"`, `disabled`,
+> `triggerClassName`, `className`, `aria-*`, and `required`), generated
+> no-variant and no-default-variant structure, Popover + Command + Button +
+> Tooltip composition, trigger `role="combobox"`, `aria-expanded`,
+> `aria-invalid`, `aria-describedby`, `aria-labelledby`, `aria-label`, and
+> `aria-required` structure, selection, clear, search, empty state, grouped
+> options, and disabled option / `disabledReason` tooltip behavior, dimensions
+> and layout, docs-derived state taxonomy and sample copy, Select /
+> CommandPalette / DropdownMenu / Form usage boundaries, and token names and
+> values (`background`, `foreground`, `popover`, `popover-foreground`, `muted`,
+> `muted-foreground`, `accent`, `accent-foreground`, `border`, `input`, `ring`,
+> `primary`, `primary-foreground`, and `destructive-border`) from this private
+> pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Combobox / Section`: `305:13`
+- `Combobox` component: `305:14`
+- Placement: `Inputs` page, after `Form / Section`, at `(40, 58600)`,
+  `1280 x 3060`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the no-generated-variant
+  contract, trigger and popover anatomy, clearable selected-value affordance,
+  grouped options, disabled-option tooltip reason, empty state, ARIA forwarding,
+  runtime token notes, and related-component usage boundary are aligned without
+  visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2324,7 +2358,7 @@ Before creating the next component:
    ChatComposer, Label, RangeSlider, ToggleGroup, Toggle, NumberInput,
    PasswordInput, PasswordRequirementList, PasswordStrengthMeter, and
    PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, and
-   Calendar, FilterButton, SortButton, EditableField, and Form
+   Calendar, FilterButton, SortButton, EditableField, Form, and Combobox
    components, runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
