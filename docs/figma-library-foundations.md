@@ -2429,6 +2429,38 @@ Figma export:
   visible overlap. The two-month Calendar specimens are stacked vertically where
   needed so they stay inside the 1280 px section without clipping.
 
+The owner then approved exporting the additional TimePicker component data with:
+
+> I approve exporting the TimePicker prop names, default values, and behavior
+> (`value`, `onValueChange`, `hour12=false`, `minuteStep=1`, `className`,
+> `disabled`, `hourLabel="Hour"`, `minuteLabel="Minute"`,
+> `periodLabel="AM/PM"`, and `label="Time"`), generated no-variant and
+> no-default-variant structure, 24-hour `HH:mm` value format, empty-string
+> unset state, `parse` / `format2` behavior, 12-hour display with AM/PM select,
+> `minuteStep` values (`1`, `5`, `10`, `15`, and `30`) and minute options,
+> `setHour`, `setMinute`, and `setAmPm` value updates, root `role="group"`,
+> `aria-label`, and `data-slot="time-picker"` structure, Clock icon / hour
+> select / separator / minute select / optional AM/PM select display structure,
+> dimensions and layout, docs-derived state taxonomy and sample copy, FormGroup
+> / FormLabel / FormControl / FormDescription / DisabledReasonTooltip
+> composition, DatePicker / DateRangePicker / Select / Form usage boundaries,
+> and token names and values (`input`, `ring`, `muted-foreground`,
+> `foreground`, `background`, `border`, and `muted`) from this private
+> pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `TimePicker / Section`: `314:13`
+- `TimePicker` component: `314:14`
+- Placement: `Inputs` page, after `DateRangePicker / Section`, at
+  `(40, 69746)`, `1280 x 1895`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; screenshot review confirmed the no-generated-variant
+  contract, 24-hour default specimen, prop/default contract cards, 24-hour /
+  12-hour / 15-minute / disabled / unset state specimens, parse and format
+  behavior notes, runtime token notes, and related-component usage boundary are
+  aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2445,9 +2477,9 @@ Before creating the next component:
    ChatComposer, Label, RangeSlider, ToggleGroup, Toggle, NumberInput,
    PasswordInput, PasswordRequirementList, PasswordStrengthMeter, and
    PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, Calendar,
-   FilterButton, SortButton, EditableField, Form, Combobox, DatePicker, and
-   DateRangePicker components, runtime semantic colors, and specimen treatments
-   are acceptable.
+   FilterButton, SortButton, EditableField, Form, Combobox, DatePicker,
+   DateRangePicker, and TimePicker components, runtime semantic colors, and
+   specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
