@@ -1424,6 +1424,7 @@ export const translations: Record<
       Installation: "インストール",
       Theming: "テーマ",
       Comparison: "比較",
+      "By use case": "ユースケース別",
       "AI handoff": "AI連携",
       "Adoption Guide": "採用ガイド",
       "Adoption Strategy": "採用戦略",
