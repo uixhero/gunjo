@@ -2638,6 +2638,39 @@ Figma export:
   token notes, and related-component usage boundary are aligned without visible
   overlap.
 
+The next discovery target was then exported with the additional Code component
+data:
+
+> I approve exporting the Code prop names, default values, and behavior
+> (`children`, `className`, `variant`, `size`, and
+> `React.HTMLAttributes<HTMLElement>`), generated no-variant and
+> no-default-variant structure, runtime CVA option values (`variant="default" |
+> "muted"` and `size="sm" | "default" | "lg"`), CVA default options
+> (`variant="default"` and `size="default"`), `forwardRef` `<code>` element
+> structure, base typography and layout classes (`relative`, `rounded`,
+> `font-mono`, `text-sm`, and `font-medium`), default and muted variant style
+> resolution, size option typography, docs-derived state taxonomy and sample
+> copy (`表示の強さ`, `サイズ`, `npm install @gunjo/ui`, `--access public`,
+> `npm run dev`, `--watch`, `size="sm"`, `size="default"`, and `size="lg"`),
+> CodeBlock / Tooltip composition and usage boundaries, and token names and
+> values (`muted`, `foreground`, `secondary`, `muted-foreground`, `border`,
+> `background`, `popover`, `popover-foreground`, and `ring`) from this private
+> pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Code / Section`: `328:2`
+- `Code / Library card`: `328:3`
+- Placement: `Display` page, after `ToolPill / Section`, at `(40, 28768)`,
+  `1280 x 1440`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; layout metadata review confirmed the no-generated
+  variant contract, inline prose specimen, prop/default and CVA option
+  contract, visual-emphasis and size state specimens, semantic / typography /
+  usage-boundary notes, and runtime token notes are aligned without visible
+  overlap. Additional token-row overlap validation returned
+  `suspiciousOverlapCount: 0`.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2656,8 +2689,8 @@ Before creating the next component:
    PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, Calendar,
    FilterButton, SortButton, EditableField, Form, Combobox, DatePicker,
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
-   and ToolPill components, runtime semantic colors, and specimen treatments are
-   acceptable.
+   ToolPill, and Code components, runtime semantic colors, and specimen
+   treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
