@@ -45,6 +45,7 @@ const GROUPS: Group[] = [
             { build: { en: "Single-parent tree (org chart, hierarchy)", ja: "単親ツリー（組織図・階層）" }, comp: "TreeView", slug: "tree-view", when: { en: "expand/collapse, one parent per node.", ja: "開閉・1ノード1親。" } },
             { build: { en: "File / folder tree", ja: "ファイル/フォルダツリー" }, comp: "FileTree", slug: "file-tree" },
             { build: { en: "Chronological events", ja: "時系列の出来事" }, comp: "Timeline", slug: "timeline" },
+            { build: { en: "Ordered route / itinerary / sequence of stops with status + planned-vs-actual + delay (配送ルート / 工程フロー / 行路)", ja: "順序づいたルート/行程/区間の連なり（状態＋予実＋遅延）：配送ルート/工程フロー/行路" }, comp: "RouteStops", slug: "route-stops", when: { en: "numbered legs, per-stop status, auto Delta on planned-vs-actual, aria-current step. Approval-style sequence → ApprovalSteps.", ja: "番号付き区間・各停の状態・予実の自動 Delta・現在ステップ。承認系の順序は ApprovalSteps。" } },
         ],
     },
     {
