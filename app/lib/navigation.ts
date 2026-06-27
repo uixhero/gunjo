@@ -131,6 +131,7 @@ export const navigation = [
             { title: "Kbd", href: "/docs/components/kbd" },
             { title: "LineageGraph", href: "/docs/components/lineage-graph" },
             { title: "List", href: "/docs/components/list" },
+            { title: "ListCard", href: "/docs/components/list-card" },
             { title: "MarkdownRenderer", href: "/docs/components/markdown-renderer" },
             { title: "MetadataList", href: "/docs/components/metadata-list" },
             { title: "Meter", href: "/docs/components/meter" },

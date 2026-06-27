@@ -70,9 +70,10 @@ const GROUPS: Group[] = [
         ],
     },
     {
-        title: { en: "Tables & editable grids", ja: "表・編集グリッド" },
+        title: { en: "Lists, results & tables", ja: "リスト・結果・表" },
         items: [
-            { build: { en: "Sortable / paginated / filterable table that becomes cards on mobile", ja: "ソート/ページング/絞り込み・モバイルでカード化する表" }, comp: "DataTable", slug: "data-table", when: { en: "pass renderCard for the mobile card fallback.", ja: "renderCard でモバイルはカード崩し。" } },
+            { build: { en: "Tappable list/result/status entry: search results, route/product comparison, status lists (運行状況/在庫/端末), order/incident rows", ja: "tappable なリスト/結果/ステータス項目：検索結果・経路/商品比較・運行状況/在庫/端末の一覧・注文/障害の行" }, comp: "ListCard", slug: "list-card", when: { en: "leading + title + secondary + tags + status pill + meta + chevron; ≥44px tap target, severity accent, selected state. The B2C 'list of things' primitive — NOT PersonCell (people), NOT RouteStops (delivery stops), NOT DataTable (admin grid).", ja: "先頭＋タイトル＋副次＋タグ＋ステータス＋meta＋chevron。≥44px・重大度アクセント・選択状態。B2C の『物の一覧』＝PersonCell(人)でも RouteStops(配送停)でも DataTable(管理表)でもない。" } },
+            { build: { en: "Sortable / paginated / filterable table that becomes cards on mobile", ja: "ソート/ページング/絞り込み・モバイルでカード化する表" }, comp: "DataTable", slug: "data-table", when: { en: "pass renderCard for the mobile card fallback. For a touch-first consumer list → ListCard.", ja: "renderCard でモバイルはカード崩し。消費者向けの tap リストは ListCard。" } },
             { build: { en: "EDITABLE line items with column-aligned totals (data entry)", ja: "編集できる明細・列揃え合計（データ入力）" }, comp: "EditableDataTable", slug: "editable-data-table", when: { en: "cells are inputs / add-remove rows. For a READ-ONLY money total → AmountBreakdown.", ja: "セルが入力・行追加削除。確定済みの金額導出は AmountBreakdown。" } },
             { build: { en: "Plain table primitives", ja: "素の表プリミティブ" }, comp: "Table", slug: "table" },
         ],

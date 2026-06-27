@@ -135,6 +135,7 @@ export * from './components/display/LabeledDonutCard';
 export * from './components/display/LineageGraph';
 export * from './components/display/LineChart';
 export * from './components/display/List';
+export * from './components/display/ListCard';
 export * from './components/display/MarkdownRenderer';
 export * from './components/display/MetadataList';
 export * from './components/display/Meter';
