@@ -3067,6 +3067,55 @@ Figma export:
   marker/compact/semantic state cards, compound API notes, runtime token notes,
   and related-component usage boundary are aligned without visible overlap.
 
+The next discovery target was then exported with the additional TreeView
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `TreeView / Section`: `373:2`
+- `TreeView / Library card`: `373:3`
+- Placement: `Display` page, after `Timeline / Section`, at `(40, 48639)`,
+  `1280 x 1707`.
+- Variant contract: no generated variants and no default variant in the
+  component spec; row appearance is driven by data, expansion, selection, and
+  optional render slots.
+- Source contract: the recorded prop surface covers required `nodes`,
+  controlled `expanded`, `onExpandedChange`, `defaultExpanded`, `selectedId`,
+  `selectedIds`, `selectionMode="single"`, `onSelectedIdChange`,
+  `renderNodeMeta`, `renderNodeActions`, `getNodeRowProps`, `className`, and
+  `ul` HTML attributes.
+- Node contract: `TreeNode` records `id`, `label`, optional `icon`, and
+  optional `children`; visible rows are flattened from expanded nodes while
+  preserving `parentId`, `hasChildren`, and `expanded` state.
+- Behavior notes: the Figma specimen records `role="tree"`,
+  `role="treeitem"`, nested `role="group"`, `aria-expanded`,
+  `aria-selected`, `aria-multiselectable` for multiple mode, roving tabindex,
+  ArrowUp / ArrowDown / ArrowLeft / ArrowRight / Home / End navigation,
+  disclosure-only chevron hit target with `tabIndex={-1}`, row click
+  toggle/select behavior, and `--tree-view-indent` depth indentation.
+- Docs-derived states and samples: default expanded, controlled selection,
+  without icons, with icons, metadata and actions; sample labels include
+  guides, assets, guide.md, release.md, hero.png, settings, profile, security,
+  counts, file sizes, and overflow row actions.
+- Composition and usage boundaries: docs compose `DropdownMenu` and
+  `TooltipButton` for row actions; use `TreeView` for hierarchical navigation,
+  `FileTree` when file-browser selection/actions own the interaction model,
+  `List` for flat content, `Accordion` for disclosure sections,
+  `MetadataList` for property rows, and `ToolPill` for compact tools.
+- Runtime token notes: `background`, `foreground`, `muted`,
+  `muted-foreground`, `border`, `input`, `ring`, `primary`, `secondary`, and
+  `accent` were annotated from `src/globals.css`, with row hover/selected
+  treatment using `bg-muted` and disclosure/meta/icon text using
+  `text-muted-foreground`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  no-generated-variant contract, controlled tree specimen, docs state cards,
+  props/default and behavior contracts, runtime token notes, and
+  related-component usage boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -3087,7 +3136,8 @@ Before creating the next component:
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
    ToolPill, Code, EmptyState, Tag, Icon, ColorSwatch, and Carousel
    and DataTable, ActionDataTable, AvatarGroup, CodeBlock, and Timeline
-   components, runtime semantic colors, and specimen treatments are acceptable.
+   and TreeView components, runtime semantic colors, and specimen treatments
+   are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
