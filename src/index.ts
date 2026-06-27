@@ -92,6 +92,7 @@ export * from './components/display/Accordion';
 export * from './components/display/AccordionGroup';
 export * from './components/display/ActionDataTable';
 export * from './components/display/ActivityTimelineCard';
+export * from './components/display/AmountBreakdown';
 export * from './components/display/AnalyticsCard';
 export * from './components/display/ApprovalSteps';
 export * from './components/display/ApprovalWorkflow';
