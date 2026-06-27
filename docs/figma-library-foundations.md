@@ -3432,6 +3432,56 @@ Figma export:
   runtime token notes, and related-chart usage boundary are aligned without
   visible overflow or overlap.
 
+The next discovery target was then exported with the additional SparklineChart
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `SparklineChart / Section`: `398:2`
+- `SparklineChart / Library card`: `398:3`
+- Placement: `Charts` page, after `ChartLegend / Section`, at `(40, 1898)`,
+  `1280 x 1388`.
+- Variant contract: generated variants are `line`, `area`, and `step`; the
+  default variant is `line`.
+- Source contract: the recorded prop surface covers required `data`, optional
+  `variant`, `color`, `referenceValue`, `referenceLabel`, `showGrid`,
+  `showDots`, `strokeWidth`, `formatValue`, `className`, and forwarded
+  `div` HTML attributes except `children`. Defaults are `variant="line"`,
+  `referenceLabel="Reference"`, `showGrid=true`, `showDots=false`, and
+  `strokeWidth=2`.
+- Geometry and behavior: the root is `relative h-24 w-full p-0` with
+  `role="img"`; `ResizeObserver` drives measured SVG dimensions with a
+  `240 x 96` fallback and `6px` padding. Point building filters non-finite
+  values, includes `referenceValue` in the domain when present, renders
+  `step` through midpoint and vertical transition points, uses
+  `preserveAspectRatio="none"`, draws `area` as a low-opacity polygon,
+  and optionally renders 4px point dots.
+- Interaction notes: grid lines render at the 25/50/75% bands when
+  `showGrid` is enabled; reference lines use dashed foreground treatment;
+  point hit areas drive `ChartFloatingTooltip` and reference labels use
+  `ChartTooltip` focus/hover behavior.
+- Docs-derived states and samples: line, area, step, and reference; sample
+  month labels run from 1月 through 12月 with values `24` through `64`.
+  Specimen copy includes 売上トレンド, 月次経常収益, `$128,430`, `+12.4%`,
+  平均, and 目標.
+- Composition and usage boundaries: SparklineChart composes chart-utils,
+  `ChartFloatingTooltip`, and `ChartTooltip`; it is intended for compact
+  trend context inside cards such as `AnalyticsCard`, while larger analytic
+  comparisons should move to `LineChart` or related full chart components.
+- Runtime token notes: chart colors resolve through the chart tone map using
+  `primary`, `success`, `warning`, `info`, `accent`, `destructive`,
+  and `muted`; specimen and annotations use `background`, `foreground`,
+  `border`, `ring`, `popover`, `popover-foreground`, and
+  `muted-foreground`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `line` / `area` / `step` variant contract, reference/dot state,
+  AnalyticsCard composition specimen, props/defaults, runtime token notes, and
+  related-chart usage boundary are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -3452,7 +3502,7 @@ Before creating the next component:
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
    ToolPill, Code, EmptyState, Tag, Icon, ColorSwatch, and Carousel
    and DataTable, ActionDataTable, AvatarGroup, CodeBlock, Timeline,
-   TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, and ChartLegend components, runtime semantic
+   TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, ChartLegend, and SparklineChart components, runtime semantic
    colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.

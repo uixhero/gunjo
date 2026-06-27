@@ -13,12 +13,12 @@ Source of truth:
 ## Current Status
 
 - Discovery scope: 162 components / templates
-- Recorded exports: 93
-- Remaining exports: 69
+- Recorded exports: 94
+- Remaining exports: 68
 - Completed category blocks: `Inputs`, `Overlay`, `Display`
 - Current working category: `Charts`
-- Last recorded component: `ChartLegend`
-- Recommended next component: `SparklineChart`
+- Last recorded component: `SparklineChart`
+- Recommended next component: `LineChart`
 
 ## Completed Blocks
 
@@ -143,10 +143,10 @@ Display remaining:
 Charts recorded so far:
 
 - ChartLegend
+- SparklineChart
 
 Charts remaining:
 
-- SparklineChart
 - LineChart
 - RibbonChart
 - RadialBarChart
@@ -179,11 +179,10 @@ Status: complete.
 
 Recommended order:
 
-1. SparklineChart
+1. LineChart
 
 Remaining:
 
-- SparklineChart
 - LineChart
 - RibbonChart
 - RadialBarChart
