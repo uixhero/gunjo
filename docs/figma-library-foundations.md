@@ -2812,6 +2812,44 @@ Figma export:
   state specimens, runtime token notes, and related-component usage boundary
   are aligned without visible overlap.
 
+The next discovery target was then exported with the additional Carousel
+component family data:
+
+> I approve exporting the Carousel / CarouselContent / CarouselItem /
+> CarouselPrevious / CarouselNext / CarouselDots / CarouselThumbnails /
+> CarouselThumbnail / CarouselAutoplayToggle prop names, default values, and
+> behavior (`opts`, `plugins`, `orientation="horizontal"`, `setApi`,
+> `autoPlay=false`, `autoPlayInterval=4000`, `pauseOnHover=true`, `controls`,
+> `viewportClassName`, `label`, `hideWhenDisabled=false`, `index`, `playLabel`,
+> and `pauseLabel`), generated variant name (`default`) and default variant
+> (`default`), Embla axis resolution, keyboard ArrowLeft / ArrowRight behavior,
+> scroll state tracking (`canScrollPrev`, `canScrollNext`, `selectedIndex`, and
+> `scrollSnapCount`), default-controls resolution, previous / next TooltipButton
+> composition, dots and thumbnails tablist / tab structures, autoplay interval
+> and temporary pause behavior, docs-derived state taxonomy and sample copy
+> (`Single item`, `Peek next item`, `Visible items`, `Position-aware controls`,
+> `Image carousel`, `Image thumbnail controller`, `Autoplay with controls`, and
+> `Vertical`), Card / Img / ImagePreview / TooltipButton / Icon composition and
+> usage boundaries, and token names and values (`background`, `foreground`,
+> `muted`, `muted-foreground`, `border`, `primary`, `primary-border`, `card`,
+> `card-foreground`, `popover`, `popover-foreground`, and `ring`) from this
+> private pre-public repository to the Figma file
+> `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Carousel / Section`: `342:2`
+- `Carousel / Library card`: `342:3`
+- Placement: `Display` page, after `ColorSwatch / Section`, at `(40, 37122)`,
+  `1280 x 2100`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the generated
+  `default` variant contract, 640 px default carousel specimen, prop/default
+  and Embla context contract, peek / visible-items / position-aware-controls /
+  image / thumbnail / autoplay state specimens, runtime token notes, and
+  related-component usage boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2830,8 +2868,8 @@ Before creating the next component:
    PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, Calendar,
    FilterButton, SortButton, EditableField, Form, Combobox, DatePicker,
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
-   ToolPill, Code, EmptyState, Tag, Icon, and ColorSwatch components, runtime
-   semantic colors, and specimen treatments are acceptable.
+   ToolPill, Code, EmptyState, Tag, Icon, ColorSwatch, and Carousel
+   components, runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
