@@ -13,12 +13,12 @@ Source of truth:
 ## Current Status
 
 - Discovery scope: 162 components / templates
-- Recorded exports: 87
-- Remaining exports: 75
+- Recorded exports: 88
+- Remaining exports: 74
 - Completed category blocks: `Inputs`, `Overlay`
 - Current working category: `Display`
-- Last recorded component: `TreeView`
-- Recommended next component: `FileTree`
+- Last recorded component: `FileTree`
+- Recommended next component: `DocNote`
 
 ## Completed Blocks
 
@@ -128,10 +128,10 @@ Display recorded so far:
 - CodeBlock
 - Timeline
 - TreeView
+- FileTree
 
 Display remaining:
 
-- FileTree
 - DocNote
 - AssetCard
 - AssetGrid
@@ -143,11 +143,10 @@ Display remaining:
 
 Recommended order:
 
-1. FileTree
-2. DocNote
-3. AssetCard
-4. AssetGrid
-5. TagEditor
+1. DocNote
+2. AssetCard
+3. AssetGrid
+4. TagEditor
 
 ### Milestone 2: Charts
 

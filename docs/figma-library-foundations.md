@@ -3116,6 +3116,58 @@ Figma export:
   props/default and behavior contracts, runtime token notes, and
   related-component usage boundary are aligned without visible overlap.
 
+The next discovery target was then exported with the additional FileTree
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `FileTree / Section`: `378:2`
+- `FileTree / Library card`: `378:3`
+- Placement: `Display` page, after `TreeView / Section`, at `(40, 50394)`,
+  `1280 x 1502`.
+- Variant contract: generated variants are `single`, `multiple`, and
+  `actions`; the default variant is `single`.
+- Source contract: the recorded prop surface covers required `nodes`,
+  `variant`, `selectionMode`, `selectedIds`, `defaultSelectedIds`,
+  `onSelectedIdsChange`, `onNodeSelect`, `renderNodeMeta`,
+  `renderNodeActions`, `getNodeRowProps`, `className`, and inherited TreeView
+  expansion props such as `expanded`, `defaultExpanded`, and
+  `onExpandedChange`.
+- Node contract: `FileTreeNode` records `id`, `label`, optional `type`,
+  optional `icon`, optional `children`, `meta`, `size`, and `count`; FileTree
+  maps the node data to TreeView nodes and supplies default folder/file icons.
+- Behavior notes: `selectionMode` resolves from the variant unless explicitly
+  provided (`single` -> `single`, `multiple` -> `multiple`, `actions` ->
+  `single`); multiple mode toggles selected ids, single mode replaces the
+  selected id array, and `selectionMode="none"` calls `onNodeSelect` without
+  mutating selection. Metadata resolution uses `meta`, then `size`, then
+  `count`; folder detection uses `type="folder"` or the presence of children.
+- Docs-derived states and samples: single selection, multiple selection, and
+  row actions; sample labels include Campaign / キャンペーン, Docs / 資料,
+  hero.png / ヒーロー画像.png, banner.jpg / バナー.jpg, brief.md /
+  要件メモ.md, checklist.md / 確認リスト.md, `2件`, `2.4 MB`, `860 KB`,
+  View details / 詳細を表示, Rename / 名前を変更, and Copy path /
+  パスをコピー.
+- Composition and usage boundaries: FileTree composes `TreeView` and, for row
+  actions, `DropdownMenu` with `TooltipButton`; use `FileTree` when
+  file-browser selection/actions own the interaction model, `TreeView` for
+  generic hierarchical navigation, `AssetGrid` for visual asset galleries,
+  `MediaLibraryTemplate` for full media library workflows, and `SidebarItem`
+  for non-file navigation lists.
+- Runtime token notes: `background`, `foreground`, `muted`,
+  `muted-foreground`, `border`, `input`, `ring`, `primary`, `secondary`, and
+  `accent` were annotated from `src/globals.css`; row selected state uses
+  `muted` and `primary` alpha stroke, default metadata/icon text uses
+  `muted-foreground`, and row control borders use `input`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `single` / `multiple` / `actions` variant contract, file-browser specimen,
+  docs state cards, props/default and behavior contracts, runtime token notes,
+  and related-component usage boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -3135,9 +3187,9 @@ Before creating the next component:
    FilterButton, SortButton, EditableField, Form, Combobox, DatePicker,
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
    ToolPill, Code, EmptyState, Tag, Icon, ColorSwatch, and Carousel
-   and DataTable, ActionDataTable, AvatarGroup, CodeBlock, and Timeline
-   and TreeView components, runtime semantic colors, and specimen treatments
-   are acceptable.
+   and DataTable, ActionDataTable, AvatarGroup, CodeBlock, Timeline,
+   TreeView, and FileTree components, runtime semantic colors, and specimen
+   treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
