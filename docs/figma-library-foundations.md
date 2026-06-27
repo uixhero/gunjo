@@ -3538,6 +3538,61 @@ Figma export:
   states, props/defaults, runtime token notes, and related-chart usage boundary
   are aligned without visible overflow or overlap.
 
+The next discovery target was then exported with the additional RibbonChart
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `RibbonChart / Section`: `406:2`
+- `RibbonChart / Library card`: `406:3`
+- Placement: `Charts` page, after `LineChart / Section`, at
+  `(40, 5100)`, `1280 x 1718`.
+- Variant contract: generated variants are `flow` and `stacked`; the
+  default variant is `flow`.
+- Source contract: the recorded prop surface covers required `layers`,
+  optional `variant`, `max`, `totalLabel`, `showGrid`,
+  `showLegend`, `showLabels`, `formatValue`, `className`, and
+  forwarded `div` HTML attributes except `children`. Defaults are
+  `variant="flow"`, `totalLabel="Total"`, `showGrid=true`,
+  `showLegend=false`, `showLabels=true`, and
+  `formatValue=defaultChartValueFormatter`.
+- Geometry and behavior: the root is `flex min-w-0 flex-col gap-3` plus
+  `h-[260px] w-full p-0`; `ResizeObserver` drives measured plot
+  dimensions with a `480 x 212` fallback and plot padding
+  `14 / 12 / 10 / 28`. Layer point values are normalized to finite
+  positive numbers, stacked per label, and scaled against either the largest
+  column total or explicit `max`.
+- Rendering notes: `flow` centers each column vertically so changing volume
+  reads as a continuous ribbon, while `stacked` anchors totals to the
+  baseline. Grid rows render at 0/25/50/75/100% and vertical grid lines follow
+  the longest layer labels. Optional labels use a CSS grid with one column per
+  label.
+- Interaction notes: each layer point creates focusable hit areas with
+  `aria-label`; pointer, mouse, touch, and keyboard focus open
+  `ChartFloatingTooltip`. Touch pointer down makes the tooltip sticky until
+  close, and the active layer drives opacity changes plus a highlighted overlay.
+- Docs-derived states and samples: flow, stacked, no labels, and explicit max;
+  sample layers include 新規 / 継続 / 拡張 and New / Returning / Expansion
+  across 1月-6月 / Jan-Jun with values 22-60, 16-52, and 8-48. Sample copy
+  includes 合計, Total, 流量分布, and Flow distribution.
+- Composition and usage boundaries: RibbonChart composes chart-utils,
+  `ChartFloatingTooltip`, and `ChartLegend`; use it when segment width or
+  flow continuity matters across periods. Use `LineChart` for point trends,
+  `StackedBarChart` for discrete totals, and `DonutChart` / `PieChart`
+  for a single composition snapshot.
+- Runtime token notes: layer colors resolve through chart color tones such as
+  `primary`, `success`, and `warning`; specimen and annotations use
+  `background`, `foreground`, `border`, `ring`, `popover`,
+  `popover-foreground`, and `muted-foreground`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `flow` / `stacked` variant contract, no-labels/bounded states,
+  props/defaults, runtime token notes, and related-chart usage boundary are
+  aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -3558,7 +3613,7 @@ Before creating the next component:
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
    ToolPill, Code, EmptyState, Tag, Icon, ColorSwatch, and Carousel
    and DataTable, ActionDataTable, AvatarGroup, CodeBlock, Timeline,
-   TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, ChartLegend, SparklineChart, and LineChart components, runtime semantic
+   TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, ChartLegend, SparklineChart, LineChart, and RibbonChart components, runtime semantic
    colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
