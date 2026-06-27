@@ -4231,6 +4231,61 @@ Figma export:
   minimal states, props/defaults, runtime token notes, and related-chart usage
   boundary are aligned without visible overflow or overlap.
 
+The next discovery target was then exported with the additional HeatmapChart
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `HeatmapChart / Section`: `454:2`
+- `HeatmapChart / Library card`: `454:3`
+- Placement: `Charts` page, after `RadarChart / Section`, at `(40, 30102)`,
+  `1280 x 2040`.
+- Variant contract: generated variants are `default` and `compact`; the
+  default variant is `default`.
+- Source contract: the recorded prop surface covers required `data`, `xLabels`,
+  and `yLabels`, optional `summary`, `variant`, `max`, `summaryMax`, `color`,
+  `selectedCell`, `showValues`, `showSummaryValues`, `formatValue`,
+  `summaryLabel`, `onCellSelect`, `className`, and forwarded div attributes.
+  Defaults are `variant="default"`, `showValues=false`,
+  `showSummaryValues=true`, and
+  `formatValue=defaultChartValueFormatter`.
+- Geometry and behavior: the default density uses `w-full p-0`, 32px minimum
+  cells, and `rounded-md` cells; compact uses `w-full p-0`, 24px minimum
+  cells, and `rounded` cells. The y-axis label column is `2.75rem`, x labels
+  align above the grid, and optional summary bars reserve a minimum 56px row.
+- Heatmap model: cells are keyed by `${x}::${y}` and normalized against
+  `maxValue`, which resolves from optional `max`, all cell values, and `1`.
+  Summary bars normalize against `summaryMax` or summary values and map
+  opacity from `0.35` to `1`.
+- Interaction notes: cells render as buttons when `onCellSelect` is provided
+  and the cell exists; otherwise they render as focusable spans. Selected cells
+  use a foreground ring with background ring offset. `ChartTooltip` wraps cells
+  and summary bars, and value chips appear when `showValues` or
+  `showSummaryValues` is enabled.
+- Docs-derived states and samples: default, summary, values, selected cell,
+  compact, and alternate color. Sample copy includes 月, 火, 水, 木, 金, 土,
+  日, 00, 04, 08, 12, 16, 20, ピーク, 混雑度, Mon, Tue, Wed, Thu, Fri, Sat,
+  Sun, and Peak.
+- Composition and usage boundaries: HeatmapChart composes grid labels,
+  optional summary bars, optional cell values, `ChartTooltip`, and chart-utils.
+  Use HeatmapChart for two-dimensional intensity matrices, ActivityTimelineCard
+  for chronological activity summaries, DistributionBar for one-dimensional
+  distributions, and RadarChart for multi-axis score comparisons.
+- Runtime token notes: default cell color resolves through chart data or
+  `primary`; selected focus affordances use `foreground`, `background`, and
+  `ring`; labels use `muted-foreground`; grid surfaces and annotations use
+  `background`, `border`, and `muted`; tooltip chrome uses `popover` and
+  `popover-foreground`; alternate chart colors use `success`, `warning`,
+  `info`, `accent`, and `destructive`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `default` / `compact` variant contract, summary / value / selected /
+  compact / alternate-color states, props/defaults, runtime token notes, and
+  related-chart usage boundary are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -4255,8 +4310,8 @@ Before creating the next component:
    SparklineChart, LineChart, RibbonChart, RadialBarChart, BarChart, and
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
-   GaugeChart, SegmentedGaugeCard, and RadarChart components, runtime semantic
-   colors, and specimen treatments are acceptable.
+   GaugeChart, SegmentedGaugeCard, RadarChart, and HeatmapChart components,
+   runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
