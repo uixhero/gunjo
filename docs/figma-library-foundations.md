@@ -3023,6 +3023,50 @@ Figma export:
   props/default and behavior contracts, runtime token notes, and
   related-component usage boundary are aligned without visible overlap.
 
+The next discovery target was then exported with the additional Timeline
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `Timeline / Section`: `369:2`
+- `Timeline / Library card`: `369:3`
+- Placement: `Display` page, after `CodeBlock / Section`, at `(40, 46704)`,
+  `1280 x 1887`.
+- Variant contract: no generated variants and no default variant in the
+  component spec; runtime marker states are provided by `TimelineItem.variant`.
+- Source contract: the recorded compound API covers `Timeline` as ordered-list
+  HTML attributes, `TimelineItem` as list-item HTML attributes with
+  `connector=true`, `variant="default"`, optional `marker`, and slot
+  components `TimelineTime`, `TimelineTitle`, and `TimelineDescription`.
+- Runtime marker states: `default`, `muted`, `active`, `outline`, `success`,
+  `warning`, `destructive`, and `info`; custom marker nodes replace the
+  default dot, and `connector={false}` removes the next-step line.
+- Behavior notes: the Figma specimen records `hasTimelineTime` marker padding,
+  connector line rendering, active marker pulse animation with
+  `prefers-reduced-motion` fallback, final-item connector removal, custom
+  marker composition, and compact timelines without time/description slots.
+- Docs-derived states and samples: release progress, custom markers, compact
+  process steps, semantic status tones, and demo examples such as Kickoff,
+  Spec approved, Implementation / Current, Review complete, Received,
+  Processing, Approved, and Sent back.
+- Composition and usage boundaries: docs compose `Tag` for the current-step
+  badge; use `Timeline` for vertical chronological/process lists, `List` for
+  unordered content groups, `ActivityTimelineCard` and `SegmentTimelineCard`
+  for chart-like timelines, and `Separator` for static dividers.
+- Runtime token notes: `foreground`, `background`, `muted-foreground`,
+  `border`, `primary`, `primary-border`, `success-strong`, `warning-strong`,
+  `destructive-strong`, `info-strong`, and `ring` were annotated from
+  `src/globals.css`; the active marker animation uses `primary` alpha
+  shadows from `.gunjo-timeline-marker-active`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  no-generated-variant contract, release timeline specimen, progress/custom
+  marker/compact/semantic state cards, compound API notes, runtime token notes,
+  and related-component usage boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -3042,8 +3086,8 @@ Before creating the next component:
    FilterButton, SortButton, EditableField, Form, Combobox, DatePicker,
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
    ToolPill, Code, EmptyState, Tag, Icon, ColorSwatch, and Carousel
-   and DataTable, ActionDataTable, AvatarGroup, and CodeBlock components, runtime
-   semantic colors, and specimen treatments are acceptable.
+   and DataTable, ActionDataTable, AvatarGroup, CodeBlock, and Timeline
+   components, runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
