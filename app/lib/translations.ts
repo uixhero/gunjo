@@ -1602,6 +1602,7 @@ export const translations: Record<
       FilterChips: "フィルタチップ",
       PageHeader: "ページヘッダー",
       Itinerary: "旅程",
+      TicketStub: "チケット券面",
       RevealSection: "条件付きセクション",
       Delta: "差分",
       Meter: "メーター",
