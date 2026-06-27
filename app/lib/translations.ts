@@ -1598,6 +1598,7 @@ export const translations: Record<
       ListCard: "リストカード",
       SeatMap: "座席表",
       LoyaltySummaryCard: "ロイヤリティ要約カード",
+      RadioCard: "選択カード",
       RevealSection: "条件付きセクション",
       Delta: "差分",
       Meter: "メーター",

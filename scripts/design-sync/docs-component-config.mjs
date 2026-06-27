@@ -193,6 +193,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "list-card": "Display",
   "seat-map": "Display",
   "loyalty-summary-card": "Display",
+  "radio-card": "Display",
   "reference-value": "Display",
   "signed-record": "Display",
   statistic: "Display",

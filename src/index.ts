@@ -147,6 +147,7 @@ export * from './components/display/PieChart';
 export * from './components/display/QuadrantMatrix';
 export * from './components/display/RadarChart';
 export * from './components/display/RadialBarChart';
+export * from './components/display/RadioCard';
 export * from './components/display/Rating';
 export * from './components/display/ReferenceValue';
 export * from './components/display/RelationshipRow';

@@ -2028,6 +2028,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "radioCard": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
+      "variantColorHints": {}
+    },
     "rating": {
       "variantKeys": [
         "default",

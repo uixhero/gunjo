@@ -1485,6 +1485,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "radioCard": {
+      "title": "RadioCard",
+      "description": "The priced selectable choice card: RadioGroup's single-select role=radio + keyboard semantics (radiogroup, roving tabindex, arrow keys) wearing a card body — tags, title, secondary (area・period), a dominant price slot, an おトク/highlight hook, leading accessory — with a built-in selected check + ring. The B2C purchase / plan-picker / shipping-option / payment-method atom. Use this for pick-one-of-many (NOT ListCard, whose onSelect is an aria-pressed toggle, not radio single-select; NOT RadioGroup, which is a bare 16px dot + label). ≥44px tap target; selection marked by a check, not colour alone. RadioCardGroup (value/onValueChange/name) wraps the RadioCards.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/RadioCard.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "rating": {
       "title": "Rating",
       "description": "Read-only star rating display with half-star support, optional numeric value and review count, for product, review, and feedback summaries.",
