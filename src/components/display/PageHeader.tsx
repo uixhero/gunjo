@@ -14,7 +14,7 @@ export interface PageHeaderProps extends Omit<React.HTMLAttributes<HTMLElement>,
   onBack?: () => void
   /** Accessible label for the back button. Default `戻る`. */
   backLabel?: string
-  /** Override the leading slot (instead of the back button). */
+  /** Extra leading element. Renders in the leading slot — *alongside* the back button when `onBack` is also set, otherwise on its own. */
   leading?: React.ReactNode
   /** Trailing action(s) — e.g. a close / refresh / menu button. */
   actions?: React.ReactNode
@@ -33,20 +33,26 @@ export interface PageHeaderProps extends Omit<React.HTMLAttributes<HTMLElement>,
  */
 export const PageHeader = React.forwardRef<HTMLElement, PageHeaderProps>(
   ({ className, title, subtitle, onBack, backLabel = "戻る", leading, actions, sticky = true, align = "left", ...props }, ref) => {
-    const back = leading
-      ? leading
-      : onBack
-        ? (
-          <button
-            type="button"
-            onClick={onBack}
-            aria-label={backLabel}
-            className="-ml-2 inline-flex size-11 shrink-0 items-center justify-center rounded-md text-foreground outline-none transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring"
-          >
-            <IconChevronLeft className="size-6" aria-hidden="true" />
-          </button>
-        )
-        : null
+    // Render BOTH the back button and any `leading` element — never let one silently shadow the
+    // other (passing both used to drop onBack's handler + aria-label with no type error).
+    const backButton = onBack ? (
+      <button
+        type="button"
+        onClick={onBack}
+        aria-label={backLabel}
+        className="-ml-2 inline-flex size-11 shrink-0 items-center justify-center rounded-md text-foreground outline-none transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring"
+      >
+        <IconChevronLeft className="size-6" aria-hidden="true" />
+      </button>
+    ) : null
+
+    const back =
+      backButton != null || leading != null ? (
+        <>
+          {backButton}
+          {leading}
+        </>
+      ) : null
 
     const centered = align === "center"
 

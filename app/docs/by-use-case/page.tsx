@@ -102,6 +102,7 @@ const GROUPS: Group[] = [
         items: [
             { build: { en: "Multi-stage approval workflow (advance / send-back / reject)", ja: "多段承認ワークフロー（進める/差戻し/却下）" }, comp: "ApprovalWorkflow", slug: "approval-workflow", when: { en: "ringi / expense / review / 内定 / 交付 routing with sign-off.", ja: "稟議/経費/審査/内定/交付。" } },
             { build: { en: "Approval progress display", ja: "承認ステップ表示" }, comp: "ApprovalSteps", slug: "approval-steps" },
+            { build: { en: "Multi-step wizard / form progress (対象選択 → 確認 → 完了)", ja: "多段ウィザード/フォームの進捗（対象選択 → 確認 → 完了）" }, comp: "Stepper", slug: "stepper", when: { en: "the step indicator for a checkout / refund / signup / application flow — steps[] of {label,state}, horizontal variant tuned for 375px. The progress display only; you own the wizard state + bottom action bar. Not approval routing (ApprovalSteps) or status tracking (RouteStops).", ja: "決済/払戻し/登録/申込フローの段階表示＝steps[] の {label,state}・横並びは375px最適化。表示のみ(状態とボトムバーは自前)。承認は ApprovalSteps、状態追跡は RouteStops。" } },
             { build: { en: "Signed / locked / append-only legal record (確定後は追記のみ)", ja: "署名・ロック・追記のみの法的記録（確定後は追記のみ）" }, comp: "SignedRecord", slug: "signed-record", when: { en: "discharge summaries, 介護記録, ケアプラン交付 — sign locks read-only, corrections via addenda.", ja: "退院サマリ・介護記録・ケアプラン交付。署名でロック・修正は追記。" } },
             { build: { en: "Two-person verification / double-check", ja: "2人確認・ダブルチェック" }, comp: "CoSign", slug: "co-sign", when: { en: "maker-checker with same-person guard (与薬, 人事確定, 明細確定).", ja: "同一人物ガード付き（与薬・人事確定・明細確定）。" } },
         ],
