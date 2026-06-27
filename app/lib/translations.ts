@@ -1601,6 +1601,7 @@ export const translations: Record<
       RadioCard: "選択カード",
       FilterChips: "フィルタチップ",
       PageHeader: "ページヘッダー",
+      Itinerary: "旅程",
       RevealSection: "条件付きセクション",
       Delta: "差分",
       Meter: "メーター",

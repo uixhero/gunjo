@@ -130,6 +130,7 @@ export * from './components/display/HeatmapChart';
 export * from './components/display/Icon';
 export * from './components/display/ImagePreview';
 export * from './components/display/Img';
+export * from './components/display/Itinerary';
 export * from './components/display/KanbanBoard';
 export * from './components/display/Kbd';
 export * from './components/display/LabeledDonutCard';

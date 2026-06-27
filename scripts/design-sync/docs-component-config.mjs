@@ -196,6 +196,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "radio-card": "Display",
   "filter-chips": "Display",
   "page-header": "Navigation",
+  "itinerary": "Display",
   "reference-value": "Display",
   "signed-record": "Display",
   statistic: "Display",

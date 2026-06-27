@@ -1290,6 +1290,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "itinerary": {
+      "title": "Itinerary",
+      "description": "The day-grouped, mixed-kind trip/journey timeline: a vertical sequence of items (flight / hotel / activity / transit leg …), each with a per-kind icon+tone marker, a time, a title + secondary, an optional rich content slot, and an opt-in tappable row (≥44px + chevron). Group by day (days[] with day headers + place sublabels) or pass flat items[]. The traveller-facing trip-plan / 乗換経路 / journey view — richer than Timeline (per-item kind + content + tap) and the right call over RouteStops, whose status/予実 (未配/配送中/遅れ) vocabulary is delivery-locked and wrong for a forward plan. RSC-safe except the opt-in onSelect.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/Itinerary.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "kanbanBoard": {
       "title": "KanbanBoard",
       "description": "A kanban / status board: ordered columns (lanes) of cards, grouped from a flat items list by getColumnId, with per-column count badges, a card render-prop, optional activatable cards, empty-column placeholders, header accent dots, and a contained horizontal scroll that doesn't push the page on mobile. Each column is a labelled region and cards are real buttons when selectable (keyboard-operable). Drag-and-drop is bring-your-own. For editorial boards, CRM pipelines, support queues, task boards and any column-of-cards workflow.",
