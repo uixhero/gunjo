@@ -4694,6 +4694,52 @@ Figma export:
   Banner / Toast / DocNote / AlertDialog usage boundaries are aligned without
   visible overflow or overlap.
 
+The next discovery target was then exported with the additional Progress
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `Progress / Section`: `480:2`
+- `Progress / Library card`: `480:14`
+- Placement: `Feedback` page, after `Alert / Section`, at `(40, 2676)`,
+  `1280 x 2140`.
+- Variant contract: generated variant is `bar`; the default variant is `bar`.
+- Source contract: the recorded prop surface covers `value`, `max`, `label`,
+  `valueText`, `className`, `aria-label`, and inherited div HTML attributes.
+  Defaults are `value=0`, `max=100`, and `safeMax=100` when `max <= 0`.
+- Accessibility notes: root renders `role="progressbar"`; `aria-label` uses
+  explicit `aria-label` first and falls back to `label`; `valueText` maps to
+  `aria-valuetext`; `aria-valuemin=0`, `aria-valuemax=safeMax`, and
+  `aria-valuenow=value`. Progress needs an accessible name via `label` or
+  `aria-label`.
+- Layout notes: root uses `relative h-4 w-full overflow-hidden rounded-full
+  bg-secondary`; the indicator uses `h-full w-full flex-1 bg-foreground
+  transition-all`; displayed percentage is clamped with
+  `Math.min(100, Math.max(0, ((value || 0) / safeMax) * 100))`; the indicator
+  position is expressed through `transform: translateX(-(100 - percentage)%)`.
+- Docs-derived states and samples: in progress, dynamic progress, early
+  progress, complete, and custom max. Sample copy includes アップロード, 66%,
+  残り 4 ファイルを処理しています。, キューを準備しています。,
+  すべてのファイルを処理しました。, ストレージ, 42 / 64 GB,
+  ファイルアップロード進捗, 一時停止, 再開, 失敗を再現, and やり直す.
+- Composition and usage boundaries: Progress renders the current determinate
+  value only; the parent owns running, paused, failed, retry, and complete
+  status text/actions. Use Spinner for indeterminate waiting, Skeleton for
+  loading placeholders, and ProgressWidget when the progress bar belongs inside
+  a metric card.
+- Runtime token notes: root track uses `secondary`; indicator uses
+  `foreground`; surrounding labels and helper copy use `foreground` and
+  `muted-foreground`; specimen annotations use `background`, `border`, and
+  `ring`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the `bar`
+  variant, value/max clamp model, ARIA contract, docs states, token notes, and
+  Spinner / Skeleton / ProgressWidget usage boundaries are aligned without
+  visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -4719,7 +4765,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, and Alert components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, and Progress components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
