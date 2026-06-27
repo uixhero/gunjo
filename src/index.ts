@@ -175,6 +175,7 @@ export * from './components/display/SwatchGroup';
 export * from './components/display/Table';
 export * from './components/display/Tag';
 export * from './components/display/TagEditor';
+export * from './components/display/TicketStub';
 export * from './components/display/Timeline';
 export * from './components/display/ToolPill';
 export * from './components/display/TreeView';

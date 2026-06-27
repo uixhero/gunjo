@@ -2414,6 +2414,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "ticketStub": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
+      "variantColorHints": {}
+    },
     "timeline": {
       "variantKeys": [],
       "defaultVariantKey": null,

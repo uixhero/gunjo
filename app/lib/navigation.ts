@@ -158,6 +158,7 @@ export const navigation = [
             { title: "Table", href: "/docs/components/table" },
             { title: "Tag", href: "/docs/components/tag" },
             { title: "TagEditor", href: "/docs/components/tag-editor" },
+            { title: "TicketStub", href: "/docs/components/ticket-stub" },
             { title: "Timeline", href: "/docs/components/timeline" },
             { title: "ToolPill", href: "/docs/components/tool-pill" },
             { title: "TreeView", href: "/docs/components/tree-view" },

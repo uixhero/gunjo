@@ -197,6 +197,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "filter-chips": "Display",
   "page-header": "Navigation",
   "itinerary": "Display",
+  "ticket-stub": "Display",
   "reference-value": "Display",
   "signed-record": "Display",
   statistic: "Display",

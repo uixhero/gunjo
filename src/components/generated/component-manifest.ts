@@ -1800,6 +1800,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "ticketStub": {
+      "title": "TicketStub",
+      "description": "The scannable pass / ticket / coupon / member-card stub: a card with a barcode or QR (real value in the SR name via role=img), a human-readable code label, an optional perforation notch (the cut-out look that reads as a ticket), and a content slot above for the domain detail (flight OD-pair + seat/gate, coupon discount + 期限, member tier + points). The thing the traveller holds up at the gate / register — the consumer mirror of ScanInput/ScanGate (which capture a code; this displays one). value + format (code128 / qr). RSC-safe; the built-in code render is a deterministic (SSR-safe) visual placeholder — pass the code prop for a production-scannable barcode from a lib.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/TicketStub.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "timeline": {
       "title": "Timeline",
       "description": "Vertical time-ordered list with markers and connector lines.",

@@ -117,7 +117,8 @@ const GROUPS: Group[] = [
         items: [
             { build: { en: "Money input (¥)", ja: "金額入力（¥）" }, comp: "CurrencyInput", slug: "currency-input" },
             { build: { en: "Format yen / number / percent (ja-JP, JPY by default)", ja: "円/数値/％の整形（ja-JP・JPY 既定）" }, comp: "formatCurrency / formatNumber / formatPercent", when: { en: "no Intl boilerplate; pass to a component's formatValue prop.", ja: "Intl 不要。formatValue prop にも渡せる。" } },
-            { build: { en: "Barcode scan / staged scan flow", ja: "バーコードスキャン・段階スキャン" }, comp: "ScanInput / ScanGate", slug: "scan-input" },
+            { build: { en: "Barcode scan / staged scan flow (OPERATOR captures a code)", ja: "バーコードスキャン・段階スキャン（事業者がコードを読み取る）" }, comp: "ScanInput / ScanGate", slug: "scan-input", when: { en: "the cashier/handler side. To DISPLAY a code to show (boarding pass / coupon / member card) → TicketStub.", ja: "レジ/係員側＝読み取る。提示する券面(搭乗券/クーポン/会員証)は TicketStub。" } },
+            { build: { en: "Scannable pass / ticket / coupon / member card to SHOW (barcode/QR + stub券面)", ja: "提示用の券面（搭乗券/eチケット/クーポン/会員証）＝バーコード/QR＋ミシン目" }, comp: "TicketStub", slug: "ticket-stub", when: { en: "value + format (code128/qr) + human-readable label + perforation notch + a content slot (OD-pair/discount/tier). The consumer mirror of ScanInput (display vs capture). Pass `code` for a real scannable barcode.", ja: "value＋format(code128/qr)＋可読ラベル＋ミシン目＋内容スロット(OD/割引/ランク)。ScanInput の消費者側ミラー(提示 vs 読取)。実スキャンは code で差替。" } },
             { build: { en: "Checklist with check + label + a11y name", ja: "チェックリスト（チェック＋ラベル＋読み上げ名）" }, comp: "CheckList", slug: "check-list" },
         ],
     },
