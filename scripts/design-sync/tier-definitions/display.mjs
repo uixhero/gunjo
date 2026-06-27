@@ -887,6 +887,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "loyaltySummaryCard",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:loyaltySummaryCard",
+      title: "LoyaltySummaryCard",
+      description: "The points/balance/tier hero every consumer loyalty screen opens with: a prominent balance, a tier/rank badge, optional secondary values (IC残高/当年実績), a higher-is-better progress-to-next-tier with a remaining label (『プラチナまであと ¥13,800』 — never auto-reds like a capacity Meter), an expiry-warning slot and a primary action. The brand tone is a filled gradient surface so the hero has shine without reaching for arbitrary brand-token classes. For airline マイル, 鉄道 IC/ポイント, retail/EC rewards, membership tiers. For the back-office KPI strip use StatGroup; for a money breakdown use AmountBreakdown; for the points/coupon/history list under the hero use ListCard. Presentational (the action slot owns interactivity) — RSC-safe.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "listCard",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:listCard",
