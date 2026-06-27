@@ -82,6 +82,36 @@ module.exports = {
             white: "hsl(var(--palette-white))",
             black: "hsl(var(--palette-black))",
         },
+        // Brand atmosphere palettes — the 群青 (gunjo) navy ramp, the 黄昏 (dawn)
+        // sunrise stops and the 媚茶 (kobicha) warm browns. Previously CSS-var-only
+        // (hero / color-story art); exposed here as utilities (bg-gunjo-deep,
+        // from-gunjo-deepest, text-dawn-sun, bg-kobicha-warm …) so consumer surfaces
+        // (loyalty heroes, brand gradients) can use on-brand colour without
+        // hand-writing bg-[hsl(var(--gunjo-deeper))]. (#367)
+        gunjo: {
+            light: "hsl(var(--gunjo-light))",
+            bright: "hsl(var(--gunjo-bright))",
+            mid: "hsl(var(--gunjo-mid))",
+            dark: "hsl(var(--gunjo-dark))",
+            deep: "hsl(var(--gunjo-deep))",
+            deeper: "hsl(var(--gunjo-deeper))",
+            deepest: "hsl(var(--gunjo-deepest))",
+        },
+        dawn: {
+            sky: "hsl(var(--dawn-sky))",
+            sea: "hsl(var(--dawn-sea))",
+            depth: "hsl(var(--dawn-depth))",
+            sun: "hsl(var(--dawn-sun))",
+            "sun-halo": "hsl(var(--dawn-sun-halo))",
+            pulse: "hsl(var(--dawn-pulse))",
+            "pulse-halo": "hsl(var(--dawn-pulse-halo))",
+        },
+        kobicha: {
+            warm: "hsl(var(--kobicha-warm))",
+            mid: "hsl(var(--kobicha-mid))",
+            bright: "hsl(var(--kobicha-bright))",
+            deepest: "hsl(var(--kobicha-deepest))",
+        },
     },
     borderRadius: {
         lg: "var(--radius)",

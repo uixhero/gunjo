@@ -66,7 +66,7 @@ export const LoyaltySummaryCard = React.forwardRef<HTMLDivElement, LoyaltySummar
         className={cn(
           "w-full overflow-hidden rounded-xl p-5",
           brand
-            ? "bg-gradient-to-br from-primary to-primary/80 text-primary-foreground shadow-sm"
+            ? "bg-gradient-to-br from-gunjo-deep to-gunjo-deepest text-primary-foreground shadow-sm"
             : "border bg-card text-card-foreground",
           className
         )}
