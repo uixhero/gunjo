@@ -3376,6 +3376,62 @@ Figma export:
   token notes, and related-component usage boundary are aligned without visible
   overflow or overlap.
 
+The next discovery target was then exported with the additional ChartLegend
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `ChartLegend / Section`: `394:2`
+- `ChartLegend / Library card`: `394:3`
+- Placement: `Charts` page, after the page intro frame, at `(40, 368)`,
+  `1280 x 1482`.
+- Variant contract: generated variants are `horizontal` and `vertical`; the
+  default variant is `horizontal`.
+- Source contract: the recorded prop surface covers required `items`, optional
+  `variant`, optional `activeIndex`, `className`, forwarded `div` HTML
+  attributes, and optional root `role` override. `ChartLegendItem` contains
+  `label`, optional `value`, optional `color`, and optional
+  `description`.
+- Layout contract: `horizontal` is `inline-flex w-full flex-wrap items-center
+  gap-2 p-0`; `vertical` is `flex w-full flex-col items-stretch gap-2 p-0`.
+  Each item is an inline-flex, focusable `listitem` with marker, label, and
+  optional value. Vertical rows justify values to the edge while label text
+  truncates first to prevent horizontal scroll.
+- Behavior notes: the root defaults to `role="list"`; each item uses
+  `tabIndex={0}`, `aria-label` built from label/value/description, and
+  `aria-current="true"` when `activeIndex` matches. Active items receive
+  border, `bg-muted/60`, foreground text, and shadow treatment. Every item is
+  wrapped in `ChartTooltip`; empty tooltip content returns the child directly.
+- Color contract: `ChartTone` values are `primary`, `success`, `warning`,
+  `info`, `accent`, `destructive`, and `muted`; `getChartColor`
+  resolves missing colors through `chartToneOrder` and maps tones to
+  `hsl(var(--...))` values.
+- Docs-derived states and samples: horizontal, vertical, without values, and
+  constrained width; sample labels include 自然流入, 紹介, 直接, 完了, 進行中,
+  確認待ち, 差し戻し, 検索, SNS, 広告, メール, その他, 合計: 12,400,
+  合計: 7,560, 公開済みの項目です。, 作業中の項目です。, レビュー待ちの項目です。,
+  and 修正が必要な項目です。
+- Composition and usage boundaries: ChartLegend composes `ChartTooltip` and
+  chart-utils color resolution; use it for chart series or distribution segment
+  legends, and compose it with `DonutChart`, `DistributionBar`,
+  `StackedBarChart`, `PieChart`, `LineChart`, and related chart cards when
+  the chart needs an external legend.
+- Runtime token notes: root styling is structural; item labels use
+  `muted-foreground`, values use `foreground`, active items use `border`,
+  `muted`, and shadow treatment, tooltips use `popover`,
+  `popover-foreground`, `border`, and `muted-foreground`, and focus/open
+  rings use `ring` plus `background`. Marker specimens include `primary`,
+  `success`, `warning`, `info`, `accent`, `destructive`, and `muted`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `horizontal` / `vertical` variant contract, horizontal/vertical/value-less/
+  constrained specimens, props/default and tooltip/accessibility contracts,
+  runtime token notes, and related-chart usage boundary are aligned without
+  visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -3396,7 +3452,7 @@ Before creating the next component:
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
    ToolPill, Code, EmptyState, Tag, Icon, ColorSwatch, and Carousel
    and DataTable, ActionDataTable, AvatarGroup, CodeBlock, Timeline,
-   TreeView, FileTree, DocNote, AssetCard, AssetGrid, and TagEditor components, runtime semantic
+   TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, and ChartLegend components, runtime semantic
    colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.

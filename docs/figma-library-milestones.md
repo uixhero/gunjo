@@ -13,12 +13,12 @@ Source of truth:
 ## Current Status
 
 - Discovery scope: 162 components / templates
-- Recorded exports: 92
-- Remaining exports: 70
+- Recorded exports: 93
+- Remaining exports: 69
 - Completed category blocks: `Inputs`, `Overlay`, `Display`
 - Current working category: `Charts`
-- Last recorded component: `TagEditor`
-- Recommended next component: `ChartLegend`
+- Last recorded component: `ChartLegend`
+- Recommended next component: `SparklineChart`
 
 ## Completed Blocks
 
@@ -138,6 +138,37 @@ Display remaining:
 
 - None
 
+## Charts Progress
+
+Charts recorded so far:
+
+- ChartLegend
+
+Charts remaining:
+
+- SparklineChart
+- LineChart
+- RibbonChart
+- RadialBarChart
+- BarChart
+- ConcentricProgressCard
+- StackedBarChart
+- DistributionBar
+- MiniDistributionBarCard
+- SegmentTimelineCard
+- DonutChart
+- PieChart
+- GaugeChart
+- SegmentedGaugeCard
+- RadarChart
+- HeatmapChart
+- ActivityTimelineCard
+- LabeledDonutCard
+- RetentionCohortCard
+- ChoroplethMap
+- QuadrantMatrix
+- AnalyticsCard
+
 ## Remaining Milestones
 
 ### Milestone 1: Finish Display
@@ -148,11 +179,10 @@ Status: complete.
 
 Recommended order:
 
-1. ChartLegend
+1. SparklineChart
 
 Remaining:
 
-- ChartLegend
 - SparklineChart
 - LineChart
 - RibbonChart
