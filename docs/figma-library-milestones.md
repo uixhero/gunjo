@@ -13,12 +13,12 @@ Source of truth:
 ## Current Status
 
 - Discovery scope: 162 components / templates
-- Recorded exports: 114
-- Remaining exports: 48
-- Completed category blocks: `Inputs`, `Overlay`, `Display`
-- Current working category: `Charts`
-- Last recorded component: `QuadrantMatrix`
-- Recommended next component: `AnalyticsCard`
+- Recorded exports: 115
+- Remaining exports: 47
+- Completed category blocks: `Inputs`, `Overlay`, `Display`, `Charts`
+- Current working category: `Feedback`
+- Last recorded component: `AnalyticsCard`
+- Recommended next component: `Alert`
 
 ## Completed Blocks
 
@@ -164,10 +164,11 @@ Charts recorded so far:
 - RetentionCohortCard
 - ChoroplethMap
 - QuadrantMatrix
+- AnalyticsCard
 
 Charts remaining:
 
-- AnalyticsCard
+- None
 
 ## Remaining Milestones
 
@@ -177,13 +178,7 @@ Status: complete.
 
 ### Milestone 2: Charts
 
-Recommended order:
-
-1. AnalyticsCard
-
-Remaining:
-
-- AnalyticsCard
+Status: complete.
 
 ### Milestone 3: Feedback
 

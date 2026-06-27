@@ -4598,6 +4598,57 @@ Figma export:
   notes, and ChoroplethMap / HeatmapChart / RadarChart / AnalyticsCard usage
   boundaries are aligned without visible overflow or overlap.
 
+The next discovery target was then exported with the additional AnalyticsCard
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `AnalyticsCard / Section`: `475:2`
+- `AnalyticsCard / Library card`: `475:14`
+- Placement: `Charts` page, after `QuadrantMatrix / Section`, at
+  `(40, 43570)`, `1280 x 2360`.
+- Variant contract: generated variants are `default`, `positive`,
+  `riskIncrease`, and `flatWithFooter`; the default variant is `default`.
+- Source contract: the recorded prop surface covers required `title`, optional
+  `titleAs`, `description`, `value`, `delta`, `deltaDescription`, `trend`,
+  `variant`, `action`, `footer`, `children`, `className`, and inherited Card
+  props. Defaults are `variant=analyticsCardDefaultVariantKey` (`default`) and
+  `trend="flat"`.
+- Layout notes: the root composes `Card` with `w-full min-w-0 p-0`. Header
+  uses `flex-row items-start justify-between gap-4 space-y-0`; content uses
+  `space-y-4`; the metric row uses `flex min-w-0 flex-wrap items-start
+  justify-between gap-x-3 gap-y-1`; value uses `text-2xl font-bold
+  leading-tight tracking-tight`; delta icons use `h-3 w-3`; `flatWithFooter`
+  adds a footer with `border-t pt-4 text-xs text-muted-foreground`.
+- Delta interaction notes: `deltaDescription` switches delta from static text to
+  a tooltip trigger button. The trigger keeps semantic trend tone and
+  focus-visible `ring-ring` with `ring-offset-background`; TooltipContent uses
+  `max-w-56 text-left text-xs`.
+- Docs-derived states and samples: up trend / positive, risk increase /
+  destructive, and flat trend with footer. Sample copy includes 売上,
+  直近12か月, 128,430円, +12.4%, 解約リスク, 現在のコホート, 8.6%,
+  +2.1pt, アクティブユーザー, 日次平均, 24,180, 0.2%, and 5分前に更新.
+- Composition and usage boundaries: AnalyticsCard composes Card, CardHeader,
+  CardContent, CardFooter, CardTitle, CardDescription, Tooltip, TooltipTrigger,
+  TooltipContent, and trend icons. Use it as chart card chrome for
+  SparklineChart, DistributionBar, and other compact chart children; use
+  Statistic for a single current value without chart context. Icon-only action
+  slots should use TooltipButton or equivalent GunjoUI tooltip coverage.
+- Runtime token notes: base Card uses `card`, `card-foreground`, `border`, and
+  `muted-foreground`; positive variant uses `success-subtle`,
+  `success-border`, and `success-strong`; risk increase uses
+  `destructive-subtle`, `destructive-border`, and `destructive`; flat footer
+  uses `muted/20`, `border`, and `muted-foreground`; tooltip/focus behavior
+  uses `popover`, `popover-foreground`, `ring`, and `background`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the four
+  variant states, trend model, props/defaults, tooltip behavior, token notes,
+  and Statistic / chart-child usage boundaries are aligned without visible
+  overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -4623,7 +4674,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, and QuadrantMatrix components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, and AnalyticsCard components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
