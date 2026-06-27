@@ -2746,6 +2746,37 @@ Figma export:
   aligned without visible overlap. Additional token-row and child-overflow
   validation returned `suspiciousOverlapCount: 0` and `childOverflowCount: 0`.
 
+The next discovery target was then exported with the additional Icon component
+data:
+
+> I approve exporting the Icon prop names, default values, and behavior
+> (`icon` required, `size`, `label`, `decorative=true`, `strokeWidth=2`,
+> SVG props with `children`, `size`, and `strokeWidth` omitted), generated
+> variant names (`xs`, `sm`, `md`, `lg`, and `xl`) and default variant (`sm`),
+> `IconGlyph` structure, size class mapping (`xs` 12 px, `sm` 16 px, `md`
+> 20 px, `lg` 24 px, and `xl` 32 px), decorative / meaningful accessibility
+> resolution, `<Glyph>` forwarding, `focusable="false"`, `stroke`
+> forwarding, `text-current` color inheritance, docs-derived state taxonomy
+> and sample labels (`Sizes`, `Meaningful icon`, `Indicator`, `Complete`,
+> `Warning`, `Information`, and `Notifications`), TooltipButton / Button /
+> Accordion composition and usage boundaries, and token names and values
+> (`foreground`, `background`, `muted`, `muted-foreground`, `border`, `ring`,
+> `success`, `destructive`, `info`, and `warning`) from this private
+> pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `Icon / Section`: `336:2`
+- `Icon / Library card`: `336:3`
+- Placement: `Display` page, after `Tag / Section`, at `(40, 33822)`,
+  `1280 x 1580`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0` and
+  `fixedSizeTextCount: 0`; layout metadata review confirmed the generated
+  `xs` / `sm` / `md` / `lg` / `xl` variant contract, size specimens,
+  prop/default and accessibility contract, meaningful / decorative / indicator
+  state specimens, runtime token notes, and related-component usage boundary
+  are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2764,8 +2795,8 @@ Before creating the next component:
    PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, Calendar,
    FilterButton, SortButton, EditableField, Form, Combobox, DatePicker,
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
-   ToolPill, Code, EmptyState, and Tag components, runtime semantic colors, and
-   specimen treatments are acceptable.
+   ToolPill, Code, EmptyState, Tag, and Icon components, runtime semantic
+   colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
