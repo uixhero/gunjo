@@ -2777,6 +2777,41 @@ Figma export:
   state specimens, runtime token notes, and related-component usage boundary
   are aligned without visible overlap.
 
+The next discovery target was then exported with the additional ColorSwatch
+component data:
+
+> I approve exporting the ColorSwatch prop names, default values, and behavior
+> (`color` required, `label`, `copyable=true`, `copyLabel`, `copiedLabel`
+> defaulting to `"Copied"`, `copiedDuration=5000`, `size`, `className`, and div
+> HTML attributes with native `color` omitted), generated no-variant and
+> no-default-variant structure, runtime size values (`sm`, `default`, and
+> `lg`) with chip dimensions (`16`, `24`, and `32` px), `label ?? color`
+> display fallback, `style.backgroundColor = color` rendering, root layout and
+> styling (`inline-flex`, `gap-2`, `rounded-md`, `border-input`, `bg-transparent`,
+> `p-1.5`, `pr-2`, and `text-sm`), CopyButton composition and forwarded
+> clipboard labels / duration, docs-derived state taxonomy and sample copy
+> (`Token values`, `Sizes`, `Without copy action`, `background`, `foreground`,
+> `primary`, `muted`, `destructive`, `success`, `Copy color value`, and
+> `Copied`), CopyButton / TooltipButton / Icon / Badge / Code / Tooltip /
+> SwatchGroup composition and usage boundaries, and token names and values
+> (`background`, `foreground`, `primary`, `muted`, `destructive`, `success`,
+> `input`, `border`, `muted-foreground`, and `ring`) from this private
+> pre-public repository to the Figma file `GunjoUI Library Foundations (#8)`.
+
+Figma export:
+
+- `ColorSwatch / Section`: `339:2`
+- `ColorSwatch / Library card`: `339:3`
+- Placement: `Display` page, after `Icon / Section`, at `(40, 35450)`,
+  `1280 x 1624`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  no-generated-variant contract, token swatch specimen, prop/default and
+  CopyButton composition contract, token values / sizes / without-copy-action
+  state specimens, runtime token notes, and related-component usage boundary
+  are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2795,8 +2830,8 @@ Before creating the next component:
    PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, Calendar,
    FilterButton, SortButton, EditableField, Form, Combobox, DatePicker,
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
-   ToolPill, Code, EmptyState, Tag, and Icon components, runtime semantic
-   colors, and specimen treatments are acceptable.
+   ToolPill, Code, EmptyState, Tag, Icon, and ColorSwatch components, runtime
+   semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
