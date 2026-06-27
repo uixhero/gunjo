@@ -142,6 +142,7 @@ export * from './components/display/MarkdownRenderer';
 export * from './components/display/MetadataList';
 export * from './components/display/Meter';
 export * from './components/display/MiniDistributionBarCard';
+export * from './components/display/PageHeader';
 export * from './components/display/ParetoChart';
 export * from './components/display/PersonCell';
 export * from './components/display/PieChart';

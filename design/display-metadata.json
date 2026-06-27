@@ -354,5 +354,9 @@
   "filterChips": {
     "title": "FilterChips",
     "description": "The horizontally-scrollable, single-select category chip bar: the navigation every consumer place / list finder opens with (空港・駅の施設, 食べログ, retail, transit, food delivery). A scroll-snapping row of pill chips (icon + label + optional count) that does NOT center-wrap on a phone, with a fully-filled active chip, roving tabindex + arrow keys, and a hidden scrollbar. value + onValueChange single-select. For 2–3 equal-width segments use ToggleGroup; for a faceted popover filter use FilterButton; this is the many-category scannable rail."
+  },
+  "pageHeader": {
+    "title": "PageHeader",
+    "description": "The mobile app bar / page header every consumer phone screen opens with: a leading back button, a title (+ optional subtitle), and a trailing action slot, sticky to the top with a header landmark, a bottom border and safe-area-inset padding (notch). Touch targets are ≥44px; title align left (default) or center (iOS-style). The kit's Header / AppRail are desktop app/docs chrome — this is the lightweight per-page bar for a phone (booking flows, finders, trackers, detail pages). Pass onBack for the ≥44px back button, or override the leading slot; actions holds close/refresh/menu buttons."
   }
 }

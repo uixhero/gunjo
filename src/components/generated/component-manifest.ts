@@ -1426,6 +1426,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "pageHeader": {
+      "title": "PageHeader",
+      "description": "The mobile app bar / page header every consumer phone screen opens with: a leading back button, a title (+ optional subtitle), and a trailing action slot, sticky to the top with a header landmark, a bottom border and safe-area-inset padding (notch). Touch targets are ≥44px; title align left (default) or center (iOS-style). The kit's Header / AppRail are desktop app/docs chrome — this is the lightweight per-page bar for a phone (booking flows, finders, trackers, detail pages). Pass onBack for the ≥44px back button, or override the leading slot; actions holds close/refresh/menu buttons.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/PageHeader.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "paretoChart": {
       "title": "ParetoChart",
       "description": "Pareto chart: descending value bars (HTML/CSS, left value axis) overlaid with a cumulative-% line (SVG) on a right 0–100% axis and a 'vital few' threshold line (80% by default), with focusable points and an accessible per-category summary. For defect / downtime / cause analysis and any 'which few drive most of the total' breakdown.",

@@ -1955,6 +1955,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "pageHeader": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
+      "variantColorHints": {}
+    },
     "paretoChart": {
       "variantKeys": [
         "default"
