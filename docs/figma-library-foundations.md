@@ -4945,6 +4945,55 @@ Figma export:
   notes, and NotificationCenter / Toast / Banner / Badge usage boundaries are
   aligned without visible overflow or overlap.
 
+The next discovery target was then exported with the additional StatusBar
+component spec. The owner reaffirmed that this Figma file is the company
+design-system source of truth and that reflecting private repository component
+specs into it is the approved first-party workflow.
+
+Figma export:
+
+- `StatusBar / Section`: `496:2`
+- `StatusBar / Library card`: `496:17`
+- Placement: `Feedback` page, after `NotificationCenter / Section`, at
+  `(40, 14296)`, `1280 x 2220`.
+- Variant contract: generated variant is `fixed`, with `fixed` as the default
+  variant. The generated style hint records `flex flex-row w-[640px] py-1
+  px-4`, primary fill, and slots `statusBarLeft`, `statusBarCenter`, and
+  `statusBarRight`.
+- Source contract: `StatusBarProps` extends div HTML attributes and adds
+  `leftNode`, `rightNode`, and `fixed`; `fixed` defaults to `true`. `children`
+  renders the center status content and `className` is forwarded to the root.
+- Runtime layout: root classes include `grid`, `w-[640px]`, `max-w-full`,
+  `grid-cols-2`, `items-center`, `justify-between`, `gap-x-3`, `gap-y-1`,
+  `overflow-hidden`, `px-4`, `py-1`, `bg-primary`,
+  `text-primary-foreground`, `text-xs`, `z-50`, `shadow-md`, and
+  `sm:flex sm:flex-row sm:gap-2`. When `fixed=true`, the bar adds
+  `fixed bottom-0 left-0 right-0`.
+- Slot behavior: left and right regions use `min-w-0`, 16 px gaps, text
+  alignment, `sm:max-w-[30%]`, and truncating descendants. The center region
+  spans both grid columns on small viewports, uses `flex-1`, centers text, and
+  truncates descendants.
+- Docs-derived states and samples: workspace status, editor information,
+  attention state, and app shell placement. Sample copy includes 記事エディタ,
+  保存済み, UTF-8, バックグラウンド処理なし, 同期済み, 3 件選択中,
+  アップロード待ちはありません, 未保存, 再接続中, 接続が不安定です,
+  準備完了, v1.4.0, and バックグラウンド処理はありません.
+- Composition and usage boundaries: StatusBar is a compact app-shell status
+  surface. Use Progress for determinate task progress, Banner for page-level
+  messaging, and Toast for transient feedback. Docs set `fixed={false}` inside
+  framed previews; app-wide fixed bars use the default fixed behavior.
+- Runtime token notes: default surface uses `primary` and
+  `primary-foreground`; framed examples and annotations also record
+  `background`, `foreground`, `muted`, `muted-foreground`, `border`, and
+  `ring`. The attention specimen documents `destructive` as a caller-provided
+  className override.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout review confirmed fixed variant,
+  left/center/right slots, responsive slot behavior, docs states, token notes,
+  and StatusBar / Progress / Banner / Toast usage boundaries are aligned
+  without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -4970,7 +5019,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, and NotificationCenter components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, and StatusBar components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
