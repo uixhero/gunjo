@@ -4007,6 +4007,60 @@ Figma export:
   dense states, props/defaults, runtime token notes, and related-chart usage
   boundary are aligned without visible overflow or overlap.
 
+The next discovery target was then exported with the additional PieChart
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `PieChart / Section`: `439:2`
+- `PieChart / Library card`: `439:3`
+- Placement: `Charts` page, after `DonutChart / Section`, at `(40, 22230)`,
+  `1280 x 1860`.
+- Variant contract: generated variants are `default` and `compact`; the
+  default variant is `default`.
+- Source contract: the recorded prop surface covers required `segments`,
+  optional `variant`, `showLegend`, `formatValue`, `totalLabel`, `className`,
+  and forwarded div attributes. Defaults are `variant="default"`,
+  `showLegend=false`, `formatValue=defaultChartValueFormatter`, and
+  `totalLabel="Total"`.
+- Geometry and behavior: the default density uses `min-h-[192px] w-full p-0`
+  and chart `max-w-48`; compact uses `min-h-[144px] w-full p-0` and
+  `max-w-36`. The chart surface is an aspect-square rounded-full region with
+  `role="img"`, `tabIndex=0`, `shadow-sm`, and focus ring.
+- Circular model: `normalizeCircularSegments` clamps negative values to zero,
+  resolves total as `max(sum positives, 1)`, and maps segments to start/end
+  percentages. `buildConicGradient` renders the full pie segment gradient or
+  muted fallback; unlike DonutChart, PieChart hit testing only ignores outside
+  radius because there is no inner cutout.
+- Interaction notes: focus opens the first segment tooltip, pointer and touch
+  movement update the active segment, touch / pen `pointerDown` opens sticky
+  tooltip behavior, and the active overlay uses foreground / ring
+  drop-shadow emphasis. `showLegend` renders `ChartLegend` with `activeIndex`.
+- Docs-derived states and samples: default, with legend, compact, dense
+  segments, zero-safe normalization, and AnalyticsCard composition. Sample copy
+  includes 基盤, 成長, 継続, 拡張, 検索, SNS, メール, 広告, その他, 合計,
+  流入元, オーディエンス比率, 329, 46, 28, 18, 8, 34, 22, 16, 12,
+  100, 104, 51, and 74.
+- Composition and usage boundaries: use PieChart for filled radial
+  part-to-whole comparison where the whole circle carries the value. Use
+  DonutChart when center copy or an inner cutout is needed, DistributionBar for
+  compact linear strips, and AnalyticsCard / LabeledDonutCard for card-level
+  summary compositions.
+- Runtime token notes: segment tones resolve through chart data or `primary`,
+  `success`, `warning`, `info`, `accent`, `destructive`, and `muted`; focus,
+  active overlay, marker, and active legend affordances use `foreground`,
+  `ring`, and `background`; tooltip chrome uses `popover` and
+  `popover-foreground`; fallback and legend copy use `muted` and
+  `muted-foreground`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `default` / `compact` variant contract, legend / dense / zero-safe /
+  analytics-composition states, props/defaults, runtime token notes, and
+  related-chart usage boundary are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -4030,8 +4084,9 @@ Before creating the next component:
    TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, ChartLegend,
    SparklineChart, LineChart, RibbonChart, RadialBarChart, BarChart, and
    ConcentricProgressCard, StackedBarChart, DistributionBar,
-   MiniDistributionBarCard, SegmentTimelineCard, and DonutChart components,
-   runtime semantic colors, and specimen treatments are acceptable.
+   MiniDistributionBarCard, SegmentTimelineCard, DonutChart, and PieChart
+   components, runtime semantic colors, and specimen treatments are
+   acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 

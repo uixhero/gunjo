@@ -13,12 +13,12 @@ Source of truth:
 ## Current Status
 
 - Discovery scope: 162 components / templates
-- Recorded exports: 104
-- Remaining exports: 58
+- Recorded exports: 105
+- Remaining exports: 57
 - Completed category blocks: `Inputs`, `Overlay`, `Display`
 - Current working category: `Charts`
-- Last recorded component: `DonutChart`
-- Recommended next component: `PieChart`
+- Last recorded component: `PieChart`
+- Recommended next component: `GaugeChart`
 
 ## Completed Blocks
 
@@ -154,10 +154,10 @@ Charts recorded so far:
 - MiniDistributionBarCard
 - SegmentTimelineCard
 - DonutChart
+- PieChart
 
 Charts remaining:
 
-- PieChart
 - GaugeChart
 - SegmentedGaugeCard
 - RadarChart
@@ -179,11 +179,10 @@ Status: complete.
 
 Recommended order:
 
-1. PieChart
+1. GaugeChart
 
 Remaining:
 
-- PieChart
 - GaugeChart
 - SegmentedGaugeCard
 - RadarChart
