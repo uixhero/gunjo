@@ -137,6 +137,7 @@ export const navigation = [
             { title: "MetadataList", href: "/docs/components/metadata-list" },
             { title: "Meter", href: "/docs/components/meter" },
             { title: "PersonCell", href: "/docs/components/person-cell" },
+            { title: "RadioCard", href: "/docs/components/radio-card" },
             { title: "Rating", href: "/docs/components/rating" },
             { title: "ReferenceValue", href: "/docs/components/reference-value" },
             { title: "RelationshipRow", href: "/docs/components/relationship-row" },
