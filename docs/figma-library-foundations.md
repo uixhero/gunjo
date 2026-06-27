@@ -4178,6 +4178,59 @@ Figma export:
   states, props/defaults, runtime token notes, and related-chart usage boundary
   are aligned without visible overflow or overlap.
 
+The next discovery target was then exported with the additional RadarChart
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `RadarChart / Section`: `451:2`
+- `RadarChart / Library card`: `451:3`
+- Placement: `Charts` page, after `SegmentedGaugeCard / Section`, at
+  `(40, 28114)`, `1280 x 1940`.
+- Variant contract: generated variants are `default` and `compact`; the
+  default variant is `default`.
+- Source contract: the recorded prop surface covers required `data`, optional
+  `series`, `variant`, `max`, `color`, `showGrid`, `showLabels`, `showDots`,
+  `fillOpacity`, `formatValue`, `maxLabel`, `className`, and forwarded div
+  attributes. Defaults are `variant="default"`, `showGrid=true`,
+  `showLabels=true`, `showDots=true`, `fillOpacity=0.16`,
+  `formatValue=defaultChartValueFormatter`, and `maxLabel="Max"`.
+- Geometry and behavior: the default density uses `h-[256px] w-full p-0`;
+  compact uses `h-[208px] w-full p-0`. The inner chart is an aspect-square
+  surface with `max-h-full` and `max-w-full`, a `viewBox="0 0 100 100"`, and
+  `preserveAspectRatio="none"`.
+- Radar model: `minimumAxisCount=3`, `chartCenter=50`, `chartRadius=34`, and
+  `labelRadius=45`. `maxValue` resolves to the max of the optional `max`, all
+  series values, and `1`. Values normalize through `normalizeChartValue`.
+  Grid rings render at 25%, 50%, 75%, and 100%, with axis lines from center to
+  each axis endpoint.
+- Interaction notes: each rendered point has a 28px focus target wrapped in
+  `ChartTooltip`. The tooltip aria-label combines optional series label, point
+  label, formatted value, `maxLabel`, and formatted max value. Dots use
+  background fill and series stroke; labels are derived from the first series.
+- Docs-derived states and samples: default, as-is / to-be, compact, success
+  color, and minimal. Sample copy includes 到達, 品質, 売上, 継続, 速度,
+  リスク, STR, DEX, INT, VIT, AGI, LUK, 現在, 成長後, 最大, Reach, Quality,
+  Revenue, Retention, Speed, Risk, As-is, To-be, and Max.
+- Composition and usage boundaries: RadarChart composes an internal SVG,
+  optional axis labels, optional dot targets, `ChartTooltip`, and chart-utils.
+  Use RadarChart for multi-axis score shape comparison, ChartLegend for
+  multi-series explanation, RadialBarChart for radial series values, and
+  QuadrantMatrix for x/y item positioning.
+- Runtime token notes: grid rings and axes use `border` with alpha; dot fill
+  uses `background`; point focus affordances use `ring` and `background`; axis
+  labels use `muted-foreground`; tooltip chrome uses `popover` and
+  `popover-foreground`; series colors resolve through chart data or `primary`,
+  `success`, `warning`, `info`, `accent`, `destructive`, and `muted`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `default` / `compact` variant contract, multi-series / compact / success /
+  minimal states, props/defaults, runtime token notes, and related-chart usage
+  boundary are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -4202,8 +4255,8 @@ Before creating the next component:
    SparklineChart, LineChart, RibbonChart, RadialBarChart, BarChart, and
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
-   GaugeChart components, runtime semantic colors, and specimen treatments are
-   acceptable.
+   GaugeChart, SegmentedGaugeCard, and RadarChart components, runtime semantic
+   colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
