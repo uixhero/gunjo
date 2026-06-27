@@ -191,6 +191,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "amount-breakdown": "Display",
   "action-queue": "Display",
   "list-card": "Display",
+  "seat-map": "Display",
   "reference-value": "Display",
   "signed-record": "Display",
   statistic: "Display",
