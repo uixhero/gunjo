@@ -3837,6 +3837,61 @@ Figma export:
   runtime token notes, and related-chart usage boundary are aligned without
   visible overflow or overlap.
 
+The next discovery target was then exported with the additional
+MiniDistributionBarCard component data. The owner reaffirmed that the
+destination Figma file is the company design-system source of truth and that
+reflecting private repository component specs into that file is the approved
+first-party workflow.
+
+Figma export:
+
+- `MiniDistributionBarCard / Section`: `430:2`
+- `MiniDistributionBarCard / Library card`: `430:3`
+- Placement: `Charts` page, after `DistributionBar / Section`, at
+  `(40, 16266)`, `1280 x 1860`.
+- Variant contract: generated variants are `default` and `compact`; the
+  default variant is `default`.
+- Source contract: the recorded prop surface covers required `segments`,
+  optional `title`, `description`, `value`, `delta`, `deltaDescription`,
+  `selectedIndex`, `tickCount`, `max`, `caption`, `variant`, `formatValue`,
+  `totalLabel`, `onSegmentSelect`, `className`, and forwarded Card props.
+  Defaults are `title="Product categories"`, `tickCount=32`,
+  `variant="default"`, `formatValue=defaultChartValueFormatter`, and
+  `totalLabel="Total"`.
+- Geometry and behavior: the root composes `Card`, `CardHeader`,
+  `CardContent`, `CardTitle`, `CardDescription`, and `ChartTooltip`. The
+  default density uses rounded-lg card chrome, `p-5 pb-3` header,
+  `px-5 pb-5` content, `h-9` rounded ticks, and text-base title. The compact
+  density uses rounded-md card chrome, `p-4 pb-3` header, `px-4 pb-4`
+  content, `h-7` rounded-sm ticks, and text-sm title.
+- Tick model: `buildTicks` normalizes positive segment values against `max` or
+  the segment total, floors raw tick counts, then allocates remaining ticks by
+  largest fractional remainder. `tickCount` is rounded and clamped to at least
+  one tick.
+- Interaction notes: every tick and summary row is wrapped in `ChartTooltip`,
+  is button-based, and exposes focus-visible ring behavior. `selectedIndex`
+  highlights the selected row and reduces non-selected tick/row opacity;
+  `onSegmentSelect` receives the segment and index.
+- Docs-derived states and samples: default, selected segment, compact, and more
+  ticks. Sample copy includes 商品カテゴリ, ミニ分布, アクセサリ, デバイス,
+  サービス, 45 件, 53 件, 61 件, +3.2%, 58%, 26%, and `tickCount=48`.
+- Composition and usage boundaries: use MiniDistributionBarCard for compact
+  card-level category, capacity, and utilization summaries where dense ticks
+  and segment rows are useful. Use `DistributionBar` for a standalone
+  proportional strip and `Statistic` for a single scalar value without segment
+  distribution.
+- Runtime token notes: card shell and text use `card`, `card-foreground`,
+  `foreground`, `border`, `muted`, and `muted-foreground`; deltas use
+  `success-strong`; focus and tooltip affordances use `ring`, `background`,
+  `popover`, and `popover-foreground`; segment tones resolve through chart data
+  or `primary`, `warning`, `success`, `info`, and `destructive` fallbacks.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `default` / `compact` variant contract, selected/ticks states,
+  props/defaults, runtime token notes, and related-chart usage boundary are
+  aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -3859,7 +3914,7 @@ Before creating the next component:
    and DataTable, ActionDataTable, AvatarGroup, CodeBlock, Timeline,
    TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, ChartLegend,
    SparklineChart, LineChart, RibbonChart, RadialBarChart, BarChart, and
-   ConcentricProgressCard, StackedBarChart, and DistributionBar components, runtime semantic
+   ConcentricProgressCard, StackedBarChart, DistributionBar, and MiniDistributionBarCard components, runtime semantic
    colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
