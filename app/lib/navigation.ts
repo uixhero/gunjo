@@ -128,6 +128,7 @@ export const navigation = [
             { title: "Icon", href: "/docs/components/icon" },
             { title: "ImagePreview", href: "/docs/components/image-preview" },
             { title: "Img", href: "/docs/components/img" },
+            { title: "Itinerary", href: "/docs/components/itinerary" },
             { title: "KanbanBoard", href: "/docs/components/kanban-board" },
             { title: "Kbd", href: "/docs/components/kbd" },
             { title: "LineageGraph", href: "/docs/components/lineage-graph" },

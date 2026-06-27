@@ -1786,6 +1786,19 @@ export const componentStyleHints = {
         "error": "fill=#f1f5f9 | text=#94a3b8"
       }
     },
+    "itinerary": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
+      "variantColorHints": {}
+    },
     "kanbanBoard": {
       "variantKeys": [
         "default"

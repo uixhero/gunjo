@@ -887,6 +887,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "itinerary",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:itinerary",
+      title: "Itinerary",
+      description: "The day-grouped, mixed-kind trip/journey timeline: a vertical sequence of items (flight / hotel / activity / transit leg …), each with a per-kind icon+tone marker, a time, a title + secondary, an optional rich content slot, and an opt-in tappable row (≥44px + chevron). Group by day (days[] with day headers + place sublabels) or pass flat items[]. The traveller-facing trip-plan / 乗換経路 / journey view — richer than Timeline (per-item kind + content + tap) and the right call over RouteStops, whose status/予実 (未配/配送中/遅れ) vocabulary is delivery-locked and wrong for a forward plan. RSC-safe except the opt-in onSelect.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "pageHeader",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:pageHeader",
