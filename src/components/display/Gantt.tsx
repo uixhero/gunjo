@@ -20,6 +20,20 @@ export interface GanttRow {
     sublabel?: React.ReactNode
 }
 
+/** A sub-span inside a `GanttItem` — a flight leg, a ground/turnaround gap, a maintenance window. */
+export interface GanttSegment {
+    /** Start — same formats as `GanttItem.start`. Must fall within the item's span. */
+    start: string | Date
+    /** End — same formats as `start`. */
+    end: string | Date
+    /** Sub-bar tone. Falls back to the item's `tone`. */
+    tone?: GanttItemTone
+    /** Short in-segment label. */
+    label?: React.ReactNode
+    /** Free-form kind tag (leg / ground / 折返し / 整備) — folded into the bar's accessible name. */
+    kind?: string
+}
+
 export interface GanttItem {
     id: string
     /** Which row this bar belongs to (matches a `rows[].id`). */
@@ -30,6 +44,12 @@ export interface GanttItem {
     end: string | Date
     label: React.ReactNode
     tone?: GanttItemTone
+    /**
+     * Optional internal segmentation — sub-spans within this item's start→end, each a tinted
+     * sub-bar (e.g. an aircraft rotation: 便→折返し→便→整備, or a duty: 出区→乗務→入区). Gaps
+     * between segments show as the bar's track. When set, segments replace the single fill.
+     */
+    segments?: GanttSegment[]
     /** Plain-text label folded into the bar's accessible name. */
     ariaLabel?: string
 }
@@ -107,10 +127,13 @@ function packRow(items: { item: GanttItem; s: number; e: number; leftPct: number
  * positioned by start/end and **lane-packed within a row** so overlapping bars
  * stack instead of covering each other. Day-column gridlines + date headers, a
  * sticky row-label gutter, an optional today line, and a contained horizontal
- * scroll. Owns the time math (pass `startDate`/`endDate` + `rows` + `items`);
- * `today` is injectable (SSR-safe). Bars are focusable buttons with a composed
- * accessible name. For project schedules, production lines, room/equipment
- * timelines, delivery/route plans and any rows-over-time view. (#142)
+ * scroll. A bar can carry internal `segments[]` (sub-spans tinted per segment —
+ * an aircraft rotation 便→折返し→便→整備, a crew duty, a shop visit), with gaps
+ * showing as the bar's track. Owns the time math (pass `startDate`/`endDate` +
+ * `rows` + `items`); `today` is injectable (SSR-safe). Bars are focusable buttons
+ * with a composed accessible name. For project schedules, production lines,
+ * room/equipment timelines, crew/aircraft rotations, delivery/route plans and any
+ * rows-over-time view. (#142)
  */
 const Gantt = React.forwardRef<HTMLDivElement, GanttProps>(
     (
@@ -254,9 +277,19 @@ const Gantt = React.forwardRef<HTMLDivElement, GanttProps>(
                                     ) : null}
                                     {/* bars */}
                                     {placed.map((p) => {
+                                        const segs = p.item.segments
+                                        const isSegmented = segs != null && segs.length > 0
+                                        const segNames = isSegmented
+                                            ? segs
+                                                  .map((s) => `${s.kind ? s.kind + " " : ""}${typeof s.label === "string" ? s.label : ""}`.trim())
+                                                  .filter(Boolean)
+                                                  .join("、")
+                                            : ""
                                         const name = `${typeof row.label === "string" ? row.label : ""} ${fmtDate(p.item.start)}〜${fmtDate(p.item.end)} ${
                                             p.item.ariaLabel ?? (typeof p.item.label === "string" ? p.item.label : "")
-                                        }`
+                                        }${segNames ? `（${segNames}）` : ""}`
+                                        const itemStartMs = toDate(p.item.start).getTime()
+                                        const itemSpan = Math.max(1, toDate(p.item.end).getTime() - itemStartMs)
                                         return (
                                             <button
                                                 key={p.item.id}
@@ -264,8 +297,10 @@ const Gantt = React.forwardRef<HTMLDivElement, GanttProps>(
                                                 onClick={() => onSelectItem?.(p.item)}
                                                 aria-label={name}
                                                 className={cn(
-                                                    "absolute z-20 overflow-hidden rounded border px-1.5 text-left text-[11px] leading-[20px] shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
-                                                    BAR_TONE[p.item.tone ?? "default"]
+                                                    "absolute z-20 overflow-hidden rounded border text-left text-[11px] leading-[20px] shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
+                                                    isSegmented
+                                                        ? "border-dashed border-border bg-card/40"
+                                                        : cn("px-1.5", BAR_TONE[p.item.tone ?? "default"])
                                                 )}
                                                 style={{
                                                     top: p.lane * laneHeight + 4,
@@ -274,7 +309,29 @@ const Gantt = React.forwardRef<HTMLDivElement, GanttProps>(
                                                     width: `calc(${p.widthPct}% - 2px)`,
                                                 }}
                                             >
-                                                <span className="block truncate">{p.item.label}</span>
+                                                {isSegmented ? (
+                                                    segs.map((s, si) => {
+                                                        const ss = toDate(s.start).getTime()
+                                                        const se = toDate(s.end).getTime()
+                                                        const l = Math.max(0, ((ss - itemStartMs) / itemSpan) * 100)
+                                                        const w = ((Math.min(se, itemStartMs + itemSpan) - Math.max(ss, itemStartMs)) / itemSpan) * 100
+                                                        if (w <= 0) return null
+                                                        return (
+                                                            <span
+                                                                key={si}
+                                                                className={cn(
+                                                                    "absolute inset-y-0 overflow-hidden rounded-sm border px-1",
+                                                                    BAR_TONE[s.tone ?? p.item.tone ?? "default"]
+                                                                )}
+                                                                style={{ left: `${l}%`, width: `calc(${w}% - 1px)` }}
+                                                            >
+                                                                <span className="block truncate">{s.label}</span>
+                                                            </span>
+                                                        )
+                                                    })
+                                                ) : (
+                                                    <span className="block truncate">{p.item.label}</span>
+                                                )}
                                             </button>
                                         )
                                     })}
