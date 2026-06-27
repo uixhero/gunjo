@@ -4350,6 +4350,73 @@ Figma export:
   caption states, props/defaults, runtime token notes, and related-chart usage
   boundary are aligned without visible overflow or overlap.
 
+The next discovery target was then exported with the additional
+LabeledDonutCard component data. The owner reaffirmed that the destination
+Figma file is the company design-system source of truth and that reflecting
+private repository component specs into that file is the approved first-party
+workflow.
+
+Figma export:
+
+- `LabeledDonutCard / Section`: `461:2`
+- `LabeledDonutCard / Library card`: `461:3`
+- Placement: `Charts` page, after `ActivityTimelineCard / Section`, at
+  `(40, 34378)`, `1280 x 2160`.
+- Variant contract: generated variants are `default` and `compact`; the
+  default variant is `default`.
+- Source contract: the recorded prop surface covers required `segments`,
+  optional `title`, `description`, `centerValue`, `centerLabel`, `delta`,
+  `deltaDescription`, `caption`, `variant`, `selectedIndex`, `thickness`,
+  `showCallouts`, `formatValue`, `totalLabel`, `onSegmentSelect`,
+  `className`, and inherited Card props. Defaults are
+  `title="Sales by platform"`, `variant="default"`,
+  `thickness=24` or `18` in compact, `showCallouts=true`,
+  `formatValue=defaultChartValueFormatter`, and `totalLabel="Total"`.
+- Geometry and behavior: the default density uses `rounded-lg`, header
+  `p-5 pb-3`, content `px-5 pb-5`, title `text-base`, chart `max-w-52`, and
+  24px default ring thickness; compact uses `rounded-md`, header `p-4 pb-3`,
+  content `px-4 pb-4`, title `text-sm`, chart `max-w-40`, and 18px default
+  ring thickness. With callouts, the chart/callout area uses a responsive grid;
+  without callouts, the chart centers in a `max-w-xs` region.
+- Donut model: `normalizeCircularSegments` resolves the conic-gradient segment
+  ranges, `buildConicGradient` paints the ring, and the center cutout uses
+  `bg-card` inset by `thickness`. The selected or hovered segment can produce
+  an active overlay via `buildActiveCircularSegmentGradient`.
+- Interaction notes: the ring exposes `role="button"` when `onSegmentSelect`
+  exists and `role="img"` otherwise. Pointer/touch hit testing requires the
+  pointer to be inside the donut ring and uses the polar angle to resolve the
+  active segment. Focus opens the selected or first segment tooltip; Enter /
+  Space triggers `onSegmentSelect`. Callout rows mirror active state and also
+  call `onSegmentSelect` when clicked.
+- Docs-derived states and samples: default, selected segment, without
+  callouts, compact, formatted values, and caption. Sample copy includes
+  プラットフォーム別売上, ラベル付きドーナツ, 合計, 予算配分, 予算, Amazon,
+  Alibaba, Tokopedia, プロダクト, 運用, サポート, 予備, 販売チャネル,
+  Sales by platform, Labeled donut, Total, Budget allocation, Product,
+  Operations, Support, Reserve, and Compare segment share with external callout
+  labels.
+- Composition and usage boundaries: LabeledDonutCard composes Card,
+  CardHeader, CardContent, CardTitle, CardDescription, ChartTooltip,
+  ChartFloatingTooltip, circular-chart-utils, and chart-utils. Use
+  LabeledDonutCard when a card-level donut needs center summary and external
+  callout rows; use DonutChart for standalone donut charts, PieChart for
+  full-disk composition charts, ChartLegend for separate legend explanation,
+  and AnalyticsCard for generic chart card shells.
+- Runtime token notes: card shell and center cutout use `card` and
+  `card-foreground`; copy uses `foreground` and `muted-foreground`; callout
+  rows, selected row backgrounds, and caption use `card`, `muted`, `border`,
+  and `background`; positive delta uses `success-strong`; focus and active
+  affordances use `ring` and `foreground`; tooltip chrome uses `popover` and
+  `popover-foreground`; segment colors resolve through `primary`, `success`,
+  `warning`, `info`, `accent`, and `destructive`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `default` / `compact` variant contract, default / selected /
+  no-callouts / compact / formatted / caption states, props/defaults, runtime
+  token notes, and related-chart usage boundary are aligned without visible
+  overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -4375,8 +4442,8 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard components, runtime semantic colors, and specimen
-   treatments are acceptable.
+   ActivityTimelineCard and LabeledDonutCard components, runtime semantic
+   colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 

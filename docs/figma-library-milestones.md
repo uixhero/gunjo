@@ -13,12 +13,12 @@ Source of truth:
 ## Current Status
 
 - Discovery scope: 162 components / templates
-- Recorded exports: 110
-- Remaining exports: 52
+- Recorded exports: 111
+- Remaining exports: 51
 - Completed category blocks: `Inputs`, `Overlay`, `Display`
 - Current working category: `Charts`
-- Last recorded component: `ActivityTimelineCard`
-- Recommended next component: `LabeledDonutCard`
+- Last recorded component: `LabeledDonutCard`
+- Recommended next component: `RetentionCohortCard`
 
 ## Completed Blocks
 
@@ -160,10 +160,10 @@ Charts recorded so far:
 - RadarChart
 - HeatmapChart
 - ActivityTimelineCard
+- LabeledDonutCard
 
 Charts remaining:
 
-- LabeledDonutCard
 - RetentionCohortCard
 - ChoroplethMap
 - QuadrantMatrix
@@ -179,11 +179,10 @@ Status: complete.
 
 Recommended order:
 
-1. LabeledDonutCard
+1. RetentionCohortCard
 
 Remaining:
 
-- LabeledDonutCard
 - RetentionCohortCard
 - ChoroplethMap
 - QuadrantMatrix
