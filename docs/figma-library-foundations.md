@@ -5099,6 +5099,62 @@ Figma export:
   OnboardingFlow usage boundaries are aligned without visible overflow or
   overlap.
 
+
+The next discovery target was then exported with the additional Banner
+component spec. The owner reaffirmed that this Figma file is the company
+design-system source of truth and that reflecting private repository component
+specs into it is the approved first-party workflow.
+
+Figma export:
+
+- `Banner / Section`: `505:2`
+- `Banner / Library card`: `505:3`
+- Placement: `Feedback` page, after `Stepper / Section`, at `(40, 21260)`,
+  `1280 x 2360`.
+- Variant contract: generated variants are empty and no generated default
+  variant exists, but the runtime CVA contract exposes `default`, `info`,
+  `success`, `warning`, and `destructive`; `default` is the runtime default.
+- Source contract: `BannerProps` extends div HTML attributes and CVA
+  `VariantProps<typeof bannerVariants>`. Props include `variant`, `icon`,
+  `action`, `onDismiss`, `dismissLabel`, `children`, `className`, and standard
+  div attributes. `dismissLabel` defaults to `"Dismiss"`.
+- Runtime behavior: the root renders `role="status"` and uses
+  `flex h-10 w-full items-center justify-between gap-3 px-4 py-0 text-sm`.
+  The message row uses `min-w-0`, the message text truncates on one line, and
+  `action` renders before the dismiss control. When `onDismiss` is provided,
+  Banner renders a 24 x 24 close button with `aria-label={dismissLabel}` and a
+  Tooltip whose content is the same label.
+- Layout notes: icon content is a leading decorative slot (`aria-hidden`),
+  action content is an arbitrary ReactNode, and dismiss uses an inline-flex
+  close button with `rounded`, `opacity-80`, `hover:bg-foreground/10`, and
+  `hover:opacity-100`. Docs action examples compose `Button` with `size="sm"`,
+  `variant="secondary"`, and `className="h-7 px-2"`.
+- Docs-derived states and samples: information with action, maintenance
+  warning, active incident, success completion, and dismissible release notice.
+  Sample copy includes 新しいリリースを公開しました。主な変更点を確認できます。,
+  新しい権限設定を利用できます。, 2026年6月3日 02:00-04:00 JST にメンテナンスを行います。,
+  API の書き込み処理が遅延しています。復旧状況を確認してください。, ワークスペースの初期設定が完了しました。,
+  変更を見る, 詳細, 状況を見る, お知らせを閉じる, and 完了メッセージを閉じる.
+- Composition and usage boundaries: use Banner for persistent page-wide
+  announcements that remain in layout. Use Alert for inline contextual
+  messages, Toast for transient feedback, and NotificationCenter for stacked or
+  historical notifications.
+- Runtime token notes: `default` uses `foreground` and `background`; `info`
+  uses `info-border`, `info-subtle`, `info-subtle-foreground`, and `info`;
+  `success` uses `success-border`, `success-subtle`,
+  `success-subtle-foreground`, and `success`; `warning` uses `warning-border`,
+  `warning-subtle`, `warning-subtle-foreground`, and `warning`; `destructive`
+  uses `destructive-border`, `destructive-subtle`,
+  `destructive-subtle-foreground`, and `destructive`. Specimen annotations also
+  record `foreground/10`, `secondary`, `border`, `muted`, `muted-foreground`,
+  `background`, `ring`, and `primary` for related surfaces.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout review confirmed variant visuals,
+  action/dismiss composition, dismiss tooltip labeling, docs states, token
+  notes, and Banner / Alert / Toast / NotificationCenter usage boundaries are
+  aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -5124,7 +5180,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, and Stepper components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, and Banner components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
