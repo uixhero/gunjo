@@ -3593,6 +3593,55 @@ Figma export:
   props/defaults, runtime token notes, and related-chart usage boundary are
   aligned without visible overflow or overlap.
 
+The next discovery target was then exported with the additional RadialBarChart
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `RadialBarChart / Section`: `408:2`
+- `RadialBarChart / Library card`: `408:3`
+- Placement: `Charts` page, after `RibbonChart / Section`, at
+  `(40, 6866)`, `1280 x 1718`.
+- Variant contract: generated variants are `default` and `compact`; the
+  default variant is `default`.
+- Source contract: the recorded prop surface covers required `data`,
+  optional `variant`, `max`, `centerLabel`, `centerValue`,
+  `thickness`, `gap`, `showLegend`, `formatValue`, `maxLabel`,
+  `className`, and forwarded `div` HTML attributes. Defaults are
+  `variant="default"`, `max=100`, `showLegend=false`,
+  `formatValue=defaultChartValueFormatter`, `maxLabel="Max"`, and
+  thickness/gap values of `18 / 8` for default or `14 / 6` for compact.
+- Geometry and behavior: the root is centered flex column layout with
+  `gap-4`; the chart target is an aspect-square focusable region with
+  `max-w-56` for default and `max-w-44` for compact. Each data item maps
+  to a concentric conic-gradient ring, masked by ring thickness and offset by
+  the configured gap.
+- Interaction notes: pointer angle and distance select the active ring, touch
+  pointer down makes the tooltip sticky, keyboard focus opens the first item,
+  and the chart region exposes an `aria-label` with label, formatted value,
+  percent, max label, and max value.
+- Docs-derived states and samples: default, with legend, compact, and thicker
+  bars; sample data includes サイト / 市場 / 購入 and Website / Market /
+  Shopping with values 78, 64, and 49. Sample copy includes 平均, Average,
+  最大, Max, and 64%.
+- Composition and usage boundaries: RadialBarChart composes chart-utils,
+  `ChartFloatingTooltip`, and `ChartLegend`; use it for multiple progress,
+  share, or capacity values where concentric comparison is useful. Use
+  `GaugeChart` for one scalar and `ConcentricProgressCard` for card-level
+  metric composition.
+- Runtime token notes: chart tones resolve through `primary`, `success`,
+  `warning`, and fallback chart colors; specimen and annotations use
+  `background`, `foreground`, `muted`, `muted-foreground`,
+  `border`, `ring`, `popover`, and `popover-foreground`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `default` / `compact` variant contract, legend/compact/thick states,
+  props/defaults, runtime token notes, and related-chart usage boundary are
+  aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -3613,7 +3662,7 @@ Before creating the next component:
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
    ToolPill, Code, EmptyState, Tag, Icon, ColorSwatch, and Carousel
    and DataTable, ActionDataTable, AvatarGroup, CodeBlock, Timeline,
-   TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, ChartLegend, SparklineChart, LineChart, and RibbonChart components, runtime semantic
+   TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, ChartLegend, SparklineChart, LineChart, RibbonChart, and RadialBarChart components, runtime semantic
    colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
