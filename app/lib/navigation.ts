@@ -122,6 +122,7 @@ export const navigation = [
             { title: "EmptyState", href: "/docs/components/empty-state" },
             { title: "EventCalendar", href: "/docs/components/event-calendar" },
             { title: "FileTree", href: "/docs/components/file-tree" },
+            { title: "FilterChips", href: "/docs/components/filter-chips" },
             { title: "Gallery", href: "/docs/components/gallery" },
             { title: "Gantt", href: "/docs/components/gantt" },
             { title: "Icon", href: "/docs/components/icon" },
