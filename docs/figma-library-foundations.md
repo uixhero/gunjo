@@ -3270,6 +3270,61 @@ Figma export:
   notes, and related-component usage boundary are aligned without visible
   overlap.
 
+The next discovery target was then exported with the additional AssetGrid
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `AssetGrid / Section`: `385:2`
+- `AssetGrid / Library card`: `385:3`
+- Placement: `Display` page, after `AssetCard / Section`, at `(40, 54849)`,
+  `1280 x 1532`.
+- Variant contract: generated variants are `default` and `compact`; the
+  default variant is `default`.
+- Source contract: the recorded prop surface covers optional `items`, optional
+  `groups`, `selectedIds`, `variant`, `layout`, `minColumnWidth`, `gap`,
+  `selectionMode`, `portalContainer`, empty-state title and description,
+  `onSelect`, `onPreview`, `onFavorite`, `renderMeta`, `renderItem`,
+  `className`, `style`, and forwarded `div` HTML attributes except
+  `children` and `onSelect`.
+- Layout contract: `groups` take precedence over `items`; ungrouped items are
+  normalized into a single `all` group. `default` resolves to 180px columns,
+  24px gap, and default AssetCard density; `compact` resolves to 140px
+  columns, 16px gap, and compact AssetCard density. `layout="fill"` stretches
+  auto-fit columns to the container, while `layout="content"` centers a
+  calculated max-width from item count, column width, and gap.
+- Behavior notes: the component renders an `EmptyState` when no resolved group
+  contains assets. `selectedIds` is memoized as a Set and passed to each
+  AssetCard as `selected`. `selectionMode`, `portalContainer`, preview,
+  favorite, selection, and metadata render hooks are forwarded to AssetCard.
+  `renderItem` can replace the default AssetCard renderer with
+  `(asset, { selected }) => ReactNode`.
+- Docs-derived states and samples: default grid, compact grid, and grouped
+  sections; sample labels include Campaign_Hero.jpg, Instagram_Story.png,
+  Product_Square.png, キャンペーン素材, 公開前の候補, No assets, Assets added to
+  this library will appear here, JPG, PNG, 1.4MB, 2.1MB, 2026-05-12, and
+  2026-05-10.
+- Composition and usage boundaries: AssetGrid composes `AssetCard` and
+  `EmptyState`; use `AssetGrid` for browsable or grouped media collections,
+  `AssetCard` for an individual selectable media item, `MediaPickerDialog`
+  for modal selection and confirmation flows, and `AssetInspectorPanel` for
+  metadata/detail editing after selection.
+- Runtime token notes: the grid root is structural and uses `w-full`, `p-0`,
+  and `space-y-8`; group labels use `foreground` and `muted-foreground`.
+  Figma specimens include `background`, `foreground`, `muted`,
+  `muted-foreground`, `border`, `card`, `secondary`, `accent`,
+  `primary`, `primary-border`, `primary-subtle`, and `warning` to show
+  selection, cards, metadata, empty state, and rating treatment.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `default` / `compact` variant contract, default/compact/grouped/empty
+  specimens, props/default and responsive layout behavior contracts, runtime
+  token notes, and related-component usage boundary are aligned without visible
+  overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -3290,7 +3345,7 @@ Before creating the next component:
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
    ToolPill, Code, EmptyState, Tag, Icon, ColorSwatch, and Carousel
    and DataTable, ActionDataTable, AvatarGroup, CodeBlock, Timeline,
-   TreeView, FileTree, DocNote, and AssetCard components, runtime semantic
+   TreeView, FileTree, DocNote, AssetCard, and AssetGrid components, runtime semantic
    colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
