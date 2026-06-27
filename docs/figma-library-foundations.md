@@ -5046,6 +5046,59 @@ Figma export:
   and ProgressWidget / Progress / Statistic / chart usage boundaries are
   aligned without visible overflow or overlap.
 
+
+The next discovery target was then exported with the additional Stepper
+component spec. The owner reaffirmed that this Figma file is the company
+design-system source of truth and that reflecting private repository component
+specs into it is the approved first-party workflow.
+
+Figma export:
+
+- `Stepper / Section`: `501:2`
+- `Stepper / Library card`: `501:3`
+- Placement: `Feedback` page, after `ProgressWidget / Section`, at
+  `(40, 18952)`, `1280 x 2260`.
+- Variant contract: generated variants are empty and no generated default
+  variant exists. Runtime variant behavior comes from the CVA `orientation`
+  prop with `horizontal` as the default and `vertical` as the alternate layout.
+- Source contract: `StepperProps` extends div HTML attributes and CVA
+  `orientation` variant props, and requires `steps: StepperStep[]`.
+  `StepperStep` contains `label` and `state`; state values are `completed`,
+  `current`, and `upcoming`. The root `role` defaults to `list`.
+- Runtime behavior: horizontal mode uses `max-w-full flex-row gap-0
+  overflow-x-auto`; vertical mode uses `flex-col gap-0`. Each step item uses
+  `role="listitem"`; the current step receives `aria-current="step"`. Completed
+  steps render a 32 x 32 foreground circle with a 16 px check icon, current
+  steps render a 32 x 32 background circle with a 2 px foreground border and
+  index text, and upcoming steps render a muted circle with muted text.
+- Layout notes: horizontal items are `w-16 shrink-0 flex-col text-center` and
+  become `sm:w-20`; horizontal connectors are `60 x 2` with `mx-2 mt-4`.
+  Vertical items use row layout; vertical connectors are `2 x 24` with
+  `my-2 ml-4`. Labels use `text-xs font-medium leading-tight` and are capped
+  by `max-w-full`.
+- Docs-derived states and samples: horizontal, vertical, all complete, and
+  long labels. Sample copy includes 購入手続きの進行状況, カート, 配送先,
+  確認, インポート処理の進行状況, アップロード, 検証, 反映,
+  セットアップ完了, 作成, 公開, レビュー依頼の進行状況, 担当者確認,
+  and 公開前チェック.
+- Composition and usage boundaries: Stepper is a progress-position component
+  for discrete multi-step flows. Use Progress for continuous completion,
+  Timeline for chronological event history, StatusBar for app-shell status,
+  and OnboardingFlow when the step indicator is coupled to controlled
+  next/back flow content.
+- Runtime token notes: completed state uses `foreground` and `background`;
+  current state uses `foreground`, `background`, and foreground border;
+  upcoming state uses `muted` and `muted-foreground`; connectors use `border`.
+  Specimen annotations also record `ring`, `primary`, and
+  `primary-foreground` for related interaction surfaces.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout review confirmed horizontal and vertical
+  orientations, completed/current/upcoming state visuals, connector sizing,
+  docs states, token notes, and Stepper / Progress / Timeline / StatusBar /
+  OnboardingFlow usage boundaries are aligned without visible overflow or
+  overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -5071,7 +5124,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, and ProgressWidget components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, and Stepper components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
