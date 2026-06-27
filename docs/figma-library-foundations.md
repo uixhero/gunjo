@@ -4286,6 +4286,70 @@ Figma export:
   compact / alternate-color states, props/defaults, runtime token notes, and
   related-chart usage boundary are aligned without visible overflow or overlap.
 
+The next discovery target was then exported with the additional
+ActivityTimelineCard component data. The owner reaffirmed that the destination
+Figma file is the company design-system source of truth and that reflecting
+private repository component specs into that file is the approved first-party
+workflow.
+
+Figma export:
+
+- `ActivityTimelineCard / Section`: `458:2`
+- `ActivityTimelineCard / Library card`: `458:3`
+- Placement: `Charts` page, after `HeatmapChart / Section`, at `(40, 32190)`,
+  `1280 x 2140`.
+- Variant contract: generated variants are `default` and `compact`; the
+  default variant is `default`.
+- Source contract: the recorded prop surface covers required `metrics`,
+  `slots`, and `segments`, optional `title`, `description`, `delta`,
+  `deltaDescription`, `caption`, `variant`, `max`, `selectedSlot`,
+  `showSlotValues`, `formatValue`, `totalLabel`, `onSlotSelect`, `className`,
+  and inherited Card props. Defaults are `title="Activity timeline"`,
+  `variant="default"`, `showSlotValues=false`,
+  `formatValue=defaultChartValueFormatter`, and `totalLabel="Total"`.
+- Geometry and behavior: the default density uses `rounded-lg`, header
+  `p-5 pb-3`, content `px-5 pb-5`, title `text-base`, timeline `h-36`, and
+  rounded timeline bars; compact uses `rounded-md`, header `p-4 pb-3`,
+  content `px-4 pb-4`, title `text-sm`, timeline `h-28`, and tighter bar
+  rounding. Metrics render as a 3-column summary row, timeline bars align to a
+  dashed baseline, segment totals render as a stacked horizontal progress bar,
+  and optional caption renders as muted supporting copy.
+- Timeline model: slot values are clamped to positive numbers and normalized
+  against optional `max`, the largest slot value, and `1`. Per-slot segment
+  stacks normalize against each slot segment total. Bottom segment controls
+  normalize against the total of `segments`.
+- Interaction notes: metrics, slots, segment bars, and segment statistic rows
+  are tooltip targets. Slots render as buttons when `onSlotSelect` is provided
+  and expose `aria-current` / `aria-pressed`; otherwise they render as
+  focusable spans. Segment hover/focus/selection is shared between the stacked
+  progress bar and stat rows and dims inactive segments.
+- Docs-derived states and samples: default, selected time slot with slot
+  values, compact, and caption examples. Sample copy includes 活動量タイムライン,
+  選択中の時間帯, コンパクト表示, 時間帯別の活動量, 昨日比, 消費, 日平均,
+  ウォーク, ラン, ワークアウト, 6時, 8時, 10時, 12時, 14時, 16時, Energy
+  timeline, Than yesterday, Burned, Daily avg, Walking, Running, Workout,
+  Total, and Inspect the selected time slot load and segment contribution.
+- Composition and usage boundaries: ActivityTimelineCard composes Card,
+  CardHeader, CardContent, CardTitle, CardDescription, ChartTooltip, and
+  chart-utils. Use ActivityTimelineCard when a metric card needs chronological
+  activity slots plus segment contribution controls; use SegmentTimelineCard
+  for horizontal state-duration timelines, Timeline for event lists,
+  DistributionBar for one-dimensional distribution, and BarChart for generic
+  categorical bars.
+- Runtime token notes: card shell uses `card` and `card-foreground`; metric,
+  title, and segment copy use `foreground` and `muted-foreground`; timeline
+  track, caption, and selected stat backgrounds use `muted`, `border`, and
+  `background`; positive delta uses `success-strong`; focus and selected slot
+  affordances use `ring`, `foreground`, and `background`; tooltip chrome uses
+  `popover` and `popover-foreground`; chart colors resolve through `primary`,
+  `success`, `warning`, `info`, `accent`, and `destructive`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `default` / `compact` variant contract, default / selected / compact /
+  caption states, props/defaults, runtime token notes, and related-chart usage
+  boundary are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -4310,8 +4374,9 @@ Before creating the next component:
    SparklineChart, LineChart, RibbonChart, RadialBarChart, BarChart, and
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
-   GaugeChart, SegmentedGaugeCard, RadarChart, and HeatmapChart components,
-   runtime semantic colors, and specimen treatments are acceptable.
+   GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
+   ActivityTimelineCard components, runtime semantic colors, and specimen
+   treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
