@@ -845,6 +845,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "amountBreakdown": {
+      "title": "AmountBreakdown",
+      "description": "The read-only money-derivation ledger: labeled line items, signed deductions, optional per-section subtotals, and an emphasized derived total, with an optional formula caption. The 'labeled lines → ± adjustments → total' block every 請求 / 見積 / 査定 / 支払 / 精算 / 控除 / 給与明細 screen needs (認定損害額 − 過失相殺 − 免責 − 既払金 = 今回支払額 / 基本保険料 ＋ 特約 − 各割引 = 年間保険料). Deductions render as a −|amount| glyph (sign never colour-only) with an sr-only 控除 label. Read-only by design — for an editable line-item grid with column totals use EditableDataTable; for a single signed delta use Statistic/Delta; for the back-office KPI strip use StatGroup. RSC-safe by default (formatValue defaults to formatCurrency); pass a custom formatValue only from a client boundary.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/AmountBreakdown.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "analyticsCard": {
       "title": "AnalyticsCard",
       "description": "Composable metric card shell for chart previews, deltas, and supporting context.",

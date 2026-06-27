@@ -1593,6 +1593,7 @@ export const translations: Record<
       PersonCell: "人物セル",
       RelationshipRow: "関係行",
       StatGroup: "指標グループ",
+      AmountBreakdown: "金額内訳",
       RevealSection: "条件付きセクション",
       Delta: "差分",
       Meter: "メーター",

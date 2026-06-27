@@ -64,13 +64,14 @@ const GROUPS: Group[] = [
             { build: { en: "Capacity / occupancy / utilisation gauge", ja: "容量/稼働/充足のメーター" }, comp: "Meter", slug: "meter", when: { en: "value-vs-max bar. Format money in the readout with formatValue={formatCurrency}. direction sets the tone semantics (judgment vs neutral fill).", ja: "value÷max のバー。読み上げの金額整形は formatValue={formatCurrency}。direction でトーンの意味（判断 vs 中立）が変わる。" } },
             { build: { en: "Measured value vs a reference range (vitals, tolerance, 基準値 H/L)", ja: "測定値を基準範囲で判定（バイタル・公差・基準値 H/L）" }, comp: "ReferenceValue", slug: "reference-value", when: { en: "auto H/L/HH/LL flags, never color-only. flagValue() is the pure helper.", ja: "H/L/HH/LL を自動・色だけに非依存。flagValue() は純関数。" } },
             { build: { en: "Signed change / +−", ja: "符号付き差分・増減" }, comp: "Delta", slug: "delta" },
+            { build: { en: "Money derivation: labeled lines − deductions = total (請求 / 見積 / 査定 / 支払 / 精算 / 控除 / 給与明細)", ja: "金額の導出：明細 − 控除 = 合計（請求/見積/査定/支払/精算/控除/給与明細）" }, comp: "AmountBreakdown", slug: "amount-breakdown", when: { en: "READ-ONLY breakdown to a total, with subtotals + formula. Editable entry grid → EditableDataTable.", ja: "確定済みの金額導出（小計・数式つき）。編集入力は EditableDataTable。" } },
         ],
     },
     {
         title: { en: "Tables & editable grids", ja: "表・編集グリッド" },
         items: [
             { build: { en: "Sortable / paginated / filterable table that becomes cards on mobile", ja: "ソート/ページング/絞り込み・モバイルでカード化する表" }, comp: "DataTable", slug: "data-table", when: { en: "pass renderCard for the mobile card fallback.", ja: "renderCard でモバイルはカード崩し。" } },
-            { build: { en: "Editable line items with column-aligned totals (invoice / 明細)", ja: "編集明細・列揃え合計（請求書/明細）" }, comp: "EditableDataTable", slug: "editable-data-table" },
+            { build: { en: "EDITABLE line items with column-aligned totals (data entry)", ja: "編集できる明細・列揃え合計（データ入力）" }, comp: "EditableDataTable", slug: "editable-data-table", when: { en: "cells are inputs / add-remove rows. For a READ-ONLY money total → AmountBreakdown.", ja: "セルが入力・行追加削除。確定済みの金額導出は AmountBreakdown。" } },
             { build: { en: "Plain table primitives", ja: "素の表プリミティブ" }, comp: "Table", slug: "table" },
         ],
     },
