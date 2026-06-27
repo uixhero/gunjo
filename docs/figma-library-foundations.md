@@ -3325,6 +3325,57 @@ Figma export:
   token notes, and related-component usage boundary are aligned without visible
   overflow or overlap.
 
+The next discovery target was then exported with the additional TagEditor
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `TagEditor / Section`: `388:2`
+- `TagEditor / Library card`: `388:3`
+- Placement: `Display` page, after `AssetGrid / Section`, at `(40, 56429)`,
+  `1280 x 1185`.
+- Variant contract: generated variants are `default` and `compact`; the
+  default variant is `default`.
+- Source contract: the recorded prop surface covers required `value`, optional
+  `onValueChange`, `suggestions`, `label`, `placeholder`, `removeLabel`,
+  `maxTagsReachedLabel`, `disabledLabel`, `maxTags`, `variant`,
+  `disabled`, `className`, and forwarded `div` HTML attributes except
+  `onChange`.
+- Layout contract: the root is `w-full p-0`; `default` uses `space-y-3` and
+  a `min-h-10` TagInput, while `compact` uses `space-y-2` and a
+  `min-h-9 text-xs` TagInput. The label row shows the optional label and a
+  `value.length/maxTags` counter when `maxTags` is provided.
+- Behavior notes: suggestions default to an empty array and are filtered
+  case-insensitively against current values. `addTag` trims suggestions,
+  ignores empty strings, blocks duplicates, and prevents additions when
+  `maxTags` is reached. Up to six available suggestions render as outline
+  small buttons with a leading plus icon. Disabled suggestion buttons are
+  wrapped in an enabled tooltip trigger and show either `maxTagsReachedLabel`
+  or `disabledLabel`.
+- Docs-derived states and samples: with suggestions, compact, and maximum tags;
+  sample labels include タグ, 配信タグ, 最大3件, ヒーロー, Web, SNS, 短尺, 広告,
+  公開前, キャンペーン, 商品, セール, タグを追加..., タグを削除, and
+  タグは3件まで追加できます。不要なタグを削除してから追加してください。
+- Composition and usage boundaries: TagEditor composes `TagInput`, `Button`,
+  and `Tooltip`; use `TagEditor` when editable tags need suggestions or a
+  max-count affordance, `TagInput` for direct freeform tag entry, `Tag` for
+  static tag display, `MetadataList` for label/value metadata, and `ToolPill`
+  for compact tool metadata.
+- Runtime token notes: root styling is structural; label/counter text uses
+  `muted-foreground`; TagInput and suggestion controls use `background`,
+  `foreground`, `input`, `border`, `muted`, `muted-foreground`,
+  `primary`, `secondary`, `popover`, and `ring` for field, tag,
+  tooltip, and focus annotation.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `default` / `compact` variant contract, suggestions/compact/max-tags
+  specimens, props/default and disabled tooltip behavior contracts, runtime
+  token notes, and related-component usage boundary are aligned without visible
+  overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -3345,7 +3396,7 @@ Before creating the next component:
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
    ToolPill, Code, EmptyState, Tag, Icon, ColorSwatch, and Carousel
    and DataTable, ActionDataTable, AvatarGroup, CodeBlock, Timeline,
-   TreeView, FileTree, DocNote, AssetCard, and AssetGrid components, runtime semantic
+   TreeView, FileTree, DocNote, AssetCard, AssetGrid, and TagEditor components, runtime semantic
    colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
