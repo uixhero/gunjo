@@ -4114,6 +4114,70 @@ Figma export:
   critical states, props/defaults, runtime token notes, and related-chart usage
   boundary are aligned without visible overflow or overlap.
 
+The next discovery target was then exported with the additional
+SegmentedGaugeCard component data. The owner reaffirmed that the destination
+Figma file is the company design-system source of truth and that reflecting
+private repository component specs into that file is the approved first-party
+workflow.
+
+Figma export:
+
+- `SegmentedGaugeCard / Section`: `446:2`
+- `SegmentedGaugeCard / Library card`: `446:3`
+- Placement: `Charts` page, after `GaugeChart / Section`, at `(40, 26026)`,
+  `1280 x 2040`.
+- Variant contract: generated variants are `default` and `compact`; the
+  default variant is `default`.
+- Source contract: the recorded prop surface covers required `segments`, plus
+  optional `title`, `description`, `value`, `valueLabel`, `centerLabel`,
+  `delta`, `deltaDescription`, `targetValue`, `targetLabel`, `caption`,
+  `variant`, `selectedIndex`, `min`, `max`, `thickness`, `showLegend`,
+  `formatValue`, `totalLabel`, `onSegmentSelect`, `className`, and forwarded
+  Card props. Defaults are `title="Segmented gauge"`,
+  `targetLabel="Target"`, `variant="default"`, `min=0`,
+  `max=max(segmentTotal, 1)`, `thickness=variant==="compact"?18:24`,
+  `showLegend=true`, `formatValue=defaultChartValueFormatter`, and
+  `totalLabel="Total"`.
+- Geometry and behavior: the default density uses `rounded-lg`, header
+  `p-5 pb-3`, content `px-5 pb-5`, chart `max-w-72`, and 24px gauge
+  thickness; compact uses `rounded-md`, header `p-4 pb-3`, content
+  `px-4 pb-4`, chart `max-w-56`, and 18px gauge thickness. The chart surface
+  is an aspect-[2/1] region with focus ring and a semi-circle conic-gradient
+  from 270deg, muted track, segment fills, selected foreground outline, and a
+  `bg-card` inner cutout sized from `thickness`.
+- Gauge model: segments are normalized by `resolvedMax`, positive values only,
+  and rendered across the 180deg semicircle. `value` clamps to `min` /
+  `resolvedMax` before display. `targetValue` normalizes against the same
+  range and renders a dashed guide with `ChartTooltip`.
+- Interaction notes: pointer and touch hit testing require the pointer to be
+  within the gauge ring, within the 180deg sweep, and inside a segment range.
+  Focus opens the first or selected segment tooltip; touch uses sticky tooltip
+  behavior; Enter / Space and legend clicks call `onSegmentSelect` when
+  provided. `ChartFloatingTooltip` follows the active segment position.
+- Docs-derived states and samples: default, selected segment, no legend, and
+  compact. Sample copy includes 支出内訳, セグメントゲージ, 現在の支出,
+  目標支出, 合計, 基礎費, 成長投資, 運用費, 固定費, 追加投資, 運用余力,
+  Spend breakdown, Current spend, Target spend, Essentials, Growth, and
+  Operations.
+- Composition and usage boundaries: SegmentedGaugeCard composes Card,
+  CardHeader, CardContent, CardTitle, CardDescription, ChartTooltip,
+  ChartFloatingTooltip, and chart-utils. Use SegmentedGaugeCard when a
+  semi-circle gauge needs multiple labeled ranges and an optional target value;
+  use GaugeChart for one scalar score, RadialBarChart for multiple radial
+  series, and Statistic for a text-only current value.
+- Runtime token notes: card shell and inner cutout use `card` /
+  `card-foreground`; copy uses `foreground` and `muted-foreground`; track and
+  caption use `muted`; border and focus affordances use `border`, `ring`, and
+  `background`; tooltip chrome uses `popover` and `popover-foreground`;
+  segment tones resolve through chart data or `primary`, `success`, `warning`,
+  `info`, `accent`, and `destructive`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `default` / `compact` variant contract, selected / no-legend / compact
+  states, props/defaults, runtime token notes, and related-chart usage boundary
+  are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
