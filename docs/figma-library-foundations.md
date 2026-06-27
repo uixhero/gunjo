@@ -3742,6 +3742,56 @@ Figma export:
   selected-ring/chart-only states, props/defaults, runtime token notes, and
   related-chart usage boundary are aligned without visible overflow or overlap.
 
+The next discovery target was then exported with the additional
+StackedBarChart component data. The owner reaffirmed that the destination
+Figma file is the company design-system source of truth and that reflecting
+private repository component specs into that file is the approved first-party
+workflow.
+
+Figma export:
+
+- `StackedBarChart / Section`: `422:2`
+- `StackedBarChart / Library card`: `422:3`
+- Placement: `Charts` page, after `ConcentricProgressCard / Section`, at
+  `(40, 12470)`, `1280 x 1980`.
+- Variant contract: generated variants are `vertical` and `horizontal`; the
+  default variant is `vertical`.
+- Source contract: the recorded prop surface covers required `data`, optional
+  `variant`, `max`, `normalize`, `showGrid`, `showLabels`, `showValues`,
+  `showLegend`, `formatValue`, `totalLabel`, `className`, and forwarded `div`
+  HTML attributes. Defaults are `variant="vertical"`, `normalize=false`,
+  `showGrid=true`, `showLabels=true`, `showValues=false`,
+  `showLegend=false`, `formatValue=defaultChartValueFormatter`, and
+  `totalLabel="Total"`.
+- Geometry and behavior: both variants use `h-[224px] w-full p-0`. The
+  vertical variant bottom-aligns stacked bars inside a bordered baseline with
+  optional 25/50/75% grid rows, optional total values above the plot, and group
+  labels below. The horizontal variant renders label / stack / value rows and
+  can normalize each group to a 100% width composition.
+- Interaction notes: every segment is wrapped in `ChartTooltip`, is focusable,
+  and receives an aria-label containing group label, segment label, formatted
+  value, total label/value, and within-group percent. Segment separators use
+  background-colored inset dividers.
+- Docs-derived states and samples: vertical, five bars, legend and values,
+  horizontal, and normalized. Sample data includes 1月 / 2月 / 3月 / 4月 /
+  5月 groups with 自然流入, 紹介, and 広告 segments, plus total labels
+  `合計` / `Total`.
+- Composition and usage boundaries: StackedBarChart composes `ChartTooltip`,
+  `ChartLegend`, and chart-utils. Use it for grouped totals where segment
+  contribution matters. Use `BarChart` for single-series rankings and
+  `DistributionBar` for one compact proportional strip.
+- Runtime token notes: segment tones resolve through `primary`, `success`,
+  `warning`, `info`, `destructive`, and fallback chart colors; chart tracks,
+  grid lines, labels, and tooltip/focus affordances use `muted`,
+  `muted-foreground`, `border`, `background`, `foreground`, `ring`,
+  `popover`, and `popover-foreground`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `vertical` / `horizontal` variant contract, five-bars/legend/normalized
+  states, props/defaults, runtime token notes, and related-chart usage boundary
+  are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -3764,7 +3814,7 @@ Before creating the next component:
    and DataTable, ActionDataTable, AvatarGroup, CodeBlock, Timeline,
    TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, ChartLegend,
    SparklineChart, LineChart, RibbonChart, RadialBarChart, BarChart, and
-   ConcentricProgressCard components, runtime semantic
+   ConcentricProgressCard, and StackedBarChart components, runtime semantic
    colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
