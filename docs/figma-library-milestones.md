@@ -13,12 +13,12 @@ Source of truth:
 ## Current Status
 
 - Discovery scope: 162 components / templates
-- Recorded exports: 83
-- Remaining exports: 79
+- Recorded exports: 84
+- Remaining exports: 78
 - Completed category blocks: `Inputs`, `Overlay`
 - Current working category: `Display`
-- Last recorded component: `ActionDataTable`
-- Recommended next component: `AvatarGroup`
+- Last recorded component: `AvatarGroup`
+- Recommended next component: `CodeBlock`
 
 ## Completed Blocks
 
@@ -124,10 +124,10 @@ Display recorded so far:
 - Carousel
 - DataTable
 - ActionDataTable
+- AvatarGroup
 
 Display remaining:
 
-- AvatarGroup
 - CodeBlock
 - Timeline
 - TreeView
@@ -143,15 +143,14 @@ Display remaining:
 
 Recommended order:
 
-1. AvatarGroup
-2. CodeBlock
-3. Timeline
-4. TreeView
-5. FileTree
-6. DocNote
-7. AssetCard
-8. AssetGrid
-9. TagEditor
+1. CodeBlock
+2. Timeline
+3. TreeView
+4. FileTree
+5. DocNote
+6. AssetCard
+7. AssetGrid
+8. TagEditor
 
 ### Milestone 2: Charts
 

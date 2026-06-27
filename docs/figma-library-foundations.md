@@ -2934,6 +2934,50 @@ Figma export:
   row-action state notes, runtime token notes, and related-component usage
   boundary are aligned without visible overlap.
 
+The next discovery target was then exported with the additional AvatarGroup
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `AvatarGroup / Section`: `356:2`
+- `AvatarGroup / Library card`: `356:3`
+- Placement: `Display` page, after `ActionDataTable / Section`, at
+  `(40, 43240)`, `1280 x 1530`.
+- Variant contract: no generated variants and no default variant; the
+  component is a composition around child `Avatar` elements, overflow logic,
+  and optional popover content.
+- Source contract: the recorded prop surface covers `max`, `overlap=8`,
+  `avatarClassName`, `overflowTooltip`, `overflowContent`,
+  `overflowAriaLabel`, `overflowContentClassName`,
+  `overflowPortalContainer`, `overflowContentSide="bottom"`,
+  `overflowContentAlign="end"`, `overflowContentSideOffset=8`, and
+  `overflowContentAvoidCollisions`.
+- Behavior notes: the Figma specimen records valid React child filtering,
+  `visible = items.slice(0, max)`, overflow count calculation, negative
+  margin overlap, non-clickable `+N` fallback, clickable `+N` popover trigger
+  when `overflowContent` exists, and portal-contained popover behavior.
+- Docs-derived states and samples: all visible, `max=3` / `max=5` with `+N`
+  overflow, hidden member tooltip summary, member list popover, name tooltips,
+  presence dots with status labels, and tighter `overlap={14}`.
+- Composition and usage boundaries: composes `Avatar`, `AvatarFallback`,
+  `Tooltip`, and `Popover`; use `Avatar` for one person, `AvatarGroup` for
+  compact participant sets, `HoverCard` for rich one-person previews, and
+  `MetadataList` for structured member details.
+- Runtime token notes: `background`, `foreground`, `popover`,
+  `popover-foreground`, `muted`, `muted-foreground`, `border`, `ring`,
+  `secondary`, `success`, `warning`, and `destructive` were annotated from
+  `src/globals.css`, with Avatar-derived `ring-background`, `bg-muted`,
+  `bg-secondary`, and presence color behavior represented in the specimen.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  no-generated-variant contract, overlapping avatar specimen, overflow
+  popover specimen, props/default contract, overflow / tooltip / presence /
+  tight-overlap state notes, runtime token notes, and related-component usage
+  boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2953,8 +2997,8 @@ Before creating the next component:
    FilterButton, SortButton, EditableField, Form, Combobox, DatePicker,
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
    ToolPill, Code, EmptyState, Tag, Icon, ColorSwatch, and Carousel
-   and DataTable, and ActionDataTable components, runtime semantic colors, and
-   specimen treatments are acceptable.
+   and DataTable, ActionDataTable, and AvatarGroup components, runtime
+   semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
