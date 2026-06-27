@@ -3892,6 +3892,66 @@ Figma export:
   props/defaults, runtime token notes, and related-chart usage boundary are
   aligned without visible overflow or overlap.
 
+The next discovery target was then exported with the additional
+SegmentTimelineCard component data. The owner reaffirmed that the destination
+Figma file is the company design-system source of truth and that reflecting
+private repository component specs into that file is the approved first-party
+workflow.
+
+Figma export:
+
+- `SegmentTimelineCard / Section`: `432:2`
+- `SegmentTimelineCard / Library card`: `432:3`
+- Placement: `Charts` page, after `MiniDistributionBarCard / Section`, at
+  `(40, 18174)`, `1280 x 2000`.
+- Variant contract: generated variants are `default` and `compact`; the
+  default variant is `default`.
+- Source contract: the recorded prop surface covers required `segments`,
+  optional `metrics`, `title`, `description`, `delta`, `deltaDescription`,
+  `caption`, `variant`, `selectedIndex`, `min`, `max`, `startLabel`,
+  `endLabel`, `markers`, `showLegend`, `formatValue`, `rangeLabel`,
+  `onSegmentSelect`, `className`, and forwarded Card props. Defaults are
+  `metrics=[]`, `title="Segment timeline"`, `variant="default"`,
+  `markers=[]`, `showLegend=true`, `formatValue=defaultChartValueFormatter`,
+  and `rangeLabel="Range"`.
+- Geometry and behavior: the root composes `Card`, `CardHeader`,
+  `CardContent`, `CardTitle`, `CardDescription`, and `ChartTooltip`. The
+  default density uses rounded-lg card chrome, `p-5 pb-3` header,
+  `px-5 pb-5` content, `px-3 py-2.5` metric cells, `h-24` timeline surface,
+  and text-base title. The compact density uses rounded-md card chrome,
+  `p-4 pb-3` header, `px-4 pb-4` content, `px-3 py-2` metric cells, `h-20`
+  timeline surface, and text-sm title.
+- Timeline model: bounds resolve from `min` / `max` or segment starts/ends,
+  `getSegmentPosition` normalizes each start/end to percent left and width,
+  and segment width uses `max(calc(width% - 1.5rem), 0.625rem)` to preserve
+  small ranges. Markers normalize with the same bounds and render dashed
+  focusable reference lines.
+- Interaction notes: metric cards, timeline segments, markers, and legend rows
+  are wrapped in `ChartTooltip`. Timeline segments and legend rows call
+  `onSegmentSelect` with segment and index when provided. `selectedIndex`
+  highlights matching labels and dims non-selected segments. Legend rows are
+  aggregated by label with accumulated duration.
+- Docs-derived states and samples: default, selected segment, with markers, and
+  compact. Sample copy includes 睡眠ステージ, 睡眠品質, 睡眠時間, 覚醒時間,
+  浅い睡眠, 深い睡眠, レム, 覚醒, アラーム, 23:42, 07:18, +7%,
+  ステージ時間, and values across `min=0` / `max=474`.
+- Composition and usage boundaries: use SegmentTimelineCard for card-level
+  categorical duration ranges such as sleep stages, uptime states, and delivery
+  statuses with metrics or markers. Use `Timeline` for generic chronological
+  item lists and `ActivityTimelineCard` for activity/event summaries.
+- Runtime token notes: card shell, metrics, timeline surface, legend rows,
+  marker, focus, and tooltip affordances use `card`, `card-foreground`,
+  `background`, `foreground`, `muted`, `muted-foreground`, `border`, `accent`,
+  `ring`, `success-strong`, `popover`, and `popover-foreground`; segment tones
+  resolve through chart data or `primary`, `info`, `success`, `warning`, and
+  `destructive` fallbacks.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `default` / `compact` variant contract, selected/markers states,
+  props/defaults, runtime token notes, and related-chart usage boundary are
+  aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -3914,7 +3974,7 @@ Before creating the next component:
    and DataTable, ActionDataTable, AvatarGroup, CodeBlock, Timeline,
    TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, ChartLegend,
    SparklineChart, LineChart, RibbonChart, RadialBarChart, BarChart, and
-   ConcentricProgressCard, StackedBarChart, DistributionBar, and MiniDistributionBarCard components, runtime semantic
+   ConcentricProgressCard, StackedBarChart, DistributionBar, MiniDistributionBarCard, and SegmentTimelineCard components, runtime semantic
    colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
