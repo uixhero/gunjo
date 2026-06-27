@@ -3215,6 +3215,61 @@ Figma export:
   runtime token notes, and related-component usage boundary are aligned
   without visible overlap.
 
+The next discovery target was then exported with the additional AssetCard
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `AssetCard / Section`: `383:2`
+- `AssetCard / Library card`: `383:3`
+- Placement: `Display` page, after `DocNote / Section`, at `(40, 53342)`,
+  `1280 x 1459`.
+- Variant contract: generated variants are `default` and `compact`; the
+  default variant is `default`.
+- Source contract: the recorded prop surface covers required `asset`,
+  optional `selected`, `variant`, `selectionMode`, `imageFit`, preview /
+  favorite / unfavorite / rating / no-image labels, `portalContainer`,
+  `onSelect`, `onPreview`, `onFavorite`, `renderMeta`, `className`, and
+  forwarded `div` HTML attributes except `onSelect`.
+- Asset contract: `AssetCardAsset` records `id`, `title`, optional `src`,
+  `alt`, `type`, `size`, `width`, `height`, `createdAt`, `isFavorite`,
+  `rating`, `score`, and `meta`. Default metadata is dimensions, then type
+  and size, then created date; numeric positive `rating` is displayed before
+  the legacy `score` fallback.
+- Behavior notes: the root becomes `role="button"` and `tabIndex={0}` only
+  when `onSelect` is provided; Enter and Space call `onSelect` unless the
+  original keydown was prevented. `ImagePreview` receives `objectFit`,
+  preview labels, `portalContainer`, no-image label, and optional preview
+  handler. Favorite is an icon-only button wrapped in `Tooltip`; it stops click
+  propagation and exposes `aria-label` / `aria-pressed`. Selection indicators
+  appear for multiple mode, or when selected in a non-`none` mode.
+- Docs-derived states and samples: selected, compact, contain fit, and without
+  image; sample labels include Instagram_Story_v2.png, thumbnail_square.png,
+  full_asset_preview.jpg, brief_document.pdf, 1920 x 1080, 1920 x 600, JPG,
+  PDF, 1.4MB, 2026-05-12, Rating / 評価, Open preview / 拡大表示, Favorite /
+  お気に入りに追加, Remove from favorites / お気に入りを解除, and Preview image
+  not found / プレビュー画像がありません.
+- Composition and usage boundaries: AssetCard composes `ImagePreview`, `Badge`,
+  `Icon`, and `Tooltip`; use `AssetCard` for individual selectable media
+  items, `AssetGrid` for grouped layouts and selection management,
+  `MediaLightbox` for fullscreen preview workflows, and
+  `AssetInspectorPanel` for metadata/detail editing after selection.
+- Runtime token notes: `background`, `foreground`, `border`, `muted`,
+  `muted-foreground`, and `secondary` cover root text, metadata, empty preview,
+  and overlay surfaces; `primary`, `primary-foreground`, `primary-border`, and
+  `primary-subtle` cover selected border/ring/check treatment; `warning` marks
+  the rating star; `input`, `ring`, `card`, and `accent` were included for
+  specimen annotation and preview surfaces.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `default` / `compact` variant contract, selected/compact/contain/no-image
+  specimens, props/default and interaction behavior contracts, runtime token
+  notes, and related-component usage boundary are aligned without visible
+  overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -3235,8 +3290,8 @@ Before creating the next component:
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
    ToolPill, Code, EmptyState, Tag, Icon, ColorSwatch, and Carousel
    and DataTable, ActionDataTable, AvatarGroup, CodeBlock, Timeline,
-   TreeView, FileTree, and DocNote components, runtime semantic colors, and
-   specimen treatments are acceptable.
+   TreeView, FileTree, DocNote, and AssetCard components, runtime semantic
+   colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
