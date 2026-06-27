@@ -3952,6 +3952,61 @@ Figma export:
   props/defaults, runtime token notes, and related-chart usage boundary are
   aligned without visible overflow or overlap.
 
+The next discovery target was then exported with the additional DonutChart
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `DonutChart / Section`: `434:2`
+- `DonutChart / Library card`: `434:3`
+- Placement: `Charts` page, after `SegmentTimelineCard / Section`, at
+  `(40, 20222)`, `1280 x 1960`.
+- Variant contract: generated variants are `default` and `compact`; the
+  default variant is `default`.
+- Source contract: the recorded prop surface covers required `segments`,
+  optional `variant`, `centerLabel`, `centerValue`, `thickness`, `showLegend`,
+  `formatValue`, `totalLabel`, `className`, and forwarded div attributes.
+  Defaults are `variant="default"`, `thickness=variant==="compact"?18:24`,
+  `showLegend=false`, `formatValue=defaultChartValueFormatter`, and
+  `totalLabel="Total"`.
+- Geometry and behavior: the default density uses `min-h-[192px] w-full p-0`
+  and chart `max-w-48`; compact uses `min-h-[144px] w-full p-0` and
+  `max-w-36`. The chart surface is an aspect-square rounded-full region with
+  `role="img"`, `tabIndex=0`, and focus ring. The inner cutout uses
+  `bg-card` inset by `thickness`; optional center value and label use
+  foreground and muted text.
+- Circular model: `normalizeCircularSegments` clamps negative values to zero,
+  resolves total as `max(sum positives, 1)`, and maps segments to start/end
+  percentages. `buildConicGradient` renders the segment gradient or muted
+  fallback, while pointer hit testing ignores the inner cutout and outside
+  radius before resolving the active segment and tooltip position.
+- Interaction notes: focus opens the first segment tooltip, pointer and touch
+  movement update the active segment, and the active overlay uses foreground /
+  ring emphasis. `showLegend` renders `ChartLegend` with `activeIndex`.
+- Docs-derived states and samples: default, with legend, compact, thick ring,
+  formatted values, and dense. Sample copy includes コア, 成長, 継続, 拡張,
+  プロダクト, 運用, サポート, 予備, 検索, SNS, メール, 広告, 提携,
+  その他, 合計, 構成比, 予算, チャネル, 100, 100%, and 27.5万円.
+- Composition and usage boundaries: use DonutChart for proportional
+  part-to-whole circular segment comparison with optional center copy. Use
+  PieChart for filled radial part-to-whole comparison without an inner cutout,
+  DistributionBar for compact linear strips, and LabeledDonutCard /
+  AnalyticsCard for card-level summaries.
+- Runtime token notes: inner cutout and center text use `card`, `foreground`,
+  and `muted-foreground`; focus and active affordances use `ring`,
+  `background`, and `foreground`; tooltip chrome uses `popover` and
+  `popover-foreground`; fallback and labels use `muted`; segment tones resolve
+  through chart data or `primary`, `success`, `warning`, `info`, `accent`, and
+  `destructive`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `default` / `compact` variant contract, legend / thick ring / formatted /
+  dense states, props/defaults, runtime token notes, and related-chart usage
+  boundary are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -3974,8 +4029,9 @@ Before creating the next component:
    and DataTable, ActionDataTable, AvatarGroup, CodeBlock, Timeline,
    TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, ChartLegend,
    SparklineChart, LineChart, RibbonChart, RadialBarChart, BarChart, and
-   ConcentricProgressCard, StackedBarChart, DistributionBar, MiniDistributionBarCard, and SegmentTimelineCard components, runtime semantic
-   colors, and specimen treatments are acceptable.
+   ConcentricProgressCard, StackedBarChart, DistributionBar,
+   MiniDistributionBarCard, SegmentTimelineCard, and DonutChart components,
+   runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
