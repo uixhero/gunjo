@@ -2888,6 +2888,52 @@ Figma export:
   responsive-card / row-action state specimens, runtime token notes, and
   related-component usage boundary are aligned without visible overlap.
 
+The next discovery target was then exported with the additional
+ActionDataTable component data. The owner reaffirmed that the destination
+Figma file is the company design-system source of truth and that reflecting
+private repository component specs into that file is the approved first-party
+workflow.
+
+Figma export:
+
+- `ActionDataTable / Section`: `350:2`
+- `ActionDataTable / Library card`: `350:3`
+- Placement: `Display` page, after `DataTable / Section`, at `(40, 41786)`,
+  `1280 x 1406`.
+- Variant contract: generated variants `default`, `selection`, and
+  `rowActions`; default variant `default`; all variants resolve to the same
+  root class contract (`w-full p-0`) and are differentiated by composition
+  state rather than visual CVA styling.
+- Source contract: `ActionDataTable` extends `DataTable` with generated
+  selection and row-action columns, `getRowId`, `getRowLabel`,
+  `enableSelection=true`, `rowActions`, `rowActionsVariant="inline" | "menu"`,
+  `bulkActions`, controlled `selectedIds`, and `onSelectionChange`.
+- Behavior notes: the Figma specimen records uncontrolled / controlled
+  selection, stale selected-id pruning, select-all mixed state, row checkbox
+  labels, bulk toolbar enablement, disabled action tooltip reasons, inline
+  and menu row actions, destructive action styling, and selected row state
+  forwarding through `DataTable`'s `getRowState`.
+- Docs-derived states and samples: selection and bulk actions, row actions,
+  campaign rows, statuses (`Active`, `Draft`, `Archived`), actions (`Edit`,
+  `Archive`, and `Delete`), edit dialog follow-up, and destructive delete
+  confirmation copy.
+- Composition and usage boundaries: composes `DataTable`, `Checkbox`, `Button`,
+  `Badge`, `Select`, `Tooltip`, `DropdownMenu`, `Dialog`, and `AlertDialog`;
+  use `DataTable` for sort / filter / pagination only, `Table` for static
+  markup, and `FilterButton` for external filter chips.
+- Runtime token notes: `background`, `foreground`, `popover`,
+  `popover-foreground`, `muted`, `muted-foreground`, `border`, `input`,
+  `ring`, `secondary`, `secondary-foreground`, `destructive`,
+  `destructive-foreground`, `destructive-strong`, and
+  `destructive-strong-foreground` were annotated from `src/globals.css`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the generated
+  `default` / `selection` / `rowActions` variant contract, selectable table
+  specimen, prop/default and labels contract, selection / bulk-action /
+  row-action state notes, runtime token notes, and related-component usage
+  boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2907,8 +2953,8 @@ Before creating the next component:
    FilterButton, SortButton, EditableField, Form, Combobox, DatePicker,
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
    ToolPill, Code, EmptyState, Tag, Icon, ColorSwatch, and Carousel
-   and DataTable components, runtime semantic colors, and specimen treatments
-   are acceptable.
+   and DataTable, and ActionDataTable components, runtime semantic colors, and
+   specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
