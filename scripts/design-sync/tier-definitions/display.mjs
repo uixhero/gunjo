@@ -865,6 +865,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "actionQueue",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:actionQueue",
+      title: "ActionQueue",
+      description: "The severity-sorted 'action-needed' worklist: the triage surface every back-office / dispatch / ops / CRM home screen opens with (失効防止 / 更新 / 満期 / 誕生日, ダイヤ乱れ・遅延・運休, アラート対応). Each row carries a severity (critical/warning/info/neutral → icon + tone, never colour alone, with an sr-only severity label), a category chip (kind), a headline + detail, trailing meta (due / time / count) and optional action buttons; rows sort critical → neutral. The other half of the morning dashboard alongside StatGroup (the KPI strip). For a single notice use Alert; for an ambient bell tray use NotificationCenter; this is the inline, act-now list. Presentational by default — onSelect makes a row's body activatable.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "relationshipRow",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:relationshipRow",

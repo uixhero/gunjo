@@ -189,6 +189,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "relationship-row": "Display",
   "stat-group": "Display",
   "amount-breakdown": "Display",
+  "action-queue": "Display",
   "reference-value": "Display",
   "signed-record": "Display",
   statistic: "Display",
