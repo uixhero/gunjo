@@ -3642,6 +3642,55 @@ Figma export:
   props/defaults, runtime token notes, and related-chart usage boundary are
   aligned without visible overflow or overlap.
 
+The next discovery target was then exported with the additional BarChart
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `BarChart / Section`: `411:2`
+- `BarChart / Library card`: `411:3`
+- Placement: `Charts` page, after `RadialBarChart / Section`, at
+  `(40, 8632)`, `1280 x 1718`.
+- Variant contract: generated variants are `vertical` and `horizontal`;
+  the default variant is `vertical`.
+- Source contract: the recorded prop surface covers required `data`,
+  optional `variant`, `max`, `averageValue`, `averageLabel`,
+  `formatValue`, `showGrid`, `showLabels`, `showValues`,
+  `className`, and forwarded `div` HTML attributes. Defaults are
+  `variant="vertical"`, `averageLabel="Average"`,
+  `formatValue=defaultChartValueFormatter`, `showGrid=true`,
+  `showLabels=true`, and `showValues=false`.
+- Geometry and behavior: both variants use `h-[192px] w-full p-0`.
+  The vertical variant renders a bottom-aligned plot with optional 25/50/75%
+  grid rows, optional average marker, optional values above bars, and category
+  labels below the plot. The horizontal variant renders label / track / value
+  rows with bar width normalized against the resolved max value.
+- Interaction notes: every bar is wrapped in `ChartTooltip` and exposes a
+  focusable target with label, formatted value, and optional average context.
+  The average marker also receives a `ChartTooltip` and focus-visible ring.
+- Docs-derived states and samples: vertical bars, reference marker with values,
+  horizontal bars, and without grid or labels; sample data includes 月 / 火 /
+  水 / 木 / 金 values 42, 58, 36, 68, 54 and channel labels 検索 / SNS /
+  広告 / 紹介 with values 74, 48, 62, 31. Sample copy includes 平均,
+  Average, WeeklyActivity, and channel/ranking contexts.
+- Composition and usage boundaries: BarChart composes chart-utils and
+  `ChartTooltip`; use it for categorical comparison or rankings. Use
+  `StackedBarChart` for stacked totals, `DistributionBar` for distribution
+  ratios, `AnalyticsCard` for metric cards, and `ChartLegend` when a
+  visible legend is required.
+- Runtime token notes: chart tones resolve through `primary`, `success`,
+  `warning`, `info`, and fallback chart colors; specimen and annotations
+  use `background`, `foreground`, `muted`, `muted-foreground`,
+  `border`, `ring`, `popover`, and `popover-foreground`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `vertical` / `horizontal` variant contract, reference/horizontal/quiet
+  states, props/defaults, runtime token notes, and related-chart usage boundary
+  are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -3662,7 +3711,7 @@ Before creating the next component:
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
    ToolPill, Code, EmptyState, Tag, Icon, ColorSwatch, and Carousel
    and DataTable, ActionDataTable, AvatarGroup, CodeBlock, Timeline,
-   TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, ChartLegend, SparklineChart, LineChart, RibbonChart, and RadialBarChart components, runtime semantic
+   TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, ChartLegend, SparklineChart, LineChart, RibbonChart, RadialBarChart, and BarChart components, runtime semantic
    colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.

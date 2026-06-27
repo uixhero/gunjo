@@ -13,12 +13,12 @@ Source of truth:
 ## Current Status
 
 - Discovery scope: 162 components / templates
-- Recorded exports: 97
-- Remaining exports: 65
+- Recorded exports: 98
+- Remaining exports: 64
 - Completed category blocks: `Inputs`, `Overlay`, `Display`
 - Current working category: `Charts`
-- Last recorded component: `RadialBarChart`
-- Recommended next component: `BarChart`
+- Last recorded component: `BarChart`
+- Recommended next component: `ConcentricProgressCard`
 
 ## Completed Blocks
 
@@ -147,10 +147,10 @@ Charts recorded so far:
 - LineChart
 - RibbonChart
 - RadialBarChart
+- BarChart
 
 Charts remaining:
 
-- BarChart
 - ConcentricProgressCard
 - StackedBarChart
 - DistributionBar
@@ -179,11 +179,10 @@ Status: complete.
 
 Recommended order:
 
-1. BarChart
+1. ConcentricProgressCard
 
 Remaining:
 
-- BarChart
 - ConcentricProgressCard
 - StackedBarChart
 - DistributionBar
