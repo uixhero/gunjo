@@ -4539,6 +4539,65 @@ Figma export:
   HeatmapChart / RetentionCohortCard / Table / AnalyticsCard usage boundaries
   are aligned without visible overflow or overlap.
 
+The next discovery target was then exported with the additional QuadrantMatrix
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `QuadrantMatrix / Section`: `472:2`
+- `QuadrantMatrix / Library card`: `472:3`
+- Placement: `Charts` page, after `ChoroplethMap / Section`, at
+  `(40, 41242)`, `1280 x 2280`.
+- Variant contract: generated variants are `default` and `compact`; the
+  default variant is `default`.
+- Source contract: the recorded prop surface covers required `items`, optional
+  `variant`, `max`, `color`, `selectedId`, `showRanking`, `rankingLimit`,
+  `xAxisLabel`, `yAxisLabel`, `quadrantLabels`, `formatValue`,
+  `onItemSelect`, `rankingPlacement`, `className`, and inherited HTML
+  attributes. Defaults are `variant="default"`, `showRanking=true`,
+  `rankingLimit=5`, `formatValue=defaultChartValueFormatter`, and
+  `rankingPlacement="side"`.
+- Data model: each item has `id?`, `label`, `value`, `x`, `y`, `color?`, and
+  `description?`. `x` and `y` are clamped percentage coordinates and rendered
+  with absolute positioning plus `translate(-50%, -50%)`. `value` is normalized
+  against `max` or the observed maximum to determine point size and ranking
+  progress.
+- Layout notes: the root is `w-full p-0`; the matrix panel is `relative`,
+  `rounded-md`, `border`, and `bg-muted/20`. The default panel uses
+  `min-h-56`, compact uses `min-h-44`, and side ranking uses
+  `md:grid-cols-[minmax(0,1fr)_minmax(10rem,14rem)]`. Bottom ranking stacks
+  the ordered list below the matrix for narrower containers.
+- Interaction notes: points and ranking rows render as `button` when
+  `onItemSelect` exists and otherwise as focusable spans inside `ChartTooltip`.
+  `selectedId` adds `aria-current`, `ring-2 ring-foreground` on the point, and
+  `ring-1 ring-foreground` on the matching ranking row. Focus-visible rings
+  use `ring` with `ring-offset-background`.
+- Docs-derived states and samples: default, selected item, bottom ranking, and
+  compact. Sample copy includes 4象限マトリクス, 活性化, 拡張, 継続, リスク,
+  戦略, 拡大, 見直し, 効率, 到達範囲, 影響度, QuadrantMatrix, Activation,
+  Expansion, Retention, Risk, Strategic, Scale, Review, Efficient, Reach, and
+  Impact.
+- Composition and usage boundaries: QuadrantMatrix composes ChartTooltip and
+  chart-utils. Use it for two-axis item positioning and ranked values; use
+  ChoroplethMap for geographic region density, HeatmapChart for matrix
+  intensity grids, RadarChart for multi-axis normalized score shapes, and
+  AnalyticsCard for reusable card chrome around chart content.
+- Runtime token notes: quadrant backgrounds use `muted/20` and `muted/10`;
+  axes and panel borders use `border`; point strokes and selected rings use
+  `background`, `foreground`, and `ring`; ranking rows use `card`, `border`,
+  `muted`, `muted-foreground`, and `primary-border`; chart colors resolve
+  through `primary`, `success`, `warning`, `info`, `destructive`, and `accent`;
+  tooltip chrome uses `popover` and `popover-foreground`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `default` / `compact` variant contract, default / selected / bottom /
+  compact states, props/defaults, coordinate and ranking model, runtime token
+  notes, and ChoroplethMap / HeatmapChart / RadarChart / AnalyticsCard usage
+  boundaries are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -4564,7 +4623,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, and ChoroplethMap components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, and QuadrantMatrix components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
