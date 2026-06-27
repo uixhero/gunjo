@@ -4477,6 +4477,68 @@ Figma export:
   HeatmapChart / Table usage boundary are aligned without visible overflow or
   overlap.
 
+The next discovery target was then exported with the additional ChoroplethMap
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `ChoroplethMap / Section`: `469:2`
+- `ChoroplethMap / Library card`: `469:3`
+- Placement: `Charts` page, after `RetentionCohortCard / Section`, at
+  `(40, 38854)`, `1280 x 2340`.
+- Variant contract: generated variants are `default` and `compact`; the
+  default variant is `default`.
+- Source contract: the recorded prop surface covers required `regions`,
+  optional `markers`, `variant`, `max`, `color`, `selectedId`, `showRanking`,
+  `rankingLimit`, `showSelectedRegion`, `preserveAspectRatio`, `formatValue`,
+  `selectedLabel`, `rankLabel`, `onRegionSelect`, `onMarkerSelect`,
+  `className`, and inherited HTML attributes. Defaults are `markers=[]`,
+  `variant="default"`, `color="destructive"`, `showRanking=true`,
+  `rankingLimit=6`, `showSelectedRegion=true`, `preserveAspectRatio=true`,
+  `formatValue=defaultChartValueFormatter`, `selectedLabel="Selected"`,
+  and `rankLabel="Rank"`.
+- Geometry and behavior: regions accept GeoJSON-style `Polygon` and
+  `MultiPolygon` coordinates, while markers use projected coordinates or
+  normalized `x` / `y` percentages. `computeBounds` includes region exterior
+  rings plus marker coordinates, falls back to `0..100` bounds, and
+  `projectCoordinate` clamps values into percent positions.
+  `preserveAspectRatio` keeps geography from stretching inside the panel.
+- Layout notes: the root is `w-full p-0`; the map panel is `rounded-md`,
+  `border`, and `bg-muted/20`. The default panel uses `min-h-72`, compact uses
+  `min-h-56`, and the ranking layout splits at `640px` with
+  `minmax(0,1.35fr)` and `minmax(min(42%,18rem),0.85fr)`.
+- Interaction notes: regions and ranking rows render as `button` when
+  `onRegionSelect` exists and otherwise as focusable spans inside
+  `ChartTooltip`. Markers render as `button` when `onMarkerSelect` exists and
+  otherwise as focusable spans. `selectedId` adds `aria-current`, stronger
+  foreground outline treatment, and selected ranking emphasis.
+- Docs-derived states and samples: default, markers and selection, compact,
+  alternate color, and map-only. Sample copy includes 塗り分け地図, 新宿, 渋谷,
+  千代田, 港, 新宿駅, 渋谷交差点, 東京駅, 選択中, 順位, Tokyo incident density
+  by ward, Shinjuku, Shibuya, Shinjuku station, Shibuya crossing, Selected,
+  and Rank.
+- Composition and usage boundaries: ChoroplethMap composes ChartTooltip and
+  chart-utils. Use it for regional density and location ranking; use
+  HeatmapChart for matrix heatmaps, RetentionCohortCard for cohort retention
+  tables, Table for raw tabular data, and AnalyticsCard for generic chart card
+  shells.
+- Runtime token notes: map panel uses `muted/20` and `border`; map outlines
+  use `foreground` at low opacity or selected emphasis; selected cards and
+  ranking rows use `card`, `muted-foreground`, and `border`; top rank badges
+  use `primary-subtle` and `primary-subtle-foreground`; markers use
+  `background` and `foreground`; tooltip chrome uses `popover` and
+  `popover-foreground`; chart colors resolve through `destructive`, `info`,
+  `success`, `warning`, `muted`, and related chart color helpers.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `default` / `compact` variant contract, default / markers / compact /
+  alternate-color / map-only states, props/defaults, runtime token notes, and
+  HeatmapChart / RetentionCohortCard / Table / AnalyticsCard usage boundaries
+  are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -4502,7 +4564,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, and RetentionCohortCard components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, and ChoroplethMap components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
