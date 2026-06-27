@@ -3792,6 +3792,51 @@ Figma export:
   states, props/defaults, runtime token notes, and related-chart usage boundary
   are aligned without visible overflow or overlap.
 
+The next discovery target was then exported with the additional
+DistributionBar component data. The owner reaffirmed that the destination
+Figma file is the company design-system source of truth and that reflecting
+private repository component specs into that file is the approved first-party
+workflow.
+
+Figma export:
+
+- `DistributionBar / Section`: `427:2`
+- `DistributionBar / Library card`: `427:3`
+- Placement: `Charts` page, after `StackedBarChart / Section`, at
+  `(40, 14498)`, `1280 x 1720`.
+- Variant contract: generated variants contain only `default`; the default
+  variant is `default`.
+- Source contract: the recorded prop surface covers required `segments`,
+  optional `showLegend`, `formatValue`, `totalLabel`, `className`, and
+  forwarded `div` HTML attributes. Defaults are `showLegend=false`,
+  `formatValue=defaultChartValueFormatter`, and `totalLabel="Total"`.
+- Geometry and behavior: the root uses `w-full space-y-3 p-0`; the bar is
+  `h-9 w-full overflow-hidden rounded-full border border-border/70 bg-muted`
+  with one focusable segment per positive value. Segment widths are normalized
+  against the positive total and use background-colored inset dividers.
+- Interaction notes: each segment is wrapped in `ChartTooltip`, receives
+  `tabIndex=0`, and exposes an aria-label containing segment label,
+  normalized percent, `totalLabel`, and formatted raw value.
+- Docs-derived states and samples: default, with legend, formatted values,
+  dense segments, and small segments. Sample copy includes 自然流入, 紹介,
+  直接, 広告, プロダクト, 運用, サポート, 予備, 完了, 確認中, 停止中,
+  未割当, 合計, 予算, and 項目数.
+- Composition and usage boundaries: DistributionBar composes `ChartTooltip`,
+  `ChartLegend`, and chart-utils. Use it for one compact proportional strip;
+  use `StackedBarChart` for grouped totals, `DonutChart` for part-to-whole
+  radial comparison, and `MiniDistributionBarCard` for card-level summaries.
+- Runtime token notes: track, dividers, labels, focus, and tooltip affordances
+  use `muted`, `border`, `background`, `foreground`, `muted-foreground`,
+  `ring`, `popover`, and `popover-foreground`; segment tones resolve through
+  chart color data or `primary`, `success`, `warning`, `info`, `accent`, and
+  `destructive` fallbacks.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the default
+  variant contract, legend/formatted/dense/small states, props/defaults,
+  runtime token notes, and related-chart usage boundary are aligned without
+  visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -3814,7 +3859,7 @@ Before creating the next component:
    and DataTable, ActionDataTable, AvatarGroup, CodeBlock, Timeline,
    TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, ChartLegend,
    SparklineChart, LineChart, RibbonChart, RadialBarChart, BarChart, and
-   ConcentricProgressCard, and StackedBarChart components, runtime semantic
+   ConcentricProgressCard, StackedBarChart, and DistributionBar components, runtime semantic
    colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
