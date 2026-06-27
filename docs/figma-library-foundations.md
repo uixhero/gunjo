@@ -3482,6 +3482,62 @@ Figma export:
   AnalyticsCard composition specimen, props/defaults, runtime token notes, and
   related-chart usage boundary are aligned without visible overflow or overlap.
 
+The next discovery target was then exported with the additional LineChart
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `LineChart / Section`: `402:2`
+- `LineChart / Library card`: `402:3`
+- Placement: `Charts` page, after `SparklineChart / Section`, at
+  `(40, 3334)`, `1280 x 1718`.
+- Variant contract: generated variants are `line` and `area`; the default
+  variant is `line`.
+- Source contract: the recorded prop surface covers required `series`,
+  optional `variant`, `min`, `max`, `referenceValue`,
+  `referenceLabel`, `showGrid`, `showDots`, `showLegend`,
+  `showLabels`, `strokeWidth`, `formatValue`, `className`, and
+  forwarded `div` HTML attributes except `children`. Defaults are
+  `variant="line"`, `referenceLabel="Reference"`, `showGrid=true`,
+  `showDots=true`, `showLegend=false`, `showLabels=true`,
+  `strokeWidth=2`, and `formatValue=defaultChartValueFormatter`.
+- Geometry and behavior: the root is `flex min-w-0 flex-col gap-3` plus
+  `h-[260px] w-full p-0`; `ResizeObserver` drives measured plot dimensions
+  with a `480 x 212` fallback and plot padding `14 / 12 / 10 / 28`.
+  Domains include all finite series values plus `referenceValue` when present,
+  and explicit `min` / `max` values are normalized if provided in reverse.
+- Rendering notes: grid rows render at 0/25/50/75/100% and vertical grid lines
+  follow the longest series labels. The `area` variant renders low-opacity
+  polygons per series before the polyline; point markers are 4px circles with
+  `background` fill and 2px chart-tone stroke. Optional labels use a CSS grid
+  with one column per label.
+- Interaction notes: reference and point hit targets are focusable `span`
+  elements wrapped in `ChartTooltip`; reference lines use dashed foreground
+  treatment, and point labels include series, point label, value, and optional
+  reference description.
+- Docs-derived states and samples: line, area with legend, without point
+  markers, and explicit range; sample series include 売上 / Revenue and
+  目標 / Target across 1月-6月 / Jan-Jun with values 42, 58, 36, 68, 51, 74
+  and target values 46, 52, 48, 64, 56, 78. Sample copy includes 平均,
+  Average, Goal, and 目標.
+- Composition and usage boundaries: LineChart composes chart-utils,
+  `ChartTooltip`, and `ChartLegend`; use it for multi-series time-series
+  comparison and comparable chart scales, while compact card trends should use
+  `SparklineChart`, flow/volume continuity should use `RibbonChart`, and
+  categorical comparison should use `BarChart`.
+- Runtime token notes: chart tones resolve through `primary`, `success`,
+  `warning`, `info`, `accent`, `destructive`, and `muted`; specimen
+  and annotations use `background`, `foreground`, `border`, `ring`,
+  `popover`, `popover-foreground`, and `muted-foreground`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `line` / `area` variant contract, reference/legend/no-dots/bounded
+  states, props/defaults, runtime token notes, and related-chart usage boundary
+  are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -3502,7 +3558,7 @@ Before creating the next component:
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
    ToolPill, Code, EmptyState, Tag, Icon, ColorSwatch, and Carousel
    and DataTable, ActionDataTable, AvatarGroup, CodeBlock, Timeline,
-   TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, ChartLegend, and SparklineChart components, runtime semantic
+   TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, ChartLegend, SparklineChart, and LineChart components, runtime semantic
    colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
