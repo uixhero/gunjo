@@ -1,6 +1,6 @@
 # Figma Library Foundations Milestones
 
-Updated: 2026-06-27
+Updated: 2026-06-28
 
 Source of truth:
 
@@ -13,12 +13,12 @@ Source of truth:
 ## Current Status
 
 - Discovery scope: 162 components / templates
-- Recorded exports: 120
-- Remaining exports: 42
+- Recorded exports: 121
+- Remaining exports: 41
 - Completed category blocks: `Inputs`, `Overlay`, `Display`, `Charts`
 - Current working category: `Feedback`
-- Last recorded component: `Toast`
-- Recommended next component: `NotificationCenter`
+- Last recorded component: `NotificationCenter`
+- Recommended next component: `StatusBar`
 
 ## Completed Blocks
 
@@ -189,10 +189,10 @@ Recorded so far:
 - StatusScreen
 - Spinner
 - Toast
+- NotificationCenter
 
 Remaining:
 
-- NotificationCenter
 - StatusBar
 - ProgressWidget
 - Stepper

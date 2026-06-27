@@ -4892,6 +4892,59 @@ Figma export:
   Banner / ToastProvider usage boundaries are aligned without visible overflow
   or overlap.
 
+The next discovery target was then exported with the additional
+NotificationCenter component spec. The owner reaffirmed that this Figma file is
+the company design-system source of truth and that reflecting private
+repository component specs into it is the approved first-party workflow.
+
+Figma export:
+
+- `NotificationCenter / Section`: `493:2`
+- `NotificationCenter / Library card`: `493:15`
+- Placement: `Feedback` page, after `Toast / Section`, at `(40, 11728)`,
+  `1280 x 2520`.
+- Variant contract: generated variant is `default`, with `default` as the
+  default variant. The generated style hint records `flex flex-col w-[320px]`
+  and slots `notificationCenterTrigger` and `notificationCenterPanel`.
+- Source contract: `NotificationCenterProps` covers required `notifications`,
+  optional `onMarkAsRead`, `onLinkClick`, `onClearAll`, and optional `labels`.
+  Notification items include `id`, `title`, `description`, `timestamp`, and
+  `read`.
+- Label defaults: `toggle="Toggle notifications"`, `title="Notifications"`,
+  `clearAll="Clear all"`, `emptyTitle="No notifications"`,
+  `markAsRead="Mark as read"`, and
+  `viewHistory="View all notification history"`.
+- Runtime behavior: `unreadCount` is derived from `read=false` items. Unread
+  count adds the destructive trigger dot and primary-subtle row emphasis.
+  `Clear all` only appears when unread items exist and `onClearAll` is
+  provided. Each row calls `onLinkClick(id)`, and unread row actions call
+  `onMarkAsRead(id)`.
+- Layout notes: generated spec records a 320 px wide vertical default frame,
+  a 36 x 36 trigger, 20 px bell icon, 8 px unread dot, a 320 px panel,
+  12/16 px header padding, 16 px list-item padding, 4 px item gap, and 32 px
+  footer button height. Runtime PopoverContent uses `align="end"`,
+  `sideOffset={8}`, `w-[320px]`, and `p-0`; the list body uses
+  `ScrollArea className="h-[300px]"`.
+- Docs-derived states and samples: 未読あり, すべて既読, and 空状態. Sample
+  copy includes 通知を開く, 通知, すべて既読, 通知はありません, 既読にする,
+  通知履歴をすべて見る, レビューが承認されました, 新しいコメント,
+  デプロイ完了, 5分前, 1時間前, and 昨日.
+- Composition and usage boundaries: NotificationCenter composes Popover,
+  PopoverTrigger, PopoverContent, Tooltip, TooltipTrigger, TooltipContent,
+  Button, and ScrollArea. Use NotificationCenter for an inbox of unread
+  activity; use Toast for transient feedback, Banner for page-wide
+  announcements, and Badge for standalone counts.
+- Runtime token notes: panel and trigger treatments use `popover`,
+  `popover-foreground`, `background`, `foreground`, `muted`,
+  `muted-foreground`, `border`, and `ring`; unread treatment uses
+  `primary-subtle`, `primary`, and `destructive`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout review confirmed default variant,
+  trigger/panel slots, unread/all-read/empty states, Tooltip coverage, token
+  notes, and NotificationCenter / Toast / Banner / Badge usage boundaries are
+  aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -4917,7 +4970,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, and Toast components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, and NotificationCenter components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
