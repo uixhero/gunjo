@@ -34,11 +34,13 @@ type StepConfig = {
 // state → Timeline marker tone + icon + a default text label. Conveyed by icon
 // + text (not colour alone). Tones reuse the Timeline semantic variants (#205).
 const STATE_CONFIG: Record<ApprovalStepState, StepConfig> = {
-    pending: { variant: "muted", icon: IconClock, defaultLabel: "Pending", toneClass: "text-muted-foreground" },
-    current: { variant: "active", icon: null, defaultLabel: "In progress", toneClass: "text-primary" },
-    approved: { variant: "success", icon: IconCheck, defaultLabel: "Approved", toneClass: "text-success-strong" },
-    rejected: { variant: "destructive", icon: IconX, defaultLabel: "Rejected", toneClass: "text-destructive" },
-    skipped: { variant: "muted", icon: IconMinus, defaultLabel: "Skipped", toneClass: "text-muted-foreground" },
+    // Japanese-first defaults — match ApprovalWorkflow's own JP button labels (次へ進める/差戻し/却下).
+    // Override per consumer via the `stateLabels` prop.
+    pending: { variant: "muted", icon: IconClock, defaultLabel: "未着手", toneClass: "text-muted-foreground" },
+    current: { variant: "active", icon: null, defaultLabel: "対応中", toneClass: "text-primary" },
+    approved: { variant: "success", icon: IconCheck, defaultLabel: "完了", toneClass: "text-success-strong" },
+    rejected: { variant: "destructive", icon: IconX, defaultLabel: "却下", toneClass: "text-destructive" },
+    skipped: { variant: "muted", icon: IconMinus, defaultLabel: "スキップ", toneClass: "text-muted-foreground" },
 }
 
 const MARKER_BG: Partial<Record<ApprovalStepState, string>> = {
