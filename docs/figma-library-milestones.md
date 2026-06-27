@@ -13,12 +13,12 @@ Source of truth:
 ## Current Status
 
 - Discovery scope: 162 components / templates
-- Recorded exports: 119
-- Remaining exports: 43
+- Recorded exports: 120
+- Remaining exports: 42
 - Completed category blocks: `Inputs`, `Overlay`, `Display`, `Charts`
 - Current working category: `Feedback`
-- Last recorded component: `Spinner`
-- Recommended next component: `Toast`
+- Last recorded component: `Toast`
+- Recommended next component: `NotificationCenter`
 
 ## Completed Blocks
 
@@ -188,10 +188,10 @@ Recorded so far:
 - Progress
 - StatusScreen
 - Spinner
+- Toast
 
 Remaining:
 
-- Toast
 - NotificationCenter
 - StatusBar
 - ProgressWidget

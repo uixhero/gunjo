@@ -4839,6 +4839,59 @@ Figma export:
   Spinner / Progress / Skeleton usage boundaries are aligned without visible
   overflow or overlap.
 
+The next discovery target was then exported with the additional Toast component
+spec. The owner reaffirmed that this Figma file is the company design-system
+source of truth and that reflecting private repository component specs into it
+is the approved first-party workflow.
+
+Figma export:
+
+- `Toast / Section`: `490:2`
+- `Toast / Library card`: `490:17`
+- Placement: `Feedback` page, after `Spinner / Section`, at `(40, 9420)`,
+  `1280 x 2260`.
+- Variant contract: generated variants are `success`, `error`, and `info`,
+  with `success` as the default. Generated variant keys are sorted as `error`,
+  `info`, `success`, while the component manifest preserves the spec order
+  `success`, `error`, `info`.
+- Source contract: `ToastProps` covers `message`, `type`, `isVisible`,
+  `onClose`, `duration=3000`, `placement="fixed"`,
+  `closeLabel="Close notification"`, `tooltipPortalContainer`, and
+  `className`. `message`, `isVisible`, and `onClose` are required.
+- Runtime behavior: `isVisible=true` starts the auto-dismiss timer; hidden
+  toasts wait 300 ms before unmounting so the animate-out transition can
+  finish. `placement="fixed"` renders the app-level floating placement;
+  `placement="inline"` is used for docs and contained previews.
+- Accessibility notes: `type="error"` renders `role="alert"`, while
+  `success` and `info` render `role="status"`. The close button uses
+  `closeLabel` for both `aria-label` and Tooltip content.
+- Layout notes: the generated spec records a 384 px wide row with 12 px gap,
+  `px-4 py-3`, rounded-xl radius, border, 20 px semantic icon, 14 px close
+  affordance, and 14 px medium text.
+- Docs-derived states and samples: success notification, error notification,
+  info notification, and inline preview. Sample copy includes 保存する,
+  エラーを表示, お知らせを表示, プロジェクトを保存しました。,
+  接続が切れたため保存できませんでした。, 新しいダッシュボードを有効にしました。,
+  処理が完了しました。, and 通知を閉じる.
+- Composition and usage boundaries: Toast composes TooltipProvider, Tooltip,
+  TooltipTrigger, and TooltipContent around the close button. Docs compose
+  Button triggers. Use Toast for transient feedback, Alert or Banner for
+  persistent page-level messaging, and ToastProvider for stacked app-level
+  notifications.
+- Runtime token notes: Toast uses semantic variants with
+  `success-subtle` / `success-border` / `success-subtle-foreground`,
+  `destructive-subtle` / `destructive-border` /
+  `destructive-subtle-foreground`, and `info-subtle` / `info-border` /
+  `info-subtle-foreground`; icons use `success`, `destructive`, and `info`.
+  Close affordance and annotations also record `muted-foreground`, `muted`,
+  `foreground`, `background`, `border`, and `ring`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout review confirmed variants, placement,
+  close Tooltip behavior, accessibility roles, token notes, and Toast / Alert /
+  Banner / ToastProvider usage boundaries are aligned without visible overflow
+  or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -4864,7 +4917,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, and Spinner components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, and Toast components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
