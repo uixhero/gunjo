@@ -4417,6 +4417,66 @@ Figma export:
   token notes, and related-chart usage boundary are aligned without visible
   overflow or overlap.
 
+The next discovery target was then exported with the additional
+RetentionCohortCard component data. The owner reaffirmed that the destination
+Figma file is the company design-system source of truth and that reflecting
+private repository component specs into that file is the approved first-party
+workflow.
+
+Figma export:
+
+- `RetentionCohortCard / Section`: `466:2`
+- `RetentionCohortCard / Library card`: `466:3`
+- Placement: `Charts` page, after `LabeledDonutCard / Section`, at
+  `(40, 36586)`, `1280 x 2220`.
+- Variant contract: generated variants are `default` and `compact`; the
+  default variant is `default`.
+- Source contract: the recorded prop surface covers required `cohorts` and
+  `periods`, optional `title`, `description`, `value`, `delta`,
+  `deltaDescription`, `caption`, `variant`, `max`, `color`, `selectedCell`,
+  `showValues`, `formatValue`, `formatSize`, `onCellSelect`, `className`, and
+  inherited Card props. Defaults are `title="User retention"`,
+  `variant="default"`, `color="warning"`, `showValues=true`,
+  `formatValue=defaultPercentFormatter`, and
+  `formatSize=defaultChartValueFormatter`.
+- Geometry and behavior: default density uses `rounded-lg`, header `p-5 pb-3`,
+  content `px-5 pb-5`, cell `min-h-8 rounded-md`, and title `text-base`;
+  compact uses `rounded-md`, header `p-4 pb-3`, content `px-4 pb-4`, cell
+  `min-h-6 rounded`, and title `text-sm`. The grid uses a row-label column
+  plus `repeat(var(--retention-period-count), ...)`, with horizontal overflow
+  protection for narrow containers.
+- Cohort model: each value is normalized against `max` or the observed maximum
+  and converted to cell opacity with `0.08 + normalized * 0.92`. Missing cells
+  render transparent placeholders, `showValues=false` hides the value chip
+  while preserving intensity, and `formatValue` / `formatSize` customize the
+  tooltip and displayed values.
+- Interaction notes: cells render as `button` when `onCellSelect` exists and
+  otherwise as focusable `span` inside `ChartTooltip`. `selectedCell` adds
+  `aria-current`, selected ring treatment, and matches docs selected-cell
+  samples. The tooltip label combines cohort and period labels.
+- Docs-derived states and samples: default, selected cell, no values, and
+  compact. Sample copy includes コホート継続率, 初月, 1か月, 2月コホート,
+  期間別の継続率をコホートごとに比較します。, Cohort retention, Jan cohort,
+  Feb cohort, M0-M7, and Compare period retention across cohorts.
+- Composition and usage boundaries: RetentionCohortCard composes Card,
+  CardHeader, CardContent, CardTitle, CardDescription, ChartTooltip, and
+  chart-utils. Use RetentionCohortCard for card-level retention cohort analysis
+  with metric header and hover/focus cell tooltips; use HeatmapChart for
+  generic heatmaps and Table for non-intensity-encoded tabular data.
+- Runtime token notes: card shell uses `card`, `card-foreground`, `border`,
+  `shadow-sm`, and radius semantics; copy uses `foreground`,
+  `muted-foreground`, and `success`; cells use `muted`, `background/75`,
+  `ring`, `foreground`, and `background`; tooltip chrome uses `popover` and
+  `popover-foreground`; chart colors resolve through `primary`, `success`,
+  `warning`, `info`, and `destructive`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `default` / `compact` variant contract, default / selected-cell /
+  no-values / compact states, props/defaults, runtime token notes, and
+  HeatmapChart / Table usage boundary are aligned without visible overflow or
+  overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -4442,8 +4502,8 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard and LabeledDonutCard components, runtime semantic
-   colors, and specimen treatments are acceptable.
+   ActivityTimelineCard, LabeledDonutCard, and RetentionCohortCard components,
+   runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
