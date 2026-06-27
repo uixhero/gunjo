@@ -1349,6 +1349,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "listCard": {
+      "title": "ListCard",
+      "description": "The tappable list entry: one item in a scannable, mobile-dense list — a leading accessory (icon / avatar / colour dot / rank / line chip), a title + secondary, optional tag chips, a right-aligned status pill and meta (price / time / count / timestamp), and a trailing chevron. The result-card / status-row primitive every consumer 'list of things' screen opens with — search results, route / product / listing comparisons, status lists (運行状況・在庫・端末), order/incident queues. Tappable rows (onSelect) are a real ≥44px button with hover/focus/selected states; status never rides on colour alone (Badge with icon + an optional severity accent rail). For the KPI strip use StatGroup; for a severity-triaged alert worklist use ActionQueue; for a money breakdown use AmountBreakdown. RSC-safe by default — onSelect is the only function prop and is opt-in.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/ListCard.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "markdownRenderer": {
       "title": "MarkdownRenderer",
       "description": "Markdown to HTML rendering with GFM (tables, task lists, code).",

@@ -1864,6 +1864,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "listCard": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
+      "variantColorHints": {}
+    },
     "markdownRenderer": {
       "variantKeys": [],
       "defaultVariantKey": null,

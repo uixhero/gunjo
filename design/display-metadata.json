@@ -334,5 +334,9 @@
   "actionQueue": {
     "title": "ActionQueue",
     "description": "The severity-sorted 'action-needed' worklist: the triage surface every back-office / dispatch / ops / CRM home screen opens with (失効防止 / 更新 / 満期 / 誕生日, ダイヤ乱れ・遅延・運休, アラート対応). Each row carries a severity (critical/warning/info/neutral → icon + tone, never colour alone, with an sr-only severity label), a category chip (kind), a headline + detail, trailing meta (due / time / count) and optional action buttons; rows sort critical → neutral. The other half of the morning dashboard alongside StatGroup (the KPI strip). For a single notice use Alert; for an ambient bell tray use NotificationCenter; this is the inline, act-now list. Presentational by default — onSelect makes a row's body activatable."
+  },
+  "listCard": {
+    "title": "ListCard",
+    "description": "The tappable list entry: one item in a scannable, mobile-dense list — a leading accessory (icon / avatar / colour dot / rank / line chip), a title + secondary, optional tag chips, a right-aligned status pill and meta (price / time / count / timestamp), and a trailing chevron. The result-card / status-row primitive every consumer 'list of things' screen opens with — search results, route / product / listing comparisons, status lists (運行状況・在庫・端末), order/incident queues. Tappable rows (onSelect) are a real ≥44px button with hover/focus/selected states; status never rides on colour alone (Badge with icon + an optional severity accent rail). For the KPI strip use StatGroup; for a severity-triaged alert worklist use ActionQueue; for a money breakdown use AmountBreakdown. RSC-safe by default — onSelect is the only function prop and is opt-in."
   }
 }
