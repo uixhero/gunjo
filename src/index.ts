@@ -122,6 +122,7 @@ export * from './components/display/EditableDataTable';
 export * from './components/display/EmptyState';
 export * from './components/display/EventCalendar';
 export * from './components/display/FileTree';
+export * from './components/display/FilterChips';
 export * from './components/display/Gallery';
 export * from './components/display/Gantt';
 export * from './components/display/GaugeChart';

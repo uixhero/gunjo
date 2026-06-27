@@ -1191,6 +1191,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "filterChips": {
+      "title": "FilterChips",
+      "description": "The horizontally-scrollable, single-select category chip bar: the navigation every consumer place / list finder opens with (空港・駅の施設, 食べログ, retail, transit, food delivery). A scroll-snapping row of pill chips (icon + label + optional count) that does NOT center-wrap on a phone, with a fully-filled active chip, roving tabindex + arrow keys, and a hidden scrollbar. value + onValueChange single-select. For 2–3 equal-width segments use ToggleGroup; for a faceted popover filter use FilterButton; this is the many-category scannable rail.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/FilterChips.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "gallery": {
       "title": "Gallery",
       "description": "Main image plus a selectable thumbnail strip with click and keyboard swap, for product detail and media galleries.",

@@ -1599,6 +1599,7 @@ export const translations: Record<
       SeatMap: "座席表",
       LoyaltySummaryCard: "ロイヤリティ要約カード",
       RadioCard: "選択カード",
+      FilterChips: "フィルタチップ",
       RevealSection: "条件付きセクション",
       Delta: "差分",
       Meter: "メーター",
