@@ -4740,6 +4740,59 @@ Figma export:
   Spinner / Skeleton / ProgressWidget usage boundaries are aligned without
   visible overflow or overlap.
 
+The next discovery target was then exported with the additional StatusScreen
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `StatusScreen / Section`: `484:2`
+- `StatusScreen / Library card`: `484:16`
+- Placement: `Feedback` page, after `Progress / Section`, at `(40, 4864)`,
+  `1280 x 2360`.
+- Variant contract: generated variants are `not-found`, `error`,
+  `offline`, `forbidden`, `maintenance`, and `coming-soon`; the default
+  variant is `not-found`.
+- Source contract: the recorded prop surface covers `variant`, `code`,
+  `icon`, `title`, `description`, `action`, `details`,
+  `headingLevel`, `className`, `children`, and inherited div HTML
+  attributes. `headingLevel` defaults to `1`; unknown variants fall back to
+  the `not-found` preset.
+- Preset behavior: `not-found` and `error` are code-led defaults with `404`
+  and `500`; `forbidden` uses destructive status semantics; `offline`,
+  `maintenance`, and `coming-soon` are icon-led in docs examples.
+- Layout notes: root uses `flex min-h-[60vh] w-full flex-col items-center
+  justify-center gap-4 p-8 text-center`; status code uses `text-7xl
+  font-extrabold tracking-tight`; icon slot is `h-16 w-16` and
+  `aria-hidden=true`; description is constrained with `max-w-md`; details use
+  `pre` with muted background, monospace text, and horizontal overflow.
+- Accessibility notes: title renders through `h${headingLevel}`, defaulting to
+  full-page `h1`; callers can lower heading level for nested surfaces while
+  preserving screen-reader heading navigation.
+- Docs-derived states and samples: not found, error, offline, forbidden,
+  maintenance, coming soon, and migration note. Sample copy includes ページが見つかりません,
+  URLが変更されたか、ページが削除された可能性があります。, トップへ戻る, 問題が発生しました,
+  再読み込みしても解消しない場合は、サポートへ連絡してください。, req-id 7f3c9a,
+  オフラインです, 再接続する, アクセスできません, メンテナンス中です, 準備中です,
+  and 旧テンプレート API は StatusScreen に統合しました.
+- Composition and usage boundaries: StatusScreen is for full-page terminal or
+  fallback states; EmptyState is for contained empty regions; Alert is for inline
+  feedback; Toast is for transient feedback. Button supplies recovery actions,
+  and Icon supplies state illustration.
+- Runtime token notes: default code and title use `foreground`; destructive
+  status code and icon tone use `destructive`; icon-led non-destructive states
+  use `muted-foreground`; details use `muted` and `muted-foreground`;
+  specimen annotations also record `background`, `border`, `ring`,
+  `primary`, `primary-foreground`, and `secondary` for composed Button and
+  frame treatments.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed all six
+  variants, prop/defaults, heading semantics, docs states, token notes, and
+  StatusScreen / EmptyState / Alert / Toast usage boundaries are aligned without
+  visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -4765,7 +4818,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, and Progress components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, and StatusScreen components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
