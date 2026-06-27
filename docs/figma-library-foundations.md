@@ -4994,6 +4994,58 @@ Figma export:
   and StatusBar / Progress / Banner / Toast usage boundaries are aligned
   without visible overflow or overlap.
 
+
+The next discovery target was then exported with the additional ProgressWidget
+component spec. The owner reaffirmed that this Figma file is the company
+design-system source of truth and that reflecting private repository component
+specs into it is the approved first-party workflow.
+
+Figma export:
+
+- `ProgressWidget / Section`: `499:2`
+- `ProgressWidget / Library card`: `499:3`
+- Placement: `Feedback` page, after `StatusBar / Section`, at `(40, 16564)`,
+  `1280 x 2340`.
+- Variant contract: generated variant is `default`, with `default` as the
+  default variant. The generated style hint records `flex flex-col w-full
+  rounded-lg border`, card fill, border stroke, and slots
+  `progressWidgetHeader` and `progressWidgetContent`.
+- Source contract: `ProgressWidgetProps` extends div HTML attributes and adds
+  required `title` and `value`, optional `max`, `label`, `subtext`,
+  `progressLabel`, `subtextLive`, and `icon`. `max` defaults to `100`,
+  `subtextLive` defaults to `"off"`, and `className` is forwarded to the Card
+  root.
+- Runtime behavior: `safeMax` falls back to `100` when `max <= 0`;
+  `boundedValue` clamps `value` to `0..safeMax`; `percentage` is
+  `Math.round((boundedValue / safeMax) * 100)`. The large value renders
+  `label` when provided, otherwise the computed percentage. The inner Progress
+  receives `value={boundedValue}`, `max={safeMax}`, `className="mt-2 h-2"`,
+  and `aria-label={progressLabel ?? title}`.
+- Layout notes: ProgressWidget composes `Card`, `CardHeader`, `CardTitle`,
+  `CardContent`, and `Progress`. The root uses `flex w-full min-w-0 flex-col
+  rounded-lg border overflow-hidden`; header uses horizontal layout,
+  `justify-between`, `gap-3`, and `pb-2`; value uses `text-2xl font-bold
+  tabular-nums`; optional icon and subtext use `muted-foreground`.
+- Docs-derived states and samples: percentage value, live updates, custom value
+  label, capacity range, and high progress. Sample copy includes 四半期目標,
+  同期の進捗, 売上目標, ストレージ使用量, 対応率, 前週比 +8pt,
+  同期が完了しました。, 残り 22 GB を利用できます, and SLA まで残り 3 件.
+- Composition and usage boundaries: use ProgressWidget when a progress bar
+  needs metric context, status copy, custom value labels, or an icon. Use
+  Progress for a bare determinate bar, Statistic for a single current value,
+  and chart components for trends, distributions, or comparisons.
+- Runtime token notes: Card surface uses `card`, `card-foreground`, `border`,
+  `shadow-sm`, and radius/base; the inner Progress uses `secondary` for the
+  track and `foreground` for the fill; icon and subtext use
+  `muted-foreground`. Specimen annotations also record `background`, `muted`,
+  `ring`, `primary`, and `primary-foreground` for related surfaces.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout review confirmed default variant,
+  Card/Progress composition, clamped value behavior, docs states, token notes,
+  and ProgressWidget / Progress / Statistic / chart usage boundaries are
+  aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -5019,7 +5071,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, and StatusBar components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, and ProgressWidget components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
