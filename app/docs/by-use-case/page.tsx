@@ -34,7 +34,7 @@ const GROUPS: Group[] = [
             },
             { build: { en: "Month calendar with events on dates", ja: "月カレンダー＋日付にイベント" }, comp: "EventCalendar", slug: "event-calendar", when: { en: "editorial/content calendar, bookings — chips on day cells.", ja: "編集/コンテンツカレンダー・予約。日セルにチップ。" } },
             { build: { en: "Week time-grid with overlap-packed events", ja: "週の時刻グリッド（重なりを横に詰める）" }, comp: "WeekView", slug: "week-view", when: { en: "appointments/interviews by time-of-day across a week.", ja: "面接/予定を時刻×曜日で。" } },
-            { build: { en: "Resource rows × continuous time axis (bars)", ja: "リソース行×連続時間軸（バー）" }, comp: "Gantt", slug: "gantt", when: { en: "production lines, room/vehicle timelines, project schedules.", ja: "生産ライン・設備/車両・工程。" } },
+            { build: { en: "Resource rows × continuous time axis (lane-packed bars)", ja: "リソース行×連続時間軸（レーン詰めバー）" }, comp: "Gantt", slug: "gantt", when: { en: "production lines, room/vehicle timelines, project schedules. Bars are lane-packed within a row — NOT crossing diagonal paths. A 列車運行図表 / stringline / Marey (time×distance, crossing slopes) is not yet covered.", ja: "生産ライン・設備/車両・工程。バーは行内でレーン詰め＝交差する斜線(列車運行図表/ダイヤグラム/Marey)は未対応。" } },
             { build: { en: "Pick a single date / range", ja: "日付・期間を選ぶ" }, comp: "DatePicker", slug: "date-picker" },
         ],
     },
@@ -59,6 +59,7 @@ const GROUPS: Group[] = [
         title: { en: "Summary, metrics & values", ja: "サマリ・指標・値" },
         items: [
             { build: { en: "The KPI summary strip every dashboard opens with (件数 / 金額 / 期限 / アラート)", ja: "ダッシュボード冒頭の KPI 指標行（件数/金額/期限/アラート）" }, comp: "StatGroup", slug: "stat-group", when: { en: "responsive grid of Card-wrapped Statistics. One metric → Statistic.", ja: "Card 包みの Statistic 群。単一は Statistic。" } },
+            { build: { en: "Action-needed worklist / alert queue (失効防止・更新・満期, ダイヤ乱れ, アラート対応)", ja: "対応キュー：要対応の worklist（失効防止/更新/満期・ダイヤ乱れ・アラート対応）" }, comp: "ActionQueue", slug: "action-queue", when: { en: "severity-sorted rows (icon+tone, not colour-only) + kind chip + meta + actions. The dashboard's other half next to StatGroup. Single notice → Alert; ambient bell tray → NotificationCenter.", ja: "重大度ソートの行（アイコン＋トーン・色のみに非依存）＋種別チップ＋期日＋アクション。StatGroup と対。単発は Alert・常駐ベルは NotificationCenter。" } },
             { build: { en: "Single KPI", ja: "単一の指標" }, comp: "Statistic", slug: "statistic" },
             { build: { en: "Hero KPI card with delta/trend", ja: "差分/トレンド付き KPI ヒーローカード" }, comp: "AnalyticsCard", slug: "analytics-card" },
             { build: { en: "Capacity / occupancy / utilisation gauge", ja: "容量/稼働/充足のメーター" }, comp: "Meter", slug: "meter", when: { en: "value-vs-max bar. Format money in the readout with formatValue={formatCurrency}. direction sets the tone semantics (judgment vs neutral fill).", ja: "value÷max のバー。読み上げの金額整形は formatValue={formatCurrency}。direction でトーンの意味（判断 vs 中立）が変わる。" } },

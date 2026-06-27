@@ -330,5 +330,9 @@
   "amountBreakdown": {
     "title": "AmountBreakdown",
     "description": "The read-only money-derivation ledger: labeled line items, signed deductions, optional per-section subtotals, and an emphasized derived total, with an optional formula caption. The 'labeled lines → ± adjustments → total' block every 請求 / 見積 / 査定 / 支払 / 精算 / 控除 / 給与明細 screen needs (認定損害額 − 過失相殺 − 免責 − 既払金 = 今回支払額 / 基本保険料 ＋ 特約 − 各割引 = 年間保険料). Deductions render as a −|amount| glyph (sign never colour-only) with an sr-only 控除 label. Read-only by design — for an editable line-item grid with column totals use EditableDataTable; for a single signed delta use Statistic/Delta; for the back-office KPI strip use StatGroup. RSC-safe by default (formatValue defaults to formatCurrency); pass a custom formatValue only from a client boundary."
+  },
+  "actionQueue": {
+    "title": "ActionQueue",
+    "description": "The severity-sorted 'action-needed' worklist: the triage surface every back-office / dispatch / ops / CRM home screen opens with (失効防止 / 更新 / 満期 / 誕生日, ダイヤ乱れ・遅延・運休, アラート対応). Each row carries a severity (critical/warning/info/neutral → icon + tone, never colour alone, with an sr-only severity label), a category chip (kind), a headline + detail, trailing meta (due / time / count) and optional action buttons; rows sort critical → neutral. The other half of the morning dashboard alongside StatGroup (the KPI strip). For a single notice use Alert; for an ambient bell tray use NotificationCenter; this is the inline, act-now list. Presentational by default — onSelect makes a row's body activatable."
   }
 }
