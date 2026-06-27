@@ -1596,6 +1596,7 @@ export const translations: Record<
       AmountBreakdown: "金額内訳",
       ActionQueue: "対応キュー",
       ListCard: "リストカード",
+      SeatMap: "座席表",
       RevealSection: "条件付きセクション",
       Delta: "差分",
       Meter: "メーター",

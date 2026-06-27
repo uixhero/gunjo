@@ -876,6 +876,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "seatMap",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:seatMap",
+      title: "SeatMap",
+      description: "The 2-D selectable seat grid: rows × columns with aisle gaps (columns array with nulls for the aisle — 3-3 / 2-4-2 / 2-2 cabins), per-seat state (空席 / 予約済 / 確保中 / 選択中) and type (非常口 / 足元ゆったり / プレミアム / 窓側 / 通路側), controlled multi-select with a capacity cap (maxSelectable), and grid a11y: role=grid, arrow-key roving focus, aria-selected / aria-disabled, composed seat names (『12番A席、窓側、非常口座席、空席、¥1,500』). The seat/spot picker every booking flow needs — airline / 新幹線 seats, cinema, stadium, event hall, restaurant tables. State never rides on colour alone (selected shows a check, occupied an ×, plus an sr-only label). Owns its horizontal scroll so a wide cabin doesn't push the page on a phone. Controlled — pass selectedIds + onToggle. For a read-only intensity grid use HeatmapChart; this is the interactive picker.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "listCard",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:listCard",
