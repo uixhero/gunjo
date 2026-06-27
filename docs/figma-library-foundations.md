@@ -4793,6 +4793,52 @@ Figma export:
   StatusScreen / EmptyState / Alert / Toast usage boundaries are aligned without
   visible overflow or overlap.
 
+The next discovery target was then exported with the additional Spinner
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `Spinner / Section`: `488:2`
+- `Spinner / Library card`: `488:16`
+- Placement: `Feedback` page, after `StatusScreen / Section`, at
+  `(40, 7272)`, `1280 x 2100`.
+- Variant contract: generated variants are `sm`, `default`, and `lg`; the
+  default variant is `default`. Runtime `size="icon"` is also supported as
+  a non-generated 40px fallback.
+- Source contract: `SpinnerProps` extends `ComponentProps<"svg">`; the
+  recorded prop surface covers `size`, `className`, and inherited SVG
+  attributes. Props are forwarded to the Tabler `IconLoader2` element.
+- Size notes: generated spec records `sm=12px`, `default=16px`, and
+  `lg=24px`; source maps runtime `icon` to `h-10 w-10` / 40px.
+- Runtime class notes: base styling is `animate-spin text-muted-foreground`;
+  className can extend or override the SVG classes.
+- Docs-derived states and samples: sizes, inside a button, blocking loader, and
+  inline status. Sample copy includes 読み込み中, 小さい読み込み表示,
+  大きい読み込み表示, 保存中, 保存処理が完了するまで操作できません。,
+  データを読み込んでいます。, 最新状態に更新しています。, Loading data., Saving,
+  and Refreshing the latest state.
+- Accessibility notes: standalone spinners need an accessible name such as
+  `aria-label="Loading"`; when a visible status string or parent
+  `role="status"` region owns the announcement, the spinner itself should be
+  `aria-hidden`. Blocking loader examples use `role="status"` and
+  `aria-live="polite"` on the container.
+- Composition and usage boundaries: use Spinner for indeterminate waiting,
+  Progress for determinate completion, and Skeleton when final content space
+  must be reserved. Button supplies disabled action layout; Tooltip explains why
+  disabled actions cannot be used.
+- Runtime token notes: Spinner color uses `muted-foreground`, matching the
+  generated icon fill `#64748b`. Composed examples also record `primary`,
+  `primary-foreground`, `muted`, `background`, `border`, and `ring` for
+  Button, status region, and specimen annotation treatments.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed all generated
+  sizes, runtime icon fallback, docs states, ARIA guidance, token notes, and
+  Spinner / Progress / Skeleton usage boundaries are aligned without visible
+  overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -4818,7 +4864,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, and StatusScreen components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, and Spinner components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
