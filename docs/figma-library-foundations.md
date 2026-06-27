@@ -3691,6 +3691,57 @@ Figma export:
   states, props/defaults, runtime token notes, and related-chart usage boundary
   are aligned without visible overflow or overlap.
 
+The next discovery target was then exported with the additional
+ConcentricProgressCard component data. The owner reaffirmed that the
+destination Figma file is the company design-system source of truth and that
+reflecting private repository component specs into that file is the approved
+first-party workflow.
+
+Figma export:
+
+- `ConcentricProgressCard / Section`: `418:2`
+- `ConcentricProgressCard / Library card`: `418:3`
+- Placement: `Charts` page, after `BarChart / Section`, at `(40, 10398)`,
+  `1280 x 2024`.
+- Variant contract: generated variants are `default` and `compact`; the
+  default variant is `default`.
+- Source contract: the recorded prop surface covers required `rings`, optional
+  `title`, `description`, `value`, `centerLabel`, `delta`,
+  `deltaDescription`, `metrics`, `selectedIndex`, `max`, `caption`,
+  `variant`, `thickness`, `gap`, `showLegend`, `formatValue`, `maxLabel`,
+  `onRingSelect`, `className`, and forwarded Card props. Defaults are
+  `title="Concentric progress"`, `metrics=[]`, `variant="default"`,
+  `thickness=14`, `gap=5`, `showLegend=true`,
+  `formatValue=defaultChartValueFormatter`, and `maxLabel="Max"`; compact
+  changes the default thickness/gap to `12 / 4`.
+- Geometry and behavior: the card composes `Card`, `CardHeader`,
+  `CardContent`, `CardTitle`, `CardDescription`, `ChartFloatingTooltip`, and
+  `ChartTooltip`. The chart surface is an aspect-square focusable element with
+  `role="img"` and an aria-label derived from the active ring. Ring hit
+  testing resolves the target by radius and angle, then normalizes values
+  against `max` or the fallback maximum.
+- Docs-derived states and samples: default, compact, selected ring, with
+  metrics, and without legend. Sample copy includes ストレージ概要,
+  リソース負荷, 選択中リング, 容量サマリー, チャートのみ, 使用済み容量,
+  メディア, 総容量, and values 42, 68, 27, 18 against `max=256`.
+- Composition and usage boundaries: use ConcentricProgressCard for card-level
+  storage, quota, utilization, and multi-ring progress widgets with optional
+  metrics and legend rows. Use `RadialBarChart` for chart-only multi-series
+  progress, `GaugeChart` for a single scalar, `AnalyticsCard` for broader
+  analytical summaries, and `Statistic` for a single current value.
+- Runtime token notes: card and labels use `card`, `card-foreground`,
+  `foreground`, `muted-foreground`, `border`, and `success-strong`; ring tones
+  resolve through `primary`, `destructive`, `info`, `success`, and `warning`;
+  focus and tooltip affordances use `ring`, `background`, `popover`,
+  `popover-foreground`, and `accent`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; SVG ring internals were excluded from overlap
+  scoring because converted chart paths intentionally share bounds. Layout
+  metadata review confirmed the `default` / `compact` variant contract,
+  selected-ring/chart-only states, props/defaults, runtime token notes, and
+  related-chart usage boundary are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -3711,7 +3762,9 @@ Before creating the next component:
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
    ToolPill, Code, EmptyState, Tag, Icon, ColorSwatch, and Carousel
    and DataTable, ActionDataTable, AvatarGroup, CodeBlock, Timeline,
-   TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, ChartLegend, SparklineChart, LineChart, RibbonChart, RadialBarChart, and BarChart components, runtime semantic
+   TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, ChartLegend,
+   SparklineChart, LineChart, RibbonChart, RadialBarChart, BarChart, and
+   ConcentricProgressCard components, runtime semantic
    colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
