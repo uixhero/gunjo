@@ -3168,6 +3168,53 @@ Figma export:
   docs state cards, props/default and behavior contracts, runtime token notes,
   and related-component usage boundary are aligned without visible overlap.
 
+The next discovery target was then exported with the additional DocNote
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `DocNote / Section`: `380:2`
+- `DocNote / Library card`: `380:3`
+- Placement: `Display` page, after `FileTree / Section`, at `(40, 51944)`,
+  `1280 x 1350`.
+- Variant contract: generated variants are `default`, `reference`, `note`,
+  `warning`, and `tip`; the default variant is `default`.
+- Source contract: the recorded prop surface covers optional `heading`,
+  optional `variant`, required `children`, `className`, and forwarded
+  `HTMLElement` attributes on the root `aside`.
+- Behavior notes: `default` and `reference` stay generic with no note role;
+  `note`, `warning`, and `tip` render a leading Tabler icon and
+  `role="note"` so the callout type is conveyed by more than color. Heading
+  is rendered in a full-width row when `heading` or a callout icon exists, and
+  links inside the note are made medium-weight, underlined, foreground text
+  with primary hover.
+- Docs-derived states and samples: default explanatory note and reference link
+  note; sample labels include 通常, 参考リンク, GitHub Flavored Markdown の拡張,
+  GFM, 参考文献, W3C WAI: Decorative Images, TextLink, and
+  新しいタブで開きます.
+- Composition and usage boundaries: docs compose `TextLink` inside reference
+  notes; use `DocNote` for explanatory copy, references, and non-urgent
+  documentation callouts, `MarkdownRenderer` when markdown owns the full prose
+  rendering surface, `Alert` for urgent or status-bearing feedback, and `Card`
+  for structured content containers.
+- Runtime token notes: default uses `bg-muted/45` and
+  `text-muted-foreground`; reference uses `bg-secondary/55` and
+  `text-muted-foreground`; note uses `info-border`, `info-subtle`, and
+  `info-subtle-foreground`; warning uses `warning-border`,
+  `warning-subtle`, and `warning-subtle-foreground`; tip uses
+  `success-border`, `success-subtle`, and `success-subtle-foreground`.
+  Foreground, primary, background, border, card, and accent were included for
+  specimen annotation and link treatment.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `default` / `reference` / `note` / `warning` / `tip` variant contract,
+  docs-derived note specimens, props/default and callout behavior contracts,
+  runtime token notes, and related-component usage boundary are aligned
+  without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -3188,8 +3235,8 @@ Before creating the next component:
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
    ToolPill, Code, EmptyState, Tag, Icon, ColorSwatch, and Carousel
    and DataTable, ActionDataTable, AvatarGroup, CodeBlock, Timeline,
-   TreeView, and FileTree components, runtime semantic colors, and specimen
-   treatments are acceptable.
+   TreeView, FileTree, and DocNote components, runtime semantic colors, and
+   specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
