@@ -4061,6 +4061,59 @@ Figma export:
   analytics-composition states, props/defaults, runtime token notes, and
   related-chart usage boundary are aligned without visible overflow or overlap.
 
+The next discovery target was then exported with the additional GaugeChart
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `GaugeChart / Section`: `443:2`
+- `GaugeChart / Library card`: `443:3`
+- Placement: `Charts` page, after `PieChart / Section`, at `(40, 24138)`,
+  `1280 x 1840`.
+- Variant contract: generated variants are `default` and `compact`; the
+  default variant is `default`.
+- Source contract: the recorded prop surface covers required `value`, optional
+  `min`, `max`, `variant`, `color`, `label`, `valueLabel`, `thickness`,
+  `formatValue`, `rangeLabel`, `className`, and forwarded div attributes.
+  Defaults are `min=0`, `max=100`, `variant="default"`,
+  `color=primary fallback`, `thickness=variant==="compact"?16:22`,
+  `formatValue=defaultChartValueFormatter`, and `rangeLabel="Range"`.
+- Geometry and behavior: the default density uses `h-[144px] w-full p-0` and
+  chart `max-w-56`; compact uses `h-[112px] w-full p-0` and `max-w-44`.
+  The chart surface is an aspect-[2/1] region with focus ring. The arc is a
+  semi-circle conic-gradient from 270deg with muted track, active color, and a
+  `bg-card` inner cutout sized from `thickness`.
+- Gauge model: `range = max(max - min, 1)`, value clamps to min/max before
+  display, `percent = normalizeChartValue(normalizedValue - min, range)`, and
+  `degrees = percent / 100 * 180`. Custom `min` / `max` supports capacity and
+  offset ranges such as `420GB / 500GB` and `-50pt - 50pt`.
+- Interaction notes: pointer hit testing requires the pointer to be between
+  inner radius and outer radius, within the active arc sweep, and within the
+  180deg semi-circle. Focus opens the tooltip at `x=percent`, `y=24`; touch
+  opens sticky tooltip behavior and focuses without scroll. The computed
+  aria-label combines label, display value, rangeLabel, min, and max.
+- Docs-derived states and samples: default, compact, capacity range, offset
+  range, warning color, and critical. Sample copy includes スコア, 進捗, 容量,
+  差分, 負荷, リスク, 範囲, 82%, 64%, 420GB, +12pt, 73%, and 91%.
+- Composition and usage boundaries: use GaugeChart for one scalar score,
+  progress, capacity, or bounded range reading. Use SegmentedGaugeCard when the
+  semi-circle needs multiple labeled segments or a target value,
+  ConcentricProgressCard for card-level multi-ring summaries, RadialBarChart
+  for multiple radial series, and Statistic for a text-only current value.
+- Runtime token notes: active arc tones resolve through `primary`, `success`,
+  `warning`, `info`, `destructive`, or caller-provided chart color; track uses
+  `muted`; inner cutout uses `card`; value and label use `foreground` and
+  `muted-foreground`; focus and marker affordances use `ring` and
+  `background`; tooltip chrome uses `popover` and `popover-foreground`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  `default` / `compact` variant contract, capacity / offset / warning /
+  critical states, props/defaults, runtime token notes, and related-chart usage
+  boundary are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -4084,8 +4137,8 @@ Before creating the next component:
    TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, ChartLegend,
    SparklineChart, LineChart, RibbonChart, RadialBarChart, BarChart, and
    ConcentricProgressCard, StackedBarChart, DistributionBar,
-   MiniDistributionBarCard, SegmentTimelineCard, DonutChart, and PieChart
-   components, runtime semantic colors, and specimen treatments are
+   MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
+   GaugeChart components, runtime semantic colors, and specimen treatments are
    acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
