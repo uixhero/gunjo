@@ -4649,6 +4649,51 @@ Figma export:
   and Statistic / chart-child usage boundaries are aligned without visible
   overflow or overlap.
 
+The next discovery target was then exported with the additional Alert component
+data. The owner reaffirmed that the destination Figma file is the company
+design-system source of truth and that reflecting private repository component
+specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `Alert / Section`: `478:2`
+- `Alert / Library card`: `478:14`
+- Placement: `Feedback` page, after the category header, at `(40, 368)`,
+  `1280 x 2260`.
+- Variant contract: generated variants are `default`, `destructive`, `info`,
+  `success`, and `warning`; the default variant is `default`.
+- Source contract: the recorded family covers `Alert`, `AlertTitle`, and
+  `AlertDescription`. `Alert` extends div HTML attributes plus `variant` and
+  always renders `role="alert"`. `AlertTitle` extends heading HTML attributes
+  with `as`, defaulting to `"h5"`. `AlertDescription` extends div HTML
+  attributes and marks the node with `data-alert-description`.
+- Layout notes: the root uses `relative inline-flex h-fit w-full flex-col
+  items-center gap-1 rounded-lg border px-4 py-3 text-sm`; direct children
+  self-start; icon children are absolutely positioned at `left-4 top-3`;
+  content after an icon gets `w-full pl-7`. Title uses `min-h-4`,
+  `font-medium font-semibold`, `leading-none`, and `tracking-tight`;
+  description uses `text-xs leading-relaxed`.
+- Docs-derived states and samples: standard display, info, success, warning,
+  destructive/error, and title-only. Sample copy includes CLIで追加できます,
+  必要なコンポーネントを選んで、プロジェクトへ追加できます。仕様を確認できます,
+  保存しました, 公開前に確認してください, セッションが切れました,
+  続行するには、もう一度ログインしてください。, and 下書きを保存しました.
+- Composition and usage boundaries: Alert composes icon content, AlertTitle,
+  and AlertDescription. Use Alert for urgent or status-bearing inline feedback;
+  use Banner for page-wide announcements, Toast for transient feedback, DocNote
+  for documentation prose, and AlertDialog for blocking decisions.
+- Runtime token notes: default uses `background`, `foreground`, `border`, and
+  `muted-foreground`; semantic variants use the matching `info`, `success`,
+  `warning`, or `destructive` token families with `*-subtle`,
+  `*-subtle-foreground`, and `*-border`. Descriptions use the subtle foreground
+  at 85% opacity for semantic variants.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the five
+  variant states, title-only state, role/compound structure, token notes, and
+  Banner / Toast / DocNote / AlertDialog usage boundaries are aligned without
+  visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -4674,7 +4719,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, and AnalyticsCard components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, and Alert components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
