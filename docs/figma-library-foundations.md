@@ -2978,6 +2978,51 @@ Figma export:
   tight-overlap state notes, runtime token notes, and related-component usage
   boundary are aligned without visible overlap.
 
+The next discovery target was then exported with the additional CodeBlock
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `CodeBlock / Section`: `359:2`
+- `CodeBlock / Library card`: `359:3`
+- Placement: `Display` page, after `AvatarGroup / Section`, at
+  `(40, 44818)`, `1280 x 1838`.
+- Variant contract: no generated variants and no default variant; runtime
+  presentation is controlled by props such as `theme`, `copyable`,
+  `showLineNumbers`, `highlight`, and `editable`.
+- Source contract: the recorded prop surface covers required `code`, optional
+  `filename`, `language`, `copyable=true`, `copyLabel="Copy code"`,
+  `copiedLabel="Copied"`, `copiedDuration=5000`,
+  `showLineNumbers=false`, `highlight=false`, `editable=false`,
+  `onCodeChange`, `selectOnDoubleClick=true`, `theme="dark"`, `className`,
+  and div HTML attributes.
+- Behavior notes: the Figma specimen records `currentCode` resolution,
+  internal code-state sync, header rendering when filename, language, or copy
+  action is present, `CopyButton` feedback, editable textarea behavior,
+  optional line numbers, lightweight syntax highlighting, double-click
+  selection, and dark / light / muted theme surfaces.
+- Docs-derived states and samples: header with filename/language/copy action,
+  highlight with line numbers, editable code, color themes, copy-disabled
+  specimen, and copied feedback; sample snippets include TypeScript, HTML, and
+  JSON examples from the docs page.
+- Composition and usage boundaries: composes `CopyButton`; docs examples also
+  reference `TooltipButton` and `Icon`; use `CodeBlock` for multiline source
+  snippets, `Code` for inline tokens, and `Tooltip` / `CopyButton` for
+  adjacent copy affordances outside the code surface.
+- Runtime token notes: `background`, `foreground`, `popover`,
+  `popover-foreground`, `muted`, `muted-foreground`, `border`, `ring`,
+  `info`, `success`, `warning`, `pure-white`, and `pure-black` were annotated
+  from `src/globals.css`, with custom syntax-token surfaces represented in the
+  specimen.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  no-generated-variant contract, default code specimen, docs state cards,
+  props/default and behavior contracts, runtime token notes, and
+  related-component usage boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2997,7 +3042,7 @@ Before creating the next component:
    FilterButton, SortButton, EditableField, Form, Combobox, DatePicker,
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
    ToolPill, Code, EmptyState, Tag, Icon, ColorSwatch, and Carousel
-   and DataTable, ActionDataTable, and AvatarGroup components, runtime
+   and DataTable, ActionDataTable, AvatarGroup, and CodeBlock components, runtime
    semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
