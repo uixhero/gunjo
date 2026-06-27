@@ -3,11 +3,13 @@ import { IconCheck as Check } from "@tabler/icons-react";
 import { cva, type VariantProps } from "class-variance-authority"
 import { cn } from "../../lib/utils"
 
-const stepperVariants = cva("inline-flex items-start", {
+const stepperVariants = cva("items-start", {
     variants: {
         orientation: {
-            horizontal: "max-w-full flex-row gap-0 overflow-x-auto",
-            vertical: "flex-col gap-0",
+            // Full-width + fluid connectors so all steps fit a 375px phone (the
+            // 5-step mobile-checkout clip in cold-test #109) instead of overflowing.
+            horizontal: "flex w-full max-w-full flex-row gap-0 overflow-x-auto",
+            vertical: "inline-flex flex-col gap-0",
         },
     },
     defaultVariants: { orientation: "horizontal" },
@@ -75,7 +77,7 @@ const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
                                 data-stepper-item
                                 className={cn(
                                     "flex min-w-0 items-center gap-2",
-                                    isHorizontal ? "w-16 shrink-0 flex-col text-center sm:w-20" : "flex-row"
+                                    isHorizontal ? "w-14 shrink-0 flex-col text-center sm:w-20" : "flex-row"
                                 )}
                             >
                                 <StepCircle state={step.state} index={idx} />
@@ -96,7 +98,7 @@ const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
                                     className={cn(
                                         "bg-border",
                                         isHorizontal
-                                            ? "mx-2 mt-4 h-0.5 w-[60px] self-start"
+                                            ? "mx-1 mt-4 h-0.5 min-w-1 flex-1 self-start sm:mx-2"
                                             : "my-2 ml-4 h-[24px] w-0.5 self-start"
                                     )}
                                 />
