@@ -2850,6 +2850,44 @@ Figma export:
   image / thumbnail / autoplay state specimens, runtime token notes, and
   related-component usage boundary are aligned without visible overlap.
 
+The next discovery target was then exported with the additional DataTable
+component data. The owner reaffirmed that the destination Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into that file is the approved first-party workflow.
+
+Figma export:
+
+- `DataTable / Section`: `344:2`
+- `DataTable / Library card`: `344:3`
+- Placement: `Display` page, after `Carousel / Section`, at `(40, 39270)`,
+  `1280 x 2468`.
+- Source contract: `DataTable` has no generated variants and no default
+  variant. The recorded prop surface covers `columns`, `data`, optional
+  `filter`, `pageSize=10`, `pageSizeOptions=[10, 25, 50, 100, 200]`,
+  `labels`, `headerActions`, `getRowState`, `onRowClick`, `renderCard`, and
+  `className`.
+- Behavior notes: the Figma specimen records the TanStack-backed sorting,
+  column filtering, pagination, normalized page-size options, empty row
+  fallback, sortable header `aria-sort` states, disabled pagination tooltips,
+  row click keyboard handling, and `renderCard` mobile-card path.
+- Docs-derived states: rich cells, empty state, without filter, sort and
+  pagination, mobile card rendering, and row click behavior.
+- Composition and usage boundaries: uses `Table`, `Input`, `Button`, `Badge`,
+  `Tooltip`, `Select`, and pagination controls internally; use `Table` for
+  static markup, `Pagination` for standalone navigation, `SortButton` for a
+  single external sort trigger, and `ActionDataTable` when row-level bulk or
+  contextual actions are the primary behavior.
+- Runtime token notes: `destructive-border`, `background`, `foreground`,
+  `popover`, `popover-foreground`, `muted`, `muted-foreground`, `border`,
+  `input`, and `ring` were annotated from `src/globals.css`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout metadata review confirmed the
+  no-generated-variant contract, default filtered-table specimen,
+  prop/default and label contract, rich-cells / empty / no-filter / sorting /
+  responsive-card / row-action state specimens, runtime token notes, and
+  related-component usage boundary are aligned without visible overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -2869,7 +2907,8 @@ Before creating the next component:
    FilterButton, SortButton, EditableField, Form, Combobox, DatePicker,
    DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
    ToolPill, Code, EmptyState, Tag, Icon, ColorSwatch, and Carousel
-   components, runtime semantic colors, and specimen treatments are acceptable.
+   and DataTable components, runtime semantic colors, and specimen treatments
+   are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
 
