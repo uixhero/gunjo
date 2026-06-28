@@ -5567,6 +5567,48 @@ Figma export:
   Popover / Dialog usage boundaries are aligned without visible overflow or
   overlap.
 
+### AppRail
+
+- `AppRail / Section`: `531:2`
+- `AppRail / Library card`: `531:3`
+- Placement: `Navigation` page, after `Command / Section`, at `(40, 21626)`,
+  `1280 x 1788`.
+- Variant contract: generated spec exposes only the `default` variant key, with
+  `default` as the default variant. Active action, hover, focus, compact action
+  count, and bottom-pinned settings are docs/runtime composition states rather
+  than generated variant keys.
+- Prop structure: `AppRailProps` extends `React.HTMLAttributes<HTMLDivElement>`;
+  `className` and `children` are the practical API surface. The component does
+  not own item data, selected state, routing, or labels.
+- Runtime behavior: the root uses `w-16 h-[320px] h-full bg-foreground flex
+  flex-col items-center py-4 px-0 gap-4 text-muted z-40 flex-shrink-0`.
+  Generated spec records a 64px wide, 320px tall vertical frame with 16px top and
+  bottom padding, 16px gap, centered children, and Home / Search / Folder icon
+  placeholder slots.
+- Docs-derived composition: examples compose `AppRail` with `TooltipButton`
+  actions using `variant="ghost"`, `size="icon"`, `tooltipSide="right"`,
+  `tooltipOpenOnClick`, matching `aria-label`, and `aria-pressed` for active
+  state.
+- Docs-derived states and samples: primary navigation and compact actions,
+  Home / Search / Notifications / Account / Settings, Japanese labels `ホーム`,
+  `検索`, `通知`, `アカウント`, `設定`, selected-content panel text, and settings
+  pinned to the bottom with `mt-auto`.
+- Composition and usage boundaries: use AppRail for app-level vertical primary
+  navigation on the left edge. Use Header, NavigationMenu, or Tabs for horizontal
+  navigation; use Sidebar and SidebarItem for labeled tree/list navigation; use
+  RightRail for secondary contextual panels.
+- Runtime token notes: source runtime uses `foreground` for `bg-foreground` and
+  `muted` for `text-muted`. The generated specimen fill `#111827` is recorded as
+  a design-spec preview value, while the live runtime token values from
+  `src/globals.css` are also recorded. Additional specimen annotations include
+  `background`, `secondary`, `muted-foreground`, `border`, and `ring`.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed
+  default rail geometry, primary and compact specimens, active and bottom-pinned
+  action states, TooltipButton accessibility notes, token notes, and AppRail /
+  Header / NavigationMenu / Tabs / Sidebar / SidebarItem / RightRail usage
+  boundaries are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -5592,7 +5634,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, and Command components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, and AppRail components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
