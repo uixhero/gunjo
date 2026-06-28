@@ -6369,6 +6369,58 @@ Figma export:
   MediaPickerDialog / AssetCard / AssetGrid / FloatingPanel / Sheet / Drawer
   usage boundaries are aligned without visible overflow or overlap.
 
+### DeviceFrame
+
+- `DeviceFrame / Section`: `586:2`
+- `DeviceFrame / Specimen`: `586:3`
+- `DeviceFrame`: `586:147`
+  - `Variant=default`: `586:106`
+  - `Variant=windows11`: `586:127`
+- Placement: `Layout` page, after `AssetInspectorPanel / Section`, at
+  `(40, 21947)`, `1280 x 3671`.
+- Variant contract: generated spec exposes `default` and `windows11` variants
+  with `default` as the default variant. `viewport` is runtime state
+  (`desktop`, `tablet`, `mobile`) and intentionally remains a controlled prop
+  rather than a generated variant axis.
+- Public API: `DeviceFrameProps` extends div HTML attributes with required
+  `host`, `path`, `viewport`, `onViewportChange`, and `children`; optional
+  props include `defaultPath`, `tabTitle`, `variant`, `navigablePaths`,
+  `onPathChange`, `labels`, and `className`. `DeviceFrameLabels` provides
+  localized labels for `url`, `desktop`, `tablet`, and `mobile`.
+- Runtime behavior: the component keeps a draft URL while the input is focused,
+  resets it from `host + path` when not editing, and `normalizeFramePath`
+  strips protocol / host, ensures a leading slash, and maps `/` to
+  `defaultPath`. Submitting calls `onPathChange` only when no whitelist is
+  provided or `navigablePaths` includes the normalized path; otherwise the
+  draft URL resets to the current path.
+- Generated anatomy: style hints record base class `w-full p-0`, default
+  variant classes `w-full p-0`, and `windows11` variant classes `w-full p-0`.
+  The Figma specimen keeps macOS chrome, Windows 11 chrome, mobile viewport,
+  and URL navigation samples visible separately from the `default` /
+  `windows11` component set.
+- Docs-derived composition and samples: docs and embedded previews cover
+  `host="gunjo.example"`, paths `/docs`, `/dashboard`, `/mobile`, and
+  `/reports`, tab title `Docs` / `ドキュメント`, viewport labels
+  `Desktop viewport`, `Tablet viewport`, `Mobile viewport`, and Japanese
+  labels `デスクトップ幅`, `タブレット幅`, `モバイル幅`. Navigation samples allow
+  `/dashboard`, `/reports`, and `/settings`.
+- Composition and usage boundaries: use DeviceFrame for fake browser / device
+  chrome around interactive pattern previews. Use MarqueeFrame when the full
+  pattern page needs scaled browser framing and viewport-scoped overlay
+  containment, Container for page content width, Modal or MediaLightbox for
+  overlay preview surfaces, and SpatialCanvas for canvas work surfaces.
+- Runtime token notes: DeviceFrame uses `background`, `foreground`, `muted`,
+  `muted-foreground`, `border`, `primary`, `primary-border`,
+  `primary-subtle`, `primary-subtle-foreground`, `destructive`, `warning`,
+  and `success` across shell chrome, URL entry, viewport toggle buttons,
+  macOS traffic lights, and Windows window controls.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  component set variants, macOS / Windows / mobile / URL navigation states, API
+  notes, token notes, and DeviceFrame / MarqueeFrame / Container / Modal /
+  MediaLightbox / SpatialCanvas usage boundaries are aligned without visible
+  overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -6394,7 +6446,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, and AssetInspectorPanel components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, and DeviceFrame components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
