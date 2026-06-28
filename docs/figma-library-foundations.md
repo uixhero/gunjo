@@ -5321,6 +5321,56 @@ Figma export:
   / Pagination / Breadcrumb / NavigationMenu usage boundaries are aligned
   without visible overflow or overlap.
 
+### NavigationMenu
+
+Source approval: the repository owner reaffirmed that this Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into it is the approved first-party workflow.
+
+Figma export:
+
+- `NavigationMenu / Section`: `517:2`
+- `NavigationMenu / Library card`: `517:3`
+- Placement: `Navigation` page, after `DocumentPager / Section`, at `(40, 9404)`,
+  `1280 x 2400`.
+- Variant contract: generated spec exposes no variant keys and no default
+  variant. The runtime contract is the Radix NavigationMenu compound family plus
+  `navigationMenuTriggerStyle()`.
+- Public parts: `NavigationMenu`, `NavigationMenuList`, `NavigationMenuItem`,
+  `NavigationMenuTrigger`, `NavigationMenuContent`, `NavigationMenuLink`,
+  `NavigationMenuViewport`, `NavigationMenuIndicator`, and
+  `navigationMenuTriggerStyle()`. Each part forwards Radix component props or
+  primitive link/list/item behavior, with `className` composition via `cn`.
+- Runtime behavior: Root renders children plus `NavigationMenuViewport`. List is
+  a flex list with `space-x-1`. Trigger composes `navigationMenuTriggerStyle()`,
+  adds a ChevronDown icon, and rotates it on `data-state=open`. Content uses
+  Radix motion data attributes for fade and slide animations. Viewport is centered
+  below the root and sizes from `--radix-navigation-menu-viewport-width` and
+  `--radix-navigation-menu-viewport-height`. Indicator renders a rotated
+  `bg-border` diamond.
+- Trigger style: `inline-flex h-9 w-max items-center justify-center rounded-md
+  bg-background px-4 py-2 text-sm font-medium transition-colors`, with hover,
+  focus, active, open, and disabled states using `muted`, `foreground`, and
+  opacity/pointer-events classes.
+- Docs-derived states and samples: product dropdown with mega-menu links and
+  direct links only. Sample copy includes Product, Pricing, Docs, Components,
+  Tokens, Templates, Reusable UI parts, Color / spacing / radius values, and
+  Page-level compositions.
+- Composition and usage boundaries: use NavigationMenu for horizontal top-level
+  site navigation and category mega menus. Use Header as the containing page
+  header, Menubar for application command menus, Breadcrumb for current hierarchy,
+  and DocumentPager for adjacent previous/next document movement.
+- Runtime token notes: `background`, `foreground`, `muted`,
+  `muted-foreground`, `popover`, `popover-foreground`, `border`, and `ring` are
+  recorded with light/dark values from `src/globals.css`; Radix viewport CSS vars
+  are recorded as runtime sizing inputs rather than design tokens.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout review confirmed compound parts, empty
+  generated variant contract, dropdown/direct-link states, viewport/indicator
+  anatomy, token notes, and NavigationMenu / Header / Menubar / Breadcrumb /
+  DocumentPager usage boundaries are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -5346,7 +5396,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, and DocumentPager components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, and NavigationMenu components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
