@@ -887,6 +887,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "stringline",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:stringline",
+      title: "Stringline",
+      description: "The time × distance run diagram (運行図表 / ダイヤグラム / Marey / string-line chart): the route's stops on the distance (y) axis, time on the x axis, each run a DIAGONAL polyline across the stops over time. Slope = speed, a horizontal kink = a dwell, two lines converging = a meet / overtake / bunching (続行・だんご). Bidirectional runs (up/down), an optional now-line, planned-vs-actual pairs (planned dashed + actual solid), and focusable runs (onSelect). The transport-ops view a Gantt structurally cannot draw — Gantt is resource rows × horizontal bars (y = identity); this transposes the same time engine onto a continuous distance axis (y = distance) so runs can cross. For rail/bus/tram/ferry dispatch & timetable diagrams. SSR-safe: pass now in rather than reading the clock. SVG line geometry like LineChart.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "ticketStub",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:ticketStub",

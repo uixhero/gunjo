@@ -1603,6 +1603,7 @@ export const translations: Record<
       PageHeader: "ページヘッダー",
       Itinerary: "旅程",
       TicketStub: "チケット券面",
+      Stringline: "運行図表",
       RevealSection: "条件付きセクション",
       Delta: "差分",
       Meter: "メーター",
