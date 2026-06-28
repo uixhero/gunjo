@@ -5691,6 +5691,52 @@ Figma export:
   DocumentPager usage boundaries are aligned without visible overflow or
   overlap.
 
+### PageAside
+
+- `PageAside / Section`: `539:2`
+- `PageAside / Library card`: `539:3`
+- Placement: `Navigation` page, after `RightRail / Section`, at `(40, 28306)`,
+  `1280 x 2093`.
+- Variant contract: generated spec exposes only the `default` variant key, with
+  `default` as the default variant. Docs/runtime states for default page links,
+  page status, and related links are composition states rather than generated
+  variant keys.
+- Prop structure: `PageAsideProps` extends
+  `Omit<React.HTMLAttributes<HTMLDivElement>, "title">` and adds `title`,
+  `renderAside`, `children`, `asideLabel`, `contentLabel`,
+  `mobileDescription`, `defaultOpen`, `width`, `contentClassName`,
+  `mobileClassName`, `railClassName`, `railContentClassName`, `openLabel`, and
+  `closeLabel`. Runtime defaults are `defaultOpen = true`, `width = "w-72"`,
+  `openLabel = "Open"`, and `closeLabel = "Close"`.
+- Runtime behavior: the root uses `flex min-h-0 w-full flex-col lg:flex-row`.
+  The main content wrapper uses `min-w-0 flex-1` and forwards
+  `contentLabel` as `aria-label`. Narrow screens render a bordered
+  `bg-background` mobile `aside` with native `details` / `summary`; the
+  summary is intentionally not a heading so it does not inject an out-of-order
+  heading before a page `h1`. Wide screens render the same `renderAside()`
+  content inside `RightRail` with `hidden bg-background lg:flex`.
+- Generated anatomy: the SSOT default specimen is synthetic and reusable, with
+  `fill_container` width, no fixed height, no fill or stroke, zero padding, and
+  a `24px` gap.
+- Docs-derived composition and samples: the docs compose PageAside with
+  RightRail, Badge, page-section links, page status rows, related links, and
+  mobile disclosure copy. Sample labels include Supporting information, Page
+  supporting information, Main content, Analytics report, Overview, Quality
+  metrics, Release checks, Status, Pre-release, Updated, Review, Release
+  checklist, Changelog, and Owner team.
+- Composition and usage boundaries: use PageAside when the same support content
+  must move between mobile content and a desktop right rail. Use RightRail for
+  desktop-only contextual support, Sidebar for primary navigation, and
+  Accordion or Collapsible for independent disclosure.
+- Runtime token notes: `background`, `foreground`, `muted`,
+  `muted-foreground`, `border`, and `ring` are recorded with light/dark values
+  from `src/globals.css`.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  responsive desktop and mobile specimens, default/status/links state
+  specimens, API notes, token notes, and PageAside / RightRail / Sidebar /
+  Accordion usage boundaries are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -5716,7 +5762,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, and RightRail components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, and PageAside components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
