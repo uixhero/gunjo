@@ -134,6 +134,7 @@ export const navigation = [
             { title: "KanbanBoard", href: "/docs/components/kanban-board" },
             { title: "Kbd", href: "/docs/components/kbd" },
             { title: "LineageGraph", href: "/docs/components/lineage-graph" },
+            { title: "LineChip", href: "/docs/components/line-chip" },
             { title: "List", href: "/docs/components/list" },
             { title: "ListCard", href: "/docs/components/list-card" },
             { title: "LoyaltySummaryCard", href: "/docs/components/loyalty-summary-card" },

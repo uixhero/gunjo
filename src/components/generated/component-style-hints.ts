@@ -1909,6 +1909,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "lineChip": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": ""
+      },
+      "variantColorHints": {}
+    },
     "list": {
       "variantKeys": [
         "dot",

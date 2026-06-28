@@ -1391,6 +1391,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "lineChip": {
+      "title": "LineChip",
+      "description": "The transit line / route identity chip: a small pill showing a line/route number (渋66 / 東98 / JY / 丸ノ内線) in the line's official brand colour, with auto-contrast text (black/white by luminance) so it stays readable on any hue. The label carries the meaning, so it works colour-blind / in mono — colour is decoration. The IDENTITY counterpart to Badge (a status/semantic tone): this keys a chip to a transit line. For approach lists, route candidates, leg details, run-diagram labels — rail / bus / subway. label + optional color (hex) + optional icon; omit color for a neutral chip. RSC-safe.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/LineChip.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "list": {
       "title": "List",
       "description": "A semantic list component with customizable markers and spacing.",

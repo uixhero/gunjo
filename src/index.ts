@@ -139,6 +139,7 @@ export * from './components/display/LabeledDonutCard';
 export * from './components/display/Leaderboard';
 export * from './components/display/LineageGraph';
 export * from './components/display/LineChart';
+export * from './components/display/LineChip';
 export * from './components/display/List';
 export * from './components/display/ListCard';
 export * from './components/display/LoyaltySummaryCard';
