@@ -13,12 +13,12 @@ Source of truth:
 ## Current Status
 
 - Discovery scope: 162 components / templates
-- Recorded exports: 150
-- Remaining exports: 12
+- Recorded exports: 151
+- Remaining exports: 11
 - Completed category blocks: `Inputs`, `Overlay`, `Display`, `Charts`, `Feedback`, `Navigation`
 - Current working category: `Layout`
-- Last recorded component: `SpatialCanvas`
-- Recommended next component: `AssetInspectorPanel`
+- Last recorded component: `AssetInspectorPanel`
+- Recommended next component: `DeviceFrame`
 
 ## Completed Blocks
 
@@ -240,10 +240,10 @@ Recorded so far:
 - CollapsiblePanelToggle
 - InspectorPanel
 - SpatialCanvas
+- AssetInspectorPanel
 
 Remaining:
 
-- AssetInspectorPanel
 - DeviceFrame
 - MarqueeFrame
 

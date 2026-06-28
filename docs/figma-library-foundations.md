@@ -6316,6 +6316,59 @@ Figma export:
   AssetInspectorPanel usage boundaries are aligned without visible overflow or
   overlap.
 
+### AssetInspectorPanel
+
+- `AssetInspectorPanel / Section`: `582:2`
+- `AssetInspectorPanel / Specimen`: `582:3`
+- `AssetInspectorPanel`: `582:290`
+  - `Variant=default`: `582:162`
+  - `Variant=compact`: `582:232`
+- Placement: `Layout` page, after `SpatialCanvas / Section`, at
+  `(40, 18699)`, `1280 x 3200`.
+- Variant contract: generated spec exposes `default` and `compact` variants
+  with `default` as the default variant. The Figma component set records both
+  variants under the `AssetInspectorPanel` component set.
+- Public API: `AssetInspectorPanelProps` extends `InspectorPanelProps` while
+  replacing the `title` and `children` contract. It accepts `asset`, `title`,
+  `note`, `tags`, `tagSuggestions`, `metadata`, `labels`, `variant`,
+  `tooltipPortalContainer`, and callbacks for title, note, tags, preview,
+  favorite, share, download, delete, close, rating, analyze, and compress
+  actions.
+- Runtime behavior: `asset={null}` keeps the inspector shell and renders the
+  empty guidance state. With an asset, the panel renders a 48px action header,
+  aspect-square preview, editable title and note fields, optional rating
+  controls with half-step star selection plus `Slider`, `TagEditor`, compact
+  `MetadataList`, and analyze / compress actions. The `compact` variant keeps
+  the same public API while reducing preview size and body density.
+- Generated anatomy: the generated spec records synthetic variants
+  `default` and `compact`; style hints record base class `w-full p-0` and
+  variant classes `w-full p-0` for both variants. The Figma specimen keeps
+  default, compact, and empty states visible separately from the generated
+  component set.
+- Docs-derived composition and samples: docs and embedded previews cover the
+  standard populated media asset, compact banner asset, and empty selection
+  state using sample labels such as `Campaign_Hero_2026.jpg`,
+  `spring_banner_728x90.png`, `Analyze`, `Compress`, `Favorite`, `Share`,
+  `Download`, `Delete`, `Close`, and Japanese docs labels for title, note,
+  tags, metadata, rating, actions, and empty guidance.
+- Composition and usage boundaries: use AssetInspectorPanel for media-library
+  asset detail editing after selection. Use InspectorPanel for generic object
+  property panels, MediaLightbox for full-screen preview and editing chrome,
+  MediaPickerDialog for modal media selection, AssetCard / AssetGrid for
+  browsing, FloatingPanel for draggable canvas tools, and Sheet or Drawer for
+  modal edge overlays.
+- Runtime token notes: AssetInspectorPanel uses `background`, `foreground`,
+  `border`, `muted`, `muted-foreground`, `input`, `ring`, `primary`,
+  `primary-foreground`, `primary-subtle`, `primary-border`, `destructive`,
+  `warning`, and `success` across header actions, preview surfaces, editable
+  fields, tags, rating controls, metadata rows, and action buttons.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  component set variants, default / compact / empty states, API notes, token
+  notes, and AssetInspectorPanel / InspectorPanel / MediaLightbox /
+  MediaPickerDialog / AssetCard / AssetGrid / FloatingPanel / Sheet / Drawer
+  usage boundaries are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -6341,7 +6394,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, and SpatialCanvas components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, and AssetInspectorPanel components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
