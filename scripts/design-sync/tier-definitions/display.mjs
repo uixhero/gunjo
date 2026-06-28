@@ -887,6 +887,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "statusBoard",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:statusBoard",
+      title: "StatusBoard",
+      description: "The live entity status board at the center of every dispatch / monitoring floor: many labeled entities (vehicles / machines / spots), each carrying a status (空車 / 故障 / 稼働中), a location, and a note, laid out as a responsive tile grid. Problems and availability stand out via a tone-accent rail + a colour-safe status pill (icon + text, never colour alone); tiles sort fault-first by default; tiles group by zone/area with a per-group problem count. items[] (flat) or groups[] of {id,label,status,tone,location?,note?,icon?,trailing?,rank?,onSelect?}. The board a Gantt / DataTable / HeatmapChart can't be — taxi 配車盤, 駅務の機器状態盤, ramp GSE board, factory line OEE. (Gantt = rows × time, DataTable = sortable grid of rows, HeatmapChart = read-only value-by-colour matrix; this is a spatial/grouped board of selectable status entities where problems pop.) RSC-safe except the opt-in onSelect.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "stringline",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:stringline",

@@ -1755,6 +1755,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "statusBoard": {
+      "title": "StatusBoard",
+      "description": "The live entity status board at the center of every dispatch / monitoring floor: many labeled entities (vehicles / machines / spots), each carrying a status (空車 / 故障 / 稼働中), a location, and a note, laid out as a responsive tile grid. Problems and availability stand out via a tone-accent rail + a colour-safe status pill (icon + text, never colour alone); tiles sort fault-first by default; tiles group by zone/area with a per-group problem count. items[] (flat) or groups[] of {id,label,status,tone,location?,note?,icon?,trailing?,rank?,onSelect?}. The board a Gantt / DataTable / HeatmapChart can't be — taxi 配車盤, 駅務の機器状態盤, ramp GSE board, factory line OEE. (Gantt = rows × time, DataTable = sortable grid of rows, HeatmapChart = read-only value-by-colour matrix; this is a spatial/grouped board of selectable status entities where problems pop.) RSC-safe except the opt-in onSelect.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/StatusBoard.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "stringline": {
       "title": "Stringline",
       "description": "The time × distance run diagram (運行図表 / ダイヤグラム / Marey / string-line chart): the route's stops on the distance (y) axis, time on the x axis, each run a DIAGONAL polyline across the stops over time. Slope = speed, a horizontal kink = a dwell, two lines converging = a meet / overtake / bunching (続行・だんご). Bidirectional runs (up/down), an optional now-line, planned-vs-actual pairs (planned dashed + actual solid), and focusable runs (onSelect). The transport-ops view a Gantt structurally cannot draw — Gantt is resource rows × horizontal bars (y = identity); this transposes the same time engine onto a continuous distance axis (y = distance) so runs can cross. For rail/bus/tram/ferry dispatch & timetable diagrams. SSR-safe: pass now in rather than reading the clock. SVG line geometry like LineChart.",
