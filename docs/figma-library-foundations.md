@@ -5218,6 +5218,57 @@ Figma export:
   ToastProvider / Toast / Banner / Alert / NotificationCenter usage boundaries
   are aligned without visible overflow or overlap.
 
+
+The next discovery target was then exported with the additional TextLink
+component spec. The owner reaffirmed that this Figma file is the company
+design-system source of truth and that reflecting private repository component
+specs into it is the approved first-party workflow.
+
+Figma export:
+
+- `TextLink / Section`: `509:2`
+- `TextLink / Library card`: `509:3`
+- Placement: `Navigation` page, after `Pagination / Section`, at `(40, 4748)`,
+  `1280 x 2100`.
+- Variant contract: generated spec exposes `default` and `muted` variants, with
+  `default` as the default variant. Generated synthetic frames use zero padding,
+  4px gap, 14px medium text, `#2563eb` for default text, and `#0f172a` for
+  muted text.
+- Source contract: `TextLinkProps` extends anchor HTML attributes and adds
+  `variant`, `newTabLabel`, and `external`. `variant` defaults to
+  `textLinkDefaultVariantKey` (`default`), `newTabLabel` defaults to
+  `"opens in a new tab"`, and anchor props such as `href`, `target`, `rel`,
+  `onClick`, and `children` pass through.
+- Runtime behavior: the root anchor uses `inline-flex items-center gap-1 p-0
+  align-baseline text-sm transition-colors`. `target="_blank"` or
+  `external={true}` shows the external-tab icon. New-tab links render an
+  sr-only supplemental label using `newTabLabel`; `normalizeRel` preserves
+  existing rel tokens and adds `noreferrer` when the link opens a new tab.
+- Variant notes: `default` uses `font-medium text-primary underline
+  underline-offset-4 hover:text-primary-strong`. `muted` uses `font-medium
+  text-foreground underline underline-offset-4 hover:text-primary`.
+- Docs-derived states and samples: default internal link, new-tab external
+  reference, muted supporting link, and HoverCard metadata preview. Sample copy
+  includes DocNote を見る, W3C WAI: Decorative Images, DocNote の概要を見る,
+  DocNote へ移動, 新しいタブで開きます, and preview Toast feedback copy for
+  confirming navigation inside docs previews.
+- Composition and usage boundaries: use TextLink for inline navigation in prose
+  and documentation contexts. Use Button for commands and actions, Breadcrumb
+  for hierarchical navigation, MarkdownRenderer for rendered markdown anchors,
+  and HoverCard or Tooltip when visible metadata or help is needed.
+- Runtime token notes: default uses `primary` and hover `primary-strong`; muted
+  uses `foreground` and hover `primary`; docs preview and HoverCard specimens
+  also record `muted-foreground`, `background`, `border`, `popover`,
+  `popover-foreground`, `secondary`, `ring`, and `success` for composed
+  metadata and Toast feedback examples.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout review confirmed default/muted variants,
+  hover color mapping, external/new-tab icon behavior, sr-only new-tab label
+  notes, rel normalization, docs states, token notes, and TextLink / Button /
+  Breadcrumb / MarkdownRenderer / HoverCard / Tooltip usage boundaries are
+  aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -5243,7 +5294,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, and ToastProvider components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, and TextLink components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
