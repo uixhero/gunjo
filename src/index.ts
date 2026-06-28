@@ -218,6 +218,7 @@ export * from './components/inputs/RangeSlider';
 export * from './components/inputs/ScanGate';
 export * from './components/inputs/ScanInput';
 export * from './components/inputs/SearchInput';
+export * from './components/inputs/SegmentedControl';
 export * from './components/inputs/Select';
 export * from './components/inputs/Slider';
 export * from './components/inputs/SortButton';
