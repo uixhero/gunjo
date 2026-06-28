@@ -5991,6 +5991,45 @@ Figma export:
   and VStack / HStack / Cluster / Container / Grid usage boundaries are aligned
   without visible overflow or overlap.
 
+### Cluster
+
+- `Cluster / Section`: `558:2`
+- `Cluster / Specimen`: `558:3`
+- Placement: `Layout` page, after `VStack / Section`, at `(40, 6252)`,
+  `1280 x 1480`.
+- Variant contract: generated spec exposes no variant keys and no default
+  variant. Runtime layout props are implementation options rather than
+  generated SSOT variants, so the Figma export represents them as specimens.
+- Public API: `ClusterProps` extends `React.HTMLAttributes<HTMLDivElement>`
+  with `gap?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 8`, `align?: "start" |
+  "center" | "end" | "baseline"`, and `justify?: "start" | "center" |
+  "end" | "between"`. Defaults are `gap=2`, `align="center"`, and
+  `justify="start"`.
+- Runtime behavior: the component always renders `flex flex-row flex-wrap`,
+  then maps `gap`, `align`, and `justify` through fixed class maps. Consumers
+  add visible borders, backgrounds, padding, width, and child styling through
+  `className` and children.
+- Generated anatomy: the SSOT entry references frame `yQE7M`, title `Cluster`,
+  and description `Wrapping flex layout — items flow horizontally and wrap
+  onto new lines.`, but does not provide generated variants or child nodes.
+- Docs-derived composition and samples: docs and demo examples cover wrapping
+  tag / badge lists, `justify="end"` right-aligned actions, and
+  `justify="center"` centered status rows. The runtime also supports
+  `align="baseline"` for mixed-size inline metadata.
+- Composition and usage boundaries: use Cluster when wrapping is the primary
+  behavior for horizontal item groups. Use HStack for non-wrapping horizontal
+  rows, VStack for vertical composition, Grid for two-dimensional layout, and
+  Tag or Badge for individual items.
+- Runtime token notes: Cluster itself has no intrinsic visual token. The docs
+  specimens use `background`, `foreground`, `secondary`,
+  `secondary-foreground`, `muted`, `muted-foreground`, `border`, `input`,
+  `ring`, `primary`, and `primary-foreground` values from `src/globals.css`.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  wrapping tags, right-aligned actions, centered row, baseline alignment, API
+  notes, token notes, and Cluster / HStack / VStack / Grid / Tag / Badge usage
+  boundaries are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -6016,7 +6055,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, and VStack components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, and Cluster components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
