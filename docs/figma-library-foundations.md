@@ -6581,6 +6581,62 @@ Figma export:
   and EditorTemplate / SpatialCanvas / Menubar / property control usage
   boundaries are aligned without visible overflow or overlap.
 
+### LandingTemplate
+
+- `LandingTemplate / Section`: `597:172`
+- `LandingTemplate / Specimen`: `597:173`
+- `LandingTemplate/Default`: `597:121`
+- Placement: `Patterns` page, after `EditorTemplate / Section`, at
+  `(40, 4944)`, `1280 x 2560`.
+- Variant contract: generated spec exposes a single `default` variant with
+  `default` as the default variant. Runtime marketing content is
+  caller-provided, so the Figma component records the sticky header, hero, and
+  section rhythm anatomy instead of expanding page content into variant axes.
+- Public API: `LandingTemplateProps` extends div HTML attributes and accepts
+  optional `header?: React.ReactNode`, required `hero: React.ReactNode`,
+  optional `features?: React.ReactNode`, optional
+  `testimonials?: React.ReactNode`, optional `pricing?: React.ReactNode`,
+  optional `cta?: React.ReactNode`, optional `footer?: React.ReactNode`, and
+  `className`.
+- Runtime behavior: the root renders `flex min-h-screen w-full flex-col`.
+  `header` renders only when provided and is sticky at `top-0 z-50` with
+  `border-b`, `bg-background/95`, `backdrop-blur`, and Container size `2xl`.
+  `hero` is required and renders directly. `features`, `testimonials`, and
+  `pricing` use Container-backed section rhythm with `py-12 md:py-24
+  lg:py-32`; testimonials additionally use `bg-muted/50`. `cta` renders
+  directly, and `footer` uses a border-top wrapper plus Container size `2xl`.
+- Generated anatomy: style hints record base class `flex flex-col w-full`,
+  slot ids `landingTemplateHeader`, `landingTemplateHero`, and
+  `landingTemplateFeatureSection`, and variant class `flex flex-col w-full`.
+  The generated patterns spec records `landingTemplateHeader` at 56 px height
+  with `#fffffff2` fill, `landingTemplateHero` at 280 px height with
+  `#eff6ff` fill, 48 / 20 / 48 / 20 padding, and 14 px gap, plus a feature
+  section with 48 px vertical padding and 16 px gap.
+- Docs-derived composition and samples: docs and embedded previews cover
+  `Acme Inc.`, navigation labels `Features`, `Pricing`, `About`, and `Blog`,
+  Button actions `Log in`, `Sign up`, `Get Started`, `View on GitHub`, and
+  `Start Building Now`, hero badge `New Release v2.0 is out`, headline
+  `Build your next idea with speed and style.`, feature cards
+  `Customizable`, `Accessible`, `Dark Mode`, `TypeScript`, `Modern Stack`,
+  and `Open Source`, CTA copy `Ready to get started?`, and footer links
+  `Terms`, `Privacy`, and `Contact`.
+- Composition and usage boundaries: LandingTemplate composes higher-level page
+  sections into a marketing skeleton. Use it for full landing pages that need
+  sticky navigation, a required hero, optional proof/pricing/CTA sections, and
+  consistent Container gutters. Use Button for hero and CTA actions, Container
+  for centered content rhythm, and more specific Header / Footer primitives
+  when only standalone navigation or footer chrome is needed.
+- Runtime token notes: LandingTemplate uses `background`, `border`,
+  `foreground`, `muted`, `muted-foreground`, `primary`,
+  `primary-foreground`, `primary-subtle`, `card`, and `accent` in the
+  specimen. The generated spec also records the hero fill `#eff6ff` and
+  sticky header fill `#fffffff2`.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  default shell, sticky header / hero / feature grid / CTA / footer anatomy,
+  API notes, token notes, and LandingTemplate / Button / Container / Header /
+  Footer usage boundaries are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -6606,7 +6662,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, MarqueeFrame, DashboardTemplate, and EditorTemplate components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, MarqueeFrame, DashboardTemplate, EditorTemplate, and LandingTemplate components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
