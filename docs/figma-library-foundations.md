@@ -5737,6 +5737,52 @@ Figma export:
   specimens, API notes, token notes, and PageAside / RightRail / Sidebar /
   Accordion usage boundaries are aligned without visible overflow or overlap.
 
+### Header
+
+- `Header / Section`: `541:2`
+- `Header / Library card`: `541:3`
+- Placement: `Navigation` page, after `PageAside / Section`, at `(40, 30447)`,
+  `1280 x 1788`.
+- Variant contract: generated spec exposes no variant keys and no default
+  variant. The runtime component is a slot family rather than a generated
+  variant set. Docs states for default, compact, and drawer navigation are
+  composition states.
+- Public parts: `Header`, `HeaderBrand`, `HeaderNav`, `HeaderNavLink`, and
+  `HeaderActions`. `Header`, `HeaderBrand`, `HeaderNav`, and `HeaderActions`
+  forward their standard HTML attributes and `className`; `HeaderNavLink`
+  extends anchor attributes with `active?: boolean`.
+- Runtime behavior: `Header` renders a semantic `header` root with `flex
+  w-full flex-wrap items-center justify-between gap-x-4 gap-y-3 border-b
+  border-border bg-background px-4 py-3 sm:px-6`. `HeaderBrand` is a
+  `flex min-w-0 shrink-0 items-center gap-2` slot. `HeaderNav` is a semantic
+  `nav` with `order-last flex w-full min-w-0 items-center gap-4
+  overflow-x-auto` on narrow widths and `sm:order-none sm:w-auto` on wider
+  screens. `HeaderNavLink` uses `text-foreground` and `font-medium` when
+  active, otherwise `text-muted-foreground`. `HeaderActions` uses `ml-auto flex
+  shrink-0 items-center gap-2`.
+- Generated anatomy: the SSOT entry references frame `n0CoF`, title `Header`,
+  and description `Top navigation bar with logo, primary nav, and
+  right-aligned actions.`, but does not provide generated variants or child
+  nodes.
+- Docs-derived composition and samples: the docs compose Header with GunjoLogo,
+  HeaderBrand, HeaderNav, HeaderNavLink, HeaderActions, TooltipButton, Button,
+  CommandPalette, Drawer, Avatar, and Tabler icons. Sample labels include
+  Gunjo UI, Docs, Components, Pricing, Sign in, Open command palette, Switch to
+  light theme, Switch to dark theme, Menu, Close, and Header navigation.
+- Composition and usage boundaries: use Header for top-level horizontal page
+  navigation with brand, primary nav, and right-aligned actions. Use
+  NavigationMenu for mega menus, AppRail or Sidebar for persistent app
+  navigation, Drawer for narrow-screen menus, and Button / TooltipButton for
+  concrete actions inside the actions slot.
+- Runtime token notes: `background`, `foreground`, `muted-foreground`,
+  `border`, `primary`, `muted`, and `ring` are recorded with light/dark values
+  from `src/globals.css`.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  default, compact, and drawer navigation specimens, slot anatomy notes, token
+  notes, and Header / NavigationMenu / AppRail / Sidebar / Drawer usage
+  boundaries are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -5762,7 +5808,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, and PageAside components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, and Header components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
