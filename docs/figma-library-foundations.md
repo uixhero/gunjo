@@ -6690,6 +6690,56 @@ Figma export:
   API notes, token notes, and AuthTemplate / Input / Button / Label / Form
   usage boundaries are aligned without visible overflow or overlap.
 
+### KanbanTemplate
+
+- `KanbanTemplate / Section`: `604:195`
+- `KanbanTemplate / Specimen`: `604:196`
+- `KanbanTemplate/Default`: `604:209`
+- Placement: `Patterns` page, after `AuthTemplate / Section`, at `(40, 9800)`,
+  `1280 x 2240`.
+- Variant contract: generated spec exposes a single `default` variant with
+  `default` as the default variant. The Figma component records the board shell
+  and docs-derived project board specimen; drag state and column data are app
+  state, not persistent component variants.
+- Public API: `KanbanTemplateProps` extends div HTML attributes and accepts
+  optional `sidebar?: React.ReactNode`, optional `header?: React.ReactNode`,
+  required `children: React.ReactNode`, and `className`.
+- Runtime behavior: the root renders `flex h-full min-h-0 w-full
+  overflow-hidden`. The optional sidebar is hidden below `md`, uses `w-64`,
+  `border-r`, `bg-muted/40`, and `flex-shrink-0`. The main region is
+  `flex flex-col flex-1 h-full min-w-0`; the optional header is `h-14`,
+  `border-b`, `bg-muted/40`, `px-6`, and `lg:h-[60px]`. The board area is
+  `flex-1 overflow-x-auto overflow-y-hidden p-6`, with a horizontal inner
+  column row using `flex h-full gap-6`.
+- Generated anatomy: style hints record base class `flex w-full h-full`, slot
+  ids `kanbanTemplateSidebar` and `kanbanTemplateMain`, and variant class
+  `flex w-full h-full`. The generated patterns spec records a 256 px sidebar,
+  a 56 px header, a padded board region, and horizontal columns for To Do, In
+  Progress / Doing, and Done style workflow states.
+- Docs-derived composition and samples: docs and embedded previews cover the
+  board label `Product Launch`, sidebar label `Projects`, sidebar items
+  `Product Launch`, `Marketing`, and `Hiring`, header action `Share`, member
+  avatar initials `JD`, `SM`, `+3`, columns `To Do`, `In Progress`, and
+  `Done`, and cards `Research Competitors`, `Draft PRD`, `Design System`, and
+  `User Interviews`.
+- Composition and usage boundaries: KanbanTemplate composes an optional
+  sidebar, optional header, and horizontally scrolling board body. Use it for
+  board workflow shells. It does not own card state, column data, or
+  drag-and-drop behavior; production boards should connect `dnd-kit`, stable
+  item ids, keyboard sensors, and SSR-safe aria ids in the consuming app.
+  Compose Card, Button, Avatar, SidebarItem, Badge-like status labels, and
+  project-specific task controls inside `children`.
+- Runtime token notes: KanbanTemplate uses `background`, `muted`, `card`,
+  `border`, `foreground`, `muted-foreground`, `primary`,
+  `primary-foreground`, `accent`, and `destructive` in the specimen. The
+  generated spec also records sidebar/header fill `#f1f5f9` and border
+  `#e5e7eb`.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  default board shell, sidebar / header / horizontal column anatomy, API notes,
+  token notes, and KanbanTemplate / Card / Button / Avatar / dnd-kit usage
+  boundaries are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -6715,7 +6765,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, MarqueeFrame, DashboardTemplate, EditorTemplate, LandingTemplate, and AuthTemplate components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, MarqueeFrame, DashboardTemplate, EditorTemplate, LandingTemplate, AuthTemplate, and KanbanTemplate components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.

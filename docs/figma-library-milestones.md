@@ -13,12 +13,12 @@ Source of truth:
 ## Current Status
 
 - Discovery scope: 162 components / templates
-- Recorded exports: 157
-- Remaining exports: 5
+- Recorded exports: 158
+- Remaining exports: 4
 - Completed category blocks: `Inputs`, `Overlay`, `Display`, `Charts`, `Feedback`, `Navigation`
 - Current working category: `Patterns`
-- Last recorded component: `AuthTemplate`
-- Recommended next component: `KanbanTemplate`
+- Last recorded component: `KanbanTemplate`
+- Recommended next component: `ChatTemplate`
 
 ## Completed Blocks
 
@@ -258,10 +258,10 @@ Recorded so far:
 - EditorTemplate
 - LandingTemplate
 - AuthTemplate
+- KanbanTemplate
 
 Remaining:
 
-- KanbanTemplate
 - ChatTemplate
 - SettingsTemplate
 - BannalyzeTemplate
