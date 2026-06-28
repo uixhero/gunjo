@@ -6482,6 +6482,53 @@ Figma export:
   DeviceFrame / SpatialCanvas / template usage boundaries are aligned without
   visible overflow or overlap.
 
+### DashboardTemplate
+
+- `DashboardTemplate / Section`: `592:73`
+- `DashboardTemplate / Specimen`: `592:74`
+- `DashboardTemplate/Default`: `592:2`
+- Placement: `Patterns` page, after the page header, at `(40, 368)`,
+  `1280 x 2240`.
+- Variant contract: generated spec exposes a single `default` variant with
+  `default` as the default variant. The Figma component preserves the
+  two-column dashboard shell as a reusable pattern specimen rather than adding
+  runtime content states as variant axes.
+- Public API: `DashboardTemplateProps` extends div HTML attributes and accepts
+  optional `header?: React.ReactNode`, optional `sidebar?: React.ReactNode`,
+  required `children: React.ReactNode`, and `className`.
+- Runtime behavior: the root renders `flex flex-col min-h-screen w-full`.
+  `header` renders only when provided and receives a border-bottom wrapper.
+  The body is `flex flex-1 min-h-0`; `sidebar` renders only when provided,
+  is hidden below `md`, and uses `w-64 border-r flex-shrink-0`. The main area
+  is `flex-1 min-h-0 overflow-auto bg-muted/50` with a centered container,
+  vertical rhythm, and responsive horizontal padding.
+- Generated anatomy: style hints record base class `flex flex-col w-full`,
+  slot ids `dashboardTemplateHeader` and `dashboardTemplateBody`, and variant
+  class `flex flex-col w-full`. The generated patterns spec records
+  `dashboardTemplateHeader` at 56 px height, `dashboardTemplateSidebar` at
+  256 px width, `dashboardTemplateContent` padding `24 / 16 / 24 / 16`, and
+  content children for heading, metric row, and chart shell.
+- Docs-derived composition and samples: docs and embedded previews cover an
+  `Acme Dashboard` header, SidebarItem entries `Overview`, `Customers`, and
+  `Settings`, the page heading `Overview`, metric cards for `Total Revenue`,
+  `Subscriptions`, `Sales`, and `Active Now`, `Sales Analytics`, and
+  `Recent Sales`.
+- Composition and usage boundaries: DashboardTemplate composes caller-provided
+  header, sidebar, and children into a full dashboard shell. Use it for app
+  dashboard pages that need persistent navigation plus a scrollable main
+  region. Use Sidebar / SidebarItem for reusable navigation items, Card and
+  chart components for main content, and MarqueeFrame or DeviceFrame only when
+  the goal is preview chrome rather than the app layout itself.
+- Runtime token notes: DashboardTemplate uses `border` for header/sidebar
+  separators, `background` / `card` for supplied shell content, `muted/50` for
+  the main area, and specimen annotations for `foreground`,
+  `muted-foreground`, `primary`, and `accent` in the dashboard examples.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  default shell, header/sidebar/body anatomy, API notes, token notes, and
+  DashboardTemplate / SidebarItem / Card / chart usage boundaries are aligned
+  without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -6507,7 +6554,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, and MarqueeFrame components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, MarqueeFrame, and DashboardTemplate components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
