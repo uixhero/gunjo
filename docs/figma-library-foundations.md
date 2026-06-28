@@ -5269,6 +5269,58 @@ Figma export:
   Breadcrumb / MarkdownRenderer / HoverCard / Tooltip usage boundaries are
   aligned without visible overflow or overlap.
 
+### DocumentPager
+
+Source approval: the repository owner reaffirmed that this Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into it is the approved first-party workflow.
+
+Figma export:
+
+- `DocumentPager / Section`: `515:2`
+- `DocumentPager / Library card`: `515:3`
+- Placement: `Navigation` page, after `TextLink / Section`, at `(40, 6896)`,
+  `1280 x 2460`.
+- Variant contract: generated spec exposes one `default` variant with
+  `default` as the default variant. The root is a full-width adjacent-document
+  navigation surface with top border, 20px top padding, zero horizontal/bottom
+  padding, and 12px card gap.
+- Source contract: `DocumentPagerProps` extends `React.HTMLAttributes<HTMLElement>`
+  and adds `previous`, `next`, and `linkComponent`. `previous` and `next` accept
+  `DocumentPagerItem | null`; `linkComponent` defaults to a native `a` element.
+  `DocumentPagerItem` includes `href`, `directionLabel`, `title`, optional
+  `subtitle`, `description`, `categoryLabel`, `thumbnailSrc`, `thumbnailAlt`,
+  `thumbnailFallback`, and `ariaLabel`.
+- Runtime behavior: when both `previous` and `next` are absent the component
+  returns `null`. `previous={null}` hides the previous card and keeps the
+  responsive md spacer; `next={null}` hides the next card. Direction labels use
+  left/right chevrons, cards are focusable links, and the computed aria label
+  falls back to direction plus title when `ariaLabel` is omitted.
+- Visual structure: the root `nav` uses `grid w-full gap-3 border-t
+  border-border/60 px-0 pb-0 pt-5 xl:grid-cols-2`. Each card uses
+  `rounded-md border border-border/70 bg-background p-3`, hover border/text
+  changes through `primary-border` and `primary`, and focus-visible ring uses
+  `ring`. Optional thumbnails render as a 20px-tall preview block with
+  `bg-muted/40`, `border-border/70`, rounded corners, image object-cover, and
+  fallback copy.
+- Docs-derived states and samples: previous and next, first page, last page,
+  and no thumbnails. Sample copy includes Previous / Next, CommandPalette,
+  Footer, Navigation, Preview, and descriptions for global command palette and
+  footer navigation.
+- Composition and usage boundaries: use DocumentPager for adjacent previous/next
+  document movement. Use Pagination for page-number collections, Breadcrumb for
+  hierarchy, and NavigationMenu for cross-page route groups. Docs compose the
+  component with a preview-only custom link wrapper and Alert feedback.
+- Runtime token notes: `background`, `foreground`, `muted`,
+  `muted-foreground`, `border`, `primary`, `primary-border`, and `ring` are
+  recorded with light/dark values from `src/globals.css`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout review confirmed props, default variant,
+  boundary states, thumbnail/no-thumbnail states, token notes, and DocumentPager
+  / Pagination / Breadcrumb / NavigationMenu usage boundaries are aligned
+  without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -5294,7 +5346,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, and TextLink components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, and DocumentPager components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
