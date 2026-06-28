@@ -6211,6 +6211,57 @@ Figma export:
   InspectorPanel / Resizable / Sheet / Drawer usage boundaries are aligned
   without visible overflow or overlap.
 
+### InspectorPanel
+
+- `InspectorPanel / Section`: `571:2`
+- `InspectorPanel / Specimen`: `571:3`
+- `InspectorPanel/Default`: `571:14`
+- Placement: `Layout` page, after `CollapsiblePanelToggle / Section`, at
+  `(40, 14742)`, `1280 x 1940`.
+- Variant contract: generated spec exposes the `default` variant with
+  `InspectorPanel/Default` as the default variant. The generated frame is
+  `320 x 420` and represents a structured side panel for detailed property
+  editing.
+- Public API: `InspectorPanelProps` extends div HTML attributes with
+  `title?: string`, `header?: React.ReactNode`, and
+  `footer?: React.ReactNode`. `InspectorSection` extends div attributes with
+  required `title: string`; `InspectorField` extends div attributes with
+  required `label: string`.
+- Runtime behavior: the root renders `flex h-full w-full flex-col border-l`,
+  `border-border`, `bg-background`, `w-[320px]`, and `h-[420px]`. When
+  `header` is provided it replaces the standard title header. Otherwise
+  `title` renders a 48px `bg-muted/30` header with
+  `text-sm font-semibold text-foreground`. The body is `flex-1`,
+  `overflow-y-auto`, `overflow-x-hidden`, `p-4`, and `space-y-6`; optional
+  `footer` renders as `p-4 border-t border-border bg-muted/30`.
+- Generated anatomy: the SSOT entry references frame `inspectorPanelFrame`,
+  variant `inspectorPanelDefault`, header `inspectorPanelHeader`, body
+  `inspectorPanelBody`, header text `inspectorPanelHeaderText`, section title
+  `inspectorPanelSectionTitle`, and field label `inspectorPanelFieldLabel`.
+  Style hints record base class `flex flex-col w-[320px] h-[420px] border`
+  and slot ids `inspectorPanelHeader` and `inspectorPanelBody`.
+- Docs-derived composition and samples: docs and embedded preview cover a
+  default shape inspector with footer actions, a compact text-layer inspector,
+  a custom header with a replace action, and a footerless read-only metadata
+  panel. The Figma specimen mirrors those states and keeps the generated
+  default anatomy visible separately.
+- Composition and usage boundaries: use InspectorPanel for structured property
+  editing attached to a selected object or persistent side region. Use
+  AssetInspectorPanel for media-asset details, FloatingPanel for draggable
+  canvas overlays, Sheet or Drawer for modal edge overlays, Form for standalone
+  form submission surfaces, and Resizable when the side region itself should be
+  user-resizable.
+- Runtime token notes: InspectorPanel uses `background`, `foreground`,
+  `muted`, `muted-foreground`, `border`, and `input`; docs specimens also use
+  `primary`, `card`, `card-foreground`, and `ring` values from
+  `src/globals.css` for buttons, field mocks, and annotations.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  generated default anatomy, header/body/footer structure, docs states, API
+  notes, token notes, and InspectorPanel / AssetInspectorPanel / FloatingPanel
+  / Sheet / Drawer / Form / Resizable usage boundaries are aligned without
+  visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -6236,7 +6287,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, and CollapsiblePanelToggle components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, and InspectorPanel components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
