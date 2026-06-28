@@ -6162,6 +6162,55 @@ Figma export:
   SpatialCanvas usage boundaries are aligned without visible overflow or
   overlap.
 
+### CollapsiblePanelToggle
+
+- `CollapsiblePanelToggle / Section`: `569:2`
+- `CollapsiblePanelToggle / Specimen`: `569:3`
+- `CollapsiblePanelToggle`: `569:38`
+- Variant nodes: `Side=left` `569:14`, `Side=right` `569:20`,
+  `Side=top` `569:26`, and `Side=bottom` `569:32`.
+- Placement: `Layout` page, after `Resizable / Section`, at `(40, 12884)`,
+  `1280 x 1810`.
+- Variant contract: generated spec exposes four synthetic variants:
+  `left`, `right`, `top`, and `bottom`; the default variant key is `left`.
+  Each variant is a `40 x 40` edge control.
+- Public API: `CollapsiblePanelToggleProps` extends `TooltipButtonProps` while
+  omitting `children`, `tooltip`, and `tooltipSide`. It adds
+  `side?: "left" | "right" | "top" | "bottom"`, required `collapsed`,
+  `openLabel="Open panel"`, `closeLabel="Close panel"`, optional `tooltip`,
+  and `iconClassName`.
+- Runtime behavior: `collapsed=true` selects the side-specific open icon and
+  `openLabel`; `collapsed=false` selects the close icon and `closeLabel`.
+  `aria-label` defaults to the active label unless explicitly provided, and
+  `tooltip` defaults to the active label. Tooltip side is derived from panel
+  edge: left -> right, right -> left, top -> bottom, bottom -> top.
+- Runtime style: the trigger is a `TooltipButton` with `type="button"`,
+  `variant="outline"`, `size="icon"`, `tooltipCloseOnPress`, `h-10`,
+  `w-10`, `rounded-full`, `border-border`, `bg-background`,
+  `text-muted-foreground`, `shadow-md`, `ring-1`, `ring-border/70`,
+  and a `20 x 20` Tabler icon.
+- Generated anatomy: the SSOT entry references
+  `synthetic:collapsiblePanelToggle`; generated style hints record base class
+  `w-10 h-10` for all four side variants and no slot ids.
+- Docs-derived composition and samples: docs examples cover a left navigation
+  boundary, a right inspector boundary, and a top filter-toolbar boundary. The
+  Figma specimen also includes the SSOT `bottom` variant because it is part of
+  the generated variant contract even though docs do not give it a separate
+  state preview.
+- Composition and usage boundaries: use CollapsiblePanelToggle as a boundary
+  control for persistent panels inside an existing layout. Use Sidebar,
+  InspectorPanel, or Resizable for the panel surface itself, and Sheet or
+  Drawer for overlay panels that enter from the viewport edge.
+- Runtime token notes: the trigger uses `background`, `muted-foreground`,
+  `foreground`, `border`, and `ring` through `ring-border/70`; docs specimens
+  also use `muted` for panel surfaces.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  side variant set, collapsed/expanded icon mapping, tooltip side mapping,
+  docs states, API notes, token notes, and CollapsiblePanelToggle / Sidebar /
+  InspectorPanel / Resizable / Sheet / Drawer usage boundaries are aligned
+  without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -6187,7 +6236,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, and Resizable components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, and CollapsiblePanelToggle components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
