@@ -6421,6 +6421,67 @@ Figma export:
   MediaLightbox / SpatialCanvas usage boundaries are aligned without visible
   overflow or overlap.
 
+### MarqueeFrame
+
+- `MarqueeFrame / Section`: `589:2`
+- `MarqueeFrame / Specimen`: `589:3`
+- `MarqueeFrame`: `589:243`
+  - `Variant=default`: `589:136`
+  - `Variant=desktop`: `589:164`
+  - `Variant=tablet`: `589:192`
+  - `Variant=mobile`: `589:220`
+- Placement: `Layout` page, after `DeviceFrame / Section`, at
+  `(40, 25666)`, `1280 x 4736`.
+- Variant contract: generated spec exposes `default`, `desktop`, `tablet`, and
+  `mobile` variants with `default` as the default variant. Runtime viewport
+  selection is still caller/state driven through `initialViewport`,
+  `defaultToDeviceViewport`, session storage, and `DeviceFrame` viewport
+  controls.
+- Public API: `MarqueeFrameProps` extends div HTML attributes while replacing
+  `children` with required `children(viewport)`. Required props are `path` and
+  `children`; optional props include `host`, `defaultPath`, `tabTitle`,
+  `navigablePaths`, `onPathChange`, `storageKey`, `initialViewport`,
+  `defaultToDeviceViewport`, `variant`, `viewportSizes`, `maxCanvasHeight`,
+  `labels`, and `className`.
+- Runtime behavior: `MARQUEE_VIEWPORT_SIZES` defaults to desktop `1280 x 720`,
+  tablet `768 x 1024`, and mobile `375 x 667`. On mount, `storageKey` can
+  restore the saved viewport; when no saved value exists,
+  `defaultToDeviceViewport` can choose mobile or tablet from `matchMedia`.
+  `ResizeObserver` computes scale from available width and `maxCanvasHeight`,
+  caps it at `1`, rounds to three decimals, and sizes the scaled box to
+  `viewportHeight * scale + 56` by `viewportWidth * scale`.
+- Generated anatomy: style hints record base class `w-full p-0` and variant
+  classes `w-full p-0` for `default`, `desktop`, `tablet`, and `mobile`. The
+  Figma specimen keeps URL navigation, mobile-first, custom viewport sizes, and
+  scale-container anatomy samples visible separately from the generated
+  component set.
+- Docs-derived composition and samples: docs and embedded previews cover
+  `host="gunjo.example"`, paths `/media`, `/media/assets`,
+  `/media/settings`, `/preview`, and `/custom`, external Button-driven
+  navigation labels `Library`, `Assets`, `Settings` / `ライブラリ`, `素材`,
+  `設定`, copy for `Media Library`, `All Assets`, `Library Settings`, and
+  `Mobile-first preview`, plus custom viewport sizes `960 x 540`, `720 x 720`,
+  and `360 x 640`.
+- Composition and usage boundaries: MarqueeFrame composes DeviceFrame and
+  passes through host, path, defaultPath, tabTitle, navigablePaths,
+  onPathChange, labels, viewport, and onViewportChange. Use MarqueeFrame for
+  full pattern/page previews that need fake browser chrome, scaled viewport
+  fitting, and overlay containment scoped to the active preview viewport. Use
+  DeviceFrame for smaller browser chrome wrappers, SpatialCanvas for freeform
+  work surfaces, and templates for full app-layout examples.
+- Runtime token notes: MarqueeFrame uses `muted/40` for the preview canvas,
+  `background` for the contained viewport, and DeviceFrame tokens including
+  `foreground`, `muted`, `muted-foreground`, `border`, `primary`,
+  `primary-border`, `primary-subtle`, `primary-subtle-foreground`,
+  `destructive`, `warning`, and `success` for chrome, URL entry, viewport
+  toggles, and browser indicators.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  component set variants, URL navigation / mobile-first / custom viewport /
+  scale-container states, API notes, token notes, and MarqueeFrame /
+  DeviceFrame / SpatialCanvas / template usage boundaries are aligned without
+  visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -6446,7 +6507,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, and DeviceFrame components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, and MarqueeFrame components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
