@@ -5522,6 +5522,51 @@ Figma export:
   NavigationMenu / DropdownMenu usage boundaries are aligned without visible
   overflow or overlap.
 
+### Command
+
+- `Command / Section`: `528:2`
+- `Command / Library card`: `528:3`
+- Placement: `Navigation` page, after `Menubar / Section`, at `(40, 19178)`,
+  `1280 x 2400`.
+- Variant contract: generated spec exposes only the `default` variant key, with
+  `default` as the default variant. Runtime states such as active/selected item,
+  empty search result, disabled item, clearable input, and dialog open are cmdk
+  and composition states rather than generated variant keys.
+- Prop and part structure: the runtime exports `Command`, `CommandDialog`,
+  `CommandInput`, `CommandList`, `CommandEmpty`, `CommandGroup`,
+  `CommandItem`, `CommandShortcut`, and `CommandSeparator`. `CommandDialog`
+  adds `dialogTitle`, `dialogDescription`, `portalContainer`, overlay class,
+  content class, and container resolution on top of cmdk dialog props.
+- Runtime behavior: `Command` uses `flex h-full w-full flex-col overflow-hidden
+  rounded-md border bg-popover text-popover-foreground`. `CommandInput` wraps
+  the cmdk input with a Search icon, border-bottom wrapper, optional clear
+  button, and `TooltipContent` sourced from `clearLabel`.
+- Search and item behavior: `Command` forwards cmdk filtering, `value`,
+  `onValueChange`, and `loop`; `CommandItem` forwards `value`, `keywords`, and
+  `onSelect`. Selected items use `aria-selected:bg-accent` and
+  `aria-selected:text-accent-foreground`.
+- Disabled feedback: `CommandItem` supports `disabledReason` and
+  `disabledReasonLabel`; disabled items remain visible, prevent selection, and
+  expose the reason through an enabled `TooltipTrigger` wrapper.
+- Docs-derived states and samples: grouped suggestions and settings, shortcuts
+  `⌘P`, `⌘B`, `⌘S`, no-results state, disabled workspace admin setting,
+  Japanese labels such as `コマンドまたは検索語を入力...`, `候補`, `設定`,
+  `一致する結果がありません。`, `検索をクリア`, and `権限が必要`.
+- Composition and usage boundaries: use Command as the composable search/list
+  primitive. Use CommandPalette for the global quick-action launcher, Combobox
+  for choosing a value from options, and Popover or Dialog when Command needs an
+  overlay container.
+- Runtime token notes: `popover`, `popover-foreground`, `border`,
+  `muted-foreground`, `accent`, `accent-foreground`, `muted`, `ring`,
+  `overlay`, `background`, and `foreground` are recorded with light/dark values
+  from `src/globals.css`.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed
+  default command surface, grouped shortcuts, empty search, disabled reason,
+  dialog containment, token notes, and Command / CommandPalette / Combobox /
+  Popover / Dialog usage boundaries are aligned without visible overflow or
+  overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -5547,7 +5592,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, and Menubar components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, and Command components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
