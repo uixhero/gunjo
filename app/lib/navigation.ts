@@ -182,6 +182,7 @@ export const navigation = [
             { title: "GaugeChart", href: "/docs/components/gauge-chart" },
             { title: "HeatmapChart", href: "/docs/components/heatmap-chart" },
             { title: "LabeledDonutCard", href: "/docs/components/labeled-donut-card" },
+            { title: "Leaderboard", href: "/docs/components/leaderboard" },
             { title: "LineChart", href: "/docs/components/line-chart" },
             { title: "MiniDistributionBarCard", href: "/docs/components/mini-distribution-bar-card" },
             { title: "ParetoChart", href: "/docs/components/pareto-chart" },

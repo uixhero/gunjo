@@ -953,6 +953,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "leaderboard",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:leaderboard",
+      title: "Leaderboard",
+      description: "The ranking / leaderboard list: a PRE-ORDERED list of entities, each with a numbered rank chip, a label (+ sublabel), an optional value bar normalised against the max, and an optional Delta for period-over-period change. The caller orders the items (best-first for a top-N 売上/人気, worst-first for 'worst performers / 要対応' — 事故率の高い営業所, 赤字系統, 苦情多発), so rank = array position is an explicit caller decision; the component never re-sorts. The ranked-list primitive a BarChart and StatGroup can't be — BarChart is a chart with no rank/order semantics, StatGroup is an UNORDERED KPI cluster. For best/worst dashboards across sales, ops and safety. Use deltaTones={{positive:'destructive',negative:'success'}} for 'up is bad' rankings (事故率/コスト/苦情). items[] of {id,label,value,sublabel?,valueLabel?,fraction?,delta?,tone?,icon?,trailing?,onSelect?}. RSC-safe except the opt-in onSelect.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "pageHeader",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:pageHeader",
