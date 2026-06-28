@@ -5871,6 +5871,46 @@ Figma export:
   Img / ImagePreview / Card / DeviceFrame usage boundaries are aligned without
   visible overflow or overlap.
 
+### Container
+
+- `Container / Section`: `550:2`
+- `Container / Library card`: `550:3`
+- Placement: `Layout` page, after `AspectRatio / Section`, at `(40, 1588)`,
+  `1280 x 1450`.
+- Variant contract: generated spec exposes no variant keys and no default
+  variant. Runtime `size` values are CVA-driven implementation options rather
+  than generated SSOT variants, so they are represented as specimens.
+- Public API: `ContainerProps` extends `React.HTMLAttributes<HTMLDivElement>`
+  and `VariantProps<typeof containerVariants>`, with `as?: keyof
+  React.JSX.IntrinsicElements`. The runtime default element is `div`, and the
+  default `size` is `lg`.
+- Runtime behavior: `containerVariants` applies the base class `mx-auto w-full
+  px-4 sm:px-6 lg:px-8`. Runtime `size` maps to `max-w-screen-sm`,
+  `max-w-screen-md`, `max-w-screen-lg`, `max-w-screen-xl`,
+  `max-w-screen-2xl`, `max-w-full`, and `max-w-prose`. `className` composes
+  after `containerVariants({ size })`, and the `as` prop changes the rendered
+  intrinsic element while preserving the same class contract.
+- Generated anatomy: the SSOT entry references frame `y82psN`, title
+  `Container`, and description `Max-width + horizontal padding wrapper for
+  page content.`, but does not provide generated variants or child nodes.
+- Docs-derived composition and samples: docs and demo examples compare `sm`,
+  `md`, `lg`, `xl`, `2xl`, `full`, and `prose` size specimens. Additional docs
+  states show prose width, `as="section"` section width, and `full` app-surface
+  usage.
+- Composition and usage boundaries: use Container for page and section
+  max-width rhythm, centering, and responsive horizontal padding. Use `Grid`,
+  `Cluster`, `HStack`, and `VStack` for child layout inside the container, and
+  use `ScrollArea` when overflow behavior is part of the surface.
+- Runtime token notes: Container itself has no intrinsic visual token. The
+  docs specimens use `muted`, `muted-foreground`, `border`, `background`,
+  `input`, `ring`, and `foreground` values from `src/globals.css`; responsive
+  padding uses fixed Tailwind spacing `px-4 sm:px-6 lg:px-8`.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  size scale, prose, section, full-width, API notes, token notes, and
+  Container / Grid / Cluster / HStack / VStack / ScrollArea usage boundaries
+  are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -5896,7 +5936,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, and AspectRatio components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, and Container components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
