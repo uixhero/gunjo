@@ -6070,6 +6070,49 @@ Figma export:
   notes, token notes, and Grid / Container / HStack / VStack / Cluster / Card /
   AssetGrid usage boundaries are aligned without visible overflow or overlap.
 
+### ScrollArea
+
+- `ScrollArea / Section`: `563:2`
+- `ScrollArea / Specimen`: `563:3`
+- Placement: `Layout` page, after `Grid / Section`, at `(40, 9408)`,
+  `1280 x 1680`.
+- Variant contract: generated spec exposes the `default` variant with
+  `ScrollArea/Default` anatomy. The generated demo frame is `320 x 240`; the
+  runtime component remains container-sized by the consumer, matching the
+  existing style-drift exclusion.
+- Public API: `ScrollAreaProps` extends Radix
+  `ScrollAreaPrimitive.Root` props with `viewportClassName?: string`,
+  `scrollbarClassName?: string`, `thumbClassName?: string`, and
+  `scrollbarOrientation?: "vertical" | "horizontal" | "both"`. Runtime
+  default is `scrollbarOrientation="vertical"`. Radix root props include
+  `type` with default `"hover"` and `scrollHideDelay` with default `600`.
+- Runtime behavior: `ScrollArea` renders a relative overflow-hidden flex root,
+  a full-size rounded viewport, vertical and/or horizontal `ScrollBar` slots,
+  and `ScrollAreaPrimitive.Corner`. `ScrollBar` maps vertical scrollbars to
+  `h-full w-2.5 border-l border-l-transparent p-[1px]`, horizontal scrollbars
+  to `h-2.5 border-t border-t-transparent p-[1px]`, and the thumb to
+  `relative flex-1 rounded-full bg-border`.
+- Generated anatomy: the SSOT entry references frame `scrollAreaFrame`, variant
+  `scrollAreaDefault`, viewport `scrollAreaViewport`, scrollbar
+  `scrollAreaScrollbar`, and thumb `scrollAreaThumb`.
+- Docs-derived composition and samples: docs and demo examples cover release
+  lists, scrollable article text, horizontal item rows, two-direction tables,
+  and `type="always"` always-visible scrollbars.
+- Composition and usage boundaries: use ScrollArea for intentionally
+  constrained regions. Use native page scroll for primary page flow, Resizable
+  for user-resizable panes, InspectorPanel for side detail panels, and DataTable
+  for full data-grid behavior.
+- Runtime token notes: ScrollArea thumb uses `border` through `bg-border`.
+  The docs specimens also use `background`, `foreground`, `muted`,
+  `muted-foreground`, `input`, `ring`, `card`, and `card-foreground` values
+  from `src/globals.css`.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  default anatomy, vertical list, article text, horizontal row, two-direction
+  table, always-visible scrollbar, API notes, token notes, and ScrollArea /
+  Resizable / InspectorPanel / DataTable usage boundaries are aligned without
+  visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -6095,7 +6138,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, and Grid components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, and ScrollArea components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
