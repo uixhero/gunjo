@@ -103,6 +103,7 @@ export * from './components/display/Avatar';
 export * from './components/display/AvatarGroup';
 export * from './components/display/Badge';
 export * from './components/display/BarChart';
+export * from './components/display/BottomActionBar';
 export * from './components/display/Card';
 export * from './components/display/Carousel';
 export * from './components/display/ChartLegend';
