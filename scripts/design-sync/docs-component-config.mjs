@@ -200,6 +200,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "itinerary": "Display",
   "ticket-stub": "Display",
   "stringline": "Charts",
+  "leaderboard": "Charts",
   "status-board": "Display",
   "expiry-badge": "Display",
   "reference-value": "Display",

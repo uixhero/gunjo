@@ -1357,6 +1357,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "leaderboard": {
+      "title": "Leaderboard",
+      "description": "The ranking / leaderboard list: a PRE-ORDERED list of entities, each with a numbered rank chip, a label (+ sublabel), an optional value bar normalised against the max, and an optional Delta for period-over-period change. The caller orders the items (best-first for a top-N 売上/人気, worst-first for 'worst performers / 要対応' — 事故率の高い営業所, 赤字系統, 苦情多発), so rank = array position is an explicit caller decision; the component never re-sorts. The ranked-list primitive a BarChart and StatGroup can't be — BarChart is a chart with no rank/order semantics, StatGroup is an UNORDERED KPI cluster. For best/worst dashboards across sales, ops and safety. Use deltaTones={{positive:'destructive',negative:'success'}} for 'up is bad' rankings (事故率/コスト/苦情). items[] of {id,label,value,sublabel?,valueLabel?,fraction?,delta?,tone?,icon?,trailing?,onSelect?}. RSC-safe except the opt-in onSelect.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/Leaderboard.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "lineageGraph": {
       "title": "LineageGraph",
       "description": "Lineage / dependency graph: a layered, directed-acyclic node-link graph that handles multi-parent and multi-child edges (the fan-in / fan-out a tree can't draw). Nodes are auto-assigned to layers by longest-path depth and laid out along a flow axis (horizontal or vertical); edges are drawn as SVG connectors with arrowheads. Nodes are focusable buttons whose accessible name names their upstream/downstream neighbours. For lot genealogy / traceability (recall blast-radius), data lineage, build/dependency graphs, ETL pipelines and approval routing with joins.",

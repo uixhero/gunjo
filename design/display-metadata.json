@@ -382,5 +382,9 @@
   "bottomActionBar": {
     "title": "BottomActionBar",
     "description": "The sticky mobile action dock every transactional / real-time consumer screen ends with: a running summary on the left (合計金額 / 到着まで○分 / 選択件数) and the primary CTA on the right (呼ぶ / 支払う / 予約する), pinned to the bottom with a top border and safe-area-inset padding (home indicator). The bottom bookend to PageHeader (the top app bar) — for checkout, ride-hailing, booking, food-order, seat-select. children = the summary slot, actions = the CTA slot; set stack for a full-width CTA above the summary, maxWidth to centre on tablet. RSC-safe (no client deps)."
+  },
+  "leaderboard": {
+    "title": "Leaderboard",
+    "description": "The ranking / leaderboard list: a PRE-ORDERED list of entities, each with a numbered rank chip, a label (+ sublabel), an optional value bar normalised against the max, and an optional Delta for period-over-period change. The caller orders the items (best-first for a top-N 売上/人気, worst-first for 'worst performers / 要対応' — 事故率の高い営業所, 赤字系統, 苦情多発), so rank = array position is an explicit caller decision; the component never re-sorts. The ranked-list primitive a BarChart and StatGroup can't be — BarChart is a chart with no rank/order semantics, StatGroup is an UNORDERED KPI cluster. For best/worst dashboards across sales, ops and safety. Use deltaTones={{positive:'destructive',negative:'success'}} for 'up is bad' rankings (事故率/コスト/苦情). items[] of {id,label,value,sublabel?,valueLabel?,fraction?,delta?,tone?,icon?,trailing?,onSelect?}. RSC-safe except the opt-in onSelect."
   }
 }
