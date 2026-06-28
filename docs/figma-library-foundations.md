@@ -6113,6 +6113,55 @@ Figma export:
   Resizable / InspectorPanel / DataTable usage boundaries are aligned without
   visible overflow or overlap.
 
+### Resizable
+
+- `Resizable / Section`: `567:2`
+- `Resizable / Specimen`: `567:3`
+- `Resizable/Horizontal`: `567:14`
+- Placement: `Layout` page, after `ScrollArea / Section`, at `(40, 11136)`,
+  `1280 x 1700`.
+- Variant contract: generated spec exposes the `horizontal` variant with
+  `Resizable/Horizontal` as the default variant. The generated frame is
+  `520 x 240` and represents a pane group with draggable handle and optional
+  grip indicator.
+- Public API: `ResizablePanelGroup` accepts `direction: "vertical" |
+  "horizontal"`, `defaultLayout`, `groupRef`, and `className` plus
+  `react-resizable-panels` group props. `ResizablePanel` forwards Panel props
+  and coerces bare numeric `defaultSize`, `minSize`, and `maxSize` values to
+  percentages. `ResizableHandle` accepts `withHandle?: boolean`, forwards
+  handle props, and runs the defaultLayout reset on double click unless the
+  event is prevented.
+- Runtime behavior: the group maps `direction` to `PanelGroup` orientation and
+  applies `flex h-full w-full`, switching vertical groups to `flex-col` via the
+  `data-[panel-group-direction=vertical]` selector. The handle is a `bg-border`
+  separator with enlarged hit area pseudo-element, `focus-visible:ring-ring`,
+  and an optional `12 x 16` grip with radius `2`.
+- Generated anatomy: the SSOT entry references frame `resizableFrame`, variant
+  `resizableDefault`, panel group `resizablePanelGroup`, separator
+  `resizableHandle`, and grip `resizableHandleGrip`. The generated slot ids are
+  `resizablePanelGroup` and `resizableHandle`; style hints record base class
+  `flex w-[520px] h-[240px]`.
+- Docs-derived composition and samples: docs and demo examples cover horizontal
+  sidebar/canvas splits, vertical preview/console splits, nested files/editor /
+  terminal workspaces, three-column navigation/content/inspector layouts, a
+  collapsible support panel, and separator-only handles without a visible grip.
+- Composition and usage boundaries: use Resizable for user-adjustable workspace
+  panes and multi-pane inspector/editor surfaces. Use ScrollArea for scrollable
+  content inside a pane, InspectorPanel or Sidebar for fixed detail/navigation
+  regions, and SpatialCanvas when the user manipulates objects on a canvas
+  rather than resizing pane proportions.
+- Runtime token notes: Resizable uses `border` through `bg-border` for the
+  separator and grip, `ring` for focus indication, and specimen surfaces use
+  `background`, `foreground`, `muted`, `muted-foreground`, `input`, `card`,
+  `card-foreground`, `accent`, and `accent-foreground` values from
+  `src/globals.css`.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  generated horizontal anatomy, handle/grip dimensions, docs states, API notes,
+  token notes, and Resizable / ScrollArea / InspectorPanel / Sidebar /
+  SpatialCanvas usage boundaries are aligned without visible overflow or
+  overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -6138,7 +6187,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, and ScrollArea components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, and Resizable components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.

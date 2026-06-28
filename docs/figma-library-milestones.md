@@ -13,12 +13,12 @@ Source of truth:
 ## Current Status
 
 - Discovery scope: 162 components / templates
-- Recorded exports: 146
-- Remaining exports: 16
+- Recorded exports: 147
+- Remaining exports: 15
 - Completed category blocks: `Inputs`, `Overlay`, `Display`, `Charts`, `Feedback`, `Navigation`
 - Current working category: `Layout`
-- Last recorded component: `ScrollArea`
-- Recommended next component: `Resizable`
+- Last recorded component: `Resizable`
+- Recommended next component: `CollapsiblePanelToggle`
 
 ## Completed Blocks
 
@@ -236,10 +236,10 @@ Recorded so far:
 - Cluster
 - Grid
 - ScrollArea
+- Resizable
 
 Remaining:
 
-- Resizable
 - CollapsiblePanelToggle
 - InspectorPanel
 - SpatialCanvas
