@@ -5155,6 +5155,69 @@ Figma export:
   notes, and Banner / Alert / Toast / NotificationCenter usage boundaries are
   aligned without visible overflow or overlap.
 
+
+The next discovery target was then exported with the additional ToastProvider
+component spec. The owner reaffirmed that this Figma file is the company
+design-system source of truth and that reflecting private repository component
+specs into it is the approved first-party workflow.
+
+Figma export:
+
+- `ToastProvider / Section`: `507:2`
+- `ToastProvider / Library card`: `507:3`
+- Placement: `Feedback` page, after `Banner / Section`, at `(40, 23668)`,
+  `1280 x 2460`.
+- Variant contract: generated spec exposes `default` as the only variant and
+  `default` as the default variant. The generated frame is a 320px vertical
+  stack with 8px gap and child slots for `toastProviderStack`,
+  `toastProviderDefaultDuration`, and `toastProviderExitDelay`.
+- Source contract: `ToastProviderProps` contains required `children`, optional
+  `labels.close`, optional `portalContainer`, and `placement` with runtime
+  values `viewport` and `container`; `placement` defaults to `"viewport"`.
+  `useToast()` returns `showToast(message: string, type: ToastType,
+  duration?: number)` and throws if used outside `ToastProvider`.
+- Runtime behavior: `showToast` assigns a `Date.now()` id and appends a visible
+  toast with `duration` defaulting to `3000`. `closeToast` first sets
+  `isVisible=false`, then removes the toast after `300` ms so the exit
+  animation can complete. The provider waits until mount before using
+  `document.body` for the default portal target.
+- Placement notes: `viewport` placement portals to `portalContainer ??
+  document.body` and uses `fixed left-4 right-4 top-[72px] z-[100] flex
+  flex-col items-stretch gap-2 pointer-events-none sm:left-auto sm:right-6
+  sm:w-[360px]`. `container` placement portals to `portalContainer` and uses
+  `absolute right-3 top-3 z-[100] flex w-[min(360px,calc(100%-1.5rem))]
+  flex-col items-stretch gap-2 pointer-events-none`.
+- Toast composition notes: each queued item renders `Toast` with
+  `placement="inline"`, `duration={toast.duration}`, `closeLabel={labels?.close}`,
+  and `tooltipPortalContainer={portalContainer}`. The composed Toast is
+  `pointer-events-auto`, has a close button with matching tooltip text, and
+  uses `role="alert"` for error toasts and `role="status"` for success/info.
+- Docs-derived states and samples: three-action provider example, success
+  notification, longer error duration, and localized close labels. Sample copy
+  includes 成功通知, 失敗通知, 情報通知, 保存する, 失敗通知を出す,
+  同期状態を表示, 設定を保存しました。, 保存できませんでした。接続を確認してください。,
+  同期をバックグラウンドで続行しています。, and 通知を閉じる.
+- Composition and usage boundaries: use ToastProvider once near an app root or
+  contained preview root so descendants can call `useToast`. Use Toast for an
+  individual visual item, Banner for persistent page-wide announcements, Alert
+  for inline contextual messaging, and NotificationCenter for historical or
+  browsable notification stacks.
+- Runtime token notes: ToastProvider stack itself is mostly layout and
+  positioning. Composed Toast uses `success-subtle`, `success-border`,
+  `success-subtle-foreground`, and `success`; `destructive-subtle`,
+  `destructive-border`, `destructive-subtle-foreground`, and `destructive`;
+  and `info-subtle`, `info-border`, `info-subtle-foreground`, and `info`.
+  Close controls use `muted-foreground`, `muted`, and `foreground`; docs
+  preview surfaces also record `background`, `border`, `muted/40`, `ring`,
+  `primary`, and `secondary`.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `childOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout review confirmed default variant,
+  generated duration/exit delay values, viewport/container placement, Toast
+  composition, close tooltip labeling, docs states, token notes, and
+  ToastProvider / Toast / Banner / Alert / NotificationCenter usage boundaries
+  are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -5180,7 +5243,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, and Banner components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, and ToastProvider components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
