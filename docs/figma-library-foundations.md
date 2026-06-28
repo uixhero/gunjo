@@ -5609,6 +5609,48 @@ Figma export:
   Header / NavigationMenu / Tabs / Sidebar / SidebarItem / RightRail usage
   boundaries are aligned without visible overflow or overlap.
 
+### CommandPalette
+
+- `CommandPalette / Section`: `534:2`
+- `CommandPalette / Library card`: `534:3`
+- Placement: `Navigation` page, after `AppRail / Section`, at `(40, 23462)`,
+  `1280 x 2508`.
+- Variant contract: generated spec exposes only the `default` variant key, with
+  `default` as the default variant. Grouped commands, keyboard shortcut
+  launcher, selected command item, empty search result, and contained dialog
+  previews are runtime/composition states rather than generated variant keys.
+- Prop and part structure: `CommandPaletteProps` extends `CommandDialog` props
+  except `children`, and adds `groups`, `placeholder`, `emptyMessage`,
+  `dialogTitle`, and `clearLabel`. Groups contain `heading` and action items;
+  each action item provides `id`, `label`, optional `icon`, optional `shortcut`,
+  and an `action` callback.
+- Runtime behavior: the component renders `CommandDialog`, then composes
+  `CommandInput`, `CommandList`, `CommandEmpty`, `CommandGroup`,
+  `CommandItem`, `CommandShortcut`, and `CommandSeparator`. Each command item
+  forwards `value={id}`, `keywords={[label, shortcut]}`, and calls the action
+  from `onSelect`.
+- Docs-derived behavior and samples: the docs example toggles open on
+  `meta/ctrl + K`, uses a `portalContainer` to contain the dialog inside docs
+  previews, and includes groups such as Navigation, Tools, and Settings with
+  labels like Search docs, Recent files, Calendar, Billing, and Settings.
+- Empty and accessibility notes: `emptyMessage` defaults to `No results found.`,
+  `dialogTitle` defaults to `Command Menu`, and `clearLabel` defaults to
+  `Clear search`. Runtime preview records a no-results state and the
+  keyboard-launch hint shown with Kbd.
+- Composition and usage boundaries: use CommandPalette for global quick actions
+  and navigation launchers. Use Command for custom command surfaces, Combobox
+  for choosing a value from options, and SearchInput for plain search bars
+  without command actions.
+- Runtime token notes: `popover`, `popover-foreground`, `border`, `input`,
+  `muted-foreground`, `accent`, `accent-foreground`, `ring`, `background`, and
+  `foreground` are recorded with light/dark values from `src/globals.css`.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  default generated anatomy, grouped command list, contained CommandDialog
+  preview, empty state, API notes, token notes, and CommandPalette / Command /
+  Combobox / SearchInput usage boundaries are aligned without visible overflow
+  or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -5634,7 +5676,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, and AppRail components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, and CommandPalette components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
