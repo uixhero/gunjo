@@ -152,6 +152,7 @@ export const navigation = [
             { title: "ScheduleGrid", href: "/docs/components/schedule-grid" },
             { title: "SearchableAccordion", href: "/docs/components/searchable-accordion" },
             { title: "SeatMap", href: "/docs/components/seat-map" },
+            { title: "SectionList", href: "/docs/components/section-list" },
             { title: "Separator", href: "/docs/components/separator" },
             { title: "SignedRecord", href: "/docs/components/signed-record" },
             { title: "Skeleton", href: "/docs/components/skeleton" },

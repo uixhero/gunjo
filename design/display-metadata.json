@@ -394,5 +394,9 @@
   "limitMonitor": {
     "title": "LimitMonitor",
     "description": "Value against a NAMED regulatory limit (soft + optional hard) with near/over/critical states and a bar that shows how close — or how far past — the value sits, with the limit drawn as a line. The 'value vs a named limit' sibling of ExpiryBadge (value vs a deadline), ReferenceValue (value vs a range) and Meter (value vs a capacity): limits are in the value's OWN units and the breach tone is DERIVED from them (unlike Meter's fraction-of-max thresholds + reference-only target which does not drive tone). For 改善基準告示 (拘束時間/連続運転/休息期間), SLA budgets, quotas, 過積載, 残業, rate limits. direction=\"floor\" for must-stay-above limits (休息期間). Pairs with the pure classifyLimit() helper (value → {state, over}), mirroring ExpiryBadge↔classifyExpiry and ReferenceValue↔flagValue. RSC-safe."
+  },
+  "sectionList": {
+    "title": "SectionList",
+    "description": "The grouped-list / sectioned layout: a sequence of sections, each a heading band (title + sublabel + a right-aligned group aggregate) over the caller's body rows, with an optional per-group subtotal footer. The grouping spine every history / 利用明細 / 取引履歴 / statement / invoice-by-客先 screen hand-rolls — groupBy + a section header + a per-group subtotal. Body-agnostic: drop in ListCards (mobile history), a Table (desktop invoices), or signed ledger rows. The caller owns the grouping + subtotal math + any cross-group selection; this owns the consistent header/footer chrome + the sectioned a11y structure. Distinct from StatusBoard.groups (status tiles) and Itinerary.days (a trip timeline). sections[] of {key,title,sublabel?,meta?,content,footer?}; stickyHeaders optional. RSC-safe."
   }
 }

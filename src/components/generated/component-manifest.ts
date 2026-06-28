@@ -1700,6 +1700,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "sectionList": {
+      "title": "SectionList",
+      "description": "The grouped-list / sectioned layout: a sequence of sections, each a heading band (title + sublabel + a right-aligned group aggregate) over the caller's body rows, with an optional per-group subtotal footer. The grouping spine every history / 利用明細 / 取引履歴 / statement / invoice-by-客先 screen hand-rolls — groupBy + a section header + a per-group subtotal. Body-agnostic: drop in ListCards (mobile history), a Table (desktop invoices), or signed ledger rows. The caller owns the grouping + subtotal math + any cross-group selection; this owns the consistent header/footer chrome + the sectioned a11y structure. Distinct from StatusBoard.groups (status tiles) and Itinerary.days (a trip timeline). sections[] of {key,title,sublabel?,meta?,content,footer?}; stickyHeaders optional. RSC-safe.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/SectionList.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "segmentedGaugeCard": {
       "title": "Segmented Gauge Card",
       "description": "HTML/CSS segmented semicircle gauge card for status, spend, risk, and progress dashboards with editable segments, target value, and hover/focus tooltips.",
