@@ -6637,6 +6637,59 @@ Figma export:
   API notes, token notes, and LandingTemplate / Button / Container / Header /
   Footer usage boundaries are aligned without visible overflow or overlap.
 
+### AuthTemplate
+
+- `AuthTemplate / Section`: `601:196`
+- `AuthTemplate / Specimen`: `601:197`
+- `AuthTemplate/Default`: `601:171`
+- Placement: `Patterns` page, after `LandingTemplate / Section`, at
+  `(40, 7552)`, `1280 x 2200`.
+- Variant contract: generated spec exposes a single `default` variant with
+  `default` as the default variant. The Figma component records the split
+  authentication shell and docs-derived sign-in form specimen; form mode
+  changes are app/page state, not persistent component variants.
+- Public API: `AuthTemplateProps` extends div HTML attributes and accepts
+  optional `logo?: React.ReactNode`, optional `quote?: string`, optional
+  `quoteAuthor?: string`, required `children: React.ReactNode`, and
+  `className`.
+- Runtime behavior: the root renders `relative flex h-fit min-h-screen w-full
+  flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2
+  lg:px-0`. The visual panel is hidden below `lg`, uses `bg-muted`, a
+  foreground overlay, `p-10`, and text-background coloring. The form panel
+  centers children with `p-6 lg:p-8`; the form container is
+  `mx-auto flex w-full max-w-[350px] flex-col justify-center space-y-6
+  sm:w-[350px]`.
+- Generated anatomy: style hints record base class `flex w-full`, slot ids
+  `authTemplateVisualPanel` and `authTemplateFormPanel`, and variant class
+  `flex w-full`. The generated patterns spec records the visual panel fill
+  `#18181b`, 40 px padding, `space_between` vertical layout, the form panel
+  fill `#ffffff`, 32 px padding, centered alignment, a 350 px form container,
+  and form children for title, hint, email field, password field, and submit
+  button.
+- Docs-derived composition and samples: docs and embedded previews cover
+  title `Create an account`, hint `Enter your email below to create your
+  account`, Email input placeholder `name@example.com`, `Sign In with Email`,
+  separator label `Or continue with`, `GitHub`, the default logo `Acme Inc`,
+  default quote `This library has saved me infinite hours. I can build rich
+  apps faster than ever before.`, default author `Sofia Davis`, and the
+  `/patterns/auth` mini-site routes for login, signup, forgot-password, and
+  account state.
+- Composition and usage boundaries: AuthTemplate composes a branded side panel
+  and a centered authentication form region. Use it for full authentication
+  pages that need visual brand context plus a constrained form. The actual
+  form fields, validation, login/signup/forgot-password flow, and post-login
+  state belong to the caller or route-level mini-site. Use Input, Button,
+  Label, Form, PasswordInput, and related auth components inside `children`.
+- Runtime token notes: AuthTemplate uses `muted`, `foreground`, `background`,
+  `border`, `muted-foreground`, `primary`, and `card` in the specimen. The
+  generated spec also records the visual panel fill `#18181b` and form panel
+  fill `#ffffff`.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  default split shell, branded visual panel / quote / centered form anatomy,
+  API notes, token notes, and AuthTemplate / Input / Button / Label / Form
+  usage boundaries are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -6662,7 +6715,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, MarqueeFrame, DashboardTemplate, EditorTemplate, and LandingTemplate components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, MarqueeFrame, DashboardTemplate, EditorTemplate, LandingTemplate, and AuthTemplate components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
