@@ -193,6 +193,7 @@ export const navigation = [
             { title: "SegmentTimelineCard", href: "/docs/components/segment-timeline-card" },
             { title: "SparklineChart", href: "/docs/components/sparkline-chart" },
             { title: "StackedBarChart", href: "/docs/components/stacked-bar-chart" },
+            { title: "Stringline", href: "/docs/components/stringline" },
         ],
     },
     {
