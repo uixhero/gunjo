@@ -1630,6 +1630,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "expiryBadge": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": ""
+      },
+      "variantColorHints": {}
+    },
     "fileTree": {
       "variantKeys": [
         "single",

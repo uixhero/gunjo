@@ -121,6 +121,7 @@ export const navigation = [
             { title: "EditableDataTable", href: "/docs/components/editable-data-table" },
             { title: "EmptyState", href: "/docs/components/empty-state" },
             { title: "EventCalendar", href: "/docs/components/event-calendar" },
+            { title: "ExpiryBadge", href: "/docs/components/expiry-badge" },
             { title: "FileTree", href: "/docs/components/file-tree" },
             { title: "FilterChips", href: "/docs/components/filter-chips" },
             { title: "Gallery", href: "/docs/components/gallery" },
