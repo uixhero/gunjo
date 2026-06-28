@@ -5421,6 +5421,63 @@ Figma export:
   and Sidebar / SidebarItem / TooltipButton / Header / NavigationMenu usage
   boundaries are aligned without visible overflow or overlap.
 
+### SidebarItem
+
+Source approval: the repository owner reaffirmed that this Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into it is the approved first-party workflow.
+
+Figma export:
+
+- `SidebarItem / Section`: `523:2`
+- `SidebarItem / Library card`: `523:3`
+- Placement: `Navigation` page, after `Sidebar / Section`, at `(40, 14500)`,
+  `1280 x 2680`.
+- Variant contract: generated spec exposes `default` and `active` variant keys,
+  with `default` as the default variant. The runtime component resolves the
+  active visual state from `isActive`; drag feedback and row actions are runtime
+  states rather than generated variant keys.
+- Prop structure: `id`, `icon`, `label`, `count`, `countLabel`, `isActive`,
+  `onClick`, `level=0`, `hasChildren=false`, `isExpanded=false`,
+  `reserveChevronSpace=true`, `onToggleExpand`, `onDelete`,
+  `deleteLabel="Delete"`, `draggable`, `onDragStart`, `onDragEnd`,
+  `onDragOver`, `onDrop`, `dragOverId`, `dragAction`, and `className`.
+- Runtime behavior: the root is a `group relative flex h-9 w-full` row with
+  rounded-md pointer styling. The main button receives
+  `data-sidebar-item-button` and uses `--sidebar-item-indent` to derive
+  indentation from `calc(0.5rem + ${level}rem)`. Active rows use
+  `bg-secondary text-foreground`; default rows use `text-muted-foreground` with
+  `hover:bg-muted hover:text-foreground`.
+- Leading and trailing slots: the leading chevron slot appears when
+  `hasChildren` or `reserveChevronSpace` is true, rotates when expanded, and
+  remains reserved for alignment. The trailing `w-14` grid reserves a delete
+  button slot and a count slot so row actions and counts align across sibling
+  rows.
+- Accessibility behavior: active rows set `aria-current="page"`. `countLabel`
+  maps a visible `count` into the row accessible name, while the visual count is
+  `aria-hidden`. Delete action composes `TooltipButton` and uses `deleteLabel`
+  for tooltip and `aria-label` when it is a string.
+- Docs-derived states and samples: flat items, nested tree rows, row actions,
+  active Favorites, Home / Release notes / Libraries / Folders, Campaigns,
+  Spring launch, Product photos, Uncategorized, drag reorder markers, and nest
+  target feedback.
+- Composition and usage boundaries: use SidebarItem for selectable rows inside
+  Sidebar, media-library folder lists, chat channels, tree-like navigation with
+  counts, and optional row actions. Use Sidebar for the surrounding rail,
+  FileTree or TreeView for file hierarchy, and AppRail for app-level rail
+  navigation.
+- Runtime token notes: `secondary`, `muted`, `muted-foreground`, `foreground`,
+  `primary`, `primary-subtle`, `primary-subtle-foreground`, `primary-border`,
+  `destructive`, `background`, `border`, and `ring` are recorded with light/dark
+  values from `src/globals.css`; `--sidebar-item-indent` is recorded as a runtime
+  CSS variable rather than a global design token.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `unexpectedChildOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout review confirmed default/active variants,
+  flat/nested/action/drag states, slot anatomy, accessibility notes, token notes,
+  and SidebarItem / Sidebar / TooltipButton / FileTree / TreeView / AppRail
+  usage boundaries are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -5446,7 +5503,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, and Sidebar components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, and SidebarItem components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
