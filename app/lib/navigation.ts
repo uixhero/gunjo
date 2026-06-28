@@ -80,6 +80,7 @@ export const navigation = [
             { title: "ScanGate", href: "/docs/components/scan-gate" },
             { title: "ScanInput", href: "/docs/components/scan-input" },
             { title: "SearchInput", href: "/docs/components/search-input" },
+            { title: "SegmentedControl", href: "/docs/components/segmented-control" },
             { title: "Select", href: "/docs/components/select" },
             { title: "Slider", href: "/docs/components/slider" },
             { title: "SortButton", href: "/docs/components/sort-button" },

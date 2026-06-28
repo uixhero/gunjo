@@ -135,6 +135,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "input-otp": "Inputs",
   toggle: "Inputs",
   "toggle-group": "Inputs",
+  "segmented-control": "Inputs",
   label: "Inputs",
   combobox: "Inputs",
   calendar: "Inputs",

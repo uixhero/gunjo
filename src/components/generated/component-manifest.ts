@@ -2241,6 +2241,17 @@ export const componentManifest = {
       "specSource": "design/inputs.pen",
       "stability": "experimental"
     },
+    "segmentedControl": {
+      "title": "SegmentedControl",
+      "description": "The small inline single-select toggle: 2–4 equal-width segments on a recessed track, the active one raised (the iOS/Android segmented look). For the compact either/or choices a B2C form is full of — 旅客区分 (大人/小児), 支払い (現金/IC/QR), 片道/往復, 出発/到着, 個人/法人, 日/週/月. A real role=radiogroup with role=radio segments, roving tabindex + arrow-key nav (WAI-ARIA), and a colour-safe selected state (raised surface, not colour alone); onValueChange is always a single string. Distinct from ToggleGroup (the general, content-fit, single-OR-multi toggle for desktop filters/formatting) and RadioCard (the large, priced choice CARD) — this is the small equal-width mode/segment switch. options[] of {value,label,icon?,disabled?}; controlled (value) or uncontrolled (defaultValue).",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/inputs/SegmentedControl.tsx",
+      "specSource": "design/inputs.pen",
+      "stability": "experimental"
+    },
     "select": {
       "title": "Select",
       "description": "Displays a list of options for the user to pick from.",

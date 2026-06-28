@@ -1520,6 +1520,7 @@ export const translations: Record<
       Textarea: "テキストエリア",
       Toggle: "トグル",
       ToggleGroup: "トグルグループ",
+      SegmentedControl: "セグメント切替",
       ToolPill: "ツールピル",
       VStack: "垂直スタック",
       // Molecules
