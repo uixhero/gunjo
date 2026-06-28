@@ -1601,6 +1601,7 @@ export const translations: Record<
       RadioCard: "選択カード",
       FilterChips: "フィルタチップ",
       PageHeader: "ページヘッダー",
+      BottomActionBar: "ボトムアクションバー",
       Itinerary: "旅程",
       TicketStub: "チケット券面",
       Stringline: "運行図表",

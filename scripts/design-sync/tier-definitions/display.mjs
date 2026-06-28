@@ -887,6 +887,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "bottomActionBar",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:bottomActionBar",
+      title: "BottomActionBar",
+      description: "The sticky mobile action dock every transactional / real-time consumer screen ends with: a running summary on the left (合計金額 / 到着まで○分 / 選択件数) and the primary CTA on the right (呼ぶ / 支払う / 予約する), pinned to the bottom with a top border and safe-area-inset padding (home indicator). The bottom bookend to PageHeader (the top app bar) — for checkout, ride-hailing, booking, food-order, seat-select. children = the summary slot, actions = the CTA slot; set stack for a full-width CTA above the summary, maxWidth to centre on tablet. RSC-safe (no client deps).",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "expiryBadge",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:expiryBadge",
