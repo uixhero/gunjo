@@ -1881,6 +1881,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "limitMonitor": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
+      "variantColorHints": {}
+    },
     "lineageGraph": {
       "variantKeys": [
         "default"
