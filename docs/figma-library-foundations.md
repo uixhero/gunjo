@@ -6030,6 +6030,46 @@ Figma export:
   notes, token notes, and Cluster / HStack / VStack / Grid / Tag / Badge usage
   boundaries are aligned without visible overflow or overlap.
 
+### Grid
+
+- `Grid / Section`: `561:2`
+- `Grid / Specimen`: `561:3`
+- Placement: `Layout` page, after `Cluster / Section`, at `(40, 7780)`,
+  `1280 x 1580`.
+- Variant contract: generated spec exposes no variant keys and no default
+  variant. Runtime layout props are implementation options rather than
+  generated SSOT variants, so the Figma export represents them as specimens.
+- Public API: `GridProps` extends `React.HTMLAttributes<HTMLDivElement>` with
+  `cols?: 1 | 2 | 3 | 4 | 5 | 6 | 12`, `minItemWidth?: number`, and
+  `gap?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 8`. Defaults are `gap=4` and
+  `cols=3` when `minItemWidth` is not set.
+- Runtime behavior: the component always renders `grid`. When `minItemWidth`
+  is provided, it wins over `cols` and sets `gridTemplateColumns` to
+  `repeat(auto-fit, minmax(<minItemWidth>px, 1fr))`; otherwise it maps `cols`
+  through fixed Tailwind column classes and maps `gap` through the fixed gap
+  scale.
+- Generated anatomy: the SSOT entry references frame `BHOl8`, title `Grid`,
+  and description `CSS grid wrapper with cols, gap, and minItemWidth props.`,
+  but does not provide generated variants or child nodes.
+- Docs-derived composition and samples: docs and demo examples cover dashboard
+  card grids with `minItemWidth={180}` / `gap={3}`, fixed `cols={3}` grids,
+  responsive auto-fit grids, 12-column composition with child `col-span`
+  classes, and gap density comparisons.
+- Composition and usage boundaries: use Grid for two-dimensional layout and
+  card collections. Use Container for page width rhythm, HStack or VStack for
+  one-dimensional composition, Cluster for wrapping horizontal item groups,
+  Card for individual surfaced content, and AssetGrid for media-library item
+  grids with selection or preview behavior.
+- Runtime token notes: Grid itself has no intrinsic visual token. The docs
+  specimens use `background`, `foreground`, `card`, `card-foreground`,
+  `muted`, `muted-foreground`, `border`, `input`, and `ring` values from
+  `src/globals.css`.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  dashboard auto-fit, fixed columns, 12-column composition, gap density, API
+  notes, token notes, and Grid / Container / HStack / VStack / Cluster / Card /
+  AssetGrid usage boundaries are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -6055,7 +6095,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, and Cluster components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, and Grid components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
