@@ -1610,6 +1610,7 @@ export const translations: Record<
       LineChip: "路線チップ",
       StatusBoard: "状態盤",
       ExpiryBadge: "有効期限",
+      LimitMonitor: "上限監視",
       RevealSection: "条件付きセクション",
       Delta: "差分",
       Meter: "メーター",

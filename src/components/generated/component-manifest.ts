@@ -1368,6 +1368,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "limitMonitor": {
+      "title": "LimitMonitor",
+      "description": "Value against a NAMED regulatory limit (soft + optional hard) with near/over/critical states and a bar that shows how close — or how far past — the value sits, with the limit drawn as a line. The 'value vs a named limit' sibling of ExpiryBadge (value vs a deadline), ReferenceValue (value vs a range) and Meter (value vs a capacity): limits are in the value's OWN units and the breach tone is DERIVED from them (unlike Meter's fraction-of-max thresholds + reference-only target which does not drive tone). For 改善基準告示 (拘束時間/連続運転/休息期間), SLA budgets, quotas, 過積載, 残業, rate limits. direction=\"floor\" for must-stay-above limits (休息期間). Pairs with the pure classifyLimit() helper (value → {state, over}), mirroring ExpiryBadge↔classifyExpiry and ReferenceValue↔flagValue. RSC-safe.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/LimitMonitor.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "lineageGraph": {
       "title": "LineageGraph",
       "description": "Lineage / dependency graph: a layered, directed-acyclic node-link graph that handles multi-parent and multi-child edges (the fan-in / fan-out a tree can't draw). Nodes are auto-assigned to layers by longest-path depth and laid out along a flow axis (horizontal or vertical); edges are drawn as SVG connectors with arrowheads. Nodes are focusable buttons whose accessible name names their upstream/downstream neighbours. For lot genealogy / traceability (recall blast-radius), data lineage, build/dependency graphs, ETL pipelines and approval routing with joins.",

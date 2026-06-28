@@ -133,6 +133,7 @@ export const navigation = [
             { title: "Itinerary", href: "/docs/components/itinerary" },
             { title: "KanbanBoard", href: "/docs/components/kanban-board" },
             { title: "Kbd", href: "/docs/components/kbd" },
+            { title: "LimitMonitor", href: "/docs/components/limit-monitor" },
             { title: "LineageGraph", href: "/docs/components/lineage-graph" },
             { title: "LineChip", href: "/docs/components/line-chip" },
             { title: "List", href: "/docs/components/list" },
