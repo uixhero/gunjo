@@ -5478,6 +5478,50 @@ Figma export:
   and SidebarItem / Sidebar / TooltipButton / FileTree / TreeView / AppRail
   usage boundaries are aligned without visible overflow or overlap.
 
+### Menubar
+
+- `Menubar / Section`: `526:2`
+- `Menubar / Library card`: `526:3`
+- Placement: `Navigation` page, after `SidebarItem / Section`, at `(40, 17228)`,
+  `1280 x 1902`.
+- Variant contract: generated spec exposes only the `default` variant key, with
+  `default` as the default variant. Runtime states such as open trigger, focus,
+  disabled, checkbox checked, radio selected, and submenu open are represented as
+  Menubar compound states rather than generated variant keys.
+- Prop and part structure: the runtime exports `Menubar`, `MenubarMenu`,
+  `MenubarTrigger`, `MenubarContent`, `MenubarItem`, `MenubarCheckboxItem`,
+  `MenubarRadioGroup`, `MenubarRadioItem`, `MenubarSub`,
+  `MenubarSubTrigger`, `MenubarSubContent`, `MenubarLabel`,
+  `MenubarSeparator`, `MenubarShortcut`, `MenubarPortal`, and `MenubarGroup`.
+- Runtime behavior: the root uses `flex flex-row h-10 items-center gap-1` with
+  `rounded-md border bg-background p-1`. `MenubarContent` is portaled with
+  `align="start"`, `alignOffset=-4`, `sideOffset=8`, `min-w-[12rem]`,
+  `bg-popover`, border, shadow, and side-aware animation classes.
+- Item behavior: `MenubarItem` supports `inset`, `disabled`,
+  `disabledReason`, `disabledReasonLabel`, and
+  `disabledReasonPortalContainer`. Disabled items prevent selection; when a
+  disabled reason exists, an enabled `TooltipTrigger` wrapper exposes the
+  reason on hover, focus, and touch.
+- Docs-derived states and samples: File / Edit / View command groups, shortcut
+  labels such as `⌘T`, `⌘N`, `⌘Z`, `⇧⌘Z`, `⌘F`, checked display settings,
+  radio density settings, nested Share / Find submenus, and the app-window
+  composition below a titlebar.
+- Composition and usage boundaries: use Menubar for always-visible commands
+  acting on the current app workspace. Use ContextMenu for temporary
+  target-specific actions, NavigationMenu or Header navigation for page movement,
+  and DropdownMenu for a single-trigger action menu.
+- Runtime token notes: `background`, `foreground`, `popover`,
+  `popover-foreground`, `accent`, `accent-foreground`, `muted`,
+  `muted-foreground`, `border`, `input`, and `ring` are recorded with light/dark
+  values from `src/globals.css`; the app-window demo also references status dot
+  colors for visual context but they are not core Menubar tokens.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed
+  default root anatomy, open trigger/content, checkbox/radio menu states,
+  disabled reason tooltip annotation, token notes, and Menubar / ContextMenu /
+  NavigationMenu / DropdownMenu usage boundaries are aligned without visible
+  overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -5503,7 +5547,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, and SidebarItem components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, and Menubar components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.

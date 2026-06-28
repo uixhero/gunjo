@@ -13,12 +13,12 @@ Source of truth:
 ## Current Status
 
 - Discovery scope: 162 components / templates
-- Recorded exports: 131
-- Remaining exports: 31
+- Recorded exports: 132
+- Remaining exports: 30
 - Completed category blocks: `Inputs`, `Overlay`, `Display`, `Charts`, `Feedback`
 - Current working category: `Navigation`
-- Last recorded component: `SidebarItem`
-- Recommended next component: `Menubar`
+- Last recorded component: `Menubar`
+- Recommended next component: `Command`
 
 ## Completed Blocks
 
@@ -212,10 +212,10 @@ Already recorded:
 - NavigationMenu
 - Sidebar
 - SidebarItem
+- Menubar
 
 Remaining:
 
-- Menubar
 - Command
 - AppRail
 - CommandPalette
