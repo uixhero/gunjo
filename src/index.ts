@@ -171,6 +171,7 @@ export * from './components/display/SparklineChart';
 export * from './components/display/StackedBarChart';
 export * from './components/display/StatGroup';
 export * from './components/display/Statistic';
+export * from './components/display/StatusBoard';
 export * from './components/display/Stringline';
 export * from './components/display/SwatchGroup';
 export * from './components/display/Table';

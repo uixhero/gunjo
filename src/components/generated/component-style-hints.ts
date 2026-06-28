@@ -2355,6 +2355,19 @@ export const componentStyleHints = {
       "variantClasses": {},
       "variantColorHints": {}
     },
+    "statusBoard": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
+      "variantColorHints": {}
+    },
     "stringline": {
       "variantKeys": [
         "default"

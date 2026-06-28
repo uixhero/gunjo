@@ -1604,6 +1604,7 @@ export const translations: Record<
       Itinerary: "旅程",
       TicketStub: "チケット券面",
       Stringline: "運行図表",
+      StatusBoard: "状態盤",
       RevealSection: "条件付きセクション",
       Delta: "差分",
       Meter: "メーター",
