@@ -79,12 +79,13 @@ export function GanttDemo() {
                     items={ROT_ITEMS}
                     startDate="2026-06-27T06:00"
                     endDate="2026-06-27T16:00"
-                    dayWidth={820}
+                    resolution="hour"
+                    hourWidth={72}
                     label="機材繰り（航空ローテーション）"
                     onSelectItem={(i) => setPicked(typeof i.label === "string" ? i.label : i.id)}
                 />
                 <p className="mt-2 text-xs text-muted-foreground">
-                    各機（登録記号）の1日を1本のバーで表し、内部を 便（info）／折返し（muted）／整備（warning）／折返し不足（destructive）に分割。セグメント間の隙間はバーの track として見える。
+                    終日でなく1日内の運用なので <code>resolution=&quot;hour&quot;</code>＝時刻目盛（HH:MM）。各機（登録記号）の1日を1本のバーで表し、内部を 便（info）／折返し（muted）／整備（warning）／折返し不足（destructive）に分割。セグメント間の隙間はバーの track として見える。
                 </p>
             </div>
         </div>

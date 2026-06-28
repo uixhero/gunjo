@@ -69,6 +69,17 @@ export interface GanttProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "
     rowLabelWidth?: number
     /** Min width (px) per day column. Default 44. */
     dayWidth?: number
+    /**
+     * Time-axis resolution. `"day"` (default) draws day columns with `M/D` headers — for
+     * multi-day plans. `"hour"` draws hour ticks with `HH:MM` headers — for an INTRADAY plan
+     * (a single operating day's vehicle/crew workings, a dispatch board) where day columns
+     * would collapse the whole day into one cell.
+     */
+    resolution?: "day" | "hour"
+    /** Width (px) per hour tick when `resolution="hour"`. Default 44. */
+    hourWidth?: number
+    /** Hours between ticks when `resolution="hour"`. Default 1. */
+    hourStep?: number
     /** Accessible name. */
     label?: React.ReactNode
     onSelectItem?: (item: GanttItem) => void
@@ -125,7 +136,9 @@ function packRow(items: { item: GanttItem; s: number; e: number; leftPct: number
 /**
  * Gantt / resource timeline: resource rows × a horizontal time axis, with bars
  * positioned by start/end and **lane-packed within a row** so overlapping bars
- * stack instead of covering each other. Day-column gridlines + date headers, a
+ * stack instead of covering each other. Day-column gridlines + date headers by
+ * default, or `resolution="hour"` for an INTRADAY plan (hour ticks + HH:MM headers —
+ * a single operating day's vehicle/crew workings, a dispatch board). A
  * sticky row-label gutter, an optional today line, and a contained horizontal
  * scroll. A bar can carry internal `segments[]` (sub-spans tinted per segment —
  * an aircraft rotation 便→折返し→便→整備, a crew duty, a shop visit), with gaps
@@ -147,6 +160,9 @@ const Gantt = React.forwardRef<HTMLDivElement, GanttProps>(
             laneHeight = 28,
             rowLabelWidth = 120,
             dayWidth = 44,
+            resolution = "day",
+            hourWidth = 44,
+            hourStep = 1,
             label,
             onSelectItem,
             ...props
@@ -156,28 +172,47 @@ const Gantt = React.forwardRef<HTMLDivElement, GanttProps>(
         const rangeStart = toDate(startDate).getTime()
         const rangeEnd = toDate(endDate).getTime()
         const totalMs = Math.max(1, rangeEnd - rangeStart)
-        const dayCount = Math.max(1, Math.round(totalMs / DAY_MS))
-        const trackWidth = dayCount * dayWidth
+        const isHour = resolution === "hour"
+        const tickWidth = isHour ? hourWidth : dayWidth
         const todayMs = today !== undefined ? toDate(today).getTime() : null
         const todayPct =
             todayMs !== null && todayMs >= rangeStart && todayMs <= rangeEnd
                 ? ((todayMs - rangeStart) / totalMs) * 100
                 : null
 
-        const days = React.useMemo(() => {
-            const out: { key: string; m: number; d: number; weekend: boolean }[] = []
-            const cursor = new Date(rangeStart)
-            for (let i = 0; i < dayCount; i++) {
-                out.push({
-                    key: `${cursor.getFullYear()}-${cursor.getMonth()}-${cursor.getDate()}`,
-                    m: cursor.getMonth() + 1,
-                    d: cursor.getDate(),
-                    weekend: cursor.getDay() === 0 || cursor.getDay() === 6,
-                })
-                cursor.setDate(cursor.getDate() + 1)
+        // Axis ticks — day columns (M/D) for multi-day plans, or hour ticks (HH:MM) for an
+        // intraday plan. Bars position by % over the range, so only the axis differs.
+        const ticks = React.useMemo(() => {
+            const out: { key: string; label: string; weekend: boolean }[] = []
+            if (isHour) {
+                const stepMs = Math.max(1, hourStep) * 3_600_000
+                const count = Math.max(1, Math.ceil(totalMs / stepMs))
+                const cursor = new Date(rangeStart)
+                for (let i = 0; i < count; i++) {
+                    out.push({
+                        key: `h-${i}`,
+                        label: `${String(cursor.getHours()).padStart(2, "0")}:${String(cursor.getMinutes()).padStart(2, "0")}`,
+                        weekend: false,
+                    })
+                    cursor.setTime(cursor.getTime() + stepMs)
+                }
+            } else {
+                const dayCount = Math.max(1, Math.round(totalMs / DAY_MS))
+                const cursor = new Date(rangeStart)
+                for (let i = 0; i < dayCount; i++) {
+                    const d = cursor.getDate()
+                    out.push({
+                        key: `${cursor.getFullYear()}-${cursor.getMonth()}-${d}`,
+                        label: d === 1 || d % 5 === 0 ? `${cursor.getMonth() + 1}/${d}` : `${d}`,
+                        weekend: cursor.getDay() === 0 || cursor.getDay() === 6,
+                    })
+                    cursor.setDate(cursor.getDate() + 1)
+                }
             }
             return out
-        }, [rangeStart, dayCount])
+        }, [isHour, rangeStart, totalMs, hourStep])
+
+        const trackWidth = ticks.length * tickWidth
 
         const placedByRow = React.useMemo(() => {
             const byRow = new Map<string, { item: GanttItem; s: number; e: number; leftPct: number; widthPct: number }[]>()
@@ -223,16 +258,16 @@ const Gantt = React.forwardRef<HTMLDivElement, GanttProps>(
                             style={{ width: rowLabelWidth }}
                         />
                         <div className="flex" style={{ width: trackWidth }}>
-                            {days.map((day) => (
+                            {ticks.map((tick) => (
                                 <div
-                                    key={day.key}
+                                    key={tick.key}
                                     className={cn(
                                         "shrink-0 border-r border-border/60 px-1 py-1 text-center text-[10px] tabular-nums text-muted-foreground last:border-r-0",
-                                        day.weekend && "bg-muted/40"
+                                        tick.weekend && "bg-muted/40"
                                     )}
-                                    style={{ width: dayWidth }}
+                                    style={{ width: tickWidth }}
                                 >
-                                    {day.d === 1 || day.d % 5 === 0 ? `${day.m}/${day.d}` : day.d}
+                                    {tick.label}
                                 </div>
                             ))}
                         </div>
@@ -256,14 +291,14 @@ const Gantt = React.forwardRef<HTMLDivElement, GanttProps>(
                                 <div className="relative" style={{ width: trackWidth, height: rowHeight }}>
                                     {/* day gridlines */}
                                     <div className="absolute inset-0 flex">
-                                        {days.map((day) => (
+                                        {ticks.map((tick) => (
                                             <div
-                                                key={day.key}
+                                                key={tick.key}
                                                 className={cn(
                                                     "shrink-0 border-r border-border/40 last:border-r-0",
-                                                    day.weekend && "bg-muted/30"
+                                                    tick.weekend && "bg-muted/30"
                                                 )}
-                                                style={{ width: dayWidth }}
+                                                style={{ width: tickWidth }}
                                             />
                                         ))}
                                     </div>
