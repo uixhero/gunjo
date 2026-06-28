@@ -6262,6 +6262,60 @@ Figma export:
   / Sheet / Drawer / Form / Resizable usage boundaries are aligned without
   visible overflow or overlap.
 
+### SpatialCanvas
+
+- `SpatialCanvas / Section`: `576:2`
+- `SpatialCanvas / Specimen`: `576:3`
+- `SpatialCanvas/Default`: `576:263`
+- Placement: `Layout` page, after `InspectorPanel / Section`, at
+  `(40, 16730)`, `1280 x 1921`.
+- Variant contract: generated spec exposes the `default` variant with
+  `SpatialCanvas/Default` as the default variant. The generated SSOT frame is
+  `640 x 360` and represents a large grid-based interaction surface for node
+  and layout editing.
+- Public API: `SpatialCanvasProps` extends div HTML attributes with required
+  `children: React.ReactNode` and optional `gridSize?: number`; `gridSize`
+  defaults to `20`. `className`, `style`, pointer handlers, and other div
+  attributes forward to the root, and the component forwards its ref to the
+  underlying `HTMLDivElement`.
+- Runtime behavior: the root renders a relative parent-sized surface using
+  `relative flex h-full min-h-0 w-full min-w-0 select-none flex-col`,
+  `overflow-hidden`, and `bg-muted/50`. Runtime must fill the parent canvas;
+  the `640 x 360` SSOT dimensions are only the generated specimen size. The
+  dot background uses `hsl(var(--foreground) / 0.08)` with
+  `backgroundSize: gridSize`, and the major overlay uses foreground alpha
+  lines at `gridSize * 5` with light/dark opacity differences.
+- Generated anatomy: the SSOT entry references frame `spatialCanvasFrame`,
+  variant `spatialCanvasDefault`, hint text `spatialCanvasHint`, and detail
+  text `spatialCanvasHintDetail`. Style hints record base class
+  `flex flex-col w-[640px] h-[360px]`, variant class
+  `flex flex-col w-[640px] h-[360px]`, slot ids `spatialCanvasHint` and
+  `spatialCanvasHintDetail`, and color hint `fill=#f9fafb`.
+- Docs-derived composition and samples: docs and embedded preview cover
+  floating panels with `gridSize={40}`, positioned workflow nodes with
+  `gridSize={32}`, a pointer-driven selection range, dense grid with
+  `gridSize={16}`, and coarse grid with `gridSize={64}`. The specimen mirrors
+  those states and keeps the generated default anatomy visible separately.
+- Composition and usage boundaries: use SpatialCanvas for workspace surfaces
+  where callers position nodes, panels, selections, or interaction layers.
+  Use FloatingPanel for movable overlay content, Resizable for adjustable
+  panes, MarqueeFrame for browser chrome, DeviceFrame for device previews, and
+  InspectorPanel or AssetInspectorPanel for side-detail editing surfaces.
+  Drag, selection, and connection behavior remain caller-owned via forwarded
+  pointer handlers and children.
+- Runtime token notes: SpatialCanvas uses `muted` / `muted/50` for the canvas
+  fill and `foreground` alpha for dot and major grid rendering; docs specimens
+  also use `background`, `border`, `muted-foreground`, `primary`,
+  `primary-subtle`, `primary-border`, and `primary-foreground` for nodes,
+  panels, selection rectangles, badges, and annotations.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  generated default anatomy, grid-size states, parent-fill runtime contract,
+  docs states, API notes, token notes, and SpatialCanvas / FloatingPanel /
+  Resizable / MarqueeFrame / DeviceFrame / InspectorPanel /
+  AssetInspectorPanel usage boundaries are aligned without visible overflow or
+  overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -6287,7 +6341,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, and InspectorPanel components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, and SpatialCanvas components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.

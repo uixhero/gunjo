@@ -1,6 +1,6 @@
 # Figma Library Foundations Milestones
 
-Updated: 2026-06-28
+Updated: 2026-06-29
 
 Source of truth:
 
@@ -13,12 +13,12 @@ Source of truth:
 ## Current Status
 
 - Discovery scope: 162 components / templates
-- Recorded exports: 149
-- Remaining exports: 13
+- Recorded exports: 150
+- Remaining exports: 12
 - Completed category blocks: `Inputs`, `Overlay`, `Display`, `Charts`, `Feedback`, `Navigation`
 - Current working category: `Layout`
-- Last recorded component: `InspectorPanel`
-- Recommended next component: `SpatialCanvas`
+- Last recorded component: `SpatialCanvas`
+- Recommended next component: `AssetInspectorPanel`
 
 ## Completed Blocks
 
@@ -239,10 +239,10 @@ Recorded so far:
 - Resizable
 - CollapsiblePanelToggle
 - InspectorPanel
+- SpatialCanvas
 
 Remaining:
 
-- SpatialCanvas
 - AssetInspectorPanel
 - DeviceFrame
 - MarqueeFrame
