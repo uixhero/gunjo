@@ -1178,6 +1178,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "expiryBadge": {
+      "title": "ExpiryBadge",
+      "description": "The date-vs-deadline currency indicator: classifies an expiry date against today into 有効 / 期限間近 / 失効 / 未登録 and shows a colour-safe state chip (icon + label, never colour alone), the date, and a 残N日 / N日超過 readout. The date-domain sibling of Meter (value vs a capacity) and ReferenceValue (value vs a numeric range) — this is value vs a DEADLINE. For licence / 資格 / 適性診断 / 健診 / 車検 / 保険 / 認証 / 点検 currency across crew, asset and compliance consoles. Pairs with the pure classifyExpiry() helper (value → {state, days}), mirroring how ReferenceValue pairs with flagValue(). RSC-safe; pass today in for SSR determinism (defaults to new Date()).",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/ExpiryBadge.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "fileTree": {
       "title": "FileTree",
       "description": "File and folder tree composition with metadata, row actions, and single or multiple selection.",

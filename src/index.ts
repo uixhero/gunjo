@@ -121,6 +121,7 @@ export * from './components/display/DonutChart';
 export * from './components/display/EditableDataTable';
 export * from './components/display/EmptyState';
 export * from './components/display/EventCalendar';
+export * from './components/display/ExpiryBadge';
 export * from './components/display/FileTree';
 export * from './components/display/FilterChips';
 export * from './components/display/Gallery';
