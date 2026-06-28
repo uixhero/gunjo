@@ -13,12 +13,12 @@ Source of truth:
 ## Current Status
 
 - Discovery scope: 162 components / templates
-- Recorded exports: 138
-- Remaining exports: 24
-- Completed category blocks: `Inputs`, `Overlay`, `Display`, `Charts`, `Feedback`
-- Current working category: `Navigation`
-- Last recorded component: `Header`
-- Recommended next component: `Footer`
+- Recorded exports: 139
+- Remaining exports: 23
+- Completed category blocks: `Inputs`, `Overlay`, `Display`, `Charts`, `Feedback`, `Navigation`
+- Current working category: `Layout`
+- Last recorded component: `Footer`
+- Recommended next component: `AspectRatio`
 
 ## Completed Blocks
 
@@ -219,10 +219,11 @@ Already recorded:
 - RightRail
 - PageAside
 - Header
+- Footer
 
 Remaining:
 
-- Footer
+- None
 
 ### Milestone 5: Layout
 

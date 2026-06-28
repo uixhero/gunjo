@@ -5783,6 +5783,52 @@ Figma export:
   notes, and Header / NavigationMenu / AppRail / Sidebar / Drawer usage
   boundaries are aligned without visible overflow or overlap.
 
+### Footer
+
+- `Footer / Section`: `543:2`
+- `Footer / Library card`: `543:3`
+- Placement: `Navigation` page, after `Header / Section`, at `(40, 32283)`,
+  `1280 x 1922`.
+- Variant contract: generated spec exposes no variant keys and no default
+  variant. The runtime component is a slot family rather than a generated
+  variant set. Docs states for default, compact, and legal/social footers are
+  composition states.
+- Public parts: `Footer`, `FooterColumns`, `FooterSection`, `FooterLink`,
+  `FooterBrand`, and `FooterCopyright`. `Footer`, `FooterColumns`,
+  `FooterLink`, `FooterBrand`, and `FooterCopyright` forward their standard
+  HTML attributes and `className`; `FooterSection` extends div attributes with
+  `title?: React.ReactNode`.
+- Runtime behavior: `Footer` renders a semantic `footer` root with `flex
+  w-full flex-col gap-6 border-t border-border bg-background px-6 py-8`.
+  `FooterColumns` uses `grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-4`.
+  `FooterSection` uses `flex flex-col gap-2` and renders its title as
+  `text-sm font-semibold text-foreground`. `FooterLink` renders an anchor with
+  `text-sm text-muted-foreground transition-colors hover:text-foreground`.
+  `FooterBrand` uses `flex flex-col gap-2`. `FooterCopyright` uses
+  `border-t border-border pt-4 text-xs text-muted-foreground`.
+- Generated anatomy: the SSOT entry references frame `fXprq`, title `Footer`,
+  and description `Standard footer with brand, link sections, and copyright
+  row.`, but does not provide generated variants or child nodes.
+- Docs-derived composition and samples: the docs compose Footer with
+  FooterBrand, FooterColumns, FooterSection, FooterLink, FooterCopyright,
+  Tooltip, TooltipTrigger, TooltipContent, and Tabler social icons. Sample
+  labels include Gunjo UI, Product, Components, Templates, Resources, Docs,
+  GitHub, Company, About, Contact, Privacy Policy, Terms, Legal notice, YouTube,
+  LinkedIn, and `© 2026 Gunjo UI. All rights reserved.`
+- Composition and usage boundaries: use Footer for page-bottom supporting
+  navigation, legal links, brand summary, and copyright content. Use Header for
+  top-level navigation, NavigationMenu for category or mega-menu navigation,
+  and TextLink for inline prose links. Icon-only social links must expose their
+  accessible label with Tooltip behavior.
+- Runtime token notes: `background`, `foreground`, `muted-foreground`,
+  `border`, `muted`, and `ring` are recorded with light/dark values from
+  `src/globals.css`.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  default, compact, and legal/social specimens, slot anatomy notes, token
+  notes, and Footer / Header / NavigationMenu / TextLink usage boundaries are
+  aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -5808,7 +5854,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, and Header components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, and Footer components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
