@@ -5371,6 +5371,56 @@ Figma export:
   anatomy, token notes, and NavigationMenu / Header / Menubar / Breadcrumb /
   DocumentPager usage boundaries are aligned without visible overflow or overlap.
 
+### Sidebar
+
+Source approval: the repository owner reaffirmed that this Figma file is the
+company design-system source of truth and that reflecting private repository
+component specs into it is the approved first-party workflow.
+
+Figma export:
+
+- `Sidebar / Section`: `519:2`
+- `Sidebar / Library card`: `519:3`
+- Placement: `Navigation` page, after `NavigationMenu / Section`, at `(40, 11852)`,
+  `1280 x 2600`.
+- Variant contract: generated spec exposes no variant keys and no default
+  variant. The runtime contract is the `SidebarProvider` state container,
+  `useSidebar()` hook, and compound slots for root, header, body, footer,
+  toggle, and separator.
+- Public parts: `SidebarProvider`, `useSidebar`, `Sidebar`, `SidebarHeader`,
+  `SidebarBody`, `SidebarFooter`, `SidebarToggle`, and `SidebarSeparator`.
+  Provider supports `defaultCollapsed=false`, controlled `collapsed`, and
+  `onCollapsedChange`; `useSidebar()` exposes `collapsed`, `setCollapsed`, and
+  `toggleCollapsed`.
+- Runtime behavior: `Sidebar` renders an `aside` with `data-collapsed` and
+  transitions width between `240px` expanded and `60px` collapsed. Header and
+  footer keep bordered `bg-background` slots, body uses vertical navigation
+  spacing with hover-revealed scrollbars, and separator renders a local
+  `role=separator` divider.
+- Toggle behavior: `SidebarToggle` composes `TooltipButton`, defaults to
+  `placement=footer`, `tooltipSide=right`, `tooltipAlign=center`, and
+  `tooltipSideOffset=8`. It uses collapse/expand labels for both tooltip and
+  `aria-label`, and switches the icon between left and right chevrons based on
+  collapsed state.
+- Docs-derived states and samples: expanded navigation, initially collapsed
+  navigation rail, header/body/footer slots, active Projects item, Home /
+  Projects / Reports / Settings labels, Gunjo UI brand header, Design team
+  footer, and centered content region.
+- Composition and usage boundaries: use Sidebar for persistent side navigation
+  with provider-managed collapse state. Use SidebarItem for individual rows,
+  TooltipButton for collapsed icon-only actions, and Header / NavigationMenu /
+  AppRail for top-level or rail-specific navigation patterns.
+- Runtime token notes: `muted`, `background`, `foreground`, `muted-foreground`,
+  `border`, `ring`, `primary`, and `primary-foreground` are recorded with
+  light/dark values from `src/globals.css`; width and placement values are
+  recorded as runtime layout constants rather than token names.
+- Validation: Figma absolute bounds check returned `outOfBoundsCount: 0`,
+  `fixedSizeTextCount: 0`, `unexpectedChildOverflowCount: 0`, and
+  `suspiciousOverlapCount: 0`; layout review confirmed provider state,
+  collapsed/expanded specimens, slot anatomy, toggle behavior, token notes,
+  and Sidebar / SidebarItem / TooltipButton / Header / NavigationMenu usage
+  boundaries are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -5396,7 +5446,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, and NavigationMenu components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, and Sidebar components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.

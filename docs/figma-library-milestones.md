@@ -13,12 +13,12 @@ Source of truth:
 ## Current Status
 
 - Discovery scope: 162 components / templates
-- Recorded exports: 129
-- Remaining exports: 33
+- Recorded exports: 130
+- Remaining exports: 32
 - Completed category blocks: `Inputs`, `Overlay`, `Display`, `Charts`, `Feedback`
 - Current working category: `Navigation`
-- Last recorded component: `NavigationMenu`
-- Recommended next component: `Sidebar`
+- Last recorded component: `Sidebar`
+- Recommended next component: `SidebarItem`
 
 ## Completed Blocks
 
@@ -210,10 +210,10 @@ Already recorded:
 - TextLink
 - DocumentPager
 - NavigationMenu
+- Sidebar
 
 Remaining:
 
-- Sidebar
 - SidebarItem
 - Menubar
 - Command
