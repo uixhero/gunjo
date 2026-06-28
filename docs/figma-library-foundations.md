@@ -5951,6 +5951,46 @@ Figma export:
   HStack / VStack / Cluster / Grid / Spacer usage boundaries are aligned
   without visible overflow or overlap.
 
+### VStack
+
+- `VStack / Section`: `555:2`
+- `VStack / Specimen`: `555:3`
+- Placement: `Layout` page, after `HStack / Section`, at `(40, 4644)`,
+  `1280 x 1560`.
+- Variant contract: generated spec exposes no variant keys and no default
+  variant. Runtime layout props are implementation options rather than
+  generated SSOT variants, so the Figma export represents them as specimens.
+- Public API: `VStackProps` extends `React.HTMLAttributes<HTMLDivElement>`
+  with `gap?: 0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 12`, `align?: "start" |
+  "center" | "end" | "stretch"`, `justify?: "start" | "center" | "end" |
+  "between" | "around" | "evenly"`, and `inline?: boolean`. Defaults are
+  `gap=2`, `align="stretch"`, `justify="start"`, and `inline=false`.
+- Runtime behavior: the component renders `inline-flex` when `inline` is true
+  and `flex` otherwise, always adds `flex-col`, and maps `gap`, `align`, and
+  `justify` through fixed class maps. Consumers add visible borders,
+  backgrounds, padding, width, and height through `className` when a column
+  needs a visible surface or fixed-height distribution.
+- Generated anatomy: the SSOT entry references frame `sUUzz`, title `VStack`,
+  and description `Vertical flex layout with gap, align, and justify props.`,
+  but does not provide generated variants or child nodes.
+- Docs-derived composition and samples: docs and demo examples cover form
+  fields with nested stacks, `align="center"` centered content,
+  `justify="between"` fixed-height cards, `align="end"` right-aligned content,
+  and `inline` explanatory blocks.
+- Composition and usage boundaries: use VStack for one-dimensional vertical
+  composition of forms, cards, and explanatory blocks. Use HStack for
+  horizontal rows, Cluster for wrapping horizontal groups, Container for page
+  width rhythm, and Grid for two-dimensional layout.
+- Runtime token notes: VStack itself has no intrinsic visual token. The docs
+  specimens use `background`, `foreground`, `muted`, `muted-foreground`,
+  `border`, `input`, `ring`, `primary`, and `primary-foreground` values from
+  `src/globals.css`.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  form, centered, space-between, end-aligned, inline, API notes, token notes,
+  and VStack / HStack / Cluster / Container / Grid usage boundaries are aligned
+  without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -5976,7 +6016,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, and HStack components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, and VStack components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
