@@ -185,6 +185,7 @@ export function ActionDataTable<TData, TValue>({
     bulkActions,
     selectedIds: controlledSelectedIds,
     onSelectionChange,
+    getRowState: getRowStateProp,
     className,
     ...props
 }: ActionDataTableProps<TData, TValue>) {
@@ -476,9 +477,12 @@ export function ActionDataTable<TData, TValue>({
                 data={data}
                 labels={labels}
                 headerActions={bulkToolbar}
-                getRowState={(_, index) => {
+                getRowState={(row, index) => {
                     const meta = rowMeta[index]
-                    return meta && selectedIds.has(meta.id) ? "selected" : undefined
+                    if (meta && selectedIds.has(meta.id)) return "selected"
+                    // Honor the caller's getRowState for non-selected rows (was previously
+                    // accepted via the type surface but silently dropped by this override).
+                    return getRowStateProp?.(row, index)
                 }}
             />
         </div>
