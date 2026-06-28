@@ -5651,6 +5651,46 @@ Figma export:
   Combobox / SearchInput usage boundaries are aligned without visible overflow
   or overlap.
 
+### RightRail
+
+- `RightRail / Section`: `536:2`
+- `RightRail / Library card`: `536:3`
+- Placement: `Navigation` page, after `CommandPalette / Section`, at
+  `(40, 26018)`, `1280 x 2240`.
+- Variant contract: generated spec exposes only the `default` variant key, with
+  `default` as the default variant. Page support, page status, related links,
+  and compact density are docs/runtime composition states rather than generated
+  variant keys.
+- Prop structure: `RightRailProps` extends
+  `React.HTMLAttributes<HTMLDivElement>` and adds `width?: string`, with
+  `width = "w-64"` as the runtime default. `className`, `children`, `ref`, and
+  standard div attributes are forwarded to the root element.
+- Runtime behavior: the root uses `z-30 flex h-full min-h-0 flex-shrink-0
+  flex-col border-l border-border bg-background`, then applies the caller
+  supplied width class. The component owns the rail container only; callers own
+  the child layout and content.
+- Generated anatomy: the SSOT default specimen is a `256 x 360` vertical frame
+  with white fill, inside stroke `#e5e7eb`, a padded header containing
+  `Inspector`, and a padded item containing `Layer Settings`.
+- Docs-derived composition and samples: the docs compose RightRail with
+  page-section links, page status rows, related links, and Badge. Sample labels
+  include Overview, Quality metrics, Release checks, Status, Pre-release,
+  Updated, Review, Release checklist, Changelog, and Owner team.
+- Composition and usage boundaries: use RightRail for desktop-only contextual
+  support beside main content. Use PageAside when the same support content must
+  collapse on narrow screens, Sidebar for primary labeled navigation, and
+  DocumentPager for previous/next document traversal.
+- Runtime token notes: `background`, `foreground`, `border`, `muted`,
+  `muted-foreground`, and `ring` are recorded with light/dark values from
+  `src/globals.css`. The generated preview stroke `#e5e7eb` is recorded as a
+  design-spec preview value.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  default generated anatomy, desktop layout specimen, status and links
+  specimens, API notes, token notes, and RightRail / PageAside / Sidebar /
+  DocumentPager usage boundaries are aligned without visible overflow or
+  overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -5676,7 +5716,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, and CommandPalette components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, and RightRail components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
