@@ -13,12 +13,12 @@ Source of truth:
 ## Current Status
 
 - Discovery scope: 162 components / templates
-- Recorded exports: 154
-- Remaining exports: 8
+- Recorded exports: 155
+- Remaining exports: 7
 - Completed category blocks: `Inputs`, `Overlay`, `Display`, `Charts`, `Feedback`, `Navigation`
 - Current working category: `Patterns`
-- Last recorded component: `DashboardTemplate`
-- Recommended next component: `EditorTemplate`
+- Last recorded component: `EditorTemplate`
+- Recommended next component: `LandingTemplate`
 
 ## Completed Blocks
 
@@ -255,10 +255,10 @@ Patterns should stay last, after their component dependencies are represented.
 Recorded so far:
 
 - DashboardTemplate
+- EditorTemplate
 
 Remaining:
 
-- EditorTemplate
 - LandingTemplate
 - AuthTemplate
 - KanbanTemplate

@@ -6529,6 +6529,58 @@ Figma export:
   DashboardTemplate / SidebarItem / Card / chart usage boundaries are aligned
   without visible overflow or overlap.
 
+### EditorTemplate
+
+- `EditorTemplate / Section`: `595:122`
+- `EditorTemplate / Specimen`: `595:123`
+- `EditorTemplate/Default`: `595:72`
+- Placement: `Patterns` page, after `DashboardTemplate / Section`, at
+  `(40, 2656)`, `1280 x 2240`.
+- Variant contract: generated spec exposes a single `default` variant with
+  `default` as the default variant. Runtime panel content is caller-provided,
+  so the Figma component records the shell anatomy and docs-derived specimen
+  instead of expanding panel content into variant axes.
+- Public API: `EditorTemplateProps` extends div HTML attributes and accepts
+  optional `topBar?: React.ReactNode`, optional
+  `leftPanel?: React.ReactNode`, optional `rightPanel?: React.ReactNode`,
+  required `children: React.ReactNode`, and `className`.
+- Runtime behavior: the root renders
+  `flex h-full min-h-0 w-full flex-col overflow-hidden`. `topBar` renders
+  only when provided, is `h-14`, `flex-shrink-0`, `border-b`, and
+  `bg-background`. The body is `flex flex-1 overflow-hidden relative`.
+  `leftPanel` renders only when provided, is hidden below `md`, and uses
+  `w-64 border-r bg-background`. `rightPanel` renders only when provided,
+  is hidden below `lg`, and uses `w-72 border-l bg-background`. The central
+  `main` is `flex-1 relative bg-muted/50 overflow-hidden`.
+- Generated anatomy: style hints record base class
+  `flex flex-col w-full h-full`, slot ids `editorTemplateTopBar` and
+  `editorTemplateBody`, and variant class `flex flex-col w-full h-full`. The
+  generated patterns spec records `editorTemplateTopBar` at 56 px height,
+  `editorTemplateLeftPanel` at 256 px width, `editorTemplateRightPanel` at
+  288 px width, `editorTemplateCanvas` with `#f3f4f6` fill, and canvas
+  children for toolbar and board.
+- Docs-derived composition and samples: docs and embedded previews cover
+  Menubar labels `File`, `Edit`, and `View`, the document title
+  `Untitled Design`, the `Share` action, left panel `Layers`, layer rows
+  `Rectangle 1`, `Ellipse 2`, and `Text Layer`, right panel `Properties`,
+  property inputs `Width` and `Height`, a SpatialCanvas-backed `Artboard`,
+  and a floating toolbar with pointer, shape, and layers actions.
+- Composition and usage boundaries: EditorTemplate composes caller-provided
+  top bar, left panel, right panel, and central canvas content into a full
+  editor shell. Use it for design / content editing experiences with side
+  docks and an overflow-hidden canvas. Use SpatialCanvas for freeform canvas
+  behavior, Menubar for top-level editor commands, Input / Label for property
+  controls, and FloatingPanel or Popover for detached inspector affordances.
+- Runtime token notes: EditorTemplate uses `border` for top and side
+  separators, `background` / `card` for supplied panels, `muted/50` for the
+  canvas surface, and specimen annotations for `foreground`,
+  `muted-foreground`, `popover`, `primary`, and `accent`.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  default shell, top bar / side panel / canvas anatomy, API notes, token notes,
+  and EditorTemplate / SpatialCanvas / Menubar / property control usage
+  boundaries are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -6554,7 +6606,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, MarqueeFrame, and DashboardTemplate components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, MarqueeFrame, DashboardTemplate, and EditorTemplate components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
