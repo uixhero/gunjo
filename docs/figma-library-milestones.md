@@ -13,12 +13,12 @@ Source of truth:
 ## Current Status
 
 - Discovery scope: 162 components / templates
-- Recorded exports: 139
-- Remaining exports: 23
+- Recorded exports: 140
+- Remaining exports: 22
 - Completed category blocks: `Inputs`, `Overlay`, `Display`, `Charts`, `Feedback`, `Navigation`
 - Current working category: `Layout`
-- Last recorded component: `Footer`
-- Recommended next component: `AspectRatio`
+- Last recorded component: `AspectRatio`
+- Recommended next component: `Container`
 
 ## Completed Blocks
 
@@ -227,9 +227,12 @@ Remaining:
 
 ### Milestone 5: Layout
 
-Remaining:
+Recorded so far:
 
 - AspectRatio
+
+Remaining:
+
 - Container
 - HStack
 - VStack

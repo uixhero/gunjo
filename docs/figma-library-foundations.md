@@ -5829,6 +5829,48 @@ Figma export:
   notes, and Footer / Header / NavigationMenu / TextLink usage boundaries are
   aligned without visible overflow or overlap.
 
+### AspectRatio
+
+- `AspectRatio / Section`: `548:2`
+- `AspectRatio / Library card`: `548:3`
+- Placement: `Layout` page, first recorded layout component, at `(40, 40)`,
+  `1280 x 1500`.
+- Variant contract: generated spec exposes no variant keys and no default
+  variant. The runtime component is a Radix primitive wrapper with caller-owned
+  ratio and content rather than a generated variant set.
+- Public API: `AspectRatio` is `AspectRatioPrimitive.Root`.
+  `AspectRatioProps` extends
+  `React.ComponentPropsWithoutRef<typeof AspectRatioPrimitive.Root>`.
+  Docs record `ratio?: number` with default `1`, `asChild?: boolean` with
+  default `false`, and `children?: ReactNode`.
+- Runtime behavior: the component forwards Radix AspectRatio Root behavior.
+  It has no local class list, visual token binding, generated slot ids, or
+  runtime variant classes. Width comes from the parent; height is derived from
+  `ratio` as width divided by height. Visible fill, border, radius, media
+  object-fit, and child semantics are supplied through `className` and children.
+- Generated anatomy: the SSOT entry references frame `K5AUnC`, title
+  `AspectRatio`, and description `Maintains a fixed aspect ratio for media
+  containers (image, video, iframe).`, but does not provide generated variants
+  or child nodes.
+- Docs-derived composition and samples: docs and demo examples cover `16 / 9`
+  hero video, `4 / 3` article image, `1` avatar crop, and `3 / 4` portrait
+  card specimens. Usage examples show image children with `h-full w-full
+  object-cover` inside an `overflow-hidden rounded-md border` ratio surface.
+- Composition and usage boundaries: use AspectRatio for fixed-ratio media
+  containers and placeholders. Use `Img` or `ImagePreview` when image loading,
+  skeleton, fallback, error, object-fit, or preview behavior is needed. Use
+  `Card` for surrounding content and `DeviceFrame` for device chrome or
+  viewport presets.
+- Runtime token notes: AspectRatio itself has no intrinsic visual token. The
+  docs specimens use `primary-subtle`, `success-subtle`, `warning-subtle`,
+  `muted`, `muted-foreground`, `border`, `background`, and `foreground` values
+  from `src/globals.css`.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  16:9, 4:3, 1:1, 3:4, media usage, API notes, token notes, and AspectRatio /
+  Img / ImagePreview / Card / DeviceFrame usage boundaries are aligned without
+  visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -5854,7 +5896,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, and Footer components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, and AspectRatio components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
