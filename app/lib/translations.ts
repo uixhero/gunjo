@@ -1607,6 +1607,7 @@ export const translations: Record<
       TicketStub: "チケット券面",
       Stringline: "運行図表",
       Leaderboard: "ランキング",
+      SectionList: "セクションリスト",
       LineChip: "路線チップ",
       StatusBoard: "状態盤",
       ExpiryBadge: "有効期限",

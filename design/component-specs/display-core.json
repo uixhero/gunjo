@@ -4818,6 +4818,30 @@
         }
       ]
     },
+    "sectionList": {
+      "frameId": "synthetic:sectionList",
+      "title": "SectionList",
+      "description": "The grouped-list / sectioned layout: a sequence of sections, each a heading band (title + sublabel + a right-aligned group aggregate) over the caller's body rows, with an optional per-group subtotal footer. The grouping spine every history / 利用明細 / 取引履歴 / statement / invoice-by-客先 screen hand-rolls — groupBy + a section header + a per-group subtotal. Body-agnostic: drop in ListCards (mobile history), a Table (desktop invoices), or signed ledger rows. The caller owns the grouping + subtotal math + any cross-group selection; this owns the consistent header/footer chrome + the sectioned a11y structure. Distinct from StatusBoard.groups (status tiles) and Itinerary.days (a trip timeline). sections[] of {key,title,sublabel?,meta?,content,footer?}; stickyHeaders optional. RSC-safe.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
     "limitMonitor": {
       "frameId": "synthetic:limitMonitor",
       "title": "LimitMonitor",

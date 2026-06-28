@@ -166,6 +166,7 @@ export * from './components/display/RouteStops';
 export * from './components/display/ScheduleGrid';
 export * from './components/display/SearchableAccordion';
 export * from './components/display/SeatMap';
+export * from './components/display/SectionList';
 export * from './components/display/SegmentedGaugeCard';
 export * from './components/display/SegmentTimelineCard';
 export * from './components/display/Separator';
