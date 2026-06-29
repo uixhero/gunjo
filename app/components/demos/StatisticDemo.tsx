@@ -20,18 +20,20 @@ export function StatisticDemo() {
                 hint="this week"
             />
             <Statistic
-                label="Bounce rate"
+                label="直帰率 (good-when-low)"
                 value="32.4%"
                 change="-3.2%"
                 trend="down"
-                hint="month over month"
+                goodWhen="lower"
+                hint="下降＝緑（改善）"
             />
             <Statistic
-                label="Active users"
-                value="12,847"
-                change="0.0%"
-                trend="flat"
-                hint="no change"
+                label="遅延件数 (good-when-low)"
+                value="96件"
+                change="+12"
+                trend="up"
+                goodWhen="lower"
+                hint="上昇＝赤（悪化）"
             />
         </div>
     );

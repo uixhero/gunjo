@@ -13,8 +13,15 @@ export interface StatisticProps extends React.HTMLAttributes<HTMLDivElement> {
     change?: React.ReactNode
     /** Trend direction for the change indicator. Default "flat" (muted). */
     trend?: StatisticTrend
-    /** Visual meaning for the change indicator. Defaults from trend. */
+    /** Visual meaning for the change indicator. Defaults from trend (up = positive). */
     tone?: StatisticTone
+    /**
+     * Good-direction for an INVERTED metric — so the change colour encodes good/bad, not raw
+     * direction. `"higher"` (定時率 / 乗車率 / 売上) = up is good (green). `"lower"` (遅延件数 /
+     * 不良率 / 原価率 / 離脱率 / 混雑率) = up is **bad** (red) and a drop is good. The arrow still
+     * follows `trend`; only the colour flips. Ignored when `tone` is set explicitly.
+     */
+    goodWhen?: "higher" | "lower"
     /** Optional helper text below the value or after the change. */
     hint?: React.ReactNode
 }
@@ -33,11 +40,17 @@ const TREND_ICON: Record<StatisticTrend, React.ComponentType<{ className?: strin
 
 const Statistic = React.forwardRef<HTMLDivElement, StatisticProps>(
     (
-        { className, label, value, change, trend = "flat", tone, hint, ...props },
+        { className, label, value, change, trend = "flat", tone, goodWhen, hint, ...props },
         ref
     ) => {
         const TrendIcon = TREND_ICON[trend]
-        const resolvedTone = tone ?? (trend === "up" ? "positive" : trend === "down" ? "negative" : "neutral")
+        const autoTone: StatisticTone =
+            trend === "flat"
+                ? "neutral"
+                : goodWhen === "lower"
+                  ? trend === "up" ? "negative" : "positive"
+                  : trend === "up" ? "positive" : "negative"
+        const resolvedTone = tone ?? autoTone
 
         return (
             <div
