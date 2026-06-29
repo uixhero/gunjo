@@ -406,5 +406,9 @@
   "originDestination": {
     "title": "OriginDestination",
     "description": "The A→B route header: 出発 → 到着 (東京 → 新大阪 / HND → CTS / POL → POD / 新宿 → 大阪), each endpoint a label + optional sub (code / time / platform), joined by an arrow (or a connector slot for a duration / mode icon), with an optional swap button (出発⇄到着) and via stops. The compact identity of every transit / freight SEARCH & RESULT screen — a HORIZONTAL A→B across the top, NOT a vertical sequence (that is RouteStops / Itinerary, which go DOWN the page). `inline` gives the small single-line variant for a result row (発→着 times). from + to (+ via[]) of {label, sub?}; connector, onSwap, inline, label. RSC-safe except the opt-in onSwap."
+  },
+  "documentRow": {
+    "title": "DocumentRow",
+    "description": "The downloadable document / file row: a leading control slot (a Checkbox for bulk-select), a file-type icon, the document name + meta (format / size / 発行日), and a trailing INDEPENDENT action button (download). The spine of every 帳票 / 明細 / 書類 / 添付 / download surface. Unlike ListCard (whose onSelect makes the WHOLE card one button, so a nested download button is invalid HTML), DocumentRow keeps MULTIPLE independent hit targets — select, open-to-preview (onOpen), and the trailing download action. Group rows with SectionList (by year / type) for headings + subtotals. title + description?/meta?/icon?/control?/status?/actions?/onOpen?. RSC-safe except the opt-in onOpen / action handlers."
   }
 }

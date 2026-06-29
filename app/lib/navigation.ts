@@ -119,6 +119,7 @@ export const navigation = [
             { title: "DataTable", href: "/docs/components/data-table" },
             { title: "Delta", href: "/docs/components/delta" },
             { title: "DocNote", href: "/docs/components/doc-note" },
+            { title: "DocumentRow", href: "/docs/components/document-row" },
             { title: "EditableDataTable", href: "/docs/components/editable-data-table" },
             { title: "EmptyState", href: "/docs/components/empty-state" },
             { title: "EventCalendar", href: "/docs/components/event-calendar" },

@@ -1591,6 +1591,19 @@ export const componentStyleHints = {
         "tip": "fill=#f0fdf4 | stroke=#bbf7d0@1px"
       }
     },
+    "documentRow": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
+      "variantColorHints": {}
+    },
     "donutChart": {
       "variantKeys": [
         "default",
