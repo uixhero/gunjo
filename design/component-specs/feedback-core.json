@@ -1497,6 +1497,29 @@
           "text": null,
           "texts": [],
           "reusable": true
+        },
+        {
+          "id": "synthetic:acknowledged",
+          "name": "acknowledged",
+          "key": "acknowledged",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            12,
+            16,
+            12,
+            16
+          ],
+          "gap": 4,
+          "cornerRadius": 8,
+          "fill": null,
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
         }
       ]
     },

@@ -5,6 +5,8 @@ import { IconAlertTriangle, IconCheck, IconInfoCircle } from "@tabler/icons-reac
 
 import { cn } from "../../lib/utils"
 import { Button } from "../inputs/Button"
+import { safetyBannerDefaultVariantKey } from "./generated/default-variant-keys"
+import type { SafetyBannerVariantKey } from "./generated/variant-keys"
 
 export type SafetyBannerTone = "destructive" | "warning" | "info"
 
@@ -25,10 +27,12 @@ export interface SafetyBannerProps extends Omit<React.HTMLAttributes<HTMLDivElem
     defaultAcknowledged?: boolean
     /** Fired when the user acknowledges. */
     onAcknowledge?: () => void
-    /** Acknowledge button label. Default `"確認しました"`. */
+    /** Acknowledge button label. Default `"Acknowledge"`. */
     ackLabel?: React.ReactNode
-    /** Text shown once acknowledged. Default `"確認済み"`. */
+    /** Text shown once acknowledged. Default `"Acknowledged"`. */
     acknowledgedLabel?: React.ReactNode
+    /** Visual state variant. Defaults from the acknowledged state. */
+    variant?: SafetyBannerVariantKey
     /** Leading icon override. Defaults to a tone icon. */
     icon?: React.ReactNode
     /** Trailing actions (報告 / 詳細 …). */
@@ -53,6 +57,11 @@ const TONE_DEFAULT_ICON: Record<SafetyBannerTone, typeof IconAlertTriangle> = {
     info: IconInfoCircle,
 }
 
+const VARIANT_CLASS: Record<SafetyBannerVariantKey, string> = {
+    default: "",
+    acknowledged: "opacity-90",
+}
+
 /**
  * Persistent, assertive, acknowledgeable safety alert. A loud banner for a
  * critical condition (allergy, contraindication, panic value, over-dose) that
@@ -72,8 +81,9 @@ const SafetyBanner = React.forwardRef<HTMLDivElement, SafetyBannerProps>(
             acknowledged,
             defaultAcknowledged = false,
             onAcknowledge,
-            ackLabel = "確認しました",
-            acknowledgedLabel = "確認済み",
+            ackLabel = "Acknowledge",
+            acknowledgedLabel = "Acknowledged",
+            variant,
             icon,
             actions,
             ...props
@@ -91,6 +101,7 @@ const SafetyBanner = React.forwardRef<HTMLDivElement, SafetyBannerProps>(
 
         const TitleTag = titleAs
         const DefaultIcon = TONE_DEFAULT_ICON[tone]
+        const resolvedVariant: SafetyBannerVariantKey = variant ?? (acked ? "acknowledged" : safetyBannerDefaultVariantKey)
 
         return (
             <div
@@ -100,7 +111,7 @@ const SafetyBanner = React.forwardRef<HTMLDivElement, SafetyBannerProps>(
                 className={cn(
                     "flex w-full flex-col gap-2 rounded-lg border px-4 py-3 text-sm shadow-sm",
                     TONE_CONTAINER[tone],
-                    acked && "opacity-90",
+                    VARIANT_CLASS[resolvedVariant],
                     className
                 )}
                 {...props}

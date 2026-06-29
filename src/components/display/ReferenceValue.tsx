@@ -36,11 +36,11 @@ const FLAG_CONFIG: Record<
     RangeFlag,
     { code: string; tone: ReferenceValueTone; icon: typeof IconCheck; defaultLabel: string }
 > = {
-    normal: { code: "", tone: "success", icon: IconCheck, defaultLabel: "基準値内" },
-    high: { code: "H", tone: "warning", icon: IconArrowUp, defaultLabel: "高値" },
-    low: { code: "L", tone: "warning", icon: IconArrowDown, defaultLabel: "低値" },
-    "critical-high": { code: "HH", tone: "destructive", icon: IconAlertTriangle, defaultLabel: "異常高値" },
-    "critical-low": { code: "LL", tone: "destructive", icon: IconAlertTriangle, defaultLabel: "異常低値" },
+    normal: { code: "", tone: "success", icon: IconCheck, defaultLabel: "Within range" },
+    high: { code: "H", tone: "warning", icon: IconArrowUp, defaultLabel: "High" },
+    low: { code: "L", tone: "warning", icon: IconArrowDown, defaultLabel: "Low" },
+    "critical-high": { code: "HH", tone: "destructive", icon: IconAlertTriangle, defaultLabel: "Critical high" },
+    "critical-low": { code: "LL", tone: "destructive", icon: IconAlertTriangle, defaultLabel: "Critical low" },
 }
 
 const TONE_TEXT: Record<ReferenceValueTone, string> = {
@@ -79,13 +79,13 @@ export interface ReferenceValueProps extends Omit<React.HTMLAttributes<HTMLSpanE
     format?: (value: number) => React.ReactNode
     /** Unit suffix (e.g. `"℃"`, `"mg"`, `"mEq/L"`). */
     unit?: string
-    /** Localized flag labels (announced + used when `showLabel`). Defaults to JA (高値/低値/異常…). */
+    /** Localized flag labels (announced + used when `showLabel`). */
     labels?: Partial<Record<RangeFlag, string>>
     /** Show the flag label text visibly next to the code. Default `false` (code chip only; label is sr-only). */
     showLabel?: boolean
     /** Show the normal-range text (e.g. `基準 36.0–37.5`). Default `false`. */
     showRange?: boolean
-    /** Label preceding the range text. Default `"基準"`. */
+    /** Label preceding the range text. Default `"Range"`. */
     rangeLabel?: string
     /** Hide the flag chip entirely (value is still toned + sr-only flag text kept). Default `false`. */
     hideFlag?: boolean
@@ -111,7 +111,7 @@ const ReferenceValue = React.forwardRef<HTMLSpanElement, ReferenceValueProps>(
             labels,
             showLabel = false,
             showRange = false,
-            rangeLabel = "基準",
+            rangeLabel = "Range",
             hideFlag = false,
             size = "default",
             ...props

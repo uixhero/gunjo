@@ -57,8 +57,10 @@ export interface ScheduleGridProps
     rowHeaderWidth?: number
     /** Render a slot that has no cell (available/empty). Default a muted dash. */
     renderEmpty?: (row: ScheduleAxisItem, column: ScheduleAxisItem) => React.ReactNode
-    /** Announced for an `unavailable` slot. Default `"利用不可"`. */
+    /** Announced for an `unavailable` slot. Default `"Unavailable"`. */
     unavailableLabel?: string
+    /** Announced for a slot with no cell. Default `"Open"`. */
+    emptyLabel?: string
 }
 
 // Literal tone classes so Tailwind v4 keeps them (dynamic class names get tree-shaken).
@@ -104,7 +106,8 @@ const ScheduleGrid = React.forwardRef<HTMLDivElement, ScheduleGridProps>(
             minColumnWidth = 112,
             rowHeaderWidth = 72,
             renderEmpty,
-            unavailableLabel = "利用不可",
+            unavailableLabel = "Unavailable",
+            emptyLabel = "Open",
             ...props
         },
         ref
@@ -240,7 +243,7 @@ const ScheduleGrid = React.forwardRef<HTMLDivElement, ScheduleGridProps>(
                                         : cell?.description
                                           ? `${prefix} ${cell.description}`
                                           : cell?.content == null
-                                            ? `${prefix} 空き`
+                                            ? `${prefix} ${emptyLabel}`
                                             : prefix)
 
                                 if (cell?.unavailable) {

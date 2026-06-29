@@ -12,7 +12,7 @@ export interface PageHeaderProps extends Omit<React.HTMLAttributes<HTMLElement>,
   subtitle?: React.ReactNode
   /** Back handler — renders a ≥44px back button in the leading slot. */
   onBack?: () => void
-  /** Accessible label for the back button. Default `戻る`. */
+  /** Accessible label for the back button. Default `"Back"`. */
   backLabel?: string
   /** Extra leading element. Renders in the leading slot — *alongside* the back button when `onBack` is also set, otherwise on its own. */
   leading?: React.ReactNode
@@ -32,7 +32,7 @@ export interface PageHeaderProps extends Omit<React.HTMLAttributes<HTMLElement>,
  * is the lightweight per-page bar for a phone (booking flows, finders, trackers, detail pages).
  */
 export const PageHeader = React.forwardRef<HTMLElement, PageHeaderProps>(
-  ({ className, title, subtitle, onBack, backLabel = "戻る", leading, actions, sticky = true, align = "left", ...props }, ref) => {
+  ({ className, title, subtitle, onBack, backLabel = "Back", leading, actions, sticky = true, align = "left", ...props }, ref) => {
     // Render BOTH the back button and any `leading` element — never let one silently shadow the
     // other (passing both used to drop onBack's handler + aria-label with no type error).
     const backButton = onBack ? (

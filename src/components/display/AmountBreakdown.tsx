@@ -44,6 +44,11 @@ export interface AmountBreakdownProps extends Omit<React.HTMLAttributes<HTMLDivE
    * RSC-safe — pass your own (a function prop) only from a `"use client"` boundary.
    */
   formatValue?: (value: number) => string
+  /** Localized labels for derived accessible text. */
+  labels?: {
+    breakdown?: (totalLabel: string) => string
+    deduction?: string
+  }
 }
 
 const TOTAL_TONE: Record<NonNullable<AmountBreakdownTotal["tone"]>, string> = {
@@ -71,14 +76,17 @@ function lineValue(line: AmountLine, format: (v: number) => string): string {
  * `formatCurrency`); pass a custom `formatValue` only from a client boundary.
  */
 export const AmountBreakdown = React.forwardRef<HTMLDivElement, AmountBreakdownProps>(
-  ({ lines, total, formula, formatValue = formatCurrency, className, ...props }, ref) => {
+  ({ lines, total, formula, formatValue = formatCurrency, labels, className, ...props }, ref) => {
     const tone = total.tone ?? "neutral"
+    const breakdownLabel =
+      typeof total.label === "string" ? (labels?.breakdown?.(total.label) ?? `${total.label} breakdown`) : undefined
+    const deductionLabel = labels?.deduction ?? "Deduction"
     return (
       <div
         ref={ref}
         className={cn("w-full text-sm", className)}
         role="table"
-        aria-label={typeof total.label === "string" ? `${total.label}の内訳` : undefined}
+        aria-label={breakdownLabel}
         {...props}
       >
         <div className="flex flex-col">
@@ -119,7 +127,7 @@ export const AmountBreakdown = React.forwardRef<HTMLDivElement, AmountBreakdownP
                     isSubtotal && "font-semibold"
                   )}
                 >
-                  {isDeduction && <span className="sr-only">控除 </span>}
+                  {isDeduction && <span className="sr-only">{deductionLabel} </span>}
                   {lineValue(line, formatValue)}
                 </div>
               </div>

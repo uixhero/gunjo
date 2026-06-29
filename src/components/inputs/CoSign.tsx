@@ -39,18 +39,18 @@ export interface CoSignProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
     value?: CoSignValue
     /** Fired with the `CoSignValue` when the second person signs. */
     onSign?: (value: CoSignValue) => void
-    /** Label for the signer-id field. Default `"確認者ID（2人目）"`. */
+    /** Label for the signer-id field. Default `"Reviewer ID (second person)"`. */
     signerLabel?: React.ReactNode
-    /** Label for the reason field. Default `"理由"`. */
+    /** Label for the reason field. Default `"Reason"`. */
     reasonLabel?: React.ReactNode
-    /** Error shown when the signer equals the primary. Default `"主担当者と同一人物では確認できません。"`. */
+    /** Error shown when the signer equals the primary. */
     samePersonError?: React.ReactNode
     /** Localized strings. */
     labels?: { sign?: string; signed?: string; pending?: string; signerOf?: (id: string) => string }
 }
 
 /** A compact "2人確認 済/要" badge driven by a `CoSignValue`. */
-export function CoSignBadge({ value, signedLabel = "2人確認 済", pendingLabel = "2人確認 要" }: {
+export function CoSignBadge({ value, signedLabel = "Co-signed", pendingLabel = "Co-sign needed" }: {
     value?: CoSignValue
     signedLabel?: React.ReactNode
     pendingLabel?: React.ReactNode
@@ -79,9 +79,9 @@ const CoSign = React.forwardRef<HTMLDivElement, CoSignProps>(
             minSignerLength = 1,
             value,
             onSign,
-            signerLabel = "確認者ID（2人目）",
-            reasonLabel = "理由",
-            samePersonError = "主担当者と同一人物では確認できません。",
+            signerLabel = "Reviewer ID (second person)",
+            reasonLabel = "Reason",
+            samePersonError = "The second signer must be different from the primary actor.",
             labels,
             ...props
         },
@@ -106,10 +106,10 @@ const CoSign = React.forwardRef<HTMLDivElement, CoSignProps>(
                 >
                     <span className="inline-flex items-center gap-1.5 font-medium text-success-subtle-foreground">
                         <IconCheck className="h-4 w-4 shrink-0" aria-hidden="true" />
-                        {labels?.signed ?? "2人確認 済"}
+                        {labels?.signed ?? "Co-signed"}
                     </span>
                     <span className="text-xs text-muted-foreground">
-                        {labels?.signerOf ? labels.signerOf(value.signerId) : `確認者: ${value.signerId}`}
+                        {labels?.signerOf ? labels.signerOf(value.signerId) : `Reviewer: ${value.signerId}`}
                         {value.reason ? ` ／ ${value.reason}` : ""}
                     </span>
                 </div>
@@ -186,7 +186,7 @@ const CoSign = React.forwardRef<HTMLDivElement, CoSignProps>(
 
                 <div className="flex justify-end">
                     <Button size="sm" onClick={handleSign} disabled={!canSign}>
-                        {labels?.sign ?? "2人確認して署名"}
+                        {labels?.sign ?? "Co-sign"}
                     </Button>
                 </div>
             </div>

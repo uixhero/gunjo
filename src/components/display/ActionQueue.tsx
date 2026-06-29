@@ -34,6 +34,8 @@ export interface ActionQueueProps extends Omit<React.HTMLAttributes<HTMLUListEle
   sortBySeverity?: boolean
   /** Shown (as a dashed placeholder) when there are no items. */
   emptyLabel?: React.ReactNode
+  /** Localized severity labels used for screen-reader text. */
+  severityLabels?: Partial<Record<ActionSeverity, string>>
 }
 
 const SEVERITY: Record<
@@ -41,10 +43,10 @@ const SEVERITY: Record<
   { rank: number; Icon: typeof IconAlertTriangle; label: string; row: string; icon: string }
 > = {
   // `row` strings are literal so Tailwind v4 keeps them; tone tokens mirror Alert.
-  critical: { rank: 0, Icon: IconAlertTriangle, label: "重大", row: "border-destructive-border bg-destructive-subtle", icon: "text-destructive" },
-  warning: { rank: 1, Icon: IconAlertCircle, label: "警告", row: "border-warning-border bg-warning-subtle", icon: "text-warning" },
-  info: { rank: 2, Icon: IconInfoCircle, label: "情報", row: "border-info-border bg-info-subtle", icon: "text-info" },
-  neutral: { rank: 3, Icon: IconCircle, label: "通常", row: "border-border bg-card", icon: "text-muted-foreground" },
+  critical: { rank: 0, Icon: IconAlertTriangle, label: "Critical", row: "border-destructive-border bg-destructive-subtle", icon: "text-destructive" },
+  warning: { rank: 1, Icon: IconAlertCircle, label: "Warning", row: "border-warning-border bg-warning-subtle", icon: "text-warning" },
+  info: { rank: 2, Icon: IconInfoCircle, label: "Information", row: "border-info-border bg-info-subtle", icon: "text-info" },
+  neutral: { rank: 3, Icon: IconCircle, label: "Normal", row: "border-border bg-card", icon: "text-muted-foreground" },
 }
 
 /**
@@ -59,7 +61,7 @@ const SEVERITY: Record<
  * act-now list. Presentational by default — `onSelect` makes a row's body activatable.
  */
 export const ActionQueue = React.forwardRef<HTMLUListElement, ActionQueueProps>(
-  ({ items, sortBySeverity = true, emptyLabel = "対応が必要な項目はありません", className, ...props }, ref) => {
+  ({ items, sortBySeverity = true, emptyLabel = "No actions need attention", severityLabels, className, ...props }, ref) => {
     const ordered = sortBySeverity
       ? [...items].sort((a, b) => SEVERITY[a.severity ?? "neutral"].rank - SEVERITY[b.severity ?? "neutral"].rank)
       : items
@@ -75,7 +77,8 @@ export const ActionQueue = React.forwardRef<HTMLUListElement, ActionQueueProps>(
     return (
       <ul ref={ref} role="list" className={cn("flex w-full flex-col gap-2", className)} {...props}>
         {ordered.map((item, i) => {
-          const sev = SEVERITY[item.severity ?? "neutral"]
+          const severity = item.severity ?? "neutral"
+          const sev = SEVERITY[severity]
           const Icon = sev.Icon
           const body = (
             <>
@@ -98,7 +101,7 @@ export const ActionQueue = React.forwardRef<HTMLUListElement, ActionQueueProps>(
               <span className={cn("mt-0.5 shrink-0", sev.icon)} aria-hidden="true">
                 {item.icon ?? <Icon className="size-5" />}
               </span>
-              <span className="sr-only">{sev.label}：</span>
+              <span className="sr-only">{severityLabels?.[severity] ?? sev.label}: </span>
               <div className="min-w-0 flex-1">
                 {item.onSelect ? (
                   <button

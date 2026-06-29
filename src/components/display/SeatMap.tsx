@@ -44,6 +44,11 @@ export interface SeatMapProps extends Omit<React.HTMLAttributes<HTMLDivElement>,
   hideLegend?: boolean
   /** Accessible name for the grid. */
   label?: string
+  /** Localized labels for generated names and legend text. */
+  labels?: Partial<Record<SeatState | "selected" | "window" | "aisle" | "special", string>> & {
+    seat?: (seat: Seat) => string
+    separator?: string
+  }
 }
 
 const STATE_CELL: Record<SeatState, string> = {
@@ -54,11 +59,11 @@ const STATE_CELL: Record<SeatState, string> = {
 }
 
 const STATE_LABEL: Record<SeatState | "selected", string> = {
-  available: "空席",
-  occupied: "予約済",
-  held: "確保中",
-  blocked: "選択不可",
-  selected: "選択中",
+  available: "Available",
+  occupied: "Occupied",
+  held: "Held",
+  blocked: "Unavailable",
+  selected: "Selected",
 }
 
 const defaultFee = (n: number) => `¥${n.toLocaleString("ja-JP")}`
@@ -85,7 +90,8 @@ export const SeatMap = React.forwardRef<HTMLDivElement, SeatMapProps>(
       formatFee = defaultFee,
       showHeaders = true,
       hideLegend,
-      label = "座席表",
+      label = "Seat map",
+      labels,
       className,
       ...props
     },
@@ -193,10 +199,10 @@ export const SeatMap = React.forwardRef<HTMLDivElement, SeatMapProps>(
                   const state = seat.state ?? "available"
                   const interactive = state === "available" && (isSelected || !capped)
                   const parts = [
-                    `${seat.row}番${seat.col}席`,
-                    seat.position === "window" ? "窓側" : seat.position === "aisle" ? "通路側" : "",
+                    labels?.seat?.(seat) ?? `Row ${seat.row} seat ${seat.col}`,
+                    seat.position === "window" ? labels?.window ?? "Window" : seat.position === "aisle" ? labels?.aisle ?? "Aisle" : "",
                     seat.type ?? "",
-                    isSelected ? STATE_LABEL.selected : STATE_LABEL[state],
+                    isSelected ? labels?.selected ?? STATE_LABEL.selected : labels?.[state] ?? STATE_LABEL[state],
                     seat.fee != null && state === "available" ? formatFee(seat.fee) : "",
                   ].filter(Boolean)
                   return (
@@ -210,7 +216,7 @@ export const SeatMap = React.forwardRef<HTMLDivElement, SeatMapProps>(
                       role="gridcell"
                       aria-selected={isSelected}
                       aria-disabled={!interactive || undefined}
-                      aria-label={parts.join("、")}
+                      aria-label={parts.join(labels?.separator ?? ", ")}
                       tabIndex={seat.id === activeId ? 0 : -1}
                       onFocus={() => setFocusId(seat.id)}
                       onKeyDown={(e) => onKeyDown(e, seat)}
@@ -241,10 +247,10 @@ export const SeatMap = React.forwardRef<HTMLDivElement, SeatMapProps>(
 
         {!hideLegend && (
           <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-[11px] text-muted-foreground">
-            <LegendDot className="border-border bg-background" label={STATE_LABEL.available} />
-            <LegendDot className="border-info-border bg-info-subtle" label="特別席（非常口/足元ゆったり 等）" />
-            <LegendDot className="border-primary bg-primary" label={STATE_LABEL.selected} icon="check" />
-            <LegendDot className="border-border bg-muted" label={STATE_LABEL.occupied} icon="x" />
+            <LegendDot className="border-border bg-background" label={labels?.available ?? STATE_LABEL.available} />
+            <LegendDot className="border-info-border bg-info-subtle" label={labels?.special ?? "Special seat"} />
+            <LegendDot className="border-primary bg-primary" label={labels?.selected ?? STATE_LABEL.selected} icon="check" />
+            <LegendDot className="border-border bg-muted" label={labels?.occupied ?? STATE_LABEL.occupied} icon="x" />
           </div>
         )}
       </div>

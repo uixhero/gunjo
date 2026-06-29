@@ -25,7 +25,7 @@ export interface MatchCardProps extends React.HTMLAttributes<HTMLDivElement> {
   score?: React.ReactNode
   /** Factor-by-factor match breakdown (要件適合 / 評価項目 — 業種◎ / エリア△ …). */
   factors?: MatchFactor[]
-  /** Heading above the factor breakdown. Default 適合の内訳. */
+  /** Heading above the factor breakdown. Default `"Match factors"`. */
   factorsLabel?: React.ReactNode
   /** Trailing actions (打診する / 申請する / NDA). */
   actions?: React.ReactNode
@@ -77,7 +77,7 @@ const MatchCard = React.forwardRef<HTMLDivElement, MatchCardProps>(
             {factorsLabel != null ? (
               <p className="text-xs font-medium text-muted-foreground">{factorsLabel}</p>
             ) : (
-              <p className="text-xs font-medium text-muted-foreground">適合の内訳</p>
+              <p className="text-xs font-medium text-muted-foreground">Match factors</p>
             )}
             <ul className="flex flex-col gap-1">
               {factors.map((f, i) => (

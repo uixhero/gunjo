@@ -115,7 +115,7 @@ const Leaderboard = React.forwardRef<HTMLDivElement, LeaderboardProps>(
       <div
         ref={ref}
         role="group"
-        aria-label={typeof label === "string" ? label : "ランキング"}
+        aria-label={typeof label === "string" ? label : "Leaderboard"}
         className={cn("w-full", className)}
         data-slot="leaderboard"
         {...props}

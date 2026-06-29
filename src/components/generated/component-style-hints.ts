@@ -307,14 +307,16 @@ export const componentStyleHints = {
     },
     "safetyBanner": {
       "variantKeys": [
-        "default"
+        "default",
+        "acknowledged"
       ],
       "defaultVariantKey": "default",
       "baseClasses": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-lg",
       "baseColorHint": null,
       "slotIds": [],
       "variantClasses": {
-        "default": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-lg"
+        "default": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-lg",
+        "acknowledged": "inline-flex items-center w-full py-3 px-4 gap-1 rounded-lg"
       },
       "variantColorHints": {}
     },

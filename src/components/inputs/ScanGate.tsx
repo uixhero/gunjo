@@ -78,6 +78,8 @@ export interface ScanGateProps extends Omit<React.HTMLAttributes<HTMLDivElement>
     showFeed?: boolean
     feedLimit?: number
     lockMs?: number
+    /** Accessible label for the step indicator. Default `"Scan steps"`. */
+    stepsLabel?: string
 }
 
 /**
@@ -100,6 +102,7 @@ const ScanGate = React.forwardRef<ScanGateHandle, ScanGateProps>(
             showFeed = false,
             feedLimit,
             lockMs,
+            stepsLabel = "Scan steps",
             ...props
         },
         ref
@@ -170,7 +173,7 @@ const ScanGate = React.forwardRef<ScanGateHandle, ScanGateProps>(
         return (
             <div className={cn("flex w-full flex-col gap-3", className)} data-slot="scan-gate" {...props}>
                 {showSteps && safeStages.length > 1 ? (
-                    <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm" aria-label="スキャン手順">
+                    <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm" aria-label={stepsLabel}>
                         {safeStages.map((stage, i) => {
                             const state = i < activeIndex ? "done" : i === activeIndex ? "active" : "todo"
                             return (

@@ -4,25 +4,25 @@
 
 ## Summary
 
-- Component targets: 162
-- Variant targets: 226
+- Component targets: 216
+- Variant targets: 294
 - Components with empty variants: 46
-- Synthetic variants: 120
+- Synthetic variants: 183
 - tokens.pen variables: 43
-- src/globals.css root variables: 95
+- src/globals.css root variables: 102
 
 ## Page Scope
 
 | Figma page | Components | Variants | Empty variant components | Synthetic variants | Fill-container components |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Inputs | 37 | 44 | 18 | 13 | 3 |
-| Display | 36 | 57 | 13 | 29 | 12 |
-| Charts | 23 | 48 | 0 | 48 | 23 |
-| Feedback | 11 | 22 | 2 | 9 | 1 |
-| Navigation | 16 | 14 | 4 | 3 | 2 |
+| Inputs | 42 | 49 | 18 | 18 | 12 |
+| Display | 76 | 110 | 13 | 79 | 49 |
+| Charts | 26 | 51 | 0 | 51 | 26 |
+| Feedback | 12 | 24 | 2 | 11 | 5 |
+| Navigation | 19 | 17 | 4 | 6 | 8 |
 | Overlay | 16 | 16 | 3 | 6 | 3 |
 | Layout | 14 | 16 | 6 | 12 | 3 |
-| Patterns | 9 | 9 | 0 | 0 | 0 |
+| Patterns | 11 | 11 | 0 | 0 | 11 |
 
 ## Components Requiring Manual Design Completion
 
@@ -31,6 +31,7 @@
 | Inputs | Button | 4 synthetic variants |
 | Inputs | TooltipButton | 1 synthetic variants |
 | Inputs | CopyButton | 2 synthetic variants |
+| Inputs | SegmentedControl | 1 synthetic variants |
 | Inputs | ChatInput | 2 synthetic variants |
 | Inputs | ChatComposer | 3 synthetic variants |
 | Inputs | Label | empty variants |
@@ -52,6 +53,10 @@
 | Inputs | TimePicker | empty variants |
 | Inputs | TagInput | empty variants |
 | Inputs | Mention | empty variants |
+| Inputs | CurrencyInput | 1 synthetic variants |
+| Inputs | ScanInput | 1 synthetic variants |
+| Inputs | ScanGate | 1 synthetic variants |
+| Inputs | CoSign | 1 synthetic variants |
 | Display | ChatMessage | 4 synthetic variants |
 | Display | ImagePreview | 3 synthetic variants |
 | Display | Skeleton | empty variants |
@@ -69,7 +74,7 @@
 | Display | Timeline | empty variants |
 | Display | TreeView | empty variants |
 | Display | FileTree | 3 synthetic variants |
-| Display | DocNote | 2 synthetic variants |
+| Display | DocNote | 5 synthetic variants |
 | Display | MarkdownRenderer | empty variants |
 | Display | Statistic | empty variants |
 | Display | AssetCard | 2 synthetic variants |
@@ -82,6 +87,7 @@
 | Charts | RibbonChart | 2 synthetic variants |
 | Charts | RadialBarChart | 2 synthetic variants |
 | Charts | BarChart | 2 synthetic variants |
+| Charts | ParetoChart | 1 synthetic variants |
 | Charts | Concentric Progress Card | 2 synthetic variants |
 | Charts | StackedBarChart | 2 synthetic variants |
 | Charts | DistributionBar | 1 synthetic variants |
@@ -99,10 +105,56 @@
 | Charts | ChoroplethMap | 2 synthetic variants |
 | Charts | QuadrantMatrix | 2 synthetic variants |
 | Charts | AnalyticsCard | 4 synthetic variants |
+| Display | Rating | 3 synthetic variants |
+| Display | SwatchGroup | 3 synthetic variants |
+| Display | Gallery | 2 synthetic variants |
+| Display | EditableDataTable | 2 synthetic variants |
+| Display | ApprovalSteps | 2 synthetic variants |
+| Display | RevealSection | 1 synthetic variants |
+| Display | Delta | 1 synthetic variants |
+| Display | Meter | 1 synthetic variants |
+| Display | LineageGraph | 1 synthetic variants |
+| Display | Gantt | 1 synthetic variants |
+| Display | WeekView | 1 synthetic variants |
+| Display | PersonCell | 1 synthetic variants |
+| Display | StatGroup | 1 synthetic variants |
+| Display | AmountBreakdown | 1 synthetic variants |
+| Display | ActionQueue | 1 synthetic variants |
+| Display | SeatMap | 1 synthetic variants |
+| Navigation | BottomActionBar | 1 synthetic variants |
+| Display | ExpiryBadge | 1 synthetic variants |
+| Display | StatusBoard | 1 synthetic variants |
+| Charts | Stringline | 1 synthetic variants |
+| Display | TicketStub | 1 synthetic variants |
+| Display | Itinerary | 1 synthetic variants |
+| Display | OriginDestination | 1 synthetic variants |
+| Display | DocumentRow | 1 synthetic variants |
+| Display | CompanyCell | 1 synthetic variants |
+| Display | MatchCard | 1 synthetic variants |
+| Navigation | NavRow | 1 synthetic variants |
+| Display | SectionList | 1 synthetic variants |
+| Display | LimitMonitor | 1 synthetic variants |
+| Display | LineChip | 1 synthetic variants |
+| Charts | Leaderboard | 1 synthetic variants |
+| Navigation | PageHeader | 1 synthetic variants |
+| Display | FilterChips | 1 synthetic variants |
+| Display | RadioCard | 1 synthetic variants |
+| Display | LoyaltySummaryCard | 1 synthetic variants |
+| Display | ListCard | 1 synthetic variants |
+| Display | RelationshipRow | 1 synthetic variants |
+| Display | KanbanBoard | 1 synthetic variants |
+| Display | EventCalendar | 1 synthetic variants |
+| Display | CheckList | 1 synthetic variants |
+| Display | ApprovalWorkflow | 1 synthetic variants |
+| Display | ScheduleGrid | 1 synthetic variants |
+| Display | RouteStops | 1 synthetic variants |
+| Display | ReferenceValue | 1 synthetic variants |
+| Display | SignedRecord | 1 synthetic variants |
 | Feedback | Alert | 3 synthetic variants |
 | Feedback | StatusScreen | 6 synthetic variants |
 | Feedback | Stepper | empty variants |
 | Feedback | Banner | empty variants |
+| Feedback | SafetyBanner | 2 synthetic variants |
 | Navigation | TextLink | 2 synthetic variants |
 | Navigation | NavigationMenu | empty variants |
 | Navigation | Sidebar | empty variants |
@@ -130,7 +182,6 @@
 
 | Source category | Key | Reason |
 | --- | --- | --- |
-| patterns | pricingTemplate | null spec entry |
 | patterns | blogTemplate | null spec entry |
 | patterns | docsTemplate | null spec entry |
 | patterns | onboardingTemplate | null spec entry |

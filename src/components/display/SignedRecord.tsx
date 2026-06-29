@@ -122,26 +122,26 @@ const SignedRecord = React.forwardRef<HTMLDivElement, SignedRecordProps>(
             setComposing(false)
         }
 
-        const authorAt = labels?.authorAt ?? ((author: string, at: React.ReactNode) => `${author}・${at}`)
+        const authorAt = labels?.authorAt ?? ((author: string, at: React.ReactNode) => `${author} at ${at}`)
 
         return (
             <div ref={ref} className={cn("flex w-full flex-col gap-3", className)} data-slot="signed-record" {...props}>
                 <div className="flex flex-wrap items-center justify-between gap-2">
                     {readOnly ? (
                         <div className="flex flex-wrap items-center gap-2 text-sm">
-                            <Badge variant="success">{labels?.signed ?? "署名・確定済"}</Badge>
+                            <Badge variant="success">{labels?.signed ?? "Signed and locked"}</Badge>
                             {value.signedBy ? (
                                 <span className="text-muted-foreground">
-                                    {labels?.signedByLabel ?? "署名"}: {authorAt(value.signedBy, value.signedAt ? formatTime(value.signedAt) : "")}
+                                    {labels?.signedByLabel ?? "Signed"}: {authorAt(value.signedBy, value.signedAt ? formatTime(value.signedAt) : "")}
                                 </span>
                             ) : null}
                         </div>
                     ) : (
-                        <Badge variant="info">{labels?.draft ?? "下書き"}</Badge>
+                        <Badge variant="info">{labels?.draft ?? "Draft"}</Badge>
                     )}
                     {readOnly ? null : (
                         <Button size="sm" onClick={sign} disabled={!canSign}>
-                            {labels?.sign ?? "署名・確定"}
+                            {labels?.sign ?? "Sign and lock"}
                         </Button>
                     )}
                 </div>
@@ -149,7 +149,7 @@ const SignedRecord = React.forwardRef<HTMLDivElement, SignedRecordProps>(
                 {readOnly ? (
                     <p className="inline-flex items-center gap-1.5 rounded-md border border-border bg-muted/40 px-3 py-2 text-xs text-muted-foreground">
                         <IconLock className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
-                        {labels?.locked ?? "確定済みの記録は変更できません。修正は追記で行います。"}
+                        {labels?.locked ?? "Signed records cannot be edited. Add an addendum for corrections."}
                     </p>
                 ) : null}
 
@@ -157,14 +157,14 @@ const SignedRecord = React.forwardRef<HTMLDivElement, SignedRecordProps>(
 
                 {readOnly || value.addenda.length > 0 ? (
                     <div className="flex flex-col gap-2 border-t pt-3">
-                        <p className="text-sm font-medium text-foreground">{labels?.addendaTitle ?? "追記"}</p>
+                        <p className="text-sm font-medium text-foreground">{labels?.addendaTitle ?? "Addenda"}</p>
                         {value.addenda.length > 0 ? (
                             <ol className="flex flex-col gap-2">
                                 {value.addenda.map((a) => (
                                     <li key={a.id} className="rounded-md border border-border bg-card p-3 text-sm">
                                         <div className="mb-1 flex flex-wrap items-center gap-x-2 text-xs text-muted-foreground">
                                             <span className="font-medium text-foreground">{authorAt(a.author, formatTime(a.at))}</span>
-                                            {a.reason ? <span>／ {a.reason}</span> : null}
+                                            {a.reason ? <span>/ {a.reason}</span> : null}
                                         </div>
                                         <div className="leading-relaxed text-foreground">{a.body}</div>
                                     </li>
@@ -176,28 +176,28 @@ const SignedRecord = React.forwardRef<HTMLDivElement, SignedRecordProps>(
                             composing ? (
                                 <div className="flex flex-col gap-2 rounded-md border border-border p-3">
                                     <Textarea
-                                        label={labels?.addendumBody ?? "追記内容"}
+                                        label={labels?.addendumBody ?? "Addendum"}
                                         rows={2}
                                         value={addBody}
                                         onChange={(e) => setAddBody(e.target.value)}
                                     />
                                     {requireAddendumReason ? (
                                         <Input
-                                            label={labels?.addendumReason ?? "理由"}
+                                            label={labels?.addendumReason ?? "Reason"}
                                             value={addReason}
                                             onChange={(e) => setAddReason(e.target.value)}
                                         />
                                     ) : null}
                                     <div className="flex justify-end gap-2">
                                         <Button size="sm" variant="ghost" onClick={() => setComposing(false)}>
-                                            {labels?.cancel ?? "キャンセル"}
+                                            {labels?.cancel ?? "Cancel"}
                                         </Button>
                                         <Button
                                             size="sm"
                                             onClick={submitAddendum}
                                             disabled={!addBody.trim() || (requireAddendumReason && !addReason.trim())}
                                         >
-                                            {labels?.addendumSubmit ?? "追記する"}
+                                            {labels?.addendumSubmit ?? "Add addendum"}
                                         </Button>
                                     </div>
                                 </div>
@@ -209,7 +209,7 @@ const SignedRecord = React.forwardRef<HTMLDivElement, SignedRecordProps>(
                                     onClick={() => setComposing(true)}
                                 >
                                     <IconPlus className="h-3.5 w-3.5" aria-hidden="true" />
-                                    {labels?.addendum ?? "追記する"}
+                                    {labels?.addendum ?? "Add addendum"}
                                 </Button>
                             )
                         ) : null}

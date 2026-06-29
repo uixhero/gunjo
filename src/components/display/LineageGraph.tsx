@@ -42,6 +42,7 @@ export interface LineageGraphProps extends Omit<React.HTMLAttributes<HTMLDivElem
     renderNode?: (node: LineageNode) => React.ReactNode
     onSelectNode?: (node: LineageNode) => void
     label?: React.ReactNode
+    labels?: { upstream?: string; downstream?: string; separator?: string; graph?: string }
 }
 
 const NODE_TONE: Record<LineageNodeTone, string> = {
@@ -101,6 +102,7 @@ const LineageGraph = React.forwardRef<HTMLDivElement, LineageGraphProps>(
             renderNode,
             onSelectNode,
             label,
+            labels,
             ...props
         },
         ref
@@ -156,7 +158,7 @@ const LineageGraph = React.forwardRef<HTMLDivElement, LineageGraphProps>(
             <div
                 ref={ref}
                 role="group"
-                aria-label={typeof label === "string" ? label : "系譜グラフ"}
+                aria-label={typeof label === "string" ? label : labels?.graph ?? "Lineage graph"}
                 className={cn("w-full max-w-full overflow-auto p-0 [contain:paint]", className)}
                 data-slot="lineage-graph"
                 {...props}
@@ -212,9 +214,10 @@ const LineageGraph = React.forwardRef<HTMLDivElement, LineageGraphProps>(
                         if (!p) return null
                         const parents = (layout.parentsOf.get(n.id) ?? []).map((id) => nodeById.get(id)).filter(Boolean) as LineageNode[]
                         const children = (layout.childrenOf.get(n.id) ?? []).map((id) => nodeById.get(id)).filter(Boolean) as LineageNode[]
+                        const separator = labels?.separator ?? ", "
                         const accessibleName = `${nodeText(n)}${
-                            parents.length ? `、上流: ${parents.map(nodeText).join("、")}` : ""
-                        }${children.length ? `、下流: ${children.map(nodeText).join("、")}` : ""}`
+                            parents.length ? `${separator}${labels?.upstream ?? "upstream"}: ${parents.map(nodeText).join(separator)}` : ""
+                        }${children.length ? `${separator}${labels?.downstream ?? "downstream"}: ${children.map(nodeText).join(separator)}` : ""}`
                         const body = renderNode ? (
                             renderNode(n)
                         ) : (
