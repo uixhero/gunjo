@@ -203,6 +203,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "stringline": "Charts",
   "leaderboard": "Charts",
   "section-list": "Display",
+  "nav-row": "Navigation",
   "line-chip": "Display",
   "status-board": "Display",
   "expiry-badge": "Display",

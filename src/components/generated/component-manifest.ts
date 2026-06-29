@@ -1492,6 +1492,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "navRow": {
+      "title": "NavRow",
+      "description": "The flush settings / nav-list row: a leading icon, a label (+ description), a right-aligned current value, and a trailing chevron — the `[icon] label … value [›]` row every settings / account / マイページ / menu screen is built from. With onSelect the whole row is a NAVIGATION / disclosure button (chevron default, aria-haspopup=\"dialog\" via opensDialog) — deliberately NOT aria-pressed: a row that opens a detail is navigation, not a toggle (the a11y trap of using ListCard.onSelect for settings rows). Without onSelect it is a static control row — put a Switch / Badge in trailing. Group rows in SettingGroup for the rounded-container + hairline-divider look. Distinct from ListCard (a bordered card with aria-pressed selection). RSC-safe except the opt-in onSelect.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/NavRow.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "pageHeader": {
       "title": "PageHeader",
       "description": "The mobile app bar / page header every consumer phone screen opens with: a leading back button, a title (+ optional subtitle), and a trailing action slot, sticky to the top with a header landmark, a bottom border and safe-area-inset padding (notch). Touch targets are ≥44px; title align left (default) or center (iOS-style). The kit's Header / AppRail are desktop app/docs chrome — this is the lightweight per-page bar for a phone (booking flows, finders, trackers, detail pages). Pass onBack for the ≥44px back button, or override the leading slot; actions holds close/refresh/menu buttons.",

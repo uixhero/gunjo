@@ -398,5 +398,9 @@
   "sectionList": {
     "title": "SectionList",
     "description": "The grouped-list / sectioned layout: a sequence of sections, each a heading band (title + sublabel + a right-aligned group aggregate) over the caller's body rows, with an optional per-group subtotal footer. The grouping spine every history / 利用明細 / 取引履歴 / statement / invoice-by-客先 screen hand-rolls — groupBy + a section header + a per-group subtotal. Body-agnostic: drop in ListCards (mobile history), a Table (desktop invoices), or signed ledger rows. The caller owns the grouping + subtotal math + any cross-group selection; this owns the consistent header/footer chrome + the sectioned a11y structure. Distinct from StatusBoard.groups (status tiles) and Itinerary.days (a trip timeline). sections[] of {key,title,sublabel?,meta?,content,footer?}; stickyHeaders optional. RSC-safe."
+  },
+  "navRow": {
+    "title": "NavRow",
+    "description": "The flush settings / nav-list row: a leading icon, a label (+ description), a right-aligned current value, and a trailing chevron — the `[icon] label … value [›]` row every settings / account / マイページ / menu screen is built from. With onSelect the whole row is a NAVIGATION / disclosure button (chevron default, aria-haspopup=\"dialog\" via opensDialog) — deliberately NOT aria-pressed: a row that opens a detail is navigation, not a toggle (the a11y trap of using ListCard.onSelect for settings rows). Without onSelect it is a static control row — put a Switch / Badge in trailing. Group rows in SettingGroup for the rounded-container + hairline-divider look. Distinct from ListCard (a bordered card with aria-pressed selection). RSC-safe except the opt-in onSelect."
   }
 }
