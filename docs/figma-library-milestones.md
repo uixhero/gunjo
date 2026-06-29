@@ -12,13 +12,17 @@ Source of truth:
 
 ## Current Status
 
-- Discovery scope: 162 components / templates
-- Recorded exports: 162
-- Remaining exports: 0
+- Original issue #8 discovery scope: 162 components / templates
+- Original issue #8 recorded exports: 162
+- Original issue #8 remaining exports: 0
+- Latest regenerated SSOT discovery scope: 173 components / templates
+- Latest Figma represented components / templates: 165
+- Latest SSOT gaps: 8
 - Completed category blocks: `Inputs`, `Overlay`, `Display`, `Charts`, `Feedback`, `Navigation`, `Patterns`
-- Current working category: `Complete`
+- Current working category: `Scope audit`
 - Last recorded component: `MediaLibraryTemplate`
-- Recommended next component: `None`
+- Recommended next component if expanding to latest SSOT: `CurrencyInput`
+- Audit note: see `docs/figma-library-final-audit.md`
 
 ## Completed Blocks
 

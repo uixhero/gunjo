@@ -16,9 +16,9 @@ The owner approved exporting foundations data from this private pre-public
 repository to the Figma file on 2026-06-12. The foundations export was then
 completed:
 
-- `Gunjo Tokens`: 54 variables, with `Light` and `Dark` modes.
+- `Gunjo Tokens`: 55 variables, with `Light` and `Dark` modes.
   - 43 variables from `design/tokens.pen`.
-  - 11 runtime semantic color variables from `src/globals.css` for component
+  - 12 runtime semantic color variables from `src/globals.css` for component
     bindings.
 - `Gunjo Runtime`: 1 `radius/base` variable.
 - Text styles: 7 `Gunjo/*` styles.
@@ -393,8 +393,8 @@ Generated outputs:
 These files describe the exact data intended for the Figma foundations write:
 
 - 11 pages matching the discovery taxonomy.
-- 54 variables in a `Gunjo Tokens` collection with Light and Dark modes:
-  43 from `design/tokens.pen`, plus 11 runtime semantic colors required for
+- 55 variables in a `Gunjo Tokens` collection with Light and Dark modes:
+  43 from `design/tokens.pen`, plus 12 runtime semantic colors required for
   Button and other component bindings.
 - 1 `Gunjo Runtime` radius variable for `var(--radius)`, because component
   corner-radius binding needs it and `design/tokens.pen` does not currently emit
