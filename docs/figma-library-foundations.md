@@ -6740,6 +6740,63 @@ Figma export:
   token notes, and KanbanTemplate / Card / Button / Avatar / dnd-kit usage
   boundaries are aligned without visible overflow or overlap.
 
+### ChatTemplate
+
+- `ChatTemplate / Section`: `606:195`
+- `ChatTemplate / Specimen`: `606:196`
+- `ChatTemplate/Default`: `606:209`
+- Placement: `Patterns` page, after `KanbanTemplate / Section`, at
+  `(40, 12088)`, `1280 x 2240`.
+- Variant contract: generated spec exposes a single `default` variant with
+  `default` as the default variant. The Figma component records the
+  conversation shell and docs-derived direct-message specimen; selected user,
+  channel data, message state, and realtime behavior are app state, not
+  persistent component variants.
+- Public API: `ChatTemplateProps` extends div HTML attributes and accepts
+  optional `sidebarList?: React.ReactNode`, optional
+  `sidebarDetail?: React.ReactNode`, optional `header?: React.ReactNode`,
+  required `children: React.ReactNode`, optional
+  `composer?: React.ReactNode`, and `className`.
+- Runtime behavior: the root renders `flex h-full min-h-0 w-full
+  overflow-hidden bg-background`. The left sidebar is hidden below `md`, uses
+  `w-[280px]`, `border-r`, `bg-muted/30`, and `flex-shrink-0`. The main chat
+  area is `flex flex-col flex-1 min-w-0`; the header is `h-14` with `border-b`
+  and `px-4`; the message stream is `flex-1 overflow-y-auto p-4 flex
+  flex-col`; the composer is pinned below the stream with `p-4 border-t
+  bg-background`. The optional right detail pane is hidden below `xl`, uses
+  `w-[300px]`, `border-l`, `bg-muted/30`, and `flex-shrink-0`.
+- Generated anatomy: style hints record base class `flex w-full h-full`, slot
+  ids `chatTemplateSidebarList`, `chatTemplateMainArea`, and
+  `chatTemplateSidebarDetail`, variant class `flex w-full h-full`, and
+  `fill=#ffffff` as the base and default color hint. The generated patterns
+  spec records the 280 px list rail, main area with header / messages /
+  composer, and 300 px detail rail.
+- Docs-derived composition and samples: docs and embedded previews cover the
+  left list search placeholder `Search...`, section labels `Direct Messages`
+  and `Channels`, list items `Alice Smith`, `Bob Jones`, `Charlie Day`,
+  `#general`, and `#random`, header user `Alice Smith`, status `Active now`,
+  composer placeholder `Type a message...`, profile role `Product Designer`,
+  metadata labels `Email`, `Location`, `Shared Files`, and messages including
+  `Hey! Have you seen the new design system updates?` and `Yes! It looks
+  amazing. I love the new color palette.`
+- Composition and usage boundaries: ChatTemplate composes a responsive
+  conversation shell for channel/user list, active conversation, composer, and
+  optional detail pane. It does not own message transport, read receipts,
+  typing state, file upload behavior, or selected conversation state. Compose
+  Input, Button, Avatar, SidebarItem, ChatMessage, ChatInput, ChatPanel, and
+  product-specific realtime logic inside the slots.
+- Runtime token notes: ChatTemplate uses `background`, `muted`, `card`,
+  `border`, `foreground`, `muted-foreground`, `primary`,
+  `primary-foreground`, and `accent` in the specimen. The generated spec also
+  records root fill `#ffffff`, sidebar/detail fill `#f1f5f9`, and border
+  `#e5e7eb`.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  default conversation shell, left list / header / message stream / composer /
+  detail pane anatomy, API notes, token notes, and ChatTemplate / Input /
+  Button / Avatar / SidebarItem usage boundaries are aligned without visible
+  overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -6765,7 +6822,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, MarqueeFrame, DashboardTemplate, EditorTemplate, LandingTemplate, AuthTemplate, and KanbanTemplate components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, MarqueeFrame, DashboardTemplate, EditorTemplate, LandingTemplate, AuthTemplate, KanbanTemplate, and ChatTemplate components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
