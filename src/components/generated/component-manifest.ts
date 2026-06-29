@@ -1503,6 +1503,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "originDestination": {
+      "title": "OriginDestination",
+      "description": "The A→B route header: 出発 → 到着 (東京 → 新大阪 / HND → CTS / POL → POD / 新宿 → 大阪), each endpoint a label + optional sub (code / time / platform), joined by an arrow (or a connector slot for a duration / mode icon), with an optional swap button (出発⇄到着) and via stops. The compact identity of every transit / freight SEARCH & RESULT screen — a HORIZONTAL A→B across the top, NOT a vertical sequence (that is RouteStops / Itinerary, which go DOWN the page). `inline` gives the small single-line variant for a result row (発→着 times). from + to (+ via[]) of {label, sub?}; connector, onSwap, inline, label. RSC-safe except the opt-in onSwap.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/OriginDestination.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "pageHeader": {
       "title": "PageHeader",
       "description": "The mobile app bar / page header every consumer phone screen opens with: a leading back button, a title (+ optional subtitle), and a trailing action slot, sticky to the top with a header landmark, a bottom border and safe-area-inset padding (notch). Touch targets are ≥44px; title align left (default) or center (iOS-style). The kit's Header / AppRail are desktop app/docs chrome — this is the lightweight per-page bar for a phone (booking flows, finders, trackers, detail pages). Pass onBack for the ≥44px back button, or override the leading slot; actions holds close/refresh/menu buttons.",
