@@ -24,6 +24,13 @@ export interface RouteStopItem {
     actualTime?: string
     /** Delay in minutes (+late / −early). Computed from the times when both are `"HH:MM"` and this is omitted. */
     delayMinutes?: number
+    /**
+     * Free-form date / timestamp for a MULTI-DAY timeline — `2025/05/16`, `5/16〜5/29`,
+     * `2025/06/02 通関許可`. Shown as the stop's time line; use this instead of the
+     * `"HH:MM"` `plannedTime`/`actualTime` when a stop spans calendar dates (shipment /
+     * cross-dock / project tracking). When set, the intraday delay readout is skipped.
+     */
+    dateLabel?: React.ReactNode
     /** Extra meta (個数 etc.) shown by the title. */
     meta?: React.ReactNode
     /** Trailing per-stop actions (status update, reschedule). */
@@ -63,10 +70,13 @@ function parseHM(t?: string): number | null {
 /**
  * Ordered route / itinerary list. Numbered stops with a per-stop status
  * (pending / current / completed / failed / delayed) driving the marker and a
- * status label, a planned-vs-actual time pair with a signed delay (via `Delta`),
- * the current stop wired with `aria-current="step"`, and a trailing actions
- * slot. For delivery tracking, picking walk-paths and any sequenced-stop flow.
- * (#228)
+ * status label, the current stop wired with `aria-current="step"`, and a trailing
+ * actions slot. Two time modes: an INTRADAY planned-vs-actual `"HH:MM"` pair with a
+ * signed delay (via `Delta`) for same-day delivery routes; or a free-form per-stop
+ * `dateLabel` for a MULTI-DAY / multi-week dated timeline (shipment / customs /
+ * cross-dock — `5/12 輸出通関 → 5/16〜5/29 海上輸送 → 6/2 通関許可 → 6/5 納品`). For
+ * delivery tracking, freight/shipment tracking, picking walk-paths and any
+ * sequenced-stop flow. (#228)
  */
 const RouteStops = React.forwardRef<HTMLOListElement, RouteStopsProps>(
     ({ className, stops, statusLabels, hideTimes = false, timeLabels, ...props }, ref) => {
@@ -124,7 +134,11 @@ const RouteStops = React.forwardRef<HTMLOListElement, RouteStopsProps>(
                                     <p className="text-sm text-muted-foreground">{stop.description}</p>
                                 ) : null}
 
-                                {!hideTimes && (stop.plannedTime || stop.actualTime || delay !== undefined) ? (
+                                {!hideTimes && stop.dateLabel != null ? (
+                                    <p className="text-xs tabular-nums text-muted-foreground">{stop.dateLabel}</p>
+                                ) : null}
+
+                                {!hideTimes && stop.dateLabel == null && (stop.plannedTime || stop.actualTime || delay !== undefined) ? (
                                     <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs tabular-nums text-muted-foreground">
                                         {stop.plannedTime ? (
                                             <span>
