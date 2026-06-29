@@ -2033,6 +2033,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "navRow": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
+      "variantColorHints": {}
+    },
     "pageHeader": {
       "variantKeys": [
         "default"

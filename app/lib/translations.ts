@@ -1608,6 +1608,8 @@ export const translations: Record<
       Stringline: "運行図表",
       Leaderboard: "ランキング",
       SectionList: "セクションリスト",
+      NavRow: "ナビ行",
+      SettingGroup: "設定グループ",
       LineChip: "路線チップ",
       StatusBoard: "状態盤",
       ExpiryBadge: "有効期限",

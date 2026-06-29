@@ -953,6 +953,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "navRow",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:navRow",
+      title: "NavRow",
+      description: "The flush settings / nav-list row: a leading icon, a label (+ description), a right-aligned current value, and a trailing chevron — the `[icon] label … value [›]` row every settings / account / マイページ / menu screen is built from. With onSelect the whole row is a NAVIGATION / disclosure button (chevron default, aria-haspopup=\"dialog\" via opensDialog) — deliberately NOT aria-pressed: a row that opens a detail is navigation, not a toggle (the a11y trap of using ListCard.onSelect for settings rows). Without onSelect it is a static control row — put a Switch / Badge in trailing. Group rows in SettingGroup for the rounded-container + hairline-divider look. Distinct from ListCard (a bordered card with aria-pressed selection). RSC-safe except the opt-in onSelect.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "sectionList",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:sectionList",

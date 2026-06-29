@@ -235,6 +235,7 @@ export const navigation = [
             { title: "Header", href: "/docs/components/header" },
             { title: "Menubar", href: "/docs/components/menubar" },
             { title: "NavigationMenu", href: "/docs/components/navigation-menu" },
+            { title: "NavRow", href: "/docs/components/nav-row" },
             { title: "PageAside", href: "/docs/components/page-aside" },
             { title: "PageHeader", href: "/docs/components/page-header" },
             { title: "Pagination", href: "/docs/components/pagination" },
