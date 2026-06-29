@@ -261,11 +261,27 @@ export type AiHandoffPageStrings = {
   };
 };
 
+export type ColdTestsPageStrings = {
+  label: string;
+  heading: string;
+  subtitle: (count: number) => string;
+  searchPlaceholder: string;
+  allTab: string;
+  emptyState: string;
+  previewUnavailable: string;
+  // The JSON categories live in Japanese (the cold-test series is Japanese
+  // first); the page looks up the localized label by the JA key.
+  categories: Record<string, string>;
+  scoreLabel: (score: string) => string;
+  roundLabel: (round: number) => string;
+};
+
 export type PagesTranslations = {
   showcase: ShowcasePageStrings;
   tokens: TokensPageStrings;
   patterns: PatternsPageStrings;
   aiHandoff: AiHandoffPageStrings;
+  coldTests: ColdTestsPageStrings;
 };
 
 export type HeaderKey =
@@ -537,6 +553,40 @@ export const translations: Record<
         emptyState: "No components match.",
         previewUnavailable: "Preview unavailable",
         openDocsLabel: (title) => `Open ${title} docs`,
+      },
+      coldTests: {
+        label: "Cold tests",
+        heading: "170 screens built by AI that had never seen Gunjo.",
+        subtitle: (count) =>
+          `${count} rounds. Each one a context-free agent given only the public npm package and the gunjo.jp docs — no source access — and asked to build a working screen.`,
+        searchPlaceholder: "Search rounds, routes, industries...",
+        allTab: "All",
+        emptyState: "No rounds match.",
+        previewUnavailable: "Preview unavailable",
+        categories: {
+          "基盤UI・汎用": "Foundation / generic UI",
+          "金融": "Finance",
+          "会計・給与": "Accounting / payroll",
+          "小売・EC": "Retail / e-commerce",
+          "物流・倉庫": "Logistics / warehousing",
+          "医療・ヘルスケア": "Healthcare",
+          "不動産": "Real estate",
+          "製造": "Manufacturing",
+          "教育": "Education",
+          "公共・行政": "Public sector",
+          "メディア・出版": "Media / publishing",
+          "人材・HR・採用": "HR / recruiting",
+          "介護・福祉": "Care / welfare",
+          "飲食・レストラン": "Food / restaurants",
+          "保険": "Insurance",
+          "運輸：鉄道": "Transport: rail",
+          "運輸：航空": "Transport: air",
+          "運輸：バス": "Transport: bus",
+          "運輸：タクシー": "Transport: taxi",
+          "運輸：トラック": "Transport: trucking",
+        },
+        scoreLabel: (score) => `Score ${score}`,
+        roundLabel: (round) => `Round #${round}`,
       },
       tokens: {
         label: "Tokens",
@@ -1081,6 +1131,40 @@ export const translations: Record<
         emptyState: "該当するコンポーネントがありません。",
         previewUnavailable: "プレビューを表示できません",
         openDocsLabel: (title) => `${title} のドキュメントを開く`,
+      },
+      coldTests: {
+        label: "コールドテスト",
+        heading: "群青を知らない AI に作らせた、170 画面。",
+        subtitle: (count) =>
+          `${count} ラウンド。文脈ゼロのエージェントに、公開 npm パッケージと gunjo.jp の docs だけを渡して——ソースは見せず——動く画面を組ませた記録です。`,
+        searchPlaceholder: "ラウンド・ルート・業種を検索...",
+        allTab: "全て",
+        emptyState: "該当するラウンドがありません。",
+        previewUnavailable: "プレビューを表示できません",
+        categories: {
+          "基盤UI・汎用": "基盤UI・汎用",
+          "金融": "金融",
+          "会計・給与": "会計・給与",
+          "小売・EC": "小売・EC",
+          "物流・倉庫": "物流・倉庫",
+          "医療・ヘルスケア": "医療・ヘルスケア",
+          "不動産": "不動産",
+          "製造": "製造",
+          "教育": "教育",
+          "公共・行政": "公共・行政",
+          "メディア・出版": "メディア・出版",
+          "人材・HR・採用": "人材・HR・採用",
+          "介護・福祉": "介護・福祉",
+          "飲食・レストラン": "飲食・レストラン",
+          "保険": "保険",
+          "運輸：鉄道": "運輸：鉄道",
+          "運輸：航空": "運輸：航空",
+          "運輸：バス": "運輸：バス",
+          "運輸：タクシー": "運輸：タクシー",
+          "運輸：トラック": "運輸：トラック",
+        },
+        scoreLabel: (score) => `スコア ${score}`,
+        roundLabel: (round) => `#${round}`,
       },
       tokens: {
         label: "Tokens",

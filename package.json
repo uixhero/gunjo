@@ -47,6 +47,7 @@
     "patterns:thumbs": "node scripts/patterns-capture-thumbs.mjs && node scripts/sync-thumb-manifest.mjs",
     "thumbs:manifest": "node scripts/sync-thumb-manifest.mjs",
     "coldtest-gallery:snapshot": "node scripts/build-coldtest-gallery.mjs",
+    "coldtest-gallery:thumbs": "node scripts/build-coldtest-thumbs.mjs",
     "prepare": "npm run hooks:install",
     "hooks:install": "node scripts/install-git-hooks.mjs",
     "design:sync": "node scripts/design-sync.mjs",

@@ -1,0 +1,262 @@
+"use client";
+
+import * as React from "react";
+import { IconFlask as Flask } from "@tabler/icons-react";
+import {
+    Badge,
+    Card,
+    CardContent,
+    SearchInput,
+    Skeleton,
+    Tabs,
+    TabsList,
+    TabsTrigger,
+    cn,
+} from "@gunjo/ui";
+import { useLocale } from "@/components/providers/LocaleProvider";
+import gallery from "@/data/cold-test-gallery.json";
+
+interface ColdTestEntry {
+    round: number;
+    route: string;
+    slug: string;
+    score: string;
+    category: string;
+    title: string;
+    readmeTitle: string;
+    summary: string;
+    article: { file: string; slug: string } | null;
+    shots: {
+        desktop: boolean;
+        mobile: boolean;
+        "en.desktop": boolean;
+        "en.mobile": boolean;
+    };
+}
+
+interface ColdTestGallery {
+    count: number;
+    categories: string[];
+    entries: ColdTestEntry[];
+}
+
+const data = gallery as ColdTestGallery;
+
+function PreviewThumb({
+    slug,
+    available,
+    title,
+    unavailableLabel,
+}: {
+    slug: string;
+    available: boolean;
+    title: string;
+    unavailableLabel: string;
+}) {
+    const imgRef = React.useRef<HTMLImageElement | null>(null);
+    const [loaded, setLoaded] = React.useState(false);
+    const [errored, setErrored] = React.useState(false);
+    const src = `/cold-test-shots/${slug}.desktop.png`;
+
+    React.useEffect(() => {
+        setLoaded(false);
+        setErrored(false);
+        const node = imgRef.current;
+        if (!node) return;
+        if (node.complete) {
+            if (node.naturalWidth > 0) setLoaded(true);
+            else setErrored(true);
+        }
+    }, [src]);
+
+    if (!available) {
+        return (
+            <div className="grid h-44 place-items-center border-b border-border/60 bg-muted/40 text-xs text-muted-foreground">
+                {unavailableLabel}
+            </div>
+        );
+    }
+
+    return (
+        <div className="relative block h-44 overflow-hidden border-b border-border/60 bg-muted/40">
+            {!loaded && !errored && (
+                <Skeleton className="absolute inset-0 h-full w-full" />
+            )}
+            {errored ? (
+                <div className="absolute inset-0 grid place-items-center text-xs text-muted-foreground">
+                    {unavailableLabel}
+                </div>
+            ) : (
+                /* eslint-disable-next-line @next/next/no-img-element */
+                <img
+                    ref={imgRef}
+                    src={src}
+                    alt={`${title} preview`}
+                    onLoad={() => setLoaded(true)}
+                    onError={() => setErrored(true)}
+                    loading="lazy"
+                    decoding="async"
+                    className={cn(
+                        "h-full w-full object-cover object-top transition-opacity duration-200",
+                        loaded ? "opacity-100" : "opacity-0"
+                    )}
+                />
+            )}
+        </div>
+    );
+}
+
+export default function ColdTestsPage() {
+    const { pages } = useLocale();
+    const t = pages.coldTests;
+
+    const [activeCategory, setActiveCategory] = React.useState<string>("all");
+    const [query, setQuery] = React.useState("");
+
+    const entries = React.useMemo(() => data.entries, []);
+    const categories = React.useMemo(() => data.categories, []);
+
+    const counts = React.useMemo(() => {
+        const acc: Record<string, number> = { all: entries.length };
+        for (const c of categories) {
+            acc[c] = entries.filter((e) => e.category === c).length;
+        }
+        return acc;
+    }, [entries, categories]);
+
+    const filtered = React.useMemo(() => {
+        const q = query.trim().toLowerCase();
+        return entries.filter((e) => {
+            if (activeCategory !== "all" && e.category !== activeCategory) return false;
+            if (!q) return true;
+            return (
+                String(e.round).includes(q) ||
+                e.route.toLowerCase().includes(q) ||
+                e.slug.toLowerCase().includes(q) ||
+                e.title.toLowerCase().includes(q) ||
+                e.readmeTitle.toLowerCase().includes(q) ||
+                e.category.toLowerCase().includes(q) ||
+                (t.categories[e.category]?.toLowerCase().includes(q) ?? false)
+            );
+        });
+    }, [entries, activeCategory, query, t.categories]);
+
+    return (
+        <div className="space-y-10">
+            <header className="space-y-4">
+                <div className="flex items-center gap-2">
+                    <Flask className="h-5 w-5 text-primary" />
+                    <span className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                        {t.label}
+                    </span>
+                </div>
+                <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
+                    {t.heading}
+                </h1>
+                <p className="max-w-2xl text-lg text-muted-foreground">
+                    {t.subtitle(entries.length)}
+                </p>
+            </header>
+
+            <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
+                <Tabs
+                    value={activeCategory}
+                    onValueChange={setActiveCategory}
+                    className="w-auto min-w-0 max-w-full rounded-none border-0"
+                >
+                    <div className="-mx-4 overflow-x-auto px-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+                        {/* sm:justify-start overrides TabsList's default sm:justify-center —
+                            with 20 category tabs the strip overflows, and centering pushes
+                            the first tab (often the active "All") off-screen to the left. */}
+                        <TabsList className="h-9 w-max justify-start sm:justify-start">
+                            <TabsTrigger
+                                value="all"
+                                className="data-[state=active]:border data-[state=active]:border-primary-border data-[state=active]:text-primary data-[state=active]:shadow-md"
+                            >
+                                {t.allTab}
+                                <span className="ml-1.5 text-xs text-muted-foreground data-[state=active]:text-primary-strong">
+                                    {counts.all}
+                                </span>
+                            </TabsTrigger>
+                            {categories.map((c) => {
+                                if (!counts[c]) return null;
+                                return (
+                                    <TabsTrigger
+                                        key={c}
+                                        value={c}
+                                        className="data-[state=active]:border data-[state=active]:border-primary-border data-[state=active]:text-primary data-[state=active]:shadow-md"
+                                    >
+                                        {t.categories[c] ?? c}
+                                        <span className="ml-1.5 text-xs text-muted-foreground">
+                                            {counts[c]}
+                                        </span>
+                                    </TabsTrigger>
+                                );
+                            })}
+                        </TabsList>
+                    </div>
+                </Tabs>
+                <div className="w-full lg:w-72">
+                    <SearchInput
+                        placeholder={t.searchPlaceholder}
+                        value={query}
+                        onValueChange={setQuery}
+                    />
+                </div>
+            </div>
+
+            {filtered.length === 0 ? (
+                <div className="rounded-lg border border-dashed border-border/60 py-20 text-center text-muted-foreground">
+                    {t.emptyState}
+                </div>
+            ) : (
+                <div className="grid gap-5 sm:gap-6 grid-cols-[repeat(auto-fill,minmax(280px,1fr))]">
+                    {filtered.map((entry) => (
+                        <Card
+                            key={entry.round}
+                            className="flex h-full w-full flex-col overflow-hidden border-border/80 shadow-sm"
+                        >
+                            <PreviewThumb
+                                slug={entry.slug}
+                                available={entry.shots.desktop}
+                                title={entry.title}
+                                unavailableLabel={t.previewUnavailable}
+                            />
+                            <CardContent className="flex flex-1 flex-col gap-2 p-4">
+                                <div className="flex flex-wrap items-center justify-between gap-2">
+                                    <Badge
+                                        variant="outline"
+                                        className="border-border/60 text-[10px] uppercase tracking-wider text-muted-foreground"
+                                    >
+                                        {t.roundLabel(entry.round)}
+                                    </Badge>
+                                    <Badge
+                                        variant="secondary"
+                                        className="text-[10px]"
+                                    >
+                                        {t.scoreLabel(entry.score)}
+                                    </Badge>
+                                </div>
+                                <div className="min-w-0">
+                                    <div className="line-clamp-2 font-semibold tracking-tight">
+                                        {entry.title}
+                                    </div>
+                                    <div className="mt-1 text-xs text-muted-foreground">
+                                        <code className="font-mono">{entry.route}</code>
+                                        {" · "}
+                                        {t.categories[entry.category] ?? entry.category}
+                                    </div>
+                                </div>
+                                {entry.summary ? (
+                                    <p className="mt-1 line-clamp-3 text-sm text-muted-foreground">
+                                        {entry.summary}
+                                    </p>
+                                ) : null}
+                            </CardContent>
+                        </Card>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+}
