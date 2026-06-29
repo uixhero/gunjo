@@ -1514,6 +1514,19 @@ export const componentStyleHints = {
       "variantClasses": {},
       "variantColorHints": {}
     },
+    "companyCell": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": ""
+      },
+      "variantColorHints": {}
+    },
     "concentricProgressCard": {
       "variantKeys": [
         "default",
@@ -2001,6 +2014,19 @@ export const componentStyleHints = {
       "baseColorHint": null,
       "slotIds": [],
       "variantClasses": {},
+      "variantColorHints": {}
+    },
+    "matchCard": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
       "variantColorHints": {}
     },
     "metadataList": {

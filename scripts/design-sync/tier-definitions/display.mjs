@@ -975,6 +975,28 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "companyCell",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:companyCell",
+      title: "CompanyCell",
+      description: "The organization / entity identity cell: a SQUARE logo tile (or an initial fallback) + name + a secondary line (業種 / 所在地 / 制度区分). The org analogue of PersonCell (a ROUND avatar + person name) — use this for companies, programs, vendors, accounts, any non-person entity, so a card or a MatchCard side isn't forced into a person's avatar/presence model. name + secondary?/logo?/size?. RSC-safe.",
+      variants: [
+        createSyntheticVariant("default", { width: null, padding: null }),
+      ],
+    }),
+  },
+  {
+    key: "matchCard",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:matchCard",
+      title: "MatchCard",
+      description: "The two-sided pairing detail: a LEFT entity and a RIGHT entity side by side with a center match score, plus a factor-by-factor breakdown and actions. The heart of every matching / recommendation / deal-pairing / compare console — 求貨求車 (荷物×空車), M&A (売り手×買い手), 補助金 (自社×制度), candidate×job, buyer×seller. ENTITY-AGNOSTIC: left and right are arbitrary identity nodes (pair with CompanyCell / PersonCell / anything), and the two sides may be DIFFERENT kinds (a company and a program). Distinct from RelationshipRow, which hardcodes two PersonCells (person⟷person) and has no score/factor region. left + right + score? + factors[] ({label,value,tone?,detail?}) + actions. RSC-safe except opt-in handlers in the slots.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "navRow",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:navRow",

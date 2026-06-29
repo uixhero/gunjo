@@ -1087,6 +1087,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "companyCell": {
+      "title": "CompanyCell",
+      "description": "The organization / entity identity cell: a SQUARE logo tile (or an initial fallback) + name + a secondary line (業種 / 所在地 / 制度区分). The org analogue of PersonCell (a ROUND avatar + person name) — use this for companies, programs, vendors, accounts, any non-person entity, so a card or a MatchCard side isn't forced into a person's avatar/presence model. name + secondary?/logo?/size?. RSC-safe.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/CompanyCell.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "concentricProgressCard": {
       "title": "Concentric Progress Card",
       "description": "HTML/CSS card for storage, quota, and multi-ring progress widgets with selectable concentric rings, metrics, and hover/focus tooltips.",
@@ -1465,6 +1476,17 @@ export const componentManifest = {
       "variantKeys": [],
       "defaultVariantKey": null,
       "sourceFile": "src/components/display/MarkdownRenderer.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
+    "matchCard": {
+      "title": "MatchCard",
+      "description": "The two-sided pairing detail: a LEFT entity and a RIGHT entity side by side with a center match score, plus a factor-by-factor breakdown and actions. The heart of every matching / recommendation / deal-pairing / compare console — 求貨求車 (荷物×空車), M&A (売り手×買い手), 補助金 (自社×制度), candidate×job, buyer×seller. ENTITY-AGNOSTIC: left and right are arbitrary identity nodes (pair with CompanyCell / PersonCell / anything), and the two sides may be DIFFERENT kinds (a company and a program). Distinct from RelationshipRow, which hardcodes two PersonCells (person⟷person) and has no score/factor region. left + right + score? + factors[] ({label,value,tone?,detail?}) + actions. RSC-safe except opt-in handlers in the slots.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/MatchCard.tsx",
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
