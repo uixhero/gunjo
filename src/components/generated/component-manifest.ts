@@ -1145,6 +1145,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "documentRow": {
+      "title": "DocumentRow",
+      "description": "The downloadable document / file row: a leading control slot (a Checkbox for bulk-select), a file-type icon, the document name + meta (format / size / 発行日), and a trailing INDEPENDENT action button (download). The spine of every 帳票 / 明細 / 書類 / 添付 / download surface. Unlike ListCard (whose onSelect makes the WHOLE card one button, so a nested download button is invalid HTML), DocumentRow keeps MULTIPLE independent hit targets — select, open-to-preview (onOpen), and the trailing download action. Group rows with SectionList (by year / type) for headings + subtotals. title + description?/meta?/icon?/control?/status?/actions?/onOpen?. RSC-safe except the opt-in onOpen / action handlers.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/DocumentRow.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "donutChart": {
       "title": "DonutChart",
       "description": "HTML/CSS donut chart for proportional segments with optional center labels and pointer-aware segment tooltips.",
