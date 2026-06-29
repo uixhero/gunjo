@@ -6850,6 +6850,58 @@ Figma export:
   Input / Label / Form usage boundaries are aligned without visible overflow
   or overlap.
 
+### BannalyzeTemplate
+
+- `BannalyzeTemplate / Section`: `612:195`
+- `BannalyzeTemplate / Specimen`: `612:196`
+- `BannalyzeTemplate/Default`: `612:209`
+- Placement: `Patterns` page, after `SettingsTemplate / Section`, at
+  `(40, 16664)`, `1280 x 2240`.
+- Variant contract: generated spec exposes a single `default` variant. Runtime
+  state for scoring, annotation markers, zoom, version history, and AI chat is
+  product state, not a persistent Figma variant axis.
+- Public API: `BannalyzeTemplateProps` extends div HTML attributes and accepts
+  optional `header?: React.ReactNode`, optional `sidebar?: React.ReactNode`,
+  optional `inspector?: React.ReactNode`, required `children: React.ReactNode`,
+  and `className`.
+- Runtime behavior: the root is a full-height analysis workspace with
+  `flex h-full min-h-0 w-full flex-col overflow-hidden bg-background`. The
+  optional header is `z-20 flex-shrink-0 border-b bg-background/95` with
+  backdrop blur support. The body is `relative flex flex-1 overflow-hidden`;
+  the sidebar is `hidden w-64 overflow-y-auto border-r bg-muted/10 md:block`;
+  the canvas area is `relative flex flex-1 flex-col items-center justify-center
+  overflow-hidden bg-muted/20`; the inner canvas scrolls with `p-4` and centers
+  its children; the inspector is `hidden w-80 overflow-y-auto border-l
+  bg-background lg:block`.
+- Generated anatomy: style hints record base class `flex flex-col w-full
+  h-full`, slot ids `bannalyzeTemplateHeader` and `bannalyzeTemplateBody`, and
+  default fill `#ffffff`. The generated patterns spec records header height
+  `56`, header fill `#fffffff2`, sidebar width `256`, inspector width `320`,
+  canvas fill `#f1f5f933`, and canvas inner stroke `#dbeafe`.
+- Docs-derived composition and samples: the specimen records the docs/demo
+  structure with header brand `Bannalyze`, status `保存済み`, sidebar version
+  history `Version 1`, `Version 2`, and `Add New`, center canvas title
+  `Banner Analysis Target`, inspector tabs `分析結果` and `AIチャット`, score
+  labels `総合スコア`, `ターゲット適合度`, `改善アクション`, and `指摘箇所`,
+  score sample `7.9`, target audiences `教育関係者`, `保護者`, and
+  `20-40代女性`, annotation titles `ロゴ配置`, `メインコピー`, `CTAボタン`, and
+  `イラスト`, and improvement samples `コントラスト比の改善` and `CTAの強調`.
+- Composition and usage boundaries: BannalyzeTemplate owns the three-region
+  analysis shell only. It does not own banner rendering, scoring algorithms,
+  annotation positioning, history persistence, AI chat state, zoom controls, or
+  upload flows. Compose Button, Badge, SidebarItem, Input, TooltipButton,
+  AssetCard, and product-specific analysis panels inside the named regions.
+- Runtime token notes: BannalyzeTemplate uses `background`, `foreground`,
+  `card`, `card-foreground`, `muted`, `muted-foreground`, `border`, `primary`,
+  `primary-foreground`, `primary-subtle`, `primary-border`, `destructive`,
+  `destructive-border`, `ring`, and `accent` in the specimen annotations and
+  chrome.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  header / sidebar / canvas / inspector anatomy, API notes, token notes, and
+  BannalyzeTemplate / Button / Badge / SidebarItem / Input composition
+  boundaries are aligned without visible overflow or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -6875,7 +6927,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, MarqueeFrame, DashboardTemplate, EditorTemplate, LandingTemplate, AuthTemplate, KanbanTemplate, ChatTemplate, and SettingsTemplate components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, MarqueeFrame, DashboardTemplate, EditorTemplate, LandingTemplate, AuthTemplate, KanbanTemplate, ChatTemplate, SettingsTemplate, and BannalyzeTemplate components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
