@@ -6797,6 +6797,59 @@ Figma export:
   Button / Avatar / SidebarItem usage boundaries are aligned without visible
   overflow or overlap.
 
+### SettingsTemplate
+
+- `SettingsTemplate / Section`: `609:195`
+- `SettingsTemplate / Specimen`: `609:196`
+- `SettingsTemplate/Default`: `609:209`
+- Placement: `Patterns` page, after `ChatTemplate / Section`, at
+  `(40, 14376)`, `1280 x 2240`.
+- Variant contract: generated spec exposes a single `default` variant with
+  `default` as the default variant. The Figma component records both mobile
+  stack and desktop split-view anatomy; responsive visibility is runtime CSS,
+  not a persistent variant axis.
+- Public API: `SettingsTemplateProps` extends div HTML attributes and accepts
+  optional `title?: string` with default `Settings`, optional
+  `description?: string` with default `Manage your account settings and
+  preferences.`, optional `navigation?: React.ReactNode`, required
+  `children: React.ReactNode`, and `className`.
+- Runtime behavior: the source renders two sibling layouts. The mobile layout
+  is `flex min-h-screen w-full flex-col items-center gap-4 md:hidden`, with a
+  `p-4 space-y-4` stack containing title, navigation, and children. The
+  desktop layout is hidden below `md`, uses `min-h-screen`, `w-full`,
+  `items-center`, `space-y-6`, `p-10 pb-16`, a title block, a horizontal
+  separator, and a `lg:flex-row` body with nav at `lg:w-1/5` and content at
+  `flex-1 lg:max-w-2xl`.
+- Generated anatomy: style hints record base class
+  `flex flex-col items-center w-full gap-4`, slot ids
+  `settingsTemplateMobileView` and `settingsTemplateDesktopView`, and variant
+  class `flex flex-col items-center w-full gap-4`. The generated patterns spec
+  records mobile view padding 16, desktop view padding `40 40 64 40`,
+  separator height 1, body gap 48, nav width 220, and content width 672.
+- Docs-derived composition and samples: docs and embedded previews cover title
+  `Settings`, default description `Manage your account settings and
+  preferences.`, nav items `Profile`, `Account`, `Appearance`,
+  `Notifications`, and `Display`, content section `Profile`, helper copy `This
+  is how others will see you on the site.`, form labels `Username`, `Email`,
+  and `Bio`, placeholders `shadcn` and `m@example.com`, helper copy for public
+  display name and verified email addresses, and the submit action `Update
+  profile`.
+- Composition and usage boundaries: SettingsTemplate composes a responsive
+  settings page shell with caller-provided navigation and form content. It does
+  not own validation, save state, settings section routing, or field-level
+  state. Compose Button, Input, Label, Form, Separator, and product-specific
+  settings panels inside `navigation` and `children`.
+- Runtime token notes: SettingsTemplate uses `background`, `foreground`,
+  `muted-foreground`, `border`, `input`, `primary`, `primary-foreground`,
+  `secondary`, and `muted` in the specimen. The generated spec also records
+  desktop title fill `#0f172a` and separator fill `#e5e7eb`.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  default responsive shell, mobile stack / desktop title / separator / nav /
+  content anatomy, API notes, token notes, and SettingsTemplate / Button /
+  Input / Label / Form usage boundaries are aligned without visible overflow
+  or overlap.
+
 ## Next Figma Step
 
 Before creating the next component:
@@ -6822,7 +6875,7 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, MarqueeFrame, DashboardTemplate, EditorTemplate, LandingTemplate, AuthTemplate, KanbanTemplate, and ChatTemplate components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, MarqueeFrame, DashboardTemplate, EditorTemplate, LandingTemplate, AuthTemplate, KanbanTemplate, ChatTemplate, and SettingsTemplate components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Continue with the core component sequence from
    `docs/figma-library-discovery.md`, one component/family at a time.
