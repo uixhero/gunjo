@@ -410,5 +410,13 @@
   "documentRow": {
     "title": "DocumentRow",
     "description": "The downloadable document / file row: a leading control slot (a Checkbox for bulk-select), a file-type icon, the document name + meta (format / size / 発行日), and a trailing INDEPENDENT action button (download). The spine of every 帳票 / 明細 / 書類 / 添付 / download surface. Unlike ListCard (whose onSelect makes the WHOLE card one button, so a nested download button is invalid HTML), DocumentRow keeps MULTIPLE independent hit targets — select, open-to-preview (onOpen), and the trailing download action. Group rows with SectionList (by year / type) for headings + subtotals. title + description?/meta?/icon?/control?/status?/actions?/onOpen?. RSC-safe except the opt-in onOpen / action handlers."
+  },
+  "companyCell": {
+    "title": "CompanyCell",
+    "description": "The organization / entity identity cell: a SQUARE logo tile (or an initial fallback) + name + a secondary line (業種 / 所在地 / 制度区分). The org analogue of PersonCell (a ROUND avatar + person name) — use this for companies, programs, vendors, accounts, any non-person entity, so a card or a MatchCard side isn't forced into a person's avatar/presence model. name + secondary?/logo?/size?. RSC-safe."
+  },
+  "matchCard": {
+    "title": "MatchCard",
+    "description": "The two-sided pairing detail: a LEFT entity and a RIGHT entity side by side with a center match score, plus a factor-by-factor breakdown and actions. The heart of every matching / recommendation / deal-pairing / compare console — 求貨求車 (荷物×空車), M&A (売り手×買い手), 補助金 (自社×制度), candidate×job, buyer×seller. ENTITY-AGNOSTIC: left and right are arbitrary identity nodes (pair with CompanyCell / PersonCell / anything), and the two sides may be DIFFERENT kinds (a company and a program). Distinct from RelationshipRow, which hardcodes two PersonCells (person⟷person) and has no score/factor region. left + right + score? + factors[] ({label,value,tone?,detail?}) + actions. RSC-safe except opt-in handlers in the slots."
   }
 }

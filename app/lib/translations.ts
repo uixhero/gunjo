@@ -1609,6 +1609,8 @@ export const translations: Record<
       Leaderboard: "ランキング",
       SectionList: "セクションリスト",
       NavRow: "ナビ行",
+      CompanyCell: "企業セル",
+      MatchCard: "マッチカード",
       DocumentRow: "書類行",
       OriginDestination: "区間（発着）",
       SettingGroup: "設定グループ",
