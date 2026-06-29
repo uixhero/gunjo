@@ -6962,6 +6962,160 @@ Figma export:
   FilterButton composition boundaries are aligned without visible overflow or
   overlap.
 
+## Latest SSOT Gap Exports
+
+The 2026-06-29 final audit found eight components / templates that were added
+to the latest regenerated SSOT after the original issue #8 scope was locked.
+The owner approved continuing the first-party SSOT to Figma workflow, and these
+eight entries were exported to `GunjoUI Library Foundations (#8)`.
+
+### CurrencyInput
+
+- `CurrencyInput / Section`: `631:13`
+- `CurrencyInput`: `631:15`
+- Placement: `Inputs` page, after `FileUploader / Section`, at `(40, 77769)`,
+  `1280 x 1860`.
+- Variant contract: generated spec exposes a single synthetic `default`
+  variant.
+- Public API: `CurrencyInputProps` extends input HTML attributes excluding
+  `value`, `defaultValue`, `onChange`, and `type`; accepts `value`,
+  `defaultValue`, `onValueChange`, `currency="JPY"`, `locale="ja-JP"`,
+  `showSymbol=true`, `min`, and `max`.
+- Runtime behavior: the input strips non-digits, keeps a draft string while
+  editing, groups with `Intl.NumberFormat`, clamps by `min` / `max`, and emits
+  a numeric value or `undefined`.
+- Specimen copy records `請求金額`, `¥`, `1,200,000`, and
+  `数値: 1200000 / 表示: ¥1,200,000`.
+- Runtime token notes: `input`, `ring`, `muted-foreground`, `foreground`,
+  `background`, and `destructive-border`.
+
+### ScanInput
+
+- `ScanInput / Section`: `631:34`
+- `ScanInput`: `631:36`
+- Placement: `Inputs` page, after `CurrencyInput / Section`, at
+  `(40, 79677)`, `1280 x 2200`.
+- Variant contract: generated spec exposes a single synthetic `default`
+  variant.
+- Public API: `ScanInputProps` extends input HTML attributes excluding
+  `value`, `defaultValue`, `onChange`, `type`, and `results`; accepts
+  `onScan`, `label`, `description`, `retainFocus=true`, `clearOnScan=true`,
+  `lockMs=150`, `showFeed=false`, `feedLimit=8`, `icon`, and `labels`.
+- Runtime behavior: Enter commits the trimmed code, debounces double-fire,
+  announces the returned result in a polite live region, optionally clears and
+  refocuses the field, and can render a newest-first scan feed.
+- Specimen copy records `バーコード / JAN をスキャン`,
+  `4901234567894`, `OK 有機ほうじ茶を1点 検品`, and `対象外 0000`.
+- Runtime token notes: `input`, `ring`, `foreground`, `muted-foreground`,
+  `muted`, `border`, `success-strong`, and `destructive`.
+
+### Gallery
+
+- `Gallery / Section`: `633:2`
+- `Gallery`: `633:30`
+- Placement: `Display` page, after `TagEditor / Section`, at `(40, 57662)`,
+  `1280 x 1960`.
+- Variant contract: generated spec exposes `thumbnailPosition=bottom` and
+  `thumbnailPosition=start` variants.
+- Public API: `GalleryProps` accepts `images`, controlled `value`,
+  `onValueChange`, `defaultIndex=0`, `thumbnailPosition="bottom"`, and
+  `aspectRatio="square"`.
+- Runtime behavior: main image is rendered through `Img`; thumbnails are a
+  radiogroup with roving tabindex and arrow-key navigation.
+- Runtime token notes: `background`, `foreground`, `border`, `ring`, `muted`,
+  `muted-foreground`, and `secondary`.
+
+### EditableDataTable
+
+- `EditableDataTable / Section`: `633:37`
+- `EditableDataTable`: `633:93`
+- Placement: `Display` page, after `Gallery / Section`, at `(40, 59670)`,
+  `1280 x 2180`.
+- Variant contract: generated spec exposes `variant=default` and
+  `variant=compact`.
+- Public API: `EditableDataTableProps` accepts `columns`, `rows`, `getRowId`,
+  `variant`, `onAddRow`, `onRemoveRow`, `minRows=0`, `getRowError`, `footer`,
+  `renderFooterCell`, `renderRowCard`, `rowLabel`, `labels`, and `caption`.
+- Runtime behavior: the caller owns rows and renders each cell editor; the
+  component supplies desktop table structure, mobile cards, row add/remove
+  affordances, footer totals, error styling, and ready-made per-cell aria
+  labels.
+- Specimen copy records `品目`, `数量`, `単価`, `金額`, `デザイン制作`,
+  `ホスティング`, `合計`, and `明細を追加`.
+
+### ApprovalSteps
+
+- `ApprovalSteps / Section`: `633:100`
+- `ApprovalSteps`: `633:160`
+- Placement: `Display` page, after `EditableDataTable / Section`, at
+  `(40, 61898)`, `1280 x 1900`.
+- Variant contract: generated spec exposes `variant=default` and
+  `variant=compact`.
+- Public API: `ApprovalStepsProps` accepts `steps`, `variant`, `stateLabels`,
+  and `className`.
+- Runtime behavior: each step state maps to a Timeline marker tone, icon, and
+  text label, so state is not color-only. States are `pending`, `current`,
+  `approved`, `rejected`, and `skipped`.
+- Specimen copy records `申請`, `一次承認（上長）`, `経理確認`, `支払`,
+  `承認`, `差戻し`, `確認中`, and `待ち`.
+
+### Delta
+
+- `Delta / Section`: `633:166`
+- `Delta`: `633:168`
+- Placement: `Display` page, after `ApprovalSteps / Section`, at
+  `(40, 63846)`, `1280 x 1600`.
+- Variant contract: generated spec exposes a single synthetic `default`
+  variant.
+- Public API: `DeltaProps` extends span HTML attributes excluding `children`;
+  accepts `value`, `format`, `tones`, `labels`, `showLabel=false`, and
+  `hideArrow=false`.
+- Runtime behavior: sign resolution drives arrow, tone, and announced label.
+  Default tones are success for positive, destructive for negative, and muted
+  for zero; callers can remap tone semantics when positive is not good.
+- Specimen copy records `+¥12,500 増加`, `−¥5,880 不足`, `¥0 増減なし`,
+  and `+¥930 過剰`.
+- Runtime token notes: `success-strong`, `destructive`, `warning`, `info`,
+  `muted-foreground`, and `foreground`.
+
+### ResponsiveAuthCardPattern
+
+- `ResponsiveAuthCardPattern / Section`: `634:195`
+- `ResponsiveAuthCardPattern/Default`: `634:197`
+- Placement: `Patterns` page, after `MediaLibraryTemplate / Section`, at
+  `(40, 21240)`, `1280 x 2240`.
+- Variant contract: generated spec exposes a single `default` variant.
+- Public API: `ResponsiveAuthCardPatternProps` extends section HTML
+  attributes; accepts `brandName`, `description`, `defaultMode`, sign-in and
+  create-account titles/descriptions, `termsHref`, `privacyHref`,
+  `forgotPasswordHref`, localized `labels`, `onSignIn`, and
+  `onCreateAccount`.
+- Runtime behavior: the pattern composes Tabs, Card, Form, Input,
+  PasswordInput, PasswordRequirementList, Checkbox, Button, and TextLink into a
+  responsive sign-in / create-account card with Japanese default labels and
+  validation messages.
+- Specimen copy records `Gunjo Studio`, `ログイン`, `アカウント作成`,
+  `メールアドレス`, `パスワード`, `このデバイスを記憶する`, and `ログイン`.
+
+### PricingTemplate
+
+- `PricingTemplate / Section`: `634:229`
+- `PricingTemplate/Default`: `634:231`
+- Placement: `Patterns` page, after `ResponsiveAuthCardPattern / Section`, at
+  `(40, 23528)`, `1280 x 2240`.
+- Variant contract: generated spec exposes a single `default` variant.
+- Public API: `PricingTemplateProps` extends section HTML attributes excluding
+  `title`; accepts `title`, `subtitle`, `headingLevel=2`, `plans`,
+  `billingPeriods`, controlled/uncontrolled billing period props,
+  `onBillingPeriodChange`, and `billingPeriodLabel="Billing period"`.
+- Runtime behavior: optional billing-period toggle resolves period-specific
+  prices and notes; featured plans render a Badge plus primary border/ring;
+  feature rows expose included/not-included state with icon and screen-reader
+  text.
+- Specimen copy records `Pricing`, `Choose a plan that fits your team`, `Free`,
+  `Pro`, `Enterprise`, `Most popular`, `Get started`, `Start trial`, and
+  `Contact sales`.
+
 ## Final Review Step
 
 Before publishing or using this Figma library as reviewed source:
@@ -6979,17 +7133,18 @@ Before publishing or using this Figma library as reviewed source:
    PasswordInput, PasswordRequirementList, PasswordStrengthMeter, and
    PasswordGroup, PhoneInput, PostalCodeInput, SearchInput, InputOTP, Calendar,
    FilterButton, SortButton, EditableField, Form, Combobox, DatePicker,
-   DateRangePicker, TimePicker, TagInput, Mention, FileUploader, ImagePreview,
+   DateRangePicker, TimePicker, TagInput, Mention, FileUploader, CurrencyInput,
+   ScanInput, ImagePreview,
    ToolPill, Code, EmptyState, Tag, Icon, ColorSwatch, and Carousel
    and DataTable, ActionDataTable, AvatarGroup, CodeBlock, Timeline,
-   TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, ChartLegend,
-   SparklineChart, LineChart, RibbonChart, RadialBarChart, BarChart, and
-   ConcentricProgressCard, StackedBarChart, DistributionBar,
+   TreeView, FileTree, DocNote, AssetCard, AssetGrid, TagEditor, Gallery,
+   EditableDataTable, ApprovalSteps, Delta, ChartLegend, SparklineChart,
+   LineChart, RibbonChart, RadialBarChart, BarChart, and ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, MarqueeFrame, DashboardTemplate, EditorTemplate, LandingTemplate, AuthTemplate, KanbanTemplate, ChatTemplate, SettingsTemplate, BannalyzeTemplate, and MediaLibraryTemplate components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, MarqueeFrame, DashboardTemplate, EditorTemplate, LandingTemplate, AuthTemplate, KanbanTemplate, ChatTemplate, SettingsTemplate, BannalyzeTemplate, MediaLibraryTemplate, ResponsiveAuthCardPattern, and PricingTemplate components,
    runtime semantic colors, and specimen treatments are acceptable.
 3. Confirm there are no remaining gaps against
-   `docs/figma-library-discovery.md` before publishing.
+   `docs/figma-library-discovery.generated.json` before publishing.
 
 Do not publish the Figma library until the owner has reviewed the file manually.

@@ -17,9 +17,9 @@ from the earlier locked discovery pass are represented in the Figma file and
 recorded in `docs/figma-library-foundations.md`.
 
 After re-running `npm run design:report:figma-library` on the current SSOT, the
-generated discovery scope increased to 173 components / templates. This means
-the Figma file is complete for the original scope, but not complete against the
-latest regenerated SSOT.
+generated discovery scope increased to 173 components / templates. The eight
+latest-SSOT gaps found during this audit were exported to Figma on 2026-06-29,
+so the Figma file is now complete against the latest regenerated SSOT.
 
 ## Source Inventory
 
@@ -50,40 +50,39 @@ Unresolved spec entries:
 
 ## Figma Inventory
 
-Figma page section counts:
+Figma page section counts after the additional export:
 
-- Inputs: 37 sections
-- Display: 38 sections
+- Inputs: 39 sections
+- Display: 42 sections
 - Charts: 23 sections
 - Feedback: 11 sections
 - Navigation: 16 sections
 - Overlay: 16 sections
 - Layout: 14 sections
-- Patterns: 9 sections
+- Patterns: 11 sections
 
-Total top-level component sections: 164
+Total top-level component sections: 172
 
 `AccordionGroup` is represented as a component set inside
 `Accordion / Section`, not as a separate top-level section:
 
 - `AccordionGroup`: `122:96`
 
-Counting that nested component family, the file currently represents 165
+Counting that nested component family, the file currently represents 173
 components / templates from the latest regenerated scope.
 
 ## Latest SSOT Gaps
 
-The following latest-SSOT entries are not represented as Figma component
-sections yet:
+Resolved on 2026-06-29:
 
-- `CurrencyInput` (`Inputs`, synthetic default)
-- `ScanInput` (`Inputs`, synthetic default)
-- `Gallery` (`Display`, variants `bottom` / `start`)
-- `EditableDataTable` (`Display`, variants `default` / `compact`)
-- `ApprovalSteps` (`Display`, variants `default` / `compact`)
-- `Delta` (`Display`, synthetic default)
-- `ResponsiveAuthCardPattern` (`Patterns`, default)
-- `PricingTemplate` (`Patterns`, default)
+- `CurrencyInput` (`Inputs`, synthetic default): section `631:13`, component `631:15`
+- `ScanInput` (`Inputs`, synthetic default): section `631:34`, component `631:36`
+- `Gallery` (`Display`, variants `bottom` / `start`): section `633:2`, component set `633:30`
+- `EditableDataTable` (`Display`, variants `default` / `compact`): section `633:37`, component set `633:93`
+- `ApprovalSteps` (`Display`, variants `default` / `compact`): section `633:100`, component set `633:160`
+- `Delta` (`Display`, synthetic default): section `633:166`, component `633:168`
+- `ResponsiveAuthCardPattern` (`Patterns`, default): section `634:195`, component `634:197`
+- `PricingTemplate` (`Patterns`, default): section `634:229`, component `634:231`
 
 ## Notes
 
@@ -91,12 +90,11 @@ sections yet:
   with 1 `radius/base` variable.
 - `destructive-border` and `primary-border` were added after the initial
   foundations count, so older 54-variable references were stale.
-- The current worktree is clean after the last pushed commit before this audit,
-  but this audit intentionally regenerates the discovery files to expose current
-  SSOT drift.
+- The current worktree intentionally records the regenerated discovery files and
+  the final audit update so the latest 173-component scope is reproducible.
 
 ## Recommendation
 
-Treat issue #8 as complete for its original locked scope, but do not publish the
-library as fully current against today's SSOT until the eight latest-SSOT gaps
-above are either exported to Figma or explicitly deferred in a follow-up issue.
+Treat issue #8 as complete against both its original locked scope and the latest
+regenerated SSOT scope. Before publishing the Figma library, the owner should
+still perform the required manual visual review.

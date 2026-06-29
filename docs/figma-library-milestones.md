@@ -16,12 +16,12 @@ Source of truth:
 - Original issue #8 recorded exports: 162
 - Original issue #8 remaining exports: 0
 - Latest regenerated SSOT discovery scope: 173 components / templates
-- Latest Figma represented components / templates: 165
-- Latest SSOT gaps: 8
+- Latest Figma represented components / templates: 173
+- Latest SSOT gaps: 0
 - Completed category blocks: `Inputs`, `Overlay`, `Display`, `Charts`, `Feedback`, `Navigation`, `Patterns`
-- Current working category: `Scope audit`
-- Last recorded component: `MediaLibraryTemplate`
-- Recommended next component if expanding to latest SSOT: `CurrencyInput`
+- Current working category: `Complete`
+- Last recorded component: `PricingTemplate`
+- Recommended next component: `None`
 - Audit note: see `docs/figma-library-final-audit.md`
 
 ## Completed Blocks
@@ -33,7 +33,7 @@ Source of truth:
 
 ### Inputs
 
-All 37 Inputs components are recorded:
+All 39 Inputs components are recorded:
 
 - Button
 - TooltipButton
@@ -72,6 +72,8 @@ All 37 Inputs components are recorded:
 - TagInput
 - Mention
 - FileUploader
+- CurrencyInput
+- ScanInput
 
 ### Overlay
 
@@ -137,6 +139,10 @@ Display recorded so far:
 - AssetCard
 - AssetGrid
 - TagEditor
+- Gallery
+- EditableDataTable
+- ApprovalSteps
+- Delta
 
 Display remaining:
 
@@ -267,6 +273,8 @@ Recorded so far:
 - SettingsTemplate
 - BannalyzeTemplate
 - MediaLibraryTemplate
+- ResponsiveAuthCardPattern
+- PricingTemplate
 
 Remaining:
 
