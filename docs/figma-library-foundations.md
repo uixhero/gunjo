@@ -6902,9 +6902,69 @@ Figma export:
   BannalyzeTemplate / Button / Badge / SidebarItem / Input composition
   boundaries are aligned without visible overflow or overlap.
 
-## Next Figma Step
+### MediaLibraryTemplate
 
-Before creating the next component:
+- `MediaLibraryTemplate / Section`: `620:195`
+- `MediaLibraryTemplate / Specimen`: `620:196`
+- `MediaLibraryTemplate/Default`: `620:344`
+- Placement: `Patterns` page, after `BannalyzeTemplate / Section`, at
+  `(40, 18952)`, `1280 x 2240`.
+- Variant contract: generated spec exposes a single `default` variant. Runtime
+  state for search, filters, grouping, sorting, upload/import, sharing,
+  lightbox, folder drag/drop, selected assets, and details sheet visibility is
+  app state, not a persistent Figma variant axis.
+- Public API: `MediaLibraryTemplateProps` extends div HTML attributes and
+  accepts optional `header?: React.ReactNode`, optional
+  `sidebar?: React.ReactNode`, optional `details?: React.ReactNode`, required
+  `children: React.ReactNode`, and `className`.
+- Runtime behavior: the root is a full-height workspace with `flex h-full
+  min-h-0 w-full flex-col overflow-hidden bg-background`. The optional header
+  is `z-20 flex-shrink-0 border-b bg-background` with an inner `h-14 px-4`
+  row. The body is `relative flex flex-1 overflow-hidden`; the sidebar is a
+  `group hidden w-64 flex-shrink-0 overflow-hidden border-r bg-muted/10
+  md:block`; the center area is `relative flex flex-1 flex-col overflow-hidden
+  bg-background`; the center scroll container is `h-full w-full overflow-auto`;
+  the details panel is `hidden w-80 flex-shrink-0 overflow-y-auto border-l
+  bg-background lg:block`.
+- Generated anatomy: style hints record base class `flex flex-col w-full
+  h-full`, slot ids `mediaLibraryTemplateHeader` and
+  `mediaLibraryTemplateBody`, and default fill `#ffffff`. The generated
+  patterns spec records header height `56`, header fill `#ffffff`, body
+  children `mediaLibraryTemplateSidebar`, `mediaLibraryTemplateGridArea`, and
+  `mediaLibraryTemplateDetails`, sidebar width `256`, sidebar fill
+  `#f1f5f91a`, grid area fill `#ffffff`, details width `320`, and border fill
+  `#e5e7eb`.
+- Docs-derived composition and samples: the specimen records the docs/demo
+  structure with `Media library`, `All items`, `Libraries`, `Folders`,
+  `Smart folders`, `Library settings`, `All items`, `Uncategorized`, `Trash`,
+  `Favorites`, `Spec check`, `Compressed`, `Search assets...`, `Group`,
+  `Filter`, `Color`, `Tag`, `Rating`, `Type`, `Add Filter`, `Details`, `6
+  items`, `No assets found`, `Choose assets`, and selected asset samples
+  `Instagram_Story_v2.png`, `Hero_Banner.jpg`, `Product_Showcase.png`,
+  `Banner_Ad_300x250.jpg`, `Lookbook_Cover.jpg`, and
+  `Unsorted_Moodboard.png`.
+- Composition and usage boundaries: MediaLibraryTemplate owns the persistent
+  media-management shell only. It does not own filtering logic, search state,
+  sort/group algorithms, folder persistence, upload/import workflows, share
+  URLs, lightbox controls, deletion confirmation, or metadata editing. Compose
+  Button, Input, SearchInput, FilterButton, DropdownMenu, Slider, RangeSlider,
+  NumberInput, AssetGrid, AssetCard, AssetInspectorPanel, MediaLightbox,
+  MediaPickerDialog, ShareModal, FileTree, SidebarItem, ScrollArea, Tooltip,
+  and Dialog inside the named regions.
+- Runtime token notes: MediaLibraryTemplate uses `background`, `foreground`,
+  `muted`, `muted-foreground`, `border`, `input`, `primary`,
+  `primary-foreground`, `primary-subtle`, `primary-border`, `ring`, `card`,
+  `accent`, and `overlay` in the specimen annotations and app chrome.
+- Validation: Figma layout check returned `outOfBounds: 0`,
+  `fixedSizeText: 0`, and `suspiciousOverlap: 0`; layout review confirmed the
+  header / sidebar / grid area / details panel anatomy, API notes, token notes,
+  and MediaLibraryTemplate / AssetGrid / AssetInspectorPanel / SearchInput /
+  FilterButton composition boundaries are aligned without visible overflow or
+  overlap.
+
+## Final Review Step
+
+Before publishing or using this Figma library as reviewed source:
 
 1. Review the Figma file manually.
 2. Confirm the Button, TooltipButton, CopyButton, Input, Checkbox, Switch,
@@ -6927,9 +6987,9 @@ Before creating the next component:
    ConcentricProgressCard, StackedBarChart, DistributionBar,
    MiniDistributionBarCard, SegmentTimelineCard, DonutChart, PieChart, and
    GaugeChart, SegmentedGaugeCard, RadarChart, HeatmapChart, and
-   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, MarqueeFrame, DashboardTemplate, EditorTemplate, LandingTemplate, AuthTemplate, KanbanTemplate, ChatTemplate, SettingsTemplate, and BannalyzeTemplate components,
+   ActivityTimelineCard, LabeledDonutCard, RetentionCohortCard, ChoroplethMap, QuadrantMatrix, AnalyticsCard, Alert, Progress, StatusScreen, Spinner, Toast, NotificationCenter, StatusBar, ProgressWidget, Stepper, Banner, ToastProvider, TextLink, DocumentPager, NavigationMenu, Sidebar, SidebarItem, Menubar, Command, AppRail, CommandPalette, RightRail, PageAside, Header, Footer, AspectRatio, Container, HStack, VStack, Cluster, Grid, ScrollArea, Resizable, CollapsiblePanelToggle, InspectorPanel, SpatialCanvas, AssetInspectorPanel, DeviceFrame, MarqueeFrame, DashboardTemplate, EditorTemplate, LandingTemplate, AuthTemplate, KanbanTemplate, ChatTemplate, SettingsTemplate, BannalyzeTemplate, and MediaLibraryTemplate components,
    runtime semantic colors, and specimen treatments are acceptable.
-3. Continue with the core component sequence from
-   `docs/figma-library-discovery.md`, one component/family at a time.
+3. Confirm there are no remaining gaps against
+   `docs/figma-library-discovery.md` before publishing.
 
 Do not publish the Figma library until the owner has reviewed the file manually.
