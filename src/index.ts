@@ -149,6 +149,7 @@ export * from './components/display/MetadataList';
 export * from './components/display/Meter';
 export * from './components/display/MiniDistributionBarCard';
 export * from './components/display/NavRow';
+export * from './components/display/OriginDestination';
 export * from './components/display/PageHeader';
 export * from './components/display/ParetoChart';
 export * from './components/display/PersonCell';

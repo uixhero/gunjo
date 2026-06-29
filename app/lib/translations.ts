@@ -1609,6 +1609,7 @@ export const translations: Record<
       Leaderboard: "ランキング",
       SectionList: "セクションリスト",
       NavRow: "ナビ行",
+      OriginDestination: "区間（発着）",
       SettingGroup: "設定グループ",
       LineChip: "路線チップ",
       StatusBoard: "状態盤",

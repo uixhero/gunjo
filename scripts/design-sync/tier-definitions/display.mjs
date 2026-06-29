@@ -953,6 +953,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "originDestination",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:originDestination",
+      title: "OriginDestination",
+      description: "The A→B route header: 出発 → 到着 (東京 → 新大阪 / HND → CTS / POL → POD / 新宿 → 大阪), each endpoint a label + optional sub (code / time / platform), joined by an arrow (or a connector slot for a duration / mode icon), with an optional swap button (出発⇄到着) and via stops. The compact identity of every transit / freight SEARCH & RESULT screen — a HORIZONTAL A→B across the top, NOT a vertical sequence (that is RouteStops / Itinerary, which go DOWN the page). `inline` gives the small single-line variant for a result row (発→着 times). from + to (+ via[]) of {label, sub?}; connector, onSwap, inline, label. RSC-safe except the opt-in onSwap.",
+      variants: [
+        createSyntheticVariant("default", { padding: null }),
+      ],
+    }),
+  },
+  {
     key: "navRow",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:navRow",

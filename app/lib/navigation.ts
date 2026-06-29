@@ -142,6 +142,7 @@ export const navigation = [
             { title: "MarkdownRenderer", href: "/docs/components/markdown-renderer" },
             { title: "MetadataList", href: "/docs/components/metadata-list" },
             { title: "Meter", href: "/docs/components/meter" },
+            { title: "OriginDestination", href: "/docs/components/origin-destination" },
             { title: "PersonCell", href: "/docs/components/person-cell" },
             { title: "RadioCard", href: "/docs/components/radio-card" },
             { title: "Rating", href: "/docs/components/rating" },
