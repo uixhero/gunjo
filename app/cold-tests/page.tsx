@@ -57,7 +57,7 @@ function PreviewThumb({
     const imgRef = React.useRef<HTMLImageElement | null>(null);
     const [loaded, setLoaded] = React.useState(false);
     const [errored, setErrored] = React.useState(false);
-    const src = `/cold-test-shots/${slug}.desktop.png`;
+    const src = `/cold-test-shots/${slug}.desktop.webp`;
 
     React.useEffect(() => {
         setLoaded(false);

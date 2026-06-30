@@ -281,6 +281,7 @@ export type ColdTestsPageStrings = {
     desktopPreview: string;
     mobilePreview: string;
     mobilePreviewHint: string;
+    openLightboxLabel: (which: string) => string;
     article: string;
     sourceCode: string;
     sourceCodeMissing: (overwrittenBy: number) => string;
@@ -618,6 +619,7 @@ export const translations: Record<
           desktopPreview: "Desktop preview",
           mobilePreview: "Mobile preview",
           mobilePreviewHint: "Captured at 375px viewport. Long pages scroll inside the frame.",
+          openLightboxLabel: (which) => `Open ${which.toLowerCase()} at full size`,
           article: "Write-up",
           sourceCode: "Source built by the cold agent",
           sourceCodeMissing: (overwrittenBy) =>
@@ -1221,6 +1223,7 @@ export const translations: Record<
           desktopPreview: "デスクトップ表示",
           mobilePreview: "モバイル表示",
           mobilePreviewHint: "375px のビューポートで撮影。縦長のページはフレーム内をスクロールします。",
+          openLightboxLabel: (which) => `${which} を原寸で開く`,
           article: "解説記事",
           sourceCode: "cold AI が組み上げた実コード",
           sourceCodeMissing: (overwrittenBy) =>
