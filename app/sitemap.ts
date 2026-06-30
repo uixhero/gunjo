@@ -1,6 +1,11 @@
 import type { MetadataRoute } from "next";
 import { navigation } from "@/lib/navigation";
 import { PATTERNS, isPublicPatternSlug } from "@/lib/patterns";
+import coldTestGallery from "@/data/cold-test-gallery.json";
+
+interface ColdTestGalleryShape {
+    entries: { round: number }[];
+}
 
 const BASE_URL = (
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.gunjo.jp"
@@ -23,7 +28,13 @@ function collectPaths(node: unknown, acc: Set<string>): void {
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const paths = new Set<string>(["/", "/showcase", "/patterns"]);
+    const paths = new Set<string>([
+        "/",
+        "/showcase",
+        "/patterns",
+        "/cold-tests",
+        "/cold-tests/why",
+    ]);
     collectPaths(navigation, paths);
 
     // Public pattern routes only (mirrors production visibility); skip the 404 demo.
@@ -32,6 +43,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
         for (const route of pattern.routes) {
             if (route.href.startsWith("/")) paths.add(route.href);
         }
+    }
+
+    // Per-round cold-test detail pages — each is a distinct article with its
+    // own metadata. Without these, Google would only know about the grid.
+    for (const entry of (coldTestGallery as ColdTestGalleryShape).entries) {
+        paths.add(`/cold-tests/${entry.round}`);
     }
 
     const lastModified = new Date();
