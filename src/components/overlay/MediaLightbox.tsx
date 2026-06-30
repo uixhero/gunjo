@@ -100,6 +100,19 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
         const [fitWidth, setFitWidth] = React.useState(false)
         const [rotation, setRotation] = React.useState(0)
         const [editing, setEditing] = React.useState(false)
+        // Pan offset (only meaningful when scale > 1, otherwise reset to 0
+        // since the image already fits the frame and panning would expose
+        // empty space). Tracked together with a dragging flag so we can
+        // toggle cursor-grabbing and disable the CSS transition mid-drag.
+        const [translate, setTranslate] = React.useState({ x: 0, y: 0 })
+        const [dragging, setDragging] = React.useState(false)
+        const dragRef = React.useRef<{
+            pointerId: number
+            startX: number
+            startY: number
+            originX: number
+            originY: number
+        } | null>(null)
         const classes = variantClasses[variant]
 
         React.useEffect(() => {
@@ -107,17 +120,68 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
             setFitWidth(false)
             setRotation(0)
             setEditing(false)
+            setTranslate({ x: 0, y: 0 })
+            setDragging(false)
+            dragRef.current = null
         }, [asset?.id, open])
 
         const changeScale = (next: number) => {
             setFitWidth(false)
-            setScale(Math.min(3.5, Math.max(0.5, next)))
+            const clamped = Math.min(3.5, Math.max(0.5, next))
+            setScale(clamped)
+            // Once the image fits its frame again, panning has no effect —
+            // snap back to 0 so the next zoom-in starts centred.
+            if (clamped <= 1) setTranslate({ x: 0, y: 0 })
         }
         const resetView = () => {
             setScale(1)
             setFitWidth(false)
             setRotation(0)
             setEditing(false)
+            setTranslate({ x: 0, y: 0 })
+        }
+        // Rotating or switching to fit-width changes what "centred" means;
+        // safer to reset the pan than to leave a stale offset.
+        const setFitWidthWithReset = (next: boolean) => {
+            setFitWidth(next)
+            setTranslate({ x: 0, y: 0 })
+        }
+        const rotate = () => {
+            setRotation((value) => value + 90)
+            setTranslate({ x: 0, y: 0 })
+        }
+        const canPan = scale > 1 && !fitWidth
+        const handlePointerDown = (event: React.PointerEvent<HTMLImageElement>) => {
+            if (!canPan) return
+            if (event.button !== 0 && event.pointerType === "mouse") return
+            event.currentTarget.setPointerCapture(event.pointerId)
+            dragRef.current = {
+                pointerId: event.pointerId,
+                startX: event.clientX,
+                startY: event.clientY,
+                originX: translate.x,
+                originY: translate.y,
+            }
+            setDragging(true)
+        }
+        const handlePointerMove = (event: React.PointerEvent<HTMLImageElement>) => {
+            const drag = dragRef.current
+            if (!drag || drag.pointerId !== event.pointerId) return
+            setTranslate({
+                x: drag.originX + (event.clientX - drag.startX),
+                y: drag.originY + (event.clientY - drag.startY),
+            })
+        }
+        const endDrag = (event: React.PointerEvent<HTMLImageElement>) => {
+            const drag = dragRef.current
+            if (!drag || drag.pointerId !== event.pointerId) return
+            try {
+                event.currentTarget.releasePointerCapture(event.pointerId)
+            } catch {
+                // pointer may already be released (e.g. element unmounted)
+            }
+            dragRef.current = null
+            setDragging(false)
         }
         const zoomPercent = Math.round(scale * 100)
         const rows = asset ? metadataRows(asset, labels) : []
@@ -152,7 +216,7 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
                                         tooltipSide="bottom"
                                         tooltipPortalContainer={portalContainer}
                                         tooltipCloseOnPress
-                                        onClick={() => setRotation((value) => value + 90)}
+                                        onClick={rotate}
                                     >
                                         <RotateCw className="h-4 w-4" />
                                     </TooltipButton>
@@ -292,11 +356,26 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
                                         src={asset.src}
                                         alt={asset.alt ?? asset.title}
                                         className={cn(
-                                            "select-none object-contain transition-transform",
-                                            fitWidth ? "w-full max-w-none" : "max-h-full max-w-full"
+                                            "select-none object-contain",
+                                            // No CSS transition while dragging — the transform
+                                            // updates 60+ times per second and the ease lag
+                                            // would make the image feel "swimmy".
+                                            dragging ? "" : "transition-transform",
+                                            fitWidth ? "w-full max-w-none" : "max-h-full max-w-full",
+                                            canPan && (dragging ? "cursor-grabbing" : "cursor-grab")
                                         )}
-                                        style={{ transform: `scale(${scale}) rotate(${rotation}deg)` }}
+                                        style={{
+                                            transform: `translate(${translate.x}px, ${translate.y}px) scale(${scale}) rotate(${rotation}deg)`,
+                                            // Disable native touch scroll/gesture handling only
+                                            // while panning is meaningful — at scale 1 the
+                                            // lightbox should still let users swipe past it.
+                                            touchAction: canPan ? "none" : undefined,
+                                        }}
                                         draggable={false}
+                                        onPointerDown={handlePointerDown}
+                                        onPointerMove={handlePointerMove}
+                                        onPointerUp={endDrag}
+                                        onPointerCancel={endDrag}
                                     />
                                 </div>
                             ) : (
@@ -333,7 +412,7 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
                                         tooltipSide="top"
                                         tooltipPortalContainer={portalContainer}
                                         tooltipCloseOnPress
-                                        onClick={() => { setFitWidth(true); setScale(1); }}
+                                        onClick={() => { setFitWidthWithReset(true); setScale(1); }}
                                     >
                                         <Maximize2 className="h-4 w-4" />
                                     </TooltipButton>
