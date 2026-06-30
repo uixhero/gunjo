@@ -9,14 +9,13 @@ import {
     Card,
     CardContent,
     SearchInput,
-    Skeleton,
     Tabs,
     TabsList,
     TabsTrigger,
-    cn,
 } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import gallery from "@/data/cold-test-gallery.json";
+import { PreviewThumb } from "./PreviewThumb";
 
 interface ColdTestEntry {
     round: number;
@@ -43,70 +42,6 @@ interface ColdTestGallery {
 }
 
 const data = gallery as ColdTestGallery;
-
-function PreviewThumb({
-    slug,
-    available,
-    title,
-    unavailableLabel,
-}: {
-    slug: string;
-    available: boolean;
-    title: string;
-    unavailableLabel: string;
-}) {
-    const imgRef = React.useRef<HTMLImageElement | null>(null);
-    const [loaded, setLoaded] = React.useState(false);
-    const [errored, setErrored] = React.useState(false);
-    const src = `/cold-test-shots/${slug}.desktop.webp`;
-
-    React.useEffect(() => {
-        setLoaded(false);
-        setErrored(false);
-        const node = imgRef.current;
-        if (!node) return;
-        if (node.complete) {
-            if (node.naturalWidth > 0) setLoaded(true);
-            else setErrored(true);
-        }
-    }, [src]);
-
-    if (!available) {
-        return (
-            <div className="grid h-44 place-items-center border-b border-border/60 bg-muted/40 text-xs text-muted-foreground">
-                {unavailableLabel}
-            </div>
-        );
-    }
-
-    return (
-        <div className="relative block h-44 overflow-hidden border-b border-border/60 bg-muted/40">
-            {!loaded && !errored && (
-                <Skeleton className="absolute inset-0 h-full w-full" />
-            )}
-            {errored ? (
-                <div className="absolute inset-0 grid place-items-center text-xs text-muted-foreground">
-                    {unavailableLabel}
-                </div>
-            ) : (
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img
-                    ref={imgRef}
-                    src={src}
-                    alt={`${title} preview`}
-                    onLoad={() => setLoaded(true)}
-                    onError={() => setErrored(true)}
-                    loading="lazy"
-                    decoding="async"
-                    className={cn(
-                        "h-full w-full object-cover object-top transition-opacity duration-200",
-                        loaded ? "opacity-100" : "opacity-0"
-                    )}
-                />
-            )}
-        </div>
-    );
-}
 
 // Next.js requires useSearchParams() consumers to sit inside a Suspense
 // boundary so the static prerender can bail out of the dynamic branch — wrap
@@ -260,7 +195,8 @@ function ColdTestsGrid() {
                             >
                                 <PreviewThumb
                                     slug={entry.slug}
-                                    available={entry.shots.desktop}
+                                    desktopAvailable={entry.shots.desktop}
+                                    enDesktopAvailable={entry.shots["en.desktop"]}
                                     title={entry.title}
                                     unavailableLabel={t.previewUnavailable}
                                 />

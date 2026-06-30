@@ -13,12 +13,11 @@ import {
     BreadcrumbSeparator,
     Card,
     CardContent,
-    Skeleton,
-    cn,
 } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import categories from "@/data/cold-test-categories.json";
 import gallery from "@/data/cold-test-gallery.json";
+import { PreviewThumb } from "../../PreviewThumb";
 
 interface CategoryCopy {
     title: string;
@@ -75,70 +74,6 @@ interface GalleryShape {
 
 const catData = categories as CategoriesShape;
 const galleryData = gallery as GalleryShape;
-
-function PreviewThumb({
-    slug,
-    available,
-    title,
-    unavailableLabel,
-}: {
-    slug: string;
-    available: boolean;
-    title: string;
-    unavailableLabel: string;
-}) {
-    const imgRef = React.useRef<HTMLImageElement | null>(null);
-    const [loaded, setLoaded] = React.useState(false);
-    const [errored, setErrored] = React.useState(false);
-    const src = `/cold-test-shots/${slug}.desktop.webp`;
-
-    React.useEffect(() => {
-        setLoaded(false);
-        setErrored(false);
-        const node = imgRef.current;
-        if (!node) return;
-        if (node.complete) {
-            if (node.naturalWidth > 0) setLoaded(true);
-            else setErrored(true);
-        }
-    }, [src]);
-
-    if (!available) {
-        return (
-            <div className="grid h-44 place-items-center border-b border-border/60 bg-muted/40 text-xs text-muted-foreground">
-                {unavailableLabel}
-            </div>
-        );
-    }
-
-    return (
-        <div className="relative block h-44 overflow-hidden border-b border-border/60 bg-muted/40">
-            {!loaded && !errored && (
-                <Skeleton className="absolute inset-0 h-full w-full" />
-            )}
-            {errored ? (
-                <div className="absolute inset-0 grid place-items-center text-xs text-muted-foreground">
-                    {unavailableLabel}
-                </div>
-            ) : (
-                /* eslint-disable-next-line @next/next/no-img-element */
-                <img
-                    ref={imgRef}
-                    src={src}
-                    alt={`${title} preview`}
-                    onLoad={() => setLoaded(true)}
-                    onError={() => setErrored(true)}
-                    loading="lazy"
-                    decoding="async"
-                    className={cn(
-                        "h-full w-full object-cover object-top transition-opacity duration-200",
-                        loaded ? "opacity-100" : "opacity-0"
-                    )}
-                />
-            )}
-        </div>
-    );
-}
 
 // PascalCase → kebab-case, matching docSlugFor used elsewhere. We only fall
 // back to this when the JSON entry omits a slug — the data file is canonical.
@@ -275,7 +210,8 @@ export function CategoryView({ slug }: { slug: string }) {
                                 <Card className="flex h-full w-full flex-col overflow-hidden border-border/80 shadow-sm transition-all hover:border-primary-border hover:shadow-md group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-2">
                                     <PreviewThumb
                                         slug={entry.slug}
-                                        available={entry.shots.desktop}
+                                        desktopAvailable={entry.shots.desktop}
+                                        enDesktopAvailable={entry.shots["en.desktop"]}
                                         title={entry.title}
                                         unavailableLabel={t.previewUnavailable}
                                     />
