@@ -1,12 +1,12 @@
 #!/usr/bin/env node
 /**
- * Resize the desktop cold-test screenshots from `promotion/` into
- * grid-friendly thumbnails committed to `public/cold-test-shots/`.
+ * Resize cold-test screenshots from `promotion/` into grid- and
+ * detail-page-friendly thumbnails committed to `public/cold-test-shots/`.
  *
- * The source PNGs are full-page Playwright captures (2880×3776+) at
- * ~534KB each. We resize the width to 600px (height preserved) so the
- * grid card can use `object-cover object-top` to show the above-fold
- * portion, mirroring how `public/patterns-thumbs/` is consumed.
+ * Source PNGs are full-page Playwright captures (2880×3776+ desktop,
+ * 750×8000+ mobile). We resample by width:
+ *   - desktop → 600px wide  (grid card + detail hero, retina-OK)
+ *   - mobile  → 375px wide  (detail mobile preview at native viewport)
  *
  * Uses `sips` (macOS built-in) so no extra dev dependency is needed.
  *
@@ -27,7 +27,11 @@ const PROMO = process.env.GUNJO_PROMOTION_DIR
 const SHOTS_IN = path.join(PROMO, "cold-test-screens", "shots");
 const SHOTS_OUT = path.join(ROOT, "public", "cold-test-shots");
 const DATA = path.join(ROOT, "app", "data", "cold-test-gallery.json");
-const TARGET_WIDTH = 600;
+
+const VIEWPORTS = [
+    { kind: "desktop", width: 600 },
+    { kind: "mobile", width: 375 },
+];
 
 if (!fs.existsSync(SHOTS_IN)) {
     console.error(`screenshots not found at ${SHOTS_IN}`);
@@ -42,41 +46,37 @@ if (!fs.existsSync(DATA)) {
 const data = JSON.parse(fs.readFileSync(DATA, "utf8"));
 fs.mkdirSync(SHOTS_OUT, { recursive: true });
 
-let resized = 0;
-let skipped = 0;
-let missing = 0;
-const missingSlugs = [];
+const stats = {};
+for (const v of VIEWPORTS) stats[v.kind] = { resized: 0, skipped: 0, missing: 0 };
 
 for (const entry of data.entries) {
-    if (!entry.shots.desktop) {
-        missing++;
-        missingSlugs.push(`#${entry.round} ${entry.slug}`);
-        continue;
+    for (const v of VIEWPORTS) {
+        const s = stats[v.kind];
+        if (!entry.shots[v.kind]) {
+            s.missing++;
+            continue;
+        }
+        const src = path.join(SHOTS_IN, `${entry.slug}.${v.kind}.png`);
+        const dst = path.join(SHOTS_OUT, `${entry.slug}.${v.kind}.png`);
+        if (!fs.existsSync(src)) {
+            s.missing++;
+            continue;
+        }
+        if (fs.existsSync(dst) && fs.statSync(dst).mtimeMs >= fs.statSync(src).mtimeMs) {
+            s.skipped++;
+            continue;
+        }
+        execFileSync(
+            "sips",
+            ["--resampleWidth", String(v.width), src, "--out", dst],
+            { stdio: ["ignore", "ignore", "inherit"] }
+        );
+        s.resized++;
     }
-    const src = path.join(SHOTS_IN, `${entry.slug}.desktop.png`);
-    const dst = path.join(SHOTS_OUT, `${entry.slug}.desktop.png`);
-    if (!fs.existsSync(src)) {
-        missing++;
-        missingSlugs.push(`#${entry.round} ${entry.slug} (data says present but file missing)`);
-        continue;
-    }
-    // Skip if destination is newer than source — cheap incremental rebuild.
-    if (fs.existsSync(dst) && fs.statSync(dst).mtimeMs >= fs.statSync(src).mtimeMs) {
-        skipped++;
-        continue;
-    }
-    execFileSync(
-        "sips",
-        ["--resampleWidth", String(TARGET_WIDTH), src, "--out", dst],
-        { stdio: ["ignore", "ignore", "inherit"] }
-    );
-    resized++;
 }
 
 console.log(`cold-test thumbs → ${path.relative(ROOT, SHOTS_OUT)}/`);
-console.log(`  resized: ${resized}`);
-console.log(`  skipped (up to date): ${skipped}`);
-console.log(`  missing source: ${missing}`);
-if (missingSlugs.length && missingSlugs.length <= 10) {
-    for (const s of missingSlugs) console.log(`    - ${s}`);
+for (const v of VIEWPORTS) {
+    const s = stats[v.kind];
+    console.log(`  ${v.kind} (${v.width}px): resized=${s.resized} skipped=${s.skipped} missing=${s.missing}`);
 }

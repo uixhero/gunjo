@@ -1,7 +1,8 @@
 "use client";
 
 import * as React from "react";
-import { IconFlask as Flask } from "@tabler/icons-react";
+import Link from "next/link";
+import { IconFlask as Flask, IconArrowUpRight as ArrowUpRight } from "@tabler/icons-react";
 import {
     Badge,
     Card,
@@ -212,48 +213,57 @@ export default function ColdTestsPage() {
             ) : (
                 <div className="grid gap-5 sm:gap-6 grid-cols-[repeat(auto-fill,minmax(280px,1fr))]">
                     {filtered.map((entry) => (
-                        <Card
+                        <Link
                             key={entry.round}
-                            className="flex h-full w-full flex-col overflow-hidden border-border/80 shadow-sm"
+                            href={`/cold-tests/${entry.round}`}
+                            aria-label={t.openDetailLabel(entry.round)}
+                            className="group block focus-visible:outline-none"
                         >
-                            <PreviewThumb
-                                slug={entry.slug}
-                                available={entry.shots.desktop}
-                                title={entry.title}
-                                unavailableLabel={t.previewUnavailable}
-                            />
-                            <CardContent className="flex flex-1 flex-col gap-2 p-4">
-                                <div className="flex flex-wrap items-center justify-between gap-2">
-                                    <Badge
-                                        variant="outline"
-                                        className="border-border/60 text-[10px] uppercase tracking-wider text-muted-foreground"
-                                    >
-                                        {t.roundLabel(entry.round)}
-                                    </Badge>
-                                    <Badge
-                                        variant="secondary"
-                                        className="text-[10px]"
-                                    >
-                                        {t.scoreLabel(entry.score)}
-                                    </Badge>
-                                </div>
-                                <div className="min-w-0">
-                                    <div className="line-clamp-2 font-semibold tracking-tight">
-                                        {entry.title}
+                            <Card
+                                className="flex h-full w-full flex-col overflow-hidden border-border/80 shadow-sm transition-all hover:border-primary-border hover:shadow-md group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-2"
+                            >
+                                <PreviewThumb
+                                    slug={entry.slug}
+                                    available={entry.shots.desktop}
+                                    title={entry.title}
+                                    unavailableLabel={t.previewUnavailable}
+                                />
+                                <CardContent className="flex flex-1 flex-col gap-2 p-4">
+                                    <div className="flex flex-wrap items-center justify-between gap-2">
+                                        <Badge
+                                            variant="outline"
+                                            className="border-border/60 text-[10px] uppercase tracking-wider text-muted-foreground"
+                                        >
+                                            {t.roundLabel(entry.round)}
+                                        </Badge>
+                                        <Badge
+                                            variant="secondary"
+                                            className="text-[10px]"
+                                        >
+                                            {t.scoreLabel(entry.score)}
+                                        </Badge>
                                     </div>
-                                    <div className="mt-1 text-xs text-muted-foreground">
-                                        <code className="font-mono">{entry.route}</code>
-                                        {" · "}
-                                        {t.categories[entry.category] ?? entry.category}
+                                    <div className="min-w-0">
+                                        <div className="inline-flex w-full items-start justify-between gap-2">
+                                            <span className="line-clamp-2 font-semibold tracking-tight transition-colors group-hover:text-primary">
+                                                {entry.title}
+                                            </span>
+                                            <ArrowUpRight className="h-3.5 w-3.5 shrink-0 opacity-40 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
+                                        </div>
+                                        <div className="mt-1 text-xs text-muted-foreground">
+                                            <code className="font-mono">{entry.route}</code>
+                                            {" · "}
+                                            {t.categories[entry.category] ?? entry.category}
+                                        </div>
                                     </div>
-                                </div>
-                                {entry.summary ? (
-                                    <p className="mt-1 line-clamp-3 text-sm text-muted-foreground">
-                                        {entry.summary}
-                                    </p>
-                                ) : null}
-                            </CardContent>
-                        </Card>
+                                    {entry.summary ? (
+                                        <p className="mt-1 line-clamp-3 text-sm text-muted-foreground">
+                                            {entry.summary}
+                                        </p>
+                                    ) : null}
+                                </CardContent>
+                            </Card>
+                        </Link>
                     ))}
                 </div>
             )}

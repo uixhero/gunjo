@@ -274,6 +274,23 @@ export type ColdTestsPageStrings = {
   categories: Record<string, string>;
   scoreLabel: (score: string) => string;
   roundLabel: (round: number) => string;
+  openDetailLabel: (round: number) => string;
+  detail: {
+    backToList: string;
+    routeLabel: string;
+    scoreLabel: string;
+    desktopPreview: string;
+    mobilePreview: string;
+    mobilePreviewHint: string;
+    article: string;
+    sourceCode: string;
+    sourceCodeMissing: (overwrittenBy: number) => string;
+    componentsUsed: string;
+    componentsUsedHint: string;
+    componentDocsLabel: (name: string) => string;
+    summaryFooter: string;
+    notFound: string;
+  };
 };
 
 export type PagesTranslations = {
@@ -587,6 +604,24 @@ export const translations: Record<
         },
         scoreLabel: (score) => `Score ${score}`,
         roundLabel: (round) => `Round #${round}`,
+        openDetailLabel: (round) => `Open round #${round}`,
+        detail: {
+          backToList: "Back to all cold tests",
+          routeLabel: "Route",
+          scoreLabel: "Score",
+          desktopPreview: "Desktop preview",
+          mobilePreview: "Mobile preview",
+          mobilePreviewHint: "Captured at 375px viewport. Long pages scroll inside the frame.",
+          article: "Write-up",
+          sourceCode: "Source built by the cold agent",
+          sourceCodeMissing: (overwrittenBy) =>
+            `Source for this round is not preserved — the same route was rebuilt from scratch in round #${overwrittenBy}, overwriting these files. The write-up and screenshot above capture what was built at the time.`,
+          componentsUsed: "Components from @gunjo/ui",
+          componentsUsedHint: "Direct imports across this screen's source.",
+          componentDocsLabel: (name) => `Open ${name} docs`,
+          summaryFooter: "Summary",
+          notFound: "Round not found.",
+        },
       },
       tokens: {
         label: "Tokens",
@@ -1165,6 +1200,24 @@ export const translations: Record<
         },
         scoreLabel: (score) => `スコア ${score}`,
         roundLabel: (round) => `#${round}`,
+        openDetailLabel: (round) => `#${round} の詳細を開く`,
+        detail: {
+          backToList: "コールドテスト一覧に戻る",
+          routeLabel: "ルート",
+          scoreLabel: "スコア",
+          desktopPreview: "デスクトップ表示",
+          mobilePreview: "モバイル表示",
+          mobilePreviewHint: "375px のビューポートで撮影。縦長のページはフレーム内をスクロールします。",
+          article: "解説記事",
+          sourceCode: "cold AI が組み上げた実コード",
+          sourceCodeMissing: (overwrittenBy) =>
+            `この回のソースは保存されていません——同じルートが #${overwrittenBy} で別の画面として組み直され、ファイルが上書きされたためです。上の記事とスクショは、組まれた当時の姿を残しています。`,
+          componentsUsed: "使用した @gunjo/ui コンポーネント",
+          componentsUsedHint: "この画面のソースが直接 import している部品です。",
+          componentDocsLabel: (name) => `${name} のドキュメントを開く`,
+          summaryFooter: "まとめ",
+          notFound: "該当するラウンドが見つかりません。",
+        },
       },
       tokens: {
         label: "Tokens",
