@@ -284,6 +284,8 @@ export type ColdTestsPageStrings = {
     openLightboxLabel: (which: string) => string;
     article: string;
     sourceCode: string;
+    sourceCodeHint: string;
+    sourceCodeFileLines: (lines: number) => string;
     sourceCodeMissing: (overwrittenBy: number) => string;
     componentsUsed: string;
     componentsUsedHint: string;
@@ -622,6 +624,8 @@ export const translations: Record<
           openLightboxLabel: (which) => `Open ${which.toLowerCase()} at full size`,
           article: "Write-up",
           sourceCode: "Source built by the cold agent",
+          sourceCodeHint: "Click a file to expand its source.",
+          sourceCodeFileLines: (lines) => `${lines} line${lines === 1 ? "" : "s"}`,
           sourceCodeMissing: (overwrittenBy) =>
             `Source for this round is not preserved — the same route was rebuilt from scratch in round #${overwrittenBy}, overwriting these files. The write-up and screenshot above capture what was built at the time.`,
           componentsUsed: "Components from @gunjo/ui",
@@ -1226,6 +1230,8 @@ export const translations: Record<
           openLightboxLabel: (which) => `${which} を原寸で開く`,
           article: "解説記事",
           sourceCode: "cold AI が組み上げた実コード",
+          sourceCodeHint: "ファイル名をクリックでソースを展開できます。",
+          sourceCodeFileLines: (lines) => `${lines} 行`,
           sourceCodeMissing: (overwrittenBy) =>
             `この回のソースは保存されていません——同じルートが #${overwrittenBy} で別の画面として組み直され、ファイルが上書きされたためです。上の記事とスクショは、組まれた当時の姿を残しています。`,
           componentsUsed: "使用した @gunjo/ui コンポーネント",
