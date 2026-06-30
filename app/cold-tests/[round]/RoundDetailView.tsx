@@ -21,8 +21,10 @@ import {
     CodeBlock,
     DocumentPager,
     MarkdownRenderer,
+    MediaLightbox,
     cn,
 } from "@gunjo/ui";
+import type { AssetCardAsset } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
 
 export interface RoundCodeFile {
@@ -85,12 +87,61 @@ export function RoundDetailView({
     const t = pages.coldTests;
     const td = t.detail;
 
-    const desktopSrc = detail.shots.desktop
-        ? `/cold-test-shots/${detail.slug}.desktop.png`
+    // Inline preview uses the .lg tier (retina-sharp at the detail page's
+    // display width); the lightbox opens .full (cwebp of the original
+    // 2880px/750px capture) so readers can pixel-peep.
+    const desktopInlineSrc = detail.shots.desktop
+        ? `/cold-test-shots/${detail.slug}.desktop.lg.webp`
         : null;
-    const mobileSrc = detail.shots.mobile
-        ? `/cold-test-shots/${detail.slug}.mobile.png`
+    const mobileInlineSrc = detail.shots.mobile
+        ? `/cold-test-shots/${detail.slug}.mobile.lg.webp`
         : null;
+
+    // Lightbox assets — desktop first, mobile second. Indices line up with
+    // the order of the inline previews so prev/next inside the lightbox
+    // toggles between viewports of the same round.
+    const lightboxAssets: AssetCardAsset[] = React.useMemo(() => {
+        const list: AssetCardAsset[] = [];
+        if (detail.shots.desktop) {
+            list.push({
+                id: `${detail.round}-desktop`,
+                title: `${detail.title} — ${td.desktopPreview}`,
+                src: `/cold-test-shots/${detail.slug}.desktop.full.webp`,
+                alt: `${detail.title} desktop full preview`,
+                type: "Desktop",
+            });
+        }
+        if (detail.shots.mobile) {
+            list.push({
+                id: `${detail.round}-mobile`,
+                title: `${detail.title} — ${td.mobilePreview}`,
+                src: `/cold-test-shots/${detail.slug}.mobile.lg.webp`,
+                alt: `${detail.title} mobile full preview`,
+                type: "Mobile",
+            });
+        }
+        return list;
+    }, [
+        detail.round,
+        detail.slug,
+        detail.title,
+        detail.shots.desktop,
+        detail.shots.mobile,
+        td.desktopPreview,
+        td.mobilePreview,
+    ]);
+
+    const [lightboxOpen, setLightboxOpen] = React.useState(false);
+    const [lightboxIndex, setLightboxIndex] = React.useState(0);
+    const openLightbox = (index: number) => {
+        setLightboxIndex(index);
+        setLightboxOpen(true);
+    };
+    const currentAsset = lightboxAssets[lightboxIndex] ?? null;
+    const hasPrevious = lightboxIndex > 0;
+    const hasNext = lightboxIndex < lightboxAssets.length - 1;
+    const desktopAssetIndex = lightboxAssets.findIndex((a) => a.id.endsWith("-desktop"));
+    const mobileAssetIndex = lightboxAssets.findIndex((a) => a.id.endsWith("-mobile"));
 
     return (
         <article className="space-y-10">
@@ -144,27 +195,38 @@ export function RoundDetailView({
                 </div>
             </header>
 
-            {/* Previews */}
-            {(desktopSrc || mobileSrc) && (
+            {/* Previews — each is a button that opens the MediaLightbox with
+                the corresponding full-resolution variant. */}
+            {(desktopInlineSrc || mobileInlineSrc) && (
                 <section className="grid gap-6 lg:grid-cols-[1.6fr_1fr]">
-                    {desktopSrc && (
+                    {desktopInlineSrc && (
                         <figure className="space-y-2">
                             <figcaption className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
                                 {td.desktopPreview}
                             </figcaption>
-                            <div className="overflow-hidden rounded-md border border-border/60 bg-muted/40">
+                            <button
+                                type="button"
+                                onClick={() => openLightbox(desktopAssetIndex)}
+                                aria-label={td.openLightboxLabel(td.desktopPreview)}
+                                className="group block w-full overflow-hidden rounded-md border border-border/60 bg-muted/40 transition-colors hover:border-primary-border focus-visible:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                            >
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
-                                    src={desktopSrc}
+                                    src={desktopInlineSrc}
                                     alt={`${detail.title} desktop preview`}
-                                    className="block h-auto w-full"
-                                    loading="lazy"
+                                    /* Hero on the page — eager so the browser
+                                       paints it without waiting for an
+                                       intersection event; with h-auto and no
+                                       intrinsic dimensions, lazy never fires
+                                       (image has 0px height until loaded). */
+                                    loading="eager"
                                     decoding="async"
+                                    className="block h-auto w-full transition-transform group-hover:scale-[1.005]"
                                 />
-                            </div>
+                            </button>
                         </figure>
                     )}
-                    {mobileSrc && (
+                    {mobileInlineSrc && (
                         <figure className="space-y-2">
                             <figcaption className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
                                 {td.mobilePreview}
@@ -172,22 +234,38 @@ export function RoundDetailView({
                             {/* Cold-test mobile shots are full-page (often 4000-8000px tall).
                                 Constrain the visual frame so the detail layout doesn't
                                 stretch; overflow-y-auto lets readers scroll the long
-                                page inside the phone-shaped surface. */}
-                            <div className="max-h-[640px] overflow-y-auto overflow-x-hidden rounded-md border border-border/60 bg-muted/40">
+                                page inside the phone-shaped surface. The lightbox opens
+                                the same source unconstrained for pixel-peeping. */}
+                            <button
+                                type="button"
+                                onClick={() => openLightbox(mobileAssetIndex)}
+                                aria-label={td.openLightboxLabel(td.mobilePreview)}
+                                className="group block max-h-[640px] w-full overflow-y-auto overflow-x-hidden rounded-md border border-border/60 bg-muted/40 transition-colors hover:border-primary-border focus-visible:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                            >
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
-                                    src={mobileSrc}
+                                    src={mobileInlineSrc}
                                     alt={`${detail.title} mobile preview`}
-                                    className="block h-auto w-full"
-                                    loading="lazy"
+                                    loading="eager"
                                     decoding="async"
+                                    className="block h-auto w-full"
                                 />
-                            </div>
+                            </button>
                             <p className="text-xs text-muted-foreground">{td.mobilePreviewHint}</p>
                         </figure>
                     )}
                 </section>
             )}
+
+            <MediaLightbox
+                open={lightboxOpen}
+                onOpenChange={setLightboxOpen}
+                asset={currentAsset}
+                hasPrevious={hasPrevious}
+                hasNext={hasNext}
+                onPrevious={() => hasPrevious && setLightboxIndex((i) => i - 1)}
+                onNext={() => hasNext && setLightboxIndex((i) => i + 1)}
+            />
 
             {/* Article */}
             {detail.article?.markdown ? (

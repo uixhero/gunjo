@@ -72,7 +72,7 @@ export default async function ColdTestRoundPage({
                   title: entry.title,
                   category: entry.category,
                   thumbnailSrc: entry.shots.desktop
-                      ? `/cold-test-shots/${entry.slug}.desktop.png`
+                      ? `/cold-test-shots/${entry.slug}.desktop.webp`
                       : undefined,
               }
             : null;
