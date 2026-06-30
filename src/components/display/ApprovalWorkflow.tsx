@@ -50,17 +50,17 @@ export interface ApprovalWorkflowLabels {
 }
 
 const DEFAULT_LABELS: Required<ApprovalWorkflowLabels> = {
-    advance: "次へ進める",
-    finish: "完了にする",
-    sendBack: "差戻し",
-    reject: "却下",
-    confirm: "確定",
-    cancel: "キャンセル",
-    sendBackTarget: "戻し先の段階",
-    reason: "理由",
-    reasonPlaceholder: "理由を入力…",
-    completed: "完了",
-    rejected: "却下されました",
+    advance: "Advance",
+    finish: "Finish",
+    sendBack: "Send back",
+    reject: "Reject",
+    confirm: "Confirm",
+    cancel: "Cancel",
+    sendBackTarget: "Stage to return to",
+    reason: "Reason",
+    reasonPlaceholder: "Enter a reason...",
+    completed: "Completed",
+    rejected: "Rejected",
 }
 
 function stageName(stage: WorkflowStage): string {
@@ -85,7 +85,7 @@ const ApprovalWorkflow = React.forwardRef<HTMLDivElement, {
     canAdvance?: boolean
     /** Actor recorded on advance / send-back / reject. */
     actor?: React.ReactNode
-    /** Returns the timestamp written into records (only called on a user action). Default `new Date().toLocaleString("ja-JP")`. */
+    /** Returns the timestamp written into records (only called on a user action). */
     now?: () => React.ReactNode
     /** Show the send-back control. Default `true`. */
     allowSendBack?: boolean
@@ -105,7 +105,7 @@ const ApprovalWorkflow = React.forwardRef<HTMLDivElement, {
             onChange,
             canAdvance = true,
             actor,
-            now = () => new Date().toLocaleString("ja-JP"),
+            now = () => new Date().toLocaleString(),
             allowSendBack = true,
             allowReject = true,
             advanceHint,

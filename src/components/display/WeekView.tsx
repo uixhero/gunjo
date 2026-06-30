@@ -42,8 +42,10 @@ export interface WeekViewProps extends Omit<React.HTMLAttributes<HTMLDivElement>
     today?: string | Date
     /** Accessible name for the calendar. */
     label?: React.ReactNode
-    /** 7 short weekday labels starting Sunday. Default 日 月 火 …. */
+    /** 7 short weekday labels starting Sunday. Default Sun Mon Tue …. */
     weekdayLabels?: string[]
+    /** Build each event's accessible label. */
+    formatEventLabel?: (dayLabel: string, start: Date, end: Date, event: WeekEvent) => string
     onSelectEvent?: (event: WeekEvent) => void
 }
 
@@ -57,7 +59,7 @@ const EVENT_TONE: Record<WeekEventTone, string> = {
     muted: "bg-muted text-muted-foreground border-border",
 }
 
-const DEFAULT_WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"]
+const DEFAULT_WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
 function toDate(value: string | Date): Date {
     if (value instanceof Date) return value
@@ -135,6 +137,7 @@ const WeekView = React.forwardRef<HTMLDivElement, WeekViewProps>(
             today,
             label,
             weekdayLabels,
+            formatEventLabel,
             onSelectEvent,
             ...props
         },
@@ -186,7 +189,7 @@ const WeekView = React.forwardRef<HTMLDivElement, WeekViewProps>(
             <div
                 ref={ref}
                 role="group"
-                aria-label={typeof label === "string" ? label : "週間カレンダー"}
+                aria-label={typeof label === "string" ? label : "Week calendar"}
                 className={cn("w-full max-w-full overflow-x-auto p-0 [contain:paint]", className)}
                 data-slot="week-view"
                 {...props}
@@ -257,9 +260,11 @@ const WeekView = React.forwardRef<HTMLDivElement, WeekViewProps>(
                                         const widthPct = 100 / p.cols
                                         const s = toDate(p.event.start)
                                         const e = toDate(p.event.end)
-                                        const name = `${d.weekday}曜 ${hhmm(s)}〜${hhmm(e)} ${
+                                        const eventLabel =
                                             p.event.ariaLabel ?? (typeof p.event.label === "string" ? p.event.label : "")
-                                        }`
+                                        const name =
+                                            formatEventLabel?.(d.weekday, s, e, p.event) ??
+                                            `${d.weekday} ${hhmm(s)}-${hhmm(e)} ${eventLabel}`.trim()
                                         return (
                                             <button
                                                 key={p.event.id}

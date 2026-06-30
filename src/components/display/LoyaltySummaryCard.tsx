@@ -30,6 +30,8 @@ export interface LoyaltySummaryCardProps extends React.HTMLAttributes<HTMLDivEle
   secondary?: { label: React.ReactNode; value: React.ReactNode }[]
   /** Progress toward the next tier (higher-is-better; never auto-reds). */
   progress?: LoyaltyProgress
+  /** Accessible label used when `progress.label` is not plain text. */
+  progressLabel?: string
   /** Expiry / alert line (失効予定 など). */
   alert?: React.ReactNode
   /** Primary action (a Button node — show card / redeem / charge). */
@@ -52,7 +54,7 @@ export interface LoyaltySummaryCardProps extends React.HTMLAttributes<HTMLDivEle
  */
 export const LoyaltySummaryCard = React.forwardRef<HTMLDivElement, LoyaltySummaryCardProps>(
   (
-    { balance, balanceLabel, unit, meta, tier, secondary, progress, alert, action, tone = "brand", className, ...props },
+    { balance, balanceLabel, unit, meta, tier, secondary, progress, progressLabel = "Progress to next tier", alert, action, tone = "brand", className, ...props },
     ref
   ) => {
     const brand = tone === "brand"
@@ -111,7 +113,7 @@ export const LoyaltySummaryCard = React.forwardRef<HTMLDivElement, LoyaltySummar
               aria-valuenow={progress.value}
               aria-valuemin={0}
               aria-valuemax={progress.max}
-              aria-label={typeof progress.label === "string" ? progress.label : "次のランクまでの進捗"}
+              aria-label={typeof progress.label === "string" ? progress.label : progressLabel}
               className={cn("h-2 w-full overflow-hidden rounded-full", brand ? "bg-primary-foreground/25" : "bg-muted")}
             >
               <div

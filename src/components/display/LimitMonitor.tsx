@@ -68,10 +68,17 @@ const STATE_ICON: Record<LimitState, React.ComponentType<{ className?: string }>
 }
 
 const DEFAULT_LABELS: Record<LimitState, string> = {
-  ok: "基準内",
-  near: "基準間近",
-  over: "基準超過",
-  critical: "上限超過",
+  ok: "Within limit",
+  near: "Near limit",
+  over: "Over limit",
+  critical: "Critical",
+}
+
+export interface LimitMonitorReadoutLabels {
+  floorShortfall?: (value: React.ReactNode) => React.ReactNode
+  floorHeadroom?: (value: React.ReactNode) => React.ReactNode
+  ceilingOver?: (value: React.ReactNode) => React.ReactNode
+  ceilingHeadroom?: (value: React.ReactNode) => React.ReactNode
 }
 
 export interface LimitMonitorProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "children"> {
@@ -93,6 +100,8 @@ export interface LimitMonitorProps extends Omit<React.HTMLAttributes<HTMLDivElem
   formatValue?: (value: number) => React.ReactNode
   /** Override the state chip labels. */
   labels?: Partial<Record<LimitState, React.ReactNode>>
+  /** Override the remaining / exceeded readout. */
+  readoutLabels?: LimitMonitorReadoutLabels
 }
 
 /**
@@ -107,7 +116,7 @@ export interface LimitMonitorProps extends Omit<React.HTMLAttributes<HTMLDivElem
  */
 const LimitMonitor = React.forwardRef<HTMLDivElement, LimitMonitorProps>(
   (
-    { className, value, limit, hardLimit, warnWithin = 0, direction = "ceiling", max, label, formatValue, labels, ...props },
+    { className, value, limit, hardLimit, warnWithin = 0, direction = "ceiling", max, label, formatValue, labels, readoutLabels, ...props },
     ref
   ) => {
     const { state, over } = classifyLimit(value, { limit, hardLimit, warnWithin, direction })
@@ -123,17 +132,17 @@ const LimitMonitor = React.forwardRef<HTMLDivElement, LimitMonitorProps>(
     const readout =
       direction === "floor"
         ? over > 0
-          ? `下限まで ${fmt(overAbs)} 不足`
-          : `下限まで 残り ${fmt(overAbs)}`
+          ? readoutLabels?.floorShortfall?.(fmt(overAbs)) ?? <>Short by {fmt(overAbs)}</>
+          : readoutLabels?.floorHeadroom?.(fmt(overAbs)) ?? <>{fmt(overAbs)} above floor</>
         : over >= 0
-          ? `基準を ${fmt(overAbs)} 超過`
-          : `基準まで 残り ${fmt(overAbs)}`
+          ? readoutLabels?.ceilingOver?.(fmt(overAbs)) ?? <>{fmt(overAbs)} over limit</>
+          : readoutLabels?.ceilingHeadroom?.(fmt(overAbs)) ?? <>{fmt(overAbs)} remaining</>
 
     return (
       <div
         ref={ref}
         role="group"
-        aria-label={typeof label === "string" ? label : "上限監視"}
+        aria-label={typeof label === "string" ? label : props["aria-label"] ?? "Limit monitor"}
         className={cn("w-full", className)}
         data-slot="limit-monitor"
         {...props}

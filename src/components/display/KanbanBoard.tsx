@@ -36,7 +36,7 @@ export interface KanbanBoardProps<T> extends Omit<React.HTMLAttributes<HTMLDivEl
     onCardSelect?: (item: T) => void
     /** Show a per-column count badge. Default `true`. */
     showCount?: boolean
-    /** Placeholder for an empty column. Default `"なし"`. */
+    /** Placeholder for an empty column. Default `"None"`. */
     emptyLabel?: React.ReactNode
     /** Column width in px. Default `260`. */
     columnWidth?: number
@@ -70,7 +70,7 @@ function KanbanBoard<T>({
     renderCard,
     onCardSelect,
     showCount = true,
-    emptyLabel = "なし",
+    emptyLabel = "None",
     columnWidth = 260,
     ...props
 }: KanbanBoardProps<T>) {

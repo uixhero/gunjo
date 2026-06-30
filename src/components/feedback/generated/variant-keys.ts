@@ -4,6 +4,9 @@
 export const alertVariantKeys = ["default", "destructive", "info", "success", "warning"] as const;
 export type AlertVariantKey = (typeof alertVariantKeys)[number];
 
+export const safetyBannerVariantKeys = ["acknowledged", "default"] as const;
+export type SafetyBannerVariantKey = (typeof safetyBannerVariantKeys)[number];
+
 export const spinnerVariantKeys = ["default", "lg", "sm"] as const;
 export type SpinnerVariantKey = (typeof spinnerVariantKeys)[number];
 
@@ -15,6 +18,7 @@ export type ToastVariantKey = (typeof toastVariantKeys)[number];
 
 export const feedbackVariantKeys = {
   alert: alertVariantKeys,
+  safetyBanner: safetyBannerVariantKeys,
   spinner: spinnerVariantKeys,
   statusScreen: statusScreenVariantKeys,
   toast: toastVariantKeys,

@@ -13,6 +13,8 @@ export interface TicketStubProps extends React.HTMLAttributes<HTMLDivElement> {
   codeLabel?: React.ReactNode
   /** Accessible name for the code image. Default derived from `value`. */
   codeAlt?: string
+  /** Build the default accessible code label when `codeAlt` is not supplied. */
+  formatCodeAlt?: (format: TicketCodeFormat, value: string) => string
   /** Main content above the perforation (flight OD-pair / coupon detail / member info). */
   children?: React.ReactNode
   /** Show the perforation notch + dashed divider between content and code. Default `true`. */
@@ -108,8 +110,8 @@ function Perforation() {
  * deterministic visual placeholder — pass `code` for a production-scannable barcode.
  */
 export const TicketStub = React.forwardRef<HTMLDivElement, TicketStubProps>(
-  ({ className, value, format = "code128", codeLabel, codeAlt, children, perforation = true, code, ...props }, ref) => {
-    const alt = codeAlt ?? `${format === "qr" ? "QRコード" : "バーコード"}：${value}`
+  ({ className, value, format = "code128", codeLabel, codeAlt, formatCodeAlt, children, perforation = true, code, ...props }, ref) => {
+    const alt = codeAlt ?? formatCodeAlt?.(format, value) ?? `${format === "qr" ? "QR code" : "Barcode"}: ${value}`
     return (
       <div ref={ref} className={cn("w-full overflow-hidden rounded-xl border bg-card text-card-foreground", className)} {...props}>
         {children != null && <div className="p-4">{children}</div>}

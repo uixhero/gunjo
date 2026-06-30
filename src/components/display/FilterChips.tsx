@@ -36,7 +36,7 @@ export interface FilterChipsProps extends Omit<React.HTMLAttributes<HTMLDivEleme
  * popover filter use FilterButton; this is the many-category scannable rail.
  */
 export const FilterChips = React.forwardRef<HTMLDivElement, FilterChipsProps>(
-  ({ items, value, onValueChange, className, "aria-label": ariaLabel = "絞り込み", ...props }, forwardedRef) => {
+  ({ items, value, onValueChange, className, "aria-label": ariaLabel = "Filters", ...props }, forwardedRef) => {
     const innerRef = React.useRef<HTMLDivElement>(null)
     React.useImperativeHandle(forwardedRef, () => innerRef.current as HTMLDivElement)
 

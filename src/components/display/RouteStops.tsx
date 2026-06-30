@@ -45,6 +45,12 @@ export interface RouteStopsProps extends Omit<React.HTMLAttributes<HTMLOListElem
     hideTimes?: boolean
     /** Localized labels for the planned / actual times. */
     timeLabels?: { planned?: string; actual?: string }
+    /** Label shown on the current stop. */
+    currentLabel?: React.ReactNode
+    /** Localized labels for the delay delta. */
+    delayLabels?: { positive?: string; negative?: string; zero?: string }
+    /** Format the delay in minutes. */
+    formatDelay?: (minutes: number) => React.ReactNode
 }
 
 type BadgeVariant = "secondary" | "info" | "success" | "destructive" | "warning"
@@ -53,11 +59,11 @@ const STATUS_CONFIG: Record<
     RouteStopStatus,
     { label: string; badge: BadgeVariant; marker: string; icon?: typeof IconCheck }
 > = {
-    pending: { label: "未配", badge: "secondary", marker: "bg-muted text-muted-foreground" },
-    current: { label: "配送中", badge: "info", marker: "bg-primary text-primary-foreground" },
-    completed: { label: "完了", badge: "success", marker: "bg-success-strong text-success-strong-foreground", icon: IconCheck },
-    failed: { label: "不在", badge: "destructive", marker: "bg-destructive-strong text-destructive-strong-foreground", icon: IconX },
-    delayed: { label: "遅延", badge: "warning", marker: "bg-warning-strong text-warning-strong-foreground", icon: IconClock },
+    pending: { label: "Pending", badge: "secondary", marker: "bg-muted text-muted-foreground" },
+    current: { label: "In progress", badge: "info", marker: "bg-primary text-primary-foreground" },
+    completed: { label: "Completed", badge: "success", marker: "bg-success-strong text-success-strong-foreground", icon: IconCheck },
+    failed: { label: "Failed", badge: "destructive", marker: "bg-destructive-strong text-destructive-strong-foreground", icon: IconX },
+    delayed: { label: "Delayed", badge: "warning", marker: "bg-warning-strong text-warning-strong-foreground", icon: IconClock },
 }
 
 function parseHM(t?: string): number | null {
@@ -79,7 +85,7 @@ function parseHM(t?: string): number | null {
  * sequenced-stop flow. (#228)
  */
 const RouteStops = React.forwardRef<HTMLOListElement, RouteStopsProps>(
-    ({ className, stops, statusLabels, hideTimes = false, timeLabels, ...props }, ref) => {
+    ({ className, stops, statusLabels, hideTimes = false, timeLabels, currentLabel = "Current", delayLabels, formatDelay, ...props }, ref) => {
         return (
             <ol ref={ref} className={cn("flex w-full flex-col", className)} data-slot="route-stops" {...props}>
                 {stops.map((stop, index) => {
@@ -123,7 +129,7 @@ const RouteStops = React.forwardRef<HTMLOListElement, RouteStopsProps>(
                                     <span className="font-medium text-foreground">{stop.title}</span>
                                     <Badge variant={config.badge}>{label}</Badge>
                                     {stop.status === "current" ? (
-                                        <span className="text-xs font-medium text-primary">現在地</span>
+                                        <span className="text-xs font-medium text-primary">{currentLabel}</span>
                                     ) : null}
                                     {stop.meta != null ? (
                                         <span className="text-xs text-muted-foreground">{stop.meta}</span>
@@ -142,21 +148,25 @@ const RouteStops = React.forwardRef<HTMLOListElement, RouteStopsProps>(
                                     <div className="flex flex-wrap items-center gap-x-3 gap-y-0.5 text-xs tabular-nums text-muted-foreground">
                                         {stop.plannedTime ? (
                                             <span>
-                                                {timeLabels?.planned ?? "予定"} {stop.plannedTime}
+                                                {timeLabels?.planned ?? "Planned"} {stop.plannedTime}
                                             </span>
                                         ) : null}
                                         {stop.actualTime ? (
                                             <span>
-                                                {timeLabels?.actual ?? "実績"} {stop.actualTime}
+                                                {timeLabels?.actual ?? "Actual"} {stop.actualTime}
                                             </span>
                                         ) : null}
                                         {delay !== undefined && delay !== 0 ? (
                                             <Delta
                                                 value={delay}
                                                 hideArrow
-                                                format={(m) => `${Math.abs(m)}分`}
+                                                format={(m) => formatDelay?.(m) ?? `${Math.abs(m)} min`}
                                                 tones={{ positive: "destructive", negative: "success", zero: "muted" }}
-                                                labels={{ positive: "遅れ", negative: "早着", zero: "定刻" }}
+                                                labels={{
+                                                    positive: delayLabels?.positive ?? "late",
+                                                    negative: delayLabels?.negative ?? "early",
+                                                    zero: delayLabels?.zero ?? "on time",
+                                                }}
                                                 showLabel
                                             />
                                         ) : null}

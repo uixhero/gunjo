@@ -245,7 +245,7 @@ const Gantt = React.forwardRef<HTMLDivElement, GanttProps>(
             <div
                 ref={ref}
                 role="group"
-                aria-label={typeof label === "string" ? label : "ガントチャート"}
+                aria-label={typeof label === "string" ? label : "Gantt chart"}
                 className={cn("w-full max-w-full overflow-x-auto p-0 [contain:paint]", className)}
                 data-slot="gantt"
                 {...props}

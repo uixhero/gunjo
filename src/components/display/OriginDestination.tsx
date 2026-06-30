@@ -25,6 +25,8 @@ export interface OriginDestinationProps extends Omit<React.HTMLAttributes<HTMLDi
   inline?: boolean
   /** Accessible name. Defaults to "<from> から <to>". */
   label?: React.ReactNode
+  /** Accessible label for the swap button. */
+  swapLabel?: string
 }
 
 function endpointText(e: OriginDestinationEndpoint): string {
@@ -41,11 +43,11 @@ function endpointText(e: OriginDestinationEndpoint): string {
  * except the opt-in `onSwap`.
  */
 const OriginDestination = React.forwardRef<HTMLDivElement, OriginDestinationProps>(
-  ({ className, from, to, via, connector, onSwap, inline = false, label, ...props }, ref) => {
+  ({ className, from, to, via, connector, onSwap, inline = false, label, swapLabel = "Swap origin and destination", ...props }, ref) => {
     const endpoints = [from, ...(via ?? []), to]
     const canSwap = onSwap != null && (via == null || via.length === 0)
     const ariaLabel =
-      typeof label === "string" ? label : `${endpointText(from)} から ${endpointText(to)}`
+      typeof label === "string" ? label : `${endpointText(from)} to ${endpointText(to)}`
 
     const Arrow = (
       <IconArrowNarrowRight
@@ -100,7 +102,7 @@ const OriginDestination = React.forwardRef<HTMLDivElement, OriginDestinationProp
             <button
               type="button"
               onClick={onSwap}
-              aria-label="出発駅と到着駅を入れ替える"
+              aria-label={swapLabel}
               className="inline-flex size-8 items-center justify-center rounded-full border border-border bg-card text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
             >
               <IconArrowsExchange className="size-4" aria-hidden="true" />

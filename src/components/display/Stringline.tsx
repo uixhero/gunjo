@@ -63,6 +63,8 @@ export interface StringlineProps extends Omit<React.HTMLAttributes<HTMLDivElemen
   height?: number
   /** Accessible name for the diagram. */
   ariaLabel?: string
+  /** Localized labels used in generated accessible names. */
+  labels?: { diagram?: string; stops?: string; runs?: string; run?: string; up?: string; down?: string }
 }
 
 const TONE_STROKE: Record<StringlineTone, string> = {
@@ -129,6 +131,7 @@ export const Stringline = React.forwardRef<HTMLDivElement, StringlineProps>(
       selectedRunId,
       height = 320,
       ariaLabel,
+      labels,
       ...props
     },
     ref
@@ -177,7 +180,7 @@ export const Stringline = React.forwardRef<HTMLDivElement, StringlineProps>(
         role="img"
         aria-label={
           ariaLabel ??
-          `運行図表：${stops.length}駅・${runs.length}本の運行・${formatTime(startTime)}〜${formatTime(endTime)}`
+          `${labels?.diagram ?? "Stringline diagram"}: ${stops.length} ${labels?.stops ?? "stops"}, ${runs.length} ${labels?.runs ?? "runs"}, ${formatTime(startTime)}-${formatTime(endTime)}`
         }
         className={cn("flex w-full min-w-0 gap-2", className)}
         {...props}
@@ -288,8 +291,8 @@ export const Stringline = React.forwardRef<HTMLDivElement, StringlineProps>(
                   key={`hit-${run.id}`}
                   type="button"
                   onClick={run.onSelect}
-                  aria-label={`運行 ${typeof run.label === "string" ? run.label : run.id}${
-                    run.direction === "up" ? "・上り" : run.direction === "down" ? "・下り" : ""
+                  aria-label={`${labels?.run ?? "Run"} ${typeof run.label === "string" ? run.label : run.id}${
+                    run.direction === "up" ? `, ${labels?.up ?? "up"}` : run.direction === "down" ? `, ${labels?.down ?? "down"}` : ""
                   }`}
                   aria-pressed={selected}
                   className="absolute size-5 -translate-x-1/2 -translate-y-1/2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"

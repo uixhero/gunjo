@@ -37,8 +37,21 @@ export interface EventCalendarProps extends Omit<React.HTMLAttributes<HTMLDivEle
     maxPerDay?: number
     /** Accessible name for the grid. */
     label?: React.ReactNode
-    /** 7 short weekday labels starting Sunday. Default `日 月 火 水 木 金 土`. */
+    /** 7 short weekday labels starting Sunday. Default `Sun Mon Tue Wed Thu Fri Sat`. */
     weekdayLabels?: string[]
+    /** Localized labels for generated text and controls. */
+    labels?: {
+        previousMonth?: string
+        nextMonth?: string
+        today?: string
+        noEvents?: string
+        events?: (count: number, eventLabels: string[]) => string
+        more?: (count: number) => React.ReactNode
+    }
+    /** Format the month title. */
+    formatMonthTitle?: (date: Date) => React.ReactNode
+    /** Format the day cell accessible name before event summary is appended. */
+    formatDayLabel?: (date: Date, isToday: boolean) => string
     /** Render an event chip (default: a tone pill). */
     renderEvent?: (event: CalendarEvent) => React.ReactNode
     onSelectDate?: (iso: string) => void
@@ -57,7 +70,7 @@ const EVENT_TONE: Record<CalendarEventTone, string> = {
     muted: "bg-muted text-muted-foreground",
 }
 
-const DEFAULT_WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"]
+const DEFAULT_WEEKDAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]
 
 function toDate(value: string | Date): Date {
     if (value instanceof Date) return value
@@ -98,6 +111,9 @@ const EventCalendar = React.forwardRef<HTMLDivElement, EventCalendarProps>(
             maxPerDay = 3,
             label,
             weekdayLabels,
+            labels,
+            formatMonthTitle,
+            formatDayLabel,
             renderEvent,
             onSelectDate,
             onSelectEvent,
@@ -195,7 +211,12 @@ const EventCalendar = React.forwardRef<HTMLDivElement, EventCalendarProps>(
             event.preventDefault()
         }
 
-        const monthTitle = `${year}年${monthIndex + 1}月`
+        const monthTitle = formatMonthTitle?.(monthDate) ?? new Intl.DateTimeFormat("en-US", {
+            month: "long",
+            year: "numeric",
+        }).format(monthDate)
+        const gridLabel =
+            typeof label === "string" ? label : typeof monthTitle === "string" ? monthTitle : "Event calendar"
 
         return (
             <div ref={ref} className={cn("w-full", className)} data-slot="event-calendar" {...props}>
@@ -206,7 +227,7 @@ const EventCalendar = React.forwardRef<HTMLDivElement, EventCalendarProps>(
                             <Button
                                 size="icon"
                                 variant="outline"
-                                aria-label="前の月"
+                                aria-label={labels?.previousMonth ?? "Previous month"}
                                 onClick={() => onMonthChange(new Date(year, monthIndex - 1, 1))}
                             >
                                 <IconChevronLeft className="h-4 w-4" />
@@ -214,7 +235,7 @@ const EventCalendar = React.forwardRef<HTMLDivElement, EventCalendarProps>(
                             <Button
                                 size="icon"
                                 variant="outline"
-                                aria-label="次の月"
+                                aria-label={labels?.nextMonth ?? "Next month"}
                                 onClick={() => onMonthChange(new Date(year, monthIndex + 1, 1))}
                             >
                                 <IconChevronRight className="h-4 w-4" />
@@ -225,7 +246,7 @@ const EventCalendar = React.forwardRef<HTMLDivElement, EventCalendarProps>(
 
                 <div
                     role="grid"
-                    aria-label={typeof label === "string" ? label : monthTitle}
+                    aria-label={gridLabel}
                     className="w-full overflow-hidden rounded-lg border border-border bg-card"
                     onKeyDown={onKeyDown}
                 >
@@ -248,10 +269,13 @@ const EventCalendar = React.forwardRef<HTMLDivElement, EventCalendarProps>(
                                 const shown = dayEvents.slice(0, maxPerDay)
                                 const overflow = dayEvents.length - shown.length
                                 const isActive = active[0] === r && active[1] === c
+                                const eventLabels = dayEvents.map((e) => e.ariaLabel ?? (typeof e.label === "string" ? e.label : "")).filter(Boolean)
                                 const eventSummary = dayEvents.length
-                                    ? `、${dayEvents.length}件: ${dayEvents.map((e) => e.ariaLabel ?? (typeof e.label === "string" ? e.label : "")).filter(Boolean).join("、")}`
-                                    : "、予定なし"
-                                const accessibleName = `${cell.date.getMonth() + 1}月${cell.day}日${cell.isToday ? "、今日" : ""}${eventSummary}`
+                                    ? `, ${labels?.events?.(dayEvents.length, eventLabels) ?? `${dayEvents.length} events: ${eventLabels.join(", ")}`}`
+                                    : `, ${labels?.noEvents ?? "no events"}`
+                                const dayLabel = formatDayLabel?.(cell.date, cell.isToday) ??
+                                    `${cell.date.toLocaleDateString("en-US", { month: "long", day: "numeric" })}${cell.isToday ? `, ${labels?.today ?? "today"}` : ""}`
+                                const accessibleName = `${dayLabel}${eventSummary}`
 
                                 return (
                                     <div
@@ -306,7 +330,9 @@ const EventCalendar = React.forwardRef<HTMLDivElement, EventCalendarProps>(
                                                 )
                                             )}
                                             {overflow > 0 ? (
-                                                <span className="px-1 text-[11px] text-muted-foreground">＋{overflow}件</span>
+                                                <span className="px-1 text-[11px] text-muted-foreground">
+                                                    {labels?.more?.(overflow) ?? `+${overflow}`}
+                                                </span>
                                             ) : null}
                                         </div>
                                     </div>

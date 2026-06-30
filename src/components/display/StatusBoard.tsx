@@ -61,6 +61,11 @@ export interface StatusBoardProps extends Omit<React.HTMLAttributes<HTMLDivEleme
   problemTones?: StatusBoardTone[]
   /** Sort each group's tiles fault-first (by rank, then tone severity). Default `true`. */
   sort?: boolean
+  /** Localized labels for the group summary count. */
+  labels?: {
+    problems?: (count: number) => React.ReactNode
+    items?: (count: number) => React.ReactNode
+  }
 }
 
 const TONE_TILE: Record<StatusBoardTone, string> = {
@@ -168,7 +173,7 @@ function Tile({ item, selected }: { item: StatusBoardItem; selected: boolean }) 
  * ramp GSE board, factory line OEE. RSC-safe except the opt-in onSelect.
  */
 export const StatusBoard = React.forwardRef<HTMLDivElement, StatusBoardProps>(
-  ({ className, groups, items, selectedId, minTileWidth = 150, problemTones = DEFAULT_PROBLEM_TONES, sort = true, ...props }, ref) => {
+  ({ className, groups, items, selectedId, minTileWidth = 150, problemTones = DEFAULT_PROBLEM_TONES, sort = true, labels, ...props }, ref) => {
     const gridStyle: React.CSSProperties = {
       gridTemplateColumns: `repeat(auto-fill, minmax(${minTileWidth}px, 1fr))`,
     }
@@ -198,9 +203,11 @@ export const StatusBoard = React.forwardRef<HTMLDivElement, StatusBoardProps>(
                     {group.sublabel != null && <span className="text-xs text-muted-foreground">{group.sublabel}</span>}
                     <span className="ml-auto text-xs text-muted-foreground">
                       {count > 0 ? (
-                        <span className="font-medium text-destructive">{count}件 要対応</span>
+                        <span className="font-medium text-destructive">
+                          {labels?.problems?.(count) ?? `${count} need attention`}
+                        </span>
                       ) : (
-                        `${group.items.length}台`
+                        (labels?.items?.(group.items.length) ?? `${group.items.length} items`)
                       )}
                     </span>
                   </div>

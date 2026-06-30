@@ -61,10 +61,16 @@ const STATE_ICON: Record<ExpiryState, React.ComponentType<{ className?: string }
 }
 
 const STATE_LABEL: Record<ExpiryState, string> = {
-  valid: "有効",
-  expiring: "期限間近",
-  expired: "失効",
-  missing: "未登録",
+  valid: "Valid",
+  expiring: "Expiring soon",
+  expired: "Expired",
+  missing: "Not set",
+}
+
+function defaultFormatRemaining(days: number): string {
+  if (days < 0) return `${Math.abs(days)} days overdue`
+  if (days === 0) return "Due today"
+  return `${days} days left`
 }
 
 function defaultFormatDate(d: Date): string {
@@ -80,12 +86,14 @@ export interface ExpiryBadgeProps extends Omit<React.HTMLAttributes<HTMLSpanElem
   warnWithinDays?: number
   /** Show the date next to the state chip. Default `true`. */
   showDate?: boolean
-  /** Hide the 残N日 / N日超過 remaining readout. */
+  /** Hide the remaining-days readout. */
   hideRemaining?: boolean
   /** Format the date. Default `YYYY/MM/DD`. */
   formatDate?: (d: Date) => string
-  /** Override the per-state label (有効 / 期限間近 / 失効 / 未登録). */
+  /** Override the per-state label. */
   labels?: Partial<Record<ExpiryState, React.ReactNode>>
+  /** Format the remaining-days readout. Receives negative numbers once overdue. */
+  formatRemaining?: (days: number) => React.ReactNode
 }
 
 /**
@@ -99,7 +107,7 @@ export interface ExpiryBadgeProps extends Omit<React.HTMLAttributes<HTMLSpanElem
  */
 export const ExpiryBadge = React.forwardRef<HTMLSpanElement, ExpiryBadgeProps>(
   (
-    { className, value, today, warnWithinDays = 30, showDate = true, hideRemaining = false, formatDate = defaultFormatDate, labels, ...props },
+    { className, value, today, warnWithinDays = 30, showDate = true, hideRemaining = false, formatDate = defaultFormatDate, labels, formatRemaining = defaultFormatRemaining, ...props },
     ref
   ) => {
     const { state, days } = classifyExpiry(value, { today, warnWithinDays })
@@ -107,9 +115,9 @@ export const ExpiryBadge = React.forwardRef<HTMLSpanElement, ExpiryBadgeProps>(
     const label = labels?.[state] ?? STATE_LABEL[state]
     const date = toDate(value)
 
-    let remaining: string | null = null
+    let remaining: React.ReactNode | null = null
     if (!hideRemaining && days != null) {
-      remaining = days < 0 ? `${Math.abs(days)}日超過` : days === 0 ? "本日まで" : `残${days}日`
+      remaining = formatRemaining(days)
     }
 
     return (
