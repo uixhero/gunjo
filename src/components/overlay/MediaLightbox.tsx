@@ -113,9 +113,14 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
             originX: number
             originY: number
         } | null>(null)
-        // Hold a ref to the image element so we can attach a non-passive
-        // `wheel` listener for the zoom interaction below — React's own
-        // onWheel is passive by default and silently drops preventDefault().
+        // Drag handlers go on the img element via a regular ref. Wheel zoom is
+        // attached on the surrounding overflow-hidden container — not the img —
+        // so scrolling anywhere over the lightbox's image area zooms, not just
+        // over the (often smaller) image itself. React's own onWheel is passive
+        // by default and silently drops preventDefault(), so the wheel listener
+        // is wired natively via a callback ref so we re-attach whenever Radix
+        // remounts the container (a useEffect alone wouldn't fire on those
+        // remounts).
         const imageRef = React.useRef<HTMLImageElement | null>(null)
         const classes = variantClasses[variant]
 
@@ -164,10 +169,23 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
         React.useEffect(() => {
             fitWidthRef.current = fitWidth
         }, [fitWidth])
-        React.useEffect(() => {
-            const node = imageRef.current
-            if (!node) return
-            const handle = (event: WheelEvent) => {
+        // Callback-ref pattern: React invokes this with the new DOM node every
+        // time React mounts/remounts the element (and with null when it
+        // unmounts). useEffect with deps wouldn't catch a re-mount of the same
+        // logical element by Radix, so the listener could end up stuck on a
+        // detached DOM node. The callback ref re-attaches on every mount.
+        const attachedRef = React.useRef<{
+            node: HTMLDivElement
+            handler: (e: WheelEvent) => void
+        } | null>(null)
+        const imageFrameRefCb = React.useCallback((node: HTMLDivElement | null) => {
+            const prev = attachedRef.current
+            if (prev && prev.node !== node) {
+                prev.node.removeEventListener("wheel", prev.handler)
+                attachedRef.current = null
+            }
+            if (!node || attachedRef.current?.node === node) return
+            const handler = (event: WheelEvent) => {
                 // Always stop the page from scrolling — even at scale 1 a
                 // wheel turn over the lightbox should zoom, not scroll the
                 // page behind the modal.
@@ -185,13 +203,9 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
                 scaleRef.current = next
                 if (next <= 1) setTranslate({ x: 0, y: 0 })
             }
-            node.addEventListener("wheel", handle, { passive: false })
-            return () => node.removeEventListener("wheel", handle)
-            // `open` matters too — when the dialog is closed Radix unmounts
-            // the image, so imageRef.current is null on the first render of
-            // the component. Without `open` in deps the effect would only
-            // run once at mount and never re-attach when the image appears.
-        }, [asset?.id, open])
+            node.addEventListener("wheel", handler, { passive: false })
+            attachedRef.current = { node, handler }
+        }, [])
         const resetView = () => {
             setScale(1)
             setFitWidth(false)
@@ -420,7 +434,10 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
                                 </TooltipButton>
                             ) : null}
                             {asset?.src ? (
-                                <div className="flex h-full w-full items-center justify-center overflow-hidden px-20 pb-32 pt-24 sm:px-24">
+                                <div
+                                    ref={imageFrameRefCb}
+                                    className="flex h-full w-full items-center justify-center overflow-hidden px-20 pb-32 pt-24 sm:px-24"
+                                >
                                     <img
                                         ref={imageRef}
                                         src={asset.src}
