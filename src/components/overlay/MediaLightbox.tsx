@@ -113,6 +113,10 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
             originX: number
             originY: number
         } | null>(null)
+        // Hold a ref to the image element so we can attach a non-passive
+        // `wheel` listener for the zoom interaction below — React's own
+        // onWheel is passive by default and silently drops preventDefault().
+        const imageRef = React.useRef<HTMLImageElement | null>(null)
         const classes = variantClasses[variant]
 
         React.useEffect(() => {
@@ -133,6 +137,53 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
             // snap back to 0 so the next zoom-in starts centred.
             if (clamped <= 1) setTranslate({ x: 0, y: 0 })
         }
+        // Double-click anywhere on the image returns to 100% (scale = 1)
+        // and clears any pan offset. Rotation stays so the user doesn't
+        // lose a rotated view they just dialled in.
+        const resetZoom = () => {
+            setScale(1)
+            setFitWidth(false)
+            setTranslate({ x: 0, y: 0 })
+        }
+        // Wheel zoom — keep the latest scale/fitWidth in refs so the
+        // non-passive listener attached below can read fresh values without
+        // re-binding on every state change.
+        const scaleRef = React.useRef(scale)
+        const fitWidthRef = React.useRef(fitWidth)
+        React.useEffect(() => {
+            scaleRef.current = scale
+        }, [scale])
+        React.useEffect(() => {
+            fitWidthRef.current = fitWidth
+        }, [fitWidth])
+        React.useEffect(() => {
+            const node = imageRef.current
+            if (!node) return
+            const handle = (event: WheelEvent) => {
+                // Always stop the page from scrolling — even at scale 1
+                // a wheel turn over the lightbox should zoom, not scroll
+                // the page behind the modal.
+                event.preventDefault()
+                const direction = event.deltaY < 0 ? 1 : -1
+                // Wheel notches are coarse; 0.15 per notch is a natural
+                // feel — three notches roughly doubles the scale.
+                const step = direction * 0.15
+                const current = scaleRef.current
+                const next = Math.min(3.5, Math.max(0.5, current + step))
+                if (next === current) return
+                setFitWidth(false)
+                fitWidthRef.current = false
+                setScale(next)
+                scaleRef.current = next
+                if (next <= 1) setTranslate({ x: 0, y: 0 })
+            }
+            node.addEventListener("wheel", handle, { passive: false })
+            return () => node.removeEventListener("wheel", handle)
+            // `open` matters too — when the dialog is closed Radix unmounts
+            // the image, so imageRef.current is null on the first render of
+            // the component. Without `open` in deps the effect would only
+            // run once at mount and never re-attach when the image appears.
+        }, [asset?.id, open])
         const resetView = () => {
             setScale(1)
             setFitWidth(false)
@@ -205,7 +256,11 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
                     <div className="relative flex h-full w-full flex-col overflow-hidden bg-foreground p-0">
                         <div className="pointer-events-none absolute inset-x-0 top-0 z-20 flex items-start justify-end gap-2 p-4">
                             {editing ? (
-                                <div className="pointer-events-auto absolute left-1/2 top-4 flex -translate-x-1/2 items-center gap-2 rounded-full border border-background/10 bg-background/10 p-2 shadow-lg backdrop-blur">
+                                // Always-dark bar (bg-foreground/85, not bg-background/10) so
+                                // icons stay readable when the image behind has a light
+                                // background. The original low-opacity surface let near-white
+                                // image pixels wash out the white-on-light controls.
+                                <div className="pointer-events-auto absolute left-1/2 top-4 flex -translate-x-1/2 items-center gap-2 rounded-full border border-background/15 bg-foreground/85 p-2 shadow-lg backdrop-blur">
                                     <TooltipButton
                                         type="button"
                                         variant="ghost"
@@ -231,7 +286,7 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
                                     type="button"
                                     variant="ghost"
                                     size="icon"
-                                    className="pointer-events-auto h-10 w-10 rounded-full bg-background/10 text-background hover:bg-background/20 hover:text-background"
+                                    className="pointer-events-auto h-10 w-10 rounded-full bg-foreground/85 text-background hover:bg-foreground/95 hover:text-background"
                                     aria-label={labels?.share ?? "Share"}
                                     tooltip={labels?.share ?? "Share"}
                                     tooltipSide="bottom"
@@ -248,7 +303,7 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
                                     variant="ghost"
                                     size="icon"
                                     className={cn(
-                                        "pointer-events-auto h-10 w-10 rounded-full bg-background/10 text-background hover:bg-background/20 hover:text-background",
+                                        "pointer-events-auto h-10 w-10 rounded-full bg-foreground/85 text-background hover:bg-foreground/95 hover:text-background",
                                         asset.isFavorite && "text-primary hover:text-primary"
                                     )}
                                     aria-label={labels?.favorite ?? "Favorite"}
@@ -266,7 +321,7 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
                                 type="button"
                                 variant="ghost"
                                 size="icon"
-                                className={cn("pointer-events-auto h-10 w-10 rounded-full bg-background/10 text-background hover:bg-background/20 hover:text-background", editing && "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground")}
+                                className={cn("pointer-events-auto h-10 w-10 rounded-full bg-foreground/85 text-background hover:bg-foreground/95 hover:text-background", editing && "bg-primary text-primary-foreground hover:bg-primary hover:text-primary-foreground")}
                                 aria-label={labels?.edit ?? "Edit"}
                                 tooltip={labels?.edit ?? "Edit"}
                                 tooltipSide="bottom"
@@ -284,7 +339,7 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
                                             type="button"
                                             variant="ghost"
                                             size="icon"
-                                            className="pointer-events-auto h-10 w-10 rounded-full bg-background/10 text-background hover:bg-background/20 hover:text-background"
+                                            className="pointer-events-auto h-10 w-10 rounded-full bg-foreground/85 text-background hover:bg-foreground/95 hover:text-background"
                                             aria-label={labels?.details ?? "Info"}
                                             tooltip={labels?.details ?? "Info"}
                                             tooltipSide="bottom"
@@ -321,7 +376,7 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
                                 type="button"
                                 variant="ghost"
                                 size="icon"
-                                className="pointer-events-auto h-10 w-10 rounded-full bg-background/10 text-background hover:bg-background/20 hover:text-background"
+                                className="pointer-events-auto h-10 w-10 rounded-full bg-foreground/85 text-background hover:bg-foreground/95 hover:text-background"
                                 aria-label={labels?.close ?? "Close"}
                                 tooltip={labels?.close ?? "Close"}
                                 tooltipSide="bottom"
@@ -339,7 +394,7 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
                                     type="button"
                                     variant="ghost"
                                     size="icon"
-                                    className="absolute left-4 top-1/2 z-10 h-12 w-12 -translate-y-1/2 rounded-full bg-background/10 text-background hover:bg-background/20 hover:text-background"
+                                    className="absolute left-4 top-1/2 z-10 h-12 w-12 -translate-y-1/2 rounded-full bg-foreground/85 text-background hover:bg-foreground/95 hover:text-background"
                                     aria-label={labels?.previous ?? "Previous"}
                                     tooltip={labels?.previous ?? "Previous"}
                                     tooltipSide="right"
@@ -353,6 +408,7 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
                             {asset?.src ? (
                                 <div className="flex h-full w-full items-center justify-center overflow-hidden px-20 pb-32 pt-24 sm:px-24">
                                     <img
+                                        ref={imageRef}
                                         src={asset.src}
                                         alt={asset.alt ?? asset.title}
                                         className={cn(
@@ -376,6 +432,7 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
                                         onPointerMove={handlePointerMove}
                                         onPointerUp={endDrag}
                                         onPointerCancel={endDrag}
+                                        onDoubleClick={resetZoom}
                                     />
                                 </div>
                             ) : (
@@ -386,7 +443,7 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
                                     type="button"
                                     variant="ghost"
                                     size="icon"
-                                    className="absolute right-4 top-1/2 z-10 h-12 w-12 -translate-y-1/2 rounded-full bg-background/10 text-background hover:bg-background/20 hover:text-background"
+                                    className="absolute right-4 top-1/2 z-10 h-12 w-12 -translate-y-1/2 rounded-full bg-foreground/85 text-background hover:bg-foreground/95 hover:text-background"
                                     aria-label={labels?.next ?? "Next"}
                                     tooltip={labels?.next ?? "Next"}
                                     tooltipSide="left"
@@ -401,7 +458,7 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
 
                         {asset ? (
                             <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 flex justify-center p-2 sm:p-4">
-                                <div className={cn("pointer-events-auto grid w-[calc(100%-1rem)] max-w-lg grid-cols-[auto_auto_auto_minmax(0,1fr)_auto_auto] items-center gap-2 rounded-2xl border border-background/10 bg-background/10 shadow-lg backdrop-blur sm:rounded-full", classes.chrome)}>
+                                <div className={cn("pointer-events-auto grid w-[calc(100%-1rem)] max-w-lg grid-cols-[auto_auto_auto_minmax(0,1fr)_auto_auto] items-center gap-2 rounded-2xl border border-background/15 bg-foreground/85 shadow-lg backdrop-blur sm:rounded-full", classes.chrome)}>
                                     <TooltipButton
                                         type="button"
                                         variant="ghost"
