@@ -276,7 +276,6 @@ export type ColdTestsPageStrings = {
   roundLabel: (round: number) => string;
   openDetailLabel: (round: number) => string;
   detail: {
-    backToList: string;
     routeLabel: string;
     scoreLabel: string;
     desktopPreview: string;
@@ -290,6 +289,14 @@ export type ColdTestsPageStrings = {
     componentDocsLabel: (name: string) => string;
     summaryFooter: string;
     notFound: string;
+  };
+  sidebar: {
+    categoryCountLabel: (count: number) => string;
+    scoreLabel: (score: number) => string;
+  };
+  pager: {
+    previousLabel: (round: number) => string;
+    nextLabel: (round: number) => string;
   };
 };
 
@@ -606,7 +613,6 @@ export const translations: Record<
         roundLabel: (round) => `Round #${round}`,
         openDetailLabel: (round) => `Open round #${round}`,
         detail: {
-          backToList: "Back to all cold tests",
           routeLabel: "Route",
           scoreLabel: "Score",
           desktopPreview: "Desktop preview",
@@ -621,6 +627,14 @@ export const translations: Record<
           componentDocsLabel: (name) => `Open ${name} docs`,
           summaryFooter: "Summary",
           notFound: "Round not found.",
+        },
+        sidebar: {
+          categoryCountLabel: (count) => `${count} rounds`,
+          scoreLabel: (score) => `Score ${score} / 5`,
+        },
+        pager: {
+          previousLabel: (round) => `Previous · #${round}`,
+          nextLabel: (round) => `Next · #${round}`,
         },
       },
       tokens: {
@@ -1202,7 +1216,6 @@ export const translations: Record<
         roundLabel: (round) => `#${round}`,
         openDetailLabel: (round) => `#${round} の詳細を開く`,
         detail: {
-          backToList: "コールドテスト一覧に戻る",
           routeLabel: "ルート",
           scoreLabel: "スコア",
           desktopPreview: "デスクトップ表示",
@@ -1217,6 +1230,14 @@ export const translations: Record<
           componentDocsLabel: (name) => `${name} のドキュメントを開く`,
           summaryFooter: "まとめ",
           notFound: "該当するラウンドが見つかりません。",
+        },
+        sidebar: {
+          categoryCountLabel: (count) => `${count}画面`,
+          scoreLabel: (score) => `評価 ${score} / 5`,
+        },
+        pager: {
+          previousLabel: (round) => `前へ · #${round}`,
+          nextLabel: (round) => `次へ · #${round}`,
         },
       },
       tokens: {
