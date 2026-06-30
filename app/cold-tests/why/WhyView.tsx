@@ -179,10 +179,12 @@ export function WhyView() {
                 </section>
 
                 <section className="space-y-4">
+                    {/* No count in the heading: CRYSTALLISED.length is how many
+                        cards we chose to highlight here, NOT the total number of
+                        components that crystallised — stating it as "結晶化したN
+                        部品" would read as the total and drift / mislead. */}
                     <h2 className="text-2xl font-bold tracking-tight">
-                        {isJa
-                            ? `結晶化した${CRYSTALLISED.length}部品（抜粋）`
-                            : `What crystallised (${CRYSTALLISED.length} highlighted)`}
+                        {isJa ? "結晶化した部品（抜粋）" : "What crystallised (highlights)"}
                     </h2>
                     <p className="text-sm text-muted-foreground">
                         {isJa
