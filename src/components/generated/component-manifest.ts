@@ -707,7 +707,7 @@ export const componentManifest = {
     },
     "mediaLightbox": {
       "title": "MediaLightbox",
-      "description": "Full-screen media preview dialog with navigation, zoom controls, and asset actions.",
+      "description": "Full-screen media preview dialog with navigation, wheel/button zoom, click-and-drag pan, double-click toggle between fit-frame and fit-width, and asset actions.",
       "variantKeys": [
         "default",
         "compact"

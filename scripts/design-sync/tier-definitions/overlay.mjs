@@ -225,7 +225,7 @@ export const OVERLAY_SPEC_DEFINITIONS = [
     syntheticSpec: createSyntheticOverlaySpec({
       frameId: "synthetic:mediaLightbox",
       title: "MediaLightbox",
-      description: "Full-screen media preview dialog with navigation, zoom controls, and asset actions.",
+      description: "Full-screen media preview dialog with navigation, wheel/button zoom, click-and-drag pan, double-click toggle between fit-frame and fit-width, and asset actions.",
       variants: [
         createSyntheticVariant("default"),
         createSyntheticVariant("compact"),
