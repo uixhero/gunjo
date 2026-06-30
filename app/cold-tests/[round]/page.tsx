@@ -1,6 +1,7 @@
 import * as React from "react";
 import fs from "node:fs";
 import path from "node:path";
+import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import gallery from "@/data/cold-test-gallery.json";
 import { ColdTestShell } from "./ColdTestShell";
@@ -8,6 +9,9 @@ import { RoundDetailView, type RoundDetail } from "./RoundDetailView";
 import type { SidebarRound } from "./RoundsSidebar";
 
 const ROUND_DIR = path.join(process.cwd(), "app", "data", "cold-test-rounds");
+const SITE_URL = (
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.gunjo.jp"
+).replace(/\/$/, "");
 
 interface GalleryShape {
     entries: {
@@ -27,6 +31,44 @@ export function generateStaticParams() {
     return galleryData.entries.map((e) => ({
         round: String(e.round),
     }));
+}
+
+// Per-round metadata so Google can index each detail page individually
+// instead of treating all 170 routes as the same title/description.
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ round: string }>;
+}): Promise<Metadata> {
+    const { round: roundStr } = await params;
+    const round = parseInt(roundStr, 10);
+    const detail = Number.isFinite(round) ? readRound(round) : null;
+    if (!detail) return { title: "Round not found — GunjoUI cold tests" };
+    const title = `#${detail.round} ${detail.title} — GunjoUI cold tests`;
+    const description = detail.summary || detail.readmeTitle || detail.title;
+    const url = `${SITE_URL}/cold-tests/${detail.round}`;
+    const ogImage = detail.shots.desktop
+        ? `${SITE_URL}/cold-test-shots/${detail.slug}.desktop.lg.webp`
+        : undefined;
+    return {
+        title,
+        description,
+        alternates: { canonical: url },
+        openGraph: {
+            title,
+            description,
+            url,
+            type: "article",
+            siteName: "GunjoUI",
+            images: ogImage ? [ogImage] : undefined,
+        },
+        twitter: {
+            card: ogImage ? "summary_large_image" : "summary",
+            title,
+            description,
+            images: ogImage ? [ogImage] : undefined,
+        },
+    };
 }
 
 function readRound(round: number): RoundDetail | null {

@@ -301,6 +301,15 @@ export type ColdTestsPageStrings = {
     previousLabel: (round: number) => string;
     nextLabel: (round: number) => string;
   };
+  why: {
+    label: string;
+    heading: string;
+    subtitle: string;
+    ctaGalleryLabel: string;
+    ctaComponentsLabel: string;
+    breadcrumbLabel: string;
+  };
+  whyLink: string;
 };
 
 export type PagesTranslations = {
@@ -642,6 +651,16 @@ export const translations: Record<
           previousLabel: (round) => `Previous · #${round}`,
           nextLabel: (round) => `Next · #${round}`,
         },
+        why: {
+          label: "Methodology",
+          heading: "Why cold tests",
+          subtitle:
+            "What we measure when a context-free AI agent has to ship a real-industry screen with only the public npm package and gunjo.jp docs — and what crystallises after 170 rounds.",
+          ctaGalleryLabel: "See all 170 rounds",
+          ctaComponentsLabel: "Browse the component catalog",
+          breadcrumbLabel: "Why",
+        },
+        whyLink: "Why cold tests",
       },
       tokens: {
         label: "Tokens",
@@ -1248,6 +1267,16 @@ export const translations: Record<
           previousLabel: (round) => `前へ · #${round}`,
           nextLabel: (round) => `次へ · #${round}`,
         },
+        why: {
+          label: "方法論",
+          heading: "なぜコールドテストするか",
+          subtitle:
+            "文脈ゼロの AI に、公開 npm パッケージと gunjo.jp の docs だけで実在の業種の画面を組ませる ── 170 ラウンドの記録から、何が結晶化したか。",
+          ctaGalleryLabel: "170 ラウンドのカタログを見る",
+          ctaComponentsLabel: "コンポーネント一覧へ",
+          breadcrumbLabel: "なぜ",
+        },
+        whyLink: "なぜコールドテストするか",
       },
       tokens: {
         label: "Tokens",
