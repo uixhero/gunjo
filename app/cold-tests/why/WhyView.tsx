@@ -17,13 +17,48 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { LocalNav } from "@/components/layout/TableOfContents";
 import gallery from "@/data/cold-test-gallery.json";
 
+interface GalleryEntry {
+    round: number;
+    slug: string;
+    category: string;
+    score: string;
+    title: string;
+    shots: { desktop: boolean };
+}
 interface GalleryShape {
     count: number;
     categories: string[];
+    entries: GalleryEntry[];
 }
 const galleryData = gallery as GalleryShape;
 const ROUND_COUNT = galleryData.count;
 const INDUSTRY_COUNT = galleryData.categories.length;
+
+function scoreOf(score: string): number {
+    return parseFloat(score.replace(/^[^\d.]+/, "")) || 0;
+}
+
+// Hero mosaic — one strong screen per industry, so the strip reads as
+// "many real industries, actually built." Derived from the snapshot (highest
+// score per category, desktop shot required) so it never goes stale as the
+// series grows. Capped so the strip stays a band, not a second gallery.
+const HERO_TILES: GalleryEntry[] = (() => {
+    const bestPerCategory = new Map<string, GalleryEntry>();
+    for (const e of galleryData.entries) {
+        if (!e.shots.desktop) continue;
+        const current = bestPerCategory.get(e.category);
+        if (!current || scoreOf(e.score) > scoreOf(current.score)) {
+            bestPerCategory.set(e.category, e);
+        }
+    }
+    // Order by the gallery's own category order for a stable, sensible sweep.
+    const ordered: GalleryEntry[] = [];
+    for (const cat of galleryData.categories) {
+        const pick = bestPerCategory.get(cat);
+        if (pick) ordered.push(pick);
+    }
+    return ordered.slice(0, 8);
+})();
 
 // Components called out in the flagship soushuuhen as the ones that
 // crystallised during the cold-test run. Linked to their docs pages so
@@ -87,6 +122,40 @@ export function WhyView() {
                     <p className="max-w-2xl text-lg text-muted-foreground">{tw.subtitle}</p>
                     <LocalNav />
                 </header>
+
+                {/* Hero mosaic — one strong screen per industry. Each tile links
+                    to that round's detail page. Decorative-but-navigable, so it
+                    sits between the header and the prose rather than inside a
+                    titled section (kept out of the TOC). */}
+                {HERO_TILES.length > 0 && (
+                    <div
+                        className="grid grid-cols-2 gap-2 sm:grid-cols-4"
+                        aria-label={isJa ? "代表的な画面" : "Representative screens"}
+                    >
+                        {HERO_TILES.map((tile) => (
+                            <Link
+                                key={tile.round}
+                                href={`/cold-tests/${tile.round}`}
+                                className="group block overflow-hidden rounded-md border border-border/60 bg-card transition-colors hover:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                aria-label={`#${tile.round} ${tile.title}`}
+                            >
+                                <div className="aspect-[4/3] overflow-hidden bg-muted/40">
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img
+                                        src={`/cold-test-shots/${tile.slug}.desktop.webp`}
+                                        alt={`${tile.title} preview`}
+                                        loading="lazy"
+                                        decoding="async"
+                                        className="h-full w-full object-cover object-top transition-transform duration-200 group-hover:scale-[1.03]"
+                                    />
+                                </div>
+                                <div className="truncate px-2 py-1.5 text-[11px] font-medium text-muted-foreground transition-colors group-hover:text-foreground">
+                                    {t.categories[tile.category] ?? tile.category}
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
+                )}
 
                 {/* Body sections — long-form prose, primary JA with a thin EN
                     variant. Wrapped in semantic <section> with h2 for the TOC. */}
