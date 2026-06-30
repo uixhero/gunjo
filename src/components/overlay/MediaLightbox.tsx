@@ -137,13 +137,21 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
             // snap back to 0 so the next zoom-in starts centred.
             if (clamped <= 1) setTranslate({ x: 0, y: 0 })
         }
-        // Double-click anywhere on the image returns to 100% (scale = 1)
-        // and clears any pan offset. Rotation stays so the user doesn't
-        // lose a rotated view they just dialled in.
-        const resetZoom = () => {
-            setScale(1)
-            setFitWidth(false)
+        // Double-click toggles between "100%" (image fits the frame, scale 1)
+        // and "fit width" (image fills the frame's width and may overflow
+        // vertically — same surface as the Fit width button). From any zoomed
+        // or panned state, the first dblclick comes home to 100%; the next
+        // one switches to fit-width; the next, back. Rotation is preserved
+        // throughout so a dialled-in rotation isn't lost on a stray double-
+        // click.
+        const toggleZoom = () => {
             setTranslate({ x: 0, y: 0 })
+            if (scale === 1 && !fitWidth) {
+                setFitWidth(true)
+            } else {
+                setScale(1)
+                setFitWidth(false)
+            }
         }
         // Wheel zoom — keep the latest scale/fitWidth in refs so the
         // non-passive listener attached below can read fresh values without
@@ -160,9 +168,9 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
             const node = imageRef.current
             if (!node) return
             const handle = (event: WheelEvent) => {
-                // Always stop the page from scrolling — even at scale 1
-                // a wheel turn over the lightbox should zoom, not scroll
-                // the page behind the modal.
+                // Always stop the page from scrolling — even at scale 1 a
+                // wheel turn over the lightbox should zoom, not scroll the
+                // page behind the modal.
                 event.preventDefault()
                 const direction = event.deltaY < 0 ? 1 : -1
                 // Wheel notches are coarse; 0.15 per notch is a natural
@@ -432,7 +440,7 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
                                         onPointerMove={handlePointerMove}
                                         onPointerUp={endDrag}
                                         onPointerCancel={endDrag}
-                                        onDoubleClick={resetZoom}
+                                        onDoubleClick={toggleZoom}
                                     />
                                 </div>
                             ) : (
