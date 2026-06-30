@@ -1,0 +1,93 @@
+{
+    "version": 1,
+    "_comment": "slugMap maps every JA category name to a kebab english slug, including industries whose dedicated door page has not been written yet. The breadcrumb in RoundDetailView still routes through /cold-tests?cat=<ja> until enough door pages are published; once switched, it will read this map. published[] is the subset that has hand-written copy + a live /cold-tests/categories/<slug> page. Only published entries get generateStaticParams + sitemap entries — unpublished slugs 404 by design to avoid thin-content pages.",
+    "slugMap": {
+        "基盤UI・汎用": "foundation",
+        "金融": "finance",
+        "会計・給与": "accounting",
+        "小売・EC": "retail",
+        "物流・倉庫": "logistics",
+        "医療・ヘルスケア": "medical",
+        "不動産": "realestate",
+        "製造": "manufacturing",
+        "教育": "education",
+        "公共・行政": "publicsector",
+        "メディア・出版": "media",
+        "人材・HR・採用": "hr",
+        "介護・福祉": "care",
+        "飲食・レストラン": "food",
+        "保険": "insurance",
+        "運輸：鉄道": "transport-rail",
+        "運輸：航空": "transport-air",
+        "運輸：バス": "transport-bus",
+        "運輸：タクシー": "transport-taxi",
+        "運輸：トラック": "transport-truck"
+    },
+    "published": [
+        {
+            "slug": "medical",
+            "jaCategory": "医療・ヘルスケア",
+            "copy": {
+                "ja": {
+                    "title": "医療UIのコールドテスト — 文脈ゼロの AI に gunjo/ui で 7 画面を組ませた記録",
+                    "description": "与薬・バイタル・処方・手術記録・退院サマリまで、医療現場の7画面を文脈ゼロの AI に組ませました。3点認証・ハイアラート薬・2人確認・署名ロック——「間違いが命に届く」UI の作法から、ScanGate / ReferenceValue / SafetyBanner / CoSign / SignedRecord の5つの汎用部品が結晶化していった過程。",
+                    "challengeHeading": "なぜ医療 UI は難しいのか",
+                    "challengeBody": "医療画面の難しさは、画面の派手さではなく「一文字の取り違えが患者に届く」という構造そのものにあります。正しい患者・薬剤・時間を機械的に保証する3点認証、ハイアラート薬（インスリン・ヘパリン・抗がん剤）に対する専用の警告、ダブルチェックを画面の上にきちんと残す仕組み、署名すれば追記しか許されない法的記録、基準値や用量レンジで「数の意味」を読むレポート——どれも「綺麗に並んでいる」だけでは成立しません。一般的なフォーム部品が、医療では「足りない」のではなく「危ない」のです。",
+                    "discoveredHeading": "ここで結晶化した部品",
+                    "discoveredIntro": "医療7画面（#53〜#59）の cold test で、3-confirm を満たして実装まで到達した汎用部品です。どれも医療専用ではなく、業界を越えて再利用できる形でデザインシステムに組み込まれています。",
+                    "discoveredFooter": "Textarea / Input は同じ医療シリーズ内で fix が land しました。「数の意味を持つフィールド」というパターンが、ここで初めて視野に入っています。",
+                    "leftHeading": "この業界が gunjo に残したもの",
+                    "leftBody": "医療は、5つの新しい部品と「責任の重い操作」の作法を群青に残しました。ScanGate は元は倉庫の受け入れ画面から来た部品が、患者リストバンドの3点認証で再発見されたもの。CoSign は手術記録の2人確認で固まりましたが、契約承認や高額決裁にもそのまま使えます。SignedRecord（署名→ロック→追記）も、看護記録・手術記録・退院サマリの3画面で独立に手組みされ、3-confirm を満たして実装に至りました。「医療っぽい部品」ではなく、「重い操作を扱うすべての画面」の床になっています。"
+                },
+                "en": {
+                    "title": "Healthcare cold test — a context-free AI builds 7 medical screens with gunjo/ui",
+                    "description": "Medication, vitals, prescription, surgery, discharge — seven medical screens built by a context-free AI. Three-point verification, high-alert drugs, two-person sign-off, signed-record locks: this is how ScanGate / ReferenceValue / SafetyBanner / CoSign / SignedRecord crystallised into reusable primitives.",
+                    "challengeHeading": "Why healthcare UIs are hard",
+                    "challengeBody": "Medical screens are hard not because they're visually busy, but because a single character mismatch reaches the patient. Three-point verification (wristband × drug × order) to guarantee the right patient and right time. High-alert drugs (insulin, heparin, chemotherapy) that demand their own warnings. Double-checks that the UI has to keep visible, not bury. Signed records that allow only append-only addenda. Reports whose numbers carry meaning — reference ranges, panic values, dose ranges, interactions. A generic form palette isn't merely insufficient here. It's unsafe.",
+                    "discoveredHeading": "Primitives crystallised here",
+                    "discoveredIntro": "Across the seven medical rounds (#53–#59), these reusable primitives crossed the 3-confirm bar and landed in the design system. None are healthcare-only — each was shaped to be used across industries that share the same weight of responsibility.",
+                    "discoveredFooter": "Textarea and Input fixes also landed during this arc. The pattern of \"fields that carry numeric meaning\" first came into view here.",
+                    "leftHeading": "What this industry left behind in gunjo",
+                    "leftBody": "Healthcare left five new primitives and a vocabulary for high-stakes operations. ScanGate was originally born in a warehouse receiving screen and was rediscovered at the bedside, verifying patient wristbands. CoSign was hardened by the operating-room two-person check, but applies just as well to contract approvals or high-value transactions. SignedRecord (sign → lock → addendum-only) was independently hand-rolled across three medical screens (nursing record, surgery record, discharge summary) before it crossed the 3-confirm bar and was built. None of these are \"medical-shaped\" components — they're the floor for any screen that handles weight."
+                }
+            },
+            "discoveredComponents": [
+                {
+                    "name": "ScanGate",
+                    "slug": "scan-gate",
+                    "round": 53,
+                    "blurbJa": "バーコードを読んで「正しい3点」が揃わない限り次に進めない安全ゲート。倉庫の受け入れから医療の与薬まで横断。",
+                    "blurbEn": "A safety gate that refuses to proceed until the scanned trio matches. Spans warehouse receiving to bedside medication."
+                },
+                {
+                    "name": "ReferenceValue",
+                    "slug": "reference-value",
+                    "round": 56,
+                    "blurbJa": "数値とその「基準値・用量レンジ・H/L フラグ」をひと組で扱う表示プリミティブ。検査値・処方・バイタルの共通床。",
+                    "blurbEn": "A display primitive that carries a number together with its reference range, dose window, and H/L flag. The floor under labs, prescription, and vitals."
+                },
+                {
+                    "name": "SafetyBanner",
+                    "slug": "safety-banner",
+                    "round": 56,
+                    "blurbJa": "アレルギー・相互作用・ハイアラート薬といった「画面に残し続けるべき警告」専用の常駐バナー。Alert より重い責務。",
+                    "blurbEn": "A persistent banner for warnings that must stay visible on screen — allergies, interactions, high-alert drugs. Heavier than Alert."
+                },
+                {
+                    "name": "CoSign",
+                    "slug": "co-sign",
+                    "round": 58,
+                    "blurbJa": "2人確認（ダブルチェック）を UI 上で形式化するプリミティブ。手術記録の器械カウントや麻薬・輸血のように、独立した2人の合意が要る操作に使う。",
+                    "blurbEn": "Formalises two-person confirmation in the UI. Designed for operations that require two independent agreements — surgery counts, controlled-drug handover, transfusion."
+                },
+                {
+                    "name": "SignedRecord",
+                    "slug": "signed-record",
+                    "round": 59,
+                    "blurbJa": "署名するとロックされ、以降は追記しかできない法的記録の枠。看護記録・手術記録・退院サマリで3-confirm を満たして実装に到達した。",
+                    "blurbEn": "A legal-record container: once signed it locks, and only addenda are allowed thereafter. Crossed 3-confirm across nursing record, surgery record, and discharge summary."
+                }
+            ]
+        }
+    ]
+}

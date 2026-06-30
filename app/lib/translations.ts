@@ -309,6 +309,15 @@ export type ColdTestsPageStrings = {
     ctaComponentsLabel: string;
     breadcrumbLabel: string;
   };
+  // Per-industry door page (`/cold-tests/categories/<slug>`). Strings here are
+  // chrome only — the per-category prose (challenge / discovered / left)
+  // lives in cold-test-categories.json so KeEem can edit it without touching code.
+  categoryPage: {
+    roundsSummary: (count: number, label: string) => string;
+    allRoundsHeading: (label: string) => string;
+    allRoundsIntro: (count: number, label: string) => string;
+    backToGallery: string;
+  };
   whyLink: string;
 };
 
@@ -659,6 +668,14 @@ export const translations: Record<
           ctaGalleryLabel: "See all 170 rounds",
           ctaComponentsLabel: "Browse the component catalog",
           breadcrumbLabel: "Why",
+        },
+        categoryPage: {
+          roundsSummary: (count, label) =>
+            `${count} cold-test rounds across ${label}.`,
+          allRoundsHeading: (label) => `All ${label} rounds`,
+          allRoundsIntro: (count, label) =>
+            `Every ${label} round in chronological order — ${count} screens, each with the AI's source, write-up, and a desktop/mobile preview.`,
+          backToGallery: "Back to all rounds",
         },
         whyLink: "Why cold tests",
       },
@@ -1275,6 +1292,14 @@ export const translations: Record<
           ctaGalleryLabel: "170 ラウンドのカタログを見る",
           ctaComponentsLabel: "コンポーネント一覧へ",
           breadcrumbLabel: "なぜ",
+        },
+        categoryPage: {
+          roundsSummary: (count, label) =>
+            `${label} の cold test、${count} 画面のまとめ。`,
+          allRoundsHeading: (label) => `${label} の全ラウンド`,
+          allRoundsIntro: (count, label) =>
+            `${label} カテゴリの ${count} 画面を、ラウンド順に並べています。各カードから cold AI が組んだソース、解説記事、デスクトップ／モバイルのプレビューに飛べます。`,
+          backToGallery: "カタログ全体に戻る",
         },
         whyLink: "なぜコールドテストするか",
       },
