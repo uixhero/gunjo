@@ -7,6 +7,10 @@ import {
     IconAlertCircle as AlertCircle,
 } from "@tabler/icons-react";
 import {
+    Accordion,
+    AccordionContent,
+    AccordionItem,
+    AccordionTrigger,
     Alert,
     AlertDescription,
     Badge,
@@ -326,18 +330,51 @@ export function RoundDetailView({
                         <AlertDescription>{td.sourceCodeMissing(0)}</AlertDescription>
                     </Alert>
                 ) : (
-                    <div className="space-y-4">
-                        {detail.code.map((file) => (
-                            <CodeBlock
-                                key={file.file}
-                                code={file.source}
-                                filename={file.file}
-                                language={file.language}
-                                showLineNumbers
-                                highlight
-                                copyable
-                            />
-                        ))}
+                    <div className="space-y-3">
+                        <p className="text-xs text-muted-foreground">{td.sourceCodeHint}</p>
+                        {/* Accordion is the closed-by-default surface for source files.
+                            `type="multiple"` lets the reader open more than one at a
+                            time (useful when comparing page.tsx against a helper);
+                            no defaultValue keeps every file folded on first paint, so
+                            the long pages don't dominate the layout. */}
+                        <Accordion
+                            type="multiple"
+                            className="overflow-hidden rounded-md border border-border/60"
+                        >
+                            {detail.code.map((file) => {
+                                const lines = file.source.split("\n").length;
+                                return (
+                                    <AccordionItem
+                                        key={file.file}
+                                        value={file.file}
+                                        className="border-b border-border/60 last:border-b-0"
+                                    >
+                                        <AccordionTrigger className="px-4 py-3 hover:no-underline">
+                                            <span className="flex flex-wrap items-center gap-2 text-left">
+                                                <code className="font-mono text-sm font-semibold">
+                                                    {file.file}
+                                                </code>
+                                                <span className="text-[10px] uppercase tracking-wider text-muted-foreground">
+                                                    {file.language}
+                                                </span>
+                                                <span className="text-xs text-muted-foreground">
+                                                    {td.sourceCodeFileLines(lines)}
+                                                </span>
+                                            </span>
+                                        </AccordionTrigger>
+                                        <AccordionContent className="px-3 pb-3 pt-0">
+                                            <CodeBlock
+                                                code={file.source}
+                                                language={file.language}
+                                                showLineNumbers
+                                                highlight
+                                                copyable
+                                            />
+                                        </AccordionContent>
+                                    </AccordionItem>
+                                );
+                            })}
+                        </Accordion>
                     </div>
                 )}
             </section>
