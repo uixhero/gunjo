@@ -3,7 +3,6 @@
 import * as React from "react";
 import Link from "next/link";
 import {
-    IconArrowLeft as ArrowLeft,
     IconArrowUpRight as ArrowUpRight,
     IconAlertCircle as AlertCircle,
 } from "@tabler/icons-react";
@@ -11,9 +10,16 @@ import {
     Alert,
     AlertDescription,
     Badge,
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbPage,
+    BreadcrumbSeparator,
     Card,
     CardContent,
     CodeBlock,
+    DocumentPager,
     MarkdownRenderer,
     cn,
 } from "@gunjo/ui";
@@ -50,18 +56,31 @@ export interface RoundDetail {
     overwrittenBy: number | null;
 }
 
+export interface PagerNeighbour {
+    round: number;
+    href: string;
+    title: string;
+    category: string;
+    thumbnailSrc?: string;
+}
+
 // Names of components we publicly document at /docs/components/<slug>.
-// Showcase entries are titled, but their hrefs use kebab-case slugs — derive
-// from the import identifier rather than maintaining a parallel registry.
 function docSlugFor(componentName: string): string {
-    // PascalCase → kebab-case (Tabs → tabs, DataTable → data-table)
     return componentName
         .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
         .replace(/([A-Z]+)([A-Z][a-z])/g, "$1-$2")
         .toLowerCase();
 }
 
-export function RoundDetailView({ detail }: { detail: RoundDetail }) {
+export function RoundDetailView({
+    detail,
+    previous,
+    next,
+}: {
+    detail: RoundDetail;
+    previous: PagerNeighbour | null;
+    next: PagerNeighbour | null;
+}) {
     const { pages } = useLocale();
     const t = pages.coldTests;
     const td = t.detail;
@@ -75,21 +94,39 @@ export function RoundDetailView({ detail }: { detail: RoundDetail }) {
 
     return (
         <article className="space-y-10">
-            {/* Back link */}
-            <div>
-                <Link
-                    href="/cold-tests"
-                    className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
-                >
-                    <ArrowLeft className="h-4 w-4" />
-                    {td.backToList}
-                </Link>
-            </div>
+            {/* Breadcrumb — replaces the previous plain "← back" link.
+                See memory feedback-no-plain-text-back-link. */}
+            <Breadcrumb>
+                <BreadcrumbList>
+                    <BreadcrumbItem>
+                        <BreadcrumbLink asChild>
+                            <Link href="/cold-tests">{t.label}</Link>
+                        </BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbItem>
+                        <BreadcrumbLink asChild>
+                            <Link href="/cold-tests">
+                                {t.categories[detail.category] ?? detail.category}
+                            </Link>
+                        </BreadcrumbLink>
+                    </BreadcrumbItem>
+                    <BreadcrumbSeparator />
+                    <BreadcrumbItem>
+                        <BreadcrumbPage>
+                            {t.roundLabel(detail.round)} {detail.title}
+                        </BreadcrumbPage>
+                    </BreadcrumbItem>
+                </BreadcrumbList>
+            </Breadcrumb>
 
             {/* Header */}
             <header className="space-y-4">
                 <div className="flex flex-wrap items-center gap-2">
-                    <Badge variant="outline" className="border-border/60 text-xs uppercase tracking-wider text-muted-foreground">
+                    <Badge
+                        variant="outline"
+                        className="border-border/60 text-xs uppercase tracking-wider text-muted-foreground"
+                    >
                         {t.roundLabel(detail.round)}
                     </Badge>
                     <Badge variant="secondary" className="text-xs">
@@ -226,6 +263,37 @@ export function RoundDetailView({ detail }: { detail: RoundDetail }) {
                     </div>
                 )}
             </section>
+
+            {/* Prev / next pager */}
+            {(previous || next) && (
+                <DocumentPager
+                    previous={
+                        previous
+                            ? {
+                                  href: previous.href,
+                                  directionLabel: t.pager.previousLabel(previous.round),
+                                  title: previous.title,
+                                  categoryLabel:
+                                      t.categories[previous.category] ?? previous.category,
+                                  thumbnailSrc: previous.thumbnailSrc,
+                                  thumbnailAlt: `#${previous.round} ${previous.title}`,
+                              }
+                            : null
+                    }
+                    next={
+                        next
+                            ? {
+                                  href: next.href,
+                                  directionLabel: t.pager.nextLabel(next.round),
+                                  title: next.title,
+                                  categoryLabel: t.categories[next.category] ?? next.category,
+                                  thumbnailSrc: next.thumbnailSrc,
+                                  thumbnailAlt: `#${next.round} ${next.title}`,
+                              }
+                            : null
+                    }
+                />
+            )}
         </article>
     );
 }
