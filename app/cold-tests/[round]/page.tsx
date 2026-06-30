@@ -3,8 +3,9 @@ import fs from "node:fs";
 import path from "node:path";
 import { notFound } from "next/navigation";
 import gallery from "@/data/cold-test-gallery.json";
+import { ColdTestShell } from "./ColdTestShell";
 import { RoundDetailView, type RoundDetail } from "./RoundDetailView";
-import { RoundsSidebar, type SidebarRound } from "./RoundsSidebar";
+import type { SidebarRound } from "./RoundsSidebar";
 
 const ROUND_DIR = path.join(process.cwd(), "app", "data", "cold-test-rounds");
 
@@ -78,19 +79,16 @@ export default async function ColdTestRoundPage({
             : null;
 
     return (
-        <div className="flex min-h-screen w-full">
-            <RoundsSidebar
-                rounds={sidebarRounds}
-                categories={sidebarCategories}
-                current={round}
+        <ColdTestShell
+            rounds={sidebarRounds}
+            categories={sidebarCategories}
+            current={round}
+        >
+            <RoundDetailView
+                detail={detail}
+                previous={toPagerItem(prev)}
+                next={toPagerItem(next)}
             />
-            <main className="min-w-0 flex-1 px-6 py-10 md:px-10 md:py-12">
-                <RoundDetailView
-                    detail={detail}
-                    previous={toPagerItem(prev)}
-                    next={toPagerItem(next)}
-                />
-            </main>
-        </div>
+        </ColdTestShell>
     );
 }

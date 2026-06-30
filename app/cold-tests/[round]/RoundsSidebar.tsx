@@ -71,9 +71,12 @@ export function RoundsSidebar({
             .toLowerCase()
             .includes(query);
 
+    // Positioning / visibility is owned by ColdTestShell — keep the inner
+    // Sidebar free of stickiness or breakpoint hiding so the shell's
+    // collapsible grid and md:sticky wrapper are the single source of truth.
     return (
         <SidebarProvider>
-            <Sidebar className="sticky top-0 hidden h-screen md:flex">
+            <Sidebar className="h-full w-full">
                 <SidebarHeader className="flex-col items-stretch gap-2">
                     <TextLink
                         href="/cold-tests"
