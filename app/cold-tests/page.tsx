@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { IconFlask as Flask, IconArrowUpRight as ArrowUpRight } from "@tabler/icons-react";
 import {
     Badge,
@@ -107,15 +108,41 @@ function PreviewThumb({
     );
 }
 
+// Next.js requires useSearchParams() consumers to sit inside a Suspense
+// boundary so the static prerender can bail out of the dynamic branch — wrap
+// the grid component instead of marking the whole page dynamic.
 export default function ColdTestsPage() {
+    return (
+        <React.Suspense fallback={null}>
+            <ColdTestsGrid />
+        </React.Suspense>
+    );
+}
+
+function ColdTestsGrid() {
     const { pages } = useLocale();
     const t = pages.coldTests;
 
-    const [activeCategory, setActiveCategory] = React.useState<string>("all");
-    const [query, setQuery] = React.useState("");
-
     const entries = React.useMemo(() => data.entries, []);
     const categories = React.useMemo(() => data.categories, []);
+
+    // `/cold-tests?cat=<category>` lands pre-filtered to that industry — the
+    // detail page's breadcrumb routes here when you click the category crumb.
+    // Treat unknown / missing values as "all" so a stale link from elsewhere
+    // degrades to the full grid instead of an empty state.
+    const searchParams = useSearchParams();
+    const catParam = searchParams.get("cat");
+    const initialCategory =
+        catParam && categories.includes(catParam) ? catParam : "all";
+
+    const [activeCategory, setActiveCategory] = React.useState<string>(initialCategory);
+    const [query, setQuery] = React.useState("");
+
+    // Keep state aligned if the URL changes after mount (Back/Forward,
+    // in-app navigation from another category link).
+    React.useEffect(() => {
+        setActiveCategory(initialCategory);
+    }, [initialCategory]);
 
     const counts = React.useMemo(() => {
         const acc: Record<string, number> = { all: entries.length };

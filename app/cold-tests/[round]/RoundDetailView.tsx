@@ -71,6 +71,23 @@ export interface PagerNeighbour {
     thumbnailSrc?: string;
 }
 
+// Rewrite the article markdown's image references at render time so we
+// don't have to re-snapshot 170 round JSON files every time.
+//   - `assets/gunjo-*.png` lived in promotion/assets/ (gitignored), so the
+//     bare path 404s in production. The matching desktop preview is already
+//     committed under /cold-test-shots/<slug>.desktop.webp; reuse it.
+//   - `placeholder: ...` is a literal placeholder from early drafts (#01)
+//     that was never replaced with a real image. Return null to drop it
+//     entirely rather than render a broken image.
+function rewriteArticleImageSrc(src: string | undefined, slug: string): string | null {
+    if (!src) return null;
+    if (src.startsWith("placeholder:")) return null;
+    if (/^assets\/gunjo-/.test(src)) {
+        return `/cold-test-shots/${slug}.desktop.webp`;
+    }
+    return src;
+}
+
 // Names of components we publicly document at /docs/components/<slug>.
 function docSlugFor(componentName: string): string {
     return componentName
@@ -162,7 +179,12 @@ export function RoundDetailView({
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
                         <BreadcrumbLink asChild>
-                            <Link href="/cold-tests">
+                            {/* Category crumb routes to /cold-tests pre-filtered
+                                to this industry via ?cat=; the grid reads the
+                                param to seed its tab state. */}
+                            <Link
+                                href={`/cold-tests?cat=${encodeURIComponent(detail.category)}`}
+                            >
                                 {t.categories[detail.category] ?? detail.category}
                             </Link>
                         </BreadcrumbLink>
@@ -285,7 +307,28 @@ export function RoundDetailView({
                     </h2>
                     <Card className="border-border/80">
                         <CardContent className="px-6 py-5">
-                            <MarkdownRenderer content={detail.article.markdown} />
+                            <MarkdownRenderer
+                                content={detail.article.markdown}
+                                components={{
+                                    img: ({ src, alt, ...rest }) => {
+                                        const fixed = rewriteArticleImageSrc(
+                                            typeof src === "string" ? src : undefined,
+                                            detail.slug
+                                        );
+                                        if (!fixed) return null;
+                                        /* eslint-disable-next-line @next/next/no-img-element */
+                                        return (
+                                            <img
+                                                src={fixed}
+                                                alt={alt ?? ""}
+                                                loading="lazy"
+                                                decoding="async"
+                                                {...rest}
+                                            />
+                                        );
+                                    },
+                                }}
+                            />
                         </CardContent>
                     </Card>
                 </section>
