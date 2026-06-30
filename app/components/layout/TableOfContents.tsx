@@ -43,6 +43,12 @@ export function LocalNav() {
         scope.querySelectorAll("h2, h3").forEach((elem) => {
             // Skip hidden headings (e.g. mobile-only sections on desktop).
             if ((elem as HTMLElement).offsetParent === null) return;
+            // Opt-out: a parent can mark its sub-headings as TOC-irrelevant
+            // by adding `data-toc-skip` anywhere up the ancestor chain. The
+            // /cold-tests/[round] page uses this on the source-code accordion
+            // — each Accordion item header is an h3 by default, which would
+            // otherwise flood the TOC with one entry per file.
+            if (elem.closest("[data-toc-skip]")) return;
 
             if (!elem.id) {
                 // Slug from text content — but the previous regex stripped
@@ -81,7 +87,9 @@ export function LocalNav() {
         );
 
         scope.querySelectorAll("h2, h3").forEach((elem) => {
-            if ((elem as HTMLElement).offsetParent !== null) observer.observe(elem);
+            if ((elem as HTMLElement).offsetParent === null) return;
+            if (elem.closest("[data-toc-skip]")) return;
+            observer.observe(elem);
         });
 
         return () => observer.disconnect();

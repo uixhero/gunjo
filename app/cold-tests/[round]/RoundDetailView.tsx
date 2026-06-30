@@ -30,6 +30,7 @@ import {
 } from "@gunjo/ui";
 import type { AssetCardAsset } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { LocalNav } from "@/components/layout/TableOfContents";
 
 export interface RoundCodeFile {
     file: string;
@@ -197,6 +198,11 @@ export function RoundDetailView({
                 <div className="text-sm text-muted-foreground">
                     {td.routeLabel}: <code className="font-mono text-foreground">{detail.route}</code>
                 </div>
+                {/* In-page section nav. Auto-discovers h2/h3 in the main column
+                    (previews / 解説記事 / 使用部品 / cold AI が組み上げた実コード
+                    + every h2/h3 inside the article markdown) and renders the
+                    same "ページ内" surface the docs pages use. */}
+                <LocalNav />
             </header>
 
             {/* Previews — each is a button that opens the MediaLightbox with
@@ -330,13 +336,18 @@ export function RoundDetailView({
                         <AlertDescription>{td.sourceCodeMissing(0)}</AlertDescription>
                     </Alert>
                 ) : (
-                    <div className="space-y-3">
+                    <div className="space-y-3" data-toc-skip>
                         <p className="text-xs text-muted-foreground">{td.sourceCodeHint}</p>
                         {/* Accordion is the closed-by-default surface for source files.
                             `type="multiple"` lets the reader open more than one at a
                             time (useful when comparing page.tsx against a helper);
                             no defaultValue keeps every file folded on first paint, so
-                            the long pages don't dominate the layout. */}
+                            the long pages don't dominate the layout.
+
+                            data-toc-skip on the wrapper tells the LocalNav above to
+                            ignore the Accordion item headers (Radix renders each as
+                            h3 — without this opt-out, the TOC would gain one entry
+                            per file and drown out the real section list. */}
                         <Accordion
                             type="multiple"
                             className="overflow-hidden rounded-md border border-border/60"
