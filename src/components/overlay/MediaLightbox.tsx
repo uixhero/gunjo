@@ -209,7 +209,13 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
             setRotation((value) => value + 90)
             setTranslate({ x: 0, y: 0 })
         }
-        const canPan = scale > 1 && !fitWidth
+        // Pan is meaningful whenever the image overflows the frame:
+        // - scale > 1 (zoomed in either direction)
+        // - fit-width (image fills the frame's width; tall captures often
+        //   overflow vertically — mobile shots commonly run 750×8000+).
+        // At plain 100% with fit-width off the image already fits, so panning
+        // would just expose empty bands.
+        const canPan = scale > 1 || fitWidth
         const handlePointerDown = (event: React.PointerEvent<HTMLImageElement>) => {
             if (!canPan) return
             if (event.button !== 0 && event.pointerType === "mouse") return
