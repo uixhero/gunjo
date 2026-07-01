@@ -217,15 +217,15 @@ export const NAVIGATION_SPEC_DEFINITIONS = [
     descId: "sidebarItemDesc",
     variantsId: "sidebarItemVariants",
     nodeIds: {
-      default: "sidebarItemDefault",
-      active: "sidebarItemActive",
-      content: "sidebarItemContent",
-      chevronSlot: "sidebarItemChevronSlot",
-      iconSlot: "sidebarItemIconSlot",
-      label: "sidebarItemLabel",
-      right: "sidebarItemRight",
-      delete: "sidebarItemDelete",
-      count: "sidebarItemCount",
+      default: "rdNf4",
+      active: "shpFp",
+      content: "HM8cZ",
+      chevronSlot: "rZcSs",
+      iconSlot: "e2R3WR",
+      label: "qQmOR",
+      right: "ag7i8",
+      delete: "YOJHn",
+      count: "WAPDC",
     },
     componentOverrides: {
       interaction: {
@@ -307,6 +307,12 @@ export const NAVIGATION_SPEC_DEFINITIONS = [
       item: "rightRailItem",
       itemText: "rightRailItemText",
     },
+    variantOverrides: {
+      default: {
+        // Runtime width is controlled by the `width` prop; the .pen demo width is not a reusable primitive hint.
+        width: null,
+      },
+    },
   },
   {
     key: "pageAside",
@@ -323,8 +329,8 @@ export const NAVIGATION_SPEC_DEFINITIONS = [
           type: "frame",
           width: "fill_container",
           height: null,
-          padding: [0, 0, 0, 0],
-          gap: 24,
+          padding: null,
+          gap: null,
           cornerRadius: null,
           fill: null,
           stroke: null,
