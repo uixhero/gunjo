@@ -6,11 +6,17 @@ title = "gunjo gitleaks config"
 useDefault = true
 
 [allowlist]
-description = "False positives: UI demo placeholder tokens and Tabler icon component names"
+description = "False positives: UI demo placeholder tokens, Tabler icon component names, Pencil .pen fileTokens"
 regexes = [
   # Demo/placeholder share tokens used in component examples (not real secrets)
   '''gjo_[0-9a-fA-F]{6,}''',
   '''abcdef123456''',
   # @tabler/icons-react component names (e.g. IconBrandLinkedin) misread as secrets
   '''IconBrand[A-Za-z]+''',
+]
+paths = [
+  # Pencil .pen design files embed internal identifiers (fileToken, nodeId
+  # etc.) that trip generic-api-key heuristics but are not credentials. .pen
+  # is our SSOT and lives in-repo, so allowlist the whole design/ set.
+  '''design/.*\.pen''',
 ]

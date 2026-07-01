@@ -85,6 +85,13 @@ export const LAYOUT_SPEC_DEFINITIONS = [
       scrollbar: "scrollAreaScrollbar",
       thumb: "scrollAreaThumb",
     },
+    variantOverrides: {
+      default: {
+        // ScrollArea fills its consumer-provided container; .pen demo dimensions should not become runtime hints.
+        width: null,
+        height: null,
+      },
+    },
   },
   {
     key: "resizable",
@@ -97,6 +104,13 @@ export const LAYOUT_SPEC_DEFINITIONS = [
       panelGroup: "resizablePanelGroup",
       handle: "resizableHandle",
       handleGrip: "resizableHandleGrip",
+    },
+    variantOverrides: {
+      horizontal: {
+        // ResizablePanelGroup is parent-sized in runtime.
+        width: null,
+        height: null,
+      },
     },
   },
   {
@@ -158,6 +172,13 @@ export const LAYOUT_SPEC_DEFINITIONS = [
     nodeIds: {
       default: "spatialCanvasDefault",
       hint: "spatialCanvasHint",
+    },
+    variantOverrides: {
+      default: {
+        // SpatialCanvas fills the workspace supplied by docs/apps.
+        width: null,
+        height: null,
+      },
     },
   },
   {

@@ -542,7 +542,7 @@
           "name": "Toast/Success",
           "key": "success",
           "type": "frame",
-          "width": 384,
+          "width": null,
           "height": null,
           "padding": [
             12,
@@ -550,7 +550,7 @@
             12,
             16
           ],
-          "gap": 12,
+          "gap": null,
           "cornerRadius": 12,
           "fill": "#ffffff",
           "stroke": {
@@ -558,7 +558,7 @@
             "fill": "#22c55e33",
             "thickness": 1
           },
-          "alignItems": "center",
+          "alignItems": null,
           "reusable": true,
           "children": [
             "toastSuccessIcon",
@@ -571,7 +571,7 @@
           "name": "Toast/Error",
           "key": "error",
           "type": "frame",
-          "width": 384,
+          "width": null,
           "height": null,
           "padding": [
             12,
@@ -579,7 +579,7 @@
             12,
             16
           ],
-          "gap": 12,
+          "gap": null,
           "cornerRadius": 12,
           "fill": "#ffffff",
           "stroke": {
@@ -587,7 +587,7 @@
             "fill": "#ef444433",
             "thickness": 1
           },
-          "alignItems": "center",
+          "alignItems": null,
           "reusable": true,
           "children": [
             "toastErrorIcon",
@@ -599,7 +599,7 @@
           "name": "Toast/Info",
           "key": "info",
           "type": "frame",
-          "width": 384,
+          "width": null,
           "height": null,
           "padding": [
             12,
@@ -607,7 +607,7 @@
             12,
             16
           ],
-          "gap": 12,
+          "gap": null,
           "cornerRadius": 12,
           "fill": "#ffffff",
           "stroke": {
@@ -615,7 +615,7 @@
             "fill": "#3b82f633",
             "thickness": 1
           },
-          "alignItems": "center",
+          "alignItems": null,
           "reusable": true,
           "children": [
             "toastInfoIcon",
@@ -1510,11 +1510,11 @@
           "name": "ToastProvider/Default",
           "key": "default",
           "type": "frame",
-          "width": 320,
+          "width": null,
           "height": null,
           "layout": "vertical",
           "padding": null,
-          "gap": 8,
+          "gap": null,
           "cornerRadius": null,
           "fill": null,
           "stroke": null,

@@ -258,6 +258,24 @@ export const FEEDBACK_SPEC_DEFINITIONS = [
       infoIcon: "toastInfoIcon",
       infoText: "toastInfoText",
     },
+    variantOverrides: {
+      success: {
+        // Runtime toast width and cross-axis alignment are responsive; keep demo frame sizing out of reusable hints.
+        width: null,
+        gap: null,
+        alignItems: null,
+      },
+      error: {
+        width: null,
+        gap: null,
+        alignItems: null,
+      },
+      info: {
+        width: null,
+        gap: null,
+        alignItems: null,
+      },
+    },
   },
   {
     key: "notificationCenter",
@@ -346,6 +364,13 @@ export const FEEDBACK_SPEC_DEFINITIONS = [
       itemText: "toastProviderItemText",
       defaultDuration: "toastProviderDefaultDuration",
       exitDelay: "toastProviderExitDelay",
+    },
+    variantOverrides: {
+      default: {
+        // Provider stack placement and width are runtime/container concerns, not fixed SSOT dimensions.
+        width: null,
+        gap: null,
+      },
     },
   },
 ];

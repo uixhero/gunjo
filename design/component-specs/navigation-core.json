@@ -751,18 +751,13 @@
       "description": "Nested sidebar row with chevron, icon, label, and counter area.",
       "variants": [
         {
-          "id": "sidebarItemDefault",
+          "id": "rdNf4",
           "name": "SidebarItem/Default",
           "key": "default",
           "type": "frame",
-          "width": 320,
+          "width": "fill_container",
           "height": 36,
-          "padding": [
-            6,
-            16,
-            6,
-            16
-          ],
+          "padding": null,
           "gap": null,
           "cornerRadius": 6,
           "fill": null,
@@ -771,23 +766,18 @@
           "alignItems": "center",
           "reusable": true,
           "children": [
-            "sidebarItemContent",
-            "sidebarItemRight"
+            "HM8cZ",
+            "ag7i8"
           ]
         },
         {
-          "id": "sidebarItemActive",
+          "id": "shpFp",
           "name": "SidebarItem/Active",
           "key": "active",
           "type": "frame",
-          "width": 320,
+          "width": "fill_container",
           "height": 36,
-          "padding": [
-            6,
-            16,
-            6,
-            16
-          ],
+          "padding": null,
           "gap": null,
           "cornerRadius": 6,
           "fill": "#f1f5f9",
@@ -796,24 +786,19 @@
           "alignItems": "center",
           "reusable": true,
           "children": [
-            "sidebarItemActiveContent",
-            "sidebarItemActiveRight"
+            "UYZHt",
+            "A4Hd89"
           ]
         }
       ],
       "nodes": {
         "default": {
-          "id": "sidebarItemDefault",
+          "id": "rdNf4",
           "type": "frame",
           "name": "SidebarItem/Default",
-          "width": 320,
+          "width": "fill_container",
           "height": 36,
-          "padding": [
-            6,
-            16,
-            6,
-            16
-          ],
+          "padding": null,
           "gap": null,
           "cornerRadius": 6,
           "fill": null,
@@ -827,22 +812,17 @@
           "iconFontName": null,
           "textGrowth": null,
           "children": [
-            "sidebarItemContent",
-            "sidebarItemRight"
+            "HM8cZ",
+            "ag7i8"
           ]
         },
         "active": {
-          "id": "sidebarItemActive",
+          "id": "shpFp",
           "type": "frame",
           "name": "SidebarItem/Active",
-          "width": 320,
+          "width": "fill_container",
           "height": 36,
-          "padding": [
-            6,
-            16,
-            6,
-            16
-          ],
+          "padding": null,
           "gap": null,
           "cornerRadius": 6,
           "fill": "#f1f5f9",
@@ -856,12 +836,12 @@
           "iconFontName": null,
           "textGrowth": null,
           "children": [
-            "sidebarItemActiveContent",
-            "sidebarItemActiveRight"
+            "UYZHt",
+            "A4Hd89"
           ]
         },
         "content": {
-          "id": "sidebarItemContent",
+          "id": "HM8cZ",
           "type": "frame",
           "name": null,
           "width": null,
@@ -880,13 +860,13 @@
           "iconFontName": null,
           "textGrowth": null,
           "children": [
-            "sidebarItemChevronSlot",
-            "sidebarItemIconSlot",
-            "sidebarItemLabel"
+            "rZcSs",
+            "e2R3WR",
+            "qQmOR"
           ]
         },
         "chevronSlot": {
-          "id": "sidebarItemChevronSlot",
+          "id": "rZcSs",
           "type": "frame",
           "name": null,
           "width": 20,
@@ -905,11 +885,11 @@
           "iconFontName": null,
           "textGrowth": null,
           "children": [
-            "sidebarItemChevronText"
+            "D58un"
           ]
         },
         "iconSlot": {
-          "id": "sidebarItemIconSlot",
+          "id": "e2R3WR",
           "type": "frame",
           "name": null,
           "width": 16,
@@ -928,11 +908,11 @@
           "iconFontName": null,
           "textGrowth": null,
           "children": [
-            "sidebarItemIconText"
+            "AUW4f"
           ]
         },
         "label": {
-          "id": "sidebarItemLabel",
+          "id": "qQmOR",
           "type": "text",
           "name": null,
           "width": null,
@@ -953,7 +933,7 @@
           "children": []
         },
         "right": {
-          "id": "sidebarItemRight",
+          "id": "ag7i8",
           "type": "frame",
           "name": null,
           "width": null,
@@ -972,12 +952,12 @@
           "iconFontName": null,
           "textGrowth": null,
           "children": [
-            "sidebarItemDelete",
-            "sidebarItemCount"
+            "YOJHn",
+            "WAPDC"
           ]
         },
         "delete": {
-          "id": "sidebarItemDelete",
+          "id": "YOJHn",
           "type": "frame",
           "name": null,
           "width": 24,
@@ -996,11 +976,11 @@
           "iconFontName": null,
           "textGrowth": null,
           "children": [
-            "sidebarItemDeleteText"
+            "vULaO"
           ]
         },
         "count": {
-          "id": "sidebarItemCount",
+          "id": "WAPDC",
           "type": "text",
           "name": null,
           "width": null,
@@ -1020,8 +1000,8 @@
           "textGrowth": null,
           "children": []
         },
-        "sidebarItemActiveContent": {
-          "id": "sidebarItemActiveContent",
+        "UYZHt": {
+          "id": "UYZHt",
           "type": "frame",
           "name": null,
           "width": null,
@@ -1040,13 +1020,13 @@
           "iconFontName": null,
           "textGrowth": null,
           "children": [
-            "sidebarItemActiveChevron",
-            "sidebarItemActiveIcon",
-            "sidebarItemActiveLabel"
+            "YymDq",
+            "EabYo",
+            "cT8d6"
           ]
         },
-        "sidebarItemActiveRight": {
-          "id": "sidebarItemActiveRight",
+        "A4Hd89": {
+          "id": "A4Hd89",
           "type": "frame",
           "name": null,
           "width": null,
@@ -1065,7 +1045,7 @@
           "iconFontName": null,
           "textGrowth": null,
           "children": [
-            "sidebarItemActiveBadge"
+            "BcaC2"
           ]
         }
       },
@@ -1845,8 +1825,8 @@
           "name": "RightRail/Default",
           "key": "default",
           "type": "frame",
-          "width": 256,
-          "height": 360,
+          "width": null,
+          "height": "fill_container",
           "layout": "vertical",
           "padding": null,
           "gap": null,
@@ -1869,8 +1849,8 @@
           "id": "rightRailDefault",
           "type": "frame",
           "name": "RightRail/Default",
-          "width": 256,
-          "height": 360,
+          "width": "fill_container",
+          "height": "fill_container",
           "layout": "vertical",
           "padding": null,
           "gap": null,
@@ -2006,13 +1986,8 @@
           "type": "frame",
           "width": "fill_container",
           "height": null,
-          "padding": [
-            0,
-            0,
-            0,
-            0
-          ],
-          "gap": 24,
+          "padding": null,
+          "gap": null,
           "cornerRadius": null,
           "fill": null,
           "stroke": null,

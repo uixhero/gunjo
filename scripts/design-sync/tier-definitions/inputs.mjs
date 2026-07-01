@@ -375,6 +375,18 @@ export const INPUTS_SPEC_DEFINITIONS = [
       checkBox: "filterButtonCheckBox",
       divider: "filterButtonDivider",
     },
+    variantOverrides: {
+      popover: {
+        // The `popover` variant represents the active trigger, not the fixed popover demo surface.
+        width: null,
+        height: 36,
+        layout: "horizontal",
+        padding: [8, 12, 8, 12],
+        gap: 8,
+        cornerRadius: 6,
+        children: ["filterButtonIcon", "filterButtonLabel", "filterButtonBadge"],
+      },
+    },
   },
   {
     key: "sortButton",
