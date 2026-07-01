@@ -31,6 +31,10 @@ import {
 import type { AssetCardAsset } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { LocalNav } from "@/components/layout/TableOfContents";
+import categoriesData from "@/data/cold-test-categories.json";
+
+const CATEGORY_SLUG_MAP = (categoriesData as { slugMap: Record<string, string> })
+    .slugMap;
 
 export interface RoundCodeFile {
     file: string;
@@ -179,11 +183,16 @@ export function RoundDetailView({
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
                         <BreadcrumbLink asChild>
-                            {/* Category crumb routes to /cold-tests pre-filtered
-                                to this industry via ?cat=; the grid reads the
-                                param to seed its tab state. */}
+                            {/* Category crumb routes to the industry door page
+                                once a slug is registered. The slugMap covers
+                                all 20 categories; legacy ?cat= grid filter is
+                                kept only as a fallback for an unknown name. */}
                             <Link
-                                href={`/cold-tests?cat=${encodeURIComponent(detail.category)}`}
+                                href={
+                                    CATEGORY_SLUG_MAP[detail.category]
+                                        ? `/cold-tests/categories/${CATEGORY_SLUG_MAP[detail.category]}`
+                                        : `/cold-tests?cat=${encodeURIComponent(detail.category)}`
+                                }
                             >
                                 {t.categories[detail.category] ?? detail.category}
                             </Link>

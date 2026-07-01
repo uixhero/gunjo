@@ -2,9 +2,14 @@ import type { MetadataRoute } from "next";
 import { navigation } from "@/lib/navigation";
 import { PATTERNS, isPublicPatternSlug } from "@/lib/patterns";
 import coldTestGallery from "@/data/cold-test-gallery.json";
+import coldTestCategories from "@/data/cold-test-categories.json";
 
 interface ColdTestGalleryShape {
     entries: { round: number }[];
+}
+
+interface ColdTestCategoriesShape {
+    published: { slug: string }[];
 }
 
 const BASE_URL = (
@@ -49,6 +54,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // own metadata. Without these, Google would only know about the grid.
     for (const entry of (coldTestGallery as ColdTestGalleryShape).entries) {
         paths.add(`/cold-tests/${entry.round}`);
+    }
+
+    // Industry door pages — only the categories that have hand-written copy
+    // (cold-test-categories.json `published[]`) are listed. Slugs with only a
+    // slugMap entry but no published copy 404 by design, so they don't surface
+    // as thin content in Search Console.
+    for (const cat of (coldTestCategories as ColdTestCategoriesShape).published) {
+        paths.add(`/cold-tests/categories/${cat.slug}`);
     }
 
     const lastModified = new Date();
