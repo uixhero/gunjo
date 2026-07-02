@@ -168,12 +168,12 @@ export function WhyView() {
                     {isJa ? (
                         <p className="leading-7 text-foreground">
                             <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">@gunjo/ui</code>{" "}
-                            を公開したとき、私は「AI から使えるように設計した」と書きました。typed entry point、
+                            は、「AI から使えるように設計した」とうたって公開されました。typed entry point、
                             機械可読な metadata、AI-handoff ドキュメント。エージェントが「眺める」のではなく
-                            「読んで、そのまま使う」ための面を、最初から組み込んだつもりでした。
+                            「読んで、そのまま使う」ための面を、最初から組み込んだ設計です。
                             でも、それはあくまで主張にすぎません。
                             <strong>言葉にするだけなら、誰にでもできます</strong>。
-                            だから、本当にそうなのかを確かめてみることにしました。
+                            このコールドテストは、本当にそうなのかを確かめる場として始まりました。
                         </p>
                     ) : (
                         <p className="leading-7 text-foreground">
@@ -227,9 +227,9 @@ export function WhyView() {
                     </h2>
                     {isJa ? (
                         <p className="leading-7 text-foreground">
-                            私たちは「同じ穴が3回出てくるまで待つ」ようにしています。1回目はまだ起票するだけ、
+                            群青では「同じ穴が3回出てくるまで待つ」ことにしています。1回目はまだ起票するだけ、
                             2回目は索引やドキュメントを調整するだけにとどめ、3回目になって初めて部品をつくります。
-                            <strong>その形が本当に安定するのを見届けたい</strong>からです。
+                            <strong>その形が本当に安定するのを見届けるため</strong>です。
                             急いで結晶化させると、API がひとつの用途に狭く固まってしまいます。たとえば{" "}
                             <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">MatchCard</code>{" "}
                             は、3回目（補助金マッチング＝会社×制度という<strong>異なる種類どうしのペア</strong>）が決め手になりました。
