@@ -4,6 +4,7 @@ import * as React from "react"
 import { IconAlertCircle, IconBarcode, IconCircleCheck } from "@tabler/icons-react"
 
 import { cn } from "../../lib/utils"
+import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
 
 /** Outcome of resolving a scanned code. Returned from `onScan`. */
 export interface ScanResult {
@@ -19,6 +20,15 @@ export interface ScanFeedEntry extends ScanResult {
     code: string
     /** Component-assigned key. */
     id: number
+}
+
+export interface ScanInputAction {
+    /** Commit a scanned code immediately, as if a scanner typed it and sent Enter. */
+    commit: (code: string) => void
+    /** Fill the input without committing yet. Useful for camera preview confirmation flows. */
+    setCode: (code: string) => void
+    /** The underlying text input, for focus management when a scan UI closes. */
+    input: HTMLInputElement | null
 }
 
 export interface ScanInputProps
@@ -48,6 +58,10 @@ export interface ScanInputProps
     feedLimit?: number
     /** Leading adornment. Default a barcode icon; pass `null` to hide. */
     icon?: React.ReactNode
+    /** Called when the leading barcode icon is activated. Turns the icon into an accessible scan action. */
+    onScannerOpen?: (action: ScanInputAction) => void
+    /** Accessible label and tooltip for the scanner action. */
+    scannerLabel?: string
     /**
      * Announce results assertively (`role="alert"` + `aria-live="assertive"`)
      * instead of politely. Use for safety-critical scanning where a mismatch
@@ -78,6 +92,8 @@ const ScanInput = React.forwardRef<HTMLInputElement, ScanInputProps>(
             showFeed = false,
             feedLimit = 8,
             icon,
+            onScannerOpen,
+            scannerLabel = "スキャン画面を開く",
             assertive = false,
             labels,
             disabled,
@@ -111,8 +127,8 @@ const ScanInput = React.forwardRef<HTMLInputElement, ScanInputProps>(
         const feedSeq = React.useRef(0)
         const locked = React.useRef(false)
 
-        const commit = () => {
-            const trimmed = code.trim()
+        const commitValue = React.useCallback((nextCode: string) => {
+            const trimmed = nextCode.trim()
             if (trimmed === "" || locked.current || disabled) return
             locked.current = true
             setTimeout(() => {
@@ -126,8 +142,11 @@ const ScanInput = React.forwardRef<HTMLInputElement, ScanInputProps>(
                 setFeed((prev) => [entry, ...prev].slice(0, feedLimit))
             }
             if (clearOnScan) setCode("")
+            else setCode(trimmed)
             if (retainFocus) innerRef.current?.focus()
-        }
+        }, [clearOnScan, disabled, feedLimit, lockMs, onScan, retainFocus])
+
+        const commit = () => commitValue(code)
 
         const handleKeyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
             onKeyDown?.(event)
@@ -155,7 +174,28 @@ const ScanInput = React.forwardRef<HTMLInputElement, ScanInputProps>(
                         disabled && "cursor-not-allowed opacity-50"
                     )}
                 >
-                    {icon === null ? null : (
+                    {icon === null ? null : onScannerOpen ? (
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <button
+                                    type="button"
+                                    className="-ml-1 inline-flex h-7 w-7 shrink-0 cursor-pointer items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+                                    aria-label={scannerLabel}
+                                    disabled={disabled}
+                                    onClick={() => {
+                                        onScannerOpen({
+                                            commit: commitValue,
+                                            setCode,
+                                            input: innerRef.current,
+                                        })
+                                    }}
+                                >
+                                    {icon ?? <IconBarcode className="h-4 w-4" />}
+                                </button>
+                            </TooltipTrigger>
+                            <TooltipContent>{scannerLabel}</TooltipContent>
+                        </Tooltip>
+                    ) : (
                         <span className="shrink-0 text-muted-foreground" aria-hidden="true">
                             {icon ?? <IconBarcode className="h-4 w-4" />}
                         </span>

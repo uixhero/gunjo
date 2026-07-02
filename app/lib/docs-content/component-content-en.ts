@@ -9,6 +9,18 @@ export const componentContentEn: Record<string, DocContent> = {
     title: "Button",
     description: "Displays a button or a component that looks like a button.",
   },
+  "components/segmented-control": {
+    title: "SegmentedControl",
+    description: "An equal-width segmented control for choosing one option from a small set.",
+  },
+  "components/scan-gate": {
+    title: "ScanGate",
+    description: "A staged barcode-scanning flow that carries confirmed values between scan steps.",
+  },
+  "components/co-sign": {
+    title: "CoSign",
+    description: "A two-person verification input for attestations, signer identity, and signed state.",
+  },
   "components/tooltip-button": {
     title: "TooltipButton",
     description: "Combines a button action with tooltip copy so icon-only or explanatory controls remain understandable.",

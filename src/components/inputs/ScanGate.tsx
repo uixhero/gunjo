@@ -4,7 +4,7 @@ import * as React from "react"
 import { IconCheck } from "@tabler/icons-react"
 
 import { cn } from "../../lib/utils"
-import { ScanInput, type ScanResult } from "./ScanInput"
+import { ScanInput, type ScanInputAction, type ScanResult } from "./ScanInput"
 
 export type ScanGateAdvance = "next" | "stay" | "reset" | "done"
 
@@ -44,6 +44,10 @@ export interface ScanGateStage {
     description?: React.ReactNode
     placeholder?: string
     inputMode?: React.InputHTMLAttributes<HTMLInputElement>["inputMode"]
+    /** Opens a scanner UI for this stage when the ScanInput barcode action is activated. */
+    onScannerOpen?: (action: ScanInputAction, ctx: ScanGateContext) => void
+    /** Accessible label and tooltip for this stage's scanner action. */
+    scannerLabel?: string
     /**
      * Resolve a scanned code for this stage. Return a `ScanGateResult` to drive the
      * announcement, advancement and context; return nothing to stay silent.
@@ -78,6 +82,8 @@ export interface ScanGateProps extends Omit<React.HTMLAttributes<HTMLDivElement>
     showFeed?: boolean
     feedLimit?: number
     lockMs?: number
+    /** Clear the active input after each scan. Default comes from ScanInput (`true`). */
+    clearOnScan?: boolean
 }
 
 /**
@@ -100,6 +106,7 @@ const ScanGate = React.forwardRef<ScanGateHandle, ScanGateProps>(
             showFeed = false,
             feedLimit,
             lockMs,
+            clearOnScan,
             ...props
         },
         ref
@@ -218,10 +225,13 @@ const ScanGate = React.forwardRef<ScanGateHandle, ScanGateProps>(
                     placeholder={active.placeholder}
                     inputMode={active.inputMode}
                     onScan={handleScan}
+                    onScannerOpen={active.onScannerOpen ? (action) => active.onScannerOpen?.(action, { values: valuesRef.current, stageId: active.id, index: activeIndex }) : undefined}
+                    scannerLabel={active.scannerLabel}
                     assertive={assertive}
                     showFeed={showFeed}
                     feedLimit={feedLimit}
                     lockMs={lockMs}
+                    clearOnScan={clearOnScan}
                 />
             </div>
         )

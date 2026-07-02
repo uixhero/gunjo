@@ -1,6 +1,6 @@
 # Component Docs Audit Rules
 
-Last updated: 2026-06-10
+Last updated: 2026-07-01
 
 Related issue: #253
 
@@ -35,6 +35,16 @@ Copyable code must reproduce the visible preview.
 - Avoid snippets that only import a component or hide required data in an undefined variable.
 - Replace placeholder ellipses, fake `console.log` handlers, and no-op buttons with realistic local state or copy/toast feedback.
 - If a demo is intentionally static, state that in the surrounding docs and keep the code static in the same way.
+
+### 4. Preview Surfaces and Overlays
+
+Docs previews must show realistic behavior without hiding problems in the preview frame.
+
+- Do not use fixed preview heights to mask clipped content. If a component needs vertical room, the preview content itself must explain that usage pattern.
+- Verify the top `ComponentPreview` iframe and the in-page States/Variants previews separately.
+- Toasts, dialogs, popovers, scanner panels, and other overlays opened from a preview must render inside the preview surface when the component API supports a portal/container.
+- Disabled follow-up actions must explain why they are unavailable on hover/focus, even if adjacent helper text repeats the same reason.
+- When a workflow has multiple steps, keep the completed and next required work visible in the preview rather than replacing the whole surface with an ambiguous active-only input.
 
 ## Automated Checks
 
@@ -89,4 +99,5 @@ A component docs batch is complete only when:
 - GunjoUI composition has been checked for every changed preview.
 - Tooltip and disabled feedback has been checked for every changed compact or disabled control.
 - Preview/code parity has been checked for the docs preview and each States/Variants preview.
+- The top preview and each States/Variants preview have been checked for clipping, overlay containment, and realistic task flow.
 - Any deferred item is linked to a GitHub issue instead of remaining only in chat history.

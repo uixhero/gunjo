@@ -145,7 +145,7 @@ const SegmentedControl = React.forwardRef<HTMLDivElement, SegmentedControlProps>
                 SEG_SIZE[size],
                 fullWidth && "flex-1",
                 checked ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
-                segDisabled && "pointer-events-none opacity-50"
+                segDisabled ? "cursor-not-allowed opacity-50" : "cursor-pointer"
               )}
             >
               {opt.icon != null ? <span className="shrink-0">{opt.icon}</span> : null}

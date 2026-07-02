@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Button, Tabs, TabsList, TabsTrigger, TabsContent, Tooltip, TooltipContent, TooltipTrigger, useToast } from "@gunjo/ui";
+import { Button, Tabs, TabsList, TabsTrigger, TabsContent, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 import { cn } from "@gunjo/ui";
 import { usePathname } from "next/navigation";
 import type { SectionLabels } from "@/lib/docs-content";
@@ -26,6 +26,7 @@ import {
     IconDeviceTablet as Tablet,
     IconExternalLink as ExternalLink,
     IconMaximize as Maximize2,
+    IconX as X,
 } from "@tabler/icons-react";
 import Link from "next/link";
 
@@ -418,22 +419,7 @@ export function ComponentPreview({ codeBlock, children, className, sectionLabels
 
         const root = doc.querySelector("[data-embed-preview-wrap]");
         const rootRect = root?.getBoundingClientRect();
-        const overlayTop = Array.from(
-            doc.querySelectorAll("[data-radix-popper-content-wrapper], [role='dialog'], [data-slot='mention-suggestions']")
-        ).filter((element) => !isTooltipOverlay(element)).reduce((top, element) => {
-            const rect = element.getBoundingClientRect();
-            return Math.min(top, rect.top);
-        }, rootRect?.top ?? 0);
-        const overlayBottom = Array.from(
-            doc.querySelectorAll("[data-radix-popper-content-wrapper], [role='dialog'], [data-slot='mention-suggestions']")
-        ).filter((element) => !isTooltipOverlay(element)).reduce((bottom, element) => {
-            const rect = element.getBoundingClientRect();
-            return Math.max(bottom, rect.bottom);
-        }, 0);
-        const overlayInsetTop = Math.max(0, Math.ceil(-(Math.min(rootRect?.top ?? 0, overlayTop))));
-        const nextHeight = Math.ceil(
-            Math.max(root?.scrollHeight ?? 0, rootRect?.bottom ?? 0, overlayBottom + overlayInsetTop)
-        );
+        const nextHeight = Math.ceil(Math.max(root?.scrollHeight ?? 0, rootRect?.bottom ?? 0));
         if (Number.isFinite(nextHeight)) {
             setFitContentHeight(Math.max(120, nextHeight));
         }
@@ -701,13 +687,13 @@ export function ComponentPreview({ codeBlock, children, className, sectionLabels
 }
 
 export function CodeCopyButton({ code }: { code: string }) {
-    const [copied, setCopied] = React.useState(false);
+    const [copyStatus, setCopyStatus] = React.useState<"idle" | "copied" | "failed">("idle");
     const { locale } = useLocale();
-    const { showToast } = useToast();
     const timeoutRef = React.useRef<number | null>(null);
     const copyLabel = locale === "ja" ? "コードをコピー" : "Copy code";
     const copiedLabel = locale === "ja" ? "コピーしました" : "Copied";
     const copyFailedLabel = locale === "ja" ? "コピーに失敗しました" : "Copy failed";
+    const feedbackLabel = copyStatus === "copied" ? copiedLabel : copyStatus === "failed" ? copyFailedLabel : copyLabel;
 
     React.useEffect(() => {
         return () => {
@@ -720,17 +706,19 @@ export function CodeCopyButton({ code }: { code: string }) {
     const handleCopy = React.useCallback(async () => {
         try {
             await copyTextToClipboard(code);
-            setCopied(true);
-            showToast(copiedLabel, "success");
+            setCopyStatus("copied");
             if (timeoutRef.current !== null) {
                 window.clearTimeout(timeoutRef.current);
             }
-            timeoutRef.current = window.setTimeout(() => setCopied(false), 1500);
+            timeoutRef.current = window.setTimeout(() => setCopyStatus("idle"), 1500);
         } catch {
-            setCopied(false);
-            showToast(copyFailedLabel, "error");
+            setCopyStatus("failed");
+            if (timeoutRef.current !== null) {
+                window.clearTimeout(timeoutRef.current);
+            }
+            timeoutRef.current = window.setTimeout(() => setCopyStatus("idle"), 1500);
         }
-    }, [code, copiedLabel, copyFailedLabel, showToast]);
+    }, [code]);
 
     return (
         <Tooltip>
@@ -741,17 +729,19 @@ export function CodeCopyButton({ code }: { code: string }) {
                     size="sm"
                     onClick={handleCopy}
                     className="h-8 shrink-0 gap-1.5 px-2 text-muted-foreground"
-                    aria-label={copied ? copiedLabel : copyLabel}
+                    aria-label={feedbackLabel}
                 >
-                    {copied ? (
+                    {copyStatus === "copied" ? (
                         <Check className="h-3.5 w-3.5 text-primary" />
+                    ) : copyStatus === "failed" ? (
+                        <X className="h-3.5 w-3.5 text-destructive" />
                     ) : (
                         <Copy className="h-3.5 w-3.5" />
                     )}
-                    <span className="hidden sm:inline">{copied ? copiedLabel : copyLabel}</span>
+                    <span className="hidden sm:inline">{feedbackLabel}</span>
                 </Button>
             </TooltipTrigger>
-            <TooltipContent>{copied ? copiedLabel : copyLabel}</TooltipContent>
+            <TooltipContent>{feedbackLabel}</TooltipContent>
         </Tooltip>
     );
 }

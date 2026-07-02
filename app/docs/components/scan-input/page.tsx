@@ -56,6 +56,16 @@ const propsData = [
     description: "Clear the field after each scan. Default true.",
   },
   {
+    name: "onScannerOpen",
+    type: "(action: ScanInputAction) => void",
+    description: "Turns the leading barcode icon into a scan action. Open a scanner UI and call action.commit(code) to commit the read.",
+  },
+  {
+    name: "scannerLabel",
+    type: "string",
+    description: "Accessible label and tooltip for the barcode scan action.",
+  },
+  {
     name: "lockMs",
     type: "number",
     description: "Ignore repeat commits within this many ms (scan guns can double-fire). Default 150.",

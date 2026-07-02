@@ -10,6 +10,18 @@ export const componentContentJa: Record<string, DocContent> = {
     title: "Button",
     description: "ボタン、またはボタン風の見た目のコンポーネントを表示します。",
   },
+  "components/segmented-control": {
+    title: "SegmentedControl",
+    description: "少数の選択肢から1つを選ぶ、等幅セグメント型のコントロールです。",
+  },
+  "components/scan-gate": {
+    title: "ScanGate",
+    description: "複数段階のバーコード読み取りを、確認値を引き継ぎながら進めるスキャンフローです。",
+  },
+  "components/co-sign": {
+    title: "CoSign",
+    description: "2人目の確認者、確認項目、署名済み状態をまとめて扱うダブルチェック用の入力です。",
+  },
   "components/tooltip-button": {
     title: "TooltipButton",
     description: "ボタン操作にツールチップ説明を組み合わせ、アイコンだけの操作や補足が必要な操作の意味を明確にします。",
