@@ -26,18 +26,11 @@
   ],
   "components": [
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
     "ApprovalWorkflow",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
     "Checkbox",
-    "ColumnDef",
     "Container",
     "DataTable",
     "HStack",
@@ -45,8 +38,7 @@
     "Select",
     "Separator",
     "SignedRecord",
-    "VStack",
-    "WorkflowValue"
+    "VStack"
   ],
   "shots": {
     "desktop": true,

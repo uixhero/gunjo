@@ -37,7 +37,6 @@
   "components": [
     "AmountBreakdown",
     "Badge",
-    "BadgeProps",
     "BottomActionBar",
     "Button",
     "Card",
@@ -45,14 +44,9 @@
     "Meter",
     "PageHeader",
     "RadioCard",
-    "RadioCardGroup",
     "SectionList",
     "Separator",
     "Sheet",
-    "SheetContent",
-    "SheetDescription",
-    "SheetHeader",
-    "SheetTitle",
     "Statistic"
   ],
   "shots": {

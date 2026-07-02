@@ -40,26 +40,15 @@
     }
   ],
   "components": [
-    "ActionItem",
     "ActionQueue",
-    "ActionSeverity",
     "Badge",
     "Button",
     "List",
-    "ListItem",
     "MetadataList",
     "Separator",
     "Sheet",
-    "SheetContent",
-    "SheetDescription",
-    "SheetHeader",
-    "SheetTitle",
     "TextLink",
-    "Timeline",
-    "TimelineDescription",
-    "TimelineItem",
-    "TimelineTime",
-    "TimelineTitle"
+    "Timeline"
   ],
   "shots": {
     "desktop": true,

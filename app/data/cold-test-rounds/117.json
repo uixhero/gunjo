@@ -34,18 +34,12 @@
     "Banner",
     "Button",
     "Card",
-    "CardContent",
-    "CardHeader",
-    "CardTitle",
     "ListCard",
     "MetadataList",
     "Progress",
     "Separator",
     "Statistic",
-    "Tabs",
-    "TabsContent",
-    "TabsList",
-    "TabsTrigger"
+    "Tabs"
   ],
   "shots": {
     "desktop": true,

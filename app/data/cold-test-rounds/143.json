@@ -34,10 +34,6 @@
     "Badge",
     "BarChart",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
     "DataTable",
     "Delta",
     "DistributionBar",
@@ -47,8 +43,7 @@
     "PersonCell",
     "Separator",
     "StatGroup",
-    "ToggleGroup",
-    "ToggleGroupItem"
+    "ToggleGroup"
   ],
   "shots": {
     "desktop": true,

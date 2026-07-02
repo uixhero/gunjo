@@ -34,9 +34,6 @@
     "Button",
     "Calendar",
     "Card",
-    "CardContent",
-    "CardHeader",
-    "CardTitle",
     "Gallery",
     "Icon",
     "Input",
@@ -44,9 +41,6 @@
     "Separator",
     "Statistic",
     "Table",
-    "TableBody",
-    "TableCell",
-    "TableRow",
     "Textarea"
   ],
   "shots": {

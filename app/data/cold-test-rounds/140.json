@@ -31,17 +31,14 @@
   ],
   "components": [
     "AmountBreakdown",
-    "AmountLine",
     "Badge",
     "Button",
     "FilterChips",
     "Itinerary",
-    "ItineraryItem",
     "ListCard",
     "PageHeader",
     "Separator",
-    "ToggleGroup",
-    "ToggleGroupItem"
+    "ToggleGroup"
   ],
   "shots": {
     "desktop": true,

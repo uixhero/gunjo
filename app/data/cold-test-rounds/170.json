@@ -36,7 +36,6 @@
   ],
   "components": [
     "AmountBreakdown",
-    "AmountLine",
     "Badge",
     "BottomActionBar",
     "Button",
@@ -49,8 +48,7 @@
     "SeatMap",
     "SegmentedControl",
     "Separator",
-    "Stepper",
-    "StepperStep"
+    "Stepper"
   ],
   "shots": {
     "desktop": true,

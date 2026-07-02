@@ -36,21 +36,13 @@
   ],
   "components": [
     "Avatar",
-    "AvatarFallback",
-    "AvatarImage",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
     "EmptyState",
-    "Notification",
     "NotificationCenter",
     "Skeleton",
-    "Timeline",
-    "TimelineDescription",
-    "TimelineItem",
-    "TimelineTime",
-    "TimelineTitle"
+    "Timeline"
   ],
   "shots": {
     "desktop": true,

@@ -37,19 +37,12 @@
   "components": [
     "ActionQueue",
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
     "AmountBreakdown",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardHeader",
-    "CardTitle",
     "CheckList",
     "CoSign",
-    "CoSignValue",
-    "ColumnDef",
     "DataTable",
     "MetadataList",
     "Meter",
@@ -57,10 +50,7 @@
     "ReferenceValue",
     "Separator",
     "StatGroup",
-    "Tabs",
-    "TabsContent",
-    "TabsList",
-    "TabsTrigger"
+    "Tabs"
   ],
   "shots": {
     "desktop": true,

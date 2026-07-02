@@ -35,14 +35,12 @@
     }
   ],
   "components": [
-    "ActionItem",
     "ActionQueue",
     "Badge",
     "Button",
     "Card",
     "FilterChips",
     "Leaderboard",
-    "LeaderboardItem",
     "MetadataList",
     "Meter",
     "PageHeader",

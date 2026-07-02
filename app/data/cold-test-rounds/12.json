@@ -21,11 +21,9 @@
   ],
   "components": [
     "Avatar",
-    "AvatarFallback",
     "Badge",
     "ChatInput",
     "ChatMessage",
-    "ChatTemplate",
     "EmptyState"
   ],
   "shots": {

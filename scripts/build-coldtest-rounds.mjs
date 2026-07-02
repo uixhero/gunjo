@@ -56,6 +56,45 @@ if (!fs.existsSync(APP)) {
 
 const gallery = JSON.parse(fs.readFileSync(GALLERY, "utf8"));
 
+// Real docs slugs — the set of pages that actually exist at /docs/components/<slug>.
+// Pulled from the generated navigation source so this stays in sync as the
+// catalog grows. Used below to drop sub-component imports that don't have
+// their own docs page (e.g. AccordionContent → /docs/components/accordion-content
+// would 404) or fold them into their parent (Accordion) instead.
+const NAV_PATH = path.join(ROOT, "app", "lib", "navigation.ts");
+const REAL_DOC_SLUGS = (() => {
+    const src = fs.readFileSync(NAV_PATH, "utf8");
+    const set = new Set();
+    const re = /\/docs\/components\/([a-z0-9-]+)/g;
+    let m;
+    while ((m = re.exec(src))) set.add(m[1]);
+    return set;
+})();
+
+// PascalCase → kebab-case, matching docSlugFor used by RoundDetailView.
+function docSlugFor(name) {
+    return name
+        .replace(/([a-z0-9])([A-Z])/g, "$1-$2")
+        .replace(/([A-Z]+)([A-Z][a-z])/g, "$1-$2")
+        .toLowerCase();
+}
+
+// Resolve an imported component name to its published-docs name — or null
+// when nothing in the catalog matches. `AccordionContent` etc. get folded
+// to the parent (`Accordion`) if the parent is documented; otherwise they
+// drop out entirely so the detail page can't render a 404-bound badge.
+function resolveDocumentedName(name) {
+    if (REAL_DOC_SLUGS.has(docSlugFor(name))) return name;
+    // Trim trailing PascalCase segments and try again — TabsList → Tabs.
+    let head = name;
+    while (true) {
+        const trimmed = head.replace(/[A-Z][a-z0-9]*$/, "");
+        if (!trimmed || trimmed === head) return null;
+        head = trimmed;
+        if (REAL_DOC_SLUGS.has(docSlugFor(head))) return head;
+    }
+}
+
 // Two cold-test routes were captured at multiple rounds; the later round
 // overwrote the earlier round's source. Record overwrittenBy so the detail
 // page can disclose code loss honestly instead of showing later code.
@@ -125,7 +164,13 @@ function componentsFrom(codeFiles) {
                 // Skip lowercase identifiers (utilities like cn, formatCurrency).
                 // Component docs are titlecase-routed; surfacing utilities mixed
                 // in would dilute the "components used" list.
-                if (name && /^[A-Z]/.test(name)) set.add(name);
+                if (!name || !/^[A-Z]/.test(name)) continue;
+                // Fold sub-components (AccordionContent, TabsList, CardHeader…)
+                // to their documented parent, and drop names that have no
+                // corresponding /docs/components page so the detail badges
+                // never link to a 404.
+                const documented = resolveDocumentedName(name);
+                if (documented) set.add(documented);
             }
         }
     }

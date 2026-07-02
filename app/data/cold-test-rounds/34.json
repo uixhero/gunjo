@@ -33,10 +33,6 @@
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardHeader",
-    "CardTitle",
-    "ColumnDef",
     "DataTable",
     "DateRangePicker",
     "EmptyState",
@@ -46,8 +42,7 @@
     "SearchInput",
     "Skeleton",
     "Statistic",
-    "ToggleGroup",
-    "ToggleGroupItem"
+    "ToggleGroup"
   ],
   "shots": {
     "desktop": true,

@@ -31,7 +31,6 @@
   ],
   "components": [
     "AmountBreakdown",
-    "AmountLine",
     "Badge",
     "Banner",
     "Button",
@@ -40,17 +39,12 @@
     "PageHeader",
     "PersonCell",
     "RadioCard",
-    "RadioCardGroup",
     "Rating",
     "RouteStops",
     "Separator",
     "Spinner",
     "Stepper",
-    "StepperStep",
-    "Tabs",
-    "TabsContent",
-    "TabsList",
-    "TabsTrigger"
+    "Tabs"
   ],
   "shots": {
     "desktop": true,

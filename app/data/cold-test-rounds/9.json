@@ -21,13 +21,9 @@
   ],
   "components": [
     "Avatar",
-    "AvatarFallback",
     "Badge",
-    "BadgeProps",
     "Button",
     "Card",
-    "CardContent",
-    "CardHeader",
     "Separator"
   ],
   "shots": {

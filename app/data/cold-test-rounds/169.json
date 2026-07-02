@@ -75,21 +75,14 @@
     }
   ],
   "components": [
-    "ActionItem",
     "ActionQueue",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
-    "ColumnDef",
     "Container",
     "DataTable",
     "Delta",
     "Leaderboard",
-    "LeaderboardItem",
     "LimitMonitor",
     "LineChart",
     "LineChip",
@@ -97,11 +90,10 @@
     "NavRow",
     "PageHeader",
     "SectionList",
-    "SectionListSection",
     "SegmentedControl",
     "Separator",
     "StatGroup",
-    "StatisticProps"
+    "Statistic"
   ],
   "shots": {
     "desktop": true,
