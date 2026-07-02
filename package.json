@@ -49,6 +49,7 @@
     "coldtest-gallery:snapshot": "node scripts/build-coldtest-gallery.mjs",
     "coldtest-gallery:thumbs": "node scripts/build-coldtest-thumbs.mjs",
     "coldtest-gallery:rounds": "node scripts/build-coldtest-rounds.mjs",
+    "coldtest-primitives:aggregate": "node scripts/aggregate-coldtest-primitives.mjs",
     "prepare": "npm run hooks:install",
     "hooks:install": "node scripts/install-git-hooks.mjs",
     "design:sync": "node scripts/design-sync.mjs",
