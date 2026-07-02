@@ -15,6 +15,7 @@ import { verifyGeneratedStubCoverage } from "./design-verify-generated-stub-cove
 import { verifyGeneratedDocsPageCoverage } from "./design-verify-generated-docs-page-coverage.mjs";
 import { verifyDocsContentSsot } from "./design-verify-docs-content-ssot.mjs";
 import { verifyDocsNavigationCoverage } from "./design-verify-docs-navigation-coverage.mjs";
+import { verifyUixheroMapping } from "./verify-uixhero-mapping.mjs";
 import { verifyNavTranslationCoverage } from "./design-verify-nav-translation-coverage.mjs";
 import { verifyDocsSpecImports } from "./design-verify-docs-spec-imports.mjs";
 import { verifySsotPrCommentDocs } from "./design-verify-ssot-pr-comment-docs.mjs";
@@ -93,6 +94,7 @@ function main() {
   verifyDocsContentSsot({ root: ROOT });
   verifySsotPrCommentDocs({ root: ROOT });
   verifyDocsNavigationCoverage({ root: ROOT });
+  verifyUixheroMapping({ root: ROOT });
   verifyNavTranslationCoverage({ root: ROOT });
   verifyDocsSpecImports({ root: ROOT });
   verifyGeneratedStubCoverage({ root: ROOT });
