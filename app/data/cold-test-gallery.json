@@ -1953,7 +1953,7 @@
       "score": "4.5/5",
       "category": "飲食・レストラン",
       "title": "AI に飲食の売上分析ダッシュボードを作らせてみた — SVGを1つも書かずに7チャート（やってみた #98）",
-      "readmeTitle": "飲食売上分析ダッシュボード（飲食・KPI StatGroup+AnalyticsCard/日次LineChart/時間帯StackedBar/ABC分析ParetoChart/カテゴリLabeledDonut/曜日×時間HeatmapChart層＝チャート層丸ごと越境・SVG手組みゼロ）",
+      "readmeTitle": "飲食売上分析ダッシュボード（飲食・KPI StatGroup+AnalyticsCard/日次LineChart/時間帯StackedBar/ABC分析ParetoChart/カテゴリLabeledDonut/曜日×時間HeatmapChart層＝チャート層丸ごと業界越え・SVG手組みゼロ）",
       "summary": "運営オペ3枚（予約/フロア/シフト）とは別の分析系。観測：**チャート層が飲食でどれだけ効くか＋StatGroup の継続再利用。**",
       "article": {
         "file": "zenn-yattemita-98-restaurant-sales.md",
@@ -2033,7 +2033,7 @@
       "score": "4.5/5",
       "category": "保険",
       "title": "AI に生保の引受査定を作らせてみた — 昨日作った部品を、別のAIが翌日もう見つけて使った（やってみた #104）",
-      "readmeTitle": "生命保険 引受査定/申込審査（保険・申込査定DataTable/告知リスク評価/BMI血圧ReferenceValue/保険料算定AmountBreakdown/承認2名CoSign層）★AmountBreakdown 越境発掘=build翌回で別cold AIが索引から自力発見",
+      "readmeTitle": "生命保険 引受査定/申込審査（保険・申込査定DataTable/告知リスク評価/BMI血圧ReferenceValue/保険料算定AmountBreakdown/承認2名CoSign層）★AmountBreakdown 別業界での自力発見=build翌回で別cold AIが索引から自力発見",
       "summary": "#101〜103 は損保（査定/契約/支払）。#104 は生保の underwriting——別作法。観測の核は1つ——**前回 build したばかりの `AmountBreakdown` を、文脈ゼロの別 cold AI が保険料計算で自力発見できるか。**",
       "article": {
         "file": "zenn-yattemita-104-insurance-underwriting.md",
@@ -2074,7 +2074,7 @@
       "category": "運輸：鉄道",
       "title": "AI に鉄道の運転指令を作らせてみた — 3回目の「対応キュー」手組みで、また部品になった（やってみた #106）",
       "readmeTitle": "鉄道 運転指令/運行管理（運輸:鉄道1枚目・列車一覧DataTable/ダイヤ乱れActionQueue/車両運用RouteStops/運転整理Timeline/運行図表SVG手組み層）★ActionQueue 3回目→build trigger・Stringline 起票",
-      "summary": "運輸は1業界じゃなく「カテゴリ」——鉄道・バス・航空・タクシー・運送は作法が全然違うので、各モードを独立の床として回す。今回はその鉄道。観測の核——**要対応の worklist（ActionQueue）が3回目の手組みになれば、その場で build する。**",
+      "summary": "運輸は1業界じゃなく「カテゴリ」——鉄道・バス・航空・タクシー・運送は作法が全然違うので、各モードを独立の土台として回す。今回はその鉄道。観測の核——**要対応の worklist（ActionQueue）が3回目の手組みになれば、その場で build する。**",
       "article": {
         "file": "zenn-yattemita-106-rail-operations.md",
         "slug": "106-rail-operations"
@@ -2093,7 +2093,7 @@
       "score": "4.5/5",
       "category": "運輸：鉄道",
       "title": "AI に鉄道の乗務員交番を作らせてみた — 昨日作った「対応キュー」を、別のAIが翌日もう使った（やってみた #107）",
-      "readmeTitle": "鉄道 乗務員仕業・行路管理/交番（鉄道2枚目・交番ScheduleGrid/要対応ActionQueue/行路RouteStops/点呼SignedRecord+CoSign/拘束Meter/アルコールReferenceValue層）★ActionQueue 越境発掘=build翌回で別cold AIが索引から自力発見・RouteStops 索引追加",
+      "readmeTitle": "鉄道 乗務員仕業・行路管理/交番（鉄道2枚目・交番ScheduleGrid/要対応ActionQueue/行路RouteStops/点呼SignedRecord+CoSign/拘束Meter/アルコールReferenceValue層）★ActionQueue 別業界での自力発見=build翌回で別cold AIが索引から自力発見・RouteStops 索引追加",
       "summary": "#106 は運転指令（指令側）。#107 は乗務員区（運用/HR側）＝別ペルソナ。観測の核——**前回 build したばかりの `ActionQueue` を、文脈ゼロの別 cold AI が点呼未了・超過勤務アラートで自力発見できるか。**",
       "article": {
         "file": "zenn-yattemita-107-rail-crew-roster.md",
@@ -2193,7 +2193,7 @@
       "score": "3.5/5",
       "category": "運輸：航空",
       "title": "AI にフライト予約を作らせてみた — 昨日作った ListCard を翌日もう使い、座席表の穴が2回目になった（やってみた #112）",
-      "readmeTitle": "国内線フライト予約（運輸:航空toC1枚目・mobile-first・便一覧ListCard/座席指定SeatMap手組み/運賃内訳AmountBreakdown/予約Stepper層）★ListCard 越境発掘=build翌回で自力発見・SeatMap 2回目・Stepper 375px fix が機能",
+      "readmeTitle": "国内線フライト予約（運輸:航空toC1枚目・mobile-first・便一覧ListCard/座席指定SeatMap手組み/運賃内訳AmountBreakdown/予約Stepper層）★ListCard 別業界での自力発見=build翌回で自力発見・SeatMap 2回目・Stepper 375px fix が機能",
       "summary": "鉄道 toC（特急券/乗換案内/運行情報）に続く、交通モード2つ目の利用者側。観測2つ——**#111 で build した `ListCard` を別 cold AI が便一覧で自力発見するか**＋**座席表（SeatMap）が2回目の手組みになるか**（#109 鉄道座席に続く）。",
       "article": {
         "file": "zenn-yattemita-112-flight-booking.md",
@@ -2293,7 +2293,7 @@
       "score": "3/5",
       "category": "運輸：鉄道",
       "title": "AI に鉄道のポイント画面を作らせてみた — KeEem の「鉄道もポイント必要」が、的中した（やってみた #117）",
-      "readmeTitle": "鉄道IC・ポイント会員（運輸:鉄道toC・モバイルSuica/JRE POINT・残高ポイントhero手組み/利用履歴ListCard/定期券MetadataList/Statistic層）★LoyaltySummaryCard 2回目(KeEem予言的中)・ListCard 越境再発掘・ブランドtokenがTailwind utility化されてない",
+      "readmeTitle": "鉄道IC・ポイント会員（運輸:鉄道toC・モバイルSuica/JRE POINT・残高ポイントhero手組み/利用履歴ListCard/定期券MetadataList/Statistic層）★LoyaltySummaryCard 2回目(KeEem予言的中)・ListCard 業界越え再発掘・ブランドtokenがTailwind utility化されてない",
       "summary": "KeEem が #116（航空マイレージ）の後に「**鉄道もポイント必要だったかも**」と言った。それを回収。観測の本命——**ロイヤリティ要約（LoyaltySummaryCard）が2回目の手組みになるか。**",
       "article": {
         "file": "zenn-yattemita-117-rail-points.md",
@@ -2333,7 +2333,7 @@
       "score": "3.5/5",
       "category": "運輸：鉄道",
       "title": "AI に定期券の購入フローを作らせてみた — B2C 購入の「原子」がまだ無かった（やってみた #119）",
-      "readmeTitle": "鉄道 定期券 購入・更新フロー（鉄道toC深掘り1・mobile-first・区間設定swap手組み/種類期間OptionCard手組み/金額内訳AmountBreakdown/購入Stepper/現在定期MetadataList層）★RadioCard 2回目(価格つき選択カード)・AmountBreakdown 越境7回目",
+      "readmeTitle": "鉄道 定期券 購入・更新フロー（鉄道toC深掘り1・mobile-first・区間設定swap手組み/種類期間OptionCard手組み/金額内訳AmountBreakdown/購入Stepper/現在定期MetadataList層）★RadioCard 2回目(価格つき選択カード)・AmountBreakdown 業界越え7回目",
       "summary": "KeEem に「鉄道・航空 toC をきちんと潰してから他モードへ」と言われ、[toC バックログ](https://github.com/uixhero/gunjo)を作って上から回す。これはその1枚目。",
       "article": {
         "file": "zenn-yattemita-119-commuter-pass.md",
@@ -2353,7 +2353,7 @@
       "score": "3.5/5",
       "category": "運輸：鉄道",
       "title": "AI に駅構内ナビを作らせてみた — ListCard は新しい型でも効いた、でも「カテゴリの横スクロール」が無い（やってみた #120）",
-      "readmeTitle": "鉄道 駅構内ナビ・施設案内（鉄道toC深掘り2・mobile-first・施設一覧ListCard/カテゴリchips ToggleGroup手戦い/locker空きMeter/行き方RouteStops層）★FilterChips 2回目(スクロール式カテゴリnav)・ListCard 新archetype越境(施設ファインダー)",
+      "readmeTitle": "鉄道 駅構内ナビ・施設案内（鉄道toC深掘り2・mobile-first・施設一覧ListCard/カテゴリchips ToggleGroup手戦い/locker空きMeter/行き方RouteStops層）★FilterChips 2回目(スクロール式カテゴリnav)・ListCard 新archetype業界越え(施設ファインダー)",
       "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-120-station-guide.md",
@@ -2373,7 +2373,7 @@
       "score": "3.5/5",
       "category": "運輸：鉄道",
       "title": "AI にきっぷ購入を作らせてみた — B2C 購入の「原子」が、3回目でついに部品になった（やってみた #121）",
-      "readmeTitle": "鉄道 おトクなきっぷ/一日乗車券 購入（鉄道toC深掘り3・mobile-first・商品選択RadioCard手組み/金額内訳AmountBreakdown/枚数NumberInput/購入Stepper層）★RadioCard 3回目→build trigger・AmountBreakdown 越境8回目・FilterChips/StatusScreen success 追記",
+      "readmeTitle": "鉄道 おトクなきっぷ/一日乗車券 購入（鉄道toC深掘り3・mobile-first・商品選択RadioCard手組み/金額内訳AmountBreakdown/枚数NumberInput/購入Stepper層）★RadioCard 3回目→build trigger・AmountBreakdown 業界越え8回目・FilterChips/StatusScreen success 追記",
       "summary": "きっぷ商品の選択＝価格つき選択カード。観測の本命——**それが3回目の手組みになるか。**",
       "article": {
         "file": "zenn-yattemita-121-ticket-store.md",
@@ -2393,7 +2393,7 @@
       "score": "3.5/5",
       "category": "運輸：航空",
       "title": "AI に空港ターミナル案内を作らせてみた — 駅と空港で同じ穴、3回目で「カテゴリチップ」が部品になった（やってみた #122）",
-      "readmeTitle": "航空 空港ターミナルマップ・施設案内（航空toC深掘り・羽田T2・mobile-first・施設一覧ListCard/カテゴリchips ToggleGroup手戦い/混雑Meter/搭乗口案内RouteStops層）★FilterChips 3回目→build trigger・ListCard 越境(空港ファインダー)・Steps neutral変種(#358)",
+      "readmeTitle": "航空 空港ターミナルマップ・施設案内（航空toC深掘り・羽田T2・mobile-first・施設一覧ListCard/カテゴリchips ToggleGroup手戦い/混雑Meter/搭乗口案内RouteStops層）★FilterChips 3回目→build trigger・ListCard 業界越え(空港ファインダー)・Steps neutral変種(#358)",
       "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-122-airport-guide.md",
@@ -2413,7 +2413,7 @@
       "score": "3.5/5",
       "category": "運輸：航空",
       "title": "AI に国際線 eチケットを作らせてみた — 「ゲートで掲げる券面」が、まだ部品じゃない（やってみた #123）",
-      "readmeTitle": "航空 国際線 eチケット・渡航書類チェック（航空toC深掘り・mobile-first・eチケット券面TicketStub手組み/渡航書類CheckList/旅程RouteStops/予約MetadataList層）★TicketStub 2回目(eチケット券面)・CheckList 越境・RouteStops 旅程に4回目漏れ",
+      "readmeTitle": "航空 国際線 eチケット・渡航書類チェック（航空toC深掘り・mobile-first・eチケット券面TicketStub手組み/渡航書類CheckList/旅程RouteStops/予約MetadataList層）★TicketStub 2回目(eチケット券面)・CheckList 業界越え・RouteStops 旅程に4回目漏れ",
       "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-123-eticket.md",
@@ -2453,7 +2453,7 @@
       "score": "4/5",
       "category": "運輸：航空",
       "title": "AI に欠航の振替画面を作らせてみた — 昨日作った2部品を翌日もう使い、app-bar が3回目で部品になった（やってみた #125）",
-      "readmeTitle": "航空 欠航・遅延時の振替・再予約（航空toC深掘り・mobile-first・代替便RadioCard/絞り込みFilterChips/欠航Alert/再予約Stepper/app-bar手組み層）★RadioCard+FilterChips 越境発掘(2部品が翌画面で自力発見)・PageHeader 3回目→build trigger",
+      "readmeTitle": "航空 欠航・遅延時の振替・再予約（航空toC深掘り・mobile-first・代替便RadioCard/絞り込みFilterChips/欠航Alert/再予約Stepper/app-bar手組み層）★RadioCard+FilterChips 別業界での自力発見(2部品が翌画面で自力発見)・PageHeader 3回目→build trigger",
       "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-125-flight-rebooking.md",
@@ -2473,7 +2473,7 @@
       "score": "3.5/5",
       "category": "運輸：航空",
       "title": "AI に旅程管理を作らせてみた — 4回さまよった「経路の部品」が、やっと結晶化した（やってみた #126）",
-      "readmeTitle": "航空 旅程管理/ご旅行プラン（航空toC深掘り・東京→ホノルル3泊5日・日程別複合タイムライン手組み(Timeline上)/PageHeader越境/Drawer詳細/概要StatGroup層）★Itinerary 3回目→build trigger・PageHeader 越境発掘・RouteStops 定義域確定で#358クローズ",
+      "readmeTitle": "航空 旅程管理/ご旅行プラン（航空toC深掘り・東京→ホノルル3泊5日・日程別複合タイムライン手組み(Timeline上)/PageHeader業界越え/Drawer詳細/概要StatGroup層）★Itinerary 3回目→build trigger・PageHeader 別業界での自力発見・RouteStops 定義域確定で#358クローズ",
       "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-126-trip-itinerary.md",
@@ -2493,7 +2493,7 @@
       "score": "4/5",
       "category": "運輸：航空",
       "title": "AI に空港ラウンジ案内を作らせてみた — 3つの新部品が「1画面で同時に発掘」された、航空 toC 締めの回（やってみた #127）",
-      "readmeTitle": "航空 空港ラウンジ・優先サービス案内（航空toC深掘り=航空締め・羽田T2・ラウンジ一覧ListCard/絞り込みFilterChips/PageHeader/混雑CrowdingBadge手組み層）★PageHeader+ListCard+FilterChips 3部品同時越境発掘・StatusLevel(定性的混雑指標)起票",
+      "readmeTitle": "航空 空港ラウンジ・優先サービス案内（航空toC深掘り=航空締め・羽田T2・ラウンジ一覧ListCard/絞り込みFilterChips/PageHeader/混雑CrowdingBadge手組み層）★PageHeader+ListCard+FilterChips 3部品同時別業界での自力発見・StatusLevel(定性的混雑指標)起票",
       "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-127-airport-lounge.md",
@@ -2513,7 +2513,7 @@
       "score": "3.5/5",
       "category": "運輸：鉄道",
       "title": "AI に駅ナカ・おでかけ提案を作らせてみた — 3画面さまよった「券面」が、ついに結晶化（やってみた #128）",
-      "readmeTitle": "鉄道 駅ナカ・おでかけ提案（鉄道toC深掘り=鉄道締め寄り・東京駅グランスタ・店舗/スポットListCard/カテゴリFilterChips/会員証LoyaltySummaryCard/PageHeader/クーポン会員証バーコード券面Scannable手組み層）★TicketStub 3回目→build trigger・4床(PageHeader/LoyaltySummaryCard/FilterChips/ListCard)越境・#363クローズ",
+      "readmeTitle": "鉄道 駅ナカ・おでかけ提案（鉄道toC深掘り=鉄道締め寄り・東京駅グランスタ・店舗/スポットListCard/カテゴリFilterChips/会員証LoyaltySummaryCard/PageHeader/クーポン会員証バーコード券面Scannable手組み層）★TicketStub 3回目→build trigger・4土台(PageHeader/LoyaltySummaryCard/FilterChips/ListCard)業界越え・#363クローズ",
       "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-128-station-outing.md",
@@ -2533,7 +2533,7 @@
       "score": "4.5/5",
       "category": "運輸：鉄道",
       "title": "AI にきっぷの払戻し画面を作らせてみた — 昨日 build した部品が、今日の画面で自力発見された（やってみた #129）",
-      "readmeTitle": "鉄道 きっぷ払戻し・遅延証明書（鉄道toC締め・えきねっと/JR東日本・払戻内訳AmountBreakdown/遅延証明書QR TicketStub/申込Stepper/理由RadioCard/PageHeader/CheckboxCard・ボトムバー手組み層）★TicketStub 越境発掘(昨日buildが翌画面で自力発見)・AmountBreakdown toC越境・PageHeader footgun実バグ修正(#380)・CheckboxCard #378起票",
+      "readmeTitle": "鉄道 きっぷ払戻し・遅延証明書（鉄道toC締め・えきねっと/JR東日本・払戻内訳AmountBreakdown/遅延証明書QR TicketStub/申込Stepper/理由RadioCard/PageHeader/CheckboxCard・ボトムバー手組み層）★TicketStub 別業界での自力発見(昨日buildが翌画面で自力発見)・AmountBreakdown toC業界越え・PageHeader footgun実バグ修正(#380)・CheckboxCard #378起票",
       "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-129-ticket-refund.md",
@@ -2552,9 +2552,9 @@
       "slug": "aircraft-maintenance",
       "score": "4.5/5",
       "category": "運輸：航空",
-      "title": "AI に航空機の整備管理コンソールを作らせてみた — 鉄道で結晶化した床が、そのまま航空に効いた（やってみた #130）",
-      "readmeTitle": "航空 機体整備管理/MRO（航空toB床埋め=#113以来2枚目・整備本部デスクトップ密度・機材一覧ActionDataTable+整備周期残りMeter(higher-is-worse)/ドック割当Gantt+ScheduleGrid/要対応AD/SB/MEL ActionQueue/整備確認SignedRecord/KPI StatGroup層）★toB床 越境の地力テスト=鉄道車両検査#108床が航空MROに構造的手組みゼロで横展開・index ListCard→DataTable是正(#382)・asset-row/Meter valueText/InspectorPanel #381起票",
-      "summary": "前回、KeEem に「鉄道と航空の toB は終わった？」と聞かれて台帳を数えたら——**鉄道 toB は3枚（運行/乗務員/車両）で床達成、だが航空 toB は #113 の1枚だけ**だった。toC で gap が噴き出して深掘りした分、航空 toB が薄いまま残っていた。だから床まで埋める。そして同時に試したいことがあった：**14業種＋鉄道で結晶化した「保守 toB 床」（資産テーブル／消費vs限度メーター／時間軸スケジュール／要対応キュー／署名記録）は、航空 MRO にそのまま効くのか？**",
+      "title": "AI に航空機の整備管理コンソールを作らせてみた — 鉄道で結晶化した土台が、そのまま航空に効いた（やってみた #130）",
+      "readmeTitle": "航空 機体整備管理/MRO（航空toB土台埋め=#113以来2枚目・整備本部デスクトップ密度・機材一覧ActionDataTable+整備周期残りMeter(higher-is-worse)/ドック割当Gantt+ScheduleGrid/要対応AD/SB/MEL ActionQueue/整備確認SignedRecord/KPI StatGroup層）★toB土台 業界を越える地力テスト=鉄道車両検査#108土台が航空MROに構造的手組みゼロで横展開・index ListCard→DataTable是正(#382)・asset-row/Meter valueText/InspectorPanel #381起票",
+      "summary": "前回、KeEem に「鉄道と航空の toB は終わった？」と聞かれて台帳を数えたら——**鉄道 toB は3枚（運行/乗務員/車両）で土台達成、だが航空 toB は #113 の1枚だけ**だった。toC で gap が噴き出して深掘りした分、航空 toB が薄いまま残っていた。だから土台まで埋める。そして同時に試したいことがあった：**14業種＋鉄道で結晶化した「保守 toB 土台」（資産テーブル／消費vs限度メーター／時間軸スケジュール／要対応キュー／署名記録）は、航空 MRO にそのまま効くのか？**",
       "article": {
         "file": "zenn-yattemita-130-aircraft-maintenance.md",
         "slug": "130-aircraft-maintenance"
@@ -2572,8 +2572,8 @@
       "slug": "crew-scheduling",
       "score": "4.5/5",
       "category": "運輸：航空",
-      "title": "AI に航空乗員のスケジュール管理を作らせてみた — 鉄道の乗務員交番の床が、また航空で効いた（やってみた #131）",
-      "readmeTitle": "航空 乗員スケジュール管理（航空toB床埋め=3枚目で航空toB床達成/乗員部デスクトップ密度・乗務割ScheduleGrid+資格カレンシーScheduleGrid/FTL乗務時間Meter(higher-is-worse)/要対応ActionQueue/乗務指示SignedRecord/PersonCell層）★toB床 越境テスト2回目=鉄道乗務員#107床が航空乗員に構造的手組みゼロで横展開・index ReferenceValue≠期限是正(#384)・ExpiryBadge/CurrencyMatrix #383起票",
+      "title": "AI に航空乗員のスケジュール管理を作らせてみた — 鉄道の乗務員交番の土台が、また航空で効いた（やってみた #131）",
+      "readmeTitle": "航空 乗員スケジュール管理（航空toB土台埋め=3枚目で航空toB土台達成/乗員部デスクトップ密度・乗務割ScheduleGrid+資格カレンシーScheduleGrid/FTL乗務時間Meter(higher-is-worse)/要対応ActionQueue/乗務指示SignedRecord/PersonCell層）★toB土台 業界越えのテスト2回目=鉄道乗務員#107土台が航空乗員に構造的手組みゼロで横展開・index ReferenceValue≠期限是正(#384)・ExpiryBadge/CurrencyMatrix #383起票",
       "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-131-crew-scheduling.md",
@@ -2592,8 +2592,8 @@
       "slug": "station-ops",
       "score": "4.5/5",
       "category": "運輸：鉄道",
-      "title": "AI に駅務管理コンソールを作らせてみた — toB床が初めて「形が違う」gap を露出した（やってみた #132）",
-      "readmeTitle": "鉄道 駅務管理（鉄道toB厚く=3つ目の鉄道toB領域/新宿駅駅事務室デスクトップ密度・機器状態盤EquipmentBoard手組み/要対応ActionQueue/遺失物ActionDataTable/精算AmountBreakdown/つり銭在庫Meter/引継ぎSignedRecord層）★toB spine 全zero-friction横展開・但しBOARD型(空間配置の機器状態盤)は床に無い唯一のgap→StatusBoard/DeviceGrid #385起票・PersonCell secondary≠subtitle naming",
+      "title": "AI に駅務管理コンソールを作らせてみた — toB土台が初めて「形が違う」gap を露出した（やってみた #132）",
+      "readmeTitle": "鉄道 駅務管理（鉄道toB厚く=3つ目の鉄道toB領域/新宿駅駅事務室デスクトップ密度・機器状態盤EquipmentBoard手組み/要対応ActionQueue/遺失物ActionDataTable/精算AmountBreakdown/つり銭在庫Meter/引継ぎSignedRecord層）★toB spine 全摩擦ゼロ横展開・但しBOARD型(空間配置の機器状態盤)は土台に無い唯一のgap→StatusBoard/DeviceGrid #385起票・PersonCell secondary≠subtitle naming",
       "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-132-station-ops.md",
@@ -2673,7 +2673,7 @@
       "score": "4/5",
       "category": "運輸：バス",
       "title": "AI にバスの運行管理を作らせてみた — 30回越しの最古の穴が、ついに結晶化した（やってみた #136）",
-      "readmeTitle": "**新モード バス** 運行管理（バスtoB1枚目/江東自動車営業所 渋谷駅前〜等々力 デスクトップ密度・運行図表RunDiagram手組み(210行SVG)/在線ActionDataTable+遅延Delta/要対応だんご運転ActionQueue/車両乗務員運用Gantt/便詳細RouteStops/指令SignedRecord+運休CoSign層）★**Stringline 3回目→build trigger=#352 結晶化(30回越しの最古起票)**・運行図表が鉄道#106/#133+バス#136 で3-confirm・Gantt-intraday/PageHeader-desktop も再確認・床は新モードでも全 zero-friction 横展開",
+      "readmeTitle": "**新モード バス** 運行管理（バスtoB1枚目/江東自動車営業所 渋谷駅前〜等々力 デスクトップ密度・運行図表RunDiagram手組み(210行SVG)/在線ActionDataTable+遅延Delta/要対応だんご運転ActionQueue/車両乗務員運用Gantt/便詳細RouteStops/指令SignedRecord+運休CoSign層）★**Stringline 3回目→build trigger=#352 結晶化(30回越しの最古起票)**・運行図表が鉄道#106/#133+バス#136 で3-confirm・Gantt-intraday/PageHeader-desktop も再確認・土台は新モードでも全 摩擦ゼロ 横展開",
       "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-136-bus-operations.md",
@@ -2692,8 +2692,8 @@
       "slug": "bus-dispatch",
       "score": "4.5/5",
       "category": "運輸：バス",
-      "title": "AI にバスの配車・乗務員管理を作らせてみた — 床は3モード目でも揺るがず、穴は「3つ目の軸」を指した（やってみた #137）",
-      "readmeTitle": "バス 配車・乗務員管理（バスtoB2枚目=鉄道乗務員#107/航空乗員#131のバス版/○○営業所 デスクトップ密度・仕業交番ScheduleGrid/拘束時間Meter(改善基準告示)/アルコール点呼ReferenceValue/要対応ActionQueue/点呼記録SignedRecord+2人点呼CoSign/資格期限手組み層）★crew/dispatch床が3モード目も全zero-friction・**ExpiryBadge 2回目(運転士資格期限→#383 2/3)**・#131索引fix機能(ReferenceValue≠期限→ScheduleGrid+Badgeへ正しく誘導)・ThresholdGate(アルコールgo/no-go)/status-grid #376追記",
+      "title": "AI にバスの配車・乗務員管理を作らせてみた — 土台は3モード目でも揺るがず、穴は「3つ目の軸」を指した（やってみた #137）",
+      "readmeTitle": "バス 配車・乗務員管理（バスtoB2枚目=鉄道乗務員#107/航空乗員#131のバス版/○○営業所 デスクトップ密度・仕業交番ScheduleGrid/拘束時間Meter(改善基準告示)/アルコール点呼ReferenceValue/要対応ActionQueue/点呼記録SignedRecord+2人点呼CoSign/資格期限手組み層）★crew/dispatch土台が3モード目も全摩擦ゼロ・**ExpiryBadge 2回目(運転士資格期限→#383 2/3)**・#131索引fix機能(ReferenceValue≠期限→ScheduleGrid+Badgeへ正しく誘導)・ThresholdGate(アルコールgo/no-go)/status-grid #376追記",
       "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-137-bus-dispatch.md",
@@ -2712,8 +2712,8 @@
       "slug": "bus-approach",
       "score": "4/5",
       "category": "運輸：バス",
-      "title": "AI にバスの接近案内を作らせてみた — モバイル消費者床が3モード目でも丸ごと効いた（やってみた #138）",
-      "readmeTitle": "バス 接近案内・乗車（バスtoC1枚目=モバイル消費者・都営バス風 渋谷駅前・接近案内ListCard(まもなく到着/あと○分/○つ前)/系統FilterChips/PageHeader/IC残高LoyaltySummaryCard/一日乗車券TicketStub/運賃AmountBreakdown/混雑CrowdingBadge手組み層）★モバイルtoC床6部品が3モード目消費者で全越境・**StatusLevel 2回目(車内混雑→#376 2/3)**・#380 PageHeader修正が機能と明記・索引 混雑→HeatmapChart 誤誘導是正(#389)",
+      "title": "AI にバスの接近案内を作らせてみた — モバイル消費者土台が3モード目でも丸ごと効いた（やってみた #138）",
+      "readmeTitle": "バス 接近案内・乗車（バスtoC1枚目=モバイル消費者・都営バス風 渋谷駅前・接近案内ListCard(まもなく到着/あと○分/○つ前)/系統FilterChips/PageHeader/IC残高LoyaltySummaryCard/一日乗車券TicketStub/運賃AmountBreakdown/混雑CrowdingBadge手組み層）★モバイルtoC土台6部品が3モード目消費者で全業界越え・**StatusLevel 2回目(車内混雑→#376 2/3)**・#380 PageHeader修正が機能と明記・索引 混雑→HeatmapChart 誤誘導是正(#389)",
       "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-138-bus-approach.md",
@@ -2732,8 +2732,8 @@
       "slug": "highway-bus",
       "score": "4/5",
       "category": "運輸：バス",
-      "title": "AI に高速バスの座席予約を作らせてみた — 予約床は丸ごと越境、SeatMap は「グリッドは完璧・属性は airline 形」（やってみた #139）",
-      "readmeTitle": "バス 高速バス座席予約（バスtoC2枚目=モバイル予約・バスタ新宿→大阪・便プランRadioCard/座席表SeatMap(3列独立=A空C空D列・4列)/運賃AmountBreakdown/予約Stepper/乗車券TicketStub/PageHeader・乗車地RadioRow手組み+ボトムバー手組み層）★予約床5部品が高速バスに全越境・SeatMap はグリッドぴったりだが coach 属性(女性専用/トイレ付/向き)未対応→#390・RadioRow/BottomActionBar(3回目)→#391・索引 誤誘導ゼロ",
+      "title": "AI に高速バスの座席予約を作らせてみた — 予約土台は丸ごと業界越え、SeatMap は「グリッドは完璧・属性は airline 形」（やってみた #139）",
+      "readmeTitle": "バス 高速バス座席予約（バスtoC2枚目=モバイル予約・バスタ新宿→大阪・便プランRadioCard/座席表SeatMap(3列独立=A空C空D列・4列)/運賃AmountBreakdown/予約Stepper/乗車券TicketStub/PageHeader・乗車地RadioRow手組み+ボトムバー手組み層）★予約土台5部品が高速バスに全業界越え・SeatMap はグリッドぴったりだが coach 属性(女性専用/トイレ付/向き)未対応→#390・RadioRow/BottomActionBar(3回目)→#391・索引 誤誘導ゼロ",
       "summary": "`tsc` 緑・375px mobile-first・5ステップ予約フロー。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-139-highway-bus.md",
@@ -2753,7 +2753,7 @@
       "score": "4/5",
       "category": "運輸：バス",
       "title": "AI にバスの経路検索を作らせてみた — #126 で build した Itinerary が、別モードで自力発見された（やってみた #140）",
-      "readmeTitle": "バス 経路検索・運賃案内（バスtoC3枚目=モバイル経路検索・渋谷駅→等々力・経路候補ListCard/経路詳細Itinerary越境/運賃AmountBreakdown/並び替えFilterChips/PageHeader・系統LineChip手組み+from/to検索バー手組み層）★**Itinerary 越境発掘=#126 buildが別モード(バス経路)で自力発見・索引も正しく誘導**・但し adequate-not-native(walk/ride/transfer kind・破線徒歩vs実線乗車 connector 無し)→#358 再open(2/3)・LineChip 2回目(#138+#140→#392)",
+      "readmeTitle": "バス 経路検索・運賃案内（バスtoC3枚目=モバイル経路検索・渋谷駅→等々力・経路候補ListCard/経路詳細Itinerary業界越え/運賃AmountBreakdown/並び替えFilterChips/PageHeader・系統LineChip手組み+from/to検索バー手組み層）★**Itinerary 別業界での自力発見=#126 buildが別モード(バス経路)で自力発見・索引も正しく誘導**・但し adequate-not-native(walk/ride/transfer kind・破線徒歩vs実線乗車 connector 無し)→#358 再open(2/3)・LineChip 2回目(#138+#140→#392)",
       "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-140-bus-route-search.md",
@@ -2773,7 +2773,7 @@
       "score": "4/5",
       "category": "運輸：タクシー",
       "title": "AI にタクシー配車管理を作らせてみた — 物理opsの最頻出穴「状態盤」が、4モード目で結晶化（やってみた #141）",
-      "readmeTitle": "**新モード タクシー** 配車管理（タクシーtoB1枚目=4モード目/みやこ交通 城南配車センター AVM デスクトップ密度・車両状態盤StatusBoard手組み/配車依頼ListCard/マッチング候補ListCard+配車Button/要対応ActionQueue/KPI StatGroup/実車率Meter層）★**StatusBoard 3回目→build trigger=#385 結晶化(13個目・物理ops床の最頻出穴)**・状態盤が駅務#132+ランプ#134+配車#141 で3-confirm・toB床4モード目も全zero-friction・索引 状態盤→HeatmapChart 誤誘導是正",
+      "readmeTitle": "**新モード タクシー** 配車管理（タクシーtoB1枚目=4モード目/みやこ交通 城南配車センター AVM デスクトップ密度・車両状態盤StatusBoard手組み/配車依頼ListCard/マッチング候補ListCard+配車Button/要対応ActionQueue/KPI StatGroup/実車率Meter層）★**StatusBoard 3回目→build trigger=#385 結晶化(13個目・物理ops土台の最頻出穴)**・状態盤が駅務#132+ランプ#134+配車#141 で3-confirm・toB土台4モード目も全摩擦ゼロ・索引 状態盤→HeatmapChart 誤誘導是正",
       "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-141-taxi-dispatch.md",
@@ -2812,8 +2812,8 @@
       "slug": "taxi-revenue",
       "score": "4/5",
       "category": "運輸：タクシー",
-      "title": "AI にタクシー営収ダッシュボードを作らせてみた — チャート床が「最も purpose-built」と評された回（やってみた #143）",
-      "readmeTitle": "タクシー 営収・実績ダッシュボード（タクシーtoB3枚目=営業所アナリティクス/#142とは別=全車営収分析 デスクトップ密度・KPI AnalyticsCard+Delta前日比/営収推移LineChart+target線/時間帯BarChart/チャネル構成LabeledDonutCard+DistributionBar/予算Meter(fill-is-good)/期間ToggleGroup/乗務員ランキングDataTable+rank手組み層）★チャート/アナリティクス床が交通営収に全 zero-friction横展開(「cold で使った汎用 React UI で最も purpose-built に近い」)・**Leaderboard/RankingTable 唯一の穴→#395起票**・索引も正直にランキング→DataTable と認める",
+      "title": "AI にタクシー営収ダッシュボードを作らせてみた — チャート土台が「最も purpose-built」と評された回（やってみた #143）",
+      "readmeTitle": "タクシー 営収・実績ダッシュボード（タクシーtoB3枚目=営業所アナリティクス/#142とは別=全車営収分析 デスクトップ密度・KPI AnalyticsCard+Delta前日比/営収推移LineChart+target線/時間帯BarChart/チャネル構成LabeledDonutCard+DistributionBar/予算Meter(fill-is-good)/期間ToggleGroup/乗務員ランキングDataTable+rank手組み層）★チャート/アナリティクス土台が交通営収に全 摩擦ゼロ横展開(「cold で使った汎用 React UI で最も purpose-built に近い」)・**Leaderboard/RankingTable 唯一の穴→#395起票**・索引も正直にランキング→DataTable と認める",
       "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-143-taxi-revenue.md",
@@ -2833,7 +2833,7 @@
       "score": "5/5",
       "category": "運輸：タクシー",
       "title": "AI にタクシー車両管理を作らせてみた — 連載初の「5/5」、build した部品が資産の期限でも自力発見（やってみた #144）",
-      "readmeTitle": "タクシー 車両管理・車検/整備（タクシーtoB4枚目=保守=鉄道車両検査#108/航空MRO#130のタクシー版/渋谷営業所 デスクトップ密度・車両一覧ActionDataTable/車検保険期限ExpiryBadge/走行距離Meter/整備計画Gantt/要対応ActionQueue/整備記録SignedRecord/稼働盤StatusBoard層）★**連載初の 5/5**・保守床6部品が全 zero-friction(「commission されたよう」)・**build→越境発掘=ExpiryBadge(#142 crew build)が車検/保険=asset 期限で自力発見+StatusBoard(#141)も稼働盤で再来**・DesktopPageHeader/tone語彙統一 #397起票",
+      "readmeTitle": "タクシー 車両管理・車検/整備（タクシーtoB4枚目=保守=鉄道車両検査#108/航空MRO#130のタクシー版/渋谷営業所 デスクトップ密度・車両一覧ActionDataTable/車検保険期限ExpiryBadge/走行距離Meter/整備計画Gantt/要対応ActionQueue/整備記録SignedRecord/稼働盤StatusBoard層）★**連載初の 5/5**・保守土台6部品が全 摩擦ゼロ(「commission されたよう」)・**build→別業界での自力発見=ExpiryBadge(#142 crew build)が車検/保険=asset 期限で自力発見+StatusBoard(#141)も稼働盤で再来**・DesktopPageHeader/tone語彙統一 #397起票",
       "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-144-taxi-maintenance.md",
@@ -2893,7 +2893,7 @@
       "score": "4/5",
       "category": "運輸：タクシー",
       "title": "AI にタクシー配車アプリを作らせてみた — 4回貯めた「ボトムバー」がついに結晶化、タクシー toC 深掘り開始（やってみた #147）",
-      "readmeTitle": "タクシー 配車アプリ（タクシーtoC**1枚目=深掘り継続**・モバイル消費者/GO風 渋谷・呼出/車種RadioCard/ドライバーPersonCell+Rating/料金AmountBreakdown/ライドStepper/会員LoyaltySummaryCard/接近ETA+ボトムバー手組み層）★**BottomActionBar 4回目→build trigger=#125/#129/#139/#147 で3-confirm(15個目・PageHeader の対=下sticky CTA dock)**・索引「専用部品なし」を反転・mobile toC床越境・ApproachCard(単車ライブETA)/VehicleCard #402起票",
+      "readmeTitle": "タクシー 配車アプリ（タクシーtoC**1枚目=深掘り継続**・モバイル消費者/GO風 渋谷・呼出/車種RadioCard/ドライバーPersonCell+Rating/料金AmountBreakdown/ライドStepper/会員LoyaltySummaryCard/接近ETA+ボトムバー手組み層）★**BottomActionBar 4回目→build trigger=#125/#129/#139/#147 で3-confirm(15個目・PageHeader の対=下sticky CTA dock)**・索引「専用部品なし」を反転・mobile toC土台業界越え・ApproachCard(単車ライブETA)/VehicleCard #402起票",
       "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-147-taxi-ride.md",
@@ -2913,7 +2913,7 @@
       "score": "4.5/5",
       "category": "運輸：タクシー",
       "title": "AI にタクシー予約配車を作らせてみた — 昨日 build したボトムバーが、翌日の予約画面で自力発見（やってみた #148）",
-      "readmeTitle": "タクシー 予約配車・空港定額（タクシーtoC**2枚目=深掘り**・予約 archetype[#147 即時呼出と別]/GO風 渋谷・羽田定額・予約タイプ/車種RadioCard/定額AmountBreakdown/予約Stepper/日時DatePicker/CTA BottomActionBar/日時±幅+場所入力 手組み層）★**BottomActionBar 越境発掘=昨日#147 buildが翌画面の予約CTAで自力発見(docstring が予約を名指し)**・予約床ターンキー・**DateTimePicker(未来日時±幅)/PlaceField(乗降地ペア)が穴→#403起票**・StatusScreen success欠如(#379)再確認",
+      "readmeTitle": "タクシー 予約配車・空港定額（タクシーtoC**2枚目=深掘り**・予約 archetype[#147 即時呼出と別]/GO風 渋谷・羽田定額・予約タイプ/車種RadioCard/定額AmountBreakdown/予約Stepper/日時DatePicker/CTA BottomActionBar/日時±幅+場所入力 手組み層）★**BottomActionBar 別業界での自力発見=昨日#147 buildが翌画面の予約CTAで自力発見(docstring が予約を名指し)**・予約土台ターンキー・**DateTimePicker(未来日時±幅)/PlaceField(乗降地ペア)が穴→#403起票**・StatusScreen success欠如(#379)再確認",
       "summary": "前回 #147 で私は「タクシー完走」と言ったが、KeEem に「**は？タクシーの toC 一回で完成？？？**」と正された。**toB を6枚作って toC を1枚で締めるのは矛盾**——鉄道/航空が toC 6枚なのに。私のメモにも「toC は弱い側だから深掘りを優先・早期に close しない」と書いてあるのに、また同じ過ちをした。**toC は toB と同じだけ厚くして初めて完了。** だから深掘りを継続する。",
       "article": {
         "file": "zenn-yattemita-148-taxi-booking.md",
@@ -2933,7 +2933,7 @@
       "score": "4/5",
       "category": "運輸：タクシー",
       "title": "AI にタクシーの乗車履歴・領収書を作らせてみた — TicketStub が「正しく使われなかった」回（やってみた #149）",
-      "readmeTitle": "タクシー 乗車履歴・領収書・経費（タクシーtoC**3枚目=深掘り**・アカウント系[#147呼出/#148予約と別]/GO風 渋谷→品川・利用サマリLoyaltySummaryCard+StatGroup/履歴ListCard(月別手組み)/領収書AmountBreakdown+EditableField宛名+Sheet/絞り込みFilterChips/経費複数選択+CTA BottomActionBar層）★BottomActionBar 越境発掘3連続(選択モードバー)・**TicketStub は領収書に非適合と docstring が正しく誘導(定義域確定)**・**SectionList(月別グループ+小計)が穴→#404起票**・索引 モバイル複数選択→ListCard+Checkbox+BottomActionBar 是正(#405)",
+      "readmeTitle": "タクシー 乗車履歴・領収書・経費（タクシーtoC**3枚目=深掘り**・アカウント系[#147呼出/#148予約と別]/GO風 渋谷→品川・利用サマリLoyaltySummaryCard+StatGroup/履歴ListCard(月別手組み)/領収書AmountBreakdown+EditableField宛名+Sheet/絞り込みFilterChips/経費複数選択+CTA BottomActionBar層）★BottomActionBar 別業界での自力発見3連続(選択モードバー)・**TicketStub は領収書に非適合と docstring が正しく誘導(定義域確定)**・**SectionList(月別グループ+小計)が穴→#404起票**・索引 モバイル複数選択→ListCard+Checkbox+BottomActionBar 是正(#405)",
       "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-149-taxi-history.md",
@@ -2953,7 +2953,7 @@
       "score": "3.5/5",
       "category": "運輸：タクシー",
       "title": "AI にタクシーの評価・サポート画面を作らせてみた — 索引が「動かない部品」に誘導した回（やってみた #150・節目）",
-      "readmeTitle": "タクシー 乗車後評価・忘れ物・サポート（タクシーtoC**4枚目=深掘り/節目#150**・post-ride/サポート[#147-149と別]/GO風・評価StarRatingInput手組み/良かった点ToggleGroup/FAQ SearchableAccordion/忘れ物Select+FilterChips/問い合わせ履歴ListCard+ApprovalSteps流用/CTA BottomActionBar層）★**実gap+索引誤誘導=Rating は表示専用で input 無し(rating input を read-only Rating に誤誘導)→RatingInput/InquiryStatus #406起票+索引 Rating=表示専用 明記(#407)**・SearchableAccordion が FAQ に完璧適合・サポート床85%越境",
+      "readmeTitle": "タクシー 乗車後評価・忘れ物・サポート（タクシーtoC**4枚目=深掘り/節目#150**・post-ride/サポート[#147-149と別]/GO風・評価StarRatingInput手組み/良かった点ToggleGroup/FAQ SearchableAccordion/忘れ物Select+FilterChips/問い合わせ履歴ListCard+ApprovalSteps流用/CTA BottomActionBar層）★**実gap+索引誤誘導=Rating は表示専用で input 無し(rating input を read-only Rating に誤誘導)→RatingInput/InquiryStatus #406起票+索引 Rating=表示専用 明記(#407)**・SearchableAccordion が FAQ に完璧適合・サポート土台85%業界越え",
       "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-150-taxi-support.md",
@@ -2973,7 +2973,7 @@
       "score": "4.5/5",
       "category": "運輸：タクシー",
       "title": "AI にタクシー会員・クーポン画面を作らせてみた — 連載最強のドメイン適合、build した部品が次々「自宅」に帰った（やってみた #151）",
-      "readmeTitle": "タクシー 会員・サブスク・クーポン（タクシーtoC**5枚目=深掘り**・ロイヤリティ[#147-150と別]/GO風・会員ランクLoyaltySummaryCard/サブスクRadioCard/クーポン一覧ListCard+提示TicketStub/クーポン期限ExpiryBadge/ポイントStatGroup/友達紹介CopyButton+手組み/CTA BottomActionBar層）★**連載最強のドメイン適合(7部品で~95%)・built部品が自宅/越境発掘多数=LoyaltySummaryCard(home)/TicketStub(クーポン提示=#128 home)/ExpiryBadge(クーポン期限=crew#142→asset#144→coupon で軸が3ドメイン横断)**・ReferralCard/PromoCodeField/LoyaltySummaryCard tierTone #408起票",
+      "readmeTitle": "タクシー 会員・サブスク・クーポン（タクシーtoC**5枚目=深掘り**・ロイヤリティ[#147-150と別]/GO風・会員ランクLoyaltySummaryCard/サブスクRadioCard/クーポン一覧ListCard+提示TicketStub/クーポン期限ExpiryBadge/ポイントStatGroup/友達紹介CopyButton+手組み/CTA BottomActionBar層）★**連載最強のドメイン適合(7部品で~95%)・built部品が自宅/別業界での自力発見多数=LoyaltySummaryCard(home)/TicketStub(クーポン提示=#128 home)/ExpiryBadge(クーポン期限=crew#142→asset#144→coupon で軸が3ドメイン横断)**・ReferralCard/PromoCodeField/LoyaltySummaryCard tierTone #408起票",
       "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-151-taxi-membership.md",
@@ -2993,7 +2993,7 @@
       "score": "3.5/5",
       "category": "運輸：タクシー",
       "title": "AI にタクシー法人配車を作らせてみた — タクシーが toB6+toC6 で本当に完走（やってみた #152）",
-      "readmeTitle": "タクシー 法人配車・タクシーチケット（タクシーtoC**6枚目=深掘り完=toB6+toC6 対称でタクシー完走**・B2B2C[#147-151と別]/GO BUSINESS風・個人法人切替AccountChip手組み/利用目的RadioCard/電子チケットTicketStub/承認ApprovalSteps(消費者ビュー適合)/チケット期限ExpiryBadge/利用明細ListCard+AmountBreakdown/CTA BottomActionBar層）★generic床~70%だが B2B2C 固有層は穴=**SegmentedControl/AccountSwitcher(個人⇄法人=B2B2C の定義的操作)/NavRow/TicketStub stored-value #409起票**・ApprovalSteps が消費者承認status に適合・ExpiryBadge 4ドメイン目(チケット)・Button 既定<44px(#362)再確認",
+      "readmeTitle": "タクシー 法人配車・タクシーチケット（タクシーtoC**6枚目=深掘り完=toB6+toC6 対称でタクシー完走**・B2B2C[#147-151と別]/GO BUSINESS風・個人法人切替AccountChip手組み/利用目的RadioCard/電子チケットTicketStub/承認ApprovalSteps(消費者ビュー適合)/チケット期限ExpiryBadge/利用明細ListCard+AmountBreakdown/CTA BottomActionBar層）★generic土台~70%だが B2B2C 固有層は穴=**SegmentedControl/AccountSwitcher(個人⇄法人=B2B2C の定義的操作)/NavRow/TicketStub stored-value #409起票**・ApprovalSteps が消費者承認status に適合・ExpiryBadge 4ドメイン目(チケット)・Button 既定<44px(#362)再確認",
       "summary": "#147 で「タクシー完走」と早とちりして KeEem に「は？toC 一回で完成？？？」と正された。その後 toC を #147→#152 で6枚掘り、**toB 6枚（配車/乗務員/営収/車両/苦情/需要予測）と toC 6枚（配車/予約/履歴/サポート/会員/法人）が対称**に。鉄道・航空（各 toB5+toC6）に並ぶ。**今回は「完走」と言って良い。**",
       "article": {
         "file": "zenn-yattemita-152-taxi-corporate.md",
@@ -3032,8 +3032,8 @@
       "slug": "bus-revenue",
       "score": "4/5",
       "category": "運輸：バス",
-      "title": "AI にバスの路線収支ダッシュボードを作らせてみた — chart床がバス財務に完全越境、Leaderboard が2回目（やってみた #154）",
-      "readmeTitle": "バス 営収・路線収支ダッシュボード（**バス toB 厚く**[#136-137-153に追加]・経営企画/営業所長向け・KPI StatGroup/収支推移LineChart/費用内訳LabeledDonutCard/系統別収支DataTable+Delta+Meter/収支ランキングRankRow手組み/要対応ActionQueue/営業係数=営収100円の費用>100赤字）★**chart床がバス財務に完全越境=LineChart/LabeledDonutCard/StatGroup/Delta/ActionQueue/DataTable が全て zero-friction・可変データ駆動で static 化ゼロ**・**Leaderboard 2/3(系統別収支ランキング=taxi#143 売上ランキングに続く・索引が Pareto“Rankings”誤誘導 #395)**・DataTable rowTone(赤字行 tint 不可)/Statistic・Meter inverted-metric(営業係数 good-when-low) #412起票",
+      "title": "AI にバスの路線収支ダッシュボードを作らせてみた — chart土台がバス財務に完全に業界を越えて再利用、Leaderboard が2回目（やってみた #154）",
+      "readmeTitle": "バス 営収・路線収支ダッシュボード（**バス toB 厚く**[#136-137-153に追加]・経営企画/営業所長向け・KPI StatGroup/収支推移LineChart/費用内訳LabeledDonutCard/系統別収支DataTable+Delta+Meter/収支ランキングRankRow手組み/要対応ActionQueue/営業係数=営収100円の費用>100赤字）★**chart土台がバス財務に完全に業界を越えて再利用=LineChart/LabeledDonutCard/StatGroup/Delta/ActionQueue/DataTable が全て 摩擦ゼロ・可変データ駆動で static 化ゼロ**・**Leaderboard 2/3(系統別収支ランキング=taxi#143 売上ランキングに続く・索引が Pareto“Rankings”誤誘導 #395)**・DataTable rowTone(赤字行 tint 不可)/Statistic・Meter inverted-metric(営業係数 good-when-low) #412起票",
       "summary": "`tsc` 緑・デスクトップ情報密度・可変データ駆動のチャート。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-154-bus-revenue.md",
@@ -3133,7 +3133,7 @@
       "score": "4.5/5",
       "category": "運輸：トラック",
       "title": "AI にトラック配車システムを作らせてみた — 5モード目で部品が「本当の自宅」に帰った（やってみた #159）",
-      "readmeTitle": "トラック運送 配車・運行管理（**新モード=5モード目・最後/toB**・配車担当向け情報密度コンソール・配車盤StatusBoard・案件DataTable・車両運用 Gantt resolution=\"hour\"・配送ルート RouteStops(集荷→配送 native home)・拘束時間 Meter+ReferenceValue・稼働ランキング Leaderboard・要対応ActionQueue・KPI StatGroup・改善基準告示）★**最近 build の native 検証ラッシュ=RouteStops が貨物配送 route の真の自宅(誤適用でなく)・Gantt resolution=\"hour\"(#153 build) が車両運用 intraday で自力発見「built for this の最良の瞬間」・StatusBoard/Leaderboard/SegmentedControl 全て zero-friction**・**5モード目でも新しい穴=DataTable 一括選択割当(ActionDataTable が既存だが索引が隠す→[PR#418](https://github.com/uixhero/gunjo/pull/418) で索引是正)・拘束時間 LimitMonitor #417/Meter 絶対閾値 #412 2回目**・床は飽和せず",
+      "readmeTitle": "トラック運送 配車・運行管理（**新モード=5モード目・最後/toB**・配車担当向け情報密度コンソール・配車盤StatusBoard・案件DataTable・車両運用 Gantt resolution=\"hour\"・配送ルート RouteStops(集荷→配送 native home)・拘束時間 Meter+ReferenceValue・稼働ランキング Leaderboard・要対応ActionQueue・KPI StatGroup・改善基準告示）★**最近 build の native 検証ラッシュ=RouteStops が貨物配送 route の真の自宅(誤適用でなく)・Gantt resolution=\"hour\"(#153 build) が車両運用 intraday で自力発見「built for this の最良の瞬間」・StatusBoard/Leaderboard/SegmentedControl 全て 摩擦ゼロ**・**5モード目でも新しい穴=DataTable 一括選択割当(ActionDataTable が既存だが索引が隠す→[PR#418](https://github.com/uixhero/gunjo/pull/418) で索引是正)・拘束時間 LimitMonitor #417/Meter 絶対閾値 #412 2回目**・土台は飽和せず",
       "summary": "`tsc` 緑・デスクトップ情報密度。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-159-truck-dispatch.md",
@@ -3213,7 +3213,7 @@
       "score": "4/5",
       "category": "運輸：トラック",
       "title": "AI にトラックの収支ダッシュボードを作らせてみた — トラック toB 完了、直近 build が次々再検証された（やってみた #163）",
-      "readmeTitle": "トラック 運送原価・収支ダッシュボード（**新モード toB5=トラック toB 厚く完了**・KPI StatGroup・収支推移LineChart(referenceValue 目標線)・原価内訳LabeledDonutCard・車両別/荷主別収支DataTable+Delta・ベスト/ワースト収支Leaderboard・標準的運賃比較LimitMonitor(direction=floor)・要対応ActionQueue・原価率/実車率/実働率）★**chart床がトラック財務に native 越境=全データ駆動で static 化ゼロ・Leaderboard(best/worst P&L)とLimitMonitor(実勢vs標準運賃)が自力発見=直近 build の再検証**・**Statistic goodWhen 2/3(原価率 good-low/実車率 good-high の trend↔tone を手組み=Delta/Leaderboard は per-sign tones を持つが Statistic は無い #412)**・ChartLegend に formatValue 無し(chart 家系で非対称)/LimitMonitor \"RSC-safe\" だが formatValue 関数 prop で server 不可の罠",
+      "readmeTitle": "トラック 運送原価・収支ダッシュボード（**新モード toB5=トラック toB 厚く完了**・KPI StatGroup・収支推移LineChart(referenceValue 目標線)・原価内訳LabeledDonutCard・車両別/荷主別収支DataTable+Delta・ベスト/ワースト収支Leaderboard・標準的運賃比較LimitMonitor(direction=floor)・要対応ActionQueue・原価率/実車率/実働率）★**chart土台がトラック財務に native 業界越え=全データ駆動で static 化ゼロ・Leaderboard(best/worst P&L)とLimitMonitor(実勢vs標準運賃)が自力発見=直近 build の再検証**・**Statistic goodWhen 2/3(原価率 good-low/実車率 good-high の trend↔tone を手組み=Delta/Leaderboard は per-sign tones を持つが Statistic は無い #412)**・ChartLegend に formatValue 無し(chart 家系で非対称)/LimitMonitor \"RSC-safe\" だが formatValue 関数 prop で server 不可の罠",
       "summary": "`tsc` 緑・デスクトップ情報密度・可変データ駆動。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-163-truck-pl.md",
@@ -3293,7 +3293,7 @@
       "score": "4/5",
       "category": "運輸：トラック",
       "title": "AI に宅配の配達設定画面を作らせてみた — 索引が「動く部品に見えるが動かす意味が違う」へ誘導した（やってみた #167）",
-      "readmeTitle": "宅配 個人向け 受取・配達設定（**新モード toC4=設定/置き配**・モバイルファースト・デジタル会員証TicketStub(native)・置き配場所/不在時default RadioCard・受取曜日SegmentedControl(7=2-4超だが1字で可)・時間帯Select・通知 Switch・置き配写真FileUploader・置き配同意Checkbox・受取場所ListCard+追加Sheet・設定行 SettingRow/SettingGroup手組み・CTA BottomActionBar）★**TicketStub が会員証で自力発見「built for this」・settings床~90%(RadioCard/Switch/FileUploader/Sheet/BottomActionBar native)**・**NavRow 2/3(flush 設定行 icon+label+value+chevron＝#152 に続く・索引が ListCard に誤誘導するが ListCard.onSelect は aria-pressed=トグルで navigation 意味論として誤り＝a11y バグの SWAP 罠)#409**・FileUploader accept 形未文書/Button size=lg<44px(#362)再確認",
+      "readmeTitle": "宅配 個人向け 受取・配達設定（**新モード toC4=設定/置き配**・モバイルファースト・デジタル会員証TicketStub(native)・置き配場所/不在時default RadioCard・受取曜日SegmentedControl(7=2-4超だが1字で可)・時間帯Select・通知 Switch・置き配写真FileUploader・置き配同意Checkbox・受取場所ListCard+追加Sheet・設定行 SettingRow/SettingGroup手組み・CTA BottomActionBar）★**TicketStub が会員証で自力発見「built for this」・settings土台~90%(RadioCard/Switch/FileUploader/Sheet/BottomActionBar native)**・**NavRow 2/3(flush 設定行 icon+label+value+chevron＝#152 に続く・索引が ListCard に誤誘導するが ListCard.onSelect は aria-pressed=トグルで navigation 意味論として誤り＝a11y バグの SWAP 罠)#409**・FileUploader accept 形未文書/Button size=lg<44px(#362)再確認",
       "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-167-delivery-settings.md",
