@@ -27,12 +27,14 @@ interface GalleryEntry {
 }
 interface GalleryShape {
     count: number;
+    crystallizedCount: number;
     categories: string[];
     entries: GalleryEntry[];
 }
 const galleryData = gallery as GalleryShape;
 const ROUND_COUNT = galleryData.count;
 const INDUSTRY_COUNT = galleryData.categories.length;
+const CRYSTALLIZED_COUNT = galleryData.crystallizedCount;
 
 function scoreOf(score: string): number {
     return parseFloat(score.replace(/^[^\d.]+/, "")) || 0;
@@ -259,8 +261,8 @@ export function WhyView() {
                     </h2>
                     <p className="text-sm text-muted-foreground">
                         {isJa
-                            ? `${ROUND_COUNT} 画面を通るなかで、3-confirm を満たして実装された新しい部品の一部です。名前をクリックすると、それぞれのドキュメントへ移動します。`
-                            : `A subset of the new primitives that crossed the 3-confirm bar across ${ROUND_COUNT} rounds. Click any name to open its docs.`}
+                            ? `${ROUND_COUNT} 画面を通るなかで結晶化した ${CRYSTALLIZED_COUNT} 部品のうち、ここでは代表を抜粋しています。名前をクリックすると、それぞれのドキュメントへ移動します。`
+                            : `${CRYSTALLIZED_COUNT} primitives crystallised across ${ROUND_COUNT} rounds — a curated highlight sits below. Click any name to open its docs.`}
                     </p>
                     <ul className="grid gap-2 sm:grid-cols-2">
                         {CRYSTALLISED.map((c) => (
