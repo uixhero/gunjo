@@ -31,8 +31,6 @@
   ],
   "components": [
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
     "Badge",
     "Button",
     "ListCard",
@@ -40,17 +38,9 @@
     "SegmentedControl",
     "Separator",
     "Sheet",
-    "SheetContent",
-    "SheetDescription",
-    "SheetHeader",
-    "SheetTitle",
     "StatGroup",
     "Switch",
-    "Timeline",
-    "TimelineDescription",
-    "TimelineItem",
-    "TimelineTime",
-    "TimelineTitle"
+    "Timeline"
   ],
   "shots": {
     "desktop": true,

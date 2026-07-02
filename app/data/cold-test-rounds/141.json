@@ -30,7 +30,6 @@
     }
   ],
   "components": [
-    "ActionItem",
     "ActionQueue",
     "Badge",
     "Button",
@@ -42,12 +41,7 @@
     "Separator",
     "StatGroup",
     "Tabs",
-    "TabsContent",
-    "TabsList",
-    "TabsTrigger",
-    "Tooltip",
-    "TooltipContent",
-    "TooltipTrigger"
+    "Tooltip"
   ],
   "shots": {
     "desktop": true,

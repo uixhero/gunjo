@@ -41,15 +41,9 @@
   ],
   "components": [
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
     "Container",
     "Delta",
     "EmptyState",
@@ -57,12 +51,7 @@
     "Select",
     "Statistic",
     "Switch",
-    "Table",
-    "TableBody",
-    "TableCell",
-    "TableHead",
-    "TableHeader",
-    "TableRow"
+    "Table"
   ],
   "shots": {
     "desktop": true,

@@ -35,7 +35,6 @@
     "BottomActionBar",
     "Button",
     "Card",
-    "CardContent",
     "DatePicker",
     "Input",
     "Label",
@@ -44,15 +43,12 @@
     "NumberInput",
     "PageHeader",
     "RadioCard",
-    "RadioCardGroup",
     "Select",
     "Separator",
     "StatusScreen",
     "Stepper",
-    "StepperStep",
     "TimePicker",
-    "ToggleGroup",
-    "ToggleGroupItem"
+    "ToggleGroup"
   ],
   "shots": {
     "desktop": true,

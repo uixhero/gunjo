@@ -46,12 +46,7 @@
   ],
   "components": [
     "Accordion",
-    "AccordionContent",
-    "AccordionItem",
-    "AccordionTrigger",
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
     "AmountBreakdown",
     "Badge",
     "Banner",
@@ -62,15 +57,9 @@
     "NumberInput",
     "Separator",
     "Sheet",
-    "SheetContent",
-    "SheetDescription",
-    "SheetFooter",
-    "SheetHeader",
-    "SheetTitle",
     "Stepper",
     "Tag",
-    "ToggleGroup",
-    "ToggleGroupItem"
+    "ToggleGroup"
   ],
   "shots": {
     "desktop": true,

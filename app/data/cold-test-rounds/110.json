@@ -31,8 +31,6 @@
   ],
   "components": [
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
     "AmountBreakdown",
     "Badge",
     "Button",
@@ -42,8 +40,6 @@
     "Select",
     "Separator",
     "Tabs",
-    "TabsList",
-    "TabsTrigger",
     "Tag",
     "VStack"
   ],

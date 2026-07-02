@@ -36,21 +36,16 @@
   ],
   "components": [
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
     "AmountBreakdown",
     "Badge",
     "Button",
     "FilterChips",
     "MetadataList",
     "RadioCard",
-    "RadioCardGroup",
     "Separator",
     "Stepper",
-    "StepperStep",
     "Tag",
-    "ToggleGroup",
-    "ToggleGroupItem"
+    "ToggleGroup"
   ],
   "shots": {
     "desktop": true,

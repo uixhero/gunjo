@@ -40,27 +40,21 @@
     }
   ],
   "components": [
-    "ActionItem",
     "ActionQueue",
     "Badge",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
     "ChartLegend",
     "DataTable",
     "Delta",
     "LabeledDonutCard",
     "Leaderboard",
-    "LeaderboardItem",
     "LimitMonitor",
     "LineChart",
     "PageHeader",
     "SegmentedControl",
     "Separator",
     "StatGroup",
-    "StatisticProps"
+    "Statistic"
   ],
   "shots": {
     "desktop": true,

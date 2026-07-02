@@ -30,19 +30,12 @@
     }
   ],
   "components": [
-    "ActionItem",
     "ActionQueue",
     "ApprovalSteps",
     "Badge",
     "BarChart",
     "Button",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
-    "ChartDataPoint",
-    "ColumnDef",
     "DataTable",
     "Delta",
     "LabeledDonutCard",
@@ -52,11 +45,8 @@
     "Select",
     "StackedBarChart",
     "StatGroup",
-    "StatisticProps",
+    "Statistic",
     "Tabs",
-    "TabsContent",
-    "TabsList",
-    "TabsTrigger",
     "Tag"
   ],
   "shots": {

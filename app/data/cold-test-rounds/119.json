@@ -31,25 +31,16 @@
   ],
   "components": [
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
     "AmountBreakdown",
-    "AmountLine",
     "Badge",
     "Banner",
     "Button",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardFooter",
-    "CardHeader",
-    "CardTitle",
     "DatePicker",
     "MetadataList",
     "Select",
     "Separator",
-    "Stepper",
-    "StepperStep"
+    "Stepper"
   ],
   "shots": {
     "desktop": true,

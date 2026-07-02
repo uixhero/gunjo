@@ -41,15 +41,9 @@
   ],
   "components": [
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
     "Cluster",
     "Container",
     "DataTable",
@@ -62,10 +56,6 @@
     "Separator",
     "Statistic",
     "Timeline",
-    "TimelineDescription",
-    "TimelineItem",
-    "TimelineTime",
-    "TimelineTitle",
     "VStack"
   ],
   "shots": {

@@ -22,14 +22,10 @@
   "components": [
     "Badge",
     "Card",
-    "CardContent",
     "Carousel",
-    "CarouselApi",
-    "CarouselContent",
-    "CarouselItem",
     "Container",
     "Img",
-    "TooltipProvider"
+    "Tooltip"
   ],
   "shots": {
     "desktop": true,

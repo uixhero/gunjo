@@ -40,21 +40,11 @@
     "Card",
     "CopyButton",
     "Drawer",
-    "DrawerClose",
-    "DrawerContent",
-    "DrawerDescription",
-    "DrawerHeader",
-    "DrawerTitle",
     "MetadataList",
-    "MetadataListItem",
     "PageHeader",
     "Separator",
     "StatGroup",
-    "Timeline",
-    "TimelineDescription",
-    "TimelineItem",
-    "TimelineTime",
-    "TimelineTitle"
+    "Timeline"
   ],
   "shots": {
     "desktop": true,

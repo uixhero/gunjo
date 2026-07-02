@@ -43,19 +43,13 @@
     "Icon",
     "ListCard",
     "Meter",
-    "RouteStopItem",
     "RouteStops",
     "SearchInput",
     "Select",
     "Separator",
     "Sheet",
-    "SheetContent",
-    "SheetDescription",
-    "SheetHeader",
-    "SheetTitle",
     "Tag",
-    "ToggleGroup",
-    "ToggleGroupItem"
+    "ToggleGroup"
   ],
   "shots": {
     "desktop": true,

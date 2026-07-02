@@ -25,21 +25,13 @@
     "Calendar",
     "Card",
     "Dialog",
-    "DialogContent",
-    "DialogDescription",
-    "DialogFooter",
-    "DialogHeader",
-    "DialogTitle",
     "Icon",
     "Popover",
-    "PopoverAnchor",
-    "PopoverContent",
     "ScrollArea",
     "Select",
     "Separator",
     "ToggleGroup",
-    "ToggleGroupItem",
-    "TooltipProvider"
+    "Tooltip"
   ],
   "shots": {
     "desktop": true,

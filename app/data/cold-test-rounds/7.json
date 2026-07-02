@@ -22,7 +22,6 @@
   "components": [
     "Button",
     "CommandPalette",
-    "CommandPaletteGroup",
     "Icon",
     "Kbd",
     "ToastProvider"

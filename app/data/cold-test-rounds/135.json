@@ -45,30 +45,20 @@
     }
   ],
   "components": [
-    "ActionItem",
     "ActionQueue",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardHeader",
-    "CardTitle",
-    "ColumnDef",
     "DataTable",
     "Delta",
     "EmptyState",
     "Gantt",
-    "GanttItem",
-    "GanttItemTone",
-    "GanttRow",
     "MetadataList",
     "Meter",
-    "ScheduleAxisItem",
-    "ScheduleCell",
     "ScheduleGrid",
     "Select",
     "StatGroup",
-    "StatisticProps"
+    "Statistic"
   ],
   "shots": {
     "desktop": true,

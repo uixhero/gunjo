@@ -21,7 +21,6 @@
   ],
   "components": [
     "Badge",
-    "BadgeProps",
     "Container",
     "DataTable",
     "Select"

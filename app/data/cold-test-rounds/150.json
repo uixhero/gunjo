@@ -36,27 +36,20 @@
   ],
   "components": [
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
-    "ApprovalStep",
     "ApprovalSteps",
     "Badge",
     "BottomActionBar",
     "Button",
     "Card",
-    "CardContent",
     "FilterChips",
     "Input",
     "ListCard",
     "PageHeader",
     "SearchableAccordion",
-    "SearchableAccordionCategory",
-    "SearchableAccordionItem",
     "Select",
     "Separator",
     "Textarea",
-    "ToggleGroup",
-    "ToggleGroupItem"
+    "ToggleGroup"
   ],
   "shots": {
     "desktop": true,

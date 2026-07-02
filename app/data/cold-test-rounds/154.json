@@ -30,15 +30,9 @@
     }
   ],
   "components": [
-    "ActionItem",
     "ActionQueue",
     "Badge",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
-    "ColumnDef",
     "Container",
     "DataTable",
     "Delta",

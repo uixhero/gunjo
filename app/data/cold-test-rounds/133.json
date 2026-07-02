@@ -30,32 +30,20 @@
     }
   ],
   "components": [
-    "ActionItem",
     "ActionQueue",
     "Badge",
     "Button",
-    "ColumnDef",
     "DataTable",
     "EmptyState",
     "Gantt",
-    "GanttItem",
-    "GanttRow",
     "Header",
-    "HeaderActions",
-    "HeaderBrand",
-    "InspectorField",
     "InspectorPanel",
-    "InspectorSection",
     "MetadataList",
     "Select",
     "Separator",
     "StatGroup",
     "Tabs",
-    "TabsContent",
-    "TabsList",
-    "TabsTrigger",
-    "ToggleGroup",
-    "ToggleGroupItem"
+    "ToggleGroup"
   ],
   "shots": {
     "desktop": true,

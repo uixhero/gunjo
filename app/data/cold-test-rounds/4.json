@@ -23,22 +23,12 @@
     "Badge",
     "BarChart",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
-    "ChartDataPoint",
     "Container",
     "DonutChart",
     "LineChart",
     "PieChart",
     "Statistic",
-    "Table",
-    "TableBody",
-    "TableCell",
-    "TableHead",
-    "TableHeader",
-    "TableRow"
+    "Table"
   ],
   "shots": {
     "desktop": true,

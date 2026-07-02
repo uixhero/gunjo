@@ -36,25 +36,17 @@
   ],
   "components": [
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
     "AmountBreakdown",
-    "AmountLine",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardHeader",
-    "CardTitle",
     "Input",
     "ListCard",
     "NumberInput",
     "RadioGroup",
-    "RadioGroupItem",
     "Select",
     "Separator",
-    "Stepper",
-    "StepperStep"
+    "Stepper"
   ],
   "shots": {
     "desktop": true,
