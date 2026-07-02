@@ -340,6 +340,13 @@ export function RoundDetailView({
                             />
                         </CardContent>
                     </Card>
+                    {/* WRITING-RULES §2: the gallery is the publication venue
+                        for the series, so the AI-collaboration disclosure is
+                        rendered once here instead of being pasted into all
+                        170 article markdown files. */}
+                    <p className="text-xs leading-5 text-muted-foreground">
+                        {td.aiDisclosure}
+                    </p>
                 </section>
             ) : null}
 

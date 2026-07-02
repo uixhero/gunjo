@@ -34,7 +34,7 @@
       "category": "基盤UI・汎用",
       "title": "本当に AI に使わせてみた — 文脈ゼロのエージェントに @gunjo/ui で設定画面を作らせる（やってみた #1）",
       "readmeTitle": "設定画面",
-      "summary": "`@gunjo/ui` を作るとき、僕は「**AI から使えるように設計した**」と書きました。typed entry point、機械可読メタデータ、AI-handoff ドキュメント——エージェントが「眺める」のではなく「読んで、使う」ための面を最初から組み込んだ、と。",
+      "summary": "`@gunjo/ui` を作るとき、私は「**AI から使えるように設計した**」と書きました。typed entry point、機械可読メタデータ、AI-handoff ドキュメント——エージェントが「眺める」のではなく「読んで、使う」ための面を最初から組み込んだ、と。",
       "article": {
         "file": "zenn-yattemita-01-settings.md",
         "slug": "01-settings"
@@ -2234,7 +2234,7 @@
       "category": "運輸：航空",
       "title": "AI に搭乗手続きを作らせてみた — 3画面で手組みされた「座席表」が、ついに部品になった（やってみた #114）",
       "readmeTitle": "オンラインチェックイン/搭乗手続き（運輸:航空toC・mobile-first・座席変更SeatMap手組み/搭乗券PassCard手組み/手荷物料金AmountBreakdown/手続Stepper層）★SeatMap 3回目→build trigger・TicketStub起票・StatusScreen success欠如",
-      "summary": "KeEem に「toC が弱いから深掘りして」と言われ、航空 toC を3枚（#114-116）並列で回した。これはその1枚目。観測の本命——**座席表（SeatMap）が3回目の手組みになるか。**",
+      "summary": "toC が弱い。だから航空 toC を3枚（#114-116）並列で回すことにした。これはその1枚目。観測の本命——**座席表（SeatMap）が3回目の手組みになるか。**",
       "article": {
         "file": "zenn-yattemita-114-flight-checkin.md",
         "slug": "114-flight-checkin"
@@ -2292,9 +2292,9 @@
       "slug": "rail-points",
       "score": "3/5",
       "category": "運輸：鉄道",
-      "title": "AI に鉄道のポイント画面を作らせてみた — KeEem の「鉄道もポイント必要」が、的中した（やってみた #117）",
-      "readmeTitle": "鉄道IC・ポイント会員（運輸:鉄道toC・モバイルSuica/JRE POINT・残高ポイントhero手組み/利用履歴ListCard/定期券MetadataList/Statistic層）★LoyaltySummaryCard 2回目(KeEem予言的中)・ListCard 業界越え再発掘・ブランドtokenがTailwind utility化されてない",
-      "summary": "KeEem が #116（航空マイレージ）の後に「**鉄道もポイント必要だったかも**」と言った。それを回収。観測の本命——**ロイヤリティ要約（LoyaltySummaryCard）が2回目の手組みになるか。**",
+      "title": "AI に鉄道のポイント画面を作らせてみた — 「鉄道もポイント必要」の直感が、的中した（やってみた #117）",
+      "readmeTitle": "鉄道IC・ポイント会員（運輸:鉄道toC・モバイルSuica/JRE POINT・残高ポイントhero手組み/利用履歴ListCard/定期券MetadataList/Statistic層）★LoyaltySummaryCard 2回目（直感の的中）・ListCard 業界越え再発掘・ブランドtokenがTailwind utility化されてない",
+      "summary": "#116（航空マイレージ）の後に、私は「**鉄道もポイント必要だったかも**」と直感した。それを回収する回。観測の本命——**ロイヤリティ要約（LoyaltySummaryCard）が2回目の手組みになるか。**",
       "article": {
         "file": "zenn-yattemita-117-rail-points.md",
         "slug": "117-rail-points"
@@ -2334,7 +2334,7 @@
       "category": "運輸：鉄道",
       "title": "AI に定期券の購入フローを作らせてみた — B2C 購入の「原子」がまだ無かった（やってみた #119）",
       "readmeTitle": "鉄道 定期券 購入・更新フロー（鉄道toC深掘り1・mobile-first・区間設定swap手組み/種類期間OptionCard手組み/金額内訳AmountBreakdown/購入Stepper/現在定期MetadataList層）★RadioCard 2回目(価格つき選択カード)・AmountBreakdown 業界越え7回目",
-      "summary": "KeEem に「鉄道・航空 toC をきちんと潰してから他モードへ」と言われ、[toC バックログ](https://github.com/uixhero/gunjo)を作って上から回す。これはその1枚目。",
+      "summary": "「鉄道・航空 toC をきちんと潰してから他モードへ」と決めて、[toC バックログ](https://github.com/uixhero/gunjo)を作って上から回す。これはその1枚目。",
       "article": {
         "file": "zenn-yattemita-119-commuter-pass.md",
         "slug": "119-commuter-pass"
@@ -2554,7 +2554,7 @@
       "category": "運輸：航空",
       "title": "AI に航空機の整備管理コンソールを作らせてみた — 鉄道で結晶化した土台が、そのまま航空に効いた（やってみた #130）",
       "readmeTitle": "航空 機体整備管理/MRO（航空toB土台埋め=#113以来2枚目・整備本部デスクトップ密度・機材一覧ActionDataTable+整備周期残りMeter(higher-is-worse)/ドック割当Gantt+ScheduleGrid/要対応AD/SB/MEL ActionQueue/整備確認SignedRecord/KPI StatGroup層）★toB土台 業界を越える地力テスト=鉄道車両検査#108土台が航空MROに構造的手組みゼロで横展開・index ListCard→DataTable是正(#382)・asset-row/Meter valueText/InspectorPanel #381起票",
-      "summary": "前回、KeEem に「鉄道と航空の toB は終わった？」と聞かれて台帳を数えたら——**鉄道 toB は3枚（運行/乗務員/車両）で土台達成、だが航空 toB は #113 の1枚だけ**だった。toC で gap が噴き出して深掘りした分、航空 toB が薄いまま残っていた。だから土台まで埋める。そして同時に試したいことがあった：**14業種＋鉄道で結晶化した「保守 toB 土台」（資産テーブル／消費vs限度メーター／時間軸スケジュール／要対応キュー／署名記録）は、航空 MRO にそのまま効くのか？**",
+      "summary": "前回、「鉄道と航空の toB は終わった？」と台帳を数え直したら——**鉄道 toB は3枚（運行/乗務員/車両）で土台達成、だが航空 toB は #113 の1枚だけ**だった。toC で gap が噴き出して深掘りした分、航空 toB が薄いまま残っていた。だから土台まで埋める。そして同時に試したいことがあった：**14業種＋鉄道で結晶化した「保守 toB 土台」（資産テーブル／消費vs限度メーター／時間軸スケジュール／要対応キュー／署名記録）は、航空 MRO にそのまま効くのか？**",
       "article": {
         "file": "zenn-yattemita-130-aircraft-maintenance.md",
         "slug": "130-aircraft-maintenance"
@@ -2914,7 +2914,7 @@
       "category": "運輸：タクシー",
       "title": "AI にタクシー予約配車を作らせてみた — 昨日 build したボトムバーが、翌日の予約画面で自力発見（やってみた #148）",
       "readmeTitle": "タクシー 予約配車・空港定額（タクシーtoC**2枚目=深掘り**・予約 archetype[#147 即時呼出と別]/GO風 渋谷・羽田定額・予約タイプ/車種RadioCard/定額AmountBreakdown/予約Stepper/日時DatePicker/CTA BottomActionBar/日時±幅+場所入力 手組み層）★**BottomActionBar 別業界での自力発見=昨日#147 buildが翌画面の予約CTAで自力発見(docstring が予約を名指し)**・予約土台ターンキー・**DateTimePicker(未来日時±幅)/PlaceField(乗降地ペア)が穴→#403起票**・StatusScreen success欠如(#379)再確認",
-      "summary": "前回 #147 で私は「タクシー完走」と言ったが、KeEem に「**は？タクシーの toC 一回で完成？？？**」と正された。**toB を6枚作って toC を1枚で締めるのは矛盾**——鉄道/航空が toC 6枚なのに。私のメモにも「toC は弱い側だから深掘りを優先・早期に close しない」と書いてあるのに、また同じ過ちをした。**toC は toB と同じだけ厚くして初めて完了。** だから深掘りを継続する。",
+      "summary": "前回 #147 で、実作業と下書きを担う相棒の AI が「タクシー完走」と報告してきた。私は思わず返した——「**は？タクシーの toC 一回で完成？？？**」。**toB を6枚作って toC を1枚で締めるのは矛盾**——鉄道/航空が toC 6枚なのに。相棒の運用メモにも「toC は弱い側だから深掘りを優先・早期に close しない」と書いてあるのに、また同じ過ちが起きた。**toC は toB と同じだけ厚くして初めて完了。** だから深掘りを継続する。",
       "article": {
         "file": "zenn-yattemita-148-taxi-booking.md",
         "slug": "148-taxi-booking"
@@ -2994,7 +2994,7 @@
       "category": "運輸：タクシー",
       "title": "AI にタクシー法人配車を作らせてみた — タクシーが toB6+toC6 で本当に完走（やってみた #152）",
       "readmeTitle": "タクシー 法人配車・タクシーチケット（タクシーtoC**6枚目=深掘り完=toB6+toC6 対称でタクシー完走**・B2B2C[#147-151と別]/GO BUSINESS風・個人法人切替AccountChip手組み/利用目的RadioCard/電子チケットTicketStub/承認ApprovalSteps(消費者ビュー適合)/チケット期限ExpiryBadge/利用明細ListCard+AmountBreakdown/CTA BottomActionBar層）★generic土台~70%だが B2B2C 固有層は穴=**SegmentedControl/AccountSwitcher(個人⇄法人=B2B2C の定義的操作)/NavRow/TicketStub stored-value #409起票**・ApprovalSteps が消費者承認status に適合・ExpiryBadge 4ドメイン目(チケット)・Button 既定<44px(#362)再確認",
-      "summary": "#147 で「タクシー完走」と早とちりして KeEem に「は？toC 一回で完成？？？」と正された。その後 toC を #147→#152 で6枚掘り、**toB 6枚（配車/乗務員/営収/車両/苦情/需要予測）と toC 6枚（配車/予約/履歴/サポート/会員/法人）が対称**に。鉄道・航空（各 toB5+toC6）に並ぶ。**今回は「完走」と言って良い。**",
+      "summary": "#147 で、実作業と下書きを担う相棒の AI が「タクシー完走」と早とちりし、私が「は？toC 一回で完成？？？」と待ったをかけた。その後 toC を #147→#152 で6枚掘り、**toB 6枚（配車/乗務員/営収/車両/苦情/需要予測）と toC 6枚（配車/予約/履歴/サポート/会員/法人）が対称**に。鉄道・航空（各 toB5+toC6）に並ぶ。**今回は「完走」と言って良い。**",
       "article": {
         "file": "zenn-yattemita-152-taxi-corporate.md",
         "slug": "152-taxi-corporate"

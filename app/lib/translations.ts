@@ -291,6 +291,7 @@ export type ColdTestsPageStrings = {
     componentsUsedHint: string;
     componentDocsLabel: (name: string) => string;
     summaryFooter: string;
+    aiDisclosure: string;
     notFound: string;
   };
   sidebar: {
@@ -650,6 +651,8 @@ export const translations: Record<
           componentsUsedHint: "Direct imports across this screen's source.",
           componentDocsLabel: (name) => `Open ${name} docs`,
           summaryFooter: "Summary",
+          aiDisclosure:
+            "This series is co-created with AI (Claude). A human designs the experiments, makes the calls, and fact-checks before publishing; the AI does the hands-on work and drafting.",
           notFound: "Round not found.",
         },
         sidebar: {
@@ -1274,6 +1277,8 @@ export const translations: Record<
           componentsUsedHint: "この画面のソースが直接 import している部品です。",
           componentDocsLabel: (name) => `${name} のドキュメントを開く`,
           summaryFooter: "まとめ",
+          aiDisclosure:
+            "この連載は、作者が AI（Claude）と協働で制作しています。実験・検証の設計、判断、公開前の事実確認は人間が行い、実作業と下書き執筆は AI が担っています。",
           notFound: "該当するラウンドが見つかりません。",
         },
         sidebar: {
