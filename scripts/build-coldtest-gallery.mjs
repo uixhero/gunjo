@@ -27,6 +27,7 @@ const PROMO = process.env.GUNJO_PROMOTION_DIR
 const README = path.join(PROMO, "cold-test-screens", "README.md");
 const SHOTS = path.join(PROMO, "cold-test-screens", "shots");
 const OUT = path.join(ROOT, "app", "data", "cold-test-gallery.json");
+const CATEGORIES_JSON = path.join(ROOT, "app", "data", "cold-test-categories.json");
 
 if (!fs.existsSync(PROMO)) {
     console.error(`promotion/ not found at ${PROMO}`);
@@ -235,6 +236,22 @@ function shotsFor(slug) {
     return out;
 }
 
+// Count unique crystallised primitives across every published industry door
+// page. Names are deduped globally so a primitive that appears in multiple
+// categories (e.g. Meter across logistics + manufacturing + education) counts
+// once. Returns 0 when the categories JSON is missing so this stays optional.
+function countCrystallisedPrimitives() {
+    if (!fs.existsSync(CATEGORIES_JSON)) return 0;
+    const data = JSON.parse(fs.readFileSync(CATEGORIES_JSON, "utf8"));
+    const seen = new Set();
+    for (const cat of data.published ?? []) {
+        for (const c of cat.discoveredComponents ?? []) {
+            if (c?.name) seen.add(c.name);
+        }
+    }
+    return seen.size;
+}
+
 function build() {
     const rows = parseReadme();
     const entries = rows.map((row) => {
@@ -255,6 +272,8 @@ function build() {
         };
     });
 
+    const crystallizedCount = countCrystallisedPrimitives();
+
     fs.mkdirSync(path.dirname(OUT), { recursive: true });
     fs.writeFileSync(
         OUT,
@@ -263,6 +282,7 @@ function build() {
                 generatedFrom: "promotion/cold-test-screens/README.md + zenn-yattemita-*.md",
                 generator: "scripts/build-coldtest-gallery.mjs",
                 count: entries.length,
+                crystallizedCount,
                 categories: CATEGORIES,
                 entries,
             },
@@ -280,6 +300,7 @@ function build() {
     console.log(`  with desktop shot:  ${withDesktop}/${entries.length}`);
     console.log(`  with mobile shot:   ${withMobile}/${entries.length}`);
     console.log(`  with .en variant:   ${withEn}/${entries.length}`);
+    console.log(`  crystallised total: ${crystallizedCount} (unique across published categories)`);
 }
 
 build();

@@ -2,6 +2,7 @@
   "generatedFrom": "promotion/cold-test-screens/README.md + zenn-yattemita-*.md",
   "generator": "scripts/build-coldtest-gallery.mjs",
   "count": 170,
+  "crystallizedCount": 71,
   "categories": [
     "基盤UI・汎用",
     "金融",

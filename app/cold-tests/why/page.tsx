@@ -4,18 +4,20 @@ import { WhyView } from "./WhyView";
 
 interface GalleryShape {
     count: number;
+    crystallizedCount: number;
 }
-// Round count comes from the snapshot so the share copy tracks the series as
-// it grows. The crystallised-component total is NOT in the snapshot (it's
-// curated, not derivable from gallery data), so the description deliberately
-// avoids stating a number for it — never hard-code a count that can drift.
+// Both counts come from the snapshot so the share copy tracks the series as
+// it grows. `crystallizedCount` is the deduped total of primitives named
+// across every published industry door page (cold-test-categories.json) —
+// it moves whenever KeEem adds a new discovered component.
 const ROUND_COUNT = (gallery as GalleryShape).count;
+const CRYSTALLIZED_COUNT = (gallery as GalleryShape).crystallizedCount;
 
 // JA copy — Google reads OG/twitter for share previews and JA is the primary
 // audience for this section. An EN swap can come later.
 const TITLE =
     "なぜコールドテストするか — 文脈ゼロの AI に gunjo/ui を実装させ続けて見えたこと";
-const DESCRIPTION = `公開 npm パッケージと gunjo.jp の docs だけを渡された AI が、${ROUND_COUNT} ラウンドの実業種画面を組んでみせた記録。3-confirm で結晶化した部品群、業界の壁の薄さ、AI を正直者の検査装置として使う方法論。`;
+const DESCRIPTION = `公開 npm パッケージと gunjo.jp の docs だけを渡された AI が、${ROUND_COUNT} ラウンドの実業種画面を組んでみせた記録。3-confirm で結晶化した ${CRYSTALLIZED_COUNT} 部品、業界の壁の薄さ、AI を正直者の検査装置として使う方法論。`;
 const SITE_URL = (
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.gunjo.jp"
 ).replace(/\/$/, "");
