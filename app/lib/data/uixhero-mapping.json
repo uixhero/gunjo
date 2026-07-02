@@ -1,0 +1,2085 @@
+{
+  "generatedAt": "2026-07-02",
+  "sources": {
+    "uixhero": "simple-blog-sec content/posts/ui-components (60章)",
+    "gunjo": "gunjo app/lib/navigation.ts カタログ7カテゴリ (205部品, 2026-07-02時点)"
+  },
+  "ruling": "KeEem 2026-07-02 承認（GUNJO-UIXHERO-MAPPING.md §2 の推奨どおり）。両サイトの URL/slug は不変更・対応差はこの表が吸収する。",
+  "entries": [
+    {
+      "uixhero": "accordion",
+      "gunjo": [
+        "accordion"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "alert",
+      "gunjo": [
+        "alert"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "alert-dialog",
+      "gunjo": [
+        "alert-dialog"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "app-rail",
+      "gunjo": [
+        "app-rail"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "avatar",
+      "gunjo": [
+        "avatar"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "badge",
+      "gunjo": [
+        "badge"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "breadcrumb",
+      "gunjo": [
+        "breadcrumb"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "button",
+      "gunjo": [
+        "button"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "calendar",
+      "gunjo": [
+        "calendar"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "card",
+      "gunjo": [
+        "card"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "carousel",
+      "gunjo": [
+        "carousel"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "checkbox",
+      "gunjo": [
+        "checkbox"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "command-palette",
+      "gunjo": [
+        "command-palette"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "context-menu",
+      "gunjo": [
+        "context-menu"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "dropdown-menu",
+      "gunjo": [
+        "dropdown-menu"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "empty-state",
+      "gunjo": [
+        "empty-state"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "floating-panel",
+      "gunjo": [
+        "floating-panel"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "hover-card",
+      "gunjo": [
+        "hover-card"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "inspector-panel",
+      "gunjo": [
+        "inspector-panel"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "list",
+      "gunjo": [
+        "list"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "menubar",
+      "gunjo": [
+        "menubar"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "notification-center",
+      "gunjo": [
+        "notification-center"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "pagination",
+      "gunjo": [
+        "pagination"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "popover",
+      "gunjo": [
+        "popover"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "resizable",
+      "gunjo": [
+        "resizable"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "right-rail",
+      "gunjo": [
+        "right-rail"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "scroll-area",
+      "gunjo": [
+        "scroll-area"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "select",
+      "gunjo": [
+        "select"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "separator",
+      "gunjo": [
+        "separator"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "share-modal",
+      "gunjo": [
+        "share-modal"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "sheet",
+      "gunjo": [
+        "sheet"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "sidebar",
+      "gunjo": [
+        "sidebar"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "slider",
+      "gunjo": [
+        "slider"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "spatial-canvas",
+      "gunjo": [
+        "spatial-canvas"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "spinner",
+      "gunjo": [
+        "spinner"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "status-bar",
+      "gunjo": [
+        "status-bar"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "switch",
+      "gunjo": [
+        "switch"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "table",
+      "gunjo": [
+        "table"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "tabs",
+      "gunjo": [
+        "tabs"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "textarea",
+      "gunjo": [
+        "textarea"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "toast",
+      "gunjo": [
+        "toast"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "toggle",
+      "gunjo": [
+        "toggle"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "toggle-group",
+      "gunjo": [
+        "toggle-group"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "tooltip",
+      "gunjo": [
+        "tooltip"
+      ],
+      "relation": "exact",
+      "note": ""
+    },
+    {
+      "uixhero": "file-upload",
+      "gunjo": [
+        "file-uploader"
+      ],
+      "relation": "exact",
+      "note": "slug差のみ"
+    },
+    {
+      "uixhero": "text-input",
+      "gunjo": [
+        "input"
+      ],
+      "relation": "exact",
+      "note": "slug差のみ"
+    },
+    {
+      "uixhero": "progress-bar",
+      "gunjo": [
+        "progress"
+      ],
+      "relation": "exact",
+      "note": "slug差のみ"
+    },
+    {
+      "uixhero": "sort",
+      "gunjo": [
+        "sort-button"
+      ],
+      "relation": "exact",
+      "note": "slug差のみ"
+    },
+    {
+      "uixhero": "search",
+      "gunjo": [
+        "search-input"
+      ],
+      "relation": "exact",
+      "note": "slug差のみ"
+    },
+    {
+      "uixhero": "radio",
+      "gunjo": [
+        "radio-group",
+        "radio-card"
+      ],
+      "relation": "family",
+      "note": "主=radio-group"
+    },
+    {
+      "uixhero": "filter",
+      "gunjo": [
+        "filter-button",
+        "filter-chips"
+      ],
+      "relation": "family",
+      "note": "図鑑Filterは総論"
+    },
+    {
+      "uixhero": "modal-dialog",
+      "gunjo": [
+        "dialog",
+        "modal"
+      ],
+      "relation": "family",
+      "note": "主=dialog"
+    },
+    {
+      "uixhero": "ai-chat-ui",
+      "gunjo": [
+        "chat-composer",
+        "chat-input",
+        "chat-message",
+        "chat-panel"
+      ],
+      "relation": "family",
+      "note": "Chat家族"
+    },
+    {
+      "uixhero": "image-media",
+      "gunjo": [
+        "image-preview",
+        "media-lightbox",
+        "media-picker-dialog"
+      ],
+      "relation": "family",
+      "note": "Media家族"
+    },
+    {
+      "uixhero": "loading",
+      "gunjo": [
+        "skeleton",
+        "spinner",
+        "progress"
+      ],
+      "relation": "overview",
+      "note": "図鑑loadingは総論→3部品。spinner/progress-barの独立章とも重複あり"
+    },
+    {
+      "uixhero": "table-of-contents",
+      "gunjo": [],
+      "relation": "none",
+      "note": "gunjo側の穴。新部品候補として起票検討"
+    },
+    {
+      "uixhero": "dashboard-patterns",
+      "gunjo": [],
+      "relation": "patterns",
+      "note": "部品でなく構成論。gunjo.jp/patterns側と②法則層で対応"
+    },
+    {
+      "uixhero": "density-patterns",
+      "gunjo": [],
+      "relation": "patterns",
+      "note": "同上"
+    },
+    {
+      "uixhero": "editor-patterns",
+      "gunjo": [],
+      "relation": "patterns",
+      "note": "同上"
+    },
+    {
+      "uixhero": "responsive-patterns",
+      "gunjo": [],
+      "relation": "patterns",
+      "note": "同上"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "accordion-group"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "action-data-table"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "action-queue"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "activity-timeline-card"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "amount-breakdown"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "analytics-card"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "approval-steps"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "approval-workflow"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "aspect-ratio"
+      ],
+      "relation": "gunjo-only",
+      "note": "Layout"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "asset-card"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "asset-grid"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "asset-inspector-panel"
+      ],
+      "relation": "gunjo-only",
+      "note": "Layout"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "avatar-group"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "banner"
+      ],
+      "relation": "gunjo-only",
+      "note": "Feedback"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "bar-chart"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "bottom-action-bar"
+      ],
+      "relation": "gunjo-only",
+      "note": "Navigation"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "chart-legend"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "check-list"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "choropleth-map"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "cluster"
+      ],
+      "relation": "gunjo-only",
+      "note": "Layout"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "co-sign"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "code"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "code-block"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "collapsible-panel-toggle"
+      ],
+      "relation": "gunjo-only",
+      "note": "Layout"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "color-swatch"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "combobox"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "command"
+      ],
+      "relation": "gunjo-only",
+      "note": "Navigation"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "company-cell"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "concentric-progress-card"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "container"
+      ],
+      "relation": "gunjo-only",
+      "note": "Layout"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "copy-button"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "currency-input"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "data-table"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "date-picker"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "date-range-picker"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "delta"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "device-frame"
+      ],
+      "relation": "gunjo-only",
+      "note": "Layout"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "distribution-bar"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "doc-note"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "document-pager"
+      ],
+      "relation": "gunjo-only",
+      "note": "Navigation"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "document-row"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "donut-chart"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "drawer"
+      ],
+      "relation": "gunjo-only",
+      "note": "Overlay"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "editable-data-table"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "editable-field"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "event-calendar"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "expiry-badge"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "file-tree"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "footer"
+      ],
+      "relation": "gunjo-only",
+      "note": "Navigation"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "form"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "gallery"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "gantt"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "gauge-chart"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "grid"
+      ],
+      "relation": "gunjo-only",
+      "note": "Layout"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "h-stack"
+      ],
+      "relation": "gunjo-only",
+      "note": "Layout"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "header"
+      ],
+      "relation": "gunjo-only",
+      "note": "Navigation"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "heatmap-chart"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "icon"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "img"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "input-otp"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "itinerary"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "kanban-board"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "kbd"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "label"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "labeled-donut-card"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "leaderboard"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "limit-monitor"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "line-chart"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "line-chip"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "lineage-graph"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "list-card"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "loyalty-summary-card"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "markdown-renderer"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "marquee-frame"
+      ],
+      "relation": "gunjo-only",
+      "note": "Layout"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "match-card"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "mention"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "metadata-list"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "meter"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "mini-distribution-bar-card"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "nav-row"
+      ],
+      "relation": "gunjo-only",
+      "note": "Navigation"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "navigation-menu"
+      ],
+      "relation": "gunjo-only",
+      "note": "Navigation"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "number-input"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "onboarding-flow"
+      ],
+      "relation": "gunjo-only",
+      "note": "Overlay"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "origin-destination"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "page-aside"
+      ],
+      "relation": "gunjo-only",
+      "note": "Navigation"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "page-header"
+      ],
+      "relation": "gunjo-only",
+      "note": "Navigation"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "pareto-chart"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "password-group"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "password-input"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "password-requirement-list"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "password-strength-meter"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "person-cell"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "phone-input"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "pie-chart"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "postal-code-input"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "progress-widget"
+      ],
+      "relation": "gunjo-only",
+      "note": "Feedback"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "quadrant-matrix"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "radar-chart"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "radial-bar-chart"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "range-slider"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "rating"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "reference-value"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "relationship-row"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "retention-cohort-card"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "reveal-section"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "ribbon-chart"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "route-stops"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "safety-banner"
+      ],
+      "relation": "gunjo-only",
+      "note": "Feedback"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "scan-gate"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "scan-input"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "schedule-grid"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "searchable-accordion"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "seat-map"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "section-list"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "segment-timeline-card"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "segmented-control"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "segmented-gauge-card"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "sidebar-item"
+      ],
+      "relation": "gunjo-only",
+      "note": "Navigation"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "signed-record"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "spacer"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "sparkline-chart"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "stacked-bar-chart"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "stat-group"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "statistic"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "status-board"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "status-screen"
+      ],
+      "relation": "gunjo-only",
+      "note": "Feedback"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "stepper"
+      ],
+      "relation": "gunjo-only",
+      "note": "Feedback"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "stringline"
+      ],
+      "relation": "gunjo-only",
+      "note": "Charts"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "swatch-group"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "tag"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "tag-editor"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "tag-input"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "text-link"
+      ],
+      "relation": "gunjo-only",
+      "note": "Navigation"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "ticket-stub"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "time-picker"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "timeline"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "toast-provider"
+      ],
+      "relation": "gunjo-only",
+      "note": "Feedback"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "tool-pill"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "tooltip-button"
+      ],
+      "relation": "gunjo-only",
+      "note": "Inputs"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "tree-view"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "v-stack"
+      ],
+      "relation": "gunjo-only",
+      "note": "Layout"
+    },
+    {
+      "uixhero": null,
+      "gunjo": [
+        "week-view"
+      ],
+      "relation": "gunjo-only",
+      "note": "Display"
+    }
+  ],
+  "laws": [
+    {
+      "kind": "section",
+      "uixhero": "accessibility/*",
+      "gunjo": [
+        "/docs/guidelines/accessibility"
+      ],
+      "note": "a11y全11章↔実装ガイドライン"
+    },
+    {
+      "kind": "section",
+      "uixhero": "ui-design/*",
+      "gunjo": [
+        "/docs/guidelines/principles"
+      ],
+      "note": "原則65章↔設計原則"
+    },
+    {
+      "kind": "section",
+      "uixhero": "ui-design/{color-system,typography,whitespace,grid-system}",
+      "gunjo": [
+        "/docs/colors",
+        "/docs/typography",
+        "/docs/spacing"
+      ],
+      "note": "視覚基礎↔Tokens"
+    },
+    {
+      "kind": "section",
+      "uixhero": "ui-design/motion-quality",
+      "gunjo": [
+        "/docs/animation"
+      ],
+      "note": ""
+    },
+    {
+      "kind": "section",
+      "uixhero": "ui-design/{microcopy,plain-language,tone-and-voice}",
+      "gunjo": [
+        "/docs/guidelines/writing"
+      ],
+      "note": "文言章↔Voice & Tone"
+    },
+    {
+      "kind": "section",
+      "uixhero": "ui-design/{component-consistency,design-system-thinking}",
+      "gunjo": [
+        "/docs/guidelines/component-usage"
+      ],
+      "note": ""
+    },
+    {
+      "kind": "section",
+      "uixhero": "engineering/{component-design,api-design}",
+      "gunjo": [
+        "/docs/component-addition",
+        "/docs/guidelines/component-usage"
+      ],
+      "note": ""
+    },
+    {
+      "kind": "section",
+      "uixhero": "ui-components/{dashboard,density,editor,responsive}-patterns",
+      "gunjo": [
+        "/patterns"
+      ],
+      "note": "①patterns 4章"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/fitts-law-touch-targets",
+      "gunjo": [
+        "/docs/components/button"
+      ],
+      "note": "クリック領域の根拠",
+      "title": "クリック領域・到達しやすさ (Fitts's Law / Touch Targets)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/empty-state",
+      "gunjo": [
+        "/docs/components/empty-state"
+      ],
+      "note": "slug完全一致",
+      "title": "空状態 (Empty State)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/error-prevention",
+      "gunjo": [
+        "/docs/components/alert-dialog",
+        "/docs/components/co-sign"
+      ],
+      "note": "",
+      "title": "誤操作を防ぐ (Error Prevention)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/error-recovery",
+      "gunjo": [
+        "/docs/components/toast"
+      ],
+      "note": "Undo導線",
+      "title": "エラーから回復できる (Error Recovery)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/feedback",
+      "gunjo": [
+        "/docs/components/toast",
+        "/docs/components/progress"
+      ],
+      "note": "",
+      "title": "フィードバック (Feedback)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/visibility-of-system-status",
+      "gunjo": [
+        "/docs/components/status-bar",
+        "/docs/components/badge"
+      ],
+      "note": "",
+      "title": "状態の可視化 (Visibility of System Status)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/focus-management",
+      "gunjo": [
+        "/docs/components/dialog",
+        "/docs/components/modal"
+      ],
+      "note": "",
+      "title": "フォーカス管理 (Focus Management)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/keyboard-navigation",
+      "gunjo": [
+        "/docs/components/command-palette",
+        "/docs/components/menubar"
+      ],
+      "note": "",
+      "title": "キーボード操作 (Keyboard Navigation)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/form-design",
+      "gunjo": [
+        "/docs/components/form",
+        "/docs/components/input"
+      ],
+      "note": "",
+      "title": "入力の負担を減らす (Form UX Principles)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/search-filter",
+      "gunjo": [
+        "/docs/components/search-input",
+        "/docs/components/filter-button",
+        "/docs/components/filter-chips"
+      ],
+      "note": "",
+      "title": "検索とフィルタ (Search & Filter)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/choice-reduction",
+      "gunjo": [
+        "/docs/components/select",
+        "/docs/components/combobox"
+      ],
+      "note": "",
+      "title": "選択肢の最適化 (Choice Reduction)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/progressive-disclosure",
+      "gunjo": [
+        "/docs/components/accordion",
+        "/docs/components/sheet"
+      ],
+      "note": "",
+      "title": "プログレッシブディスクロージャー (Progressive Disclosure)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/recognition-over-recall",
+      "gunjo": [
+        "/docs/components/combobox",
+        "/docs/components/command-palette"
+      ],
+      "note": "",
+      "title": "記憶に頼らせない (Recognition over Recall)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/navigation-design",
+      "gunjo": [
+        "/docs/components/sidebar",
+        "/docs/components/breadcrumb",
+        "/docs/components/tabs"
+      ],
+      "note": "",
+      "title": "ナビゲーション設計 (Navigation Design)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/response-latency",
+      "gunjo": [
+        "/docs/components/skeleton",
+        "/docs/components/spinner",
+        "/docs/components/progress"
+      ],
+      "note": "",
+      "title": "レスポンスと待ち時間設計 (Response Latency)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/progress-reward",
+      "gunjo": [
+        "/docs/components/progress",
+        "/docs/components/stepper",
+        "/docs/components/concentric-progress-card"
+      ],
+      "note": "",
+      "title": "達成感・進捗 (Progress & Reward)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/interruption-handling",
+      "gunjo": [
+        "/docs/components/dialog",
+        "/docs/components/toast"
+      ],
+      "note": "",
+      "title": "一時停止・中断・再開 (Interruption Handling)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/comparison-support",
+      "gunjo": [
+        "/docs/components/table",
+        "/docs/components/radio-card"
+      ],
+      "note": "",
+      "title": "比較・検討の支援 (Comparison / Decision Support)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/trust-safety",
+      "gunjo": [
+        "/docs/components/co-sign",
+        "/docs/components/signed-record",
+        "/docs/components/currency-input"
+      ],
+      "note": "cold-test出身群",
+      "title": "課金・個人情報の安心設計 (Trust & Safety)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/iconography",
+      "gunjo": [
+        "/docs/components/icon"
+      ],
+      "note": "",
+      "title": "アイコン設計 (Iconography)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ux-reference/ux-fitts-s-law",
+      "gunjo": [
+        "/docs/components/button"
+      ],
+      "note": "",
+      "title": "フィッツの法則 (Fitts's Law)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ux-reference/ux-hick-s-law",
+      "gunjo": [
+        "/docs/components/select",
+        "/docs/components/command-palette"
+      ],
+      "note": "",
+      "title": "ヒックの法則 (Hick's Law)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ux-reference/ux-doherty-threshold",
+      "gunjo": [
+        "/docs/components/spinner",
+        "/docs/components/skeleton"
+      ],
+      "note": "",
+      "title": "ドハティの閾値 (Doherty Threshold)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ux-reference/ux-labor-illusion",
+      "gunjo": [
+        "/docs/components/skeleton",
+        "/docs/components/progress"
+      ],
+      "note": "",
+      "title": "労働の錯覚 (Labor Illusion)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ux-reference/ux-goal-gradient-effect",
+      "gunjo": [
+        "/docs/components/progress",
+        "/docs/components/stepper"
+      ],
+      "note": "",
+      "title": "目標勾配効果 (Goal Gradient Effect)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ux-reference/ux-zeigarnik-effect",
+      "gunjo": [
+        "/docs/components/progress",
+        "/docs/components/badge"
+      ],
+      "note": "",
+      "title": "ツァイガルニク効果 (Zeigarnik Effect)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ux-reference/ux-paradox-of-choice",
+      "gunjo": [
+        "/docs/components/select",
+        "/docs/components/combobox"
+      ],
+      "note": "",
+      "title": "選択のパラドックス (Paradox of Choice)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ux-reference/ux-von-restorff-effect",
+      "gunjo": [
+        "/docs/components/badge",
+        "/docs/components/expiry-badge"
+      ],
+      "note": "",
+      "title": "フォン・レストルフ効果 (Von Restorff Effect)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ux-reference/ux-serial-position-effect",
+      "gunjo": [
+        "/docs/components/menubar",
+        "/docs/components/sidebar"
+      ],
+      "note": "",
+      "title": "系列位置効果 (Serial Position Effect)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ux-reference/ux-progressive-disclosure",
+      "gunjo": [
+        "/docs/components/accordion",
+        "/docs/components/sheet"
+      ],
+      "note": "",
+      "title": "Progressive Disclosure（段階的開示）"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ux-reference/ux-defensive-design",
+      "gunjo": [
+        "/docs/components/alert-dialog",
+        "/docs/components/scan-gate",
+        "/docs/components/safety-banner"
+      ],
+      "note": "",
+      "title": "防衛的デザイン (Defensive Design)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ux-reference/ux-intentional-friction",
+      "gunjo": [
+        "/docs/components/co-sign",
+        "/docs/components/scan-gate"
+      ],
+      "note": "目玉ペア：法則→実装→cold-test実証",
+      "title": "意図的な摩擦 (Intentional Friction)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ux-reference/ux-postel-s-law",
+      "gunjo": [
+        "/docs/components/input",
+        "/docs/components/form"
+      ],
+      "note": "",
+      "title": "ポステルの法則 (Postel's Law)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ux-reference/ux-tesler-s-law",
+      "gunjo": [
+        "/docs/components/form"
+      ],
+      "note": "",
+      "title": "テスラーの法則 (Tesler's Law)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ux-reference/ux-change-blindness",
+      "gunjo": [
+        "/docs/components/toast",
+        "/docs/components/safety-banner"
+      ],
+      "note": "",
+      "title": "変化盲 (Change Blindness)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ux-reference/ux-gestalt-principles",
+      "gunjo": [
+        "/docs/components/card",
+        "/docs/components/separator"
+      ],
+      "note": "",
+      "title": "ゲシュタルト原則 (Gestalt Principles)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "accessibility/focus-visible",
+      "gunjo": [
+        "/docs/components/button",
+        "/docs/components/input"
+      ],
+      "note": "",
+      "title": "フォーカスインジケーター (Focus Visible)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "accessibility/forms-errors",
+      "gunjo": [
+        "/docs/components/form"
+      ],
+      "note": "",
+      "title": "フォームとエラーハンドリング (Forms & Errors)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "accessibility/keyboard-navigation",
+      "gunjo": [
+        "/docs/components/command-palette",
+        "/docs/components/dialog"
+      ],
+      "note": "",
+      "title": "キーボードナビゲーション (Keyboard Navigation)"
+    }
+  ],
+  "lawsRuling": "KeEem 2026-07-02 一旦承認（追加は後から laws に追記可）"
+}

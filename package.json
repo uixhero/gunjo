@@ -71,6 +71,7 @@
     "design:verify:docs-metadata": "node scripts/design-verify-docs-metadata-coverage.mjs",
     "design:verify:docs-content-ssot": "node scripts/design-verify-docs-content-ssot.mjs",
     "design:verify:docs-navigation": "node scripts/design-verify-docs-navigation-coverage.mjs",
+    "design:verify:uixhero-mapping": "node scripts/verify-uixhero-mapping.mjs",
     "design:verify:docs-spec-imports": "node scripts/design-verify-docs-spec-imports.mjs",
     "design:verify:nav-translations": "node scripts/design-verify-nav-translation-coverage.mjs",
     "design:verify:node-snapshots": "node scripts/design-verify-node-snapshot-coverage.mjs",
