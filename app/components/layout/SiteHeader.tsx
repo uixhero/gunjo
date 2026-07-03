@@ -104,6 +104,11 @@ export function SiteHeader() {
             label: header("patterns"),
             match: (p: string) => p.startsWith("/patterns"),
         },
+        {
+            href: "/cold-tests",
+            label: header("coldTests"),
+            match: (p: string) => p.startsWith("/cold-tests"),
+        },
     ];
 
     return (
