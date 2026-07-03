@@ -155,6 +155,15 @@ export default function PatternsIndexPage() {
                     <p className="max-w-2xl text-lg text-muted-foreground">
                         {t.subtitle}
                     </p>
+                    <p className="max-w-2xl text-sm text-muted-foreground">
+                        {t.evidence}{" "}
+                        <Link
+                            href="/cold-tests/why"
+                            className="whitespace-nowrap font-medium text-foreground underline underline-offset-4 transition-colors hover:text-primary"
+                        >
+                            {t.evidenceCta} →
+                        </Link>
+                    </p>
                 </header>
 
                 <div className="space-y-12">
