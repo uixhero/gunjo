@@ -35,6 +35,8 @@ export type HomeTranslations = {
   ai: {
     heading: string;
     description: string;
+    evidence: string;
+    evidenceCta: string;
     cards: Record<
       "spec" | "schema" | "mcp" | "cookbook",
       { title: string; description: string; status: string }
@@ -155,6 +157,8 @@ export type PatternsPageStrings = {
   label: string;
   heading: string;
   subtitle: string;
+  evidence: string;
+  evidenceCta: string;
   patterns: Record<PatternKey, { title: string; description: string }>;
   families: Record<PatternFamilyKey, { title: string; description: string }>;
   surfaces: Record<PatternSurfaceKey, string>;
@@ -167,6 +171,7 @@ export type PatternsPageStrings = {
     includes: string;
     patternDetails: string;
     usedComponents: string;
+    fieldTested: string;
     planned: string;
     availableCount: (count: number) => string;
     routeCount: (count: number) => string;
@@ -497,6 +502,8 @@ export const translations: Record<
       ai: {
         heading: "SSOT and AI handoff",
         description: "GunjoUI treats .pen and design metadata as the source of truth, then syncs tokens, component specs, docs registration, and export data. Pages are not fully auto-generated from .pen.",
+        evidence: "This handoff is verified by having AI that had never seen Gunjo build 170 screens.",
+        evidenceCta: "Read the verification log",
         cards: {
           spec: {
             title: "Component specs",
@@ -729,6 +736,9 @@ export const translations: Record<
         heading: "Reference apps, fully composed.",
         subtitle:
           "Eight production-shaped GunjoUI demonstrations grouped by family, surface, and industry. Use the page chips to open the exact route included in each pattern.",
+        evidence:
+          "These patterns aren't drawing-board samples — they emerged when AI that had never seen Gunjo built 170 screens (our cold tests).",
+        evidenceCta: "Verification log",
         patterns: {
           auth: {
             title: "Auth",
@@ -822,6 +832,7 @@ export const translations: Record<
           includes: "Includes",
           patternDetails: "Pattern details",
           usedComponents: "Used Components",
+          fieldTested: "Battle-tested in",
           planned: "Planned",
           availableCount: (count: number) =>
             `${count} ${count === 1 ? "pattern" : "patterns"}`,
@@ -1124,6 +1135,8 @@ export const translations: Record<
       ai: {
         heading: "SSOT と AI 連携",
         description: "GunjoUI は .pen と design metadata を SSOT とし、トークン、コンポーネント仕様、docs 登録、export 情報へ同期します。ページ全体を .pen から完全自動生成するものではありません。",
+        evidence: "この連携は、群青を一度も見たことのない AI に 170 の画面を組ませて検証しています。",
+        evidenceCta: "検証の記録を読む",
         cards: {
           spec: {
             title: "コンポーネント仕様",
@@ -1356,6 +1369,9 @@ export const translations: Record<
         heading: "リファレンスアプリ、完成形のまま。",
         subtitle:
           "本番想定の GunjoUI デモを、ファミリー・画面種別・業界で分類しています。チップから各パターンに含まれるページを直接開けます。",
+        evidence:
+          "ここにあるパターンは机上の見本ではなく、群青を知らない AI に 170 画面を組ませた検証（コールドテスト）で実際に現れた形から抽出しています。",
+        evidenceCta: "検証の記録",
         patterns: {
           auth: {
             title: "Auth",
@@ -1451,6 +1467,7 @@ export const translations: Record<
           includes: "含まれるページ",
           patternDetails: "パターン詳細",
           usedComponents: "Used Components",
+          fieldTested: "この形の実戦例",
           planned: "予定",
           availableCount: (count: number) => `${count} 件`,
           routeCount: (count: number) => `${count} ページ`,

@@ -301,6 +301,15 @@ export default function Home() {
                         <p className="text-lg text-muted-foreground">
                             {home.ai.description}
                         </p>
+                        <p className="text-sm text-muted-foreground">
+                            {home.ai.evidence}{" "}
+                            <Link
+                                href="/cold-tests/why"
+                                className="whitespace-nowrap font-medium text-foreground underline underline-offset-4 transition-colors hover:text-primary"
+                            >
+                                {home.ai.evidenceCta} →
+                            </Link>
+                        </p>
                     </div>
                     <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                         {(

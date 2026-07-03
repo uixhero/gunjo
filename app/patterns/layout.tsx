@@ -7,6 +7,7 @@ import { IconChevronRight as ChevronRight } from "@tabler/icons-react";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { Badge, Card, CardContent, Select, cn } from "@gunjo/ui";
 import { VISIBLE_PATTERNS, type PatternEntry, type PatternRouteEntry } from "@/lib/patterns";
+import { PATTERN_COLD_TESTS, coldTestHref } from "@/lib/pattern-cold-tests";
 import type { PatternKey } from "@/lib/translations";
 
 const PATTERN_COMPONENTS: Record<string, { name: string; href: string }[]> = {
@@ -65,6 +66,7 @@ function PatternInfoCard({ pattern }: { pattern: PatternEntry }) {
         { name: "MarqueeFrame", href: "/docs/components/marquee-frame" },
         { name: "DeviceFrame", href: "/docs/components/device-frame" },
     ];
+    const coldTests = PATTERN_COLD_TESTS[pattern.slug] ?? [];
     const routeLabel = t.meta.routeCount(pattern.routes.length);
     const getRouteLabel = (route: PatternRouteEntry) =>
         locale === "ja" ? route.labelJa : route.label;
@@ -141,6 +143,22 @@ function PatternInfoCard({ pattern }: { pattern: PatternEntry }) {
                                 ))}
                             </div>
                         </div>
+                        {coldTests.length > 0 && (
+                            <div className="space-y-2">
+                                <h3 className="text-sm font-semibold">{t.meta.fieldTested}</h3>
+                                <div className="flex flex-wrap gap-1.5">
+                                    {coldTests.map((ref) => (
+                                        <Link
+                                            key={ref.round}
+                                            href={coldTestHref(ref.round)}
+                                            className="rounded-md border bg-background px-2 py-1 text-xs text-muted-foreground transition-colors hover:border-primary-border hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                        >
+                                            #{ref.round} {locale === "ja" ? ref.ja : ref.en}
+                                        </Link>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
                     </div>
                 </CardContent>
             </Card>
