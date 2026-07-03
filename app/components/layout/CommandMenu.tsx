@@ -16,13 +16,6 @@ import { navigation } from "@/lib/navigation"
 import { cn } from "@gunjo/ui"
 import { useLocale } from "@/components/providers/LocaleProvider"
 
-// Top-level site pages that live outside the generated docs navigation —
-// listed here so ⌘K can reach them (see issue #477).
-const siteGroup = {
-    title: "Site",
-    items: [{ title: "Cold Tests", href: "/cold-tests" }],
-}
-
 export function CommandMenu({ overlay = false }: { overlay?: boolean }) {
     const router = useRouter()
     const { locale, t } = useLocale()
@@ -69,7 +62,7 @@ export function CommandMenu({ overlay = false }: { overlay?: boolean }) {
                 <CommandInput placeholder={isJa ? "コマンドまたは検索語を入力..." : "Type a command or search..."} />
                 <CommandList>
                     <CommandEmpty>{isJa ? "一致する結果がありません。" : "No results found."}</CommandEmpty>
-                    {[siteGroup, ...navigation].map((group) => (
+                    {navigation.map((group) => (
                         <CommandGroup key={group.title} heading={t(group.title)}>
                             {group.items.map((navItem) => {
                                 if ('disabled' in navItem && navItem.disabled) return null;
