@@ -337,7 +337,6 @@ export type HeaderKey =
   | "showcase"
   | "tokens"
   | "patterns"
-  | "coldTests"
   | "aiHandoff"
   | "why";
 
@@ -395,7 +394,6 @@ export const translations: Record<
       showcase: "Showcase",
       tokens: "Tokens",
       patterns: "Patterns",
-      coldTests: "Cold Tests",
       aiHandoff: "AI",
       why: "Why",
     },
@@ -1023,7 +1021,6 @@ export const translations: Record<
       showcase: "ショーケース",
       tokens: "トークン",
       patterns: "パターン",
-      coldTests: "コールドテスト",
       aiHandoff: "AI連携",
       why: "比較",
     },
@@ -1648,9 +1645,6 @@ export const translations: Record<
     // or short JA gloss so beginners can learn both forms side-by-side;
     // proper nouns of demo apps (Bannalyze) are kept as-is.
     nav: {
-      // Top-level site pages surfaced in the command menu (outside docs nav)
-      Site: "サイト",
-      "Cold Tests": "コールドテスト",
       // Section group headers + intro pages
       Introduction: "はじめに",
       Installation: "インストール",

@@ -67,7 +67,6 @@ export function SiteFooter({
                 >
                     <FooterLink href="/showcase">{header("showcase")}</FooterLink>
                     <FooterLink href="/patterns">{header("patterns")}</FooterLink>
-                    <FooterLink href="/cold-tests">{header("coldTests")}</FooterLink>
                     <FooterLink href="/docs/introduction">{header("docs")}</FooterLink>
                     <FooterLink href="/docs/comparison">{t("Comparison")}</FooterLink>
                     <FooterLink href="/docs/tokens">{t("Tokens")}</FooterLink>
