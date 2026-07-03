@@ -125,42 +125,12 @@ export function WhyView() {
                     <LocalNav />
                 </header>
 
-                {/* Hero mosaic — one strong screen per industry. Each tile links
-                    to that round's detail page. Decorative-but-navigable, so it
-                    sits between the header and the prose rather than inside a
-                    titled section (kept out of the TOC). */}
-                {HERO_TILES.length > 0 && (
-                    <div
-                        className="grid grid-cols-2 gap-2 sm:grid-cols-4"
-                        aria-label={isJa ? "代表的な画面" : "Representative screens"}
-                    >
-                        {HERO_TILES.map((tile) => (
-                            <Link
-                                key={tile.round}
-                                href={`/cold-tests/${tile.round}`}
-                                className="group block overflow-hidden rounded-md border border-border/60 bg-card transition-colors hover:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                                aria-label={`#${tile.round} ${tile.title}`}
-                            >
-                                <div className="aspect-[4/3] overflow-hidden bg-muted/40">
-                                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                                    <img
-                                        src={`/cold-test-shots/${tile.slug}.desktop.webp`}
-                                        alt={`${tile.title} preview`}
-                                        loading="lazy"
-                                        decoding="async"
-                                        className="h-full w-full object-cover object-top transition-transform duration-200 group-hover:scale-[1.03]"
-                                    />
-                                </div>
-                                <div className="truncate px-2 py-1.5 text-[11px] font-medium text-muted-foreground transition-colors group-hover:text-foreground">
-                                    {t.categories[tile.category] ?? tile.category}
-                                </div>
-                            </Link>
-                        ))}
-                    </div>
-                )}
-
                 {/* Body sections — long-form prose, primary JA with a thin EN
-                    variant. Wrapped in semantic <section> with h2 for the TOC. */}
+                    variant. Wrapped in semantic <section> with h2 for the TOC.
+                    The hero mosaic used to sit here, above the prose, but strong
+                    linked screenshots pulled readers straight into the gallery
+                    before they read the "why" — so it now sits just before the
+                    "Where to go from here" CTA, as a reward after the read. */}
                 <section className="space-y-4">
                     <h2 className="text-2xl font-bold tracking-tight">
                         {isJa ? "出発点" : "Where it started"}
@@ -342,6 +312,45 @@ export function WhyView() {
                         </li>
                     </ul>
                 </section>
+
+                {/* Hero mosaic — one strong screen per industry, moved down here
+                    from above the prose. Now a "reward" the reader reaches after
+                    the argument, not an exit that pulls them out before it. Each
+                    tile links to that round's detail page. */}
+                {HERO_TILES.length > 0 && (
+                    <section className="space-y-4">
+                        <h2 className="text-2xl font-bold tracking-tight">
+                            {isJa ? "実際の画面を見る" : "See the actual screens"}
+                        </h2>
+                        <div
+                            className="grid grid-cols-2 gap-2 sm:grid-cols-4"
+                            aria-label={isJa ? "代表的な画面" : "Representative screens"}
+                        >
+                            {HERO_TILES.map((tile) => (
+                                <Link
+                                    key={tile.round}
+                                    href={`/cold-tests/${tile.round}`}
+                                    className="group block overflow-hidden rounded-md border border-border/60 bg-card transition-colors hover:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                    aria-label={`#${tile.round} ${tile.title}`}
+                                >
+                                    <div className="aspect-[4/3] overflow-hidden bg-muted/40">
+                                        {/* eslint-disable-next-line @next/next/no-img-element */}
+                                        <img
+                                            src={`/cold-test-shots/${tile.slug}.desktop.webp`}
+                                            alt={`${tile.title} preview`}
+                                            loading="lazy"
+                                            decoding="async"
+                                            className="h-full w-full object-cover object-top transition-transform duration-200 group-hover:scale-[1.03]"
+                                        />
+                                    </div>
+                                    <div className="truncate px-2 py-1.5 text-[11px] font-medium text-muted-foreground transition-colors group-hover:text-foreground">
+                                        {t.categories[tile.category] ?? tile.category}
+                                    </div>
+                                </Link>
+                            ))}
+                        </div>
+                    </section>
+                )}
 
                 <section className="space-y-4">
                     <h2 className="text-2xl font-bold tracking-tight">
