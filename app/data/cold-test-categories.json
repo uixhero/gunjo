@@ -34,7 +34,7 @@
           "challengeHeading": "なぜ汎用UIこそ、通用するかを試すのが難しいのか",
           "challengeBody": "業界画面が組めるかどうかは、その下にある汎用部品（Form / Table / Tabs / Tooltip…）のキャンバスがどれだけ描き込みに耐えるかで決まります。連載の最初の30枚は、業界の専門知識ではなく、汎用UIだけで戦う回でした。一般的な部品が「だいたい動く」のと、「業界画面の重さに耐える」のは別物です。Tooltip Provider の SSR クラッシュ、HTML/CSSチャートが任意データで崩れないか、FormField context が aria を正しく注入できるか──キャンバスの強度は、こうした重いシナリオに当てるまで見えてきません。",
           "discoveredHeading": "ここで群青に加わった部品",
-          "discoveredIntro": "汎用30枚の中で群青のキャンバスが描き込まれていった代表的な動きです。新規部品の build というより、既存部品の境界を広げ、足りない部品を課題として記録し、複数の領域で再利用できる形に固めていった回でもあります。",
+          "discoveredIntro": "汎用30枚の中で群青のキャンバスが描き込まれていった代表的な動きです。新規部品の実装というより、既存部品の境界を広げ、足りない部品を課題として記録し、複数の領域で再利用できる形に固めていった回でもあります。",
           "discoveredFooter": "FormField context（#152 で追加）が #30 で別の cold AI に「real form/validation/a11y system」と評価されたように、上位の協調部品ほど次の回での複利が大きいことが見え始めた30枚でした。",
           "leftHeading": "この業界が gunjo に残したもの",
           "leftBody": "汎用30枚は、新しい部品を量産する場ではなく、「このキャンバスに乗せて以後の業界画面を組めるか」を判定する目盛りでした。HTML/CSSチャートが任意データで崩れないこと、FormField の自動 aria 注入が cold AI に発見されること、CommandPalette や受信トレイの list-detail が一発で組めること──ここで証明されたキャンバスの上に、医療・物流・運輸・金融まで全業界の画面が積み重なっています。"
@@ -206,12 +206,12 @@
           "title": "小売・ECのコールドテスト — POS・棚卸・レジ締め・返品・入荷・メンバーズ",
           "description": "EC 商品詳細、POS レジ会計、実地棚卸、レジ締め日次精算、返品処理、入荷検品、メンバーズ／ポイント／ランク／クーポン。売る・数える・締める・巻き戻す・受け入れるという小売の5作法に、最後はモバイル toC のロイヤリティを重ねた7枚です。",
           "challengeHeading": "なぜ小売・EC UIは難しいのか",
-          "challengeBody": "小売は「同じレジ画面」のように見えて、売る・数える・締める・巻き戻す・受け入れるで作法が全く別です。POS は税率別内訳と現金不足のブロック、棚卸は理論在庫との差異検出、レジ締めは金種別実査と過不足、返品は逆取引と払戻テンダーの整合、入荷検品はバーコードスキャンと発注照合。どれも「タブレットや端末の前で立ち作業をする人」の手触りに耐える必要があります。後半の toC ロイヤリティ（航空マイル・鉄道ポイントに続く3つ目）では、残高/ランクの hero の手組みが3回目に到達し、LoyaltySummaryCard が部品化しました。",
+          "challengeBody": "小売は「同じレジ画面」のように見えて、売る・数える・締める・巻き戻す・受け入れるで作法が全く別です。POS は税率別内訳と現金不足のブロック、棚卸は理論在庫との差異検出、レジ締めは金種別実査と過不足、返品は逆取引と払戻テンダーの整合、入荷検品はバーコードスキャンと発注照合。どれも「タブレットや端末の前で立ち作業をする人」の手触りに耐える必要があります。後半の toC ロイヤリティ（航空マイル・鉄道ポイントに続く3つ目）では、残高/ランクの主役ブロックの手組みが3回目に到達し、LoyaltySummaryCard が部品化しました。",
           "discoveredHeading": "ここで群青に加わった部品",
           "discoveredIntro": "小売7枚で実装に到達した部品と、後段の医療や物流に効いた汎化シードです。",
           "discoveredFooter": "ScanInput はこの後、物流の picking / put-away / shipping、医療の与薬3点認証まで、業界の壁を越えて再利用され続けています。LoyaltySummaryCard は鉄道IC・航空マイル・タクシー会員でも自宅扱いの部品になりました。",
           "leftHeading": "この業界が gunjo に残したもの",
-          "leftBody": "小売は、「スキャン×照合」を扱うすべての画面のキャンバスと、消費者向けロイヤリティの hero を群青に残しました。ScanInput は元はバックヤードの入荷検品から来た部品が、医療の患者リストバンド3点認証まで滑らかに使い回されています。LoyaltySummaryCard は残高 / ランク / 特典を一つの hero に圧縮できる消費者向けのキャンバス。「業界専用」と思った形が、たいてい業界を越える──それを最初に強く示した業界です。"
+          "leftBody": "小売は、「スキャン×照合」を扱うすべての画面のキャンバスと、消費者向けロイヤリティの主役ブロックを群青に残しました。ScanInput は元はバックヤードの入荷検品から来た部品が、医療の患者リストバンド3点認証まで滑らかに使い回されています。LoyaltySummaryCard は残高 / ランク / 特典を一つの主役ブロックに圧縮できる消費者向けのキャンバス。「業界専用」と思った形が、たいてい業界を越える──それを最初に強く示した業界です。"
         },
         "en": {
           "title": "Retail & e-commerce cold test — POS, stocktake, register close, returns, receiving, rewards",
@@ -237,7 +237,7 @@
           "name": "LoyaltySummaryCard",
           "slug": "loyalty-summary-card",
           "round": 118,
-          "blurbJa": "残高・ランク・特典を hero に圧縮できる消費者向けカード。航空マイル（#116）・鉄道IC（#117）に続いて #118 で 3回確認を満たし build。",
+          "blurbJa": "残高・ランク・特典を主役ブロックに圧縮できる消費者向けカード。航空マイル（#116）・鉄道IC（#117）に続いて #118 で 3回確認を満たし実装。",
           "blurbEn": "A consumer-side hero card that compresses balance, tier, and perks. Cleared 3回確認in #118 following air miles (#116) and rail IC (#117)."
         },
         {
@@ -317,7 +317,7 @@
           "challengeHeading": "なぜ医療 UI は難しいのか",
           "challengeBody": "医療画面の難しさは、画面の派手さではなく「一文字の取り違えが患者に届く」という構造そのものにあります。正しい患者・薬剤・時間を機械的に保証する3点認証、ハイアラート薬（インスリン・ヘパリン・抗がん剤）に対する専用の警告、ダブルチェックを画面の上にきちんと残す仕組み、署名すれば追記しか許されない法的記録、基準値や用量レンジで「数の意味」を読むレポート——どれも「綺麗に並んでいる」だけでは成立しません。一般的なフォーム部品が、医療では「足りない」のではなく「危ない」のです。",
           "discoveredHeading": "ここで群青に加わった部品",
-          "discoveredIntro": "医療7画面（#53〜#59）の cold test で、3回確認を満たして実装まで到達した汎用部品です。どれも医療専用ではなく、業界を越えて再利用できる形でデザインシステムに組み込まれています。",
+          "discoveredIntro": "医療7画面（#53〜#59）の コールドテスト で、3回確認を満たして実装まで到達した汎用部品です。どれも医療専用ではなく、業界を越えて再利用できる形でデザインシステムに組み込まれています。",
           "discoveredFooter": "Textarea / Input は同じ医療シリーズ内で fix が land しました。「数の意味を持つフィールド」というパターンが、ここで初めて視野に入っています。",
           "leftHeading": "この業界が gunjo に残したもの",
           "leftBody": "医療は、5つの新しい部品と「責任の重い操作」の作法を群青に残しました。ScanGate は元は倉庫の受け入れ画面から来た部品が、患者リストバンドの3点認証で再発見されたもの。CoSign は手術記録の2人確認で固まりましたが、契約承認や高額決裁にもそのまま使えます。SignedRecord（署名→ロック→追記）も、看護記録・手術記録・退院サマリの3画面で独立に手組みされ、3回確認を満たして実装に至りました。「医療っぽい部品」ではなく、「重い操作を扱うすべての画面」のキャンバスになっています。"
@@ -434,9 +434,9 @@
           "challengeBody": "製造は工程ルート・公差判定・OEE・系譜・ガント・引当という、それぞれ別のキャンバスを要求する画面が並びます。寸法を公差（上限 USL / 下限 LSL）に照らして合否を返す検査成績書、停止要因のパレート分析、ロット系譜の多親 DAG（連載で初めて「部品では描けない」構造に当たった）、能力 vs 負荷で組む生産計画、安全在庫を踏まえた scan-to-release の出荷引当。製造6枚目（#69）で連載最高点 4.5/5 が出て、「プロジェクトの主題が完全に実証された」回として記録されています。",
           "discoveredHeading": "ここで群青に加わった部品",
           "discoveredIntro": "製造6枚で再利用された／別の領域に広がった部品です。",
-          "discoveredFooter": "ロット系譜の DAG 足りない部品は、後のメディア・出版（#82）で EventCalendar / LineageGraph の整備ラウンドにつながり、製造の課題として記録が他業界の build の引き金になる、という連鎖が見られました。",
+          "discoveredFooter": "ロット系譜の DAG 足りない部品は、後のメディア・出版（#82）で EventCalendar / LineageGraph の整備ラウンドにつながり、製造の課題として記録が他業界の実装の引き金になる、という連鎖が見られました。",
           "leftHeading": "この業界が gunjo に残したもの",
-          "leftBody": "製造は、「群青の部品がそのまま土台として通用すると認められた」回を残しました。資産テーブル・消費vs限度メーター・時間軸スケジュール・要対応キュー・署名記録──この「保守 toB キャンバス」の構造は、後の鉄道車両検査・航空 MRO・タクシー車両管理にそのまま横展開されています。製造で課題として記録した「単親 TreeView では描けない多親 DAG」の足りない部品は、整備ラウンドで EventCalendar / LineageGraph の build へとつながりました。"
+          "leftBody": "製造は、「群青の部品がそのまま土台として通用すると認められた」回を残しました。資産テーブル・消費vs限度メーター・時間軸スケジュール・要対応キュー・署名記録──この「保守 toB キャンバス」の構造は、後の鉄道車両検査・航空 MRO・タクシー車両管理にそのまま横展開されています。製造で課題として記録した「単親 TreeView では描けない多親 DAG」の足りない部品は、整備ラウンドで EventCalendar / LineageGraph の実装へとつながりました。"
         },
         "en": {
           "title": "Manufacturing cold test — MES progress, QC inspection, OEE, lot lineage, planning, allocation",
@@ -469,7 +469,7 @@
           "name": "Lineage (multi-parent DAG, gap)",
           "slug": "tree-view",
           "round": 67,
-          "blurbJa": "「単親 TreeView で描けない多親 DAG」を初めて課題として記録した回。後にメディア整備ラウンドで EventCalendar / LineageGraph として build。",
+          "blurbJa": "「単親 TreeView で描けない多親 DAG」を初めて課題として記録した回。後にメディア整備ラウンドで EventCalendar / LineageGraph として実装。",
           "blurbEn": "First filing of \"a multi-parent DAG that single-parent TreeView can't draw.\" Later built as EventCalendar / LineageGraph in the media maintenance round."
         }
       ]
@@ -487,7 +487,7 @@
           "discoveredIntro": "教育5枚で正式な部品になった／framing を広げて他のマトリクスに刺さった部品です。",
           "discoveredFooter": "ScheduleGrid の framing 拡張は、後の介護週間計画・人材勤怠管理・飲食シフト・公共施設予約まで「マトリクス画面のキャンバス」として共通利用されています。",
           "leftHeading": "この業界が gunjo に残したもの",
-          "leftBody": "教育は、「同じ作法のマトリクスを framing が殺してしまう」教訓と、それを直したあとの「複利の最短距離」を群青に残しました。ScheduleGrid は時間割で生まれましたが、framing を広げた瞬間に成績・出欠・LMS・面談予約と次々に刺さり、後の介護・人材・飲食・公共まで横展開しています。3回連続 no-build の後にようやく build した時間割（#70）も、群青の自制（早すぎる部品化を避ける）の好例として残っています。"
+          "leftBody": "教育は、「同じ作法のマトリクスを framing が殺してしまう」教訓と、それを直したあとの「複利の最短距離」を群青に残しました。ScheduleGrid は時間割で生まれましたが、framing を広げた瞬間に成績・出欠・LMS・面談予約と次々に刺さり、後の介護・人材・飲食・公共まで横展開しています。3回連続実装なし の後にようやく実装した時間割（#70）も、群青の自制（早すぎる部品化を避ける）の好例として残っています。"
         },
         "en": {
           "title": "Education cold test — timetable, gradebook, attendance, LMS, conference booking",
@@ -506,7 +506,7 @@
           "name": "ScheduleGrid",
           "slug": "schedule-grid",
           "round": 70,
-          "blurbJa": "時間割で初めて build。framing を広げた瞬間に成績・出欠・LMS・面談予約に連鎖。後に介護・HR・飲食・公共まで広がる「マトリクス画面のキャンバス」。",
+          "blurbJa": "時間割で初めて実装。framing を広げた瞬間に成績・出欠・LMS・面談予約に連鎖。後に介護・HR・飲食・公共まで広がる「マトリクス画面のキャンバス」。",
           "blurbEn": "First built for timetables. Widening the framing made it land on gradebooks, attendance, LMS, conference booking — then on care plans, HR attendance, restaurant shifts, public facility booking. The shared floor for matrix screens."
         },
         {
@@ -531,7 +531,7 @@
           "discoveredIntro": "公共・行政5枚で 3回確認に到達した部品と、再利用されたキャンバスです。",
           "discoveredFooter": "施設予約（#77）は「直前に作った2部品（ScheduleGrid・ApprovalWorkflow）が同日にまとめて発掘・再利用された」回として記録されています。複利の最高到達点のひとつ。",
           "leftHeading": "この業界が gunjo に残したもの",
-          "leftBody": "公共・行政は、「規制が重い領域が、新部品を作るのではなくキャンバスの組み立てで済む」という強い証拠を群青に残しました。ApprovalWorkflow は不動産入居審査（#63）・自治体窓口（#75）・給付金審査（#76）の3回手組みで build に到達。色非依存の状態表示・監査可能な確定・2人確認・JPY 金額入力は、すべて既存部品の composition で表現できることが確認されました。「組み立てで済む」事実そのものが、デザインシステムの最大の成果です。"
+          "leftBody": "公共・行政は、「規制が重い領域が、新部品を作るのではなくキャンバスの組み立てで済む」という強い証拠を群青に残しました。ApprovalWorkflow は不動産入居審査（#63）・自治体窓口（#75）・給付金審査（#76）の3回手組みで実装に到達。色非依存の状態表示・監査可能な確定・2人確認・JPY 金額入力は、すべて既存部品の composition で表現できることが確認されました。「組み立てで済む」事実そのものが、デザインシステムの最大の成果です。"
         },
         "en": {
           "title": "Public sector cold test — counter, benefit screening, facility booking, tax filing, resident move",
@@ -550,7 +550,7 @@
           "name": "ApprovalWorkflow",
           "slug": "approval-workflow",
           "round": 76,
-          "blurbJa": "不動産入居審査・自治体窓口・給付金審査の3回手組みで 3回確認を満たし build。後に保険査定・税申告・住民異動まで横展開。",
+          "blurbJa": "不動産入居審査・自治体窓口・給付金審査の3回手組みで 3回確認を満たし実装。後に保険査定・税申告・住民異動まで横展開。",
           "blurbEn": "Hand-rolled across tenant screening, municipal counter, benefit screening — cleared 3回確認and was built. Now reused across insurance claims, tax filing, resident move."
         },
         {
@@ -579,10 +579,10 @@
           "challengeHeading": "なぜメディア・出版UIは難しいのか",
           "challengeBody": "メディア・出版は「公共・行政の back-office の三種の神器（ApprovalWorkflow・CheckList・SignedRecord）が編集 CMS にも丸ごと効く」という再利用の好例である一方、月カレンダー（イベント付き）と OSMU 派生系譜 DAG という「長らくキャンバスにない2つの大型足りない部品」を改めて顕在化させた業界でもあります。連載の他のラウンドで何度も顔を出してきたカレンダーと、ロット系譜（#67）と同じ多親 DAG の派生系譜──ここで腰を据えて整備しました。",
           "discoveredHeading": "ここで群青に加わった部品",
-          "discoveredIntro": "メディア3枚で改めて顕在化し、整備ラウンドで build に至った部品です。",
-          "discoveredFooter": "EventCalendar と LineageGraph は、製造のロット系譜（#67）で課題として記録され、メディアでもう一度顔を出し、整備ラウンドで腰を据えて build した2大部品です。連載の中盤の「長物足りない部品」を一気に2つ閉じた回として記録されています。",
+          "discoveredIntro": "メディア3枚で改めて顕在化し、整備ラウンドで実装に至った部品です。",
+          "discoveredFooter": "EventCalendar と LineageGraph は、製造のロット系譜（#67）で課題として記録され、メディアでもう一度顔を出し、整備ラウンドで腰を据えて実装した2大部品です。連載の中盤の「長物足りない部品」を一気に2つ閉じた回として記録されています。",
           "leftHeading": "この業界が gunjo に残したもの",
-          "leftBody": "メディアは、「back-office の三種の神器が編集 CMS にも丸ごと効く」というクロス領域の再利用と、「長らくキャンバスにない大型足りない部品は整備ラウンドで一気に閉じる」という運用の作法を群青に残しました。EventCalendar（月カレンダー＋イベント）と LineageGraph（多親 DAG）の2大部品の build は、製造ロット系譜とメディアの2業界をまたいでようやく到達した、群青の代表的な複合部品です。"
+          "leftBody": "メディアは、「back-office の三種の神器が編集 CMS にも丸ごと効く」というクロス領域の再利用と、「長らくキャンバスにない大型足りない部品は整備ラウンドで一気に閉じる」という運用の作法を群青に残しました。EventCalendar（月カレンダー＋イベント）と LineageGraph（多親 DAG）の2大部品の実装は、製造ロット系譜とメディアの2業界をまたいでようやく到達した、群青の代表的な複合部品です。"
         },
         "en": {
           "title": "Media & publishing cold test — editorial workflow, calendar, syndication lineage",
@@ -601,7 +601,7 @@
           "name": "EventCalendar",
           "slug": "event-calendar",
           "round": 82,
-          "blurbJa": "月カレンダー＋イベントチップという長らくキャンバスに無かった大型足りない部品を、整備ラウンドで build。",
+          "blurbJa": "月カレンダー＋イベントチップという長らくキャンバスに無かった大型足りない部品を、整備ラウンドで実装。",
           "blurbEn": "Monthly calendar with event chips — a long-deferred floor gap, finally built in the maintenance round."
         },
         {
@@ -630,8 +630,8 @@
           "challengeHeading": "なぜ人材・HR・採用UIは難しいのか",
           "challengeBody": "HR は「人を扱う画面」の作法が独特です。アバター・名前・役職・状態を一つの行に圧縮した識別セル、上司↔部下というペアの並列、組織のツリー構造、選考ファネルのカンバン、月次勤怠の長いマトリクス、評価分布と達成度。観測の核は明確で、「組織階層に木構造の部品が cold AI に発掘されるか」「人物セルが3回ルールを発火させるか」「ペアの人物セル（上司↔部下）が次のキャンバスになるか」という連鎖した問い。前段で正式な部品になった KanbanBoard / WeekView / ApprovalWorkflow が、HR でそのまま発掘される検証の場でもありました。",
           "discoveredHeading": "ここで群青に加わった部品",
-          "discoveredIntro": "HR 6枚で 3回確認を満たして build に到達した、または翌回で自力発見された部品です。",
-          "discoveredFooter": "PersonCell（#85 build）→#86 で別 cold AI に自力発見、というのは「直前に build した部品が翌回でそのまま使われる」最短検証のパターンです。複利がキャンバスに乗るとはこういうこと、という最強の事例。",
+          "discoveredIntro": "HR 6枚で 3回確認を満たして実装に到達した、または翌回で自力発見された部品です。",
+          "discoveredFooter": "PersonCell（#85 実装）→#86 で別 cold AI に自力発見、というのは「直前に実装した部品が翌回でそのまま使われる」最短検証のパターンです。複利がキャンバスに乗るとはこういうこと、という最強の事例。",
           "leftHeading": "この業界が gunjo に残したもの",
           "leftBody": "HR は、「人を扱う画面」のキャンバスと、複利がキャンバスに乗る瞬間の最短検証を群青に残しました。PersonCell（アバター＋名前＋状態の識別セル）と、ペア型に拡張した RelationshipRow（後の介護で正式な部品になり）。Drawer の side=right バグもこの業界で発見され、後に修正されました。1on1 では Tabs の CJK overflow を fix──小さいバグまで含めて、HR はキャンバスのひび割れを次々に拾った業界です。"
         },
@@ -652,14 +652,14 @@
           "name": "PersonCell",
           "slug": "person-cell",
           "round": 85,
-          "blurbJa": "アバター＋名前＋状態の識別セル。採用パイプライン・組織図で2回手組み、評価管理で3回目に達し build。翌回 #86 で別 cold AI に自力発見。",
+          "blurbJa": "アバター＋名前＋状態の識別セル。採用パイプライン・組織図で2回手組み、評価管理で3回目に達し実装。翌回 #86 で別 cold AI に自力発見。",
           "blurbEn": "Avatar + name + state identity cell. Hand-rolled in hiring pipeline and org chart, third reroll at performance review built it. Independently rediscovered the very next round."
         },
         {
           "name": "RelationshipRow (proto)",
           "slug": "relationship-row",
           "round": 88,
-          "blurbJa": "1on1 でペア型（上司↔部下）として顔を出した PersonCell。後の介護（#90）で 3回確認を満たして build。",
+          "blurbJa": "1on1 でペア型（上司↔部下）として顔を出した PersonCell。後の介護（#90）で 3回確認を満たして実装。",
           "blurbEn": "PersonCell paired (manager ↔ direct report) at 1-on-1. Cleared 3回確認and was built later in care planning (#90)."
         },
         {
@@ -677,12 +677,12 @@
       "copy": {
         "ja": {
           "title": "介護・福祉UIのコールドテスト — 訪問介護・ケアプラン・記録・報酬請求・デイサービス",
-          "description": "ヘルパー×時間の訪問スケジュール、利用者↔ケアマネのケアプラン、バイタル基準値付きの介護記録、介護報酬請求と国保連伝送、デイサービス当日運営。HR で芽生えた RelationshipRow がここで build され、銀行で育てた金額 primitive がそのまま効くことが証明された5枚です。",
+          "description": "ヘルパー×時間の訪問スケジュール、利用者↔ケアマネのケアプラン、バイタル基準値付きの介護記録、介護報酬請求と国保連伝送、デイサービス当日運営。HR で芽生えた RelationshipRow がここで実装され、銀行で育てた金額 primitive がそのまま効くことが証明された5枚です。",
           "challengeHeading": "なぜ介護・福祉UIは難しいのか",
           "challengeBody": "介護は「人と人の関係」が画面の中心にあります。利用者↔ヘルパー、利用者↔ケアマネ、利用者↔事業所──HR で芽生えたペア型 PersonCell（RelationshipRow）の本場です。同時に、訪問のスケジュールはヘルパー×時間のマトリクス、ケアプランは課題→目標→サービスの構造、介護記録はバイタルと SignedRecord、介護報酬請求は金額と限度額、デイサービスは送迎ルートまで含む「成熟した部品の総力戦」。HR・医療・物流で描き込んだキャンバスが、福祉でどれだけ自力発見されるかを試した業界でもあります。",
           "discoveredHeading": "ここで群青に加わった部品",
-          "discoveredIntro": "介護5枚で 3回確認を満たして build に到達した、または翌回で自力発見された部品です。",
-          "discoveredFooter": "RelationshipRow（#90 build）→#91 で別 cold AI に自力発見、というのは PersonCell #85→#86 に続く2回目の「複利の最短検証」でした。デイサービスでは「成熟した部品群がどれだけ手組みを消すか」が観測対象になり、5枚目で手組みが大きく後退しました。",
+          "discoveredIntro": "介護5枚で 3回確認を満たして実装に到達した、または翌回で自力発見された部品です。",
+          "discoveredFooter": "RelationshipRow（#90 実装）→#91 で別 cold AI に自力発見、というのは PersonCell #85→#86 に続く2回目の「複利の最短検証」でした。デイサービスでは「成熟した部品群がどれだけ手組みを消すか」が観測対象になり、5枚目で手組みが大きく後退しました。",
           "leftHeading": "この業界が gunjo に残したもの",
           "leftBody": "介護・福祉は、「人と人の関係」を表現する RelationshipRow を群青に残しました。HR の PersonCell との接合で、組織画面の人物表現がペアまで広がっています。介護報酬請求では銀行・会計の金額 primitive（formatCurrency・EditableDataTable・Delta・CurrencyInput）が、介護報酬という全く別の領域でそのまま効くことを証明。「業界専用」と思った金額部品が、業界を越えてキャンバスになる、を別角度から実証した業界です。"
         },
@@ -703,7 +703,7 @@
           "name": "RelationshipRow",
           "slug": "relationship-row",
           "round": 90,
-          "blurbJa": "「2人の関係」を表現する行部品。利用者↔担当ケアマネ・利用者↔事業所などで 3回確認を満たし build。翌回 #91 で別 cold AI に自力発見。",
+          "blurbJa": "「2人の関係」を表現する行部品。利用者↔担当ケアマネ・利用者↔事業所などで 3回確認を満たし実装。翌回 #91 で別 cold AI に自力発見。",
           "blurbEn": "A row primitive that expresses \"two parties in relationship.\" Cleared 3回確認across user ↔ case manager / user ↔ agency and was built. Independently rediscovered in #91 the next round."
         },
         {
@@ -754,7 +754,7 @@
           "name": "StatGroup (業界越え再利用)",
           "slug": "stat-group",
           "round": 95,
-          "blurbJa": "前回 build した StatGroup がレストラン予約台帳で自力発見。「直前 build → 翌回 cold 発掘」の再現。",
+          "blurbJa": "前回実装した StatGroup がレストラン予約台帳で自力発見。「直前実装 → 翌回 cold 発掘」の再現。",
           "blurbEn": "Just-built StatGroup independently rediscovered at the restaurant reservation ledger — \"built yesterday, rediscovered tomorrow\" again."
         },
         {
@@ -786,12 +786,12 @@
       "copy": {
         "ja": {
           "title": "保険UIのコールドテスト — 損保査定・契約・支払・生保引受・営業ポータル",
-          "description": "自動車保険の保険金請求・査定、損保契約と代理店ダッシュボード、保険金支払と精算、生命保険の引受査定、生保営業のライフプランナー活動ポータル。AmountBreakdown が 3回確認に到達し、build 翌回で別 cold AI に自力発見された5枚です。",
+          "description": "自動車保険の保険金請求・査定、損保契約と代理店ダッシュボード、保険金支払と精算、生命保険の引受査定、生保営業のライフプランナー活動ポータル。AmountBreakdown が 3回確認に到達し、実装翌回で別 cold AI に自力発見された5枚です。",
           "challengeHeading": "なぜ保険UIは難しいのか",
-          "challengeBody": "保険は「金額を構造で説明する」場面が常時並びます。査定の認定額・過失相殺・免責・既払・支払額の連鎖、保険料の構成、引受審査の BMI / 血圧 / 既往の ReferenceValue、高額案件の2人確認 CoSign、確定の SignedRecord、契約者と募集人の関係を見る代理店ビュー。同時に、後半の営業ポータルでは消費者寄りの作法（パイプライン Kanban、目標 Meter、要対応 Alert）も同居します。観測の核は明確で、「金額導出ブロックが3回目の手組みになれば、その場で build する」でした。",
+          "challengeBody": "保険は「金額を構造で説明する」場面が常時並びます。査定の認定額・過失相殺・免責・既払・支払額の連鎖、保険料の構成、引受審査の BMI / 血圧 / 既往の ReferenceValue、高額案件の2人確認 CoSign、確定の SignedRecord、契約者と募集人の関係を見る代理店ビュー。同時に、後半の営業ポータルでは消費者寄りの作法（パイプライン Kanban、目標 Meter、要対応 Alert）も同居します。観測の核は明確で、「金額導出ブロックが3回目の手組みになれば、その場で実装する」でした。",
           "discoveredHeading": "ここで群青に加わった部品",
-          "discoveredIntro": "保険5枚で 3回確認を満たして build に到達した、または build 翌回で自力発見された部品です。",
-          "discoveredFooter": "AmountBreakdown は build 翌回（#104 生保引受査定）で、保険料計算という新作法の場面で別 cold AI に自力発見されました。金融の「数の説明」がどれだけ業界を越えるかを最も強く証明した連鎖です。",
+          "discoveredIntro": "保険5枚で 3回確認を満たして実装に到達した、または実装翌回で自力発見された部品です。",
+          "discoveredFooter": "AmountBreakdown は実装翌回（#104 生保引受査定）で、保険料計算という新作法の場面で別 cold AI に自力発見されました。金融の「数の説明」がどれだけ業界を越えるかを最も強く証明した連鎖です。",
           "leftHeading": "この業界が gunjo に残したもの",
           "leftBody": "保険は、「金額導出ブロック」を群青のキャンバスとして完成させ、ApprovalWorkflow・CoSign・SignedRecord・ReferenceValue といった「責任の重い操作」のキャンバスが損保／生保／代理店の全層で 組み合わせで組めることを証明しました。最後の営業ポータル（#105）では、ここまで作った部品が「全部 組み合わせで組める」状態に到達し、docs の部品検索も全部名指しで正解──保険5枚で作り切ったと記録されています。"
         },
@@ -812,7 +812,7 @@
           "name": "AmountBreakdown",
           "slug": "amount-breakdown",
           "round": 103,
-          "blurbJa": "支払明細＝認定額−過失相殺−免責−既払＝支払額。求人#102 を経て #103 で 3回確認到達 build。翌回 #104 の保険料計算で別 cold AI が自力発見。",
+          "blurbJa": "支払明細＝認定額−過失相殺−免責−既払＝支払額。求人#102 を経て #103 で 3回確認到達実装。翌回 #104 の保険料計算で別 cold AI が自力発見。",
           "blurbEn": "Adjudicated amount − contributory negligence − deductible − paid-to-date = payable. Hand-rolled at #101, then policy #102, cleared 3回確認at #103 and built. Rediscovered cold at #104 premium calculation."
         },
         {
@@ -846,12 +846,12 @@
           "title": "鉄道UIのコールドテスト — 運転指令・乗務員・車両保守・特急予約・乗換案内・運行情報",
           "description": "運転指令と運行図表、乗務員仕業と交番、車両検査と保守、特急券・指定席予約、乗換案内、運行情報、IC・ポイント、定期券、駅構内ナビ──運輸の鉄道モードを toB5＋toC11 で完走した16枚。連載で「toB のキャンバスは新モードでも変わらない」「toC を厚くしないとキャンバスは描き揃わない」を強く実証した業界です。",
           "challengeHeading": "なぜ鉄道UIは難しいのか",
-          "challengeBody": "鉄道は「運転指令の back-office」「利用者の B2C アプリ」「駅務の現場ボード」「ダイヤ計画」「営収分析」と、視点も密度も全く違う層が同居します。運行図表（時間×距離の斜めライン）、機材繰りのリッチセグメント Gantt、ScheduleGrid 風の交番、車両検査の Meter、特急予約の SeatMap、乗換案内のレッグ別 itinerary、運行情報のステータス行、IC残高の hero ロイヤリティ──キャンバスの総力戦です。toC を6枚以上掘ったときに toB と対称になる、という「完走の定義」もここで明確になりました。",
+          "challengeBody": "鉄道は「運転指令の back-office」「利用者の B2C アプリ」「駅務の現場ボード」「ダイヤ計画」「営収分析」と、視点も密度も全く違う層が同居します。運行図表（時間×距離の斜めライン）、機材繰りのリッチセグメント Gantt、ScheduleGrid 風の交番、車両検査の Meter、特急予約の SeatMap、乗換案内のレッグ別 itinerary、運行情報のステータス行、IC残高の主役ブロックのロイヤリティ──キャンバスの総力戦です。toC を6枚以上掘ったときに toB と対称になる、という「完走の定義」もここで明確になりました。",
           "discoveredHeading": "ここで群青に加わった部品",
-          "discoveredIntro": "鉄道16枚で 3回確認を満たして build に到達した部品です。toB と toC を厚く積んだことで複数のキャンバスが一気に描き上がりました。",
+          "discoveredIntro": "鉄道16枚で 3回確認を満たして実装に到達した部品です。toB と toC を厚く積んだことで複数のキャンバスが一気に描き上がりました。",
           "discoveredFooter": "OriginDestination は #166 国際物流・#169 鉄道路線実績・#170 特急予約と3画面で独立に手組みされ、A→B の区間ヘッダ（from / to / via・所要 connector・出発⇄到着 swap）として固まりました。",
           "leftHeading": "この業界が gunjo に残したもの",
-          "leftBody": "鉄道は、運輸5モードの最初のキャンバスとして ActionQueue・LoyaltySummaryCard・Statistic goodWhen・OriginDestination・Stringline（バスで build）など多数の部品を群青に残しました。toC を厚く掘ることがキャンバスの描き揃いに直結することを、最も強く実証した業界でもあります。鉄道 toB5＋toC11 = 16枚という規模は、連載最長。「toC が弱い側なら深掘りを優先」という運用ルールが固まった発端でもあります。"
+          "leftBody": "鉄道は、運輸5モードの最初のキャンバスとして ActionQueue・LoyaltySummaryCard・Statistic goodWhen・OriginDestination・Stringline（バスで実装）など多数の部品を群青に残しました。toC を厚く掘ることがキャンバスの描き揃いに直結することを、最も強く実証した業界でもあります。鉄道 toB5＋toC11 = 16枚という規模は、連載最長。「toC が弱い側なら深掘りを優先」という運用ルールが固まった発端でもあります。"
         },
         "en": {
           "title": "Rail cold test — operations, crew, maintenance, express booking, transit search, service status",
@@ -870,28 +870,28 @@
           "name": "ActionQueue",
           "slug": "action-queue",
           "round": 106,
-          "blurbJa": "運転指令の要対応 worklist で 3回確認到達 build。翌回 #107 で別 cold AI が点呼未了アラートで自力発見。",
+          "blurbJa": "運転指令の要対応 worklist で 3回確認到達実装。翌回 #107 で別 cold AI が点呼未了アラートで自力発見。",
           "blurbEn": "Operations-control action worklist cleared 3回確認and was built. Independently rediscovered at #107 crew rosters for muster alerts."
         },
         {
           "name": "LoyaltySummaryCard (2回目)",
           "slug": "loyalty-summary-card",
           "round": 117,
-          "blurbJa": "鉄道IC残高/JRE POINT で2回目の手組み。後の小売 #118 で 3回確認達成 build。",
+          "blurbJa": "鉄道IC残高/JRE POINT で2回目の手組み。後の小売 #118 で 3回確認達成実装。",
           "blurbEn": "Second hand-roll on rail IC balance / point card. Cleared 3回確認and was built at retail #118."
         },
         {
           "name": "Statistic goodWhen",
           "slug": "statistic",
           "round": 169,
-          "blurbJa": "良し悪しが反転するメトリクス（定時率 good-high / 遅延件数 good-low）の tone を Statistic に持たせる。バス営収 #154・トラック原価 #163 と合わせて 3回確認到達 build。",
+          "blurbJa": "良し悪しが反転するメトリクス（定時率 good-high / 遅延件数 good-low）の tone を Statistic に持たせる。バス営収 #154・トラック原価 #163 と合わせて 3回確認到達実装。",
           "blurbEn": "Tone for metrics whose good direction inverts (on-time rate good-high, delay count good-low). Cleared 3回確認together with bus revenue #154 and truck cost #163."
         },
         {
           "name": "OriginDestination",
           "slug": "origin-destination",
           "round": 170,
-          "blurbJa": "A→B 区間ヘッダ（from / to / via・所要 connector・出発⇄到着 swap）。国際物流・路線実績・特急予約で 3回確認到達 build。",
+          "blurbJa": "A→B 区間ヘッダ（from / to / via・所要 connector・出発⇄到着 swap）。国際物流・路線実績・特急予約で 3回確認到達実装。",
           "blurbEn": "A→B section header (from / to / via, duration connector, departure ⇄ arrival swap). Cleared 3回確認across international freight, rail line performance, and express booking."
         }
       ]
@@ -906,8 +906,8 @@
           "challengeHeading": "なぜ航空UIは難しいのか",
           "challengeBody": "航空は「予約」「運航」「チェックイン」「保守 (MRO)」「乗員スケジュール」「就航計画 (network planning)」と、業界の中に大きさの違うサブシステムが並びます。座席表 SeatMap・機材繰り Gantt のリッチセグメント・手荷物追跡の RouteStops・空港案内の ListCard・eチケット TicketStub・運航状況 Badge＋icon の色非依存表示──消費者側の作法と運航部の作法が同じ業界内で同居します。toC が弱いまま走らないために、KeEem の指示で並列に深掘りした arc としても記録されています。",
           "discoveredHeading": "ここで群青に加わった部品",
-          "discoveredIntro": "航空15枚で 3回確認を満たして build に到達した部品です。toC を厚く掘ったことで mobile-first キャンバスが一気に描き上がりました。",
-          "discoveredFooter": "PageHeader（モバイル app-bar 風の sticky 消費者ヘッダ）は #122 空港案内・#125 振替・#127 ラウンジで 3回確認到達 build。同じ arc 内で TicketStub・FilterChips も build しています。",
+          "discoveredIntro": "航空15枚で 3回確認を満たして実装に到達した部品です。toC を厚く掘ったことで mobile-first キャンバスが一気に描き上がりました。",
+          "discoveredFooter": "PageHeader（モバイル app-bar 風の sticky 消費者ヘッダ）は #122 空港案内・#125 振替・#127 ラウンジで 3回確認到達実装。同じ arc 内で TicketStub・FilterChips も実装しています。",
           "leftHeading": "この業界が gunjo に残したもの",
           "leftBody": "航空は、「モバイル toC キャンバス」の主要部品を一気に固めた業界として群青に残りました。SeatMap・PageHeader・TicketStub・FilterChips──消費者向け予約・チェックイン・案内のほぼすべてに効く部品が、航空15枚で次々に 3回確認を満たしています。MRO ラウンドでは製造で固めた「保守 toB キャンバス」（資産テーブル・Meter・Gantt・ActionQueue・SignedRecord）が、構造的手組みゼロで横展開しました。"
         },
@@ -928,14 +928,14 @@
           "name": "SeatMap",
           "slug": "seat-map",
           "round": 114,
-          "blurbJa": "鉄道#109・航空#112 を経て #114 で 3回確認達成 build。航空・新幹線・高速バスの座席選択のキャンバス。",
+          "blurbJa": "鉄道#109・航空#112 を経て #114 で 3回確認達成実装。航空・新幹線・高速バスの座席選択のキャンバス。",
           "blurbEn": "Built at #114 after rail #109 and air #112. The shared seat-selection floor across air, shinkansen, and highway bus."
         },
         {
           "name": "PageHeader",
           "slug": "page-header",
           "round": 125,
-          "blurbJa": "モバイル app-bar 風の sticky 消費者ヘッダ。空港案内・振替・ラウンジで 3回確認達成 build。",
+          "blurbJa": "モバイル app-bar 風の sticky 消費者ヘッダ。空港案内・振替・ラウンジで 3回確認達成実装。",
           "blurbEn": "Mobile app-bar style sticky consumer header. Cleared 3回確認across terminal guide, rebooking, lounge."
         },
         {
@@ -967,14 +967,14 @@
       "copy": {
         "ja": {
           "title": "バスUIのコールドテスト — 運行管理・配車乗務員・接近案内・高速予約・経路検索・乗車券",
-          "description": "バス運行管理、配車と乗務員、消費者向け接近案内、高速バス座席予約、経路検索、ダイヤ編成、営収ダッシュボード、安全管理、モバイル乗車券、運行情報、IC残高──toB5＋toC6 で対称完走した11枚。Stringline・Gantt-intraday・SegmentedControl・LineChip・Leaderboard が一気に build した業界です。",
+          "description": "バス運行管理、配車と乗務員、消費者向け接近案内、高速バス座席予約、経路検索、ダイヤ編成、営収ダッシュボード、安全管理、モバイル乗車券、運行情報、IC残高──toB5＋toC6 で対称完走した11枚。Stringline・Gantt-intraday・SegmentedControl・LineChip・Leaderboard が一気に実装した業界です。",
           "challengeHeading": "なぜバスUIは難しいのか",
-          "challengeBody": "バスは鉄道と多くを共有しながらも、固有の作法を持ちます。運行図表（Stringline）の本場、改善基準告示に基づく拘束時間、IC残高 hero、消費者向け接近案内（まもなく到着／あと○分／○つ前）、高速バス座席表（3列独立／4列）、混雑表示の色非依存。toB の運行図表とダイヤ編成は、鉄道で2回手組みしたあとバスで3回目を踏んで Stringline として build。toC の乗車券は、航空・鉄道で描き込んだキャンバスが消費者側に綺麗に並びました。",
+          "challengeBody": "バスは鉄道と多くを共有しながらも、固有の作法を持ちます。運行図表（Stringline）の本場、改善基準告示に基づく拘束時間、IC残高主役ブロック、消費者向け接近案内（まもなく到着／あと○分／○つ前）、高速バス座席表（3列独立／4列）、混雑表示の色非依存。toB の運行図表とダイヤ編成は、鉄道で2回手組みしたあとバスで3回目を踏んで Stringline として実装。toC の乗車券は、航空・鉄道で描き込んだキャンバスが消費者側に綺麗に並びました。",
           "discoveredHeading": "ここで群青に加わった部品",
-          "discoveredIntro": "バス11枚で 3回確認を満たして build に到達した部品です。toB / toC 双方が同時にキャンバスを描き上げた回がいくつもあります。",
-          "discoveredFooter": "SegmentedControl は #156 モバイル乗車券で「2-3等幅の強制配置」として build。#157 運行情報・#158 IC でその場で自力発見され、複利の最短距離を改めて証明しました。",
+          "discoveredIntro": "バス11枚で 3回確認を満たして実装に到達した部品です。toB / toC 双方が同時にキャンバスを描き上げた回がいくつもあります。",
+          "discoveredFooter": "SegmentedControl は #156 モバイル乗車券で「2-3等幅の強制配置」として実装。#157 運行情報・#158 IC でその場で自力発見され、複利の最短距離を改めて証明しました。",
           "leftHeading": "この業界が gunjo に残したもの",
-          "leftBody": "バスは、運輸のキャンバスを一気に描き広げた業界として群青に残りました。Stringline（運行図表 SVG ゼロ）・Gantt intraday（resolution=\"hour\" で dayWidth ハック根治）・SegmentedControl・LineChip・Leaderboard──5部品が同じ arc で build。これらは鉄道・航空・タクシー・トラックの他モードでもそのまま自宅扱いの部品になっています。toB5＋toC6 の対称完走が、運輸モード間の「ロールモデル」になっている業界です。"
+          "leftBody": "バスは、運輸のキャンバスを一気に描き広げた業界として群青に残りました。Stringline（運行図表 SVG ゼロ）・Gantt intraday（resolution=\"hour\" で dayWidth ハック根治）・SegmentedControl・LineChip・Leaderboard──5部品が同じ arc で実装。これらは鉄道・航空・タクシー・トラックの他モードでもそのまま自宅扱いの部品になっています。toB5＋toC6 の対称完走が、運輸モード間の「ロールモデル」になっている業界です。"
         },
         "en": {
           "title": "Bus cold test — operations, dispatch, approach guide, highway booking, route search, mobile ticket",
@@ -993,7 +993,7 @@
           "name": "Stringline",
           "slug": "stringline",
           "round": 136,
-          "blurbJa": "時間×距離の運行図表（斜めの運行線）。30回以上手組みされ続け、鉄道2回＋バスで 3回確認達成 build。",
+          "blurbJa": "時間×距離の運行図表（斜めの運行線）。30回以上手組みされ続け、鉄道2回＋バスで 3回確認達成実装。",
           "blurbEn": "Time × distance run diagram (the diagonal trajectory). Hand-rolled for 30+ rounds across rail before bus brought the 3回確認trio."
         },
         {
@@ -1007,21 +1007,21 @@
           "name": "SegmentedControl",
           "slug": "segmented-control",
           "round": 156,
-          "blurbJa": "大人/小児・現金/IC/QR のような2-3等幅の選択切替。w-full justify-stretch [&>*]:flex-1 の強制配置で build。",
+          "blurbJa": "大人/小児・現金/IC/QR のような2-3等幅の選択切替。w-full justify-stretch [&>*]:flex-1 の強制配置で実装。",
           "blurbEn": "2–3 equal-width selection toggle (adult / child, cash / IC / QR). Built with w-full justify-stretch [&>*]:flex-1 forced layout."
         },
         {
           "name": "LineChip",
           "slug": "line-chip",
           "round": 157,
-          "blurbJa": "路線色＋自動コントラストの系統番号 chip。バス接近案内・経路検索・運行情報で 3回確認達成 build。",
+          "blurbJa": "路線色＋自動コントラストの系統番号 chip。バス接近案内・経路検索・運行情報で 3回確認達成実装。",
           "blurbEn": "Line-color chip with auto-contrast. Cleared 3回確認across approach guide, route search, service status."
         },
         {
           "name": "Leaderboard",
           "slug": "leaderboard",
           "round": 155,
-          "blurbJa": "ベスト/ワースト・順位表。タクシー営収 / バス系統別収支 / バス安全指標で 3回確認達成 build。",
+          "blurbJa": "ベスト/ワースト・順位表。タクシー営収 / バス系統別収支 / バス安全指標で 3回確認達成実装。",
           "blurbEn": "Best/worst ranking. Cleared 3回確認across taxi revenue ranking, bus per-route P&L, bus safety indicators."
         }
       ]
@@ -1032,12 +1032,12 @@
       "copy": {
         "ja": {
           "title": "タクシーUIのコールドテスト — 配車・乗務員・営収・車両・苦情・需要予測・乗車・予約・履歴・サポート・会員・法人",
-          "description": "配車管理 (AVM)、乗務員管理と点呼、営収分析、車両整備、苦情・事故、需要予測、消費者向け配車アプリ、予約配車、乗車履歴、サポート、会員サブスク、法人配車──toB6＋toC6 で対称完走した12枚。StatusBoard・ExpiryBadge・BottomActionBar が build した業界です。",
+          "description": "配車管理 (AVM)、乗務員管理と点呼、営収分析、車両整備、苦情・事故、需要予測、消費者向け配車アプリ、予約配車、乗車履歴、サポート、会員サブスク、法人配車──toB6＋toC6 で対称完走した12枚。StatusBoard・ExpiryBadge・BottomActionBar が実装した業界です。",
           "challengeHeading": "なぜタクシーUIは難しいのか",
           "challengeBody": "タクシーは toB の AVM 運用密度と、toC のモバイル配車アプリという「両極」が同居します。事業者側の車両状態盤（StatusBoard）、点呼でアルコール0.00 の magic-epsilon、車検／保険／資格の期限管理（ExpiryBadge）、需要×時間のヒートマップ、需給バランスの地図。消費者側の即時呼出・予約・履歴・サポート・会員・法人切替。連載で最初に「toC を6枚厚く掘って toB と対称にする」運用が固まった業界でもあります。toC 一回で締めようとして KeEem に「は？toC 一回で完成？？？」と正されたエピソードはこの arc から。",
           "discoveredHeading": "ここで群青に加わった部品",
-          "discoveredIntro": "タクシー12枚で 3回確認を満たして build に到達した部品です。toB6＋toC6 の対称完走で、消費者向けと事業者向けのキャンバスが同時に描き広がりました。",
-          "discoveredFooter": "BottomActionBar は #125 振替・#129 払戻・#139 高速バス予約・#147 配車アプリで 3回確認達成 build。「モバイル下 sticky CTA dock」は PageHeader（上 sticky）と対称のキャンバスになりました。",
+          "discoveredIntro": "タクシー12枚で 3回確認を満たして実装に到達した部品です。toB6＋toC6 の対称完走で、消費者向けと事業者向けのキャンバスが同時に描き広がりました。",
+          "discoveredFooter": "BottomActionBar は #125 振替・#129 払戻・#139 高速バス予約・#147 配車アプリで 3回確認達成実装。「モバイル下 sticky CTA dock」は PageHeader（上 sticky）と対称のキャンバスになりました。",
           "leftHeading": "この業界が gunjo に残したもの",
           "leftBody": "タクシーは、「物理opsキャンバスので最も多く足りなかった部品だった StatusBoard、「値 vs 期限」軸の ExpiryBadge、「mobile sticky CTA dock」の BottomActionBar を群青に残しました。さらに「toC は toB と同じ厚さまで掘る」というプロジェクトの運用ルールがこの業界で完成しています。連載の最強の領域適合 (#151 会員・サブスク・クーポンで~95%) もこの arc。"
         },
@@ -1058,21 +1058,21 @@
           "name": "StatusBoard",
           "slug": "status-board",
           "round": 141,
-          "blurbJa": "車両状態盤・機器盤・ランプ盤など「空間配置の状態ボード」。駅務 #132・ランプ #134・配車 #141 で 3回確認達成 build。",
+          "blurbJa": "車両状態盤・機器盤・ランプ盤など「空間配置の状態ボード」。駅務 #132・ランプ #134・配車 #141 で 3回確認達成実装。",
           "blurbEn": "Status boards for vehicles / equipment / ramp — \"spatial-layout state boards.\" Cleared 3回確認across station ops, ramp control, taxi dispatch."
         },
         {
           "name": "ExpiryBadge",
           "slug": "expiry-badge",
           "round": 142,
-          "blurbJa": "「値 vs 期限」軸の Badge。航空乗員資格・バス運転士・タクシー乗務員資格期限で 3回確認達成 build。後にチケット・クーポン期限にも広がる。",
+          "blurbJa": "「値 vs 期限」軸の Badge。航空乗員資格・バス運転士・タクシー乗務員資格期限で 3回確認達成実装。後にチケット・クーポン期限にも広がる。",
           "blurbEn": "Badge for the value-vs-expiry axis. Cleared 3回確認across air crew qualification / bus driver / taxi driver expiry. Later carried over to tickets and coupon expiry."
         },
         {
           "name": "BottomActionBar",
           "slug": "bottom-action-bar",
           "round": 147,
-          "blurbJa": "モバイル下 sticky CTA dock。振替・払戻・高速バス予約・配車で 3回確認達成 build。PageHeader（上 sticky）と対称のキャンバス。",
+          "blurbJa": "モバイル下 sticky CTA dock。振替・払戻・高速バス予約・配車で 3回確認達成実装。PageHeader（上 sticky）と対称のキャンバス。",
           "blurbEn": "Mobile bottom sticky CTA dock. Cleared 3回確認across rebooking, refund, highway-bus booking, ride hail. Symmetric to PageHeader (top sticky)."
         },
         {
@@ -1090,11 +1090,11 @@
       "copy": {
         "ja": {
           "title": "トラックUIのコールドテスト — 配車・求貨求車・車両労務・運賃請求・原価収支・荷主ポータル",
-          "description": "トラック配車（StatusBoard / Gantt / RouteStops）、求貨求車マッチング、車両労務（改善基準告示）、運賃請求と燃料サーチャージ、収支ダッシュボード、荷主ポータル、宅配追跡、国際輸送、配達設定、お支払いポータル──運輸5モード目を toB5＋toC5 で対称完走した10枚。LimitMonitor・SectionList・RouteStops dateLabel・NavRow が build した業界です。",
+          "description": "トラック配車（StatusBoard / Gantt / RouteStops）、求貨求車マッチング、車両労務（改善基準告示）、運賃請求と燃料サーチャージ、収支ダッシュボード、荷主ポータル、宅配追跡、国際輸送、配達設定、お支払いポータル──運輸5モード目を toB5＋toC5 で対称完走した10枚。LimitMonitor・SectionList・RouteStops dateLabel・NavRow が実装した業界です。",
           "challengeHeading": "なぜトラックUIは難しいのか",
           "challengeBody": "トラックは規制が重い（改善基準告示で拘束時間／連続運転／休息に名前付き上限）うえに、求貨求車という「二者間マーケットプレイス」、荷主ポータル・宅配追跡という「B2B2C 消費者側」、国際輸送の「多日タイムスタンプ」と、UI に新しいキャンバスを要求する作法が多いです。トラック arc では、これまでキャンバスに無かった「値 vs 名前付き上限」（LimitMonitor）、「日付グループ＋小計」（SectionList）、「自由形式の日付ラベル付きストップ」（RouteStops dateLabel）、「flush 設定行」（NavRow）が同じ arc で次々に 3回確認を満たしました。",
           "discoveredHeading": "ここで群青に加わった部品",
-          "discoveredIntro": "トラック10枚で 3回確認を満たして build に到達した部品です。キャンバスの隙間を最も多く埋めた arc としても記録されています。",
+          "discoveredIntro": "トラック10枚で 3回確認を満たして実装に到達した部品です。キャンバスの隙間を最も多く埋めた arc としても記録されています。",
           "discoveredFooter": "LimitMonitor は「値 vs 名前付き上限（ソフト/ハード・実単位）」として、ExpiryBadge（期限）/ ReferenceValue（範囲）/ Meter（容量）に次ぐ「value-vs-X 家系の4番目」になりました。docs の部品検索も Meter target / ReferenceValue 誤誘導を是正。",
           "leftHeading": "この業界が gunjo に残したもの",
           "leftBody": "トラックは、value-vs-X 家系を完成させた LimitMonitor、日付グループ＋小計の SectionList、多日タイムスタンプ対応の RouteStops dateLabel、flush 設定行 NavRow を群青に残しました。同時に運輸5モード（鉄道・航空・バス・タクシー・トラック）が全部 toB＋toC 対称で完走し、「運輸のキャンバス」が初めて 1業界として確立した arc でもあります。"
@@ -1116,14 +1116,14 @@
           "name": "LimitMonitor",
           "slug": "limit-monitor",
           "round": 161,
-          "blurbJa": "値 vs 名前付き上限（ソフト/ハード・実単位）。営業係数 / 拘束時間 / 改善基準告示で 3回確認達成 build。value-vs-X 家系の4番目。",
+          "blurbJa": "値 vs 名前付き上限（ソフト/ハード・実単位）。営業係数 / 拘束時間 / 改善基準告示で 3回確認達成実装。value-vs-X 家系の4番目。",
           "blurbEn": "Value vs named ceiling (soft / hard, real units). Cleared 3回確認across operating ratio / crew hour / regulator caps. Fourth member of the value-vs-X family."
         },
         {
           "name": "SectionList",
           "slug": "section-list",
           "round": 162,
-          "blurbJa": "グループ見出し＋本文＋グループ小計フッター。タクシー月別履歴 / バス IC 台帳 / 運賃請求で 3回確認達成 build。",
+          "blurbJa": "グループ見出し＋本文＋グループ小計フッター。タクシー月別履歴 / バス IC 台帳 / 運賃請求で 3回確認達成実装。",
           "blurbEn": "Group heading + body + group-subtotal footer. Cleared 3回確認across taxi monthly history, bus IC ledger, freight billing."
         },
         {
@@ -1137,7 +1137,7 @@
           "name": "NavRow",
           "slug": "nav-row",
           "round": 168,
-          "blurbJa": "flush 設定行（icon + label + value + chevron）。法人配車・宅配設定・お支払いポータルで 3回確認達成 build。docs の部品検索が ListCard.onSelect（aria-pressed トグル）に誤誘導する a11y バグも是正。",
+          "blurbJa": "flush 設定行（icon + label + value + chevron）。法人配車・宅配設定・お支払いポータルで 3回確認達成実装。docs の部品検索が ListCard.onSelect（aria-pressed トグル）に誤誘導する a11y バグも是正。",
           "blurbEn": "Flush settings row (icon + label + value + chevron). Cleared 3回確認across corporate booking, delivery settings, billing portal. Also fixed the discovery-index a11y bug that pointed at ListCard.onSelect (aria-pressed toggle)."
         }
       ]
