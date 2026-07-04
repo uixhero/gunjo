@@ -211,8 +211,8 @@ function UixheroRationaleSection({
             : "The when-and-why guidance for this component lives on our sister site UIXHERO (articles in Japanese).";
     const zukanLabel =
         locale === "ja"
-            ? `UIコンポーネント図鑑: ${componentTitle}`
-            : `Component encyclopedia: ${componentTitle}`;
+            ? `UIコンポーネント: ${componentTitle}`
+            : `UI component: ${componentTitle}`;
 
     const items = [
         ...(links.zukanHref ? [{ label: zukanLabel, href: links.zukanHref }] : []),

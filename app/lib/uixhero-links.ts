@@ -44,7 +44,7 @@ export interface UixheroLawLink {
 }
 
 export interface UixheroLinks {
-    /** UIコンポーネント図鑑の対応記事（対応がなければ null） */
+    /** UIコンポーネント解説の対応記事（対応がなければ null） */
     zukanHref: string | null;
     /** この部品を実装例として参照している法則・原則記事 */
     laws: UixheroLawLink[];
