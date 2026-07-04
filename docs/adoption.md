@@ -136,7 +136,7 @@ export default function Page() {
 
 ## Dark Mode 有効化
 
-GunjoUI は CSS variables ベースで、`html` または `body` に `class="dark"` を付けるだけで全コンポーネントが dark token に切り替わる。`next-themes` などのライブラリと組み合わせるのが定番：
+GunjoUI は CSS variables ベースで、`html` または `body` に `class="dark"` を付けるだけで全コンポーネントが dark token に切り替わる。採用先で `next-themes` などのライブラリと組み合わせる場合は、採用先プロジェクトに明示的に追加する：
 
 ```bash
 npm install next-themes
@@ -160,11 +160,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 }
 ```
 
-トグル UI のサンプルは GunjoUI 本体の `app/components/layout/ThemeToggle.tsx` 参照（ただしこれは docs サイト用で配布物には含まれない）。
+GunjoUI 本体には `ThemeProvider` / `ThemeToggle` も含まれているため、外部ライブラリを使わずに GunjoUI の `.dark` class 管理だけで始めることもできる。
 
 > **L3 段階の注記**：dark mode 全 70 コンポーネントの目視通しキャプチャは未取得。docs サイト（`npm run dev` → `:13030`）でトグル切替して目視確認することを推奨。
-
-> **next-themes について**：`next-themes` は本パッケージの `dependencies` に含まれているため、採用先で transitive に解決される。明示インストールしなくても import 可能だが、採用先で peer-managed 化したい場合は `npm install next-themes` を別途実行してもよい。
 
 ## フォント前提
 
