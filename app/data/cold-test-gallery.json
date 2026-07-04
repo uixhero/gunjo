@@ -34,7 +34,7 @@
       "category": "基盤UI・汎用",
       "title": "本当に AI に使わせてみた — 文脈ゼロのエージェントに @gunjo/ui で設定画面を作らせる（やってみた #1）",
       "readmeTitle": "設定画面",
-      "summary": "`@gunjo/ui` を作るとき、私は「**AI から使えるように設計した**」と書きました。部品を型つきで一か所からまとめて呼べること、部品の仕様を機械が読めること、AI にそのまま渡せる説明があること——AI が「眺める」だけでなく「読んでそのまま使える」形を、最初から組み込んだ、と。",
+      "summary": "`@gunjo/ui` を作るとき、私は「**AI から使えるように設計した**」と書きました。コンポーネントを型つきで一か所からまとめて呼べること、コンポーネントの仕様を機械が読めること、AI にそのまま渡せる説明があること——AI が「眺める」だけでなく「読んでそのまま使える」形を、最初から組み込んだ、と。",
       "article": {
         "file": "zenn-yattemita-01-settings.md",
         "slug": "01-settings"
@@ -2832,9 +2832,9 @@
       "slug": "taxi-maintenance",
       "score": "5/5",
       "category": "運輸：タクシー",
-      "title": "AI にタクシー車両管理を作らせてみた — 連載初の「5/5」、build した部品が資産の期限でも自力発見（やってみた #144）",
+      "title": "AI にタクシーの車両管理画面を作らせてみた — 連載で初めての満点（5/5）（やってみた #144）",
       "readmeTitle": "タクシー 車両管理・車検/整備（タクシーtoB4枚目=保守=鉄道車両検査#108/航空MRO#130のタクシー版/渋谷営業所 デスクトップ密度・車両一覧ActionDataTable/車検保険期限ExpiryBadge/走行距離Meter/整備計画Gantt/要対応ActionQueue/整備記録SignedRecord/稼働盤StatusBoard層）★**連載初の 5/5**・保守土台6部品が全 摩擦ゼロ(「commission されたよう」)・**build→別業界での自力発見=ExpiryBadge(#142 crew build)が車検/保険=asset 期限で自力発見+StatusBoard(#141)も稼働盤で再来**・DesktopPageHeader/tone語彙統一 #397起票",
-      "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
+      "summary": "型チェックも通り、デスクトップ向けの密度で一発完成。群青を一度も触っていない AI の感想：",
       "article": {
         "file": "zenn-yattemita-144-taxi-maintenance.md",
         "slug": "144-taxi-maintenance"
