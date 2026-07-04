@@ -37,6 +37,10 @@
     "tailwind-theme-extend.cjs",
     "design/*-metadata.json"
   ],
+  "sideEffects": [
+    "./src/globals.css",
+    "**/*.css"
+  ],
   "scripts": {
     "type-check": "tsc --noEmit --incremental false",
     "dev": "next dev -p 13030",
@@ -143,7 +147,6 @@
     "tailwindcss": "^3.0.0 || ^4.0.0"
   },
   "dependencies": {
-    "@next/third-parties": "^16.2.9",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
     "@radix-ui/react-aspect-ratio": "^1.1.8",
@@ -170,21 +173,16 @@
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.0.0",
     "input-otp": "^1.4.2",
-    "lucide-react": "^0.562.0",
-    "next": "16.1.0",
-    "next-themes": "^0.4.6",
-    "react": "^19.0.0",
     "react-day-picker": "^9.13.0",
-    "react-dom": "^19.0.0",
     "react-markdown": "^10.1.0",
     "react-resizable-panels": "^4.0.11",
     "remark-gfm": "^4.0.1",
-    "shiki": "^3.20.0",
     "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^1.1.2"
   },
   "devDependencies": {
+    "@next/third-parties": "^16.2.9",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -194,8 +192,13 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.0",
     "lighthouse": "^12.8.2",
+    "next": "16.1.0",
+    "next-themes": "^0.4.6",
     "postcss": "^8.5.6",
     "puppeteer": "^24.41.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "shiki": "^3.20.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }
