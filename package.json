@@ -48,7 +48,6 @@
   "scripts": {
     "type-check": "tsc --noEmit --incremental false",
     "build:lib": "rm -rf dist && tsc -p tsconfig.build.json && node scripts/build-lib-finalize.mjs",
-    "prepublishOnly": "npm run build:lib",
     "dev": "next dev -p 13030",
     "build": "next build",
     "start": "next start",
@@ -60,7 +59,7 @@
     "coldtest-gallery:thumbs": "node scripts/build-coldtest-thumbs.mjs",
     "coldtest-gallery:rounds": "node scripts/build-coldtest-rounds.mjs",
     "coldtest-primitives:aggregate": "node scripts/aggregate-coldtest-primitives.mjs",
-    "prepare": "npm run hooks:install",
+    "prepare": "npm run build:lib && npm run hooks:install",
     "hooks:install": "node scripts/install-git-hooks.mjs",
     "design:sync": "node scripts/design-sync.mjs",
     "design:sync:tokens": "node scripts/design-sync.mjs --tokens",
