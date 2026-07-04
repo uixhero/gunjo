@@ -1243,7 +1243,7 @@ export const translations: Record<
         label: "コールドテスト",
         heading: "群青を知らない AI に作らせた、170 画面。",
         subtitle: (count) =>
-          `${count} ラウンド。文脈ゼロのエージェントに、公開 npm パッケージと gunjo.jp の docs だけを渡して——ソースは見せず——動く画面を組ませた記録です。`,
+          `${count} ラウンド。予備知識ゼロの AI に、公開 npm パッケージと gunjo.jp の docs だけを渡して——ソースは見せず——動く画面を組ませた記録です。`,
         searchPlaceholder: "ラウンド・ルート・業種を検索...",
         allTab: "全て",
         emptyState: "該当するラウンドがありません。",
@@ -1306,7 +1306,7 @@ export const translations: Record<
           label: "方法論",
           heading: "なぜコールドテストするか",
           subtitle:
-            "文脈ゼロの AI に、公開 npm パッケージと gunjo.jp の docs だけで実在の業種の画面を組ませる ── 170 ラウンドの記録から、何が結晶化したか。",
+            "予備知識ゼロの AI に、公開 npm パッケージと gunjo.jp の docs だけで実在の業種の画面を組ませる ── 170 ラウンドの記録から、どんな部品が群青に加わったか。",
           ctaGalleryLabel: "170 ラウンドのカタログを見る",
           ctaComponentsLabel: "コンポーネント一覧へ",
           breadcrumbLabel: "なぜ",
