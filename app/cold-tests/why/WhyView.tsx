@@ -183,9 +183,9 @@ export function WhyView() {
                     {isJa ? (
                         <p className="leading-7 text-foreground">
                             <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">@gunjo/ui</code>{" "}
-                            は、「AI から使えるように設計した」とうたって公開されました。typed entry point、
-                            機械可読な metadata、AI-handoff ドキュメント。エージェントが「眺める」のではなく
-                            「読んで、そのまま使う」ための面を、最初から組み込んだ設計です。
+                            は、「AI から使えるように設計した」とうたって公開されました。部品を型つきで一か所からまとめて呼べること、
+                            部品の仕様を機械が読めること、AI にそのまま渡せる説明があること。AI が「眺める」だけでなく
+                            「読んでそのまま使える」形を、最初から組み込んだ設計です。
                             でも、それはあくまで主張にすぎません。
                             <strong>言葉にするだけなら、誰にでもできます</strong>。
                             このコールドテストは、本当にそうなのかを確かめる場として始まりました。
@@ -208,7 +208,7 @@ export function WhyView() {
                     <ol className="ml-5 list-decimal space-y-2 text-foreground">
                         <li className="leading-7">
                             {isJa
-                                ? "まず、文脈ゼロの AI に「あなたは群青を初めて使うエンジニアです。この業種のこの画面を、できるだけ群青の部品で作ってください」とお願いします。"
+                                ? "まず、予備知識ゼロの AI に「あなたは群青を初めて使うエンジニアです。この業種のこの画面を、できるだけ群青の部品で作ってください」とお願いします。"
                                 : "Spin up a context-free AI: 'You're an engineer who has never seen Gunjo before. Build this industry's screen using Gunjo components as much as possible.'"}
                         </li>
                         <li className="leading-7">
@@ -218,17 +218,17 @@ export function WhyView() {
                         </li>
                         <li className="leading-7">
                             {isJa
-                                ? "そのうえで、「この部品が無かったので手で組みました」「索引はこの部品を勧めてきましたが、用途には合いませんでした」と、正直に報告してもらいます。"
+                                ? "そのうえで、「この部品が無かったので手で組みました」「docs の部品検索はこの部品を勧めてきましたが、用途には合いませんでした」と、正直に報告してもらいます。"
                                 : "Ask the AI to honestly report what was hand-rolled, where the discovery index pointed at the wrong primitive, where the docs misled."}
                         </li>
                         <li className="leading-7">
                             {isJa
-                                ? "こうして集まった「手で組んだ跡」を見ていきます。3つの別々の画面で、それぞれ独立に同じものが手組みされていたら（これを 3-confirm と呼んでいます）、それは本当に欠けている部品だと考えます。"
+                                ? "こうして集まった「手で組んだ跡」を見ていきます。3つの別々の画面で、それぞれ独立に同じものが手組みされていたら（これを「3回確認」と呼んでいます）、それは本当に足りない部品だと考えます。"
                                 : "Collect the hand-rolled traces. When the same shape is independently re-built across three separate screens (3-confirm), it's a real gap."}
                         </li>
                         <li className="leading-7">
                             {isJa
-                                ? "そこで初めてデザインシステムに正式に追加し、SSOT（.pen / synthetic spec）まで反映して、その回を記事にまとめます。"
+                                ? "そこで初めて、正式な部品としてデザインシステムに追加します。デザインソースから実装・docs まで一括で揃えて（＝正が一つだけの状態・SSOT）、その回を記事にまとめます。"
                                 : "Ship the component, close the SSOT loop (.pen or synthetic spec), and write the round up."}
                         </li>
                     </ol>
@@ -237,19 +237,19 @@ export function WhyView() {
                 <section className="space-y-4">
                     <h2 className="text-2xl font-bold tracking-tight">
                         {isJa
-                            ? "3-confirm — 1回・2回では作らない"
+                            ? "3回確認 — 1回・2回では作らない"
                             : "3-confirm — never build on the first hit"}
                     </h2>
                     {isJa ? (
                         <p className="leading-7 text-foreground">
-                            群青では「同じ穴が3回出てくるまで待つ」ことにしています。1回目はまだ起票するだけ、
-                            2回目は索引やドキュメントを調整するだけにとどめ、3回目になって初めて部品をつくります。
+                            群青では「同じ&quot;足りない部品&quot;が3回出てくるまで待つ」ことにしています。1回目はまだ課題として記録するだけ、
+                            2回目は docs の部品検索や説明を調整するだけにとどめ、3回目になって初めて部品をつくります。
                             <strong>その形が本当に安定するのを見届けるため</strong>です。
-                            急いで結晶化させると、API がひとつの用途に狭く固まってしまいます。たとえば{" "}
+                            急いで正式な部品にすると、部品の形がひとつの用途に狭く固まってしまいます。たとえば{" "}
                             <code className="rounded bg-muted px-1.5 py-0.5 font-mono text-sm">MatchCard</code>{" "}
                             は、3回目（補助金マッチング＝会社×制度という<strong>異なる種類どうしのペア</strong>）が決め手になりました。
                             もし1〜2回目（同じ種類どうしのペア）の時点でつくっていたら、「会社×会社」に固定してしまっていたかもしれません。
-                            異なる種類のペアに出会ったからこそ、「left/right はどんなエンティティでもよい」という設計にたどり着けたのです。
+                            異なる種類のペアに出会ったからこそ、「左右はどんな対象でもよい」という設計にたどり着けたのです。
                             3回目は、数を合わせるためではなく、<strong>仕様を最終的に見極めるため</strong>の回でした。
                         </p>
                     ) : (
@@ -272,11 +272,11 @@ export function WhyView() {
                         components that crystallised — stating it as "結晶化したN
                         部品" would read as the total and drift / mislead. */}
                     <h2 className="text-2xl font-bold tracking-tight">
-                        {isJa ? "結晶化した部品（抜粋）" : "What crystallised (highlights)"}
+                        {isJa ? "群青に加わった部品（抜粋）" : "What crystallised (highlights)"}
                     </h2>
                     <p className="text-sm text-muted-foreground">
                         {isJa
-                            ? `${ROUND_COUNT} 画面を通るなかで結晶化した ${CRYSTALLIZED_COUNT} 部品のうち、ここでは代表を抜粋しています。名前をクリックすると、それぞれのドキュメントへ移動します。`
+                            ? `${ROUND_COUNT} 画面を通るなかで群青に加わった ${CRYSTALLIZED_COUNT} 個の部品のうち、ここでは代表を抜粋しています。名前をクリックすると、それぞれのドキュメントへ移動します。`
                             : `${CRYSTALLIZED_COUNT} primitives crystallised across ${ROUND_COUNT} rounds — a curated highlight sits below. Click any name to open its docs.`}
                     </p>
                     <ul className="grid gap-2 sm:grid-cols-2">
@@ -301,16 +301,16 @@ export function WhyView() {
                 <section className="space-y-4">
                     <h2 className="text-2xl font-bold tracking-tight">
                         {isJa
-                            ? "AI を「正直者の検査装置」として"
+                            ? "予備知識ゼロの AI は、忖度せず「無い」と言う"
                             : "The AI as an honest probe"}
                     </h2>
                     {isJa ? (
                         <p className="leading-7 text-foreground">
-                            文脈ゼロの AI が「<strong>この部品は無い</strong>」と書いたとき、それは
+                            予備知識ゼロの AI が「<strong>この部品は無い</strong>」と書いたとき、それは
                             「<strong>本当に無い</strong>」ことの、かなり強い証拠になります。
                             人が「なんとなく足りない気がする」と言うより、ずっと確かな手がかりです。
                             この AI にとっては手元のドキュメントだけが世界のすべてで、過去の経験や思い込みで隙間を埋めることができないからです。
-                            手で組まれた跡は、<strong>設計の穴を正確に映した地図</strong>のようなもの。
+                            手で組まれた跡は、<strong>&quot;足りない部品&quot;を正確に映した地図</strong>のようなもの。
                             その地図をたどっていくと、「これは本当に群青の側の問題なのか」「それとも AI の理解が足りなかっただけなのか」を、落ち着いて切り分けられます。
                         </p>
                     ) : (
@@ -332,7 +332,7 @@ export function WhyView() {
                     </h2>
                     <ul className="space-y-2 text-foreground">
                         <li className="leading-7">
-                            <strong>{isJa ? "「完走」と言えるのは、toB と toC が同じ厚みになったときだけ。" : "A mode is 'done' only when toB and toC have equal weight."}</strong>{" "}
+                            <strong>{isJa ? "「完走」と言えるのは、事業者向け（toB）と利用者向け（toC）が同じ厚みになったときだけ。" : "A mode is 'done' only when toB and toC have equal weight."}</strong>{" "}
                             {isJa
                                 ? "事業者側だけ作って満足してしまうと、穴は消費者側に集まります。実際、タクシーは事業者側を6枚作っても新しい部品はゼロでしたが、利用者側を6枚掘ると7部品以上が出てきました。"
                                 : "Stop at operator-side and the gaps cluster on the consumer side. Taxi toB across 6 screens produced zero new primitives; taxi toC across 6 screens produced 7+."}
@@ -340,19 +340,19 @@ export function WhyView() {
                         <li className="leading-7">
                             <strong>{isJa ? "「これは作るべきだ」という根拠には、強さの段階がある。" : "Build evidence has a strength ladder."}</strong>{" "}
                             {isJa
-                                ? "いちばん弱いのは「部品が無くて手で組んだ」。次が「索引が間違った部品を勧めてきた」。そして最も強いのが「既存部品では HTML の構造上どうしても無理」というケースで、これには反論の余地がほとんどありません。"
+                                ? "いちばん弱いのは「部品が無くて手で組んだ」。次が「docs の部品検索が間違った部品を勧めてきた」。そして最も強いのが「既存部品では HTML の構造上どうしても組めない」というケースで、これには反論の余地がほとんどありません。"
                                 : "Missing primitive → discovery index misleads → existing primitive is structurally impossible (e.g. button-in-button on a card). The last tier is unarguable."}
                         </li>
                         <li className="leading-7">
-                            <strong>{isJa ? "床が成熟するほど、部品を作ってから再発見されるまでの距離が縮む。" : "As the floor matures, build-to-rediscovery distance shrinks."}</strong>{" "}
+                            <strong>{isJa ? "キャンバスが埋まるほど、作った部品がすぐ次に使い回されるようになる。" : "As the canvas fills in, build-to-rediscovery distance shrinks."}</strong>{" "}
                             {isJa
-                                ? "初期は、作った部品が次に独立して再発見されるまで17回も離れていました。それが終盤には2回（ほとんど連続）にまで縮みました。新しい画面は「新しい部品を生む場」というより、「既存の部品が思わぬ文脈で使い回される場」へと変わっていったのです。"
-                                : "Early on, a freshly built primitive was independently rediscovered 17 rounds later. Late on, the gap shrank to 2 — the floor stops generating new gaps and starts proving reuse."}
+                                ? "初期は、作った部品を次に別の AI が自力で見つけて使うまで、17回も離れていました。それが終盤には2回（ほとんど連続）にまで縮みました。新しい画面は「新しい部品を生む場」というより、「既存の部品が思わぬ場面で使い回される場」へと変わっていったのです。"
+                                : "Early on, a freshly built primitive was independently rediscovered 17 rounds later. Late on, the gap shrank to 2 — the canvas stops generating new gaps and starts proving reuse."}
                         </li>
                         <li className="leading-7">
                             <strong>{isJa ? "業界の壁は、思っていたより薄い。" : "Industry borders are thin."}</strong>{" "}
                             {isJa
-                                ? `${INDUSTRY_COUNT} 業種・運輸5モードを通ってみると、共通の床（汎用的な UI）に業界ならではの部品を少し重ねるだけで、その多くを組むことができました。業界ごとの作法はもちろんありますが、UI の部品レベルでは業界を越えて使い回されることが多いのです。`
+                                ? `${INDUSTRY_COUNT} 業種・運輸5モードを通ってみると、共通のキャンバス（汎用的な UI）に業界ならではの部品を少し重ねるだけで、その多くを組むことができました。業界ごとの作法はもちろんありますが、UI の部品レベルでは業界を越えて使い回されることが多いのです。`
                                 : `Across ${INDUSTRY_COUNT} industries and five transport modes, generic UI + a thin layer of industry primitives covered most cases. Industry-specific conventions exist but rarely demand industry-specific UI primitives.`}
                         </li>
                     </ul>
