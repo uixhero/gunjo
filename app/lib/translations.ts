@@ -1287,7 +1287,7 @@ export const translations: Record<
           sourceCodeMissing: (overwrittenBy) =>
             `この回のソースは保存されていません——同じルートが #${overwrittenBy} で別の画面として組み直され、ファイルが上書きされたためです。上の記事とスクショは、組まれた当時の姿を残しています。`,
           componentsUsed: "使用した @gunjo/ui コンポーネント",
-          componentsUsedHint: "この画面のソースが直接 import している部品です。",
+          componentsUsedHint: "この画面のソースが直接 import しているコンポーネントです。",
           componentDocsLabel: (name) => `${name} のドキュメントを開く`,
           summaryFooter: "まとめ",
           aiDisclosure:
@@ -1306,7 +1306,7 @@ export const translations: Record<
           label: "方法論",
           heading: "なぜコールドテストするか",
           subtitle:
-            "予備知識ゼロの AI に、公開 npm パッケージと gunjo.jp の docs だけで実在の業種の画面を組ませる ── 170 ラウンドの記録から、どんな部品が群青に加わったか。",
+            "予備知識ゼロの AI に、公開 npm パッケージと gunjo.jp の docs だけで実在の業種の画面を組ませる ── 170 ラウンドの記録から、どんなコンポーネントが群青に加わったか。",
           ctaGalleryLabel: "170 ラウンドのカタログを見る",
           ctaComponentsLabel: "コンポーネント一覧へ",
           breadcrumbLabel: "なぜ",
@@ -1858,7 +1858,7 @@ export const translations: Record<
       OriginDestination: "区間（発着）",
       SettingGroup: "設定グループ",
       LineChip: "路線チップ",
-      StatusBoard: "状態盤",
+      StatusBoard: "状態ボード",
       ExpiryBadge: "有効期限",
       LimitMonitor: "上限監視",
       RevealSection: "条件付きセクション",
