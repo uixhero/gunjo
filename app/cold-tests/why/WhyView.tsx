@@ -125,6 +125,51 @@ export function WhyView() {
                     <LocalNav />
                 </header>
 
+                {/* Decorative screen wall — atmosphere, NOT a menu. The linked
+                    mosaic moved to the bottom because clickable screenshots
+                    pulled readers away before the argument. This band is
+                    non-interactive (aria-hidden, pointer-events-none) so it sets
+                    the "170 screens the AI built" scene without being an exit. */}
+                {HERO_TILES.length > 0 && (
+                    <div
+                        aria-hidden="true"
+                        className="pointer-events-none relative select-none overflow-hidden rounded-lg border border-border/40 bg-muted/20"
+                    >
+                        <div
+                            className="flex gap-1.5 opacity-[0.6]"
+                            style={{
+                                WebkitMaskImage:
+                                    "linear-gradient(to bottom, black 40%, transparent)",
+                                maskImage:
+                                    "linear-gradient(to bottom, black 40%, transparent)",
+                            }}
+                        >
+                            {HERO_TILES.slice(0, 6).map((tile) => (
+                                <div
+                                    key={tile.round}
+                                    className="h-36 flex-1 overflow-hidden sm:h-44"
+                                >
+                                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                                    <img
+                                        src={`/cold-test-shots/${tile.slug}.desktop.webp`}
+                                        alt=""
+                                        loading="lazy"
+                                        decoding="async"
+                                        className="h-full w-full object-cover object-top"
+                                    />
+                                </div>
+                            ))}
+                        </div>
+                        <div className="absolute inset-x-0 bottom-0 p-3">
+                            <span className="inline-block rounded bg-background/75 px-2 py-1 text-xs font-medium text-muted-foreground backdrop-blur-sm">
+                                {isJa
+                                    ? `群青を知らない AI が組んだ ${ROUND_COUNT} 画面`
+                                    : `${ROUND_COUNT} screens built by AI that had never seen Gunjo`}
+                            </span>
+                        </div>
+                    </div>
+                )}
+
                 {/* Body sections — long-form prose, primary JA with a thin EN
                     variant. Wrapped in semantic <section> with h2 for the TOC.
                     The hero mosaic used to sit here, above the prose, but strong
