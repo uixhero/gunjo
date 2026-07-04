@@ -13,7 +13,13 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ### Changed
 
-- **配布形態を「生 TS 直配布」から「コンパイル済み `dist/`（ESM + `.d.ts`）」へ変更**（採用先影響: **none**）。`exports "."` が `./dist/index.js` を指すようになり、採用先は `transpilePackages: ["@gunjo/ui"]` なしで Next.js / Vite からそのまま import できる。各コンポーネントの `"use client"` 境界は `tsc` が directive として保持。`npm run build:lib`（`tsc -p tsconfig.build.json`）で生成し、`prepublishOnly` で publish 時に自動ビルド。既存採用先はコード変更不要（`transpilePackages` は削除してよい）。
+- **配布形態を「生 TS 直配布」から「コンパイル済み `dist/`（ESM + `.d.ts`）」へ変更**（採用先影響: **none**）。`exports "."` が `./dist/index.js` を指すようになり、採用先は `transpilePackages: ["@gunjo/ui"]` なしで Next.js / Vite からそのまま import できる。各コンポーネントの `"use client"` 境界は `tsc` が directive として保持。`npm run build:lib`（`tsc -p tsconfig.build.json`）で生成し、`prepare` で `npm install` / `pack` / `publish` 時に自動ビルド。既存採用先はコード変更不要（`transpilePackages` は削除してよい）。
+
+### Fixed
+
+- `prepare` が dist を自動ビルドするようになり、`npm install file:../gunjo` などローカル採用でも `dist/` が確実に揃う（採用先影響: **none**）。
+- `prepare` の git hooks インストールを堅牢化：書込不可環境でも失敗しない（`npm pack` / `publish` を壊さない）。gunjo リポジトリ本体でのみ動作し、`file:`/`git+` install で採用先の `core.hooksPath` を書き換えない。
+- リポジトリに commit されていた古いビルド成果物 `gunjo-ui-0.0.1-alpha.2.tgz` を削除し、`*.tgz` を gitignore。
 
 ## [0.0.1-alpha.2] — 2026-06-13
 

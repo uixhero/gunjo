@@ -44,7 +44,7 @@ L4（実採用）開始時にレジストリの最終決定（社内 / 公開）
 }
 ```
 
-> dist は `npm run build:lib`（`tsc -p tsconfig.build.json`）で生成し、`prepublishOnly` で publish 時に自動ビルドされる。`"use client"` 境界はファイル先頭の directive として tsc がそのまま保持する。生 TS を直接 `exports` していた旧 alpha と異なり、採用先は `transpilePackages` 不要でそのまま import できる。
+> dist は `npm run build:lib`（`tsc -p tsconfig.build.json`）で生成し、`prepare` で `npm install` / `npm pack` / `npm publish` 時に自動ビルドされる（`npm install file:../gunjo` のローカル採用でも dist が揃う）。`"use client"` 境界はファイル先頭の directive として tsc がそのまま保持する。生 TS を直接 `exports` していた旧 alpha と異なり、採用先は `transpilePackages` 不要でそのまま import できる。
 
 `tailwind-theme-extend` は Tailwind v4 採用先が `@theme` ベースで token map を直接使いたい場合の出口。通常は `tailwind-preset` 経由で十分（[adoption.md](./adoption.md#3-tailwind-プリセット取り込み) 参照）。
 

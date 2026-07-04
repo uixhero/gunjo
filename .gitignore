@@ -5,6 +5,7 @@ dist/
 build/
 .next/
 *.tsbuildinfo
+*.tgz
 .design-audit/docs/
 .design-audit/pen/
 .design-audit/compare/
