@@ -6,7 +6,7 @@
 
 **「全置換」ではなく「低リスクな土台から順に段階置換」**。トークン → Tailwind preset → Inputs → Display / Feedback → Navigation / Overlay の順で置き換え、各段階の終わりに視覚回帰を確認する。途中で問題が出たら直前の段階にロールバックできる構造を維持する。
 
-> **前提**：本プレイブックは [adoption.md](./adoption.md) の §1（パッケージ追加）と §2（`transpilePackages` 設定）が完了している状態から始める。未完なら先に adoption.md の手順を踏むこと。
+> **前提**：本プレイブックは [adoption.md](./adoption.md) の §1（パッケージ追加）が完了している状態から始める。dist 配布化以降 `transpilePackages` 設定は不要。未完なら先に adoption.md の手順を踏むこと。
 
 ## ステージ概要
 
@@ -70,7 +70,7 @@ const config = {
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
-    "./node_modules/@gunjo/ui/src/**/*.{ts,tsx}",  // ← 重要
+    "./node_modules/@gunjo/ui/dist/**/*.js",  // ← 重要（コンパイル済み dist）
   ],
 };
 ```
@@ -165,7 +165,7 @@ npm run build      # 本番ビルドが通るか
 
 ## 既知の落とし穴
 
-- **`transpilePackages` 抜け**：採用先 `next.config.ts` に `transpilePackages: ["@gunjo/ui"]` を入れずに Stage ③ に進むと、最初の `import { Button } from "@gunjo/ui"` で `SyntaxError: Unexpected token` が出てビルドが落ちる。Stage ① 着手前に [adoption.md §2](./adoption.md#2-nextjs-設定必須) の確認を必須化
+- **旧 alpha（生 TS 配布版）を掴む**：`0.0.1-alpha.2` 以前を使うと `transpilePackages` 未設定で `import { Button } from "@gunjo/ui"` が `SyntaxError: Unexpected token` になる。最新の dist 配布版はコンパイル済みなので設定不要（[adoption.md §2](./adoption.md#2-ビルド設定不要)）。落ちる場合はまずパッケージ更新を確認
 - **font-family の指定漏れ**：採用先で `<body>` に `Inter` を当てていない場合、GunjoUI の text 系コンポーネントだけ周囲と font が違って見える。layout で root font を `Inter` にするのが正解
 - **CSS specificity 衝突**：採用先の独自 utility が GunjoUI のクラスを上書きしていた場合、置換後に挙動がおかしくなる。`!important` を使わず、独自スタイルの scope を絞ることで回避
 - **Tailwind v3 と v4 の混在**：採用先が v3 なのに GunjoUI を v4 想定で使うとプリセットが機能しない。バージョンを揃えること
