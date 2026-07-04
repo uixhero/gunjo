@@ -10,8 +10,9 @@
     "shadcn",
     "ssot"
   ],
-  "main": "src/index.ts",
-  "types": "src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uixhero/gunjo.git"
@@ -25,12 +26,16 @@
     "access": "public"
   },
   "exports": {
-    ".": "./src/index.ts",
-    "./styles": "./src/globals.css",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./styles": "./dist/globals.css",
     "./tailwind-preset": "./tailwind-preset.js",
     "./tailwind-theme-extend": "./tailwind-theme-extend.cjs"
   },
   "files": [
+    "dist",
     "src",
     "docs",
     "tailwind-preset.js",
@@ -38,11 +43,12 @@
     "design/*-metadata.json"
   ],
   "sideEffects": [
-    "./src/globals.css",
     "**/*.css"
   ],
   "scripts": {
     "type-check": "tsc --noEmit --incremental false",
+    "build:lib": "rm -rf dist && tsc -p tsconfig.build.json && node scripts/build-lib-finalize.mjs",
+    "prepublishOnly": "npm run build:lib",
     "dev": "next dev -p 13030",
     "build": "next build",
     "start": "next start",

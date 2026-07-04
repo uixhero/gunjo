@@ -9,6 +9,12 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ---
 
+## [Unreleased]
+
+### Changed
+
+- **配布形態を「生 TS 直配布」から「コンパイル済み `dist/`（ESM + `.d.ts`）」へ変更**（採用先影響: **none**）。`exports "."` が `./dist/index.js` を指すようになり、採用先は `transpilePackages: ["@gunjo/ui"]` なしで Next.js / Vite からそのまま import できる。各コンポーネントの `"use client"` 境界は `tsc` が directive として保持。`npm run build:lib`（`tsc -p tsconfig.build.json`）で生成し、`prepublishOnly` で publish 時に自動ビルド。既存採用先はコード変更不要（`transpilePackages` は削除してよい）。
+
 ## [0.0.1-alpha.2] — 2026-06-13
 
 OSS 公開に合わせた alpha リリース。`0.0.1-alpha.0` / `alpha.1`（70 components）以降に追加された全コンポーネント（Tier 1/2/3 + Templates、計 42 件）と、LICENSE / `repository` フィールド / public 化などの OSS 整備を配布。npm 上の README・メタデータも刷新。**API は今後変更される可能性があります。**
