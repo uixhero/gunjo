@@ -344,15 +344,15 @@ export function WhyView() {
                                 : "Missing primitive → discovery index misleads → existing primitive is structurally impossible (e.g. button-in-button on a card). The last tier is unarguable."}
                         </li>
                         <li className="leading-7">
-                            <strong>{isJa ? "床が成熟するほど、部品を作ってから再発見されるまでの距離が縮む。" : "As the floor matures, build-to-rediscovery distance shrinks."}</strong>{" "}
+                            <strong>{isJa ? "キャンバスが埋まるほど、部品を作ってから再発見されるまでの距離が縮む。" : "As the canvas fills in, build-to-rediscovery distance shrinks."}</strong>{" "}
                             {isJa
                                 ? "初期は、作った部品が次に独立して再発見されるまで17回も離れていました。それが終盤には2回（ほとんど連続）にまで縮みました。新しい画面は「新しい部品を生む場」というより、「既存の部品が思わぬ文脈で使い回される場」へと変わっていったのです。"
-                                : "Early on, a freshly built primitive was independently rediscovered 17 rounds later. Late on, the gap shrank to 2 — the floor stops generating new gaps and starts proving reuse."}
+                                : "Early on, a freshly built primitive was independently rediscovered 17 rounds later. Late on, the gap shrank to 2 — the canvas stops generating new gaps and starts proving reuse."}
                         </li>
                         <li className="leading-7">
                             <strong>{isJa ? "業界の壁は、思っていたより薄い。" : "Industry borders are thin."}</strong>{" "}
                             {isJa
-                                ? `${INDUSTRY_COUNT} 業種・運輸5モードを通ってみると、共通の床（汎用的な UI）に業界ならではの部品を少し重ねるだけで、その多くを組むことができました。業界ごとの作法はもちろんありますが、UI の部品レベルでは業界を越えて使い回されることが多いのです。`
+                                ? `${INDUSTRY_COUNT} 業種・運輸5モードを通ってみると、共通のキャンバス（汎用的な UI）に業界ならではの部品を少し重ねるだけで、その多くを組むことができました。業界ごとの作法はもちろんありますが、UI の部品レベルでは業界を越えて使い回されることが多いのです。`
                                 : `Across ${INDUSTRY_COUNT} industries and five transport modes, generic UI + a thin layer of industry primitives covered most cases. Industry-specific conventions exist but rarely demand industry-specific UI primitives.`}
                         </li>
                     </ul>
