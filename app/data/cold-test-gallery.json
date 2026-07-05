@@ -54,7 +54,7 @@
       "category": "基盤UI・汎用",
       "title": "またしても本当に AI に使わせてみた — モーダル告知バナーを @gunjo/ui で（やってみた #2）",
       "readmeTitle": "モーダル告知バナー",
-      "summary": "[前回](#)と同じ条件です。この文脈をまったく知らない AI エージェント1体に、**公開済みの npm `@gunjo/ui`（alpha.2）と [gunjo.jp](https://gunjo.jp) の docs だけ**を渡す。ソースリポジトリは見せない。まっさらな Next.js（React 19 / Tailwind v4）で、`npm run build` が通るところまで自力で。",
+      "summary": "[前回](#)と同じ条件です。群青のことをまったく知らない AI エージェント1体に、**公開済みの npm `@gunjo/ui`（alpha.2）と [gunjo.jp](https://gunjo.jp) の docs だけ**を渡す。ソースリポジトリは見せない。まっさらな Next.js（React 19 / Tailwind v4）で、`npm run build` が通るところまで自力で。",
       "article": {
         "file": "zenn-yattemita-02-modal-banner.md",
         "slug": "02-modal-banner"
@@ -74,7 +74,7 @@
       "category": "基盤UI・汎用",
       "title": "またしても AI に使わせてみた — カルーセル、そして \"氷山の一角\" の話（やってみた #3）",
       "readmeTitle": "カルーセル",
-      "summary": "条件は毎回同じ。文脈ゼロの AI に、**公開済みの npm `@gunjo/ui`（alpha.2）と [gunjo.jp](https://gunjo.jp) の docs だけ**を渡す。ソースは見せない。まっさらな Next.js（React 19 / Tailwind v4）で `npm run build` が通るまで自力で。",
+      "summary": "条件は毎回同じ。予備知識ゼロの AI に、**公開済みの npm `@gunjo/ui`（alpha.2）と [gunjo.jp](https://gunjo.jp) の docs だけ**を渡す。ソースは見せない。まっさらな Next.js（React 19 / Tailwind v4）で `npm run build` が通るまで自力で。",
       "article": {
         "file": "zenn-yattemita-03-carousel.md",
         "slug": "03-carousel"
@@ -94,7 +94,7 @@
       "category": "基盤UI・汎用",
       "title": "AI にダッシュボードを作らせてみた — チャートは\"任意データで壊れない\"のか（やってみた #4）",
       "readmeTitle": "ダッシュボード",
-      "summary": "gunjo のチャートは SVG じゃなく **HTML/CSS のレイアウトプリミティブ**で作ってある。狙いは「**任意のデータで崩れないこと**」。固定された綺麗なサンプルじゃなく、現実の汚いデータ——桁違いのスケール、外れ値、ゼロ、極小値——を入れても破綻しない、を担保したい。",
+      "summary": "群青のチャートは SVG じゃなく **HTML/CSS のレイアウト部品**で作ってある。狙いは「**任意のデータで崩れないこと**」。固定された綺麗なサンプルじゃなく、現実の汚いデータ——桁違いのスケール、外れ値、ゼロ、極小値——を入れても破綻しない、を担保したい。",
       "article": {
         "file": "zenn-yattemita-04-dashboard.md",
         "slug": "04-dashboard"
@@ -114,7 +114,7 @@
       "category": "基盤UI・汎用",
       "title": "AI にログイン画面を作らせたら、直したバグが消えていた（やってみた #5）",
       "readmeTitle": "ログイン/サインアップ",
-      "summary": "今回は条件を1つだけ変えた。**渡すパッケージを、出荷物そのもの（直前まで直していた最新版）にした。** #3 で見つけた systemic な穴——`Tooltip` を使う ~28 コンポーネントが provider 無しで SSR クラッシュする問題（[#52](https://github.com/uixhero/gunjo/issues/52)）——を直した版です。条件は相変わらず「**パッケージ＋docs だけ・ソースは見せない**」。そして今回は **「TooltipProvider で包め」というヒントを、あえて渡さなかった。**",
+      "summary": "今回は条件を1つだけ変えた。**渡すパッケージを、出荷物そのもの（直前まで直していた最新版）にした。** #3 で見つけた、全体に共通する欠陥——`Tooltip` を使う ~28 コンポーネントが provider 無しで、サーバー側の事前描画（SSR）でクラッシュする問題（[#52](https://github.com/uixhero/gunjo/issues/52)）——を直した版です。条件は相変わらず「**パッケージ＋docs だけ・ソースは見せない**」。そして今回は **「TooltipProvider で包め」というヒントを、あえて…",
       "article": {
         "file": "zenn-yattemita-05-login.md",
         "slug": "05-login"
