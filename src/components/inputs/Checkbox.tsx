@@ -7,9 +7,9 @@ import type { CheckboxVariantKey } from "./generated/variant-keys"
 import { checkboxDefaultVariantKey } from "./generated/default-variant-keys"
 
 const checkboxStateClasses: Record<CheckboxVariantKey, string> = {
-    checked: "border-transparent bg-foreground text-background text-xs font-semibold",
+    checked: "border-transparent bg-foreground text-background text-xs font-semibold hover:bg-foreground/90",
     disabled: "bg-transparent disabled:bg-muted disabled:opacity-50",
-    unchecked: "bg-transparent",
+    unchecked: "bg-transparent hover:border-ring hover:bg-muted/60",
 }
 
 export interface CheckboxProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -46,7 +46,7 @@ const Checkbox = React.forwardRef<HTMLButtonElement, CheckboxProps>(
                 onClick={() => onCheckedChange?.(!checked)}
                 ref={ref}
                 className={cn(
-                    "peer inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-[4px] border border-input bg-transparent ring-offset-background focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed",
+                    "peer inline-flex h-5 w-5 shrink-0 cursor-pointer items-center justify-center rounded-[4px] border border-input bg-transparent ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed",
                     checkboxStateClasses[checkboxState],
                     className
                 )}

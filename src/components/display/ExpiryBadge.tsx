@@ -84,8 +84,14 @@ export interface ExpiryBadgeProps extends Omit<React.HTMLAttributes<HTMLSpanElem
   hideRemaining?: boolean
   /** Format the date. Default `YYYY/MM/DD`. */
   formatDate?: (d: Date) => string
+  /** Format the remaining/overdue readout. Default Japanese labels. */
+  formatRemaining?: (days: number, state: ExpiryState) => React.ReactNode
   /** Override the per-state label (有効 / 期限間近 / 失効 / 未登録). */
   labels?: Partial<Record<ExpiryState, React.ReactNode>>
+  /** Class applied to the state chip only. Useful when aligning status chips in tables or lists. */
+  stateClassName?: string
+  /** Where the state chip is rendered relative to date and remaining text. Default `start`. */
+  statePosition?: "start" | "end"
 }
 
 /**
@@ -99,7 +105,7 @@ export interface ExpiryBadgeProps extends Omit<React.HTMLAttributes<HTMLSpanElem
  */
 export const ExpiryBadge = React.forwardRef<HTMLSpanElement, ExpiryBadgeProps>(
   (
-    { className, value, today, warnWithinDays = 30, showDate = true, hideRemaining = false, formatDate = defaultFormatDate, labels, ...props },
+    { className, value, today, warnWithinDays = 30, showDate = true, hideRemaining = false, formatDate = defaultFormatDate, formatRemaining, labels, stateClassName, statePosition = "start", ...props },
     ref
   ) => {
     const { state, days } = classifyExpiry(value, { today, warnWithinDays })
@@ -107,22 +113,27 @@ export const ExpiryBadge = React.forwardRef<HTMLSpanElement, ExpiryBadgeProps>(
     const label = labels?.[state] ?? STATE_LABEL[state]
     const date = toDate(value)
 
-    let remaining: string | null = null
+    let remaining: React.ReactNode | null = null
     if (!hideRemaining && days != null) {
-      remaining = days < 0 ? `${Math.abs(days)}日超過` : days === 0 ? "本日まで" : `残${days}日`
+      remaining = formatRemaining?.(days, state) ?? (days < 0 ? `${Math.abs(days)}日超過` : days === 0 ? "本日まで" : `残${days}日`)
     }
+
+    const stateChip = (
+      <span
+        className={cn(
+          "inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-xs font-medium",
+          STATE_PILL[state],
+          stateClassName
+        )}
+      >
+        <Icon className="size-3.5" aria-hidden="true" />
+        {label}
+      </span>
+    )
 
     return (
       <span ref={ref} className={cn("inline-flex items-center gap-1.5 align-middle", className)} {...props}>
-        <span
-          className={cn(
-            "inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-xs font-medium",
-            STATE_PILL[state]
-          )}
-        >
-          <Icon className="size-3.5" aria-hidden="true" />
-          {label}
-        </span>
+        {statePosition === "start" ? stateChip : null}
         {showDate && date != null && (
           <span className="text-xs tabular-nums text-muted-foreground">{formatDate(date)}</span>
         )}
@@ -136,6 +147,7 @@ export const ExpiryBadge = React.forwardRef<HTMLSpanElement, ExpiryBadgeProps>(
             {remaining}
           </span>
         )}
+        {statePosition === "end" ? stateChip : null}
       </span>
     )
   }
