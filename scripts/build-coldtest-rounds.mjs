@@ -181,7 +181,15 @@ function readArticleBody(articleFile) {
     if (!articleFile) return "";
     const p = path.join(PROMO, articleFile);
     if (!fs.existsSync(p)) return "";
-    return fs.readFileSync(p, "utf8");
+    let md = fs.readFileSync(p, "utf8");
+    // Strip internal HTML comments (pre-publish TODO notes such as
+    // "<!-- 公開前: 相互URL差込／… -->"). The docs MarkdownRenderer surfaces
+    // them as visible text, so they must never reach the published body.
+    md = md.replace(/<!--[\s\S]*?-->/g, "");
+    // Drop a now-dangling trailing thematic break (`---`) + whitespace left
+    // behind once the comment under it is removed.
+    md = md.replace(/(?:\s*\n---)+\s*$/, "");
+    return md.trimEnd() + "\n";
 }
 
 fs.mkdirSync(OUT_DIR, { recursive: true });

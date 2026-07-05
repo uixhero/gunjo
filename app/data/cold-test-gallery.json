@@ -2672,9 +2672,9 @@
       "slug": "bus-operations",
       "score": "4/5",
       "category": "運輸：バス",
-      "title": "AI にバスの運行管理を作らせてみた — 30回越しの最古の穴が、ついに結晶化した（やってみた #136）",
+      "title": "AI にバスの運行管理を作らせてみた — 30回ずっと足りなかったコンポーネントが、ついに完成した（やってみた #136）",
       "readmeTitle": "**新モード バス** 運行管理（バスtoB1枚目/江東自動車営業所 渋谷駅前〜等々力 デスクトップ密度・運行図表RunDiagram手組み(210行SVG)/在線ActionDataTable+遅延Delta/要対応だんご運転ActionQueue/車両乗務員運用Gantt/便詳細RouteStops/指令SignedRecord+運休CoSign層）★**Stringline 3回目→build trigger=#352 結晶化(30回越しの最古起票)**・運行図表が鉄道#106/#133+バス#136 で3-confirm・Gantt-intraday/PageHeader-desktop も再確認・土台は新モードでも全 摩擦ゼロ 横展開",
-      "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
+      "summary": "型チェックも通り、デスクトップ向けの密度で完成。群青を一度も触っていない AI の感想：",
       "article": {
         "file": "zenn-yattemita-136-bus-operations.md",
         "slug": "136-bus-operations"
