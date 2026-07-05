@@ -2312,9 +2312,9 @@
       "slug": "retail-rewards",
       "score": "2.5/5",
       "category": "小売・EC",
-      "title": "AI に小売ポイントアプリを作らせてみた — 3回手組みされた「ロイヤリティの華」が、ついに部品になった（やってみた #118）",
+      "title": "AI に小売のポイントアプリを作らせてみた — 3回手作りされた「会員情報の主役カード」が、ついにコンポーネントになった（やってみた #118）",
       "readmeTitle": "小売メンバーズ/ポイント・ランク・クーポン（小売・EC toC・mobile-first・ポイント残高ランクhero手組み/クーポン・履歴ListCard/ランク特典Accordion層）★LoyaltySummaryCard 3回目→build trigger・toC最低2.5/5=穴の宝庫・ブランド/gold色無し",
-      "summary": "航空マイル #116・鉄道ポイント #117 に続く、小売ポイント。観測の本命——**残高/ランクの「ヒーロー」が3回目の手組みになるか。**",
+      "summary": "航空マイル #116・鉄道ポイント #117 に続く、小売ポイント。今回の見どころは——**残高やランクを見せる「主役ブロック」が、3回目の手作りになるか**です。",
       "article": {
         "file": "zenn-yattemita-118-retail-rewards.md",
         "slug": "118-retail-rewards"
