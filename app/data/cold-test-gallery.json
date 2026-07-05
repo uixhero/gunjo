@@ -3372,9 +3372,9 @@
       "slug": "hr-documents",
       "score": "4/5",
       "category": "会計・給与",
-      "title": "AI に給与明細ダウンロード画面を作らせてみた — DocumentRow が結晶化、ListCard が「構造的に」できない理由（やってみた #171）",
+      "title": "AI に給与明細ダウンロード画面を作らせてみた — DocumentRow が生まれた、ListCard では「構造的に」作れない理由（やってみた #171）",
       "readmeTitle": "従業員セルフサービス 書類ダウンロード（**在庫深掘り/HR・給与**・給与明細/賞与/源泉徴収票/在職証明/各種申請書・カテゴリFilterChips・年別グループSectionList・書類行 DocumentRow手組み(ファイルアイコン+名前+meta+DLボタン+選択チェック)・発行申請NavRow・一括DL BottomActionBar・電子交付Switch）★**DocumentRow 3-confirm 到達→その場 build([PR#429](https://github.com/uixhero/gunjo/pull/429))=ダウンロード書類行(先頭コントロール Checkbox+ファイル種別アイコン+名前+meta[PDF・サイズ・発行日]+独立した末尾 DL ボタン)＝#168/#169/#171 で3回・構造的理由=ListCard.onSelect はカード全体が1 button で DL ボタンを入れ子にすると不正 HTML＝独立した3つの操作対象が要る・索引が正直に『書類行は無い』と認めていた所を DocumentRow に向け直し**・SectionList(年グループ)/NavRow(発行申請)/FilterChips 全て native・索引は誤誘導でなく honest（自認）",
-      "summary": "`tsc` 緑・モバイル/デスクトップ両対応。cold AI（群青を一度も触っていない設定）：",
+      "summary": "型チェックも通り、モバイル・デスクトップ両対応。群青を一度も触っていない AI の感想：",
       "article": {
         "file": "zenn-yattemita-171-hr-documents.md",
         "slug": "171-hr-documents"
