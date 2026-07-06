@@ -1792,9 +1792,9 @@
       "slug": "home-care",
       "score": "4.5/5",
       "category": "介護・福祉",
-      "title": "AI に訪問介護の管理画面を作らせてみた — 人材で作った部品が、介護でも発掘された（やってみた #89）",
+      "title": "AI に訪問介護の管理画面を作らせてみた — 人材で作ったコンポーネントが、介護でも発掘された（やってみた #89）",
       "readmeTitle": "訪問介護サービス提供管理（介護福祉・訪問ScheduleGrid ヘルパー×時間/介護記録SignedRecord+CoSign/ヘルパー別RouteStops/利用者・ヘルパーPersonCell層）★新業界",
-      "summary": "12業界目は介護・福祉。観測：**人材・採用の弧で結晶化/多用した部品（PersonCell・RelationshipRow パターン・ScheduleGrid）が、HR 族の外の業界でも自力発掘されるか。**",
+      "summary": "12業界目は介護・福祉。観測：**人材・採用のシリーズで固まった/多用したコンポーネント（PersonCell・RelationshipRow パターン・ScheduleGrid）が、HR 系の外の業界でも自力で発掘されるか。**",
       "article": {
         "file": "zenn-yattemita-89-home-care.md",
         "slug": "89-home-care"
@@ -1812,9 +1812,9 @@
       "slug": "care-plan",
       "score": "4.5/5",
       "category": "介護・福祉",
-      "title": "AI にケアプランを作らせてみた — 「2人の関係」を、3回目の手組みで部品にした（やってみた #90）",
+      "title": "AI にケアプランを作らせてみた — 「2人の関係」を、3回目の手組みでコンポーネントにした（やってみた #90）",
       "readmeTitle": "ケアプラン作成・管理（介護福祉・課題→目標→サービス/週間計画ScheduleGrid/モニタリングRadioGroup/交付SignedRecord/利用者↔ケアマネ層・★RelationshipRow 3回目→build）",
-      "summary": "#85 で `PersonCell` を3回ルールで結晶化した。#90 はその**第2幕**——観測：**利用者↔担当ケアマネ／利用者↔事業所という「2人の関係」が3回目の手組みになれば、`RelationshipRow` を build する。**",
+      "summary": "#85 で `PersonCell` を3回ルールで固めた。#90 はその**第2幕**——観測：**利用者↔担当ケアマネ／利用者↔事業所という「2人の関係」が3回目の手組みになれば、`RelationshipRow` を作る。**",
       "article": {
         "file": "zenn-yattemita-90-care-plan.md",
         "slug": "90-care-plan"
@@ -1834,7 +1834,7 @@
       "category": "介護・福祉",
       "title": "AI に介護記録を作らせてみた — 前回作った RelationshipRow が、もう使われていた（やってみた #91）",
       "readmeTitle": "介護記録/ケア記録（介護福祉・バイタル異常ReferenceValue/記録確定SignedRecord+CoSign/職員↔利用者RelationshipRow/経過Sparkline層・★RelationshipRow 翌回 cold 発掘）",
-      "summary": "#90 で `RelationshipRow` を3回ルールで build した。#91 の観測：**たった今作った RelationshipRow を、何も知らない次の cold AI が自力発掘するか。** PersonCell #85→#86 と同じ、複利の最短検証。",
+      "summary": "#90 で `RelationshipRow` を3回ルールで作った。#91 の観測：**たった今作った RelationshipRow を、何も知らない次の予備知識ゼロの AI が自力で発掘するか。** PersonCell #85→#86 と同じ、複利の最短検証。",
       "article": {
         "file": "zenn-yattemita-91-care-record.md",
         "slug": "91-care-record"
@@ -1852,9 +1852,9 @@
       "slug": "care-billing",
       "score": "4.5/5",
       "category": "介護・福祉",
-      "title": "AI に介護報酬請求を作らせてみた — 会計の部品が、介護のお金でそのまま動いた（やってみた #92）",
+      "title": "AI に介護報酬請求を作らせてみた — 会計のコンポーネントが、介護のお金でそのまま動いた（やってみた #92）",
       "readmeTitle": "介護報酬請求/国保連伝送（介護福祉・請求明細EditableDataTable/formatCurrency¥/限度額Meter/2人確認CoSign/伝送ApprovalSteps/利用者PersonCell層）",
-      "summary": "介護のお金の画面。観測：**銀行/会計の弧で育てた金額 primitive（formatCurrency・CurrencyInput・EditableDataTable・Delta）が、介護報酬という全く別の金額ドメインでそのまま効くか。**",
+      "summary": "介護のお金の画面。観測：**銀行/会計のシリーズで育てた金額コンポーネント（formatCurrency・CurrencyInput・EditableDataTable・Delta）が、介護報酬という全く別のお金の領域でそのまま効くか。**",
       "article": {
         "file": "zenn-yattemita-92-care-billing.md",
         "slug": "92-care-billing"
