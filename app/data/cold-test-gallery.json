@@ -2792,9 +2792,9 @@
       "slug": "taxi-crew",
       "score": "4/5",
       "category": "運輸：タクシー",
-      "title": "AI にタクシー乗務員管理を作らせてみた — 「3つ目の軸（期限）」が3モードを跨いで結晶化（やってみた #142）",
+      "title": "AI にタクシー乗務員管理を作らせてみた — 「3つ目の軸（期限）」が3モードをまたいでコンポーネント化（やってみた #142）",
       "readmeTitle": "タクシー 乗務員管理・日報・点呼（タクシーtoB2枚目=crew/点呼/営収/資格 デスクトップ密度・乗務記録DataTable/営収内訳AmountBreakdown/点呼アルコールReferenceValue/拘束Meter/要対応ActionQueue/点呼記録CoSign/資格期限CurrencyPill手組み層）★**ExpiryBadge 3回目→build trigger=#383 結晶化(14個目・第3軸=値vs期限)**・資格期限が航空乗員#131+バス運転士#137+タクシー#142 で3-confirm・索引「期限カレンシー未提供」が正直に機能・索引を ExpiryBadge に反転・ThresholdGate(アルコール0.00 magic-epsilon)再確認",
-      "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-142-taxi-crew.md",
         "slug": "142-taxi-crew"
@@ -2812,9 +2812,9 @@
       "slug": "taxi-revenue",
       "score": "4/5",
       "category": "運輸：タクシー",
-      "title": "AI にタクシー営収ダッシュボードを作らせてみた — チャート土台が「最も purpose-built」と評された回（やってみた #143）",
+      "title": "AI にタクシー営収ダッシュボードを作らせてみた — チャート土台が「最も用途向けに作られている」と評された回（やってみた #143）",
       "readmeTitle": "タクシー 営収・実績ダッシュボード（タクシーtoB3枚目=営業所アナリティクス/#142とは別=全車営収分析 デスクトップ密度・KPI AnalyticsCard+Delta前日比/営収推移LineChart+target線/時間帯BarChart/チャネル構成LabeledDonutCard+DistributionBar/予算Meter(fill-is-good)/期間ToggleGroup/乗務員ランキングDataTable+rank手組み層）★チャート/アナリティクス土台が交通営収に全 摩擦ゼロ横展開(「cold で使った汎用 React UI で最も purpose-built に近い」)・**Leaderboard/RankingTable 唯一の穴→#395起票**・索引も正直にランキング→DataTable と認める",
-      "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-143-taxi-revenue.md",
         "slug": "143-taxi-revenue"
@@ -2854,7 +2854,7 @@
       "category": "運輸：タクシー",
       "title": "AI にタクシーの苦情・事故管理を作らせてみた — 型は通るのに無視される「嘘の prop」を見つけた回（やってみた #145）",
       "readmeTitle": "タクシー 苦情・事故・安全管理（タクシーtoB5枚目=ケース/インシデント管理=ops/保守/分析と別系統/渋谷営業所 デスクトップ密度・ケースライフサイクルApprovalWorkflow(受付→調査→対応→再発防止→完了)/案件一覧ActionDataTable/要対応ActionQueue/報告書SignedRecord/安全KPI StatGroup/無事故バナーSafetyBanner層）★ApprovalWorkflow が case-lifecycle に適合(docstring が case management を筆頭に名指し)・**実バグ修正=ActionDataTable の getRowState が型に在るのに silently drop(selection override)→compose で honor(#398)**・CaseTable preset #399起票",
-      "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-145-taxi-incidents.md",
         "slug": "145-taxi-incidents"
@@ -2872,9 +2872,9 @@
       "slug": "taxi-demand",
       "score": "4/5",
       "category": "運輸：タクシー",
-      "title": "AI にタクシー需要予測を作らせてみた — 誤誘導先だった HeatmapChart が、遂に「本来のホーム」で輝いた（やってみた #146）",
+      "title": "AI にタクシー需要予測を作らせてみた — 誤誘導先だった HeatmapChart が、遂に「本来の居場所」で輝いた（やってみた #146）",
       "readmeTitle": "タクシー 需要予測・配車最適化（タクシーtoB6枚目=予測/最適化アナリティクス[#143営収とも別系統]/東京23区エリア デスクトップ密度・エリア×時間帯需要HeatmapChart/需給バランス地図ChoroplethMap+ランキング/需要予測LineChart/最適化提案ListCard/需給Delta(供給過多/不足)/KPI StatGroup層）★**HeatmapChart が遂に本来のホーム=エリア×時間帯強度(誤誘導先だった部品の正用途を実証)**・ChoroplethMap も需給地図+ランキングに適合・索引 誤誘導ゼロ・**信頼区間バンド(AreaRange)が唯一の穴→#400起票**(色スケール凡例も併記)",
-      "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-146-taxi-demand.md",
         "slug": "146-taxi-demand"
