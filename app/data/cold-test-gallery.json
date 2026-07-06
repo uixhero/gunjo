@@ -2592,9 +2592,9 @@
       "slug": "station-ops",
       "score": "4.5/5",
       "category": "運輸：鉄道",
-      "title": "AI に駅務管理コンソールを作らせてみた — toB土台が初めて「形が違う」gap を露出した（やってみた #132）",
+      "title": "AI に駅務管理コンソールを作らせてみた — toB の土台が初めて「形が違う」欠落を露出した（やってみた #132）",
       "readmeTitle": "鉄道 駅務管理（鉄道toB厚く=3つ目の鉄道toB領域/新宿駅駅事務室デスクトップ密度・機器状態盤EquipmentBoard手組み/要対応ActionQueue/遺失物ActionDataTable/精算AmountBreakdown/つり銭在庫Meter/引継ぎSignedRecord層）★toB spine 全摩擦ゼロ横展開・但しBOARD型(空間配置の機器状態盤)は土台に無い唯一のgap→StatusBoard/DeviceGrid #385起票・PersonCell secondary≠subtitle naming",
-      "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-132-station-ops.md",
         "slug": "132-station-ops"
@@ -2612,9 +2612,9 @@
       "slug": "timetable-planning",
       "score": "3.5/5",
       "category": "運輸：鉄道",
-      "title": "AI に鉄道のダイヤ作成（運行図表）を作らせてみた — #106 で起票した穴が、27回後に2回目を見せた（やってみた #133）",
+      "title": "AI に鉄道のダイヤ作成（運行図表）を作らせてみた — #106 で課題に記録した欠落が、27回後に2回目を見せた（やってみた #133）",
       "readmeTitle": "鉄道 ダイヤ作成・運行計画（鉄道toB厚く=5枚目/運輸計画部デスクトップ密度・運行図表ダイヤグラムTrainDiagram手組み(190行SVG)/列車スジDataTable/車両運用Gantt/要対応ActionQueue/スジ詳細InspectorPanel+ミニ表手組み層）★Stringline 2回目(#106に続き運行図表再手組み・Gantt は座標系が別で不可能と精密説明)・#106索引disclaimer が機能(未対応と先に告知しGantt誤誘導を防止)・Gantt intraday解像度 #386起票・bus toB で3回目→build 見込",
-      "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-133-timetable-planning.md",
         "slug": "133-timetable-planning"
@@ -2632,9 +2632,9 @@
       "slug": "ground-handling",
       "score": "4/5",
       "category": "運輸：航空",
-      "title": "AI に空港ランプ管理を作らせてみた — 「機器状態盤」の穴が、2回目を見せた（やってみた #134）",
+      "title": "AI に空港ランプ管理を作らせてみた — 「機器状態盤」の欠落が、2回目を見せた（やってみた #134）",
       "readmeTitle": "航空 グランドハンドリング/ランプ管理（航空toB厚く=駅務#132の航空版/羽田T2 ランプコントロール デスクトップ密度・GSE状態盤StatusBoard手組み/ターンアラウンド進捗RouteStops適合/要対応ActionQueue/引継ぎSignedRecord+安全2人確認CoSign/KPI StatGroup層）★StatusBoard 2回目(#132駅務に続きGSE機器盤再手組み→#385 2/3)・RouteStops 段階オペ進捗に適合(予実タイミングでStepperより適)→索引是正#387・CoSign 安全確認に適合",
-      "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-134-ground-handling.md",
         "slug": "134-ground-handling"
@@ -2652,9 +2652,9 @@
       "slug": "network-planning",
       "score": "4/5",
       "category": "運輸：航空",
-      "title": "AI に航空の就航計画・スロット管理を作らせてみた — 「出なかった穴」が予想を裏取りした（やってみた #135）",
+      "title": "AI に航空の就航計画・スロット管理を作らせてみた — 「出なかった欠落」が予想を裏取りした（やってみた #135）",
       "readmeTitle": "航空 就航計画・ダイヤ/スロット管理（航空toB厚く=5枚目で鉄道と対称/路線統括部 2026夏ダイヤ デスクトップ密度・路線便数DataTable+L/F Meter(target=損益分岐で赤)/発着スロットScheduleGrid+混雑手組み/機材ローテGanttのIntraday回避/要対応ActionQueue層）★Stringline 不在を確認(航空は固定軌道無し=運行図表は鉄道/バス固有の負シグナル)・Gantt intraday解像度+スロット容量トーン #386再確認(2-3回目)・PageHeader desktop誤記3回目",
-      "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-135-network-planning.md",
         "slug": "135-network-planning"
