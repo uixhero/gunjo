@@ -352,9 +352,9 @@
       "slug": "search",
       "score": "4/5",
       "category": "基盤UI・汎用",
-      "title": "AI に検索結果ページを作らせてみた — \"widget のフリした markup\"（やってみた #17）",
+      "title": "AI に検索結果ページを作らせてみた — \"コンポーネントのフリをした、ただの見た目\"（やってみた #17）",
       "readmeTitle": "検索結果ページ",
-      "summary": "条件は同じ（出荷物そのもの＋docs だけ、ソース非公開）。お題は `/search` に、検索バー＋結果件数、フィルタ（カテゴリ checkbox・種別 Combobox・タグ）、アクティブフィルタチップ、ソート、結果カード、ページネーション、loading→結果→空状態。",
+      "summary": "条件は同じ（出荷しているパッケージそのもの＋docs だけ、ソース非公開）。お題は `/search` に、検索バー＋結果件数、フィルタ（カテゴリのチェックボックス・種別の Combobox・タグ）、選択中フィルタのチップ、並べ替え、結果カード、ページネーション、読み込み中→結果→空状態。",
       "article": {
         "file": "zenn-yattemita-17-search.md",
         "slug": "17-search"
@@ -374,7 +374,7 @@
       "category": "基盤UI・汎用",
       "title": "AI にプロフィールページを作らせてみた — 粗さが尽きてきた（やってみた #18）",
       "readmeTitle": "プロフィールページ",
-      "summary": "条件は同じ（出荷物そのもの＋docs だけ、ソース非公開）。お題は `/profile` に、ヘッダー（アバター・名前・bio・統計）、フォロー/編集、Tabs（Posts/About/Activity）、About（メタデータ）、Activity（タイムライン）、編集フォーム（モーダル＋バリデーション）。",
+      "summary": "条件は同じ（出荷しているパッケージそのもの＋docs だけ、ソース非公開）。お題は `/profile` に、ヘッダー（アバター・名前・自己紹介・統計）、フォロー/編集、タブ（Posts/About/Activity）、About（メタデータ）、Activity（タイムライン）、編集フォーム（モーダル＋入力チェック）。",
       "article": {
         "file": "zenn-yattemita-18-profile.md",
         "slug": "18-profile"
@@ -394,7 +394,7 @@
       "category": "基盤UI・汎用",
       "title": "AI に通知設定画面を作らせてみた — 5/5 を阻むのは、もう docs だけ（やってみた #19）",
       "readmeTitle": "通知設定",
-      "summary": "条件は同じ（出荷物そのもの＋docs だけ、ソース非公開）。お題は `/settings/notifications` に、チャンネル別（Email/Push/SMS/In-app）のマスター＋個別トグル、通知レベルの RadioGroup、ダイジェスト頻度の Select、Quiet hours の TimePicker、保存/破棄＋未保存インジケータ。",
+      "summary": "条件は同じ（出荷しているパッケージそのもの＋docs だけ、ソース非公開）。お題は `/settings/notifications` に、チャンネル別（Email/Push/SMS/In-app）のまとめ＋個別トグル、通知レベルの RadioGroup、ダイジェスト頻度の Select、Quiet hours の TimePicker、保存/破棄＋未保存の表示。",
       "article": {
         "file": "zenn-yattemita-19-notification-settings.md",
         "slug": "19-notification-settings"
