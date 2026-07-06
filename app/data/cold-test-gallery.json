@@ -3292,9 +3292,9 @@
       "slug": "delivery-settings",
       "score": "4/5",
       "category": "運輸：トラック",
-      "title": "AI に宅配の配達設定画面を作らせてみた — 索引が「動く部品に見えるが動かす意味が違う」へ誘導した（やってみた #167）",
+      "title": "AI に宅配の配達設定画面を作らせてみた — 索引が「動くコンポーネントに見えるが動かす意味が違う」へ誘導した（やってみた #167）",
       "readmeTitle": "宅配 個人向け 受取・配達設定（**新モード toC4=設定/置き配**・モバイルファースト・デジタル会員証TicketStub(native)・置き配場所/不在時default RadioCard・受取曜日SegmentedControl(7=2-4超だが1字で可)・時間帯Select・通知 Switch・置き配写真FileUploader・置き配同意Checkbox・受取場所ListCard+追加Sheet・設定行 SettingRow/SettingGroup手組み・CTA BottomActionBar）★**TicketStub が会員証で自力発見「built for this」・settings土台~90%(RadioCard/Switch/FileUploader/Sheet/BottomActionBar native)**・**NavRow 2/3(flush 設定行 icon+label+value+chevron＝#152 に続く・索引が ListCard に誤誘導するが ListCard.onSelect は aria-pressed=トグルで navigation 意味論として誤り＝a11y バグの SWAP 罠)#409**・FileUploader accept 形未文書/Button size=lg<44px(#362)再確認",
-      "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-167-delivery-settings.md",
         "slug": "167-delivery-settings"
@@ -3312,7 +3312,7 @@
       "slug": "shipper-billing",
       "score": "4.5/5",
       "category": "運輸：トラック",
-      "title": "AI に荷主の請求・支払ポータルを作らせてみた — NavRow が結晶化、トラック完走で全5モード完成（やってみた #168）",
+      "title": "AI に荷主の請求・支払ポータルを作らせてみた — NavRow がコンポーネント化、トラック完走で全5モード完成（やってみた #168）",
       "readmeTitle": "荷主向け 請求・お支払いポータル（**新モード toC5=トラック完走=全5モード完成**・請求書を月/締めグループ SectionList・請求内訳AmountBreakdown(運賃+燃サ+立替−値引→税抜→税込)・帳票DL手組み・お支払い方法RadioCard(口座振替/振込/クレカ)・設定行 SettingsNavRow手組み・与信Meter・お支払いサマリ+CTA BottomActionBar・適格請求書/インボイス制度）★**NavRow 3-confirm 到達→その場 build([PR#426](https://github.com/uixhero/gunjo/pull/426)・#409クローズ)=flush 設定行+SettingGroup・navigation 意味論(aria-haspopup・aria-pressed でない)＝#152/#167/#168 で3回+索引が ListCard(aria-pressed トグル)に誤誘導する a11y バグも是正(設定行→NavRow)**・SectionList「キット最良の適合」/AmountBreakdown native 再検証・帳票DL list は索引が空を正直に返した穴",
       "summary": "トラック toB5（配車#159/求貨求車#160/車両労務#161/運賃請求#162/運送原価#163）+ toC5（荷主#164/宅配#165/国際#166/設定#167/請求#168）が**対称完走**。航空・鉄道・タクシー・バスに続き、**運輸5モードすべてが toB+toC 対称で完走**した。",
       "article": {
@@ -3332,9 +3332,9 @@
       "slug": "line-performance",
       "score": "4/5",
       "category": "運輸：鉄道",
-      "title": "AI に鉄道の定時性ダッシュボードを作らせてみた — 在庫深掘りで Statistic goodWhen が結晶化（やってみた #169）",
+      "title": "AI に鉄道の定時性ダッシュボードを作らせてみた — ストック深掘りで Statistic goodWhen がコンポーネント化（やってみた #169）",
       "readmeTitle": "鉄道 路線別 運行実績・定時性ダッシュボード（**在庫深掘り=運輸 arc 完走後**・路線別KPI StatGroup(定時率 good-high/遅延件数・障害・混雑率 good-low の反転トーン)・路線実績DataTable+Delta・起点→終点ヘッダ RouteHeader手組み・ワースト定時率Leaderboard・混雑率LimitMonitor(150%目安)・推移LineChart(referenceValue 目標線)・月次レポートDL(SectionList+NavRow)・要対応ActionQueue・路線LineChip）★**Statistic goodWhen 3-confirm 到達→その場 build([PR#427](https://github.com/uixhero/gunjo/pull/427)・#412クローズ)=goodWhen:\"higher\"|\"lower\" で反転トーン(遅延件数+12=赤・定時率−0.4=赤)＝#154/#163/#169 で3回・Delta/Leaderboard/Meter は持つのに Statistic だけ無かった**・**NavRow(前回#168 build)が月次レポート行で同セッション自力発見・OriginDestination 2/3(起点→終点=#166 に続く・索引 Itinerary 誤誘導)#425**・Leaderboard/LimitMonitor/LineChart/LineChip 全て native",
-      "summary": "`tsc` 緑・デスクトップ密。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ密。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-169-line-performance.md",
         "slug": "169-line-performance"
@@ -3352,9 +3352,9 @@
       "slug": "express-booking",
       "score": "4/5",
       "category": "運輸：鉄道",
-      "title": "AI に新幹線予約画面を作らせてみた — A→B 区間ヘッダが結晶化、索引の「縦と横」の取り違えを是正（やってみた #170）",
+      "title": "AI に新幹線予約画面を作らせてみた — A→B 区間の見出しがコンポーネント化、索引の「縦と横」の取り違えを是正（やってみた #170）",
       "readmeTitle": "鉄道 特急・新幹線 空席照会・予約（**在庫深掘り/toC・モバイルファースト**・区間ヘッダ 東京→新大阪 RouteHeader手組み・列車一覧ListCard+発→着 DepArr手組み・座席表SeatMap・座席種別/人数SegmentedControl+NumberInput stepper・運賃料金AmountBreakdown・乗車日DatePicker・列車種別LineChip・CTA BottomActionBar・進捗Stepper）★**OriginDestination 3-confirm 到達→その場 build([PR#428](https://github.com/uixhero/gunjo/pull/428)・#425クローズ)=A→B 区間ヘッダ(from/to/via・矢印/所要 connector・出発⇄到着 swap・inline で発→着 結果行)＝#166/#169/#170 で3回(区間ヘッダ＋列車ごとの発→着で A→B 2か所)＋索引が A→B を Itinerary/RouteStops[縦]に誤誘導(横の A→B と形が逆)を是正**・SeatMap「新幹線が docstring に・最良の部品」/AmountBreakdown/SegmentedControl native",
-      "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-170-express-booking.md",
         "slug": "170-express-booking"
@@ -3394,7 +3394,7 @@
       "category": "金融",
       "title": "AI に M&A マッチングを作らせてみた — 索引が「会社にアバター」を勧めた回（やってみた #172）",
       "readmeTitle": "M&A・事業承継 マッチング（**MatchCard 狙い深掘り/新業種=金融**・買い手⟷売り手・KPI StatGroup・案件一覧DataTable・買い手候補 適合度Leaderboard・適合度Meter(higher-is-better+target)・売り手×買い手 マッチ詳細 PairingPanel手組み・factor breakdown(業種/エリア/規模/価格/シナジー)・要対応ActionQueue・絞り込みFilterChips/Select）★**MatchCard 2/3(売り手×買い手の二者間ペアリング詳細＝#160 求貨求車 に続く)・索引が RelationshipPersonCell ベースで会社×会社に誤誘導(from/to が PersonCellProps＝アバター/presence を組織に強制・財務 facts スロット無し・score/factor 領域無し)再確認＋CompanyCell(組織版 PersonCell)も併記 #419**・Leaderboard/DataTable/Meter/ActionQueue/StatGroup 全て native・pairing 詳細だけが穴",
-      "summary": "`tsc` 緑・デスクトップ密。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ密。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-172-ma-matching.md",
         "slug": "172-ma-matching"
@@ -3412,9 +3412,9 @@
       "slug": "subsidy-matching",
       "score": "3.5/5",
       "category": "金融",
-      "title": "AI に補助金マッチングを作らせてみた — MatchCard が結晶化、「会社×制度」が entity-agnostic を証明した（やってみた #173）",
+      "title": "AI に補助金マッチングを作らせてみた — MatchCard がコンポーネント化、「会社×制度」が対象を問わないことを証明した（やってみた #173）",
       "readmeTitle": "補助金・助成金マッチング（**MatchCard 3回目=結晶化/金融**・自社⟷補助金制度・KPI StatGroup・おすすめ補助金 適合度Leaderboard・適合度Meter(higher-is-better+target)・自社×制度 マッチ詳細 MatchDetail手組み(~250行)・要件 factor breakdown(対象/業種/規模/設備/加点)・締切ActionQueue・絞り込みFilterChips）★**MatchCard 3-confirm 到達→その場 build([PR#430](https://github.com/uixhero/gunjo/pull/430)・#419クローズ)=MatchCard(エンティティ非依存の left/right＋score＋factors＋actions)＋CompanyCell(組織版 PersonCell=四角ロゴ)＝#160 求貨求車/#172 M&A/#173 補助金 で3回・#173 が非対称(会社×制度)で entity-agnostic を証明・索引が RelationshipRow[from/to は PersonCellProps＝型も通らない]に誤誘導も是正(マッチ→MatchCard・組織 identity→CompanyCell)**・Leaderboard/Meter/StatGroup/ActionQueue native・~250行手組みが composition に",
-      "summary": "`tsc` 緑・モバイル/デスクトップ両対応。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・モバイル/デスクトップ両対応。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-173-subsidy-matching.md",
         "slug": "173-subsidy-matching"
