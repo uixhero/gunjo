@@ -14,6 +14,8 @@ out/
 
 # Local agent worktrees & editor/CLI config (can be multiple GB)
 .claude/
+.codex/
+.cursor/
 .vercel
 .git/
 
