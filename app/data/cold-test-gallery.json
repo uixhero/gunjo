@@ -3092,9 +3092,9 @@
       "slug": "bus-service-status",
       "score": "4.5/5",
       "category": "運輸：バス",
-      "title": "AI にバスの運行情報画面を作らせてみた — build 検証・否定確認・3-confirm が1画面に揃った回（やってみた #157）",
+      "title": "AI にバスの運行情報画面を作らせてみた — 作ったものの検証・否定確認・3回確認 が1画面に揃った回（やってみた #157）",
       "readmeTitle": "バス 運行情報・遅延運休案内（**バス toC 厚く=弱い側**[#138-139-140-156に追加]・全モード未着手の消費者サービスステータス/全体状況Alert/系統別 ListCard+severity/運行レベル Badge+icon(色安全)/絞り込み SegmentedControl(全系統/遅延運休)/お知らせAlert/経緯Timeline/通知Switch/系統番号LineChip手組み）★**3本立て=①SegmentedControl 自力発見ゼロ摩擦(#156 build 検証・索引も正しく誘導)②StatusLevel は穴でない(Badge+icon が色安全レベル指標で適合と cold AI 明言=#376 否定確認)③LineChip 3-confirm 到達→その場 build([PR#416](https://github.com/uixhero/gunjo/pull/416)・#392クローズ)=#138/#140/#157 で3回手組み**・Statistic に tone/icon 無く重大度カウント表現不可 #412併記・索引 誤誘導なし",
-      "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-157-bus-service-status.md",
         "slug": "157-bus-service-status"
@@ -3132,9 +3132,9 @@
       "slug": "truck-dispatch",
       "score": "4.5/5",
       "category": "運輸：トラック",
-      "title": "AI にトラック配車システムを作らせてみた — 5モード目で部品が「本当の自宅」に帰った（やってみた #159）",
+      "title": "AI にトラック配車システムを作らせてみた — 5モード目でコンポーネントが「本当の自宅」に帰った（やってみた #159）",
       "readmeTitle": "トラック運送 配車・運行管理（**新モード=5モード目・最後/toB**・配車担当向け情報密度コンソール・配車盤StatusBoard・案件DataTable・車両運用 Gantt resolution=\"hour\"・配送ルート RouteStops(集荷→配送 native home)・拘束時間 Meter+ReferenceValue・稼働ランキング Leaderboard・要対応ActionQueue・KPI StatGroup・改善基準告示）★**最近 build の native 検証ラッシュ=RouteStops が貨物配送 route の真の自宅(誤適用でなく)・Gantt resolution=\"hour\"(#153 build) が車両運用 intraday で自力発見「built for this の最良の瞬間」・StatusBoard/Leaderboard/SegmentedControl 全て 摩擦ゼロ**・**5モード目でも新しい穴=DataTable 一括選択割当(ActionDataTable が既存だが索引が隠す→[PR#418](https://github.com/uixhero/gunjo/pull/418) で索引是正)・拘束時間 LimitMonitor #417/Meter 絶対閾値 #412 2回目**・土台は飽和せず",
-      "summary": "`tsc` 緑・デスクトップ情報密度。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ情報密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-159-truck-dispatch.md",
         "slug": "159-truck-dispatch"
@@ -3154,7 +3154,7 @@
       "category": "運輸：トラック",
       "title": "AI にトラック求貨求車マッチングを作らせてみた — 索引是正が翌画面で効いた回（やってみた #160）",
       "readmeTitle": "トラック 求貨求車・帰り便マッチング（**新モード toB2**・二者間マーケットプレイス archetype・荷物ActionDataTable(一括オファー)・空車DataTable・マッチング候補 適合度ランキング Leaderboard・適合度Meter(higher-is-better+target band)・荷物×空車ペアリング MatchDetail手組み・要対応ActionQueue・KPI StatGroup・SegmentedControl 求貨求車起点切替）★**[PR#418](https://github.com/uixhero/gunjo/pull/418) 索引是正の同 arc 検証=ActionDataTable が是正済索引で自力発見「偶然でなく直行＝キット最強の瞬間」・Leaderboard 適合度ランキングで自力発見**・**MatchCard/PairingPanel 穴(二者間 A⟷B ペアリングが people-shaped でない home 無し・索引の two-sided→RelationshipRow は PersonCell固定の罠=台座にアバター円) #419起票**・list/queue/KPI/ranking で~80%composeだが matching 自体に home 無し",
-      "summary": "`tsc` 緑・デスクトップ情報密度。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ情報密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-160-truck-matching.md",
         "slug": "160-truck-matching"
@@ -3172,9 +3172,9 @@
       "slug": "truck-compliance",
       "score": "4/5",
       "category": "運輸：トラック",
-      "title": "AI にトラックの労務コンプライアンス画面を作らせてみた — value-vs-X 家系の4番目が結晶化（やってみた #161）",
+      "title": "AI にトラックの労務コンプライアンス画面を作らせてみた — 「値 vs X」系統の4番目がコンポーネント化（やってみた #161）",
       "readmeTitle": "トラック 車両・労務管理（**新モード toB3**・車検期限ExpiryBadge(native「標準」)・拘束時間/連続運転/休息 改善基準告示 LimitMonitor手組み・デジタコ運転傾向Leaderboard・整備履歴Timeline・点呼/アルコール ActionDataTable・整備状況StatusBoard・要対応ActionQueue・KPI StatGroup）★**LimitMonitor 3-confirm 到達→その場 build([PR#420](https://github.com/uixhero/gunjo/pull/420)・#417クローズ)=値 vs 名前付き上限(ソフト/ハード・実単位)＝value-vs-X 家系の4番目(ExpiryBadge 期限/ReferenceValue 範囲/Meter 容量/LimitMonitor 名前付き上限)＝#154 営業係数/#159 拘束時間 に続く3回目・Meter の target は参照のみ+閾値が max 割合の問題を根治・索引も value-vs-limit→ReferenceValue/Meter 誤誘導を是正**・ExpiryBadge が車検に native「キット最良の部品」・cold AI が自ら指摘した SSR 罠に自分で落ちた(classifyLimit を \"use client\" に置き server 呼びで500→spurious \"use client\" 削除で修正・shipped classifyLimit は RSC-safe 設計)",
-      "summary": "`tsc` 緑・デスクトップ情報密度。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ情報密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-161-truck-compliance.md",
         "slug": "161-truck-compliance"
