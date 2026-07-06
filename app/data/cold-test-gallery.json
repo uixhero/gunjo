@@ -3192,9 +3192,9 @@
       "slug": "truck-billing",
       "score": "4/5",
       "category": "運輸：トラック",
-      "title": "AI にトラックの運賃・請求管理を作らせてみた — グループ化の背骨が3回目で結晶化（やってみた #162）",
+      "title": "AI にトラックの運賃・請求管理を作らせてみた — グループ化の背骨が3回目でコンポーネント化（やってみた #162）",
       "readmeTitle": "トラック 運賃・請求管理（**新モード toB4**・運賃明細 AmountBreakdown(native「キット最良」)・請求一覧を荷主/締め別グループ SectionList手組み・入金消込 ActionDataTable(bulk-select)・運賃タリフ Table+HeatmapChart・KPI StatGroup・要対応ActionQueue・燃料サーチャージ/標準的運賃2024）★**SectionList 3-confirm 到達→その場 build([PR#421](https://github.com/uixhero/gunjo/pull/421)・#404クローズ)=グループ見出し+本文+グループ小計フッター＝taxi#149 月別履歴/bus#158 IC台帳 に続く3回目・索引も自ら『grouped table は答えが無い』と認める誤誘導を是正**・AmountBreakdown が運賃導出に native(但し合算しない＝表示のみの罠を索引に明記)・ActionDataTable が入金消込で自力発見(#418 再検証)・DataTable に footer/summary 行が無く小計に Table スタック手組み",
-      "summary": "`tsc` 緑・デスクトップ情報密度。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ情報密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-162-truck-billing.md",
         "slug": "162-truck-billing"
@@ -3212,9 +3212,9 @@
       "slug": "truck-pl",
       "score": "4/5",
       "category": "運輸：トラック",
-      "title": "AI にトラックの収支ダッシュボードを作らせてみた — トラック toB 完了、直近 build が次々再検証された（やってみた #163）",
+      "title": "AI にトラックの収支ダッシュボードを作らせてみた — トラック toB 完了、直近作ったものが次々再検証された（やってみた #163）",
       "readmeTitle": "トラック 運送原価・収支ダッシュボード（**新モード toB5=トラック toB 厚く完了**・KPI StatGroup・収支推移LineChart(referenceValue 目標線)・原価内訳LabeledDonutCard・車両別/荷主別収支DataTable+Delta・ベスト/ワースト収支Leaderboard・標準的運賃比較LimitMonitor(direction=floor)・要対応ActionQueue・原価率/実車率/実働率）★**chart土台がトラック財務に native 業界越え=全データ駆動で static 化ゼロ・Leaderboard(best/worst P&L)とLimitMonitor(実勢vs標準運賃)が自力発見=直近 build の再検証**・**Statistic goodWhen 2/3(原価率 good-low/実車率 good-high の trend↔tone を手組み=Delta/Leaderboard は per-sign tones を持つが Statistic は無い #412)**・ChartLegend に formatValue 無し(chart 家系で非対称)/LimitMonitor \"RSC-safe\" だが formatValue 関数 prop で server 不可の罠",
-      "summary": "`tsc` 緑・デスクトップ情報密度・可変データ駆動。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ情報密度・可変データ駆動。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-163-truck-pl.md",
         "slug": "163-truck-pl"
@@ -3232,9 +3232,9 @@
       "slug": "shipper-portal",
       "score": "4.5/5",
       "category": "運輸：トラック",
-      "title": "AI にトラックの荷主ポータルを作らせてみた — 前回 build した部品が「翌回」で自力発見された（やってみた #164）",
+      "title": "AI にトラックの荷主ポータルを作らせてみた — 前回作ったコンポーネントが「翌回」で自力発見された（やってみた #164）",
       "readmeTitle": "トラック 荷主ポータル（**新モード toC START=B2B2C**・モバイルファースト・追跡中貨物ListCard・貨物追跡RouteStops(集荷→配達 consumer view)・配送履歴を月別グループ SectionList・集荷依頼フォーム(DatePicker+NumberInput stepper+RadioCard 車種+SegmentedControl 元払着払)・運賃見積AmountBreakdown・進捗Stepper・CTA BottomActionBar）★**SectionList(前回#162 build)を同セッション翌回で自力発見ゼロ摩擦＝最速の build→検証(連続回・索引も正しく誘導)**・RouteStops/AmountBreakdown/RadioCard 全て native・**TimeBandPicker 穴+索引 SWAP 罠(TimePicker は正確時刻なのに時間帯に見える→集荷時間帯 午前/12-14時 を手組み・索引是正[PR#423]で時間帯→SegmentedControl/RadioGroup 誘導)#422**・RouteStops が HH:MM のみで多日跨ぎ追跡に dateLabel 欲しい #422",
-      "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-164-shipper-portal.md",
         "slug": "164-shipper-portal"
@@ -3254,7 +3254,7 @@
       "category": "運輸：トラック",
       "title": "AI に宅配の追跡・再配達画面を作らせてみた — 前回の索引修正が「翌回」で検証された（やってみた #165）",
       "readmeTitle": "宅配便 個人向け 配送追跡・再配達（**新モード toC2=受取人C**・モバイルファースト・荷物サマリ Card+Statistic+Badge・配送追跡RouteStops(受付→お届け完了 多日)・ご不在Alert・再配達 受け取り時間帯SegmentedControl(午前/14-16/18-20)・受け取り方法RadioCard(自宅/宅配ボックス/コンビニ/置き配)・再配達日DatePicker・通知Switch・配送履歴ListCard・CTA BottomActionBar）★**[PR#423]索引 SWAP 修正を同セッション翌回で検証＝受け取り時間帯を TimePicker 手組みせず SegmentedControl に正しく誘導された(TimePicker手組み=0・cold AI「索引が rake から逸らす」)**・**RouteStops 多日タイムスタンプ 2/3(HH:MM のみ・日付を meta に押し込み＝#164 に続く)→あと1回で build**・RadioCard/DatePicker/BottomActionBar 全て native",
-      "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-165-parcel-tracking.md",
         "slug": "165-parcel-tracking"
@@ -3272,9 +3272,9 @@
       "slug": "intl-shipment",
       "score": "4/5",
       "category": "運輸：トラック",
-      "title": "AI に国際輸送・通関追跡を作らせてみた — RouteStops が「多日対応」で結晶化（やってみた #166）",
+      "title": "AI に国際輸送・通関追跡を作らせてみた — RouteStops が「複数日対応」でコンポーネント化（やってみた #166）",
       "readmeTitle": "国際物流 国際輸送・通関追跡（**新モード toC3=B2B輸入者ポータル**・デスクトップ密・貨物サマリ Card+MetadataList+Badge・輸送ステージ追跡 ApprovalSteps(多週=RouteStops が HH:MM のみで日付不可のため代替)・通関 申告→審査→許可 ApprovalSteps compact・本船/ETD/ETA MetadataList・書類グループ SectionList+ListCard・要対応ActionQueue・KPI StatGroup）★**RouteStops 多日タイムスタンプ 3-confirm 到達→その場 build([PR#424](https://github.com/uixhero/gunjo/pull/424)・#422クローズ)=per-stop dateLabel(自由形式・日付跨ぎ・HH:MM は intraday 維持)＝#164/#165/#166 で3回(cold AI は #166 で RouteStops を捨て ApprovalSteps の free-form timestamp に逃げた)＋索引是正(tracking timeline→RouteStops が HH:MM 行き止まりだった誤誘導を 多日は dateLabel と明記)**・OriginDestination(仕出→仕向 A→B header)手組み #425/summary hero に AnalyticsCard 誤誘導",
-      "summary": "`tsc` 緑・デスクトップ密。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ密。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-166-intl-shipment.md",
         "slug": "166-intl-shipment"
