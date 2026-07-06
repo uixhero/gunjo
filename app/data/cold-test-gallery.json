@@ -1972,9 +1972,9 @@
       "slug": "insurance-claims",
       "score": "4.5/5",
       "category": "保険",
-      "title": "AI に保険金査定の画面を作らせてみた — #100で作った逆引き索引が、次の回でもう効いた（やってみた #101）",
+      "title": "AI に保険金査定の画面を作らせてみた — #100で作った「用途から引く索引」が、次の回でもう効いた（やってみた #101）",
       "readmeTitle": "自動車保険 保険金請求・査定管理（保険・査定WF ApprovalWorkflow/高額2名CoSign/確定SignedRecord/請求一覧DataTable/契約者PersonCell/KPI StatGroup/¥formatCurrency層）★新業界・逆引き索引が初活用",
-      "summary": "14業界目は損保。観測の核は明確——**#100 で作った[ユースケース別 逆引き索引](https://gunjo.jp/docs/by-use-case)が、次の文脈ゼロ AI の役に立つか。**",
+      "summary": "14業界目は損保。観測の核は明確——**#100 で作った[用途別の逆引き索引](https://gunjo.jp/docs/by-use-case)が、次の予備知識ゼロの AI の役に立つか。**",
       "article": {
         "file": "zenn-yattemita-101-insurance-claims.md",
         "slug": "101-insurance-claims"
@@ -1992,9 +1992,9 @@
       "slug": "insurance-policies",
       "score": "4/5",
       "category": "保険",
-      "title": "AI に保険の契約管理を作らせてみた — 金額内訳がまた手組み、次の結晶化が見えた（やってみた #102）",
+      "title": "AI に保険の契約管理を作らせてみた — 金額内訳がまた手組み、次に作るべきものが見えた（やってみた #102）",
       "readmeTitle": "損保 契約管理/代理店ダッシュボード（保険・保有契約DataTable/更新失効リスク/募集人↔契約RelationshipRow/業績Meter/保険料内訳手組み層・CalculationLedger 2回目）",
-      "summary": "#101査定とは別の契約/営業系。観測の核——**#101 で起票した CalculationLedger（金額導出ブロック）が、保険料内訳でまた手組みされるか。**",
+      "summary": "#101査定とは別の契約/営業系。観測の核——**#101 で課題に記録した CalculationLedger（金額の導出ブロック）が、保険料内訳でまた手組みされるか。**",
       "article": {
         "file": "zenn-yattemita-102-insurance-policies.md",
         "slug": "102-insurance-policies"
@@ -2012,9 +2012,9 @@
       "slug": "insurance-payments",
       "score": "4/5",
       "category": "保険",
-      "title": "AI に保険金支払の画面を作らせてみた — 3回目の手組みで、金額内訳がついに部品になった（やってみた #103）",
+      "title": "AI に保険金支払の画面を作らせてみた — 3回目の手組みで、金額内訳がついにコンポーネントになった（やってみた #103）",
       "readmeTitle": "自動車保険 保険金支払・精算管理（保険・支払一覧DataTable/支払先/高額2名CoSign/支払明細=認定額−過失相殺−免責−既払=支払額層）★AmountBreakdown 3回目→build trigger",
-      "summary": "#101 査定・#102 契約に続く保険3枚目。観測の核は最初から決まっていた——**金額導出ブロックが3回目の手組みになれば、その場で `AmountBreakdown` を build する。**",
+      "summary": "#101 査定・#102 契約に続く保険3枚目。観測の核は最初から決まっていた——**金額の導出ブロックが3回目の手組みになれば、その場で `AmountBreakdown` を作る。**",
       "article": {
         "file": "zenn-yattemita-103-insurance-payments.md",
         "slug": "103-insurance-payments"
@@ -2032,9 +2032,9 @@
       "slug": "insurance-underwriting",
       "score": "4.5/5",
       "category": "保険",
-      "title": "AI に生保の引受査定を作らせてみた — 昨日作った部品を、別のAIが翌日もう見つけて使った（やってみた #104）",
+      "title": "AI に生保の引受査定を作らせてみた — 昨日作ったコンポーネントを、別のAIが翌日もう見つけて使った（やってみた #104）",
       "readmeTitle": "生命保険 引受査定/申込審査（保険・申込査定DataTable/告知リスク評価/BMI血圧ReferenceValue/保険料算定AmountBreakdown/承認2名CoSign層）★AmountBreakdown 別業界での自力発見=build翌回で別cold AIが索引から自力発見",
-      "summary": "#101〜103 は損保（査定/契約/支払）。#104 は生保の underwriting——別作法。観測の核は1つ——**前回 build したばかりの `AmountBreakdown` を、文脈ゼロの別 cold AI が保険料計算で自力発見できるか。**",
+      "summary": "#101〜103 は損保（査定/契約/支払）。#104 は生保の引受査定——別作法。観測の核は1つ——**前回作ったばかりの `AmountBreakdown` を、別の予備知識ゼロの AI が保険料計算で自力発見できるか。**",
       "article": {
         "file": "zenn-yattemita-104-insurance-underwriting.md",
         "slug": "104-insurance-underwriting"
@@ -2052,9 +2052,9 @@
       "slug": "insurance-agent-portal",
       "score": "4.5/5",
       "category": "保険",
-      "title": "AI に生保営業の朝のポータルを作らせてみた — 保険5枚、ほぼ全部が既存部品で組めた（やってみた #105）",
+      "title": "AI に生保営業の朝のポータルを作らせてみた — 保険5枚、ほぼ全部が既存コンポーネントで組めた（やってみた #105）",
       "readmeTitle": "生保営業/ライフプランナー活動ポータル（保険締め・見込みKanbanBoard/目標Meter×2/手数料内訳AmountBreakdown/募集人↔顧客RelationshipRow/アポTimeline/ブックDataTable/要対応Alert層）★保険5枚=作り切り・索引が全部名指し正解",
-      "summary": "#101〜104 は社内 back-office（査定/契約/支払/引受）。#105 は**現場の募集人側**＝別ペルソナで保険を締める。観測：人物階層・金額内訳・パイプライン・関係——**ここまで作った部品が、営業の朝の画面でも全部 composing するか。**",
+      "summary": "#101〜104 は社内の事務方（査定/契約/支払/引受）。#105 は**現場の募集人側**＝別のペルソナで保険を締める。観測：人物の階層・金額内訳・パイプライン・関係——**ここまで作ったコンポーネントが、営業の朝の画面でも全部、組み立てで済むか。**",
       "article": {
         "file": "zenn-yattemita-105-insurance-agent-portal.md",
         "slug": "105-insurance-agent-portal"
