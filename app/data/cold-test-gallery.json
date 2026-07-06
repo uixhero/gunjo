@@ -1672,9 +1672,9 @@
       "slug": "recruiting-pipeline",
       "score": "4/5",
       "category": "人材・HR・採用",
-      "title": "AI に採用パイプライン(ATS)を作らせてみた — 統合アークの大型3つが、新業界でそのまま発掘された（やってみた #83）",
+      "title": "AI に採用パイプライン(ATS)を作らせてみた — 整備ラウンドで作った大型3つが、新業界でそのまま発掘された（やってみた #83）",
       "readmeTitle": "採用パイプライン/ATS（人材採用・選考KanbanBoard/面接WeekView/内定ApprovalWorkflow/候補者ドリルイン層）★新業界",
-      "summary": "11業界目は人材・採用。架空の HR-tech 企業「ミドリリンク株式会社」のインハウス採用デスク。観測ポイントは明確——**統合アークで作った大型 primitive（KanbanBoard / WeekView / ApprovalWorkflow）が、採用という全く新しい業界の文脈ゼロ AI に、自力で発掘されるか。**",
+      "summary": "11業界目は人材・採用。架空の HR-tech 企業「ミドリリンク株式会社」のインハウス採用デスク。観測ポイントは明確——**整備ラウンドで作った大型コンポーネント（KanbanBoard / WeekView / ApprovalWorkflow）が、採用という全く新しい業界の、予備知識ゼロの AI に、自力で発掘されるか。**",
       "article": {
         "file": "zenn-yattemita-83-recruiting-pipeline.md",
         "slug": "83-recruiting-pipeline"
@@ -1692,9 +1692,9 @@
       "slug": "employee-directory",
       "score": "4/5",
       "category": "人材・HR・採用",
-      "title": "AI に従業員名簿＋組織図を作らせてみた — 「人」を表す部品だけが、2回続けて手組みされた（やってみた #84）",
+      "title": "AI に従業員名簿＋組織図を作らせてみた — 「人」を表すコンポーネントだけが、2回続けて手組みされた（やってみた #84）",
       "readmeTitle": "従業員名簿/組織図（人材採用・名簿DataTable/組織図TreeView/雇用形態DistributionBar/従業員ドリルイン層）",
-      "summary": "採用パイプライン(#83)とは作法が真逆——カンバンのファネルではなく、名簿テーブルと組織ツリー。観測ポイントは2つ：**①組織階層に木構造の部品が自力発掘されるか ②前回手組みされた「人物セル」がまた手組みされるか（3回ルールの2回目）。**",
+      "summary": "採用パイプライン(#83)とは作法が真逆——カンバンのファネルではなく、名簿テーブルと組織ツリー。観測ポイントは2つ：**①組織階層に木構造のコンポーネントが自力で発掘されるか ②前回手組みされた「人物セル」がまた手組みされるか（3回ルールの2回目）。**",
       "article": {
         "file": "zenn-yattemita-84-employee-directory.md",
         "slug": "84-employee-directory"
@@ -1712,9 +1712,9 @@
       "slug": "performance-review",
       "score": "4.5/5",
       "category": "人材・HR・採用",
-      "title": "AI に人事評価を作らせてみた — 3回手組みされた「人物セル」を、その場で部品にした（やってみた #85）",
+      "title": "AI に人事評価を作らせてみた — 3回手組みされた「人物セル」を、その場でコンポーネントにした（やってみた #85）",
       "readmeTitle": "人事評価/目標管理MBO（人材採用・評価WF ApprovalWorkflow/人事確定CoSign/達成度Meter/評価分布DistributionBar/360度RadarChart層・★PersonCell 3回目→build）",
-      "summary": "採用3枚目。観測の核は明確だった——**`PersonCell`（人物セル）が3回目の手組みになれば、3回ルールが発火してその場で結晶化する。** #83 採用パイプライン・#84 名簿で別々の cold AI が独立に手組みしたあの molecule。",
+      "summary": "採用3枚目。観測の核は明確だった——**`PersonCell`（人物セル）が3回目の手組みになれば、3回ルールが発火してその場で固まる。** #83 採用パイプライン・#84 名簿で別々の予備知識ゼロの AI が独立に手組みした、あの組み合わせ。",
       "article": {
         "file": "zenn-yattemita-85-performance-review.md",
         "slug": "85-performance-review"
@@ -1732,9 +1732,9 @@
       "slug": "attendance-management",
       "score": "4.5/5",
       "category": "人材・HR・採用",
-      "title": "AI に勤怠管理を作らせてみた — 前回作った部品を、次の AI がもう発掘していた（やってみた #86）",
+      "title": "AI に勤怠管理を作らせてみた — 前回作ったコンポーネントを、次の AI がもう発掘していた（やってみた #86）",
       "readmeTitle": "勤怠管理/工数管理（人材採用・月次勤怠ScheduleGrid社員×日/36協定Meter/承認WF/社員別ステータスPersonCell層・★PersonCell 翌回 cold 発掘）",
-      "summary": "前回 #85 で、3回手組みされた `PersonCell` をその場で `@gunjo/ui` に build した。#86 の観測はただ1つ——**たった今作った PersonCell を、何も知らない次の cold AI が自力で発掘して使うか。** 複利の、最短距離の証明。",
+      "summary": "前回 #85 で、3回手組みされた `PersonCell` をその場で `@gunjo/ui` に作った。#86 の観測はただ1つ——**たった今作った PersonCell を、何も知らない次の予備知識ゼロの AI が自力で発掘して使うか。** 複利の、最短距離の証明。",
       "article": {
         "file": "zenn-yattemita-86-attendance-management.md",
         "slug": "86-attendance-management"
@@ -1754,7 +1754,7 @@
       "category": "人材・HR・採用",
       "title": "AI に入社オンボーディングを作らせてみた — PersonCell をまた発掘、そして Drawer の罠（やってみた #87）",
       "readmeTitle": "入社手続き/オンボーディング（人材採用・フェーズ別CheckList/書類提出/手続き確定SignedRecord/新入社員PersonCell層・Drawer side=right bug発見）",
-      "summary": "`tsc`/`build` 緑・375px・0 console error。新入社員一覧・フェーズ別チェックリスト・書類提出状況・手続き完了承認・ドリルイン。",
+      "summary": "`tsc`/`build` 緑・375px・0 console error。新入社員一覧・フェーズ別チェックリスト・書類提出状況・手続き完了承認・掘り下げる詳細。",
       "article": {
         "file": "zenn-yattemita-87-employee-onboarding.md",
         "slug": "87-employee-onboarding"
