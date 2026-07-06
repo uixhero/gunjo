@@ -1874,7 +1874,7 @@
       "category": "介護・福祉",
       "title": "AI に通所介護の運営画面を作らせてみた — 介護5枚目、もう手組みする所が無い（やってみた #93）",
       "readmeTitle": "通所介護デイサービス当日運営（介護福祉・利用者PersonCell/送迎RouteStops/入浴訓練ScheduleGrid/稼働率Meter target/担当RelationshipRow/記録SignedRecord層・介護5枚締め＝成熟再利用）",
-      "summary": "介護5枚目で介護を締める。観測：**成熟した primitive 群（PersonCell/RelationshipRow/RouteStops/SignedRecord/ScheduleGrid/Meter）が、5枚目でどれだけ手組みを消すか。**",
+      "summary": "介護5枚目で介護を締める。観測：**成熟したコンポーネント群（PersonCell/RelationshipRow/RouteStops/SignedRecord/ScheduleGrid/Meter）が、5枚目でどれだけ手組みを消すか。**",
       "article": {
         "file": "zenn-yattemita-93-day-service.md",
         "slug": "93-day-service"
@@ -1894,7 +1894,7 @@
       "category": "飲食・レストラン",
       "title": "AI にレストラン予約管理を作らせてみた — 直前に作った StatGroup が、もう新業界で使われた（やってみた #95）",
       "readmeTitle": "レストラン予約・来店管理（飲食・卓×時間ScheduleGrid/ダブルブッキング検出/サマリStatGroup/満席率Meter/予約者PersonCell/ウォークイン層）★新業界（#94=StatGroup build）",
-      "summary": "13業界目は飲食。観測：**直前に build した `StatGroup`（＋人物階層 PersonCell/RelationshipRow）が、レストランという全く別の業界の cold AI に自力発掘されるか。**",
+      "summary": "13業界目は飲食。観測：**直前に作った `StatGroup`（＋人物の階層 PersonCell/RelationshipRow）が、レストランという全く別の業界の予備知識ゼロの AI に自力で発掘されるか。**",
       "article": {
         "file": "zenn-yattemita-95-restaurant-reservations.md",
         "slug": "95-restaurant-reservations"
