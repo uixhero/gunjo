@@ -2692,9 +2692,9 @@
       "slug": "bus-dispatch",
       "score": "4.5/5",
       "category": "運輸：バス",
-      "title": "AI にバスの配車・乗務員管理を作らせてみた — 土台は3モード目でも揺るがず、穴は「3つ目の軸」を指した（やってみた #137）",
+      "title": "AI にバスの配車・乗務員管理を作らせてみた — 土台は3モード目でも揺るがず、欠落は「3つ目の軸」を指した（やってみた #137）",
       "readmeTitle": "バス 配車・乗務員管理（バスtoB2枚目=鉄道乗務員#107/航空乗員#131のバス版/○○営業所 デスクトップ密度・仕業交番ScheduleGrid/拘束時間Meter(改善基準告示)/アルコール点呼ReferenceValue/要対応ActionQueue/点呼記録SignedRecord+2人点呼CoSign/資格期限手組み層）★crew/dispatch土台が3モード目も全摩擦ゼロ・**ExpiryBadge 2回目(運転士資格期限→#383 2/3)**・#131索引fix機能(ReferenceValue≠期限→ScheduleGrid+Badgeへ正しく誘導)・ThresholdGate(アルコールgo/no-go)/status-grid #376追記",
-      "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-137-bus-dispatch.md",
         "slug": "137-bus-dispatch"
@@ -2714,7 +2714,7 @@
       "category": "運輸：バス",
       "title": "AI にバスの接近案内を作らせてみた — モバイル消費者土台が3モード目でも丸ごと効いた（やってみた #138）",
       "readmeTitle": "バス 接近案内・乗車（バスtoC1枚目=モバイル消費者・都営バス風 渋谷駅前・接近案内ListCard(まもなく到着/あと○分/○つ前)/系統FilterChips/PageHeader/IC残高LoyaltySummaryCard/一日乗車券TicketStub/運賃AmountBreakdown/混雑CrowdingBadge手組み層）★モバイルtoC土台6部品が3モード目消費者で全業界越え・**StatusLevel 2回目(車内混雑→#376 2/3)**・#380 PageHeader修正が機能と明記・索引 混雑→HeatmapChart 誤誘導是正(#389)",
-      "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-138-bus-approach.md",
         "slug": "138-bus-approach"
@@ -2732,9 +2732,9 @@
       "slug": "highway-bus",
       "score": "4/5",
       "category": "運輸：バス",
-      "title": "AI に高速バスの座席予約を作らせてみた — 予約土台は丸ごと業界越え、SeatMap は「グリッドは完璧・属性は airline 形」（やってみた #139）",
+      "title": "AI に高速バスの座席予約を作らせてみた — 予約土台は丸ごと業界越え、SeatMap は「グリッドは完璧・属性は航空の形」（やってみた #139）",
       "readmeTitle": "バス 高速バス座席予約（バスtoC2枚目=モバイル予約・バスタ新宿→大阪・便プランRadioCard/座席表SeatMap(3列独立=A空C空D列・4列)/運賃AmountBreakdown/予約Stepper/乗車券TicketStub/PageHeader・乗車地RadioRow手組み+ボトムバー手組み層）★予約土台5部品が高速バスに全業界越え・SeatMap はグリッドぴったりだが coach 属性(女性専用/トイレ付/向き)未対応→#390・RadioRow/BottomActionBar(3回目)→#391・索引 誤誘導ゼロ",
-      "summary": "`tsc` 緑・375px mobile-first・5ステップ予約フロー。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・375px mobile-first・5ステップ予約フロー。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-139-highway-bus.md",
         "slug": "139-highway-bus"
@@ -2752,9 +2752,9 @@
       "slug": "bus-route-search",
       "score": "4/5",
       "category": "運輸：バス",
-      "title": "AI にバスの経路検索を作らせてみた — #126 で build した Itinerary が、別モードで自力発見された（やってみた #140）",
+      "title": "AI にバスの経路検索を作らせてみた — #126 で作った Itinerary が、別モードで自力発見された（やってみた #140）",
       "readmeTitle": "バス 経路検索・運賃案内（バスtoC3枚目=モバイル経路検索・渋谷駅→等々力・経路候補ListCard/経路詳細Itinerary業界越え/運賃AmountBreakdown/並び替えFilterChips/PageHeader・系統LineChip手組み+from/to検索バー手組み層）★**Itinerary 別業界での自力発見=#126 buildが別モード(バス経路)で自力発見・索引も正しく誘導**・但し adequate-not-native(walk/ride/transfer kind・破線徒歩vs実線乗車 connector 無し)→#358 再open(2/3)・LineChip 2回目(#138+#140→#392)",
-      "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-140-bus-route-search.md",
         "slug": "140-bus-route-search"
@@ -2772,9 +2772,9 @@
       "slug": "taxi-dispatch",
       "score": "4/5",
       "category": "運輸：タクシー",
-      "title": "AI にタクシー配車管理を作らせてみた — 物理opsの最頻出穴「状態盤」が、4モード目で結晶化（やってみた #141）",
+      "title": "AI にタクシー配車管理を作らせてみた — 現場運用の最頻出の欠落「状態盤」が、4モード目でコンポーネント化（やってみた #141）",
       "readmeTitle": "**新モード タクシー** 配車管理（タクシーtoB1枚目=4モード目/みやこ交通 城南配車センター AVM デスクトップ密度・車両状態盤StatusBoard手組み/配車依頼ListCard/マッチング候補ListCard+配車Button/要対応ActionQueue/KPI StatGroup/実車率Meter層）★**StatusBoard 3回目→build trigger=#385 結晶化(13個目・物理ops土台の最頻出穴)**・状態盤が駅務#132+ランプ#134+配車#141 で3-confirm・toB土台4モード目も全摩擦ゼロ・索引 状態盤→HeatmapChart 誤誘導是正",
-      "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-141-taxi-dispatch.md",
         "slug": "141-taxi-dispatch"
