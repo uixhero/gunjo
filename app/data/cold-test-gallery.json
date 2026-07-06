@@ -812,9 +812,9 @@
       "slug": "payroll",
       "score": "4.5/5",
       "category": "会計・給与",
-      "title": "AI に給与明細の編集画面を作らせてみた — 直近2回で作った primitive が、両方とも別業界で即採用された（やってみた #40）",
+      "title": "AI に給与明細の編集画面を作らせてみた — 直近2回で作ったコンポーネントが、両方とも別業界で即採用された（やってみた #40）",
       "readmeTitle": "給与明細編集・確定（給与・支給控除/社保税層）",
-      "summary": "`tsc`/`build` 緑・console 0・375px で支給/控除グリッドがカード化・差引支給額がライブ再計算（マイナスは警告）・承認→確定フロー動作・h1 1個。",
+      "summary": "`tsc`/`build` 緑・console 0・375px で支給/控除グリッドがカード化・差引支給額がその場で再計算（マイナスは警告）・承認→確定フロー動作・h1 1個。",
       "article": {
         "file": "zenn-yattemita-40-payroll.md",
         "slug": "40-payroll"
@@ -834,7 +834,7 @@
       "category": "会計・給与",
       "title": "AI に年末調整の申告画面を作らせてみた — 直近で作った4つが、全部ゼロ摩擦で使われた（やってみた #41）",
       "readmeTitle": "年末調整 申告（給与・税申告/精算層）",
-      "summary": "`tsc`/`build` 緑・console 0・375px で編集グリッドがカード化・過不足額がライブ再計算（還付/追徴を明示）・提出フロー動作・h1 1個。",
+      "summary": "`tsc`/`build` 緑・console 0・375px で編集グリッドがカード化・過不足額がその場で再計算（還付/追徴を明示）・提出フロー動作・h1 1個。",
       "article": {
         "file": "zenn-yattemita-41-year-end.md",
         "slug": "41-year-end"
