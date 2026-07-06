@@ -2492,9 +2492,9 @@
       "slug": "airport-lounge",
       "score": "4/5",
       "category": "運輸：航空",
-      "title": "AI に空港ラウンジ案内を作らせてみた — 3つの新部品が「1画面で同時に発掘」された、航空 toC 締めの回（やってみた #127）",
+      "title": "AI に空港ラウンジ案内を作らせてみた — 3つの新しいコンポーネントが「1画面で同時に発掘」された、航空 toC 締めの回（やってみた #127）",
       "readmeTitle": "航空 空港ラウンジ・優先サービス案内（航空toC深掘り=航空締め・羽田T2・ラウンジ一覧ListCard/絞り込みFilterChips/PageHeader/混雑CrowdingBadge手組み層）★PageHeader+ListCard+FilterChips 3部品同時別業界での自力発見・StatusLevel(定性的混雑指標)起票",
-      "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-127-airport-lounge.md",
         "slug": "127-airport-lounge"
@@ -2512,9 +2512,9 @@
       "slug": "station-outing",
       "score": "3.5/5",
       "category": "運輸：鉄道",
-      "title": "AI に駅ナカ・おでかけ提案を作らせてみた — 3画面さまよった「券面」が、ついに結晶化（やってみた #128）",
+      "title": "AI に駅ナカ・おでかけ提案を作らせてみた — 3画面さまよった「券面」が、ついにコンポーネント化（やってみた #128）",
       "readmeTitle": "鉄道 駅ナカ・おでかけ提案（鉄道toC深掘り=鉄道締め寄り・東京駅グランスタ・店舗/スポットListCard/カテゴリFilterChips/会員証LoyaltySummaryCard/PageHeader/クーポン会員証バーコード券面Scannable手組み層）★TicketStub 3回目→build trigger・4土台(PageHeader/LoyaltySummaryCard/FilterChips/ListCard)業界越え・#363クローズ",
-      "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-128-station-outing.md",
         "slug": "128-station-outing"
@@ -2532,9 +2532,9 @@
       "slug": "ticket-refund",
       "score": "4.5/5",
       "category": "運輸：鉄道",
-      "title": "AI にきっぷの払戻し画面を作らせてみた — 昨日 build した部品が、今日の画面で自力発見された（やってみた #129）",
+      "title": "AI にきっぷの払戻し画面を作らせてみた — 昨日作ったコンポーネントが、今日の画面で自力発見された（やってみた #129）",
       "readmeTitle": "鉄道 きっぷ払戻し・遅延証明書（鉄道toC締め・えきねっと/JR東日本・払戻内訳AmountBreakdown/遅延証明書QR TicketStub/申込Stepper/理由RadioCard/PageHeader/CheckboxCard・ボトムバー手組み層）★TicketStub 別業界での自力発見(昨日buildが翌画面で自力発見)・AmountBreakdown toC業界越え・PageHeader footgun実バグ修正(#380)・CheckboxCard #378起票",
-      "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-129-ticket-refund.md",
         "slug": "129-ticket-refund"
@@ -2552,9 +2552,9 @@
       "slug": "aircraft-maintenance",
       "score": "4.5/5",
       "category": "運輸：航空",
-      "title": "AI に航空機の整備管理コンソールを作らせてみた — 鉄道で結晶化した土台が、そのまま航空に効いた（やってみた #130）",
+      "title": "AI に航空機の整備管理コンソールを作らせてみた — 鉄道で固めた土台が、そのまま航空に効いた（やってみた #130）",
       "readmeTitle": "航空 機体整備管理/MRO（航空toB土台埋め=#113以来2枚目・整備本部デスクトップ密度・機材一覧ActionDataTable+整備周期残りMeter(higher-is-worse)/ドック割当Gantt+ScheduleGrid/要対応AD/SB/MEL ActionQueue/整備確認SignedRecord/KPI StatGroup層）★toB土台 業界を越える地力テスト=鉄道車両検査#108土台が航空MROに構造的手組みゼロで横展開・index ListCard→DataTable是正(#382)・asset-row/Meter valueText/InspectorPanel #381起票",
-      "summary": "前回、「鉄道と航空の toB は終わった？」と台帳を数え直したら——**鉄道 toB は3枚（運行/乗務員/車両）で土台達成、だが航空 toB は #113 の1枚だけ**だった。toC で gap が噴き出して深掘りした分、航空 toB が薄いまま残っていた。だから土台まで埋める。そして同時に試したいことがあった：**14業種＋鉄道で結晶化した「保守 toB 土台」（資産テーブル／消費vs限度メーター／時間軸スケジュール／要対応キュー／署名記録）は、航空 MRO にそのまま効くのか？**",
+      "summary": "前回、「鉄道と航空の toB は終わった？」と台帳を数え直したら——**鉄道 toB は3枚（運行/乗務員/車両）で土台達成、だが航空 toB は #113 の1枚だけ**だった。toC で欠落が噴き出して深掘りした分、航空 toB が薄いまま残っていた。だから土台まで埋める。そして同時に試したいことがあった：**14業種＋鉄道で固めた「保守の toB 土台」（資産テーブル／消費vs限度メーター／時間軸スケジュール／要対応キュー／署名記録）は、航空 MRO にそのまま効くのか？**",
       "article": {
         "file": "zenn-yattemita-130-aircraft-maintenance.md",
         "slug": "130-aircraft-maintenance"
@@ -2574,7 +2574,7 @@
       "category": "運輸：航空",
       "title": "AI に航空乗員のスケジュール管理を作らせてみた — 鉄道の乗務員交番の土台が、また航空で効いた（やってみた #131）",
       "readmeTitle": "航空 乗員スケジュール管理（航空toB土台埋め=3枚目で航空toB土台達成/乗員部デスクトップ密度・乗務割ScheduleGrid+資格カレンシーScheduleGrid/FTL乗務時間Meter(higher-is-worse)/要対応ActionQueue/乗務指示SignedRecord/PersonCell層）★toB土台 業界越えのテスト2回目=鉄道乗務員#107土台が航空乗員に構造的手組みゼロで横展開・index ReferenceValue≠期限是正(#384)・ExpiryBadge/CurrencyMatrix #383起票",
-      "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-131-crew-scheduling.md",
         "slug": "131-crew-scheduling"
