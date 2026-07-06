@@ -3012,9 +3012,9 @@
       "slug": "bus-planning",
       "score": "4.5/5",
       "category": "運輸：バス",
-      "title": "AI にバスのダイヤ編成コンソールを作らせてみた — 連載最大の「build 検証」、手組みされた運行図表が部品になって帰ってきた（やってみた #153）",
+      "title": "AI にバスのダイヤ編成コンソールを作らせてみた — 連載最大の「作った検証」、手組みされた運行図表がコンポーネントになって帰ってきた（やってみた #153）",
       "readmeTitle": "バス 運行計画・ダイヤ編成（**バス toB 厚く**[#136-137に追加]・運行計画担当のデスク向け情報密度コンソール/系統一覧DataTable/運行図表Stringline/便時刻DataTable/車両運用Gantt/改正vs現行 Table+Delta/要対応ActionQueue/KPI StatGroup）★**連載最大の build 検証＝#136 で手組みされた運行図表(SVG 210行)を build した Stringline を cold AI が今度は自力発見し SVG ゼロで使用＝build がギャップを埋めた証明・索引も「時間×距離の運行図表＝斜めの運行線」で正しく誘導**＋**Gantt-intraday(#386)を今 build＝resolution=hour で dayWidth ハック根治([PR#410](https://github.com/uixhero/gunjo/pull/410))**・ComparisonTable/BadgeVariantKey 未export #411起票",
-      "summary": "`tsc` 緑・デスクトップ情報密度。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ情報密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-153-bus-planning.md",
         "slug": "153-bus-planning"
@@ -3032,9 +3032,9 @@
       "slug": "bus-revenue",
       "score": "4/5",
       "category": "運輸：バス",
-      "title": "AI にバスの路線収支ダッシュボードを作らせてみた — chart土台がバス財務に完全に業界を越えて再利用、Leaderboard が2回目（やってみた #154）",
+      "title": "AI にバスの路線収支ダッシュボードを作らせてみた — チャートの土台がバス財務に完全に業種を越えて再利用、Leaderboard が2回目（やってみた #154）",
       "readmeTitle": "バス 営収・路線収支ダッシュボード（**バス toB 厚く**[#136-137-153に追加]・経営企画/営業所長向け・KPI StatGroup/収支推移LineChart/費用内訳LabeledDonutCard/系統別収支DataTable+Delta+Meter/収支ランキングRankRow手組み/要対応ActionQueue/営業係数=営収100円の費用>100赤字）★**chart土台がバス財務に完全に業界を越えて再利用=LineChart/LabeledDonutCard/StatGroup/Delta/ActionQueue/DataTable が全て 摩擦ゼロ・可変データ駆動で static 化ゼロ**・**Leaderboard 2/3(系統別収支ランキング=taxi#143 売上ランキングに続く・索引が Pareto“Rankings”誤誘導 #395)**・DataTable rowTone(赤字行 tint 不可)/Statistic・Meter inverted-metric(営業係数 good-when-low) #412起票",
-      "summary": "`tsc` 緑・デスクトップ情報密度・可変データ駆動のチャート。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ情報密度・可変データ駆動のチャート。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-154-bus-revenue.md",
         "slug": "154-bus-revenue"
@@ -3052,9 +3052,9 @@
       "slug": "bus-safety",
       "score": "4.5/5",
       "category": "運輸：バス",
-      "title": "AI にバスの安全・事故管理コンソールを作らせてみた — Leaderboard が3回目で結晶化、その場で build した（やってみた #155）",
+      "title": "AI にバスの安全・事故管理コンソールを作らせてみた — Leaderboard が3回目でコンポーネント化、その場で作った（やってみた #155）",
       "readmeTitle": "バス 安全・事故・苦情管理（運輸安全マネジメント）（**バス toB→toB5=鉄道航空と対称**[#136-137-153-154に追加]・安全管理者向け・事故/苦情worklist DataTable+severity-first/事故報告→承認→是正 ApprovalSteps(完璧適合)/SafetyBanner(専用部品!)/種別内訳LabeledDonutCard/推移StackedBarChart/営業所別 安全指標RankRow手組み/要対応ActionQueue/事故率Meter higher-is-worse/安全KPI StatGroup）★**Leaderboard 3/3 到達→その場 build([PR#413](https://github.com/uixhero/gunjo/pull/413)・#395クローズ)＝taxi#143/bus#154/bus#155 で3回手組み・索引も Rankings→StatGroup 誤誘導を是正**・ApprovalSteps が事故報告承認フローに完璧適合「本物の承認ルートを見た人が作った」・good-when-low #412 2回目",
-      "summary": "`tsc` 緑・デスクトップ情報密度。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・デスクトップ情報密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-155-bus-safety.md",
         "slug": "155-bus-safety"
@@ -3072,9 +3072,9 @@
       "slug": "bus-ticket",
       "score": "4.5/5",
       "category": "運輸：バス",
-      "title": "AI にバスのモバイル乗車券を作らせてみた — SegmentedControl が結晶化、2回連続でその場 build（やってみた #156）",
+      "title": "AI にバスのモバイル乗車券を作らせてみた — SegmentedControl がコンポーネント化、2回連続でその場で作成（やってみた #156）",
       "readmeTitle": "バス モバイル乗車券・一日乗車券・IC（**バス toC 厚く=弱い側**[#138-139-140に追加]・モバイルファースト乗車券/券種RadioCard(普通/一日/フリーパス)/モバイル券面TicketStub(QR)/有効期限ExpiryBadge/運賃AmountBreakdown/旅客区分・支払い ToggleGroup 強制(w-full justify-stretch coerce)/購入BottomActionBar/利用可能エリアMetadataList）★**SegmentedControl 3-confirm 到達→その場 build([PR#414](https://github.com/uixhero/gunjo/pull/414)・#409クローズ)＝大人/小児・現金/IC/QR で ToggleGroup を w-full justify-stretch [&>*]:flex-1 で強制+union callback cast＝出発到着#110/140・払戻し#129・個人法人#152 で手組み済・索引 2-3等幅→ToggleGroup を SegmentedControl に是正**・TicketStub/ExpiryBadge/RadioCard/BottomActionBar 全て built-for-this・ValidityTimer(分秒の有効時間=ExpiryBadge は日粒度)#415起票・索引は誤誘導なし",
-      "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-156-bus-ticket.md",
         "slug": "156-bus-ticket"
