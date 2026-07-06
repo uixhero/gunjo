@@ -2172,9 +2172,9 @@
       "slug": "service-status",
       "score": "3.5/5",
       "category": "運輸：鉄道",
-      "title": "AI に運行情報案内を作らせてみた — toC で3回手組みされた「リストカード」が、ついに部品になった（やってみた #111）",
+      "title": "AI に運行情報案内を作らせてみた — toC で3回手組みされた「リストカード」が、ついにコンポーネントになった（やってみた #111）",
       "readmeTitle": "運行情報案内（鉄道toC3枚目・mobile-first・重大運行情報ActionQueue/路線別運行状況LineStatusRow手組み/更新履歴Timeline層）★ListCard 3回目→build trigger・ActionQueue 再発掘・索引の status-row 誤誘導是正",
-      "summary": "#109 特急券・#110 乗換案内に続く toC 3枚目。観測の核——**結果カード/ステータス行が3回目の手組みになれば、その場で build する。**",
+      "summary": "#109 特急券・#110 乗換案内に続く toC 3枚目。観測の核——**結果カード/ステータス行が3回目の手組みになれば、その場で作る。**",
       "article": {
         "file": "zenn-yattemita-111-service-status.md",
         "slug": "111-service-status"
@@ -2192,9 +2192,9 @@
       "slug": "flight-booking",
       "score": "3.5/5",
       "category": "運輸：航空",
-      "title": "AI にフライト予約を作らせてみた — 昨日作った ListCard を翌日もう使い、座席表の穴が2回目になった（やってみた #112）",
+      "title": "AI にフライト予約を作らせてみた — 昨日作った ListCard を翌日もう使い、座席表の欠落が2回目になった（やってみた #112）",
       "readmeTitle": "国内線フライト予約（運輸:航空toC1枚目・mobile-first・便一覧ListCard/座席指定SeatMap手組み/運賃内訳AmountBreakdown/予約Stepper層）★ListCard 別業界での自力発見=build翌回で自力発見・SeatMap 2回目・Stepper 375px fix が機能",
-      "summary": "鉄道 toC（特急券/乗換案内/運行情報）に続く、交通モード2つ目の利用者側。観測2つ——**#111 で build した `ListCard` を別 cold AI が便一覧で自力発見するか**＋**座席表（SeatMap）が2回目の手組みになるか**（#109 鉄道座席に続く）。",
+      "summary": "鉄道 toC（特急券/乗換案内/運行情報）に続く、交通モード2つ目の利用者側。観測2つ——**#111 で作った `ListCard` を別の予備知識ゼロの AI が便一覧で自力発見するか**＋**座席表（SeatMap）が2回目の手組みになるか**（#109 鉄道座席に続く）。",
       "article": {
         "file": "zenn-yattemita-112-flight-booking.md",
         "slug": "112-flight-booking"
@@ -2214,7 +2214,7 @@
       "category": "運輸：航空",
       "title": "AI に航空の運航管理を作らせてみた — 3画面で手組みされた「機材繰りバー」が、ついに Gantt に入った（やってみた #113）",
       "readmeTitle": "航空 運航管理(OCC)/機材繰り（運輸:航空toB1枚目・運航ボードDataTable/不正常運航ActionQueue/機材繰りGantt(segments手組み)/KPI StatGroup層）★Gantt rich-segment 3回目→build trigger・ActionQueue 再発掘",
-      "summary": "航空 toC（フライト予約 #112）に続く事業者側。観測の本命——**機材繰り（各機の1日＝便→折返し→整備の連なり）が、Gantt の rich-segment ギャップ（#354・現在2/3）の3回目になるか。**",
+      "summary": "航空 toC（フライト予約 #112）に続く事業者側。観測の本命——**機材繰り（各機の1日＝便→折返し→整備の連なり）が、Gantt の区切り付きバーの欠落（#354・現在2/3）の3回目になるか。**",
       "article": {
         "file": "zenn-yattemita-113-flight-operations.md",
         "slug": "113-flight-operations"
@@ -2232,7 +2232,7 @@
       "slug": "flight-checkin",
       "score": "3/5",
       "category": "運輸：航空",
-      "title": "AI に搭乗手続きを作らせてみた — 3画面で手組みされた「座席表」が、ついに部品になった（やってみた #114）",
+      "title": "AI に搭乗手続きを作らせてみた — 3画面で手組みされた「座席表」が、ついにコンポーネントになった（やってみた #114）",
       "readmeTitle": "オンラインチェックイン/搭乗手続き（運輸:航空toC・mobile-first・座席変更SeatMap手組み/搭乗券PassCard手組み/手荷物料金AmountBreakdown/手続Stepper層）★SeatMap 3回目→build trigger・TicketStub起票・StatusScreen success欠如",
       "summary": "toC が弱い。だから航空 toC を3枚（#114-116）並列で回すことにした。これはその1枚目。観測の本命——**座席表（SeatMap）が3回目の手組みになるか。**",
       "article": {
@@ -2254,7 +2254,7 @@
       "category": "運輸：航空",
       "title": "AI にフライト運航状況案内を作らせてみた — ListCard と RouteStops が「これのために作られた」（やってみた #115）",
       "readmeTitle": "フライト運航状況案内（運輸:航空toC・mobile-first・便一覧ListCard/便詳細RouteStops+Sheet/状態Badge/お知らせAlert層）★ListCard+RouteStops「built for this」・SegmentedControl/BadgeVariantKey起票",
-      "summary": "`tsc` 緑・375px mobile-first・0 console error。cold AI（群青を一度も触っていない設定）：",
+      "summary": "`tsc` 緑・375px mobile-first・0 console error。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
         "file": "zenn-yattemita-115-flight-status.md",
         "slug": "115-flight-status"
