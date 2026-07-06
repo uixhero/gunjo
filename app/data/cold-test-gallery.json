@@ -2072,9 +2072,9 @@
       "slug": "rail-operations",
       "score": "4/5",
       "category": "運輸：鉄道",
-      "title": "AI に鉄道の運転指令を作らせてみた — 3回目の「対応キュー」手組みで、また部品になった（やってみた #106）",
+      "title": "AI に鉄道の運転指令を作らせてみた — 3回目の「対応キュー」手組みで、またコンポーネントになった（やってみた #106）",
       "readmeTitle": "鉄道 運転指令/運行管理（運輸:鉄道1枚目・列車一覧DataTable/ダイヤ乱れActionQueue/車両運用RouteStops/運転整理Timeline/運行図表SVG手組み層）★ActionQueue 3回目→build trigger・Stringline 起票",
-      "summary": "運輸は1業界じゃなく「カテゴリ」——鉄道・バス・航空・タクシー・運送は作法が全然違うので、各モードを独立の土台として回す。今回はその鉄道。観測の核——**要対応の worklist（ActionQueue）が3回目の手組みになれば、その場で build する。**",
+      "summary": "運輸は1業界じゃなく「カテゴリ」——鉄道・バス・航空・タクシー・運送は作法が全然違うので、各モードを独立の土台として回す。今回はその鉄道。観測の核——**要対応の対応待ちリスト（ActionQueue）が3回目の手組みになれば、その場で作る。**",
       "article": {
         "file": "zenn-yattemita-106-rail-operations.md",
         "slug": "106-rail-operations"
@@ -2094,7 +2094,7 @@
       "category": "運輸：鉄道",
       "title": "AI に鉄道の乗務員交番を作らせてみた — 昨日作った「対応キュー」を、別のAIが翌日もう使った（やってみた #107）",
       "readmeTitle": "鉄道 乗務員仕業・行路管理/交番（鉄道2枚目・交番ScheduleGrid/要対応ActionQueue/行路RouteStops/点呼SignedRecord+CoSign/拘束Meter/アルコールReferenceValue層）★ActionQueue 別業界での自力発見=build翌回で別cold AIが索引から自力発見・RouteStops 索引追加",
-      "summary": "#106 は運転指令（指令側）。#107 は乗務員区（運用/HR側）＝別ペルソナ。観測の核——**前回 build したばかりの `ActionQueue` を、文脈ゼロの別 cold AI が点呼未了・超過勤務アラートで自力発見できるか。**",
+      "summary": "#106 は運転指令（指令側）。#107 は乗務員区（運用/HR側）＝別のペルソナ。観測の核——**前回作ったばかりの `ActionQueue` を、別の予備知識ゼロの AI が点呼未了・超過勤務アラートで自力発見できるか。**",
       "article": {
         "file": "zenn-yattemita-107-rail-crew-roster.md",
         "slug": "107-rail-crew-roster"
@@ -2134,7 +2134,7 @@
       "category": "運輸：鉄道",
       "title": "AI に特急券予約を作らせてみた — toC に降りた瞬間、最低スコアと新しい穴が出た（やってみた #109）",
       "readmeTitle": "特急券・指定席予約（鉄道**利用者側toC**1枚目・座席表SeatMap手組み/料金内訳AmountBreakdown/予約Stepper/候補列車Card手組み層）★toC pivot=最低スコア3.5で gap 露出・SeatMap 起票・Stepper 375px bug fix",
-      "summary": "#106〜108 の鉄道は全部**事業者側（指令/乗務員/車両）の back-office**だった。今回は**利用者側（B2C）に降りる**——えきねっと/EX予約のような消費者向け。観測の核——**back-office 寄りの kit は、消費者の予約フローでどこまで通用するか。**",
+      "summary": "#106〜108 の鉄道は全部**事業者側（指令/乗務員/車両）の事務方**だった。今回は**利用者側（B2C）に降りる**——えきねっと/EX予約のような消費者向け。観測の核——**事務方寄りの kit は、消費者の予約フローでどこまで通用するか。**",
       "article": {
         "file": "zenn-yattemita-109-express-reservation.md",
         "slug": "109-express-reservation"
@@ -2152,9 +2152,9 @@
       "slug": "transit-search",
       "score": "3/5",
       "category": "運輸：鉄道",
-      "title": "AI に乗換案内を作らせてみた — 自分で索引に足した部品が、3回後に「不適」と判明した（やってみた #110）",
+      "title": "AI に乗換案内を作らせてみた — 自分で索引に足したコンポーネントが、3回後に「不適」と判明した（やってみた #110）",
       "readmeTitle": "乗換案内・経路検索（鉄道toC2枚目・mobile-first・経路候補ResultCard手組み/経路詳細leg-itinerary手組み/運賃AmountBreakdown層）★ResultCard 2回目・RouteStops が transit に不適=索引を node-centric に是正・TransitItinerary 起票",
-      "summary": "#109 特急券に続く toC 2枚目。日本で最も使われる利用者向け鉄道アプリ。観測の核——**結果カードリスト（#109 で出た穴）が再び出るか**＋**経路の行程に `RouteStops` が効くか**。",
+      "summary": "#109 特急券に続く toC 2枚目。日本で最も使われる利用者向け鉄道アプリ。観測の核——**結果カードリスト（#109 で出た欠落）が再び出るか**＋**経路の行程に `RouteStops` が効くか**。",
       "article": {
         "file": "zenn-yattemita-110-transit-search.md",
         "slug": "110-transit-search"
