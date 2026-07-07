@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：バス",
   "title": "AI に高速バスの座席予約を作らせてみた — 予約土台は丸ごと業界越え、SeatMap は「グリッドは完璧・属性は航空の形」（やってみた #139）",
-  "readmeTitle": "バス 高速バス座席予約（バスtoC2枚目=モバイル予約・バスタ新宿→大阪・便プランRadioCard/座席表SeatMap(3列独立=A空C空D列・4列)/運賃AmountBreakdown/予約Stepper/乗車券TicketStub/PageHeader・乗車地RadioRow手組み+ボトムバー手組み層）★予約土台5部品が高速バスに全業界越え・SeatMap はグリッドぴったりだが coach 属性(女性専用/トイレ付/向き)未対応→#390・RadioRow/BottomActionBar(3回目)→#391・索引 誤誘導ゼロ",
   "summary": "`tsc` 緑・375px mobile-first・5ステップ予約フロー。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-139-highway-bus.md",

@@ -5,7 +5,6 @@
   "score": "3.5/5",
   "category": "運輸：航空",
   "title": "AI に国際線 eチケットを作らせてみた — 「ゲートで掲げる券面」が、まだコンポーネントじゃない（やってみた #123）",
-  "readmeTitle": "航空 国際線 eチケット・渡航書類チェック（航空toC深掘り・mobile-first・eチケット券面TicketStub手組み/渡航書類CheckList/旅程RouteStops/予約MetadataList層）★TicketStub 2回目(eチケット券面)・CheckList 業界越え・RouteStops 旅程に4回目漏れ",
   "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-123-eticket.md",

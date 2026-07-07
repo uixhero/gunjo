@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "基盤UI・汎用",
   "title": "AI にログイン画面を作らせたら、直したバグが消えていた（やってみた #5）",
-  "readmeTitle": "ログイン/サインアップ",
   "summary": "今回は条件を1つだけ変えた。**渡すパッケージを、出荷物そのもの（直前まで直していた最新版）にした。** #3 で見つけた、全体に共通する欠陥——`Tooltip` を使う ~28 コンポーネントが provider 無しで、サーバー側の事前描画（SSR）でクラッシュする問題（[#52](https://github.com/uixhero/gunjo/issues/52)）——を直した版です。条件は相変わらず「**パッケージ＋docs だけ・ソースは見せない**」。そして今回は **「TooltipProvider で包め」というヒントを、あえて…",
   "article": {
     "file": "zenn-yattemita-05-login.md",

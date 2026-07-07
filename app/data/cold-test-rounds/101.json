@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "保険",
   "title": "AI に保険金査定の画面を作らせてみた — #100で作った「用途から引く索引」が、次の回でもう効いた（やってみた #101）",
-  "readmeTitle": "自動車保険 保険金請求・査定管理（保険・査定WF ApprovalWorkflow/高額2名CoSign/確定SignedRecord/請求一覧DataTable/契約者PersonCell/KPI StatGroup/¥formatCurrency層）★新業界・逆引き索引が初活用",
   "summary": "14業界目は損保。観測の核は明確——**#100 で作った[用途別の逆引き索引](https://gunjo.jp/docs/by-use-case)が、次の予備知識ゼロの AI の役に立つか。**",
   "article": {
     "file": "zenn-yattemita-101-insurance-claims.md",

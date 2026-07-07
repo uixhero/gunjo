@@ -24,7 +24,6 @@ interface ColdTestEntry {
     score: string;
     category: string;
     title: string;
-    readmeTitle: string;
     summary: string;
     article: { file: string; slug: string } | null;
     shots: {
@@ -97,7 +96,6 @@ function ColdTestsGrid() {
                 e.route.toLowerCase().includes(q) ||
                 e.slug.toLowerCase().includes(q) ||
                 e.title.toLowerCase().includes(q) ||
-                e.readmeTitle.toLowerCase().includes(q) ||
                 e.category.toLowerCase().includes(q) ||
                 (t.categories[e.category]?.toLowerCase().includes(q) ?? false)
             );

@@ -5,7 +5,6 @@
   "score": "3.5/5",
   "category": "運輸：鉄道",
   "title": "AI に鉄道のダイヤ作成（運行図表）を作らせてみた — #106 で課題に記録した欠落が、27回後に2回目を見せた（やってみた #133）",
-  "readmeTitle": "鉄道 ダイヤ作成・運行計画（鉄道toB厚く=5枚目/運輸計画部デスクトップ密度・運行図表ダイヤグラムTrainDiagram手組み(190行SVG)/列車スジDataTable/車両運用Gantt/要対応ActionQueue/スジ詳細InspectorPanel+ミニ表手組み層）★Stringline 2回目(#106に続き運行図表再手組み・Gantt は座標系が別で不可能と精密説明)・#106索引disclaimer が機能(未対応と先に告知しGantt誤誘導を防止)・Gantt intraday解像度 #386起票・bus toB で3回目→build 見込",
   "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-133-timetable-planning.md",

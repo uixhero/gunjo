@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "金融",
   "title": "AI に M&A マッチングを作らせてみた — 索引が「会社にアバター」を勧めた回（やってみた #172）",
-  "readmeTitle": "M&A・事業承継 マッチング（**MatchCard 狙い深掘り/新業種=金融**・買い手⟷売り手・KPI StatGroup・案件一覧DataTable・買い手候補 適合度Leaderboard・適合度Meter(higher-is-better+target)・売り手×買い手 マッチ詳細 PairingPanel手組み・factor breakdown(業種/エリア/規模/価格/シナジー)・要対応ActionQueue・絞り込みFilterChips/Select）★**MatchCard 2/3(売り手×買い手の二者間ペアリング詳細＝#160 求貨求車 に続く)・索引が RelationshipPersonCell ベースで会社×会社に誤誘導(from/to が PersonCellProps＝アバター/presence を組織に強制・財務 facts スロット無し・score/factor 領域無し)再確認＋CompanyCell(組織版 PersonCell)も併記 #419**・Leaderboard/DataTable/Meter/ActionQueue/StatGroup 全て native・pairing 詳細だけが穴",
   "summary": "`tsc` 緑・デスクトップ密。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-172-ma-matching.md",

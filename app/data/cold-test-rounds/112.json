@@ -5,7 +5,6 @@
   "score": "3.5/5",
   "category": "運輸：航空",
   "title": "AI にフライト予約を作らせてみた — 昨日作った ListCard を翌日もう使い、座席表の欠落が2回目になった（やってみた #112）",
-  "readmeTitle": "国内線フライト予約（運輸:航空toC1枚目・mobile-first・便一覧ListCard/座席指定SeatMap手組み/運賃内訳AmountBreakdown/予約Stepper層）★ListCard 別業界での自力発見=build翌回で自力発見・SeatMap 2回目・Stepper 375px fix が機能",
   "summary": "鉄道の利用者向け（特急券/乗換案内/運行情報）に続く、交通モード2つ目の利用者側。観測2つ——**#111 で作った `ListCard` を別の予備知識ゼロの AI が便一覧で自力発見するか**＋**座席表（SeatMap）が2回目の手組みになるか**（#109 鉄道座席に続く）。",
   "article": {
     "file": "zenn-yattemita-112-flight-booking.md",

@@ -57,7 +57,6 @@ interface ColdTestEntry {
     score: string;
     category: string;
     title: string;
-    readmeTitle: string;
     summary: string;
     shots: {
         desktop: boolean;

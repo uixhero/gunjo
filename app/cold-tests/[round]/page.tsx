@@ -45,7 +45,7 @@ export async function generateMetadata({
     const detail = Number.isFinite(round) ? readRound(round) : null;
     if (!detail) return { title: "Round not found — GunjoUI cold tests" };
     const title = `#${detail.round} ${detail.title} — GunjoUI cold tests`;
-    const description = detail.summary || detail.readmeTitle || detail.title;
+    const description = detail.summary || detail.title;
     const url = `${SITE_URL}/cold-tests/${detail.round}`;
     const ogImage = detail.shots.desktop
         ? `${SITE_URL}/cold-test-shots/${detail.slug}.desktop.lg.webp`

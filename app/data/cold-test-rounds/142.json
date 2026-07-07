@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：タクシー",
   "title": "AI にタクシー乗務員管理を作らせてみた — 「3つ目の軸（期限）」が3モードをまたいでコンポーネント化（やってみた #142）",
-  "readmeTitle": "タクシー 乗務員管理・日報・点呼（タクシーtoB2枚目=crew/点呼/営収/資格 デスクトップ密度・乗務記録DataTable/営収内訳AmountBreakdown/点呼アルコールReferenceValue/拘束Meter/要対応ActionQueue/点呼記録CoSign/資格期限CurrencyPill手組み層）★**ExpiryBadge 3回目→build trigger=#383 結晶化(14個目・第3軸=値vs期限)**・資格期限が航空乗員#131+バス運転士#137+タクシー#142 で3-confirm・索引「期限カレンシー未提供」が正直に機能・索引を ExpiryBadge に反転・ThresholdGate(アルコール0.00 magic-epsilon)再確認",
   "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-142-taxi-crew.md",

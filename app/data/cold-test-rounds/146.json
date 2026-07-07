@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：タクシー",
   "title": "AI にタクシー需要予測を作らせてみた — 誤誘導先だった HeatmapChart が、遂に「本来の居場所」で輝いた（やってみた #146）",
-  "readmeTitle": "タクシー 需要予測・配車最適化（タクシーtoB6枚目=予測/最適化アナリティクス[#143営収とも別系統]/東京23区エリア デスクトップ密度・エリア×時間帯需要HeatmapChart/需給バランス地図ChoroplethMap+ランキング/需要予測LineChart/最適化提案ListCard/需給Delta(供給過多/不足)/KPI StatGroup層）★**HeatmapChart が遂に本来のホーム=エリア×時間帯強度(誤誘導先だった部品の正用途を実証)**・ChoroplethMap も需給地図+ランキングに適合・索引 誤誘導ゼロ・**信頼区間バンド(AreaRange)が唯一の穴→#400起票**(色スケール凡例も併記)",
   "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-146-taxi-demand.md",

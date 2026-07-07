@@ -5,7 +5,6 @@
   "score": "3/5",
   "category": "運輸：鉄道",
   "title": "AI に乗換案内を作らせてみた — 自分で索引に足したコンポーネントが、3回後に「不適」と判明した（やってみた #110）",
-  "readmeTitle": "乗換案内・経路検索（鉄道toC2枚目・mobile-first・経路候補ResultCard手組み/経路詳細leg-itinerary手組み/運賃AmountBreakdown層）★ResultCard 2回目・RouteStops が transit に不適=索引を node-centric に是正・TransitItinerary 起票",
   "summary": "#109 特急券に続く利用者向け 2枚目。日本で最も使われる利用者向け鉄道アプリ。観測の核——**結果カードリスト（#109 で出た欠落）が再び出るか**＋**経路の行程に `RouteStops` が効くか**。",
   "article": {
     "file": "zenn-yattemita-110-transit-search.md",

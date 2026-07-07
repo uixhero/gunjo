@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "運輸：タクシー",
   "title": "AI にタクシー会員・クーポン画面を作らせてみた — 連載最強の領域への適合、作ったコンポーネントが次々「自宅」に帰った（やってみた #151）",
-  "readmeTitle": "タクシー 会員・サブスク・クーポン（タクシーtoC**5枚目=深掘り**・ロイヤリティ[#147-150と別]/GO風・会員ランクLoyaltySummaryCard/サブスクRadioCard/クーポン一覧ListCard+提示TicketStub/クーポン期限ExpiryBadge/ポイントStatGroup/友達紹介CopyButton+手組み/CTA BottomActionBar層）★**連載最強のドメイン適合(7部品で~95%)・built部品が自宅/別業界での自力発見多数=LoyaltySummaryCard(home)/TicketStub(クーポン提示=#128 home)/ExpiryBadge(クーポン期限=crew#142→asset#144→coupon で軸が3ドメイン横断)**・ReferralCard/PromoCodeField/LoyaltySummaryCard tierTone #408起票",
   "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-151-taxi-membership.md",

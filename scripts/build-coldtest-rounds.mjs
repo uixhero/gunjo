@@ -214,7 +214,6 @@ for (const entry of gallery.entries) {
         score: entry.score,
         category: entry.category,
         title: entry.title,
-        readmeTitle: entry.readmeTitle,
         summary: entry.summary,
         article: entry.article
             ? { file: entry.article.file, slug: entry.article.slug, markdown: article }

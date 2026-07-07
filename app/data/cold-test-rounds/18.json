@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "基盤UI・汎用",
   "title": "AI にプロフィールページを作らせてみた — 粗さが尽きてきた（やってみた #18）",
-  "readmeTitle": "プロフィールページ",
   "summary": "条件は同じ（出荷しているパッケージそのもの＋docs だけ、ソース非公開）。お題は `/profile` に、ヘッダー（アバター・名前・自己紹介・統計）、フォロー/編集、タブ（Posts/About/Activity）、About（メタデータ）、Activity（タイムライン）、編集フォーム（モーダル＋入力チェック）。",
   "article": {
     "file": "zenn-yattemita-18-profile.md",

@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "基盤UI・汎用",
   "title": "またしても AI に使わせてみた — カルーセル、そして \"氷山の一角\" の話（やってみた #3）",
-  "readmeTitle": "カルーセル",
   "summary": "条件は毎回同じ。予備知識ゼロの AI に、**公開済みの npm `@gunjo/ui`（alpha.2）と [gunjo.jp](https://gunjo.jp) の docs だけ**を渡す。ソースは見せない。まっさらな Next.js（React 19 / Tailwind v4）で `npm run build` が通るまで自力で。",
   "article": {
     "file": "zenn-yattemita-03-carousel.md",

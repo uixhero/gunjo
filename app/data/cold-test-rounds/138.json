@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：バス",
   "title": "AI にバスの接近案内を作らせてみた — モバイル消費者土台が3モード目でも丸ごと効いた（やってみた #138）",
-  "readmeTitle": "バス 接近案内・乗車（バスtoC1枚目=モバイル消費者・都営バス風 渋谷駅前・接近案内ListCard(まもなく到着/あと○分/○つ前)/系統FilterChips/PageHeader/IC残高LoyaltySummaryCard/一日乗車券TicketStub/運賃AmountBreakdown/混雑CrowdingBadge手組み層）★モバイルtoC土台6部品が3モード目消費者で全業界越え・**StatusLevel 2回目(車内混雑→#376 2/3)**・#380 PageHeader修正が機能と明記・索引 混雑→HeatmapChart 誤誘導是正(#389)",
   "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-138-bus-approach.md",

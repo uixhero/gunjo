@@ -5,7 +5,6 @@
   "score": "3.5/5",
   "category": "運輸：鉄道",
   "title": "AI に運行情報案内を作らせてみた — 利用者向けで3回手組みされた「リストカード」が、ついにコンポーネントになった（やってみた #111）",
-  "readmeTitle": "運行情報案内（鉄道toC3枚目・mobile-first・重大運行情報ActionQueue/路線別運行状況LineStatusRow手組み/更新履歴Timeline層）★ListCard 3回目→build trigger・ActionQueue 再発掘・索引の status-row 誤誘導是正",
   "summary": "#109 特急券・#110 乗換案内に続く利用者向け 3枚目。観測の核——**結果カード/ステータス行が3回目の手組みになれば、その場で作る。**",
   "article": {
     "file": "zenn-yattemita-111-service-status.md",

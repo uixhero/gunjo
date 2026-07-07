@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "介護・福祉",
   "title": "AI に通所介護の運営画面を作らせてみた — 介護5枚目、もう手組みする所が無い（やってみた #93）",
-  "readmeTitle": "通所介護デイサービス当日運営（介護福祉・利用者PersonCell/送迎RouteStops/入浴訓練ScheduleGrid/稼働率Meter target/担当RelationshipRow/記録SignedRecord層・介護5枚締め＝成熟再利用）",
   "summary": "介護5枚目で介護を締める。観測：**成熟したコンポーネント群（PersonCell/RelationshipRow/RouteStops/SignedRecord/ScheduleGrid/Meter）が、5枚目でどれだけ手組みを消すか。**",
   "article": {
     "file": "zenn-yattemita-93-day-service.md",

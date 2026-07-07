@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：バス",
   "title": "AI にバスの路線収支ダッシュボードを作らせてみた — チャートの土台がバス財務に完全に業種を越えて再利用、Leaderboard が2回目（やってみた #154）",
-  "readmeTitle": "バス 営収・路線収支ダッシュボード（**バス toB 厚く**[#136-137-153に追加]・経営企画/営業所長向け・KPI StatGroup/収支推移LineChart/費用内訳LabeledDonutCard/系統別収支DataTable+Delta+Meter/収支ランキングRankRow手組み/要対応ActionQueue/営業係数=営収100円の費用>100赤字）★**chart土台がバス財務に完全に業界を越えて再利用=LineChart/LabeledDonutCard/StatGroup/Delta/ActionQueue/DataTable が全て 摩擦ゼロ・可変データ駆動で static 化ゼロ**・**Leaderboard 2/3(系統別収支ランキング=taxi#143 売上ランキングに続く・索引が Pareto“Rankings”誤誘導 #395)**・DataTable rowTone(赤字行 tint 不可)/Statistic・Meter inverted-metric(営業係数 good-when-low) #412起票",
   "summary": "`tsc` 緑・デスクトップ情報密度・可変データ駆動のチャート。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-154-bus-revenue.md",

@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：航空",
   "title": "AI に手荷物追跡を作らせてみた — RouteStops が「やっと正しく嵌まった」回（やってみた #124）",
-  "readmeTitle": "航空 手荷物追跡（航空toC深掘り・mobile-first・状態進行RouteStops(珍しく適合)/複数手荷物Tabs/概要StatGroup/受取案内Alert/PIR Accordion層）★RouteStops が状態トラッキングに「適合」=配送/注文/修理と同域・PageHeader 2/3 起票",
   "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-124-baggage-tracking.md",

@@ -5,7 +5,6 @@
   "score": "3/5",
   "category": "運輸：鉄道",
   "title": "AI に鉄道のポイント画面を作らせてみた — 「鉄道もポイント必要」の直感が、的中した（やってみた #117）",
-  "readmeTitle": "鉄道IC・ポイント会員（運輸:鉄道toC・モバイルSuica/JRE POINT・残高ポイントhero手組み/利用履歴ListCard/定期券MetadataList/Statistic層）★LoyaltySummaryCard 2回目（直感の的中）・ListCard 業界越え再発掘・ブランドtokenがTailwind utility化されてない",
   "summary": "#116（航空マイレージ）の後に、私は「**鉄道もポイント必要だったかも**」と直感した。それを回収する回。観測の本命——**ロイヤリティ要約（LoyaltySummaryCard）が2回目の手組みになるか。**",
   "article": {
     "file": "zenn-yattemita-117-rail-points.md",

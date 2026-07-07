@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：鉄道",
   "title": "AI に鉄道の運転指令を作らせてみた — 3回目の「対応キュー」手組みで、またコンポーネントになった（やってみた #106）",
-  "readmeTitle": "鉄道 運転指令/運行管理（運輸:鉄道1枚目・列車一覧DataTable/ダイヤ乱れActionQueue/車両運用RouteStops/運転整理Timeline/運行図表SVG手組み層）★ActionQueue 3回目→build trigger・Stringline 起票",
   "summary": "運輸は1業界じゃなく「カテゴリ」——鉄道・バス・航空・タクシー・運送は作法が全然違うので、各モードを独立の土台として回す。今回はその鉄道。観測の核——**要対応の対応待ちリスト（ActionQueue）が3回目の手組みになれば、その場で作る。**",
   "article": {
     "file": "zenn-yattemita-106-rail-operations.md",

@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "保険",
   "title": "AI に保険の契約管理を作らせてみた — 金額内訳がまた手組み、次に作るべきものが見えた（やってみた #102）",
-  "readmeTitle": "損保 契約管理/代理店ダッシュボード（保険・保有契約DataTable/更新失効リスク/募集人↔契約RelationshipRow/業績Meter/保険料内訳手組み層・CalculationLedger 2回目）",
   "summary": "#101査定とは別の契約/営業系。観測の核——**#101 で課題に記録した CalculationLedger（金額の導出ブロック）が、保険料内訳でまた手組みされるか。**",
   "article": {
     "file": "zenn-yattemita-102-insurance-policies.md",

@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：タクシー",
   "title": "AI にタクシー配車アプリを作らせてみた — 4回貯めた「ボトムバー」がついにコンポーネント化、タクシーの利用者向け 深掘り開始（やってみた #147）",
-  "readmeTitle": "タクシー 配車アプリ（タクシーtoC**1枚目=深掘り継続**・モバイル消費者/GO風 渋谷・呼出/車種RadioCard/ドライバーPersonCell+Rating/料金AmountBreakdown/ライドStepper/会員LoyaltySummaryCard/接近ETA+ボトムバー手組み層）★**BottomActionBar 4回目→build trigger=#125/#129/#139/#147 で3-confirm(15個目・PageHeader の対=下sticky CTA dock)**・索引「専用部品なし」を反転・mobile toC土台業界越え・ApproachCard(単車ライブETA)/VehicleCard #402起票",
   "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-147-taxi-ride.md",

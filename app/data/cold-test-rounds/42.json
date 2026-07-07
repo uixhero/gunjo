@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "小売・EC",
   "title": "AI に POS レジ会計を作らせてみた — 金額系のコンポーネントが、また別業界（小売）でゼロ摩擦だった（やってみた #42）",
-  "readmeTitle": "POS レジ会計（小売・カート/釣銭/税層）",
   "summary": "`tsc`/`build` 緑・console 0・375px（タブレットレジ想定）でカードレイアウト・税率別内訳が正確・現金不足で会計ブロック・h1 1個。",
   "article": {
     "file": "zenn-yattemita-42-pos.md",

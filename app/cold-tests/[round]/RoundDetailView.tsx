@@ -49,7 +49,6 @@ export interface RoundDetail {
     score: string;
     category: string;
     title: string;
-    readmeTitle: string;
     summary: string;
     article: {
         file: string;

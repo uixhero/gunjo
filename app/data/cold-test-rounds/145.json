@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "運輸：タクシー",
   "title": "AI にタクシーの苦情・事故管理を作らせてみた — 型は通るのに無視される「嘘の prop」を見つけた回（やってみた #145）",
-  "readmeTitle": "タクシー 苦情・事故・安全管理（タクシーtoB5枚目=ケース/インシデント管理=ops/保守/分析と別系統/渋谷営業所 デスクトップ密度・ケースライフサイクルApprovalWorkflow(受付→調査→対応→再発防止→完了)/案件一覧ActionDataTable/要対応ActionQueue/報告書SignedRecord/安全KPI StatGroup/無事故バナーSafetyBanner層）★ApprovalWorkflow が case-lifecycle に適合(docstring が case management を筆頭に名指し)・**実バグ修正=ActionDataTable の getRowState が型に在るのに silently drop(selection override)→compose で honor(#398)**・CaseTable preset #399起票",
   "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-145-taxi-incidents.md",

@@ -5,7 +5,6 @@
   "score": "3.5/5",
   "category": "運輸：タクシー",
   "title": "AI にタクシーの評価・サポート画面を作らせてみた — 索引が「動かないコンポーネント」に誘導した回（やってみた #150・節目）",
-  "readmeTitle": "タクシー 乗車後評価・忘れ物・サポート（タクシーtoC**4枚目=深掘り/節目#150**・post-ride/サポート[#147-149と別]/GO風・評価StarRatingInput手組み/良かった点ToggleGroup/FAQ SearchableAccordion/忘れ物Select+FilterChips/問い合わせ履歴ListCard+ApprovalSteps流用/CTA BottomActionBar層）★**実gap+索引誤誘導=Rating は表示専用で input 無し(rating input を read-only Rating に誤誘導)→RatingInput/InquiryStatus #406起票+索引 Rating=表示専用 明記(#407)**・SearchableAccordion が FAQ に完璧適合・サポート土台85%業界越え",
   "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-150-taxi-support.md",

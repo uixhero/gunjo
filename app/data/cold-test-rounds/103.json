@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "保険",
   "title": "AI に保険金支払の画面を作らせてみた — 3回目の手組みで、金額内訳がついにコンポーネントになった（やってみた #103）",
-  "readmeTitle": "自動車保険 保険金支払・精算管理（保険・支払一覧DataTable/支払先/高額2名CoSign/支払明細=認定額−過失相殺−免責−既払=支払額層）★AmountBreakdown 3回目→build trigger",
   "summary": "#101 査定・#102 契約に続く保険3枚目。観測の核は最初から決まっていた——**金額の導出ブロックが3回目の手組みになれば、その場で `AmountBreakdown` を作る。**",
   "article": {
     "file": "zenn-yattemita-103-insurance-payments.md",

@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：タクシー",
   "title": "AI にタクシーの乗車履歴・領収書を作らせてみた — TicketStub が「正しく使われなかった」回（やってみた #149）",
-  "readmeTitle": "タクシー 乗車履歴・領収書・経費（タクシーtoC**3枚目=深掘り**・アカウント系[#147呼出/#148予約と別]/GO風 渋谷→品川・利用サマリLoyaltySummaryCard+StatGroup/履歴ListCard(月別手組み)/領収書AmountBreakdown+EditableField宛名+Sheet/絞り込みFilterChips/経費複数選択+CTA BottomActionBar層）★BottomActionBar 別業界での自力発見3連続(選択モードバー)・**TicketStub は領収書に非適合と docstring が正しく誘導(定義域確定)**・**SectionList(月別グループ+小計)が穴→#404起票**・索引 モバイル複数選択→ListCard+Checkbox+BottomActionBar 是正(#405)",
   "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-149-taxi-history.md",

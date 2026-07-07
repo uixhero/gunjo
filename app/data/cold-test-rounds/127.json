@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：航空",
   "title": "AI に空港ラウンジ案内を作らせてみた — 3つの新しいコンポーネントが「1画面で同時に発掘」された、航空の利用者向け 締めの回（やってみた #127）",
-  "readmeTitle": "航空 空港ラウンジ・優先サービス案内（航空toC深掘り=航空締め・羽田T2・ラウンジ一覧ListCard/絞り込みFilterChips/PageHeader/混雑CrowdingBadge手組み層）★PageHeader+ListCard+FilterChips 3部品同時別業界での自力発見・StatusLevel(定性的混雑指標)起票",
   "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-127-airport-lounge.md",

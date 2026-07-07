@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "保険",
   "title": "AI に生保の引受査定を作らせてみた — 昨日作ったコンポーネントを、別のAIが翌日もう見つけて使った（やってみた #104）",
-  "readmeTitle": "生命保険 引受査定/申込審査（保険・申込査定DataTable/告知リスク評価/BMI血圧ReferenceValue/保険料算定AmountBreakdown/承認2名CoSign層）★AmountBreakdown 別業界での自力発見=build翌回で別cold AIが索引から自力発見",
   "summary": "#101〜103 は損保（査定/契約/支払）。#104 は生保の引受査定——別作法。観測の核は1つ——**前回作ったばかりの `AmountBreakdown` を、別の予備知識ゼロの AI が保険料計算で自力発見できるか。**",
   "article": {
     "file": "zenn-yattemita-104-insurance-underwriting.md",

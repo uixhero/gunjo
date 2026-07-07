@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：航空",
   "title": "AI にフライト運航状況案内を作らせてみた — ListCard と RouteStops が「これのために作られた」（やってみた #115）",
-  "readmeTitle": "フライト運航状況案内（運輸:航空toC・mobile-first・便一覧ListCard/便詳細RouteStops+Sheet/状態Badge/お知らせAlert層）★ListCard+RouteStops「built for this」・SegmentedControl/BadgeVariantKey起票",
   "summary": "`tsc` 緑・375px mobile-first・0 console error。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-115-flight-status.md",

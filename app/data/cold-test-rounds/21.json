@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "基盤UI・汎用",
   "title": "AI にブログ記事ページを作らせてみた — アクセシビリティの\"根\"が見えた（やってみた #21）",
-  "readmeTitle": "ブログ記事ページ",
   "summary": "条件は同じ（出荷しているパッケージそのもの＋docs だけ、ソース非公開）。お題は `/blog/post` に、パンくず・タイトル・著者・タグ、目次、h2/h3 の本文、リスト、引用、複数の CodeBlock、囲み（callout）、関連記事。",
   "article": {
     "file": "zenn-yattemita-21-blog-article.md",

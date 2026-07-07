@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：鉄道",
   "title": "AI に鉄道の定時性ダッシュボードを作らせてみた — ストック深掘りで Statistic goodWhen がコンポーネント化（やってみた #169）",
-  "readmeTitle": "鉄道 路線別 運行実績・定時性ダッシュボード（**在庫深掘り=運輸 arc 完走後**・路線別KPI StatGroup(定時率 good-high/遅延件数・障害・混雑率 good-low の反転トーン)・路線実績DataTable+Delta・起点→終点ヘッダ RouteHeader手組み・ワースト定時率Leaderboard・混雑率LimitMonitor(150%目安)・推移LineChart(referenceValue 目標線)・月次レポートDL(SectionList+NavRow)・要対応ActionQueue・路線LineChip）★**Statistic goodWhen 3-confirm 到達→その場 build([PR#427](https://github.com/uixhero/gunjo/pull/427)・#412クローズ)=goodWhen:\"higher\"|\"lower\" で反転トーン(遅延件数+12=赤・定時率−0.4=赤)＝#154/#163/#169 で3回・Delta/Leaderboard/Meter は持つのに Statistic だけ無かった**・**NavRow(前回#168 build)が月次レポート行で同セッション自力発見・OriginDestination 2/3(起点→終点=#166 に続く・索引 Itinerary 誤誘導)#425**・Leaderboard/LimitMonitor/LineChart/LineChip 全て native",
   "summary": "`tsc` 緑・デスクトップ密。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-169-line-performance.md",

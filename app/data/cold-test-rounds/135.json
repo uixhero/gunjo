@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：航空",
   "title": "AI に航空の就航計画・スロット管理を作らせてみた — 「出なかった欠落」が予想を裏取りした（やってみた #135）",
-  "readmeTitle": "航空 就航計画・ダイヤ/スロット管理（航空toB厚く=5枚目で鉄道と対称/路線統括部 2026夏ダイヤ デスクトップ密度・路線便数DataTable+L/F Meter(target=損益分岐で赤)/発着スロットScheduleGrid+混雑手組み/機材ローテGanttのIntraday回避/要対応ActionQueue層）★Stringline 不在を確認(航空は固定軌道無し=運行図表は鉄道/バス固有の負シグナル)・Gantt intraday解像度+スロット容量トーン #386再確認(2-3回目)・PageHeader desktop誤記3回目",
   "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-135-network-planning.md",

@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "運輸：バス",
   "title": "AI にバスのダイヤ編成コンソールを作らせてみた — 連載最大の「作った検証」、手組みされた運行図表がコンポーネントになって帰ってきた（やってみた #153）",
-  "readmeTitle": "バス 運行計画・ダイヤ編成（**バス toB 厚く**[#136-137に追加]・運行計画担当のデスク向け情報密度コンソール/系統一覧DataTable/運行図表Stringline/便時刻DataTable/車両運用Gantt/改正vs現行 Table+Delta/要対応ActionQueue/KPI StatGroup）★**連載最大の build 検証＝#136 で手組みされた運行図表(SVG 210行)を build した Stringline を cold AI が今度は自力発見し SVG ゼロで使用＝build がギャップを埋めた証明・索引も「時間×距離の運行図表＝斜めの運行線」で正しく誘導**＋**Gantt-intraday(#386)を今 build＝resolution=hour で dayWidth ハック根治([PR#410](https://github.com/uixhero/gunjo/pull/410))**・ComparisonTable/BadgeVariantKey 未export #411起票",
   "summary": "`tsc` 緑・デスクトップ情報密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-153-bus-planning.md",

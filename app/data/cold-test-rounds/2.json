@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "基盤UI・汎用",
   "title": "またしても本当に AI に使わせてみた — モーダル告知バナーを @gunjo/ui で（やってみた #2）",
-  "readmeTitle": "モーダル告知バナー",
   "summary": "[前回](#)と同じ条件です。群青のことをまったく知らない AI エージェント1体に、**公開済みの npm `@gunjo/ui`（alpha.2）と [gunjo.jp](https://gunjo.jp) の docs だけ**を渡す。ソースリポジトリは見せない。まっさらな Next.js（React 19 / Tailwind v4）で、`npm run build` が通るところまで自力で。",
   "article": {
     "file": "zenn-yattemita-02-modal-banner.md",

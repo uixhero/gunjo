@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "飲食・レストラン",
   "title": "AI にレストラン予約管理を作らせてみた — 直前に作った StatGroup が、もう新業界で使われた（やってみた #95）",
-  "readmeTitle": "レストラン予約・来店管理（飲食・卓×時間ScheduleGrid/ダブルブッキング検出/サマリStatGroup/満席率Meter/予約者PersonCell/ウォークイン層）★新業界（#94=StatGroup build）",
   "summary": "13業界目は飲食。観測：**直前に作った `StatGroup`（＋人物の階層 PersonCell/RelationshipRow）が、レストランという全く別の業界の予備知識ゼロの AI に自力で発掘されるか。**",
   "article": {
     "file": "zenn-yattemita-95-restaurant-reservations.md",
