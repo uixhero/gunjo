@@ -13,10 +13,10 @@ import {
 
 type SiteFooterPlacement = "global" | "content";
 
-// Optional "Support" link (Buy Me a Coffee / Ko-fi / GitHub Sponsors). Rendered
-// only when NEXT_PUBLIC_SUPPORT_URL is set, so no broken link ships before
-// KeEem provides the real URL for the launch. (#553)
-const SUPPORT_URL = process.env.NEXT_PUBLIC_SUPPORT_URL;
+// "Support" link — Buy Me a Coffee. Overridable via NEXT_PUBLIC_SUPPORT_URL
+// (e.g. to point at GitHub Sponsors) without a code change. (#553)
+const SUPPORT_URL =
+    process.env.NEXT_PUBLIC_SUPPORT_URL ?? "https://buymeacoffee.com/uixhero";
 
 export function SiteFooter({
     placement = "global",

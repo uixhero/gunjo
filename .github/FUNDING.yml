@@ -1,11 +1,4 @@
 # GitHub "Sponsor" button configuration.
 # https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/displaying-a-sponsor-button-in-your-repository
-#
-# PLACEHOLDER — KeEem finalizes before the 2026-07-20 deploy (#553):
-#   1. `github:` — confirm the GitHub Sponsors handle once the account is approved.
-#   2. `custom:` — uncomment and set the real Buy Me a Coffee / Ko-fi URL.
-#
-# A handle without Sponsors enabled simply renders no button (safe). A fake
-# custom URL would render a live broken link, so it stays commented until real.
 github: [uixhero]
-# custom: ["https://www.buymeacoffee.com/REPLACE_ME"]
+custom: ["https://buymeacoffee.com/uixhero"]
