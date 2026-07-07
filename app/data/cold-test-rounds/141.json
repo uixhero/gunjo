@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：タクシー",
   "title": "AI にタクシー配車管理を作らせてみた — 現場運用の最頻出の欠落「状態盤」が、4モード目でコンポーネント化（やってみた #141）",
-  "readmeTitle": "**新モード タクシー** 配車管理（タクシーtoB1枚目=4モード目/みやこ交通 城南配車センター AVM デスクトップ密度・車両状態盤StatusBoard手組み/配車依頼ListCard/マッチング候補ListCard+配車Button/要対応ActionQueue/KPI StatGroup/実車率Meter層）★**StatusBoard 3回目→build trigger=#385 結晶化(13個目・物理ops土台の最頻出穴)**・状態盤が駅務#132+ランプ#134+配車#141 で3-confirm・toB土台4モード目も全摩擦ゼロ・索引 状態盤→HeatmapChart 誤誘導是正",
   "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-141-taxi-dispatch.md",

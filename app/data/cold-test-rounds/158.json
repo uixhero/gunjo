@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：バス",
   "title": "AI にバスのモバイルIC画面を作らせてみた — バスが完走、4モード目（やってみた #158）",
-  "readmeTitle": "バス モバイルIC・残高チャージ・利用履歴（**バス toC 最終枚=toB5+toC6 対称でバス完走**[#138-139-140-156-157に追加]・モバイルファースト/IC残高 hero LoyaltySummaryCard(IC残高 home)・チャージ額 RadioCard(SegmentedControl は5択で2-4超のため切替)・支払方法RadioCard・オートチャージ Switch+SegmentedControl・チャージ内訳AmountBreakdown・利用履歴 日付グループ手組み(ListCard の status に符号付き金額を off-label)・特典StatGroup・CTA BottomActionBar）★**バス完走(航空鉄道タクシーに並ぶ4モード完成)**・LoyaltySummaryCard が IC残高 hero に built-for-this・**SegmentedControl 2回目の自力発見検証(設定で使用・チャージ5択は RadioCard に正しく切替=docstring 2-4 guidance 効く)**・**SectionList/TransactionList 2/3(日付グループ+符号付き金額+残高推移=taxi#149 に続く・索引 Transaction History→DataTable/ListCard 誤誘導 #404)**・LoyaltySummaryCard footnote slot/Toast API DX 併記",
   "summary": "バスの事業者向け（運行#136/配車#137/計画#153/営収#154/安全#155）+ 利用者向け（接近#138/高速予約#139/経路#140/乗車券#156/運行情報#157/IC#158）が **事業者向け5+利用者向け6 で対称**に。航空（事業者向け5+利用者向け6）・鉄道（事業者向け5+利用者向け6）・タクシー（事業者向け6+利用者向け6）に並ぶ**4モード完成**。残るは🚚トラックのみ。",
   "article": {
     "file": "zenn-yattemita-158-bus-ic.md",

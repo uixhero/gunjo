@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "人材・HR・採用",
   "title": "AI に採用パイプライン(ATS)を作らせてみた — 整備ラウンドで作った大型3つが、新業界でそのまま発掘された（やってみた #83）",
-  "readmeTitle": "採用パイプライン/ATS（人材採用・選考KanbanBoard/面接WeekView/内定ApprovalWorkflow/候補者ドリルイン層）★新業界",
   "summary": "11業界目は人材・採用。架空の HR-tech 企業「ミドリリンク株式会社」のインハウス採用デスク。観測ポイントは明確——**整備ラウンドで作った大型コンポーネント（KanbanBoard / WeekView / ApprovalWorkflow）が、採用という全く新しい業界の、予備知識ゼロの AI に、自力で発掘されるか。**",
   "article": {
     "file": "zenn-yattemita-83-recruiting-pipeline.md",

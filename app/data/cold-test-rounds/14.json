@@ -5,7 +5,6 @@
   "score": "3.5/5",
   "category": "基盤UI・汎用",
   "title": "AI に料金ページを作らせてみた — また \"名前負け\"、そして依存の混入（やってみた #14）",
-  "readmeTitle": "料金ページ",
   "summary": "条件は同じ（出荷しているパッケージそのもの＋docs だけ、ソース非公開）。お題は `/pricing` に、3〜4 プランのカード（\"Most popular\" を強調）、月額/年額トグル（年額は割引で、価格がその場で更新）、機能リスト（✓/✗）、比較表、FAQ。",
   "article": {
     "file": "zenn-yattemita-14-pricing.md",

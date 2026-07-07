@@ -5,7 +5,6 @@
   "score": "3.5/5",
   "category": "基盤UI・汎用",
   "title": "AI にオンボーディング・ウィザードを作らせてみた — 専用コンポーネントが \"本業\" を外していた（やってみた #13）",
-  "readmeTitle": "オンボーディング wizard",
   "summary": "条件は同じ（出荷しているパッケージそのもの＋docs だけ、ソース非公開）。お題は `/onboarding` に、5ステップ（Welcome → プロフィール入力 → 設定 → チーム招待 → 完了）、ステップの進み具合の表示、Back/Next、**各ステップの入力が妥当になるまで Next を止める**、完了のまとめ。",
   "article": {
     "file": "zenn-yattemita-13-onboarding.md",

@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "運輸：鉄道",
   "title": "AI に鉄道の車両検査を作らせてみた — 索引が「全部正解・誤誘導ゼロ」になった（やってみた #108）",
-  "readmeTitle": "鉄道 車両検査・保守管理（鉄道3枚目=締め・編成一覧DataTable/検査周期Meter(走行キロvs限度)/検査計画Gantt/要対応ActionQueue/検査記録SignedRecord層）★索引パーフェクト(誤誘導ゼロ)・Gantt rich-bar 2回目・tone scale 再補強",
   "summary": "#106指令・#107乗務員に続く設備/保守側。鉄道を三本柱（運行・人・車両）で締める。",
   "article": {
     "file": "zenn-yattemita-108-rail-maintenance.md",

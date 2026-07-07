@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "運輸：バス",
   "title": "AI にバスの運行情報画面を作らせてみた — 作ったものの検証・否定確認・3回確認 が1画面に揃った回（やってみた #157）",
-  "readmeTitle": "バス 運行情報・遅延運休案内（**バス toC 厚く=弱い側**[#138-139-140-156に追加]・全モード未着手の消費者サービスステータス/全体状況Alert/系統別 ListCard+severity/運行レベル Badge+icon(色安全)/絞り込み SegmentedControl(全系統/遅延運休)/お知らせAlert/経緯Timeline/通知Switch/系統番号LineChip手組み）★**3本立て=①SegmentedControl 自力発見ゼロ摩擦(#156 build 検証・索引も正しく誘導)②StatusLevel は穴でない(Badge+icon が色安全レベル指標で適合と cold AI 明言=#376 否定確認)③LineChip 3-confirm 到達→その場 build([PR#416](https://github.com/uixhero/gunjo/pull/416)・#392クローズ)=#138/#140/#157 で3回手組み**・Statistic に tone/icon 無く重大度カウント表現不可 #412併記・索引 誤誘導なし",
   "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-157-bus-service-status.md",

@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "運輸：バス",
   "title": "AI にバスの安全・事故管理コンソールを作らせてみた — Leaderboard が3回目でコンポーネント化、その場で作った（やってみた #155）",
-  "readmeTitle": "バス 安全・事故・苦情管理（運輸安全マネジメント）（**バス toB→toB5=鉄道航空と対称**[#136-137-153-154に追加]・安全管理者向け・事故/苦情worklist DataTable+severity-first/事故報告→承認→是正 ApprovalSteps(完璧適合)/SafetyBanner(専用部品!)/種別内訳LabeledDonutCard/推移StackedBarChart/営業所別 安全指標RankRow手組み/要対応ActionQueue/事故率Meter higher-is-worse/安全KPI StatGroup）★**Leaderboard 3/3 到達→その場 build([PR#413](https://github.com/uixhero/gunjo/pull/413)・#395クローズ)＝taxi#143/bus#154/bus#155 で3回手組み・索引も Rankings→StatGroup 誤誘導を是正**・ApprovalSteps が事故報告承認フローに完璧適合「本物の承認ルートを見た人が作った」・good-when-low #412 2回目",
   "summary": "`tsc` 緑・デスクトップ情報密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-155-bus-safety.md",

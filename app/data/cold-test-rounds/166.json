@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：トラック",
   "title": "AI に国際輸送・通関追跡を作らせてみた — RouteStops が「複数日対応」でコンポーネント化（やってみた #166）",
-  "readmeTitle": "国際物流 国際輸送・通関追跡（**新モード toC3=B2B輸入者ポータル**・デスクトップ密・貨物サマリ Card+MetadataList+Badge・輸送ステージ追跡 ApprovalSteps(多週=RouteStops が HH:MM のみで日付不可のため代替)・通関 申告→審査→許可 ApprovalSteps compact・本船/ETD/ETA MetadataList・書類グループ SectionList+ListCard・要対応ActionQueue・KPI StatGroup）★**RouteStops 多日タイムスタンプ 3-confirm 到達→その場 build([PR#424](https://github.com/uixhero/gunjo/pull/424)・#422クローズ)=per-stop dateLabel(自由形式・日付跨ぎ・HH:MM は intraday 維持)＝#164/#165/#166 で3回(cold AI は #166 で RouteStops を捨て ApprovalSteps の free-form timestamp に逃げた)＋索引是正(tracking timeline→RouteStops が HH:MM 行き止まりだった誤誘導を 多日は dateLabel と明記)**・OriginDestination(仕出→仕向 A→B header)手組み #425/summary hero に AnalyticsCard 誤誘導",
   "summary": "`tsc` 緑・デスクトップ密。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-166-intl-shipment.md",

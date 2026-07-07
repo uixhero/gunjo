@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "運輸：バス",
   "title": "AI にバスのモバイル乗車券を作らせてみた — SegmentedControl がコンポーネント化、2回連続でその場で作成（やってみた #156）",
-  "readmeTitle": "バス モバイル乗車券・一日乗車券・IC（**バス toC 厚く=弱い側**[#138-139-140に追加]・モバイルファースト乗車券/券種RadioCard(普通/一日/フリーパス)/モバイル券面TicketStub(QR)/有効期限ExpiryBadge/運賃AmountBreakdown/旅客区分・支払い ToggleGroup 強制(w-full justify-stretch coerce)/購入BottomActionBar/利用可能エリアMetadataList）★**SegmentedControl 3-confirm 到達→その場 build([PR#414](https://github.com/uixhero/gunjo/pull/414)・#409クローズ)＝大人/小児・現金/IC/QR で ToggleGroup を w-full justify-stretch [&>*]:flex-1 で強制+union callback cast＝出発到着#110/140・払戻し#129・個人法人#152 で手組み済・索引 2-3等幅→ToggleGroup を SegmentedControl に是正**・TicketStub/ExpiryBadge/RadioCard/BottomActionBar 全て built-for-this・ValidityTimer(分秒の有効時間=ExpiryBadge は日粒度)#415起票・索引は誤誘導なし",
   "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-156-bus-ticket.md",

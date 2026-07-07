@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "人材・HR・採用",
   "title": "AI に勤怠管理を作らせてみた — 前回作ったコンポーネントを、次の AI がもう発掘していた（やってみた #86）",
-  "readmeTitle": "勤怠管理/工数管理（人材採用・月次勤怠ScheduleGrid社員×日/36協定Meter/承認WF/社員別ステータスPersonCell層・★PersonCell 翌回 cold 発掘）",
   "summary": "前回 #85 で、3回手組みされた `PersonCell` をその場で `@gunjo/ui` に作った。#86 の観測はただ1つ——**たった今作った PersonCell を、何も知らない次の予備知識ゼロの AI が自力で発掘して使うか。** 複利の、最短距離の証明。",
   "article": {
     "file": "zenn-yattemita-86-attendance-management.md",

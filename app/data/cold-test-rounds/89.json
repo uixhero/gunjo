@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "介護・福祉",
   "title": "AI に訪問介護の管理画面を作らせてみた — 人材で作ったコンポーネントが、介護でも発掘された（やってみた #89）",
-  "readmeTitle": "訪問介護サービス提供管理（介護福祉・訪問ScheduleGrid ヘルパー×時間/介護記録SignedRecord+CoSign/ヘルパー別RouteStops/利用者・ヘルパーPersonCell層）★新業界",
   "summary": "12業界目は介護・福祉。観測：**人材・採用のシリーズで固まった/多用したコンポーネント（PersonCell・RelationshipRow パターン・ScheduleGrid）が、HR 系の外の業界でも自力で発掘されるか。**",
   "article": {
     "file": "zenn-yattemita-89-home-care.md",

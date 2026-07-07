@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "運輸：航空",
   "title": "AI に航空乗員のスケジュール管理を作らせてみた — 鉄道の乗務員交番の土台が、また航空で効いた（やってみた #131）",
-  "readmeTitle": "航空 乗員スケジュール管理（航空toB土台埋め=3枚目で航空toB土台達成/乗員部デスクトップ密度・乗務割ScheduleGrid+資格カレンシーScheduleGrid/FTL乗務時間Meter(higher-is-worse)/要対応ActionQueue/乗務指示SignedRecord/PersonCell層）★toB土台 業界越えのテスト2回目=鉄道乗務員#107土台が航空乗員に構造的手組みゼロで横展開・index ReferenceValue≠期限是正(#384)・ExpiryBadge/CurrencyMatrix #383起票",
   "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-131-crew-scheduling.md",

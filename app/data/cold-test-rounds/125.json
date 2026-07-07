@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：航空",
   "title": "AI に欠航の振替画面を作らせてみた — 昨日作った2コンポーネントを翌日もう使い、アプリバーが3回目でコンポーネントになった（やってみた #125）",
-  "readmeTitle": "航空 欠航・遅延時の振替・再予約（航空toC深掘り・mobile-first・代替便RadioCard/絞り込みFilterChips/欠航Alert/再予約Stepper/app-bar手組み層）★RadioCard+FilterChips 別業界での自力発見(2部品が翌画面で自力発見)・PageHeader 3回目→build trigger",
   "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-125-flight-rebooking.md",

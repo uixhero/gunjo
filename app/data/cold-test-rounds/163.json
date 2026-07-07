@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：トラック",
   "title": "AI にトラックの収支ダッシュボードを作らせてみた — トラックの事業者向け 完了、直近作ったものが次々再検証された（やってみた #163）",
-  "readmeTitle": "トラック 運送原価・収支ダッシュボード（**新モード toB5=トラック toB 厚く完了**・KPI StatGroup・収支推移LineChart(referenceValue 目標線)・原価内訳LabeledDonutCard・車両別/荷主別収支DataTable+Delta・ベスト/ワースト収支Leaderboard・標準的運賃比較LimitMonitor(direction=floor)・要対応ActionQueue・原価率/実車率/実働率）★**chart土台がトラック財務に native 業界越え=全データ駆動で static 化ゼロ・Leaderboard(best/worst P&L)とLimitMonitor(実勢vs標準運賃)が自力発見=直近 build の再検証**・**Statistic goodWhen 2/3(原価率 good-low/実車率 good-high の trend↔tone を手組み=Delta/Leaderboard は per-sign tones を持つが Statistic は無い #412)**・ChartLegend に formatValue 無し(chart 家系で非対称)/LimitMonitor \"RSC-safe\" だが formatValue 関数 prop で server 不可の罠",
   "summary": "`tsc` 緑・デスクトップ情報密度・可変データ駆動。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-163-truck-pl.md",

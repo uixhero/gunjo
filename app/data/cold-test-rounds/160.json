@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：トラック",
   "title": "AI にトラック求貨求車マッチングを作らせてみた — 索引是正が翌画面で効いた回（やってみた #160）",
-  "readmeTitle": "トラック 求貨求車・帰り便マッチング（**新モード toB2**・二者間マーケットプレイス archetype・荷物ActionDataTable(一括オファー)・空車DataTable・マッチング候補 適合度ランキング Leaderboard・適合度Meter(higher-is-better+target band)・荷物×空車ペアリング MatchDetail手組み・要対応ActionQueue・KPI StatGroup・SegmentedControl 求貨求車起点切替）★**[PR#418](https://github.com/uixhero/gunjo/pull/418) 索引是正の同 arc 検証=ActionDataTable が是正済索引で自力発見「偶然でなく直行＝キット最強の瞬間」・Leaderboard 適合度ランキングで自力発見**・**MatchCard/PairingPanel 穴(二者間 A⟷B ペアリングが people-shaped でない home 無し・索引の two-sided→RelationshipRow は PersonCell固定の罠=台座にアバター円) #419起票**・list/queue/KPI/ranking で~80%composeだが matching 自体に home 無し",
   "summary": "`tsc` 緑・デスクトップ情報密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-160-truck-matching.md",

@@ -165,7 +165,6 @@ function build() {
             score: row.score,
             category: categoryOf(row.round),
             title: meta.title || row.readmeTitle,
-            readmeTitle: row.readmeTitle,
             summary: meta.summary,
             article: article ? { file: article.name, slug: articleSlugFromName(article.name) } : null,
             shots: shotsFor(slug),

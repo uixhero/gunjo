@@ -5,7 +5,6 @@
   "score": "3/5",
   "category": "運輸：航空",
   "title": "AI に搭乗手続きを作らせてみた — 3画面で手組みされた「座席表」が、ついにコンポーネントになった（やってみた #114）",
-  "readmeTitle": "オンラインチェックイン/搭乗手続き（運輸:航空toC・mobile-first・座席変更SeatMap手組み/搭乗券PassCard手組み/手荷物料金AmountBreakdown/手続Stepper層）★SeatMap 3回目→build trigger・TicketStub起票・StatusScreen success欠如",
   "summary": "利用者向けの画面が弱い。だから航空の利用者向けを3枚（#114-116）並列で回すことにした。これはその1枚目。観測の本命——**座席表（SeatMap）が3回目の手組みになるか。**",
   "article": {
     "file": "zenn-yattemita-114-flight-checkin.md",

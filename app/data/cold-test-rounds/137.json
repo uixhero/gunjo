@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "運輸：バス",
   "title": "AI にバスの配車・乗務員管理を作らせてみた — 土台は3モード目でも揺るがず、欠落は「3つ目の軸」を指した（やってみた #137）",
-  "readmeTitle": "バス 配車・乗務員管理（バスtoB2枚目=鉄道乗務員#107/航空乗員#131のバス版/○○営業所 デスクトップ密度・仕業交番ScheduleGrid/拘束時間Meter(改善基準告示)/アルコール点呼ReferenceValue/要対応ActionQueue/点呼記録SignedRecord+2人点呼CoSign/資格期限手組み層）★crew/dispatch土台が3モード目も全摩擦ゼロ・**ExpiryBadge 2回目(運転士資格期限→#383 2/3)**・#131索引fix機能(ReferenceValue≠期限→ScheduleGrid+Badgeへ正しく誘導)・ThresholdGate(アルコールgo/no-go)/status-grid #376追記",
   "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-137-bus-dispatch.md",

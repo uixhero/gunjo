@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "保険",
   "title": "AI に生保営業の朝のポータルを作らせてみた — 保険5枚、ほぼ全部が既存コンポーネントで組めた（やってみた #105）",
-  "readmeTitle": "生保営業/ライフプランナー活動ポータル（保険締め・見込みKanbanBoard/目標Meter×2/手数料内訳AmountBreakdown/募集人↔顧客RelationshipRow/アポTimeline/ブックDataTable/要対応Alert層）★保険5枚=作り切り・索引が全部名指し正解",
   "summary": "#101〜104 は社内の事務方（査定/契約/支払/引受）。#105 は**現場の募集人側**＝別のペルソナで保険を締める。観測：人物の階層・金額内訳・パイプライン・関係——**ここまで作ったコンポーネントが、営業の朝の画面でも全部、組み立てで済むか。**",
   "article": {
     "file": "zenn-yattemita-105-insurance-agent-portal.md",

@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "介護・福祉",
   "title": "AI に介護報酬請求を作らせてみた — 会計のコンポーネントが、介護のお金でそのまま動いた（やってみた #92）",
-  "readmeTitle": "介護報酬請求/国保連伝送（介護福祉・請求明細EditableDataTable/formatCurrency¥/限度額Meter/2人確認CoSign/伝送ApprovalSteps/利用者PersonCell層）",
   "summary": "介護のお金の画面。観測：**銀行/会計のシリーズで育てた金額コンポーネント（formatCurrency・CurrencyInput・EditableDataTable・Delta）が、介護報酬という全く別のお金の領域でそのまま効くか。**",
   "article": {
     "file": "zenn-yattemita-92-care-billing.md",

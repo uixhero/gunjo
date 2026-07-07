@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：航空",
   "title": "AI に航空の運航管理を作らせてみた — 3画面で手組みされた「機材繰りバー」が、ついに Gantt に入った（やってみた #113）",
-  "readmeTitle": "航空 運航管理(OCC)/機材繰り（運輸:航空toB1枚目・運航ボードDataTable/不正常運航ActionQueue/機材繰りGantt(segments手組み)/KPI StatGroup層）★Gantt rich-segment 3回目→build trigger・ActionQueue 再発掘",
   "summary": "航空の利用者向け（フライト予約 #112）に続く事業者側。観測の本命——**機材繰り（各機の1日＝便→折返し→整備の連なり）が、Gantt の区切り付きバーの欠落（#354・現在2/3）の3回目になるか。**",
   "article": {
     "file": "zenn-yattemita-113-flight-operations.md",

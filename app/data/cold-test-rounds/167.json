@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：トラック",
   "title": "AI に宅配の配達設定画面を作らせてみた — 索引が「動くコンポーネントに見えるが動かす意味が違う」へ誘導した（やってみた #167）",
-  "readmeTitle": "宅配 個人向け 受取・配達設定（**新モード toC4=設定/置き配**・モバイルファースト・デジタル会員証TicketStub(native)・置き配場所/不在時default RadioCard・受取曜日SegmentedControl(7=2-4超だが1字で可)・時間帯Select・通知 Switch・置き配写真FileUploader・置き配同意Checkbox・受取場所ListCard+追加Sheet・設定行 SettingRow/SettingGroup手組み・CTA BottomActionBar）★**TicketStub が会員証で自力発見「built for this」・settings土台~90%(RadioCard/Switch/FileUploader/Sheet/BottomActionBar native)**・**NavRow 2/3(flush 設定行 icon+label+value+chevron＝#152 に続く・索引が ListCard に誤誘導するが ListCard.onSelect は aria-pressed=トグルで navigation 意味論として誤り＝a11y バグの SWAP 罠)#409**・FileUploader accept 形未文書/Button size=lg<44px(#362)再確認",
   "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-167-delivery-settings.md",

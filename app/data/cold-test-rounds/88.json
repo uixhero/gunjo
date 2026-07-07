@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "人材・HR・採用",
   "title": "AI に 1on1 管理を作らせてみた — CJK タブの溢れを見つけて、その場で直した（やってみた #88）",
-  "readmeTitle": "1on1/フィードバック管理（人材採用・ペアPersonCell×2/履歴Timeline/コンディションSparkline/健全性Meter/アクションCheckList層・★Tabs CJK overflow fix）",
   "summary": "#87 と**同時に**回した人材6枚目。観測：PersonCell の再々利用＋ペア（上司↔部下）という HR 特有の形。",
   "article": {
     "file": "zenn-yattemita-88-one-on-one.md",

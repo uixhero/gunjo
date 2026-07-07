@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "会計・給与",
   "title": "AI に年末調整の申告画面を作らせてみた — 直近で作った4つが、全部ゼロ摩擦で使われた（やってみた #41）",
-  "readmeTitle": "年末調整 申告（給与・税申告/精算層）",
   "summary": "`tsc`/`build` 緑・console 0・375px で編集グリッドがカード化・過不足額がその場で再計算（還付/追徴を明示）・提出フロー動作・h1 1個。",
   "article": {
     "file": "zenn-yattemita-41-year-end.md",

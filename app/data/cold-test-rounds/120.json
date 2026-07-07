@@ -5,7 +5,6 @@
   "score": "3.5/5",
   "category": "運輸：鉄道",
   "title": "AI に駅構内ナビを作らせてみた — ListCard は新しい型でも効いた、でも「カテゴリの横スクロール」が無い（やってみた #120）",
-  "readmeTitle": "鉄道 駅構内ナビ・施設案内（鉄道toC深掘り2・mobile-first・施設一覧ListCard/カテゴリchips ToggleGroup手戦い/locker空きMeter/行き方RouteStops層）★FilterChips 2回目(スクロール式カテゴリnav)・ListCard 新archetype業界越え(施設ファインダー)",
   "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-120-station-guide.md",

@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：トラック",
   "title": "AI に宅配の追跡・再配達画面を作らせてみた — 前回の索引修正が「翌回」で検証された（やってみた #165）",
-  "readmeTitle": "宅配便 個人向け 配送追跡・再配達（**新モード toC2=受取人C**・モバイルファースト・荷物サマリ Card+Statistic+Badge・配送追跡RouteStops(受付→お届け完了 多日)・ご不在Alert・再配達 受け取り時間帯SegmentedControl(午前/14-16/18-20)・受け取り方法RadioCard(自宅/宅配ボックス/コンビニ/置き配)・再配達日DatePicker・通知Switch・配送履歴ListCard・CTA BottomActionBar）★**[PR#423]索引 SWAP 修正を同セッション翌回で検証＝受け取り時間帯を TimePicker 手組みせず SegmentedControl に正しく誘導された(TimePicker手組み=0・cold AI「索引が rake から逸らす」)**・**RouteStops 多日タイムスタンプ 2/3(HH:MM のみ・日付を meta に押し込み＝#164 に続く)→あと1回で build**・RadioCard/DatePicker/BottomActionBar 全て native",
   "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-165-parcel-tracking.md",

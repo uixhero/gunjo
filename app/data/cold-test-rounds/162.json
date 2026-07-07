@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：トラック",
   "title": "AI にトラックの運賃・請求管理を作らせてみた — グループ化の背骨が3回目でコンポーネント化（やってみた #162）",
-  "readmeTitle": "トラック 運賃・請求管理（**新モード toB4**・運賃明細 AmountBreakdown(native「キット最良」)・請求一覧を荷主/締め別グループ SectionList手組み・入金消込 ActionDataTable(bulk-select)・運賃タリフ Table+HeatmapChart・KPI StatGroup・要対応ActionQueue・燃料サーチャージ/標準的運賃2024）★**SectionList 3-confirm 到達→その場 build([PR#421](https://github.com/uixhero/gunjo/pull/421)・#404クローズ)=グループ見出し+本文+グループ小計フッター＝taxi#149 月別履歴/bus#158 IC台帳 に続く3回目・索引も自ら『grouped table は答えが無い』と認める誤誘導を是正**・AmountBreakdown が運賃導出に native(但し合算しない＝表示のみの罠を索引に明記)・ActionDataTable が入金消込で自力発見(#418 再検証)・DataTable に footer/summary 行が無く小計に Table スタック手組み",
   "summary": "`tsc` 緑・デスクトップ情報密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-162-truck-billing.md",

@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "運輸：航空",
   "title": "AI に航空機の整備管理コンソールを作らせてみた — 鉄道で固めた土台が、そのまま航空に効いた（やってみた #130）",
-  "readmeTitle": "航空 機体整備管理/MRO（航空toB土台埋め=#113以来2枚目・整備本部デスクトップ密度・機材一覧ActionDataTable+整備周期残りMeter(higher-is-worse)/ドック割当Gantt+ScheduleGrid/要対応AD/SB/MEL ActionQueue/整備確認SignedRecord/KPI StatGroup層）★toB土台 業界を越える地力テスト=鉄道車両検査#108土台が航空MROに構造的手組みゼロで横展開・index ListCard→DataTable是正(#382)・asset-row/Meter valueText/InspectorPanel #381起票",
   "summary": "前回、「鉄道と航空の事業者向けの画面は終わった？」と台帳を数え直したら——**鉄道の事業者向けは3枚（運行/乗務員/車両）で土台達成、だが航空の事業者向けは #113 の1枚だけ**だった。利用者向けで欠落が噴き出して深掘りした分、航空の事業者向けが薄いまま残っていた。だから土台まで埋める。そして同時に試したいことがあった：**14業種＋鉄道で固めた「保守の事業者向けの土台」（資産テーブル／消費vs限度メーター／時間軸スケジュール／要対応キュー／署名記録）は、航空 MRO にそのまま効くのか？**",
   "article": {
     "file": "zenn-yattemita-130-aircraft-maintenance.md",

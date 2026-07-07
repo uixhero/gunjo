@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：タクシー",
   "title": "AI にタクシー営収ダッシュボードを作らせてみた — チャート土台が「最も用途向けに作られている」と評された回（やってみた #143）",
-  "readmeTitle": "タクシー 営収・実績ダッシュボード（タクシーtoB3枚目=営業所アナリティクス/#142とは別=全車営収分析 デスクトップ密度・KPI AnalyticsCard+Delta前日比/営収推移LineChart+target線/時間帯BarChart/チャネル構成LabeledDonutCard+DistributionBar/予算Meter(fill-is-good)/期間ToggleGroup/乗務員ランキングDataTable+rank手組み層）★チャート/アナリティクス土台が交通営収に全 摩擦ゼロ横展開(「cold で使った汎用 React UI で最も purpose-built に近い」)・**Leaderboard/RankingTable 唯一の穴→#395起票**・索引も正直にランキング→DataTable と認める",
   "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-143-taxi-revenue.md",

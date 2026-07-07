@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：鉄道",
   "title": "AI に新幹線予約画面を作らせてみた — A→B 区間の見出しがコンポーネント化、索引の「縦と横」の取り違えを是正（やってみた #170）",
-  "readmeTitle": "鉄道 特急・新幹線 空席照会・予約（**在庫深掘り/toC・モバイルファースト**・区間ヘッダ 東京→新大阪 RouteHeader手組み・列車一覧ListCard+発→着 DepArr手組み・座席表SeatMap・座席種別/人数SegmentedControl+NumberInput stepper・運賃料金AmountBreakdown・乗車日DatePicker・列車種別LineChip・CTA BottomActionBar・進捗Stepper）★**OriginDestination 3-confirm 到達→その場 build([PR#428](https://github.com/uixhero/gunjo/pull/428)・#425クローズ)=A→B 区間ヘッダ(from/to/via・矢印/所要 connector・出発⇄到着 swap・inline で発→着 結果行)＝#166/#169/#170 で3回(区間ヘッダ＋列車ごとの発→着で A→B 2か所)＋索引が A→B を Itinerary/RouteStops[縦]に誤誘導(横の A→B と形が逆)を是正**・SeatMap「新幹線が docstring に・最良の部品」/AmountBreakdown/SegmentedControl native",
   "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-170-express-booking.md",

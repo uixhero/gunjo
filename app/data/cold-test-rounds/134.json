@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：航空",
   "title": "AI に空港ランプ管理を作らせてみた — 「機器状態盤」の欠落が、2回目を見せた（やってみた #134）",
-  "readmeTitle": "航空 グランドハンドリング/ランプ管理（航空toB厚く=駅務#132の航空版/羽田T2 ランプコントロール デスクトップ密度・GSE状態盤StatusBoard手組み/ターンアラウンド進捗RouteStops適合/要対応ActionQueue/引継ぎSignedRecord+安全2人確認CoSign/KPI StatGroup層）★StatusBoard 2回目(#132駅務に続きGSE機器盤再手組み→#385 2/3)・RouteStops 段階オペ進捗に適合(予実タイミングでStepperより適)→索引是正#387・CoSign 安全確認に適合",
   "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-134-ground-handling.md",

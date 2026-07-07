@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "運輸：トラック",
   "title": "AI にトラック配車システムを作らせてみた — 5モード目でコンポーネントが「本当の自宅」に帰った（やってみた #159）",
-  "readmeTitle": "トラック運送 配車・運行管理（**新モード=5モード目・最後/toB**・配車担当向け情報密度コンソール・配車盤StatusBoard・案件DataTable・車両運用 Gantt resolution=\"hour\"・配送ルート RouteStops(集荷→配送 native home)・拘束時間 Meter+ReferenceValue・稼働ランキング Leaderboard・要対応ActionQueue・KPI StatGroup・改善基準告示）★**最近 build の native 検証ラッシュ=RouteStops が貨物配送 route の真の自宅(誤適用でなく)・Gantt resolution=\"hour\"(#153 build) が車両運用 intraday で自力発見「built for this の最良の瞬間」・StatusBoard/Leaderboard/SegmentedControl 全て 摩擦ゼロ**・**5モード目でも新しい穴=DataTable 一括選択割当(ActionDataTable が既存だが索引が隠す→[PR#418](https://github.com/uixhero/gunjo/pull/418) で索引是正)・拘束時間 LimitMonitor #417/Meter 絶対閾値 #412 2回目**・土台は飽和せず",
   "summary": "`tsc` 緑・デスクトップ情報密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-159-truck-dispatch.md",

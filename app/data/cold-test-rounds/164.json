@@ -5,7 +5,6 @@
   "score": "4.5/5",
   "category": "運輸：トラック",
   "title": "AI にトラックの荷主ポータルを作らせてみた — 前回作ったコンポーネントが「翌回」で自力発見された（やってみた #164）",
-  "readmeTitle": "トラック 荷主ポータル（**新モード toC START=B2B2C**・モバイルファースト・追跡中貨物ListCard・貨物追跡RouteStops(集荷→配達 consumer view)・配送履歴を月別グループ SectionList・集荷依頼フォーム(DatePicker+NumberInput stepper+RadioCard 車種+SegmentedControl 元払着払)・運賃見積AmountBreakdown・進捗Stepper・CTA BottomActionBar）★**SectionList(前回#162 build)を同セッション翌回で自力発見ゼロ摩擦＝最速の build→検証(連続回・索引も正しく誘導)**・RouteStops/AmountBreakdown/RadioCard 全て native・**TimeBandPicker 穴+索引 SWAP 罠(TimePicker は正確時刻なのに時間帯に見える→集荷時間帯 午前/12-14時 を手組み・索引是正[PR#423]で時間帯→SegmentedControl/RadioGroup 誘導)#422**・RouteStops が HH:MM のみで多日跨ぎ追跡に dateLabel 欲しい #422",
   "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-164-shipper-portal.md",

@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "運輸：トラック",
   "title": "AI にトラックの労務コンプライアンス画面を作らせてみた — 「値 vs X」系統の4番目がコンポーネント化（やってみた #161）",
-  "readmeTitle": "トラック 車両・労務管理（**新モード toB3**・車検期限ExpiryBadge(native「標準」)・拘束時間/連続運転/休息 改善基準告示 LimitMonitor手組み・デジタコ運転傾向Leaderboard・整備履歴Timeline・点呼/アルコール ActionDataTable・整備状況StatusBoard・要対応ActionQueue・KPI StatGroup）★**LimitMonitor 3-confirm 到達→その場 build([PR#420](https://github.com/uixhero/gunjo/pull/420)・#417クローズ)=値 vs 名前付き上限(ソフト/ハード・実単位)＝value-vs-X 家系の4番目(ExpiryBadge 期限/ReferenceValue 範囲/Meter 容量/LimitMonitor 名前付き上限)＝#154 営業係数/#159 拘束時間 に続く3回目・Meter の target は参照のみ+閾値が max 割合の問題を根治・索引も value-vs-limit→ReferenceValue/Meter 誤誘導を是正**・ExpiryBadge が車検に native「キット最良の部品」・cold AI が自ら指摘した SSR 罠に自分で落ちた(classifyLimit を \"use client\" に置き server 呼びで500→spurious \"use client\" 削除で修正・shipped classifyLimit は RSC-safe 設計)",
   "summary": "`tsc` 緑・デスクトップ情報密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-161-truck-compliance.md",

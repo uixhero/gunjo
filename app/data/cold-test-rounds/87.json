@@ -5,7 +5,6 @@
   "score": "4/5",
   "category": "人材・HR・採用",
   "title": "AI に入社オンボーディングを作らせてみた — PersonCell をまた発掘、そして Drawer の罠（やってみた #87）",
-  "readmeTitle": "入社手続き/オンボーディング（人材採用・フェーズ別CheckList/書類提出/手続き確定SignedRecord/新入社員PersonCell層・Drawer side=right bug発見）",
   "summary": "`tsc`/`build` 緑・375px・0 console error。新入社員一覧・フェーズ別チェックリスト・書類提出状況・手続き完了承認・掘り下げる詳細。",
   "article": {
     "file": "zenn-yattemita-87-employee-onboarding.md",

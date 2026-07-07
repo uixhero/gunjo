@@ -5,7 +5,6 @@
   "score": "3.5/5",
   "category": "運輸：鉄道",
   "title": "AI に駅ナカ・おでかけ提案を作らせてみた — 3画面さまよった「券面」が、ついにコンポーネント化（やってみた #128）",
-  "readmeTitle": "鉄道 駅ナカ・おでかけ提案（鉄道toC深掘り=鉄道締め寄り・東京駅グランスタ・店舗/スポットListCard/カテゴリFilterChips/会員証LoyaltySummaryCard/PageHeader/クーポン会員証バーコード券面Scannable手組み層）★TicketStub 3回目→build trigger・4土台(PageHeader/LoyaltySummaryCard/FilterChips/ListCard)業界越え・#363クローズ",
   "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-128-station-outing.md",
