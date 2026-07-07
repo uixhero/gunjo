@@ -3314,7 +3314,7 @@
       "category": "運輸：トラック",
       "title": "AI に荷主の請求・支払ポータルを作らせてみた — NavRow がコンポーネント化、トラック完走で全5モード完成（やってみた #168）",
       "readmeTitle": "荷主向け 請求・お支払いポータル（**新モード toC5=トラック完走=全5モード完成**・請求書を月/締めグループ SectionList・請求内訳AmountBreakdown(運賃+燃サ+立替−値引→税抜→税込)・帳票DL手組み・お支払い方法RadioCard(口座振替/振込/クレカ)・設定行 SettingsNavRow手組み・与信Meter・お支払いサマリ+CTA BottomActionBar・適格請求書/インボイス制度）★**NavRow 3-confirm 到達→その場 build([PR#426](https://github.com/uixhero/gunjo/pull/426)・#409クローズ)=flush 設定行+SettingGroup・navigation 意味論(aria-haspopup・aria-pressed でない)＝#152/#167/#168 で3回+索引が ListCard(aria-pressed トグル)に誤誘導する a11y バグも是正(設定行→NavRow)**・SectionList「キット最良の適合」/AmountBreakdown native 再検証・帳票DL list は索引が空を正直に返した穴",
-      "summary": "トラック toB5（配車#159/求貨求車#160/車両労務#161/運賃請求#162/運送原価#163）+ toC5（荷主#164/宅配#165/国際#166/設定#167/請求#168）が**対称完走**。航空・鉄道・タクシー・バスに続き、**運輸5モードすべてが toB+toC 対称で完走**した。",
+      "summary": "トラックの事業者向け5（配車#159/求貨求車#160/車両労務#161/運賃請求#162/運送原価#163）+ 利用者向け5（荷主#164/宅配#165/国際#166/設定#167/請求#168）が**対称完走**。航空・鉄道・タクシー・バスに続き、**運輸5モードすべてが 事業者向け+利用者向け 対称で完走**した。",
       "article": {
         "file": "zenn-yattemita-168-shipper-billing.md",
         "slug": "168-shipper-billing"
