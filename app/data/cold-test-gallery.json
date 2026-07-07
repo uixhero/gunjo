@@ -2332,9 +2332,9 @@
       "slug": "commuter-pass",
       "score": "3.5/5",
       "category": "運輸：鉄道",
-      "title": "AI に定期券の購入フローを作らせてみた — B2C 購入の「最小単位」がまだ無かった（やってみた #119）",
+      "title": "AI に定期券の購入フローを作らせてみた — 利用者向けの購入の「最小単位」がまだ無かった（やってみた #119）",
       "readmeTitle": "鉄道 定期券 購入・更新フロー（鉄道toC深掘り1・mobile-first・区間設定swap手組み/種類期間OptionCard手組み/金額内訳AmountBreakdown/購入Stepper/現在定期MetadataList層）★RadioCard 2回目(価格つき選択カード)・AmountBreakdown 業界越え7回目",
-      "summary": "「鉄道・航空 toC をきちんと潰してから他モードへ」と決めて、[toC バックログ](https://github.com/uixhero/gunjo)を作って上から回す。これはその1枚目。",
+      "summary": "「鉄道・航空の利用者向けをきちんと潰してから他モードへ」と決めて、[利用者向けバックログ](https://github.com/uixhero/gunjo)を作って上から回す。これはその1枚目。",
       "article": {
         "file": "zenn-yattemita-119-commuter-pass.md",
         "slug": "119-commuter-pass"
@@ -2372,7 +2372,7 @@
       "slug": "ticket-store",
       "score": "3.5/5",
       "category": "運輸：鉄道",
-      "title": "AI にきっぷ購入を作らせてみた — B2C 購入の「最小単位」が、3回目でついにコンポーネントになった（やってみた #121）",
+      "title": "AI にきっぷ購入を作らせてみた — 利用者向けの購入の「最小単位」が、3回目でついにコンポーネントになった（やってみた #121）",
       "readmeTitle": "鉄道 おトクなきっぷ/一日乗車券 購入（鉄道toC深掘り3・mobile-first・商品選択RadioCard手組み/金額内訳AmountBreakdown/枚数NumberInput/購入Stepper層）★RadioCard 3回目→build trigger・AmountBreakdown 業界越え8回目・FilterChips/StatusScreen success 追記",
       "summary": "きっぷ商品の選択＝価格つきの選択カード。観測の本命——**それが3回目の手組みになるか。**",
       "article": {
@@ -2492,7 +2492,7 @@
       "slug": "airport-lounge",
       "score": "4/5",
       "category": "運輸：航空",
-      "title": "AI に空港ラウンジ案内を作らせてみた — 3つの新しいコンポーネントが「1画面で同時に発掘」された、航空 toC 締めの回（やってみた #127）",
+      "title": "AI に空港ラウンジ案内を作らせてみた — 3つの新しいコンポーネントが「1画面で同時に発掘」された、航空の利用者向け 締めの回（やってみた #127）",
       "readmeTitle": "航空 空港ラウンジ・優先サービス案内（航空toC深掘り=航空締め・羽田T2・ラウンジ一覧ListCard/絞り込みFilterChips/PageHeader/混雑CrowdingBadge手組み層）★PageHeader+ListCard+FilterChips 3部品同時別業界での自力発見・StatusLevel(定性的混雑指標)起票",
       "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
