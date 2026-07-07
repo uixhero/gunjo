@@ -18,6 +18,14 @@ export interface SidebarItemProps {
      */
     countLabel?: (count: number) => string;
     isActive: boolean;
+    /**
+     * Marks this row as an ancestor of the active item (i.e. on the current
+     * path but not itself the current page). Renders a lightweight indicator
+     * — a left accent bar + accented icon — instead of the filled `active`
+     * background, so an expanded parent and its active child don't stack two
+     * solid fills into one merged block. Ignored when `isActive` is true.
+     */
+    isCurrentAncestor?: boolean;
     onClick: () => void;
     onDrop?: (e: React.DragEvent) => void;
     onDragOver?: (e: React.DragEvent) => void;
@@ -43,6 +51,7 @@ export const SidebarItem = memo(({
     count,
     countLabel,
     isActive,
+    isCurrentAncestor = false,
     onClick,
     onDrop,
     onDragOver,
@@ -66,6 +75,11 @@ export const SidebarItem = memo(({
         active: "bg-secondary text-foreground",
         default: "text-muted-foreground hover:bg-muted hover:text-foreground",
     };
+    // On the active path but not the current item: indicate with an accent
+    // (bar + icon), never a fill, so an expanded parent doesn't stack a solid
+    // background against its active child's fill.
+    const onPath = isCurrentAncestor && !isActive;
+    const stateClass = onPath ? "text-foreground hover:bg-muted" : variantClasses[baseVariant];
 
     const dragNestClass =
         dragOverId === id && dragAction === "nest"
@@ -88,10 +102,16 @@ export const SidebarItem = memo(({
             onDragEnd={onDragEnd}
             className={cn(
                 "group relative flex h-9 w-full flex-row items-center justify-between rounded-md text-sm cursor-pointer transition-colors",
-                dragNestClass ?? variantClasses[baseVariant],
+                dragNestClass ?? stateClass,
                 className
             )}
         >
+            {onPath && (
+                <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-y-1.5 left-0 w-0.5 rounded-full bg-primary"
+                />
+            )}
             {dragOverId === id && dragAction === 'reorder-above' && (
                 <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary z-20 pointer-events-none" />
             )}
@@ -131,7 +151,7 @@ export const SidebarItem = memo(({
                     </div>
                 ) : null}
 
-                <div className={cn("flex-shrink-0", isActive ? "text-primary" : "text-muted-foreground group-hover:text-foreground")}>
+                <div className={cn("flex-shrink-0", isActive || onPath ? "text-primary" : "text-muted-foreground group-hover:text-foreground")}>
                     {icon}
                 </div>
                 <span className="truncate" title={label}>{label}</span>
