@@ -24,14 +24,20 @@ const mincho = Shippori_Mincho({
   preload: false,
 });
 
+// gunjo.jp shipped noindex during the pre-launch window. At launch (2026-07)
+// we open indexing on production only; Vercel preview/branch deploys stay out
+// of the index so they don't compete with www.gunjo.jp for the same content.
+// VERCEL_ENV is "production" only for the production deployment; it's unset in
+// local dev and "preview" for branch deploys, so both stay noindex. (#553)
+const allowIndexing = process.env.VERCEL_ENV === "production";
+
 export const metadata: Metadata = {
   title: "GunjoUI — Becoming blue.",
   description:
     "群青 — A design system for designers and AI, in becoming. SSOT-driven React + Tailwind for rich, data-dense applications.",
-  robots: {
-    index: false,
-    follow: false,
-  },
+  robots: allowIndexing
+    ? { index: true, follow: true }
+    : { index: false, follow: false },
 };
 
 export const viewport: Viewport = {

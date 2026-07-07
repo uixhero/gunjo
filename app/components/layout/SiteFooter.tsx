@@ -13,13 +13,18 @@ import {
 
 type SiteFooterPlacement = "global" | "content";
 
+// Optional "Support" link (Buy Me a Coffee / Ko-fi / GitHub Sponsors). Rendered
+// only when NEXT_PUBLIC_SUPPORT_URL is set, so no broken link ships before
+// KeEem provides the real URL for the launch. (#553)
+const SUPPORT_URL = process.env.NEXT_PUBLIC_SUPPORT_URL;
+
 export function SiteFooter({
     placement = "global",
 }: {
     placement?: SiteFooterPlacement;
 }) {
     const pathname = usePathname();
-    const { header, t } = useLocale();
+    const { header, t, locale } = useLocale();
     const [isInIframe, setIsInIframe] = React.useState(false);
     const isContentFooter = placement === "content";
 
@@ -71,6 +76,15 @@ export function SiteFooter({
                     <FooterLink href="/docs/comparison">{t("Comparison")}</FooterLink>
                     <FooterLink href="/docs/tokens">{t("Tokens")}</FooterLink>
                     <FooterLink href="/docs/ai-handoff">{t("AI handoff")}</FooterLink>
+                    {SUPPORT_URL ? (
+                        <FooterLink
+                            href={SUPPORT_URL}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            {locale === "ja" ? "サポート" : "Support"}
+                        </FooterLink>
+                    ) : null}
                 </nav>
             </div>
         </Footer>
