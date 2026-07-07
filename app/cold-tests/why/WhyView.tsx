@@ -332,7 +332,7 @@ export function WhyView() {
                     </h2>
                     <ul className="space-y-2 text-foreground">
                         <li className="leading-7">
-                            <strong>{isJa ? "「完走」と言えるのは、事業者向け（toB）と利用者向け（toC）が同じ厚みになったときだけ。" : "A mode is 'done' only when toB and toC have equal weight."}</strong>{" "}
+                            <strong>{isJa ? "「完走」と言えるのは、事業者向けの画面と利用者向けの画面を同じだけ作り込んだときだけ。" : "A mode is 'done' only when toB and toC have equal weight."}</strong>{" "}
                             {isJa
                                 ? "事業者側だけ作って満足してしまうと、穴は消費者側に集まります。実際、タクシーは事業者側を6枚作っても新しいコンポーネントはゼロでしたが、利用者側を6枚掘ると7コンポーネント以上が出てきました。"
                                 : "Stop at operator-side and the gaps cluster on the consumer side. Taxi toB across 6 screens produced zero new primitives; taxi toC across 6 screens produced 7+."}
