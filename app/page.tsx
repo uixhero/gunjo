@@ -42,6 +42,7 @@ import {
 } from "@gunjo/ui";
 import { useTheme } from "next-themes";
 import { HeroBackground } from "@/components/home/HeroBackground";
+import { PackCta } from "@/components/pack/PackCta";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { COMPONENT_COUNT } from "@/lib/component-count";
 
@@ -341,6 +342,9 @@ export default function Home() {
                                 </Card>
                             );
                         })}
+                    </div>
+                    <div className="mt-10">
+                        <PackCta placement="home_ssot" />
                     </div>
                 </div>
             </section>

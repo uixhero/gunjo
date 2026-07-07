@@ -30,6 +30,7 @@ import {
 } from "@gunjo/ui";
 import type { AssetCardAsset } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { PackCta } from "@/components/pack/PackCta";
 import { LocalNav } from "@/components/layout/TableOfContents";
 import categoriesData from "@/data/cold-test-categories.json";
 
@@ -478,6 +479,8 @@ export function RoundDetailView({
                     }
                 />
             )}
+
+            <PackCta placement="coldtests_article" className="mt-4" />
         </article>
     );
 }

@@ -14,6 +14,7 @@ import {
     TabsTrigger,
 } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { PackCta } from "@/components/pack/PackCta";
 import gallery from "@/data/cold-test-gallery.json";
 import { PreviewThumb } from "./PreviewThumb";
 
@@ -127,6 +128,8 @@ function ColdTestsGrid() {
                     </Link>
                 </div>
             </header>
+
+            <PackCta placement="coldtests_index" className="mb-6" />
 
             <div className="flex flex-col gap-4 lg:flex-row lg:items-center lg:justify-between">
                 <Tabs
