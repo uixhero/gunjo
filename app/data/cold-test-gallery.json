@@ -2892,7 +2892,7 @@
       "slug": "taxi-ride",
       "score": "4/5",
       "category": "運輸：タクシー",
-      "title": "AI にタクシー配車アプリを作らせてみた — 4回貯めた「ボトムバー」がついにコンポーネント化、タクシー toC 深掘り開始（やってみた #147）",
+      "title": "AI にタクシー配車アプリを作らせてみた — 4回貯めた「ボトムバー」がついにコンポーネント化、タクシーの利用者向け 深掘り開始（やってみた #147）",
       "readmeTitle": "タクシー 配車アプリ（タクシーtoC**1枚目=深掘り継続**・モバイル消費者/GO風 渋谷・呼出/車種RadioCard/ドライバーPersonCell+Rating/料金AmountBreakdown/ライドStepper/会員LoyaltySummaryCard/接近ETA+ボトムバー手組み層）★**BottomActionBar 4回目→build trigger=#125/#129/#139/#147 で3-confirm(15個目・PageHeader の対=下sticky CTA dock)**・索引「専用部品なし」を反転・mobile toC土台業界越え・ApproachCard(単車ライブETA)/VehicleCard #402起票",
       "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
       "article": {
@@ -2914,7 +2914,7 @@
       "category": "運輸：タクシー",
       "title": "AI にタクシー予約配車を作らせてみた — 昨日作ったボトムバーが、翌日の予約画面で自力発見（やってみた #148）",
       "readmeTitle": "タクシー 予約配車・空港定額（タクシーtoC**2枚目=深掘り**・予約 archetype[#147 即時呼出と別]/GO風 渋谷・羽田定額・予約タイプ/車種RadioCard/定額AmountBreakdown/予約Stepper/日時DatePicker/CTA BottomActionBar/日時±幅+場所入力 手組み層）★**BottomActionBar 別業界での自力発見=昨日#147 buildが翌画面の予約CTAで自力発見(docstring が予約を名指し)**・予約土台ターンキー・**DateTimePicker(未来日時±幅)/PlaceField(乗降地ペア)が穴→#403起票**・StatusScreen success欠如(#379)再確認",
-      "summary": "前回 #147 で、実作業と下書きを担う相棒の AI が「タクシー完走」と報告してきた。私は思わず返した——「**は？タクシーの toC 一回で完成？？？**」。**toB を6枚作って toC を1枚で締めるのは矛盾**——鉄道/航空が toC 6枚なのに。相棒の運用メモにも「toC は弱い側だから深掘りを優先・早期に締めない」と書いてあるのに、また同じ過ちが起きた。**toC は toB と同じだけ厚くして初めて完了。** だから深掘りを継続する。",
+      "summary": "前回 #147 で、実作業と下書きを担う相棒の AI が「タクシー完走」と報告してきた。私は思わず返した——「**は？タクシーの利用者向け 一回で完成？？？**」。**事業者向けを6枚作って利用者向けを1枚で締めるのは矛盾**——鉄道/航空が利用者向け6枚なのに。相棒の運用メモにも「利用者向けは弱い側だから深掘りを優先・早期に締めない」と書いてあるのに、また同じ過ちが起きた。**利用者向けは事業者向けと同じだけ厚くして初めて完了。** だから深掘りを継続する。",
       "article": {
         "file": "zenn-yattemita-148-taxi-booking.md",
         "slug": "148-taxi-booking"
