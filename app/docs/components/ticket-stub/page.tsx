@@ -260,6 +260,7 @@ export function MemberPass() {
     { name: "codeLabel", type: "ReactNode", description: locale === "ja" ? "コード下の可読ラベルです。既定は value です。" : "Human-readable label below the code. Defaults to value." },
     { name: "codeAlt", type: "string", description: locale === "ja" ? "コード画像のアクセシブル名です。" : "Accessible name for the rendered code image." },
     { name: "codeKindLabels", type: "{ barcode?: string; qr?: string }", description: locale === "ja" ? "codeAlt未指定時のコード種別名をローカライズします。" : "Localizes the code kind used to derive codeAlt." },
+    { name: "formatCodeAlt", type: "(parts: { kindLabel: string; value: string; format }) => string", description: locale === "ja" ? "codeAlt未指定時にコード画像のアクセシブル名を組み立てます。既定は `${kindLabel}：${value}` です。codeAlt（全体上書き）が優先されます。" : "Composes the code image accessible name when codeAlt is omitted. Defaults to `${kindLabel}：${value}`. A full codeAlt still wins." },
     { name: "perforation", type: "boolean", default: "true", description: locale === "ja" ? "ミシン目のノッチと破線を表示します。" : "Shows the notch and dashed perforation divider." },
     { name: "code", type: "ReactNode", description: locale === "ja" ? "実スキャン可能なコードレンダリングで差し替えます。" : "Overrides the visual code with a production-scannable renderer." },
   ];

@@ -28,6 +28,12 @@ export interface TicketStubProps extends React.HTMLAttributes<HTMLDivElement> {
     barcode?: string
     qr?: string
   }
+  /**
+   * Compose the code image accessible name from its parts (when `codeAlt` is omitted).
+   * Instance-level localization override — defaults to `${kindLabel}：${value}` (JP-first).
+   * `codeAlt` (a full override) still wins over this. (#558)
+   */
+  formatCodeAlt?: (parts: { kindLabel: string; value: string; format: TicketCodeFormat }) => string
 }
 
 // Deterministic (SSR-safe) PRNG seeded from the value, so the visual code never hydration-mismatches.
@@ -113,9 +119,9 @@ function Perforation() {
  * deterministic visual placeholder — pass `code` for a production-scannable barcode.
  */
 export const TicketStub = React.forwardRef<HTMLDivElement, TicketStubProps>(
-  ({ className, value, format = "code128", codeLabel, codeAlt, children, perforation = true, code, codeKindLabels, ...props }, ref) => {
+  ({ className, value, format = "code128", codeLabel, codeAlt, children, perforation = true, code, codeKindLabels, formatCodeAlt, ...props }, ref) => {
     const kindLabel = format === "qr" ? codeKindLabels?.qr ?? "QRコード" : codeKindLabels?.barcode ?? "バーコード"
-    const alt = codeAlt ?? `${kindLabel}：${value}`
+    const alt = codeAlt ?? (formatCodeAlt ? formatCodeAlt({ kindLabel, value, format }) : `${kindLabel}：${value}`)
     return (
       <div ref={ref} className={cn("w-full overflow-hidden rounded-xl border bg-card text-card-foreground", className)} {...props}>
         {children != null && <div className="p-4">{children}</div>}

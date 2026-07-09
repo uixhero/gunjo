@@ -39,6 +39,17 @@ export interface EventCalendarProps extends Omit<React.HTMLAttributes<HTMLDivEle
     label?: React.ReactNode
     /** 7 short weekday labels starting Sunday. Default `日 月 火 水 木 金 土`. */
     weekdayLabels?: string[]
+    /**
+     * Format the month title (header + grid accessible name fallback).
+     * Instance-level localization override — defaults to `YYYY年M月` (JP-first). (#558)
+     */
+    formatMonthTitle?: (monthDate: Date) => string
+    /**
+     * Format a day cell's accessible name from its date, today-state and events.
+     * Instance-level localization override — defaults to the JP-first composition
+     * (`M月D日、今日、N件: …` / `…、予定なし`). (#558)
+     */
+    formatDayLabel?: (date: Date, ctx: { isToday: boolean; events: CalendarEvent[] }) => string
     /** Render an event chip (default: a tone pill). */
     renderEvent?: (event: CalendarEvent) => React.ReactNode
     onSelectDate?: (iso: string) => void
@@ -98,6 +109,8 @@ const EventCalendar = React.forwardRef<HTMLDivElement, EventCalendarProps>(
             maxPerDay = 3,
             label,
             weekdayLabels,
+            formatMonthTitle,
+            formatDayLabel,
             renderEvent,
             onSelectDate,
             onSelectEvent,
@@ -195,7 +208,7 @@ const EventCalendar = React.forwardRef<HTMLDivElement, EventCalendarProps>(
             event.preventDefault()
         }
 
-        const monthTitle = `${year}年${monthIndex + 1}月`
+        const monthTitle = formatMonthTitle ? formatMonthTitle(new Date(year, monthIndex, 1)) : `${year}年${monthIndex + 1}月`
 
         return (
             <div ref={ref} className={cn("w-full", className)} data-slot="event-calendar" {...props}>
@@ -255,7 +268,9 @@ const EventCalendar = React.forwardRef<HTMLDivElement, EventCalendarProps>(
                                 const eventSummary = dayEvents.length
                                     ? `、${dayEvents.length}件: ${dayEvents.map((e) => e.ariaLabel ?? (typeof e.label === "string" ? e.label : "")).filter(Boolean).join("、")}`
                                     : "、予定なし"
-                                const accessibleName = `${cell.date.getMonth() + 1}月${cell.day}日${cell.isToday ? "、今日" : ""}${eventSummary}`
+                                const accessibleName = formatDayLabel
+                                    ? formatDayLabel(cell.date, { isToday: cell.isToday, events: dayEvents })
+                                    : `${cell.date.getMonth() + 1}月${cell.day}日${cell.isToday ? "、今日" : ""}${eventSummary}`
 
                                 return (
                                     <div

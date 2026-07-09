@@ -454,6 +454,14 @@ export function MorningActionQueue() {
         ? "items が空の時に表示するプレースホルダーです。"
         : "Placeholder shown when items is empty.",
     },
+    {
+      name: "severityLabels",
+      type: "Partial<Record<ActionSeverity, string>>",
+      default: locale === "ja" ? "重大 / 警告 / 情報 / 通常" : "重大 / 警告 / 情報 / 通常",
+      description: locale === "ja"
+        ? "読み上げ用の重大度ラベル（重大 / 警告 / 情報 / 通常）を上書きします。インスタンス単位のローカライズ用で、既定は日本語のままです。"
+        : "Overrides the sr-only severity labels (重大 / 警告 / 情報 / 通常). Instance-level localization override; the default stays Japanese.",
+    },
   ];
 
   return (

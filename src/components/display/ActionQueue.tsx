@@ -34,6 +34,12 @@ export interface ActionQueueProps extends Omit<React.HTMLAttributes<HTMLUListEle
   sortBySeverity?: boolean
   /** Shown (as a dashed placeholder) when there are no items. */
   emptyLabel?: React.ReactNode
+  /**
+   * Override the sr-only severity labels (the announced 重大 / 警告 / 情報 / 通常).
+   * Instance-level localization override — defaults stay Japanese (JP-first).
+   * Partial: unset keys keep their built-in label. (#558)
+   */
+  severityLabels?: Partial<Record<ActionSeverity, string>>
 }
 
 const SEVERITY: Record<
@@ -59,7 +65,7 @@ const SEVERITY: Record<
  * act-now list. Presentational by default — `onSelect` makes a row's body activatable.
  */
 export const ActionQueue = React.forwardRef<HTMLUListElement, ActionQueueProps>(
-  ({ items, sortBySeverity = true, emptyLabel = "No action items", className, ...props }, ref) => {
+  ({ items, sortBySeverity = true, emptyLabel = "No action items", severityLabels, className, ...props }, ref) => {
     const ordered = sortBySeverity
       ? [...items].sort((a, b) => SEVERITY[a.severity ?? "neutral"].rank - SEVERITY[b.severity ?? "neutral"].rank)
       : items
@@ -98,7 +104,7 @@ export const ActionQueue = React.forwardRef<HTMLUListElement, ActionQueueProps>(
               <span className={cn("mt-0.5 shrink-0", sev.icon)} aria-hidden="true">
                 {item.icon ?? <Icon className="size-5" />}
               </span>
-              <span className="sr-only">{sev.label}：</span>
+              <span className="sr-only">{(severityLabels?.[item.severity ?? "neutral"] ?? sev.label)}：</span>
               <div className="min-w-0 flex-1">
                 {item.onSelect ? (
                   <button
