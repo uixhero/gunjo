@@ -13,6 +13,10 @@ regexes = [
   '''abcdef123456''',
   # @tabler/icons-react component names (e.g. IconBrandLinkedin) misread as secrets
   '''IconBrand[A-Za-z]+''',
+  # Figma library file key — a public design-file identifier used in Figma URLs
+  # and design-workflow docs (already in docs/figma-library-foundations.md), not
+  # a credential. Bare "File key: <id>" form trips generic-api-key.
+  '''1hTzNSFLwOA88R15KCX9iG''',
 ]
 paths = [
   # Pencil .pen design files embed internal identifiers (fileToken, nodeId
