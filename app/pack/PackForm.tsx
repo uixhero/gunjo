@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { track } from "@vercel/analytics";
+import { IconCircleCheckFilled, IconMailCheck } from "@tabler/icons-react";
 import {
     Form,
     FormField,
@@ -17,6 +18,7 @@ import {
     Button,
     Card,
     CardContent,
+    Modal,
 } from "@gunjo/ui";
 import {
     PURPOSE_OPTIONS,
@@ -25,17 +27,20 @@ import {
     type IndustryOption,
     type PackSubscribePayload,
 } from "@/lib/pack";
+import { PrivacyPolicyBody } from "@/privacy/PrivacyContent";
 
 interface PackFormProps {
     industries: IndustryOption[];
     coldTestCount: number;
+    /** Same-origin path to return to from the completion screen (from the CTA's ?from=). */
+    returnPath?: string;
 }
 
 type FieldErrors = Partial<
     Record<"email" | "industry" | "purpose" | "role", string>
 >;
 
-export function PackForm({ industries, coldTestCount }: PackFormProps) {
+export function PackForm({ industries, coldTestCount, returnPath }: PackFormProps) {
     const [email, setEmail] = React.useState("");
     const [industry, setIndustry] = React.useState("");
     const [industryOther, setIndustryOther] = React.useState("");
@@ -46,6 +51,7 @@ export function PackForm({ industries, coldTestCount }: PackFormProps) {
     const [status, setStatus] = React.useState<
         "idle" | "submitting" | "success" | "error"
     >("idle");
+    const [privacyOpen, setPrivacyOpen] = React.useState(false);
 
     // Form-reach count (one of the two metrics TASK-7 asks for).
     React.useEffect(() => {
@@ -96,23 +102,45 @@ export function PackForm({ industries, coldTestCount }: PackFormProps) {
     if (status === "success") {
         return (
             <div className="mx-auto w-full max-w-2xl px-6 py-16 sm:py-24">
-                <Card>
-                    <CardContent className="space-y-4 px-6 py-10 text-center">
-                        <h1 className="text-2xl font-bold tracking-tight">
-                            登録ありがとうございます
-                        </h1>
-                        <p className="text-muted-foreground">
-                            パックができたら最初にお送りします。
-                            <br />
-                            それまでは{" "}
-                            <Link
-                                href="/cold-tests"
-                                className="font-medium text-foreground underline underline-offset-4 hover:text-primary"
-                            >
-                                コールドテストの記録
-                            </Link>{" "}
-                            をどうぞ。
+                <Card className="overflow-hidden">
+                    {/* Celebratory band — a soft success gradient behind the seal. */}
+                    <div className="relative flex flex-col items-center bg-gradient-to-b from-success-subtle to-card px-6 pt-12 pb-8 text-center">
+                        <div className="mb-5 flex size-20 items-center justify-center rounded-full bg-success-subtle text-success ring-8 ring-success-subtle/40">
+                            <IconCircleCheckFilled className="size-12" aria-hidden />
+                        </div>
+                        <p className="mb-1 text-2xl" aria-hidden>
+                            🎉
                         </p>
+                        <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
+                            先行登録が完了しました！
+                        </h1>
+                        <p className="mt-3 max-w-md text-muted-foreground">
+                            ご登録ありがとうございます。あなたは
+                            <span className="font-medium text-foreground">先行登録メンバー</span>
+                            です。パックができあがったら、まっさきにお届けします。
+                        </p>
+                    </div>
+
+                    <CardContent className="space-y-6 px-6 pb-10 pt-6 text-center">
+                        <div className="mx-auto flex max-w-md items-start gap-3 rounded-lg border border-border bg-muted/40 px-4 py-3 text-left">
+                            <IconMailCheck className="mt-0.5 size-5 shrink-0 text-success" aria-hidden />
+                            <p className="text-sm text-muted-foreground">
+                                確認メールは送られません。次にご連絡するのは、パックのお届けのときです。楽しみにお待ちください。
+                            </p>
+                        </div>
+
+                        <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
+                            <Button asChild>
+                                <Link href={returnPath ?? "/cold-tests"}>
+                                    {returnPath ? "← 元のページに戻る" : "コールドテストを見る"}
+                                </Link>
+                            </Button>
+                            {returnPath ? (
+                                <Button asChild variant="ghost">
+                                    <Link href="/cold-tests">コールドテストの記録を見る</Link>
+                                </Button>
+                            ) : null}
+                        </div>
                     </CardContent>
                 </Card>
             </div>
@@ -236,12 +264,13 @@ export function PackForm({ industries, coldTestCount }: PackFormProps) {
                         <p className="text-xs leading-relaxed text-muted-foreground">
                             ご登録いただいたメールアドレスは、パックのお届けと、新パック・新機能・関連サービスのお知らせにのみ使用します。配信はいつでも解除できます。
                             <br />
-                            <Link
-                                href="/privacy"
-                                className="underline underline-offset-4 hover:text-foreground"
+                            <button
+                                type="button"
+                                onClick={() => setPrivacyOpen(true)}
+                                className="underline underline-offset-4 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring rounded-sm"
                             >
                                 プライバシーポリシー
-                            </Link>
+                            </button>
                         </p>
 
                         {status === "error" ? (
@@ -258,6 +287,22 @@ export function PackForm({ industries, coldTestCount }: PackFormProps) {
                     </Form>
                 </CardContent>
             </Card>
+
+            <Modal
+                isOpen={privacyOpen}
+                onClose={() => setPrivacyOpen(false)}
+                title="プライバシーポリシー"
+                className="max-w-lg"
+                footer={
+                    <Button variant="outline" onClick={() => setPrivacyOpen(false)}>
+                        閉じる
+                    </Button>
+                }
+            >
+                <div className="max-h-[70vh] overflow-y-auto pr-1">
+                    <PrivacyPolicyBody linkToPack={false} />
+                </div>
+            </Modal>
         </div>
     );
 }

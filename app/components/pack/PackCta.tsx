@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { track } from "@vercel/analytics";
 import { Banner, Button } from "@gunjo/ui";
 
@@ -22,14 +23,20 @@ export function PackCta({
     message = "業界別「AI指示書パック」、先行登録を受付中です。",
     className,
 }: PackCtaProps) {
+    const pathname = usePathname();
+    // Carry the origin page so the completion screen can send the visitor back
+    // to where the CTA sat, instead of dropping them on the cold-test index.
+    const href = pathname
+        ? `/pack?from=${encodeURIComponent(pathname)}`
+        : "/pack";
     return (
         <Banner
             variant="info"
             className={className}
             action={
-                <Button asChild size="sm" variant="outline">
+                <Button asChild size="sm" variant="info">
                     <Link
-                        href="/pack"
+                        href={href}
                         onClick={() => track("pack_cta_click", { placement })}
                     >
                         先行登録 →

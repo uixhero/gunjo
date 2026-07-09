@@ -19,7 +19,21 @@ interface PublishedCategory {
     jaCategory: string;
 }
 
-export default function PackPage() {
+// Only accept a same-origin absolute path as the return target — never a
+// protocol-relative (`//host`) or external URL — so `?from=` can't be used as
+// an open redirect.
+function safeReturnPath(from: string | string[] | undefined): string | undefined {
+    const value = Array.isArray(from) ? from[0] : from;
+    if (!value) return undefined;
+    if (!value.startsWith("/") || value.startsWith("//")) return undefined;
+    return value;
+}
+
+export default async function PackPage({
+    searchParams,
+}: {
+    searchParams: Promise<{ from?: string | string[] }>;
+}) {
     // Industry options come straight from the cold-test category SSOT (the 20
     // published categories) so they can't drift; the large JSON stays on the
     // server and only this small array crosses to the client.
@@ -28,6 +42,14 @@ export default function PackPage() {
     ).published.map((c) => ({ value: c.slug, label: c.jaCategory }));
 
     const coldTestCount = (coldTestGallery as { count: number }).count;
+    const { from } = await searchParams;
+    const returnPath = safeReturnPath(from);
 
-    return <PackForm industries={industries} coldTestCount={coldTestCount} />;
+    return (
+        <PackForm
+            industries={industries}
+            coldTestCount={coldTestCount}
+            returnPath={returnPath}
+        />
+    );
 }
