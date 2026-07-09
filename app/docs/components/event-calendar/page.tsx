@@ -438,6 +438,20 @@ export function EditorialCalendar() {
       type: "(month: Date) => void",
       description: locale === "ja" ? "渡すと月見出しと前後移動ボタンを表示します。" : "When provided, renders the month heading and previous/next buttons.",
     },
+    {
+      name: "formatMonthTitle",
+      type: "(monthDate: Date) => string",
+      description: locale === "ja"
+        ? "月見出し（とグリッドのアクセシブル名）の文字列を組み立てます。既定は YYYY年M月 です。インスタンス単位のローカライズ用。"
+        : "Composes the month title (and the grid accessible name). Defaults to YYYY年M月. Instance-level localization override.",
+    },
+    {
+      name: "formatDayLabel",
+      type: "(date: Date, ctx: { isToday: boolean; events: CalendarEvent[] }) => string",
+      description: locale === "ja"
+        ? "日セルのアクセシブル名を日付・今日判定・予定から組み立てます。既定は日本語の合成（M月D日、今日、N件: … / …、予定なし）です。"
+        : "Composes a day cell's accessible name from its date, today-state and events. Defaults to the JP composition (M月D日、今日、N件: … / …、予定なし).",
+    },
   ];
 
   return (

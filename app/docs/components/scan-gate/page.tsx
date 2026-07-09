@@ -1138,6 +1138,14 @@ export function PackingGate() {
         : "Controls whether the step indicator is shown.",
     },
     {
+      name: "stepsLabel",
+      type: "string",
+      default: '"スキャン手順"',
+      description: locale === "ja"
+        ? "ステップ表示リストのアクセシブル名です。既定は日本語のままで、インスタンス単位でローカライズできます。"
+        : "Accessible name for the step-indicator list. Defaults to Japanese; override per instance to localize.",
+    },
+    {
       name: "ScanGateStage.onScannerOpen",
       type: "(action, ctx) => void",
       description: locale === "ja"

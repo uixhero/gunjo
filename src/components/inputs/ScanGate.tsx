@@ -74,6 +74,11 @@ export interface ScanGateProps extends Omit<React.HTMLAttributes<HTMLDivElement>
     onComplete?: (ctx: ScanGateContext) => void
     /** Show the numbered step indicator. Default `true`. */
     showSteps?: boolean
+    /**
+     * Accessible name for the step-indicator list.
+     * Instance-level localization override — defaults to `スキャン手順` (JP-first). (#558)
+     */
+    stepsLabel?: string
     /** Focus the active stage's field on mount and on each advance (scan-gun loop). Default `true`. */
     autoFocus?: boolean
     /** Announce results assertively (for safety-critical verify gates). Forwarded to `ScanInput`. Default `false`. (#237) */
@@ -101,6 +106,7 @@ const ScanGate = React.forwardRef<ScanGateHandle, ScanGateProps>(
             onStageChange,
             onComplete,
             showSteps = true,
+            stepsLabel = "スキャン手順",
             autoFocus = true,
             assertive = false,
             showFeed = false,
@@ -177,7 +183,7 @@ const ScanGate = React.forwardRef<ScanGateHandle, ScanGateProps>(
         return (
             <div className={cn("flex w-full flex-col gap-3", className)} data-slot="scan-gate" {...props}>
                 {showSteps && safeStages.length > 1 ? (
-                    <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm" aria-label="スキャン手順">
+                    <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm" aria-label={stepsLabel}>
                         {safeStages.map((stage, i) => {
                             const state = i < activeIndex ? "done" : i === activeIndex ? "active" : "todo"
                             return (
