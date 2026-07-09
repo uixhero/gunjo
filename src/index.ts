@@ -247,6 +247,7 @@ export type { ColumnDef } from '@tanstack/react-table';
 
 /** Utility */
 export * from './components/utility/ThemeProvider';
+export * from './components/utility/LocaleProvider';
 export { formatCurrency, formatNumber, formatPercent } from './lib/format';
 export type { FormatCurrencyOptions, FormatNumberOptions, FormatPercentOptions } from './lib/format';
 export { toCsv, downloadCsv } from './lib/csv';

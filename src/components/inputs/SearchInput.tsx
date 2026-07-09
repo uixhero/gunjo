@@ -5,6 +5,7 @@ import { IconSearch as Search, IconX as X } from "@tabler/icons-react";
 
 import { cn } from "../../lib/utils"
 import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
+import { useLocale } from "../utility/LocaleProvider"
 
 export interface SearchInputProps
     extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type" | "onChange"> {
@@ -24,11 +25,12 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
             clearable = true,
             clearLabel = "Clear search",
             disabled,
-            placeholder = "Search...",
+            placeholder,
             ...props
         },
         ref
     ) => {
+        const { strings } = useLocale()
         const showClear = clearable && !!value && !disabled
 
         return (
@@ -47,7 +49,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
                     value={value ?? ""}
                     onChange={(e) => onValueChange?.(e.target.value)}
                     disabled={disabled}
-                    placeholder={placeholder}
+                    placeholder={placeholder ?? strings.searchPlaceholder}
                     className="flex h-9 w-full rounded-md border border-input bg-transparent pl-9 pr-9 py-1 text-sm shadow-sm transition-colors placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring [&::-webkit-search-cancel-button]:hidden"
                     {...props}
                 />

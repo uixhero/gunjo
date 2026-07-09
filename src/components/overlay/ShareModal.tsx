@@ -6,6 +6,7 @@ import { cn } from '../../lib/utils';
 import { Button } from '../inputs/Button';
 import { Switch } from '../inputs/Switch';
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from './Tooltip';
+import { useLocale } from "../utility/LocaleProvider";
 
 export interface ShareData {
     isPublic: boolean;
@@ -85,6 +86,7 @@ export const ShareModal = ({
     labels,
 }: ShareModalProps) => {
     const titleId = React.useId();
+    const { strings } = useLocale();
     const [isPublic, setIsPublic] = useState(item.share?.isPublic || false);
     const [isLoading, setIsLoading] = useState(false);
     const [copied, setCopied] = useState(false);
@@ -188,13 +190,13 @@ export const ShareModal = ({
                                     variant="ghost"
                                     onClick={onClose}
                                     className="h-8 w-8 text-muted-foreground"
-                                    aria-label={labels?.close ?? "Close"}
+                                    aria-label={labels?.close ?? strings.close}
                                 >
                                     <X size={18} />
                                 </Button>
                             </TooltipTrigger>
                             <TooltipContent portalContainer={portalContainer}>
-                                {labels?.close ?? "Close"}
+                                {labels?.close ?? strings.close}
                             </TooltipContent>
                         </Tooltip>
                     </TooltipProvider>

@@ -20,6 +20,7 @@ import {
 } from "./InspectorPanel"
 import { assetInspectorPanelDefaultVariantKey } from "./generated/default-variant-keys"
 import type { AssetInspectorPanelVariantKey } from "./generated/variant-keys"
+import { useLocale } from "../utility/LocaleProvider"
 
 export interface AssetInspectorPanelLabels {
     emptyTitle?: React.ReactNode
@@ -182,6 +183,7 @@ const AssetInspectorPanel = React.forwardRef<HTMLDivElement, AssetInspectorPanel
         },
         ref
     ) => {
+        const { strings } = useLocale()
         const classes = variantClasses[variant]
         const resolvedTitle = title ?? "Details"
 
@@ -271,8 +273,8 @@ const AssetInspectorPanel = React.forwardRef<HTMLDivElement, AssetInspectorPanel
                             type="button"
                             variant="ghost"
                             size="icon"
-                            aria-label={labels?.close ?? "Close"}
-                            tooltip={labels?.close ?? "Close"}
+                            aria-label={labels?.close ?? strings.close}
+                            tooltip={labels?.close ?? strings.close}
                             tooltipSide="bottom"
                             tooltipCloseOnPress
                             tooltipPortalContainer={tooltipPortalContainer}

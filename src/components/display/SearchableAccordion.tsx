@@ -14,6 +14,7 @@ import { EmptyState } from "./EmptyState"
 import { Icon } from "./Icon"
 import { searchableAccordionDefaultVariantKey } from "./generated/default-variant-keys"
 import type { SearchableAccordionVariantKey } from "./generated/variant-keys"
+import { useLocale } from "../utility/LocaleProvider"
 
 export type SearchableAccordionItem = {
     id: string
@@ -160,6 +161,7 @@ const SearchableAccordion = React.forwardRef<HTMLDivElement, SearchableAccordion
             [items, resolvedCategoryValue, resolvedSearchValue]
         )
 
+        const { strings } = useLocale()
         const visibleIds = React.useMemo(
             () => filteredItems.map((item) => item.id),
             [filteredItems]
@@ -192,7 +194,7 @@ const SearchableAccordion = React.forwardRef<HTMLDivElement, SearchableAccordion
                     <SearchInput
                         value={resolvedSearchValue}
                         onValueChange={setSearchValue}
-                        placeholder={labels?.searchPlaceholder ?? "Search items..."}
+                        placeholder={labels?.searchPlaceholder ?? strings.searchItemsPlaceholder}
                         clearLabel={labels?.clearSearchLabel ?? "Clear search"}
                     />
                     {showTabs ? (

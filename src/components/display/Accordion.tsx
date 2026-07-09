@@ -12,6 +12,7 @@ import { Icon } from "./Icon"
 import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
 import type { AccordionVariantKey } from "./generated/variant-keys"
 import { accordionDefaultVariantKey } from "./generated/default-variant-keys"
+import { useLocale } from "../utility/LocaleProvider"
 
 function buildVariantStateMap(
     defaultVariantKey: AccordionVariantKey,
@@ -143,7 +144,9 @@ function AccordionTriggerIndicator({
 const AccordionTrigger = React.forwardRef<
     React.ElementRef<typeof AccordionPrimitive.Trigger>,
     AccordionTriggerProps
->(({ className, children, indicator = "chevron", openLabel = "Open", closeLabel = "Close", ...props }, ref) => (
+>(({ className, children, indicator = "chevron", openLabel, closeLabel, ...props }, ref) => {
+    const { strings } = useLocale()
+    return (
     <AccordionPrimitive.Header className="flex">
         <AccordionPrimitive.Trigger
             ref={ref}
@@ -156,12 +159,13 @@ const AccordionTrigger = React.forwardRef<
             {children}
             <AccordionTriggerIndicator
                 indicator={indicator}
-                openLabel={openLabel}
-                closeLabel={closeLabel}
+                openLabel={openLabel ?? strings.open}
+                closeLabel={closeLabel ?? strings.close}
             />
         </AccordionPrimitive.Trigger>
     </AccordionPrimitive.Header>
-))
+    )
+})
 AccordionTrigger.displayName = AccordionPrimitive.Trigger.displayName
 
 const AccordionContent = React.forwardRef<

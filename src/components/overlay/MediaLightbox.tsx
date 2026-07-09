@@ -17,6 +17,7 @@ import {
 import { Popover, PopoverContent, PopoverTrigger } from "./Popover"
 import { mediaLightboxDefaultVariantKey } from "./generated/default-variant-keys"
 import type { MediaLightboxVariantKey } from "./generated/variant-keys"
+import { useLocale } from "../utility/LocaleProvider"
 
 export interface MediaLightboxLabels {
     close?: string
@@ -174,6 +175,7 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
         // unmounts). useEffect with deps wouldn't catch a re-mount of the same
         // logical element by Radix, so the listener could end up stuck on a
         // detached DOM node. The callback ref re-attaches on every mount.
+        const { strings } = useLocale()
         const attachedRef = React.useRef<{
             node: HTMLDivElement
             handler: (e: WheelEvent) => void
@@ -405,8 +407,8 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
                                 variant="ghost"
                                 size="icon"
                                 className="pointer-events-auto h-10 w-10 rounded-full bg-foreground/85 text-background hover:bg-foreground/95 hover:text-background"
-                                aria-label={labels?.close ?? "Close"}
-                                tooltip={labels?.close ?? "Close"}
+                                aria-label={labels?.close ?? strings.close}
+                                tooltip={labels?.close ?? strings.close}
                                 tooltipSide="bottom"
                                 tooltipPortalContainer={portalContainer}
                                 tooltipCloseOnPress
@@ -423,8 +425,8 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
                                     variant="ghost"
                                     size="icon"
                                     className="absolute left-4 top-1/2 z-10 h-12 w-12 -translate-y-1/2 rounded-full bg-foreground/85 text-background hover:bg-foreground/95 hover:text-background"
-                                    aria-label={labels?.previous ?? "Previous"}
-                                    tooltip={labels?.previous ?? "Previous"}
+                                    aria-label={labels?.previous ?? strings.previous}
+                                    tooltip={labels?.previous ?? strings.previous}
                                     tooltipSide="right"
                                     tooltipPortalContainer={portalContainer}
                                     tooltipCloseOnPress
@@ -475,8 +477,8 @@ const MediaLightbox = React.forwardRef<HTMLDivElement, MediaLightboxProps>(
                                     variant="ghost"
                                     size="icon"
                                     className="absolute right-4 top-1/2 z-10 h-12 w-12 -translate-y-1/2 rounded-full bg-foreground/85 text-background hover:bg-foreground/95 hover:text-background"
-                                    aria-label={labels?.next ?? "Next"}
-                                    tooltip={labels?.next ?? "Next"}
+                                    aria-label={labels?.next ?? strings.next}
+                                    tooltip={labels?.next ?? strings.next}
                                     tooltipSide="left"
                                     tooltipPortalContainer={portalContainer}
                                     tooltipCloseOnPress

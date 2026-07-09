@@ -12,6 +12,7 @@ import {
     CommandShortcut,
 } from "./Command"
 import { cn } from "../../lib/utils"
+import { useLocale } from "../utility/LocaleProvider"
 
 export interface CommandPaletteAction {
     id: string
@@ -37,13 +38,14 @@ export interface CommandPaletteProps extends Omit<React.ComponentPropsWithoutRef
 export function CommandPalette({
     groups,
     placeholder = "Type a command or search...",
-    emptyMessage = "No results found.",
+    emptyMessage,
     dialogTitle = "Command Menu",
     clearLabel = "Clear search",
     className,
     contentClassName,
     ...props
 }: CommandPaletteProps) {
+    const { strings } = useLocale()
     return (
         <CommandDialog
             dialogTitle={dialogTitle}
@@ -53,7 +55,7 @@ export function CommandPalette({
         >
             <CommandInput placeholder={placeholder} clearable clearLabel={clearLabel} autoFocus />
             <CommandList>
-                <CommandEmpty>{emptyMessage}</CommandEmpty>
+                <CommandEmpty>{emptyMessage ?? strings.commandEmpty}</CommandEmpty>
                 {groups.map((group, groupIndex) => (
                     <React.Fragment key={group.heading}>
                         <CommandGroup heading={group.heading}>
