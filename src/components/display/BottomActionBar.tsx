@@ -7,7 +7,7 @@ export interface BottomActionBarProps extends React.HTMLAttributes<HTMLDivElemen
   children?: React.ReactNode
   /** Right-aligned action(s) — the primary CTA (+ optional secondary), each ≥44px. */
   actions?: React.ReactNode
-  /** Stack the actions full-width ABOVE the summary (instead of summary | actions in a row). */
+  /** Stack the actions full-width below the summary (instead of summary | actions in a row). */
   stack?: boolean
   /** Stick to the bottom of the scroll container. Default `true`. */
   sticky?: boolean
@@ -28,7 +28,7 @@ const MAX_WIDTH: Record<NonNullable<BottomActionBarProps["maxWidth"]>, string> =
  * primary CTA on the right (呼ぶ / 支払う / 予約する), pinned to the bottom with a top border and
  * safe-area-inset padding (home-indicator). The bottom bookend to PageHeader (the top app bar) —
  * for checkout, ride-hailing, booking, food-order, seat-select. Set `stack` for a full-width CTA
- * above the summary. RSC-safe (no client deps).
+ * below the summary. RSC-safe (no client deps).
  */
 export const BottomActionBar = React.forwardRef<HTMLDivElement, BottomActionBarProps>(
   ({ className, children, actions, stack = false, sticky = true, maxWidth, ...props }, ref) => {
@@ -49,14 +49,12 @@ export const BottomActionBar = React.forwardRef<HTMLDivElement, BottomActionBarP
             maxWidth && cn("mx-auto", MAX_WIDTH[maxWidth])
           )}
         >
-          {children != null && (
-            <div className={cn("min-w-0", stack ? "order-2" : "flex-1")}>{children}</div>
-          )}
+          {children != null && <div className={cn("min-w-0", stack ? "order-1" : "flex-1")}>{children}</div>}
           {actions != null && (
             <div
               className={cn(
                 "flex shrink-0 items-center gap-2",
-                stack ? "order-1 [&>*]:flex-1" : "justify-end"
+                stack ? "order-2 [&>*]:flex-1" : "justify-end"
               )}
             >
               {actions}

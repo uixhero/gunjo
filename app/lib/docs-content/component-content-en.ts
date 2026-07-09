@@ -21,6 +21,166 @@ export const componentContentEn: Record<string, DocContent> = {
     title: "CoSign",
     description: "A two-person verification input for attestations, signer identity, and signed state.",
   },
+  "components/action-queue": {
+    title: "ActionQueue",
+    description: "A severity-sorted action queue with category, due metadata, and row actions.",
+  },
+  "components/amount-breakdown": {
+    title: "AmountBreakdown",
+    description: "A read-only amount ledger for line items, deductions, subtotals, and derived totals.",
+  },
+  "components/approval-workflow": {
+    title: "ApprovalWorkflow",
+    description: "An approval workflow for advancing, sending back, rejecting, and completing staged reviews.",
+  },
+  "components/bottom-action-bar": {
+    title: "BottomActionBar",
+    description: "A bottom action bar that pins summary content and a primary CTA on mobile surfaces.",
+  },
+  "components/check-list": {
+    title: "CheckList",
+    description: "A confirmable list with checkable rows, display rows, trailing status, and disabled feedback.",
+  },
+  "components/company-cell": {
+    title: "CompanyCell",
+    description: "An identity cell for companies or programs with a logo or generated initial tile and secondary metadata.",
+  },
+  "components/document-row": {
+    title: "DocumentRow",
+    description: "A file row that keeps selection, preview, and download as separate interaction targets.",
+  },
+  "components/event-calendar": {
+    title: "EventCalendar",
+    description: "A monthly event grid for selecting dates and individual events.",
+  },
+  "components/expiry-badge": {
+    title: "ExpiryBadge",
+    description: "Classifies an expiry date into valid, expiring, expired, or missing and renders the state as a badge.",
+  },
+  "components/filter-chips": {
+    title: "FilterChips",
+    description: "A horizontally scrollable single-select chip rail for switching among many categories.",
+  },
+  "components/gantt": {
+    title: "Gantt",
+    description: "A resource timeline that places bars across a time axis, including overlapping lanes and segmented spans.",
+  },
+  "components/itinerary": {
+    title: "Itinerary",
+    description: "A grouped or flat vertical trip timeline with time labels, kind markers, detail content, and optional row actions.",
+  },
+  "components/kanban-board": {
+    title: "KanbanBoard",
+    description: "A kanban board that groups flat items into columns with counts, empty states, and selectable cards.",
+  },
+  "components/leaderboard": {
+    title: "Leaderboard",
+    description: "A ranked list with rank chips, values, bars, and deltas. The caller owns the ordering.",
+  },
+  "components/limit-monitor": {
+    title: "LimitMonitor",
+    description: "Compares a measured value against soft and hard limits and shows ok, near, over, and critical states.",
+  },
+  "components/lineage-graph": {
+    title: "LineageGraph",
+    description: "A node-link graph for upstream and downstream relationships, including multi-parent and multi-child lineage.",
+  },
+  "components/line-chip": {
+    title: "LineChip",
+    description: "An identity chip for transit lines or route numbers with brand color and automatic text contrast.",
+  },
+  "components/list-card": {
+    title: "ListCard",
+    description: "A scannable list item with leading accessory, body, status, metadata, and optional selected state.",
+  },
+  "components/loyalty-summary-card": {
+    title: "LoyaltySummaryCard",
+    description: "A member-card hero for points balance, tier, progress to next tier, expiry notices, and primary action.",
+  },
+  "components/match-card": {
+    title: "MatchCard",
+    description: "A two-sided matching card with score, factor breakdown, and follow-up actions.",
+  },
+  "components/meter": {
+    title: "Meter",
+    description: "A value-against-maximum meter for capacity, completion, and threshold-driven status.",
+  },
+  "components/nav-row": {
+    title: "NavRow",
+    description: "A settings or account row with label, description, current value, and trailing action.",
+  },
+  "components/origin-destination": {
+    title: "OriginDestination",
+    description: "A horizontal route header for origin, destination, optional via stops, duration, and swap action.",
+  },
+  "components/page-header": {
+    title: "PageHeader",
+    description: "A mobile page header with back action, title, subtitle, and trailing actions.",
+  },
+  "components/pareto-chart": {
+    title: "ParetoChart",
+    description: "Descending bars with a cumulative line for showing which few causes drive most of the total.",
+  },
+  "components/person-cell": {
+    title: "PersonCell",
+    description: "An identity cell for avatar, name, affiliation, metadata, presence, and trailing status.",
+  },
+  "components/radio-card": {
+    title: "RadioCard",
+    description: "A card-shaped single-select option with pricing and details, rendered as a radiogroup item.",
+  },
+  "components/reference-value": {
+    title: "ReferenceValue",
+    description: "Compares a measured value to a reference range and marks normal, high, low, and critical states without relying on color alone.",
+  },
+  "components/relationship-row": {
+    title: "RelationshipRow",
+    description: "A paired-person row that places two PersonCells around a relationship label such as manager, assignee, or visit.",
+  },
+  "components/route-stops": {
+    title: "RouteStops",
+    description: "A stop timeline for delivery or shipment routes with current, completed, delayed, failed, and pending states.",
+  },
+  "components/schedule-grid": {
+    title: "ScheduleGrid",
+    description: "A keyboard-navigable matrix for timetables, rosters, and assignments with sticky headers.",
+  },
+  "components/seat-map": {
+    title: "SeatMap",
+    description: "A two-dimensional seat or spot picker for available, occupied, held, selected, and blocked states.",
+  },
+  "components/section-list": {
+    title: "SectionList",
+    description: "A grouped list layout for pre-grouped rows with section headers, bodies, and optional subtotals.",
+  },
+  "components/signed-record": {
+    title: "SignedRecord",
+    description: "An audited record that locks the body after signing and records later changes as append-only addenda.",
+  },
+  "components/stat-group": {
+    title: "StatGroup",
+    description: "A responsive metric grid that renders multiple Statistic items as a summary strip.",
+  },
+  "components/status-board": {
+    title: "StatusBoard",
+    description: "A grouped status tile board that prioritizes problems across vehicles, equipment, or workstations.",
+  },
+  "components/stringline": {
+    title: "Stringline",
+    description: "A time-distance run diagram for planned and actual movement, directions, and the current time.",
+  },
+  "components/ticket-stub": {
+    title: "TicketStub",
+    description: "A ticket-shaped pass for coupons, boarding passes, and memberships with a barcode or QR code.",
+  },
+  "components/week-view": {
+    title: "WeekView",
+    description: "A weekly time-grid calendar that positions events by time and packs overlapping events side by side.",
+  },
+  "components/safety-banner": {
+    title: "SafetyBanner",
+    description: "A prominent safety notice that can require explicit acknowledgement before a related action proceeds.",
+  },
   "components/tooltip-button": {
     title: "TooltipButton",
     description: "Combines a button action with tooltip copy so icon-only or explanatory controls remain understandable.",

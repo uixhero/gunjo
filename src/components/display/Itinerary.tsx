@@ -88,7 +88,7 @@ function ItineraryRow({ item, isLast }: { item: ItineraryItem; isLast: boolean }
           <button
             type="button"
             onClick={item.onSelect}
-            className="block w-full min-h-11 rounded-md text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+            className="-mx-2 block min-h-11 w-[calc(100%+1rem)] cursor-pointer rounded-md px-2 py-1 text-left transition-colors hover:bg-muted/60 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
           >
             {body}
           </button>

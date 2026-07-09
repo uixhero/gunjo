@@ -6,6 +6,7 @@ import { cn } from "../../lib/utils"
 import { Button } from "../inputs/Button"
 import { Select } from "../inputs/Select"
 import { Textarea } from "../inputs/Textarea"
+import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
 import { ApprovalSteps, type ApprovalStepState, type ApprovalStepsProps } from "./ApprovalSteps"
 
 export interface WorkflowStage {
@@ -223,6 +224,7 @@ const ApprovalWorkflow = React.forwardRef<HTMLDivElement, {
                                 label={l.sendBackTarget}
                                 value={target || priorStages[priorStages.length - 1].id}
                                 onChange={(event) => setTarget(event.target.value)}
+                                className="bg-background"
                             >
                                 {priorStages.map((stage) => (
                                     <option key={stage.id} value={stage.id}>
@@ -237,6 +239,7 @@ const ApprovalWorkflow = React.forwardRef<HTMLDivElement, {
                             onChange={(event) => setReason(event.target.value)}
                             placeholder={l.reasonPlaceholder}
                             rows={2}
+                            className="bg-background"
                         />
                         <div className="flex gap-2">
                             <Button size="sm" onClick={confirmSendBack}>{l.confirm}</Button>
@@ -251,6 +254,7 @@ const ApprovalWorkflow = React.forwardRef<HTMLDivElement, {
                             onChange={(event) => setReason(event.target.value)}
                             placeholder={l.reasonPlaceholder}
                             rows={2}
+                            className="bg-background"
                         />
                         <div className="flex gap-2">
                             <Button size="sm" variant="destructive" onClick={confirmReject}>{l.reject}</Button>
@@ -259,9 +263,22 @@ const ApprovalWorkflow = React.forwardRef<HTMLDivElement, {
                     </div>
                 ) : (
                     <div className="flex flex-wrap items-center gap-2">
-                        <Button size="sm" onClick={advance} disabled={!canAdvance}>
-                            {isLast ? l.finish : l.advance}
-                        </Button>
+                        {!canAdvance && advanceHint ? (
+                            <Tooltip>
+                                <TooltipTrigger asChild>
+                                    <span className="inline-flex cursor-not-allowed">
+                                        <Button size="sm" onClick={advance} disabled>
+                                            {isLast ? l.finish : l.advance}
+                                        </Button>
+                                    </span>
+                                </TooltipTrigger>
+                                <TooltipContent>{advanceHint}</TooltipContent>
+                            </Tooltip>
+                        ) : (
+                            <Button size="sm" onClick={advance}>
+                                {isLast ? l.finish : l.advance}
+                            </Button>
+                        )}
                         {allowSendBack && priorStages.length > 0 ? (
                             <Button size="sm" variant="outline" onClick={() => setMode("sendback")}>
                                 {l.sendBack}

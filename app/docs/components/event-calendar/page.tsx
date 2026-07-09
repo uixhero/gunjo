@@ -217,6 +217,8 @@ function eventDateIso(date: CalendarEvent["date"]) {
 
 const events: CalendarEvent[] = [
   { id: "a1", date: "2026-06-03", label: "特集: 夏の旅", tone: "info", ariaLabel: "特集 夏の旅" },
+  { id: "a2", date: "2026-06-10", label: "撮影: 商品A", tone: "success", ariaLabel: "撮影 商品A" },
+  { id: "a3", date: "2026-06-15", label: "編集会議", tone: "muted", ariaLabel: "編集会議" },
   { id: "a4", date: "2026-06-15", label: "入稿締切: 連載#12", tone: "destructive", ariaLabel: "入稿締切 連載12" },
   { id: "a5", date: "2026-06-15", label: "校了確認", tone: "warning", ariaLabel: "校了確認" },
   { id: "a6", date: "2026-06-15", label: "公開予約", tone: "primary", ariaLabel: "公開予約" },
@@ -312,6 +314,8 @@ function eventDateIso(date: CalendarEvent["date"]) {
 
 const events: CalendarEvent[] = [
   { id: "a1", date: "2026-06-03", label: "Feature: summer travel", tone: "info", ariaLabel: "Feature summer travel" },
+  { id: "a2", date: "2026-06-10", label: "Shoot: Product A", tone: "success", ariaLabel: "Shoot Product A" },
+  { id: "a3", date: "2026-06-15", label: "Editorial sync", tone: "muted", ariaLabel: "Editorial sync" },
   { id: "a4", date: "2026-06-15", label: "Deadline: series #12", tone: "destructive", ariaLabel: "Deadline series 12" },
   { id: "a5", date: "2026-06-15", label: "Final proof", tone: "warning", ariaLabel: "Final proof" },
   { id: "a6", date: "2026-06-15", label: "Schedule publish", tone: "primary", ariaLabel: "Schedule publish" },
@@ -383,6 +387,8 @@ export function EditorialCalendar() {
     </div>
   );
 }`;
+
+  const overflowCode = usageCode.replace("maxPerDay={3}", "maxPerDay={2}");
 
   const propsData = [
     {
@@ -467,7 +473,7 @@ export function EditorialCalendar() {
                 ? "同じ日に予定が多い場合、maxPerDay を超えた分を +N で表示します。"
                 : "When a day has more events than maxPerDay, the extra items collapse into +N.",
               preview: <EventCalendarPreview locale={locale} maxPerDay={2} />,
-              code: `<EventCalendar events={events} maxPerDay={2} month={month} />`,
+              code: overflowCode,
               previewBodyWidth: "lg",
             },
             {

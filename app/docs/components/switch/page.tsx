@@ -6,6 +6,7 @@ import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/
 import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { getDocContent } from "@/lib/docs-content";
 import inputsMetadata from "@design/inputs-metadata.json";
 import { Label, Switch } from "@gunjo/ui";
 
@@ -31,6 +32,7 @@ function SwitchRow({ checked, disabled }: { checked?: boolean; disabled?: boolea
 
 export default function SwitchPage() {
     const { locale, sectionLabels } = useLocale();
+    const content = getDocContent("components/switch", locale);
     const code = `import { Label, Switch } from "@gunjo/ui";
 
 export function SwitchDemo() {
@@ -58,8 +60,8 @@ export function SwitchDemo() {
 
     return (
         <ComponentLayout
-            title={inputsMetadata.switch.title}
-            description={inputsMetadata.switch.description}
+            title={content?.title ?? inputsMetadata.switch.title}
+            description={content?.description ?? inputsMetadata.switch.description}
             sectionLabels={sectionLabels}
             usedComponents={[
                 { name: "Switch", href: "/docs/components/switch" },
@@ -72,7 +74,7 @@ export function SwitchDemo() {
                 { name: "Form", href: "/docs/components/form" },
             ]}
         >
-            <ComponentPreview embedSrc="/embed/switch" code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels}>
+            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewHeight="auto">
                 <div className="flex items-center gap-2">
                     <Switch id="notifications-preview" defaultChecked />
                     <Label htmlFor="notifications-preview">
@@ -92,29 +94,45 @@ export function SwitchDemo() {
                             title: locale === "ja" ? "オフ" : "Off",
                             description: locale === "ja" ? "機能が無効な状態です。単一設定のオン/オフに使います。" : "The setting is off. Use switches for a single on/off decision.",
                             preview: <SwitchRow />,
-                            previewHeight: 150,
-                            code: `<Switch id="autosave" />`,
+                            code: `import { Label, Switch } from "@gunjo/ui";
+
+<div className="flex items-center gap-2">
+  <Switch id="autosave" />
+  <Label htmlFor="autosave">${locale === "ja" ? "自動保存" : "Auto-save"}</Label>
+</div>`,
                         },
                         {
                             key: "on",
                             title: locale === "ja" ? "オン" : "On",
                             description: locale === "ja" ? "初期値として有効にする場合は defaultChecked を使います。" : "Use defaultChecked when the setting should start on.",
                             preview: <SwitchRow checked />,
-                            previewHeight: 150,
-                            code: `<Switch id="autosave" defaultChecked />`,
+                            code: `import { Label, Switch } from "@gunjo/ui";
+
+<div className="flex items-center gap-2">
+  <Switch id="autosave" defaultChecked />
+  <Label htmlFor="autosave">${locale === "ja" ? "自動保存" : "Auto-save"}</Label>
+</div>`,
                         },
                         {
                             key: "disabled",
                             title: locale === "ja" ? "無効化" : "Disabled",
                             description: locale === "ja" ? "切り替えできない理由はツールチップとラベルで示します。" : "Explain why the switch is disabled with a tooltip and label.",
                             preview: <SwitchRow disabled />,
-                            previewHeight: 150,
-                            code: `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
-import { Switch } from "@gunjo/ui";
+                            code: `import { Label, Switch, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 
-<DisabledReasonTooltip reason="${locale === "ja" ? "組織設定で固定されています。" : "This setting is managed by your organization."}">
-  <Switch checked disabled />
-</DisabledReasonTooltip>`,
+<div className="flex items-center gap-2">
+  <Tooltip>
+    <TooltipTrigger asChild>
+      <span tabIndex={0}>
+        <Switch id="switch-managed" checked disabled />
+      </span>
+    </TooltipTrigger>
+    <TooltipContent>${locale === "ja" ? "組織設定で固定されています。" : "This setting is managed by your organization."}</TooltipContent>
+  </Tooltip>
+  <Label htmlFor="switch-managed" className="text-muted-foreground">
+    ${locale === "ja" ? "組織設定で固定" : "Managed by organization"}
+  </Label>
+</div>`,
                         },
                     ]}
                 />

@@ -1,6 +1,6 @@
 # パターンドキュメント確認チェックリスト
 
-Generated: 2026-06-11
+Generated: 2026-07-09
 
 Parent issue: #202
 
@@ -235,6 +235,25 @@ Parent issue: #202
 ### `pricing`
 
 ページ: /docs/components/pricing
+
+- [ ] 自動構造チェック
+  - [x] ComponentLayout / ページシェル
+  - [x] docs プレビュー
+  - [x] プレビューコードコピー
+  - [ ] /patterns への導線
+  - [x] GunjoUI コンポーネント import
+- [ ] 目視確認
+  - [ ] docs プレビューの横幅・高さが内容に合っている
+  - [ ] コードとプレビューのデータ・文言が一致している
+  - [ ] パターン画面でデスクトップ幅が崩れていない
+  - [ ] パターン画面でタブレット幅が崩れていない
+  - [ ] パターン画面でスマホ幅が崩れていない
+  - [ ] オーバーレイが擬似ブラウザの中に収まっている
+  - [ ] アイコンだけの操作、無効操作、曖昧な操作にツールチップがある
+
+### `responsive-auth-card-pattern`
+
+ページ: /docs/components/responsive-auth-card-pattern
 
 - [ ] 自動構造チェック
   - [x] ComponentLayout / ページシェル

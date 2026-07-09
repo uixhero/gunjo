@@ -2,6 +2,7 @@ import * as React from "react"
 import { IconArrowNarrowRight, IconArrowsExchange } from "@tabler/icons-react"
 
 import { cn } from "../../lib/utils"
+import { TooltipButton } from "../inputs/TooltipButton"
 
 export interface OriginDestinationEndpoint {
   /** Main label — 東京 / HND / 上海港 / 新宿. */
@@ -21,6 +22,8 @@ export interface OriginDestinationProps extends Omit<React.HTMLAttributes<HTMLDi
   connector?: React.ReactNode
   /** Show a swap button between from and to (出発⇄到着). Only when there is no `via`. */
   onSwap?: () => void
+  /** Accessible label and tooltip for the swap button. Default `出発駅と到着駅を入れ替える`. */
+  swapLabel?: string
   /** Compact single-line layout for a result row (06:00発 → 08:27着). Default `false` (a prominent header). */
   inline?: boolean
   /** Accessible name. Defaults to "<from> から <to>". */
@@ -41,7 +44,21 @@ function endpointText(e: OriginDestinationEndpoint): string {
  * except the opt-in `onSwap`.
  */
 const OriginDestination = React.forwardRef<HTMLDivElement, OriginDestinationProps>(
-  ({ className, from, to, via, connector, onSwap, inline = false, label, ...props }, ref) => {
+  (
+    {
+      className,
+      from,
+      to,
+      via,
+      connector,
+      onSwap,
+      swapLabel = "出発駅と到着駅を入れ替える",
+      inline = false,
+      label,
+      ...props
+    },
+    ref
+  ) => {
     const endpoints = [from, ...(via ?? []), to]
     const canSwap = onSwap != null && (via == null || via.length === 0)
     const ariaLabel =
@@ -60,14 +77,14 @@ const OriginDestination = React.forwardRef<HTMLDivElement, OriginDestinationProp
           ref={ref}
           role="group"
           aria-label={ariaLabel}
-          className={cn("inline-flex flex-wrap items-baseline gap-x-1.5 gap-y-0.5 text-sm tabular-nums", className)}
+          className={cn("inline-flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-sm tabular-nums", className)}
           data-slot="origin-destination"
           {...props}
         >
           {endpoints.map((e, i) => (
             <React.Fragment key={i}>
               {i > 0 ? Arrow : null}
-              <span className="inline-flex items-baseline gap-1">
+              <span className="inline-flex items-center gap-1">
                 <span className="font-semibold text-foreground">{e.label}</span>
                 {e.sub != null ? <span className="text-xs text-muted-foreground">{e.sub}</span> : null}
               </span>
@@ -78,7 +95,7 @@ const OriginDestination = React.forwardRef<HTMLDivElement, OriginDestinationProp
     }
 
     const renderEndpoint = (e: OriginDestinationEndpoint, align: "start" | "end") => (
-      <span className={cn("flex min-w-0 flex-col", align === "end" ? "items-end text-right" : "items-start")}>
+      <span className={cn("flex w-full min-w-0 flex-col", align === "end" ? "items-end text-right" : "items-start")}>
         <span className="truncate text-lg font-bold text-foreground">{e.label}</span>
         {e.sub != null ? <span className="truncate text-xs tabular-nums text-muted-foreground">{e.sub}</span> : null}
       </span>
@@ -89,22 +106,25 @@ const OriginDestination = React.forwardRef<HTMLDivElement, OriginDestinationProp
         ref={ref}
         role="group"
         aria-label={ariaLabel}
-        className={cn("flex w-full items-center gap-3", className)}
+        className={cn("grid w-full grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center gap-3", className)}
         data-slot="origin-destination"
         {...props}
       >
-        {renderEndpoint(from, "start")}
+        {renderEndpoint(from, "end")}
 
         <span className="flex shrink-0 flex-col items-center gap-0.5">
           {canSwap ? (
-            <button
+            <TooltipButton
               type="button"
               onClick={onSwap}
-              aria-label="出発駅と到着駅を入れ替える"
-              className="inline-flex size-8 items-center justify-center rounded-full border border-border bg-card text-muted-foreground transition-colors hover:bg-accent hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+              aria-label={swapLabel}
+              tooltip={swapLabel}
+              variant="outline"
+              size="icon"
+              className="size-8 rounded-full border-border bg-card p-0 text-muted-foreground hover:bg-accent hover:text-foreground"
             >
               <IconArrowsExchange className="size-4" aria-hidden="true" />
-            </button>
+            </TooltipButton>
           ) : via != null && via.length > 0 ? (
             <span className="flex items-center gap-1">
               {via.map((v, i) => (
@@ -121,7 +141,7 @@ const OriginDestination = React.forwardRef<HTMLDivElement, OriginDestinationProp
           {connector != null ? <span className="text-xs tabular-nums text-muted-foreground">{connector}</span> : null}
         </span>
 
-        {renderEndpoint(to, "end")}
+        {renderEndpoint(to, "start")}
       </div>
     )
   }

@@ -6,8 +6,8 @@ import { CodeBlock } from "@/components/doc/CodeBlock";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
 import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { PropsTable } from "@/components/doc/PropsTable";
-import { TagInputDemo } from "@/components/demos/TagInputDemo";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { getDocContent } from "@/lib/docs-content";
 import inputsMetadata from "@design/inputs-metadata.json";
 import { FormControl, FormDescription, FormGroup, FormLabel, TagInput } from "@gunjo/ui";
 
@@ -59,6 +59,8 @@ function TagInputStatePreview({ disabled, maxTags }: { disabled?: boolean; maxTa
 
 export default function TagInputPage() {
     const { locale, sectionLabels } = useLocale();
+    const content = getDocContent("components/tag-input", locale);
+    const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
     const code = `import * as React from "react";
 import { FormControl, FormDescription, FormGroup, FormLabel, TagInput } from "@gunjo/ui";
 
@@ -111,8 +113,8 @@ export function TagInputDemo() {
 
     return (
         <ComponentLayout
-            title={(inputsMetadata as Record<string, { title: string }>).tagInput.title}
-            description={(inputsMetadata as Record<string, { description: string }>).tagInput.description}
+            title={content?.title ?? metadata.tagInput.title}
+            description={content?.description ?? metadata.tagInput.description}
             sectionLabels={sectionLabels}
             usedComponents={[
                 { name: "TagInput", href: "/docs/components/tag-input" },
@@ -126,8 +128,8 @@ export function TagInputDemo() {
                 { name: "Form", href: "/docs/components/form" },
             ]}
         >
-            <ComponentPreview embedSrc="/embed/tag-input" code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewBodyWidth="md">
-                <TagInputDemo />
+            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewHeight="auto" previewBodyWidth="md">
+                <TagInputStatePreview />
             </ComponentPreview>
 
             <section className="space-y-4">
@@ -141,7 +143,6 @@ export function TagInputDemo() {
                             title: locale === "ja" ? "編集可能" : "Editable",
                             description: locale === "ja" ? "Enter またはカンマでタグを追加し、各タグの削除ボタンで取り外します。" : "Add tags with Enter or comma, then remove them with each tag action.",
                             preview: <TagInputStatePreview />,
-                            previewHeight: 210,
                             code,
                         },
                         {
@@ -149,21 +150,65 @@ export function TagInputDemo() {
                             title: locale === "ja" ? "上限あり" : "With max tags",
                             description: locale === "ja" ? "タグ数に上限がある場合は補足文で条件を伝えます。" : "When tags are limited, explain the limit in helper text.",
                             preview: <TagInputStatePreview maxTags={3} />,
-                            previewHeight: 210,
-                            code: `<TagInput value={tags} onValueChange={setTags} maxTags={3} />`,
+                            code: `import * as React from "react";
+import { FormControl, FormDescription, FormGroup, FormLabel, TagInput } from "@gunjo/ui";
+
+export function LimitedTagInput() {
+  const [tags, setTags] = React.useState<string[]>([${locale === "ja" ? '"資料", "確認中"' : '"docs", "review"'}]);
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="limited-tags">${locale === "ja" ? "タグ" : "Tags"}</FormLabel>
+      <FormControl>
+        <TagInput
+          id="limited-tags"
+          value={tags}
+          onValueChange={setTags}
+          maxTags={3}
+          placeholder="${locale === "ja" ? "タグを追加..." : "Add tag..."}"
+          removeLabel="${locale === "ja" ? "タグを削除" : "Remove tag"}"
+        />
+      </FormControl>
+      <FormDescription>${locale === "ja" ? "最大 3 件まで追加できます。" : "Add up to 3 tags."}</FormDescription>
+    </FormGroup>
+  );
+}`,
                         },
                         {
                             key: "disabled",
                             title: locale === "ja" ? "無効化" : "Disabled",
                             description: locale === "ja" ? "編集できない理由はツールチップと補足文で伝えます。" : "Explain why editing is disabled with a tooltip and helper text.",
                             preview: <TagInputStatePreview disabled />,
-                            previewHeight: 210,
-                            code: `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
-import { TagInput } from "@gunjo/ui";
+                            code: `import * as React from "react";
+import { FormControl, FormDescription, FormGroup, FormLabel, TagInput, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 
-<DisabledReasonTooltip fullWidth reason="${locale === "ja" ? "この素材はアーカイブ済みです。" : "This asset is archived."}">
-  <TagInput value={tags} disabled />
-</DisabledReasonTooltip>`,
+export function DisabledTagInput() {
+  const [tags, setTags] = React.useState<string[]>([${locale === "ja" ? '"資料", "確認中"' : '"docs", "review"'}]);
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="tag-disabled">${locale === "ja" ? "タグ" : "Tags"}</FormLabel>
+      <FormControl>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <span className="block w-full" tabIndex={0}>
+              <TagInput
+                id="tag-disabled"
+                value={tags}
+                onValueChange={setTags}
+                placeholder="${locale === "ja" ? "タグを追加..." : "Add tag..."}"
+                removeLabel="${locale === "ja" ? "タグを削除" : "Remove tag"}"
+                disabled
+              />
+            </span>
+          </TooltipTrigger>
+          <TooltipContent>${locale === "ja" ? "この素材はアーカイブ済みです。" : "This asset is archived."}</TooltipContent>
+        </Tooltip>
+      </FormControl>
+      <FormDescription>${locale === "ja" ? "アーカイブ済みの素材ではタグを編集できません。" : "Archived assets cannot be edited."}</FormDescription>
+    </FormGroup>
+  );
+}`,
                         },
                     ]}
                 />

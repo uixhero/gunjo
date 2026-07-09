@@ -44,6 +44,10 @@ export interface WeekViewProps extends Omit<React.HTMLAttributes<HTMLDivElement>
     label?: React.ReactNode
     /** 7 short weekday labels starting Sunday. Default 日 月 火 …. */
     weekdayLabels?: string[]
+    /** Suffix appended after the weekday in event button accessible names. Default `"曜"`. */
+    daySuffix?: string
+    /** Override the event button accessible name. */
+    formatEventAriaLabel?: (event: WeekEvent, context: { weekday: string; start: string; end: string }) => string
     onSelectEvent?: (event: WeekEvent) => void
 }
 
@@ -135,6 +139,8 @@ const WeekView = React.forwardRef<HTMLDivElement, WeekViewProps>(
             today,
             label,
             weekdayLabels,
+            daySuffix = "曜",
+            formatEventAriaLabel,
             onSelectEvent,
             ...props
         },
@@ -257,9 +263,13 @@ const WeekView = React.forwardRef<HTMLDivElement, WeekViewProps>(
                                         const widthPct = 100 / p.cols
                                         const s = toDate(p.event.start)
                                         const e = toDate(p.event.end)
-                                        const name = `${d.weekday}曜 ${hhmm(s)}〜${hhmm(e)} ${
-                                            p.event.ariaLabel ?? (typeof p.event.label === "string" ? p.event.label : "")
-                                        }`
+                                        const startText = hhmm(s)
+                                        const endText = hhmm(e)
+                                        const name =
+                                            formatEventAriaLabel?.(p.event, { weekday: d.weekday, start: startText, end: endText }) ??
+                                            `${d.weekday}${daySuffix} ${startText}〜${endText} ${
+                                                p.event.ariaLabel ?? (typeof p.event.label === "string" ? p.event.label : "")
+                                            }`
                                         return (
                                             <button
                                                 key={p.event.id}
@@ -277,7 +287,7 @@ const WeekView = React.forwardRef<HTMLDivElement, WeekViewProps>(
                                                     width: `calc(${widthPct}% - 2px)`,
                                                 }}
                                             >
-                                                <span className="block font-medium">{hhmm(s)}</span>
+                                                <span className="block font-medium">{startText}</span>
                                                 <span className="block truncate">{p.event.label}</span>
                                             </button>
                                         )

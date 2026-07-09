@@ -7,6 +7,7 @@ import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { SearchInputDemo } from "@/components/demos/SearchInputDemo";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { getDocContent } from "@/lib/docs-content";
 import inputsMetadata from "@design/inputs-metadata.json";
 import { FormControl, FormDescription, FormGroup, FormLabel, SearchInput } from "@gunjo/ui";
 import * as React from "react";
@@ -65,6 +66,7 @@ function SearchInputStatePreview({
 
 export default function SearchInputPage() {
     const { locale, sectionLabels } = useLocale();
+    const content = getDocContent("components/search-input", locale);
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
 
     const code = `import * as React from "react";
@@ -116,8 +118,8 @@ export function SearchInputDemo() {
 
     return (
         <ComponentLayout
-            title={metadata.searchInput.title}
-            description={metadata.searchInput.description}
+            title={content?.title ?? metadata.searchInput.title}
+            description={content?.description ?? metadata.searchInput.description}
             sectionLabels={sectionLabels}
             usedComponents={[
                 { name: "SearchInput", href: "/docs/components/search-input" },
@@ -132,7 +134,7 @@ export function SearchInputDemo() {
                 { name: "FilterButton", href: "/docs/components/filter-button" },
             ]}
         >
-            <ComponentPreview embedSrc="/embed/search-input" code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewBodyWidth="md">
+            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewHeight="auto" previewBodyWidth="md">
                 <SearchInputDemo />
             </ComponentPreview>
 
@@ -147,29 +149,89 @@ export function SearchInputDemo() {
                             title: locale === "ja" ? "クリア可能" : "Clearable",
                             description: locale === "ja" ? "入力済みの時だけクリアボタンを表示します。" : "Shows a clear button only while a query is present.",
                             preview: <SearchInputStatePreview initialValue={locale === "ja" ? "バナー" : "banner"} />,
-                            previewHeight: 190,
-                            code: usageCode,
+                            code: `import * as React from "react";
+import { FormControl, FormDescription, FormGroup, FormLabel, SearchInput } from "@gunjo/ui";
+
+export function ClearableSearchInput() {
+  const [value, setValue] = React.useState("${locale === "ja" ? "バナー" : "banner"}");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="asset-search">${locale === "ja" ? "素材検索" : "Asset search"}</FormLabel>
+      <FormControl>
+        <SearchInput
+          id="asset-search"
+          value={value}
+          onValueChange={setValue}
+          placeholder="${locale === "ja" ? "キーワードを入力" : "Search keyword"}"
+          clearLabel="${locale === "ja" ? "検索語をクリア" : "Clear search"}"
+        />
+      </FormControl>
+      <FormDescription>
+        {value ? \`${locale === "ja" ? "検索語" : "query"}: "\${value}"\` : "${locale === "ja" ? "入力した検索語は即時に反映されます。" : "The query updates as you type."}"}
+      </FormDescription>
+    </FormGroup>
+  );
+}`,
                         },
                         {
                             key: "without-clear",
                             title: locale === "ja" ? "クリアボタンなし" : "Without clear button",
                             description: locale === "ja" ? "候補やフィルター側でリセットする検索欄では、クリアボタンを非表示にできます。" : "Hide the clear button when reset is handled elsewhere.",
                             preview: <SearchInputStatePreview clearable={false} initialValue={locale === "ja" ? "画像" : "image"} />,
-                            previewHeight: 190,
-                            code: `<SearchInput value={query} onValueChange={setQuery} clearable={false} />`,
+                            code: `import * as React from "react";
+import { FormControl, FormDescription, FormGroup, FormLabel, SearchInput } from "@gunjo/ui";
+
+export function SearchWithoutClearButton() {
+  const [value, setValue] = React.useState("${locale === "ja" ? "画像" : "image"}");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="asset-search">${locale === "ja" ? "素材検索" : "Asset search"}</FormLabel>
+      <FormControl>
+        <SearchInput
+          id="asset-search"
+          value={value}
+          onValueChange={setValue}
+          clearable={false}
+          placeholder="${locale === "ja" ? "キーワードを入力" : "Search keyword"}"
+        />
+      </FormControl>
+      <FormDescription>
+        {value ? \`${locale === "ja" ? "検索語" : "query"}: "\${value}"\` : "${locale === "ja" ? "入力した検索語は即時に反映されます。" : "The query updates as you type."}"}
+      </FormDescription>
+    </FormGroup>
+  );
+}`,
                         },
                         {
                             key: "disabled",
                             title: locale === "ja" ? "無効化" : "Disabled",
                             description: locale === "ja" ? "検索できない理由はツールチップと補足文で伝えます。" : "Explain why search is unavailable with a tooltip and helper text.",
                             preview: <SearchInputStatePreview disabled initialValue={locale === "ja" ? "処理中" : "indexing"} />,
-                            previewHeight: 190,
-                            code: `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
-import { SearchInput } from "@gunjo/ui";
+                            code: `import { FormControl, FormDescription, FormGroup, FormLabel, SearchInput, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 
-<DisabledReasonTooltip fullWidth reason="${locale === "ja" ? "検索インデックスの更新中です。" : "The search index is currently updating."}">
-  <SearchInput disabled value="indexing" />
-</DisabledReasonTooltip>`,
+<FormGroup className="w-full max-w-sm">
+  <FormLabel htmlFor="asset-search">${locale === "ja" ? "素材検索" : "Asset search"}</FormLabel>
+  <FormControl>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <span className="block w-full" tabIndex={0}>
+          <SearchInput
+            id="asset-search"
+            disabled
+            value="${locale === "ja" ? "処理中" : "indexing"}"
+            placeholder="${locale === "ja" ? "キーワードを入力" : "Search keyword"}"
+          />
+        </span>
+      </TooltipTrigger>
+      <TooltipContent>${locale === "ja" ? "検索インデックスの更新中です。" : "The search index is currently updating."}</TooltipContent>
+    </Tooltip>
+  </FormControl>
+  <FormDescription>
+    ${locale === "ja" ? "更新が完了すると検索できます。" : "Search will be available after indexing finishes."}
+  </FormDescription>
+</FormGroup>`,
                         },
                     ]}
                 />

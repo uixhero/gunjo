@@ -4,6 +4,7 @@ import * as React from "react"
 import { IconCheck } from "@tabler/icons-react"
 
 import { cn } from "../../lib/utils"
+import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
 
 interface RadioCardContextValue {
   value?: string
@@ -94,6 +95,10 @@ export interface RadioCardProps extends Omit<React.ButtonHTMLAttributes<HTMLButt
   highlight?: React.ReactNode
   /** Leading accessory (icon / thumbnail). */
   leading?: React.ReactNode
+  /** Reason shown in a tooltip when the card is disabled. */
+  disabledReason?: React.ReactNode
+  /** Accessible label for the disabled reason wrapper. Defaults to the reason when it is a string. */
+  disabledReasonLabel?: string
 }
 
 /**
@@ -105,10 +110,10 @@ export interface RadioCardProps extends Omit<React.ButtonHTMLAttributes<HTMLButt
  * tap target; status never colour-only (a check marks the selection). Use inside RadioCardGroup.
  */
 export const RadioCard = React.forwardRef<HTMLButtonElement, RadioCardProps>(
-  ({ className, value, title, description, tags, price, highlight, leading, disabled, ...props }, ref) => {
+  ({ className, value, title, description, tags, price, highlight, leading, disabled, disabledReason, disabledReasonLabel, ...props }, ref) => {
     const ctx = React.useContext(RadioCardContext)
     const checked = ctx?.value === value
-    return (
+    const button = (
       <button
         ref={ref}
         type="button"
@@ -119,7 +124,7 @@ export const RadioCard = React.forwardRef<HTMLButtonElement, RadioCardProps>(
         onClick={() => ctx?.onValueChange?.(value)}
         className={cn(
           "flex w-full min-h-11 items-start gap-3 rounded-lg border bg-card p-4 text-left transition-colors",
-          "hover:border-primary/50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
+          "cursor-pointer hover:border-primary/50 hover:bg-muted/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
           checked ? "border-primary ring-1 ring-primary" : "border-border",
           disabled && "cursor-not-allowed opacity-50",
           className
@@ -153,6 +158,21 @@ export const RadioCard = React.forwardRef<HTMLButtonElement, RadioCardProps>(
         )}
       </button>
     )
+
+    if (disabled && disabledReason != null) {
+      return (
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <span className="block w-full" tabIndex={0} aria-label={disabledReasonLabel ?? (typeof disabledReason === "string" ? disabledReason : undefined)}>
+              {button}
+            </span>
+          </TooltipTrigger>
+          <TooltipContent>{disabledReason}</TooltipContent>
+        </Tooltip>
+      )
+    }
+
+    return button
   }
 )
 RadioCard.displayName = "RadioCard"

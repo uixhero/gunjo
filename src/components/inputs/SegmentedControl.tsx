@@ -144,7 +144,7 @@ const SegmentedControl = React.forwardRef<HTMLDivElement, SegmentedControlProps>
                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1",
                 SEG_SIZE[size],
                 fullWidth && "flex-1",
-                checked ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:text-foreground",
+                checked ? "bg-background text-foreground shadow-sm" : "text-muted-foreground hover:bg-background/60 hover:text-foreground",
                 segDisabled ? "cursor-not-allowed opacity-50" : "cursor-pointer"
               )}
             >

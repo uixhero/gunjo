@@ -94,7 +94,7 @@ export const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
           aria-pressed={selected || undefined}
           className={cn(
             base,
-            "min-h-11 transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            "min-h-11 cursor-pointer transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
             selected && "bg-accent"
           )}
         >

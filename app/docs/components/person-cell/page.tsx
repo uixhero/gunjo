@@ -1,70 +1,308 @@
-import { ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
-import { PropsTable } from "@/components/doc/PropsTable";
+"use client";
+
+import * as React from "react";
 import { CodeBlock } from "@/components/doc/CodeBlock";
+import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
+import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
+import { PropsTable } from "@/components/doc/PropsTable";
+import { useLocale } from "@/components/providers/LocaleProvider";
+import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
+import { Badge, PersonCell, Separator } from "@gunjo/ui";
 
-import { PersonCellDemo } from "@/components/demos/PersonCellDemo";
+type Locale = "ja" | "en";
 
-const meta = displayMetadata as Record<string, { title?: string; description?: string }>;
+function people(locale: Locale) {
+  return locale === "ja"
+    ? [
+        { name: "佐藤 美咲", secondary: "プロダクト本部 / シニアUXデザイナー", tertiary: "正社員・東京本社", avatar: { src: "https://i.pravatar.cc/80?img=47" }, presence: "online" as const, trailing: <Badge variant="success">在籍</Badge> },
+        { name: "高橋 健一", secondary: "デザインマネージャー", tertiary: "大阪支社", avatar: { fallback: "高" }, avatarClassName: "bg-info-subtle text-info-subtle-foreground", presence: "away" as const, trailing: <Badge variant="warning">休職中</Badge> },
+        { name: "山田 涼介", secondary: "人事 HRBP", tertiary: "契約更新確認中", avatar: { fallback: "山" }, avatarClassName: "bg-warning-subtle text-warning-subtle-foreground", trailing: <Badge variant="outline">更新待ち</Badge> },
+      ]
+    : [
+        { name: "Mia Sato", secondary: "Product / Senior UX Designer", tertiary: "Full-time / Tokyo", avatar: { src: "https://i.pravatar.cc/80?img=47" }, presence: "online" as const, trailing: <Badge variant="success">Active</Badge> },
+        { name: "Ken Takahashi", secondary: "Design Manager", tertiary: "Osaka office", avatar: { fallback: "K" }, avatarClassName: "bg-info-subtle text-info-subtle-foreground", presence: "away" as const, trailing: <Badge variant="warning">Leave</Badge> },
+        { name: "Ryo Yamada", secondary: "HR Business Partner", tertiary: "Contract review", avatar: { fallback: "R" }, avatarClassName: "bg-warning-subtle text-warning-subtle-foreground", trailing: <Badge variant="outline">Pending</Badge> },
+      ];
+}
 
-const usageCode = `import { PersonCell, Badge } from "@gunjo/ui"
+function PersonCellPreview({ locale, mode = "list" }: { locale: Locale; mode?: "list" | "sizes" | "minimal" }) {
+  if (mode === "sizes") {
+    const label = locale === "ja" ? "中野 葵" : "Aoi Nakano";
+    const secondary = locale === "ja" ? "エンジニアリング本部" : "Engineering";
+    return (
+      <div className="grid w-full max-w-md gap-4 rounded-lg border bg-card p-4">
+        <PersonCell size="sm" name={label} secondary={secondary} avatar={{ fallback: locale === "ja" ? "中" : "A" }} />
+        <PersonCell size="md" name={label} secondary={secondary} avatar={{ fallback: locale === "ja" ? "中" : "A" }} />
+        <PersonCell size="lg" name={label} secondary={secondary} avatar={{ fallback: locale === "ja" ? "中" : "A" }} />
+      </div>
+    );
+  }
 
-<PersonCell
-  name="佐藤 美咲"
-  secondary="プロダクト本部 / シニアUXデザイナー"
-  tertiary="正社員・東京本社"
-  avatar={{ src: "/avatars/sato.jpg" }}   // omit → 氏名から頭文字フォールバック
-  presence="online"
-  trailing={<Badge variant="success">在籍</Badge>}
-/>
+  if (mode === "minimal") {
+    return (
+      <div className="w-full max-w-md rounded-lg border bg-card p-4">
+        <PersonCell
+          name={locale === "ja" ? "小林 トヨ" : "Toyo Kobayashi"}
+          secondary={locale === "ja" ? "利用者 / 88歳" : "Client / 88"}
+          avatar={{ fallback: locale === "ja" ? "小" : "T" }}
+          avatarClassName="bg-secondary text-secondary-foreground"
+        />
+      </div>
+    );
+  }
 
-// テーブル行など、行自体が onRowClick で活性なら PersonCell は素のまま置く
-<DataTable
-  columns={[{ accessorKey: "name", header: "氏名",
-    cell: ({ row }) => <PersonCell name={row.original.name} secondary={row.original.role} /> }]}
-  onRowClick={open}
-/>`;
-
-const propsData = [
-  { name: "name", type: "ReactNode", description: "主行（氏名）。文字列なら頭文字フォールバックを自動導出（日本語の姓に対応）。" },
-  { name: "secondary", type: "ReactNode", description: "副行（役職 / 部署 / メール）。" },
-  { name: "tertiary", type: "ReactNode", description: "3行目（雇用形態 / 勤務地 など）。" },
-  { name: "avatar", type: "{ src?, alt?, fallback? }", description: "画像＋フォールバック。src 無しなら fallback か氏名頭文字を表示。" },
-  { name: "presence", type: '"online" | "offline" | "away" | "busy" | …', description: "在席ドット（Avatar に委譲）。presenceLabel で読み上げ名。" },
-  { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: "アバター＋テキストのスケール。" },
-  { name: "trailing", type: "ReactNode", description: "末尾スロット（ステータスバッジ / シェブロン / 件数 / アクション）。" },
-  { name: "avatarClassName", type: "string", description: "アバターの追加クラス（名前由来の背景色など）。" },
-];
+  return (
+    <div className="flex w-full max-w-md flex-col rounded-lg border bg-card p-3">
+      {people(locale).map((person, index) => (
+        <React.Fragment key={person.name}>
+          {index > 0 ? <Separator /> : null}
+          <div className="py-2.5">
+            <PersonCell
+              name={person.name}
+              secondary={person.secondary}
+              tertiary={person.tertiary}
+              avatar={person.avatar}
+              avatarClassName={person.avatarClassName}
+              presence={person.presence}
+              presenceLabel={person.presence}
+              trailing={person.trailing}
+            />
+          </div>
+        </React.Fragment>
+      ))}
+    </div>
+  );
+}
 
 export default function PersonCellDocPage() {
-  const title = meta.personCell.title ?? "PersonCell";
-  const description = meta.personCell.description ?? "";
+  const { locale, sectionLabels } = useLocale();
+  const content = getDocContent("components/person-cell", locale);
+  const metadata = displayMetadata as Record<string, { title?: string; description?: string }>;
+  const title = content?.title ?? metadata.personCell.title ?? "PersonCell";
+  const description = content?.description ?? metadata.personCell.description ?? "";
+
+  const usageCode = locale === "ja"
+    ? `import * as React from "react";
+import { Badge, PersonCell, Separator } from "@gunjo/ui";
+
+const people = [
+  {
+    name: "佐藤 美咲",
+    secondary: "プロダクト本部 / シニアUXデザイナー",
+    tertiary: "正社員・東京本社",
+    avatar: { src: "https://i.pravatar.cc/80?img=47" },
+    presence: "online",
+    trailing: <Badge variant="success">在籍</Badge>,
+  },
+  {
+    name: "高橋 健一",
+    secondary: "デザインマネージャー",
+    tertiary: "大阪支社",
+    avatar: { fallback: "高" },
+    avatarClassName: "bg-info-subtle text-info-subtle-foreground",
+    presence: "away",
+    trailing: <Badge variant="warning">休職中</Badge>,
+  },
+  {
+    name: "山田 涼介",
+    secondary: "人事 HRBP",
+    tertiary: "契約更新確認中",
+    avatar: { fallback: "山" },
+    avatarClassName: "bg-warning-subtle text-warning-subtle-foreground",
+    trailing: <Badge variant="outline">更新待ち</Badge>,
+  },
+];
+
+export function DirectoryRows() {
+  return (
+    <div className="flex w-full max-w-md flex-col rounded-lg border bg-card p-3">
+      {people.map((person, index) => (
+        <React.Fragment key={person.name}>
+          {index > 0 ? <Separator /> : null}
+          <div className="py-2.5">
+            <PersonCell {...person} presenceLabel={person.presence} />
+          </div>
+        </React.Fragment>
+      ))}
+    </div>
+  );
+}`
+    : `import * as React from "react";
+import { Badge, PersonCell, Separator } from "@gunjo/ui";
+
+const people = [
+  {
+    name: "Mia Sato",
+    secondary: "Product / Senior UX Designer",
+    tertiary: "Full-time / Tokyo",
+    avatar: { src: "https://i.pravatar.cc/80?img=47" },
+    presence: "online",
+    trailing: <Badge variant="success">Active</Badge>,
+  },
+  {
+    name: "Ken Takahashi",
+    secondary: "Design Manager",
+    tertiary: "Osaka office",
+    avatar: { fallback: "K" },
+    avatarClassName: "bg-info-subtle text-info-subtle-foreground",
+    presence: "away",
+    trailing: <Badge variant="warning">Leave</Badge>,
+  },
+  {
+    name: "Ryo Yamada",
+    secondary: "HR Business Partner",
+    tertiary: "Contract review",
+    avatar: { fallback: "R" },
+    avatarClassName: "bg-warning-subtle text-warning-subtle-foreground",
+    trailing: <Badge variant="outline">Pending</Badge>,
+  },
+];
+
+export function DirectoryRows() {
+  return (
+    <div className="flex w-full max-w-md flex-col rounded-lg border bg-card p-3">
+      {people.map((person, index) => (
+        <React.Fragment key={person.name}>
+          {index > 0 ? <Separator /> : null}
+          <div className="py-2.5">
+            <PersonCell {...person} presenceLabel={person.presence} />
+          </div>
+        </React.Fragment>
+      ))}
+    </div>
+  );
+}`;
+
+  const sizesStateCode = locale === "ja"
+    ? `import { PersonCell } from "@gunjo/ui";
+
+export function PersonCellSizes() {
+  return (
+    <div className="grid w-full max-w-md gap-4 rounded-lg border bg-card p-4">
+      <PersonCell size="sm" name="中野 葵" secondary="エンジニアリング本部" avatar={{ fallback: "中" }} />
+      <PersonCell size="md" name="中野 葵" secondary="エンジニアリング本部" avatar={{ fallback: "中" }} />
+      <PersonCell size="lg" name="中野 葵" secondary="エンジニアリング本部" avatar={{ fallback: "中" }} />
+    </div>
+  );
+}`
+    : `import { PersonCell } from "@gunjo/ui";
+
+export function PersonCellSizes() {
+  return (
+    <div className="grid w-full max-w-md gap-4 rounded-lg border bg-card p-4">
+      <PersonCell size="sm" name="Aoi Nakano" secondary="Engineering" avatar={{ fallback: "A" }} />
+      <PersonCell size="md" name="Aoi Nakano" secondary="Engineering" avatar={{ fallback: "A" }} />
+      <PersonCell size="lg" name="Aoi Nakano" secondary="Engineering" avatar={{ fallback: "A" }} />
+    </div>
+  );
+}`;
+
+  const minimalStateCode = locale === "ja"
+    ? `import { PersonCell } from "@gunjo/ui";
+
+export function MinimalPersonCell() {
+  return (
+    <div className="w-full max-w-md rounded-lg border bg-card p-4">
+      <PersonCell
+        name="小林 トヨ"
+        secondary="利用者 / 88歳"
+        avatar={{ fallback: "小" }}
+        avatarClassName="bg-secondary text-secondary-foreground"
+      />
+    </div>
+  );
+}`
+    : `import { PersonCell } from "@gunjo/ui";
+
+export function MinimalPersonCell() {
+  return (
+    <div className="w-full max-w-md rounded-lg border bg-card p-4">
+      <PersonCell
+        name="Toyo Kobayashi"
+        secondary="Client / 88"
+        avatar={{ fallback: "T" }}
+        avatarClassName="bg-secondary text-secondary-foreground"
+      />
+    </div>
+  );
+}`;
+
+  const propsData = [
+    { name: "name", type: "ReactNode", description: locale === "ja" ? "主行です。文字列なら avatar fallback の頭文字を自動導出します。" : "Primary line. String names derive a fallback initial automatically." },
+    { name: "secondary", type: "ReactNode", description: locale === "ja" ? "役職、部署、メールなどの副行です。" : "Secondary line for role, department, or email." },
+    { name: "tertiary", type: "ReactNode", description: locale === "ja" ? "雇用形態や勤務地などの3行目です。" : "Optional third line for employment type, location, or extra metadata." },
+    { name: "avatar", type: "{ src?: string; alt?: string; fallback?: ReactNode }", description: locale === "ja" ? "画像とfallbackです。src がない場合は fallback または氏名頭文字を表示します。" : "Avatar image and fallback. Without src, fallback or a derived initial is shown." },
+    { name: "presence / presenceLabel", type: "Avatar presence", description: locale === "ja" ? "Avatar に渡す在席状態と読み上げラベルです。" : "Presence dot and accessible presence label forwarded to Avatar." },
+    { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: locale === "ja" ? "アバターと文字のスケールです。" : "Avatar and text scale." },
+    { name: "trailing", type: "ReactNode", description: locale === "ja" ? "ステータスバッジ、件数、操作などの末尾スロットです。" : "Trailing slot for badges, counts, or actions." },
+    { name: "avatarClassName", type: "string", description: locale === "ja" ? "fallback avatar の背景色などを調整します。" : "Additional classes for fallback avatar styling." },
+  ];
 
   return (
     <ComponentLayout
       title={title}
       description={description}
-      usedComponents={[
-        { name: "Avatar", href: "/docs/components/avatar" },
-        { name: "Badge", href: "/docs/components/badge" },
-        { name: "DataTable", href: "/docs/components/data-table" },
-      ]}
+      sectionLabels={sectionLabels}
+      usedComponents={[{ name: "PersonCell", href: "/docs/components/person-cell" }, { name: "Avatar", href: "/docs/components/avatar" }, { name: "Badge", href: "/docs/components/badge" }]}
+      relatedComponents={[{ name: "RelationshipRow", href: "/docs/components/relationship-row" }, { name: "DataTable", href: "/docs/components/data-table" }]}
     >
-      <ComponentPreview codeBlock={<CodeBlock code={usageCode} />}>
-        <PersonCellDemo />
+      <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewHeight="auto" previewBodyWidth="md">
+        <PersonCellPreview locale={locale} />
       </ComponentPreview>
 
-      <div className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">Props</h2>
-        <PropsTable data={propsData} />
-      </div>
+      <section className="space-y-4">
+        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+          {locale === "ja" ? "状態とバリエーション" : "States and variants"}
+        </h2>
+        <ComponentDemoStates
+          states={[
+            {
+              key: "presence",
+              title: locale === "ja" ? "在席状態つき" : "With presence",
+              description: locale === "ja" ? "presence は Avatar のドットとして表示し、presenceLabel で意味を伝えます。" : "presence renders on Avatar and presenceLabel exposes the meaning.",
+              preview: <PersonCellPreview locale={locale} />,
+              code: usageCode,
+              previewBodyWidth: "md",
+            },
+            {
+              key: "sizes",
+              title: locale === "ja" ? "サイズ" : "Sizes",
+              description: locale === "ja" ? "sm/md/lg を一覧密度に合わせて使い分けます。" : "Use sm, md, and lg based on list density.",
+              preview: <PersonCellPreview locale={locale} mode="sizes" />,
+              code: sizesStateCode,
+              previewBodyWidth: "md",
+            },
+            {
+              key: "minimal",
+              title: locale === "ja" ? "最小構成" : "Minimal",
+              description: locale === "ja" ? "画像がない場合でも fallback と副行で識別できます。" : "Fallback initials and secondary text keep the row identifiable without an image.",
+              preview: <PersonCellPreview locale={locale} mode="minimal" />,
+              code: minimalStateCode,
+              previewBodyWidth: "md",
+            },
+          ]}
+        />
+      </section>
 
-      <div className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">Usage</h2>
-        <div className="rounded-md border bg-muted font-mono text-sm max-h-[350px] overflow-auto">
+      <section className="space-y-4">
+        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+          {sectionLabels.props}
+        </h2>
+        <PropsTable data={propsData} />
+      </section>
+
+      <section className="space-y-4">
+        <div className="flex items-start justify-between gap-3 border-b pb-2">
+          <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
+            {sectionLabels.usage}
+          </h2>
+          <CodeCopyButton code={usageCode} />
+        </div>
+        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
-      </div>
+      </section>
     </ComponentLayout>
   );
 }

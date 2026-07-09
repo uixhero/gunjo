@@ -101,25 +101,23 @@ function PendingSubmitForm({ locale }: { locale: "ja" | "en" }) {
                 </FormControl>
                 <FormDescription>{locale === "ja" ? "すべてのメッセージを確認します。" : "We read every message."}</FormDescription>
             </FormGroup>
-            <Tooltip>
-                <TooltipTrigger asChild>
-                    <span className="inline-flex w-full" tabIndex={submitting ? 0 : -1}>
-                        <Button type="submit" disabled={submitting} className="gap-2 w-full">
-                            {submitting ? (
-                                <>
-                                    <Spinner size="sm" />
-                                    {locale === "ja" ? "送信中..." : "Sending..."}
-                                </>
-                            ) : (
-                                locale === "ja" ? "送信" : "Send feedback"
-                            )}
-                        </Button>
-                    </span>
-                </TooltipTrigger>
-                <TooltipContent>
-                    {locale === "ja" ? "送信処理が完了するまで再送信できません。" : "You can send again after this submission finishes."}
-                </TooltipContent>
-            </Tooltip>
+            {submitting ? (
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <span className="inline-flex w-full" tabIndex={0}>
+                            <Button type="submit" disabled className="w-full gap-2">
+                                <Spinner size="sm" />
+                                {locale === "ja" ? "送信中..." : "Sending..."}
+                            </Button>
+                        </span>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                        {locale === "ja" ? "送信処理が完了するまで再送信できません。" : "You can send again after this submission finishes."}
+                    </TooltipContent>
+                </Tooltip>
+            ) : (
+                <Button type="submit" className="w-full">{locale === "ja" ? "送信" : "Send feedback"}</Button>
+            )}
         </Form>
     );
 }
@@ -130,10 +128,20 @@ export default function FormPage() {
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
     const emailLabel = locale === "ja" ? "メールアドレス" : "Email";
     const nameLabel = locale === "ja" ? "名前" : "Name";
+    const passwordLabel = locale === "ja" ? "パスワード" : "Password";
+    const feedbackLabel = locale === "ja" ? "フィードバック" : "Feedback";
     const helpText = locale === "ja" ? "メールアドレスを共有することはありません。" : "We'll never share your email.";
     const errorText = locale === "ja" ? "メールアドレスは必須です。" : "Email is required.";
     const submitText = locale === "ja" ? "送信" : "Submit";
     const saveText = locale === "ja" ? "保存" : "Save";
+    const createAccountText = locale === "ja" ? "アカウントを作成" : "Create account";
+    const passwordHelpText = locale === "ja" ? "8文字以上で入力してください。" : "At least 8 characters.";
+    const invalidEmailText = locale === "ja" ? "有効なメールアドレスを入力してください。" : "Please enter a valid email address.";
+    const passwordLengthText = locale === "ja" ? "パスワードは8文字以上で入力してください。" : "Password must be at least 8 characters.";
+    const feedbackHelpText = locale === "ja" ? "すべてのメッセージを確認します。" : "We read every message.";
+    const sendFeedbackText = locale === "ja" ? "送信" : "Send feedback";
+    const sendingText = locale === "ja" ? "送信中..." : "Sending...";
+    const pendingReason = locale === "ja" ? "送信処理が完了するまで再送信できません。" : "You can send again after this submission finishes.";
     const code = `import {
     Form,
     FormGroup,
@@ -246,7 +254,7 @@ export function FormUsage() {
                 { name: "Button", href: "/docs/components/button" },
             ]}
         >
-            <ComponentPreview embedSrc="/embed/form" code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels}>
+            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewHeight="auto">
                 <Form
                     onSubmit={(e) => {
                         e.preventDefault();
@@ -278,9 +286,8 @@ export function FormUsage() {
                                 locale === "ja"
                                     ? "入力内容の問題は警告色のメッセージで表示し、入力欄にもエラー状態を付与します。入力中ではなく送信時に検証すると、不要なエラー表示を減らせます。"
                                     : "FormMessage renders in destructive color and pairs with aria-invalid on the control. Validate on submit, not on every keystroke to reduce false negatives.",
-	                            preview: <ValidatedSignupForm locale={locale} />,
-	                            previewHeight: 360,
-	                            code: `import * as React from "react";
+                            preview: <ValidatedSignupForm locale={locale} />,
+                            code: `import * as React from "react";
 import { Button, Form, FormControl, FormDescription, FormGroup, FormLabel, FormMessage, Input } from "@gunjo/ui";
 
 export default function SignupForm() {
@@ -288,8 +295,8 @@ export default function SignupForm() {
   const [password, setPassword] = React.useState("");
   const [submitted, setSubmitted] = React.useState(false);
 
-  const emailError = submitted && !email.includes("@") ? "Please enter a valid email address." : null;
-  const passwordError = submitted && password.length < 8 ? "Password must be at least 8 characters." : null;
+  const emailError = submitted && !email.includes("@") ? "${invalidEmailText}" : null;
+  const passwordError = submitted && password.length < 8 ? "${passwordLengthText}" : null;
 
   return (
     <Form
@@ -299,7 +306,7 @@ export default function SignupForm() {
       }}
     >
       <FormGroup>
-        <FormLabel htmlFor="email">Email</FormLabel>
+        <FormLabel htmlFor="email">${emailLabel}</FormLabel>
         <FormControl>
           <Input
             id="email"
@@ -312,7 +319,7 @@ export default function SignupForm() {
         {emailError ? <FormMessage>{emailError}</FormMessage> : null}
       </FormGroup>
       <FormGroup>
-        <FormLabel htmlFor="password">Password</FormLabel>
+        <FormLabel htmlFor="password">${passwordLabel}</FormLabel>
         <FormControl>
           <Input
             id="password"
@@ -322,10 +329,10 @@ export default function SignupForm() {
             aria-invalid={passwordError ? "true" : undefined}
           />
         </FormControl>
-        <FormDescription>At least 8 characters.</FormDescription>
+        <FormDescription>${passwordHelpText}</FormDescription>
         {passwordError ? <FormMessage>{passwordError}</FormMessage> : null}
       </FormGroup>
-      <Button type="submit" className="w-full">Create account</Button>
+      <Button type="submit" className="w-full">${createAccountText}</Button>
     </Form>
   );
 }`,
@@ -337,9 +344,8 @@ export default function SignupForm() {
                                 locale === "ja"
                                     ? "送信中はボタンを無効化し、読み込みアイコンと状態テキストに切り替えます。"
                                     : "Disable the submit button and swap its label for Spinner + status text while the request is in flight.",
-	                            preview: <PendingSubmitForm locale={locale} />,
-	                            previewHeight: 320,
-	                            code: `import * as React from "react";
+                            preview: <PendingSubmitForm locale={locale} />,
+                            code: `import * as React from "react";
 import { Button, Form, FormControl, FormDescription, FormGroup, FormLabel, Spinner, Textarea, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 
 export default function FeedbackForm() {
@@ -353,29 +359,27 @@ export default function FeedbackForm() {
       }}
     >
       <FormGroup>
-        <FormLabel htmlFor="feedback">Feedback</FormLabel>
+        <FormLabel htmlFor="feedback">${feedbackLabel}</FormLabel>
         <FormControl>
           <Textarea id="feedback" rows={3} />
         </FormControl>
-        <FormDescription>We read every message.</FormDescription>
+        <FormDescription>${feedbackHelpText}</FormDescription>
       </FormGroup>
-      <Tooltip>
-        <TooltipTrigger asChild>
-          <span className="inline-flex w-full" tabIndex={submitting ? 0 : -1}>
-            <Button type="submit" disabled={submitting} className="gap-2 w-full">
-              {submitting ? (
-                <>
-                  <Spinner size="sm" />
-                  Sending
-                </>
-              ) : (
-                "Send feedback"
-              )}
-            </Button>
-          </span>
-        </TooltipTrigger>
-        <TooltipContent>You can send again after this submission finishes.</TooltipContent>
-      </Tooltip>
+      {submitting ? (
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <span className="inline-flex w-full" tabIndex={0}>
+              <Button type="submit" disabled className="w-full gap-2">
+                <Spinner size="sm" />
+                ${sendingText}
+              </Button>
+            </span>
+          </TooltipTrigger>
+          <TooltipContent>${pendingReason}</TooltipContent>
+        </Tooltip>
+      ) : (
+        <Button type="submit" className="w-full">${sendFeedbackText}</Button>
+      )}
     </Form>
   );
 }`,

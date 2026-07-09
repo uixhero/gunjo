@@ -229,7 +229,7 @@ const LineageGraph = React.forwardRef<HTMLDivElement, LineageGraphProps>(
                             "absolute rounded-md border px-2 text-left shadow-sm",
                             NODE_TONE[n.tone ?? "default"],
                             onSelectNode &&
-                                "outline-none transition-colors hover:border-ring/60 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                                "cursor-pointer outline-none transition-[border-color,box-shadow,filter] hover:border-ring/70 hover:shadow-md hover:brightness-[0.98] focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                         )
                         const style: React.CSSProperties = { left: p.x, top: p.y, width: nodeWidth, height: nodeHeight }
                         return onSelectNode ? (

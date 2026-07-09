@@ -41,10 +41,16 @@ export interface RouteStopsProps extends Omit<React.HTMLAttributes<HTMLOListElem
     stops: RouteStopItem[]
     /** Localized status labels. */
     statusLabels?: Partial<Record<RouteStopStatus, string>>
+    /** Localized label shown next to the current stop. Default `"現在地"`. */
+    currentLabel?: string
     /** Hide the planned / actual time + delay column. Default `false`. */
     hideTimes?: boolean
     /** Localized labels for the planned / actual times. */
     timeLabels?: { planned?: string; actual?: string }
+    /** Localized labels for the signed delay. */
+    delayLabels?: { late?: string; early?: string; onTime?: string }
+    /** Format the absolute delay minutes. Default `"<n>分"`. */
+    formatDelay?: (minutes: number) => React.ReactNode
 }
 
 type BadgeVariant = "secondary" | "info" | "success" | "destructive" | "warning"
@@ -79,7 +85,20 @@ function parseHM(t?: string): number | null {
  * sequenced-stop flow. (#228)
  */
 const RouteStops = React.forwardRef<HTMLOListElement, RouteStopsProps>(
-    ({ className, stops, statusLabels, hideTimes = false, timeLabels, ...props }, ref) => {
+    (
+        {
+            className,
+            stops,
+            statusLabels,
+            currentLabel = "現在地",
+            hideTimes = false,
+            timeLabels,
+            delayLabels,
+            formatDelay = (minutes) => `${Math.abs(minutes)}分`,
+            ...props
+        },
+        ref
+    ) => {
         return (
             <ol ref={ref} className={cn("flex w-full flex-col", className)} data-slot="route-stops" {...props}>
                 {stops.map((stop, index) => {
@@ -123,7 +142,7 @@ const RouteStops = React.forwardRef<HTMLOListElement, RouteStopsProps>(
                                     <span className="font-medium text-foreground">{stop.title}</span>
                                     <Badge variant={config.badge}>{label}</Badge>
                                     {stop.status === "current" ? (
-                                        <span className="text-xs font-medium text-primary">現在地</span>
+                                        <span className="text-xs font-medium text-primary">{currentLabel}</span>
                                     ) : null}
                                     {stop.meta != null ? (
                                         <span className="text-xs text-muted-foreground">{stop.meta}</span>
@@ -154,9 +173,13 @@ const RouteStops = React.forwardRef<HTMLOListElement, RouteStopsProps>(
                                             <Delta
                                                 value={delay}
                                                 hideArrow
-                                                format={(m) => `${Math.abs(m)}分`}
+                                                format={formatDelay}
                                                 tones={{ positive: "destructive", negative: "success", zero: "muted" }}
-                                                labels={{ positive: "遅れ", negative: "早着", zero: "定刻" }}
+                                                labels={{
+                                                    positive: delayLabels?.late ?? "遅れ",
+                                                    negative: delayLabels?.early ?? "早着",
+                                                    zero: delayLabels?.onTime ?? "定刻",
+                                                }}
                                                 showLabel
                                             />
                                         ) : null}

@@ -4,9 +4,17 @@ import * as React from "react"
 import { IconCheck, IconX } from "@tabler/icons-react"
 
 import { cn } from "../../lib/utils"
+import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
 
 /** Seat availability. `selected` is derived from `selectedIds`, not set here. */
 export type SeatState = "available" | "occupied" | "held" | "blocked"
+
+export interface SeatReasonContext {
+  selected: boolean
+  state: SeatState
+  capped: boolean
+  interactive: boolean
+}
 
 export interface Seat {
   /** Stable id (e.g. "12A"). */
@@ -23,6 +31,22 @@ export interface Seat {
   position?: "window" | "aisle" | "middle"
   /** Per-seat fee, folded into the accessible name. */
   fee?: number
+  /** Explanation shown on hover/focus for a special, selected, or unavailable seat. */
+  reason?: React.ReactNode | ((seat: Seat, context: SeatReasonContext) => React.ReactNode)
+}
+
+export interface SeatMapLabels {
+  available?: string
+  occupied?: string
+  held?: string
+  blocked?: string
+  selected?: string
+  selectedReason?: string
+  window?: string
+  aisle?: string
+  middle?: string
+  specialSeat?: string
+  seatName?: (seat: Seat) => string
 }
 
 export interface SeatMapProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onSelect" | "onToggle"> {
@@ -44,6 +68,8 @@ export interface SeatMapProps extends Omit<React.HTMLAttributes<HTMLDivElement>,
   hideLegend?: boolean
   /** Accessible name for the grid. */
   label?: string
+  /** Localized labels for state, position, legend, and composed seat names. */
+  labels?: SeatMapLabels
 }
 
 const STATE_CELL: Record<SeatState, string> = {
@@ -59,6 +85,21 @@ const STATE_LABEL: Record<SeatState | "selected", string> = {
   held: "確保中",
   blocked: "選択不可",
   selected: "選択中",
+}
+
+function resolveLabels(labels?: SeatMapLabels): Required<Omit<SeatMapLabels, "seatName">> {
+  return {
+    available: labels?.available ?? STATE_LABEL.available,
+    occupied: labels?.occupied ?? STATE_LABEL.occupied,
+    held: labels?.held ?? STATE_LABEL.held,
+    blocked: labels?.blocked ?? STATE_LABEL.blocked,
+    selected: labels?.selected ?? STATE_LABEL.selected,
+    selectedReason: labels?.selectedReason ?? "選択中の座席です",
+    window: labels?.window ?? "窓側",
+    aisle: labels?.aisle ?? "通路側",
+    middle: labels?.middle ?? "中央",
+    specialSeat: labels?.specialSeat ?? "特別席（非常口/足元ゆったり 等）",
+  }
 }
 
 const defaultFee = (n: number) => `¥${n.toLocaleString("ja-JP")}`
@@ -86,6 +127,7 @@ export const SeatMap = React.forwardRef<HTMLDivElement, SeatMapProps>(
       showHeaders = true,
       hideLegend,
       label = "座席表",
+      labels,
       className,
       ...props
     },
@@ -93,6 +135,7 @@ export const SeatMap = React.forwardRef<HTMLDivElement, SeatMapProps>(
   ) => {
     const selected = React.useMemo(() => new Set(selectedIds), [selectedIds])
     const capped = maxSelectable != null && selected.size >= maxSelectable
+    const resolvedLabels = React.useMemo(() => resolveLabels(labels), [labels])
 
     // Unique row labels in given order.
     const rows = React.useMemo(() => {
@@ -193,13 +236,24 @@ export const SeatMap = React.forwardRef<HTMLDivElement, SeatMapProps>(
                   const state = seat.state ?? "available"
                   const interactive = state === "available" && (isSelected || !capped)
                   const parts = [
-                    `${seat.row}番${seat.col}席`,
-                    seat.position === "window" ? "窓側" : seat.position === "aisle" ? "通路側" : "",
+                    labels?.seatName?.(seat) ?? `${seat.row}番${seat.col}席`,
+                    seat.position === "window"
+                      ? resolvedLabels.window
+                      : seat.position === "aisle"
+                        ? resolvedLabels.aisle
+                        : seat.position === "middle"
+                          ? resolvedLabels.middle
+                          : "",
                     seat.type ?? "",
-                    isSelected ? STATE_LABEL.selected : STATE_LABEL[state],
+                    isSelected ? resolvedLabels.selected : resolvedLabels[state],
                     seat.fee != null && state === "available" ? formatFee(seat.fee) : "",
-                  ].filter(Boolean)
-                  return (
+	                  ].filter(Boolean)
+                  const reason =
+                    typeof seat.reason === "function"
+                      ? seat.reason(seat, { selected: isSelected, state, capped, interactive })
+                      : seat.reason
+                  const tooltipContent = reason ?? (isSelected ? resolvedLabels.selectedReason : undefined)
+                  const seatButton = (
                     <button
                       key={seat.id}
                       ref={(el) => {
@@ -233,6 +287,17 @@ export const SeatMap = React.forwardRef<HTMLDivElement, SeatMapProps>(
                       )}
                     </button>
                   )
+
+                  if (tooltipContent) {
+                    return (
+                      <Tooltip key={seat.id}>
+                        <TooltipTrigger asChild>{seatButton}</TooltipTrigger>
+                        <TooltipContent className="max-w-64 text-left">{tooltipContent}</TooltipContent>
+                      </Tooltip>
+                    )
+                  }
+
+                  return seatButton
                 })}
               </div>
             ))}
@@ -241,10 +306,11 @@ export const SeatMap = React.forwardRef<HTMLDivElement, SeatMapProps>(
 
         {!hideLegend && (
           <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1.5 text-[11px] text-muted-foreground">
-            <LegendDot className="border-border bg-background" label={STATE_LABEL.available} />
-            <LegendDot className="border-info-border bg-info-subtle" label="特別席（非常口/足元ゆったり 等）" />
-            <LegendDot className="border-primary bg-primary" label={STATE_LABEL.selected} icon="check" />
-            <LegendDot className="border-border bg-muted" label={STATE_LABEL.occupied} icon="x" />
+            <LegendDot className="border-border bg-background" label={resolvedLabels.available} />
+            <LegendDot className="border-info-border bg-info-subtle" label={resolvedLabels.specialSeat} />
+            <LegendDot className="border-primary bg-primary" label={resolvedLabels.selected} icon="check" />
+            <LegendDot className="border-border bg-muted" label={resolvedLabels.occupied} icon="x" />
+            <LegendDot className="border-warning-border bg-warning-subtle" label={resolvedLabels.held} />
           </div>
         )}
       </div>

@@ -59,7 +59,7 @@ const SEVERITY: Record<
  * act-now list. Presentational by default — `onSelect` makes a row's body activatable.
  */
 export const ActionQueue = React.forwardRef<HTMLUListElement, ActionQueueProps>(
-  ({ items, sortBySeverity = true, emptyLabel = "対応が必要な項目はありません", className, ...props }, ref) => {
+  ({ items, sortBySeverity = true, emptyLabel = "No action items", className, ...props }, ref) => {
     const ordered = sortBySeverity
       ? [...items].sort((a, b) => SEVERITY[a.severity ?? "neutral"].rank - SEVERITY[b.severity ?? "neutral"].rank)
       : items

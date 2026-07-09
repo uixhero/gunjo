@@ -63,6 +63,13 @@ export interface StringlineProps extends Omit<React.HTMLAttributes<HTMLDivElemen
   height?: number
   /** Accessible name for the diagram. */
   ariaLabel?: string
+  /** Base label used for focusable run hit-targets. Default `"運行"`. */
+  runLabel?: string
+  /** Direction labels used in focusable run hit-targets. Defaults to Japanese. */
+  directionLabels?: {
+    up?: string
+    down?: string
+  }
 }
 
 const TONE_STROKE: Record<StringlineTone, string> = {
@@ -75,7 +82,7 @@ const TONE_STROKE: Record<StringlineTone, string> = {
   muted: "hsl(var(--muted-foreground))",
 }
 
-const PAD = { top: 10, right: 16, bottom: 4, left: 4 }
+const PAD = { top: 10, right: 20, bottom: 4, left: 20 }
 
 function defaultFormatTime(time: number): string {
   const t = ((Math.round(time) % 1440) + 1440) % 1440
@@ -129,6 +136,8 @@ export const Stringline = React.forwardRef<HTMLDivElement, StringlineProps>(
       selectedRunId,
       height = 320,
       ariaLabel,
+      runLabel = "運行",
+      directionLabels,
       ...props
     },
     ref
@@ -170,6 +179,7 @@ export const Stringline = React.forwardRef<HTMLDivElement, StringlineProps>(
     for (let t = firstTick; t <= endTime; t += tickInterval) ticks.push(t)
 
     const nowX = now !== undefined && now >= startTime && now <= endTime ? xOf(now) : null
+    const visibleTickLabels = ticks.filter((t) => nowX === null || Math.abs(xOf(t) - nowX) >= 28)
 
     return (
       <div
@@ -195,129 +205,135 @@ export const Stringline = React.forwardRef<HTMLDivElement, StringlineProps>(
           ))}
         </div>
 
-        <div className="min-w-0 flex-1">
-          <div ref={setPlotNode} className="relative" style={{ height }}>
-            <svg
-              className="absolute inset-0 h-full w-full overflow-visible"
-              viewBox={`0 0 ${Number(width.toFixed(2))} ${height}`}
-              preserveAspectRatio="none"
-              aria-hidden="true"
-            >
-              {/* horizontal gridlines per stop */}
-              {stops.map((s) => (
-                <line
-                  key={`h-${s.id}`}
-                  x1={PAD.left}
-                  x2={Number(width.toFixed(2)) - PAD.right}
-                  y1={Number(yOf(s.distance).toFixed(2))}
-                  y2={Number(yOf(s.distance).toFixed(2))}
-                  stroke="hsl(var(--border) / 0.6)"
-                  vectorEffect="non-scaling-stroke"
-                />
-              ))}
-              {/* vertical time gridlines */}
-              {ticks.map((t) => (
-                <line
-                  key={`v-${t}`}
-                  x1={Number(xOf(t).toFixed(2))}
-                  x2={Number(xOf(t).toFixed(2))}
-                  y1={PAD.top}
-                  y2={height - PAD.bottom}
-                  stroke="hsl(var(--border) / 0.45)"
-                  strokeDasharray="3 3"
-                  vectorEffect="non-scaling-stroke"
-                />
-              ))}
-              {/* now-line */}
-              {nowX !== null ? (
-                <line
-                  x1={Number(nowX.toFixed(2))}
-                  x2={Number(nowX.toFixed(2))}
-                  y1={PAD.top}
-                  y2={height - PAD.bottom}
-                  stroke="hsl(var(--destructive))"
-                  strokeWidth={1.5}
-                  vectorEffect="non-scaling-stroke"
-                />
-              ) : null}
-              {/* runs */}
-              {runs.map((run) => {
-                const stroke = toneFor(run)
-                const dim = selectedRunId !== undefined && selectedRunId !== run.id
-                const hasActual = run.actual != null && run.actual.length > 0
-                const planned = polyOf(run.points)
-                const actual = hasActual ? polyOf(run.actual!) : null
-                return (
-                  <g key={run.id} opacity={dim ? 0.25 : 1}>
-                    <polyline
-                      points={planned}
-                      fill="none"
-                      stroke={stroke}
-                      strokeWidth={hasActual ? 1.25 : 2}
-                      strokeDasharray={hasActual ? "4 3" : undefined}
-                      strokeLinejoin="round"
-                      strokeLinecap="round"
-                      vectorEffect="non-scaling-stroke"
-                    />
-                    {actual ? (
+        <div className="min-w-0 max-w-full flex-1 overflow-x-auto pb-1">
+          <div className="w-full min-w-[30rem]">
+            <div ref={setPlotNode} className="relative w-full" style={{ height }}>
+              <svg
+                className="absolute inset-0 h-full w-full overflow-visible"
+                viewBox={`0 0 ${Number(width.toFixed(2))} ${height}`}
+                preserveAspectRatio="none"
+                aria-hidden="true"
+              >
+                {/* horizontal gridlines per stop */}
+                {stops.map((s) => (
+                  <line
+                    key={`h-${s.id}`}
+                    x1={PAD.left}
+                    x2={Number(width.toFixed(2)) - PAD.right}
+                    y1={Number(yOf(s.distance).toFixed(2))}
+                    y2={Number(yOf(s.distance).toFixed(2))}
+                    stroke="hsl(var(--border) / 0.6)"
+                    vectorEffect="non-scaling-stroke"
+                  />
+                ))}
+                {/* vertical time gridlines */}
+                {ticks.map((t) => (
+                  <line
+                    key={`v-${t}`}
+                    x1={Number(xOf(t).toFixed(2))}
+                    x2={Number(xOf(t).toFixed(2))}
+                    y1={PAD.top}
+                    y2={height - PAD.bottom}
+                    stroke="hsl(var(--border) / 0.45)"
+                    strokeDasharray="3 3"
+                    vectorEffect="non-scaling-stroke"
+                  />
+                ))}
+                {/* now-line */}
+                {nowX !== null ? (
+                  <line
+                    x1={Number(nowX.toFixed(2))}
+                    x2={Number(nowX.toFixed(2))}
+                    y1={PAD.top}
+                    y2={height - PAD.bottom}
+                    stroke="hsl(var(--destructive))"
+                    strokeWidth={1.5}
+                    vectorEffect="non-scaling-stroke"
+                  />
+                ) : null}
+                {/* runs */}
+                {runs.map((run) => {
+                  const stroke = toneFor(run)
+                  const dim = selectedRunId !== undefined && selectedRunId !== run.id
+                  const hasActual = run.actual != null && run.actual.length > 0
+                  const planned = polyOf(run.points)
+                  const actual = hasActual ? polyOf(run.actual!) : null
+                  return (
+                    <g key={run.id} opacity={dim ? 0.25 : 1}>
                       <polyline
-                        points={actual}
+                        points={planned}
                         fill="none"
                         stroke={stroke}
-                        strokeWidth={2.25}
+                        strokeWidth={hasActual ? 1.25 : 2}
+                        strokeDasharray={hasActual ? "4 3" : undefined}
                         strokeLinejoin="round"
                         strokeLinecap="round"
                         vectorEffect="non-scaling-stroke"
                       />
-                    ) : null}
-                  </g>
+                      {actual ? (
+                        <polyline
+                          points={actual}
+                          fill="none"
+                          stroke={stroke}
+                          strokeWidth={2.25}
+                          strokeLinejoin="round"
+                          strokeLinecap="round"
+                          vectorEffect="non-scaling-stroke"
+                        />
+                      ) : null}
+                    </g>
+                  )
+                })}
+              </svg>
+
+              {/* focusable run hit-targets (positioned at each run's mid-sample) */}
+              {runs.map((run) => {
+                if (!run.onSelect) return null
+                const samples = run.actual && run.actual.length ? run.actual : run.points
+                const mid = samples[Math.floor(samples.length / 2)]
+                const d = mid ? distanceById.get(mid.stopId) : undefined
+                if (!mid || d === undefined) return null
+                const selected = selectedRunId === run.id
+                return (
+                  <button
+                    key={`hit-${run.id}`}
+                    type="button"
+                    onClick={run.onSelect}
+                    aria-label={`${runLabel} ${typeof run.label === "string" ? run.label : run.id}${
+                      run.direction === "up"
+                        ? `・${directionLabels?.up ?? "上り"}`
+                        : run.direction === "down"
+                          ? `・${directionLabels?.down ?? "下り"}`
+                          : ""
+                    }`}
+                    aria-pressed={selected}
+                    className="absolute size-5 -translate-x-1/2 -translate-y-1/2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    style={{ left: `${(xOf(mid.time) / width) * 100}%`, top: `${yOf(d)}px` }}
+                  />
                 )
               })}
-            </svg>
+            </div>
 
-            {/* focusable run hit-targets (positioned at each run's mid-sample) */}
-            {runs.map((run) => {
-              if (!run.onSelect) return null
-              const samples = run.actual && run.actual.length ? run.actual : run.points
-              const mid = samples[Math.floor(samples.length / 2)]
-              const d = mid ? distanceById.get(mid.stopId) : undefined
-              if (!mid || d === undefined) return null
-              const selected = selectedRunId === run.id
-              return (
-                <button
-                  key={`hit-${run.id}`}
-                  type="button"
-                  onClick={run.onSelect}
-                  aria-label={`運行 ${typeof run.label === "string" ? run.label : run.id}${
-                    run.direction === "up" ? "・上り" : run.direction === "down" ? "・下り" : ""
-                  }`}
-                  aria-pressed={selected}
-                  className="absolute size-5 -translate-x-1/2 -translate-y-1/2 rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
-                  style={{ left: `${(xOf(mid.time) / width) * 100}%`, top: `${yOf(d)}px` }}
-                />
-              )
-            })}
-          </div>
-
-          {/* time axis */}
-          <div className="relative mt-1 h-4" aria-hidden="true">
-            {ticks.map((t) => (
-              <span
-                key={`t-${t}`}
-                className="absolute -translate-x-1/2 text-[11px] tabular-nums text-muted-foreground"
-                style={{ left: `${(xOf(t) / width) * 100}%` }}
-              >
-                {formatTime(t)}
-              </span>
-            ))}
-            {nowX !== null ? (
-              <span
-                className="absolute -translate-x-1/2 text-[11px] font-medium tabular-nums text-destructive"
-                style={{ left: `${(nowX / width) * 100}%` }}
-              >
-                {formatTime(now!)}
-              </span>
-            ) : null}
+            {/* time axis */}
+            <div className="relative mt-1 h-4" aria-hidden="true">
+              {visibleTickLabels.map((t) => (
+                <span
+                  key={`t-${t}`}
+                  className="absolute -translate-x-1/2 text-[11px] tabular-nums text-muted-foreground"
+                  style={{ left: `${(xOf(t) / width) * 100}%` }}
+                >
+                  {formatTime(t)}
+                </span>
+              ))}
+              {nowX !== null ? (
+                <span
+                  className="absolute -translate-x-1/2 text-[11px] font-medium tabular-nums text-destructive"
+                  style={{ left: `${(nowX / width) * 100}%` }}
+                >
+                  {formatTime(now!)}
+                </span>
+              ) : null}
+            </div>
           </div>
         </div>
       </div>

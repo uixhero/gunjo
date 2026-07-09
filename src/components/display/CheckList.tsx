@@ -4,6 +4,7 @@ import * as React from "react"
 
 import { cn } from "../../lib/utils"
 import { Checkbox } from "../inputs/Checkbox"
+import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
 
 export interface CheckListItem {
     id: string
@@ -23,6 +24,8 @@ export interface CheckListItem {
      */
     checked?: boolean
     disabled?: boolean
+    /** Reason shown on hover/focus when the row is disabled. */
+    disabledReason?: React.ReactNode
 }
 
 export interface CheckListProps extends Omit<React.HTMLAttributes<HTMLUListElement>, "onChange"> {
@@ -53,34 +56,45 @@ const CheckList = React.forwardRef<HTMLUListElement, CheckListProps>(
                 data-slot="check-list"
                 {...props}
             >
-                {items.map((item) => (
-                    <li
-                        key={item.id}
-                        className={cn(
-                            "flex items-center justify-between gap-3 px-3 py-2.5",
-                            item.disabled && "opacity-60"
-                        )}
-                    >
-                        {item.checked !== undefined ? (
-                            <Checkbox
-                                checked={item.checked}
-                                onCheckedChange={(checked) => onCheckedChange?.(item.id, checked)}
-                                disabled={item.disabled}
-                                label={item.label}
-                                description={item.description}
-                                className="min-w-0 flex-1"
-                            />
-                        ) : (
-                            <div className="flex min-w-0 flex-1 flex-col">
-                                <span className="text-sm font-medium text-foreground">{item.label}</span>
-                                {item.description != null ? (
-                                    <span className="text-xs text-muted-foreground">{item.description}</span>
-                                ) : null}
-                            </div>
-                        )}
-                        {item.trailing != null ? <div className="shrink-0">{item.trailing}</div> : null}
-                    </li>
-                ))}
+                {items.map((item) => {
+                    const row = (
+                        <li
+                            key={item.id}
+                            className={cn(
+                                "flex items-center justify-between gap-3 px-3 py-2.5",
+                                item.disabled && "opacity-60"
+                            )}
+                        >
+                            {item.checked !== undefined ? (
+                                <Checkbox
+                                    checked={item.checked}
+                                    onCheckedChange={(checked) => onCheckedChange?.(item.id, checked)}
+                                    disabled={item.disabled}
+                                    label={item.label}
+                                    description={item.description}
+                                    className="min-w-0 flex-1"
+                                />
+                            ) : (
+                                <div className="flex min-w-0 flex-1 flex-col">
+                                    <span className="text-sm font-medium text-foreground">{item.label}</span>
+                                    {item.description != null ? (
+                                        <span className="text-xs text-muted-foreground">{item.description}</span>
+                                    ) : null}
+                                </div>
+                            )}
+                            {item.trailing != null ? <div className="shrink-0">{item.trailing}</div> : null}
+                        </li>
+                    )
+
+                    if (!item.disabled || item.disabledReason == null) return row
+
+                    return (
+                        <Tooltip key={item.id}>
+                            <TooltipTrigger asChild>{row}</TooltipTrigger>
+                            <TooltipContent className="max-w-64 text-left">{item.disabledReason}</TooltipContent>
+                        </Tooltip>
+                    )
+                })}
             </ul>
         )
     }
