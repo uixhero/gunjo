@@ -2,7 +2,7 @@
 
 Generated: 2026-07-09
 
-Branch: `codex/docs-43-audit`  
+Branch: `codex/docs-43-audit`
 Commit: `07aafa1 Audit added component docs`
 
 ## Conclusion
@@ -138,4 +138,3 @@ completed from this environment.
 - GitHub connector PR creation returns `403 Resource not accessible by integration`.
 - Branch URL for PR creation:
   `https://github.com/uixhero/gunjo/pull/new/codex/docs-43-audit`
-
