@@ -6,6 +6,7 @@ import { SiteFooter } from "@/components/layout/SiteFooter";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ThemeOverridesProvider } from "@/components/providers/ThemeOverridesProvider";
 import { LocaleProvider } from "@/components/providers/LocaleProvider";
+import { KitLocaleBridge } from "@/components/providers/KitLocaleBridge";
 import { ToastProvider, TooltipProvider } from "@gunjo/ui";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
@@ -66,15 +67,17 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <LocaleProvider>
-              <ThemeOverridesProvider>
-                <ToastProvider>
-                  <TooltipProvider delayDuration={300}>
-                    <SiteHeader />
-                    <div className="flex-1">{children}</div>
-                    <SiteFooter />
-                  </TooltipProvider>
-                </ToastProvider>
-              </ThemeOverridesProvider>
+              <KitLocaleBridge>
+                <ThemeOverridesProvider>
+                  <ToastProvider>
+                    <TooltipProvider delayDuration={300}>
+                      <SiteHeader />
+                      <div className="flex-1">{children}</div>
+                      <SiteFooter />
+                    </TooltipProvider>
+                  </ToastProvider>
+                </ThemeOverridesProvider>
+              </KitLocaleBridge>
             </LocaleProvider>
           </ThemeProvider>
         </div>
