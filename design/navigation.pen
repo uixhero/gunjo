@@ -1,5 +1,5 @@
 {
-  "version": "2.13",
+  "version": "2.14",
   "children": [
     {
       "type": "frame",
@@ -601,33 +601,30 @@
             {
               "type": "frame",
               "id": "sidebarItemVariants",
+              "width": "fit_content(320)",
               "layout": "vertical",
               "gap": 12,
               "children": [
                 {
                   "type": "frame",
-                  "id": "sidebarItemDefault",
+                  "id": "rdNf4",
                   "name": "SidebarItem/Default",
                   "reusable": true,
-                  "width": 320,
+                  "width": "fill_container",
                   "height": 36,
                   "cornerRadius": 6,
-                  "padding": [
-                    6,
-                    16
-                  ],
                   "justifyContent": "space_between",
                   "alignItems": "center",
                   "children": [
                     {
                       "type": "frame",
-                      "id": "sidebarItemContent",
+                      "id": "HM8cZ",
                       "gap": 8,
                       "alignItems": "center",
                       "children": [
                         {
                           "type": "frame",
-                          "id": "sidebarItemChevronSlot",
+                          "id": "rZcSs",
                           "width": 20,
                           "height": 20,
                           "justifyContent": "center",
@@ -635,7 +632,7 @@
                           "children": [
                             {
                               "type": "text",
-                              "id": "sidebarItemChevronText",
+                              "id": "D58un",
                               "fill": "#64748b",
                               "content": ">",
                               "fontFamily": "Inter",
@@ -646,13 +643,13 @@
                         },
                         {
                           "type": "frame",
-                          "id": "sidebarItemIconSlot",
+                          "id": "e2R3WR",
                           "width": 16,
                           "height": 16,
                           "children": [
                             {
                               "type": "text",
-                              "id": "sidebarItemIconText",
+                              "id": "AUW4f",
                               "fill": "#2563eb",
                               "content": "#",
                               "fontFamily": "Inter",
@@ -663,7 +660,7 @@
                         },
                         {
                           "type": "text",
-                          "id": "sidebarItemLabel",
+                          "id": "qQmOR",
                           "fill": "#64748b",
                           "content": "Untitled",
                           "fontFamily": "Inter",
@@ -674,18 +671,18 @@
                     },
                     {
                       "type": "frame",
-                      "id": "sidebarItemRight",
+                      "id": "ag7i8",
                       "alignItems": "center",
                       "children": [
                         {
                           "type": "frame",
-                          "id": "sidebarItemDelete",
+                          "id": "YOJHn",
                           "width": 24,
                           "height": 24,
                           "children": [
                             {
                               "type": "text",
-                              "id": "sidebarItemDeleteText",
+                              "id": "vULaO",
                               "fill": "#9ca3af",
                               "content": "x",
                               "fontFamily": "Inter",
@@ -696,7 +693,7 @@
                         },
                         {
                           "type": "text",
-                          "id": "sidebarItemCount",
+                          "id": "WAPDC",
                           "fill": "#6b7280",
                           "content": "12",
                           "fontFamily": "Inter",
@@ -709,29 +706,25 @@
                 },
                 {
                   "type": "frame",
-                  "id": "sidebarItemActive",
+                  "id": "shpFp",
                   "name": "SidebarItem/Active",
                   "reusable": true,
-                  "width": 320,
+                  "width": "fill_container",
                   "height": 36,
                   "fill": "#f1f5f9",
                   "cornerRadius": 6,
-                  "padding": [
-                    6,
-                    16
-                  ],
                   "justifyContent": "space_between",
                   "alignItems": "center",
                   "children": [
                     {
                       "type": "frame",
-                      "id": "sidebarItemActiveContent",
+                      "id": "UYZHt",
                       "gap": 8,
                       "alignItems": "center",
                       "children": [
                         {
                           "type": "icon",
-                          "id": "sidebarItemActiveChevron",
+                          "id": "YymDq",
                           "width": 16,
                           "height": 16,
                           "icon": "chevron-down",
@@ -740,7 +733,7 @@
                         },
                         {
                           "type": "icon",
-                          "id": "sidebarItemActiveIcon",
+                          "id": "EabYo",
                           "width": 16,
                           "height": 16,
                           "icon": "folder-open",
@@ -749,7 +742,7 @@
                         },
                         {
                           "type": "text",
-                          "id": "sidebarItemActiveLabel",
+                          "id": "cT8d6",
                           "fill": "#0f172a",
                           "content": "Projects",
                           "fontFamily": "Inter",
@@ -760,13 +753,13 @@
                     },
                     {
                       "type": "frame",
-                      "id": "sidebarItemActiveRight",
+                      "id": "A4Hd89",
                       "gap": 8,
                       "alignItems": "center",
                       "children": [
                         {
                           "type": "text",
-                          "id": "sidebarItemActiveBadge",
+                          "id": "BcaC2",
                           "fill": "#1d4ed8",
                           "content": "8",
                           "fontFamily": "Inter",
@@ -785,14 +778,175 @@
               "gap": 12,
               "children": [
                 {
+                  "type": "frame",
                   "id": "gsXbF",
-                  "type": "ref",
-                  "ref": "sidebarItemDefault"
+                  "name": "SidebarItem/Default",
+                  "width": 320,
+                  "height": 36,
+                  "cornerRadius": 6,
+                  "padding": [
+                    6,
+                    16
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "PYNxf",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "EoKbc",
+                          "width": 20,
+                          "height": 20,
+                          "justifyContent": "center",
+                          "alignItems": "center",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "g72dqK",
+                              "fill": "#64748b",
+                              "content": ">",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "frame",
+                          "id": "A3MMJ",
+                          "width": 16,
+                          "height": 16,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "YNwos",
+                              "fill": "#2563eb",
+                              "content": "#",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "p56aQ3",
+                          "fill": "#64748b",
+                          "content": "Untitled",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "zZorK",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "jfMuS",
+                          "width": 24,
+                          "height": 24,
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "GLtDB",
+                              "fill": "#9ca3af",
+                              "content": "x",
+                              "fontFamily": "Inter",
+                              "fontSize": 12,
+                              "fontWeight": "600"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "HrSUb",
+                          "fill": "#6b7280",
+                          "content": "12",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
                 },
                 {
+                  "type": "frame",
                   "id": "OeuRS",
-                  "type": "ref",
-                  "ref": "sidebarItemActive"
+                  "name": "SidebarItem/Active",
+                  "width": 320,
+                  "height": 36,
+                  "fill": "#f1f5f9",
+                  "cornerRadius": 6,
+                  "padding": [
+                    6,
+                    16
+                  ],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "mmGKK",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "Kv3eP",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "chevron-down",
+                          "library": "lucide",
+                          "fill": "#64748b"
+                        },
+                        {
+                          "type": "icon",
+                          "id": "j7AJJ",
+                          "width": 16,
+                          "height": 16,
+                          "icon": "folder-open",
+                          "library": "lucide",
+                          "fill": "#2563eb"
+                        },
+                        {
+                          "type": "text",
+                          "id": "A12Zno",
+                          "fill": "#0f172a",
+                          "content": "Projects",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "rJNnc",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "apx1v",
+                          "fill": "#1d4ed8",
+                          "content": "8",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
                 }
               ]
             }
@@ -1262,14 +1416,175 @@
           "padding": 16,
           "children": [
             {
+              "type": "frame",
               "id": "KldpK",
-              "type": "ref",
-              "ref": "sidebarItemDefault"
+              "name": "SidebarItem/Default",
+              "width": 320,
+              "height": 36,
+              "cornerRadius": 6,
+              "padding": [
+                6,
+                16
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "qns1Z",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "Ru4px",
+                      "width": 20,
+                      "height": 20,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "s4gMDl",
+                          "fill": "#64748b",
+                          "content": ">",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "FQAOG",
+                      "width": 16,
+                      "height": 16,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "VO17q",
+                          "fill": "#2563eb",
+                          "content": "#",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "MrwMG",
+                      "fill": "#64748b",
+                      "content": "Untitled",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "bDzPY",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "viP6C",
+                      "width": 24,
+                      "height": 24,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "UNrt8",
+                          "fill": "#9ca3af",
+                          "content": "x",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "600"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "c7a84",
+                      "fill": "#6b7280",
+                      "content": "12",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
             },
             {
+              "type": "frame",
               "id": "jfAZN",
-              "type": "ref",
-              "ref": "sidebarItemActive"
+              "name": "SidebarItem/Active",
+              "width": 320,
+              "height": 36,
+              "fill": "#f1f5f9",
+              "cornerRadius": 6,
+              "padding": [
+                6,
+                16
+              ],
+              "justifyContent": "space_between",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "x58LPK",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "icon",
+                      "id": "kQPi8",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "chevron-down",
+                      "library": "lucide",
+                      "fill": "#64748b"
+                    },
+                    {
+                      "type": "icon",
+                      "id": "XRO6j",
+                      "width": 16,
+                      "height": 16,
+                      "icon": "folder-open",
+                      "library": "lucide",
+                      "fill": "#2563eb"
+                    },
+                    {
+                      "type": "text",
+                      "id": "IbrhJ",
+                      "fill": "#0f172a",
+                      "content": "Projects",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "Wesoo",
+                  "gap": 8,
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "b9icp",
+                      "fill": "#1d4ed8",
+                      "content": "8",
+                      "fontFamily": "Inter",
+                      "fontSize": 12,
+                      "fontWeight": "500"
+                    }
+                  ]
+                }
+              ]
             }
           ]
         },
@@ -1635,6 +1950,8 @@
             {
               "type": "frame",
               "id": "rightRailVariants",
+              "width": "fit_content(256)",
+              "height": "fit_content(360)",
               "layout": "vertical",
               "gap": 12,
               "children": [
@@ -1643,8 +1960,8 @@
                   "id": "rightRailDefault",
                   "name": "RightRail/Default",
                   "reusable": true,
-                  "width": 256,
-                  "height": 360,
+                  "width": "fill_container",
+                  "height": "fill_container",
                   "fill": "#ffffff",
                   "stroke": "#e5e7eb",
                   "strokeWidth": 1,
@@ -1693,6 +2010,8 @@
             {
               "type": "frame",
               "id": "rightRailShowcase",
+              "width": "fit_content(256)",
+              "height": "fit_content(360)",
               "gap": 12,
               "children": [
                 {
@@ -1984,6 +2303,8 @@
           "type": "frame",
           "id": "gHhOb",
           "name": "showcase/rightRail",
+          "width": "fit_content(288)",
+          "height": "fit_content(392)",
           "fill": "#ffffff",
           "gap": 24,
           "padding": 16,
@@ -2062,6 +2383,15 @@
               "fontWeight": "normal"
             }
           ]
+        },
+        {
+          "type": "text",
+          "id": "sEJ7d",
+          "fill": "#000000",
+          "content": "Continue editing the open navigation.pen only. Do not touch SidebarItem; it is done. Make only these corrections:\n\n1. RightRail/Default: remove explicit width sizing entirely. It should keep height = fill_container / h-full, flex vertical, border, background. Do NOT set width to fill_container or fixed 256; the runtime width is configurable by prop and should not produce a w-full or w-[256px] style hint.\n\n2. PageAside/Default: update the root reusable frame to match the runtime root structure: flex horizontal/row at desktop, width = fill_container, no explicit padding, no explicit gap, no items-center alignment. Remove inline-flex, items-center, p-0, and gap-6 style hints. Keep the existing content/aside children and labels unchanged.\n\nAfter editing, save the file. Reply only with changed node names and properties.",
+          "fontFamily": "Inter",
+          "fontSize": 12,
+          "fontWeight": "normal"
         }
       ]
     },
@@ -2241,6 +2571,15 @@
               }
             }
           ]
+        },
+        {
+          "type": "text",
+          "id": "D98NP9",
+          "fill": "#000000",
+          "content": "Continue editing the open navigation.pen only. Do not touch SidebarItem; it is done. Make only these corrections:\n\n1. RightRail/Default: remove explicit width sizing entirely. It should keep height = fill_container / h-full, flex vertical, border, background. Do NOT set width to fill_container or fixed 256; the runtime width is configurable by prop and should not produce a w-full or w-[256px] style hint.\n\n2. PageAside/Default: update the root reusable frame to match the runtime root structure: flex horizontal/row at desktop, width = fill_container, no explicit padding, no explicit gap, no items-center alignment. Remove inline-flex, items-center, p-0, and gap-6 style hints. Keep the existing content/aside children and labels unchanged.\n\nAfter editing, save the file. Reply only with changed node names and properties.",
+          "fontFamily": "Inter",
+          "fontSize": 12,
+          "fontWeight": "normal"
         }
       ]
     },
@@ -2426,8 +2765,18 @@
               "fontWeight": "500"
             }
           ]
+        },
+        {
+          "type": "text",
+          "id": "jmKEN",
+          "fill": "#000000",
+          "content": "Continue editing the open navigation.pen only. Do not touch SidebarItem; it is done. Make only these corrections:\n\n1. RightRail/Default: remove explicit width sizing entirely. It should keep height = fill_container / h-full, flex vertical, border, background. Do NOT set width to fill_container or fixed 256; the runtime width is configurable by prop and should not produce a w-full or w-[256px] style hint.\n\n2. PageAside/Default: update the root reusable frame to match the runtime root structure: flex horizontal/row at desktop, width = fill_container, no explicit padding, no explicit gap, no items-center alignment. Remove inline-flex, items-center, p-0, and gap-6 style hints. Keep the existing content/aside children and labels unchanged.\n\nAfter editing, save the file. Reply only with changed node names and properties.",
+          "fontFamily": "Inter",
+          "fontSize": 12,
+          "fontWeight": "normal"
         }
       ]
     }
-  ]
+  ],
+  "fileToken": "f92e3172-60e0-48ba-a2d3-51667e50d726"
 }

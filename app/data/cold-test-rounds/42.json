@@ -4,13 +4,12 @@
   "slug": "pos",
   "score": "4.5/5",
   "category": "小売・EC",
-  "title": "AI に POS レジ会計を作らせてみた — 金額系の primitive が、また別業界（小売）でゼロ摩擦だった（やってみた #42）",
-  "readmeTitle": "POS レジ会計（小売・カート/釣銭/税層）",
+  "title": "AI に POS レジ会計を作らせてみた — 金額系のコンポーネントが、また別業界（小売）でゼロ摩擦だった（やってみた #42）",
   "summary": "`tsc`/`build` 緑・console 0・375px（タブレットレジ想定）でカードレイアウト・税率別内訳が正確・現金不足で会計ブロック・h1 1個。",
   "article": {
     "file": "zenn-yattemita-42-pos.md",
     "slug": "42-pos",
-    "markdown": "# AI に POS レジ会計を作らせてみた — 金額系の primitive が、また別業界（小売）でゼロ摩擦だった（やってみた #42）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。今回は**業界を変えて小売**——**POS レジ会計**（カート明細・軽減税率・預り金/おつり・支払方法・レシート）。\n\n## 結果 — 4.5/5\n\n`tsc`/`build` 緑・console 0・375px（タブレットレジ想定）でカードレイアウト・税率別内訳が正確・現金不足で会計ブロック・h1 1個。\n\n## この回の主役 — 金額系 primitive が、また別業界で全部効いた\n\n銀行→会計→給与で育てた金額/フォーム primitive を、**小売（POS）でも cold AI が全部使った**:\n\n> - **`CurrencyInput`(#176) — USED**（預り金・値引き¥）。draft で入力中も桁区切り、数値 emit、min/max クランプ、aria 転送。クイック現金ボタンから controlled value で綺麗に再描画。**ゼロ摩擦。**\n> - **`EditableDataTable`(#199) — USED, the standout win**（カート明細）。数量ステッパー・税率バッジ・導出金額・renderFooterCell・自動モバイル card 化。**この画面を安くした部品。**\n> - **`RevealSection`(#213) — USED**（現金ブロック・非現金ヒント・会員パネル）。`role=region`＋`aria-live` で条件付きセクションの a11y がぴったり。**意図通り。**\n> - **`formatCurrency`(#180) — 表示金額の100%**。10回連続。\n\n**前ラウンド build した RevealSection が翌回（別業界）で即採用**——複利が業界をまた1つ越えた。fintech/会計/給与/小売、「金額を扱う画面」はどこでもこの primitive 群で composition できる段階に。\n\n## 新しい穴は \"POS ドメインの複合部品\"\n\n満点を阻んだのは、レジ特有の複合パターン:\n\n- 🟠 **数値キーパッド/釣銭テンダーパッドが無い**（最大）。預り金→クイック現金→おつり→不足ブロックを手巻き（[#216](https://github.com/uixhero/gunjo/issues/216)・POS 1回目）。\n- 🟠 **レシート/印刷レイアウトが無い**（[#217](https://github.com/uixhero/gunjo/issues/217)・POS 1回目）。\n- 🟠 **MoneyOrPercent（¥/%割引）が無い**（請求書#37＋POS#42 で手巻き・[#218](https://github.com/uixhero/gunjo/issues/218)・2回目）。\n\n**今回もコード無し——3回ルール（同じ穴が3回出て初めて作る）に従う**。POS 複合部品は1〜2回目、まだ build 閾値に達していない。誠実に起票だけ。\n\n## 学び — 「3回ルール」が過剰 build を防ぐ\n\n```\ntable→card(#190): #34→#35→#36 と3回で build\nCurrencyInput(#176): #32〜#40 と4回で build\nMoneyOrPercent(#218): 請求書#37＋POS#42 で2回目 → まだ作らない\n```\n\ncold テストを量で回す価値は「頻度が primitive を浮かび上がらせる」こと。**逆に、頻度が低いうちは作らない**——1回の「あったらいいな」で作ると過剰になる。POS の釣銭/レシートは「らしさ」が強いが、再出現を待つ。金額系が成熟した今、規律ある \"作らない判断\" も含めて kit を育てる。\n\n## 次回予告（やってみた #43）\n- **別業界もう1つ**（医療/物流）か、POS をもう1枚（在庫/返品）で釣銭・レシートの再確認か。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#41](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。金額系が、また別業界でゼロ摩擦だった回。\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI に POS レジ会計を作らせてみた — 金額系のコンポーネントが、また別業界（小売）でゼロ摩擦だった（やってみた #42）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。今回は**業界を変えて小売**——**POS レジ会計**（カート明細・軽減税率・預り金/おつり・支払方法・レシート）。\n\n## 結果 — 4.5/5\n\n`tsc`/`build` 緑・console 0・375px（タブレットレジ想定）でカードレイアウト・税率別内訳が正確・現金不足で会計ブロック・h1 1個。\n\n## この回の主役 — 金額系のコンポーネントが、また別業界で全部効いた\n\n銀行→会計→給与で育てた金額/フォームのコンポーネントを、**小売（POS）でも予備知識ゼロの AI が全部使いました**:\n\n> - **`CurrencyInput`(#176) — 使った**（預り金・値引き¥）。下書き方式で入力中も桁区切り、数値を返す、min/max で制限、aria を転送。クイック現金ボタンから、外から制御する値で綺麗に再描画。**ゼロ摩擦。**\n> - **`EditableDataTable`(#199) — 使った、白眉の成果**（カート明細）。数量ステッパー・税率バッジ・自動計算の金額・renderFooterCell・自動でモバイル card 化。**この画面を安く仕上げたコンポーネント。**\n> - **`RevealSection`(#213) — 使った**（現金ブロック・非現金ヒント・会員パネル）。`role=region`＋`aria-live` で、条件付きセクションのアクセシビリティがぴったり。**意図どおり。**\n> - **`formatCurrency`(#180) — 表示金額の100%に**。10回連続。\n\n**前ラウンドで作った RevealSection が、翌回（別業界）で即採用**——複利が業界をまた1つ越えました。fintech/会計/給与/小売、「金額を扱う画面」はどこでも、このコンポーネント群の組み合わせで作れる段階に。\n\n## 新しい欠落は \"POS 分野の複合コンポーネント\"\n\n満点を阻んだのは、レジ特有の複合パターン:\n\n- 🟠 **数値キーパッド/会計用の入力パッドが無い**（最大）。預り金→クイック現金→おつり→不足ブロックを手組み（[#216](https://github.com/uixhero/gunjo/issues/216)・POS 1回目）。\n- 🟠 **レシート/印刷レイアウトが無い**（[#217](https://github.com/uixhero/gunjo/issues/217)・POS 1回目）。\n- 🟠 **MoneyOrPercent（¥/%割引）が無い**（請求書#37＋POS#42 で手組み・[#218](https://github.com/uixhero/gunjo/issues/218)・2回目）。\n\n**今回もコード無し——3回ルール（同じ\"足りないコンポーネント\"が3回出て初めて作る）に従います**。POS の複合コンポーネントは1〜2回目、まだ作る閾値に達していない。誠実に課題に記録だけ。\n\n## 学び — 「3回ルール」が作りすぎを防ぐ\n\n```\ntable→card(#190): #34→#35→#36 と3回で作った\nCurrencyInput(#176): #32〜#40 と4回で作った\nMoneyOrPercent(#218): 請求書#37＋POS#42 で2回目 → まだ作らない\n```\n\n予備知識ゼロの AI に作らせるテストを量で回す価値は「頻度がコンポーネントを浮かび上がらせる」こと。**逆に、頻度が低いうちは作らない**——1回の「あったらいいな」で作ると、作りすぎになります。POS の釣銭/レシートは「らしさ」が強いけれど、再出現を待つ。金額系が成熟した今、規律ある \"作らない判断\" も含めてライブラリを育てます。\n\n## 次回予告（やってみた #43）\n- **別業界もう1つ**（医療/物流）か、POS をもう1枚（在庫/返品）で釣銭・レシートの再確認か。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#41](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。金額系が、また別業界でゼロ摩擦だった回。\n"
   },
   "code": [
     {
@@ -31,24 +30,11 @@
   ],
   "components": [
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardFooter",
-    "CardHeader",
-    "CardTitle",
     "CurrencyInput",
     "Dialog",
-    "DialogContent",
-    "DialogDescription",
-    "DialogFooter",
-    "DialogHeader",
-    "DialogTitle",
-    "EditableColumn",
     "EditableDataTable",
     "EmptyState",
     "Input",
@@ -58,8 +44,7 @@
     "Select",
     "Separator",
     "Statistic",
-    "ToggleGroup",
-    "ToggleGroupItem"
+    "ToggleGroup"
   ],
   "shots": {
     "desktop": true,

@@ -4,13 +4,12 @@
   "slug": "taxi-demand",
   "score": "4/5",
   "category": "運輸：タクシー",
-  "title": "AI にタクシー需要予測を作らせてみた — 誤誘導先だった HeatmapChart が、遂に「本来のホーム」で輝いた（やってみた #146）",
-  "readmeTitle": "タクシー 需要予測・配車最適化（タクシーtoB6枚目=予測/最適化アナリティクス[#143営収とも別系統]/東京23区エリア デスクトップ密度・エリア×時間帯需要HeatmapChart/需給バランス地図ChoroplethMap+ランキング/需要予測LineChart/最適化提案ListCard/需給Delta(供給過多/不足)/KPI StatGroup層）★**HeatmapChart が遂に本来のホーム=エリア×時間帯強度(誤誘導先だった部品の正用途を実証)**・ChoroplethMap も需給地図+ランキングに適合・索引 誤誘導ゼロ・**信頼区間バンド(AreaRange)が唯一の穴→#400起票**(色スケール凡例も併記)",
-  "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
+  "title": "AI にタクシー需要予測を作らせてみた — 誤誘導先だった HeatmapChart が、遂に「本来の居場所」で輝いた（やってみた #146）",
+  "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-146-taxi-demand.md",
     "slug": "146-taxi-demand",
-    "markdown": "# AI にタクシー需要予測を作らせてみた — 誤誘導先だった HeatmapChart が、遂に「本来のホーム」で輝いた（やってみた #146）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。**タクシー toB をもう1枚**（配車・乗務員・営収・車両・苦情に続く6枚目）——**需要予測・配車最適化**（エリア×時間帯需要ヒートマップ・需給バランス地図・需要予測・最適化提案）。\n\n## 結果 — 4/5、予測/最適化のアナリティクス系統も床に乗った\n\n`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：\n\n> **このキットのアナリティクス側が、明らかにこの画面のために作られている。** 二枚看板の `HeatmapChart`・`ChoroplethMap` がほぼ無加工で乗った——消費者/取引画面ならお荷物だった2部品が、ここで本領。\n\n## 観測の核 — HeatmapChart が「誤誘導先」から「本来のホーム」へ\n`HeatmapChart` は連載で**索引の誤誘導先**だった：#138（バス混雑）・#141（配車盤）で cold AI が「混雑/状態盤→HeatmapChart」と誘導され、私は索引を是正した（[#389](https://github.com/uixhero/gunjo/pull/389)/[#393](https://github.com/uixhero/gunjo/pull/393)：混雑ピルは Badge・状態盤は StatusBoard・**HeatmapChart はそれじゃない**）。\n\nそして #146 で——cold AI が HeatmapChart を**正しい用途**で使った：\n\n> 「**HeatmapChart＝遂に完璧なホーム。`data {x,y,value}`＋xLabels/yLabels が エリア(行)×時間帯(列)に1:1。色強度は自動・`onCellSelect` でセル詳細・セルが `<button>` で aria-label/aria-pressed・docstring の『曜日×時間帯の強度』そのもの（曜日→エリアに替えただけ）。**」\n\n**索引是正の答え合わせ**：HeatmapChart を「混雑ピル/状態盤」から**遠ざけた**のは正しく、かつ HeatmapChart は「**値の色塗りマトリクス**（エリア×時間帯強度）」という本来の用途で完璧に効く。**誤誘導を直すことは、正しい用途を否定しない。** 部品の定義域を「ここではない」と「ここだ」の両側から確定して、初めて索引は正確になる。`ChoroplethMap`（需給地図＋ランキング）も「surprise win」で適合。\n\n## 拾った点 — 信頼区間バンドだけ住所が無い\n> cold AI「**唯一ホームが無いのは信頼区間バンド。LineChart は2系列の『間』を塗る概念が無い（複数系列＋水平 referenceValue 線はあるが band は無い）。上限/下限を muted の系列2本で fake したが本物の band でない（間が塗られず4系列は busy）。area variant は各系列をベースラインまで塗るだけで系列間でない。**」\n\n→ [#400](https://github.com/uixhero/gunjo/issues/400) 起票：**LineChart の band モード or `AreaRangeChart`**（`{label,value,lower,upper}`→線＋下限上限の帯）。**予測±信頼区間/実績レンジ/min-max envelope** という予測系の頻出形で唯一住所が無い。ヒートマップ/地図の**色スケール凡例**（薄い→濃いキーを毎回手組み）も併記。\n\n**今回 src build なし**（4/5・HeatmapChart 本来ホーム実証・ChoroplethMap 適合・信頼区間バンド起票）。\n\n## 学び — 「定義域は『ここでない』と『ここだ』の両側から確定する」\nHeatmapChart の旅は、部品の定義域確定の完全な事例：\n- #138/#141：**誤誘導**（混雑/状態盤に当てられる）→ 索引で「ここでない」と否定。\n- #146：**正用途**（エリア×時間帯強度）→ ここで「ここだ」と肯定。\n\n**穴を直す（StatusLevel/StatusBoard を build）ことと、既存部品の正しい用途を見つけることは、同じ定義域確定の両面。** HeatmapChart は1つも変えていないが、その「居場所」は #138→#146 の3画面で完全に地図化された——どこでないか（混雑/盤）、どこか（強度マトリクス）。**部品を build しなくても、定義域を両側から確定させることは結晶化の一種。**\n\n## 📊 結晶化スコアボード（build 済 **14個**）\n…Itinerary / TicketStub / Stringline / StatusBoard / ExpiryBadge\n進行中：AreaRange/信頼区間バンド・DesktopPageHeader 4回目・CaseTable/Leaderboard(DataTable preset)・BottomActionBar 3/3\n\n## 📋 タクシー進捗\n- 🚕 **タクシー：toB 6枚（配車/乗務員/営収/車両/苦情/需要予測）** ／ toC 0枚\n\n## 次回予告（やってみた #147）\n- タクシーを締めるなら残りは **toC（配車アプリ）**。or toB はこれで十分なら次へ。**※勝手に進めず KeEem に確認。**\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ **[ヒートマップ HeatmapChart](https://gunjo.jp/docs/components/heatmap-chart)** ／ **[コロプレス地図 ChoroplethMap](https://gunjo.jp/docs/components/choropleth-map)** ／ **[デルタ Delta](https://gunjo.jp/docs/components/delta)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#145](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\n誤誘導先だった HeatmapChart が、エリア×時間帯強度という本来のホームで輝いた——定義域は「ここでない」と「ここだ」の両側から確定して初めて正確になる。\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI にタクシー需要予測を作らせてみた — 誤誘導先だった HeatmapChart が、遂に「本来の居場所」で輝いた（やってみた #146）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。**タクシーの事業者向けをもう1枚**（配車・乗務員・営収・車両・苦情に続く6枚目）——**需要予測・配車最適化**（エリア×時間帯需要ヒートマップ・需給バランス地図・需要予測・最適化提案）。\n\n## 結果 — 4/5、予測/最適化の分析系統も土台に乗った\n\n`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：\n\n> **このライブラリの分析側が、明らかにこの画面のために作られている。** 二枚看板の `HeatmapChart`・`ChoroplethMap` がほぼ無加工で乗った——消費者/取引の画面ならお荷物だった2コンポーネントが、ここで本領。\n\n## 観測の核 — HeatmapChart が「誤誘導先」から「本来の居場所」へ\n`HeatmapChart` は連載で**索引の誤誘導先**だった：#138（バス混雑）・#141（配車盤）で 予備知識ゼロの AI が「混雑/状態盤→HeatmapChart」と誘導され、私は索引を是正した（[#389](https://github.com/uixhero/gunjo/pull/389)/[#393](https://github.com/uixhero/gunjo/pull/393)：混雑ピルは Badge・状態盤は StatusBoard・**HeatmapChart はそれじゃない**）。\n\nそして #146 で——予備知識ゼロの AI が HeatmapChart を**正しい用途**で使った：\n\n> 「**HeatmapChart＝遂に完璧な居場所。`data {x,y,value}`＋xLabels/yLabels が エリア(行)×時間帯(列)に1:1。色の強度は自動・`onCellSelect` でセルの詳細・セルが `<button>` で aria-label/aria-pressed・docstring の『曜日×時間帯の強度』そのもの（曜日→エリアに替えただけ）。**」\n\n**索引の是正の答え合わせ**：HeatmapChart を「混雑ピル/状態盤」から**遠ざけた**のは正しく、かつ HeatmapChart は「**値を色で塗るマトリクス**（エリア×時間帯の強度）」という本来の用途で完璧に効く。**誤誘導を直すことは、正しい用途を否定しない。** コンポーネントの守備範囲を「ここではない」と「ここだ」の両側から確定して、初めて索引は正確になる。`ChoroplethMap`（需給の地図＋ランキング）も「意外な当たり」で適合。\n\n## 拾った点 — 信頼区間の帯だけ置き場所が無い\n> 予備知識ゼロの AI「**唯一 居場所が無いのは信頼区間の帯。LineChart は2系列の『間』を塗る概念が無い（複数系列＋水平の referenceValue 線はあるが帯は無い）。上限/下限を muted な系列2本で擬似的に作ったが本物の帯でない（間が塗られず4系列は雑然）。area の variant は各系列をベースラインまで塗るだけで系列の間ではない。**」\n\n→ [#400](https://github.com/uixhero/gunjo/issues/400) を課題に記録：**LineChart の帯モード or `AreaRangeChart`**（`{label,value,lower,upper}`→線＋下限上限の帯）。**予測±信頼区間/実績のレンジ/最小-最大の帯** という予測系の頻出の形で、唯一 置き場所が無い。ヒートマップ/地図の**色スケールの凡例**（薄い→濃いキーを毎回手組み）も併記。\n\n**今回 src の新規コンポーネントなし**（4/5・HeatmapChart が本来の居場所で実証・ChoroplethMap 適合・信頼区間の帯を課題に記録）。\n\n## 学び — 「守備範囲は『ここでない』と『ここだ』の両側から確定する」\nHeatmapChart の旅は、コンポーネントの守備範囲を確定する完全な事例：\n- #138/#141：**誤誘導**（混雑/状態盤に当てられる）→ 索引で「ここでない」と否定。\n- #146：**正しい用途**（エリア×時間帯の強度）→ ここで「ここだ」と肯定。\n\n**欠落を直す（StatusLevel/StatusBoard を作る）ことと、既存コンポーネントの正しい用途を見つけることは、同じ守備範囲の確定の両面。** HeatmapChart は1つも変えていないが、その「居場所」は #138→#146 の3画面で完全に地図化された——どこでないか（混雑/盤）、どこか（強度のマトリクス）。**コンポーネントを作らなくても、守備範囲を両側から確定させることはコンポーネント化の一種。**\n\n## 📊 コンポーネント化スコアボード（作成済 **14個**）\n…Itinerary / TicketStub / Stringline / StatusBoard / ExpiryBadge\n進行中：AreaRange/信頼区間の帯・DesktopPageHeader 4回目・CaseTable/Leaderboard(DataTable ひな形)・BottomActionBar 3/3\n\n## 📋 タクシー進捗\n- 🚕 **タクシー：事業者向け 6枚（配車/乗務員/営収/車両/苦情/需要予測）** ／ 利用者向け 0枚\n\n## 次回予告（やってみた #147）\n- タクシーを締めるなら残りは **利用者向け（配車アプリ）**。or 事業者向けはこれで十分なら次へ。**※どれに進むかは、次回までに決める。**\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ **[ヒートマップ HeatmapChart](https://gunjo.jp/docs/components/heatmap-chart)** ／ **[コロプレス地図 ChoroplethMap](https://gunjo.jp/docs/components/choropleth-map)** ／ **[デルタ Delta](https://gunjo.jp/docs/components/delta)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#145](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\n誤誘導先だった HeatmapChart が、エリア×時間帯の強度という本来の居場所で輝いた——守備範囲は「ここでない」と「ここだ」の両側から確定して初めて正確になる。\n"
   },
   "code": [
     {
@@ -31,23 +30,14 @@
   ],
   "components": [
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
-    "ChartColor",
     "ChartLegend",
     "ChoroplethMap",
-    "ChoroplethMapRegion",
     "Delta",
     "FilterChips",
     "HeatmapChart",
-    "HeatmapChartCell",
     "LineChart",
     "ListCard",
     "Meter",

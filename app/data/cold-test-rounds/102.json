@@ -4,13 +4,12 @@
   "slug": "insurance-policies",
   "score": "4/5",
   "category": "保険",
-  "title": "AI に保険の契約管理を作らせてみた — 金額内訳がまた手組み、次の結晶化が見えた（やってみた #102）",
-  "readmeTitle": "損保 契約管理/代理店ダッシュボード（保険・保有契約DataTable/更新失効リスク/募集人↔契約RelationshipRow/業績Meter/保険料内訳手組み層・CalculationLedger 2回目）",
-  "summary": "#101査定とは別の契約/営業系。観測の核——**#101 で起票した CalculationLedger（金額導出ブロック）が、保険料内訳でまた手組みされるか。**",
+  "title": "AI に保険の契約管理を作らせてみた — 金額内訳がまた手組み、次に作るべきものが見えた（やってみた #102）",
+  "summary": "#101査定とは別の契約/営業系。観測の核——**#101 で課題に記録した CalculationLedger（金額の導出ブロック）が、保険料内訳でまた手組みされるか。**",
   "article": {
     "file": "zenn-yattemita-102-insurance-policies.md",
     "slug": "102-insurance-policies",
-    "markdown": "# AI に保険の契約管理を作らせてみた — 金額内訳がまた手組み、次の結晶化が見えた（やってみた #102）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。**保険 2枚目**——**損保の契約管理 / 代理店ダッシュボード**（保有契約・更新失効リスク・代理店業績・保険料内訳）。\n\n#101査定とは別の契約/営業系。観測の核——**#101 で起票した CalculationLedger（金額導出ブロック）が、保険料内訳でまた手組みされるか。**\n\n## 結果 — 4/5・~85%が composition\n\n`tsc`/`build` 緑・375px・0 console error。KPI・保有契約一覧・更新失効リスク・代理店業績・保険料内訳・契約ドリルイン。\n\n## 観測 — 部品は揃い、逆引き索引も効く。だが金額内訳だけは…\n\ncold AI（群青を一度も触っていない設定）のレポートから:\n\n> **`StatGroup`（KPI）・`PersonCell`（契約者/募集人）・`RelationshipRow`（募集人↔担当契約・「zero fighting」）・`DataTable`（renderCard でモバイルカード）・`Meter`（業績）・`formatCurrency`（JPY既定）** が全部 composition。**`/docs/by-use-case` 索引が秀逸でその働きを果たした**——「何を作りたいか」で引いて RelationshipRow（名前は agent↔policy を叫ばない）に辿り着けた。\n>\n> **唯一の本当の穴＝保険料内訳を手組み**（基本保険料 ＋ 特約 − 各割引 = 年間保険料）。「**read-only の『labeled 明細＋符号付き調整＋合計』表示 primitive が無い**。索引は `EditableDataTable` に誘導したが、あれは*エディタ*グリッド＝read-only の保険料明細には作法が違う。`Delta`（符号付き行の atom・割引/加算の SR ラベル付き）で組んだ」。\n\n**CalculationLedger の手組みは2回連続**（#101 査定額＋#102 保険料内訳・別々の cold AI が独立に）＝**3回ルール 2/3**。しかも cold AI が**部品の atom（`Delta`）と作法まで設計**してくれた——「`CostBreakdown` は Delta＋Separator＋formatCurrency を composition：グループ別 labeled 明細 → 符号付き調整 → 小計 → 総計＋数式キャプション」。あと1回 金融/保険で出れば build。\n\n## 起票（追記）\n- 🟠 **CalculationLedger 2回目**（[#347](https://github.com/uixhero/gunjo/issues/347)・**逆引き索引が EditableDataTable に誤誘導**＝編集明細 vs read-only 金額内訳を区別すべき・Delta が行 atom）。\n- 🟢 **Drawer の side が Root と Content の2箇所**＋既定幅 w-80 が狭い（[#335](https://github.com/uixhero/gunjo/issues/335)）・**Select(onChange) vs SearchInput(onValueChange) の API 不一致**・TimelineItem は status でなく variant（[#330](https://github.com/uixhero/gunjo/issues/330)）。\n\n**今回 src build なし**（4/5・RelationshipRow 含む再利用が成果・CalculationLedger は 2/3 で次回 build 候補）。\n\n## 学び — 索引は効く、が「合成 primitive」には更新が要る\n#101 で逆引き索引が CoSign を救い、#102 でも RelationshipRow を救った——索引は効く。だが #102 は索引の**限界**も見せた：金額内訳を「EditableDataTable（エディタ）」に誤誘導した。**索引は『完成した部品』には強いが、『atom を組んで作るべきもの（CostBreakdown=Delta合成）』には、まだ部品が無い穴を指せない。** だから次の一手は明確——金融横断で2回手組みされた **CalculationLedger/CostBreakdown を結晶化**し、索引をそこへ向ける。部品が穴を埋め、索引がそれを指す、の両輪。\n\n## 次回予告（やってみた #103）\n- 保険3枚目（引受査定/申込審査 など）。**CalculationLedger 3回目＝build トリガー**（保険料計算で再出現の可能性大）。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ 逆引き索引 **[/docs/by-use-case](https://gunjo.jp/docs/by-use-case)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#101](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI に保険の契約管理を作らせてみた — 金額内訳がまた手組み、次に作るべきものが見えた（やってみた #102）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。**保険 2枚目**——**損保の契約管理 / 代理店ダッシュボード**（保有契約・更新失効リスク・代理店業績・保険料内訳）。\n\n#101査定とは別の契約/営業系。観測の核——**#101 で課題に記録した CalculationLedger（金額の導出ブロック）が、保険料内訳でまた手組みされるか。**\n\n## 結果 — 4/5・~85%が組み立て\n\n`tsc`/`build` 緑・375px・0 console error。KPI・保有契約一覧・更新失効リスク・代理店業績・保険料内訳・契約を掘り下げる詳細。\n\n## 観測 — コンポーネントは揃い、逆引き索引も効く。だが金額内訳だけは…\n\n予備知識ゼロの AI（群青を一度も触っていない設定）のレポートから:\n\n> **`StatGroup`（KPI）・`PersonCell`（契約者/募集人）・`RelationshipRow`（募集人↔担当契約・「手こずらなかった」）・`DataTable`（renderCard でモバイルカード）・`Meter`（業績）・`formatCurrency`（JPY既定）** が全部、組み立て。**`/docs/by-use-case` 索引が秀逸で、その役割を果たした**——「何を作りたいか」で引いて RelationshipRow（名前は 募集人↔契約 を主張しない）に辿り着けた。\n>\n> **唯一の本当の欠落＝保険料内訳を手組み**（基本保険料 ＋ 特約 − 各割引 = 年間保険料）。「**読み取り専用の『ラベル付き明細＋符号付き調整＋合計』を表示するコンポーネントが無い**。索引は `EditableDataTable` に誘導したが、あれは*エディタ*グリッド＝読み取り専用の保険料明細には作法が違う。`Delta`（符号付きの行の最小コンポーネント・割引/加算の読み上げラベル付き）で組んだ」。\n\n**CalculationLedger の手組みは2回連続**（#101 査定額＋#102 保険料内訳・別々の予備知識ゼロの AI が独立に）＝**3回ルール 2/3**。しかも予備知識ゼロの AI が**最小コンポーネント（`Delta`）と作法まで設計**してくれた——「`CostBreakdown` は Delta＋Separator＋formatCurrency の組み合わせ：グループ別のラベル付き明細 → 符号付き調整 → 小計 → 総計＋数式キャプション」。あと1回 金融/保険で出れば作る。\n\n## 課題記録（追記）\n- 🟠 **CalculationLedger 2回目**（[#347](https://github.com/uixhero/gunjo/issues/347)・**逆引き索引が EditableDataTable に誤って誘導**＝編集明細 vs 読み取り専用の金額内訳を区別すべき・Delta が行の最小コンポーネント）。\n- 🟢 **Drawer の side が Root と Content の2箇所にある**＋既定幅 w-80 が狭い（[#335](https://github.com/uixhero/gunjo/issues/335)）・**Select(onChange) vs SearchInput(onValueChange) の API が不一致**・TimelineItem は status でなく variant（[#330](https://github.com/uixhero/gunjo/issues/330)）。\n\n**今回 src の新規コンポーネントなし**（4/5・RelationshipRow 含む再利用が成果・CalculationLedger は 2/3 で次回に作る候補）。\n\n## 学び — 索引は効く、が「合成コンポーネント」には更新が要る\n#101 で逆引き索引が CoSign を救い、#102 でも RelationshipRow を救った——索引は効く。だが #102 は索引の**限界**も見せた：金額内訳を「EditableDataTable（エディタ）」に誤って誘導した。**索引は『完成したコンポーネント』には強いが、『最小コンポーネントを組んで作るべきもの（CostBreakdown=Delta の合成）』には、まだコンポーネントが無い欠落を指せない。** だから次の一手は明確——金融を横断して2回手組みされた **CalculationLedger/CostBreakdown をコンポーネント化**し、索引をそこへ向ける。コンポーネントが欠落を埋め、索引がそれを指す、の両輪。\n\n## 次回予告（やってみた #103）\n- 保険3枚目（引受査定/申込審査 など）。**CalculationLedger 3回目＝作る合図**（保険料計算で再出現の可能性大）。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ 逆引き索引 **[/docs/by-use-case](https://gunjo.jp/docs/by-use-case)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#101](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n"
   },
   "code": [
     {
@@ -43,20 +42,9 @@
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
-    "ColumnDef",
     "DataTable",
     "Delta",
     "Drawer",
-    "DrawerClose",
-    "DrawerContent",
-    "DrawerDescription",
-    "DrawerFooter",
-    "DrawerHeader",
-    "DrawerTitle",
     "EmptyState",
     "MetadataList",
     "Meter",
@@ -67,15 +55,8 @@
     "Separator",
     "StatGroup",
     "Tabs",
-    "TabsContent",
-    "TabsList",
-    "TabsTrigger",
     "Tag",
-    "Timeline",
-    "TimelineDescription",
-    "TimelineItem",
-    "TimelineTime",
-    "TimelineTitle"
+    "Timeline"
   ],
   "shots": {
     "desktop": true,

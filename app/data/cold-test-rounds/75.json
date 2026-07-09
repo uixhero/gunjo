@@ -5,12 +5,11 @@
   "score": "4/5",
   "category": "公共・行政",
   "title": "AI に自治体の窓口業務を作らせてみた — 規制の重い部分が「組み立て」で済んだ／DataTable の実バグも出た（やってみた #75）",
-  "readmeTitle": "窓口業務/申請受付管理（公共・申請受付一覧/処理WF/本人確認書類/手数料/交付発行層）★新業界",
-  "summary": "教育を5枚で締めて、**公共/自治体**へ pivot。1枚目は市区町村役所の窓口——証明書の申請を受け、受付→本人確認→審査→承認→交付 と処理する画面。**規制が重い部分（監査可能な交付・2人承認・手数料・色非依存の状態）が、構築じゃなく\"組み立て\"で済んだ**——一方で DataTable の実バグも炙り出した。",
+  "summary": "教育を5枚で締めて、**公共/自治体**へ移る。1枚目は市区町村役所の窓口——証明書の申請を受け、受付→本人確認→審査→承認→交付 と処理する画面。**規制が重い部分（監査できる交付・2人承認・手数料・色に頼らない状態）が、ゼロから作るのではなく\"組み立て\"で済んだ**——一方で DataTable の実バグも炙り出した。",
   "article": {
     "file": "zenn-yattemita-75-application-intake.md",
     "slug": "75-application-intake",
-    "markdown": "# AI に自治体の窓口業務を作らせてみた — 規制の重い部分が「組み立て」で済んだ／DataTable の実バグも出た（やってみた #75）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。**新業界・公共/自治体1枚目**——**窓口業務 / 申請受付管理**（申請受付一覧 × 処理ワークフロー × 本人確認/書類チェック × 手数料計算 × 交付/証明書発行）。\n\n教育を5枚で締めて、**公共/自治体**へ pivot。1枚目は市区町村役所の窓口——証明書の申請を受け、受付→本人確認→審査→承認→交付 と処理する画面。**規制が重い部分（監査可能な交付・2人承認・手数料・色非依存の状態）が、構築じゃなく\"組み立て\"で済んだ**——一方で DataTable の実バグも炙り出した。\n\n## 結果 — 4/5\n\n`tsc`/`build`/`eslint` 緑・console 0・375px・申請受付一覧・処理ワークフロー（advance/差戻し）・本人確認＋必要書類チェック・手数料計算・CoSign 承認・SignedRecord 交付ロック。\n\n## 今回の主役 — 規制の重い部分が「composition, not construction」\n\ncold AI が医療/金融のために作った部品を、公共の規制ワークフローにそのまま当てた:\n\n> - **`SignedRecord`**（臨床記録/退院サマリ用）→ **交付記録**「**best fit of the whole catalog**, zero friction」。下書き→署名ロック→署名者+時刻の監査行→追記のみ＝監査可能な交付に1:1。`labels` で交付語彙に、`children({readOnly})` で証明書/手数料/申請者の MetadataList を本文に。\n> - **`CoSign`**（与薬ダブルチェック/出納 maker-checker 用）→ **責任者承認**。同一人物ガード・必須確認項目・タイムスタンプ付き `CoSignValue` が自治体の承認に。デフォルトラベルが既に日本語。\n> - **`ApprovalSteps`**（経費/稟議用）→ 処理ワークフロー（差戻しは marker＋「差戻し」ラベルで色だけに非依存）。\n> - **`Badge` icon**（#72 で land）→ 状態ピル・**`formatCurrency`**（¥600/¥0）→ 手数料。\n\n> **\"The hard, regulated parts (auditable issuance, 2-person approval, JPY fees, non-color-only status) were composition, not construction.\"**\n\n医療・金融で育てた SignedRecord/CoSign が、公共の窓口で骨格そのまま効いた。\n\n## src で land — DataTable の実バグ（マウスで行クリックが効かない）\n\n- 🔴→✅ **`onRowClick` がマウスクリックで発火しない**実バグを fix（[PR #302](https://github.com/uixhero/gunjo/pull/302)）。cold AI が**最初の操作**で踏んだ:\n  - 症状: 行に `cursor-pointer` が出てるのに、行をクリックしても詳細 Sheet が開かない。**キーボード Enter だけ**効く。\n  - 原因: クリック可能な行は `tabIndex=0`/`role=\"button\"` になる。一方「行内のボタンを押したら行クリックを抑制する」ガード `isInteractiveTarget` が `closest('…, [tabindex]:not([tabindex=\"-1\"])')` を使っていて、**行自身がこのセレクタにマッチ**→本文クリックが全部「インタラクティブ要素」扱いで握り潰されていた。利用者は fork しないと直せない。\n  - 直し: ガードに行の境界（`event.currentTarget`）を渡し、**マッチが行の内側の要素のときだけ抑制**（`match !== null && match !== boundary`）。行内ボタン/リンク/入力は今まで通り抑制。テーブル行・renderCard カード両方に適用。\n  - ブラウザ実証: 行本文クリック→onRowClick 発火（青井 花）・行内の詳細ボタン→ボタンのみ発火（行クリックは不変）。**onRowClick のデモも追加**（prop に例が無かった＝docs ギャップも同時に解消）。\n\n## 起票だけ\n\n- 🟠 **インタラクティブな処理ステッパーが無いが2回目**（#63 賃貸審査＋#75 自治体窓口・[#267](https://github.com/uixhero/gunjo/issues/267)）。ApprovalSteps/Stepper は表示専用で、cold AI が状態機械を~120行手組み（advance/差戻し/承認連動/交付ロック）。「back-office/government 画面で最大の欠落」。あと1回で build。\n- 🟡 **Alert に icon/title/description prop 無**（svg を第1子で渡す暗黙契約が型から発見不能・[#303](https://github.com/uixhero/gunjo/issues/303)）。\n\n## 学び — 越境の複利は「規制ドメイン」でも効く／cold-test は実バグも掘る\n\n医療の SignedRecord・CoSign が、公共の交付・承認に骨格そのまま効いた——**規制の重い部分ほど、作法の骨格（署名ロック/maker-checker）が業界を越える**。同時に #75 は、文脈ゼロの利用者が**最初の操作**（行クリック）で踏む実バグ（onRowClick 死亡）を炙り出した。これは既存デモが onRowClick を使っていなかったため埋もれていた穴で、cold-test の「実際に操作する」性質がなければ見つからなかった。直し＋デモ追加で解消。\n\n## 次回予告（やってみた #76）\n- **公共をもう1枚**（生活保護/給付金審査・施設予約・税申告 など）で2枚目。インタラクティブ処理ステッパー#267 を3回目＝build へ近づける。系譜#281・連続時間軸#142残りも観測継続。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#74](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。医療の署名/2人承認が公共の交付/承認に越境し、DataTable のマウス行クリック実バグを直した回。\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI に自治体の窓口業務を作らせてみた — 規制の重い部分が「組み立て」で済んだ／DataTable の実バグも出た（やってみた #75）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。**新業界・公共/自治体1枚目**——**窓口業務 / 申請受付管理**（申請受付一覧 × 処理ワークフロー × 本人確認/書類チェック × 手数料計算 × 交付/証明書発行）。\n\n教育を5枚で締めて、**公共/自治体**へ移る。1枚目は市区町村役所の窓口——証明書の申請を受け、受付→本人確認→審査→承認→交付 と処理する画面。**規制が重い部分（監査できる交付・2人承認・手数料・色に頼らない状態）が、ゼロから作るのではなく\"組み立て\"で済んだ**——一方で DataTable の実バグも炙り出した。\n\n## 結果 — 4/5\n\n`tsc`/`build`/`eslint` 緑・console 0・375px・申請受付一覧・処理ワークフロー（advance/差戻し）・本人確認＋必要書類チェック・手数料計算・CoSign 承認・SignedRecord 交付ロック。\n\n## 今回の主役 — 規制の重い部分が「ゼロから作らず、組み立て」で済んだ\n\n予備知識ゼロの AI が医療/金融のために作ったコンポーネントを、公共の規制ワークフローにそのまま当てた:\n\n> - **`SignedRecord`**（臨床記録/退院サマリ用）→ **交付記録**「**カタログ全体で最も合った**、摩擦ゼロ」。下書き→署名ロック→署名者+時刻の監査行→追記のみ＝監査できる交付に1:1。`labels` で交付の語彙に、`children({readOnly})` で証明書/手数料/申請者の MetadataList を本文に。\n> - **`CoSign`**（与薬ダブルチェック/出納の二重承認用）→ **責任者承認**。同一人物ガード・必須確認項目・タイムスタンプ付き `CoSignValue` が自治体の承認に。既定ラベルが既に日本語。\n> - **`ApprovalSteps`**（経費/稟議用）→ 処理ワークフロー（差戻しは marker＋「差戻し」ラベルで色だけに頼らない）。\n> - **`Badge` icon**（#72 で反映）→ 状態ピル・**`formatCurrency`**（¥600/¥0）→ 手数料。\n\n> **「難しく規制の重い部分（監査できる交付・2人承認・円建て手数料・色だけに頼らない状態）は、ゼロから作るのではなく、既存の組み合わせで済んだ。」**\n\n医療・金融で育てた SignedRecord/CoSign が、公共の窓口で骨格そのまま効いた。\n\n## src で反映 — DataTable の実バグ（マウスで行クリックが効かない）\n\n- 🔴→✅ **`onRowClick` がマウスクリックで発火しない**実バグを修正（[PR #302](https://github.com/uixhero/gunjo/pull/302)）。予備知識ゼロの AI が**最初の操作**で踏んだ:\n  - 症状: 行に `cursor-pointer` が出てるのに、行をクリックしても詳細 Sheet が開かない。**キーボード Enter だけ**効く。\n  - 原因: クリック可能な行は `tabIndex=0`/`role=\"button\"` になる。一方「行内のボタンを押したら行クリックを抑制する」ガード `isInteractiveTarget` が `closest('…, [tabindex]:not([tabindex=\"-1\"])')` を使っていて、**行自身がこのセレクタにマッチ**→本文クリックが全部「操作可能な要素」扱いで握り潰されていた。利用者は自分でコードを分岐（fork）しないと直せない。\n  - 直し: ガードに行の境界（`event.currentTarget`）を渡し、**マッチが行の内側の要素のときだけ抑制**（`match !== null && match !== boundary`）。行内ボタン/リンク/入力は今まで通り抑制。テーブル行・renderCard カード両方に適用。\n  - ブラウザ実証: 行本文クリック→onRowClick 発火（青井 花）・行内の詳細ボタン→ボタンのみ発火（行クリックは不変）。**onRowClick のデモも追加**（prop に例が無かった＝docs ギャップも同時に解消）。\n\n## 課題に記録だけ\n\n- 🟠 **操作できる処理ステッパーが無い、が2回目**（#63 賃貸審査＋#75 自治体窓口・[#267](https://github.com/uixhero/gunjo/issues/267)）。ApprovalSteps/Stepper は表示専用で、予備知識ゼロの AI が状態遷移を~120行手組み（advance/差戻し/承認連動/交付ロック）。「事務方/行政の画面で最大の欠落」。あと1回で作る。\n- 🟡 **Alert に icon/title/description の prop が無い**（svg を第1子で渡す暗黙のルールが型から見つけられない・[#303](https://github.com/uixhero/gunjo/issues/303)）。\n\n## 学び — 業界越えの複利は「規制の重い領域」でも効く／予備知識ゼロのテストは実バグも掘る\n\n医療の SignedRecord・CoSign が、公共の交付・承認に骨格そのまま効いた——**規制の重い部分ほど、作法の骨格（署名ロック/二重承認）が業界を越える**。同時に #75 は、予備知識ゼロの利用者が**最初の操作**（行クリック）で踏む実バグ（onRowClick が反応しない）を炙り出した。これは既存デモが onRowClick を使っていなかったため埋もれていた欠落で、「実際に操作する」性質がなければ見つからなかった。修正＋デモ追加で解消。\n\n## 次回予告（やってみた #76）\n- **公共をもう1枚**（生活保護/給付金審査・施設予約・税申告 など）で2枚目。操作できる処理ステッパー#267 を3回目＝作る へ近づける。系譜#281・連続時間軸#142残りも観測継続。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#74](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。医療の署名/2人承認が公共の交付/承認に業界を越え、DataTable のマウス行クリック実バグを直した回。\n"
   },
   "code": [
     {
@@ -31,19 +30,12 @@
   ],
   "components": [
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
-    "ApprovalStep",
     "ApprovalSteps",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardHeader",
-    "CardTitle",
     "Checkbox",
     "CoSign",
-    "ColumnDef",
     "Container",
     "DataTable",
     "MetadataList",
@@ -52,12 +44,7 @@
     "Select",
     "Separator",
     "Sheet",
-    "SheetContent",
-    "SheetDescription",
-    "SheetHeader",
-    "SheetTitle",
     "SignedRecord",
-    "SignedRecordValue",
     "Statistic",
     "Textarea"
   ],

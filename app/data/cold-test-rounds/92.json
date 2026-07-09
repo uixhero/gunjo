@@ -4,13 +4,12 @@
   "slug": "care-billing",
   "score": "4.5/5",
   "category": "介護・福祉",
-  "title": "AI に介護報酬請求を作らせてみた — 会計の部品が、介護のお金でそのまま動いた（やってみた #92）",
-  "readmeTitle": "介護報酬請求/国保連伝送（介護福祉・請求明細EditableDataTable/formatCurrency¥/限度額Meter/2人確認CoSign/伝送ApprovalSteps/利用者PersonCell層）",
-  "summary": "介護のお金の画面。観測：**銀行/会計の弧で育てた金額 primitive（formatCurrency・CurrencyInput・EditableDataTable・Delta）が、介護報酬という全く別の金額ドメインでそのまま効くか。**",
+  "title": "AI に介護報酬請求を作らせてみた — 会計のコンポーネントが、介護のお金でそのまま動いた（やってみた #92）",
+  "summary": "介護のお金の画面。観測：**銀行/会計のシリーズで育てた金額コンポーネント（formatCurrency・CurrencyInput・EditableDataTable・Delta）が、介護報酬という全く別のお金の領域でそのまま効くか。**",
   "article": {
     "file": "zenn-yattemita-92-care-billing.md",
     "slug": "92-care-billing",
-    "markdown": "# AI に介護報酬請求を作らせてみた — 会計の部品が、介護のお金でそのまま動いた（やってみた #92）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。**介護・福祉 4枚目**——**介護報酬請求 / 国保連伝送管理**。単位数×単価の請求明細、区分支給限度額、利用者負担、国保連伝送、返戻。#91 介護記録と同時。\n\n介護のお金の画面。観測：**銀行/会計の弧で育てた金額 primitive（formatCurrency・CurrencyInput・EditableDataTable・Delta）が、介護報酬という全く別の金額ドメインでそのまま効くか。**\n\n## 結果 — 4.5/5・カスタムUIほぼゼロ\n\n`tsc`/`build` 緑・375px 横溢れゼロ・0 console error。請求月サマリ・利用者ごとの請求明細・編集明細・限度額チェック・国保連伝送ワークフロー・2人確認サイン・返戻表示。\n\n## 観測 — 会計 primitive が介護報酬で全部効いた\n\n> **`EditableDataTable`** — 請求明細の編集グリッド。controlled 行配列・`cell` で `NumberInput`・per-cell `ariaLabel` 既製・**`renderFooterCell` で列揃え合計**・**desktop表→モバイルカード自動**。「皆が再発明する invoice/明細テーブルが出荷済み」。\n> **`formatCurrency`/`formatNumber`** — **JPY/ja-JP が既定**（`¥1,234,567`）・`Intl` を一切触らず。**`Meter`** — 区分支給限度額の超過（`thresholds`・over で destructive・`inline` がテーブルセル用・高橋シゲ行が107%で赤）。**`CoSign`**（明細確定の2人確認・**既定が日本語**「主担当者と同一人物では確認できません」）・`Delta`(単位数増減・doc例が「過剰/不足」)・`CurrencyInput`・`ApprovalSteps`(伝送)・`PersonCell`(利用者) も既製。\n\n**銀行(#32-36)/会計(#37-41)で育てた金額・編集グリッド primitive が、介護報酬請求でカスタムコードほぼゼロで動いた**＝金額ドメインの作法（¥表示・編集明細・限度メーター・符号付き差分）は業界を越えて同じ。\n\n## 唯一の手組み＝StatGroup の不在\n\n> ハンドロールしたのは**8枚のサマリ指標グリッド**（`Card`+`Statistic` を Tailwind grid で）と2行のサービス名セルだけ。**「4〜8個の Card+Statistic サマリ行＝全 back-office 画面が同一に再発明する唯一の composition」**。`StatGroup`/metric-strip があれば消えた。\n\n→ [#340](https://github.com/uixhero/gunjo/issues/340) 起票（**build-ready**）。これは #92 だけでなく**~90枚 ほぼ全画面**が冒頭で手組みしてきた最頻出 composition。`Statistic`（＋Grid）を composition する薄い部品。**次の src 結晶化の最有力**。\n\n## 起票（追記）\n- 🟢 **Meter の `label` は名前であり値ではない**（label に値を書くと自動 readout と二重・cold AI が踏んで自己修正・JSDoc 注記推奨）。\n\n**今回 src build なし**（4.5/5・金額 primitive 越境＋StatGroup を build-ready で起票）。\n\n## 学び — 「お金の作法」も業界を越える\n#89 で PersonCell/ScheduleGrid が介護に越境、#92 で formatCurrency/EditableDataTable/Meter が介護報酬に越境した。**人・時間・お金・署名——業務 UI の最小単位は、医療でも会計でも介護でも同じ形**。そして次に結晶化すべきは、全画面が冒頭で手組みしてきた **StatGroup**（サマリ指標行）＝3回どころか~90回観測された必然。\n\n## 次回予告（やってみた #93）\n- **StatGroup を build**（全画面共通のサマリ行・3回ルールを遥かに超えた最頻出 composition）＋介護を進めるか次業界へ。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#91](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI に介護報酬請求を作らせてみた — 会計のコンポーネントが、介護のお金でそのまま動いた（やってみた #92）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。**介護・福祉 4枚目**——**介護報酬請求 / 国保連伝送管理**。単位数×単価の請求明細、区分支給限度額、利用者負担、国保連伝送、返戻。#91 介護記録と同時。\n\n介護のお金の画面。観測：**銀行/会計のシリーズで育てた金額コンポーネント（formatCurrency・CurrencyInput・EditableDataTable・Delta）が、介護報酬という全く別のお金の領域でそのまま効くか。**\n\n## 結果 — 4.5/5・自作UIほぼゼロ\n\n`tsc`/`build` 緑・375px 横溢れゼロ・0 console error。請求月サマリ・利用者ごとの請求明細・編集明細・限度額チェック・国保連伝送ワークフロー・2人確認サイン・返戻表示。\n\n## 観測 — 会計のコンポーネントが介護報酬で全部効いた\n\n> **`EditableDataTable`** — 請求明細の編集グリッド。controlled な行配列・`cell` で `NumberInput`・セルごとの `ariaLabel` が既製・**`renderFooterCell` で列を揃えた合計**・**デスクトップの表→モバイルカードに自動**。「皆が再発明する請求書/明細テーブルが出荷済み」。\n> **`formatCurrency`/`formatNumber`** — **JPY/ja-JP が既定**（`¥1,234,567`）・`Intl` を一切触らず。**`Meter`** — 区分支給限度額の超過（`thresholds`・over で destructive・`inline` がテーブルセル用・高橋シゲ行が107%で赤）。**`CoSign`**（明細確定の2人確認・**既定が日本語**「主担当者と同一人物では確認できません」）・`Delta`(単位数増減・doc の例が「過剰/不足」)・`CurrencyInput`・`ApprovalSteps`(伝送)・`PersonCell`(利用者) も既製。\n\n**銀行(#32-36)/会計(#37-41)で育てた金額・編集グリッドのコンポーネントが、介護報酬請求で自前コードほぼゼロで動いた**＝お金の領域の作法（¥表示・編集明細・限度メーター・符号付き差分）は業界を越えて同じ。\n\n## 唯一の手組み＝StatGroup の不在\n\n> 手組みしたのは**8枚のサマリ指標グリッド**（`Card`+`Statistic` を Tailwind の grid で）と2行のサービス名セルだけ。**「4〜8個の Card+Statistic のサマリ行＝全ての事務方の画面が同じように再発明する唯一の組み合わせ」**。`StatGroup`/指標ストリップがあれば消えた。\n\n→ [#340](https://github.com/uixhero/gunjo/issues/340) を課題に記録（**すぐ作れる**）。これは #92 だけでなく**~90枚 ほぼ全画面**が冒頭で手組みしてきた最頻出の組み合わせ。`Statistic`（＋Grid）を組み合わせる薄いコンポーネント。**次に src で固める最有力**。\n\n## 課題記録（追記）\n- 🟢 **Meter の `label` は名前であって値ではない**（label に値を書くと自動の読み上げと二重・予備知識ゼロの AI が踏んで自己修正・JSDoc に注記を推奨）。\n\n**今回 src の新規コンポーネントなし**（4.5/5・金額コンポーネントの業界越え＋StatGroup を「すぐ作れる」状態で課題に記録）。\n\n## 学び — 「お金の作法」も業界を越える\n#89 で PersonCell/ScheduleGrid が介護に業界越え、#92 で formatCurrency/EditableDataTable/Meter が介護報酬に業界を越えた。**人・時間・お金・署名——業務 UI の最小単位は、医療でも会計でも介護でも同じ形**。そして次に固めるべきは、全画面が冒頭で手組みしてきた **StatGroup**（サマリ指標行）＝3回どころか~90回観測された必然。\n\n## 次回予告（やってみた #93）\n- **StatGroup を作る**（全画面共通のサマリ行・3回ルールを遥かに超えた最頻出の組み合わせ）＋介護を進めるか次業界へ。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#91](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n"
   },
   "code": [
     {
@@ -36,24 +35,14 @@
   ],
   "components": [
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
-    "ApprovalStep",
     "ApprovalSteps",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
     "CoSign",
-    "CoSignValue",
-    "ColumnDef",
     "Container",
     "DataTable",
     "Delta",
-    "EditableColumn",
     "EditableDataTable",
     "MetadataList",
     "Meter",
@@ -61,15 +50,8 @@
     "PersonCell",
     "Separator",
     "Sheet",
-    "SheetContent",
-    "SheetDescription",
-    "SheetHeader",
-    "SheetTitle",
     "Statistic",
-    "Tabs",
-    "TabsContent",
-    "TabsList",
-    "TabsTrigger"
+    "Tabs"
   ],
   "shots": {
     "desktop": true,

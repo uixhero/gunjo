@@ -4,13 +4,12 @@
   "slug": "editor",
   "score": "3/5",
   "category": "基盤UI・汎用",
-  "title": "AI に IDE 風エディタを作らせてみた — \"枯れ\" の境界線がはっきりした（やってみた #16）",
-  "readmeTitle": "IDE風エディタ",
-  "summary": "条件は同じ（出荷物そのもの＋docs だけ、ソース非公開）。お題は `/editor` に、メニューバー＋ツールバー、パンくず、左のファイルツリー、中央のタブ＋エディタ、右パネル、下のステータスバー。",
+  "title": "AI に IDE 風エディタを作らせてみた — \"出尽くし\" の境界線がはっきりした（やってみた #16）",
+  "summary": "条件は同じ（出荷しているパッケージそのもの＋docs だけ、ソース非公開）。お題は `/editor` に、メニューバー＋ツールバー、パンくず、左のファイルツリー、中央のタブ＋エディタ、右パネル、下のステータスバー。",
   "article": {
     "file": "zenn-yattemita-16-editor.md",
     "slug": "16-editor",
-    "markdown": "# AI に IDE 風エディタを作らせてみた — \"枯れ\" の境界線がはっきりした（やってみた #16）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。今回は **IDE 風のエディタ画面**。\n\n条件は同じ（出荷物そのもの＋docs だけ、ソース非公開）。お題は `/editor` に、メニューバー＋ツールバー、パンくず、左のファイルツリー、中央のタブ＋エディタ、右パネル、下のステータスバー。\n\n前回 #15 で「基本部品は枯れた、loop は上へ移った」と分かった。今回はそれを**もう一段はっきりさせにいった**。\n\n## 結果 — 3/5\n\n`tsc`/`build` 緑・static prerender・コンソールエラー0・hydration なし。cold AI の結論が前回と一致:\n\n> **基本部品は converged**（Button/Badge/Kbd/Breadcrumb/Menubar/Tabs/CodeBlock/Tooltip…が初手で動く・a11y も型 export も問題なし）。**不安定さは1段上——合成・上位部品に移った。**\n\n「枯れ」の境界線が、画面1枚でくっきり出た。\n\n## 粗さ — 境界の \"上側\" に3つ\n\n**① ファイルツリーがキーボードで動かない（a11y 4度目）。** `FileTree`/`TreeView` は `role=\"tree\"`/`treeitem` は正しいのに **`onKeyDown` も roving tabindex も無い**。↑↓←→（WAI-ARIA tree パターン）が無反応 → [#87](https://github.com/uixhero/gunjo/issues/87)。#57/#71/#83 に続く。\n\n**② また名前負け（4例目）。** `EditorTemplate` は docs に無く（404）、status バー slot 無し・幅ハードコード・**モバイルで左右パネルが消えて fallback 無し**（電話でファイルツリーに到達不能）。`StatusBar` も default が app-shell に不適（`fixed` で viewport へ脱出＋640px cap）→ [#90](https://github.com/uixhero/gunjo/issues/90)。\n\n**③ パッケージング衛生＋生成由来の矛盾クラス。** `package.json` の `files` が**存在しないファイルを参照**していて、`design/` メタデータが出荷されていなかった（移行の取り残し）→ [#88](https://github.com/uixhero/gunjo/issues/88)。加えて Breadcrumb/Menubar/StatusBar に矛盾した `flex-col flex-row`（生成元の方向ミス）→ [#89](https://github.com/uixhero/gunjo/issues/89)。\n\n## 直した\n\n- **#87 ツリー a11y** → WAI-ARIA tree キーボード（↑↓←→/Home/End/roving tabindex）実装。FileTree は TreeView 委譲で同時に直る。**land（[PR #91](https://github.com/uixhero/gunjo/pull/91)）**。実ブラウザで矢印移動・展開/折畳を検証。\n- **#88 packaging** → `files` を実在パスへ。`design/` メタデータが出荷されるように。同 PR で land。\n- **#90 名前負け**（EditorTemplate/StatusBar）→ #74/#80/#85 と束ねて **beta ゲートで横断整理**。\n- **#89 矛盾クラス** → 生成元から断った。**land（[PR #92](https://github.com/uixhero/gunjo/pull/92)）**。根因は「Pencil が水平をデフォルトで省略→sync が誤解釈して `flex-col` を生成」で、`.pen` は元々正しく generator を修正（`.pen` 無編集）。\n\n## 学び — \"枯れ\" は層の境界として現れる\n\n```\n基本部品（Button/Badge/Tabs/CodeBlock…） ── 枯れた\n合成・上位部品（EditorTemplate/FileTree/StatusBar/NotificationCenter） ── まだ\na11y ── class 単位でまだ（#57/#71/#83/#87）\nパッケージ/インストール衛生 ── 新しい loop（#79/#84/#88）\n```\n\n#15・#16 で**境界線が安定した**。もう基本部品は疑わなくていい。残るのは **合成・上位部品のデータ駆動化／a11y／衛生**——どこを作り込めば beta かが、画面の積み重ねで具体的に見えてきた。低い点ほど誠実。\n\n## 次回予告（やってみた #17）\n\n- **Error画面 / 検索結果 / プロフィール** ほか。境界の \"上側\" を中心に。\n\n## 試す\n\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#15](#)\n- 母艦: [群青（@gunjo/ui）](#) ／ なぜ要るのか: [AI 時代のデザインシステム論](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。基本部品は枯れた、上位はこれから——\"枯れ\" の境界を、隠さず1枚ずつ確かめている。\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI に IDE 風エディタを作らせてみた — \"出尽くし\" の境界線がはっきりした（やってみた #16）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。今回は **IDE 風のエディタ画面**。\n\n条件は同じ（出荷しているパッケージそのもの＋docs だけ、ソース非公開）。お題は `/editor` に、メニューバー＋ツールバー、パンくず、左のファイルツリー、中央のタブ＋エディタ、右パネル、下のステータスバー。\n\n前回 #15 で「基本コンポーネントは出尽くした、課題は上の層へ移った」と分かりました。今回はそれを**もう一段はっきりさせにいきました**。\n\n## 結果 — 3/5\n\n`tsc`/`build` 緑・ビルド時に静的生成・コンソールエラー0・サーバーとブラウザの表示ずれ（hydration）なし。予備知識ゼロの AI の結論は、前回と一致しました:\n\n> **基本コンポーネントは出そろった**（Button/Badge/Kbd/Breadcrumb/Menubar/Tabs/CodeBlock/Tooltip… が最初から動く・アクセシビリティも型の公開も問題なし）。**不安定さは1段上——組み合わせや上位のコンポーネントに移った。**\n\n「出尽くし」の境界線が、画面1枚でくっきり出ました。\n\n## 粗さ — 境界の \"上側\" に3つ\n\n**① ファイルツリーがキーボードで動かない（アクセシビリティの4度目）。** `FileTree`/`TreeView` は `role=\"tree\"`/`treeitem` は正しいのに、**`onKeyDown` もフォーカスの持ち回り（roving tabindex）も無い**。↑↓←→（ツリー UI の標準的なキーボード操作）が無反応でした → [#87](https://github.com/uixhero/gunjo/issues/87)。#57/#71/#83 に続きます。\n\n**② また名前負け（4例目）。** `EditorTemplate` は docs に無く（404）、ステータスバーのスロット無し・幅が固定・**モバイルで左右パネルが消えて代替も無い**（スマホだとファイルツリーに辿り着けない）。`StatusBar` も、初期設定がアプリの外枠に向かない（`fixed` で画面に貼り付き＋640px で頭打ち）→ [#90](https://github.com/uixhero/gunjo/issues/90)。\n\n**③ パッケージングの衛生＋生成が原因の矛盾したクラス。** `package.json` の `files` が**存在しないファイルを参照**していて、`design/` のメタデータが出荷されていませんでした（移行の取り残し）→ [#88](https://github.com/uixhero/gunjo/issues/88)。加えて Breadcrumb/Menubar/StatusBar に、矛盾した `flex-col flex-row`（生成元での向きのミス）→ [#89](https://github.com/uixhero/gunjo/issues/89)。\n\n## 直した\n\n- **#87 ツリーのアクセシビリティ** → ツリー UI 標準のキーボード操作（↑↓←→/Home/End/フォーカスの持ち回り）を実装。`FileTree` は `TreeView` に委ねているので同時に直る。**反映（[PR #91](https://github.com/uixhero/gunjo/pull/91)）**。実ブラウザで矢印移動・展開/折りたたみを検証。\n- **#88 パッケージング** → `files` を実在するパスへ。`design/` のメタデータが出荷されるように。同じ PR で反映。\n- **#90 名前負け**（EditorTemplate/StatusBar）→ #74/#80/#85 と束ねて、**beta ゲートでまとめて整理**。\n- **#89 矛盾したクラス** → 生成元から断ちました。**反映（[PR #92](https://github.com/uixhero/gunjo/pull/92)）**。原因は「デザインツール（Pencil）が横並びを既定として省略→変換処理がそれを誤解釈して `flex-col` を生成」で、`.pen` 自体は元々正しかったため、変換処理の側を修正しました（`.pen` は無編集）。\n\n## 学び — \"出尽くし\" は、層の境界として現れる\n\n```\n基本コンポーネント（Button/Badge/Tabs/CodeBlock…） ── 出尽くした\n組み合わせ・上位のコンポーネント（EditorTemplate/FileTree/StatusBar/NotificationCenter） ── まだ\nアクセシビリティ ── 種類ごとにまだ（#57/#71/#83/#87）\nパッケージ/インストールの衛生 ── 新しい課題（#79/#84/#88）\n```\n\n#15・#16 で**境界線が安定しました**。もう基本コンポーネントは疑わなくていい。残るのは **組み合わせ・上位コンポーネントをデータで動く形にすること／アクセシビリティ／衛生**——どこを作り込めば beta かが、画面の積み重ねで具体的に見えてきました。低い点ほど誠実。\n\n## 次回予告（やってみた #17）\n\n- **エラー画面 / 検索結果 / プロフィール** ほか。境界の \"上側\" を中心に。\n\n## 試す\n\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#15](#)\n- まとめ記事: [群青（@gunjo/ui）](#) ／ なぜ要るのか: [AI 時代のデザインシステム論](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。基本コンポーネントは出尽くした、上位はこれから——\"出尽くし\" の境界を、隠さず1枚ずつ確かめています。\n"
   },
   "code": [
     {
@@ -27,24 +26,12 @@
   "components": [
     "Badge",
     "Breadcrumb",
-    "BreadcrumbItem",
-    "BreadcrumbList",
-    "BreadcrumbPage",
-    "BreadcrumbSeparator",
     "Button",
     "CodeBlock",
     "CollapsiblePanelToggle",
-    "EditorTemplate",
     "FileTree",
-    "FileTreeNode",
     "Kbd",
     "Menubar",
-    "MenubarContent",
-    "MenubarItem",
-    "MenubarMenu",
-    "MenubarSeparator",
-    "MenubarShortcut",
-    "MenubarTrigger",
     "ScrollArea",
     "Separator",
     "StatusBar"

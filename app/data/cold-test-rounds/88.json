@@ -5,12 +5,11 @@
   "score": "4/5",
   "category": "人材・HR・採用",
   "title": "AI に 1on1 管理を作らせてみた — CJK タブの溢れを見つけて、その場で直した（やってみた #88）",
-  "readmeTitle": "1on1/フィードバック管理（人材採用・ペアPersonCell×2/履歴Timeline/コンディションSparkline/健全性Meter/アクションCheckList層・★Tabs CJK overflow fix）",
   "summary": "#87 と**同時に**回した人材6枚目。観測：PersonCell の再々利用＋ペア（上司↔部下）という HR 特有の形。",
   "article": {
     "file": "zenn-yattemita-88-one-on-one.md",
     "slug": "88-one-on-one",
-    "markdown": "# AI に 1on1 管理を作らせてみた — CJK タブの溢れを見つけて、その場で直した（やってみた #88）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。**人材・採用 6枚目**——**1on1 / フィードバック管理**。マネージャー↔メンバーの定期1on1、履歴、ネクストアクション、コンディション推移。\n\n#87 と**同時に**回した人材6枚目。観測：PersonCell の再々利用＋ペア（上司↔部下）という HR 特有の形。\n\n## 結果 — 4/5・そして Tabs を fix\n\n`tsc`/`build` 緑・375px・0 console error。1on1俯瞰・今週の予定・ペア一覧・ドリルイン（履歴/アクション/コンディション）。\n\n## 観測 — PersonCell が ~12回、すべて既製\n\n> **`PersonCell`（headline win）** — 「avatar + 氏名 + 部署/役割」セルが**~12回**（全マネージャー＋全メンバー、ペアで）出る。**avatar+text を1つも手組みしなかった**。`name`/`secondary`/`tertiary`/`avatar`/`size`/`trailing`・日本語姓頭文字・truncate・綺麗な a11y 行。このロスター系画面のために最も明確に作られた部品。\n>\n> **`Timeline`**（ペアの履歴・mood で色分け・`as=\"div\"` で `<p>` ネスト hydration 回避）・**`Meter`**（健全性・経過 vs サイクル窓）・**`Badge` icon**（mood/overdue を色＋アイコン）・**`SparklineChart`**（コンディション推移）・`Statistic`/`Sheet`/`EmptyState`/`Tag` も既存部品。\n\n**PersonCell の越境発掘は #86 勤怠・#87 入社に続き3画面連続**＝build した次の3ラウンドで別々の cold AI が全部自力発掘。\n\n## 見つけて直した — `TabsList` が CJK ラベルを 375px でクリップ\n\n> **375px のタブ溢れ（実バグ）** — `TabsList` は `overflow-y-hidden` だが横にスクロールも縮小もしない。中くらいの JP ラベル3つ（履歴 / アクション / コンディション）が Sheet の padding 内で2px 溢れた。既定 `px-4` が CJK には広い。consumer 側で直したが、**kit の `TabsList` が横スクロール or 縮小すべき**——測らない採用者は溢れを出荷する。\n\n→ **その場で fix**（[PR #334](https://github.com/uixhero/gunjo/pull/334)）。横方向を `max-w-full overflow-x-auto`＋スクロールバー隠し＋モバイルは `justify-start`（先頭タブに到達可能）→ sm+ で `justify-center`。**CJK ラベルはもう絶対にクリップしない。** **群青は日本語ファーストの kit なので、CJK タブのモバイル溢れは主要オーディエンスの欠陥**＝即修正に値する。design:verify 緑・tarball 再パック→gunjo-test 再install 済。\n\n## その他の起票\n\n- 🟠 **ペア行 primitive 不在**（上司↔部下を2つの PersonCell＋コネクタ＋signal で手組み・HR関係画面の literal な形・[#336](https://github.com/uixhero/gunjo/issues/336) `RelationshipRow`・1回目）。\n- 🟢 `SparklineChart` に `height` prop 無（className でサイズ・#330）・`CheckList` は表示/確認用で選択用 ListBox(#135) は未出荷・SSR は `today` を pin しないと mismatch（injectable today を押し出してほしい）。\n\n## 学び — 発見可能性の次は「壊さない既定」\n\nPersonCell + Meter + Timeline + Statistic + CheckList が 1on1 ツールの背骨をほぼ手組みゼロで賄い、a11y も大半の手書きより良い。残る alpha は「薄いチャート props」と「CJK タブ溢れ」——どちらも**日本語ファーストの kit が日本語で最初に当たる場所**。#88 はその1つ（Tabs）をその場で潰した。複利（PersonCell 3連続発掘）と品質（CJK 既定の修正）が同じ回で回った。\n\n## 次回予告（やってみた #89）\n- 人材6枚で締め、**次業界へ pivot**（Tier1: 飲食 / 保険 / 運輸 / 介護）。PersonCell/RelationshipRow が新業界でも発掘されるか。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#87](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI に 1on1 管理を作らせてみた — CJK タブの溢れを見つけて、その場で直した（やってみた #88）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。**人材・採用 6枚目**——**1on1 / フィードバック管理**。マネージャー↔メンバーの定期1on1、履歴、ネクストアクション、コンディション推移。\n\n#87 と**同時に**回した人材6枚目。観測：PersonCell の再々利用＋ペア（上司↔部下）という HR 特有の形。\n\n## 結果 — 4/5・そして Tabs を修正\n\n`tsc`/`build` 緑・375px・0 console error。1on1俯瞰・今週の予定・ペア一覧・掘り下げる詳細（履歴/アクション/コンディション）。\n\n## 観測 — PersonCell が ~12回、すべて既製\n\n> **`PersonCell`（最大の収穫）** — 「avatar + 氏名 + 部署/役割」セルが**~12回**（全マネージャー＋全メンバー、ペアで）出る。**avatar+text を1つも手組みしなかった**。`name`/`secondary`/`tertiary`/`avatar`/`size`/`trailing`・日本語の姓の頭文字・truncate・綺麗なアクセシビリティの行。この名簿系の画面のために最も明確に作られたコンポーネント。\n>\n> **`Timeline`**（ペアの履歴・mood で色分け・`as=\"div\"` で `<p>` の入れ子によるサーバー/ブラウザずれを回避）・**`Meter`**（健全性・経過 vs サイクル窓）・**`Badge` icon**（mood/overdue を色＋アイコン）・**`SparklineChart`**（コンディション推移）・`Statistic`/`Sheet`/`EmptyState`/`Tag` も既存コンポーネント。\n\n**PersonCell の別業界での自力発見は #86 勤怠・#87 入社に続き3画面連続**＝作った次の3ラウンドで別々の予備知識ゼロの AI が全部自力発掘。\n\n## 見つけて直した — `TabsList` が CJK ラベルを 375px で切り落とす\n\n> **375px のタブ溢れ（実バグ）** — `TabsList` は `overflow-y-hidden` だが、横にスクロールも縮小もしない。中くらいの日本語ラベル3つ（履歴 / アクション / コンディション）が Sheet の余白の中で2px 溢れた。既定の `px-4` が CJK には広い。利用者側で直したが、**ライブラリの `TabsList` が横スクロール or 縮小すべき**——測らない採用者は溢れを出荷してしまう。\n\n→ **その場で修正**（[PR #334](https://github.com/uixhero/gunjo/pull/334)）。横方向を `max-w-full overflow-x-auto`＋スクロールバー隠し＋モバイルは `justify-start`（先頭タブに到達可能）→ sm+ で `justify-center`。**CJK ラベルはもう絶対に切れない。** **群青は日本語ファーストのライブラリなので、CJK タブのモバイル溢れは主要な読者にとっての欠陥**＝即修正に値する。design:verify 緑・tarball 再パック→gunjo-test に再インストール済。\n\n## その他の課題記録\n\n- 🟠 **ペア行のコンポーネントが無い**（上司↔部下を2つの PersonCell＋コネクタ＋signal で手組み・HR の関係を表す画面そのものの形・[#336](https://github.com/uixhero/gunjo/issues/336) `RelationshipRow`・1回目）。\n- 🟢 `SparklineChart` に `height` prop が無い（className でサイズ・#330）・`CheckList` は表示/確認用で、選択用の ListBox(#135) は未出荷・サーバー描画は `today` を固定しないとずれる（注入できる today を前面に出してほしい）。\n\n## 学び — 発見可能性の次は「壊さない既定」\n\nPersonCell + Meter + Timeline + Statistic + CheckList が 1on1 ツールの背骨をほぼ手組みゼロで賄い、アクセシビリティも大半の手書きより良い。残る alpha は「薄いチャート props」と「CJK タブ溢れ」——どちらも**日本語ファーストのライブラリが日本語で最初に当たる場所**。#88 はその1つ（Tabs）をその場で潰した。複利（PersonCell 3連続発掘）と品質（CJK 既定の修正）が同じ回で回った。\n\n## 次回予告（やってみた #89）\n- 人材6枚で締め、**次業界へ移る**（Tier1: 飲食 / 保険 / 運輸 / 介護）。PersonCell/RelationshipRow が新業界でも発掘されるか。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#87](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n"
   },
   "code": [
     {
@@ -38,10 +37,6 @@
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
     "CheckList",
     "EmptyState",
     "Meter",
@@ -49,26 +44,12 @@
     "Select",
     "Separator",
     "Sheet",
-    "SheetContent",
-    "SheetDescription",
-    "SheetHeader",
-    "SheetTitle",
     "SparklineChart",
     "Statistic",
     "Tabs",
-    "TabsContent",
-    "TabsList",
-    "TabsTrigger",
     "Tag",
     "Timeline",
-    "TimelineDescription",
-    "TimelineItem",
-    "TimelineTime",
-    "TimelineTitle",
-    "Tooltip",
-    "TooltipContent",
-    "TooltipProvider",
-    "TooltipTrigger"
+    "Tooltip"
   ],
   "shots": {
     "desktop": true,

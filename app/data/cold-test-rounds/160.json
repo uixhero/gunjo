@@ -5,12 +5,11 @@
   "score": "4/5",
   "category": "運輸：トラック",
   "title": "AI にトラック求貨求車マッチングを作らせてみた — 索引是正が翌画面で効いた回（やってみた #160）",
-  "readmeTitle": "トラック 求貨求車・帰り便マッチング（**新モード toB2**・二者間マーケットプレイス archetype・荷物ActionDataTable(一括オファー)・空車DataTable・マッチング候補 適合度ランキング Leaderboard・適合度Meter(higher-is-better+target band)・荷物×空車ペアリング MatchDetail手組み・要対応ActionQueue・KPI StatGroup・SegmentedControl 求貨求車起点切替）★**[PR#418](https://github.com/uixhero/gunjo/pull/418) 索引是正の同 arc 検証=ActionDataTable が是正済索引で自力発見「偶然でなく直行＝キット最強の瞬間」・Leaderboard 適合度ランキングで自力発見**・**MatchCard/PairingPanel 穴(二者間 A⟷B ペアリングが people-shaped でない home 無し・索引の two-sided→RelationshipRow は PersonCell固定の罠=台座にアバター円) #419起票**・list/queue/KPI/ranking で~80%composeだが matching 自体に home 無し",
-  "summary": "`tsc` 緑・デスクトップ情報密度。cold AI（群青を一度も触っていない設定）：",
+  "summary": "`tsc` 緑・デスクトップ情報密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-160-truck-matching.md",
     "slug": "160-truck-matching",
-    "markdown": "# AI にトラック求貨求車マッチングを作らせてみた — 索引是正が翌画面で効いた回（やってみた #160）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。**トラック toB を厚く**（配車#159 に追加）——**求貨求車・帰り便マッチング**（荷物⇄空車・マッチング候補/適合度・成約・運賃交渉）。運送業 iconic な、これまで全モードで未見の**二者間マーケットプレイス archetype**。\n\n## 結果 — 4/5、索引是正が「翌画面で」効いた\n\n`tsc` 緑・デスクトップ情報密度。cold AI（群青を一度も触っていない設定）：\n\n> **密度の高い本物の業務コンソールが、ほぼ戦わずに組めた。** /docs/by-use-case が list/queue/KPI/ranking の全判断で正しく誘導した。減点は1点——**二者間マーケットプレイスの核心＝マッチング/ペアリング自体に home が無い**こと。\n\n## 観測の核1 — 前回の索引是正（#418）が翌画面で効いた\n#159 で「索引が ActionDataTable を隠す（案件一覧を DataTable に誘導）」を見つけ、**[PR#418](https://github.com/uixhero/gunjo/pull/418) で索引を是正**した。そして#160 の cold AI は：\n> cold AI「**荷物（求貨）の一覧＝ActionDataTable。enableSelection＋selectedIds/onSelectionChange＋bulkActions(一括オファー/CSV)＋rowActions。まさに『荷物を選択→オファー』。そして by-use-case の索引が ActionDataTable に直行で誘導した＝偶然に発見したのでなく。これがキット最強の瞬間。**」\n\n**#159 で索引を直し、#160 でその修正が検証された**＝同じ arc で「索引是正→翌画面で正しく誘導」が回った。これは部品 build の検証（#136→#153 Stringline）と同じ構造の、**索引版の build→検証ループ**だ。Leaderboard も適合度ランキングで自力発見＝二重の検証。\n\n## 観測の核2 — マッチング/ペアリングに home が無い（索引の罠つき）\n荷物×空車のペアリング詳細（左に荷物・右に空車・中央に適合度）——これが唯一の手組みだった：\n> cold AI「**MatchCard も二列 compare/pairing composition も無い。people-shaped でない『A⟷B エンティティのペアリング』が無い。索引の two-sided の答えは RelationshipRow だが、それは PersonCell(アバター+名前+役割)で person⟷person(1on1/ケア担当)をモデルする。貨物カードを2枚入れると name/secondary スロットを濫用し、パレットにアバター円が付く。間違った道具。**」\n\n→ [#419](https://github.com/uixhero/gunjo/issues/419) 起票：**MatchCard/PairingPanel**（左エンティティ＋右エンティティ＋中央 connector/score＋factor breakdown・**people 前提でない**）。求貨求車・配車・候補者⟷求人・買い手⟷売り手 で再発。**これも索引の罠**（two-sided→RelationshipRow が people 固定）＝是正対象。\n\n## 学び — 索引には「2種類の罠」がある\n床が成熟した今、cold-test が炙り出す欠陥は**索引の誤誘導**に集中している（#159 で予言）。だが#160 で索引の罠が**2種類**あると分かった：\n1. **隠す罠**（#159 ActionDataTable）＝正しい部品があるのに索引が言及せず別の部品に誘導＝adopter は手組みに向かう。**→ 索引に項目追加で是正（安い）。**\n2. **すり替える罠**（#160 RelationshipRow）＝索引が「two-sided ならこれ」と**間違った部品を積極的に勧める**が、その部品は people 固定で freight に使うと崩れる＝adopter は信じて使い、アバター円がパレットに付いて初めて気付く。**→ 索引是正＋本物の部品 build の両方が要る（高い）。**\n\nこれは #150 の「能動的な誤誘導」の精緻化だ。**「隠す」より「すり替える」方が危険**＝前者は無いと分かれば手組みするが、後者は「ある」と思って使い詰まる。床成熟後の cold-test は、この2種を見分けて**安い是正（索引追加）と高い是正（部品 build＋索引）を切り分ける**作業になる。\n\n→ #160 のその場対応＝**MatchCard/PairingPanel 起票（#419・高い是正）**。**今回 src build なし**（4/5・索引是正検証・MatchCard 起票）。\n\n## 📊 結晶化スコアボード（build 済 **18個**）\n…Gantt(intraday) / Leaderboard / SegmentedControl / LineChip\n進行中：MatchCard/PairingPanel(1/3)・SectionList(2/3)・LimitMonitor(2/3)・ValidityTimer(1/3)\n\n## 📋 モード進捗 — トラック toB2\n- ✈️ 航空 ✅／🚆 鉄道 ✅／🚕 タクシー ✅／🚌 バス ✅\n- 🚚 **トラック：toB2（配車#159/求貨求車#160）** ← 新モード・toB を厚く中\n\n## 次回予告（やってみた #161）\n- トラック toB をさらに（運賃・請求／車両整備・デジタコ／運送原価）／その後 toC（荷主の集荷依頼・貨物追跡）。※KeEem に確認。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ **[一括操作表 ActionDataTable](https://gunjo.jp/docs/components/action-data-table)** ／ **[ランキング Leaderboard](https://gunjo.jp/docs/components/leaderboard)** ／ **[メーター Meter](https://gunjo.jp/docs/components/meter)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#159](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\n索引是正が翌画面で効いた——索引には「隠す罠」と「すり替える罠」があり、後者の方が危険。床成熟後の cold-test は、安い是正（索引追加）と高い是正（部品 build）を切り分ける作業になる。\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI にトラック求貨求車マッチングを作らせてみた — 索引是正が翌画面で効いた回（やってみた #160）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。**トラックの事業者向けを厚く**（配車#159 に追加）——**求貨求車・帰り便マッチング**（荷物⇄空車・マッチング候補/適合度・成約・運賃交渉）。運送業に象徴的な、これまで全モードで未見の**二者間マーケットプレイスの原型**。\n\n## 結果 — 4/5、索引是正が「翌画面で」効いた\n\n`tsc` 緑・デスクトップ情報密度。予備知識ゼロの AI（群青を一度も触っていない設定）：\n\n> **密度の高い本物の業務コンソールが、ほぼ戦わずに組めた。** /docs/by-use-case が list/queue/KPI/ranking の全判断で正しく誘導した。減点は1点——**二者間マーケットプレイスの核心＝マッチング/ペアリング自体に居場所が無い**こと。\n\n## 観測の核1 — 前回の索引是正（#418）が翌画面で効いた\n#159 で「索引が ActionDataTable を隠す（案件一覧を DataTable に誘導）」を見つけ、**[PR#418](https://github.com/uixhero/gunjo/pull/418) で索引を是正**した。そして#160 の予備知識ゼロの AI は：\n> 予備知識ゼロの AI「**荷物（求貨）の一覧＝ActionDataTable。enableSelection＋selectedIds/onSelectionChange＋bulkActions(一括オファー/CSV)＋rowActions。まさに『荷物を選択→オファー』。そして by-use-case の索引が ActionDataTable に直行で誘導した＝偶然に発見したのでなく。これがライブラリ最強の瞬間。**」\n\n**#159 で索引を直し、#160 でその修正が検証された**＝同じシリーズで「索引の是正→翌画面で正しく誘導」が回った。これはコンポーネントを作った検証（#136→#153 Stringline）と同じ構造の、**索引版の「作る→検証」ループ**だ。Leaderboard も適合度ランキングで自力発見＝二重の検証。\n\n## 観測の核2 — マッチング/ペアリングに居場所が無い（索引の罠つき）\n荷物×空車のペアリング詳細（左に荷物・右に空車・中央に適合度）——これが唯一の手組みだった：\n> 予備知識ゼロの AI「**MatchCard も、二列で比較/ペアリングする組み立ても無い。人物前提でない『A⟷B の対象どうしのペアリング』が無い。索引の二者間の答えは RelationshipRow だが、それは PersonCell(アバター+名前+役割)で 人⟷人(1on1/ケア担当)をモデルする。貨物カードを2枚入れると name/secondary の差込口を濫用し、パレットにアバター円が付く。間違った道具。**」\n\n→ [#419](https://github.com/uixhero/gunjo/issues/419) を課題に記録：**MatchCard/PairingPanel**（左の対象＋右の対象＋中央のつなぎ/スコア＋要因の内訳・**人物前提でない**）。求貨求車・配車・候補者⟷求人・買い手⟷売り手 で再発。**これも索引の罠**（二者間→RelationshipRow が人物固定）＝是正対象。\n\n## 学び — 索引には「2種類の罠」がある\n土台が成熟した今、このテストが炙り出す欠陥は**索引の誤誘導**に集中している（#159 で予言）。だが#160 で索引の罠が**2種類**あると分かった：\n1. **隠す罠**（#159 ActionDataTable）＝正しいコンポーネントがあるのに索引が言及せず別のコンポーネントに誘導＝採用者は手組みに向かう。**→ 索引に項目追加で是正（安い）。**\n2. **すり替える罠**（#160 RelationshipRow）＝索引が「二者間ならこれ」と**間違ったコンポーネントを積極的に勧める**が、そのコンポーネントは人物固定で貨物に使うと崩れる＝採用者は信じて使い、アバター円がパレットに付いて初めて気付く。**→ 索引の是正＋本物のコンポーネントの作成の両方が要る（高い）。**\n\nこれは #150 の「能動的な誤誘導」の精緻化だ。**「隠す」より「すり替える」方が危険**＝前者は無いと分かれば手組みするが、後者は「ある」と思って使い詰まる。土台成熟後のこのテストは、この2種を見分けて**安い是正（索引追加）と高い是正（コンポーネント作成＋索引）を切り分ける**作業になる。\n\n→ #160 のその場対応＝**MatchCard/PairingPanel を課題に記録（#419・高い是正）**。**今回 src の新規コンポーネントなし**（4/5・索引是正の検証・MatchCard を課題に記録）。\n\n## 📊 コンポーネント化スコアボード（作成済 **18個**）\n…Gantt(日中モード) / Leaderboard / SegmentedControl / LineChip\n進行中：MatchCard/PairingPanel(1/3)・SectionList(2/3)・LimitMonitor(2/3)・ValidityTimer(1/3)\n\n## 📋 モード進捗 — トラックの事業者向け2\n- ✈️ 航空 ✅／🚆 鉄道 ✅／🚕 タクシー ✅／🚌 バス ✅\n- 🚚 **トラック：事業者向け2（配車#159/求貨求車#160）** ← 新モード・事業者向けを厚く中\n\n## 次回予告（やってみた #161）\n- トラックの事業者向けをさらに（運賃・請求／車両整備・デジタコ／運送原価）／その後 利用者向け（荷主の集荷依頼・貨物追跡）。※次回までに決める。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ **[一括操作表 ActionDataTable](https://gunjo.jp/docs/components/action-data-table)** ／ **[ランキング Leaderboard](https://gunjo.jp/docs/components/leaderboard)** ／ **[メーター Meter](https://gunjo.jp/docs/components/meter)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#159](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\n索引是正が翌画面で効いた——索引には「隠す罠」と「すり替える罠」があり、後者の方が危険。土台成熟後のこのテストは、安い是正（索引追加）と高い是正（コンポーネント作成）を切り分ける作業になる。\n"
   },
   "code": [
     {
@@ -31,30 +30,19 @@
   ],
   "components": [
     "ActionDataTable",
-    "ActionDataTableBulkAction",
-    "ActionDataTableRowAction",
-    "ActionItem",
     "ActionQueue",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardHeader",
-    "CardTitle",
-    "ColumnDef",
     "DataTable",
     "Leaderboard",
-    "LeaderboardItem",
     "MetadataList",
     "Meter",
     "SegmentedControl",
     "Separator",
     "StatGroup",
-    "StatisticProps",
+    "Statistic",
     "Tabs",
-    "TabsContent",
-    "TabsList",
-    "TabsTrigger",
     "Tag"
   ],
   "shots": {

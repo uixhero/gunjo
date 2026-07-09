@@ -5,12 +5,11 @@
   "score": "4/5",
   "category": "基盤UI・汎用",
   "title": "AI にダッシュボードを作らせてみた — チャートは\"任意データで壊れない\"のか（やってみた #4）",
-  "readmeTitle": "ダッシュボード",
-  "summary": "gunjo のチャートは SVG じゃなく **HTML/CSS のレイアウトプリミティブ**で作ってある。狙いは「**任意のデータで崩れないこと**」。固定された綺麗なサンプルじゃなく、現実の汚いデータ——桁違いのスケール、外れ値、ゼロ、極小値——を入れても破綻しない、を担保したい。",
+  "summary": "群青のチャートは SVG じゃなく **HTML/CSS のレイアウト用のコンポーネント**で作ってある。狙いは「**任意のデータで崩れないこと**」。固定された綺麗なサンプルじゃなく、現実の汚いデータ——桁違いのスケール、外れ値、ゼロ、極小値——を入れても破綻しない、を担保したい。",
   "article": {
     "file": "zenn-yattemita-04-dashboard.md",
     "slug": "04-dashboard",
-    "markdown": "# AI にダッシュボードを作らせてみた — チャートは\"任意データで壊れない\"のか（やってみた #4）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。[#1 設定画面](#) / [#2 モーダル告知](#) / [#3 カルーセル](#) に続いて、今回は**差別化の本丸＝ダッシュボード（チャート）**。\n\ngunjo のチャートは SVG じゃなく **HTML/CSS のレイアウトプリミティブ**で作ってある。狙いは「**任意のデータで崩れないこと**」。固定された綺麗なサンプルじゃなく、現実の汚いデータ——桁違いのスケール、外れ値、ゼロ、極小値——を入れても破綻しない、を担保したい。\n\n今回はそれを **cold な AI にストレステストさせた**。条件は毎回同じ（公開 npm alpha.2 + gunjo.jp docs だけ・ソース非公開）。お題は KPI カード＋複数チャート＋データテーブルの**アナリティクス・ダッシュボード**を `/dashboard` に。\n\n## 結果 — 動いた（4/5）、そして\"壊れない\"は本物だった\n\n`npm run build` 成功、static prerender、**コンソールエラー0**。\n\n> ![dashboard](assets/gunjo-dashboard.png)\n\nAI は意図的に**意地悪なデータ**を投げた。結果はスクショのとおり全部正しく描画:\n\n- **異なるスケールの2系列**（Revenue 数万 vs Refunds 数千）を1枚の Line に → Refunds はベースライン付近を這うが破綻なし\n- **途中のゼロ**（6月の Revenue = $0）→ ベースラインまで鋭く落ちて復帰\n- **9倍の外れ値＋ゼロ棒**（Bar: W4=3,850・W6=0）→ 外れ値が最大値を決め、ゼロ棒は空・平均線も正しく\n- **ゼロ value の Donut segment**（Affiliate 0%）→ NaN も壊れた conic-gradient も出ず、0% 表示\n- **極小スライス**（Pie: Other 0.8%）→ 細いが消えずに描画\n\n> **「レイアウトプリミティブだから任意データで崩れない」は、ストレス下で持ちこたえた。** #1〜#3 は穴を見つける回だったが、#4 は**売りが実証された**回。\n\n効いたのも今回も typed barrel。`LineChart`/`BarChart`/`DonutChart`/`PieChart`/`Statistic`/`Table` を一発で発見、`ChartDataPoint = { label?, value, color? }` の**統一データ形**が全チャート共通で認知負荷が低い、`formatValue` に `Intl.NumberFormat` を渡すだけ、と。\n\n## 粗さ — 「型で発見できる」の足元をすくう一点\n\nただし、**build を止める実バグ**が出た。\n\n```ts\nimport { type ChartDataPoint } from \"@gunjo/ui\" // ❌ has no exported member\n```\n\n全チャートが公開 prop として `ChartDataPoint` を要求するのに、**その型が barrel から export されていない**（内部の `chart-utils.ts` 止まり）。型付きの採用者は、チャートに渡すデータの形を**名前で書けない**。AI はローカルにミラー型を宣言して回避したけど、これは「**型で API を発見できる**」という gunjo の売りの足元をすくう。→ [#53](https://github.com/uixhero/gunjo/issues/53) 起票。\n\nほかに正直な粗さ:\n- **docs のコード例が fetch に映らない**（#2 の [#50](https://github.com/uixhero/gunjo/issues/50)・未デプロイ）— AI は型から呼び出し形を再構築\n- LineChart の x 軸ラベルが「最長の系列」から取られる挙動が docs に無い\n- `Table` ラッパーに `w-[400px] w-full` の重複クラス（無害だが残骸）\n\n## 学び\n\n```\nAI に使わせる → 粗さが出る → SSOT で一貫して直す → また使わせる\n```\n\n#4 で分かったのは2つ。**①チャートの \"任意データで壊れない\" は本物**（売りが実証された）。**②でもその型が export 漏れで、型付き採用者が詰まる**（#53）。良いところは盛らずに見せ、穴は隠さず issue にする——スコアボードに正直に足していく。\n\n## 次回予告（やってみた #5）\n\n- **ログイン／サインアップ**（Form / Input / Button / Tabs）— 検索数の大きい認証フォーム。\n\n## 試す\n\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1 設定画面](#) / [#2 モーダル告知](#) / [#3 カルーセル](#)\n- 母艦: [群青（@gunjo/ui）](#) ／ なぜ要るのか: [AI 時代のデザインシステム論](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha、粗削りな青。穴が出るたび直します。Issue 歓迎。\n\n---\n<!-- 公開前: #53 修正反映後に記述更新／スクショ確定／相互URL差込／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI にダッシュボードを作らせてみた — チャートは\"任意データで壊れない\"のか（やってみた #4）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青を一度も見たことのない AI に実際の画面で組ませていく連載。[#1 設定画面](#) / [#2 モーダル告知](#) / [#3 カルーセル](#) に続いて、今回は**差別化の本丸＝ダッシュボード（チャート）**。\n\n群青のチャートは SVG じゃなく **HTML/CSS のレイアウト用のコンポーネント**で作ってある。狙いは「**任意のデータで崩れないこと**」。固定された綺麗なサンプルじゃなく、現実の汚いデータ——桁違いのスケール、外れ値、ゼロ、極小値——を入れても破綻しない、を担保したい。\n\n今回はそれを **予備知識ゼロの AI にストレステストさせた**。条件は毎回同じ（公開 npm alpha.2 + gunjo.jp docs だけ・ソース非公開）。お題は KPI カード＋複数チャート＋データテーブルの**アナリティクス・ダッシュボード**を `/dashboard` に。\n\n## 結果 — 動いた（4/5）、そして\"壊れない\"は本物だった\n\n`npm run build` 成功、static prerender、**コンソールエラー0**。\n\n> ![dashboard](assets/gunjo-dashboard.png)\n\nAI は意図的に**意地悪なデータ**を投げた。結果はスクショのとおり全部正しく描画:\n\n- **異なるスケールの2系列**（Revenue 数万 vs Refunds 数千）を1枚の Line に → Refunds はベースライン付近を這うが破綻なし\n- **途中のゼロ**（6月の Revenue = $0）→ ベースラインまで鋭く落ちて復帰\n- **9倍の外れ値＋ゼロ棒**（Bar: W4=3,850・W6=0）→ 外れ値が最大値を決め、ゼロ棒は空・平均線も正しく\n- **ゼロ value の Donut segment**（Affiliate 0%）→ NaN も壊れた conic-gradient も出ず、0% 表示\n- **極小スライス**（Pie: Other 0.8%）→ 細いが消えずに描画\n\n> **「レイアウト用のコンポーネントでできているから任意のデータで崩れない」は、ストレス下で持ちこたえた。** #1〜#3 は粗さを見つける回だったが、#4 は**売りが実証された**回。\n\n効いたのも今回も **コンポーネントが1か所に型つきでそろっていること**。`LineChart`/`BarChart`/`DonutChart`/`PieChart`/`Statistic`/`Table` を一発で発見、`ChartDataPoint = { label?, value, color? }` という**統一されたデータ形式**が全チャート共通で分かりやすい、`formatValue` に `Intl.NumberFormat` を渡すだけ、と。\n\n## 粗さ — 「型で発見できる」の足元をすくう一点\n\nただし、**build を止める実バグ**が出た。\n\n```ts\nimport { type ChartDataPoint } from \"@gunjo/ui\" // ❌ has no exported member\n```\n\n全チャートが公開 prop として `ChartDataPoint` を要求するのに、**その型が、まとめて呼び出す入口（`@gunjo/ui`）から公開されていない**（内部の `chart-utils.ts` 止まり）。型で書きたい利用者は、チャートに渡すデータの形を**名前で書けない**。AI は手元に同じ型を書き写して回避したけど、これは「**型をたどればコンポーネントの形が分かる**」という群青の売りの足元をすくう。→ [#53](https://github.com/uixhero/gunjo/issues/53) 課題に記録。\n\nほかに正直な粗さ:\n- **docs のコード例が fetch に映らない**（#2 の [#50](https://github.com/uixhero/gunjo/issues/50)・未デプロイ）— AI は型から呼び出し形を再構築\n- LineChart の x 軸ラベルが「最長の系列」から取られる挙動が docs に無い\n- `Table` ラッパーに `w-[400px] w-full` の重複クラス（無害だが残骸）\n\n## 学び\n\n```\nAI に使わせる → 粗さが出る → 大元（SSOT）で一貫して直す → また使わせる\n```\n\n#4 で分かったのは2つ。**①チャートの \"任意のデータで壊れない\" は本物**（売りが実証された）。**②でもその型が公開漏れで、型で書きたい利用者が詰まる**（#53）。良いところは盛らずに見せ、粗さは隠さず issue にする——スコアボードに正直に足していく。\n\n## 次回予告（やってみた #5）\n\n- **ログイン／サインアップ**（Form / Input / Button / Tabs）— 検索数の大きい認証フォーム。\n\n## 試す\n\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1 設定画面](#) / [#2 モーダル告知](#) / [#3 カルーセル](#)\n- まとめ記事: [群青（@gunjo/ui）](#) ／ なぜ要るのか: [AI 時代のデザインシステム論](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha、粗削りな青。粗さが出るたび直します。Issue 歓迎。\n"
   },
   "code": [
     {
@@ -23,22 +22,12 @@
     "Badge",
     "BarChart",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
-    "ChartDataPoint",
     "Container",
     "DonutChart",
     "LineChart",
     "PieChart",
     "Statistic",
-    "Table",
-    "TableBody",
-    "TableCell",
-    "TableHead",
-    "TableHeader",
-    "TableRow"
+    "Table"
   ],
   "shots": {
     "desktop": true,

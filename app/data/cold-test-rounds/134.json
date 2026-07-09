@@ -4,13 +4,12 @@
   "slug": "ground-handling",
   "score": "4/5",
   "category": "運輸：航空",
-  "title": "AI に空港ランプ管理を作らせてみた — 「機器状態盤」の穴が、2回目を見せた（やってみた #134）",
-  "readmeTitle": "航空 グランドハンドリング/ランプ管理（航空toB厚く=駅務#132の航空版/羽田T2 ランプコントロール デスクトップ密度・GSE状態盤StatusBoard手組み/ターンアラウンド進捗RouteStops適合/要対応ActionQueue/引継ぎSignedRecord+安全2人確認CoSign/KPI StatGroup層）★StatusBoard 2回目(#132駅務に続きGSE機器盤再手組み→#385 2/3)・RouteStops 段階オペ進捗に適合(予実タイミングでStepperより適)→索引是正#387・CoSign 安全確認に適合",
-  "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
+  "title": "AI に空港ランプ管理を作らせてみた — 「機器状態盤」の欠落が、2回目を見せた（やってみた #134）",
+  "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-134-ground-handling.md",
     "slug": "134-ground-handling",
-    "markdown": "# AI に空港ランプ管理を作らせてみた — 「機器状態盤」の穴が、2回目を見せた（やってみた #134）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。**航空 toB を厚く**（鉄道 駅務#132 の航空版）——**グランドハンドリング/ランプ管理コンソール**（GSE機器・スポット・ターンアラウンド進捗・引継ぎ）。\n\n## 結果 — 4/5、背骨は crown jewels。だが機器盤はまた手組み\n\n`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：\n\n> **`ActionQueue` と `SignedRecord` は operator コンソールの crown jewels。** severity トリアージ・sign→lock→addendum という正しいドメインモデルを encode している。`CoSign`（安全2人確認）も maker-checker にぴったり。`RouteStops`/`StatGroup` も zero-friction。\n> **だが GSE機器状態盤に住所が無い。また手組み。**\n\n## 観測の核1 — StatusBoard 2回目（#132 → #134）\n**#132（駅務）で機器状態盤を手組みして StatusBoard を起票した**。そして #134 で——cold AI が GSE 機器盤（トーイングトラクター/ベルトローダー/ハイリフト/GPU/PCA/PBB/カーゴドーリー）をまた手組みした。**2回目（2/3）。** しかも cold AI が、頼んでもいないのに #132 と同じ仕様・同じ再来先を名指し：\n\n> 「**station-ops・rail-maintenance・equipment-OEE が全部要る『場所＋故障の目立ち つき資産状態グリッド』を再実装した。欠けてる primitive は `StatusBoard`/`DeviceGrid`＝`{id, group, location, status, note}` のグリッド・状態→トーン・故障優先ソート・グループ別の故障数。全 physical-ops ドメインを横断する唯一の穴。**」\n\n→ [#385](https://github.com/uixhero/gunjo/issues/385) に2回目を追記＋仕様精緻化（**種別/ゾーンでグループ化・グループ別 故障数**）。**3回目（製造の設備OEE/ライン稼働盤 or 物流の倉庫設備）が来れば build。**\n\n## 観測の核2 — RouteStops が「段階オペ進捗」に適合（索引が undersell していた）\nターンアラウンド進捗（到着→PBB装着→取卸→給油→搭載→プッシュバック→出発、各工程に予実時刻＋状態）を——\n\n> cold AI「**`RouteStops` がぴったり。`plannedTime`/`actualTime`＋自動 Delta＋`statusLabels` で再ラベル＝STD（定時出発）を見張るのに完璧。Stepper より適（Stepper はタイミング/Delta が無いウィザード進捗）。** ただ索引は段階進捗を Stepper/ApprovalSteps に誘導していて、RouteStops は barrel を読んで見つけた＝索引が RouteStops を undersell している。」\n\n→ 索引是正 [#387](https://github.com/uixhero/gunjo/pull/387)：RouteStops は「状態トラッキング **かつ** 段階オペ進捗（ターンアラウンド/生産工程/修理フロー）」・予実タイミングがあるなら Stepper より RouteStops。**#124（手荷物）で確定した RouteStops の定義域が、ランプのターンアラウンドにも届いた。**\n\n**今回 src build なし**（4/5・StatusBoard 2/3＝3回ルール待ち）。\n\n## 学び — 「穴」と「適合」が同じ画面で同時に進む\n#134 の1枚で2つが同時に起きた：\n- **穴の前進**：StatusBoard が 1/3→2/3（駅務の機器盤が、ランプの GSE 盤として再来）。\n- **適合の前進**：RouteStops の定義域（#124 で「状態トラッキングに適合」と確定）が、ターンアラウンドという航空 physical-ops にも届き、索引の undersell を是正。\n\nつまり deep-dive は「穴を貯める」だけでなく「**既存部品の定義域を別文脈で確かめ、索引の誤誘導を直す**」のを同時にやる。StatusBoard は3回目を待ち、RouteStops は使われるほど適用範囲が確定していく。\n\n## 📊 結晶化スコアボード（build 済 **11個**）\nAmountBreakdown / ActionQueue / ListCard / Gantt-segments / SeatMap / LoyaltySummaryCard / RadioCard / FilterChips / PageHeader / Itinerary / TicketStub\n進行中：**StatusBoard 2/3**・**Stringline 2/3**・ExpiryBadge・CheckboxCard・Gantt-intraday・StatusScreen success\n\n## 📋 toB/toC 進捗\n- ✈️ 航空：toC 6枚 ✅／**toB 4枚（OCC/MRO/乗員/グラハン）**＝厚みUP・あと1枚（就航/スロット計画）で鉄道の5枚と対称\n- 🚆 鉄道：toC 6枚 ✅／toB 5枚 ✅\n\n## 次回予告（やってみた #135）\n- **航空 toB 就航管理・ダイヤ/スロット計画**（路線便数・空港スロット・機材アサイン）＝ダイヤ作成#133 の航空版で航空 toB を5枚＝鉄道と完全対称に。その後 **新モード バス**（Stringline 3回目→build の本命）。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ **[ルートストップ RouteStops](https://gunjo.jp/docs/components/route-stops)** ／ **[アクションキュー ActionQueue](https://gunjo.jp/docs/components/action-queue)** ／ **[コサイン CoSign](https://gunjo.jp/docs/components/co-sign)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#133](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\n機器状態盤の穴が2回目を見せ、RouteStops の定義域がランプにも届いた——deep-dive は穴を貯めながら、既存部品の地図も同時に精密にする。\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI に空港ランプ管理を作らせてみた — 「機器状態盤」の欠落が、2回目を見せた（やってみた #134）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。**航空の事業者向けを厚く**（鉄道 駅務#132 の航空版）——**グランドハンドリング/ランプ管理コンソール**（GSE機器・スポット・ターンアラウンド進捗・引継ぎ）。\n\n## 結果 — 4/5、背骨は目玉。だが機器盤はまた手組み\n\n`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：\n\n> **`ActionQueue` と `SignedRecord` は運用コンソールの目玉。** 深刻度による選別・署名→ロック→追記 という正しい領域のモデルを表現している。`CoSign`（安全の2人確認）も二重承認にぴったり。`RouteStops`/`StatGroup` も 摩擦ゼロ。\n> **だが GSE の機器状態盤に置き場所が無い。また手組み。**\n\n## 観測の核1 — StatusBoard 2回目（#132 → #134）\n**#132（駅務）で機器状態盤を手組みして StatusBoard を課題に記録した**。そして #134 で——予備知識ゼロの AI が GSE 機器盤（トーイングトラクター/ベルトローダー/ハイリフト/GPU/PCA/PBB/カーゴドーリー）をまた手組みした。**2回目（2/3）。** しかも予備知識ゼロの AI が、頼んでもいないのに #132 と同じ仕様・同じ再来先を名指し：\n\n> 「**駅務・鉄道の車両整備・設備OEE が全部要る『場所＋故障の目立ち つきの資産状態グリッド』を再実装した。欠けているコンポーネントは `StatusBoard`/`DeviceGrid`＝`{id, group, location, status, note}` のグリッド・状態→トーン・故障を優先でソート・グループ別の故障数。あらゆる現場運用の領域を横断する唯一の欠落。**」\n\n→ [#385](https://github.com/uixhero/gunjo/issues/385) に2回目を追記＋仕様を精緻化（**種別/ゾーンでグループ化・グループ別の故障数**）。**3回目（製造の設備OEE/ライン稼働盤 or 物流の倉庫設備）が来れば作る。**\n\n## 観測の核2 — RouteStops が「段階運用の進捗」に適合（索引が実力を低く見せていた）\nターンアラウンド進捗（到着→PBB装着→取卸→給油→搭載→プッシュバック→出発、各工程に予実時刻＋状態）を——\n\n> 予備知識ゼロの AI「**`RouteStops` がぴったり。`plannedTime`/`actualTime`＋自動 Delta＋`statusLabels` で貼り替え＝STD（定時出発）を見張るのに完璧。Stepper より適（Stepper はタイミング/Delta が無いウィザードの進捗）。** ただ索引は段階の進捗を Stepper/ApprovalSteps に誘導していて、RouteStops は、まとめて呼び出す入口（`@gunjo/ui`）を読んで見つけた＝索引が RouteStops の実力を低く見せている。」\n\n→ 索引の是正 [#387](https://github.com/uixhero/gunjo/pull/387)：RouteStops は「状態の追跡 **かつ** 段階運用の進捗（ターンアラウンド/生産工程/修理フロー）」・予実のタイミングがあるなら Stepper より RouteStops。**#124（手荷物）で確定した RouteStops の守備範囲が、ランプのターンアラウンドにも届いた。**\n\n**今回 src の新規コンポーネントなし**（4/5・StatusBoard 2/3＝3回ルール待ち）。\n\n## 学び — 「欠落」と「適合」が同じ画面で同時に進む\n#134 の1枚で2つが同時に起きた：\n- **欠落の前進**：StatusBoard が 1/3→2/3（駅務の機器盤が、ランプの GSE 盤として再来）。\n- **適合の前進**：RouteStops の守備範囲（#124 で「状態の追跡に適合」と確定）が、ターンアラウンドという航空の現場運用にも届き、索引が実力を低く見せていたのを是正。\n\nつまり深掘りは「欠落を貯める」だけでなく「**既存コンポーネントの守備範囲を別の文脈で確かめ、索引の誤誘導を直す**」のを同時にやる。StatusBoard は3回目を待ち、RouteStops は使われるほど適用範囲が確定していく。\n\n## 📊 コンポーネント化スコアボード（作成済 **11個**）\nAmountBreakdown / ActionQueue / ListCard / Gantt-segments / SeatMap / LoyaltySummaryCard / RadioCard / FilterChips / PageHeader / Itinerary / TicketStub\n進行中：**StatusBoard 2/3**・**Stringline 2/3**・ExpiryBadge・CheckboxCard・Gantt 日中モード・StatusScreen success\n\n## 📋 事業者向け/利用者向け 進捗\n- ✈️ 航空：利用者向け 6枚 ✅／**事業者向け 4枚（OCC/MRO/乗員/グラハン）**＝厚みUP・あと1枚（就航/スロット計画）で鉄道の5枚と対称\n- 🚆 鉄道：利用者向け 6枚 ✅／事業者向け 5枚 ✅\n\n## 次回予告（やってみた #135）\n- **航空の事業者向け 就航管理・ダイヤ/スロット計画**（路線便数・空港スロット・機材アサイン）＝ダイヤ作成#133 の航空版で航空の事業者向けを5枚＝鉄道と完全対称に。その後 **新モード バス**（Stringline 3回目→作る の本命）。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ **[ルートストップ RouteStops](https://gunjo.jp/docs/components/route-stops)** ／ **[アクションキュー ActionQueue](https://gunjo.jp/docs/components/action-queue)** ／ **[コサイン CoSign](https://gunjo.jp/docs/components/co-sign)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#133](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\n機器状態盤の欠落が2回目を見せ、RouteStops の守備範囲がランプにも届いた——深掘りは欠落を貯めながら、既存コンポーネントの地図も同時に精密にする。\n"
   },
   "code": [
     {
@@ -30,32 +29,20 @@
     }
   ],
   "components": [
-    "ActionItem",
     "ActionQueue",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
     "CoSign",
-    "CoSignValue",
     "Meter",
     "PageHeader",
-    "RouteStopItem",
-    "RouteStopStatus",
     "RouteStops",
     "Separator",
     "SignedRecord",
-    "SignedRecordValue",
     "StatGroup",
-    "StatisticProps",
+    "Statistic",
     "StatusBar",
     "Tabs",
-    "TabsContent",
-    "TabsList",
-    "TabsTrigger",
     "Tag"
   ],
   "shots": {

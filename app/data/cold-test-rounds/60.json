@@ -5,12 +5,11 @@
   "score": "4.5/5",
   "category": "不動産",
   "title": "AI に不動産の物件管理を作らせてみた — 医療のアラートが、家賃滞納にそのまま効いた（やってみた #60）",
-  "readmeTitle": "物件管理/レントロール（不動産・入居率/賃料/滞納/契約更新層）★新業界",
   "summary": "医療を7枚やり切って、全く別の**不動産**へ。1枚目は賃貸管理会社のレントロール——管理物件の入居率、部屋ごとの賃料・契約者・状態、滞納、更新/退去予定を俯瞰する運用画面。医療とは真逆の、金額とテナントライフサイクルの世界。",
   "article": {
     "file": "zenn-yattemita-60-property-management.md",
     "slug": "60-property-management",
-    "markdown": "# AI に不動産の物件管理を作らせてみた — 医療のアラートが、家賃滞納にそのまま効いた（やってみた #60）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。**新業界・不動産1枚目**——**物件管理 / レントロール**（ポートフォリオ × 物件別入居率 × 部屋別レントロール × 滞納 × 契約更新/退去予定 × 収支）。\n\n医療を7枚やり切って、全く別の**不動産**へ。1枚目は賃貸管理会社のレントロール——管理物件の入居率、部屋ごとの賃料・契約者・状態、滞納、更新/退去予定を俯瞰する運用画面。医療とは真逆の、金額とテナントライフサイクルの世界。\n\n## 結果 — 4.5/5\n\n`tsc`/`build` 緑・console 0・375px でレントロールがカード内横スクロール・物件別/全体の入居率メーター・滞納2ヶ月+の blocking バナー・更新/退去予定リスト・KPI が summary/物件/部屋で整合・h1 1個。\n\n## 今回の主役 — 医療/物流の primitive が、不動産の壁を越えてそのまま効いた\n\nこれまで複利は同じ業界内（医療→医療）で見てきた。今回はそれが**業界を大きくまたいだ**。商業/金融/物流/医療で作った primitive が、不動産のレントロールに**ほぼ無改造で**効いた。中でも象徴的だったのが:\n\n> **`SafetyBanner`(医療のアレルギー/禁忌/パニック値用に build) — REUSED for serious-arrears (滞納2ヶ月以上) and it's a *semantically perfect* cross-industry analogue**: a loud, assertive (`role=\"alert\"`) top-of-page block for a condition you must not miss, with an `actions` slot (督促記録). Strong fit.\n\n**「見逃してはいけない危険を、assertive に承認させる」**という SafetyBanner の抽象は、医療のアレルギー警告でも不動産の家賃滞納でも同じだった。ドメインは病棟と賃貸管理で正反対なのに、作法の骨格が一致した。他にも:\n\n> - **`formatCurrency`(fintech 用) — PERFECT.** 賃料/管理費/敷金を全部 `¥1,234,567`、compact で `¥288.2万`。\n> - **`Meter`(倉庫充填/トラック積載用) — FIT building & portfolio 入居率 exactly.** `size=\"inline\"` がセルにそのまま、6つの入居率メーターに accessible name。\n> - **`Statistic`/`Table`/`Tabs`/`toCsv`(BOM 付き日本語 CSV)/`Badge`** も全部そのまま。\n\n医療の安全 primitive・物流の容量メーター・金融の金額フォーマット——**業界をまたいでも、作法の骨格が同じなら同じ部品が効く**。これが「業界を散らして primitive を育てる」ことの最終的な価値だった。\n\n## src で直した穴 — `TimelineDescription` の `<p>` footgun\n\n不動産特有ではない、合成時の実バグを1つ:\n\n- 🟡 **`TimelineDescription` が `<p>` 固定**——更新/退去予定の Timeline 項目にアクションボタン群を入れたら `<div> in <p>` の**実行時 hydration クラッシュ**。`as?: \"p\" | \"div\"` escape hatch を追加（[#253](https://github.com/uixhero/gunjo/issues/253)・[PR #257](https://github.com/uixhero/gunjo/pull/257)・後方互換）。Badge(#233)・AlertTitle(#251) と同じ「要素ネストの footgun」クラス。\n\n## 起票だけした穴（不動産/会計で再出現待ち・1回目）\n\n不動産特有の新しい穴は全て1回目なので起票:\n\n- 🟠 **売掛金エイジング**（1ヶ月/2ヶ月/3ヶ月以上 の件数+金額バケット・[#254](https://github.com/uixhero/gunjo/issues/254)）。滞納も AR も同じ作法。`DistributionBar` は割合バーで、ラベル付き件数+金額バケットではない。\n- 🟠 **`DataTable` の合計/footer 行**（[#255](https://github.com/uixhero/gunjo/issues/255)）。レントロールは「部屋別→物件合計が footer で整合」が核。`EditableDataTable` は `renderFooterCell` を持つが `DataTable` には無く、`<table>`＋`<tfoot>` を手組み。\n- 🟠 **契約満了/更新の日付軸タイムライン**（[#256](https://github.com/uixhero/gunjo/issues/256)）。`Timeline` は縦のイベント列で、「満了まであと N 日」の横軸 runway ではない。\n- 🟠 **`Meter` の higher-is-better 方向**（同 #256）。入居率は満室=good だが Meter は満杯=warning（容量方向）。`tone` 上書きで回避したが `direction=\"higher-is-better\"` が欲しい。\n\n## 学び — primitive は「作法の骨格」を捉えると業界を越える\n\n```\n医療の安全アラート → 不動産の滞納アラート（SafetyBanner・骨格同一）\n倉庫の充填メーター → 不動産の入居率メーター（Meter・方向だけ違う）\n金融の金額         → 不動産の賃料（formatCurrency・そのまま）\n```\n\n新業界の1枚目が 4.5/5——医療/物流/金融で育てた primitive が、不動産でほぼ無改造で効いたから。重要なのは、primitive が**特定業界の見た目**でなく**作法の骨格**（危険を承認させる/充填を測る/金額を整える）を捉えていたこと。骨格が同じなら、病棟だろうと賃貸管理だろうと同じ部品が刺さる。残った不動産特有の穴（エイジング/footer/日付軸）は、会計や他業界でも再出現するので3回ルールで育てる。\n\n## 次回予告（やってみた #61）\n- **不動産をもう1枚**（賃貸借契約/重要事項説明 で SignedRecord が契約署名に効くか・または内見予約/物件募集）。1業界3〜5枚で不動産の判断を立体化。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#59](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。新業界の1枚目で、医療のアラートが家賃滞納にそのまま効いた回。\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI に不動産の物件管理を作らせてみた — 医療のアラートが、家賃滞納にそのまま効いた（やってみた #60）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。**新業界・不動産1枚目**——**物件管理 / レントロール**（ポートフォリオ × 物件別入居率 × 部屋別レントロール × 滞納 × 契約更新/退去予定 × 収支）。\n\n医療を7枚やり切って、全く別の**不動産**へ。1枚目は賃貸管理会社のレントロール——管理物件の入居率、部屋ごとの賃料・契約者・状態、滞納、更新/退去予定を俯瞰する運用画面。医療とは真逆の、金額とテナントライフサイクルの世界。\n\n## 結果 — 4.5/5\n\n`tsc`/`build` 緑・console 0・375px でレントロールがカード内横スクロール・物件別/全体の入居率メーター・滞納2ヶ月+の警告バナー・更新/退去予定リスト・KPI が summary/物件/部屋で整合・h1 1個。\n\n## 今回の主役 — 医療/物流のコンポーネントが、不動産の壁を越えてそのまま効いた\n\nこれまで複利は同じ業界内（医療→医療）で見てきた。今回はそれが**業界を大きくまたいだ**。商業/金融/物流/医療で作ったコンポーネントが、不動産のレントロールに**ほぼ無改造で**効いた。中でも象徴的だったのが:\n\n> **`SafetyBanner`（医療のアレルギー/禁忌/パニック値用に作った）— 重い滞納（2ヶ月以上）に再利用、意味的に完璧な業界をまたいだ対応物だ**: 見逃してはいけない状況のための、大きく assertive（`role=\"alert\"`）な、ページ最上部の警告ブロック。操作ボタンの差込口（督促記録）付き。よく合う。\n\n**「見逃してはいけない危険を、assertive に承認させる」**という SafetyBanner の抽象は、医療のアレルギー警告でも不動産の家賃滞納でも同じだった。ドメインは病棟と賃貸管理で正反対なのに、作法の骨格が一致した。他にも:\n\n> - **`formatCurrency`（金融用）— 完璧。** 賃料/管理費/敷金を全部 `¥1,234,567`、compact で `¥288.2万`。\n> - **`Meter`（倉庫充填/トラック積載用）— 物件別・全体の入居率にぴったり合った。** `size=\"inline\"` がセルにそのまま、6つの入居率メーターに読み上げ名。\n> - **`Statistic`/`Table`/`Tabs`/`toCsv`(BOM 付き日本語 CSV)/`Badge`** も全部そのまま。\n\n医療の安全コンポーネント・物流の容量メーター・金融の金額フォーマット——**業界をまたいでも、作法の骨格が同じなら同じコンポーネントが効く**。これが「業界を散らしてコンポーネントを育てる」ことの最終的な価値だった。\n\n## src で直した不備 — `TimelineDescription` の `<p>` ハマりどころ\n\n不動産特有ではない、合成時の実バグを1つ:\n\n- 🟡 **`TimelineDescription` が `<p>` 固定**——更新/退去予定の Timeline 項目にアクションボタン群を入れたら `<div> in <p>` で**実行時にクラッシュ（サーバー/ブラウザずれ）**。`as?: \"p\" | \"div\"` の逃げ道を追加（[#253](https://github.com/uixhero/gunjo/issues/253)・[PR #257](https://github.com/uixhero/gunjo/pull/257)・後方互換）。Badge(#233)・AlertTitle(#251) と同じ「要素の入れ子のハマりどころ」の仲間。\n\n## 課題に記録だけした欠落（不動産/会計で再出現待ち・1回目）\n\n不動産特有の新しい欠落は全て1回目なので課題に記録:\n\n- 🟠 **売掛金エイジング**（1ヶ月/2ヶ月/3ヶ月以上 の件数+金額バケット・[#254](https://github.com/uixhero/gunjo/issues/254)）。滞納も売掛金も同じ作法。`DistributionBar` は割合バーで、ラベル付きの件数+金額バケットではない。\n- 🟠 **`DataTable` の合計/フッター行**（[#255](https://github.com/uixhero/gunjo/issues/255)）。レントロールは「部屋別→物件合計がフッターで整合」が核。`EditableDataTable` は `renderFooterCell` を持つが `DataTable` には無く、`<table>`＋`<tfoot>` を手組み。\n- 🟠 **契約満了/更新の日付軸タイムライン**（[#256](https://github.com/uixhero/gunjo/issues/256)）。`Timeline` は縦のイベント列で、「満了まであと N 日」を横軸で示す残り期間バーではない。\n- 🟠 **`Meter` の「値が大きいほど良い」方向**（同 #256）。入居率は満室=good だが Meter は満杯=warning（容量方向）。`tone` 上書きで回避したが `direction=\"higher-is-better\"` が欲しい。\n\n## 学び — コンポーネントは「作法の骨格」を捉えると業界を越える\n\n```\n医療の安全アラート → 不動産の滞納アラート（SafetyBanner・骨格同一）\n倉庫の充填メーター → 不動産の入居率メーター（Meter・方向だけ違う）\n金融の金額         → 不動産の賃料（formatCurrency・そのまま）\n```\n\n新業界の1枚目が 4.5/5——医療/物流/金融で育てたコンポーネントが、不動産でほぼ無改造で効いたから。重要なのは、コンポーネントが**特定業界の見た目**でなく**作法の骨格**（危険を承認させる/充填を測る/金額を整える）を捉えていたこと。骨格が同じなら、病棟だろうと賃貸管理だろうと同じコンポーネントが刺さる。残った不動産特有の欠落（エイジング/フッター/日付軸）は、会計や他業界でも再出現するので3回ルールで育てる。\n\n## 次回予告（やってみた #61）\n- **不動産をもう1枚**（賃貸借契約/重要事項説明 で SignedRecord が契約署名に効くか・または内見予約/物件募集）。1業界3〜5枚で不動産の判断を立体化。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#59](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。新業界の1枚目で、医療のアラートが家賃滞納にそのまま効いた回。\n"
   },
   "code": [
     {
@@ -38,10 +37,6 @@
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
     "EmptyState",
     "Meter",
     "SafetyBanner",
@@ -49,20 +44,8 @@
     "Separator",
     "Statistic",
     "Table",
-    "TableBody",
-    "TableCell",
-    "TableHead",
-    "TableHeader",
-    "TableRow",
     "Tabs",
-    "TabsContent",
-    "TabsList",
-    "TabsTrigger",
-    "Timeline",
-    "TimelineDescription",
-    "TimelineItem",
-    "TimelineTime",
-    "TimelineTitle"
+    "Timeline"
   ],
   "shots": {
     "desktop": true,

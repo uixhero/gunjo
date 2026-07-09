@@ -10,8 +10,9 @@
     "shadcn",
     "ssot"
   ],
-  "main": "src/index.ts",
-  "types": "src/index.ts",
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uixhero/gunjo.git"
@@ -25,20 +26,28 @@
     "access": "public"
   },
   "exports": {
-    ".": "./src/index.ts",
-    "./styles": "./src/globals.css",
+    ".": {
+      "types": "./dist/index.d.ts",
+      "default": "./dist/index.js"
+    },
+    "./styles": "./dist/globals.css",
     "./tailwind-preset": "./tailwind-preset.js",
     "./tailwind-theme-extend": "./tailwind-theme-extend.cjs"
   },
   "files": [
+    "dist",
     "src",
     "docs",
     "tailwind-preset.js",
     "tailwind-theme-extend.cjs",
     "design/*-metadata.json"
   ],
+  "sideEffects": [
+    "**/*.css"
+  ],
   "scripts": {
     "type-check": "tsc --noEmit --incremental false",
+    "build:lib": "rm -rf dist && tsc -p tsconfig.build.json && node scripts/build-lib-finalize.mjs",
     "dev": "next dev -p 13030",
     "build": "next build",
     "start": "next start",
@@ -49,7 +58,8 @@
     "coldtest-gallery:snapshot": "node scripts/build-coldtest-gallery.mjs",
     "coldtest-gallery:thumbs": "node scripts/build-coldtest-thumbs.mjs",
     "coldtest-gallery:rounds": "node scripts/build-coldtest-rounds.mjs",
-    "prepare": "npm run hooks:install",
+    "coldtest-primitives:aggregate": "node scripts/aggregate-coldtest-primitives.mjs",
+    "prepare": "npm run build:lib && npm run hooks:install",
     "hooks:install": "node scripts/install-git-hooks.mjs",
     "design:sync": "node scripts/design-sync.mjs",
     "design:sync:tokens": "node scripts/design-sync.mjs --tokens",
@@ -70,6 +80,7 @@
     "design:verify:docs-metadata": "node scripts/design-verify-docs-metadata-coverage.mjs",
     "design:verify:docs-content-ssot": "node scripts/design-verify-docs-content-ssot.mjs",
     "design:verify:docs-navigation": "node scripts/design-verify-docs-navigation-coverage.mjs",
+    "design:verify:uixhero-mapping": "node scripts/verify-uixhero-mapping.mjs",
     "design:verify:docs-spec-imports": "node scripts/design-verify-docs-spec-imports.mjs",
     "design:verify:nav-translations": "node scripts/design-verify-nav-translation-coverage.mjs",
     "design:verify:node-snapshots": "node scripts/design-verify-node-snapshot-coverage.mjs",
@@ -141,7 +152,6 @@
     "tailwindcss": "^3.0.0 || ^4.0.0"
   },
   "dependencies": {
-    "@next/third-parties": "^16.2.9",
     "@radix-ui/react-accordion": "^1.2.12",
     "@radix-ui/react-alert-dialog": "^1.1.15",
     "@radix-ui/react-aspect-ratio": "^1.1.8",
@@ -168,21 +178,16 @@
     "embla-carousel-react": "^8.6.0",
     "framer-motion": "^12.0.0",
     "input-otp": "^1.4.2",
-    "lucide-react": "^0.562.0",
-    "next": "16.1.0",
-    "next-themes": "^0.4.6",
-    "react": "^19.0.0",
     "react-day-picker": "^9.13.0",
-    "react-dom": "^19.0.0",
     "react-markdown": "^10.1.0",
     "react-resizable-panels": "^4.0.11",
     "remark-gfm": "^4.0.1",
-    "shiki": "^3.20.0",
     "tailwind-merge": "^3.4.0",
     "tailwindcss-animate": "^1.0.7",
     "vaul": "^1.1.2"
   },
   "devDependencies": {
+    "@next/third-parties": "^16.2.9",
     "@tailwindcss/postcss": "^4.1.18",
     "@types/node": "^20",
     "@types/react": "^19",
@@ -192,8 +197,13 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.0",
     "lighthouse": "^12.8.2",
+    "next": "16.1.0",
+    "next-themes": "^0.4.6",
     "postcss": "^8.5.6",
     "puppeteer": "^24.41.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "shiki": "^3.20.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

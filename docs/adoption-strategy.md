@@ -25,29 +25,26 @@ L4（実採用）開始時にレジストリの最終決定（社内 / 公開）
 
 ```jsonc
 "files": [
-  "src",                      // TypeScript 実装（型定義含む）
+  "dist",                     // コンパイル済み ESM + .d.ts（配布ランタイム）
+  "src",                      // TypeScript 実装（sourcemap / go-to-definition 用）
   "tailwind-preset.js",       // Tailwind v3 用プリセット
   "tailwind-theme-extend.cjs",// Tailwind v4 用 extend
-  "design/inputs-metadata.json",     // 採用先で参照可能なメタデータ
-  "design/display-metadata.json",
-  "design/feedback-metadata.json",
-  "design/navigation-metadata.json",
-  "design/overlay-metadata.json",
-  "design/layout-metadata.json",
-  "design/patterns-metadata.json"
+  "design/*-metadata.json"    // 採用先で参照可能なメタデータ
 ]
 ```
 
-`exports` は既存の 4 エントリで足りる：
+`exports` は dist（コンパイル済み）を指す 4 エントリ：
 
 ```jsonc
 "exports": {
-  ".":                     "./src/index.ts",
-  "./styles":              "./src/globals.css",
+  ".":                     { "types": "./dist/index.d.ts", "default": "./dist/index.js" },
+  "./styles":              "./dist/globals.css",
   "./tailwind-preset":     "./tailwind-preset.js",
   "./tailwind-theme-extend":"./tailwind-theme-extend.cjs"
 }
 ```
+
+> dist は `npm run build:lib`（`tsc -p tsconfig.build.json`）で生成し、`prepare` で `npm install` / `npm pack` / `npm publish` 時に自動ビルドされる（`npm install file:../gunjo` のローカル採用でも dist が揃う）。`"use client"` 境界はファイル先頭の directive として tsc がそのまま保持する。生 TS を直接 `exports` していた旧 alpha と異なり、採用先は `transpilePackages` 不要でそのまま import できる。
 
 `tailwind-theme-extend` は Tailwind v4 採用先が `@theme` ベースで token map を直接使いたい場合の出口。通常は `tailwind-preset` 経由で十分（[adoption.md](./adoption.md#3-tailwind-プリセット取り込み) 参照）。
 

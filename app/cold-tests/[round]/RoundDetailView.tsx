@@ -30,7 +30,12 @@ import {
 } from "@gunjo/ui";
 import type { AssetCardAsset } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { PackCta } from "@/components/pack/PackCta";
 import { LocalNav } from "@/components/layout/TableOfContents";
+import categoriesData from "@/data/cold-test-categories.json";
+
+const CATEGORY_SLUG_MAP = (categoriesData as { slugMap: Record<string, string> })
+    .slugMap;
 
 export interface RoundCodeFile {
     file: string;
@@ -45,7 +50,6 @@ export interface RoundDetail {
     score: string;
     category: string;
     title: string;
-    readmeTitle: string;
     summary: string;
     article: {
         file: string;
@@ -179,11 +183,16 @@ export function RoundDetailView({
                     <BreadcrumbSeparator />
                     <BreadcrumbItem>
                         <BreadcrumbLink asChild>
-                            {/* Category crumb routes to /cold-tests pre-filtered
-                                to this industry via ?cat=; the grid reads the
-                                param to seed its tab state. */}
+                            {/* Category crumb routes to the industry door page
+                                once a slug is registered. The slugMap covers
+                                all 20 categories; legacy ?cat= grid filter is
+                                kept only as a fallback for an unknown name. */}
                             <Link
-                                href={`/cold-tests?cat=${encodeURIComponent(detail.category)}`}
+                                href={
+                                    CATEGORY_SLUG_MAP[detail.category]
+                                        ? `/cold-tests/categories/${CATEGORY_SLUG_MAP[detail.category]}`
+                                        : `/cold-tests?cat=${encodeURIComponent(detail.category)}`
+                                }
                             >
                                 {t.categories[detail.category] ?? detail.category}
                             </Link>
@@ -331,6 +340,13 @@ export function RoundDetailView({
                             />
                         </CardContent>
                     </Card>
+                    {/* WRITING-RULES §2: the gallery is the publication venue
+                        for the series, so the AI-collaboration disclosure is
+                        rendered once here instead of being pasted into all
+                        170 article markdown files. */}
+                    <p className="text-xs leading-5 text-muted-foreground">
+                        {td.aiDisclosure}
+                    </p>
                 </section>
             ) : null}
 
@@ -463,6 +479,8 @@ export function RoundDetailView({
                     }
                 />
             )}
+
+            <PackCta placement="coldtests_article" className="mt-4" />
         </article>
     );
 }

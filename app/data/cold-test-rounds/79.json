@@ -4,13 +4,12 @@
   "slug": "resident-move",
   "score": "4.5/5",
   "category": "公共・行政",
-  "title": "AI に住民異動届の処理を作らせてみた — ApprovalWorkflow が3回連続で別手続きに刺さり、チェックリストを3回出して部品化（やってみた #79）",
-  "readmeTitle": "住民異動届/各種届出処理（公共・異動内容/処理WF/関連手続きチェックリスト/受理記録層）",
-  "summary": "公共の5枚目は住民課の窓口——転入/転出/転居を受け、本人確認・書類・**関連手続き（マイナンバー/国保/学校/印鑑…）**を案内し、住民票を更新して受理する画面。**ApprovalWorkflow が3回連続で別手続きに刺さり、同じ画面で3回出た「チェックリスト」を部品化した**回。",
+  "title": "AI に住民異動届の処理を作らせてみた — ApprovalWorkflow が3回連続で別手続きに刺さり、チェックリストを3回出してコンポーネント化（やってみた #79）",
+  "summary": "公共の5枚目は住民課の窓口——転入/転出/転居を受け、本人確認・書類・**関連手続き（マイナンバー/国保/学校/印鑑…）**を案内し、住民票を更新して受理する画面。**ApprovalWorkflow が3回連続で別手続きに刺さり、同じ画面で3回出た「チェックリスト」をコンポーネント化した**回。",
   "article": {
     "file": "zenn-yattemita-79-resident-move.md",
     "slug": "79-resident-move",
-    "markdown": "# AI に住民異動届の処理を作らせてみた — ApprovalWorkflow が3回連続で別手続きに刺さり、チェックリストを3回出して部品化（やってみた #79）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。**公共/自治体5枚目**——**住民異動届 / 各種届出処理**（異動内容 × 処理ワークフロー × 本人確認/必要書類 × 関連手続き × 受理記録）。\n\n公共の5枚目は住民課の窓口——転入/転出/転居を受け、本人確認・書類・**関連手続き（マイナンバー/国保/学校/印鑑…）**を案内し、住民票を更新して受理する画面。**ApprovalWorkflow が3回連続で別手続きに刺さり、同じ画面で3回出た「チェックリスト」を部品化した**回。\n\n## 結果 — 4.5/5\n\n`tsc`/`build` 緑・console 0・375px・異動内容/対象世帯員・処理ワークフロー（受付→本人確認→異動内容確認→住民票更新→完了）・関連手続きチェックリスト・受理記録ロック。\n\n## 今回の主役 — ApprovalWorkflow が3回連続、CheckList を3回ルールで build\n\n**`ApprovalWorkflow`（#76 build）が、#77 施設予約・#79 住民異動 と3回連続で別ドメインに刺さった**:\n\n> **Processing workflow ← `ApprovalWorkflow`.** Designed for \"any staged back-office review\" — dropped onto a 自治体 residence-registration pipeline with **zero structural changes**. Already ships 差戻し/却下/完了 defaults, records actor+timestamp, rolls back on send-back, and `canAdvance`+`advanceHint` gating I wired straight to \"本人確認済 && 必須書類チェック済\" and \"関連手続き全件解決済\". **Discoverable on the first catalog pass.**\n\nそして cold AI が**1画面で3回**手組みしたものがあった——**チェックリスト**（対象世帯員・必要書類・関連手続き）:\n\n> **No checklist / selectable-list primitive.** `List` is presentational, `Checkbox` is a single control — nothing composes \"row with leading control + label + description + trailing status/action.\" All three core domain lists are hand-rolled. **The single biggest gap for back-office/case-management screens.**\n\nこれは #67 リコール範囲確定でも出ていた。#67＋#79（×3）＝明確に3回以上 → **3回ルールで `CheckList` を build**（[#135](https://github.com/uixhero/gunjo/issues/135)・[PR #310](https://github.com/uixhero/gunjo/pull/310)）:\n\n> - `items[]`（id/label/description/trailing/checked/disabled）・枠+区切り線・`onCheckedChange(id, checked)`。\n> - 各チェックボックスが**行ラベルをアクセシブル名に**（Checkbox の label/description 配線を流用＝ラベル無しコントロールにならない）・`trailing`（status Badge/アクション/金額）はトグルの外。\n> - `checked` 無しの行は素の表示行（情報行と混在可）。\n\nブラウザ実証: トグル `[T,F,F,F]→[T,T,F,F]`・aria-labelledby 配線・行ごとの確認済/未確認 Badge。**#135 は「チェックリスト」の顔を build、選択+キーボードナビの ListBox（受信箱/master-detail）は別 primitive として残す。**\n\n越境継続: SignedRecord→受理記録・Badge icon→関連手続き状態ピル・DataTable→届出一覧。\n\n## 起票だけ（軽微）\n\n- 🟡 DataTable のヘッダ要約が狭い desktop コンテナ（<480px）で崩れる（[#311](https://github.com/uixhero/gunjo/issues/311)）。\n- 🟢 ApprovalWorkflow + SignedRecord の「この段階は署名必須」合成パターンが docs に無い（[#312](https://github.com/uixhero/gunjo/issues/312)）。\n\n## 学び — 「振る舞い」も「行の型」も、3回で結晶化\n\n#79 は2つの3回ルールが同時に効いた回：①**振る舞い primitive（ApprovalWorkflow）が3回連続で別手続きに刺さる**（複利）。②**行の型（CheckList）が3回出て build**（新規）。デザインシステムは「画面の骨格」だけでなく「行の骨格（チェック+ラベル+状態）」も primitive 化する価値がある——cold AI が同じ `<ul>` を1画面で3回書いた痛みが、そのまま設計仕様になった。公共5枚で、規制・back-office ドメインの作法（署名確定・段階審査・チェックリスト・maker-checker）がほぼ揃った。\n\n## 公共シリーズ総括（#75〜#79）\n| # | 画面 | 点 | ハイライト |\n|---|---|---|---|\n| 75 | 窓口/申請受付 | 4 | SignedRecord/CoSign 越境・**DataTable onRowClick fix** |\n| 76 | 給付金審査 | 4 | **ApprovalWorkflow build**（3回手組み） |\n| 77 | 施設予約 | 4.5 | ScheduleGrid＋ApprovalWorkflow 即再利用 |\n| 78 | 税申告/納税 | 4.5 | SignedRecord→課税確定・no-build |\n| 79 | 住民異動 | 4.5 | ApprovalWorkflow 3回連続・**CheckList build** |\n\n## 次回予告（やってみた #80）\n- **別業界へ pivot**（メディア/出版・HR/人材 など）or 公共をもう1枚。CheckList が別画面で即再利用されるか・系譜#281・連続時間軸#142残りの大型も観測継続。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#78](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。ApprovalWorkflow が3回連続で別手続きに刺さり、1画面で3回出たチェックリストを CheckList に結晶化した回。\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI に住民異動届の処理を作らせてみた — ApprovalWorkflow が3回連続で別手続きに刺さり、チェックリストを3回出してコンポーネント化（やってみた #79）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。**公共/自治体5枚目**——**住民異動届 / 各種届出処理**（異動内容 × 処理ワークフロー × 本人確認/必要書類 × 関連手続き × 受理記録）。\n\n公共の5枚目は住民課の窓口——転入/転出/転居を受け、本人確認・書類・**関連手続き（マイナンバー/国保/学校/印鑑…）**を案内し、住民票を更新して受理する画面。**ApprovalWorkflow が3回連続で別手続きに刺さり、同じ画面で3回出た「チェックリスト」をコンポーネント化した**回。\n\n## 結果 — 4.5/5\n\n`tsc`/`build` 緑・console 0・375px・異動内容/対象世帯員・処理ワークフロー（受付→本人確認→異動内容確認→住民票更新→完了）・関連手続きチェックリスト・受理記録ロック。\n\n## 今回の主役 — ApprovalWorkflow が3回連続、CheckList を3回ルールで作る\n\n**`ApprovalWorkflow`（#76 で作った）が、#77 施設予約・#79 住民異動 と3回連続で別領域に刺さった**:\n\n> **処理ワークフロー ← `ApprovalWorkflow`.** 「あらゆる段階的な事務方の審査」向けに設計されている——自治体の住民登録パイプラインに**構造変更ゼロ**で載った。差戻し/却下/完了の既定を備え、担当者+時刻を記録し、差戻しでロールバックし、`canAdvance`＋`advanceHint` のゲートを「本人確認済 && 必須書類チェック済」「関連手続き全件解決済」にそのまま配線した。**カタログの最初の走査で見つかる。**\n\nそして予備知識ゼロの AI が**1画面で3回**手組みしたものがあった——**チェックリスト**（対象世帯員・必要書類・関連手続き）:\n\n> **チェックリスト/選択できるリストのコンポーネントが無い。** `List` は表示専用、`Checkbox` は単体のコントロール——「先頭にコントロール + ラベル + 説明 + 末尾に状態/アクション の行」を組めるものが無い。核となる3つの業務リストが全部手組みだ。**事務方/案件管理の画面で最大の欠落。**\n\nこれは #67 リコール範囲確定でも出ていた。#67＋#79（×3）＝明確に3回以上 → **3回ルールで `CheckList` を作る**（[#135](https://github.com/uixhero/gunjo/issues/135)・[PR #310](https://github.com/uixhero/gunjo/pull/310)）:\n\n> - `items[]`（id/label/description/trailing/checked/disabled）・枠+区切り線・`onCheckedChange(id, checked)`。\n> - 各チェックボックスが**行ラベルを読み上げ名に**（Checkbox の label/description 配線を流用＝ラベル無しのコントロールにならない）・`trailing`（status Badge/アクション/金額）はトグルの外。\n> - `checked` 無しの行は素の表示行（情報行と混在可）。\n\nブラウザ実証: トグル `[T,F,F,F]→[T,T,F,F]`・aria-labelledby 配線・行ごとの確認済/未確認 Badge。**#135 は「チェックリスト」の顔を作り、選択+キーボード移動の ListBox（受信箱/一覧と詳細）は別のコンポーネントとして残す。**\n\n業界越えを継続: SignedRecord→受理記録・Badge icon→関連手続き状態ピル・DataTable→届出一覧。\n\n## 課題に記録だけ（軽微）\n\n- 🟡 DataTable のヘッダ要約が、狭い desktop のコンテナ（<480px）で崩れる（[#311](https://github.com/uixhero/gunjo/issues/311)）。\n- 🟢 ApprovalWorkflow + SignedRecord の「この段階は署名必須」の合成パターンが docs に無い（[#312](https://github.com/uixhero/gunjo/issues/312)）。\n\n## 学び — 「振る舞い」も「行の型」も、3回で固まる\n\n#79 は2つの3回ルールが同時に効いた回：①**振る舞いのコンポーネント（ApprovalWorkflow）が3回連続で別手続きに刺さる**（複利）。②**行の型（CheckList）が3回出て作る**（新規）。デザインシステムは「画面の骨格」だけでなく「行の骨格（チェック+ラベル+状態）」もコンポーネント化する価値がある——予備知識ゼロの AI が同じ `<ul>` を1画面で3回書いた痛みが、そのまま設計仕様になった。公共5枚で、規制・事務方の領域の作法（署名確定・段階審査・チェックリスト・二重承認）がほぼ揃った。\n\n## 公共シリーズ総括（#75〜#79）\n| # | 画面 | 点 | ハイライト |\n|---|---|---|---|\n| 75 | 窓口/申請受付 | 4 | SignedRecord/CoSign 業界越え・**DataTable onRowClick 修正** |\n| 76 | 給付金審査 | 4 | **ApprovalWorkflow を作る**（3回手組み） |\n| 77 | 施設予約 | 4.5 | ScheduleGrid＋ApprovalWorkflow 即再利用 |\n| 78 | 税申告/納税 | 4.5 | SignedRecord→課税確定・新規コンポーネントなし |\n| 79 | 住民異動 | 4.5 | ApprovalWorkflow 3回連続・**CheckList を作る** |\n\n## 次回予告（やってみた #80）\n- **別業界へ移る**（メディア/出版・HR/人材 など）or 公共をもう1枚。CheckList が別画面で即再利用されるか・系譜#281・連続時間軸#142残りの大型も観測継続。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#78](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。ApprovalWorkflow が3回連続で別手続きに刺さり、1画面で3回出たチェックリストを CheckList に固めた回。\n"
   },
   "code": [
     {
@@ -26,18 +25,11 @@
   ],
   "components": [
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
     "ApprovalWorkflow",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
     "Checkbox",
-    "ColumnDef",
     "Container",
     "DataTable",
     "HStack",
@@ -45,8 +37,7 @@
     "Select",
     "Separator",
     "SignedRecord",
-    "VStack",
-    "WorkflowValue"
+    "VStack"
   ],
   "shots": {
     "desktop": true,

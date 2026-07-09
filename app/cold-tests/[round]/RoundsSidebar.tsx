@@ -114,7 +114,8 @@ export function RoundsSidebar({
                                     countLabel={(n) => t.sidebar.categoryCountLabel(n)}
                                     hasChildren
                                     isExpanded={open}
-                                    isActive={!filtering && c === currentCat}
+                                    isActive={false}
+                                    isCurrentAncestor={!filtering && c === currentCat}
                                     onClick={() => !filtering && toggle(c)}
                                 />
                                 {open && (

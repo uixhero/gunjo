@@ -17,6 +17,7 @@ import { CopySpecButton } from "@/components/doc/CopySpecButton";
 import { copyTextToClipboard } from "@/components/doc/clipboard";
 import { StabilityBadge } from "@/components/doc/StabilityBadge";
 import { LocalNav } from "@/components/layout/TableOfContents";
+import { getUixheroLinks } from "@/lib/uixhero-links";
 
 import {
     IconCheck as Check,
@@ -180,8 +181,66 @@ export function ComponentLayout({ title, description, children, usedComponents, 
                         )}
                     </div>
                 ) : null}
+                <UixheroRationaleSection
+                    componentSlug={deriveFlatSlug(pathname)}
+                    componentTitle={title}
+                    locale={locale}
+                />
             </div>
         </div>
+    );
+}
+
+// 姉妹サイト UIXHERO への逆リンク（設計の判断・根拠）。対応の有無は
+// uixhero-mapping.json（SSOT）から導出され、対応がない部品では何も出ない。
+function UixheroRationaleSection({
+    componentSlug,
+    componentTitle,
+    locale,
+}: {
+    componentSlug: string | null;
+    componentTitle: string;
+    locale: "en" | "ja";
+}) {
+    const links = React.useMemo(() => getUixheroLinks(componentSlug), [componentSlug]);
+    if (!links.zukanHref && links.laws.length === 0) return null;
+
+    const heading = locale === "ja" ? "設計の判断（UIXHERO）" : "Design rationale (UIXHERO)";
+    const description =
+        locale === "ja"
+            ? "「いつ・なぜ使うか」の判断は、姉妹サイト UIXHERO の記事で解説しています。"
+            : "The when-and-why guidance for this component lives on our sister site UIXHERO (articles in Japanese).";
+    const zukanLabel =
+        locale === "ja"
+            ? `UIコンポーネント: ${componentTitle}`
+            : `UI component: ${componentTitle}`;
+
+    const items = [
+        ...(links.zukanHref ? [{ label: zukanLabel, href: links.zukanHref }] : []),
+        ...links.laws,
+    ];
+
+    return (
+        <section className="space-y-3" data-uixhero-rationale="true">
+            <h2 id="uixhero-rationale" className="scroll-m-20 text-xl font-semibold tracking-tight">
+                {heading}
+            </h2>
+            <p className="text-sm text-muted-foreground">{description}</p>
+            <div className="flex flex-wrap gap-2">
+                {items.map((item) => (
+                    <a
+                        key={item.href}
+                        href={item.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1 rounded-md border border-transparent bg-secondary px-2.5 py-0.5 text-xs font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                    >
+                        {item.label}
+                        <ExternalLink className="h-3 w-3" aria-hidden="true" />
+                    </a>
+                ))}
+            </div>
+        </section>
     );
 }
 

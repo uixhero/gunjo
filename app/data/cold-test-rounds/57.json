@@ -5,12 +5,11 @@
   "score": "4/5",
   "category": "医療・ヘルスケア",
   "title": "AI に看護記録を作らせてみた — 静かな回でも、Textarea の積み残しと「追記のみ記録」が出た（やってみた #57）",
-  "readmeTitle": "看護記録/SOAP経過記録（医療・SOAP/署名追記のみ/看護問題/ケア計画層）",
   "summary": "#53 スキャン・#54 入力・#55 レビュー・#56 オーダーと続いた医療で、今回は**記録（ドキュメンテーション）**レイヤー。SOAP（主観/客観/評価/計画）で経過を書き、署名すると**追記しかできない法的記録**になる。テキストと時系列が主役の、これまでと別の作法。",
   "article": {
     "file": "zenn-yattemita-57-nursing-record.md",
     "slug": "57-nursing-record",
-    "markdown": "# AI に看護記録を作らせてみた — 静かな回でも、Textarea の積み残しと「追記のみ記録」が出た（やってみた #57）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。**医療5枚目**——**看護記録 / SOAP 経過記録**（SOAP記録 × 署名→追記のみの法的記録 × 看護問題/診断 × ケア計画 × 申し送り）。\n\n#53 スキャン・#54 入力・#55 レビュー・#56 オーダーと続いた医療で、今回は**記録（ドキュメンテーション）**レイヤー。SOAP（主観/客観/評価/計画）で経過を書き、署名すると**追記しかできない法的記録**になる。テキストと時系列が主役の、これまでと別の作法。\n\n## 結果 — 4/5\n\n`tsc`/`build` 緑・console 0・375px・SOAP 4項目記入→署名で read-only ロック→追記（元記録は保持）・看護問題の解決・ケア項目のトグル・申し送り・h1 1個。\n\n## 静かな回 — でも2つ出た\n\n医療5枚目は、これまでの primitive（FormField/Timeline/Tabs/Card/Badge）でほぼ組めた静かな回。それでも2つ出た:\n\n### ① `Textarea` の積み残し → 直した\n\ncold AI が指摘:\n\n> `Textarea` has no `label`, no char-count, no autosize — it's a bare `<textarea>` (**unlike `Select`/`Checkbox`/`Switch`/`RadioGroup` which all ship `label`+`description`+aria**).\n\nTextarea だけが、兄弟の入力部品が全部持つ `label`/`description` を持っていなかった——明確な一貫性/a11y の積み残し。`Select` と同じ実装で **`label`/`description` を追加**（[#245](https://github.com/uixhero/gunjo/issues/245)・[PR #247](https://github.com/uixhero/gunjo/pull/247)）。後方互換（無指定なら素の textarea）。**業界を深掘りしていると、基礎部品の小さな抜けも炙り出される**——SOAP の4項目を全部 textarea で書く画面だから気付けた。\n\n### ② 「追記のみの署名記録」primitive 不在 → 起票\n\n最大の穴は、**追記のみの法的記録**だった:\n\n> Missing higher-order primitive: an **append-only signed/legal-record component.** 「draft → sign (who+when) → sealed read-only → addendum chain」をモデル化する部品が無い。`ApprovalSteps`/`Stepper` は線形の*ワークフロー*承認で、不変の*記録*ではない。`readOnly`/`sealed`/`signedBy` の概念がどこにも無い。\n\nカルテ・経過記録・手術記録など、**臨床記録の核心**——一度署名したら原文は変えられず、追記（addendum）しか足せない。手で組めたが、`SignedRecord`/`AppendOnlyLog`（著者+時刻のエントリ・sealed 状態・追記チェーン）が理想。[#246](https://github.com/uixhero/gunjo/issues/246)・1回目（手術記録/同意書で再出現を待つ）。\n\n## うまくいった点\n\n- **`FormField`/`FormControl`** — SOAP 4 textarea が `label[for]`→textarea ＋ `aria-describedby` で自動配線、id 手当てゼロ。\n- **`Timeline`** — 逆時系列の署名済みノートログにそのまま（marker variant=署名済/下書き・TimelineTime・任意 children）。手組みせず。\n- `Tabs`（記録/問題/計画/申し送り・badge カウント）・`Badge`/`Alert`（署名済/達成・色だけに依存しない）・`Checkbox`・`Select`・`Dialog`（追記/申し送り）・`CardTitle as` も。\n\n## 学び — 深掘りは「大きな穴」だけでなく「小さな抜け」も出す\n\n```\n#56 処方: ReferenceValue/SafetyBanner（大きな安全 primitive を2つ build）\n#57 看護記録: Textarea の label 抜け（小さな一貫性 fix）＋ 追記記録の起票\n```\n\n業界を深掘りすると、毎回 primitive が3回目を踏むわけではない。今回のような「記録」レイヤーは既存部品でほぼ組めた静かな回。それでも、SOAP を全部 textarea で書く画面だからこそ **Textarea の label 抜け** が見え、法的記録だからこそ **追記のみ記録** の不在が見えた。**静かな回は\"何も出ない\"ではなく\"小さいものが出る\"**——基礎部品の最後の磨きは、こういう回で進む。\n\n## 次回予告（やってみた #58）\n- **医療＝手術記録/麻酔記録**で CoSignField#239（2人署名）の3回目・追記記録#246 の2回目を狙う。これも静かなら医療を一旦まとめて別業界へ。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#56](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。静かな記録の回でも、Textarea の積み残しを直し、追記記録の不在を起票した回。\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI に看護記録を作らせてみた — 静かな回でも、Textarea の積み残しと「追記のみ記録」が出た（やってみた #57）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。**医療5枚目**——**看護記録 / SOAP 経過記録**（SOAP記録 × 署名→追記のみの法的記録 × 看護問題/診断 × ケア計画 × 申し送り）。\n\n#53 スキャン・#54 入力・#55 レビュー・#56 オーダーと続いた医療で、今回は**記録（ドキュメンテーション）**レイヤー。SOAP（主観/客観/評価/計画）で経過を書き、署名すると**追記しかできない法的記録**になる。テキストと時系列が主役の、これまでと別の作法。\n\n## 結果 — 4/5\n\n`tsc`/`build` 緑・console 0・375px・SOAP 4項目記入→署名で read-only ロック→追記（元記録は保持）・看護問題の解決・ケア項目のトグル・申し送り・h1 1個。\n\n## 静かな回 — でも2つ出た\n\n医療5枚目は、これまでのコンポーネント（FormField/Timeline/Tabs/Card/Badge）でほぼ組めた静かな回。それでも2つ出た:\n\n### ① `Textarea` の積み残し → 直した\n\n予備知識ゼロの AI が指摘:\n\n> `Textarea` には `label` も文字数カウントも autosize も無い——素の `<textarea>` だ（**`Select`/`Checkbox`/`Switch`/`RadioGroup` はどれも `label`＋`description`＋aria を備えているのに**）。\n\nTextarea だけが、兄弟の入力コンポーネントが全部持つ `label`/`description` を持っていなかった——明確な一貫性/アクセシビリティの積み残し。`Select` と同じ実装で **`label`/`description` を追加**（[#245](https://github.com/uixhero/gunjo/issues/245)・[PR #247](https://github.com/uixhero/gunjo/pull/247)）。後方互換（無指定なら素の textarea）。**業界を深掘りしていると、基礎コンポーネントの小さな抜けも炙り出される**——SOAP の4項目を全部 textarea で書く画面だから気付けた。\n\n### ② 「追記のみの署名記録」コンポーネント不在 → 課題に記録\n\n最大の欠落は、**追記のみの法的記録**だった:\n\n> 上位のコンポーネントが足りない: **追記のみの署名/法的記録のコンポーネント**だ。「下書き → 署名（誰が・いつ）→ 封印して読み取り専用 → 追記の連なり」をモデル化するコンポーネントが無い。`ApprovalSteps`/`Stepper` は線形の*ワークフロー*承認で、書き換えできない*記録*ではない。`readOnly`/`sealed`/`signedBy` の概念がどこにも無い。\n\nカルテ・経過記録・手術記録など、**臨床記録の核心**——一度署名したら原文は変えられず、追記（addendum）しか足せない。手で組めたが、`SignedRecord`/`AppendOnlyLog`（著者+時刻のエントリ・封印状態・追記の連なり）が理想。[#246](https://github.com/uixhero/gunjo/issues/246)・1回目（手術記録/同意書で再出現を待つ）。\n\n## うまくいった点\n\n- **`FormField`/`FormControl`** — SOAP 4 textarea が `label[for]`→textarea ＋ `aria-describedby` で自動配線、id 手当てゼロ。\n- **`Timeline`** — 逆時系列の署名済みノートログにそのまま（marker variant=署名済/下書き・TimelineTime・任意 children）。手組みせず。\n- `Tabs`（記録/問題/計画/申し送り・badge カウント）・`Badge`/`Alert`（署名済/達成・色だけに依存しない）・`Checkbox`・`Select`・`Dialog`（追記/申し送り）・`CardTitle as` も。\n\n## 学び — 深掘りは「大きな欠落」だけでなく「小さな抜け」も出す\n\n```\n#56 処方: ReferenceValue/SafetyBanner（大きな安全コンポーネントを2つ作る）\n#57 看護記録: Textarea の label 抜け（小さな一貫性の修正）＋ 追記記録を課題に記録\n```\n\n業界を深掘りすると、毎回コンポーネントが3回目を踏むわけではない。今回のような「記録」レイヤーは既存コンポーネントでほぼ組めた静かな回。それでも、SOAP を全部 textarea で書く画面だからこそ **Textarea の label 抜け** が見え、法的記録だからこそ **追記のみ記録** の不在が見えた。**静かな回は\"何も出ない\"ではなく\"小さいものが出る\"**——基礎コンポーネントの最後の磨きは、こういう回で進む。\n\n## 次回予告（やってみた #58）\n- **医療＝手術記録/麻酔記録**で CoSignField#239（2人署名）の3回目・追記記録#246 の2回目を狙う。これも静かなら医療を一旦まとめて別業界へ。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#56](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。静かな記録の回でも、Textarea の積み残しを直し、追記記録の不在を課題に記録した回。\n"
   },
   "code": [
     {
@@ -31,40 +30,18 @@
   ],
   "components": [
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardFooter",
-    "CardHeader",
-    "CardTitle",
     "Checkbox",
     "Dialog",
-    "DialogContent",
-    "DialogDescription",
-    "DialogFooter",
-    "DialogHeader",
-    "DialogTitle",
     "Form",
-    "FormControl",
-    "FormDescription",
-    "FormField",
-    "FormLabel",
     "Input",
     "Select",
     "Separator",
     "Tabs",
-    "TabsContent",
-    "TabsList",
-    "TabsTrigger",
     "Textarea",
-    "Timeline",
-    "TimelineItem",
-    "TimelineTime",
-    "TimelineTitle"
+    "Timeline"
   ],
   "shots": {
     "desktop": true,

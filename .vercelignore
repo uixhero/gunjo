@@ -1,0 +1,39 @@
+# Vercel upload ignore. When present this REPLACES .gitignore for deploys,
+# so it must list every heavy/irrelevant path — otherwise Vercel uploads it.
+# Root cause of the 250MB-function / 15000-file deploy failures: the local
+# git worktrees under .claude/worktrees/ (a full repo copy each, GBs) and the
+# local .next build output were being uploaded and traced into functions.
+
+# Build output / caches (Vercel rebuilds these)
+node_modules/
+.next/
+dist/
+build/
+*.tsbuildinfo
+out/
+
+# Local agent worktrees & editor/CLI config (can be multiple GB)
+.claude/
+.codex/
+.cursor/
+.vercel
+.git/
+
+# Design-audit scratch + local-only promotion sources
+.design-audit/
+promotion/
+
+# Internal-only docs (not for the public site)
+BUSINESS_OVERVIEW.md
+LAUNCH_PROMOTION_GUIDE.md
+HANDOFF.md
+
+# Source images — the optimized webp is committed, skip the multi-MB originals
+public/renew/*.png
+
+# Misc
+.DS_Store
+*.log
+*.tgz
+*.sync-conflict-*
+.env*.local

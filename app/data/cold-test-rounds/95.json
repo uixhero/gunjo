@@ -5,12 +5,11 @@
   "score": "4.5/5",
   "category": "飲食・レストラン",
   "title": "AI にレストラン予約管理を作らせてみた — 直前に作った StatGroup が、もう新業界で使われた（やってみた #95）",
-  "readmeTitle": "レストラン予約・来店管理（飲食・卓×時間ScheduleGrid/ダブルブッキング検出/サマリStatGroup/満席率Meter/予約者PersonCell/ウォークイン層）★新業界（#94=StatGroup build）",
-  "summary": "13業界目は飲食。観測：**直前に build した `StatGroup`（＋人物階層 PersonCell/RelationshipRow）が、レストランという全く別の業界の cold AI に自力発掘されるか。**",
+  "summary": "13業界目は飲食。観測：**直前に作った `StatGroup`（＋人物の階層 PersonCell/RelationshipRow）が、レストランという全く別の業界の予備知識ゼロの AI に自力で発掘されるか。**",
   "article": {
     "file": "zenn-yattemita-95-restaurant-reservations.md",
     "slug": "95-restaurant-reservations",
-    "markdown": "# AI にレストラン予約管理を作らせてみた — 直前に作った StatGroup が、もう新業界で使われた（やってみた #95）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。**新業界 飲食・レストラン 1枚目**——**予約・来店管理（リザベーション台帳＋卓×時間の客席状況）**。直前の #94 で StatGroup を build した。\n\n13業界目は飲食。観測：**直前に build した `StatGroup`（＋人物階層 PersonCell/RelationshipRow）が、レストランという全く別の業界の cold AI に自力発掘されるか。**\n\n## 結果 — 4.5/5\n\n`tsc`/`build` 緑・1280/375px 実機確認・0 console error。本日の予約サマリ・満席率・卓×時間グリッド（ダブルブッキング検出）・予約台帳・予約ドリルイン・ウォークイン着席。\n\n## 観測 — 人物階層3部品が、全部発掘された\n\ncold AI に「(a)サマリ指標行 (b)人物セル (c)卓×時間グリッド をどう作ったか」を聞いた。答え：**3つとも既製で手組みゼロ**。\n\n> **`StatGroup`** — サマリ指標行。「**まさに『ほぼ全 back-office 画面が冒頭に置く KPI 行』**。plain-data・RSC-safe・`cols={{base:2,md:3,lg:6}}`。6指標を渡して終わり」。\n> **`PersonCell`**（予約者・人数卓・コース・重複バッジに 1:1）・**`ScheduleGrid`**（卓×時間・**docstring が「room/resource booking grids」を明記**・`destructive` tone が**ダブルブッキングの競合リング**・合成読み上げ名「20:30 卓T3 重複: 小林樹・伊藤香織」）。\n\n**#94 で build した `StatGroup` が、翌ステップ #95＝新業界レストランで一発発掘**＝**人物/データ階層の3部品すべてで「build→次画面で自力発掘」が成立**（PersonCell #85→#86・RelationshipRow #90→#91・StatGroup #94→#95）。`DataTable`(renderCard)・`Sheet`/`Badge` icon/`NumberInput` stepper も既製。\n\n## 唯一引っかかった所＝Meter の direction\n\n> `Meter direction=\"higher-is-better\"`+`target` を満席率に。だが**29%で棒が真っ赤**——営業序盤の偽アラート（目標の90%未満=destructive）。`tone=\"info\"`+target マーカーに切替。「higher-is-better+target は『目標未達』という判断を encode する＝夜にかけて埋まるゲージには誤り」。\n\n→ [#343](https://github.com/uixhero/gunjo/issues/343) 起票（direction の判断 vs 中立の docs 明記＋中立 occupancy モード＋ラベル付き Meter composition）。\n\n## 起票（追記）\n- 🔵 **ScheduleGrid が名前で発掘されにくい**（「予約/booking グリッド」と名前が叫ばない・docstring の「use this not that」だけが救い・[#325](https://github.com/uixhero/gunjo/issues/325) 強補強）。\n\n**今回 src build なし**（4.5/5・StatGroup 含む3部品の新業界発掘が成果）。\n\n## 学び — 「build→次画面で発掘」は、3部品・業界横断で法則になった\nPersonCell(#85→#86 人材)・RelationshipRow(#90→#91 介護)・**StatGroup(#94→#95 飲食)**。3つの primitive が、それぞれ build した次の画面で、しかも**別々の業界で**、別々の cold AI に自力発掘された。**3回ルールで結晶化した部品は『観測された必然』なので、業界を問わず翌画面で必然性が裏付く**——これはもう逸話でなく法則。残る課題は機能でなく、その必然の部品を**名前/docs で見つけさせる**こと（#325）と、判断を encode する既定（Meter #343）。\n\n## 次回予告（やってみた #96）\n- 飲食2枚目（ホール/テーブル管理・KDS・シフト・売上 など）。3部品＋EventCalendar の再々利用観測。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#93](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。だが「昨日作った部品が、今日の別業界の AI にもう使われている」を3部品で確認した、13業界目。\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI にレストラン予約管理を作らせてみた — 直前に作った StatGroup が、もう新業界で使われた（やってみた #95）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。**新業界 飲食・レストラン 1枚目**——**予約・来店管理（リザベーション台帳＋卓×時間の客席状況）**。直前の #94 で StatGroup を作った。\n\n13業界目は飲食。観測：**直前に作った `StatGroup`（＋人物の階層 PersonCell/RelationshipRow）が、レストランという全く別の業界の予備知識ゼロの AI に自力で発掘されるか。**\n\n## 結果 — 4.5/5\n\n`tsc`/`build` 緑・1280/375px 実機確認・0 console error。本日の予約サマリ・満席率・卓×時間グリッド（ダブルブッキング検出）・予約台帳・予約を掘り下げる詳細・ウォークイン着席。\n\n## 観測 — 人物の階層3コンポーネントが、全部発掘された\n\n予備知識ゼロの AI に「(a)サマリ指標行 (b)人物セル (c)卓×時間グリッド をどう作ったか」を聞いた。答え：**3つとも既製で手組みゼロ**。\n\n> **`StatGroup`** — サマリ指標行。「**まさに『ほぼ全ての事務方の画面が冒頭に置く KPI 行』**。プレーンなデータ・サーバーコンポーネントでも安全・`cols={{base:2,md:3,lg:6}}`。6指標を渡して終わり」。\n> **`PersonCell`**（予約者・人数卓・コース・重複バッジに 1:1）・**`ScheduleGrid`**（卓×時間・**docstring が「部屋/リソースの予約グリッド」を明記**・`destructive` tone が**ダブルブッキングの競合リング**・合成読み上げ名「20:30 卓T3 重複: 小林樹・伊藤香織」）。\n\n**#94 で作った `StatGroup` が、翌ステップ #95＝新業界レストランで一発発掘**＝**人物/データ階層の3コンポーネントすべてで「作る→次画面で自力発掘」が成立**（PersonCell #85→#86・RelationshipRow #90→#91・StatGroup #94→#95）。`DataTable`(renderCard)・`Sheet`/`Badge` icon/`NumberInput` stepper も既製。\n\n## 唯一引っかかった所＝Meter の direction\n\n> `Meter direction=\"higher-is-better\"`+`target` を満席率に。だが**29%で棒が真っ赤**——営業序盤の誤アラート（目標の90%未満=destructive）。`tone=\"info\"`+target マーカーに切替。「higher-is-better+target は『目標未達』という判断を表現する＝夜にかけて埋まるゲージには誤り」。\n\n→ [#343](https://github.com/uixhero/gunjo/issues/343) を課題に記録（direction が判断を含む場合 vs 中立の場合を docs で明記＋中立の occupancy モード＋ラベル付き Meter の組み合わせ）。\n\n## 課題記録（追記）\n- 🔵 **ScheduleGrid が名前で発掘されにくい**（「予約グリッド」と名前が主張しない・docstring の「これを使え／これは使うな」だけが救い・[#325](https://github.com/uixhero/gunjo/issues/325) を強く補強）。\n\n**今回 src の新規コンポーネントなし**（4.5/5・StatGroup 含む3コンポーネントの新業界での発掘が成果）。\n\n## 学び — 「作る→次画面で発掘」は、3コンポーネント・業界横断で法則になった\nPersonCell(#85→#86 人材)・RelationshipRow(#90→#91 介護)・**StatGroup(#94→#95 飲食)**。3つのコンポーネントが、それぞれ作った次の画面で、しかも**別々の業界で**、別々の予備知識ゼロの AI に自力発掘された。**3回ルールで固めたコンポーネントは『観測された必然』なので、業界を問わず翌画面で必然性が裏付く**——これはもう逸話でなく法則。残る課題は機能でなく、その必然のコンポーネントを**名前/docs で見つけさせる**こと（#325）と、判断を含む既定（Meter #343）。\n\n## 次回予告（やってみた #96）\n- 飲食2枚目（ホール/テーブル管理・KDS・シフト・売上 など）。3コンポーネント＋EventCalendar の再々利用観測。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#93](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。だが「昨日作ったコンポーネントが、今日の別業界の AI にもう使われている」を3コンポーネントで確認した、13業界目。\n"
   },
   "code": [
     {
@@ -31,39 +30,21 @@
   ],
   "components": [
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
     "Badge",
-    "BadgeProps",
     "Button",
-    "ColumnDef",
     "Container",
     "DataTable",
     "Dialog",
-    "DialogContent",
-    "DialogDescription",
-    "DialogFooter",
-    "DialogHeader",
-    "DialogTitle",
     "MetadataList",
     "Meter",
     "NumberInput",
     "PersonCell",
-    "ScheduleCell",
-    "ScheduleCellTone",
     "ScheduleGrid",
     "Select",
     "Separator",
     "Sheet",
-    "SheetContent",
-    "SheetDescription",
-    "SheetHeader",
-    "SheetTitle",
     "StatGroup",
-    "Tabs",
-    "TabsContent",
-    "TabsList",
-    "TabsTrigger"
+    "Tabs"
   ],
   "shots": {
     "desktop": true,

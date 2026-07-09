@@ -4,13 +4,12 @@
   "slug": "pricing",
   "score": "4/5",
   "category": "基盤UI・汎用",
-  "title": "AI に価格比較ページを作らせてみた — primitive は強い、でも\"看板\"テンプレが job を外す（やってみた #25）",
-  "readmeTitle": "価格比較ページ",
-  "summary": "条件はいつも通り（出荷物の npm パッケージ＋docs サイトだけ。ソース非公開）。お題は、月/年トグル（価格が実際に変わる）・3〜4プランカード（1つを「おすすめ」強調）・**機能比較マトリクス（行=機能・列=プラン・✓/✗/値）**・FAQ・最終 CTA。",
+  "title": "AI に価格比較ページを作らせてみた — コンポーネントは強い、でも\"看板\"テンプレが役割を外す（やってみた #25）",
+  "summary": "条件はいつも通り（出荷している npm パッケージ＋docs サイトだけ。ソース非公開）。お題は、月/年トグル（価格が実際に変わる）・3〜4プランのカード（1つを「おすすめ」強調）・**機能比較のマトリクス（行=機能・列=プラン・✓/✗/値）**・FAQ・最終 CTA。",
   "article": {
     "file": "zenn-yattemita-25-pricing-comparison.md",
     "slug": "25-pricing-comparison",
-    "markdown": "# AI に価格比較ページを作らせてみた — primitive は強い、でも\"看板\"テンプレが job を外す（やってみた #25）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。今回は **価格比較ページ**。\n\n条件はいつも通り（出荷物の npm パッケージ＋docs サイトだけ。ソース非公開）。お題は、月/年トグル（価格が実際に変わる）・3〜4プランカード（1つを「おすすめ」強調）・**機能比較マトリクス（行=機能・列=プラン・✓/✗/値）**・FAQ・最終 CTA。\n\n`PricingTemplate` という**まさにこの用途の看板コンポーネント**がある。だから「それで組めるか」が今回の核。\n\n## 結果 — 4/5（最近で最高）\n\n`tsc`/`build` 緑・console 0・**h1 1個・level 飛ばし無し**・マトリクスは real `<table>` で **全 `<th>` に scope（col/row/colgroup）・✓/✗ に sr-only \"Included/Not included\"・toggle は aria-live で状態通知**・375px overflow 0・dark mode 完全。**フル a11y の価格比較が primitive だけで組めた。**\n\nそして cold AI が、**前ラウンドの修正を称賛した**:\n\n> `CardTitle` の `as` prop が **the best-designed a11y affordance**。見出し階層を skip 無しで組むのが trivial だった。\n\nこれは #23 で入れた #116。**直した穴が、次の回で武器になってる。** Table の `scope` forwarding、Tooltip の self-provider(#52) も活きてた。\n\n## でも 4/5 を阻んだ — \"看板\"が job を外す\n\n**① `PricingTemplate` がデータ駆動でない固定 stub（[#80](https://github.com/uixhero/gunjo/issues/80)・Major）。** 月/年トグル無し・`md:grid-cols-3` 固定で4プラン崩れ・`featured` が**色反転のみ**で badge も「おすすめ」ラベルも SR text も無し・feature が `<Check>` 強制で ✗/値を出せず・**自前で `<h1>` を持つ**（page の h1 と衝突）。cold AI は使わず、`Card`+`Badge`+`Button` で手組みした。**名前負けの本体**。\n\n**② `Badge` が `<p>` を壊す（[#128](https://github.com/uixhero/gunjo/issues/128)・実バグ）。** block `<div>` で `as`/`asChild` が無く、`<p>` 内に入れると **\"`<div>` cannot be a descendant of `<p>`\" ＋ hydration mismatch**。`Card` は `as` を持つのに Badge は無かった。\n\n## 今ラウンドの修正 — primitive 側の小さな穴を3つ\n\n- **#128**: `Badge` に `as?: \"div\" | \"span\"` を追加（#116 と同型・`as=\"span\"` でインライン可）。\n- **[#129](https://github.com/uixhero/gunjo/issues/129)**: `ToggleGroup` の `variant`/`size` を root で受けて item に context 継承（`<ToggleGroup variant=\"outline\">` が TS エラーだった）。\n- **[#130](https://github.com/uixhero/gunjo/issues/130)**: `Switch` に `label`/`description` を追加し `aria-labelledby`/`aria-describedby` で関連付け（ラベル付けを caller 任せにしない）。\n\n全部 src＋非破壊で land。**`PricingTemplate` のデータ駆動化（#80）は .pen 含む再設計＝beta ゲート**。\n\n## 学び — 「primitive」と「看板テンプレ」は別の成熟度\n\n```\nprimitive 層（Card/Table/ToggleGroup/Button/Badge/dark mode）→ フル a11y で価格比較が組める\n看板テンプレ（PricingTemplate）→ デモ止まり・job を外す（名前負け）\n```\n\n**primitive が良いほど、テンプレの薄さが際立つ。** cold AI は「テンプレを使わず primitive で組めば 4/5 出せる」と示した一方、「看板を信じると詰む」も示した。直すべきは primitive じゃなく**テンプレを primitive と同じ水準に引き上げる**こと（#80/#74/#90 の名前負け系統）。\n\n## 次回予告（やってみた #26）\n\n- **エラー画面 / カレンダー予定表 / 受信トレイ** ほか。テンプレの名前負けと合成を引き続き。\n\n## 試す\n\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#24](#)\n- 母艦: [群青（@gunjo/ui）](#) ／ なぜ要るのか: [AI 時代のデザインシステム論](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。primitive は強い、看板テンプレはこれから。回すほど、成熟度の差が見える。\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI に価格比較ページを作らせてみた — コンポーネントは強い、でも\"看板\"テンプレが役割を外す（やってみた #25）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。今回は **価格比較ページ**。\n\n条件はいつも通り（出荷している npm パッケージ＋docs サイトだけ。ソース非公開）。お題は、月/年トグル（価格が実際に変わる）・3〜4プランのカード（1つを「おすすめ」強調）・**機能比較のマトリクス（行=機能・列=プラン・✓/✗/値）**・FAQ・最終 CTA。\n\n`PricingTemplate` という**まさにこの用途の目玉コンポーネント**があります。だから「それで組めるか」が今回の核です。\n\n## 結果 — 4/5（最近で最高）\n\n`tsc`/`build` 緑・console 0・**h1 1個・見出しレベルの飛ばし無し**・マトリクスは本物の `<table>` で **全 `<th>` に scope（col/row/colgroup）・✓/✗ に読み上げ専用の \"Included/Not included\"・トグルは aria-live で状態を通知**・375px でのはみ出し0・ダークモード完全。**フルにアクセシビリティ対応した価格比較が、コンポーネントだけで組めました。**\n\nそして予備知識ゼロの AI が、**前ラウンドの修正を称賛しました**:\n\n> `CardTitle` の `as` prop が **いちばんよく設計されたアクセシビリティの仕掛け**だ。見出しの階層を飛ばさずに組むのが、簡単だった。\n\nこれは #23 で入れた #116 です。**直した不備が、次の回で武器になっている。** Table の `scope` の受け渡し、Tooltip が自分の内側に provider を持つ仕組み（#52）も活きていました。\n\n## でも 4/5 を阻んだ — \"看板\"が役割を外す\n\n**① `PricingTemplate` がデータで動かない、中身の薄い見本（[#80](https://github.com/uixhero/gunjo/issues/80)・重大）。** 月/年トグル無し・`md:grid-cols-3` 固定で4プランだと崩れ・`featured` が**色の反転のみ**でバッジも「おすすめ」ラベルも読み上げ用テキストも無し・機能が `<Check>` 固定で ✗/値を出せず・**自前で `<h1>` を持つ**（ページの h1 と衝突）。予備知識ゼロの AI は使わず、`Card`+`Badge`+`Button` で手組みしました。**名前負けの本体です。**\n\n**② `Badge` が `<p>` を壊す（[#128](https://github.com/uixhero/gunjo/issues/128)・実バグ）。** ブロック要素の `<div>` で `as`/`asChild` が無く、`<p>` の中に入れると **「`<div>` cannot be a descendant of `<p>`」＋サーバーとブラウザの表示ずれ（hydration mismatch）**。`Card` は `as` を持つのに、Badge は無かった。\n\n## 今ラウンドの修正 — コンポーネント側の小さな不備を3つ\n\n- **#128**: `Badge` に `as?: \"div\" | \"span\"` を追加（#116 と同じ形・`as=\"span\"` でインラインに置ける）。\n- **[#129](https://github.com/uixhero/gunjo/issues/129)**: `ToggleGroup` の `variant`/`size` を親で受けて、各 item に設定を引き継ぐように（`<ToggleGroup variant=\"outline\">` が TS エラーだった）。\n- **[#130](https://github.com/uixhero/gunjo/issues/130)**: `Switch` に `label`/`description` を追加し、`aria-labelledby`/`aria-describedby` で関連付け（ラベル付けを呼び出す側任せにしない）。\n\n全部ソース＋既存を壊さず反映。**`PricingTemplate` をデータで動く形にする（#80）のは `.pen` を含む再設計＝beta ゲート**。\n\n## 学び — 「コンポーネント」と「看板テンプレ」は別の成熟度\n\n```\nコンポーネント層（Card/Table/ToggleGroup/Button/Badge/ダークモード）→ フルにアクセシビリティ対応した価格比較が組める\n看板テンプレ（PricingTemplate）→ デモ止まり・役割を外す（名前負け）\n```\n\n**コンポーネントが良いほど、テンプレの薄さが際立ちます。** 予備知識ゼロの AI は「テンプレを使わず、コンポーネントで組めば 4/5 出せる」と示した一方、「看板を信じると詰む」も示しました。直すべきはコンポーネントではなく、**テンプレをコンポーネントと同じ水準に引き上げる**こと（#80/#74/#90 の名前負けの種類）です。\n\n## 次回予告（やってみた #26）\n\n- **エラー画面 / カレンダー予定表 / 受信トレイ** ほか。テンプレの名前負けと組み立てを引き続き。\n\n## 試す\n\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#24](#)\n- まとめ記事: [群青（@gunjo/ui）](#) ／ なぜ要るのか: [AI 時代のデザインシステム論](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。コンポーネントは強い、看板テンプレはこれから。回すほど、成熟度の差が見えます。\n"
   },
   "code": [
     {
@@ -26,28 +25,13 @@
   ],
   "components": [
     "Accordion",
-    "AccordionContent",
-    "AccordionItem",
-    "AccordionTrigger",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardFooter",
-    "CardHeader",
-    "CardTitle",
     "Container",
     "Separator",
     "Table",
-    "TableBody",
-    "TableCaption",
-    "TableCell",
-    "TableHead",
-    "TableHeader",
-    "TableRow",
-    "ToggleGroup",
-    "ToggleGroupItem"
+    "ToggleGroup"
   ],
   "shots": {
     "desktop": true,

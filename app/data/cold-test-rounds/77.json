@@ -4,13 +4,12 @@
   "slug": "facility-booking",
   "score": "4.5/5",
   "category": "公共・行政",
-  "title": "AI に公共施設予約を作らせてみた — 前ラウンドで作った2部品が、今日まとめて再利用された（やってみた #77）",
-  "readmeTitle": "公共施設予約（公共・時間帯×日予約グリッド/承認フロー/利用区分料金/重複防止層）",
-  "summary": "公共の3枚目は公民館/体育館の貸館予約。予約グリッドを見て、申請を承認フローに通す画面。そして**今セッションで作った2つの部品（ScheduleGrid・ApprovalWorkflow）が、今日まとめて発見・再利用された**——複利の最高到達点。",
+  "title": "AI に公共施設予約を作らせてみた — 前ラウンドで作った2コンポーネントが、今日まとめて再利用された（やってみた #77）",
+  "summary": "公共の3枚目は公民館/体育館の貸館予約。予約グリッドを見て、申請を承認フローに通す画面。そして**直近で作った2つのコンポーネント（ScheduleGrid・ApprovalWorkflow）が、今日まとめて発見・再利用された**——複利の最高到達点。",
   "article": {
     "file": "zenn-yattemita-77-facility-booking.md",
     "slug": "77-facility-booking",
-    "markdown": "# AI に公共施設予約を作らせてみた — 前ラウンドで作った2部品が、今日まとめて再利用された（やってみた #77）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。**公共/自治体3枚目**——**公共施設予約 / 貸館予約管理**（時間帯×日予約グリッド × 承認フロー × 利用区分料金 × 重複防止）。\n\n公共の3枚目は公民館/体育館の貸館予約。予約グリッドを見て、申請を承認フローに通す画面。そして**今セッションで作った2つの部品（ScheduleGrid・ApprovalWorkflow）が、今日まとめて発見・再利用された**——複利の最高到達点。\n\n## 結果 — 4.5/5\n\n`tsc`/`build` 緑・console 0（警告1件は後述）・375px横溢れ0・予約グリッド・承認フロー（次へ/差戻し/却下）・利用区分料金計算・重複検出。\n\n## 今回の主題 — 直近の build 2本が、まとめてその場で効いた\n\ncold AI の核心の答え:\n\n> - **Booking grid ← `ScheduleGrid`.** Built entirely from it. **Highly discoverable**: JSDoc and gunjo.jp both literally list \"availability and room/resource booking grids\". Bent onto facility booking with zero friction.\n> - **Approval flow ← `ApprovalWorkflow`.** Built entirely from it. **Extremely discoverable**: JSDoc says \"any staged back-office review,\" and the gunjo.jp preview itself shows a 申請受付→… Japanese government-style pipeline. Dropped onto 公共施設 approval **verbatim**.\n\n- **`ScheduleGrid`**（#70 build・#71 framing拡張）→ 予約グリッドで**4回連続の再利用**（出欠/課題提出/面談予約 に続く）。\n- **`ApprovalWorkflow`**（**前ラウンド #76 で build したばかり**）→ 予約承認フローで**翌ラウンド即発見・採用**（Badge icon #72→#73 と同じパターン）。「差戻し」「却下」「戻し先の段階」のデフォルトラベルが既にドメイン一致。\n- DataTable onRowClick fix（#75）・Badge icon（#72）・formatCurrency も全部再利用。\n\n> **\"No gunjo.jp docs page I looked for was missing.\"**\n\n**手組みは業務ロジック（料金計算・重複検出）のみ。UI primitive は全部既存で賄えた。** 「作る→翌ラウンドの別画面が即使う」の複利が、ScheduleGrid と ApprovalWorkflow で同時に回った。\n\n## src 変更ゼロ（no-build）\n\n観測点（ScheduleGrid 再利用・ApprovalWorkflow 即再利用）が両方クリーンに成立し、新たな大穴は出ず。kit が公共施設予約をまるごと既存部品で賄った。\n\n## 起票だけ（papercut・1回目〜）\n\n- 🟡 **Sheet が description 警告を出す**（SheetDescription を入れても Radix の missing-description 警告が初回に出る・aria は正しく配線済・[#293](https://github.com/uixhero/gunjo/issues/293) に追記・2回目）。\n- 🟡 **DataTable のソートボタン aria が冗長な英語デフォルト**（#73/#75/#77 で3回・JP-first の罠・ローカライズ可だがキー9個・[#307](https://github.com/uixhero/gunjo/issues/307)・能力欠如でなく refinement）。\n- 🟢 ScheduleGrid は1セル1予約（ダブルブッキングの2件目はリスト/アラートでのみ可視）。\n\n## 学び — 「振る舞い primitive」も即座に複利が回る\n\nこれまで「作法の骨格を捉えた表示 primitive（Meter/ReferenceValue/ScheduleGrid）が業界を越える」ことは何度も見た。#77 は、**振る舞いを内包する primitive（ApprovalWorkflow）も、作った翌ラウンドで別ドメインの審査フローに即採用される**ことを示した。デザインシステムの複利は、表示部品だけでなく、状態機械を内包する部品でも回る——しかも framing（JSDoc/docs に用途を広く書く）が効いて「発見」される。公共3枚で、kit が規制・back-office ドメインをほぼ完全に賄うことを確認した。\n\n## 次回予告（やってみた #78）\n- **公共をもう1枚**（税申告/納税・住民異動・ごみ/インフラ通報 など）で4枚目、or 別業界へ。系譜#281・連続時間軸#142残りの大型も観測継続。旅行は後で腰据えて作り込む枠。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#76](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。前ラウンドで作った ApprovalWorkflow と、framing を広げた ScheduleGrid が、今日まとめて公共施設予約に再利用された回。\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI に公共施設予約を作らせてみた — 前ラウンドで作った2コンポーネントが、今日まとめて再利用された（やってみた #77）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。**公共/自治体3枚目**——**公共施設予約 / 貸館予約管理**（時間帯×日予約グリッド × 承認フロー × 利用区分料金 × 重複防止）。\n\n公共の3枚目は公民館/体育館の貸館予約。予約グリッドを見て、申請を承認フローに通す画面。そして**直近で作った2つのコンポーネント（ScheduleGrid・ApprovalWorkflow）が、今日まとめて発見・再利用された**——複利の最高到達点。\n\n## 結果 — 4.5/5\n\n`tsc`/`build` 緑・console 0（警告1件は後述）・375px横溢れ0・予約グリッド・承認フロー（次へ/差戻し/却下）・利用区分料金計算・重複検出。\n\n## 今回の主題 — 直近で作った2本が、まとめてその場で効いた\n\n予備知識ゼロの AI の核心の答え:\n\n> - **予約グリッド ← `ScheduleGrid`.** 全部これで組んだ。**とても見つけやすい**: JSDoc も gunjo.jp も「空き枠や部屋/リソースの予約グリッド」を明記している。施設予約に摩擦ゼロで曲がった。\n> - **承認フロー ← `ApprovalWorkflow`.** 全部これで組んだ。**非常に見つけやすい**: JSDoc は「あらゆる段階的な事務方の審査」と言い、gunjo.jp のプレビュー自体が 申請受付→… という日本の行政風のパイプラインを見せている。公共施設の承認に**そのまま**載った。\n\n- **`ScheduleGrid`**（#70 で作る・#71 で説明を拡張）→ 予約グリッドで**4回連続の再利用**（出欠/課題提出/面談予約 に続く）。\n- **`ApprovalWorkflow`**（**前ラウンド #76 で作ったばかり**）→ 予約承認フローで**翌ラウンド即発見・採用**（Badge icon #72→#73 と同じパターン）。「差戻し」「却下」「戻し先の段階」の既定ラベルが既に用途に一致。\n- DataTable onRowClick の修正（#75）・Badge icon（#72）・formatCurrency も全部再利用。\n\n> **「探した gunjo.jp の docs ページで、無かったものは1つもない。」**\n\n**手組みは業務ロジック（料金計算・重複検出）のみ。UI のコンポーネントは全部既存で賄えた。** 「作る→翌ラウンドの別画面が即使う」の複利が、ScheduleGrid と ApprovalWorkflow で同時に回った。\n\n## src 変更ゼロ（コンポーネントを作らず）\n\n観測点（ScheduleGrid 再利用・ApprovalWorkflow 即再利用）が両方きれいに成立し、新たな大きな欠落は出ず。ライブラリが公共施設予約をまるごと既存コンポーネントで賄った。\n\n## 課題に記録だけ（小さな不便・1回目〜）\n\n- 🟡 **Sheet が description の警告を出す**（SheetDescription を入れても Radix の「description が無い」警告が初回に出る・aria は正しく配線済・[#293](https://github.com/uixhero/gunjo/issues/293) に追記・2回目）。\n- 🟡 **DataTable のソートボタンの aria が冗長な英語の既定**（#73/#75/#77 で3回・日本語優先の罠・各言語化できるがキー9個・[#307](https://github.com/uixhero/gunjo/issues/307)・機能不足ではなく改善）。\n- 🟢 ScheduleGrid は1セル1予約（ダブルブッキングの2件目はリスト/アラートでのみ可視）。\n\n## 学び — 「振る舞いのコンポーネント」も即座に複利が回る\n\nこれまで「作法の骨格を捉えた表示のコンポーネント（Meter/ReferenceValue/ScheduleGrid）が業界を越える」ことは何度も見た。#77 は、**振る舞いを内包するコンポーネント（ApprovalWorkflow）も、作った翌ラウンドで別領域の審査フローに即採用される**ことを示した。デザインシステムの複利は、表示コンポーネントだけでなく、状態遷移を内包するコンポーネントでも回る——しかも説明の枠（JSDoc/docs に用途を広く書く）が効いて「発見」される。公共3枚で、ライブラリが規制・事務方の領域をほぼ完全に賄うことを確認した。\n\n## 次回予告（やってみた #78）\n- **公共をもう1枚**（税申告/納税・住民異動・ごみ/インフラ通報 など）で4枚目、or 別業界へ。系譜#281・連続時間軸#142残りの大型も観測継続。旅行は後で腰を据えて作り込む枠。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#76](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。前ラウンドで作った ApprovalWorkflow と、説明を広げた ScheduleGrid が、今日まとめて公共施設予約に再利用された回。\n"
   },
   "code": [
     {
@@ -41,33 +40,17 @@
   ],
   "components": [
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
     "ApprovalWorkflow",
     "Badge",
-    "BadgeProps",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
-    "ColumnDef",
     "Container",
     "DataTable",
     "MetadataList",
-    "ScheduleAxisItem",
-    "ScheduleCell",
-    "ScheduleCellTone",
     "ScheduleGrid",
     "Select",
     "Separator",
     "Sheet",
-    "SheetContent",
-    "SheetDescription",
-    "SheetHeader",
-    "SheetTitle",
-    "Statistic",
-    "WorkflowValue"
+    "Statistic"
   ],
   "shots": {
     "desktop": true,

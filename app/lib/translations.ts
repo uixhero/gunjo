@@ -35,6 +35,8 @@ export type HomeTranslations = {
   ai: {
     heading: string;
     description: string;
+    evidence: string;
+    evidenceCta: string;
     cards: Record<
       "spec" | "schema" | "mcp" | "cookbook",
       { title: string; description: string; status: string }
@@ -155,6 +157,8 @@ export type PatternsPageStrings = {
   label: string;
   heading: string;
   subtitle: string;
+  evidence: string;
+  evidenceCta: string;
   patterns: Record<PatternKey, { title: string; description: string }>;
   families: Record<PatternFamilyKey, { title: string; description: string }>;
   surfaces: Record<PatternSurfaceKey, string>;
@@ -167,6 +171,7 @@ export type PatternsPageStrings = {
     includes: string;
     patternDetails: string;
     usedComponents: string;
+    fieldTested: string;
     planned: string;
     availableCount: (count: number) => string;
     routeCount: (count: number) => string;
@@ -291,6 +296,7 @@ export type ColdTestsPageStrings = {
     componentsUsedHint: string;
     componentDocsLabel: (name: string) => string;
     summaryFooter: string;
+    aiDisclosure: string;
     notFound: string;
   };
   sidebar: {
@@ -301,6 +307,24 @@ export type ColdTestsPageStrings = {
     previousLabel: (round: number) => string;
     nextLabel: (round: number) => string;
   };
+  why: {
+    label: string;
+    heading: string;
+    subtitle: string;
+    ctaGalleryLabel: string;
+    ctaComponentsLabel: string;
+    breadcrumbLabel: string;
+  };
+  // Per-industry door page (`/cold-tests/categories/<slug>`). Strings here are
+  // chrome only — the per-category prose (challenge / discovered / left)
+  // lives in cold-test-categories.json so KeEem can edit it without touching code.
+  categoryPage: {
+    roundsSummary: (count: number, label: string) => string;
+    allRoundsHeading: (label: string) => string;
+    allRoundsIntro: (count: number, label: string) => string;
+    backToGallery: string;
+  };
+  whyLink: string;
 };
 
 export type PagesTranslations = {
@@ -478,6 +502,8 @@ export const translations: Record<
       ai: {
         heading: "SSOT and AI handoff",
         description: "GunjoUI treats .pen and design metadata as the source of truth, then syncs tokens, component specs, docs registration, and export data. Pages are not fully auto-generated from .pen.",
+        evidence: "This handoff is verified by having AI that had never seen Gunjo build 170 screens.",
+        evidenceCta: "Read the verification log",
         cards: {
           spec: {
             title: "Component specs",
@@ -632,6 +658,8 @@ export const translations: Record<
           componentsUsedHint: "Direct imports across this screen's source.",
           componentDocsLabel: (name) => `Open ${name} docs`,
           summaryFooter: "Summary",
+          aiDisclosure:
+            "This series is co-created with AI (Claude). A human designs the experiments, makes the calls, and fact-checks before publishing; the AI does the hands-on work and drafting.",
           notFound: "Round not found.",
         },
         sidebar: {
@@ -642,6 +670,24 @@ export const translations: Record<
           previousLabel: (round) => `Previous · #${round}`,
           nextLabel: (round) => `Next · #${round}`,
         },
+        why: {
+          label: "Methodology",
+          heading: "Why cold tests",
+          subtitle:
+            "What we measure when a context-free AI agent has to ship a real-industry screen with only the public npm package and gunjo.jp docs — and what crystallises after 170 rounds.",
+          ctaGalleryLabel: "See all 170 rounds",
+          ctaComponentsLabel: "Browse the component catalog",
+          breadcrumbLabel: "Why",
+        },
+        categoryPage: {
+          roundsSummary: (count, label) =>
+            `${count} cold-test rounds across ${label}.`,
+          allRoundsHeading: (label) => `All ${label} rounds`,
+          allRoundsIntro: (count, label) =>
+            `Every ${label} round in chronological order — ${count} screens, each with the AI's source, write-up, and a desktop/mobile preview.`,
+          backToGallery: "Back to all rounds",
+        },
+        whyLink: "Why cold tests",
       },
       tokens: {
         label: "Tokens",
@@ -690,6 +736,9 @@ export const translations: Record<
         heading: "Reference apps, fully composed.",
         subtitle:
           "Eight production-shaped GunjoUI demonstrations grouped by family, surface, and industry. Use the page chips to open the exact route included in each pattern.",
+        evidence:
+          "These patterns aren't drawing-board samples — they emerged when AI that had never seen Gunjo built 170 screens (our cold tests).",
+        evidenceCta: "Verification log",
         patterns: {
           auth: {
             title: "Auth",
@@ -783,6 +832,7 @@ export const translations: Record<
           includes: "Includes",
           patternDetails: "Pattern details",
           usedComponents: "Used Components",
+          fieldTested: "Battle-tested in",
           planned: "Planned",
           availableCount: (count: number) =>
             `${count} ${count === 1 ? "pattern" : "patterns"}`,
@@ -1085,6 +1135,8 @@ export const translations: Record<
       ai: {
         heading: "SSOT と AI 連携",
         description: "GunjoUI は .pen と design metadata を SSOT とし、トークン、コンポーネント仕様、docs 登録、export 情報へ同期します。ページ全体を .pen から完全自動生成するものではありません。",
+        evidence: "この連携は、群青を一度も見たことのない AI に 170 の画面を組ませて検証しています。",
+        evidenceCta: "検証の記録を読む",
         cards: {
           spec: {
             title: "コンポーネント仕様",
@@ -1191,7 +1243,7 @@ export const translations: Record<
         label: "コールドテスト",
         heading: "群青を知らない AI に作らせた、170 画面。",
         subtitle: (count) =>
-          `${count} ラウンド。文脈ゼロのエージェントに、公開 npm パッケージと gunjo.jp の docs だけを渡して——ソースは見せず——動く画面を組ませた記録です。`,
+          `${count} ラウンド。予備知識ゼロの AI に、公開 npm パッケージと gunjo.jp の docs だけを渡して——ソースは見せず——動く画面を組ませた記録です。`,
         searchPlaceholder: "ラウンド・ルート・業種を検索...",
         allTab: "全て",
         emptyState: "該当するラウンドがありません。",
@@ -1235,9 +1287,11 @@ export const translations: Record<
           sourceCodeMissing: (overwrittenBy) =>
             `この回のソースは保存されていません——同じルートが #${overwrittenBy} で別の画面として組み直され、ファイルが上書きされたためです。上の記事とスクショは、組まれた当時の姿を残しています。`,
           componentsUsed: "使用した @gunjo/ui コンポーネント",
-          componentsUsedHint: "この画面のソースが直接 import している部品です。",
+          componentsUsedHint: "この画面のソースが直接 import しているコンポーネントです。",
           componentDocsLabel: (name) => `${name} のドキュメントを開く`,
           summaryFooter: "まとめ",
+          aiDisclosure:
+            "この連載は、作者が AI（Claude）と協働で制作しています。実験・検証の設計、判断、公開前の事実確認は人間が行い、実作業と下書き執筆は AI が担っています。",
           notFound: "該当するラウンドが見つかりません。",
         },
         sidebar: {
@@ -1248,6 +1302,24 @@ export const translations: Record<
           previousLabel: (round) => `前へ · #${round}`,
           nextLabel: (round) => `次へ · #${round}`,
         },
+        why: {
+          label: "方法論",
+          heading: "なぜコールドテストするか",
+          subtitle:
+            "予備知識ゼロの AI に、公開 npm パッケージと gunjo.jp の docs だけで実在の業種の画面を組ませる ── 170 ラウンドの記録から、どんなコンポーネントが群青に加わったか。",
+          ctaGalleryLabel: "170 ラウンドのカタログを見る",
+          ctaComponentsLabel: "コンポーネント一覧へ",
+          breadcrumbLabel: "なぜ",
+        },
+        categoryPage: {
+          roundsSummary: (count, label) =>
+            `${label} の cold test、${count} 画面のまとめ。`,
+          allRoundsHeading: (label) => `${label} の全ラウンド`,
+          allRoundsIntro: (count, label) =>
+            `${label} カテゴリの ${count} 画面を、ラウンド順に並べています。各カードから cold AI が組んだソース、解説記事、デスクトップ／モバイルのプレビューに飛べます。`,
+          backToGallery: "カタログ全体に戻る",
+        },
+        whyLink: "なぜコールドテストするか",
       },
       tokens: {
         label: "Tokens",
@@ -1297,6 +1369,9 @@ export const translations: Record<
         heading: "リファレンスアプリ、完成形のまま。",
         subtitle:
           "本番想定の GunjoUI デモを、ファミリー・画面種別・業界で分類しています。チップから各パターンに含まれるページを直接開けます。",
+        evidence:
+          "ここにあるパターンは机上の見本ではなく、群青を知らない AI に 170 画面を組ませた検証（コールドテスト）で実際に現れた形から抽出しています。",
+        evidenceCta: "検証の記録",
         patterns: {
           auth: {
             title: "Auth",
@@ -1392,6 +1467,7 @@ export const translations: Record<
           includes: "含まれるページ",
           patternDetails: "パターン詳細",
           usedComponents: "Used Components",
+          fieldTested: "この形の実戦例",
           planned: "予定",
           availableCount: (count: number) => `${count} 件`,
           routeCount: (count: number) => `${count} ページ`,
@@ -1782,7 +1858,7 @@ export const translations: Record<
       OriginDestination: "区間（発着）",
       SettingGroup: "設定グループ",
       LineChip: "路線チップ",
-      StatusBoard: "状態盤",
+      StatusBoard: "状態ボード",
       ExpiryBadge: "有効期限",
       LimitMonitor: "上限監視",
       RevealSection: "条件付きセクション",

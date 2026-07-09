@@ -6,69 +6,6 @@
       "reason": "Runtime Tooltip auto-sizes to content (w-fit max-w-xs text-center) so single-line tooltips like 'EN' or 'GitHub' don't render in a fixed 168px bubble. The .pen design represents a richer tooltip with a stacked shortcut hint (Save changes / Ctrl+S); runtime trims the hint and centers the single text node.",
       "addedOn": "2026-05-07",
       "expiresOn": "permanent"
-    },
-    {
-      "category": "navigation",
-      "componentKey": "sidebarItem",
-      "reason": "Runtime SidebarItem is a fluid horizontal nav/tree row (w-full, single-line layout) so it can fit Sidebar, dashboard, chat, kanban, and media-library panes. The current navigation.pen frame still describes a fixed-width composition frame (w-[320px], flex-col, px-4). Keep the runtime behavior and track SSOT alignment separately.",
-      "addedOn": "2026-05-13",
-      "expiresOn": "2026-07-31"
-    },
-    {
-      "category": "navigation",
-      "componentKey": "rightRail",
-      "reason": "Runtime RightRail is a container-height desktop support rail (h-full with configurable width) so the page shell controls its height. The current navigation.pen frame still describes a fixed demo panel (w-[256px] h-[360px]). Keep runtime sizing fluid and update navigation.pen to separate demo dimensions from the reusable rail primitive.",
-      "addedOn": "2026-05-30",
-      "expiresOn": "2026-07-31"
-    },
-    {
-      "category": "navigation",
-      "componentKey": "pageAside",
-      "reason": "Runtime PageAside composes content, RightRail, and mobile Accordion behavior responsively. The synthetic spec captures the component in SSOT, but style-hint comparison cannot represent the desktop rail plus narrow-screen accordion switch yet. Keep the responsive runtime and replace this exclusion when the synthetic spec model supports responsive composition hints.",
-      "addedOn": "2026-05-30",
-      "expiresOn": "2026-07-31"
-    },
-    {
-      "category": "feedback",
-      "componentKey": "toast",
-      "reason": "Runtime Toast uses header-safe top offset, responsive full-width mobile sizing, and item-start alignment so long URLs wrap without covering the site header. The current feedback.pen frame still describes the older fixed 384px centered toast. Keep the responsive runtime and update feedback.pen to reflect the current mobile-safe toast behavior.",
-      "addedOn": "2026-05-30",
-      "expiresOn": "2026-07-31"
-    },
-    {
-      "category": "feedback",
-      "componentKey": "toastProvider",
-      "reason": "Runtime ToastProvider mirrors Toast's header-safe placement and responsive stack width. The current feedback.pen hints still describe the older 320px centered stack. Keep the runtime placement and update feedback.pen with the current stack behavior.",
-      "addedOn": "2026-05-30",
-      "expiresOn": "2026-07-31"
-    },
-    {
-      "category": "layout",
-      "componentKey": "scrollArea",
-      "reason": "Runtime ScrollArea must be container-sized by the consumer instead of hardcoding the .pen demo frame dimensions (w-[320px] h-[240px]). This supports application panes such as media-library sidebars and scroll bodies while preserving the scrollbar and viewport primitives. Update layout.pen to separate demo frame size from component runtime sizing.",
-      "addedOn": "2026-05-13",
-      "expiresOn": "2026-07-31"
-    },
-    {
-      "category": "layout",
-      "componentKey": "resizable",
-      "reason": "Runtime ResizablePanelGroup must be container-sized by the consumer instead of hardcoding the .pen demo frame dimensions (w-[520px] h-[240px]). Docs and application shells provide the actual panel height and width so horizontal, vertical, nested, and multi-pane layouts can fill their parent. Update layout.pen to separate demo frame size from the reusable resizable primitive.",
-      "addedOn": "2026-06-03",
-      "expiresOn": "2026-07-31"
-    },
-    {
-      "category": "layout",
-      "componentKey": "spatialCanvas",
-      "reason": "Runtime SpatialCanvas must fill the parent canvas instead of hardcoding the .pen demo frame dimensions (w-[640px] h-[360px]). Docs and application shells provide the actual workspace size so floating panels, nodes, and grid density examples can use responsive canvas areas. Update layout.pen to separate demo frame size from the reusable canvas primitive.",
-      "addedOn": "2026-06-03",
-      "expiresOn": "2026-07-31"
-    },
-    {
-      "category": "inputs",
-      "componentKey": "filterButton",
-      "reason": "Runtime FilterButton uses a horizontal trigger with a count badge and optional custom popover content so filter labels do not wrap in compact toolbars. The current inputs.pen style hints still describe a vertical flex-col trigger and fixed popover variant. Update inputs.pen to reflect reusable filter triggers for media-library and dashboard filters.",
-      "addedOn": "2026-05-13",
-      "expiresOn": "2026-07-31"
     }
   ]
 }

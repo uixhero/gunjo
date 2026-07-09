@@ -1529,12 +1529,17 @@
           "name": "FilterButton/Popover",
           "key": "popover",
           "type": "frame",
-          "width": 200,
-          "height": null,
-          "layout": "vertical",
-          "padding": null,
-          "gap": null,
-          "cornerRadius": 8,
+          "width": null,
+          "height": 36,
+          "layout": "horizontal",
+          "padding": [
+            8,
+            12,
+            8,
+            12
+          ],
+          "gap": 8,
+          "cornerRadius": 6,
           "fill": "#ffffff",
           "stroke": {
             "align": "inside",
@@ -1543,9 +1548,9 @@
           },
           "reusable": true,
           "children": [
-            "filterButtonCommandItem",
-            "filterButtonCheckBox",
-            "filterButtonDivider"
+            "filterButtonIcon",
+            "filterButtonLabel",
+            "filterButtonBadge"
           ]
         }
       ],

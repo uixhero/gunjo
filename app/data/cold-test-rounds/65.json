@@ -5,12 +5,11 @@
   "score": "4/5",
   "category": "製造",
   "title": "AI に検査成績書を作らせてみた — 臨床ラボの「基準値判定」が、製造の「公差判定」にそのまま化けた（やってみた #65）",
-  "readmeTitle": "品質検査/検査成績書（製造QC・測定値vs公差/工程能力Cpk/不良パレート/署名発行層）",
   "summary": "製造の1枚目（#64 生産工程進捗）に続き、2枚目は QC の核心——現場タブレットで寸法を測り、**測定値を公差（上限 USL / 下限 LSL）に照らして合否を出し、検査成績書を発行する**画面。",
   "article": {
     "file": "zenn-yattemita-65-inspection-certificate.md",
     "slug": "65-inspection-certificate",
-    "markdown": "# AI に検査成績書を作らせてみた — 臨床ラボの「基準値判定」が、製造の「公差判定」にそのまま化けた（やってみた #65）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。**製造2枚目**——**品質検査 / 検査成績書**（ロット検査 × 測定値 vs 公差 × 工程能力 Cp/Cpk × 不良パレート × 判定・発行）。\n\n製造の1枚目（#64 生産工程進捗）に続き、2枚目は QC の核心——現場タブレットで寸法を測り、**測定値を公差（上限 USL / 下限 LSL）に照らして合否を出し、検査成績書を発行する**画面。\n\n## 結果 — 4/5\n\n`tsc`/`build` 緑・console 0・375px（現場ハンディ想定）・測定項目テーブル（規格中心/LSL/USL/実測/判定）・公差バンド判定（色だけに頼らない sr-only 付き）・Cpk 工程能力ゲージ・不良パレート・署名→ロック→是正追記。\n\n## 今回の主役 — 臨床ラボの「基準値判定」が、製造の「公差判定」にそのまま化けた\n\n血液検査の H/L 判定用に作った `ReferenceValue`（#56）を、製造の cold AI が公差判定にそのまま採用した:\n\n> **ReferenceValue is a clinical lab component that bends almost perfectly to QC tolerance bands.** Its `ReferenceRange`(`low`/`high`/`criticalLow`/`criticalHigh`) maps cleanly to LSL/USL, and `labels` let me override the medical \"高値/低値\" wording to \"上限規格 外（NG）/下限規格 外（NG）\" without touching internals. The exported pure **`flagValue()`** classifier drove the row's OK/NG verdict AND the value tone from one source of truth. The built-in `sr-only` flag means pass/fail never rides on colour alone — for free. **The single biggest win.**\n\n**臨床の「基準範囲 low/high・危険値 criticalLow/criticalHigh」と、製造の「規格 LSL/USL・限度見本」は同じ構造**だった。`flagValue()` が pure 関数で export されているので、各セルの判定とテーブル行の OK/NG を**1つの真実から**駆動できた。他にも:\n\n> - **`SignedRecord` → 検査成績書の発行**（看護記録/退院サマリ/不動産契約締結のために作った「下書き→署名→ロック→追記のみ」が、検査成績書の発行フローと**法的に同じ形**。摩擦ほぼゼロ）。\n> - **`BarChart averageValue` → パレートの 80% 線**（平均線のつもりの破線を `total×0.8` に流用＝閾値線に）。\n> - **`SegmentedGaugeCard targetValue` → Cpk≥1.33 の目標マーカー**。\n\n医療3業界で育てた `ReferenceValue`/`SignedRecord` が、製造QCで骨格そのまま効いた。\n\n## src で直した穴 — Meter に「higher-is-better＋目標マーカー」（3回目で build）\n\n- 🟠→✅ **Meter の方向が一方向だった**。Meter のトーンは「満杯＝悪」（容量/負荷向け）。だが **入居率（#60）・稼働率/良品率（#64）・Cpk工程能力（#65）は全部 higher-is-better（目標に届けば success）**。cold AI は毎回 `tone` を手で上書きしていた。**同じ穴を3回手当て**したので3回ルールで build（[#256](https://github.com/uixhero/gunjo/issues/256)・[PR #272](https://github.com/uixhero/gunjo/pull/272)）:\n  - `direction=\"higher-is-better\"`: **目標以上＝success・目標の9割まで＝warning・それ未満＝destructive**。\n  - `target`: トラック上に**目標マーカー線**を描画（higher-is-better では自動トーンも駆動・既定方向では SLA 下限などの視覚参照）。\n  - aria-valuetext で目標を読み上げ、マーカーは aria-hidden（色のみに依存しない）。\n\n  これで入居率・稼働率・良品率・Cpk が `<Meter direction=\"higher-is-better\" target={...} />` 一行になった。\n\n## 起票だけ / 再確認\n\n- 🟠 **ParetoChart が2回目**（#64 不良要因＋#65 不良パレート・[#270](https://github.com/uixhero/gunjo/issues/270)）。累積%曲線がどの部品でも引けない（BarChart 単系列・第2軸/折れ線オーバーレイ無）。`ComboChart`/二軸が無い。あと1回で build。\n- 🟡 **工程能力ゲージ（針＋目標線＋符号付き軸）**（[#274](https://github.com/uixhero/gunjo/issues/274)・1回目）。#256 は線形 Meter に target を足したが、Cpk は**負値になり得る**（規格外 = Cpk −0.26）。0–max のアークもクランプ。針式ダイヤル＋符号付き軸は別primitive。\n- 🟡 **RadioGroupItem が `<fieldset disabled>` 配下で aria-disabled を出さない**（[#273](https://github.com/uixhero/gunjo/issues/273)）。クリックは塞がるが SR 向けに「無効」が伝わらず tab 順にも残る。`disabled` 明示で回避。\n\n## docs デプロイ遅延が露呈\n\ncold AI が「ReferenceValue と Meter が gunjo.jp のナビに無い（404）」と報告。調べると **live の gunjo.jp が6/23正午頃から未デプロイ**で、直近2日の新部品（Delta/Meter/ReferenceValue/RouteStops/ScanInput/ScanGate/SafetyBanner/CoSign/SignedRecord）が全部 live で 404 だった。コードもナビ登録も正しく、**手動 `vercel --prod` の再デプロイ待ち**。cold AI が node_modules の型を読むしかなかった真因はこれ。実ユーザーも同じく発見できない状態なので、再デプロイは優先。\n\n## 学び — 「値 vs 範囲」は、検査値でも公差でも同じ判定\n\n```\n臨床の基準範囲（low/high・危険値 criticalLow/criticalHigh） → 製造の公差（LSL/USL・限度見本）\n医療/不動産の署名記録（署名→ロック→追記のみ） → 製造の検査成績書発行\n不動産の入居率メーター（higher-is-better） → 製造の稼働率/Cpk メーター（同じ）\n```\n\n`ReferenceValue` は血液検査の H/L 判定のために作ったが、その骨格（**測定値を範囲に照らして旗を立てる**）は製造の公差判定にそのまま効いた。`flagValue()` を pure 関数で出していたから、テーブルの行判定まで同じ真実で駆動できた。医療/物流/金融/会計/不動産/製造の6業界で、育てた primitive が横断することをさらに実証。Meter の higher-is-better は3回ルールで land、パレートは2回目、Cpkダイヤルは1回目——製造特有の可視化はこれから育てる。\n\n## 次回予告（やってみた #66）\n- **製造をもう1枚**（設備保全/OEE ダッシュボード or トレーサビリティ）で**パレート#270 を3回目＝build**へ。1業界3〜5枚で製造の判断を立体化。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#64](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。臨床の基準値判定が製造の公差判定にそのまま化け、入居率メーターが Cpk ゲージになった回。\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー／live再デプロイ後にナビ404解消を確認 -->\n"
+    "markdown": "# AI に検査成績書を作らせてみた — 臨床ラボの「基準値判定」が、製造の「公差判定」にそのまま化けた（やってみた #65）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。**製造2枚目**——**品質検査 / 検査成績書**（ロット検査 × 測定値 vs 公差 × 工程能力 Cp/Cpk × 不良パレート × 判定・発行）。\n\n製造の1枚目（#64 生産工程進捗）に続き、2枚目は QC の核心——現場タブレットで寸法を測り、**測定値を公差（上限 USL / 下限 LSL）に照らして合否を出し、検査成績書を発行する**画面。\n\n## 結果 — 4/5\n\n`tsc`/`build` 緑・console 0・375px（現場ハンディ想定）・測定項目テーブル（規格中心/LSL/USL/実測/判定）・公差バンド判定（色だけに頼らない sr-only 付き）・Cpk 工程能力ゲージ・不良パレート・署名→ロック→是正追記。\n\n## 今回の主役 — 臨床ラボの「基準値判定」が、製造の「公差判定」にそのまま化けた\n\n血液検査の H/L 判定用に作った `ReferenceValue`（#56）を、製造の予備知識ゼロの AI が公差判定にそのまま採用した:\n\n> **ReferenceValue は臨床ラボ用のコンポーネントだが、QC の公差バンドにほぼ完璧に曲がる。** その `ReferenceRange`(`low`/`high`/`criticalLow`/`criticalHigh`) は LSL/USL にきれいに対応し、`labels` で医療の「高値/低値」を「上限規格 外（NG）/下限規格 外（NG）」に、内部に触れず上書きできた。export された純関数の **`flagValue()`** 分類器が、行の OK/NG 判定と値の色調を、1つの真実から駆動した。組み込みの `sr-only` フラグで、合否は色だけに乗らない——タダで。**この回いちばんの収穫。**\n\n**臨床の「基準範囲 low/high・危険値 criticalLow/criticalHigh」と、製造の「規格 LSL/USL・限度見本」は同じ構造**だった。`flagValue()` が純関数で export されているので、各セルの判定とテーブル行の OK/NG を**1つの真実から**駆動できた。他にも:\n\n> - **`SignedRecord` → 検査成績書の発行**（看護記録/退院サマリ/不動産契約締結のために作った「下書き→署名→ロック→追記のみ」が、検査成績書の発行フローと**法的に同じ形**。摩擦ほぼゼロ）。\n> - **`BarChart averageValue` → パレートの 80% 線**（平均線のつもりの破線を `total×0.8` に流用＝閾値線に）。\n> - **`SegmentedGaugeCard targetValue` → Cpk≥1.33 の目標マーカー**。\n\n医療3業界で育てた `ReferenceValue`/`SignedRecord` が、製造QCで骨格そのまま効いた。\n\n## src で直した不備 — Meter に「値が大きいほど良い＋目標マーカー」（3回目で作る）\n\n- 🟠→✅ **Meter の方向が一方向だった**。Meter のトーンは「満杯＝悪」（容量/負荷向け）。だが **入居率（#60）・稼働率/良品率（#64）・Cpk工程能力（#65）は全部「値が大きいほど良い」（目標に届けば success）**。予備知識ゼロの AI は毎回 `tone` を手で上書きしていた。**同じ欠落を3回手当て**したので3回ルールで作る（[#256](https://github.com/uixhero/gunjo/issues/256)・[PR #272](https://github.com/uixhero/gunjo/pull/272)）:\n  - `direction=\"higher-is-better\"`: **目標以上＝success・目標の9割まで＝warning・それ未満＝destructive**。\n  - `target`: トラック上に**目標マーカー線**を描画（「値が大きいほど良い」では自動トーンも駆動・既定方向では SLA 下限などの目安に）。\n  - aria-valuetext で目標を読み上げ、マーカーは aria-hidden（色のみに依存しない）。\n\n  これで入居率・稼働率・良品率・Cpk が `<Meter direction=\"higher-is-better\" target={...} />` 一行になった。\n\n## 課題に記録だけ / 再確認\n\n- 🟠 **`ParetoChart` が2回目**（#64 不良要因＋#65 不良パレート・[#270](https://github.com/uixhero/gunjo/issues/270)）。累積%曲線がどのコンポーネントでも引けない（BarChart 単系列・第2軸/折れ線の重ね描画なし）。`ComboChart`/二軸が無い。あと1回で作る。\n- 🟡 **工程能力ゲージ（針＋目標線＋符号付き軸）**（[#274](https://github.com/uixhero/gunjo/issues/274)・1回目）。#256 は線形の Meter に target を足したが、Cpk は**負の値になり得る**（規格外 = Cpk −0.26）。0–max のアークも上下限で制限される。針式ダイヤル＋符号付き軸は別のコンポーネント。\n- 🟡 **RadioGroupItem が `<fieldset disabled>` 配下で aria-disabled を出さない**（[#273](https://github.com/uixhero/gunjo/issues/273)）。クリックは塞がるが、読み上げに「無効」が伝わらず tab 順にも残る。`disabled` 明示で回避。\n\n## docs デプロイ遅延が露呈\n\n予備知識ゼロの AI が「ReferenceValue と Meter が gunjo.jp のナビに無い（404）」と報告。調べると **本番の gunjo.jp が6/23正午頃から未デプロイ**で、直近2日の新しいコンポーネント（Delta/Meter/ReferenceValue/RouteStops/ScanInput/ScanGate/SafetyBanner/CoSign/SignedRecord）が全部、本番で 404 だった。コードもナビ登録も正しく、**手動 `vercel --prod` の再デプロイ待ち**。予備知識ゼロの AI が node_modules の型を読むしかなかった真因はこれ。実ユーザーも同じく見つけられない状態なので、再デプロイは優先。\n\n## 学び — 「値 vs 範囲」は、検査値でも公差でも同じ判定\n\n```\n臨床の基準範囲（low/high・危険値 criticalLow/criticalHigh） → 製造の公差（LSL/USL・限度見本）\n医療/不動産の署名記録（署名→ロック→追記のみ） → 製造の検査成績書発行\n不動産の入居率メーター（値が大きいほど良い） → 製造の稼働率/Cpk メーター（同じ）\n```\n\n`ReferenceValue` は血液検査の H/L 判定のために作ったが、その骨格（**測定値を範囲に照らして旗を立てる**）は製造の公差判定にそのまま効いた。`flagValue()` を純関数で出していたから、テーブルの行判定まで同じ真実で駆動できた。医療/物流/金融/会計/不動産/製造の6業界で、育てたコンポーネントが横断することをさらに実証。Meter の「値が大きいほど良い」は3回ルールで反映、パレートは2回目、Cpkダイヤルは1回目——製造特有の可視化はこれから育てる。\n\n## 次回予告（やってみた #66）\n- **製造をもう1枚**（設備保全/OEE ダッシュボード or トレーサビリティ）で**パレート#270 を3回目＝作る**へ。1業界3〜5枚で製造の判断を立体化。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#64](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。臨床の基準値判定が製造の公差判定にそのまま化け、入居率メーターが Cpk ゲージになった回。\n"
   },
   "code": [
     {
@@ -31,33 +30,17 @@
   ],
   "components": [
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
     "Badge",
     "BarChart",
     "Card",
-    "CardContent",
-    "CardHeader",
-    "CardTitle",
-    "ChartDataPoint",
     "MetadataList",
     "RadioGroup",
-    "RadioGroupItem",
-    "RangeFlag",
-    "ReferenceRange",
     "ReferenceValue",
     "SegmentedGaugeCard",
     "Separator",
     "SignedRecord",
-    "SignedRecordValue",
     "Statistic",
     "Table",
-    "TableBody",
-    "TableCell",
-    "TableFooter",
-    "TableHead",
-    "TableHeader",
-    "TableRow",
     "Textarea"
   ],
   "shots": {

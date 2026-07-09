@@ -5,12 +5,11 @@
   "score": "4/5",
   "category": "飲食・レストラン",
   "title": "AI にホール運営＋KDSを作らせてみた — KDSは KanbanBoard、でも卓タイルだけ手組み（やってみた #96）",
-  "readmeTitle": "ホール運営/テーブル管理＋KDS（飲食・KDS注文ステージKanbanBoard/卓状態タイル手組み/要対応Banner/サマリStatGroup/提供遅延Meter層・StatusTile gap発見）",
   "summary": "#95予約台帳とは真逆の、営業中のリアルタイム運営ボード。観測：**KDS（調理ステージを流れる注文）に KanbanBoard が効くか＋StatGroup の継続再利用。**",
   "article": {
     "file": "zenn-yattemita-96-restaurant-floor.md",
     "slug": "96-restaurant-floor",
-    "markdown": "# AI にホール運営＋KDSを作らせてみた — KDSは KanbanBoard、でも卓タイルだけ手組み（やってみた #96）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。**飲食・レストラン 2枚目**——**ホール運営／テーブル管理＋キッチンディスプレイ(KDS)**。リアルタイムの卓状態・注文進行・要対応。\n\n#95予約台帳とは真逆の、営業中のリアルタイム運営ボード。観測：**KDS（調理ステージを流れる注文）に KanbanBoard が効くか＋StatGroup の継続再利用。**\n\n## 結果 — 4/5\n\n`tsc`/`build` 緑・375px 横溢れゼロ・0 console error。フロア卓状態・KDS注文ステージ・要対応・卓ドリルイン・本日サマリ。\n\n## 観測 — KDSは KanbanBoard、サマリは StatGroup\n\ncold AI に「(a)KDS注文ステージ盤 (b)サマリ指標行 (c)卓状態タイル をどう作ったか」を聞いた：\n\n> **`KanbanBoard`** — *まさに* KDS 注文ステージ盤。columns=受付/調理中/提供待ち/提供済・`getColumnId`/`renderCard`・列ごと件数バッジ・**contained 横スクロールで4列が375pxを破らない**。「**この domain で kit 最良の単一部品**」。D&D は bring-your-own だが、キッチンのタッチ画面ではステージ送りボタンの方が良い。\n> **`StatGroup`** — 「literally『サマリ指標行』と documented」。6指標を渡して `cols={{base:2,md:3,lg:6}}`＝**~10行で完了**。`Meter`(提供遅延・経過/目標)・`Banner`×3(提供遅延=destructive/会計待ち=warning/長居=info)・`Badge` icon・`Drawer`+`MetadataList`(卓詳細) も既製。\n\n**`KanbanBoard`（統合アークで build・#83 HR ATS で発掘）が KDS に越境**＝同じ盤が採用パイプラインでもキッチンでも効く。**`StatGroup`（#94 build）は #95予約に続き #96 でも再利用**＝飲食2枚連続。\n\n## 唯一の手組み＝StatusTile の不在（新gap）\n\n> **卓状態タイルだけ手組み**＝フロアの各卓（卓番＋状態Badge＋滞在/金額/担当＋提供遅延/長居タグ＋クリック）を `Card`+`Badge`+`Icon`+`Tag`+`<ul>grid` で。**floor/seating/status-tile の primitive が無い**。さらに `Card` に interactive affordance が無いので、クリック可能な card 毎に `role`/`tabIndex`/`onKeyDown` の a11y を手書き。\n\n→ [#344](https://github.com/uixhero/gunjo/issues/344) 起票（`StatusTile`＝title＋状態Badge＋metric行＋attentionタグ＋onActivate）。cold AI 曰く「**全 ops board——レストランフロア/キッチンexpo/病床ボード/倉庫ドック——が今これを再発明している**」。1回目だが明確に業界横断。`Card` interactive a11y（#341 と同根）も同issueに。\n\n## 起票（追記）\n- 🔵 StatGroup が Statistic と隣接で名前から見つけにくい・Meter vs Progress の重複（[#325](https://github.com/uixhero/gunjo/issues/325)）・Statistic が375pxで通貨を桁途中で折返し（compact knob 希望・#344）。\n\n**今回 src build なし**（4/5・KanbanBoard/StatGroup 再利用が成果・StatusTile を起票）。\n\n## 学び — 次の「水平な階層」は ops の StatusTile かもしれない\n人物階層（PersonCell→RelationshipRow→StatGroup）を揃えた。#96 が示したのは別の軸＝**運営ボードの最小単位 StatusTile**（状態を持つ何か＝卓/病床/ドック/ジョブ）。PersonCell が「人を1行」なら StatusTile は「状態を持つモノを1タイル」。これも業界横断（飲食/医療/物流/製造）で繰り返す形——3回ルールで再出現を待って結晶化する候補。一方 KanbanBoard/StatGroup の越境が示すとおり、ステージ盤と指標行はもう揃っている。\n\n## 次回予告（やってみた #97）\n- 飲食3枚目（シフト管理 ScheduleGrid＋StatGroup or 売上ダッシュボード）。StatusTile 再出現の観測。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#95](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI にホール運営＋KDSを作らせてみた — KDSは KanbanBoard、でも卓タイルだけ手組み（やってみた #96）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。**飲食・レストラン 2枚目**——**ホール運営／テーブル管理＋キッチンディスプレイ(KDS)**。リアルタイムの卓状態・注文進行・要対応。\n\n#95予約台帳とは真逆の、営業中のリアルタイム運営ボード。観測：**KDS（調理ステージを流れる注文）に KanbanBoard が効くか＋StatGroup の継続再利用。**\n\n## 結果 — 4/5\n\n`tsc`/`build` 緑・375px 横溢れゼロ・0 console error。フロア卓状態・KDS注文ステージ・要対応・卓を掘り下げる詳細・本日サマリ。\n\n## 観測 — KDSは KanbanBoard、サマリは StatGroup\n\n予備知識ゼロの AI に「(a)KDS注文ステージ盤 (b)サマリ指標行 (c)卓状態タイル をどう作ったか」を聞いた：\n\n> **`KanbanBoard`** — *まさに* KDS の注文ステージ盤。列=受付/調理中/提供待ち/提供済・`getColumnId`/`renderCard`・列ごとの件数バッジ・**閉じ込めた横スクロールで4列が375pxを破らない**。「**この分野でライブラリ最良の単一コンポーネント**」。ドラッグ&ドロップは自前で用意する必要があるが、キッチンのタッチ画面ではステージ送りボタンの方が良い。\n> **`StatGroup`** — 「まさに『サマリ指標行』と説明されている」。6指標を渡して `cols={{base:2,md:3,lg:6}}`＝**~10行で完了**。`Meter`(提供遅延・経過/目標)・`Banner`×3(提供遅延=destructive/会計待ち=warning/長居=info)・`Badge` icon・`Drawer`+`MetadataList`(卓詳細) も既製。\n\n**`KanbanBoard`（整備ラウンドで作り・#83 HR ATS で発掘）が KDS に業界越え**＝同じ盤が採用パイプラインでもキッチンでも効く。**`StatGroup`（#94 で作った）は #95予約に続き #96 でも再利用**＝飲食2枚連続。\n\n## 唯一の手組み＝StatusTile の不在（新しい欠落）\n\n> **卓状態タイルだけ手組み**＝フロアの各卓（卓番＋状態Badge＋滞在/金額/担当＋提供遅延/長居タグ＋クリック）を `Card`+`Badge`+`Icon`+`Tag`+`<ul>grid` で。**フロア/座席/状態タイルのコンポーネントが無い**。さらに `Card` に操作できる手がかりが無いので、クリックできる card ごとに `role`/`tabIndex`/`onKeyDown` のアクセシビリティを手書き。\n\n→ [#344](https://github.com/uixhero/gunjo/issues/344) を課題に記録（`StatusTile`＝タイトル＋状態Badge＋指標行＋要対応タグ＋onActivate）。予備知識ゼロの AI 曰く「**あらゆる運営ボード——レストランのフロア/キッチンのまとめ台/病床ボード/倉庫のドック——が今これを再発明している**」。1回目だが明確に業界横断。`Card` の操作できるアクセシビリティ（#341 と同じ根）も同じ issue に。\n\n## 課題記録（追記）\n- 🔵 StatGroup が Statistic と隣り合っていて名前から見つけにくい・Meter と Progress の重複（[#325](https://github.com/uixhero/gunjo/issues/325)）・Statistic が375pxで通貨を桁の途中で折り返す（compact 指定が欲しい・#344）。\n\n**今回 src の新規コンポーネントなし**（4/5・KanbanBoard/StatGroup 再利用が成果・StatusTile を課題に記録）。\n\n## 学び — 次の「横に広がる階層」は運営の StatusTile かもしれない\n人物の階層（PersonCell→RelationshipRow→StatGroup）を揃えた。#96 が示したのは別の軸＝**運営ボードの最小単位 StatusTile**（状態を持つ何か＝卓/病床/ドック/ジョブ）。PersonCell が「人を1行」なら StatusTile は「状態を持つモノを1タイル」。これも業界横断（飲食/医療/物流/製造）で繰り返す形——3回ルールで再出現を待って固める候補。一方 KanbanBoard/StatGroup の業界越えが示すとおり、ステージ盤と指標行はもう揃っている。\n\n## 次回予告（やってみた #97）\n- 飲食3枚目（シフト管理 ScheduleGrid＋StatGroup or 売上ダッシュボード）。StatusTile 再出現の観測。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#95](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n"
   },
   "code": [
     {
@@ -30,25 +29,15 @@
     "Button",
     "Card",
     "Drawer",
-    "DrawerClose",
-    "DrawerContent",
-    "DrawerDescription",
-    "DrawerFooter",
-    "DrawerHeader",
-    "DrawerTitle",
     "HStack",
     "Icon",
     "KanbanBoard",
-    "KanbanColumn",
     "MetadataList",
     "Meter",
     "Separator",
     "StatGroup",
-    "StatisticProps",
+    "Statistic",
     "Tabs",
-    "TabsContent",
-    "TabsList",
-    "TabsTrigger",
     "Tag",
     "VStack"
   ],

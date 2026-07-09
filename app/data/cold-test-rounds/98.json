@@ -5,12 +5,11 @@
   "score": "4.5/5",
   "category": "飲食・レストラン",
   "title": "AI に飲食の売上分析ダッシュボードを作らせてみた — SVGを1つも書かずに7チャート（やってみた #98）",
-  "readmeTitle": "飲食売上分析ダッシュボード（飲食・KPI StatGroup+AnalyticsCard/日次LineChart/時間帯StackedBar/ABC分析ParetoChart/カテゴリLabeledDonut/曜日×時間HeatmapChart層＝チャート層丸ごと越境・SVG手組みゼロ）",
   "summary": "運営オペ3枚（予約/フロア/シフト）とは別の分析系。観測：**チャート層が飲食でどれだけ効くか＋StatGroup の継続再利用。**",
   "article": {
     "file": "zenn-yattemita-98-restaurant-sales.md",
     "slug": "98-restaurant-sales",
-    "markdown": "# AI に飲食の売上分析ダッシュボードを作らせてみた — SVGを1つも書かずに7チャート（やってみた #98）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。**飲食・レストラン 4枚目**——**売上分析ダッシュボード**（時間帯別/メニュー別ABC/カテゴリ構成/曜日×時間ヒートマップ/前年比）。\n\n運営オペ3枚（予約/フロア/シフト）とは別の分析系。観測：**チャート層が飲食でどれだけ効くか＋StatGroup の継続再利用。**\n\n## 結果 — 4.5/5・チャート手組みゼロ\n\n`tsc`/`build` 緑・375px 横溢れゼロ・0 console error。KPI・日次推移・時間帯別・ABC分析・カテゴリ構成・ヒートマップ・客単価推移——**SVGを1つも書かず**にダッシュボード全体を。\n\n## 観測 — チャート層が丸ごと飲食に越境\n\ncold AI に「(a)KPI行 (b)各チャート (c)期間切替」を聞いた：\n\n> **ほぼ全部既製**——**`StatGroup`+`Statistic`+`AnalyticsCard`**（KPI strip・「literally what these are for」・**飲食4連続**）・**`LineChart`**（`referenceValue` で予算ラインが無料・多系列 今年/前年）・**`ParetoChart`**（ABC分析・「**the standout**・sort/threshold=80/累積%軸 内蔵・大抵の kit は2チャート重ねで偽装するのを1 prop で」）・**`HeatmapChart`**（曜日×時間）・**`StackedBarChart`**（時間帯×フード/ドリンク）・**`LabeledDonutCard`**（カテゴリ構成）・`DataTable`（ABCランキング）。**`formatCurrency`/`formatNumber`/`formatPercent`** は JPY/ja-JP 既定。「**SVGを1本も描かなかった——これが headline**」。\n\n**チャート層（銀行#33/会計で育てた BarChart/LineChart/ParetoChart#66 等）が飲食売上分析に丸ごと越境**＝60%が普通カスタムチャートになる画面が、~95% kit に。手組みは「フード/ドリンク2値構成カード」だけ。\n\n## 残る課題は機能でなく、また「発見可能性」\n\n今回 src build なし（4.5/5）。だが #98 は **#325（発見可能性）がもう連載の支配的課題**だと決定づけた：\n\n- 🔵 **`ParetoChart` が「kit が隠している単一最大の発見可能性の勝ち」**——名前が「ABC分析」を叫ばず、barrel 全読でしか見つからない。\n- 🔵 **`Meter` が「金額を整形できない」と誤報された**——cold AI は「formatValue prop が無い」と結論して上に手書き整形を置いた。**だが `formatValue` は実在し readout 全体を整形する**（`formatValue={formatCurrency}` → `¥16,842,300 / ¥17,500,000（96%）`）。**prop を見落としただけ**＝純粋な発見可能性（source/JSDoc にはある、採用者が見つけられない）。\n- 🔵 `LabeledDonutCard` vs `DonutChart` vs `PieChart`（3つの donut・`showCallouts` vs `showLegend`・「危うく違うのを使う所だった」）。\n- 🟢 `ToggleGroup` の `onValueChange` が single でも緩い型（#330）。\n\n## 学び — 「在る最高の部品を見つけさせる」が、最後の山\nEventCalendar(#82)・TreeView(#84)・ReferenceValue/SignedRecord(#91)・ScheduleGrid(#95/#97)・StatGroup(#96)・そして ParetoChart/Meter.formatValue(#98)——**毎回、kit は完璧な部品を持っているのに、cold AI が見つけられず手組みしかける**。JSDoc の「use this, not that」だけが救い続けてきたが、それは source を開いた時だけ見える。**残る最大の仕事は機能でなく、ユースケース別索引＋prop の発見可能性**（「ABC分析」→ParetoChart、「Meterで金額整形」→Meter.formatValue を名前/検索で出す）。98枚やって、部品は揃った——揃った部品を**見つけさせる**のが #100 を前にした宿題。\n\n## 次回予告（やってみた #99→#100）\n- 飲食5枚目（在庫/発注 など）or 次業界。#100 の節目が近い。**StatusTile族3回目**＝build トリガーの観測も継続。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#97](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。だが飲食の売上分析が SVG手組みゼロで組めた——チャート層も業界を越える、13業界目の4枚目。\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI に飲食の売上分析ダッシュボードを作らせてみた — SVGを1つも書かずに7チャート（やってみた #98）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。**飲食・レストラン 4枚目**——**売上分析ダッシュボード**（時間帯別/メニュー別ABC/カテゴリ構成/曜日×時間ヒートマップ/前年比）。\n\n運営オペ3枚（予約/フロア/シフト）とは別の分析系。観測：**チャート層が飲食でどれだけ効くか＋StatGroup の継続再利用。**\n\n## 結果 — 4.5/5・チャート手組みゼロ\n\n`tsc`/`build` 緑・375px 横溢れゼロ・0 console error。KPI・日次推移・時間帯別・ABC分析・カテゴリ構成・ヒートマップ・客単価推移——**SVGを1つも書かず**にダッシュボード全体を。\n\n## 観測 — チャート層が丸ごと飲食に業界越え\n\n予備知識ゼロの AI に「(a)KPI行 (b)各チャート (c)期間切替」を聞いた：\n\n> **ほぼ全部既製**——**`StatGroup`+`Statistic`+`AnalyticsCard`**（KPI ストリップ・「まさにこのためのもの」・**飲食4連続**）・**`LineChart`**（`referenceValue` で予算ラインがタダ・多系列 今年/前年）・**`ParetoChart`**（ABC分析・「**いちばんの見どころ**・並べ替え/threshold=80/累積%軸を内蔵・大抵のライブラリは2チャート重ねで偽装するのを1 prop で」）・**`HeatmapChart`**（曜日×時間）・**`StackedBarChart`**（時間帯×フード/ドリンク）・**`LabeledDonutCard`**（カテゴリ構成）・`DataTable`（ABCランキング）。**`formatCurrency`/`formatNumber`/`formatPercent`** は JPY/ja-JP 既定。「**SVGを1本も描かなかった——これが目玉**」。\n\n**チャート層（銀行#33/会計で育てた BarChart/LineChart/`ParetoChart`#66 等）が飲食売上分析に丸ごと業界越え**＝普通なら60%が自作チャートになる画面が、~95% ライブラリで組めた。手組みは「フード/ドリンク2値構成カード」だけ。\n\n## 残る課題は機能でなく、また「発見可能性」\n\n今回 src の新規コンポーネントなし（4.5/5）。だが #98 は **#325（発見可能性）がもう連載で支配的な課題**だと決定づけた：\n\n- 🔵 **`ParetoChart` が「ライブラリが隠している、発見可能性の最大の当たり」**——名前が「ABC分析」を主張せず、まとめて呼び出す入口（`@gunjo/ui`）を全部読まないと見つからない。\n- 🔵 **`Meter` が「金額を整形できない」と誤って報告された**——予備知識ゼロの AI は「formatValue prop が無い」と結論して上に手書きの整形を置いた。**だが `formatValue` は実在し、読み上げ全体を整形する**（`formatValue={formatCurrency}` → `¥16,842,300 / ¥17,500,000（96%）`）。**prop を見落としただけ**＝純粋な発見可能性の問題（ソース/JSDoc にはある、採用者が見つけられない）。\n- 🔵 `LabeledDonutCard` vs `DonutChart` vs `PieChart`（3つの donut・`showCallouts` vs `showLegend`・「危うく違うのを使う所だった」）。\n- 🟢 `ToggleGroup` の `onValueChange` が single でも緩い型（#330）。\n\n## 学び — 「在る最高のコンポーネントを見つけさせる」が、最後の山\nEventCalendar(#82)・TreeView(#84)・ReferenceValue/SignedRecord(#91)・ScheduleGrid(#95/#97)・StatGroup(#96)・そして `ParetoChart`/Meter.formatValue(#98)——**毎回、ライブラリは完璧なコンポーネントを持っているのに、予備知識ゼロの AI が見つけられず手組みしかける**。JSDoc の「これを使え／これは使うな」だけが救い続けてきたが、それはソースを開いた時だけ見える。**残る最大の仕事は機能でなく、用途別の索引＋prop の発見可能性**（「ABC分析」→`ParetoChart`、「Meterで金額整形」→Meter.formatValue を名前/検索で出す）。98枚やって、コンポーネントは揃った——揃ったコンポーネントを**見つけさせる**のが #100 を前にした宿題。\n\n## 次回予告（やってみた #99→#100）\n- 飲食5枚目（在庫/発注 など）or 次業界。#100 の節目が近い。**運営タイル族の3回目**＝作る合図の観測も継続。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#97](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。だが飲食の売上分析が SVG手組みゼロで組めた——チャート層も業界を越える、13業界目の4枚目。\n"
   },
   "code": [
     {
@@ -29,13 +28,7 @@
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
-    "ChartColor",
     "ChartLegend",
-    "ColumnDef",
     "Container",
     "DataTable",
     "HeatmapChart",
@@ -47,8 +40,7 @@
     "Separator",
     "StackedBarChart",
     "StatGroup",
-    "ToggleGroup",
-    "ToggleGroupItem"
+    "ToggleGroup"
   ],
   "shots": {
     "desktop": true,

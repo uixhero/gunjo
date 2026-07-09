@@ -4,13 +4,12 @@
   "slug": "content-calendar",
   "score": "3.5/5",
   "category": "メディア・出版",
-  "title": "AI に編集カレンダーを作らせてみた — 「月カレンダー」だけは、まだ部品が無い（やってみた #81）",
-  "readmeTitle": "編集カレンダー/コンテンツカレンダー（メディア・月間カレンダー/記事チップ/入稿締切/チャネル別層）",
-  "summary": "メディアの2枚目はコンテンツカレンダー——記事を公開予定日に並べ、入稿締切を追う画面。そして**80枚やって何度も顔を出してきた「カレンダービュー」の穴が、月カレンダーの形でまた出た**回。",
+  "title": "AI に編集カレンダーを作らせてみた — 「月カレンダー」だけは、まだコンポーネントが無い（やってみた #81）",
+  "summary": "メディアの2枚目はコンテンツカレンダー——記事を公開予定日に並べ、入稿締切を追う画面。そして**80枚やって何度も顔を出してきた「カレンダービュー」の欠落が、月カレンダーの形でまた出た**回。",
   "article": {
     "file": "zenn-yattemita-81-content-calendar.md",
     "slug": "81-content-calendar",
-    "markdown": "# AI に編集カレンダーを作らせてみた — 「月カレンダー」だけは、まだ部品が無い（やってみた #81）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。**メディア/出版2枚目**——**編集カレンダー / コンテンツカレンダー**（月間カレンダー × 記事チップ × 入稿締切 × チャネル別フィルタ）。\n\nメディアの2枚目はコンテンツカレンダー——記事を公開予定日に並べ、入稿締切を追う画面。そして**80枚やって何度も顔を出してきた「カレンダービュー」の穴が、月カレンダーの形でまた出た**回。\n\n## 結果 — 3.5/5\n\n`tsc`/`build` 緑・console 0・375px（モバイルはアジェンダ崩し）・月間カレンダー・記事チップ（タイトル+カテゴリ+ステータス）・入稿締切マーカー・チャネル別フィルタ・予定追加/移動・当月サマリ。\n\n## 今回の穴 — 月カレンダー（イベント付き）の primitive が無い\n\n> **No calendar-view / month-grid-with-events component.** `Calendar` is a react-day-picker **date PICKER** (no event concept). `ScheduleGrid` is a fixed rows×columns matrix whose cell is one `content` node — no day-number, no today, no \"multiple stacked events per cell\". So `MonthGrid.tsx` is hand-built: `role=\"grid\"` + roving 矢印/Home/End/Enter + 合成読み上げ名 + モバイルagenda fallback. **The day-cell-with-stacked-events pattern — the single most common scheduling UI on the web — must be built from scratch.**\n\nこれは [#142](https://github.com/uixhero/gunjo/issues/142)（最古参の headline gap）の**3つ目の顔**:\n```\nWeekView（時刻グリッド+重なり詰め・#27）\nResourceTimeline/Gantt（リソース×連続時間軸・#68）\nMonthCalendar（日付×イベント・#81 ← 今回）\n※ 離散の時間割/マトリクスは ScheduleGrid（#70）で対応済\n```\n\n**カレンダー/スケジューリングビュー系は、シリーズ通して最も再出現する未対応領域。** 各形（週/ガント/月）が大型なので、3回ルールというより**専用の `EventCalendar` を腰を据えて1本作る**べき段階——mid-loop で急いで作る大きさじゃない。#142 に「最優先の残課題」として記録した。\n\n## それでも周辺は既存部品で\n\n**`DataTable`**→締切トラッカー「best component in the kit」（sort/filter/renderCard mobile）・**`Statistic`**→当月サマリ・**`Badge` icon**→記事ステータス（色だけに非依存）・`Sheet`+`DatePicker`→予定追加/移動・`Tabs`→カレンダー/アジェンダ/締切一覧。**葉っぱは全部 @gunjo/ui、手組みは月グリッドの骨格だけ。**\n\n## 起票だけ（no-build）\n\n- 🟠 **月カレンダー(EventCalendar)が無い**＝#142 の最優先化（[#142](https://github.com/uixhero/gunjo/issues/142) に追記）。\n- 🟡 **DatePicker に label/description 配線が無い**（Input/Select/Textarea と不整合・[#315](https://github.com/uixhero/gunjo/issues/315)）。\n- 🟡 **DataTable の columnheader 名がソート指示に乗っ取られる**（SR が列名でなく「Click to sort」を読む・[#307](https://github.com/uixhero/gunjo/issues/307) に追記）。\n- 🟢 tone vs variant のプロップ名不統一・Banner が1行固定。\n\n## 学び — 「最頻出の作法」ほど、最後まで残ることがある\n\n#80 で back-office 三種の神器が8業界に効くのを見た。だが #81 は逆——**カレンダー（最も一般的なスケジューリング UI）が、80枚やってもまだ部品化されていない**。理由は明快：カレンダービューは「大きい」（月レイアウト・イベント積み・今日/月外・キーボードナビ・モバイル崩し）。小〜中 primitive は3回ルールで次々埋まったが、**大型ドメインレイアウト（カレンダー・系譜グラフ・連続ガント）は、専用の build セッションを切らないと埋まらない**。これは穴の発見ではなく、「次に腰を据えて作るべきもの」の明確化。\n\n## 次回予告（やってみた #82）\n- **EventCalendar を腰を据えて build**（#142・月ビュー）or **Meter 集約 PR**（#277/#286/#297/#308）or メディア/別業界もう1枚。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#80](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。葉っぱは全部既存部品で組めたが、月カレンダーの骨格だけはまだ手組み——次に腰を据えて作るべきものが見えた回。\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI に編集カレンダーを作らせてみた — 「月カレンダー」だけは、まだコンポーネントが無い（やってみた #81）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。**メディア/出版2枚目**——**編集カレンダー / コンテンツカレンダー**（月間カレンダー × 記事チップ × 入稿締切 × チャネル別フィルタ）。\n\nメディアの2枚目はコンテンツカレンダー——記事を公開予定日に並べ、入稿締切を追う画面。そして**80枚やって何度も顔を出してきた「カレンダービュー」の欠落が、月カレンダーの形でまた出た**回。\n\n## 結果 — 3.5/5\n\n`tsc`/`build` 緑・console 0・375px（モバイルはアジェンダ崩し）・月間カレンダー・記事チップ（タイトル+カテゴリ+ステータス）・入稿締切マーカー・チャネル別フィルタ・予定追加/移動・当月サマリ。\n\n## 今回の欠落 — 月カレンダー（イベント付き）のコンポーネントが無い\n\n> **カレンダービュー / イベント付き月グリッドのコンポーネントが無い。** `Calendar` は react-day-picker の**日付ピッカー**（イベントの概念なし）。`ScheduleGrid` は固定の行×列マトリクスで、セルは1つの `content` ノード——日付番号も、今日も、「1セルに複数イベントを積む」も無い。だから `MonthGrid.tsx` は手組み: `role=\"grid\"` + roving 矢印/Home/End/Enter + 合成読み上げ名 + モバイルのアジェンダ表示への切替。**日付セルにイベントを積むパターン——ウェブで最も一般的なスケジューリング UI——を、ゼロから作らねばならない。**\n\nこれは [#142](https://github.com/uixhero/gunjo/issues/142)（最古参の最大級の欠落）の**3つ目の顔**:\n```\nWeekView（時刻グリッド+重なり詰め・#27）\nResourceTimeline/Gantt（リソース×連続時間軸・#68）\nMonthCalendar（日付×イベント・#81 ← 今回）\n※ 離散の時間割/マトリクスは ScheduleGrid（#70）で対応済\n```\n\n**カレンダー/スケジューリングビュー系は、連載を通して最も再出現する未対応の領域。** 各形（週/ガント/月）が大型なので、3回ルールというより**専用の `EventCalendar` を腰を据えて1本作る**べき段階——連載の途中で急いで作る大きさじゃない。#142 に「最優先の残課題」として記録した。\n\n## それでも周辺は既存コンポーネントで\n\n**`DataTable`**→締切トラッカー「ライブラリで最良のコンポーネント」（sort/filter/renderCard mobile）・**`Statistic`**→当月サマリ・**`Badge` icon**→記事ステータス（色だけに頼らない）・`Sheet`+`DatePicker`→予定追加/移動・`Tabs`→カレンダー/アジェンダ/締切一覧。**細かい部分は全部 @gunjo/ui のコンポーネント、手組みは月グリッドの骨格だけ。**\n\n## 課題に記録だけ（コンポーネントを作らず）\n\n- 🟠 **月カレンダー(EventCalendar)が無い**＝#142 を最優先化（[#142](https://github.com/uixhero/gunjo/issues/142) に追記）。\n- 🟡 **DatePicker に label/description の配線が無い**（Input/Select/Textarea と不整合・[#315](https://github.com/uixhero/gunjo/issues/315)）。\n- 🟡 **DataTable の columnheader 名がソート指示に乗っ取られる**（読み上げが列名でなく「Click to sort」を読む・[#307](https://github.com/uixhero/gunjo/issues/307) に追記）。\n- 🟢 tone と variant の prop 名が不統一・Banner が1行固定。\n\n## 学び — 「最頻出の作法」ほど、最後まで残ることがある\n\n#80 で事務方の三種の神器が8業界に効くのを見た。だが #81 は逆——**カレンダー（最も一般的なスケジューリング UI）が、80枚やってもまだコンポーネント化されていない**。理由は明快：カレンダービューは「大きい」（月レイアウト・イベント積み・今日/月外・キーボード移動・モバイル崩し）。小〜中のコンポーネントは3回ルールで次々埋まったが、**大型の分野特化レイアウト（カレンダー・系譜グラフ・連続ガント）は、専用の作業時間を切らないと埋まらない**。これは欠落の発見ではなく、「次に腰を据えて作るべきもの」の明確化。\n\n## 次回予告（やってみた #82）\n- **EventCalendar を腰を据えて作る**（#142・月ビュー）or **Meter をまとめて直す PR**（#277/#286/#297/#308）or メディア/別業界もう1枚。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#80](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。細かい部分は全部既存コンポーネントで組めたが、月カレンダーの骨格だけはまだ手組み——次に腰を据えて作るべきものが見えた回。\n"
   },
   "code": [
     {
@@ -44,8 +43,6 @@
     "Banner",
     "Button",
     "Card",
-    "CardContent",
-    "ColumnDef",
     "DataTable",
     "DatePicker",
     "EmptyState",
@@ -54,16 +51,8 @@
     "Select",
     "Separator",
     "Sheet",
-    "SheetContent",
-    "SheetDescription",
-    "SheetFooter",
-    "SheetHeader",
-    "SheetTitle",
     "Statistic",
     "Tabs",
-    "TabsContent",
-    "TabsList",
-    "TabsTrigger",
     "Textarea"
   ],
   "shots": {

@@ -16,6 +16,24 @@ import {
 import { TextLink } from "../navigation/TextLink"
 import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
 
+// CommonMark's emphasis "flanking" rules don't open/close a `**` run when it
+// sits directly against a CJK character and the bold text starts or ends with
+// punctuation — e.g. `今回は**⌘K パレット**` or `…**「見出し」**` render the
+// `**` literally. Inserting a Word Joiner (U+2060 — invisible, and neither
+// whitespace nor punctuation) just inside each `**` run makes it flanking again
+// without changing the visible text. Code spans/blocks are left untouched.
+const WORD_JOINER = "⁠"
+function cjkSafeBold(source: string): string {
+    return source
+        .split(/(```[\s\S]*?```)/g)
+        .map((segment, index) =>
+            index % 2 === 1
+                ? segment // fenced code block — leave verbatim
+                : segment.replace(/\*\*(?=\S)([^\n]*?\S)\*\*/g, `**${WORD_JOINER}$1${WORD_JOINER}**`)
+        )
+        .join("")
+}
+
 export interface MarkdownRendererProps {
     /** Markdown source text. */
     content: string
@@ -147,7 +165,7 @@ const MarkdownRenderer = React.forwardRef<HTMLDivElement, MarkdownRendererProps>
                 remarkPlugins={disableGfm ? [] : [remarkGfm]}
                 components={{ ...defaultMarkdownComponents, ...components }}
             >
-                {content}
+                {cjkSafeBold(content)}
             </ReactMarkdown>
         </div>
     )

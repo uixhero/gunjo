@@ -4,13 +4,12 @@
   "slug": "card",
   "score": "4.5/5",
   "category": "金融",
-  "title": "AI にクレジットカード利用明細を作らせてみた — 3回連続で出た穴を、ついに埋めた（やってみた #36）",
-  "readmeTitle": "クレジットカード利用明細（銀行・ゲージ/ロイヤルティ層）",
-  "summary": "「各業界で複数枚」で銀行を深掘り。#32=フォーム、#33=チャート、#34=テーブル、#35=計算機、今回 #36 は **限度額ゲージ＋ポイント（ロイヤルティ）＋カテゴリ別支出**の層。",
+  "title": "AI にクレジットカード利用明細を作らせてみた — 3回連続で出た\"足りないコンポーネント\"を、ついに作った（やってみた #36）",
+  "summary": "「各業界で複数枚」で銀行を深掘り。#32=フォーム、#33=チャート、#34=テーブル、#35=計算機、今回 #36 は **限度額ゲージ＋ポイント（ロイヤルティ）＋カテゴリ別支出**の層です。",
   "article": {
     "file": "zenn-yattemita-36-card.md",
     "slug": "36-card",
-    "markdown": "# AI にクレジットカード利用明細を作らせてみた — 3回連続で出た穴を、ついに埋めた（やってみた #36）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。銀行5枚目——**クレジットカード利用明細**（限度額ゲージ・ポイント・カテゴリ別支出・利用明細・支払方法変更）。\n\n「各業界で複数枚」で銀行を深掘り。#32=フォーム、#33=チャート、#34=テーブル、#35=計算機、今回 #36 は **限度額ゲージ＋ポイント（ロイヤルティ）＋カテゴリ別支出**の層。\n\n## 結果 — 4.5/5\n\n`tsc`/`build` 緑・console 0・375px で明細が25枚のカードに collapse・ゲージの used+remaining=limit が一致・h1 1個。\n\n## この回の主役 — 3回連続で出た穴を、ついに埋めた\n\n`DataTable` がモバイルで横スクロールする（`min-w-[720px]`）問題は、**#34 取引明細・#35 返済予定表・#36 利用明細と3回連続で cold AI が手巻き**してきた。今回でついに作った:\n\n> 🟠 **`DataTable` は 375px で 720px のテーブルを横スクロール**するだけ。モバイルでカード化したい。毎回 `sm:hidden` のカードリストを手巻きしている。\n\n### 直し（[#195](https://github.com/uixhero/gunjo/issues/195)・同 PR で land）\n\n**`renderCard` を追加**（opt-in・非破壊）: 渡すと `md` 以上はテーブル、モバイルは**同じ sort/paginate 済みの行モデル**をカードで描画——並行 state なし。**ブラウザ実証**: 1280px でテーブル表示、375px でテーブル非表示＋10枚のカード（ページング済み）＋**横スクロール無し**。\n\n「同じ穴を3回見たら作る」——cold テストを複数業界×複数枚で回すと、**本当に欲しい primitive が \"頻度\" で浮かび上がる**。\n\n## それでも土台は強い — 複利は4回連続\n\ncold AI が褒めたのは、また baked-in な強み:\n\n- **`formatCurrency`(#180) が4回連続で「excellent / standout」**。`¥371,650` をゼロ設定・`compact` で `¥372K`。\n- **`SegmentedGaugeCard` が「near-perfect な限度額ゲージ」**: used/remaining/limit が一致・利用率で primary→warning→destructive にトーン escalation。\n- **GaugeChart** は `role=\"img\"` で「今月のご利用: ¥200,000」と読み上げ（弧だけでない）。\n- **DonutChart** の凡例が %＋¥、**Badge** が支払区分（一括/分割/リボ）、**Dialog**（手数料 `aria-live` 再計算）、**ThemeProvider**(#171) も初手で動いた。\n\n## その他の穴\n\n- 🟠 ポイント/ロイヤルティ panel の primitive 無し（Card＋Statistic＋Alert で合成・許容）。\n- 🟡 ゲージ/ドーナツに固定 `max-w-*`（縮小はするが広い列に拡大できない）。\n- 🟡 `defaultChartValueFormatter` が en-US（[#197](https://github.com/uixhero/gunjo/issues/197)・#180 の follow-up・`formatValue` を渡せば回避）。\n\n## 学び — 頻度が primitive を浮かび上がらせる\n\n```\n#34 取引明細: table→card 手巻き\n#35 返済予定表: table→card 手巻き（再）\n#36 利用明細: table→card 手巻き（3回目）→ 作った(#195)\n```\n\n1回の「あったらいいな」では作らない。**3業界×複数画面で同じ手巻きが3回出たら、それは確実に欲しい primitive**。cold テストを量で回す価値は、ここに出る。\n\n## 次回予告（やってみた #37）\n- **銀行はこれで5層**。隣接の数字業界（会計/給与/POS）へ——銀行で育てた formatCurrency・renderCard・gauge が効くか。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#35](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。3回連続で出た穴を、ついに埋めた回。\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI にクレジットカード利用明細を作らせてみた — 3回連続で出た\"足りないコンポーネント\"を、ついに作った（やってみた #36）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。銀行5枚目——**クレジットカード利用明細**（限度額ゲージ・ポイント・カテゴリ別支出・利用明細・支払方法変更）。\n\n「各業界で複数枚」で銀行を深掘り。#32=フォーム、#33=チャート、#34=テーブル、#35=計算機、今回 #36 は **限度額ゲージ＋ポイント（ロイヤルティ）＋カテゴリ別支出**の層です。\n\n## 結果 — 4.5/5\n\n`tsc`/`build` 緑・console 0・375px で明細が25枚のカードにまとまる・ゲージの used+remaining=limit が一致・h1 1個。\n\n## この回の主役 — 3回連続で出た\"足りないコンポーネント\"を、ついに作った\n\n`DataTable` がモバイルで横スクロールする（`min-w-[720px]`）問題は、**#34 取引明細・#35 返済予定表・#36 利用明細と、3回連続で予備知識ゼロの AI が手組み**してきました。今回でついに作りました:\n\n> 🟠 **`DataTable` は 375px でも、720px のテーブルを横スクロールさせる**だけ。モバイルではカード表示にしたい。毎回 `sm:hidden` のカードリストを手組みしている。\n\n### 直し（[#195](https://github.com/uixhero/gunjo/issues/195)・同じ PR で反映）\n\n**`renderCard` を追加**（明示的に有効化・既存を壊さず）: 渡すと `md` 以上はテーブル、モバイルは**同じ 並べ替え/ページ送り 済みの行データ**をカードで描画——別々の状態を持たない。**ブラウザ実証**: 1280px でテーブル表示、375px でテーブル非表示＋10枚のカード（ページ送り済み）＋**横スクロール無し**。\n\n「同じ\"足りないコンポーネント\"を3回見たら作る」——予備知識ゼロの AI に作らせるテストを、複数業界×複数枚で回すと、**本当に欲しいコンポーネントが \"頻度\" で浮かび上がります**。\n\n## それでも土台は強い — 複利は4回連続\n\n予備知識ゼロの AI が褒めたのは、また 最初から作り込まれた強み:\n\n- **`formatCurrency`(#180) が4回連続で「素晴らしい / 白眉」**。`¥371,650` を設定ゼロ・`compact` で `¥372K`。\n- **`SegmentedGaugeCard` が「ほぼ完璧な限度額ゲージ」**: used/remaining/limit が一致・利用率に応じて primary→warning→destructive と色調が段階的に切り替わる。\n- **GaugeChart** は `role=\"img\"` で「今月のご利用: ¥200,000」と読み上げ（弧の見た目だけではない）。\n- **DonutChart** の凡例が %＋¥、**Badge** が支払区分（一括/分割/リボ）、**Dialog**（手数料を `aria-live` で再計算）、**ThemeProvider**(#171) も最初から動いた。\n\n## その他の欠落\n\n- 🟠 ポイント/ロイヤルティのパネルのコンポーネント無し（Card＋Statistic＋Alert で組み立て・許容範囲）。\n- 🟡 ゲージ/ドーナツに固定の `max-w-*`（縮小はするが、広い列で拡大できない）。\n- 🟡 `defaultChartValueFormatter` が en-US（[#197](https://github.com/uixhero/gunjo/issues/197)・#180 の続き・`formatValue` を渡せば回避できる）。\n\n## 学び — 頻度がコンポーネントを浮かび上がらせる\n\n```\n#34 取引明細: テーブル→カード を手組み\n#35 返済予定表: テーブル→カード を手組み（再）\n#36 利用明細: テーブル→カード を手組み（3回目）→ 作った(#195)\n```\n\n1回の「あったらいいな」では作りません。**3業界×複数画面で同じ手組みが3回出たら、それは確実に欲しいコンポーネント**。予備知識ゼロの AI に作らせるテストを量で回す価値は、ここに出ます。\n\n## 次回予告（やってみた #37）\n- **銀行はこれで5層**。隣接の数字業界（会計/給与/POS）へ——銀行で育てた formatCurrency・renderCard・gauge が効くか。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#35](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。3回連続で出た\"足りないコンポーネント\"を、ついに作った回。\n"
   },
   "code": [
     {
@@ -41,39 +40,23 @@
   ],
   "components": [
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
-    "ColumnDef",
     "Container",
     "DataTable",
     "Dialog",
-    "DialogContent",
-    "DialogDescription",
-    "DialogFooter",
-    "DialogHeader",
-    "DialogTitle",
-    "DialogTrigger",
     "DonutChart",
     "EmptyState",
     "GaugeChart",
     "Label",
     "RadioGroup",
-    "RadioGroupItem",
     "SegmentedGaugeCard",
     "Select",
     "Separator",
     "Skeleton",
     "Statistic",
-    "ThemeProvider",
-    "ToggleGroup",
-    "ToggleGroupItem"
+    "ToggleGroup"
   ],
   "shots": {
     "desktop": true,

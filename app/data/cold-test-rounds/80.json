@@ -4,13 +4,12 @@
   "slug": "editorial-workflow",
   "score": "4/5",
   "category": "メディア・出版",
-  "title": "AI に編集部の記事管理を作らせてみた — back-office 三種の神器がメディアにも丸ごと効いた（やってみた #80）",
-  "readmeTitle": "編集ワークフロー/記事管理（メディア・記事ボード/編集WF/校正チェックリスト/公開承認/SEO層）★新業界",
-  "summary": "公共を5枚で締めて、**メディア/出版**へ pivot（8業界目）。1枚目はオンラインメディア編集部の記事管理——執筆→編集→校正→編集長承認→公開 と記事を進め、校正チェックで公開をゲートする画面。**back-office の三種の神器（ApprovalWorkflow・CheckList・SignedRecord）が、編集 CMS にも丸ごと効いた。**",
+  "title": "AI に編集部の記事管理を作らせてみた — 事務方の三種の神器がメディアにも丸ごと効いた（やってみた #80）",
+  "summary": "公共を5枚で締めて、**メディア/出版**へ移る（8業界目）。1枚目はオンラインメディア編集部の記事管理——執筆→編集→校正→編集長承認→公開 と記事を進め、校正チェックで公開をゲートする画面。**事務方の三種の神器（ApprovalWorkflow・CheckList・SignedRecord）が、編集 CMS にも丸ごと効いた。**",
   "article": {
     "file": "zenn-yattemita-80-editorial-workflow.md",
     "slug": "80-editorial-workflow",
-    "markdown": "# AI に編集部の記事管理を作らせてみた — back-office 三種の神器がメディアにも丸ごと効いた（やってみた #80）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。**新業界・メディア/出版1枚目（8業界目）**——**編集ワークフロー / 記事管理**（記事ボード × 編集WF × 校正チェックリスト × 公開承認 × SEO）。\n\n公共を5枚で締めて、**メディア/出版**へ pivot（8業界目）。1枚目はオンラインメディア編集部の記事管理——執筆→編集→校正→編集長承認→公開 と記事を進め、校正チェックで公開をゲートする画面。**back-office の三種の神器（ApprovalWorkflow・CheckList・SignedRecord）が、編集 CMS にも丸ごと効いた。**\n\n## 結果 — 4/5\n\n`tsc`/`build` 緑・console 0・375px・記事ボード/一覧・編集ワークフロー（次へ/差戻し/却下）・校正チェックリスト（公開ゲート）・公開承認ロック・SEO 文字数ガイド。\n\n## 今回の主題 — back-office 三種の神器が、設計されてない編集ドメインに全部効いた\n\n- **`ApprovalWorkflow`**（#76 build）→ **編集パイプライン**「**the standout, dropped in almost perfectly**」。JSDoc は CMS を挙げてないのに、執筆→編集→校正→承認 がそのまま・差戻し（理由付きで前段へロールバック）・却下・段階ごとの担当/時刻。**#77 施設予約・#79 住民異動 に続き4回連続**で別ドメインに刺さった。\n- **`CheckList`**（**前ラウンド #79 で build したばかり**）→ **校正チェックリスト**「highly discoverable」。JSDoc が「document checklists, required-step lists」と明記＝公開前ゲートそのもの。`trailing` で確認済/未確認 Badge。**出荷した翌ラウンドで即採用**（Badge icon #72→#73・ApprovalWorkflow #76→#77 と同じパターン）。\n- **`SignedRecord`**（臨床記録）→ **公開承認**（編集長署名→ロック→訂正メモ追記）。`Meter`→SEO 文字数ガイド・DataTable→記事一覧・Badge icon→ステータスピル。\n\n> **\"The back-office workflow trio (ApprovalWorkflow + CheckList + SignedRecord) bent onto editorial CMS with near-zero friction and excellent JSDoc discoverability — that's rare and genuinely impressive.\"**\n\n医療/金融/公共で育てた「段階審査・チェックリスト・署名確定」が、メディアの編集フローに骨格そのまま。**8業界目でも複利が回る。**\n\n## 起票だけ（no-build）\n\n新たな大穴1つ＋papercut:\n\n- 🟠 **カンバン board primitive が無い**（[#313](https://github.com/uixhero/gunjo/issues/313)・1回目）。`KanbanTemplate` は flex shell のみ（「does not own card state, column data, or DnD」）＝編集ボード（この画面の花形）を Card+Badge で手組み。CRM/サポート/タスクボードでも再出現する → 3回ルールで build。\n- 🟡 **Textarea/Input に文字数カウント無**（SEO メタ・[#314](https://github.com/uixhero/gunjo/issues/314)）＋ Meter inline が % のみ（[#308](https://github.com/uixhero/gunjo/issues/308) 2回目・**Meter 集約 PR が増々機**）。\n- 🟢 Sheet 幅が `sm:max-w-sm` 固定（4タブで窮屈・className 上書きで回避）・Avatar に size shorthand 無・KanbanTemplate が /patterns/ で 404 混乱。\n\n## 学び — 「振る舞い primitive」は業界を越え続ける\n\n#80 は、**back-office の振る舞い primitive（段階審査/チェックリスト/署名確定）が、設計時に想定してないメディア編集 CMS にも丸ごと効く**ことを示した。しかも CheckList は出荷翌ラウンドで即採用＝複利が止まらない。医療・金融・公共で「規制ドメインの作法」として作った3部品が、メディアでも編集フローの作法として機能する——**「誰がいつ、段階を進め、チェックを満たし、確定して記録する」は業界を問わない普遍構造**だった。残る穴（カンバン board・文字数カウント・Meter 整形）は3回ルール/集約で埋める。\n\n## 8業界横断の到達点\n医療→物流→金融→会計→不動産→製造→教育→公共→**メディア**。育てた primitive（Meter/ReferenceValue/ScheduleGrid/ApprovalWorkflow/CheckList/SignedRecord/CoSign/Badge icon/formatCurrency…）が業界を越えて再利用され続けることを実証。\n\n## 次回予告（やってみた #81）\n- **メディアをもう1枚**（編集カレンダー/入稿管理・購読者/会員 など）or **Meter 集約 PR**（#277/#286/#297/#308 を1本に）で最頻出 primitive を磨く。カンバン board#313・系譜#281 の大型も観測継続。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#79](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。back-office 三種の神器が8業界目のメディア編集 CMS にも丸ごと効き、CheckList が翌ラウンド即採用された回。\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI に編集部の記事管理を作らせてみた — 事務方の三種の神器がメディアにも丸ごと効いた（やってみた #80）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。**新業界・メディア/出版1枚目（8業界目）**——**編集ワークフロー / 記事管理**（記事ボード × 編集ワークフロー × 校正チェックリスト × 公開承認 × SEO）。\n\n公共を5枚で締めて、**メディア/出版**へ移る（8業界目）。1枚目はオンラインメディア編集部の記事管理——執筆→編集→校正→編集長承認→公開 と記事を進め、校正チェックで公開をゲートする画面。**事務方の三種の神器（ApprovalWorkflow・CheckList・SignedRecord）が、編集 CMS にも丸ごと効いた。**\n\n## 結果 — 4/5\n\n`tsc`/`build` 緑・console 0・375px・記事ボード/一覧・編集ワークフロー（次へ/差戻し/却下）・校正チェックリスト（公開ゲート）・公開承認ロック・SEO 文字数ガイド。\n\n## 今回の主題 — 事務方の三種の神器が、想定していない編集の領域に全部効いた\n\n- **`ApprovalWorkflow`**（#76 で作った）→ **編集パイプライン**「**いちばんの見どころ、ほぼ完璧に載った**」。JSDoc は CMS を挙げてないのに、執筆→編集→校正→承認 がそのまま・差戻し（理由付きで前段へロールバック）・却下・段階ごとの担当/時刻。**#77 施設予約・#79 住民異動 に続き4回連続**で別領域に刺さった。\n- **`CheckList`**（**前ラウンド #79 で作ったばかり**）→ **校正チェックリスト**「とても見つけやすい」。JSDoc が「書類のチェックリスト、必須ステップのリスト」と明記＝公開前ゲートそのもの。`trailing` で確認済/未確認 Badge。**出荷した翌ラウンドで即採用**（Badge icon #72→#73・ApprovalWorkflow #76→#77 と同じパターン）。\n- **`SignedRecord`**（臨床記録）→ **公開承認**（編集長署名→ロック→訂正メモ追記）。`Meter`→SEO 文字数ガイド・DataTable→記事一覧・Badge icon→ステータスピル。\n\n> **「事務方のワークフロー3点セット（ApprovalWorkflow + CheckList + SignedRecord）が、編集 CMS にほぼ摩擦ゼロで曲がり、JSDoc の見つけやすさも抜群だった——これは珍しく、本当に見事だ。」**\n\n医療/金融/公共で育てた「段階審査・チェックリスト・署名確定」が、メディアの編集フローに骨格そのまま。**8業界目でも複利が回る。**\n\n## 課題に記録だけ（コンポーネントを作らず）\n\n新たな大きな欠落1つ＋小さな不便:\n\n- 🟠 **カンバンボードのコンポーネントが無い**（[#313](https://github.com/uixhero/gunjo/issues/313)・1回目）。`KanbanTemplate` は flex の外枠のみ（「カードの状態も列データもドラッグ&ドロップも持たない」）＝編集ボード（この画面の花形）を Card+Badge で手組み。CRM/サポート/タスクボードでも再出現する → 3回ルールで作る。\n- 🟡 **Textarea/Input に文字数カウントが無い**（SEO メタ・[#314](https://github.com/uixhero/gunjo/issues/314)）＋ Meter inline が % のみ（[#308](https://github.com/uixhero/gunjo/issues/308) 2回目・**Meter をまとめて直す PR の頃合いが増した**）。\n- 🟢 Sheet 幅が `sm:max-w-sm` 固定（4タブで窮屈・className 上書きで回避）・Avatar に size の短縮指定が無い・KanbanTemplate が /patterns/ で 404 になり混乱。\n\n## 学び — 「振る舞いのコンポーネント」は業界を越え続ける\n\n#80 は、**事務方の振る舞いのコンポーネント（段階審査/チェックリスト/署名確定）が、設計時に想定していないメディア編集 CMS にも丸ごと効く**ことを示した。しかも CheckList は出荷翌ラウンドで即採用＝複利が止まらない。医療・金融・公共で「規制の重い領域の作法」として作った3コンポーネントが、メディアでも編集フローの作法として機能する——**「誰がいつ、段階を進め、チェックを満たし、確定して記録する」は業界を問わない普遍の構造**だった。残る欠落（カンバンボード・文字数カウント・Meter 整形）は3回ルール/まとめて直すことで埋める。\n\n## 8業界横断の到達点\n医療→物流→金融→会計→不動産→製造→教育→公共→**メディア**。育てたコンポーネント（Meter/ReferenceValue/ScheduleGrid/ApprovalWorkflow/CheckList/SignedRecord/CoSign/Badge icon/formatCurrency…）が業界を越えて再利用され続けることを実証。\n\n## 次回予告（やってみた #81）\n- **メディアをもう1枚**（編集カレンダー/入稿管理・購読者/会員 など）or **Meter をまとめて直す PR**（#277/#286/#297/#308 を1本に）で最頻出のコンポーネントを磨く。カンバンボード#313・系譜#281 の大型も観測継続。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- 前回まで: [#1](#)〜[#79](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nまだ alpha。事務方の三種の神器が8業界目のメディア編集 CMS にも丸ごと効き、CheckList が翌ラウンド即採用された回。\n"
   },
   "code": [
     {
@@ -47,16 +46,10 @@
   "components": [
     "ApprovalWorkflow",
     "Avatar",
-    "AvatarFallback",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardDescription",
-    "CardHeader",
-    "CardTitle",
     "CheckList",
-    "ColumnDef",
     "DataTable",
     "EmptyState",
     "Input",
@@ -66,23 +59,12 @@
     "SearchInput",
     "Select",
     "Sheet",
-    "SheetContent",
-    "SheetDescription",
-    "SheetHeader",
-    "SheetTitle",
     "SignedRecord",
     "Statistic",
     "Tabs",
-    "TabsContent",
-    "TabsList",
-    "TabsTrigger",
     "TagInput",
     "Textarea",
-    "Timeline",
-    "TimelineItem",
-    "TimelineTime",
-    "TimelineTitle",
-    "WorkflowValue"
+    "Timeline"
   ],
   "shots": {
     "desktop": true,

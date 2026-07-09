@@ -19,6 +19,7 @@
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { CATEGORIES, categoryOf } from "./coldtest-category-map.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PROMO = process.env.GUNJO_PROMOTION_DIR
@@ -27,6 +28,7 @@ const PROMO = process.env.GUNJO_PROMOTION_DIR
 const README = path.join(PROMO, "cold-test-screens", "README.md");
 const SHOTS = path.join(PROMO, "cold-test-screens", "shots");
 const OUT = path.join(ROOT, "app", "data", "cold-test-gallery.json");
+const CATEGORIES_JSON = path.join(ROOT, "app", "data", "cold-test-categories.json");
 
 if (!fs.existsSync(PROMO)) {
     console.error(`promotion/ not found at ${PROMO}`);
@@ -36,107 +38,6 @@ if (!fs.existsSync(PROMO)) {
 if (!fs.existsSync(README)) {
     console.error(`README not found: ${README}`);
     process.exit(1);
-}
-
-// Display order of industry categories (UI grouping). Kept identical to
-// gunjo-test/app/gallery/_data.ts so the labels match the live dev gallery.
-const CATEGORIES = [
-    "基盤UI・汎用",
-    "金融",
-    "会計・給与",
-    "小売・EC",
-    "物流・倉庫",
-    "医療・ヘルスケア",
-    "不動産",
-    "製造",
-    "教育",
-    "公共・行政",
-    "メディア・出版",
-    "人材・HR・採用",
-    "介護・福祉",
-    "飲食・レストラン",
-    "保険",
-    "運輸：鉄道",
-    "運輸：航空",
-    "運輸：バス",
-    "運輸：タクシー",
-    "運輸：トラック",
-];
-
-// Industry category assignment per round. The series ran roughly industry-by-
-// industry; explicit exceptions (out-of-block rounds, toC interleaving) are
-// listed individually. Ported verbatim from gunjo-test/app/gallery/_data.ts;
-// keep in sync when the cold-test series adds more rounds.
-function categoryOf(round) {
-    if (round === 31) return "小売・EC";
-    if (round <= 30) return "基盤UI・汎用";
-    if (round <= 36) return "金融";
-    if (round <= 41) return "会計・給与";
-    if (round <= 46) return "小売・EC";
-    if (round <= 52) return "物流・倉庫";
-    if (round <= 59) return "医療・ヘルスケア";
-    if (round <= 63) return "不動産";
-    if (round <= 69) return "製造";
-    if (round <= 74) return "教育";
-    if (round <= 79) return "公共・行政";
-    if (round <= 82) return "メディア・出版";
-    if (round <= 88) return "人材・HR・採用";
-    if (round <= 93) return "介護・福祉";
-    if (round <= 98) return "飲食・レストラン";
-    if (round <= 105) return "保険";
-    if (round === 117) return "運輸：鉄道";
-    if (round === 118) return "小売・EC";
-    if (round === 119) return "運輸：鉄道";
-    if (round === 120) return "運輸：鉄道";
-    if (round === 121) return "運輸：鉄道";
-    if (round === 128) return "運輸：鉄道";
-    if (round === 129) return "運輸：鉄道";
-    if (round === 130) return "運輸：航空";
-    if (round === 131) return "運輸：航空";
-    if (round === 132) return "運輸：鉄道";
-    if (round === 133) return "運輸：鉄道";
-    if (round === 134) return "運輸：航空";
-    if (round === 135) return "運輸：航空";
-    if (round === 136) return "運輸：バス";
-    if (round === 137) return "運輸：バス";
-    if (round === 138) return "運輸：バス";
-    if (round === 139) return "運輸：バス";
-    if (round === 140) return "運輸：バス";
-    if (round === 141) return "運輸：タクシー";
-    if (round === 142) return "運輸：タクシー";
-    if (round === 143) return "運輸：タクシー";
-    if (round === 144) return "運輸：タクシー";
-    if (round === 145) return "運輸：タクシー";
-    if (round === 146) return "運輸：タクシー";
-    if (round === 147) return "運輸：タクシー";
-    if (round === 148) return "運輸：タクシー";
-    if (round === 149) return "運輸：タクシー";
-    if (round === 150) return "運輸：タクシー";
-    if (round === 151) return "運輸：タクシー";
-    if (round === 152) return "運輸：タクシー";
-    if (round === 153) return "運輸：バス";
-    if (round === 154) return "運輸：バス";
-    if (round === 155) return "運輸：バス";
-    if (round === 156) return "運輸：バス";
-    if (round === 157) return "運輸：バス";
-    if (round === 158) return "運輸：バス";
-    if (round === 159) return "運輸：トラック";
-    if (round === 160) return "運輸：トラック";
-    if (round === 161) return "運輸：トラック";
-    if (round === 162) return "運輸：トラック";
-    if (round === 163) return "運輸：トラック";
-    if (round === 164) return "運輸：トラック";
-    if (round === 165) return "運輸：トラック";
-    if (round === 166) return "運輸：トラック";
-    if (round === 167) return "運輸：トラック";
-    if (round === 168) return "運輸：トラック";
-    if (round === 169) return "運輸：鉄道";
-    if (round === 170) return "運輸：鉄道";
-    if (round === 171) return "会計・給与";
-    if (round === 172) return "金融";
-    if (round === 173) return "金融";
-    if (round <= 111) return "運輸：鉄道";
-    return "運輸：航空";
 }
 
 function slugFor(route) {
@@ -235,6 +136,22 @@ function shotsFor(slug) {
     return out;
 }
 
+// Count unique crystallised primitives across every published industry door
+// page. Names are deduped globally so a primitive that appears in multiple
+// categories (e.g. Meter across logistics + manufacturing + education) counts
+// once. Returns 0 when the categories JSON is missing so this stays optional.
+function countCrystallisedPrimitives() {
+    if (!fs.existsSync(CATEGORIES_JSON)) return 0;
+    const data = JSON.parse(fs.readFileSync(CATEGORIES_JSON, "utf8"));
+    const seen = new Set();
+    for (const cat of data.published ?? []) {
+        for (const c of cat.discoveredComponents ?? []) {
+            if (c?.name) seen.add(c.name);
+        }
+    }
+    return seen.size;
+}
+
 function build() {
     const rows = parseReadme();
     const entries = rows.map((row) => {
@@ -248,12 +165,13 @@ function build() {
             score: row.score,
             category: categoryOf(row.round),
             title: meta.title || row.readmeTitle,
-            readmeTitle: row.readmeTitle,
             summary: meta.summary,
             article: article ? { file: article.name, slug: articleSlugFromName(article.name) } : null,
             shots: shotsFor(slug),
         };
     });
+
+    const crystallizedCount = countCrystallisedPrimitives();
 
     fs.mkdirSync(path.dirname(OUT), { recursive: true });
     fs.writeFileSync(
@@ -263,6 +181,7 @@ function build() {
                 generatedFrom: "promotion/cold-test-screens/README.md + zenn-yattemita-*.md",
                 generator: "scripts/build-coldtest-gallery.mjs",
                 count: entries.length,
+                crystallizedCount,
                 categories: CATEGORIES,
                 entries,
             },
@@ -280,6 +199,7 @@ function build() {
     console.log(`  with desktop shot:  ${withDesktop}/${entries.length}`);
     console.log(`  with mobile shot:   ${withMobile}/${entries.length}`);
     console.log(`  with .en variant:   ${withEn}/${entries.length}`);
+    console.log(`  crystallised total: ${crystallizedCount} (unique across published categories)`);
 }
 
 build();

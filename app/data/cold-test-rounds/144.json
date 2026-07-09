@@ -4,13 +4,12 @@
   "slug": "taxi-maintenance",
   "score": "5/5",
   "category": "運輸：タクシー",
-  "title": "AI にタクシー車両管理を作らせてみた — 連載初の「5/5」、build した部品が資産の期限でも自力発見（やってみた #144）",
-  "readmeTitle": "タクシー 車両管理・車検/整備（タクシーtoB4枚目=保守=鉄道車両検査#108/航空MRO#130のタクシー版/渋谷営業所 デスクトップ密度・車両一覧ActionDataTable/車検保険期限ExpiryBadge/走行距離Meter/整備計画Gantt/要対応ActionQueue/整備記録SignedRecord/稼働盤StatusBoard層）★**連載初の 5/5**・保守床6部品が全 zero-friction(「commission されたよう」)・**build→越境発掘=ExpiryBadge(#142 crew build)が車検/保険=asset 期限で自力発見+StatusBoard(#141)も稼働盤で再来**・DesktopPageHeader/tone語彙統一 #397起票",
-  "summary": "`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：",
+  "title": "AI にタクシーの車両管理画面を作らせてみた — 連載で初めての満点（5/5）（やってみた #144）",
+  "summary": "型チェックも通り、デスクトップ向けの密度で一発完成。群青を一度も触っていない AI の感想：",
   "article": {
     "file": "zenn-yattemita-144-taxi-maintenance.md",
     "slug": "144-taxi-maintenance",
-    "markdown": "# AI にタクシー車両管理を作らせてみた — 連載初の「5/5」、build した部品が資産の期限でも自力発見（やってみた #144）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。**タクシー toB を厚く**（配車・乗務員・営収に続く4枚目）——**車両管理・車検/整備**（保有車両・車検/保険期限・走行距離・整備計画・整備記録）。鉄道車両検査#108／航空MRO#130 のタクシー版。\n\n## 結果 — 連載初の 5/5\n\n`tsc` 緑・デスクトップ密度。cold AI（群青を一度も触っていない設定）：\n\n> **第三者キットが私の画面のために commission された、と感じた最も近い瞬間。** 実用的で密度の高い type-clean な業務コンソールを組み、実質的な手組みは何もしていない。**6つの必要なもの——資産テーブル/消費vs限度メーター/Gantt/要対応キュー/署名記録/日付vs期限——が全部 first-class 部品。**\n\n連載144回で**初の満点**。保守＋コンプラ＋資産という back-office の中核が、タクシー車両管理で1ミリも戦わず立った。\n\n## 観測の核 — build した部品が「資産の期限」でも自力発見\n昨日 #142 で `ExpiryBadge` を build したのは**乗務員の資格期限**（crew domain）。だが #144 で——cold AI がそれを**車検/保険の期限**（asset domain）で自力発見した：\n\n> cold AI「**`ExpiryBadge`+`classifyExpiry`＝これのために作られた・headline。docstring が文字通り車検/保険/点検 を列挙。3箇所(表セル/詳細カード/KPIロジック)で glue ゼロ・KPI 件数と要対応キューを badge と同じ classifier で駆動。**」\n\n**ExpiryBadge は crew(資格) で結晶化したが、asset(車検/保険) にそのまま効いた**＝「日付vs期限」という軸が crew/asset/コンプラを横断する普遍性を実証。さらに `StatusBoard`(#141 配車盤 build) も**稼働盤**で再来＝build→越境発掘が**2部品とも、しかも軸を跨いで**機能。\n\n## 学び — 「軸で結晶化した部品は、ドメインを跨いで効く」\n#142 で「ExpiryBadge は Meter/ReferenceValue の欠けた第3軸＝値vs期限」と定位した。その**軸の普遍性**が #144 で証明された：\n- crew で結晶化（資格/適性診断/健診）→ asset で自力発見（車検/保険/点検）。\n- 「日付vs期限」は乗務員も車両も保険も契約も同じ形。**軸で定位した部品は、業種でなく『形』で効くから、別ドメインでも勝手に嵌まる。**\n\nこれは #126 Itinerary（航空旅程→バス経路）の越境発掘と同じだが、**より純度が高い**：Itinerary は transit-native で adequate-not-native だった。ExpiryBadge は「日付vs期限」という**純粋な軸**なので、ドメインが変わっても深さの欠落が無い。**軸で定位できた部品ほど、越境の深さが完全になる。**\n\n## 拾った点 — デスクトップ見出しバーの欠如（4回目）\n> cold AI「**追加すべき唯一最大のもの＝軽量なデスクトップ ページ/コンソール見出しバー。`PageHeader` はモバイル専用・`Header`/`AppRail` は app-chrome（ブランド+グローバルナビ）で重い。各画面のデスクトップ見出しバーは、どのコンソールも毎回手組みする唯一のもの。**」\n\n#130/#134/#135/#144＝**4回目**。索引は #396 で Header に誘導したが、cold AI は「Header は app-chrome で per-screen 見出しバーではない」と区別＝専用の `DesktopPageHeader`/`ConsoleHeader`（PageHeader のデスクトップ兄弟）が要るかも→[#397](https://github.com/uixhero/gunjo/issues/397) 起票（tone 語彙の不統一 positive/negative vs success/destructive も併記）。\n\n**今回 src build なし**（5/5・保守床全 zero-friction＋越境発掘2件＋desktop header 起票）。\n\n## 📊 結晶化スコアボード（build 済 **14個**）\nAmountBreakdown / ActionQueue / ListCard / Gantt-segments / SeatMap / LoyaltySummaryCard / RadioCard / FilterChips / PageHeader / Itinerary / TicketStub / Stringline / StatusBoard / ExpiryBadge\n進行中：DesktopPageHeader 4回目・BottomActionBar 3/3・Leaderboard 1/3・StatusLevel 2/3\n\n## 📋 モード進捗\n- ✈️🚆 航空/鉄道：各 toB5+toC6 ✅／🚌 バス：toB2+toC3\n- 🚕 **タクシー：toB 4枚（配車/乗務員/営収/車両管理）** ／ 残り toC（呼出アプリ）\n\n## 次回予告（やってみた #145）\n- **タクシー toC 配車アプリ**（呼出・到着まで○分・料金見積・乗車・決済）でタクシーを締める＝モバイル消費者床の越境＋リアルタイム呼出 archetype。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ **[有効期限 ExpiryBadge](https://gunjo.jp/docs/components/expiry-badge)** ／ **[状態盤 StatusBoard](https://gunjo.jp/docs/components/status-board)** ／ **[メーター Meter](https://gunjo.jp/docs/components/meter)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#143](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\n連載初の5/5——build した「日付vs期限」の軸が、資格でも車検でも自力発見された。軸で定位できた部品ほど、越境の深さが完全になる。\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI にタクシーの車両管理画面を作らせてみた — 連載で初めての満点（5/5）（やってみた #144）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青を一度も見たことのない AI に実際の画面で組ませていく連載。今回は**タクシー会社の車両管理画面**（保有車両の一覧・車検/保険の期限・走行距離・整備計画・整備記録）。事業者向けの4枚目です。\n\n## 結果 — 連載で初めての満点（5/5）\n\n型チェックも通り、デスクトップ向けの密度で一発完成。群青を一度も触っていない AI の感想：\n\n> **まるで、この画面のために用意されたライブラリのようだった。** 実用的で密度の高い業務コンソールを、ほとんど手作りせずに組めた。**必要だった6つ——車両一覧の表／消費と上限のメーター／工程バー／要対応リスト／署名記録／日付と期限の表示——が、すべて最初からコンポーネントとして揃っていた。**\n\n連載144回目にして初めての満点。保守・法令対応・資産管理という事務方の中核画面が、ほぼ何も作り足さずに完成しました。\n\n## 見どころ — 昨日作ったばかりのコンポーネントが、別の用途で勝手に使われた\n\n昨日 #142 で `ExpiryBadge`（有効期限を色つきで見せるコンポーネント）を作ったのは、**乗務員の資格の期限**のためでした。ところが今回、AI が同じコンポーネントを**車検や保険の期限**のために自分で見つけて使ったのです：\n\n> AI「`ExpiryBadge` はまさにこのために作られたコンポーネント。説明文にも車検・保険・点検と書いてある。表のセル・詳細カード・件数の集計の3か所で、追加のコードなしにそのまま使えた。」\n\n**乗務員の資格のために作ったコンポーネントが、車検・保険にもそのまま効いた**——「日付と期限」という形は、人にも車にも保険にも共通だと証明できました。もう一つ、#141 で作った `StatusBoard`（状態を一覧するボード）も、今回の稼働状況のボードで再び使われています。作ったコンポーネントが別の用途で勝手に使い回される——それが2つ同時に起きた回でした。\n\n## 学び — 共通するパターンに合わせて作ると、業界を越えて効く\n\n「日付と期限」は、乗務員でも車両でも保険でも契約でも、やっていることは同じです。特定の業種向けではなく、こうした**共通のパターン**に合わせてコンポーネントを作ると、別の分野でも自然に使い回せます。今回それがはっきり出ました。\n\n## 気づいた課題 — デスクトップ用の見出しバーが毎回足りない（4回目）\n\n> AI「一番ほしいのは、デスクトップの画面上部に置く軽い見出しバー。`PageHeader` はモバイル専用、`Header` はサイト全体のナビ用で重い。各画面の見出しは、どのコンソールでも毎回手作りになっている。」\n\n#130・#134・#135・#144 と**4回目**の指摘。デスクトップ専用の見出しバー（`DesktopPageHeader`）が要りそうなので、課題として記録しました（[#397](https://github.com/uixhero/gunjo/issues/397)）。\n\n**今回、新しく作ったコンポーネントはゼロ**（満点・保守画面が全て摩擦なく組め、別用途での再利用2件、見出しバーの課題を1件記録）。\n\n## これまでに群青へ加わったコンポーネント（14個）\nAmountBreakdown / ActionQueue / ListCard / Gantt / SeatMap / LoyaltySummaryCard / RadioCard / FilterChips / PageHeader / Itinerary / TicketStub / Stringline / StatusBoard / ExpiryBadge\n\n## 次回予告（やってみた #145）\n- **タクシーの配車アプリ（利用者向け）**（呼び出し・到着まで○分・料金見積・乗車・決済）でタクシー編を締めます。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ **[ExpiryBadge](https://gunjo.jp/docs/components/expiry-badge)** ／ **[StatusBoard](https://gunjo.jp/docs/components/status-board)** ／ **[Meter](https://gunjo.jp/docs/components/meter)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)**\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\n連載で初めての満点。「日付と期限」という共通のパターンで作ったコンポーネントが、資格でも車検でも勝手に使われた——共通のパターンに合わせて作ったコンポーネントほど、業界を越えて深く効く、という回でした。\n"
   },
   "code": [
     {
@@ -31,36 +30,20 @@
   ],
   "components": [
     "ActionDataTable",
-    "ActionItem",
     "ActionQueue",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardHeader",
-    "CardTitle",
-    "ColumnDef",
     "ExpiryBadge",
     "Gantt",
-    "GanttItem",
-    "GanttRow",
     "MetadataList",
     "Meter",
     "Separator",
     "SignedRecord",
-    "SignedRecordValue",
     "StatGroup",
     "StatusBoard",
-    "StatusBoardItem",
     "Tabs",
-    "TabsContent",
-    "TabsList",
-    "TabsTrigger",
-    "Timeline",
-    "TimelineDescription",
-    "TimelineItem",
-    "TimelineTime",
-    "TimelineTitle"
+    "Timeline"
   ],
   "shots": {
     "desktop": true,

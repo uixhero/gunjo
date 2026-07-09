@@ -5,12 +5,11 @@
   "score": "3.5/5",
   "category": "運輸：航空",
   "title": "AI にマイレージ画面を作らせてみた — ListCard は3用途で効いたが、ロイヤリティの「華」は無かった（やってみた #116）",
-  "readmeTitle": "予約管理・マイレージ（運輸:航空toC・mobile-first・予約/マイル履歴ListCard/会員ステータスTierCard手組み/次ランクMeter/運賃AmountBreakdown層）★ListCard 3用途・LoyaltySummaryCard起票・44px touch不足",
-  "summary": "`tsc` 緑・375px mobile-first・0 console error。cold AI（群青を一度も触っていない設定）：",
+  "summary": "`tsc` 緑・375px mobile-first・0 console error。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-116-booking-manage.md",
     "slug": "116-booking-manage",
-    "markdown": "# AI にマイレージ画面を作らせてみた — ListCard は3用途で効いたが、ロイヤリティの「華」は無かった（やってみた #116）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。**航空 toC 深掘りバッチの3枚目**——**予約管理・マイレージ**（会員ステータス・予約一覧・マイル）。KeEem の「鉄道もポイント必要だったかも」を航空で先に。\n\n## 結果 — 3.5/5\n\n`tsc` 緑・375px mobile-first・0 console error。cold AI（群青を一度も触っていない設定）：\n\n> **`ListCard` が標準装備の主役**——予約行・マイル履歴・特典 の3つのリスト全部に同じ部品で、摩擦ゼロ。≥44px の本物ボタン・aria-pressed・左 severity レール。**kit 最良の答え。**\n> **だが画面の華＝ロイヤリティ要約に部品が無い。** 会員ステータスカード（tier バッジ＋残高ヒーロー数字＋次ランクまでの進捗＋失効警告）は全部手組み。「`Statistic` は平らな KPI タイルで badge も progress も温かみも無い。**これが #1 の穴。**」\n\n**ListCard が1画面で3用途**（予約/履歴/特典）＝universal な床の汎用性を一画面で実証。\n\n## 起票\n- 🟢 **LoyaltySummaryCard/TierCard**（残高ヒーロー＋tier バッジ＋goal-framed 進捗「ダイヤモンドまであと11,500 PP」＋失効スロット）＝[#364](https://github.com/uixhero/gunjo/issues/364)・1/3。**`Meter` の goal-framed/ロイヤリティモード**も同issue（Meter の readout が「38,500/50,000 PP（77%）」と容量表現で、目標未満で赤に反転する footgun＝「あと◯◯」表現と非判定トーンが要る）。\n- 🟢 **44px タッチ標的**（Button 最大40px・Tabs も手で min-h-11・[#362](https://github.com/uixhero/gunjo/issues/362)）。Badge h-5 固定で2行警告に override。\n\n**今回 src build なし**（3.5/5・ListCard 3用途が成果・LoyaltySummaryCard は 1/3）。\n\n## 学び — KeEem の「鉄道もポイント必要」が裏付いた\n航空のマイレージで「ロイヤリティ要約に部品が無い」と出た。KeEem は「鉄道もポイント必要だったかも」と言っていた——**鉄道 toC に戻れば IC/ポイント/定期で LoyaltySummaryCard の2回目が出る公算が高い**。これは toC モード固有の床の中でも、**複数モード（航空マイル・鉄道ポイント・小売ロイヤリティ）にまたがる準-universal な床**。バックログに鉄道 toC のポイント画面を積んで、3回ルールの2つ目を踏みにいく。一方 ListCard は3用途で揺るがず＝**toC の universal な床は、もう信頼できる段階**。\n\n## 航空 toC バッチ（#114-116）まとめ\n| # | 画面 | スコア | 成果 |\n|---|---|---|---|\n| 114 | チェックイン | 3 | **SeatMap build**（3-confirm） |\n| 115 | 運航状況案内 | 4 | ListCard+RouteStops 完璧フィット |\n| 116 | 予約管理・マイレージ | 3.5 | ListCard 3用途・LoyaltySummaryCard 1/3 |\n\n**toC を深掘りした結果＝SeatMap を結晶化し、TicketStub/LoyaltySummaryCard/SegmentedControl/44px/B2C温かみ という次の床を露出。** 弱い toC は、床が一番出る場所だった。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ **[リストカード ListCard](https://gunjo.jp/docs/components/list-card)** ／ **[座席表 SeatMap](https://gunjo.jp/docs/components/seat-map)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#115](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nListCard は3用途で効いた。ロイヤリティの華はまだ無い——だから次の床が見えた。\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI にマイレージ画面を作らせてみた — ListCard は3用途で効いたが、ロイヤリティの「華」は無かった（やってみた #116）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。**航空の利用者向け 深掘りバッチの3枚目**——**予約管理・マイレージ**（会員ステータス・予約一覧・マイル）。「鉄道もポイント必要だったかも」という直感を、航空で先に確かめる。\n\n## 結果 — 3.5/5\n\n`tsc` 緑・375px mobile-first・0 console error。予備知識ゼロの AI（群青を一度も触っていない設定）：\n\n> **`ListCard` が標準装備の主役**——予約行・マイル履歴・特典 の3つのリスト全部に同じコンポーネントで、摩擦ゼロ。≥44px の本物のボタン・aria-pressed・左の深刻度の帯。**ライブラリで最良の答え。**\n> **だが画面の華＝ロイヤリティ要約にコンポーネントが無い。** 会員ステータスカード（ランクのバッジ＋残高の大きな見出し数字＋次ランクまでの進捗＋失効警告）は全部手組み。「`Statistic` は平らな KPI タイルで、バッジも進捗も温かみも無い。**これが筆頭の欠落。**」\n\n**ListCard が1画面で3用途**（予約/履歴/特典）＝全業種共通の土台の汎用性を一画面で実証。\n\n## 課題に記録\n- 🟢 **LoyaltySummaryCard/TierCard**（残高の大きな見出し数字＋ランクのバッジ＋目標基準の進捗「ダイヤモンドまであと11,500 PP」＋失効の差込口）＝[#364](https://github.com/uixhero/gunjo/issues/364)・1/3。**`Meter` の目標基準/ロイヤリティのモード**も同じ issue（Meter の読み上げが「38,500/50,000 PP（77%）」と容量の表現で、目標未満で赤に反転するハマりどころ＝「あと◯◯」の表現と、判定しないトーンが要る）。\n- 🟢 **44px のタッチ標的**（Button 最大40px・Tabs も手で min-h-11・[#362](https://github.com/uixhero/gunjo/issues/362)）。Badge h-5 固定で2行の警告に上書き。\n\n**今回 src の新規コンポーネントなし**（3.5/5・ListCard の3用途が成果・LoyaltySummaryCard は 1/3）。\n\n## 学び — 「鉄道もポイント必要」の直感が裏付いた\n航空のマイレージで「ロイヤリティ要約にコンポーネントが無い」と出た。私は「鉄道もポイント必要だったかも」と感じていた——**鉄道の利用者向けに戻れば IC/ポイント/定期で LoyaltySummaryCard の2回目が出る公算が高い**。これは利用者向けのモード固有の土台の中でも、**複数モード（航空マイル・鉄道ポイント・小売ロイヤリティ）にまたがる、準・全業種共通の土台**。バックログに鉄道の利用者向けのポイント画面を積んで、3回ルールの2つ目を踏みにいく。一方 ListCard は3用途で揺るがず＝**利用者向けの全業種共通の土台は、もう信頼できる段階**。\n\n## 航空の利用者向けバッチ（#114-116）まとめ\n| # | 画面 | スコア | 成果 |\n|---|---|---|---|\n| 114 | チェックイン | 3 | **SeatMap を作る**（3回目） |\n| 115 | 運航状況案内 | 4 | ListCard+RouteStops が完璧に合う |\n| 116 | 予約管理・マイレージ | 3.5 | ListCard 3用途・LoyaltySummaryCard 1/3 |\n\n**利用者向けを深掘りした結果＝SeatMap を固め、TicketStub/LoyaltySummaryCard/SegmentedControl/44px/利用者向けの温かみ という次の土台を露出。** 弱い利用者向けの画面は、土台が一番出る場所だった。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ **[リストカード ListCard](https://gunjo.jp/docs/components/list-card)** ／ **[座席表 SeatMap](https://gunjo.jp/docs/components/seat-map)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#115](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nListCard は3用途で効いた。ロイヤリティの華はまだ無い——だから次の土台が見えた。\n"
   },
   "code": [
     {
@@ -34,23 +33,13 @@
     "Badge",
     "Button",
     "Card",
-    "CardContent",
     "Drawer",
-    "DrawerClose",
-    "DrawerContent",
-    "DrawerDescription",
-    "DrawerFooter",
-    "DrawerHeader",
-    "DrawerTitle",
     "ListCard",
     "MetadataList",
     "Meter",
     "Separator",
     "Statistic",
-    "Tabs",
-    "TabsContent",
-    "TabsList",
-    "TabsTrigger"
+    "Tabs"
   ],
   "shots": {
     "desktop": true,

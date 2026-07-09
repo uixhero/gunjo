@@ -5,12 +5,11 @@
   "score": "4/5",
   "category": "運輸：航空",
   "title": "AI に手荷物追跡を作らせてみた — RouteStops が「やっと正しく嵌まった」回（やってみた #124）",
-  "readmeTitle": "航空 手荷物追跡（航空toC深掘り・mobile-first・状態進行RouteStops(珍しく適合)/複数手荷物Tabs/概要StatGroup/受取案内Alert/PIR Accordion層）★RouteStops が状態トラッキングに「適合」=配送/注文/修理と同域・PageHeader 2/3 起票",
-  "summary": "`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：",
+  "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
   "article": {
     "file": "zenn-yattemita-124-baggage-tracking.md",
     "slug": "124-baggage-tracking",
-    "markdown": "# AI に手荷物追跡を作らせてみた — RouteStops が「やっと正しく嵌まった」回（やってみた #124）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、文脈ゼロの cold な AI に実 UI で作らせる連載。**航空 toC 深掘り（[toC バックログ](https://github.com/uixhero/gunjo)）**——**手荷物追跡**（預けた手荷物の状態進行：お預かり→保安検査→搭載→輸送→到着→受取可能）。\n\n## 結果 — 4/5（深掘りの中で高め）。理由は1つ——RouteStops が嵌まったから。\n\n`tsc` 緑・375px mobile-first。cold AI（群青を一度も触っていない設定）：\n\n> **`RouteStops` — zero-friction、これのために作られた。状態進行の背骨。** `pending|current|completed|failed|delayed` が 受託→受取可能 にほぼ1:1・`plannedTime`/`actualTime` で遅れ/早着/定刻を自動計算(Delta)・`aria-current=\"step\"`・現在地の ring。「**手荷物は『順序づいた停留所フロー』のもう一例。嵌まった、しぶしぶでなく。** Timeline/Stepper/ApprovalSteps は全部もっと悪い。」\n\n## 観測の核 — RouteStops の「正しい定義域」が確定した\n連載で `RouteStops` は **transit経路#110・駅 wayfinding#120・空港 wayfinding#122・国際線 leg#123 と4回『不適』**だった（配送語彙が漏れる）。だが #124 で**初めて『適合』**した。なぜか——cold AI が言語化：\n\n> Timeline は自由すぎ（マーカー/状態/時刻列/遅延計算を手で組む）。Stepper は `{label,state}` だけ＝**時刻も遅延も説明も無く**、6段を375pxに横詰めすると溢れる。ApprovalSteps は承認/差戻し意味論で手荷物に無意味。**RouteStops だけが戦わず嵌まった。**\n\nつまり **RouteStops は『状態トラッキング』（手荷物/配送/注文/修理）には正しく、『leg 中心の経路/道案内』には不適**——この**定義域の切り分け**が #124 で確定した（[#358](https://github.com/uixhero/gunjo/issues/358) に追記＝だから別物の leg 中心 `TransitItinerary`/`FlightItinerary` が要る・RouteStops を経路に伸ばすな）。**「同じ component が、ある業種で主役、別業種で誤誘導」を4回の不適＋1回の適合で確定させた**のは、深掘りならでは。\n\n## 起票・追記\n- 🟢 **PageHeader（モバイル app-bar）起票**＝戻る＋タイトル/サブ＋アクション・≥44px・sticky・safe-area。kit の `Header` は desktop chrome。駅構内ナビ#120＋手荷物#124 で手組み＝**2/3**（[#373](https://github.com/uixhero/gunjo/issues/373)）。\n- 🟢 **`Button size=\"icon\"` が36px**で44pxに届かない（[#362](https://github.com/uixhero/gunjo/issues/362) 再補強）。「ListCard は ≥44px を誇るのに icon button に適用されてない」。\n- 🟢 受取案内に「到着/受取 hero」部品が無く MetadataList＋手書き太字番号。\n\n**今回 src build なし**（4/5・RouteStops 適合が成果）。`Tabs`(複数手荷物)/`StatGroup`/`Alert`/`Accordion` zero。\n\n## 学び — 「定義域の確定」も深掘りの成果\nbuild だけが成果じゃない。**#124 は1つも build しなかったが、`RouteStops` の正しい定義域（状態トラッキング ⭕／経路・道案内 ❌）を確定させた**——4回の不適と1回の適合で。これは索引の精度（RouteStops を経路に誤誘導しない・leg 中心は別物）を上げ、将来の TransitItinerary build の輪郭を固める。**深掘りは、穴を見つけるだけでなく、既存部品の『正しい使い所』も確定させる。** RouteStops は状態トラッキングの主役、TicketStub/TransitItinerary は別途——という地図が、toC 深掘りで描けてきた。\n\n## 📊 結晶化スコアボード（build 済8個）\nAmountBreakdown / ActionQueue / ListCard / Gantt-segments / SeatMap / LoyaltySummaryCard / RadioCard / FilterChips\n進行中：TicketStub 2/3・PageHeader 2/3・SegmentedControl・StatusScreen success・Gantt hour-axis・TransitItinerary\n\n## 次回予告（やってみた #125）\n- toC バックログ続行——航空（旅程管理 / 欠航振替＝代替便 RadioCard）or 鉄道残り（駅ナカ提案 / 払戻し）。PageHeader 3回目・TicketStub 3回目を狙える画面も。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ **[RouteStops](https://gunjo.jp/docs/components/route-stops)** ／ 逆引き索引 **[/docs/by-use-case](https://gunjo.jp/docs/by-use-case)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#123](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nRouteStops が、4回の不適を経て、やっと正しく嵌まった——深掘りは、部品の「正しい使い所」も確定させる。\n\n---\n<!-- 公開前: 相互URL差込／スクショ確定／EN(dev.to)ミラー -->\n"
+    "markdown": "# AI に手荷物追跡を作らせてみた — RouteStops が「やっと正しく嵌まった」回（やってみた #124）\n\n> **やってみたシリーズ**: 自作のデザインシステム `@gunjo/ui`（[群青](https://gunjo.jp)）を、群青のことを一度も見たことのない AI に、実際の画面で組ませていく連載。**航空の利用者向け 深掘り（[利用者向けバックログ](https://github.com/uixhero/gunjo)）**——**手荷物追跡**（預けた手荷物の状態進行：お預かり→保安検査→搭載→輸送→到着→受取可能）。\n\n## 結果 — 4/5（深掘りの中で高め）。理由は1つ——RouteStops が嵌まったから。\n\n`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：\n\n> **`RouteStops` — 摩擦ゼロ、これのために作られた。状態進行の背骨。** `pending|current|completed|failed|delayed` が 受託→受取可能 にほぼ1:1・`plannedTime`/`actualTime` で遅れ/早着/定刻を自動計算(Delta)・`aria-current=\"step\"`・現在地の ring。「**手荷物は『順序づいた停留所フロー』のもう一例。嵌まった、しぶしぶでなく。** Timeline/Stepper/ApprovalSteps は全部もっと悪い。」\n\n## 観測の核 — RouteStops の「正しい守備範囲」が確定した\n連載で `RouteStops` は **交通経路#110・駅の道案内#120・空港の道案内#122・国際線の区間#123 と4回『不適』**だった（配送の語彙が漏れる）。だが #124 で**初めて『適合』**した。なぜか——予備知識ゼロの AI が言語化：\n\n> Timeline は自由すぎ（マーカー/状態/時刻列/遅延計算を手で組む）。Stepper は `{label,state}` だけ＝**時刻も遅延も説明も無く**、6段を375pxに横詰めすると溢れる。ApprovalSteps は承認/差戻しの意味づけで手荷物には無意味。**RouteStops だけが戦わず嵌まった。**\n\nつまり **RouteStops は『状態の追跡』（手荷物/配送/注文/修理）には正しく、『区間中心の経路/道案内』には不適**——この**守備範囲の切り分け**が #124 で確定した（[#358](https://github.com/uixhero/gunjo/issues/358) に追記＝だから別物の区間中心 `TransitItinerary`/`FlightItinerary` が要る・RouteStops を経路に伸ばすな）。**「同じコンポーネントが、ある業種で主役、別業種で誤誘導」を4回の不適＋1回の適合で確定させた**のは、深掘りならでは。\n\n## 課題に記録・追記\n- 🟢 **PageHeader（モバイルのアプリバー）を課題に記録**＝戻る＋タイトル/サブ＋アクション・≥44px・sticky・safe-area。ライブラリの `Header` はデスクトップの外枠。駅構内ナビ#120＋手荷物#124 で手組み＝**2/3**（[#373](https://github.com/uixhero/gunjo/issues/373)）。\n- 🟢 **`Button size=\"icon\"` が36px**で44pxに届かない（[#362](https://github.com/uixhero/gunjo/issues/362) 再補強）。「ListCard は ≥44px を誇るのに、icon button に適用されていない」。\n- 🟢 受取案内に「到着/受取の大きな見出し」のコンポーネントが無く MetadataList＋手書きの太字番号。\n\n**今回 src の新規コンポーネントなし**（4/5・RouteStops の適合が成果）。`Tabs`(複数手荷物)/`StatGroup`/`Alert`/`Accordion` も手組みゼロ。\n\n## 学び — 「守備範囲の確定」も深掘りの成果\n作ることだけが成果じゃない。**#124 は1つも作らなかったが、`RouteStops` の正しい守備範囲（状態の追跡 ⭕／経路・道案内 ❌）を確定させた**——4回の不適と1回の適合で。これは索引の精度（RouteStops を経路に誤誘導しない・区間中心は別物）を上げ、将来の TransitItinerary を作るときの輪郭を固める。**深掘りは、欠落を見つけるだけでなく、既存コンポーネントの『正しい使い所』も確定させる。** RouteStops は状態の追跡の主役、TicketStub/TransitItinerary は別途——という地図が、利用者向けの深掘りで描けてきた。\n\n## 📊 コンポーネント化スコアボード（作成済8個）\nAmountBreakdown / ActionQueue / ListCard / Gantt-segments / SeatMap / LoyaltySummaryCard / RadioCard / FilterChips\n進行中：TicketStub 2/3・PageHeader 2/3・SegmentedControl・StatusScreen success・Gantt 時刻軸・TransitItinerary\n\n## 次回予告（やってみた #125）\n- 利用者向けバックログ続行——航空（旅程管理 / 欠航振替＝代替便 RadioCard）or 鉄道残り（駅ナカ提案 / 払戻し）。PageHeader 3回目・TicketStub 3回目を狙える画面も。\n\n## 試す\n- **[gunjo.jp](https://gunjo.jp)** ／ **[RouteStops](https://gunjo.jp/docs/components/route-stops)** ／ 逆引き索引 **[/docs/by-use-case](https://gunjo.jp/docs/by-use-case)** ／ npm `@gunjo/ui` ／ **[GitHub](https://github.com/uixhero/gunjo)** ／ 前回まで [#1](#)〜[#123](#)\n- **GunjoUI by [UIXHERO](https://www.uixhero.com)**\n\nRouteStops が、4回の不適を経て、やっと正しく嵌まった——深掘りは、コンポーネントの「正しい使い所」も確定させる。\n"
   },
   "code": [
     {
@@ -31,28 +30,15 @@
   ],
   "components": [
     "Accordion",
-    "AccordionContent",
-    "AccordionItem",
-    "AccordionTrigger",
     "Alert",
-    "AlertDescription",
-    "AlertTitle",
     "Badge",
     "Button",
     "Card",
-    "CardContent",
-    "CardHeader",
-    "CardTitle",
     "MetadataList",
-    "RouteStopItem",
-    "RouteStopStatus",
     "RouteStops",
     "Separator",
     "StatGroup",
-    "Tabs",
-    "TabsContent",
-    "TabsList",
-    "TabsTrigger"
+    "Tabs"
   ],
   "shots": {
     "desktop": true,
