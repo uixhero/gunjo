@@ -15,6 +15,7 @@ import {
 } from "../navigation/Command"
 import { Popover, PopoverContent, PopoverTrigger } from "../overlay/Popover"
 import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
+import { useLocale } from "../utility/LocaleProvider"
 
 export interface ComboboxOption {
     value: string
@@ -58,7 +59,7 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
             value,
             onValueChange,
             placeholder = "Select option...",
-            searchPlaceholder = "Search...",
+            searchPlaceholder,
             searchClearLabel = "Clear search",
             emptyMessage = "No option found.",
             className,
@@ -76,6 +77,7 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
         ref
     ) => {
         const [open, setOpen] = React.useState(false)
+        const { strings } = useLocale()
         const selected = options.find((option) => option.value === value)
         const canClear = clearable && Boolean(selected) && !disabled
 
@@ -181,7 +183,7 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
                 <PopoverContent className={cn("w-[var(--radix-popover-trigger-width)] p-0", className)}>
                     <Command>
                         <CommandInput
-                            placeholder={searchPlaceholder}
+                            placeholder={searchPlaceholder ?? strings.searchPlaceholder}
                             clearable
                             clearLabel={searchClearLabel}
                         />

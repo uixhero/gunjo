@@ -7,6 +7,7 @@ import { IconX as X } from "@tabler/icons-react";
 
 import { cn } from "../../lib/utils"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./Tooltip"
+import { useLocale } from "../utility/LocaleProvider"
 
 const Sheet = SheetPrimitive.Root
 
@@ -61,7 +62,9 @@ interface SheetContentProps
 const SheetContent = React.forwardRef<
     React.ElementRef<typeof SheetPrimitive.Content>,
     SheetContentProps
->(({ side = "right", className, children, portalContainer, overlayClassName, closeLabel = "Close", onOpenAutoFocus, ...props }, ref) => {
+>(({ side = "right", className, children, portalContainer, overlayClassName, closeLabel, onOpenAutoFocus, ...props }, ref) => {
+    const { strings } = useLocale()
+    const resolvedCloseLabel = closeLabel ?? strings.close
     const contentRef = React.useRef<React.ElementRef<typeof SheetPrimitive.Content> | null>(null)
 
     const setRefs = React.useCallback(
@@ -113,14 +116,14 @@ const SheetContent = React.forwardRef<
                         <TooltipTrigger asChild>
                             <SheetPrimitive.Close
                                 className="absolute right-4 top-4 cursor-pointer rounded-md p-1 text-muted-foreground opacity-80 ring-offset-background transition-colors hover:bg-muted hover:text-foreground hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary"
-                                aria-label={closeLabel}
+                                aria-label={resolvedCloseLabel}
                             >
                                 <X className="h-4 w-4" />
-                                <span className="sr-only">{closeLabel}</span>
+                                <span className="sr-only">{resolvedCloseLabel}</span>
                             </SheetPrimitive.Close>
                         </TooltipTrigger>
                         <TooltipContent portalContainer={portalContainer}>
-                            {closeLabel}
+                            {resolvedCloseLabel}
                         </TooltipContent>
                     </Tooltip>
                 </TooltipProvider>

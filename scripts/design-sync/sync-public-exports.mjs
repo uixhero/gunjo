@@ -82,6 +82,9 @@ function renderIndexSource(sections) {
   // Hand-authored runtime primitives with no design node (no `.pen`): theme
   // coordination lives here alongside `cn`, not in a spec'd category. (#171)
   lines.push("export * from './components/utility/ThemeProvider';");
+  // Locale coordination: one switch to localize built-in component strings
+  // (DataTable/Pagination/Combobox/etc.). en default = backward compatible. (#326)
+  lines.push("export * from './components/utility/LocaleProvider';");
   // Number / currency / percent formatters (JPY-first) — fintech/commerce/
   // analytics screens hand-rolled these for lack of a shipped helper. (#180)
   lines.push("export { formatCurrency, formatNumber, formatPercent } from './lib/format';");

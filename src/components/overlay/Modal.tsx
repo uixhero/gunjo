@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { createPortal } from 'react-dom';
 import { IconX as X } from "@tabler/icons-react";
 import { cn } from '../../lib/utils';
+import { useLocale } from "../utility/LocaleProvider";
 
 export interface ModalProps {
     isOpen: boolean;
@@ -23,10 +24,11 @@ export function Modal({
     children,
     footer,
     portalContainer,
-    closeLabel = "Close",
+    closeLabel,
     overlayClassName,
     className,
 }: ModalProps) {
+    const { strings } = useLocale();
     const modalRef = useRef<HTMLDivElement>(null);
 
     useEffect(() => {
@@ -79,7 +81,7 @@ export function Modal({
                         type="button"
                         onClick={onClose}
                         className="rounded-md p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus:outline-none focus:ring-2 focus:ring-ring"
-                        aria-label={closeLabel}
+                        aria-label={closeLabel ?? strings.close}
                     >
                         <X size={18} />
                     </button>

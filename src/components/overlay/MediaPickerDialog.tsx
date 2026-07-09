@@ -20,6 +20,7 @@ import {
 import { Tooltip, TooltipContent, TooltipTrigger } from "./Tooltip"
 import { mediaPickerDialogDefaultVariantKey } from "./generated/default-variant-keys"
 import type { MediaPickerDialogVariantKey } from "./generated/variant-keys"
+import { useLocale } from "../utility/LocaleProvider"
 
 export interface MediaPickerDialogLabels {
     title?: React.ReactNode
@@ -71,6 +72,7 @@ const MediaPickerDialog = React.forwardRef<HTMLDivElement, MediaPickerDialogProp
         },
         ref
     ) => {
+        const { strings } = useLocale()
         const [query, setQuery] = React.useState("")
         const [internalSelectedIds, setInternalSelectedIds] = React.useState<string[]>(selectedIds ?? [])
         const classes = variantClasses[variant]
@@ -134,7 +136,7 @@ const MediaPickerDialog = React.forwardRef<HTMLDivElement, MediaPickerDialogProp
                             <Input
                                 value={query}
                                 onChange={(event) => setQuery(event.target.value)}
-                                placeholder={labels?.searchPlaceholder ?? "Search assets..."}
+                                placeholder={labels?.searchPlaceholder ?? strings.searchAssetsPlaceholder}
                                 className="w-full pl-9"
                             />
                         </div>

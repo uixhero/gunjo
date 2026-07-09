@@ -29,6 +29,7 @@ import { Button } from "../inputs/Button"
 import { Input } from "../inputs/Input"
 import { Select } from "../inputs/Select"
 import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
+import { useLocale } from "../utility/LocaleProvider"
 import { Icon, type IconGlyph } from "./Icon"
 
 export interface DataTableLabels {
@@ -183,6 +184,7 @@ export function DataTable<TData, TValue>({
     renderCard,
     className,
 }: DataTableProps<TData, TValue>) {
+    const { strings } = useLocale()
     const [sorting, setSorting] = React.useState<SortingState>([])
     const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
         []
@@ -234,7 +236,7 @@ export function DataTable<TData, TValue>({
             {filterColumn ? (
                 <div className="flex items-center">
                     <Input
-                        placeholder={filter?.placeholder ?? labels?.filterPlaceholder ?? "Filter..."}
+                        placeholder={filter?.placeholder ?? labels?.filterPlaceholder ?? strings.filterPlaceholder}
                         value={(filterColumn.getFilterValue() as string) ?? ""}
                         onChange={(event) =>
                             filterColumn.setFilterValue(event.target.value)
@@ -261,7 +263,7 @@ export function DataTable<TData, TValue>({
                                 onClick={() => table.setPageIndex(0)}
                             />
                             <PaginationIconButton
-                                label={labels?.previous ?? "Previous"}
+                                label={labels?.previous ?? strings.previous}
                                 disabledLabel={labels?.previousPageUnavailable ?? "No previous page"}
                                 disabled={!table.getCanPreviousPage()}
                                 icon={ChevronLeft}
@@ -273,7 +275,7 @@ export function DataTable<TData, TValue>({
                                     : `${currentPage} / ${pageCount}`}
                             </span>
                             <PaginationIconButton
-                                label={labels?.next ?? "Next"}
+                                label={labels?.next ?? strings.next}
                                 disabledLabel={labels?.nextPageUnavailable ?? "No next page"}
                                 disabled={!table.getCanNextPage()}
                                 icon={ChevronRight}
@@ -288,9 +290,9 @@ export function DataTable<TData, TValue>({
                             />
                         </div>
                         <label className="flex items-center text-sm text-muted-foreground">
-                            <span className="sr-only">{labels?.rowsPerPage ?? "Rows per page"}</span>
+                            <span className="sr-only">{labels?.rowsPerPage ?? strings.rowsPerPage}</span>
                             <Select
-                                aria-label={labels?.rowsPerPage ?? "Rows per page"}
+                                aria-label={labels?.rowsPerPage ?? strings.rowsPerPage}
                                 value={String(table.getState().pagination.pageSize)}
                                 onChange={(event) => {
                                     table.setPageSize(Number(event.target.value))
@@ -458,7 +460,7 @@ export function DataTable<TData, TValue>({
                                     colSpan={columns.length}
                                     className="h-24 px-3 text-left text-muted-foreground sm:text-center"
                                 >
-                                    {labels?.noResults ?? "No results."}
+                                    {labels?.noResults ?? strings.noResults}
                                 </td>
                             </tr>
                         )}
@@ -508,7 +510,7 @@ export function DataTable<TData, TValue>({
                         })
                     ) : (
                         <div className="rounded-md border px-3 py-6 text-left text-muted-foreground sm:text-center">
-                            {labels?.noResults ?? "No results."}
+                            {labels?.noResults ?? strings.noResults}
                         </div>
                     )}
                 </div>
@@ -524,7 +526,7 @@ export function DataTable<TData, TValue>({
                         onClick={() => table.setPageIndex(0)}
                     />
                     <PaginationIconButton
-                        label={labels?.previous ?? "Previous"}
+                        label={labels?.previous ?? strings.previous}
                         disabledLabel={labels?.previousPageUnavailable ?? "No previous page"}
                         disabled={!table.getCanPreviousPage()}
                         icon={ChevronLeft}
@@ -561,7 +563,7 @@ export function DataTable<TData, TValue>({
                 </div>
                 <div className="flex items-center justify-end gap-1">
                     <PaginationIconButton
-                        label={labels?.next ?? "Next"}
+                        label={labels?.next ?? strings.next}
                         disabledLabel={labels?.nextPageUnavailable ?? "No next page"}
                         disabled={!table.getCanNextPage()}
                         icon={ChevronRight}
@@ -585,7 +587,7 @@ export function DataTable<TData, TValue>({
                     onClick={() => table.setPageIndex(0)}
                 />
                 <PaginationIconButton
-                    label={labels?.previous ?? "Previous"}
+                    label={labels?.previous ?? strings.previous}
                     disabledLabel={labels?.previousPageUnavailable ?? "No previous page"}
                     disabled={!table.getCanPreviousPage()}
                     icon={ChevronLeft}
@@ -614,7 +616,7 @@ export function DataTable<TData, TValue>({
                     ))}
                 </div>
                 <PaginationIconButton
-                    label={labels?.next ?? "Next"}
+                    label={labels?.next ?? strings.next}
                     disabledLabel={labels?.nextPageUnavailable ?? "No next page"}
                     disabled={!table.getCanNextPage()}
                     icon={ChevronRight}

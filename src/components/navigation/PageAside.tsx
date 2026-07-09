@@ -4,6 +4,7 @@ import * as React from "react"
 import { IconChevronDown as ChevronDown } from "@tabler/icons-react"
 import { cn } from "../../lib/utils"
 import { RightRail } from "./RightRail"
+import { useLocale } from "../utility/LocaleProvider"
 
 export interface PageAsideProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
     title: React.ReactNode
@@ -38,12 +39,13 @@ const PageAside = React.forwardRef<HTMLDivElement, PageAsideProps>(
             mobileClassName,
             railClassName,
             railContentClassName,
-            openLabel = "Open",
-            closeLabel = "Close",
+            openLabel,
+            closeLabel,
             ...props
         },
         ref
     ) => {
+        const { strings } = useLocale()
         const label = asideLabel ?? (typeof title === "string" ? title : undefined)
 
         return (
@@ -63,8 +65,8 @@ const PageAside = React.forwardRef<HTMLDivElement, PageAsideProps>(
                                     {title}
                                 </span>
                                 <span className="flex items-center gap-1 text-xs text-muted-foreground">
-                                    <span className="sr-only group-open:hidden">{openLabel}</span>
-                                    <span className="sr-only hidden group-open:inline">{closeLabel}</span>
+                                    <span className="sr-only group-open:hidden">{openLabel ?? strings.open}</span>
+                                    <span className="sr-only hidden group-open:inline">{closeLabel ?? strings.close}</span>
                                     <ChevronDown className="h-4 w-4 shrink-0 transition-transform group-open:rotate-180" aria-hidden="true" />
                                 </span>
                             </summary>
