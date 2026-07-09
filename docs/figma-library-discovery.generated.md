@@ -4,25 +4,25 @@
 
 ## Summary
 
-- Component targets: 162
-- Variant targets: 226
+- Component targets: 173
+- Variant targets: 250
 - Components with empty variants: 46
-- Synthetic variants: 120
+- Synthetic variants: 139
 - tokens.pen variables: 43
-- src/globals.css root variables: 95
+- src/globals.css root variables: 102
 
 ## Page Scope
 
 | Figma page | Components | Variants | Empty variant components | Synthetic variants | Fill-container components |
 | --- | ---: | ---: | ---: | ---: | ---: |
-| Inputs | 37 | 44 | 18 | 13 | 3 |
-| Display | 36 | 57 | 13 | 29 | 12 |
+| Inputs | 39 | 46 | 18 | 15 | 9 |
+| Display | 43 | 77 | 13 | 46 | 20 |
 | Charts | 23 | 48 | 0 | 48 | 23 |
-| Feedback | 11 | 22 | 2 | 9 | 1 |
-| Navigation | 16 | 14 | 4 | 3 | 2 |
+| Feedback | 11 | 22 | 2 | 9 | 4 |
+| Navigation | 16 | 14 | 4 | 3 | 5 |
 | Overlay | 16 | 16 | 3 | 6 | 3 |
 | Layout | 14 | 16 | 6 | 12 | 3 |
-| Patterns | 9 | 9 | 0 | 0 | 0 |
+| Patterns | 11 | 11 | 0 | 0 | 11 |
 
 ## Components Requiring Manual Design Completion
 
@@ -52,6 +52,8 @@
 | Inputs | TimePicker | empty variants |
 | Inputs | TagInput | empty variants |
 | Inputs | Mention | empty variants |
+| Inputs | CurrencyInput | 1 synthetic variants |
+| Inputs | ScanInput | 1 synthetic variants |
 | Display | ChatMessage | 4 synthetic variants |
 | Display | ImagePreview | 3 synthetic variants |
 | Display | Skeleton | empty variants |
@@ -69,7 +71,7 @@
 | Display | Timeline | empty variants |
 | Display | TreeView | empty variants |
 | Display | FileTree | 3 synthetic variants |
-| Display | DocNote | 2 synthetic variants |
+| Display | DocNote | 5 synthetic variants |
 | Display | MarkdownRenderer | empty variants |
 | Display | Statistic | empty variants |
 | Display | AssetCard | 2 synthetic variants |
@@ -99,6 +101,13 @@
 | Charts | ChoroplethMap | 2 synthetic variants |
 | Charts | QuadrantMatrix | 2 synthetic variants |
 | Charts | AnalyticsCard | 4 synthetic variants |
+| Display | Rating | 3 synthetic variants |
+| Display | SwatchGroup | 3 synthetic variants |
+| Display | Gallery | 2 synthetic variants |
+| Display | EditableDataTable | 2 synthetic variants |
+| Display | ApprovalSteps | 2 synthetic variants |
+| Display | RevealSection | 1 synthetic variants |
+| Display | Delta | 1 synthetic variants |
 | Feedback | Alert | 3 synthetic variants |
 | Feedback | StatusScreen | 6 synthetic variants |
 | Feedback | Stepper | empty variants |
@@ -130,7 +139,6 @@
 
 | Source category | Key | Reason |
 | --- | --- | --- |
-| patterns | pricingTemplate | null spec entry |
 | patterns | blogTemplate | null spec entry |
 | patterns | docsTemplate | null spec entry |
 | patterns | onboardingTemplate | null spec entry |
