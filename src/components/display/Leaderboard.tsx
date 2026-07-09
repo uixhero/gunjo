@@ -110,6 +110,28 @@ const Leaderboard = React.forwardRef<HTMLDivElement, LeaderboardProps>(
     const peak = max ?? items.reduce((m, it) => Math.max(m, it.value), 0)
     const fmt = (it: LeaderboardItem): React.ReactNode =>
       it.valueLabel ?? (formatValue ? formatValue(it.value, it) : it.value.toLocaleString())
+    const hasIcon = items.some((it) => it.icon != null)
+    const hasDelta = items.some((it) => it.delta != null)
+    const hasTrailing = items.some((it) => it.trailing != null)
+    const metricStyle: React.CSSProperties = hasDelta
+      ? hasTrailing
+        ? {
+            width: "min(100%, 10rem)",
+            gridTemplateColumns: "3.25rem 3.5rem minmax(0, 1fr)",
+          }
+        : {
+            width: "min(100%, 7.25rem)",
+            gridTemplateColumns: "3.25rem 3.5rem",
+          }
+      : hasTrailing
+        ? {
+            width: "min(100%, 5.75rem)",
+            gridTemplateColumns: "3.25rem minmax(0, 1fr)",
+          }
+        : {
+            width: "min(100%, 3.25rem)",
+            gridTemplateColumns: "3.25rem",
+          }
 
     return (
       <div
@@ -148,10 +170,14 @@ const Leaderboard = React.forwardRef<HTMLDivElement, LeaderboardProps>(
                   </span>
                 ) : null}
 
-                {it.icon != null ? <span className="shrink-0 text-muted-foreground">{it.icon}</span> : null}
+                {hasIcon ? (
+                  <span className="flex size-4 shrink-0 items-center justify-center text-muted-foreground">
+                    {it.icon}
+                  </span>
+                ) : null}
 
-                <span className="min-w-0 flex-1">
-                  <span className="flex items-baseline gap-2">
+                <span className="min-w-[4.75rem] flex-[1_1_4.75rem]">
+                  <span className="flex min-w-0 flex-col gap-0.5">
                     <span className="truncate text-sm font-medium text-foreground">{it.label}</span>
                     {it.sublabel != null ? (
                       <span className="truncate text-xs text-muted-foreground">{it.sublabel}</span>
@@ -167,18 +193,28 @@ const Leaderboard = React.forwardRef<HTMLDivElement, LeaderboardProps>(
                   ) : null}
                 </span>
 
-                <span className="flex shrink-0 items-center gap-2">
-                  <span className="text-sm font-semibold tabular-nums text-foreground">{fmt(it)}</span>
+                <span className="ml-auto grid shrink-0 items-center justify-end gap-x-2" style={metricStyle}>
+                  <span className="min-w-0 text-right text-sm font-semibold tabular-nums text-foreground">{fmt(it)}</span>
                   {it.delta != null ? (
-                    <Delta value={it.delta} tones={deltaTones} format={formatDelta} className="text-xs" />
+                    <span className="flex min-w-0 justify-end">
+                      <Delta value={it.delta} tones={deltaTones} format={formatDelta} className="text-xs" />
+                    </span>
+                  ) : hasDelta ? (
+                    <span className="min-w-0" aria-hidden="true" />
                   ) : null}
-                  {it.trailing}
+                  {hasTrailing ? (
+                    it.trailing != null ? (
+                      <span className="flex min-w-0 justify-end">{it.trailing}</span>
+                    ) : (
+                      <span className="min-w-0" aria-hidden="true" />
+                    )
+                  ) : null}
                 </span>
               </>
             )
 
             const rowClass = cn(
-              "flex items-center gap-3 rounded-md px-2 py-2 text-left",
+              "flex flex-wrap items-start gap-2 rounded-md px-2 py-2 text-left sm:items-center",
               selected && "bg-accent",
               dim && "opacity-60"
             )
@@ -192,7 +228,7 @@ const Leaderboard = React.forwardRef<HTMLDivElement, LeaderboardProps>(
                     aria-current={selected ? "true" : undefined}
                     className={cn(
                       rowClass,
-                      "w-full transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                      "w-full cursor-pointer transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     )}
                   >
                     {inner}

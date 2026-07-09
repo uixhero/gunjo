@@ -19,7 +19,7 @@ export function SegmentedControlDemo() {
           options={[
             { value: "adult", label: "大人" },
             { value: "child", label: "小児" },
-            { value: "disabled", label: "障がい者" },
+            { value: "discount", label: "障がい者" },
           ]}
         />
       </label>

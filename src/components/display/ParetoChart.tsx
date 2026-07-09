@@ -149,128 +149,130 @@ const ParetoChart = React.forwardRef<HTMLDivElement, ParetoChartProps>(
                 data-slot="pareto-chart"
                 {...props}
             >
-                <div className="relative h-[220px] w-full border-b border-l border-border/70">
-                    {/* horizontal grid + right-axis percent ticks */}
-                    {showGrid
-                        ? [25, 50, 75, 100].map((percent) => (
-                              <span
-                                  key={`grid-${percent}`}
-                                  className="pointer-events-none absolute inset-x-0 border-t border-dashed border-border/60"
-                                  style={{ top: `${100 - percent}%` }}
-                                  aria-hidden="true"
-                              >
-                                  <span className="absolute right-0 -top-2 translate-x-full pl-1 text-[10px] tabular-nums text-muted-foreground">
-                                      {percent}%
+                <div className="relative h-[220px] w-full border-b border-l border-border/70 px-10 pt-6">
+                    <div className="relative h-full w-full">
+                        {/* horizontal grid + right-axis percent ticks */}
+                        {showGrid
+                            ? [25, 50, 75, 100].map((percent) => (
+                                  <span
+                                      key={`grid-${percent}`}
+                                      className="pointer-events-none absolute inset-x-0 border-t border-dashed border-border/60"
+                                      style={{ top: `${100 - percent}%` }}
+                                      aria-hidden="true"
+                                  >
+                                      <span className="absolute right-0 -top-2 translate-x-full pl-1 text-[10px] tabular-nums text-muted-foreground">
+                                          {percent}%
+                                      </span>
                                   </span>
-                              </span>
-                          ))
-                        : null}
+                              ))
+                            : null}
 
                     {/* threshold line (the "vital few" cutoff) */}
-                    {thresholdPercent !== null ? (
-                        <ChartTooltip label={cumulativeLabel} value={resolvedThresholdLabel}>
-                            <span
-                                className="absolute inset-x-0 z-20 h-4 -translate-y-1/2 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                                style={{ top: `${100 - thresholdPercent}%` }}
-                                tabIndex={0}
-                                aria-label={`${cumulativeText} ${resolvedThresholdLabel}`}
-                            >
+                        {thresholdPercent !== null ? (
+                            <ChartTooltip label={cumulativeLabel} value={resolvedThresholdLabel}>
                                 <span
-                                    className="pointer-events-none absolute inset-x-0 top-1/2 border-t-2 border-dashed border-warning"
-                                    aria-hidden="true"
-                                />
-                            </span>
-                        </ChartTooltip>
-                    ) : null}
+                                    className="absolute inset-x-0 z-20 h-4 -translate-y-1/2 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                                    style={{ top: `${100 - thresholdPercent}%` }}
+                                    tabIndex={0}
+                                    aria-label={`${cumulativeText} ${resolvedThresholdLabel}`}
+                                >
+                                    <span
+                                        className="pointer-events-none absolute inset-x-0 top-1/2 border-t-2 border-dashed border-warning"
+                                        aria-hidden="true"
+                                    />
+                                </span>
+                            </ChartTooltip>
+                        ) : null}
 
                     {/* bars (HTML/CSS, left value axis) */}
-                    <div
-                        className="absolute inset-0 grid"
-                        style={{ gridTemplateColumns: `repeat(${count}, minmax(0, 1fr))` }}
-                    >
-                        {points.map((point) => (
-                            <div
-                                key={`bar-${chartLabelToString(point.label, String(point.index))}-${point.index}`}
-                                className="relative flex items-end justify-center"
-                            >
-                                <ChartTooltip
-                                    label={point.label}
-                                    value={formatValue(point.value)}
-                                    description={[
-                                        cumulativeLabel,
-                                        ": ",
-                                        formatPercent(point.cumulative),
-                                    ]}
+                        <div
+                            className="absolute inset-0 grid"
+                            style={{ gridTemplateColumns: `repeat(${count}, minmax(0, 1fr))` }}
+                        >
+                            {points.map((point) => (
+                                <div
+                                    key={`bar-${chartLabelToString(point.label, String(point.index))}-${point.index}`}
+                                    className="relative flex items-end justify-center"
                                 >
-                                    <div
-                                        className="w-full max-w-12 rounded-t-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                                        style={{
-                                            height: `${point.barPercent}%`,
-                                            backgroundColor: getChartColor(point.color, point.index),
-                                        }}
-                                        tabIndex={0}
-                                        aria-label={`${chartLabelToString(
-                                            point.label,
-                                            `#${point.index + 1}`
-                                        )}: ${defaultFormat(point.value, formatValue)} (${cumulativeText} ${formatPercentText(
-                                            point.cumulative,
-                                            formatPercent
-                                        )})`}
-                                    />
-                                </ChartTooltip>
-                                {showValues ? (
-                                    <span
-                                        className="absolute text-[10px] font-medium tabular-nums text-foreground"
-                                        style={{ bottom: `calc(${point.barPercent}% + 0.25rem)` }}
+                                    <ChartTooltip
+                                        label={point.label}
+                                        value={formatValue(point.value)}
+                                        description={[
+                                            cumulativeLabel,
+                                            ": ",
+                                            formatPercent(point.cumulative),
+                                        ]}
                                     >
-                                        {formatValue(point.value)}
-                                    </span>
-                                ) : null}
-                            </div>
-                        ))}
-                    </div>
+                                        <div
+                                            className="w-full max-w-12 rounded-t-sm shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                                            style={{
+                                                height: `${point.barPercent}%`,
+                                                backgroundColor: getChartColor(point.color, point.index),
+                                            }}
+                                            tabIndex={0}
+                                            aria-label={`${chartLabelToString(
+                                                point.label,
+                                                `#${point.index + 1}`
+                                            )}: ${defaultFormat(point.value, formatValue)} (${cumulativeText} ${formatPercentText(
+                                                point.cumulative,
+                                                formatPercent
+                                            )})`}
+                                        />
+                                    </ChartTooltip>
+                                    {showValues ? (
+                                        <span
+                                            className="absolute text-[10px] font-medium tabular-nums text-foreground"
+                                            style={{ bottom: `calc(${point.barPercent}% + 0.25rem)` }}
+                                        >
+                                            {formatValue(point.value)}
+                                        </span>
+                                    ) : null}
+                                </div>
+                            ))}
+                        </div>
 
                     {/* cumulative line (SVG polyline — the one thing bars can't do) */}
-                    <svg
-                        className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
-                        viewBox="0 0 100 100"
-                        preserveAspectRatio="none"
-                        aria-hidden="true"
-                    >
-                        <polyline
-                            points={linePoints}
-                            fill="none"
-                            stroke={CUMULATIVE_STROKE}
-                            strokeWidth={2}
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            vectorEffect="non-scaling-stroke"
-                        />
-                    </svg>
+                        <svg
+                            className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
+                            viewBox="0 0 100 100"
+                            preserveAspectRatio="none"
+                            aria-hidden="true"
+                        >
+                            <polyline
+                                points={linePoints}
+                                fill="none"
+                                stroke={CUMULATIVE_STROKE}
+                                strokeWidth={2}
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                vectorEffect="non-scaling-stroke"
+                            />
+                        </svg>
 
                     {/* cumulative points (HTML dots stay round; focusable for detail) */}
-                    {points.map((point) => (
-                        <ChartTooltip
-                            key={`pt-${chartLabelToString(point.label, String(point.index))}-${point.index}`}
-                            label={<>{cumulativeLabel} / {point.label}</>}
-                            value={formatPercent(point.cumulative)}
-                        >
-                            <span
-                                className="absolute z-10 flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                                style={{ left: `${point.x}%`, top: `${100 - point.cumulative}%` }}
-                                tabIndex={0}
-                                aria-label={`${cumulativeText} ${chartLabelToString(
-                                    point.label,
-                                    `#${point.index + 1}`
-                                )}: ${formatPercentText(point.cumulative, formatPercent)}`}
+                        {points.map((point) => (
+                            <ChartTooltip
+                                key={`pt-${chartLabelToString(point.label, String(point.index))}-${point.index}`}
+                                label={<>{cumulativeLabel} / {point.label}</>}
+                                value={formatPercent(point.cumulative)}
                             >
                                 <span
-                                    className="h-2 w-2 rounded-full border-2 border-foreground bg-background"
-                                    aria-hidden="true"
-                                />
-                            </span>
-                        </ChartTooltip>
-                    ))}
+                                    className="absolute z-10 flex h-6 w-6 -translate-x-1/2 -translate-y-1/2 items-center justify-center focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                                    style={{ left: `${point.x}%`, top: `${100 - point.cumulative}%` }}
+                                    tabIndex={0}
+                                    aria-label={`${cumulativeText} ${chartLabelToString(
+                                        point.label,
+                                        `#${point.index + 1}`
+                                    )}: ${formatPercentText(point.cumulative, formatPercent)}`}
+                                >
+                                    <span
+                                        className="h-2 w-2 rounded-full border-2 border-foreground bg-background"
+                                        aria-hidden="true"
+                                    />
+                                </span>
+                            </ChartTooltip>
+                        ))}
+                    </div>
                 </div>
 
                 {/* x-axis labels */}

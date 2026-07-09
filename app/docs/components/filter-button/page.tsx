@@ -26,6 +26,20 @@ function getFilterOptions(locale: "ja" | "en") {
         ];
 }
 
+function FilterButtonPreviewSurface({
+    children,
+}: {
+    children: (portalContainer: HTMLElement | null) => React.ReactNode;
+}) {
+    const [portalContainer, setPortalContainer] = React.useState<HTMLDivElement | null>(null);
+
+    return (
+        <div ref={setPortalContainer} className="relative flex w-full items-center justify-center overflow-visible py-1">
+            {children(portalContainer)}
+        </div>
+    );
+}
+
 const usageCode = `import { FilterButton } from "@gunjo/ui";
 import { useState } from "react";
 
@@ -48,7 +62,8 @@ export function FilterExample() {
   );
 }`;
 
-const selectedCode = `import { FilterButton } from "@gunjo/ui";
+const selectedCodeByLocale = {
+    en: `import { FilterButton } from "@gunjo/ui";
 
 const options = [
   { label: "Todo", value: "todo" },
@@ -66,12 +81,38 @@ export function SelectedFilter() {
       selectedLabel={(count) => \`\${count} filters selected\`}
     />
   );
-}`;
+}`,
+    ja: `import { FilterButton } from "@gunjo/ui";
 
-const customContentCode = `import { FilterButton, Button, Badge } from "@gunjo/ui";
+const options = [
+  { label: "未対応", value: "todo" },
+  { label: "進行中", value: "doing" },
+  { label: "レビュー中", value: "review" },
+  { label: "完了", value: "done" },
+];
+
+export function SelectedFilter() {
+  return (
+    <FilterButton
+      title="ステータス"
+      options={options}
+      selectedValues={new Set(["doing", "review"])}
+      selectedLabel={(count) => \`\${count}件選択中\`}
+    />
+  );
+}`,
+} as const;
+
+const customContentCodeByLocale = {
+    en: `import { FilterButton, Button } from "@gunjo/ui";
 import { useState } from "react";
 
-const tags = ["Design", "Docs", "Review", "Blocked"];
+const tags = [
+  { label: "Design", value: "design" },
+  { label: "Docs", value: "docs" },
+  { label: "Review", value: "review" },
+  { label: "Blocked", value: "blocked" },
+];
 
 export function TagFilter() {
   const [selected, setSelected] = useState<Set<string>>(new Set(["docs"]));
@@ -85,43 +126,91 @@ export function TagFilter() {
     >
       <div className="flex flex-wrap gap-2">
         {tags.map((tag) => {
-          const active = selected.has(tag.toLowerCase());
+          const active = selected.has(tag.value);
           return (
             <Button
-              key={tag}
+              key={tag.value}
               type="button"
               variant={active ? "default" : "outline"}
               size="sm"
               onClick={() => {
                 const next = new Set(selected);
-                active ? next.delete(tag.toLowerCase()) : next.add(tag.toLowerCase());
+                active ? next.delete(tag.value) : next.add(tag.value);
                 setSelected(next);
               }}
             >
-              {tag}
+              {tag.label}
             </Button>
           );
         })}
       </div>
     </FilterButton>
   );
-}`;
+}`,
+    ja: `import { FilterButton, Button } from "@gunjo/ui";
+import { useState } from "react";
+
+const tags = [
+  { label: "デザイン", value: "design" },
+  { label: "ドキュメント", value: "docs" },
+  { label: "レビュー", value: "review" },
+  { label: "保留", value: "blocked" },
+];
+
+export function TagFilter() {
+  const [selected, setSelected] = useState<Set<string>>(new Set(["docs"]));
+
+  return (
+    <FilterButton
+      title="タグ"
+      selectedValues={selected}
+      onFilterChange={setSelected}
+      selectedLabel={(count) => \`\${count}件のタグを選択中\`}
+      contentClassName="w-64 p-3"
+    >
+      <div className="flex flex-wrap gap-2">
+        {tags.map((tag) => {
+          const active = selected.has(tag.value);
+          return (
+            <Button
+              key={tag.value}
+              type="button"
+              variant={active ? "default" : "outline"}
+              size="sm"
+              onClick={() => {
+                const next = new Set(selected);
+                active ? next.delete(tag.value) : next.add(tag.value);
+                setSelected(next);
+              }}
+            >
+              {tag.label}
+            </Button>
+          );
+        })}
+      </div>
+    </FilterButton>
+  );
+}`,
+} as const;
 
 function InteractiveFilterPreview({ locale }: { locale: "ja" | "en" }) {
     const [selected, setSelected] = React.useState<Set<string>>(new Set());
     const options = getFilterOptions(locale);
 
     return (
-        <div className="flex min-h-32 items-start justify-center pt-4">
-            <FilterButton
-                title={locale === "ja" ? "ステータス" : "Status"}
-                options={options}
-                selectedValues={selected}
-                onFilterChange={setSelected}
-                clearLabel={locale === "ja" ? "クリア" : "Clear"}
-                selectedLabel={(count) => locale === "ja" ? `${count}件選択中` : `${count} selected`}
-            />
-        </div>
+        <FilterButtonPreviewSurface>
+            {(portalContainer) => (
+                <FilterButton
+                    title={locale === "ja" ? "ステータス" : "Status"}
+                    options={options}
+                    selectedValues={selected}
+                    onFilterChange={setSelected}
+                    clearLabel={locale === "ja" ? "クリア" : "Clear"}
+                    selectedLabel={(count) => locale === "ja" ? `${count}件選択中` : `${count} selected`}
+                    portalContainer={portalContainer}
+                />
+            )}
+        </FilterButtonPreviewSurface>
     );
 }
 
@@ -129,14 +218,17 @@ function SelectedFilterPreview({ locale }: { locale: "ja" | "en" }) {
     const options = getFilterOptions(locale);
 
     return (
-        <div className="flex min-h-32 items-start justify-center pt-4">
-            <FilterButton
-                title={locale === "ja" ? "ステータス" : "Status"}
-                options={options}
-                selectedValues={new Set(["doing", "review"])}
-                selectedLabel={(count) => locale === "ja" ? `${count}件選択中` : `${count} selected`}
-            />
-        </div>
+        <FilterButtonPreviewSurface>
+            {(portalContainer) => (
+                <FilterButton
+                    title={locale === "ja" ? "ステータス" : "Status"}
+                    options={options}
+                    selectedValues={new Set(["doing", "review"])}
+                    selectedLabel={(count) => locale === "ja" ? `${count}件選択中` : `${count} selected`}
+                    portalContainer={portalContainer}
+                />
+            )}
+        </FilterButtonPreviewSurface>
     );
 }
 
@@ -157,54 +249,57 @@ function CustomContentFilterPreview({ locale }: { locale: "ja" | "en" }) {
         ];
 
     return (
-        <div className="flex min-h-40 items-start justify-center pt-4">
-            <FilterButton
-                title={locale === "ja" ? "タグ" : "Tags"}
-                selectedValues={selected}
-                onFilterChange={setSelected}
-                selectedLabel={(count) => locale === "ja" ? `${count}件のタグを選択中` : `${count} tags selected`}
-                contentClassName="w-64 p-3"
-            >
-                <div className="space-y-3">
-                    <div className="flex flex-wrap gap-2">
-                        {tags.map((tag) => {
-                            const active = selected.has(tag.value);
-                            return (
-                                <Button
-                                    key={tag.value}
-                                    type="button"
-                                    variant={active ? "default" : "outline"}
-                                    size="sm"
-                                    onClick={() => {
-                                        const next = new Set(selected);
-                                        if (active) {
-                                            next.delete(tag.value);
-                                        } else {
-                                            next.add(tag.value);
-                                        }
-                                        setSelected(next);
-                                    }}
-                                >
-                                    {tag.label}
-                                </Button>
-                            );
-                        })}
+        <FilterButtonPreviewSurface>
+            {(portalContainer) => (
+                <FilterButton
+                    title={locale === "ja" ? "タグ" : "Tags"}
+                    selectedValues={selected}
+                    onFilterChange={setSelected}
+                    selectedLabel={(count) => locale === "ja" ? `${count}件のタグを選択中` : `${count} tags selected`}
+                    contentClassName="w-64 p-3"
+                    portalContainer={portalContainer}
+                >
+                    <div className="space-y-3">
+                        <div className="flex flex-wrap gap-2">
+                            {tags.map((tag) => {
+                                const active = selected.has(tag.value);
+                                return (
+                                    <Button
+                                        key={tag.value}
+                                        type="button"
+                                        variant={active ? "default" : "outline"}
+                                        size="sm"
+                                        onClick={() => {
+                                            const next = new Set(selected);
+                                            if (active) {
+                                                next.delete(tag.value);
+                                            } else {
+                                                next.add(tag.value);
+                                            }
+                                            setSelected(next);
+                                        }}
+                                    >
+                                        {tag.label}
+                                    </Button>
+                                );
+                            })}
+                        </div>
+                        <div className="flex items-center justify-between border-t border-border/60 pt-3 text-xs text-muted-foreground">
+                            <span>{locale === "ja" ? `${selected.size}件選択中` : `${selected.size} selected`}</span>
+                            <Button
+                                type="button"
+                                variant="ghost"
+                                size="sm"
+                                className="h-7 px-2 text-xs"
+                                onClick={() => setSelected(new Set())}
+                            >
+                                {locale === "ja" ? "クリア" : "Clear"}
+                            </Button>
+                        </div>
                     </div>
-                    <div className="flex items-center justify-between border-t border-border/60 pt-3 text-xs text-muted-foreground">
-                        <span>{locale === "ja" ? `${selected.size}件選択中` : `${selected.size} selected`}</span>
-                        <Button
-                            type="button"
-                            variant="ghost"
-                            size="sm"
-                            className="h-7 px-2 text-xs"
-                            onClick={() => setSelected(new Set())}
-                        >
-                            {locale === "ja" ? "クリア" : "Clear"}
-                        </Button>
-                    </div>
-                </div>
-            </FilterButton>
-        </div>
+                </FilterButton>
+            )}
+        </FilterButtonPreviewSurface>
     );
 }
 
@@ -329,6 +424,7 @@ export function FilterExample() {
             <ComponentPreview
                 code={localizedUsageCode}
                 codeBlock={<CodeBlock code={localizedUsageCode} />}
+                previewHeight="auto"
                 previewBodyWidth="md"
             >
                 <InteractiveFilterPreview locale={locale} />
@@ -355,9 +451,8 @@ export function FilterExample() {
                                 locale === "ja"
                                     ? "未選択状態からメニューを開き、複数条件を選択します。選択されると件数バッジが表示されます。"
                                     : "Start from the default state, open the menu, and select multiple conditions. The count badge appears once values are selected.",
-	                            preview: <InteractiveFilterPreview locale={locale} />,
-	                            previewHeight: 220,
-	                            code: localizedUsageCode,
+                            preview: <InteractiveFilterPreview locale={locale} />,
+                            code: localizedUsageCode,
                         },
                         {
                             key: "selected",
@@ -366,9 +461,8 @@ export function FilterExample() {
                                 locale === "ja"
                                     ? "選択値がある時は選択済み状態になり、ボタン上に件数バッジを表示します。"
                                     : "When values are selected, the trigger switches to the selected state and shows the count badge.",
-	                            preview: <SelectedFilterPreview locale={locale} />,
-	                            previewHeight: 220,
-	                            code: selectedCode,
+                            preview: <SelectedFilterPreview locale={locale} />,
+                            code: selectedCodeByLocale[locale],
                         },
                         {
                             key: "custom-content",
@@ -377,9 +471,8 @@ export function FilterExample() {
                                 locale === "ja"
                                     ? "内容を差し替えると、色、タグ、容量範囲など、標準リスト以外のフィルター UI を配置できます。"
                                     : "Pass children when a filter needs color swatches, tags, size ranges, or other non-list controls.",
-	                            preview: <CustomContentFilterPreview locale={locale} />,
-	                            previewHeight: 260,
-	                            code: customContentCode,
+                            preview: <CustomContentFilterPreview locale={locale} />,
+                            code: customContentCodeByLocale[locale],
                         },
                     ]}
                 />

@@ -51,23 +51,17 @@ export function EmbedPreviewFrame({ children }: { children: React.ReactNode }) {
             const root = document.querySelector("[data-embed-preview-wrap]");
             const rootRect = root?.getBoundingClientRect();
             const floatingOverlays = Array.from(
-                document.querySelectorAll("[data-radix-popper-content-wrapper], [role='dialog'], [data-slot='mention-suggestions']")
+                document.querySelectorAll("[data-radix-popper-content-wrapper], [data-radix-popover-content], [role='dialog'], [data-slot='mention-suggestions']")
             ).filter((element) => !isTooltipOverlay(element));
             setHasFloatingOverlay(floatingOverlays.length > 0);
             const overlayTop = floatingOverlays.reduce((top, element) => {
                 const rect = element.getBoundingClientRect();
                 return Math.min(top, rect.top);
             }, rootRect?.top ?? 0);
-            const overlayBottom = floatingOverlays.reduce((bottom, element) => {
-                const rect = element.getBoundingClientRect();
-                return Math.max(bottom, rect.bottom);
-            }, 0);
             const nextInsetTop = Math.max(0, Math.ceil(-(Math.min(rootRect?.top ?? 0, overlayTop))));
             setFloatingOverlayInsetTop((current) => current === nextInsetTop ? current : nextInsetTop);
 
-            return Math.ceil(
-                Math.max(root?.scrollHeight ?? 0, rootRect?.bottom ?? 0, overlayBottom + nextInsetTop)
-            );
+            return Math.ceil(Math.max(root?.scrollHeight ?? 0, rootRect?.bottom ?? 0));
         };
 
         let frame: number | null = null;

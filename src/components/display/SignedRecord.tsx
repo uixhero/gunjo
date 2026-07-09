@@ -7,6 +7,7 @@ import { cn } from "../../lib/utils"
 import { Button } from "../inputs/Button"
 import { Input } from "../inputs/Input"
 import { Textarea } from "../inputs/Textarea"
+import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
 import { Badge } from "./Badge"
 
 export interface SignedRecordAddendum {
@@ -59,6 +60,10 @@ export interface SignedRecordProps extends Omit<React.HTMLAttributes<HTMLDivElem
     signerId: string
     /** Whether the record can be signed now (required sections filled). Default `true`. */
     canSign?: boolean
+    /** Reason shown in a tooltip when signing is disabled. */
+    cannotSignReason?: React.ReactNode
+    /** Accessible label for the disabled sign wrapper. Defaults to the reason when it is a string. */
+    cannotSignReasonLabel?: string
     /** Require a reason on each addendum. Default `true`. */
     requireAddendumReason?: boolean
     /** Format an ISO timestamp for display. Default a deterministic `YYYY/MM/DD HH:mm`. */
@@ -89,6 +94,8 @@ const SignedRecord = React.forwardRef<HTMLDivElement, SignedRecordProps>(
             children,
             signerId,
             canSign = true,
+            cannotSignReason,
+            cannotSignReasonLabel,
             requireAddendumReason = true,
             formatTime = defaultFormatTime,
             labels,
@@ -123,6 +130,11 @@ const SignedRecord = React.forwardRef<HTMLDivElement, SignedRecordProps>(
         }
 
         const authorAt = labels?.authorAt ?? ((author: string, at: React.ReactNode) => `${author}・${at}`)
+        const signButton = readOnly ? null : (
+            <Button size="sm" onClick={sign} disabled={!canSign}>
+                {labels?.sign ?? "署名・確定"}
+            </Button>
+        )
 
         return (
             <div ref={ref} className={cn("flex w-full flex-col gap-3", className)} data-slot="signed-record" {...props}>
@@ -139,10 +151,21 @@ const SignedRecord = React.forwardRef<HTMLDivElement, SignedRecordProps>(
                     ) : (
                         <Badge variant="info">{labels?.draft ?? "下書き"}</Badge>
                     )}
-                    {readOnly ? null : (
-                        <Button size="sm" onClick={sign} disabled={!canSign}>
-                            {labels?.sign ?? "署名・確定"}
-                        </Button>
+                    {readOnly ? null : !canSign && cannotSignReason != null ? (
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <span
+                                    className="inline-flex"
+                                    tabIndex={0}
+                                    aria-label={cannotSignReasonLabel ?? (typeof cannotSignReason === "string" ? cannotSignReason : undefined)}
+                                >
+                                    {signButton}
+                                </span>
+                            </TooltipTrigger>
+                            <TooltipContent>{cannotSignReason}</TooltipContent>
+                        </Tooltip>
+                    ) : (
+                        signButton
                     )}
                 </div>
 

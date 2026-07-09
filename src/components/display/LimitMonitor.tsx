@@ -91,6 +91,13 @@ export interface LimitMonitorProps extends Omit<React.HTMLAttributes<HTMLDivElem
   label?: React.ReactNode
   /** Format the value + limit readout. Default `toLocaleString`. */
   formatValue?: (value: number) => React.ReactNode
+  /** Format the explanatory readout under the bar. */
+  formatReadout?: (details: {
+    state: LimitState
+    over: number
+    direction: LimitDirection
+    formatValue: (value: number) => React.ReactNode
+  }) => React.ReactNode
   /** Override the state chip labels. */
   labels?: Partial<Record<LimitState, React.ReactNode>>
 }
@@ -107,7 +114,7 @@ export interface LimitMonitorProps extends Omit<React.HTMLAttributes<HTMLDivElem
  */
 const LimitMonitor = React.forwardRef<HTMLDivElement, LimitMonitorProps>(
   (
-    { className, value, limit, hardLimit, warnWithin = 0, direction = "ceiling", max, label, formatValue, labels, ...props },
+    { className, value, limit, hardLimit, warnWithin = 0, direction = "ceiling", max, label, formatValue, formatReadout, labels, ...props },
     ref
   ) => {
     const { state, over } = classifyLimit(value, { limit, hardLimit, warnWithin, direction })
@@ -120,8 +127,9 @@ const LimitMonitor = React.forwardRef<HTMLDivElement, LimitMonitorProps>(
 
     // Readout: how far past, or how much headroom (floor inverts the wording).
     const overAbs = Math.abs(over)
-    const readout =
-      direction === "floor"
+    const readout = formatReadout
+      ? formatReadout({ state, over, direction, formatValue: fmt })
+      : direction === "floor"
         ? over > 0
           ? `下限まで ${fmt(overAbs)} 不足`
           : `下限まで 残り ${fmt(overAbs)}`

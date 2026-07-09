@@ -10,6 +10,178 @@ export const componentContentJa: Record<string, DocContent> = {
     title: "Button",
     description: "ボタン、またはボタン風の見た目のコンポーネントを表示します。",
   },
+  "components/segmented-control": {
+    title: "SegmentedControl",
+    description: "少数の選択肢から1つを選ぶ、等幅セグメント型のコントロールです。",
+  },
+  "components/scan-gate": {
+    title: "ScanGate",
+    description: "複数段階のバーコード読み取りを、確認値を引き継ぎながら進めるスキャンフローです。",
+  },
+  "components/co-sign": {
+    title: "CoSign",
+    description: "2人目の確認者、確認項目、署名済み状態をまとめて扱うダブルチェック用の入力です。",
+  },
+  "components/action-queue": {
+    title: "ActionQueue",
+    description: "重大度つきの要対応項目を、種別・期日・操作と合わせて並べる対応キューです。",
+  },
+  "components/amount-breakdown": {
+    title: "AmountBreakdown",
+    description: "金額の内訳、控除、小計、導出合計を読み取り専用で表示する明細ブロックです。",
+  },
+  "components/approval-workflow": {
+    title: "ApprovalWorkflow",
+    description: "承認・審査の段階を進行、差戻し、却下、完了の状態と記録で扱うワークフローです。",
+  },
+  "components/bottom-action-bar": {
+    title: "BottomActionBar",
+    description: "モバイル画面下部にサマリと主要CTAを固定するアクションバーです。",
+  },
+  "components/check-list": {
+    title: "CheckList",
+    description: "チェック可能な行、表示専用行、右側の状態表示をまとめて扱う確認リストです。",
+  },
+  "components/company-cell": {
+    title: "CompanyCell",
+    description: "企業名や制度名を、ロゴまたはイニシャルタイルと補足情報で表示する識別セルです。",
+  },
+  "components/document-row": {
+    title: "DocumentRow",
+    description: "書類の選択、プレビュー、ダウンロードを独立した操作として並べるファイル行です。",
+  },
+  "components/event-calendar": {
+    title: "EventCalendar",
+    description: "日付ごとの予定を月間グリッドに配置し、日付選択と予定選択を扱うカレンダーです。",
+  },
+  "components/expiry-badge": {
+    title: "ExpiryBadge",
+    description: "期限日を有効、期限間近、失効、未登録の状態に分類して表示する期限バッジです。",
+  },
+  "components/filter-chips": {
+    title: "FilterChips",
+    description: "横スクロールできる単一選択チップで、多数のカテゴリを素早く切り替えます。",
+  },
+  "components/gantt": {
+    title: "Gantt",
+    description: "リソース行と時間軸にバーを配置し、重なりや区間分割を含む予定を表示するガントチャートです。",
+  },
+  "components/itinerary": {
+    title: "Itinerary",
+    description: "日別またはフラットな旅程を、時刻、種別アイコン、詳細、操作付きの縦タイムラインで表示します。",
+  },
+  "components/kanban-board": {
+    title: "KanbanBoard",
+    description: "フラットな項目を列へ分類し、件数、空列、選択可能カードを含むカンバンとして表示します。",
+  },
+  "components/leaderboard": {
+    title: "Leaderboard",
+    description: "順位、値、バー、前期比をまとめたランキングリストです。並び順は呼び出し側が決めます。",
+  },
+  "components/limit-monitor": {
+    title: "LimitMonitor",
+    description: "計測値を基準値や上限・下限と比較し、基準内、間近、超過、重大超過を表示します。",
+  },
+  "components/lineage-graph": {
+    title: "LineageGraph",
+    description: "上流と下流の関係を、複数親・複数子を含むノードリンク図として表示します。",
+  },
+  "components/line-chip": {
+    title: "LineChip",
+    description: "路線名や系統番号を、ブランド色と自動コントラスト文字で表示する識別チップです。",
+  },
+  "components/list-card": {
+    title: "ListCard",
+    description: "一覧の1項目を、先頭アクセサリ、本文、状態、メタ情報、選択状態付きで表示します。",
+  },
+  "components/loyalty-summary-card": {
+    title: "LoyaltySummaryCard",
+    description: "ポイント残高、会員ランク、次ランクまでの進捗、失効通知、主操作をまとめる会員カードです。",
+  },
+  "components/match-card": {
+    title: "MatchCard",
+    description: "2つの対象を左右に並べ、適合度、評価内訳、次の操作をまとめて表示するマッチングカードです。",
+  },
+  "components/meter": {
+    title: "Meter",
+    description: "容量、達成率、しきい値を値と最大値の関係で示すメーターです。",
+  },
+  "components/nav-row": {
+    title: "NavRow",
+    description: "設定画面やマイページで使う、ラベル、説明、現在値、末尾操作を持つ行です。",
+  },
+  "components/origin-destination": {
+    title: "OriginDestination",
+    description: "出発地と到着地を横並びで示し、経由地、所要時間、入れ替え操作を扱う経路ヘッダーです。",
+  },
+  "components/page-header": {
+    title: "PageHeader",
+    description: "モバイル画面の上部に、戻る、タイトル、補足、末尾操作を配置するページヘッダーです。",
+  },
+  "components/pareto-chart": {
+    title: "ParetoChart",
+    description: "大きい要因から並べた棒と累積率の線で、少数の主要因が全体に与える影響を示します。",
+  },
+  "components/person-cell": {
+    title: "PersonCell",
+    description: "人物のアバター、名前、所属、補足、在席状態、末尾情報を1行で表示する識別セルです。",
+  },
+  "components/radio-card": {
+    title: "RadioCard",
+    description: "価格や説明を含むカード型の単一選択肢を、radiogroup として扱う入力カードです。",
+  },
+  "components/reference-value": {
+    title: "ReferenceValue",
+    description: "計測値を基準範囲と比較し、正常、高値、低値、異常値を色だけに頼らず表示します。",
+  },
+  "components/relationship-row": {
+    title: "RelationshipRow",
+    description: "2人の PersonCell を横並びにし、担当、上司、訪問などの関係を示す行です。",
+  },
+  "components/route-stops": {
+    title: "RouteStops",
+    description: "配送や輸送の停止地点を、現在地、完了、遅延、不在などの状態付きタイムラインで表示します。",
+  },
+  "components/schedule-grid": {
+    title: "ScheduleGrid",
+    description: "行と列で構成された予定表や割当表を、sticky header とキーボード操作付きのグリッドで表示します。",
+  },
+  "components/seat-map": {
+    title: "SeatMap",
+    description: "座席や区画を2次元グリッドで表示し、空席、予約済み、確保中、選択状態を扱います。",
+  },
+  "components/section-list": {
+    title: "SectionList",
+    description: "事前にグループ化された行を、見出し、本文、小計フッター付きのセクションとして並べます。",
+  },
+  "components/signed-record": {
+    title: "SignedRecord",
+    description: "署名後に本文をロックし、修正を追記として残す監査向けの記録コンポーネントです。",
+  },
+  "components/stat-group": {
+    title: "StatGroup",
+    description: "複数の Statistic をレスポンシブな指標グリッドとしてまとめて表示します。",
+  },
+  "components/status-board": {
+    title: "StatusBoard",
+    description: "車両、設備、作業台などの状態を、エリア別のタイル盤として問題優先で一覧します。",
+  },
+  "components/stringline": {
+    title: "Stringline",
+    description: "停車地点と時刻を結ぶ運行図表を表示し、計画と実績、上下方向、現在時刻を重ねて確認できます。",
+  },
+  "components/ticket-stub": {
+    title: "TicketStub",
+    description: "クーポン、搭乗券、会員証などの情報とバーコードまたはQRコードを、チケット形状で表示します。",
+  },
+  "components/week-view": {
+    title: "WeekView",
+    description: "週単位の時間グリッドに予定を配置し、重なった予定を横並びで表示します。",
+  },
+  "components/safety-banner": {
+    title: "SafetyBanner",
+    description: "重要な警告や安全確認を強調し、必要に応じて明示的な確認状態を管理します。",
+  },
   "components/tooltip-button": {
     title: "TooltipButton",
     description: "ボタン操作にツールチップ説明を組み合わせ、アイコンだけの操作や補足が必要な操作の意味を明確にします。",

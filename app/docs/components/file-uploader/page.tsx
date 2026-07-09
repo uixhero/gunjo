@@ -254,10 +254,10 @@ export function ImageUploader() {
             ]}
         >
             <ComponentPreview
-                embedSrc="/embed/file-uploader"
                 code={code}
                 codeBlock={<CodeBlock code={code} />}
                 sectionLabels={sectionLabels}
+                previewHeight="auto"
                 previewBodyWidth="md"
             >
                 <FormGroup className="w-full max-w-md">
@@ -267,6 +267,7 @@ export function ImageUploader() {
                             value={attachments}
                             onValueChange={setAttachments}
                             maxFiles={3}
+                            maxSize={5 * 1024 * 1024}
                             labels={labels}
                             fileProgress={(file, index) => attachments.length > 0 ? {
                                 progress: index === 0 ? 68 : 24,
@@ -293,9 +294,20 @@ export function ImageUploader() {
                                 locale === "ja"
                                     ? "ドロップゾーン全体でクリック選択とドラッグ＆ドロップを受け付けます。"
                                     : "The whole dropzone accepts click-to-browse and drag-and-drop input.",
-	                            preview: <FileUploader labels={labels} maxFiles={3} />,
-	                            previewHeight: 260,
-	                            code,
+                            preview: <FileUploader labels={labels} maxFiles={3} />,
+                            code: `import { FileUploader } from "@gunjo/ui";
+
+<FileUploader
+  maxFiles={3}
+  labels={{
+    browse: "${labels.browse}",
+    drop: "${labels.drop}",
+    removeFile: "${labels.removeFile}",
+    fileTooLarge: "${labels.fileTooLarge}",
+    fileTypeNotAccepted: "${labels.fileTypeNotAccepted}",
+    maxSize: (sizeMb) => \`${locale === "ja" ? "最大 " : "Max size "}\${sizeMb}MB\`,
+  }}
+/>`,
                         },
                         {
                             key: "image-only",
@@ -304,16 +316,31 @@ export function ImageUploader() {
                                 locale === "ja"
                                     ? "画像だけを受け付けるアップローダーとして使えます。"
                                     : "Use accept to constrain the uploader to image files.",
-	                            preview: (
-	                                <FileUploader
+                            preview: (
+                                <FileUploader
                                     labels={labels}
                                     maxFiles={5}
                                     maxSize={10 * 1024 * 1024}
                                     accept={{ "image/*": [".png", ".jpg", ".jpeg", ".webp"] }}
-	                                />
-	                            ),
-	                            previewHeight: 260,
-	                            code: usageCode,
+                                />
+                            ),
+                            code: `import { FileUploader } from "@gunjo/ui";
+
+<FileUploader
+  maxFiles={5}
+  maxSize={10 * 1024 * 1024}
+  accept={{
+    "image/*": [".png", ".jpg", ".jpeg", ".webp"],
+  }}
+  labels={{
+    browse: "${labels.browse}",
+    drop: "${labels.drop}",
+    removeFile: "${labels.removeFile}",
+    fileTooLarge: "${labels.fileTooLarge}",
+    fileTypeNotAccepted: "${labels.fileTypeNotAccepted}",
+    maxSize: (sizeMb) => \`${locale === "ja" ? "最大 " : "Max size "}\${sizeMb}MB\`,
+  }}
+/>`,
                         },
                         {
                             key: "loading",
@@ -328,7 +355,6 @@ export function ImageUploader() {
                                     <UploadStatusCard locale={locale} status="loading" />
                                 </div>
                             ),
-                            previewHeight: 320,
                             code: `import { FileUploader, Progress, Spinner } from "@gunjo/ui";
 import { useState } from "react";
 
@@ -342,6 +368,14 @@ export function UploadingState() {
         onValueChange={setFiles}
         maxFiles={3}
         showFileList={false}
+        labels={{
+          browse: "${labels.browse}",
+          drop: "${labels.drop}",
+          removeFile: "${labels.removeFile}",
+          fileTooLarge: "${labels.fileTooLarge}",
+          fileTypeNotAccepted: "${labels.fileTypeNotAccepted}",
+          maxSize: (sizeMb) => \`${locale === "ja" ? "最大 " : "Max size "}\${sizeMb}MB\`,
+        }}
       />
       <div className="grid gap-3 rounded-md border p-3 text-sm">
         <div className="flex items-center gap-2">
@@ -368,7 +402,6 @@ export function UploadingState() {
                                     <UploadStatusCard locale={locale} status="success" />
                                 </div>
                             ),
-                            previewHeight: 320,
                             code: `import { Alert, AlertDescription, AlertTitle, FileUploader } from "@gunjo/ui";
 import { useState } from "react";
 
@@ -377,7 +410,19 @@ export function UploadSuccessState() {
 
   return (
     <div className="grid gap-3">
-      <FileUploader value={files} onValueChange={setFiles} maxFiles={3} />
+      <FileUploader
+        value={files}
+        onValueChange={setFiles}
+        maxFiles={3}
+        labels={{
+          browse: "${labels.browse}",
+          drop: "${labels.drop}",
+          removeFile: "${labels.removeFile}",
+          fileTooLarge: "${labels.fileTooLarge}",
+          fileTypeNotAccepted: "${labels.fileTypeNotAccepted}",
+          maxSize: (sizeMb) => \`${locale === "ja" ? "最大 " : "Max size "}\${sizeMb}MB\`,
+        }}
+      />
       <Alert>
         <AlertTitle>${locale === "ja" ? "アップロード完了" : "Upload complete"}</AlertTitle>
         <AlertDescription>${locale === "ja" ? "3件のファイルを追加しました。" : "3 files were added."}</AlertDescription>
@@ -399,7 +444,6 @@ export function UploadSuccessState() {
                                     <UploadStatusCard locale={locale} status="error" />
                                 </div>
                             ),
-                            previewHeight: 320,
                             code: `import { Alert, AlertDescription, AlertTitle, FileUploader } from "@gunjo/ui";
 import { useState } from "react";
 
@@ -408,7 +452,19 @@ export function UploadFailureState() {
 
   return (
     <div className="grid gap-3">
-      <FileUploader value={files} onValueChange={setFiles} maxFiles={3} />
+      <FileUploader
+        value={files}
+        onValueChange={setFiles}
+        maxFiles={3}
+        labels={{
+          browse: "${labels.browse}",
+          drop: "${labels.drop}",
+          removeFile: "${labels.removeFile}",
+          fileTooLarge: "${labels.fileTooLarge}",
+          fileTypeNotAccepted: "${labels.fileTypeNotAccepted}",
+          maxSize: (sizeMb) => \`${locale === "ja" ? "最大 " : "Max size "}\${sizeMb}MB\`,
+        }}
+      />
       <Alert variant="destructive">
         <AlertTitle>${locale === "ja" ? "アップロード失敗" : "Upload failed"}</AlertTitle>
         <AlertDescription>${locale === "ja" ? "ファイルサイズが上限を超えています。" : "The file exceeds the allowed size."}</AlertDescription>
@@ -424,20 +480,29 @@ export function UploadFailureState() {
                                 locale === "ja"
                                     ? "アップロードできない状態では操作を無効化し、ツールチップで理由を補足します。"
                                     : "Use disabled when uploads are unavailable, and explain the reason with a Tooltip.",
-	                            preview: (
+                            preview: (
                                     <DisabledReasonTooltip fullWidth reason={disabledReason} className="max-w-md">
                                         <FileUploader labels={labels} disabled />
                                     </DisabledReasonTooltip>
                                 ),
-	                            previewHeight: 260,
-	                            code: `import { FileUploader, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                            code: `import { FileUploader, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 
 export function DisabledUploader() {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
         <div tabIndex={0}>
-          <FileUploader disabled />
+          <FileUploader
+            disabled
+            labels={{
+              browse: "${labels.browse}",
+              drop: "${labels.drop}",
+              removeFile: "${labels.removeFile}",
+              fileTooLarge: "${labels.fileTooLarge}",
+              fileTypeNotAccepted: "${labels.fileTypeNotAccepted}",
+              maxSize: (sizeMb) => \`${locale === "ja" ? "最大 " : "Max size "}\${sizeMb}MB\`,
+            }}
+          />
         </div>
       </TooltipTrigger>
       <TooltipContent>${disabledReason}</TooltipContent>

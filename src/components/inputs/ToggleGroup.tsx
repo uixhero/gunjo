@@ -75,7 +75,7 @@ const ToggleGroupItem = React.forwardRef<
         <ToggleGroupPrimitive.Item
             ref={ref}
             className={cn(
-                "inline-flex w-fit items-center justify-center rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:border disabled:border-input disabled:bg-muted/50 disabled:text-muted-foreground disabled:opacity-100 data-[state=on]:bg-foreground data-[state=on]:text-background data-[state=on]:!bg-primary data-[state=on]:!text-primary-foreground disabled:data-[state=on]:!bg-primary-subtle disabled:data-[state=on]:!text-primary-subtle-foreground",
+                "inline-flex w-fit cursor-pointer items-center justify-center rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:border disabled:border-input disabled:bg-muted/50 disabled:text-muted-foreground disabled:opacity-100 data-[state=on]:bg-foreground data-[state=on]:text-background data-[state=on]:!bg-primary data-[state=on]:!text-primary-foreground disabled:data-[state=on]:!bg-primary-subtle disabled:data-[state=on]:!text-primary-subtle-foreground",
                 // Size variants
                 resolvedSize === "default" && "h-9 py-0 px-3",
                 resolvedSize === "sm" && "h-8 px-2",

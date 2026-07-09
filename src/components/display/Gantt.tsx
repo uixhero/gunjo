@@ -246,7 +246,7 @@ const Gantt = React.forwardRef<HTMLDivElement, GanttProps>(
                 ref={ref}
                 role="group"
                 aria-label={typeof label === "string" ? label : "ガントチャート"}
-                className={cn("w-full max-w-full overflow-x-auto p-0 [contain:paint]", className)}
+                className={cn("isolate w-full max-w-full overflow-x-auto p-0", className)}
                 data-slot="gantt"
                 {...props}
             >
@@ -254,10 +254,10 @@ const Gantt = React.forwardRef<HTMLDivElement, GanttProps>(
                     {/* header */}
                     <div className="flex border-b border-border">
                         <div
-                            className="sticky left-0 z-10 shrink-0 border-r border-border bg-muted"
+                            className="sticky left-0 z-50 shrink-0 overflow-hidden border-r border-border bg-muted"
                             style={{ width: rowLabelWidth }}
                         />
-                        <div className="flex" style={{ width: trackWidth }}>
+                        <div className="relative z-0 flex" style={{ width: trackWidth }}>
                             {ticks.map((tick) => (
                                 <div
                                     key={tick.key}
@@ -280,7 +280,7 @@ const Gantt = React.forwardRef<HTMLDivElement, GanttProps>(
                         return (
                             <div key={row.id} className="flex border-b border-border last:border-b-0">
                                 <div
-                                    className="sticky left-0 z-10 flex shrink-0 flex-col justify-center border-r border-border bg-card px-2"
+                                    className="sticky left-0 z-50 flex shrink-0 flex-col justify-center overflow-hidden border-r border-border bg-card px-2"
                                     style={{ width: rowLabelWidth, minHeight: rowHeight }}
                                 >
                                     <span className="truncate text-sm font-medium text-foreground">{row.label}</span>
@@ -288,7 +288,7 @@ const Gantt = React.forwardRef<HTMLDivElement, GanttProps>(
                                         <span className="truncate text-[11px] text-muted-foreground">{row.sublabel}</span>
                                     ) : null}
                                 </div>
-                                <div className="relative" style={{ width: trackWidth, height: rowHeight }}>
+                                <div className="relative z-0" style={{ width: trackWidth, height: rowHeight }}>
                                     {/* day gridlines */}
                                     <div className="absolute inset-0 flex">
                                         {ticks.map((tick) => (

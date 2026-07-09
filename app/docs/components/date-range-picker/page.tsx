@@ -313,12 +313,11 @@ export function DateRangePickerUsage() {
             ]}
         >
             <ComponentPreview
-                embedSrc="/embed/date-range-picker"
                 code={code}
                 codeBlock={<CodeBlock code={code} />}
                 sectionLabels={sectionLabels}
+                previewHeight="auto"
                 previewBodyWidth="md"
-                previewHeight={1100}
             >
                 <DateRangePickerDemo />
             </ComponentPreview>

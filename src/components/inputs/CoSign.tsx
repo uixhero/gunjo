@@ -9,6 +9,7 @@ import { Button } from "./Button"
 import { Checkbox } from "./Checkbox"
 import { Input } from "./Input"
 import { Textarea } from "./Textarea"
+import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
 
 export interface CoSignAttestation {
     id: string
@@ -46,7 +47,15 @@ export interface CoSignProps extends Omit<React.HTMLAttributes<HTMLDivElement>, 
     /** Error shown when the signer equals the primary. Default `"主担当者と同一人物では確認できません。"`. */
     samePersonError?: React.ReactNode
     /** Localized strings. */
-    labels?: { sign?: string; signed?: string; pending?: string; signerOf?: (id: string) => string }
+    labels?: {
+        sign?: string
+        signed?: string
+        pending?: string
+        signerOf?: (id: string) => string
+        signDisabledAttestations?: React.ReactNode
+        signDisabledSigner?: React.ReactNode
+        signDisabledReason?: React.ReactNode
+    }
 }
 
 /** A compact "2人確認 済/要" badge driven by a `CoSignValue`. */
@@ -121,6 +130,15 @@ const CoSign = React.forwardRef<HTMLDivElement, CoSignProps>(
         const allAttested = attestations.every((a) => checked.has(a.id))
         const canSign =
             trimmed.length >= minSignerLength && !samePerson && allAttested && (!requireReason || reason.trim().length > 0)
+        const disabledReason = !allAttested
+            ? labels?.signDisabledAttestations ?? "すべての確認項目を選択してください。"
+            : trimmed.length < minSignerLength
+                ? labels?.signDisabledSigner ?? "確認者 ID を入力してください。"
+                : samePerson
+                    ? samePersonError
+                    : requireReason && reason.trim().length === 0
+                        ? labels?.signDisabledReason ?? "理由を入力してください。"
+                        : undefined
 
         const toggle = (id: string, on: boolean) => {
             setChecked((prev) => {
@@ -185,9 +203,16 @@ const CoSign = React.forwardRef<HTMLDivElement, CoSignProps>(
                 ) : null}
 
                 <div className="flex justify-end">
-                    <Button size="sm" onClick={handleSign} disabled={!canSign}>
-                        {labels?.sign ?? "2人確認して署名"}
-                    </Button>
+                    <Tooltip>
+                        <TooltipTrigger asChild>
+                            <span className={!canSign ? "inline-flex cursor-not-allowed" : "inline-flex"} tabIndex={!canSign ? 0 : -1}>
+                                <Button size="sm" onClick={handleSign} disabled={!canSign}>
+                                    {labels?.sign ?? "2人確認して署名"}
+                                </Button>
+                            </span>
+                        </TooltipTrigger>
+                        {!canSign && disabledReason ? <TooltipContent>{disabledReason}</TooltipContent> : null}
+                    </Tooltip>
                 </div>
             </div>
         )

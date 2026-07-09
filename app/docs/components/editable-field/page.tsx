@@ -348,14 +348,17 @@ export function EditableFieldErrorState() {
                                     />
                                 </div>
                             ),
-                            code: `import { EditableField } from "@gunjo/ui";
+                            code: `import * as React from "react";
+import { EditableField } from "@gunjo/ui";
 
 export function EmptyEditableField() {
+  const [altText, setAltText] = React.useState("");
+
   return (
     <EditableField
       label="${locale === "ja" ? "代替テキスト" : "Alt text"}"
-      value=""
-      onSave={(value) => console.log(value)}
+      value={altText}
+      onSave={setAltText}
       placeholder="${locale === "ja" ? "説明を追加" : "Add a description"}"
     />
   );

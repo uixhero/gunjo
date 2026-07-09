@@ -374,12 +374,11 @@ export function DatePickerUsage() {
             ]}
         >
             <ComponentPreview
-                embedSrc="/embed/date-picker"
                 code={code}
                 codeBlock={<CodeBlock code={code} />}
                 sectionLabels={sectionLabels}
+                previewHeight="auto"
                 previewBodyWidth="md"
-                previewHeight={840}
             >
                 <DatePickerDemo />
             </ComponentPreview>

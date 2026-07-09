@@ -1,5 +1,5 @@
 {
-  "generated": "2026-06-11",
+  "generated": "2026-07-09",
   "parentIssue": 302,
   "findings": [
     {
@@ -83,6 +83,14 @@
       "snippet": "<Button disabled>"
     },
     {
+      "file": "app/components/demos/SafetyBannerDemo.tsx",
+      "line": 37,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button variant=\"success\" size=\"sm\" disabled={!canSign}>"
+    },
+    {
       "file": "app/docs/components/_overlayAuditDocPage.tsx",
       "line": 1810,
       "component": "Button",
@@ -140,7 +148,7 @@
     },
     {
       "file": "app/docs/components/badge/page.tsx",
-      "line": 400,
+      "line": 404,
       "component": "Button",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -148,7 +156,7 @@
     },
     {
       "file": "app/docs/components/badge/page.tsx",
-      "line": 437,
+      "line": 441,
       "component": "Button",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -156,7 +164,7 @@
     },
     {
       "file": "app/docs/components/badge/page.tsx",
-      "line": 473,
+      "line": 477,
       "component": "Badge",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -164,7 +172,7 @@
     },
     {
       "file": "app/docs/components/badge/page.tsx",
-      "line": 485,
+      "line": 489,
       "component": "Badge",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -259,6 +267,30 @@
       "snippet": "<Checkbox id=\"locked\" disabled />"
     },
     {
+      "file": "app/docs/components/co-sign/page.tsx",
+      "line": 149,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button disabled={!value} variant=\"destructive\">"
+    },
+    {
+      "file": "app/docs/components/co-sign/page.tsx",
+      "line": 485,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button disabled={!value} variant=\"destructive\">"
+    },
+    {
+      "file": "app/docs/components/co-sign/page.tsx",
+      "line": 521,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button disabled={!value} variant=\"destructive\">"
+    },
+    {
       "file": "app/docs/components/command/page.tsx",
       "line": 140,
       "component": "CommandItem",
@@ -323,8 +355,40 @@
       "snippet": "<ContextMenuItem inset disabled disabledReason=\"Private projects cannot create share links.\">"
     },
     {
+      "file": "app/docs/components/currency-input/page.tsx",
+      "line": 58,
+      "component": "CurrencyInput",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<CurrencyInput id={`currency-${variant}`} label={variant === \"usd\" ? (isJa ? \"海外請求額\" : \"International invoice\") : (isJa ? \"請求金額\" : \"Invoice amount\")} description={ variant === \"no-"
+    },
+    {
+      "file": "app/docs/components/currency-input/page.tsx",
+      "line": 249,
+      "component": "CurrencyInputPreview",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<CurrencyInputPreview locale={locale} variant=\"disabled\" />"
+    },
+    {
+      "file": "app/docs/components/currency-input/page.tsx",
+      "line": 255,
+      "component": "CurrencyInput",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<CurrencyInput label=\"請求金額\" value={1200000} disabled />"
+    },
+    {
+      "file": "app/docs/components/currency-input/page.tsx",
+      "line": 261,
+      "component": "CurrencyInput",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<CurrencyInput label=\"Invoice amount\" value={1200000} disabled />"
+    },
+    {
       "file": "app/docs/components/date-picker/page.tsx",
-      "line": 160,
+      "line": 264,
       "component": "DatePicker",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -332,7 +396,7 @@
     },
     {
       "file": "app/docs/components/date-picker/page.tsx",
-      "line": 184,
+      "line": 288,
       "component": "DatePicker",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -355,8 +419,104 @@
       "snippet": "<DateRangePicker id=\"publication-window\" value={range} disabled />"
     },
     {
+      "file": "app/docs/components/document-row/page.tsx",
+      "line": 180,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button size=\"icon\" variant=\"ghost\" disabled aria-label={`${copy.download}: ${title}`}>"
+    },
+    {
+      "file": "app/docs/components/document-row/page.tsx",
+      "line": 269,
+      "component": "Checkbox",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Checkbox checked={false} disabled aria-label={`${copy.select}: ${doc.title}`} />"
+    },
+    {
+      "file": "app/docs/components/document-row/page.tsx",
+      "line": 344,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button type=\"button\" variant=\"ghost\" size=\"sm\" disabled>"
+    },
+    {
+      "file": "app/docs/components/document-row/page.tsx",
+      "line": 360,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button type=\"button\" variant=\"outline\" size=\"sm\" disabled>"
+    },
+    {
+      "file": "app/docs/components/document-row/page.tsx",
+      "line": 530,
+      "component": "Checkbox",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Checkbox checked={false} disabled aria-label={\\`選択: \\${doc.title}\\`} />"
+    },
+    {
+      "file": "app/docs/components/document-row/page.tsx",
+      "line": 597,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button type=\"button\" variant=\"ghost\" size=\"sm\" disabled>"
+    },
+    {
+      "file": "app/docs/components/document-row/page.tsx",
+      "line": 615,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button type=\"button\" variant=\"outline\" size=\"sm\" disabled>"
+    },
+    {
+      "file": "app/docs/components/document-row/page.tsx",
+      "line": 767,
+      "component": "Checkbox",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Checkbox checked={false} disabled aria-label={\\`Select: \\${doc.title}\\`} />"
+    },
+    {
+      "file": "app/docs/components/document-row/page.tsx",
+      "line": 834,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button type=\"button\" variant=\"ghost\" size=\"sm\" disabled>"
+    },
+    {
+      "file": "app/docs/components/document-row/page.tsx",
+      "line": 852,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button type=\"button\" variant=\"outline\" size=\"sm\" disabled>"
+    },
+    {
+      "file": "app/docs/components/document-row/page.tsx",
+      "line": 997,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button size=\"icon\" variant=\"ghost\" disabled aria-label=\"ダウンロード: 経費精算 添付書類\">"
+    },
+    {
+      "file": "app/docs/components/document-row/page.tsx",
+      "line": 1007,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button size=\"icon\" variant=\"ghost\" disabled aria-label=\"Download: Expense report attachments\">"
+    },
+    {
       "file": "app/docs/components/file-uploader/page.tsx",
-      "line": 362,
+      "line": 485,
       "component": "FileUploader",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -364,27 +524,27 @@
     },
     {
       "file": "app/docs/components/file-uploader/page.tsx",
-      "line": 373,
+      "line": 495,
       "component": "FileUploader",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
-      "snippet": "<FileUploader disabled />"
+      "snippet": "<FileUploader disabled labels={{ browse: \"${labels.browse}\", drop: \"${labels.drop}\", removeFile: \"${labels.removeFile}\", fileTooLarge: \"${labels.fileTooLarge}\", fileTypeNotAccepted"
     },
     {
       "file": "app/docs/components/form/page.tsx",
-      "line": 107,
+      "line": 108,
       "component": "Button",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
-      "snippet": "<Button type=\"submit\" disabled={submitting} className=\"gap-2 w-full\">"
+      "snippet": "<Button type=\"submit\" disabled className=\"w-full gap-2\">"
     },
     {
       "file": "app/docs/components/form/page.tsx",
-      "line": 365,
+      "line": 372,
       "component": "Button",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
-      "snippet": "<Button type=\"submit\" disabled={submitting} className=\"gap-2 w-full\">"
+      "snippet": "<Button type=\"submit\" disabled className=\"w-full gap-2\">"
     },
     {
       "file": "app/docs/components/input-otp/page.tsx",
@@ -396,7 +556,7 @@
     },
     {
       "file": "app/docs/components/input-otp/page.tsx",
-      "line": 231,
+      "line": 250,
       "component": "OTPField",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -404,7 +564,7 @@
     },
     {
       "file": "app/docs/components/input-otp/page.tsx",
-      "line": 240,
+      "line": 260,
       "component": "InputOTP",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -460,7 +620,7 @@
     },
     {
       "file": "app/docs/components/number-input/page.tsx",
-      "line": 222,
+      "line": 232,
       "component": "ControlledNumberInput",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -468,7 +628,7 @@
     },
     {
       "file": "app/docs/components/number-input/page.tsx",
-      "line": 228,
+      "line": 238,
       "component": "NumberInput",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -971,6 +1131,14 @@
       "snippet": "<PhoneInput value=\"090-1234-5678\" disabled disabledReason=\"${disabledReason}\" />"
     },
     {
+      "file": "app/docs/components/radio-card/page.tsx",
+      "line": 322,
+      "component": "RadioCardPreview",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<RadioCardPreview locale={locale} mode=\"disabled\" />"
+    },
+    {
       "file": "app/docs/components/radio-group/page.tsx",
       "line": 208,
       "component": "RadioGroupItem",
@@ -1011,8 +1179,56 @@
       "snippet": "<RangeSlider disabled value={[32, 68]} />"
     },
     {
+      "file": "app/docs/components/safety-banner/page.tsx",
+      "line": 73,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button disabled={!acked} variant={acked ? \"default\" : \"secondary\"} onClick={() =>"
+    },
+    {
+      "file": "app/docs/components/safety-banner/page.tsx",
+      "line": 176,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button disabled variant=\"secondary\">"
+    },
+    {
+      "file": "app/docs/components/safety-banner/page.tsx",
+      "line": 232,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button disabled variant=\"secondary\">"
+    },
+    {
+      "file": "app/docs/components/scan-gate/page.tsx",
+      "line": 499,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button className=\"h-11 w-full justify-center text-sm font-semibold\" variant={shipped ? \"primary\" : \"outline\"} disabled={!shipped} onClick={() =>"
+    },
+    {
+      "file": "app/docs/components/scan-gate/page.tsx",
+      "line": 832,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button className=\"h-11 w-full\" disabled={!shipped}>"
+    },
+    {
+      "file": "app/docs/components/scan-gate/page.tsx",
+      "line": 1088,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button className=\"h-11 w-full\" disabled={!shipped}>"
+    },
+    {
       "file": "app/docs/components/search-input/page.tsx",
-      "line": 26,
+      "line": 27,
       "component": "SearchInput",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -1020,7 +1236,7 @@
     },
     {
       "file": "app/docs/components/search-input/page.tsx",
-      "line": 165,
+      "line": 211,
       "component": "SearchInputStatePreview",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -1028,11 +1244,27 @@
     },
     {
       "file": "app/docs/components/search-input/page.tsx",
-      "line": 171,
+      "line": 220,
       "component": "SearchInput",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
-      "snippet": "<SearchInput disabled value=\"indexing\" />"
+      "snippet": "<SearchInput id=\"asset-search\" disabled value=\"${locale === \"ja\" ? \"処理中\" : \"indexing\"}\" placeholder=\"${locale === \"ja\" ? \"キーワードを入力\" : \"Search keyword\"}\" />"
+    },
+    {
+      "file": "app/docs/components/segmented-control/page.tsx",
+      "line": 85,
+      "component": "SegmentedControl",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<SegmentedControl aria-label={locale === \"ja\" ? \"旅客区分\" : \"Passenger type\"} value=\"adult\" disabled options={ locale === \"ja\" ? [ { value: \"adult\", label: \"大人\" }, { value: \"child\", l"
+    },
+    {
+      "file": "app/docs/components/segmented-control/page.tsx",
+      "line": 400,
+      "component": "SegmentedControl",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<SegmentedControl aria-label=\"${locale === \"ja\" ? \"旅客区分\" : \"Passenger type\"}\" disabled value=\"adult\" options={[ { value: \"adult\", label: \"${locale === \"ja\" ? \"大人\" : \"Adult\"}\" }, { "
     },
     {
       "file": "app/docs/components/select/page.tsx",
@@ -1040,11 +1272,11 @@
       "component": "Select",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
-      "snippet": "<Select id={grouped ? \"select-framework\" : \"select-timezone\"} className=\"w-full\" defaultValue={grouped ? \"next\" : \"tokyo\"} disabled={disabled}>"
+      "snippet": "<Select id={grouped ? \"select-framework\" : \"select-timezone\"} defaultValue={grouped ? \"next\" : \"tokyo\"} disabled={disabled}>"
     },
     {
       "file": "app/docs/components/select/page.tsx",
-      "line": 170,
+      "line": 187,
       "component": "SelectField",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -1052,11 +1284,11 @@
     },
     {
       "file": "app/docs/components/select/page.tsx",
-      "line": 176,
+      "line": 198,
       "component": "Select",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
-      "snippet": "<Select className=\"w-full\" disabled defaultValue=\"tokyo\">"
+      "snippet": "<Select id=\"office\" disabled defaultValue=\"tokyo\">"
     },
     {
       "file": "app/docs/components/slider/page.tsx",
@@ -1068,7 +1300,7 @@
     },
     {
       "file": "app/docs/components/slider/page.tsx",
-      "line": 161,
+      "line": 184,
       "component": "ValueSlider",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -1076,11 +1308,11 @@
     },
     {
       "file": "app/docs/components/slider/page.tsx",
-      "line": 167,
+      "line": 198,
       "component": "Slider",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
-      "snippet": "<Slider value={64} disabled className=\"w-full\" />"
+      "snippet": "<Slider id=\"volume-slider\" value={64} min={0} max={100} step={1} disabled className=\"w-full\" />"
     },
     {
       "file": "app/docs/components/sort-button/page.tsx",
@@ -1092,7 +1324,7 @@
     },
     {
       "file": "app/docs/components/sort-button/page.tsx",
-      "line": 108,
+      "line": 135,
       "component": "SortButtonStatePreview",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -1100,7 +1332,7 @@
     },
     {
       "file": "app/docs/components/sort-button/page.tsx",
-      "line": 114,
+      "line": 141,
       "component": "SortButton",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -1124,7 +1356,7 @@
     },
     {
       "file": "app/docs/components/switch/page.tsx",
-      "line": 14,
+      "line": 15,
       "component": "Switch",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -1132,7 +1364,7 @@
     },
     {
       "file": "app/docs/components/switch/page.tsx",
-      "line": 110,
+      "line": 120,
       "component": "SwitchRow",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -1140,11 +1372,11 @@
     },
     {
       "file": "app/docs/components/switch/page.tsx",
-      "line": 116,
+      "line": 127,
       "component": "Switch",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
-      "snippet": "<Switch checked disabled />"
+      "snippet": "<Switch id=\"switch-managed\" checked disabled />"
     },
     {
       "file": "app/docs/components/tag-input/page.tsx",
@@ -1156,7 +1388,7 @@
     },
     {
       "file": "app/docs/components/tag-input/page.tsx",
-      "line": 159,
+      "line": 181,
       "component": "TagInputStatePreview",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -1164,11 +1396,11 @@
     },
     {
       "file": "app/docs/components/tag-input/page.tsx",
-      "line": 165,
+      "line": 195,
       "component": "TagInput",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
-      "snippet": "<TagInput value={tags} disabled />"
+      "snippet": "<TagInput id=\"tag-disabled\" value={tags} onValueChange={setTags} placeholder=\"${locale === \"ja\" ? \"タグを追加...\" : \"Add tag...\"}\" removeLabel=\"${locale === \"ja\" ? \"タグを削除\" : \"Remove tag"
     },
     {
       "file": "app/docs/components/textarea/page.tsx",
@@ -1180,7 +1412,7 @@
     },
     {
       "file": "app/docs/components/textarea/page.tsx",
-      "line": 183,
+      "line": 185,
       "component": "TextareaStatePreview",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -1188,7 +1420,7 @@
     },
     {
       "file": "app/docs/components/textarea/page.tsx",
-      "line": 188,
+      "line": 190,
       "component": "Textarea",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -1380,7 +1612,7 @@
     },
     {
       "file": "src/components/display/ActionDataTable.tsx",
-      "line": 102,
+      "line": 124,
       "component": "Button",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -1388,7 +1620,7 @@
     },
     {
       "file": "src/components/display/ActionDataTable.tsx",
-      "line": 133,
+      "line": 155,
       "component": "ActionButton",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -1396,7 +1628,15 @@
     },
     {
       "file": "src/components/display/ActionDataTable.tsx",
-      "line": 288,
+      "line": 348,
+      "component": "DropdownMenuItem",
+      "status": "primitive-contract",
+      "reason": "Primitive exposes disabled behavior; consuming docs or composition should provide the user-facing reason.",
+      "snippet": "<DropdownMenuItem key={action.id} disabled={disabled} className={cn( action.variant === \"destructive\" && \"text-destructive focus:text-destructive\" )} onSelect={() =>"
+    },
+    {
+      "file": "src/components/display/ActionDataTable.tsx",
+      "line": 374,
       "component": "ActionButton",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -1404,11 +1644,19 @@
     },
     {
       "file": "src/components/display/ActionDataTable.tsx",
-      "line": 334,
+      "line": 422,
       "component": "Select",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
       "snippet": "<Select value=\"\" aria-label={bulkActionPlaceholder} disabled={selectedRows.length === 0} className=\"h-9 w-40 rounded-md py-1 text-sm\" onChange={(event) =>"
+    },
+    {
+      "file": "src/components/display/ApprovalWorkflow.tsx",
+      "line": 270,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button size=\"sm\" onClick={advance} disabled>"
     },
     {
       "file": "src/components/display/Carousel.tsx",
@@ -1436,7 +1684,7 @@
     },
     {
       "file": "src/components/display/DataTable.tsx",
-      "line": 128,
+      "line": 155,
       "component": "Button",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -1444,7 +1692,7 @@
     },
     {
       "file": "src/components/display/DataTable.tsx",
-      "line": 225,
+      "line": 256,
       "component": "PaginationIconButton",
       "status": "primitive-contract",
       "reason": "Primitive exposes disabled behavior; consuming docs or composition should provide the user-facing reason.",
@@ -1452,7 +1700,7 @@
     },
     {
       "file": "src/components/display/DataTable.tsx",
-      "line": 232,
+      "line": 263,
       "component": "PaginationIconButton",
       "status": "primitive-contract",
       "reason": "Primitive exposes disabled behavior; consuming docs or composition should provide the user-facing reason.",
@@ -1460,7 +1708,7 @@
     },
     {
       "file": "src/components/display/DataTable.tsx",
-      "line": 244,
+      "line": 275,
       "component": "PaginationIconButton",
       "status": "primitive-contract",
       "reason": "Primitive exposes disabled behavior; consuming docs or composition should provide the user-facing reason.",
@@ -1468,7 +1716,7 @@
     },
     {
       "file": "src/components/display/DataTable.tsx",
-      "line": 251,
+      "line": 282,
       "component": "PaginationIconButton",
       "status": "primitive-contract",
       "reason": "Primitive exposes disabled behavior; consuming docs or composition should provide the user-facing reason.",
@@ -1476,7 +1724,7 @@
     },
     {
       "file": "src/components/display/DataTable.tsx",
-      "line": 406,
+      "line": 519,
       "component": "PaginationIconButton",
       "status": "primitive-contract",
       "reason": "Primitive exposes disabled behavior; consuming docs or composition should provide the user-facing reason.",
@@ -1484,7 +1732,7 @@
     },
     {
       "file": "src/components/display/DataTable.tsx",
-      "line": 413,
+      "line": 526,
       "component": "PaginationIconButton",
       "status": "primitive-contract",
       "reason": "Primitive exposes disabled behavior; consuming docs or composition should provide the user-facing reason.",
@@ -1492,7 +1740,7 @@
     },
     {
       "file": "src/components/display/DataTable.tsx",
-      "line": 450,
+      "line": 563,
       "component": "PaginationIconButton",
       "status": "primitive-contract",
       "reason": "Primitive exposes disabled behavior; consuming docs or composition should provide the user-facing reason.",
@@ -1500,7 +1748,7 @@
     },
     {
       "file": "src/components/display/DataTable.tsx",
-      "line": 457,
+      "line": 570,
       "component": "PaginationIconButton",
       "status": "primitive-contract",
       "reason": "Primitive exposes disabled behavior; consuming docs or composition should provide the user-facing reason.",
@@ -1508,7 +1756,7 @@
     },
     {
       "file": "src/components/display/DataTable.tsx",
-      "line": 467,
+      "line": 580,
       "component": "PaginationIconButton",
       "status": "primitive-contract",
       "reason": "Primitive exposes disabled behavior; consuming docs or composition should provide the user-facing reason.",
@@ -1516,7 +1764,7 @@
     },
     {
       "file": "src/components/display/DataTable.tsx",
-      "line": 474,
+      "line": 587,
       "component": "PaginationIconButton",
       "status": "primitive-contract",
       "reason": "Primitive exposes disabled behavior; consuming docs or composition should provide the user-facing reason.",
@@ -1524,7 +1772,7 @@
     },
     {
       "file": "src/components/display/DataTable.tsx",
-      "line": 503,
+      "line": 616,
       "component": "PaginationIconButton",
       "status": "primitive-contract",
       "reason": "Primitive exposes disabled behavior; consuming docs or composition should provide the user-facing reason.",
@@ -1532,11 +1780,43 @@
     },
     {
       "file": "src/components/display/DataTable.tsx",
-      "line": 510,
+      "line": 623,
       "component": "PaginationIconButton",
       "status": "primitive-contract",
       "reason": "Primitive exposes disabled behavior; consuming docs or composition should provide the user-facing reason.",
       "snippet": "<PaginationIconButton label={labels?.lastPage ?? \"Last page\"} disabledLabel={labels?.lastPageUnavailable ?? \"Already on the last page\"} disabled={!table.getCanNextPage()} icon={Che"
+    },
+    {
+      "file": "src/components/display/EditableDataTable.tsx",
+      "line": 183,
+      "component": "Button",
+      "status": "primitive-contract",
+      "reason": "Primitive exposes disabled behavior; consuming docs or composition should provide the user-facing reason.",
+      "snippet": "<Button type=\"button\" variant=\"ghost\" size=\"icon\" className=\"h-8 w-8\" disabled={!canRemove} aria-label={labels?.removeRow?.(rowIndex) ?? `Remove ${resolveRowLabel(rowIndex)}`} onCl"
+    },
+    {
+      "file": "src/components/display/EditableDataTable.tsx",
+      "line": 249,
+      "component": "Button",
+      "status": "primitive-contract",
+      "reason": "Primitive exposes disabled behavior; consuming docs or composition should provide the user-facing reason.",
+      "snippet": "<Button type=\"button\" variant=\"ghost\" size=\"icon\" className=\"h-8 w-8\" disabled={!canRemove} aria-label={labels?.removeRow?.(rowIndex) ?? `Remove ${resolveRowLabel(rowIndex)}`} onCl"
+    },
+    {
+      "file": "src/components/display/SignedRecord.tsx",
+      "line": 134,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button size=\"sm\" onClick={sign} disabled={!canSign}>"
+    },
+    {
+      "file": "src/components/display/SignedRecord.tsx",
+      "line": 218,
+      "component": "Button",
+      "status": "primitive-contract",
+      "reason": "Primitive exposes disabled behavior; consuming docs or composition should provide the user-facing reason.",
+      "snippet": "<Button size=\"sm\" onClick={submitAddendum} disabled={!addBody.trim() || (requireAddendumReason && !addReason.trim())} >"
     },
     {
       "file": "src/components/display/TagEditor.tsx",
@@ -1612,27 +1892,43 @@
     },
     {
       "file": "src/components/inputs/Combobox.tsx",
-      "line": 69,
-      "component": "Button",
-      "status": "covered",
-      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
-      "snippet": "<Button id={id} ref={ref} variant=\"outline\" role=\"combobox\" aria-expanded={open} disabled={disabled} data-slot=\"combobox\" className={cn( \"w-full justify-between\", canClear ? \"pr-16"
+      "line": 84,
+      "component": "CommandItem",
+      "status": "primitive-contract",
+      "reason": "Primitive exposes disabled behavior; consuming docs or composition should provide the user-facing reason.",
+      "snippet": "<CommandItem key={option.value} value={option.value} // Make the label (and any extra terms) searchable even though // `value` is the selection key — cmdk filters on value + keywor"
     },
     {
       "file": "src/components/inputs/Combobox.tsx",
-      "line": 123,
-      "component": "CommandItem",
+      "line": 133,
+      "component": "Button",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
-      "snippet": "<CommandItem key={option.value} value={option.value} disabled={option.disabled} aria-disabled={option.disabled} className={cn( option.disabled && \"cursor-not-allowed opacity-50 ari"
+      "snippet": "<Button id={id} ref={ref} variant=\"outline\" role=\"combobox\" aria-expanded={open} aria-invalid={ariaInvalid} aria-describedby={ariaDescribedby} aria-labelledby={ariaLabelledby} aria"
+    },
+    {
+      "file": "src/components/inputs/CoSign.tsx",
+      "line": 209,
+      "component": "Button",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Button size=\"sm\" onClick={handleSign} disabled={!canSign}>"
     },
     {
       "file": "src/components/inputs/DatePicker.tsx",
-      "line": 447,
+      "line": 474,
       "component": "Button",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
       "snippet": "<Button type=\"button\" variant=\"ghost\" disabled={disabled} className=\"absolute right-1 top-1/2 h-7 w-7 -translate-y-1/2 p-0 text-muted-foreground hover:text-foreground\" aria-label={"
+    },
+    {
+      "file": "src/components/inputs/DatePicker.tsx",
+      "line": 498,
+      "component": "Calendar",
+      "status": "covered",
+      "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
+      "snippet": "<Calendar className={showTodayButton ? \"rounded-b-none border-0 p-3\" : undefined} mode=\"single\" selected={calendarSelectedDate} onSelect={handleCalendarSelect} month={calendarMonth"
     },
     {
       "file": "src/components/inputs/DateRangePicker.tsx",
@@ -1716,11 +2012,11 @@
     },
     {
       "file": "src/components/inputs/ToggleGroup.tsx",
-      "line": 40,
+      "line": 75,
       "component": "ToggleGroupPrimitive.Item",
       "status": "primitive-contract",
       "reason": "Primitive exposes disabled behavior; consuming docs or composition should provide the user-facing reason.",
-      "snippet": "<ToggleGroupPrimitive.Item ref={ref} className={cn( \"inline-flex w-fit items-center justify-center rounded-lg text-sm font-medium transition-colors focus-visible:outline-none focus"
+      "snippet": "<ToggleGroupPrimitive.Item ref={ref} className={cn( \"inline-flex w-fit cursor-pointer items-center justify-center rounded-lg text-sm font-medium transition-colors focus-visible:out"
     },
     {
       "file": "src/components/inputs/VoiceInputButton.tsx",
@@ -1732,7 +2028,7 @@
     },
     {
       "file": "src/components/navigation/Command.tsx",
-      "line": 114,
+      "line": 125,
       "component": "CommandPrimitive.Input",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -1740,7 +2036,7 @@
     },
     {
       "file": "src/components/navigation/Command.tsx",
-      "line": 211,
+      "line": 222,
       "component": "CommandPrimitive.Item",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
@@ -1772,7 +2068,7 @@
     },
     {
       "file": "src/components/navigation/Tabs.tsx",
-      "line": 38,
+      "line": 48,
       "component": "TabsPrimitive.Trigger",
       "status": "primitive-contract",
       "reason": "Primitive exposes disabled behavior; consuming docs or composition should provide the user-facing reason.",
@@ -1856,7 +2152,7 @@
       "component": "SheetPrimitive.Close",
       "status": "covered",
       "reason": "Tooltip / disabledReason / related explanation is present near the disabled control.",
-      "snippet": "<SheetPrimitive.Close className=\"absolute right-4 top-4 rounded-sm p-1 opacity-70 ring-offset-background transition-opacity hover:bg-muted hover:opacity-100 focus:outline-none focu"
+      "snippet": "<SheetPrimitive.Close className=\"absolute right-4 top-4 cursor-pointer rounded-md p-1 text-muted-foreground opacity-80 ring-offset-background transition-colors hover:bg-muted hover"
     }
   ]
 }

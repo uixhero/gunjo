@@ -4,7 +4,7 @@ import * as React from "react"
 import { IconChevronLeft, IconChevronRight } from "@tabler/icons-react"
 
 import { cn } from "../../lib/utils"
-import { Button } from "../inputs/Button"
+import { TooltipButton } from "../inputs/TooltipButton"
 
 export type CalendarEventTone =
     | "default"
@@ -201,24 +201,28 @@ const EventCalendar = React.forwardRef<HTMLDivElement, EventCalendarProps>(
             <div ref={ref} className={cn("w-full", className)} data-slot="event-calendar" {...props}>
                 {onMonthChange ? (
                     <div className="mb-2 flex items-center justify-between gap-2">
-                        <h2 className="text-base font-semibold tabular-nums text-foreground">{monthTitle}</h2>
+                        <div className="text-base font-semibold tabular-nums text-foreground" aria-live="polite">
+                            {monthTitle}
+                        </div>
                         <div className="flex items-center gap-1">
-                            <Button
+                            <TooltipButton
                                 size="icon"
                                 variant="outline"
                                 aria-label="前の月"
+                                tooltip="前の月"
                                 onClick={() => onMonthChange(new Date(year, monthIndex - 1, 1))}
                             >
                                 <IconChevronLeft className="h-4 w-4" />
-                            </Button>
-                            <Button
+                            </TooltipButton>
+                            <TooltipButton
                                 size="icon"
                                 variant="outline"
                                 aria-label="次の月"
+                                tooltip="次の月"
                                 onClick={() => onMonthChange(new Date(year, monthIndex + 1, 1))}
                             >
                                 <IconChevronRight className="h-4 w-4" />
-                            </Button>
+                            </TooltipButton>
                         </div>
                     </div>
                 ) : null}

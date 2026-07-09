@@ -23,6 +23,11 @@ export interface TicketStubProps extends React.HTMLAttributes<HTMLDivElement> {
    * pass `code` for a production-scannable one.
    */
   code?: React.ReactNode
+  /** Labels used to derive the code image accessible name when `codeAlt` is omitted. */
+  codeKindLabels?: {
+    barcode?: string
+    qr?: string
+  }
 }
 
 // Deterministic (SSR-safe) PRNG seeded from the value, so the visual code never hydration-mismatches.
@@ -108,8 +113,9 @@ function Perforation() {
  * deterministic visual placeholder — pass `code` for a production-scannable barcode.
  */
 export const TicketStub = React.forwardRef<HTMLDivElement, TicketStubProps>(
-  ({ className, value, format = "code128", codeLabel, codeAlt, children, perforation = true, code, ...props }, ref) => {
-    const alt = codeAlt ?? `${format === "qr" ? "QRコード" : "バーコード"}：${value}`
+  ({ className, value, format = "code128", codeLabel, codeAlt, children, perforation = true, code, codeKindLabels, ...props }, ref) => {
+    const kindLabel = format === "qr" ? codeKindLabels?.qr ?? "QRコード" : codeKindLabels?.barcode ?? "バーコード"
+    const alt = codeAlt ?? `${kindLabel}：${value}`
     return (
       <div ref={ref} className={cn("w-full overflow-hidden rounded-xl border bg-card text-card-foreground", className)} {...props}>
         {children != null && <div className="p-4">{children}</div>}

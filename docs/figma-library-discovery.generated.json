@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-12T03:22:17.712Z",
+  "generatedAt": "2026-07-02T14:59:00.774Z",
   "source": {
     "components": "design/component-specs/*-core.json",
     "navigation": "app/lib/navigation.ts",
@@ -9,11 +9,11 @@
     ]
   },
   "summary": {
-    "componentCount": 162,
-    "variantCount": 226,
+    "componentCount": 216,
+    "variantCount": 293,
     "emptyVariantComponents": 46,
-    "syntheticVariantCount": 120,
-    "unresolvedSpecEntries": 4
+    "syntheticVariantCount": 182,
+    "unresolvedSpecEntries": 3
   },
   "tokens": {
     "penVariableCount": 43,
@@ -22,50 +22,50 @@
       "string": 12,
       "number": 8
     },
-    "rootCssVariableCount": 95,
+    "rootCssVariableCount": 102,
     "darkCssVariableCount": 68,
     "darkModeOverrideCount": 68
   },
   "pages": [
     {
       "page": "Inputs",
-      "componentCount": 37,
-      "variantCount": 44,
+      "componentCount": 42,
+      "variantCount": 49,
       "emptyVariantComponents": 18,
-      "syntheticVariantCount": 13,
-      "fillContainerVariantComponents": 3
-    },
-    {
-      "page": "Display",
-      "componentCount": 36,
-      "variantCount": 57,
-      "emptyVariantComponents": 13,
-      "syntheticVariantCount": 29,
+      "syntheticVariantCount": 18,
       "fillContainerVariantComponents": 12
     },
     {
+      "page": "Display",
+      "componentCount": 76,
+      "variantCount": 110,
+      "emptyVariantComponents": 13,
+      "syntheticVariantCount": 79,
+      "fillContainerVariantComponents": 49
+    },
+    {
       "page": "Charts",
-      "componentCount": 23,
-      "variantCount": 48,
+      "componentCount": 26,
+      "variantCount": 51,
       "emptyVariantComponents": 0,
-      "syntheticVariantCount": 48,
-      "fillContainerVariantComponents": 23
+      "syntheticVariantCount": 51,
+      "fillContainerVariantComponents": 26
     },
     {
       "page": "Feedback",
-      "componentCount": 11,
-      "variantCount": 22,
+      "componentCount": 12,
+      "variantCount": 23,
       "emptyVariantComponents": 2,
-      "syntheticVariantCount": 9,
-      "fillContainerVariantComponents": 1
+      "syntheticVariantCount": 10,
+      "fillContainerVariantComponents": 5
     },
     {
       "page": "Navigation",
-      "componentCount": 16,
-      "variantCount": 14,
+      "componentCount": 19,
+      "variantCount": 17,
       "emptyVariantComponents": 4,
-      "syntheticVariantCount": 3,
-      "fillContainerVariantComponents": 2
+      "syntheticVariantCount": 6,
+      "fillContainerVariantComponents": 8
     },
     {
       "page": "Overlay",
@@ -85,11 +85,11 @@
     },
     {
       "page": "Patterns",
-      "componentCount": 9,
-      "variantCount": 9,
+      "componentCount": 11,
+      "variantCount": 11,
       "emptyVariantComponents": 0,
       "syntheticVariantCount": 0,
-      "fillContainerVariantComponents": 0
+      "fillContainerVariantComponents": 11
     }
   ],
   "components": [
@@ -156,6 +156,22 @@
       "hasFillContainerVariant": false
     },
     {
+      "key": "segmentedControl",
+      "title": "SegmentedControl",
+      "page": "Inputs",
+      "sourceCategory": "inputs",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
       "key": "chatInput",
       "title": "ChatInput",
       "page": "Inputs",
@@ -207,7 +223,7 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "label",
@@ -265,7 +281,7 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "radioGroup",
@@ -294,7 +310,7 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "rangeSlider",
@@ -322,7 +338,7 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "toggleGroup",
@@ -620,16 +636,83 @@
       "hasFillContainerVariant": false
     },
     {
+      "key": "currencyInput",
+      "title": "CurrencyInput",
+      "page": "Inputs",
+      "sourceCategory": "inputs",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "scanInput",
+      "title": "ScanInput",
+      "page": "Inputs",
+      "sourceCategory": "inputs",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "scanGate",
+      "title": "ScanGate",
+      "page": "Inputs",
+      "sourceCategory": "inputs",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "coSign",
+      "title": "CoSign",
+      "page": "Inputs",
+      "sourceCategory": "inputs",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
       "key": "badge",
       "title": "Badge",
       "page": "Display",
       "sourceCategory": "display",
-      "variantCount": 4,
+      "variantCount": 7,
       "variantKeys": [
         "default",
         "secondary",
         "destructive",
-        "outline"
+        "outline",
+        "info",
+        "success",
+        "warning"
       ],
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
@@ -667,7 +750,7 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "avatar",
@@ -734,7 +817,7 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "imagePreview",
@@ -871,7 +954,7 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "accordionGroup",
@@ -941,7 +1024,7 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "carousel",
@@ -1062,15 +1145,21 @@
       "title": "DocNote",
       "page": "Display",
       "sourceCategory": "display",
-      "variantCount": 2,
+      "variantCount": 5,
       "variantKeys": [
         "default",
-        "reference"
+        "reference",
+        "note",
+        "warning",
+        "tip"
       ],
-      "syntheticVariantCount": 2,
+      "syntheticVariantCount": 5,
       "syntheticVariantKeys": [
         "default",
-        "reference"
+        "reference",
+        "note",
+        "warning",
+        "tip"
       ],
       "hasEmptyVariants": false,
       "hasFillContainerVariant": true
@@ -1277,6 +1366,22 @@
       "syntheticVariantKeys": [
         "vertical",
         "horizontal"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "paretoChart",
+      "title": "ParetoChart",
+      "page": "Charts",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
       ],
       "hasEmptyVariants": false,
       "hasFillContainerVariant": true
@@ -1590,6 +1695,740 @@
       "hasFillContainerVariant": true
     },
     {
+      "key": "rating",
+      "title": "Rating",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 3,
+      "variantKeys": [
+        "default",
+        "sm",
+        "lg"
+      ],
+      "syntheticVariantCount": 3,
+      "syntheticVariantKeys": [
+        "default",
+        "sm",
+        "lg"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": false
+    },
+    {
+      "key": "swatchGroup",
+      "title": "SwatchGroup",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 3,
+      "variantKeys": [
+        "default",
+        "sm",
+        "lg"
+      ],
+      "syntheticVariantCount": 3,
+      "syntheticVariantKeys": [
+        "default",
+        "sm",
+        "lg"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": false
+    },
+    {
+      "key": "gallery",
+      "title": "Gallery",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 2,
+      "variantKeys": [
+        "bottom",
+        "start"
+      ],
+      "syntheticVariantCount": 2,
+      "syntheticVariantKeys": [
+        "bottom",
+        "start"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "editableDataTable",
+      "title": "EditableDataTable",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 2,
+      "variantKeys": [
+        "default",
+        "compact"
+      ],
+      "syntheticVariantCount": 2,
+      "syntheticVariantKeys": [
+        "default",
+        "compact"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "approvalSteps",
+      "title": "ApprovalSteps",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 2,
+      "variantKeys": [
+        "default",
+        "compact"
+      ],
+      "syntheticVariantCount": 2,
+      "syntheticVariantKeys": [
+        "default",
+        "compact"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "revealSection",
+      "title": "RevealSection",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "delta",
+      "title": "Delta",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": false
+    },
+    {
+      "key": "meter",
+      "title": "Meter",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "lineageGraph",
+      "title": "LineageGraph",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "gantt",
+      "title": "Gantt",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "weekView",
+      "title": "WeekView",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "personCell",
+      "title": "PersonCell",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "statGroup",
+      "title": "StatGroup",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "amountBreakdown",
+      "title": "AmountBreakdown",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "actionQueue",
+      "title": "ActionQueue",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "seatMap",
+      "title": "SeatMap",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "bottomActionBar",
+      "title": "BottomActionBar",
+      "page": "Navigation",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "expiryBadge",
+      "title": "ExpiryBadge",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": false
+    },
+    {
+      "key": "statusBoard",
+      "title": "StatusBoard",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "stringline",
+      "title": "Stringline",
+      "page": "Charts",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "ticketStub",
+      "title": "TicketStub",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "itinerary",
+      "title": "Itinerary",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "originDestination",
+      "title": "OriginDestination",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "documentRow",
+      "title": "DocumentRow",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "companyCell",
+      "title": "CompanyCell",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": false
+    },
+    {
+      "key": "matchCard",
+      "title": "MatchCard",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "navRow",
+      "title": "NavRow",
+      "page": "Navigation",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "sectionList",
+      "title": "SectionList",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "limitMonitor",
+      "title": "LimitMonitor",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "lineChip",
+      "title": "LineChip",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": false
+    },
+    {
+      "key": "leaderboard",
+      "title": "Leaderboard",
+      "page": "Charts",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "pageHeader",
+      "title": "PageHeader",
+      "page": "Navigation",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "filterChips",
+      "title": "FilterChips",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "radioCard",
+      "title": "RadioCard",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "loyaltySummaryCard",
+      "title": "LoyaltySummaryCard",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "listCard",
+      "title": "ListCard",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "relationshipRow",
+      "title": "RelationshipRow",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "kanbanBoard",
+      "title": "KanbanBoard",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "eventCalendar",
+      "title": "EventCalendar",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "checkList",
+      "title": "CheckList",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "approvalWorkflow",
+      "title": "ApprovalWorkflow",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "scheduleGrid",
+      "title": "ScheduleGrid",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "routeStops",
+      "title": "RouteStops",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "referenceValue",
+      "title": "ReferenceValue",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": false
+    },
+    {
+      "key": "signedRecord",
+      "title": "SignedRecord",
+      "page": "Display",
+      "sourceCategory": "display",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
+    },
+    {
       "key": "alert",
       "title": "Alert",
       "page": "Feedback",
@@ -1609,7 +2448,7 @@
         "warning"
       ],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "progress",
@@ -1623,7 +2462,7 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "statusScreen",
@@ -1723,7 +2562,7 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "stepper",
@@ -1748,6 +2587,22 @@
       "syntheticVariantKeys": [],
       "hasEmptyVariants": true,
       "hasFillContainerVariant": false
+    },
+    {
+      "key": "safetyBanner",
+      "title": "SafetyBanner",
+      "page": "Feedback",
+      "sourceCategory": "feedback",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 1,
+      "syntheticVariantKeys": [
+        "default"
+      ],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
     },
     {
       "key": "toastProvider",
@@ -1807,7 +2662,7 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "pagination",
@@ -1902,7 +2757,7 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "appRail",
@@ -1930,7 +2785,7 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "rightRail",
@@ -2436,7 +3291,7 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "editorTemplate",
@@ -2450,7 +3305,7 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "landingTemplate",
@@ -2464,7 +3319,7 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "authTemplate",
@@ -2478,7 +3333,21 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "responsiveAuthCardPattern",
+      "title": "Responsive Auth Card Pattern",
+      "page": "Patterns",
+      "sourceCategory": "patterns",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 0,
+      "syntheticVariantKeys": [],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
     },
     {
       "key": "kanbanTemplate",
@@ -2492,7 +3361,7 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "chatTemplate",
@@ -2506,7 +3375,7 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "settingsTemplate",
@@ -2520,7 +3389,7 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "bannalyzeTemplate",
@@ -2534,7 +3403,7 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
     },
     {
       "key": "mediaLibraryTemplate",
@@ -2548,15 +3417,24 @@
       "syntheticVariantCount": 0,
       "syntheticVariantKeys": [],
       "hasEmptyVariants": false,
-      "hasFillContainerVariant": false
+      "hasFillContainerVariant": true
+    },
+    {
+      "key": "pricingTemplate",
+      "title": "Simple pricing that scales with usage, not complexity.",
+      "page": "Patterns",
+      "sourceCategory": "patterns",
+      "variantCount": 1,
+      "variantKeys": [
+        "default"
+      ],
+      "syntheticVariantCount": 0,
+      "syntheticVariantKeys": [],
+      "hasEmptyVariants": false,
+      "hasFillContainerVariant": true
     }
   ],
   "unresolvedSpecEntries": [
-    {
-      "key": "pricingTemplate",
-      "sourceCategory": "patterns",
-      "reason": "null spec entry"
-    },
     {
       "key": "blogTemplate",
       "sourceCategory": "patterns",

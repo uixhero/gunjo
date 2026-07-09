@@ -3,6 +3,7 @@
 import * as React from "react"
 
 import { cn } from "../../lib/utils"
+import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
 
 export interface ScheduleAxisItem {
     id: string
@@ -37,6 +38,8 @@ export interface ScheduleCell {
     onSelect?: () => void
     /** Mark the slot unavailable (e.g. no 6th period that day) — dashed, non-interactive. */
     unavailable?: boolean
+    /** Explains why an unavailable slot cannot be used. Shown on hover/focus. */
+    unavailableReason?: React.ReactNode
 }
 
 export interface ScheduleGridProps
@@ -57,6 +60,8 @@ export interface ScheduleGridProps
     rowHeaderWidth?: number
     /** Render a slot that has no cell (available/empty). Default a muted dash. */
     renderEmpty?: (row: ScheduleAxisItem, column: ScheduleAxisItem) => React.ReactNode
+    /** Announced for an empty slot. Default `"空き"`. */
+    emptyLabel?: string
     /** Announced for an `unavailable` slot. Default `"利用不可"`. */
     unavailableLabel?: string
 }
@@ -104,6 +109,7 @@ const ScheduleGrid = React.forwardRef<HTMLDivElement, ScheduleGridProps>(
             minColumnWidth = 112,
             rowHeaderWidth = 72,
             renderEmpty,
+            emptyLabel = "空き",
             unavailableLabel = "利用不可",
             ...props
         },
@@ -237,14 +243,14 @@ const ScheduleGrid = React.forwardRef<HTMLDivElement, ScheduleGridProps>(
                                     cell?.ariaLabel ??
                                     (cell?.unavailable
                                         ? `${prefix} ${unavailableLabel}`
-                                        : cell?.description
-                                          ? `${prefix} ${cell.description}`
-                                          : cell?.content == null
-                                            ? `${prefix} 空き`
+                                          : cell?.description
+                                            ? `${prefix} ${cell.description}`
+                                            : cell?.content == null
+                                            ? `${prefix} ${emptyLabel}`
                                             : prefix)
 
                                 if (cell?.unavailable) {
-                                    return (
+                                    const unavailableCell = (
                                         <div
                                             key={col.id}
                                             ref={(node) => {
@@ -255,10 +261,24 @@ const ScheduleGrid = React.forwardRef<HTMLDivElement, ScheduleGridProps>(
                                             aria-colindex={ci + 2}
                                             aria-label={accessibleName}
                                             tabIndex={isActive ? 0 : -1}
-                                            className="flex items-center justify-center rounded-md border border-dashed border-border bg-muted/30 px-2 py-3 text-[11px] text-muted-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                                            className="flex cursor-not-allowed items-center justify-center rounded-md border border-dashed border-border bg-muted/30 px-2 py-3 text-[11px] text-muted-foreground outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                                            data-slot="schedule-grid-unavailable-cell"
                                         >
                                             {unavailableLabel}
                                         </div>
+                                    )
+
+                                    if (!cell.unavailableReason) {
+                                        return unavailableCell
+                                    }
+
+                                    return (
+                                        <Tooltip key={col.id}>
+                                            <TooltipTrigger asChild>{unavailableCell}</TooltipTrigger>
+                                            <TooltipContent className="max-w-64 text-left">
+                                                {cell.unavailableReason}
+                                            </TooltipContent>
+                                        </Tooltip>
                                     )
                                 }
 

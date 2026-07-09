@@ -5,8 +5,8 @@ import { CodeBlock } from "@/components/doc/CodeBlock";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
 import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { PropsTable } from "@/components/doc/PropsTable";
-import { SelectDemo } from "@/components/demos/Batch3Demo";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { getDocContent } from "@/lib/docs-content";
 import inputsMetadata from "@design/inputs-metadata.json";
 import { FormControl, FormDescription, FormGroup, FormLabel, Select } from "@gunjo/ui";
 
@@ -75,6 +75,7 @@ function SelectField({
 
 export default function SelectPage() {
     const { locale, sectionLabels } = useLocale();
+    const content = getDocContent("components/select", locale);
     const code = `import { FormControl, FormDescription, FormGroup, FormLabel, Select } from "@gunjo/ui";
 
 export function SelectDemo() {
@@ -116,8 +117,8 @@ export function SelectDemo() {
 
     return (
         <ComponentLayout
-            title={inputsMetadata.select.title}
-            description={inputsMetadata.select.description}
+            title={content?.title ?? inputsMetadata.select.title}
+            description={content?.description ?? inputsMetadata.select.description}
             sectionLabels={sectionLabels}
             usedComponents={[
                 { name: "Select", href: "/docs/components/select" },
@@ -133,8 +134,8 @@ export function SelectDemo() {
                 { name: "Form", href: "/docs/components/form" },
             ]}
         >
-            <ComponentPreview embedSrc="/embed/select" code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewBodyWidth="md">
-                <SelectDemo />
+            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewHeight="auto" previewBodyWidth="md">
+                <SelectField />
             </ComponentPreview>
 
             <section className="space-y-4">
@@ -148,7 +149,6 @@ export function SelectDemo() {
                             title: locale === "ja" ? "ラベル付き" : "With label",
                             description: locale === "ja" ? "フォーム内ではラベルと補足文を合わせて配置します。" : "Use a label and helper text when the select belongs to a form.",
                             preview: <SelectField />,
-                            previewHeight: 190,
                             code,
                         },
                         {
@@ -156,28 +156,59 @@ export function SelectDemo() {
                             title: locale === "ja" ? "グループ化" : "Grouped options",
                             description: locale === "ja" ? "候補が多い時は optgroup で分類します。" : "Use optgroup to organize longer option lists.",
                             preview: <SelectField grouped />,
-                            previewHeight: 190,
-                            code: `<Select defaultValue="next">
-  <optgroup label="${locale === "ja" ? "フレームワーク" : "Frameworks"}">
-    <option value="next">Next.js</option>
-    <option value="remix">Remix</option>
-  </optgroup>
-</Select>`,
+                            code: `import { FormControl, FormDescription, FormGroup, FormLabel, Select } from "@gunjo/ui";
+
+export function GroupedSelect() {
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="select-framework">${locale === "ja" ? "技術スタック" : "Technology stack"}</FormLabel>
+      <FormControl>
+        <Select id="select-framework" defaultValue="next">
+          <optgroup label="${locale === "ja" ? "フレームワーク" : "Frameworks"}">
+            <option value="next">Next.js</option>
+            <option value="remix">Remix</option>
+            <option value="astro">Astro</option>
+          </optgroup>
+          <optgroup label="${locale === "ja" ? "静的サイト" : "Static sites"}">
+            <option value="gatsby">Gatsby</option>
+            <option value="hugo">Hugo</option>
+          </optgroup>
+        </Select>
+      </FormControl>
+      <FormDescription>${locale === "ja" ? "候補が多い場合はカテゴリで整理します。" : "Use groups when the option list grows."}</FormDescription>
+    </FormGroup>
+  );
+}`,
                         },
                         {
                             key: "disabled",
                             title: locale === "ja" ? "無効化" : "Disabled",
                             description: locale === "ja" ? "選べない理由はツールチップと補足文で伝えます。" : "Explain why the field is disabled with a tooltip and helper text.",
                             preview: <SelectField disabled />,
-                            previewHeight: 190,
-                            code: `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
-import { Select } from "@gunjo/ui";
+                            code: `import { FormControl, FormDescription, FormGroup, FormLabel, Select, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 
-<DisabledReasonTooltip fullWidth reason="${locale === "ja" ? "拠点は管理者が固定しています。" : "The office is managed by your administrator."}">
-  <Select disabled defaultValue="tokyo">
-    <option value="tokyo">${locale === "ja" ? "東京" : "Tokyo"}</option>
-  </Select>
-</DisabledReasonTooltip>`,
+export function DisabledSelect() {
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="office">${locale === "ja" ? "拠点" : "Office"}</FormLabel>
+      <FormControl>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <span className="block w-full" tabIndex={0}>
+              <Select id="office" disabled defaultValue="tokyo">
+                <option value="tokyo">${locale === "ja" ? "東京" : "Tokyo"}</option>
+                <option value="osaka">${locale === "ja" ? "大阪" : "Osaka"}</option>
+                <option value="fukuoka">${locale === "ja" ? "福岡" : "Fukuoka"}</option>
+              </Select>
+            </span>
+          </TooltipTrigger>
+          <TooltipContent>${locale === "ja" ? "拠点は管理者が固定しています。" : "The office is managed by your administrator."}</TooltipContent>
+        </Tooltip>
+      </FormControl>
+      <FormDescription>${locale === "ja" ? "変更が必要な場合は管理者に依頼してください。" : "Contact an administrator to change this value."}</FormDescription>
+    </FormGroup>
+  );
+}`,
                         },
                     ]}
                 />

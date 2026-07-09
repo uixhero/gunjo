@@ -193,10 +193,10 @@ export function InputOTPDemo() {
             ]}
         >
             <ComponentPreview
-                embedSrc="/embed/input-otp"
                 code={code}
                 codeBlock={<CodeBlock code={code} />}
                 sectionLabels={sectionLabels}
+                previewHeight="auto"
                 previewBodyWidth="md"
             >
                 <OTPField locale={locale} />
@@ -212,42 +212,66 @@ export function InputOTPDemo() {
                             key: "grouped",
                             title: locale === "ja" ? "3桁ごとの区切り" : "Grouped slots",
                             description: locale === "ja" ? "視認性を上げるため、3桁ごとに区切りを入れます。" : "Use a separator to improve readability for grouped codes.",
-	                            preview: <OTPField locale={locale} defaultValue="123" />,
-	                            previewHeight: 180,
-	                            code,
+                            preview: <OTPField locale={locale} defaultValue="123" />,
+                            code: code.replace('React.useState("");', 'React.useState("123");'),
                         },
                         {
                             key: "plain",
                             title: locale === "ja" ? "連続した6桁" : "Continuous slots",
                             description: locale === "ja" ? "短いコードでは、区切りなしで横一列に並べられます。" : "Short codes can be displayed in a single continuous group.",
-	                            preview: <OTPField locale={locale} grouped={false} defaultValue="2468" />,
-	                            previewHeight: 180,
-	                            code: usageCode,
+                            preview: <OTPField locale={locale} grouped={false} defaultValue="2468" />,
+                            code: `import * as React from "react";
+import { FormDescription, FormGroup, FormLabel, InputOTP, InputOTPGroup, InputOTPSlot } from "@gunjo/ui";
+
+export function ContinuousInputOTP() {
+  const [value, setValue] = React.useState("2468");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel>${locale === "ja" ? "確認コード" : "Verification code"}</FormLabel>
+      <InputOTP maxLength={6} value={value} onChange={setValue}>
+        <InputOTPGroup>
+          {[0, 1, 2, 3, 4, 5].map((index) => (
+            <InputOTPSlot key={index} index={index} />
+          ))}
+        </InputOTPGroup>
+      </InputOTP>
+      <FormDescription>
+        ${locale === "ja" ? "入力値: 2468" : "Value: 2468"}
+      </FormDescription>
+    </FormGroup>
+  );
+}`,
                         },
                         {
                             key: "disabled",
                             title: locale === "ja" ? "無効化" : "Disabled",
                             description: locale === "ja" ? "再送信待ちや期限切れでは操作を無効化し、ツールチップで理由を補足します。" : "Disable the input while waiting for resend or when a code expires, and explain the reason with a Tooltip.",
-	                            preview: <OTPField locale={locale} disabled defaultValue="123456" />,
-	                            previewHeight: 180,
-	                            code: `import { InputOTP, InputOTPGroup, InputOTPSlot, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                            preview: <OTPField locale={locale} disabled defaultValue="123456" />,
+                            code: `import { FormDescription, FormGroup, FormLabel, InputOTP, InputOTPGroup, InputOTPSlot, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 
 export function DisabledCode() {
   return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <span tabIndex={0}>
-          <InputOTP maxLength={6} disabled value="123456">
-            <InputOTPGroup>
-              {[0, 1, 2, 3, 4, 5].map((index) => (
-                <InputOTPSlot key={index} index={index} />
-              ))}
-            </InputOTPGroup>
-          </InputOTP>
-        </span>
-      </TooltipTrigger>
-      <TooltipContent>${locale === "ja" ? "確認コードを再送信するまで入力できません。" : "Disabled until the verification code is resent."}</TooltipContent>
-    </Tooltip>
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel>${locale === "ja" ? "確認コード" : "Verification code"}</FormLabel>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <span tabIndex={0}>
+            <InputOTP maxLength={6} disabled value="123456">
+              <InputOTPGroup>
+                {[0, 1, 2, 3, 4, 5].map((index) => (
+                  <InputOTPSlot key={index} index={index} />
+                ))}
+              </InputOTPGroup>
+            </InputOTP>
+          </span>
+        </TooltipTrigger>
+        <TooltipContent>${locale === "ja" ? "確認コードを再送信するまで入力できません。" : "Disabled until the verification code is resent."}</TooltipContent>
+      </Tooltip>
+      <FormDescription>
+        ${locale === "ja" ? "確認コードを再送信するまで入力できません。" : "Disabled until the verification code is resent."}
+      </FormDescription>
+    </FormGroup>
   );
 }`,
                         },

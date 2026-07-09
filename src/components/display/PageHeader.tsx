@@ -4,6 +4,7 @@ import * as React from "react"
 import { IconChevronLeft } from "@tabler/icons-react"
 
 import { cn } from "../../lib/utils"
+import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
 
 export interface PageHeaderProps extends Omit<React.HTMLAttributes<HTMLElement>, "title"> {
   /** Page title. */
@@ -36,14 +37,19 @@ export const PageHeader = React.forwardRef<HTMLElement, PageHeaderProps>(
     // Render BOTH the back button and any `leading` element — never let one silently shadow the
     // other (passing both used to drop onBack's handler + aria-label with no type error).
     const backButton = onBack ? (
-      <button
-        type="button"
-        onClick={onBack}
-        aria-label={backLabel}
-        className="-ml-2 inline-flex size-11 shrink-0 items-center justify-center rounded-md text-foreground outline-none transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring"
-      >
-        <IconChevronLeft className="size-6" aria-hidden="true" />
-      </button>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <button
+            type="button"
+            onClick={onBack}
+            aria-label={backLabel}
+            className="-ml-2 inline-flex size-11 shrink-0 items-center justify-center rounded-md text-foreground outline-none transition-colors hover:bg-accent focus-visible:ring-2 focus-visible:ring-ring"
+          >
+            <IconChevronLeft className="size-6" aria-hidden="true" />
+          </button>
+        </TooltipTrigger>
+        <TooltipContent>{backLabel}</TooltipContent>
+      </Tooltip>
     ) : null
 
     const back =

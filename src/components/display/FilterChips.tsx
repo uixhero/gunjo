@@ -3,6 +3,7 @@
 import * as React from "react"
 
 import { cn } from "../../lib/utils"
+import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
 
 export interface FilterChip {
   /** The value this chip selects. */
@@ -14,6 +15,8 @@ export interface FilterChip {
   /** Optional trailing count. */
   count?: number
   disabled?: boolean
+  /** Reason shown on hover/focus when a disabled chip cannot be selected. */
+  disabledReason?: React.ReactNode
 }
 
 export interface FilterChipsProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "onChange"> {
@@ -73,7 +76,7 @@ export const FilterChips = React.forwardRef<HTMLDivElement, FilterChipsProps>(
       >
         {items.map((chip) => {
           const active = chip.value === value
-          return (
+          const chipButton = (
             <button
               key={chip.value}
               type="button"
@@ -83,10 +86,10 @@ export const FilterChips = React.forwardRef<HTMLDivElement, FilterChipsProps>(
               disabled={chip.disabled}
               onClick={() => onValueChange(chip.value)}
               className={cn(
-                "inline-flex h-9 shrink-0 items-center gap-1.5 whitespace-nowrap rounded-full border px-3.5 text-sm font-medium transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background disabled:cursor-not-allowed disabled:opacity-50",
+                "inline-flex h-9 shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap rounded-full border px-3.5 text-sm font-medium transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
                 active
-                  ? "border-primary bg-primary text-primary-foreground"
-                  : "border-border bg-background text-foreground hover:bg-accent"
+                  ? "border-primary bg-primary text-primary-foreground hover:bg-primary/90"
+                  : "border-border bg-background text-foreground hover:bg-accent hover:text-accent-foreground"
               )}
             >
               {chip.icon != null && (
@@ -96,12 +99,35 @@ export const FilterChips = React.forwardRef<HTMLDivElement, FilterChipsProps>(
               )}
               {chip.label}
               {chip.count != null && (
-                <span className={cn("ml-0.5 tabular-nums", active ? "text-primary-foreground/80" : "text-muted-foreground")}>
+                <span
+                  className={cn(
+                    "ml-0.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-xs tabular-nums",
+                    active
+                      ? "bg-primary-foreground/20 text-primary-foreground"
+                      : "bg-muted text-muted-foreground"
+                  )}
+                >
                   {chip.count}
                 </span>
               )}
             </button>
           )
+          if (chip.disabled && chip.disabledReason != null) {
+            return (
+              <Tooltip key={chip.value}>
+                <TooltipTrigger asChild>
+                  <span
+                    tabIndex={0}
+                    className="inline-flex shrink-0 cursor-not-allowed rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background"
+                  >
+                    {chipButton}
+                  </span>
+                </TooltipTrigger>
+                <TooltipContent>{chip.disabledReason}</TooltipContent>
+              </Tooltip>
+            )
+          }
+          return chipButton
         })}
       </div>
     )

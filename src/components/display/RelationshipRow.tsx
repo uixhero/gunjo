@@ -40,17 +40,113 @@ export interface RelationshipRowProps extends Omit<React.HTMLAttributes<HTMLDivE
  */
 export const RelationshipRow = React.forwardRef<HTMLDivElement, RelationshipRowProps>(
   ({ from, to, connector, relationshipLabel, trailing, size, className, ...props }, ref) => {
+    const hasTrailing = trailing != null
+    const connectorAnchorSize = from.size ?? size ?? "md"
+    const connectorInlineStart =
+      connectorAnchorSize === "sm" ? 44 : connectorAnchorSize === "lg" ? 60 : 52
+    const rootRef = React.useRef<HTMLDivElement | null>(null)
+    const [isStacked, setIsStacked] = React.useState(false)
+
+    const setRefs = React.useCallback(
+      (node: HTMLDivElement | null) => {
+        rootRef.current = node
+        if (typeof ref === "function") {
+          ref(node)
+        } else if (ref) {
+          ref.current = node
+        }
+      },
+      [ref]
+    )
+
+    React.useEffect(() => {
+      const node = rootRef.current
+      if (!node) return
+
+      const update = () => {
+        setIsStacked(node.getBoundingClientRect().width < 420)
+      }
+
+      update()
+
+      if (typeof ResizeObserver === "undefined") {
+        window.addEventListener("resize", update)
+        return () => window.removeEventListener("resize", update)
+      }
+
+      const observer = new ResizeObserver(update)
+      observer.observe(node)
+
+      return () => observer.disconnect()
+    }, [])
+
     return (
-      <div ref={ref} className={cn("flex w-full min-w-0 items-center gap-2 sm:gap-3", className)} {...props}>
-        <PersonCell {...from} size={from.size ?? size} className={cn("flex-1", from.className)} />
-        <div className="flex shrink-0 flex-col items-center gap-0.5 text-muted-foreground">
-          {connector ?? <DefaultConnector />}
+      <div
+        ref={setRefs}
+        className={cn(
+          "grid w-full min-w-0 gap-x-3 gap-y-2 lg:items-center",
+          isStacked
+            ? hasTrailing
+              ? "grid-cols-[minmax(0,1fr)_6rem]"
+              : "grid-cols-1"
+            : hasTrailing
+              ? "grid-cols-[minmax(0,1fr)_4rem_minmax(0,1fr)_6rem] items-center"
+              : "grid-cols-[minmax(0,1fr)_4rem_minmax(0,1fr)] items-center",
+          className
+        )}
+        data-slot="relationship-row"
+        {...props}
+      >
+        <PersonCell
+          {...from}
+          size={from.size ?? size}
+          className={cn(
+            "col-start-1 row-start-1 min-w-0",
+            !isStacked && "col-start-1 row-start-1",
+            from.className
+          )}
+        />
+        <div
+          className={cn(
+            "flex shrink-0 text-muted-foreground",
+            isStacked
+              ? "col-start-1 row-start-2 w-auto flex-row items-center justify-self-start gap-2"
+              : "col-start-2 row-start-1 w-16 flex-col items-center justify-self-center gap-0.5"
+          )}
+          style={isStacked ? { marginInlineStart: connectorInlineStart } : undefined}
+        >
+          <span
+            className={cn(
+              "flex h-6 w-6 items-center justify-center transition-transform",
+              isStacked && "rotate-90"
+            )}
+            aria-hidden="true"
+          >
+            {connector ?? <DefaultConnector />}
+          </span>
           {relationshipLabel != null ? (
             <span className="whitespace-nowrap text-[10px] font-medium leading-none">{relationshipLabel}</span>
           ) : null}
         </div>
-        <PersonCell {...to} size={to.size ?? size} className={cn("flex-1", to.className)} />
-        {trailing != null ? <div className="shrink-0">{trailing}</div> : null}
+        <PersonCell
+          {...to}
+          size={to.size ?? size}
+          className={cn(
+            "min-w-0",
+            isStacked ? "col-start-1 row-start-3" : "col-start-3 row-start-1",
+            to.className
+          )}
+        />
+        {hasTrailing ? (
+          <div
+            className={cn(
+              "flex w-24 shrink-0 justify-end self-center whitespace-nowrap",
+              isStacked ? "col-start-2 row-span-3 row-start-1" : "col-start-4 row-span-1 row-start-1"
+            )}
+          >
+            {trailing}
+          </div>
+        ) : null}
       </div>
     )
   }

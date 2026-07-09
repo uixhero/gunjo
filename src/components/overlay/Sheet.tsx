@@ -99,7 +99,7 @@ const SheetContent = React.forwardRef<
                 className={cn(
                     sheetVariants({ side }),
                     portalContainer && "absolute",
-                    portalContainer && "data-[state=open]:!transform-none",
+                    portalContainer && "data-[state=open]:!transform-none data-[state=closed]:!transform-none",
                     portalContainer && side === "right" && "right-0 top-0 h-full",
                     portalContainer && side === "left" && "left-0 top-0 h-full",
                     portalContainer && side === "top" && "left-0 right-0 top-0",
@@ -112,7 +112,7 @@ const SheetContent = React.forwardRef<
                     <Tooltip>
                         <TooltipTrigger asChild>
                             <SheetPrimitive.Close
-                                className="absolute right-4 top-4 rounded-sm p-1 opacity-70 ring-offset-background transition-opacity hover:bg-muted hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary"
+                                className="absolute right-4 top-4 cursor-pointer rounded-md p-1 text-muted-foreground opacity-80 ring-offset-background transition-colors hover:bg-muted hover:text-foreground hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary"
                                 aria-label={closeLabel}
                             >
                                 <X className="h-4 w-4" />
