@@ -299,7 +299,7 @@ export function PackForm({ industries, coldTestCount, returnPath }: PackFormProp
                 isOpen={privacyOpen}
                 onClose={() => setPrivacyOpen(false)}
                 title="プライバシーポリシー"
-                className="max-w-lg"
+                className="w-[calc(100%-2rem)] max-w-2xl"
                 footer={
                     <Button variant="outline" onClick={() => setPrivacyOpen(false)}>
                         閉じる
