@@ -451,7 +451,7 @@ export const translations: Record<
         kanji: "群青",
         taglineMain: "A design system for you and AI.",
         taglineSub: "Not yet blue. Becoming blue.",
-        subtitle: "150+ components, tokens, and AI handoff.",
+        subtitle: "200+ components, tokens, and AI handoff.",
         ctaPrimary: "View the docs",
         ctaSecondary: "Browse the showcase",
       },
@@ -475,7 +475,7 @@ export const translations: Record<
         cards: {
           showcase: {
             title: "Component catalog",
-            description: "All 150+ audited components with docs pages, preview/code parity, and category overviews.",
+            description: "All 200+ audited components with docs pages, preview/code parity, and category overviews.",
             cta: "Open Showcase",
             href: "/showcase",
           },
@@ -543,7 +543,7 @@ export const translations: Record<
     },
     intro: {
       alphaBadge: "Alpha · v0.0.1-alpha.2",
-      componentCountBadge: "150+ components",
+      componentCountBadge: "200+ components",
       ctaPrimary: "Get Started",
       ctaSecondary: "Browse Components",
       livePreviewLabel: "Live preview",
@@ -555,7 +555,7 @@ export const translations: Record<
         step2Label: "Import & render",
         step3Label: "See every component",
         step3Description:
-          "Open the Showcase to scan all 150+ components in one place.",
+          "Open the Showcase to scan all 200+ components in one place.",
         showcaseCta: "Open Showcase",
         copyLabel: "Copy",
         copiedLabel: "Copied!",
@@ -570,7 +570,7 @@ export const translations: Record<
         },
         components: {
           title: "Browse components",
-          description: "150+ components grouped by inputs, display, charts, feedback, navigation, overlay, and layout.",
+          description: "200+ components grouped by inputs, display, charts, feedback, navigation, overlay, and layout.",
           cta: "View catalog",
         },
         examples: {
@@ -1084,7 +1084,7 @@ export const translations: Record<
         kanji: "群青",
         taglineMain: "あなたと AI のための、\nデザインシステム。",
         taglineSub: "未だ青ならず、青になりつつあるもの。",
-        subtitle: "150+ のコンポーネント・トークン・AI 連携。",
+        subtitle: "200+ のコンポーネント・トークン・AI 連携。",
         ctaPrimary: "ドキュメントを見る",
         ctaSecondary: "ショーケースを見る",
       },
@@ -1108,7 +1108,7 @@ export const translations: Record<
         cards: {
           showcase: {
             title: "コンポーネントカタログ",
-            description: "150+ コンポーネントを監査済み。docs ページ、プレビューとコード、カテゴリ概要から確認できます。",
+            description: "200+ コンポーネントを監査済み。docs ページ、プレビューとコード、カテゴリ概要から確認できます。",
             cta: "Showcase を開く",
             href: "/showcase",
           },
@@ -1176,7 +1176,7 @@ export const translations: Record<
     },
     intro: {
       alphaBadge: "Alpha · v0.0.1-alpha.2",
-      componentCountBadge: "150+ コンポーネント",
+      componentCountBadge: "200+ コンポーネント",
       ctaPrimary: "はじめる",
       ctaSecondary: "コンポーネント一覧",
       livePreviewLabel: "ライブプレビュー",
@@ -1187,7 +1187,7 @@ export const translations: Record<
         step1Label: "インストール",
         step2Label: "import して描画",
         step3Label: "全コンポーネントを見る",
-        step3Description: "Showcase で 150+ コンポーネントを 1 ページに俯瞰できます。",
+        step3Description: "Showcase で 200+ コンポーネントを 1 ページに俯瞰できます。",
         showcaseCta: "Showcase を開く",
         copyLabel: "コピー",
         copiedLabel: "コピー済み",
@@ -1202,7 +1202,7 @@ export const translations: Record<
         },
         components: {
           title: "コンポーネントを見る",
-          description: "150+ のコンポーネントをライブプレビュー付きで。",
+          description: "200+ のコンポーネントをライブプレビュー付きで。",
           cta: "カタログを開く",
         },
         examples: {
