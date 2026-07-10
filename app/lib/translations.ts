@@ -1666,6 +1666,7 @@ export const translations: Record<
       Introduction: "はじめに",
       Installation: "インストール",
       Theming: "テーマ",
+      i18n: "多言語対応",
       Comparison: "比較",
       "By use case": "ユースケース別",
       "AI handoff": "AI連携",

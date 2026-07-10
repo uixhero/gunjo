@@ -9,6 +9,7 @@ export const navigation = [
             { title: "Introduction", href: "/docs/introduction" },
             { title: "Installation", href: "/docs/installation" },
             { title: "Theming", href: "/docs/theming" },
+            { title: "i18n", href: "/docs/i18n" },
             { title: "Comparison", href: "/docs/comparison" },
             { title: "By use case", href: "/docs/by-use-case" },
             { title: "AI handoff", href: "/docs/ai-handoff" },
