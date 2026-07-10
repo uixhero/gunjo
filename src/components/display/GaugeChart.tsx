@@ -3,11 +3,11 @@
 import * as React from "react"
 
 import { cn } from "../../lib/utils"
-import type { ChartColor } from "./chart-utils"
+import type { ChartColor, NumberFormatSpec } from "./chart-utils"
 import {
     chartLabelToString,
     clamp,
-    defaultChartValueFormatter,
+    resolveValueFormatter,
     getChartColor,
     normalizeChartValue,
 } from "./chart-utils"
@@ -24,7 +24,18 @@ export interface GaugeChartProps extends React.HTMLAttributes<HTMLDivElement> {
     label?: React.ReactNode
     valueLabel?: React.ReactNode
     thickness?: number
+    /**
+     * Format the value. **Function prop — pass only from a Client Component**;
+     * from a Server Component it breaks `next build`. For RSC-safe numeric
+     * formatting use the serializable {@link GaugeChartProps.valueFormat}. (#338)
+     */
     formatValue?: (value: number) => React.ReactNode
+    /**
+     * Serializable numeric format — RSC-safe alternative to `formatValue`
+     * (`"number" | "compact" | "integer"` preset or `Intl.NumberFormatOptions`).
+     * Ignored when `formatValue` is set. Formats with a fixed `en-US` locale. (#338)
+     */
+    valueFormat?: NumberFormatSpec
     rangeLabel?: React.ReactNode
 }
 
@@ -50,12 +61,14 @@ const GaugeChart = React.forwardRef<HTMLDivElement, GaugeChartProps>(
             label,
             valueLabel,
             thickness = variant === "compact" ? 16 : 22,
-            formatValue = defaultChartValueFormatter,
+            formatValue: formatValueProp,
+            valueFormat,
             rangeLabel = "Range",
             ...props
         },
         ref
     ) => {
+        const formatValue = resolveValueFormatter(formatValueProp, valueFormat)
         const [tooltipOpen, setTooltipOpen] = React.useState(false)
         const [tooltipPosition, setTooltipPosition] = React.useState({
             x: 50,

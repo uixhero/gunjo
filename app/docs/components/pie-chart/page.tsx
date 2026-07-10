@@ -111,11 +111,15 @@ const propsData = {
         { name: "segments", type: "{ label?: ReactNode; value: number; color?: ChartColor }[]", description: "Proportional segments rendered with a conic gradient." },
         { name: "variant", type: "\"default\" | \"compact\"", default: "\"default\"", description: "Registered SSOT variant for chart size." },
         { name: "showLegend", type: "boolean", default: "false", description: "Renders a ChartLegend below the pie." },
+        { name: "formatValue", type: "(value: number) => ReactNode", description: "Formats each value. Function prop — pass only from a Client Component; from a Server Component it breaks next build. Use valueFormat for RSC-safe formatting." },
+        { name: "valueFormat", type: "\"number\" | \"compact\" | \"integer\" | Intl.NumberFormatOptions", description: "Serializable numeric format — the RSC-safe alternative to formatValue. Ignored when formatValue is set. Fixed en-US locale. (#338)" },
     ],
     ja: [
         { name: "segments", type: "{ label?: ReactNode; value: number; color?: ChartColor }[]", description: "円全体の比率として表示するセグメントです。" },
         { name: "variant", type: "\"default\" | \"compact\"", default: "\"default\"", description: "チャートサイズを切り替える SSOT 登録済みバリエーションです。" },
         { name: "showLegend", type: "boolean", default: "false", description: "円グラフの下にチャート凡例を表示します。" },
+        { name: "formatValue", type: "(value: number) => ReactNode", description: "各値を整形します。関数propのため Client Component からのみ渡すこと（Server Component から渡すと next build が落ちる）。RSC 安全な整形には valueFormat を使う。" },
+        { name: "valueFormat", type: "\"number\" | \"compact\" | \"integer\" | Intl.NumberFormatOptions", description: "シリアライズ可能な数値フォーマット＝formatValue の RSC 安全な代替。formatValue 指定時は無視。en-US ロケール固定。(#338)" },
     ],
 } as const;
 

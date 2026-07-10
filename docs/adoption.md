@@ -124,6 +124,40 @@ export default function Page() {
 
 `npm run dev` で `Button` が GunjoUI のスタイルで表示されれば成功。
 
+## Server Components と関数prop（RSC）
+
+一部のコンポーネントは **関数の prop**（`formatValue` / `formatTime` / `renderCard` / `renderNode` など）を受け取る。これらを **Server Component から直接渡すと `next build` が失敗する**：
+
+```
+Error: Functions cannot be passed directly to Client Components
+unless you explicitly expose it by marking it with "use server".
+```
+
+これは React の制約で、関数はサーバー→クライアント境界をまたげないため。`tsc --noEmit` も `next dev` も気づかず、**`next build`（本番ビルド）だけが検出する**ので、最初の本番ビルドで初めて踏みがち。
+
+**対処（いずれか）**
+
+1. **既定のまま使う** — 関数 prop を渡さなければどのコンポーネントも RSC で安全に描画できる（既定パスはサーバー安全）。
+2. **シリアライズ可能な代替を使う** — 数値整形の主要コンポーネントは、関数の代わりに `valueFormat`（`"number" | "compact" | "integer"` または `Intl.NumberFormatOptions`）を受け取る。これは serializable なので Server Component から渡せる：
+
+   ```tsx
+   // Server Component — OK（関数ではなく serializable な指定）
+   <PieChart segments={data} valueFormat="compact" />
+   <GaugeChart value={72} valueFormat={{ style: "currency", currency: "JPY" }} />
+   ```
+
+3. **クライアント境界で包む** — 関数整形や JSX を返したい場合は、`"use client"` を付けた薄いラッパーに切り出し、そこから関数 prop を渡す：
+
+   ```tsx
+   "use client";
+   import { PieChart } from "@gunjo/ui";
+   export function RevenuePie({ data }: { data: { label: string; value: number }[] }) {
+     return <PieChart segments={data} formatValue={(n) => `¥${n.toLocaleString()}`} />;
+   }
+   ```
+
+> どのコンポーネントが関数 prop を持つかは各コンポーネントの docs（Props 表）で確認できる。`valueFormat` 等の serializable 代替は順次追加中（[#576](https://github.com/uixhero/gunjo/issues/576)）。
+
 ## Dark Mode 有効化
 
 GunjoUI は CSS variables ベースで、`html` または `body` に `class="dark"` を付けるだけで全コンポーネントが dark token に切り替わる。採用先で `next-themes` などのライブラリと組み合わせる場合は、採用先プロジェクトに明示的に追加する：
@@ -180,6 +214,10 @@ v3 の場合は `tailwind.config.ts` の `content` に `node_modules/@gunjo/ui/d
 ### Tailwind v4 で動かない
 
 本リポジトリの docs サイトは v4 + Next 16 で稼働確認済（[dependencies.md](./dependencies.md#テスト済み組み合わせ) の ✅ 行）。v4 で問題が出る場合は最初に `@config` のパス解決を疑う（採用先の `globals.css` から見た相対パスが正しいか）。それでもだめなら issue で報告。
+
+### `Functions cannot be passed directly to Client Components` でビルドが落ちる
+
+Server Component から関数 prop（`formatValue` 等）を渡している。`tsc` / `next dev` は通り `next build` だけが落ちる。[§ Server Components と関数prop](#server-components-と関数proprsc) の対処（`valueFormat` を使う／`"use client"` ラッパーで包む）を参照。
 
 ## 次のステップ
 

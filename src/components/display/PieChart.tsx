@@ -3,10 +3,11 @@
 import * as React from "react"
 
 import { cn } from "../../lib/utils"
-import type { ChartDataPoint } from "./chart-utils"
+import type { ChartDataPoint, NumberFormatSpec } from "./chart-utils"
 import {
     chartLabelToString,
     defaultChartValueFormatter,
+    resolveValueFormatter,
 } from "./chart-utils"
 import { ChartLegend } from "./ChartLegend"
 import { ChartFloatingTooltip } from "./chart-tooltip"
@@ -27,7 +28,18 @@ export interface PieChartProps extends React.HTMLAttributes<HTMLDivElement> {
     segments: ChartDataPoint[]
     variant?: PieChartVariantKey
     showLegend?: boolean
+    /**
+     * Format each value. **Function prop — pass only from a Client Component**;
+     * from a Server Component it breaks `next build`. For RSC-safe numeric
+     * formatting use the serializable {@link PieChartProps.valueFormat} instead. (#338)
+     */
     formatValue?: (value: number) => React.ReactNode
+    /**
+     * Serializable numeric format — the RSC-safe alternative to `formatValue`
+     * (a `"number" | "compact" | "integer"` preset or `Intl.NumberFormatOptions`).
+     * Ignored when `formatValue` is provided. Formats with a fixed `en-US` locale. (#338)
+     */
+    valueFormat?: NumberFormatSpec
     totalLabel?: React.ReactNode
 }
 
@@ -48,12 +60,14 @@ const PieChart = React.forwardRef<HTMLDivElement, PieChartProps>(
             segments,
             variant = pieChartDefaultVariantKey,
             showLegend = false,
-            formatValue = defaultChartValueFormatter,
+            formatValue: formatValueProp,
+            valueFormat,
             totalLabel = "Total",
             ...props
         },
         ref
     ) => {
+        const formatValue = resolveValueFormatter(formatValueProp, valueFormat)
         const normalizedSegments = React.useMemo(
             () => normalizeCircularSegments(segments),
             [segments]

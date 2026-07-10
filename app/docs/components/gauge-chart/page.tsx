@@ -197,7 +197,12 @@ const propsDataByLocale = {
     {
         name: "formatValue",
         type: "(value: number) => ReactNode",
-        description: "Formats values shown in the gauge and tooltip range.",
+        description: "Formats values shown in the gauge and tooltip range. Function prop — pass only from a Client Component; from a Server Component it breaks next build. Use valueFormat for RSC-safe formatting.",
+    },
+    {
+        name: "valueFormat",
+        type: "\"number\" | \"compact\" | \"integer\" | Intl.NumberFormatOptions",
+        description: "Serializable numeric format — the RSC-safe alternative to formatValue. Ignored when formatValue is set. Formats with a fixed en-US locale. (#338)",
     },
     {
         name: "rangeLabel",
@@ -214,7 +219,8 @@ const propsDataByLocale = {
         { name: "color", type: "ChartColor", description: "アクティブな円弧のトークンカラーです。未指定時は primary を使います。" },
         { name: "label", type: "ReactNode", description: "値の下に表示する補足ラベルです。" },
         { name: "valueLabel", type: "ReactNode", description: "ゲージ内に表示する任意の表示値です。" },
-        { name: "formatValue", type: "(value: number) => ReactNode", description: "ゲージとツールチップ範囲に表示する値を整形します。" },
+        { name: "formatValue", type: "(value: number) => ReactNode", description: "ゲージとツールチップ範囲に表示する値を整形します。関数propのため Client Component からのみ渡すこと（Server Component から渡すと next build が落ちる）。RSC 安全な整形には valueFormat を使う。" },
+        { name: "valueFormat", type: "\"number\" | \"compact\" | \"integer\" | Intl.NumberFormatOptions", description: "シリアライズ可能な数値フォーマット＝formatValue の RSC 安全な代替。formatValue 指定時は無視。en-US ロケール固定で整形。(#338)" },
         { name: "rangeLabel", type: "ReactNode", default: "\"Range\"", description: "ツールチップとアクセシビリティテキストで min/max 範囲の前に表示するラベルです。" },
     ],
 } as const;
