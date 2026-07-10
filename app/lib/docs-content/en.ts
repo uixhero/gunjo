@@ -23,7 +23,7 @@ export const contentEn: Record<string, DocContent> = {
     description: "An SSOT-driven React + Tailwind design system for rich, data-dense applications. 200+ components, three-axis verified (Pen / source / docs).",
     body: `GunjoUI is built around a single source of truth: design tokens and component variants are derived from \`.pen\` design files and synchronized into TypeScript implementation, structured JSON specs, and docs registration. Every primitive is verified across Pen / source / docs. It does not fully auto-generate every page from \`.pen\`; instead, it keeps design data, implementation, and documentation aligned through sync and verification.
 
-It uses **Radix UI** primitives for accessibility and **Tailwind CSS** for styling. Distributed as **\`@gunjo/ui\`** on npm — currently early alpha (\`0.0.1-alpha.2\`), API may change before 1.0 stable.
+It uses **Radix UI** primitives for accessibility and **Tailwind CSS** for styling. Distributed as **\`@gunjo/ui\`** on npm — currently early alpha (\`0.0.1-alpha.3\`), API may change before 1.0 stable.
 
 ### Adoption modes
 
