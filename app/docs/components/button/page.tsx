@@ -164,9 +164,11 @@ export function Example() {
         },
         {
             name: "size",
-            type: '"xs" | "sm" | "default" | "lg" | "xl" | "icon"',
+            type: '"xs" | "sm" | "default" | "lg" | "xl" | "touch" | "icon" | "icon-touch"',
             default: '"default"',
-            description: locale === "ja" ? "ボタンのサイズを指定します。" : "The size of the button.",
+            description: locale === "ja"
+                ? "ボタンのサイズを指定します。touch は 44px のタップ標的（モバイル/toC 向け・WCAG 2.5.5）で、標準の余白のまま高さだけ確保します。icon-touch はそのアイコン専用版（44×44px）です。"
+                : "The size of the button. Use touch for a 44px tap target (mobile / consumer, WCAG 2.5.5) at default density, and icon-touch for its 44×44px icon-only twin.",
         },
         {
             name: "asChild",
@@ -226,8 +228,8 @@ export function Example() {
                             title: locale === "ja" ? "サイズ展開" : "Sizes",
                             description:
                                 locale === "ja"
-                                    ? "テキストボタンは xs / sm / default / lg / xl を使い分け、アイコンのみの操作は size=\"icon\" と aria-label を組み合わせます。"
-                                    : "Use xs / sm / default / lg / xl for text buttons, and pair icon-only actions with size=\"icon\" and an aria-label.",
+                                    ? "テキストボタンは xs / sm / default / lg / xl を使い分け、アイコンのみの操作は size=\"icon\" と aria-label を組み合わせます。モバイル/toC 画面では 44px のタップ標的（WCAG 2.5.5）を満たす size=\"touch\"（アイコンは size=\"icon-touch\"）を使います。"
+                                    : "Use xs / sm / default / lg / xl for text buttons, and pair icon-only actions with size=\"icon\" and an aria-label. On mobile / consumer screens use size=\"touch\" (or size=\"icon-touch\") to meet the 44px tap target (WCAG 2.5.5).",
                             preview: (
                                 <div className="flex flex-wrap items-center gap-3">
                                     <Button size="xs">{locale === "ja" ? "極小" : "X-small"}</Button>
@@ -235,10 +237,18 @@ export function Example() {
                                     <Button>{locale === "ja" ? "標準" : "Default"}</Button>
                                     <Button size="lg">{locale === "ja" ? "大" : "Large"}</Button>
                                     <Button size="xl">{locale === "ja" ? "特大" : "X-large"}</Button>
+                                    <Button size="touch">{locale === "ja" ? "タップ (44px)" : "Touch (44px)"}</Button>
                                     <Button
                                         size="icon"
                                         variant="outline"
                                         aria-label={locale === "ja" ? "保存" : "Save"}
+                                    >
+                                        <Save className="h-4 w-4" />
+                                    </Button>
+                                    <Button
+                                        size="icon-touch"
+                                        variant="outline"
+                                        aria-label={locale === "ja" ? "保存（タップ標的 44px）" : "Save (44px tap target)"}
                                     >
                                         <Save className="h-4 w-4" />
                                     </Button>
@@ -256,7 +266,11 @@ export default function ButtonSizes() {
       <Button>標準</Button>
       <Button size="lg">大</Button>
       <Button size="xl">特大</Button>
+      <Button size="touch">タップ (44px)</Button>
       <Button size="icon" variant="outline" aria-label="保存">
+        <Save className="h-4 w-4" />
+      </Button>
+      <Button size="icon-touch" variant="outline" aria-label="保存（タップ標的 44px）">
         <Save className="h-4 w-4" />
       </Button>
     </div>
@@ -273,7 +287,11 @@ export default function ButtonSizes() {
       <Button>Default</Button>
       <Button size="lg">Large</Button>
       <Button size="xl">X-large</Button>
+      <Button size="touch">Touch (44px)</Button>
       <Button size="icon" variant="outline" aria-label="Save">
+        <Save className="h-4 w-4" />
+      </Button>
+      <Button size="icon-touch" variant="outline" aria-label="Save (44px tap target)">
         <Save className="h-4 w-4" />
       </Button>
     </div>
