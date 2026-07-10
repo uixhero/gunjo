@@ -46,7 +46,13 @@ export interface WeekViewProps extends Omit<React.HTMLAttributes<HTMLDivElement>
     weekdayLabels?: string[]
     /** Suffix appended after the weekday in event button accessible names. Default `"曜"`. */
     daySuffix?: string
-    /** Override the event button accessible name. */
+    /**
+     * Override the event button accessible name.
+     * **Function prop — pass only from a Client Component** (WeekView is
+     * `"use client"`); from a Server Component it breaks `next build`. It composes
+     * from the event + context, so there is no serializable preset — wrap in a
+     * thin `"use client"` component to pass this from an RSC. (#338)
+     */
     formatEventAriaLabel?: (event: WeekEvent, context: { weekday: string; start: string; end: string }) => string
     onSelectEvent?: (event: WeekEvent) => void
 }

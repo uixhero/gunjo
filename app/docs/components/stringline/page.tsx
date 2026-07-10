@@ -312,6 +312,7 @@ export function TrainDiagram() {
     { name: "runLabel / directionLabels", type: "string / object", description: locale === "ja" ? "選択可能な運行の読み上げ文言をローカライズします。" : "Localizes focusable run hit-target labels." },
     { name: "selectedRunId", type: "string | number", description: locale === "ja" ? "1本の運行を強調し、他を淡色化します。" : "Highlights one run and dims the rest." },
     { name: "height", type: "number", default: "320", description: locale === "ja" ? "プロット高さです。" : "Plot height in pixels." },
+    { name: "formatTime", type: "(time: number) => string", description: locale === "ja" ? "軸ラベルの時刻を整形します（既定は0時からの分を HH:MM）。関数propのため Client Component からのみ渡すこと（Server Component から渡すと next build が落ちる）。ドメイン値のため serializable な代替は無く、RSC からは \"use client\" ラッパーで包む。(#338)" : "Formats axis-label times (default: minutes-from-midnight as HH:MM). Function prop — pass only from a Client Component; from a Server Component it breaks next build. It takes a domain value so there is no serializable preset — wrap in a \"use client\" component to pass it from an RSC. (#338)" },
   ];
 
   return (
