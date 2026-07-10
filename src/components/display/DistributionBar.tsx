@@ -3,12 +3,13 @@
 import * as React from "react"
 
 import { cn } from "../../lib/utils"
-import type { ChartDataPoint } from "./chart-utils"
+import type { ChartDataPoint, NumberFormatSpec } from "./chart-utils"
 import {
     chartLabelToString,
     defaultChartValueFormatter,
     getChartColor,
     normalizeChartValue,
+    resolveValueFormatter,
 } from "./chart-utils"
 import { ChartLegend } from "./ChartLegend"
 import { ChartTooltip } from "./chart-tooltip"
@@ -16,7 +17,18 @@ import { ChartTooltip } from "./chart-tooltip"
 export interface DistributionBarProps extends React.HTMLAttributes<HTMLDivElement> {
     segments: ChartDataPoint[]
     showLegend?: boolean
+    /**
+     * Format each segment value. **Function prop — pass only from a Client
+     * Component**; from a Server Component it breaks `next build`. For RSC-safe
+     * numeric formatting use the serializable {@link DistributionBarProps.valueFormat}. (#338)
+     */
     formatValue?: (value: number) => React.ReactNode
+    /**
+     * Serializable numeric format — the RSC-safe alternative to `formatValue`
+     * (`"number" | "compact" | "integer"` preset or `Intl.NumberFormatOptions`).
+     * Ignored when `formatValue` is set. Formats with a fixed `en-US` locale. (#338)
+     */
+    valueFormat?: NumberFormatSpec
     totalLabel?: React.ReactNode
 }
 
@@ -32,12 +44,14 @@ const DistributionBar = React.forwardRef<HTMLDivElement, DistributionBarProps>(
             className,
             segments,
             showLegend = false,
-            formatValue = defaultChartValueFormatter,
+            formatValue: formatValueProp,
+            valueFormat,
             totalLabel = "Total",
             ...props
         },
         ref
     ) => {
+        const formatValue = resolveValueFormatter(formatValueProp, valueFormat)
         const total = Math.max(
             segments.reduce((sum, segment) => sum + getPositiveValue(segment.value), 0),
             1

@@ -103,11 +103,32 @@ export function resolveValueFormatter(
     valueFormat: NumberFormatSpec | undefined,
 ): (value: number) => ReactNode {
     if (formatValue) return formatValue
-    if (valueFormat !== undefined) {
-        const options =
-            typeof valueFormat === "string" ? NUMBER_FORMAT_PRESETS[valueFormat] : valueFormat
-        const nf = new Intl.NumberFormat("en-US", options)
-        return (value: number) => nf.format(value)
-    }
+    if (valueFormat !== undefined) return numberFormatterFromSpec(valueFormat)
     return defaultChartValueFormatter
+}
+
+/** Build a string formatter from a serializable {@link NumberFormatSpec} (fixed `en-US`). */
+export function numberFormatterFromSpec(valueFormat: NumberFormatSpec): (value: number) => string {
+    const options =
+        typeof valueFormat === "string" ? NUMBER_FORMAT_PRESETS[valueFormat] : valueFormat
+    const nf = new Intl.NumberFormat("en-US", options)
+    return (value: number) => nf.format(value)
+}
+
+/**
+ * String-returning sibling of {@link resolveValueFormatter} — for components whose
+ * formatter returns a plain `string` (used in aria-labels / template text rather
+ * than a JSX slot). Precedence: `formatValue` > `valueFormat` > `fallback`
+ * (default {@link defaultChartValueFormatter}). Same RSC-safety rule: pass a
+ * `formatValue` function only from a Client Component; prefer the serializable
+ * `valueFormat` from a Server Component. (#338)
+ */
+export function resolveValueFormatterToString(
+    formatValue: ((value: number) => string) | undefined,
+    valueFormat: NumberFormatSpec | undefined,
+    fallback: (value: number) => string = defaultChartValueFormatter,
+): (value: number) => string {
+    if (formatValue) return formatValue
+    if (valueFormat !== undefined) return numberFormatterFromSpec(valueFormat)
+    return fallback
 }

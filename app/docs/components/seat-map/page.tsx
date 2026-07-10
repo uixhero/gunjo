@@ -225,7 +225,8 @@ export function SeatPicker() {
     { name: "selectedIds", type: "string[]", description: locale === "ja" ? "選択中の座席IDです。" : "Controlled selected seat ids." },
     { name: "maxSelectable", type: "number", description: locale === "ja" ? "選択上限です。" : "Maximum selectable seats." },
     { name: "onToggle", type: "(seatId: string) => void", description: locale === "ja" ? "操作可能な空席を選択/解除した時に呼ばれます。" : "Called when an interactive available seat is toggled." },
-    { name: "formatFee", type: "(fee: number) => string", description: locale === "ja" ? "アクセシブル名に含める料金表示です。" : "Formats fees included in accessible names." },
+    { name: "formatFee", type: "(fee: number) => string", description: locale === "ja" ? "アクセシブル名に含める料金表示です。関数propのため Client Component からのみ渡すこと（Server Component から渡すと next build が落ちる）。RSC 安全な整形には feeFormat を使う。" : "Formats fees included in accessible names. Function prop — pass only from a Client Component; from a Server Component it breaks next build. Use feeFormat for RSC-safe formatting." },
+    { name: "feeFormat", type: "\"number\" | \"compact\" | \"integer\" | Intl.NumberFormatOptions", description: locale === "ja" ? "シリアライズ可能な料金フォーマット＝formatFee の RSC 安全な代替（例: { style: \"currency\", currency: \"JPY\" }）。formatFee 指定時は無視。en-US ロケール固定。(#338)" : "Serializable fee format — RSC-safe alternative to formatFee (e.g. { style: \"currency\", currency: \"JPY\" }). Ignored when formatFee is set. Fixed en-US locale. (#338)" },
     { name: "labels", type: "SeatMapLabels", description: locale === "ja" ? "状態、位置、凡例、座席名をローカライズします。" : "Localizes states, position names, legend copy, and composed seat names." },
     { name: "showHeaders / hideLegend", type: "boolean", description: locale === "ja" ? "列/行ヘッダーと凡例の表示を制御します。" : "Controls column/row headers and built-in legend visibility." },
   ];
