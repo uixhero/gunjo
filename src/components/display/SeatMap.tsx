@@ -4,6 +4,8 @@ import * as React from "react"
 import { IconCheck, IconX } from "@tabler/icons-react"
 
 import { cn } from "../../lib/utils"
+import type { NumberFormatSpec } from "./chart-utils"
+import { resolveValueFormatterToString } from "./chart-utils"
 import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
 
 /** Seat availability. `selected` is derived from `selectedIds`, not set here. */
@@ -60,8 +62,20 @@ export interface SeatMapProps extends Omit<React.HTMLAttributes<HTMLDivElement>,
   maxSelectable?: number
   /** Toggle a seat (only fired for an available seat that isn't capped out). */
   onToggle?: (seatId: string) => void
-  /** Format a fee for the accessible name. Default `¥1,500`. */
+  /**
+   * Format a fee for the accessible name. Default `¥1,500`.
+   * **Function prop — pass only from a Client Component** (SeatMap is
+   * `"use client"`); from a Server Component it breaks `next build`. For RSC-safe
+   * formatting use the serializable {@link SeatMapProps.feeFormat}. (#338)
+   */
   formatFee?: (fee: number) => string
+  /**
+   * Serializable numeric format for the fee — the RSC-safe alternative to
+   * `formatFee` (`"number" | "compact" | "integer"` preset or
+   * `Intl.NumberFormatOptions`, e.g. `{ style: "currency", currency: "JPY" }`).
+   * Ignored when `formatFee` is set. Fixed `en-US` locale. (#338)
+   */
+  feeFormat?: NumberFormatSpec
   /** Show the column-id header row + numeric row labels. Default `true`. */
   showHeaders?: boolean
   /** Hide the built-in state legend. */
@@ -123,7 +137,8 @@ export const SeatMap = React.forwardRef<HTMLDivElement, SeatMapProps>(
       selectedIds = [],
       maxSelectable,
       onToggle,
-      formatFee = defaultFee,
+      formatFee: formatFeeProp,
+      feeFormat,
       showHeaders = true,
       hideLegend,
       label = "座席表",
@@ -133,6 +148,7 @@ export const SeatMap = React.forwardRef<HTMLDivElement, SeatMapProps>(
     },
     ref
   ) => {
+    const formatFee = resolveValueFormatterToString(formatFeeProp, feeFormat, defaultFee)
     const selected = React.useMemo(() => new Set(selectedIds), [selectedIds])
     const capped = maxSelectable != null && selected.size >= maxSelectable
     const resolvedLabels = React.useMemo(() => resolveLabels(labels), [labels])

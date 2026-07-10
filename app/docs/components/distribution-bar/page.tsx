@@ -247,7 +247,12 @@ const propsDataByLocale = {
     {
         name: "formatValue",
         type: "(value: number) => ReactNode",
-        description: "Formats raw segment values shown in tooltips and legend descriptions.",
+        description: "Formats raw segment values shown in tooltips and legend descriptions. Function prop — pass only from a Client Component; from a Server Component it breaks next build. Use valueFormat for RSC-safe formatting.",
+    },
+    {
+        name: "valueFormat",
+        type: "\"number\" | \"compact\" | \"integer\" | Intl.NumberFormatOptions",
+        description: "Serializable numeric format — the RSC-safe alternative to formatValue. Ignored when formatValue is set. Fixed en-US locale. (#338)",
     },
     {
         name: "totalLabel",
@@ -259,7 +264,8 @@ const propsDataByLocale = {
     ja: [
         { name: "segments", type: "{ label?: ReactNode; value: number; color?: ChartColor }[]", description: "積み上げ割合バーに正規化して表示するセグメントです。" },
         { name: "showLegend", type: "boolean", default: "false", description: "バーの下にチャート凡例を表示します。" },
-        { name: "formatValue", type: "(value: number) => ReactNode", description: "ツールチップと凡例説明に表示する生のセグメント値を整形します。" },
+        { name: "formatValue", type: "(value: number) => ReactNode", description: "ツールチップと凡例説明に表示する生のセグメント値を整形します。関数propのため Client Component からのみ渡すこと（Server Component から渡すと next build が落ちる）。RSC 安全な整形には valueFormat を使う。" },
+        { name: "valueFormat", type: "\"number\" | \"compact\" | \"integer\" | Intl.NumberFormatOptions", description: "シリアライズ可能な数値フォーマット＝formatValue の RSC 安全な代替。formatValue 指定時は無視。en-US ロケール固定。(#338)" },
         { name: "totalLabel", type: "ReactNode", default: "\"Total\"", description: "凡例ツールチップで生のセグメント値の前に表示するラベルです。" },
     ],
 } as const;
