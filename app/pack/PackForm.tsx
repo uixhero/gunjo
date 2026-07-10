@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { track } from "@vercel/analytics";
-import { IconCircleCheckFilled, IconMailCheck } from "@tabler/icons-react";
+import { IconArrowLeft, IconCircleCheckFilled, IconMailCheck } from "@tabler/icons-react";
 import {
     Form,
     FormField,
@@ -132,7 +132,14 @@ export function PackForm({ industries, coldTestCount, returnPath }: PackFormProp
                         <div className="flex flex-col items-center justify-center gap-3 sm:flex-row">
                             <Button asChild>
                                 <Link href={returnPath ?? "/cold-tests"}>
-                                    {returnPath ? "← 元のページに戻る" : "コールドテストを見る"}
+                                    {returnPath ? (
+                                        <>
+                                            <IconArrowLeft className="size-4" aria-hidden />
+                                            元のページに戻る
+                                        </>
+                                    ) : (
+                                        "コールドテストを見る"
+                                    )}
                                 </Link>
                             </Button>
                             {returnPath ? (

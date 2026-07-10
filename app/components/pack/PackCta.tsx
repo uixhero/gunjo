@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { track } from "@vercel/analytics";
+import { IconArrowRight } from "@tabler/icons-react";
 import { Banner, Button } from "@gunjo/ui";
 
 interface PackCtaProps {
@@ -39,7 +40,8 @@ export function PackCta({
                         href={href}
                         onClick={() => track("pack_cta_click", { placement })}
                     >
-                        先行登録 →
+                        先行登録
+                        <IconArrowRight className="size-4" aria-hidden />
                     </Link>
                 </Button>
             }
