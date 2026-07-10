@@ -3,11 +3,11 @@
 import * as React from "react"
 
 import { cn } from "../../lib/utils"
-import type { ChartColor, ChartDataPoint } from "./chart-utils"
+import type { ChartColor, ChartDataPoint, NumberFormatSpec } from "./chart-utils"
 import {
     chartLabelToString,
     clamp,
-    defaultChartValueFormatter,
+    resolveValueFormatter,
     getChartColor,
     getChartLabel,
     getChartValue,
@@ -39,7 +39,18 @@ export interface SparklineChartProps
     showGrid?: boolean
     showDots?: boolean
     strokeWidth?: number
+    /**
+     * Format each value. **Function prop — pass only from a Client Component**;
+     * from a Server Component it breaks `next build`. For RSC-safe numeric
+     * formatting use the serializable {@link SparklineChartProps.valueFormat}. (#338)
+     */
     formatValue?: (value: number) => React.ReactNode
+    /**
+     * Serializable numeric format — the RSC-safe alternative to `formatValue`
+     * (`"number" | "compact" | "integer"` preset or `Intl.NumberFormatOptions`).
+     * Ignored when `formatValue` is set. Formats with a fixed `en-US` locale. (#338)
+     */
+    valueFormat?: NumberFormatSpec
 }
 
 const sparklineChartVariantClasses: Record<SparklineChartVariantKey, string> = {
@@ -180,11 +191,13 @@ const SparklineChart = React.forwardRef<HTMLDivElement, SparklineChartProps>(
             showGrid = true,
             showDots = false,
             strokeWidth = 2,
-            formatValue = defaultChartValueFormatter,
+            formatValue: formatValueProp,
+            valueFormat,
             ...props
         },
         ref
     ) => {
+        const formatValue = resolveValueFormatter(formatValueProp, valueFormat)
         const [setRootNode, size] = useElementSize<HTMLDivElement>()
         const [tooltipOpen, setTooltipOpen] = React.useState(false)
         const [tooltipPosition, setTooltipPosition] = React.useState({

@@ -10,12 +10,13 @@ import {
     CardHeader,
     CardTitle,
 } from "./Card"
-import type { ChartColor } from "./chart-utils"
+import type { ChartColor, NumberFormatSpec } from "./chart-utils"
 import {
     chartLabelToString,
     defaultChartValueFormatter,
     getChartColor,
     normalizeChartValue,
+    resolveValueFormatter,
 } from "./chart-utils"
 import { ChartTooltip } from "./chart-tooltip"
 import type { ActivityTimelineCardVariantKey } from "./generated/variant-keys"
@@ -57,7 +58,18 @@ export interface ActivityTimelineCardProps
     max?: number
     selectedSlot?: number
     showSlotValues?: boolean
+    /**
+     * Format each value. **Function prop — pass only from a Client Component**;
+     * from a Server Component it breaks `next build`. For RSC-safe numeric
+     * formatting use the serializable {@link ActivityTimelineCardProps.valueFormat}. (#338)
+     */
     formatValue?: (value: number) => React.ReactNode
+    /**
+     * Serializable numeric format — the RSC-safe alternative to `formatValue`
+     * (`"number" | "compact" | "integer"` preset or `Intl.NumberFormatOptions`).
+     * Ignored when `formatValue` is set. Formats with a fixed `en-US` locale. (#338)
+     */
+    valueFormat?: NumberFormatSpec
     totalLabel?: React.ReactNode
     onSlotSelect?: (slot: ActivityTimelineSlot, index: number) => void
 }
@@ -124,13 +136,15 @@ const ActivityTimelineCard = React.forwardRef<
             max,
             selectedSlot,
             showSlotValues = false,
-            formatValue = defaultChartValueFormatter,
+            formatValue: formatValueProp,
+            valueFormat,
             totalLabel = "Total",
             onSlotSelect,
             ...props
         },
         ref
     ) => {
+        const formatValue = resolveValueFormatter(formatValueProp, valueFormat)
         const styles = variantClasses[variant]
         const maxValue = getMaxValue(slots, max)
         const segmentTotal = getSegmentTotal(segments)

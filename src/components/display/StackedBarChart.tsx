@@ -3,10 +3,11 @@
 import * as React from "react"
 
 import { cn } from "../../lib/utils"
-import type { ChartColor } from "./chart-utils"
+import type { ChartColor, NumberFormatSpec } from "./chart-utils"
 import {
     chartLabelToString,
     defaultChartValueFormatter,
+    resolveValueFormatter,
     getChartColor,
     normalizeChartValue,
 } from "./chart-utils"
@@ -36,7 +37,18 @@ export interface StackedBarChartProps
     showLabels?: boolean
     showValues?: boolean
     showLegend?: boolean
+    /**
+     * Format each value. **Function prop — pass only from a Client Component**;
+     * from a Server Component it breaks `next build`. For RSC-safe numeric
+     * formatting use the serializable {@link StackedBarChartProps.valueFormat}. (#338)
+     */
     formatValue?: (value: number) => React.ReactNode
+    /**
+     * Serializable numeric format — the RSC-safe alternative to `formatValue`
+     * (`"number" | "compact" | "integer"` preset or `Intl.NumberFormatOptions`).
+     * Ignored when `formatValue` is set. Formats with a fixed `en-US` locale. (#338)
+     */
+    valueFormat?: NumberFormatSpec
     totalLabel?: React.ReactNode
 }
 
@@ -129,12 +141,14 @@ const StackedBarChart = React.forwardRef<HTMLDivElement, StackedBarChartProps>(
             showLabels = true,
             showValues = false,
             showLegend = false,
-            formatValue = defaultChartValueFormatter,
+            formatValue: formatValueProp,
+            valueFormat,
             totalLabel = "Total",
             ...props
         },
         ref
     ) => {
+        const formatValue = resolveValueFormatter(formatValueProp, valueFormat)
         const maxTotal = getMaxTotal(data, max)
         const legendItems = getLegendItems(data, formatValue, totalLabel)
         const shouldConstrainVerticalTrack = variant === "vertical" && data.length <= 5

@@ -3,13 +3,13 @@
 import * as React from "react"
 
 import { cn } from "../../lib/utils"
-import type { ChartColor } from "./chart-utils"
+import type { ChartColor, NumberFormatSpec } from "./chart-utils"
 import {
     chartLabelToString,
     clamp,
-    defaultChartValueFormatter,
     getChartColor,
     normalizeChartValue,
+    resolveValueFormatter,
 } from "./chart-utils"
 import { ChartTooltip } from "./chart-tooltip"
 import type { QuadrantMatrixVariantKey } from "./generated/variant-keys"
@@ -43,7 +43,18 @@ export interface QuadrantMatrixProps extends React.HTMLAttributes<HTMLDivElement
     xAxisLabel?: React.ReactNode
     yAxisLabel?: React.ReactNode
     quadrantLabels?: QuadrantMatrixLabels
+    /**
+     * Format each value. **Function prop — pass only from a Client Component**;
+     * from a Server Component it breaks `next build`. For RSC-safe numeric
+     * formatting use the serializable {@link QuadrantMatrixProps.valueFormat}. (#338)
+     */
     formatValue?: (value: number) => React.ReactNode
+    /**
+     * Serializable numeric format — the RSC-safe alternative to `formatValue`
+     * (`"number" | "compact" | "integer"` preset or `Intl.NumberFormatOptions`).
+     * Ignored when `formatValue` is set. Formats with a fixed `en-US` locale. (#338)
+     */
+    valueFormat?: NumberFormatSpec
     onItemSelect?: (item: QuadrantMatrixItem, id: string) => void
     rankingPlacement?: "side" | "bottom"
 }
@@ -119,13 +130,15 @@ const QuadrantMatrix = React.forwardRef<HTMLDivElement, QuadrantMatrixProps>(
             xAxisLabel,
             yAxisLabel,
             quadrantLabels,
-            formatValue = defaultChartValueFormatter,
+            formatValue: formatValueProp,
+            valueFormat,
             onItemSelect,
             rankingPlacement = "side",
             ...props
         },
         ref
     ) => {
+        const formatValue = resolveValueFormatter(formatValueProp, valueFormat)
         const values = items.map((item) => item.value)
         const maxValue = Math.max(max ?? 0, ...values, 1)
         const rankedItems = [...items]

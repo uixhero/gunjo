@@ -10,12 +10,13 @@ import {
     CardHeader,
     CardTitle,
 } from "./Card"
-import type { ChartDataPoint } from "./chart-utils"
+import type { ChartDataPoint, NumberFormatSpec } from "./chart-utils"
 import {
     chartLabelToString,
     defaultChartValueFormatter,
     getChartColor,
     normalizeChartValue,
+    resolveValueFormatter,
 } from "./chart-utils"
 import { ChartTooltip } from "./chart-tooltip"
 import type { MiniDistributionBarCardVariantKey } from "./generated/variant-keys"
@@ -39,7 +40,18 @@ export interface MiniDistributionBarCardProps
     max?: number
     caption?: React.ReactNode
     variant?: MiniDistributionBarCardVariantKey
+    /**
+     * Format each value. **Function prop — pass only from a Client Component**;
+     * from a Server Component it breaks `next build`. For RSC-safe numeric
+     * formatting use the serializable {@link MiniDistributionBarCardProps.valueFormat}. (#338)
+     */
     formatValue?: (value: number) => React.ReactNode
+    /**
+     * Serializable numeric format — the RSC-safe alternative to `formatValue`
+     * (`"number" | "compact" | "integer"` preset or `Intl.NumberFormatOptions`).
+     * Ignored when `formatValue` is set. Formats with a fixed `en-US` locale. (#338)
+     */
+    valueFormat?: NumberFormatSpec
     totalLabel?: React.ReactNode
     onSegmentSelect?: (segment: MiniDistributionBarCardSegment, index: number) => void
 }
@@ -128,13 +140,15 @@ const MiniDistributionBarCard = React.forwardRef<
             max,
             caption,
             variant = miniDistributionBarCardDefaultVariantKey,
-            formatValue = defaultChartValueFormatter,
+            formatValue: formatValueProp,
+            valueFormat,
             totalLabel = "Total",
             onSegmentSelect,
             ...props
         },
         ref
     ) => {
+        const formatValue = resolveValueFormatter(formatValueProp, valueFormat)
         const styles = variantClasses[variant]
         const total = getTotal(segments, max)
         const ticks = buildTicks(segments, tickCount, total)

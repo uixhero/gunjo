@@ -10,13 +10,14 @@ import {
     CardHeader,
     CardTitle,
 } from "./Card"
-import type { ChartDataPoint } from "./chart-utils"
+import type { ChartDataPoint, NumberFormatSpec } from "./chart-utils"
 import {
     chartLabelToString,
     clamp,
     defaultChartValueFormatter,
     getChartColor,
     normalizeChartValue,
+    resolveValueFormatter,
 } from "./chart-utils"
 import { ChartFloatingTooltip, ChartTooltip } from "./chart-tooltip"
 import type { SegmentedGaugeCardVariantKey } from "./generated/variant-keys"
@@ -46,7 +47,18 @@ export interface SegmentedGaugeCardProps
     max?: number
     thickness?: number
     showLegend?: boolean
+    /**
+     * Format each value. **Function prop — pass only from a Client Component**;
+     * from a Server Component it breaks `next build`. For RSC-safe numeric
+     * formatting use the serializable {@link SegmentedGaugeCardProps.valueFormat}. (#338)
+     */
     formatValue?: (value: number) => React.ReactNode
+    /**
+     * Serializable numeric format — the RSC-safe alternative to `formatValue`
+     * (`"number" | "compact" | "integer"` preset or `Intl.NumberFormatOptions`).
+     * Ignored when `formatValue` is set. Formats with a fixed `en-US` locale. (#338)
+     */
+    valueFormat?: NumberFormatSpec
     totalLabel?: React.ReactNode
     onSegmentSelect?: (segment: SegmentedGaugeCardSegment, index: number) => void
 }
@@ -205,13 +217,15 @@ const SegmentedGaugeCard = React.forwardRef<
             max,
             thickness = variant === "compact" ? 18 : 24,
             showLegend = true,
-            formatValue = defaultChartValueFormatter,
+            formatValue: formatValueProp,
+            valueFormat,
             totalLabel = "Total",
             onSegmentSelect,
             ...props
         },
         ref
     ) => {
+        const formatValue = resolveValueFormatter(formatValueProp, valueFormat)
         const styles = variantClasses[variant]
         const segmentTotal = getSegmentTotal(segments)
         const resolvedMax = Math.max(max ?? segmentTotal, segmentTotal, 1)

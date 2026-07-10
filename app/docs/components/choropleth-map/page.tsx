@@ -367,8 +367,9 @@ const propsDataByLocale = {
     {
         name: "formatValue",
         type: "(value: number) => ReactNode",
-        description: "Formats region, marker, ranking, and selected-region values.",
+        description: "Formats region, marker, ranking, and selected-region values. Function prop — pass only from a Client Component; from a Server Component it breaks next build. Use valueFormat for RSC-safe formatting.",
     },
+    { name: "valueFormat", type: "\"number\" | \"compact\" | \"integer\" | Intl.NumberFormatOptions", description: "Serializable numeric format — the RSC-safe alternative to formatValue. Ignored when formatValue is set. Fixed en-US locale. (#338)" },
     {
         name: "selectedLabel",
         type: "ReactNode",
@@ -403,7 +404,8 @@ const propsDataByLocale = {
         { name: "rankingLimit", type: "number", default: "6", description: "表示するランキング領域数を制限します。" },
         { name: "showSelectedRegion", type: "boolean", default: "true", description: "地図の下に選択中領域の詳細カードを表示します。" },
         { name: "preserveAspectRatio", type: "boolean", default: "true", description: "地理座標データがパネル比率に合わせて引き伸ばされないようにします。" },
-        { name: "formatValue", type: "(value: number) => ReactNode", description: "領域、マーカー、ランキング、選択中領域の値を整形します。" },
+        { name: "formatValue", type: "(value: number) => ReactNode", description: "領域、マーカー、ランキング、選択中領域の値を整形します。 関数propのため Client Component からのみ渡すこと（Server Component から渡すと next build が落ちる）。RSC 安全な整形には valueFormat を使う。" },
+        { name: "valueFormat", type: "\"number\" | \"compact\" | \"integer\" | Intl.NumberFormatOptions", description: "シリアライズ可能な数値フォーマット＝formatValue の RSC 安全な代替。formatValue 指定時は無視。en-US ロケール固定。(#338)" },
         { name: "selectedLabel", type: "ReactNode", default: "\"Selected\"", description: "選択中領域の詳細カード上部に表示するラベルです。" },
         { name: "rankLabel", type: "ReactNode", default: "\"Rank\"", description: "ランキング番号のアクセシブルラベル接頭辞です。" },
         { name: "onRegionSelect", type: "(region: ChoroplethMapRegion, id: string) => void", description: "地図領域またはランキング行がクリックされたときに呼ばれます。" },
