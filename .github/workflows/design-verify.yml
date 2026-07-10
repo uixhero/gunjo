@@ -346,3 +346,15 @@ jobs:
 
       - name: Type check
         run: npm run type-check
+
+      # Production build gate — the only step that catches build-time RSC
+      # errors that tsc and `next dev` miss: a Server Component passing a
+      # function prop to a Client Component ("Functions cannot be passed
+      # directly to Client Components"), and the sibling "missing use client"
+      # class. Without this, that whole class escapes the PR gate and only
+      # surfaces on the post-merge production deploy (or an adopter's first
+      # `next build`). See #338 / #576.
+      - name: Production build (RSC / use-client guard)
+        run: npm run build
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"

@@ -69,3 +69,45 @@ export function defaultChartValueFormatter(value: number) {
         maximumFractionDigits: value % 1 === 0 ? 0 : 1,
     }).format(value)
 }
+
+/**
+ * Serializable numeric-format spec — the RSC-safe alternative to a `formatValue`
+ * function prop. A string preset or raw `Intl.NumberFormatOptions`. (#338 / #576)
+ */
+export type NumberFormatSpec =
+    | "number"
+    | "compact"
+    | "integer"
+    | Intl.NumberFormatOptions
+
+const NUMBER_FORMAT_PRESETS: Record<"number" | "compact" | "integer", Intl.NumberFormatOptions> = {
+    number: {},
+    compact: { notation: "compact", maximumFractionDigits: 1 },
+    integer: { maximumFractionDigits: 0 },
+}
+
+/**
+ * Resolve a numeric value formatter from either a function (`formatValue`) or a
+ * **serializable** spec (`valueFormat`). Precedence: `formatValue` > `valueFormat`
+ * > {@link defaultChartValueFormatter}.
+ *
+ * `formatValue` is a function prop — pass it only from a Client Component (or a
+ * `"use client"` boundary). A **Server Component** that passes it breaks
+ * `next build` ("Functions cannot be passed directly to Client Components"). For
+ * the common numeric cases prefer `valueFormat`, which is serializable and
+ * RSC-safe. It formats with a fixed `en-US` locale (deterministic SSR); for
+ * locale-aware or JSX output, use `formatValue`. (#338)
+ */
+export function resolveValueFormatter(
+    formatValue: ((value: number) => ReactNode) | undefined,
+    valueFormat: NumberFormatSpec | undefined,
+): (value: number) => ReactNode {
+    if (formatValue) return formatValue
+    if (valueFormat !== undefined) {
+        const options =
+            typeof valueFormat === "string" ? NUMBER_FORMAT_PRESETS[valueFormat] : valueFormat
+        const nf = new Intl.NumberFormat("en-US", options)
+        return (value: number) => nf.format(value)
+    }
+    return defaultChartValueFormatter
+}
