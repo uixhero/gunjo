@@ -14,7 +14,7 @@ export function BannerDemo() {
                     icon={<Megaphone className="h-4 w-4" />}
                     onDismiss={() => setShow(false)}
                 >
-                    New: alpha.2 release available — see changelog
+                    New: alpha.3 release available — see changelog
                 </Banner>
             ) : (
                 <button

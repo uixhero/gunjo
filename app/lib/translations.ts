@@ -542,7 +542,7 @@ export const translations: Record<
       },
     },
     intro: {
-      alphaBadge: "Alpha · v0.0.1-alpha.2",
+      alphaBadge: "Alpha · v0.0.1-alpha.3",
       componentCountBadge: "200+ components",
       ctaPrimary: "Get Started",
       ctaSecondary: "Browse Components",
@@ -1175,7 +1175,7 @@ export const translations: Record<
       },
     },
     intro: {
-      alphaBadge: "Alpha · v0.0.1-alpha.2",
+      alphaBadge: "Alpha · v0.0.1-alpha.3",
       componentCountBadge: "200+ コンポーネント",
       ctaPrimary: "はじめる",
       ctaSecondary: "コンポーネント一覧",
