@@ -353,6 +353,8 @@ export function MissingBodyDischargeRecord() {
     { name: "canSign", type: "boolean", default: "true", description: locale === "ja" ? "署名できる状態かどうかを渡します。" : "Controls whether the record can be signed." },
     { name: "cannotSignReason", type: "ReactNode", description: locale === "ja" ? "署名ボタンが無効な理由と復帰条件をツールチップで表示します。" : "Tooltip content explaining why signing is disabled and how to recover." },
     { name: "requireAddendumReason", type: "boolean", default: "true", description: locale === "ja" ? "追記時の理由入力を必須にします。" : "Requires a reason for each addendum." },
+    { name: "formatTime", type: "(iso: string) => ReactNode", description: locale === "ja" ? "ISO タイムスタンプの表示を整形します。関数propのため Client Component からのみ渡すこと（Server Component から渡すと next build が落ちる）。RSC 安全な整形には timeFormat を使う。" : "Formats the display of ISO timestamps. Function prop — pass only from a Client Component; from a Server Component it breaks next build. Use timeFormat for RSC-safe formatting." },
+    { name: "timeFormat", type: "Intl.DateTimeFormatOptions", description: locale === "ja" ? "シリアライズ可能な時刻フォーマット＝formatTime の RSC 安全な代替（例: { dateStyle: \"short\", timeStyle: \"short\" }）。new Date(iso) に en-US ロケール固定で適用。formatTime 指定時は無視。(#338)" : "Serializable time format — RSC-safe alternative to formatTime (e.g. { dateStyle: \"short\", timeStyle: \"short\" }). Applied to new Date(iso) with a fixed en-US locale. Ignored when formatTime is set. (#338)" },
     { name: "labels", type: "SignedRecordLabels", description: locale === "ja" ? "バッジ、ボタン、追記フォームの文言を差し替えます。" : "Localizes badges, buttons, and addendum form copy." },
   ];
 

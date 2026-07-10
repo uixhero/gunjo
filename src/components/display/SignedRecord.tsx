@@ -66,8 +66,20 @@ export interface SignedRecordProps extends Omit<React.HTMLAttributes<HTMLDivElem
     cannotSignReasonLabel?: string
     /** Require a reason on each addendum. Default `true`. */
     requireAddendumReason?: boolean
-    /** Format an ISO timestamp for display. Default a deterministic `YYYY/MM/DD HH:mm`. */
+    /**
+     * Format an ISO timestamp for display. Default a deterministic `YYYY/MM/DD HH:mm`.
+     * **Function prop — pass only from a Client Component** (SignedRecord is
+     * `"use client"`); from a Server Component it breaks `next build`. For RSC-safe
+     * formatting use the serializable {@link SignedRecordProps.timeFormat}. (#338)
+     */
     formatTime?: (iso: string) => React.ReactNode
+    /**
+     * Serializable time format — the RSC-safe alternative to `formatTime`
+     * (`Intl.DateTimeFormatOptions`, e.g. `{ dateStyle: "short", timeStyle: "short" }`).
+     * Applied to `new Date(iso)` with a fixed `en-US` locale. Ignored when
+     * `formatTime` is set. (#338)
+     */
+    timeFormat?: Intl.DateTimeFormatOptions
     /** Localized strings. */
     labels?: SignedRecordLabels
 }
@@ -97,12 +109,18 @@ const SignedRecord = React.forwardRef<HTMLDivElement, SignedRecordProps>(
             cannotSignReason,
             cannotSignReasonLabel,
             requireAddendumReason = true,
-            formatTime = defaultFormatTime,
+            formatTime: formatTimeProp,
+            timeFormat,
             labels,
             ...props
         },
         ref
     ) => {
+        const formatTime =
+            formatTimeProp ??
+            (timeFormat
+                ? (iso: string) => new Intl.DateTimeFormat("en-US", timeFormat).format(new Date(iso))
+                : defaultFormatTime)
         const readOnly = value.status === "signed"
         const [composing, setComposing] = React.useState(false)
         const [addBody, setAddBody] = React.useState("")

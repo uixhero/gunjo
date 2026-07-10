@@ -248,7 +248,7 @@ export function WeeklySchedule() {
     { name: "weekStartsOn", type: "0 | 1", default: "0", description: locale === "ja" ? "週の開始曜日です。" : "Start day of the week." },
     { name: "startHour / endHour", type: "number", default: "8 / 21", description: locale === "ja" ? "表示する時間帯です。" : "Visible hour range." },
     { name: "weekdayLabels / daySuffix", type: "string[] / string", description: locale === "ja" ? "曜日ヘッダーと読み上げ用の曜日接尾辞です。" : "Weekday headers and suffix used in event accessible names." },
-    { name: "formatEventAriaLabel", type: "function", description: locale === "ja" ? "予定ボタンの読み上げ名を上書きします。" : "Overrides event button accessible names." },
+    { name: "formatEventAriaLabel", type: "function", description: locale === "ja" ? "予定ボタンの読み上げ名を上書きします。関数propのため Client Component からのみ渡すこと（Server Component から渡すと next build が落ちる）。event+context から合成するため serializable な代替は無く、RSC からは \"use client\" ラッパーで包む。(#338)" : "Overrides event button accessible names. Function prop — pass only from a Client Component; from a Server Component it breaks next build. It composes from event + context so there is no serializable preset — wrap in a \"use client\" component to pass it from an RSC. (#338)" },
     { name: "onSelectEvent", type: "(event: WeekEvent) => void", description: locale === "ja" ? "予定を選択した時に呼ばれます。" : "Called when an event is selected." },
   ];
 

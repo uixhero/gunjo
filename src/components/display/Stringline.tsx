@@ -55,7 +55,13 @@ export interface StringlineProps extends Omit<React.HTMLAttributes<HTMLDivElemen
   now?: number
   /** Spacing of vertical time gridlines/labels, in time units. Default 60 (hourly when unit = minutes). */
   tickInterval?: number
-  /** Format a time value for axis labels. Default renders minutes-from-midnight as HH:MM. */
+  /**
+   * Format a time value for axis labels. Default renders minutes-from-midnight as HH:MM.
+   * **Function prop — pass only from a Client Component** (Stringline is
+   * `"use client"`); from a Server Component it breaks `next build`. `time` is a
+   * domain value (minutes from midnight), so there is no serializable preset —
+   * wrap in a thin `"use client"` component to pass this from an RSC. (#338)
+   */
   formatTime?: (time: number) => string
   /** Highlight one run (others dim). */
   selectedRunId?: string | number
