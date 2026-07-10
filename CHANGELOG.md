@@ -11,9 +11,21 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 
+## [0.0.1-alpha.3] — 2026-07-10
+
+alpha.2（173 部品）以降、コールドテスト 170 画面の検証ループで見つかった欠落を埋め続けた成果をまとめた alpha リリース。**部品セットは 216 に到達（+43）**。**API は今後変更される可能性があります**（全部品 Experimental）。
+
+### Added
+
+- **コンポーネント +43 件（173 → 216）**（採用先影響: **none**・追加のみ）。コールドテスト 170 ラウンドで「文脈ゼロの AI が手組みした＝欠落」と報告された部品を、業種横断で追加（運行図 Stringline、系譜 LineageGraph、月カレンダー EventCalendar、座席 SeatMap、経路 OriginDestination / RouteStops / Itinerary ほか）。docs / SSOT / Figma を 3 軸で監査 (#559)。
+- **i18n `LocaleProvider`**（採用先影響: **none**・後方互換）。shadcn 由来の組み込み文字列（`No results.` / 検索プレースホルダ / ページャ等）を `<LocaleProvider locale="ja">` 一箇所で切替。en 既定＝プロバイダ未マウント時は従来どおり。precedence: instance prop > provider bundle > 既定。14 部品配線 (#326 / #560–562)。docs: `/docs/i18n`（ライブ en/ja トグル）(#567)。
+- **`Button` の `size="touch"` / `size="icon-touch"`**（採用先影響: **none**・追加のみ）。44px タップ標的（WCAG 2.5.5）を意図で選べるサイズ。モバイル / toC 画面向け (#362 / #568)。
+- **部品固有のローカライズ上書き prop**（採用先影響: **none**・追加のみ）— `ActionQueue.severityLabels` / `EventCalendar.formatMonthTitle`・`formatDayLabel` / `ScanGate.stepsLabel` / `TicketStub.formatCodeAlt`。既定は日本語のまま (#558)。
+
 ### Changed
 
 - **配布形態を「生 TS 直配布」から「コンパイル済み `dist/`（ESM + `.d.ts`）」へ変更**（採用先影響: **none**）。`exports "."` が `./dist/index.js` を指すようになり、採用先は `transpilePackages: ["@gunjo/ui"]` なしで Next.js / Vite からそのまま import できる。各コンポーネントの `"use client"` 境界は `tsc` が directive として保持。`npm run build:lib`（`tsc -p tsconfig.build.json`）で生成し、`prepare` で `npm install` / `pack` / `publish` 時に自動ビルド。既存採用先はコード変更不要（`transpilePackages` は削除してよい）。
+- `ScanGate` の手順区切りをテキスト矢印（→）からアイコン（`IconChevronRight`）へ（採用先影響: **none**・視覚のみ、aria-hidden の装飾）(#570)。
 
 ### Fixed
 
