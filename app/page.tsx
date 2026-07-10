@@ -308,7 +308,8 @@ export default function Home() {
                                 href="/cold-tests/why"
                                 className="whitespace-nowrap font-medium text-foreground underline underline-offset-4 transition-colors hover:text-primary"
                             >
-                                {home.ai.evidenceCta} →
+                                {home.ai.evidenceCta}
+                                <ArrowRight className="ml-0.5 inline size-3.5 align-[-0.1875em]" aria-hidden />
                             </Link>
                         </p>
                     </div>

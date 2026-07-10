@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { IconArrowLeft as ArrowLeft } from "@tabler/icons-react";
 import {
     Button,
     Form,
@@ -27,7 +28,7 @@ const COPY_EN = {
     submit: "Send reset link",
     submitting: "Sending…",
     submittingReason: "Reset email is already being sent.",
-    backToLogin: "← Back to sign in",
+    backToLogin: "Back to sign in",
     invalidEmail: "Please enter a valid email address.",
     successHeading: "Check your inbox",
     successBody: (email: string) =>
@@ -44,7 +45,7 @@ const COPY_JA = {
     submit: "リセットリンクを送信",
     submitting: "送信中…",
     submittingReason: "リセットメールを送信中のため、完了までお待ちください。",
-    backToLogin: "← サインインに戻る",
+    backToLogin: "サインインに戻る",
     invalidEmail: "有効なメールアドレスを入力してください。",
     successHeading: "メールを確認してください",
     successBody: (email: string) =>
@@ -115,6 +116,7 @@ export default function ForgotPasswordPage() {
                     href="/patterns/auth/login"
                     className="block text-xs text-muted-foreground underline-offset-4 hover:underline"
                 >
+                    <ArrowLeft className="mr-0.5 inline size-3.5 align-[-0.1875em]" aria-hidden />
                     {t.backToLogin}
                 </Link>
             </div>
@@ -174,6 +176,7 @@ export default function ForgotPasswordPage() {
                 href="/patterns/auth/login"
                 className="text-center text-xs text-muted-foreground underline-offset-4 hover:underline"
             >
+                <ArrowLeft className="mr-0.5 inline size-3.5 align-[-0.1875em]" aria-hidden />
                 {t.backToLogin}
             </Link>
             </div>
