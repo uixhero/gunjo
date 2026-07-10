@@ -3,7 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { useTheme } from "next-themes";
-import { IconArrowUpRight as ArrowUpRight, IconPackages as Boxes } from "@tabler/icons-react";
+import { IconArrowUpRight as ArrowUpRight, IconArrowRight as ArrowRight, IconPackages as Boxes } from "@tabler/icons-react";
 import { Badge, Card, CardContent, Skeleton, cn } from "@gunjo/ui";
 import {
     PATTERN_FAMILY_ORDER,
@@ -161,7 +161,8 @@ export default function PatternsIndexPage() {
                             href="/cold-tests/why"
                             className="whitespace-nowrap font-medium text-foreground underline underline-offset-4 transition-colors hover:text-primary"
                         >
-                            {t.evidenceCta} →
+                            {t.evidenceCta}
+                            <ArrowRight className="ml-0.5 inline size-3.5 align-[-0.1875em]" aria-hidden />
                         </Link>
                     </p>
                 </header>

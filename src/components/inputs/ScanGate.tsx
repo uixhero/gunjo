@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { IconCheck } from "@tabler/icons-react"
+import { IconCheck, IconChevronRight } from "@tabler/icons-react"
 
 import { cn } from "../../lib/utils"
 import { ScanInput, type ScanInputAction, type ScanResult } from "./ScanInput"
@@ -189,8 +189,8 @@ const ScanGate = React.forwardRef<ScanGateHandle, ScanGateProps>(
                             return (
                                 <React.Fragment key={stage.id}>
                                     {i > 0 ? (
-                                        <span className="text-muted-foreground" aria-hidden="true">
-                                            →
+                                        <span className="flex items-center text-muted-foreground" aria-hidden="true">
+                                            <IconChevronRight className="h-4 w-4" />
                                         </span>
                                     ) : null}
                                     <li
