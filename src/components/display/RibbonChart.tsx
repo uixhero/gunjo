@@ -3,11 +3,12 @@
 import * as React from "react"
 
 import { cn } from "../../lib/utils"
-import type { ChartColor, ChartDataPoint } from "./chart-utils"
+import type { ChartColor, ChartDataPoint, NumberFormatSpec } from "./chart-utils"
 import {
     chartLabelToString,
     clamp,
     defaultChartValueFormatter,
+    resolveValueFormatter,
     getChartColor,
     getChartLabel,
     getChartValue,
@@ -32,7 +33,18 @@ export interface RibbonChartProps
     showGrid?: boolean
     showLegend?: boolean
     showLabels?: boolean
+    /**
+     * Format each value. **Function prop — pass only from a Client Component**;
+     * from a Server Component it breaks `next build`. For RSC-safe numeric
+     * formatting use the serializable {@link RibbonChartProps.valueFormat}. (#338)
+     */
     formatValue?: (value: number) => React.ReactNode
+    /**
+     * Serializable numeric format — the RSC-safe alternative to `formatValue`
+     * (`"number" | "compact" | "integer"` preset or `Intl.NumberFormatOptions`).
+     * Ignored when `formatValue` is set. Formats with a fixed `en-US` locale. (#338)
+     */
+    valueFormat?: NumberFormatSpec
 }
 
 interface RibbonPoint {
@@ -271,11 +283,13 @@ const RibbonChart = React.forwardRef<HTMLDivElement, RibbonChartProps>(
             showGrid = true,
             showLegend = false,
             showLabels = true,
-            formatValue = defaultChartValueFormatter,
+            formatValue: formatValueProp,
+            valueFormat,
             ...props
         },
         ref
     ) => {
+        const formatValue = resolveValueFormatter(formatValueProp, valueFormat)
         const [setPlotNode, plotSize] = useElementSize<HTMLDivElement>()
         const [tooltipOpen, setTooltipOpen] = React.useState(false)
         const [tooltipPosition, setTooltipPosition] = React.useState({

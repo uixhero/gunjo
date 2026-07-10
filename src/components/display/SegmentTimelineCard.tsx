@@ -10,12 +10,12 @@ import {
     CardHeader,
     CardTitle,
 } from "./Card"
-import type { ChartDataPoint } from "./chart-utils"
+import type { ChartDataPoint, NumberFormatSpec } from "./chart-utils"
 import {
     chartLabelToString,
     clamp,
-    defaultChartValueFormatter,
     getChartColor,
+    resolveValueFormatter,
 } from "./chart-utils"
 import { ChartTooltip } from "./chart-tooltip"
 import type { SegmentTimelineCardVariantKey } from "./generated/variant-keys"
@@ -56,7 +56,18 @@ export interface SegmentTimelineCardProps
     endLabel?: React.ReactNode
     markers?: SegmentTimelineMarker[]
     showLegend?: boolean
+    /**
+     * Format each value. **Function prop — pass only from a Client Component**;
+     * from a Server Component it breaks `next build`. For RSC-safe numeric
+     * formatting use the serializable {@link SegmentTimelineCardProps.valueFormat}. (#338)
+     */
     formatValue?: (value: number) => React.ReactNode
+    /**
+     * Serializable numeric format — the RSC-safe alternative to `formatValue`
+     * (`"number" | "compact" | "integer"` preset or `Intl.NumberFormatOptions`).
+     * Ignored when `formatValue` is set. Formats with a fixed `en-US` locale. (#338)
+     */
+    valueFormat?: NumberFormatSpec
     rangeLabel?: React.ReactNode
     onSegmentSelect?: (segment: SegmentTimelineSegment, index: number) => void
 }
@@ -191,13 +202,15 @@ const SegmentTimelineCard = React.forwardRef<
             endLabel,
             markers = [],
             showLegend = true,
-            formatValue = defaultChartValueFormatter,
+            formatValue: formatValueProp,
+            valueFormat,
             rangeLabel = "Range",
             onSegmentSelect,
             ...props
         },
         ref
     ) => {
+        const formatValue = resolveValueFormatter(formatValueProp, valueFormat)
         const styles = variantClasses[variant]
         const bounds = getTimelineBounds(segments, min, max)
         const selectedSegmentLabel =

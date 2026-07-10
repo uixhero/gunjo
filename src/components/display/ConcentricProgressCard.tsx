@@ -10,13 +10,14 @@ import {
     CardHeader,
     CardTitle,
 } from "./Card"
-import type { ChartDataPoint } from "./chart-utils"
+import type { ChartDataPoint, NumberFormatSpec } from "./chart-utils"
 import {
     chartLabelToString,
     clamp,
     defaultChartValueFormatter,
     getChartColor,
     normalizeChartValue,
+    resolveValueFormatter,
 } from "./chart-utils"
 import { ChartFloatingTooltip, ChartTooltip } from "./chart-tooltip"
 import type { ConcentricProgressCardVariantKey } from "./generated/variant-keys"
@@ -50,7 +51,18 @@ export interface ConcentricProgressCardProps
     thickness?: number
     gap?: number
     showLegend?: boolean
+    /**
+     * Format each value. **Function prop — pass only from a Client Component**;
+     * from a Server Component it breaks `next build`. For RSC-safe numeric
+     * formatting use the serializable {@link ConcentricProgressCardProps.valueFormat}. (#338)
+     */
     formatValue?: (value: number) => React.ReactNode
+    /**
+     * Serializable numeric format — the RSC-safe alternative to `formatValue`
+     * (`"number" | "compact" | "integer"` preset or `Intl.NumberFormatOptions`).
+     * Ignored when `formatValue` is set. Formats with a fixed `en-US` locale. (#338)
+     */
+    valueFormat?: NumberFormatSpec
     maxLabel?: React.ReactNode
     onRingSelect?: (ring: ConcentricProgressRing, index: number) => void
 }
@@ -152,13 +164,15 @@ const ConcentricProgressCard = React.forwardRef<
             thickness = variant === "compact" ? 12 : 14,
             gap = variant === "compact" ? 4 : 5,
             showLegend = true,
-            formatValue = defaultChartValueFormatter,
+            formatValue: formatValueProp,
+            valueFormat,
             maxLabel = "Max",
             onRingSelect,
             ...props
         },
         ref
     ) => {
+        const formatValue = resolveValueFormatter(formatValueProp, valueFormat)
         const styles = variantClasses[variant]
         const fallbackMaxValue = Math.max(...rings.map((ring) => getPositiveValue(ring.value)), 1)
         const maxValue = Math.max(max ?? fallbackMaxValue, 1)

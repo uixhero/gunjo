@@ -271,8 +271,9 @@ const propsDataByLocale = {
         {
             name: "formatValue",
             type: "(value: number) => ReactNode",
-            description: "Formats timeline values, segment values, and tooltip values.",
+            description: "Formats timeline values, segment values, and tooltip values. Function prop — pass only from a Client Component; from a Server Component it breaks next build. Use valueFormat for RSC-safe formatting.",
         },
+        { name: "valueFormat", type: "\"number\" | \"compact\" | \"integer\" | Intl.NumberFormatOptions", description: "Serializable numeric format — the RSC-safe alternative to formatValue. Ignored when formatValue is set. Fixed en-US locale. (#338)" },
     ],
     ja: [
         {
@@ -320,8 +321,9 @@ const propsDataByLocale = {
         {
             name: "formatValue",
             type: "(value: number) => ReactNode",
-            description: "タイムライン、内訳、ツールチップに表示する値のフォーマット関数です。",
+            description: "タイムライン、内訳、ツールチップに表示する値のフォーマット関数です。 関数propのため Client Component からのみ渡すこと（Server Component から渡すと next build が落ちる）。RSC 安全な整形には valueFormat を使う。",
         },
+        { name: "valueFormat", type: "\"number\" | \"compact\" | \"integer\" | Intl.NumberFormatOptions", description: "シリアライズ可能な数値フォーマット＝formatValue の RSC 安全な代替。formatValue 指定時は無視。en-US ロケール固定。(#338)" },
     ],
 } as const;
 

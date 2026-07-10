@@ -3,11 +3,12 @@
 import * as React from "react"
 
 import { cn } from "../../lib/utils"
-import type { ChartDataPoint } from "./chart-utils"
+import type { ChartDataPoint, NumberFormatSpec } from "./chart-utils"
 import {
     clamp,
     chartLabelToString,
     defaultChartValueFormatter,
+    resolveValueFormatter,
     getChartColor,
     normalizeChartValue,
 } from "./chart-utils"
@@ -25,7 +26,18 @@ export interface RadialBarChartProps extends React.HTMLAttributes<HTMLDivElement
     thickness?: number
     gap?: number
     showLegend?: boolean
+    /**
+     * Format each value. **Function prop — pass only from a Client Component**;
+     * from a Server Component it breaks `next build`. For RSC-safe numeric
+     * formatting use the serializable {@link RadialBarChartProps.valueFormat}. (#338)
+     */
     formatValue?: (value: number) => React.ReactNode
+    /**
+     * Serializable numeric format — the RSC-safe alternative to `formatValue`
+     * (`"number" | "compact" | "integer"` preset or `Intl.NumberFormatOptions`).
+     * Ignored when `formatValue` is set. Formats with a fixed `en-US` locale. (#338)
+     */
+    valueFormat?: NumberFormatSpec
     maxLabel?: React.ReactNode
 }
 
@@ -55,12 +67,14 @@ const RadialBarChart = React.forwardRef<HTMLDivElement, RadialBarChartProps>(
             thickness = variant === "compact" ? 14 : 18,
             gap = variant === "compact" ? 6 : 8,
             showLegend = false,
-            formatValue = defaultChartValueFormatter,
+            formatValue: formatValueProp,
+            valueFormat,
             maxLabel = "Max",
             ...props
         },
         ref
     ) => {
+        const formatValue = resolveValueFormatter(formatValueProp, valueFormat)
         const maxValue = Math.max(max, ...data.map((item) => getPositiveValue(item.value)), 1)
         const step = thickness + gap
         const centerInset = data.length * step

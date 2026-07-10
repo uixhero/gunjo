@@ -3,13 +3,13 @@
 import * as React from "react"
 
 import { cn } from "../../lib/utils"
-import type { ChartColor } from "./chart-utils"
+import type { ChartColor, NumberFormatSpec } from "./chart-utils"
 import {
     chartLabelToString,
     clamp,
-    defaultChartValueFormatter,
     getChartColor,
     normalizeChartValue,
+    resolveValueFormatter,
 } from "./chart-utils"
 import { ChartTooltip } from "./chart-tooltip"
 import type { ChoroplethMapVariantKey } from "./generated/variant-keys"
@@ -58,7 +58,18 @@ export interface ChoroplethMapProps extends React.HTMLAttributes<HTMLDivElement>
     rankingLimit?: number
     showSelectedRegion?: boolean
     preserveAspectRatio?: boolean
+    /**
+     * Format each value. **Function prop — pass only from a Client Component**;
+     * from a Server Component it breaks `next build`. For RSC-safe numeric
+     * formatting use the serializable {@link ChoroplethMapProps.valueFormat}. (#338)
+     */
     formatValue?: (value: number) => React.ReactNode
+    /**
+     * Serializable numeric format — the RSC-safe alternative to `formatValue`
+     * (`"number" | "compact" | "integer"` preset or `Intl.NumberFormatOptions`).
+     * Ignored when `formatValue` is set. Formats with a fixed `en-US` locale. (#338)
+     */
+    valueFormat?: NumberFormatSpec
     selectedLabel?: React.ReactNode
     rankLabel?: React.ReactNode
     onRegionSelect?: (region: ChoroplethMapRegion, id: string) => void
@@ -222,7 +233,8 @@ const ChoroplethMap = React.forwardRef<HTMLDivElement, ChoroplethMapProps>(
             rankingLimit = 6,
             showSelectedRegion = true,
             preserveAspectRatio = true,
-            formatValue = defaultChartValueFormatter,
+            formatValue: formatValueProp,
+            valueFormat,
             selectedLabel = "Selected",
             rankLabel = "Rank",
             onRegionSelect,
@@ -231,6 +243,7 @@ const ChoroplethMap = React.forwardRef<HTMLDivElement, ChoroplethMapProps>(
         },
         ref
     ) => {
+        const formatValue = resolveValueFormatter(formatValueProp, valueFormat)
         const rootRef = React.useRef<HTMLDivElement | null>(null)
         const [useSplitRankingLayout, setUseSplitRankingLayout] = React.useState(false)
         const values = regions.map((region) => region.value)
