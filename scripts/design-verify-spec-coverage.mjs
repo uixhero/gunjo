@@ -31,6 +31,8 @@ const EXCLUDED_OVERLAY_SOURCE_COMPONENTS = new Set([
   // aiChatInput / aiChatMessage — compatibility aliases that re-export ChatInput / ChatMessage during the AIChat → Chat migration; permanent while aliases remain; added 2026-06-02.
   "aiChatInput",
   "aiChatMessage",
+  // dialog-a11y — hooks-only helper (useDialogDescribedBy / useRegisterDialogDescription) shared by Dialog/Sheet/Drawer/AlertDialog to silence Radix's missing-description warning; exports no component, so no metadata/spec; permanent; added 2026-07-12 (#322).
+  "dialog-a11y",
 ]);
 const EXCLUDED_INPUTS_SOURCE_COMPONENTS = new Set([
   // voiceInputButton — internal ChatInput control, not a standalone public docs component; permanent; added 2026-06-02.

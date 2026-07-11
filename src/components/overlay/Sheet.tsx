@@ -8,6 +8,7 @@ import { IconX as X } from "@tabler/icons-react";
 import { cn } from "../../lib/utils"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "./Tooltip"
 import { useLocale } from "../utility/LocaleProvider"
+import { useDialogDescribedBy, useRegisterDialogDescription } from "./dialog-a11y"
 
 const Sheet = SheetPrimitive.Root
 
@@ -83,6 +84,9 @@ const SheetContent = React.forwardRef<
 >(({ side = "right", size, className, children, portalContainer, overlayClassName, closeLabel, onOpenAutoFocus, ...props }, ref) => {
     const { strings } = useLocale()
     const resolvedCloseLabel = closeLabel ?? strings.close
+    const { describedByProps, register, DescriptionProvider } = useDialogDescribedBy(
+        "aria-describedby" in props
+    )
     const contentRef = React.useRef<React.ElementRef<typeof SheetPrimitive.Content> | null>(null)
 
     const setRefs = React.useCallback(
@@ -128,24 +132,27 @@ const SheetContent = React.forwardRef<
                     className
                 )}
                 {...props}
+                {...describedByProps}
             >
-                <TooltipProvider>
-                    <Tooltip>
-                        <TooltipTrigger asChild>
-                            <SheetPrimitive.Close
-                                className="absolute right-4 top-4 cursor-pointer rounded-md p-1 text-muted-foreground opacity-80 ring-offset-background transition-colors hover:bg-muted hover:text-foreground hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary"
-                                aria-label={resolvedCloseLabel}
-                            >
-                                <X className="h-4 w-4" />
-                                <span className="sr-only">{resolvedCloseLabel}</span>
-                            </SheetPrimitive.Close>
-                        </TooltipTrigger>
-                        <TooltipContent portalContainer={portalContainer}>
-                            {resolvedCloseLabel}
-                        </TooltipContent>
-                    </Tooltip>
-                </TooltipProvider>
-                {children}
+                <DescriptionProvider value={register}>
+                    <TooltipProvider>
+                        <Tooltip>
+                            <TooltipTrigger asChild>
+                                <SheetPrimitive.Close
+                                    className="absolute right-4 top-4 cursor-pointer rounded-md p-1 text-muted-foreground opacity-80 ring-offset-background transition-colors hover:bg-muted hover:text-foreground hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-secondary"
+                                    aria-label={resolvedCloseLabel}
+                                >
+                                    <X className="h-4 w-4" />
+                                    <span className="sr-only">{resolvedCloseLabel}</span>
+                                </SheetPrimitive.Close>
+                            </TooltipTrigger>
+                            <TooltipContent portalContainer={portalContainer}>
+                                {resolvedCloseLabel}
+                            </TooltipContent>
+                        </Tooltip>
+                    </TooltipProvider>
+                    {children}
+                </DescriptionProvider>
             </SheetPrimitive.Content>
         </SheetPortal>
     )
@@ -195,13 +202,16 @@ SheetTitle.displayName = SheetPrimitive.Title.displayName
 const SheetDescription = React.forwardRef<
     React.ElementRef<typeof SheetPrimitive.Description>,
     React.ComponentPropsWithoutRef<typeof SheetPrimitive.Description>
->(({ className, ...props }, ref) => (
-    <SheetPrimitive.Description
-        ref={ref}
-        className={cn("text-sm text-muted-foreground", className)}
-        {...props}
-    />
-))
+>(({ className, ...props }, ref) => {
+    useRegisterDialogDescription()
+    return (
+        <SheetPrimitive.Description
+            ref={ref}
+            className={cn("text-sm text-muted-foreground", className)}
+            {...props}
+        />
+    )
+})
 SheetDescription.displayName = SheetPrimitive.Description.displayName
 
 export {
