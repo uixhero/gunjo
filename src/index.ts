@@ -239,6 +239,10 @@ export * from './components/inputs/ToggleGroup';
 export * from './components/inputs/TooltipButton';
 export * from './components/inputs/ButtonVariants';
 
+/** Semantic Tone */
+export type { SemanticTone, SemanticToneDanger } from './lib/semantic-tone';
+export { SEMANTIC_TONES, isSemanticTone, toChartTone, toMeterTone, toBadgeVariant, toDangerTone } from './lib/semantic-tone';
+
 /** Chart Types */
 export type { ChartColor, ChartDataPoint, ChartTone } from './components/display/chart-utils';
 
