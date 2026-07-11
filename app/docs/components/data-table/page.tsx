@@ -321,6 +321,13 @@ export function MembersTable() {
                 : "Renders rows as a stacked card list on mobile (< md). With onRowClick the card is itself role=\"button\" — return non-interactive content (use onRowClick to make the whole card tappable; don't add your own button/link as the card root). Small per-row controls are fine. Function prop — pass only from a Client Component. (#333/#338)",
         },
         {
+            name: "hidePaginationSummary",
+            type: "boolean",
+            description: isJa
+                ? "ページネーション見出しの「1 - 4 / 4」サマリを隠します。狭いホスト（例: 約420px のマスター列）向け。ページャは自動で下段に折り返します。(#311)"
+                : "Hides the \"1 - 4 / 4\" summary text in the pagination header — for a narrow host (e.g. a ~420px master column). The pager still wraps below on its own line. (#311)",
+        },
+        {
             name: "className",
             type: "string",
             description: isJa ? "ラッパーに追加するクラスです。" : "Additional class names applied to the wrapper.",
