@@ -6,6 +6,7 @@ import { IconX as X } from "@tabler/icons-react";
 
 import { cn } from "../../lib/utils"
 import { useLocale } from "../utility/LocaleProvider"
+import { useDialogDescribedBy, useRegisterDialogDescription } from "./dialog-a11y"
 
 const Dialog = DialogPrimitive.Root
 
@@ -40,6 +41,9 @@ const DialogContent = React.forwardRef<
     }
 >(({ className, children, portalContainer, overlayClassName, showCloseButton = true, closeLabel, ...props }, ref) => {
     const { strings } = useLocale()
+    const { describedByProps, register, DescriptionProvider } = useDialogDescribedBy(
+        "aria-describedby" in props
+    )
     return (
     <DialogPortal container={portalContainer ?? undefined}>
         <DialogOverlay className={cn(portalContainer && "absolute", overlayClassName)} />
@@ -51,14 +55,17 @@ const DialogContent = React.forwardRef<
                 className
             )}
             {...props}
+            {...describedByProps}
         >
-            {children}
-            {showCloseButton ? (
-                <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
-                    <X className="h-4 w-4" />
-                    <span className="sr-only">{closeLabel ?? strings.close}</span>
-                </DialogPrimitive.Close>
-            ) : null}
+            <DescriptionProvider value={register}>
+                {children}
+                {showCloseButton ? (
+                    <DialogPrimitive.Close className="absolute right-4 top-4 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:pointer-events-none data-[state=open]:bg-accent data-[state=open]:text-muted-foreground">
+                        <X className="h-4 w-4" />
+                        <span className="sr-only">{closeLabel ?? strings.close}</span>
+                    </DialogPrimitive.Close>
+                ) : null}
+            </DescriptionProvider>
         </DialogPrimitive.Content>
     </DialogPortal>
     )
@@ -111,13 +118,16 @@ DialogTitle.displayName = DialogPrimitive.Title.displayName
 const DialogDescription = React.forwardRef<
     React.ElementRef<typeof DialogPrimitive.Description>,
     React.ComponentPropsWithoutRef<typeof DialogPrimitive.Description>
->(({ className, ...props }, ref) => (
-    <DialogPrimitive.Description
-        ref={ref}
-        className={cn("text-sm text-muted-foreground", className)}
-        {...props}
-    />
-))
+>(({ className, ...props }, ref) => {
+    useRegisterDialogDescription()
+    return (
+        <DialogPrimitive.Description
+            ref={ref}
+            className={cn("text-sm text-muted-foreground", className)}
+            {...props}
+        />
+    )
+})
 DialogDescription.displayName = DialogPrimitive.Description.displayName
 
 export {

@@ -4,6 +4,7 @@ import * as React from "react"
 import { Drawer as DrawerPrimitive } from "vaul"
 
 import { cn } from "../../lib/utils"
+import { useDialogDescribedBy, useRegisterDialogDescription } from "./dialog-a11y"
 
 const Drawer = ({
     shouldScaleBackground = true,
@@ -48,24 +49,32 @@ const DrawerContent = React.forwardRef<
         portalContainer?: HTMLElement | null
         overlayClassName?: string
     }
->(({ className, children, side = "bottom", portalContainer, overlayClassName, ...props }, ref) => (
-    <DrawerPortal container={portalContainer ?? undefined}>
-        <DrawerOverlay className={cn(portalContainer && "absolute", overlayClassName)} />
-        <DrawerPrimitive.Content
-            ref={ref}
-            className={cn(
-                "fixed z-50 flex flex-col bg-background",
-                portalContainer && "absolute",
-                drawerContentSideClasses[side],
-                className
-            )}
-            {...props}
-        >
-            {side === "bottom" ? <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted" /> : null}
-            {children}
-        </DrawerPrimitive.Content>
-    </DrawerPortal>
-))
+>(({ className, children, side = "bottom", portalContainer, overlayClassName, ...props }, ref) => {
+    const { describedByProps, register, DescriptionProvider } = useDialogDescribedBy(
+        "aria-describedby" in props
+    )
+    return (
+        <DrawerPortal container={portalContainer ?? undefined}>
+            <DrawerOverlay className={cn(portalContainer && "absolute", overlayClassName)} />
+            <DrawerPrimitive.Content
+                ref={ref}
+                className={cn(
+                    "fixed z-50 flex flex-col bg-background",
+                    portalContainer && "absolute",
+                    drawerContentSideClasses[side],
+                    className
+                )}
+                {...props}
+                {...describedByProps}
+            >
+                <DescriptionProvider value={register}>
+                    {side === "bottom" ? <div className="mx-auto mt-4 h-2 w-[100px] rounded-full bg-muted" /> : null}
+                    {children}
+                </DescriptionProvider>
+            </DrawerPrimitive.Content>
+        </DrawerPortal>
+    )
+})
 DrawerContent.displayName = "DrawerContent"
 
 const DrawerHeader = ({
@@ -108,13 +117,16 @@ DrawerTitle.displayName = DrawerPrimitive.Title.displayName
 const DrawerDescription = React.forwardRef<
     React.ElementRef<typeof DrawerPrimitive.Description>,
     React.ComponentPropsWithoutRef<typeof DrawerPrimitive.Description>
->(({ className, ...props }, ref) => (
-    <DrawerPrimitive.Description
-        ref={ref}
-        className={cn("text-sm text-muted-foreground", className)}
-        {...props}
-    />
-))
+>(({ className, ...props }, ref) => {
+    useRegisterDialogDescription()
+    return (
+        <DrawerPrimitive.Description
+            ref={ref}
+            className={cn("text-sm text-muted-foreground", className)}
+            {...props}
+        />
+    )
+})
 DrawerDescription.displayName = DrawerPrimitive.Description.displayName
 
 export {
