@@ -53,6 +53,16 @@ npm install @gunjo/ui
 
 > **alpha 段階の注意**：\`0.0.1-alpha.x\` はドライラン採用向け公開。\`1.0.0\` stable 前は API が変わる可能性があります。
 
+#### アイコン（\`icon\` prop を使うならインストール）
+
+Gunjo のコンポーネントはアイコンを \`ReactNode\` として受け取るだけで、グリフ自体は同梱しません。本ドキュメントのアイコン例はすべて [\`@tabler/icons-react\`](https://tabler.io/icons) を使っているので、アイコンを渡すなら**直接の依存**として入れてください：
+
+\`\`\`bash
+npm install @tabler/icons-react
+\`\`\`
+
+> npm のデフォルト hoisting では、この行が無くても \`import { IconX } from "@tabler/icons-react"\` が Gunjo UI 側のコピー経由で解決されることがあります。ただし **pnpm** や strict / \`nohoist\` の npm では壊れます。hoisting に依存しないよう、自分でインストールしてください。
+
 ### 2. Next.js 設定（必須）
 
 \`@gunjo/ui\` は **TypeScript ソースを直接配布** しているため（\`main: "src/index.ts"\`）、採用先 Next.js でトランスパイルが必要です。\`next.config.ts\`：
@@ -141,6 +151,7 @@ export default function Page() {
 - **\`SyntaxError: Unexpected token\` でビルドが落ちる** → \`next.config.ts\` の \`transpilePackages\` 入れ忘れ（手順 2）。
 - **Tailwind クラスが効かない** → v4 の \`@source\` または v3 の \`content\` で \`node_modules/@gunjo/ui/src/**/*\` を指していない。
 - **画面が真っ黒・真っ白** → \`@import "@gunjo/ui/styles"\` が抜けている、または \`@import "tailwindcss"\` の **前** にきている。
+- **アイコンの import が失敗する（\`Cannot find module '@tabler/icons-react'\`。pnpm だけで出ることが多い）** → \`@tabler/icons-react\` を直接の依存として入れる（手順1）。Gunjo UI は内部で使っていますが、グリフを re-export していません。
 
 ### この先
 

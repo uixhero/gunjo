@@ -53,6 +53,16 @@ npm install @gunjo/ui
 
 > **Alpha note:** \`0.0.1-alpha.x\` is published for dry-run adoption. The API can still change before \`1.0.0\`.
 
+#### Icons (install if you use \`icon\` props)
+
+Gunjo components take icons as a \`ReactNode\` — they don't ship glyphs. Every icon example in these docs uses [\`@tabler/icons-react\`](https://tabler.io/icons), so install it as a **direct dependency** if you pass icons:
+
+\`\`\`bash
+npm install @tabler/icons-react
+\`\`\`
+
+> Under npm's default hoisting, \`import { IconX } from "@tabler/icons-react"\` may resolve through Gunjo UI's own copy even without this line — but that breaks under **pnpm** or npm with strict / \`nohoist\`. Install it yourself so your icon imports don't depend on hoisting.
+
 ### 2. Configure Next.js (required)
 
 \`@gunjo/ui\` ships TypeScript source directly (\`main: "src/index.ts"\`), so your Next.js project has to transpile it. In \`next.config.ts\`:
@@ -141,6 +151,7 @@ export default function Page() {
 - **Build fails with \`SyntaxError: Unexpected token\`** → \`transpilePackages\` is missing in \`next.config.ts\` (step 2).
 - **Tailwind classes don't apply** → the \`@source\` (v4) or \`content\` glob (v3) for \`node_modules/@gunjo/ui/src/**/*\` is missing.
 - **Everything renders pure black or white** → \`@import "@gunjo/ui/styles"\` is missing or comes before \`@import "tailwindcss"\`.
+- **Icon imports fail (\`Cannot find module '@tabler/icons-react'\`), often only under pnpm** → install \`@tabler/icons-react\` as a direct dependency (step 1). Gunjo UI uses it internally but doesn't re-export the glyphs.
 
 ### Beyond install
 
