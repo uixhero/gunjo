@@ -426,7 +426,7 @@ export function EditorialCalendar() {
     {
       name: "renderEvent",
       type: "(event: CalendarEvent) => ReactNode",
-      description: locale === "ja" ? "予定チップの描画を差し替えます。" : "Overrides event-chip rendering.",
+      description: locale === "ja" ? "予定チップの描画を差し替えます。関数propのため Client Component からのみ渡すこと（Server Component から渡すと next build が落ちる）。JSX を返すため serializable な代替は無く、RSC からは \"use client\" ラッパーで包む。(#338)" : "Overrides event-chip rendering. Function prop — pass only from a Client Component; from a Server Component it breaks next build. Render props return JSX (no serializable alternative) — wrap in a \"use client\" component to pass from an RSC. (#338)",
     },
     {
       name: "onSelectDate / onSelectEvent",

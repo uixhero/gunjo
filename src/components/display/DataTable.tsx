@@ -86,6 +86,10 @@ export interface DataTableProps<TData, TValue> {
      * stacked card list instead of a horizontally-scrolling table; the `<table>`
      * is shown from `md` up. Without it, the table is shown at every width
      * (and scrolls horizontally on small screens). (#195)
+     * **Function prop — pass only from a Client Component**; from a Server
+     * Component it breaks `next build`. Render props return JSX, so there is no
+     * serializable alternative — wrap in a thin `"use client"` component to pass
+     * it from an RSC. (#338)
      */
     renderCard?: (row: TData) => React.ReactNode
     className?: string

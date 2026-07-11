@@ -85,7 +85,7 @@ const propsDataByLocale = {
         { name: "onSelect", type: "(asset) => void", description: "Called when the card is clicked or activated with the keyboard." },
         { name: "onPreview", type: "(asset) => void", description: "Adds a preview action button in the image area." },
         { name: "portalContainer", type: "HTMLElement | null", description: "Keeps tooltips inside a framed pattern or nested preview surface." },
-        { name: "renderMeta", type: "(asset) => ReactNode", description: "Overrides the default dimensions / type / date metadata row." },
+        { name: "renderMeta", type: "(asset) => ReactNode", description: "Overrides the default dimensions / type / date metadata row. Function prop — pass only from a Client Component; from a Server Component it breaks next build. Render props return JSX (no serializable alternative) — wrap in a \"use client\" component to pass from an RSC. (#338)" },
     ],
     ja: [
         { name: "asset", type: "AssetCardAsset", description: "カードに表示するメディア項目です。", required: true },
@@ -98,7 +98,7 @@ const propsDataByLocale = {
         { name: "onSelect", type: "(asset) => void", description: "カードクリック、またはキーボード操作時に呼び出されます。" },
         { name: "onPreview", type: "(asset) => void", description: "画像エリアにプレビュー操作ボタンを追加します。" },
         { name: "portalContainer", type: "HTMLElement | null", description: "擬似ブラウザや入れ子のプレビュー内にツールチップを閉じ込める表示先です。" },
-        { name: "renderMeta", type: "(asset) => ReactNode", description: "寸法・形式・日付のメタ情報行を差し替えます。" },
+        { name: "renderMeta", type: "(asset) => ReactNode", description: "寸法・形式・日付のメタ情報行を差し替えます。関数propのため Client Component からのみ渡すこと（Server Component から渡すと next build が落ちる）。JSX を返すため serializable な代替は無く、RSC からは \"use client\" ラッパーで包む。(#338)" },
     ],
 } as const;
 

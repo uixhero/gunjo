@@ -50,7 +50,13 @@ export interface EventCalendarProps extends Omit<React.HTMLAttributes<HTMLDivEle
      * (`M月D日、今日、N件: …` / `…、予定なし`). (#558)
      */
     formatDayLabel?: (date: Date, ctx: { isToday: boolean; events: CalendarEvent[] }) => string
-    /** Render an event chip (default: a tone pill). */
+    /**
+     * Render an event chip (default: a tone pill).
+     * **Function prop — pass only from a Client Component**; from a Server
+     * Component it breaks `next build`. Render props return JSX, so there is no
+     * serializable alternative — wrap in a thin `"use client"` component to pass
+     * it from an RSC. (#338)
+     */
     renderEvent?: (event: CalendarEvent) => React.ReactNode
     onSelectDate?: (iso: string) => void
     onSelectEvent?: (event: CalendarEvent) => void

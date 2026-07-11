@@ -82,7 +82,7 @@ const propsDataByLocale = {
         { name: "onSelect", type: "(asset) => void", description: "Called when an asset card is selected." },
         { name: "onPreview", type: "(asset) => void", description: "Passes a preview action to each AssetCard." },
         { name: "portalContainer", type: "HTMLElement | null", description: "Keeps card tooltips inside a framed pattern or nested preview surface." },
-        { name: "renderItem", type: "(asset, state) => ReactNode", description: "Overrides the default AssetCard renderer." },
+        { name: "renderItem", type: "(asset, state) => ReactNode", description: "Overrides the default AssetCard renderer. Function prop — pass only from a Client Component; from a Server Component it breaks next build. Render props return JSX (no serializable alternative) — wrap in a \"use client\" component to pass from an RSC. (#338)" },
     ],
     ja: [
         { name: "items", type: "AssetCardAsset[]", description: "グループなしで表示するアセット項目です。" },
@@ -93,7 +93,7 @@ const propsDataByLocale = {
         { name: "onSelect", type: "(asset) => void", description: "アセットカード選択時に呼び出されます。" },
         { name: "onPreview", type: "(asset) => void", description: "各 AssetCard にプレビュー操作を渡します。" },
         { name: "portalContainer", type: "HTMLElement | null", description: "擬似ブラウザや入れ子のプレビュー内にカードのツールチップを閉じ込める表示先です。" },
-        { name: "renderItem", type: "(asset, state) => ReactNode", description: "標準の AssetCard 表示を差し替えます。" },
+        { name: "renderItem", type: "(asset, state) => ReactNode", description: "標準の AssetCard 表示を差し替えます。関数propのため Client Component からのみ渡すこと（Server Component から渡すと next build が落ちる）。JSX を返すため serializable な代替は無く、RSC からは \"use client\" ラッパーで包む。(#338)" },
     ],
 } as const;
 

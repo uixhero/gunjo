@@ -214,7 +214,7 @@ export function RelatedLinksAside() {
                 <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">{sectionLabels.props}</h2>
                 <PropsTable data={[
                     { name: "title", type: "ReactNode", description: isJa ? "モバイルのアコーディオン見出しと補助領域のラベル。" : "Heading for the mobile accordion and supporting region." },
-                    { name: "renderAside", type: "() => ReactNode", description: isJa ? "右レールと折りたたみ領域に表示する補助情報を返します。" : "Returns the supporting information rendered in the rail and collapsible area." },
+                    { name: "renderAside", type: "() => ReactNode", description: isJa ? "右レールと折りたたみ領域に表示する補助情報を返します。関数propのため Client Component からのみ渡すこと（Server Component から渡すと next build が落ちる）。JSX を返すため serializable な代替は無く、RSC からは \"use client\" ラッパーで包む。(#338)" : "Returns the supporting information rendered in the rail and collapsible area. Function prop — pass only from a Client Component; from a Server Component it breaks next build. Render props return JSX (no serializable alternative) — wrap in a \"use client\" component to pass from an RSC. (#338)" },
                     { name: "children", type: "ReactNode", description: isJa ? "主コンテンツ領域に表示する本文。" : "Main content rendered in the content area." },
                     { name: "width", type: "string", default: "\"w-72\"", description: isJa ? "デスクトップ時の RightRail 幅を指定する Tailwind クラス。" : "Tailwind width class for the desktop RightRail." },
                     { name: "defaultOpen", type: "boolean", default: "true", description: isJa ? "狭い画面で補助情報を初期表示するか。" : "Whether the supporting information starts open on narrow screens." },

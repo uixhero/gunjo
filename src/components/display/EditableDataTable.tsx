@@ -73,9 +73,19 @@ export interface EditableDataTableProps<TRow> {
      * Per-column footer cell (e.g. a total under the 金額 column). Renders a
      * column-aligned `<tfoot>` row on desktop and a label/value stack on mobile.
      * Return `null`/`undefined` for columns with no footer. (#210)
+     * **Function prop — pass only from a Client Component**; from a Server
+     * Component it breaks `next build`. Render props return JSX, so there is no
+     * serializable alternative — wrap in a thin `"use client"` component to pass
+     * it from an RSC. (#338)
      */
     renderFooterCell?: (column: EditableColumn<TRow>) => React.ReactNode
-    /** Mobile card body per row; defaults to stacking each column as a label + editor. */
+    /**
+     * Mobile card body per row; defaults to stacking each column as a label + editor.
+     * **Function prop — pass only from a Client Component**; from a Server
+     * Component it breaks `next build`. Render props return JSX, so there is no
+     * serializable alternative — wrap in a thin `"use client"` component to pass
+     * it from an RSC. (#338)
+     */
     renderRowCard?: (row: TRow, ctx: { rowIndex: number; rowId: string }) => React.ReactNode
     /** Per-row label used in cell aria-labels. Default `Row {n}`. */
     rowLabel?: (rowIndex: number) => string

@@ -39,6 +39,9 @@ export interface LineageGraphProps extends Omit<React.HTMLAttributes<HTMLDivElem
     layerGap?: number
     /** Gap between nodes within a layer. Default 16. */
     rowGap?: number
+    /**
+     * **Function prop — pass only from a Client Component**; from a Server Component it breaks `next build`. Render props return JSX, so there is no serializable alternative — wrap in a thin `"use client"` component to pass it from an RSC. (#338)
+     */
     renderNode?: (node: LineageNode) => React.ReactNode
     onSelectNode?: (node: LineageNode) => void
     label?: React.ReactNode
