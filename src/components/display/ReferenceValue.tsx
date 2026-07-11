@@ -154,8 +154,10 @@ const ReferenceValue = React.forwardRef<HTMLSpanElement, ReferenceValueProps>(
                     </span>
                 ) : null}
 
-                {/* Always announce the flag so it never rides on colour / code alone. */}
-                <span className="sr-only">{label}</span>
+                {/* Announce the flag so it never rides on colour / code alone —
+                    but only when it isn't already shown visibly, otherwise a
+                    screen reader hears the label twice ("基準内 基準内"). (#306) */}
+                {!showLabel ? <span className="sr-only">{label}</span> : null}
 
                 {rangeText != null ? (
                     <span className="text-xs text-muted-foreground">
