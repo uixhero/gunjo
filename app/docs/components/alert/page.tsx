@@ -117,9 +117,28 @@ export function TitleOnlyAlert() {
             description: isJa ? "アラートの意味と強さに応じた見た目です。" : "Visual treatment for the alert intent.",
         },
         {
+            name: "icon",
+            type: "React.ReactNode",
+            description: isJa
+                ? "先頭のアイコン（Tabler 等の svg）。位置付き のアイコンスロットに描画されます（compound API で先頭の <svg> 子要素が入る場所と同じ）。装飾扱い。"
+                : "Leading glyph (a Tabler/svg node), rendered into the positioned icon slot (the same one the compound API fills with a bare <svg> first child). Decorative.",
+        },
+        {
+            name: "title",
+            type: "React.ReactNode",
+            description: isJa
+                ? "簡易タイトル。<AlertTitle>（h5）の子要素と同等です。見出しレベルを指定したい場合は compound の <AlertTitle as=…> を使います。"
+                : "Convenience title — equivalent to an <AlertTitle> child (h5). For a specific heading level, use <AlertTitle as=…>.",
+        },
+        {
+            name: "description",
+            type: "React.ReactNode",
+            description: isJa ? "簡易本文。<AlertDescription> の子要素と同等です。" : "Convenience description — equivalent to an <AlertDescription> child.",
+        },
+        {
             name: "children",
             type: "React.ReactNode",
-            description: isJa ? "アイコン、タイトル、本文を含めたアラートの内容です。" : "Alert content, usually an icon, title, and description.",
+            description: isJa ? "compound での内容（アイコン、AlertTitle、AlertDescription）。icon/title/description の props と併用も可能です。" : "Compound content (icon, AlertTitle, AlertDescription). Can be combined with the icon/title/description props.",
         },
         {
             name: "className",
@@ -174,6 +193,41 @@ export function TitleOnlyAlert() {
                             ),
                             previewBodyWidth: "md",
                             code,
+                        },
+                        {
+                            key: "props-api",
+                            title: isJa ? "props で書く" : "Props API",
+                            description: isJa
+                                ? "icon / title / description の props で、compound を組まずに同じアラートを書けます。"
+                                : "The icon / title / description props express the same alert without composing the parts.",
+                            preview: (
+                                <Alert
+                                    variant="success"
+                                    icon={<CheckCircle2 className="h-4 w-4" />}
+                                    title={isJa ? "交付完了" : "Issued"}
+                                    description={isJa ? "書類の交付が完了しました。" : "The document has been issued."}
+                                />
+                            ),
+                            previewBodyWidth: "md",
+                            code: isJa
+                                ? `import { Alert } from "@gunjo/ui";
+import { IconCircleCheck as CheckCircle2 } from "@tabler/icons-react";
+
+<Alert
+  variant="success"
+  icon={<CheckCircle2 className="h-4 w-4" />}
+  title="交付完了"
+  description="書類の交付が完了しました。"
+/>`
+                                : `import { Alert } from "@gunjo/ui";
+import { IconCircleCheck as CheckCircle2 } from "@tabler/icons-react";
+
+<Alert
+  variant="success"
+  icon={<CheckCircle2 className="h-4 w-4" />}
+  title="Issued"
+  description="The document has been issued."
+/>`,
                         },
                         {
                             key: "info",

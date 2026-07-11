@@ -29,17 +29,39 @@ const alertVariants = cva(
     }
 )
 
-const Alert = React.forwardRef<
-    HTMLDivElement,
-    React.HTMLAttributes<HTMLDivElement> & VariantProps<typeof alertVariants>
->(({ className, variant, ...props }, ref) => (
-    <div
-        ref={ref}
-        role="alert"
-        className={cn(alertVariants({ variant }), className)}
-        {...props}
-    />
-))
+export interface AlertProps
+    extends Omit<React.HTMLAttributes<HTMLDivElement>, "title">,
+        VariantProps<typeof alertVariants> {
+    /**
+     * Leading status glyph — a Tabler icon or any svg node. Rendered into the
+     * positioned icon slot (the same one the compound API fills with a bare
+     * `<svg>` first child). Decorative; the title/description carry the meaning. (#303)
+     */
+    icon?: React.ReactNode
+    /**
+     * Convenience title — equivalent to an `<AlertTitle>` child (renders an `h5`).
+     * For a specific heading level, use the compound `<AlertTitle as="…">`. (#303)
+     */
+    title?: React.ReactNode
+    /** Convenience description — equivalent to an `<AlertDescription>` child. (#303) */
+    description?: React.ReactNode
+}
+
+const Alert = React.forwardRef<HTMLDivElement, AlertProps>(
+    ({ className, variant, icon, title, description, children, ...props }, ref) => (
+        <div
+            ref={ref}
+            role="alert"
+            className={cn(alertVariants({ variant }), className)}
+            {...props}
+        >
+            {icon}
+            {title != null ? <AlertTitle>{title}</AlertTitle> : null}
+            {description != null ? <AlertDescription>{description}</AlertDescription> : null}
+            {children}
+        </div>
+    )
+)
 Alert.displayName = "Alert"
 
 export interface AlertTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
