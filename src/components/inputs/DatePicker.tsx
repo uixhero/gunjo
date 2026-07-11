@@ -14,6 +14,10 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
 
 export interface DatePickerProps {
     id?: string
+    /** Optional visible label rendered above the control and associated via `htmlFor` (matches Input/Select/Textarea). (#315) */
+    label?: React.ReactNode
+    /** Optional helper text under the control, wired via `aria-describedby`. (#315) */
+    description?: React.ReactNode
     value?: Date
     onValueChange?: (date: Date | undefined) => void
     placeholder?: string
@@ -123,6 +127,8 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
     (
         {
             id,
+            label,
+            description,
             value,
             onValueChange,
             placeholder = "yyyy-mm-dd",
@@ -150,6 +156,10 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
         ref
     ) => {
         const inputRef = React.useRef<HTMLInputElement | null>(null)
+        const reactId = React.useId()
+        const hasWrap = Boolean(label || description)
+        const controlId = id ?? (hasWrap ? `${reactId}-input` : undefined)
+        const descriptionId = description ? `${reactId}-description` : undefined
         const [open, setOpen] = React.useState(false)
         const [inputValue, setInputValue] = React.useState(() =>
             formatDate(value, dateFormat, locale)
@@ -358,12 +368,13 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             [dateFormat, inputValue, isDateDisabled, locale, onValueChange, value]
         )
 
-        return (
+        const picker = (
             <Popover open={open} onOpenChange={handleOpenChange}>
                 <PopoverAnchor asChild>
                     <div className="relative w-full" data-slot="date-picker">
                         <Input
-                            id={id}
+                            id={controlId}
+                            aria-describedby={descriptionId}
                             ref={inputRef}
                             value={inputValue}
                             onFocus={() => {
@@ -545,6 +556,24 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
                     ) : null}
                 </PopoverContent>
             </Popover>
+        )
+
+        if (!hasWrap) return picker
+
+        return (
+            <div className="flex w-full flex-col gap-1.5">
+                {label ? (
+                    <label htmlFor={controlId} className="text-sm font-medium leading-none text-foreground">
+                        {label}
+                    </label>
+                ) : null}
+                {picker}
+                {description ? (
+                    <p id={descriptionId} className="text-xs text-muted-foreground">
+                        {description}
+                    </p>
+                ) : null}
+            </div>
         )
     }
 )

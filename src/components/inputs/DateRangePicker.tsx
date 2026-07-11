@@ -14,6 +14,10 @@ import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
 
 export interface DateRangePickerProps {
     id?: string
+    /** Optional visible label rendered above the control and associated via `htmlFor` (matches Input/Select/Textarea). (#315) */
+    label?: React.ReactNode
+    /** Optional helper text under the control, wired via `aria-describedby`. (#315) */
+    description?: React.ReactNode
     value?: DateRange
     onValueChange?: (range: DateRange | undefined) => void
     placeholder?: string
@@ -266,6 +270,8 @@ const DateRangePicker = React.forwardRef<HTMLInputElement, DateRangePickerProps>
     (
         {
             id,
+            label,
+            description,
             value,
             onValueChange,
             placeholder = "yyyy-mm-dd - yyyy-mm-dd",
@@ -287,6 +293,10 @@ const DateRangePicker = React.forwardRef<HTMLInputElement, DateRangePickerProps>
         ref
     ) => {
         const inputRef = React.useRef<HTMLInputElement | null>(null)
+        const reactId = React.useId()
+        const hasWrap = Boolean(label || description)
+        const controlId = id ?? (hasWrap ? `${reactId}-input` : undefined)
+        const descriptionId = description ? `${reactId}-description` : undefined
         const [open, setOpen] = React.useState(false)
         const [inputValue, setInputValue] = React.useState(() =>
             formatRange(value, dateFormat, locale)
@@ -642,12 +652,13 @@ const DateRangePicker = React.forwardRef<HTMLInputElement, DateRangePickerProps>
 
         const validationMessage = getRangeValidationMessage(validationReason, locale, maxRangeDays)
 
-        return (
+        const picker = (
             <Popover open={open} onOpenChange={handleOpenChange}>
                 <PopoverAnchor asChild>
                     <div className="relative w-full" data-slot="date-range-picker">
                         <Input
-                            id={id}
+                            id={controlId}
+                            aria-describedby={descriptionId}
                             ref={inputRef}
                             value={inputValue}
                             onFocus={() => {
@@ -870,6 +881,24 @@ const DateRangePicker = React.forwardRef<HTMLInputElement, DateRangePickerProps>
                     ) : null}
                 </PopoverContent>
             </Popover>
+        )
+
+        if (!hasWrap) return picker
+
+        return (
+            <div className="flex w-full flex-col gap-1.5">
+                {label ? (
+                    <label htmlFor={controlId} className="text-sm font-medium leading-none text-foreground">
+                        {label}
+                    </label>
+                ) : null}
+                {picker}
+                {description ? (
+                    <p id={descriptionId} className="text-xs text-muted-foreground">
+                        {description}
+                    </p>
+                ) : null}
+            </div>
         )
     }
 )

@@ -277,6 +277,8 @@ export function DateRangePickerUsage() {
 
     const propsData = [
         { name: "id", type: "string", description: locale === "ja" ? "入力欄に付与する ID です。ラベルと紐づけます。" : "Applied to the input so FormLabel can target the picker." },
+        { name: "label", type: "ReactNode", description: locale === "ja" ? "入力欄の上に表示するラベル。htmlFor で内部の入力欄に関連付けられます（Input/Select/Textarea と同じ）。" : "Visible label above the control, associated to the inner input via htmlFor (like Input/Select/Textarea)." },
+        { name: "description", type: "ReactNode", description: locale === "ja" ? "入力欄の下に表示する補助テキスト。aria-describedby で配線されます。" : "Helper text under the control, wired via aria-describedby." },
         { name: "value", type: "DateRange", description: locale === "ja" ? "選択中の期間です。開始日と終了日を持つ値を使います。" : "Controlled selected range { from, to } from react-day-picker." },
         { name: "onValueChange", type: "(range: DateRange | undefined) => void", description: locale === "ja" ? "入力またはカレンダー選択で期間が変わった時に呼ばれます。" : "Callback fired when the range changes by typing or calendar selection." },
         { name: "placeholder", type: "string", default: "'yyyy-mm-dd - yyyy-mm-dd'", description: locale === "ja" ? "未入力時に表示する入力形式のヒントです。" : "Input format hint shown when empty." },
