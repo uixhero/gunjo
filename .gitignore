@@ -27,3 +27,4 @@ promotion/
 
 # Source images — commit the optimized webp, not the multi-MB originals
 public/renew/*.png
+.playwright-mcp/
