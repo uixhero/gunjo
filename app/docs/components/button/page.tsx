@@ -5,7 +5,7 @@ import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import inputsMetadata from "@design/inputs-metadata.json";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { CodeBlock } from "@/components/doc/CodeBlock";
-import { Button, Spinner, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+import { Button, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 import { IconDeviceFloppy as Save, IconTrash as Trash2 } from "@tabler/icons-react";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
@@ -171,6 +171,14 @@ export function Example() {
                 : "The size of the button. Use touch for a 44px tap target (mobile / consumer, WCAG 2.5.5) at default density, and icon-touch for its 44×44px icon-only twin.",
         },
         {
+            name: "loading",
+            type: "boolean",
+            default: "false",
+            description: locale === "ja"
+                ? "処理中状態。Spinner を表示し、ボタンを無効化して aria-busy を設定します（ラベルは残るため幅が安定）。asChild 時は無視されます。"
+                : "Async pending state — shows a Spinner, disables the button, and sets aria-busy (label stays, width stable). Ignored when asChild is set.",
+        },
+        {
             name: "asChild",
             type: "boolean",
             default: "false",
@@ -303,14 +311,13 @@ export default function ButtonSizes() {
                             title: locale === "ja" ? "処理中" : "Loading",
                             description:
                                 locale === "ja"
-                                    ? "保存中などの処理が進んでいる間は、進捗アイコンと文言を表示し、ボタン操作を無効化します。"
-                                    : "While an action is in flight — disable + show a Spinner alongside the label.",
+                                    ? "処理中は loading を渡すだけで、Spinner 表示・disabled・aria-busy がまとめて有効になります（ラベルは残り幅が安定）。"
+                                    : "Pass loading — it shows the Spinner, disables the button, and sets aria-busy (the label stays, so the width is stable).",
                             preview: (
                                 <Tooltip>
                                     <TooltipTrigger asChild>
                                         <span className="inline-flex" tabIndex={0}>
-                                            <Button disabled className="gap-2">
-                                                <Spinner size="sm" />
+                                            <Button loading>
                                                 {locale === "ja" ? "保存中..." : "Saving..."}
                                             </Button>
                                         </span>
@@ -321,34 +328,28 @@ export default function ButtonSizes() {
                                 </Tooltip>
                             ),
                             code: locale === "ja"
-                                ? `import { Button, Spinner, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                                ? `import { Button, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 
 export default function SavingButton() {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
         <span className="inline-flex" tabIndex={0}>
-          <Button disabled className="gap-2">
-            <Spinner size="sm" />
-            保存中...
-          </Button>
+          <Button loading>保存中...</Button>
         </span>
       </TooltipTrigger>
       <TooltipContent>保存処理が完了するまで操作できません。</TooltipContent>
     </Tooltip>
   );
 }`
-                                : `import { Button, Spinner, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                                : `import { Button, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 
 export default function SavingButton() {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
         <span className="inline-flex" tabIndex={0}>
-          <Button disabled className="gap-2">
-            <Spinner size="sm" />
-            Saving...
-          </Button>
+          <Button loading>Saving...</Button>
         </span>
       </TooltipTrigger>
       <TooltipContent>This action is unavailable until saving finishes.</TooltipContent>
