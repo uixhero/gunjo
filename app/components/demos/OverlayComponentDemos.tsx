@@ -482,7 +482,8 @@ export function DrawerAuditDemo({ side = "bottom" }: { side?: "bottom" | "right"
                 <DrawerTrigger asChild>
                     <Button variant="outline">{isJa ? "詳細を開く" : "Open details"}</Button>
                 </DrawerTrigger>
-                <DrawerContent portalContainer={portalContainer} side={side}>
+                {/* side is derived from the Root `direction` — single source of truth (#335) */}
+                <DrawerContent portalContainer={portalContainer}>
                     <DrawerHeader>
                         <DrawerTitle>{isJa ? "配信設定" : "Delivery settings"}</DrawerTitle>
                         <DrawerDescription>

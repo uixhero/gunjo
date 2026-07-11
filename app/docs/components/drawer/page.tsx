@@ -19,8 +19,9 @@ function createDrawerCode(locale: "ja" | "en", side: DrawerSide = "bottom") {
         top: "TopDeliverySettingsDrawer",
     };
     const componentName = componentNameBySide[side];
+    // `direction` on the Root is the single source of truth — it drives both the
+    // styling and vaul's drag layer. DrawerContent derives its side from it. (#335)
     const directionProp = side === "bottom" ? "" : ` direction="${side}"`;
-    const contentSideProp = side === "bottom" ? "" : ` side="${side}"`;
 
     return `import * as React from "react";
 import {
@@ -47,7 +48,7 @@ export function ${componentName}() {
         <DrawerTrigger asChild>
           <Button variant="outline">${isJa ? "詳細を開く" : "Open details"}</Button>
         </DrawerTrigger>
-        <DrawerContent${contentSideProp} portalContainer={portalContainer}>
+        <DrawerContent portalContainer={portalContainer}>
           <DrawerHeader>
             <DrawerTitle>${isJa ? "配信設定" : "Delivery settings"}</DrawerTitle>
             <DrawerDescription>
