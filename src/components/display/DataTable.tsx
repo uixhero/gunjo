@@ -86,6 +86,14 @@ export interface DataTableProps<TData, TValue> {
      * stacked card list instead of a horizontally-scrolling table; the `<table>`
      * is shown from `md` up. Without it, the table is shown at every width
      * (and scrolls horizontally on small screens). (#195)
+     *
+     * **Return non-interactive content.** With `onRowClick` set, DataTable wraps
+     * each card in its own activatable `role="button"` (tabIndex 0) — so to make
+     * the whole card tappable, use `onRowClick`, don't add your own `<button>` /
+     * `<a>` as the card root (that nests interactive roles). Small per-row action
+     * controls (a button, link, checkbox) are fine — clicks on them are excluded
+     * from row activation. (#333)
+     *
      * **Function prop — pass only from a Client Component**; from a Server
      * Component it breaks `next build`. Render props return JSX, so there is no
      * serializable alternative — wrap in a thin `"use client"` component to pass
