@@ -109,6 +109,7 @@ const propsByLocale = {
     ja: [
         { name: "variant", type: "\"default\" | \"secondary\" | \"outline\" | \"destructive\"", default: "\"default\"", description: "用途や状態に合わせた見た目です。" },
         { name: "size", type: "\"sm\" | \"default\" | \"lg\"", default: "\"default\"", description: "タグの高さと文字サイズです。" },
+        { name: "icon", type: "ReactNode", description: "先頭に表示するアイコン（Tabler 等の svg）。サイズと余白は自動・装飾扱い（aria-hidden）。Badge の icon に揃えた API です。" },
         { name: "onRemove", type: "() => void", description: "指定すると末尾に削除ボタンを表示し、クリック時に呼び出されます。" },
         { name: "removeLabel", type: "string", default: "\"Remove\"", description: "削除ボタンのアクセシブル名とツールチップ文言です。" },
         { name: "children", type: "ReactNode", required: true, description: "タグに表示する短いラベルです。" },
@@ -117,6 +118,7 @@ const propsByLocale = {
     en: [
         { name: "variant", type: "\"default\" | \"secondary\" | \"outline\" | \"destructive\"", default: "\"default\"", description: "Visual treatment for the tag's purpose or state." },
         { name: "size", type: "\"sm\" | \"default\" | \"lg\"", default: "\"default\"", description: "Controls tag height and text size." },
+        { name: "icon", type: "ReactNode", description: "Leading glyph (a Tabler/svg node), sized and spaced for you — decorative (aria-hidden). Mirrors Badge's icon prop." },
         { name: "onRemove", type: "() => void", description: "Shows a trailing remove button and calls this handler when clicked." },
         { name: "removeLabel", type: "string", default: "\"Remove\"", description: "Accessible name and tooltip copy for the remove button." },
         { name: "children", type: "ReactNode", required: true, description: "Short label rendered inside the tag." },
