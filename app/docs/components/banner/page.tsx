@@ -6,7 +6,7 @@ import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import feedbackMetadata from "@design/feedback-metadata.json";
-import { Banner, Button } from "@gunjo/ui";
+import { Banner, Button, DocNote } from "@gunjo/ui";
 import {
     IconAlertTriangle as AlertTriangle,
     IconCircleCheck as CheckCircle,
@@ -176,6 +176,28 @@ export function SetupCompleteBanner() {
                     {isJa ? "新しいリリースを公開しました。主な変更点を確認できます。" : "A new release is available. Review the highlights before updating."}
                 </Banner>
             </ComponentPreview>
+
+            <DocNote variant="note" heading={isJa ? "Banner は1行の帯" : "Banner is a one-line strip"}>
+                <p className="text-sm leading-relaxed">
+                    {isJa ? (
+                        <>
+                            <code>Banner</code> は高さ <code>h-10</code> の<strong>1行</strong>の帯で、本文は
+                            <strong>省略（truncate）</strong>されます。複数行や折り返す内容は黙って切れます。
+                            タイトル＋本文のような<strong>ブロック型・複数行の通知</strong>には{" "}
+                            <a href="/docs/components/alert" className="font-medium underline underline-offset-4">Alert</a>{" "}
+                            を使ってください（高さ制限なし・<code>AlertTitle</code>／<code>AlertDescription</code>）。
+                        </>
+                    ) : (
+                        <>
+                            <code>Banner</code> is a fixed <code>h-10</code> <strong>single-line</strong> strip — its
+                            message is <strong>truncated</strong>, so multi-line/wrapping content is silently clipped.
+                            For a <strong>multi-line / block callout</strong> (title + body), use{" "}
+                            <a href="/docs/components/alert" className="font-medium underline underline-offset-4">Alert</a>{" "}
+                            instead (no height cap; <code>AlertTitle</code> / <code>AlertDescription</code>).
+                        </>
+                    )}
+                </p>
+            </DocNote>
 
             <section className="space-y-4">
                 <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="states">

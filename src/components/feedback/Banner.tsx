@@ -36,6 +36,16 @@ export interface BannerProps
     dismissLabel?: string
 }
 
+/**
+ * A **single-line** notice strip: fixed `h-10`, one row (icon + text + optional
+ * action + dismiss), and the message is **truncated** — long/multi-line content
+ * is silently clipped. Use it for a persistent page/section banner (a short
+ * status, a CTA strip, a global notice).
+ *
+ * For a **multi-line / block callout** — a title + body, embargo notices,
+ * anything that wraps — use `Alert` instead (icon + `AlertTitle` +
+ * `AlertDescription`, no height cap). Banner = one-line strip; Alert = block. (#324)
+ */
 const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
     (
         {
