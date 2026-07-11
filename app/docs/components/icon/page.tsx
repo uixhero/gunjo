@@ -7,7 +7,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
-import { Icon } from "@gunjo/ui";
+import { Icon, DocNote } from "@gunjo/ui";
 import {
     IconAlertTriangle,
     IconBell,
@@ -153,6 +153,27 @@ export function StatusIcons() {
             <ComponentPreview embedSrc="/embed/icon" code={code} codeBlock={<CodeBlock code={code} />}>
                 <Icon icon={IconBell} size="md" label={locale === "ja" ? "通知" : "Notifications"} decorative={false} />
             </ComponentPreview>
+
+            <DocNote variant="warning" heading={locale === "ja" ? "他のキットと違う点" : "Not like other kits"}>
+                {locale === "ja" ? (
+                    <p className="text-sm leading-relaxed">
+                        <code>Icon</code> は <strong>グリフの「コンポーネント」</strong>を受け取ります（例:{" "}
+                        <code>{`icon={IconChevronRight}`}</code>）。<code>{`name="ChevronRight"`}</code> のような
+                        <strong>名前文字列は取りません</strong>（数千のアイコンを同梱しないための設計）。
+                        <code>@tabler/icons-react</code> などから import したものを渡してください。
+                        また <code>size</code> は className やピクセル値ではなく<strong>バリアントキー</strong>（<code>xs|sm|md|lg|xl</code>）です。
+                    </p>
+                ) : (
+                    <p className="text-sm leading-relaxed">
+                        <code>Icon</code> takes a glyph <strong>component</strong> (e.g.{" "}
+                        <code>{`icon={IconChevronRight}`}</code>), <strong>not a name string</strong> like{" "}
+                        <code>{`name="ChevronRight"`}</code> — there is no string-name registry (that would bundle
+                        thousands of icons). Import the glyph from <code>@tabler/icons-react</code> (or Lucide) and pass
+                        it. And <code>size</code> is a <strong>variant key</strong> (<code>xs|sm|md|lg|xl</code>), not a
+                        className or pixel value.
+                    </p>
+                )}
+            </DocNote>
 
             <div className="space-y-4">
                 <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">

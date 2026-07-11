@@ -15,7 +15,14 @@ export type IconGlyph = React.ForwardRefExoticComponent<
 
 export interface IconProps
     extends Omit<React.SVGProps<SVGSVGElement>, "children" | "size" | "strokeWidth"> {
+    /**
+     * The glyph **component** you imported — e.g. `icon={IconChevronRight}` from
+     * `@tabler/icons-react`. NOT a name string: there is no `name="…"` registry
+     * (that would bundle thousands of icons). Any Tabler / Lucide / svg-component
+     * works. (#337)
+     */
     icon: IconGlyph
+    /** Size as a **variant key** (`xs|sm|md|lg|xl`) — not a className or pixel value. Default `md`. */
     size?: IconVariantKey
     label?: string
     decorative?: boolean
@@ -45,6 +52,17 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(
         },
         ref
     ) => {
+        // The #1 newcomer trap: `<Icon name="ChevronRight" />` (most kits' style).
+        // gunjo takes a glyph component. tsc catches this, but warn in dev too for
+        // JS consumers / bypassed types, then render nothing rather than a broken
+        // `<chevronright>` DOM tag. (#337)
+        if (process.env.NODE_ENV !== "production" && typeof Glyph === "string") {
+            console.warn(
+                `[gunjo] <Icon icon={…}> takes an imported glyph COMPONENT (e.g. icon={IconChevronRight}), not a name string ("${Glyph}"). There is no string-name registry.`
+            )
+            return null
+        }
+
         const isDecorative = decorative && !label
 
         return (
