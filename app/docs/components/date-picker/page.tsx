@@ -335,6 +335,8 @@ export function DatePickerUsage() {
 
     const propsData = [
         { name: "id", type: "string", description: locale === "ja" ? "入力欄に付与する ID です。ラベルと紐づけます。" : "Applied to the input so FormLabel can target the picker." },
+        { name: "label", type: "ReactNode", description: locale === "ja" ? "入力欄の上に表示するラベル。htmlFor で内部の入力欄に関連付けられます（Input/Select/Textarea と同じ）。" : "Visible label above the control, associated to the inner input via htmlFor (like Input/Select/Textarea)." },
+        { name: "description", type: "ReactNode", description: locale === "ja" ? "入力欄の下に表示する補助テキスト。aria-describedby で配線されます。" : "Helper text under the control, wired via aria-describedby." },
         { name: "value", type: "Date", description: locale === "ja" ? "選択中の日付。" : "Controlled selected date." },
         { name: "onValueChange", type: "(date: Date | undefined) => void", description: locale === "ja" ? "入力またはカレンダー選択で日付が変わった時に呼ばれます。" : "Callback fired when selection changes by typing or calendar selection." },
         { name: "placeholder", type: "string", default: "'yyyy-mm-dd'", description: locale === "ja" ? "未入力時に表示する入力形式のヒントです。" : "Input format hint shown when empty." },
