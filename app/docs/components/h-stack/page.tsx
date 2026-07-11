@@ -81,14 +81,14 @@ export default function HStackPage() {
     const meta = layoutMetadata as Record<string, { title: string; description: string }>;
     const propsData = locale === "ja"
         ? [
-            { name: "gap", type: "0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 12", default: "2", description: "子要素間の余白です。" },
+            { name: "gap", type: "0..12 の数値ステップ | \"none\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"", default: "2", description: "子要素間の余白です。数値スケール（gap={6}）でも文字列エイリアス（gap=\"lg\"）でも指定できます。size ではなくスペーシングトークンです。" },
             { name: "align", type: '"start" | "center" | "end" | "baseline" | "stretch"', default: '"center"', description: "縦方向の揃え方です。" },
             { name: "justify", type: '"start" | "center" | "end" | "between" | "around" | "evenly"', default: '"start"', description: "横方向の配置方法です。" },
             { name: "wrap", type: "boolean", default: "false", description: "横幅が足りない時に折り返すかどうかです。" },
             { name: "inline", type: "boolean", default: "false", description: "inline-flex として描画します。" },
         ]
         : [
-            { name: "gap", type: "0 | 1 | 2 | 3 | 4 | 5 | 6 | 8 | 10 | 12", default: "2", description: "Spacing between children." },
+            { name: "gap", type: "0..12 numeric step | \"none\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"", default: "2", description: "Spacing between children. A numeric scale (gap={6}) or a string alias (gap=\"lg\"). A spacing token, not a component size." },
             { name: "align", type: '"start" | "center" | "end" | "baseline" | "stretch"', default: '"center"', description: "Cross-axis alignment." },
             { name: "justify", type: '"start" | "center" | "end" | "between" | "around" | "evenly"', default: '"start"', description: "Main-axis distribution." },
             { name: "wrap", type: "boolean", default: "false", description: "Allows children to wrap onto new lines." },
