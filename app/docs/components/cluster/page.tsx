@@ -73,13 +73,13 @@ export default function ClusterPage() {
     const meta = layoutMetadata as Record<string, { title: string; description: string }>;
     const propsData = locale === "ja"
         ? [
-            { name: "gap", type: "0 | 1 | 2 | 3 | 4 | 5 | 6 | 8", default: "2", description: "子要素同士の余白です。" },
+            { name: "gap", type: "0..8 の数値ステップ | \"none\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"", default: "2", description: "子要素同士の余白です。数値スケール（gap={6}）でも文字列エイリアス（gap=\"lg\"）でも指定できます。size ではなくスペーシングトークンです。" },
             { name: "align", type: '"start" | "center" | "end" | "baseline"', default: '"center"', description: "折り返し行の交差軸方向の揃え方です。" },
             { name: "justify", type: '"start" | "center" | "end" | "between"', default: '"start"', description: "主軸方向の揃え方です。右寄せ操作群では end を使います。" },
             { name: "className", type: "string", description: "追加の className です。" },
         ]
         : [
-            { name: "gap", type: "0 | 1 | 2 | 3 | 4 | 5 | 6 | 8", default: "2", description: "Spacing between children." },
+            { name: "gap", type: "0..8 numeric step | \"none\" | \"xs\" | \"sm\" | \"md\" | \"lg\" | \"xl\"", default: "2", description: "Spacing between children. A numeric scale (gap={6}) or a string alias (gap=\"lg\"). A spacing token, not a component size." },
             { name: "align", type: '"start" | "center" | "end" | "baseline"', default: '"center"', description: "Cross-axis alignment across wrapped rows." },
             { name: "justify", type: '"start" | "center" | "end" | "between"', default: '"start"', description: "Main-axis alignment. Use end for right-aligned action groups." },
             { name: "className", type: "string", description: "Additional class names." },

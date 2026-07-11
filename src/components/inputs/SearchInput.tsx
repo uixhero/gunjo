@@ -10,6 +10,11 @@ import { useLocale } from "../utility/LocaleProvider"
 export interface SearchInputProps
     extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type" | "onChange"> {
     value?: string
+    /**
+     * Called with the new string value (native `onChange` is omitted). Write
+     * `onValueChange={setQuery}`, not `onChange={e => …}` — this is the kit's
+     * convention for value-emitting inputs. (#330)
+     */
     onValueChange?: (value: string) => void
     /** Show a clear (×) button when value is non-empty. Default true. */
     clearable?: boolean
