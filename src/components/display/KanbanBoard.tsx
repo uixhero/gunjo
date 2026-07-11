@@ -3,16 +3,14 @@
 import * as React from "react"
 
 import { cn } from "../../lib/utils"
+import type { SemanticTone } from "../../lib/semantic-tone"
 import { Badge } from "./Badge"
 
-export type KanbanColumnTone =
-    | "default"
-    | "primary"
-    | "info"
-    | "success"
-    | "warning"
-    | "destructive"
-    | "muted"
+/**
+ * @deprecated Prefer the canonical {@link SemanticTone}; this is now an alias of
+ * it. Kept for backward-compatible imports. (#294)
+ */
+export type KanbanColumnTone = SemanticTone
 
 export interface KanbanColumn {
     id: string

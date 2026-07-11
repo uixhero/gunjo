@@ -3,6 +3,7 @@
 import * as React from "react"
 
 import { cn } from "../../lib/utils"
+import type { SemanticTone } from "../../lib/semantic-tone"
 import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip"
 
 export interface ScheduleAxisItem {
@@ -14,14 +15,11 @@ export interface ScheduleAxisItem {
     ariaLabel?: string
 }
 
-export type ScheduleCellTone =
-    | "default"
-    | "muted"
-    | "primary"
-    | "info"
-    | "success"
-    | "warning"
-    | "destructive"
+/**
+ * @deprecated Prefer the canonical {@link SemanticTone}; this is now an alias of
+ * it. Kept for backward-compatible imports. (#294)
+ */
+export type ScheduleCellTone = SemanticTone
 
 export interface ScheduleCell {
     rowId: string

@@ -3,15 +3,13 @@
 import * as React from "react"
 
 import { cn } from "../../lib/utils"
+import type { SemanticTone } from "../../lib/semantic-tone"
 
-export type GanttItemTone =
-    | "default"
-    | "primary"
-    | "info"
-    | "success"
-    | "warning"
-    | "destructive"
-    | "muted"
+/**
+ * @deprecated Prefer the canonical {@link SemanticTone}; this is now an alias of
+ * it. Kept for backward-compatible imports. (#294)
+ */
+export type GanttItemTone = SemanticTone
 
 export interface GanttRow {
     id: string

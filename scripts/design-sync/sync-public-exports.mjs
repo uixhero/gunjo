@@ -27,6 +27,16 @@ const EXTRA_EXPORTS_BY_CATEGORY = {
 
 const EXTRA_PUBLIC_EXPORT_SECTIONS = [
   {
+    label: "Semantic Tone",
+    // Canonical status scale + converters to the superset / differently-spelled
+    // vocabularies (chart accent, meter, badge, danger). Kills per-screen tone
+    // mapping tables. (#294)
+    exports: [
+      "export type { SemanticTone, SemanticToneDanger } from './lib/semantic-tone';",
+      "export { SEMANTIC_TONES, isSemanticTone, toChartTone, toMeterTone, toBadgeVariant, toDangerTone } from './lib/semantic-tone';",
+    ],
+  },
+  {
     label: "Chart Types",
     exports: [
       "export type { ChartColor, ChartDataPoint, ChartTone } from './components/display/chart-utils';",
