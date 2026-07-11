@@ -309,6 +309,18 @@ export function MembersTable() {
             description: isJa ? "検索、空状態、並び替え、ページネーションの文言を差し替えます。" : "Overrides labels for filtering, empty state, sorting, and pagination.",
         },
         {
+            name: "onRowClick",
+            type: "(row: TData) => void",
+            description: isJa ? "指定すると各行がフォーカス可能・アクティブ化可能になり、クリック/Enter で呼ばれます。行内のインタラクティブ要素（ボタン等）のクリックは除外されます。" : "Makes each row focusable/activatable; called on click or Enter. Clicks on interactive controls inside the row are excluded.",
+        },
+        {
+            name: "renderCard",
+            type: "(row: TData) => ReactNode",
+            description: isJa
+                ? "モバイル（< md）で行をカードのスタックとして表示します。onRowClick 指定時はカード自体が role=\"button\" になるため、非インタラクティブな内容を返すこと（カード全体をタップ可能にするには onRowClick を使い、カードのルートに自前の button/a を置かない）。行内の小さな操作ボタンは可。関数propのため Client Component からのみ渡すこと。(#333/#338)"
+                : "Renders rows as a stacked card list on mobile (< md). With onRowClick the card is itself role=\"button\" — return non-interactive content (use onRowClick to make the whole card tappable; don't add your own button/link as the card root). Small per-row controls are fine. Function prop — pass only from a Client Component. (#333/#338)",
+        },
+        {
             name: "className",
             type: "string",
             description: isJa ? "ラッパーに追加するクラスです。" : "Additional class names applied to the wrapper.",
