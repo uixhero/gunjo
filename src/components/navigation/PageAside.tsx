@@ -8,6 +8,9 @@ import { useLocale } from "../utility/LocaleProvider"
 
 export interface PageAsideProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title"> {
     title: React.ReactNode
+    /**
+     * **Function prop — pass only from a Client Component**; from a Server Component it breaks `next build`. Render props return JSX, so there is no serializable alternative — wrap in a thin `"use client"` component to pass it from an RSC. (#338)
+     */
     renderAside: () => React.ReactNode
     children: React.ReactNode
     asideLabel?: string

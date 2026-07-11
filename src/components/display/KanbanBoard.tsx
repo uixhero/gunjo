@@ -30,7 +30,11 @@ export interface KanbanBoardProps<T> extends Omit<React.HTMLAttributes<HTMLDivEl
     getItemId: (item: T) => string
     /** Which column a card belongs to (matches a `columns[].id`). */
     getColumnId: (item: T) => string
-    /** Render a card's body (compose Badge / text / etc.). */
+    /**
+     * Render a card's body (compose Badge / text / etc.).
+     *
+     * **Function prop — pass only from a Client Component**; from a Server Component it breaks `next build`. Render props return JSX, so there is no serializable alternative — wrap in a thin `"use client"` component to pass it from an RSC. (#338)
+     */
     renderCard: (item: T) => React.ReactNode
     /** When set, each card is an activatable button (click / Enter / Space). */
     onCardSelect?: (item: T) => void

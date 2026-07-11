@@ -339,7 +339,7 @@ export function ReviewKanban() {
     { name: "items", type: "T[]", description: locale === "ja" ? "列分け前のフラットなカード配列です。" : "Flat card list before grouping." },
     { name: "getItemId", type: "(item: T) => string", description: locale === "ja" ? "カードの安定したキーを返します。" : "Returns a stable card key." },
     { name: "getColumnId", type: "(item: T) => string", description: locale === "ja" ? "カードが入る列 id を返します。" : "Returns the column id for each card." },
-    { name: "renderCard", type: "(item: T) => ReactNode", description: locale === "ja" ? "カード本体を描画します。" : "Renders each card body." },
+    { name: "renderCard", type: "(item: T) => ReactNode", description: locale === "ja" ? "カード本体を描画します。関数propのため Client Component からのみ渡すこと（Server Component から渡すと next build が落ちる）。JSX を返すため serializable な代替は無く、RSC からは \"use client\" ラッパーで包む。(#338)" : "Renders each card body. Function prop — pass only from a Client Component; from a Server Component it breaks next build. Render props return JSX (no serializable alternative) — wrap in a \"use client\" component to pass from an RSC. (#338)" },
     { name: "onCardSelect", type: "(item: T) => void", description: locale === "ja" ? "渡すとカードがボタンになり、クリックやキーボードで選択できます。" : "When provided, cards become buttons for pointer and keyboard selection." },
     { name: "showCount", type: "boolean", default: "true", description: locale === "ja" ? "列見出しに件数 Badge を表示します。" : "Shows count badges in column headers." },
     { name: "emptyLabel", type: "ReactNode", default: '"なし"', description: locale === "ja" ? "空列のプレースホルダーです。" : "Placeholder for an empty column." },

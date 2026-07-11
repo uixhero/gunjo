@@ -32,7 +32,19 @@ export interface AssetGridProps<TAsset extends AssetCardAsset = AssetCardAsset>
     onSelect?: (asset: TAsset) => void
     onPreview?: (asset: TAsset) => void
     onFavorite?: (asset: TAsset) => void
+    /**
+     * **Function prop — pass only from a Client Component**; from a Server
+     * Component it breaks `next build`. Render props return JSX, so there is no
+     * serializable alternative — wrap in a thin `"use client"` component to pass
+     * it from an RSC. (#338)
+     */
     renderMeta?: (asset: TAsset) => React.ReactNode
+    /**
+     * **Function prop — pass only from a Client Component**; from a Server
+     * Component it breaks `next build`. Render props return JSX, so there is no
+     * serializable alternative — wrap in a thin `"use client"` component to pass
+     * it from an RSC. (#338)
+     */
     renderItem?: (asset: TAsset, state: { selected: boolean }) => React.ReactNode
 }
 

@@ -453,7 +453,7 @@ export function WeeklyTimetable() {
     { name: "ScheduleCell.onSelect", type: "() => void", description: locale === "ja" ? "セルをクリック/Enter/Spaceで操作可能にします。" : "Makes a cell activatable by click, Enter, or Space." },
     { name: "unavailable / unavailableLabel", type: "boolean / string", description: locale === "ja" ? "利用不可スロットとその表示/読み上げ名です。" : "Unavailable slot and its visible/announced label." },
     { name: "unavailableReason", type: "ReactNode", description: locale === "ja" ? "利用不可セルにホバー/フォーカスした時に表示する理由です。" : "Reason shown when an unavailable cell is hovered or focused." },
-    { name: "emptyLabel / renderEmpty", type: "string / function", description: locale === "ja" ? "空セルの読み上げ名と表示を指定します。空き枠を操作対象にする場合は onSelect 付きのセルとして渡します。" : "Label and render function for empty slots. Pass an open slot as an onSelect cell when it should be actionable." },
+    { name: "emptyLabel / renderEmpty", type: "string / function", description: locale === "ja" ? "空セルの読み上げ名と表示を指定します。空き枠を操作対象にする場合は onSelect 付きのセルとして渡します。関数propのため Client Component からのみ渡すこと（Server Component から渡すと next build が落ちる）。JSX を返すため serializable な代替は無く、RSC からは \"use client\" ラッパーで包む。(#338)" : "Label and render function for empty slots. Pass an open slot as an onSelect cell when it should be actionable. Function prop — pass only from a Client Component; from a Server Component it breaks next build. Render props return JSX (no serializable alternative) — wrap in a \"use client\" component to pass from an RSC. (#338)" },
     { name: "minColumnWidth / rowHeaderWidth", type: "number", description: locale === "ja" ? "横スクロール前の列幅と固定行ヘッダー幅です。" : "Column min width and sticky row-header width." },
   ];
 

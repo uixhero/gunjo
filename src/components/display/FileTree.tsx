@@ -56,7 +56,13 @@ export interface FileTreeProps
     defaultSelectedIds?: string[]
     onSelectedIdsChange?: (ids: string[], node: FileTreeNode) => void
     onNodeSelect?: (node: FileTreeNode) => void
+    /**
+     * **Function prop — pass only from a Client Component**; from a Server Component it breaks `next build`. Render props return JSX, so there is no serializable alternative — wrap in a thin `"use client"` component to pass it from an RSC. (#338)
+     */
     renderNodeMeta?: (node: FileTreeNode) => React.ReactNode
+    /**
+     * **Function prop — pass only from a Client Component**; from a Server Component it breaks `next build`. Render props return JSX, so there is no serializable alternative — wrap in a thin `"use client"` component to pass it from an RSC. (#338)
+     */
     renderNodeActions?: (node: FileTreeNode) => React.ReactNode
     getNodeRowProps?: (node: FileTreeNode) => React.HTMLAttributes<HTMLDivElement> | undefined
 }

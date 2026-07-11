@@ -42,6 +42,9 @@ export interface AssetCardProps extends Omit<React.HTMLAttributes<HTMLDivElement
     onSelect?: (asset: AssetCardAsset) => void
     onPreview?: (asset: AssetCardAsset) => void
     onFavorite?: (asset: AssetCardAsset) => void
+    /**
+     * **Function prop — pass only from a Client Component**; from a Server Component it breaks `next build`. Render props return JSX, so there is no serializable alternative — wrap in a thin `"use client"` component to pass it from an RSC. (#338)
+     */
     renderMeta?: (asset: AssetCardAsset) => React.ReactNode
 }
 

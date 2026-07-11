@@ -47,7 +47,7 @@ const propsData = [
     { name: "minRows", type: "number", default: "0", description: "Minimum rows kept." },
     { name: "getRowError", type: "(row, index) => string | undefined", description: "Marks a row invalid; the message is exposed to screen readers." },
     { name: "footer", type: "ReactNode", description: "Totals / balance row, rendered under the body on desktop + mobile." },
-    { name: "renderRowCard", type: "(row, ctx) => ReactNode", description: "Custom mobile card body (defaults to stacking each column)." },
+    { name: "renderRowCard", type: "(row, ctx) => ReactNode", description: "Custom mobile card body (defaults to stacking each column). Function prop — pass only from a Client Component; from a Server Component it breaks next build. Render props return JSX (no serializable alternative) — wrap in a \"use client\" component to pass from an RSC. (#338)" },
     { name: "variant", type: "\"default\" | \"compact\"", default: "\"default\"", description: "Density." },
     { name: "labels / rowLabel / caption / className", type: "—", description: "Add/remove/empty labels, per-row label, caption, extra classes." },
 ];

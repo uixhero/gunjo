@@ -26,9 +26,17 @@ export interface TreeViewProps extends React.HTMLAttributes<HTMLUListElement> {
     /** Selection semantics used for aria state and selected row styling. */
     selectionMode?: "single" | "multiple" | "none"
     onSelectedIdChange?: (id: string) => void
-    /** Optional supplemental content shown after the label, such as item count or file size. */
+    /**
+     * Optional supplemental content shown after the label, such as item count or file size.
+     *
+     * **Function prop — pass only from a Client Component**; from a Server Component it breaks `next build`. Render props return JSX, so there is no serializable alternative — wrap in a thin `"use client"` component to pass it from an RSC. (#338)
+     */
     renderNodeMeta?: (node: TreeNode) => React.ReactNode
-    /** Optional actions rendered at the end of each row. */
+    /**
+     * Optional actions rendered at the end of each row.
+     *
+     * **Function prop — pass only from a Client Component**; from a Server Component it breaks `next build`. Render props return JSX, so there is no serializable alternative — wrap in a thin `"use client"` component to pass it from an RSC. (#338)
+     */
     renderNodeActions?: (node: TreeNode) => React.ReactNode
     /** Optional props applied to the row wrapper, useful for drag and drop or instrumentation. */
     getNodeRowProps?: (node: TreeNode) => React.HTMLAttributes<HTMLDivElement> | undefined
