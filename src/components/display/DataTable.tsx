@@ -373,7 +373,11 @@ export function DataTable<TData, TValue>({
                                                     <TooltipTrigger asChild>
                                                         <button
                                                             type="button"
-                                                            aria-label={sortLabel}
+                                                            // No aria-label: the button's name stays the column
+                                                            // title (so associated data cells announce the column,
+                                                            // not a verbose English "Current: unsorted…" sentence).
+                                                            // Sort state is conveyed by the th's aria-sort (which AT
+                                                            // localizes); the visible hint lives in the Tooltip. (#307)
                                                             onClick={header.column.getToggleSortingHandler()}
                                                             className={cn(
                                                                 "-ml-1 flex min-h-8 w-full min-w-0 items-center justify-between gap-1 rounded-md px-1 hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
@@ -386,7 +390,7 @@ export function DataTable<TData, TValue>({
                                                                     header.getContext()
                                                                 )}
                                                             </span>
-                                                            <span className="inline-flex h-4 w-4 shrink-0 items-center justify-center">
+                                                            <span aria-hidden="true" className="inline-flex h-4 w-4 shrink-0 items-center justify-center">
                                                                 <Icon icon={SortIcon} size="xs" className={cn("opacity-50", sorted && "opacity-100")} />
                                                             </span>
                                                         </button>
