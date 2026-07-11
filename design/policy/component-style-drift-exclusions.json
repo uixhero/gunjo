@@ -6,6 +6,13 @@
       "reason": "Runtime Tooltip auto-sizes to content (w-fit max-w-xs text-center) so single-line tooltips like 'EN' or 'GitHub' don't render in a fixed 168px bubble. The .pen design represents a richer tooltip with a stacked shortcut hint (Save changes / Ctrl+S); runtime trims the hint and centers the single text node.",
       "addedOn": "2026-05-07",
       "expiresOn": "permanent"
+    },
+    {
+      "category": "overlay",
+      "componentKey": "sheet",
+      "reason": "The .pen models a fixed 384px (w-[384px]) drawer, but the runtime uses a responsive width — w-3/4 on mobile capped by a size-driven desktop max-width (size=sm|md|lg|xl|full → sm:max-w-sm..none). The fixed 384px was a dead class (w-3/4 already overrode it); dropping it makes right match left. Width is now the size variant's contract, not a single pixel value. (#328)",
+      "addedOn": "2026-07-11",
+      "expiresOn": "permanent"
     }
   ]
 }
