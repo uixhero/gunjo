@@ -72,6 +72,12 @@ export interface DataTableProps<TData, TValue> {
     labels?: DataTableLabels
     /** Optional actions rendered directly under the summary row in the table header area. */
     headerActions?: React.ReactNode
+    /**
+     * Hide the "1 - 4 / 4" summary text in the pagination header. Useful for a
+     * **narrow host** (e.g. a ~420px master column) where the summary is the
+     * least-important chrome; the pager still wraps below on its own line. (#311)
+     */
+    hidePaginationSummary?: boolean
     /** Optional row state used for styling composed tables. */
     getRowState?: (row: TData, index: number) => string | undefined
     /**
@@ -191,6 +197,7 @@ export function DataTable<TData, TValue>({
     pageSizeOptions = [10, 25, 50, 100, 200],
     labels,
     headerActions,
+    hidePaginationSummary,
     getRowState,
     onRowClick,
     renderCard,
@@ -259,12 +266,17 @@ export function DataTable<TData, TValue>({
             ) : null}
 
             <div className="rounded-md border bg-muted/20 px-3 py-2">
-                <div className="flex items-center justify-between gap-2">
-                    <div className="text-sm text-muted-foreground">
-                        {labels?.paginationSummary
-                            ? labels.paginationSummary(rowFrom, rowTo, totalRows)
-                            : `${rowFrom} - ${rowTo} / ${totalRows}`}
-                    </div>
+                <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-2">
+                    {hidePaginationSummary ? (
+                        // Keep the row's justify-between layout (pager stays right-aligned).
+                        <span aria-hidden className="sr-only" />
+                    ) : (
+                        <div className="min-w-0 text-sm text-muted-foreground">
+                            {labels?.paginationSummary
+                                ? labels.paginationSummary(rowFrom, rowTo, totalRows)
+                                : `${rowFrom} - ${rowTo} / ${totalRows}`}
+                        </div>
+                    )}
                     <div className="flex shrink-0 items-center gap-x-3 gap-y-2">
                         <div className="hidden items-center gap-1 sm:flex">
                             <PaginationIconButton
