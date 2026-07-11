@@ -40,13 +40,31 @@ const sheetVariants = cva(
                 top: "inset-x-0 top-0 border-b data-[state=closed]:slide-out-to-top data-[state=open]:slide-in-from-top",
                 bottom:
                     "inset-x-0 bottom-0 border-t data-[state=closed]:slide-out-to-bottom data-[state=open]:slide-in-from-bottom",
-                left: "inset-y-0 left-0 h-full w-3/4 border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left sm:max-w-sm",
+                left: "inset-y-0 left-0 h-full w-3/4 border-r data-[state=closed]:slide-out-to-left data-[state=open]:slide-in-from-left",
                 right:
-                    "inset-y-0 right-0 h-full w-[384px] w-3/4 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right sm:max-w-sm",
+                    "inset-y-0 right-0 h-full w-3/4 border-l data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right",
+            },
+            // Desktop max-width of a left/right drawer. Default `sm` matches the
+            // previous fixed width; go wider for dense drill-in content. No effect
+            // on top/bottom sheets. (#328)
+            size: {
+                sm: "",
+                md: "",
+                lg: "",
+                xl: "",
+                full: "",
             },
         },
+        compoundVariants: [
+            { side: ["left", "right"], size: "sm", class: "sm:max-w-sm" },
+            { side: ["left", "right"], size: "md", class: "sm:max-w-md" },
+            { side: ["left", "right"], size: "lg", class: "sm:max-w-lg" },
+            { side: ["left", "right"], size: "xl", class: "sm:max-w-xl" },
+            { side: ["left", "right"], size: "full", class: "w-full sm:max-w-none" },
+        ],
         defaultVariants: {
             side: "right",
+            size: "sm",
         },
     }
 )
@@ -62,7 +80,7 @@ interface SheetContentProps
 const SheetContent = React.forwardRef<
     React.ElementRef<typeof SheetPrimitive.Content>,
     SheetContentProps
->(({ side = "right", className, children, portalContainer, overlayClassName, closeLabel, onOpenAutoFocus, ...props }, ref) => {
+>(({ side = "right", size, className, children, portalContainer, overlayClassName, closeLabel, onOpenAutoFocus, ...props }, ref) => {
     const { strings } = useLocale()
     const resolvedCloseLabel = closeLabel ?? strings.close
     const contentRef = React.useRef<React.ElementRef<typeof SheetPrimitive.Content> | null>(null)
@@ -100,7 +118,7 @@ const SheetContent = React.forwardRef<
                 tabIndex={-1}
                 onOpenAutoFocus={handleOpenAutoFocus}
                 className={cn(
-                    sheetVariants({ side }),
+                    sheetVariants({ side, size }),
                     portalContainer && "absolute",
                     portalContainer && "data-[state=open]:!transform-none data-[state=closed]:!transform-none",
                     portalContainer && side === "right" && "right-0 top-0 h-full",
