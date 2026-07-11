@@ -47,6 +47,14 @@ const COPY_EN = {
         "Beta → feature-complete, full prop coverage in /docs, a11y review passed, used in production by at least one consumer.",
         "Experimental → the default. Anything new starts here.",
     ],
+    packageHeading: "Package version gates",
+    packageIntro:
+        "The labels above are per-component. The package version itself (alpha → beta → 1.0) moves on its own gates:",
+    packageGates: [
+        "0.0.x alpha (now) — the API may change in any release, including prereleases. Unclassified components default to Experimental; the core set graduates to Beta as it stabilizes.",
+        "0.1.0-beta.1 — four gates: (1) no silent build-time footguns — the RSC function-prop class is caught by a next build CI gate and client formatters expose serializable alternatives (valueFormat / timeFormat …); (2) first impression complete — i18n (LocaleProvider), 44px touch targets, full /docs prop coverage; (3) semver discipline begins — breaking changes only in a minor, with a CHANGELOG entry and an @deprecated migration path; (4) first component-promotion wave — the core set graduates to Beta.",
+        "1.0.0 — a Stable core (Beta for at least one minor with no breaking change, plus migration docs) used in production by at least one consumer, with any export-structure breaks (e.g. subpath exports) already consumed before 1.0.",
+    ],
     cta: "Browse components",
 };
 
@@ -90,6 +98,14 @@ const COPY_JA = {
         "Stable → Beta で最低 1 マイナー期間 API 破壊的変更ゼロ、過去の形からの移行ドキュメント完備。",
         "Beta → 機能完成、/docs の Props 完全カバー、a11y レビュー通過、本番採用 1 件以上。",
         "Experimental → デフォルト。新規はここから始まります。",
+    ],
+    packageHeading: "パッケージ版の昇格ゲート",
+    packageIntro:
+        "上のラベルは部品ごとの分類です。パッケージ自体のバージョン（alpha → beta → 1.0）は、別の 4 点ゲートで進みます:",
+    packageGates: [
+        "0.0.x alpha（現在）— API は任意のリリース（プレリリース含む）で変わりえます。未分類の部品は既定で Experimental、コアは安定次第 Beta へ昇格。",
+        "0.1.0-beta.1 — 4 点ゲート: (1) サイレントな build 時 footgun ゼロ — RSC の関数prop クラスを next build の CI ゲートで捕捉し、client の formatter は serializable 代替（valueFormat / timeFormat 等）を提供。(2) 第一印象の完成 — i18n（LocaleProvider）、44px タッチ標的、/docs の Props 完全カバー。(3) semver 規律の開始 — 破壊的変更はマイナーのみ・CHANGELOG 記載＋@deprecated 移行パス。(4) 部品昇格の第一波 — コアが Beta へ。",
+        "1.0.0 — Stable なコア（Beta で最低 1 マイナー期間 破壊ゼロ＋移行ドキュメント）が本番採用 1 件以上で使われ、export 構造の破壊（例: subpath export）は 1.0 前に消化済み。",
     ],
     cta: "コンポーネント一覧へ",
 };
@@ -146,6 +162,21 @@ export default function StabilityPage() {
                 </h2>
                 <ul className="space-y-2 text-sm text-muted-foreground">
                     {copy.promotionBullets.map((b, i) => (
+                        <li key={i} className="flex gap-2">
+                            <span aria-hidden="true">—</span>
+                            <span>{b}</span>
+                        </li>
+                    ))}
+                </ul>
+            </section>
+
+            <section className="space-y-3">
+                <h2 className="text-2xl font-semibold tracking-tight">
+                    {copy.packageHeading}
+                </h2>
+                <p className="text-sm text-muted-foreground">{copy.packageIntro}</p>
+                <ul className="space-y-2 text-sm text-muted-foreground">
+                    {copy.packageGates.map((b, i) => (
                         <li key={i} className="flex gap-2">
                             <span aria-hidden="true">—</span>
                             <span>{b}</span>
