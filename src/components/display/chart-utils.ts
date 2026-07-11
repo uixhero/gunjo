@@ -40,9 +40,29 @@ export function clamp(value: number, min = 0, max = 100) {
     return Math.min(max, Math.max(min, value))
 }
 
+const warnedChartColors = new Set<string>()
+
 export function getChartColor(color: ChartColor | undefined, index: number) {
     const resolvedColor = color ?? chartToneOrder[index % chartToneOrder.length]
-    return chartToneValues[resolvedColor as ChartTone] ?? resolvedColor
+    const toneValue = chartToneValues[resolvedColor as ChartTone]
+    if (toneValue) return toneValue
+    // Not a known tone — the `(string & {})` escape hatch treats it as an
+    // arbitrary CSS color. A typo like "danger" (for "destructive") type-checks
+    // but renders no color, silently. Warn once per bad value in dev. (#296)
+    if (
+        process.env.NODE_ENV !== "production" &&
+        typeof resolvedColor === "string" &&
+        typeof CSS !== "undefined" &&
+        typeof CSS.supports === "function" &&
+        !CSS.supports("color", resolvedColor) &&
+        !warnedChartColors.has(resolvedColor)
+    ) {
+        warnedChartColors.add(resolvedColor)
+        console.warn(
+            `[gunjo] chart color "${resolvedColor}" is not a ChartTone (${[...chartToneOrder, "muted"].join(", ")}) or a valid CSS color — it will render no color. Did you mean a tone?`
+        )
+    }
+    return resolvedColor
 }
 
 export function getChartValue(point: ChartDataPoint | number) {
