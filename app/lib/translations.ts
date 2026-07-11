@@ -1690,6 +1690,7 @@ export const translations: Record<
       Typography: "タイポグラフィ",
       Animation: "アニメーション",
       Colors: "色",
+      "Semantic Tones": "セマンティックトーン",
       Spacing: "余白",
       Shadows: "影",
       Radius: "角丸",

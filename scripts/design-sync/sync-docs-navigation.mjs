@@ -74,6 +74,7 @@ function buildNavigation({ root }) {
       items: [
         { title: "Tokens Overview", href: "/docs/tokens" },
         { title: "Colors", href: "/docs/colors" },
+        { title: "Semantic Tones", href: "/docs/semantic-tones" },
         { title: "Typography", href: "/docs/typography" },
         { title: "Spacing", href: "/docs/spacing" },
         { title: "Shadows", href: "/docs/shadows" },
