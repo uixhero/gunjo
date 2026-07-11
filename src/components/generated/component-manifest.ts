@@ -166,7 +166,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/feedback/Alert.tsx",
       "specSource": "design/feedback.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "banner": {
       "title": "Banner",
@@ -175,7 +175,7 @@ export const componentManifest = {
       "defaultVariantKey": null,
       "sourceFile": "src/components/feedback/Banner.tsx",
       "specSource": "design/feedback.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "notificationCenter": {
       "title": "Notification Center",
@@ -197,7 +197,7 @@ export const componentManifest = {
       "defaultVariantKey": "bar",
       "sourceFile": "src/components/feedback/Progress.tsx",
       "specSource": "design/feedback.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "progressWidget": {
       "title": "ProgressWidget",
@@ -268,7 +268,7 @@ export const componentManifest = {
       "defaultVariantKey": null,
       "sourceFile": "src/components/feedback/Stepper.tsx",
       "specSource": "design/feedback.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "toast": {
       "title": "Toast",
@@ -347,7 +347,7 @@ export const componentManifest = {
       "defaultVariantKey": null,
       "sourceFile": "src/components/layout/Container.tsx",
       "specSource": "design/layout.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "deviceFrame": {
       "title": "DeviceFrame",
@@ -444,7 +444,7 @@ export const componentManifest = {
       "defaultVariantKey": null,
       "sourceFile": "src/components/layout/VStack.tsx",
       "specSource": "design/layout.pen",
-      "stability": "experimental"
+      "stability": "beta"
     }
   },
   "navigation": {
@@ -604,7 +604,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/navigation/Tabs.tsx",
       "specSource": "design/navigation.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "textLink": {
       "title": "TextLink",
@@ -661,7 +661,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/overlay/Dialog.tsx",
       "specSource": "design/overlay.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "drawer": {
       "title": "Drawer",
@@ -670,7 +670,7 @@ export const componentManifest = {
       "defaultVariantKey": null,
       "sourceFile": "src/components/overlay/Drawer.tsx",
       "specSource": "design/overlay.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "dropdownMenu": {
       "title": "Dropdown Menu",
@@ -780,7 +780,7 @@ export const componentManifest = {
       "defaultVariantKey": "right",
       "sourceFile": "src/components/overlay/Sheet.tsx",
       "specSource": "design/overlay.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "tooltip": {
       "title": "Tooltip",
@@ -842,7 +842,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/ActionQueue.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "activityTimelineCard": {
       "title": "Activity Timeline Card",
@@ -865,7 +865,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/AmountBreakdown.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "analyticsCard": {
       "title": "AnalyticsCard",
@@ -891,7 +891,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/ApprovalSteps.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "approvalWorkflow": {
       "title": "ApprovalWorkflow",
@@ -938,7 +938,7 @@ export const componentManifest = {
       "defaultVariantKey": "fallback",
       "sourceFile": "src/components/display/Avatar.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "avatarGroup": {
       "title": "AvatarGroup",
@@ -964,7 +964,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/Badge.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "barChart": {
       "title": "BarChart",
@@ -987,7 +987,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/BottomActionBar.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "card": {
       "title": "Card",
@@ -998,7 +998,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/Card.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "carousel": {
       "title": "Carousel",
@@ -1117,7 +1117,7 @@ export const componentManifest = {
       "defaultVariantKey": null,
       "sourceFile": "src/components/display/DataTable.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "delta": {
       "title": "Delta",
@@ -1128,7 +1128,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/Delta.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "distributionBar": {
       "title": "DistributionBar",
@@ -1189,7 +1189,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/EditableDataTable.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "emptyState": {
       "title": "EmptyState",
@@ -1198,7 +1198,7 @@ export const componentManifest = {
       "defaultVariantKey": null,
       "sourceFile": "src/components/display/EmptyState.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "eventCalendar": {
       "title": "EventCalendar",
@@ -1244,7 +1244,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/FilterChips.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "gallery": {
       "title": "Gallery",
@@ -1306,7 +1306,7 @@ export const componentManifest = {
       "defaultVariantKey": "sm",
       "sourceFile": "src/components/display/Icon.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "imagePreview": {
       "title": "ImagePreview",
@@ -1422,7 +1422,7 @@ export const componentManifest = {
       "defaultVariantKey": "line",
       "sourceFile": "src/components/display/LineChart.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "lineChip": {
       "title": "LineChip",
@@ -1457,7 +1457,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/ListCard.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "loyaltySummaryCard": {
       "title": "LoyaltySummaryCard",
@@ -1500,7 +1500,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/MetadataList.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "meter": {
       "title": "Meter",
@@ -1511,7 +1511,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/Meter.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "miniDistributionBarCard": {
       "title": "Mini Distribution Bar Card",
@@ -1556,7 +1556,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/PageHeader.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "paretoChart": {
       "title": "ParetoChart",
@@ -1578,7 +1578,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/PersonCell.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "pieChart": {
       "title": "PieChart",
@@ -1637,7 +1637,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/RadioCard.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "rating": {
       "title": "Rating",
@@ -1661,7 +1661,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/ReferenceValue.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "relationshipRow": {
       "title": "RelationshipRow",
@@ -1718,7 +1718,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/RouteStops.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "scheduleGrid": {
       "title": "ScheduleGrid",
@@ -1729,7 +1729,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/ScheduleGrid.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "searchableAccordion": {
       "title": "SearchableAccordion",
@@ -1800,7 +1800,7 @@ export const componentManifest = {
       "defaultVariantKey": "horizontal",
       "sourceFile": "src/components/display/Separator.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "signedRecord": {
       "title": "SignedRecord",
@@ -1811,7 +1811,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/SignedRecord.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "skeleton": {
       "title": "Skeleton",
@@ -1865,7 +1865,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/StatGroup.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "statistic": {
       "title": "Statistic",
@@ -1874,7 +1874,7 @@ export const componentManifest = {
       "defaultVariantKey": null,
       "sourceFile": "src/components/display/Statistic.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "statusBoard": {
       "title": "StatusBoard",
@@ -1920,7 +1920,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/Table.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "tag": {
       "title": "Tag",
@@ -1929,7 +1929,7 @@ export const componentManifest = {
       "defaultVariantKey": null,
       "sourceFile": "src/components/display/Tag.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "tagEditor": {
       "title": "TagEditor",
@@ -1961,7 +1961,7 @@ export const componentManifest = {
       "defaultVariantKey": null,
       "sourceFile": "src/components/display/Timeline.tsx",
       "specSource": "design/display.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "toolPill": {
       "title": "ToolPill",
@@ -2016,7 +2016,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/inputs/Button.tsx",
       "specSource": "design/inputs.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "calendar": {
       "title": "Calendar",
@@ -2065,7 +2065,7 @@ export const componentManifest = {
       "defaultVariantKey": "unchecked",
       "sourceFile": "src/components/inputs/Checkbox.tsx",
       "specSource": "design/inputs.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "combobox": {
       "title": "Combobox",
@@ -2097,7 +2097,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/inputs/CoSign.tsx",
       "specSource": "design/inputs.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "currencyInput": {
       "title": "CurrencyInput",
@@ -2117,7 +2117,7 @@ export const componentManifest = {
       "defaultVariantKey": null,
       "sourceFile": "src/components/inputs/DatePicker.tsx",
       "specSource": "design/inputs.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "dateRangePicker": {
       "title": "DateRangePicker",
@@ -2170,7 +2170,7 @@ export const componentManifest = {
       "defaultVariantKey": null,
       "sourceFile": "src/components/inputs/Form.tsx",
       "specSource": "design/inputs.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "input": {
       "title": "Input",
@@ -2183,7 +2183,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/inputs/Input.tsx",
       "specSource": "design/inputs.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "inputOTP": {
       "title": "InputOTP",
@@ -2201,7 +2201,7 @@ export const componentManifest = {
       "defaultVariantKey": null,
       "sourceFile": "src/components/inputs/Label.tsx",
       "specSource": "design/inputs.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "mention": {
       "title": "Mention",
@@ -2219,7 +2219,7 @@ export const componentManifest = {
       "defaultVariantKey": null,
       "sourceFile": "src/components/inputs/NumberInput.tsx",
       "specSource": "design/inputs.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "passwordGroup": {
       "title": "PasswordGroup",
@@ -2285,7 +2285,7 @@ export const componentManifest = {
       "defaultVariantKey": "unchecked",
       "sourceFile": "src/components/inputs/RadioGroup.tsx",
       "specSource": "design/inputs.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "rangeSlider": {
       "title": "RangeSlider",
@@ -2327,7 +2327,7 @@ export const componentManifest = {
       "defaultVariantKey": null,
       "sourceFile": "src/components/inputs/SearchInput.tsx",
       "specSource": "design/inputs.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "segmentedControl": {
       "title": "SegmentedControl",
@@ -2349,7 +2349,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/inputs/Select.tsx",
       "specSource": "design/inputs.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "slider": {
       "title": "Slider",
@@ -2385,7 +2385,7 @@ export const componentManifest = {
       "defaultVariantKey": "unchecked",
       "sourceFile": "src/components/inputs/Switch.tsx",
       "specSource": "design/inputs.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "tagInput": {
       "title": "TagInput",
@@ -2406,7 +2406,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/inputs/Textarea.tsx",
       "specSource": "design/inputs.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "timePicker": {
       "title": "TimePicker",
@@ -2436,7 +2436,7 @@ export const componentManifest = {
       "defaultVariantKey": "default",
       "sourceFile": "src/components/inputs/ToggleGroup.tsx",
       "specSource": "design/inputs.pen",
-      "stability": "experimental"
+      "stability": "beta"
     },
     "tooltipButton": {
       "title": "TooltipButton",

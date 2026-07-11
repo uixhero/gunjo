@@ -11,6 +11,10 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 
+### Changed
+
+- **安定性の昇格 第一波：54 部品を Experimental → Beta**（採用先影響: **none**・ラベルのみ）。コールドテスト 170 画面での登場頻度（≥12 ラウンド）を「本番採用」の代理指標とし、docs Props 完全カバー（#559 監査済）と合わせて `/docs/stability` の Beta 基準を満たすコアを昇格。Beta = 機能完成・API はフィードバックで調整されうる（パッチでは壊れない）。対象: `Badge` `Button` `Card` `Separator` `Select` `Statistic` `MetadataList` `Alert` `Tabs` `Meter` `Sheet` `EmptyState` `StatGroup` `DataTable` `Container` `Input` `PageHeader` `Textarea` `Timeline` `Tag` `Dialog` `NumberInput` `ActionQueue` `Delta` `ToggleGroup` `ListCard` `AmountBreakdown` `Checkbox` `SignedRecord` `Table` `PersonCell` `Icon` `Label` `RouteStops` `CoSign` `Banner` `ReferenceValue` `SearchInput` `Avatar` `Switch` `Stepper` `Form` `ScheduleGrid` `Progress` `VStack` `ApprovalSteps` `Drawer` `FilterChips` `LineChart` `BottomActionBar` `RadioCard` `DatePicker` `EditableDataTable` `RadioGroup`。SSOT は `design/stability.json`。(#573)
+
 ## [0.0.1-alpha.3] — 2026-07-10
 
 alpha.2（173 部品）以降、コールドテスト 170 画面の検証ループで見つかった欠落を埋め続けた成果をまとめた alpha リリース。**部品セットは 216 に到達（+43）**。**API は今後変更される可能性があります**（全部品 Experimental）。
