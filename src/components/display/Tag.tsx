@@ -33,6 +33,13 @@ export const tagVariants = cva(
 export interface TagProps
     extends Omit<React.HTMLAttributes<HTMLSpanElement>, "onRemove">,
         VariantProps<typeof tagVariants> {
+    /**
+     * Optional leading glyph (a Tabler icon or any svg node), sized and spaced
+     * for you — decorative (`aria-hidden`); the text carries the meaning. Mirrors
+     * Badge's `icon` so a status pill with icon + small size is expressible in
+     * one component. (#300)
+     */
+    icon?: React.ReactNode
     /** When provided, an × button appears at the end. */
     onRemove?: () => void
     removeLabel?: string
@@ -44,6 +51,7 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
             className,
             variant,
             size,
+            icon,
             onRemove,
             removeLabel = "Remove",
             children,
@@ -56,6 +64,11 @@ const Tag = React.forwardRef<HTMLSpanElement, TagProps>(
             className={cn(tagVariants({ variant, size }), className)}
             {...props}
         >
+            {icon ? (
+                <span className="flex shrink-0 items-center [&_svg]:h-3 [&_svg]:w-3" aria-hidden="true">
+                    {icon}
+                </span>
+            ) : null}
             {children}
             {onRemove ? (
                 <Tooltip>

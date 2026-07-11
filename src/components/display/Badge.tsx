@@ -14,8 +14,22 @@ const badgeVariantClasses: Record<BadgeVariantKey, string> = {
     warning: "border-warning-border bg-warning-subtle text-warning-subtle-foreground",
 }
 
+const badgeSizeClasses = {
+    sm: "h-4 px-2 py-0 text-[11px]",
+    default: "h-5 px-2.5 py-1 text-xs",
+    lg: "h-6 px-3 py-1 text-sm",
+} as const
+
+export type BadgeSize = keyof typeof badgeSizeClasses
+
 export interface BadgeProps extends React.HTMLAttributes<HTMLElement> {
     variant?: BadgeVariantKey
+    /**
+     * Pill size. `default` is unchanged (`h-5`); `sm` fits dense status grids
+     * (still pairs with `icon`), `lg` for emphasis. Mirrors Tag's size scale so
+     * a status pill with icon + small size is expressible in one component. (#300)
+     */
+    size?: BadgeSize
     /**
      * The element to render. Defaults to `"span"` so a Badge is valid inside
      * flow content (e.g. a `<p>` or other phrasing context) — a status pill is
@@ -40,6 +54,7 @@ export interface BadgeProps extends React.HTMLAttributes<HTMLElement> {
 function Badge({
     className,
     variant = badgeDefaultVariantKey,
+    size = "default",
     as: Comp = "span",
     icon,
     onRemove,
@@ -50,7 +65,8 @@ function Badge({
     return (
         <Comp
             className={cn(
-                "inline-flex items-center w-fit h-5 rounded-full border border-transparent px-2.5 py-1 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+                "inline-flex items-center w-fit rounded-full border border-transparent font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+                badgeSizeClasses[size],
                 (icon || onRemove) && "gap-1",
                 onRemove && "pr-1",
                 badgeVariantClasses[variant],

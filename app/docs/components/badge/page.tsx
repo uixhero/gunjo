@@ -302,6 +302,14 @@ export function StatusBadges() {
             description: locale === "ja" ? "バッジの視覚的な種類を指定します。" : "The visual style of the badge.",
         },
         {
+            name: "size",
+            type: '"sm" | "default" | "lg"',
+            default: '"default"',
+            description: locale === "ja"
+                ? "ピルのサイズ。default は従来どおり（h-5）。sm は密なステータスグリッド向け（icon と併用可）、lg は強調用。Tag のサイズ体系に揃えています。"
+                : "Pill size. default is unchanged (h-5); sm fits dense status grids (pairs with icon), lg for emphasis. Mirrors Tag's size scale.",
+        },
+        {
             name: "icon",
             type: "ReactNode",
             description: locale === "ja"
