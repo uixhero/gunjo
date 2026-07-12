@@ -69,7 +69,6 @@ GunjoUI のコア設計思想：**1 コンポーネント = pen + source + docs 
 4. `npm run design:sync` で生成物再生成
 5. `npm run design:verify` 緑化
 6. `npm run type-check` 緑化
-7. `COMPONENT_VISUAL_AUDIT.md` の rows total が +1 されることを確認
 
 詳細チェックリスト・ヒューリスティック警告対応・PR テンプレートは [docs/component-addition.md](./docs/component-addition.md) を参照。
 

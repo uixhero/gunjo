@@ -28,3 +28,17 @@ promotion/
 # Source images — commit the optimized webp, not the multi-MB originals
 public/renew/*.png
 .playwright-mcp/
+
+# Internal working docs — kept locally for the team, not published on public GitHub
+# (repo hygiene before beta traffic). See RELEASE-HANDOFF.md etc. locally.
+/RELEASE-HANDOFF.md
+/HANDOFF.md
+/LAUNCH_PROMOTION_GUIDE.md
+/SSOT_RUNBOOK.md
+/COMPONENT_COVERAGE_MATRIX.md
+/COMPONENT_VISUAL_AUDIT.md
+/docs/component-docs-43-review-fix-queue.md
+/docs/docs-site-information-architecture.md
+/docs/pre-alpha-copy-and-ssot-audit.md
+/docs/public-contrast-audit.md
+/docs/component-page-crawl-audit.json
