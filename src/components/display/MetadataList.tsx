@@ -9,6 +9,8 @@ export interface MetadataListItem {
     value: React.ReactNode
     description?: React.ReactNode
     icon?: React.ReactNode
+    /** Per-item override of the list's `wrap`. When true, this value wraps instead of truncating. (#284) */
+    wrap?: boolean
 }
 
 export interface MetadataListProps extends React.HTMLAttributes<HTMLDListElement> {
@@ -16,6 +18,12 @@ export interface MetadataListProps extends React.HTMLAttributes<HTMLDListElement
     variant?: MetadataListVariantKey
     layout?: "vertical" | "horizontal"
     emptyMessage?: React.ReactNode
+    /**
+     * Let values wrap to multiple lines instead of truncating with an ellipsis.
+     * Default `false` (truncate). Use for long values (e.g. a full line name)
+     * that shouldn't be clipped; override per item with `MetadataListItem.wrap`. (#284)
+     */
+    wrap?: boolean
 }
 
 const variantClasses: Record<MetadataListVariantKey, { root: string; row: string; horizontalRow: string; value: string }> = {
@@ -34,7 +42,7 @@ const variantClasses: Record<MetadataListVariantKey, { root: string; row: string
 }
 
 const MetadataList = React.forwardRef<HTMLDListElement, MetadataListProps>(
-    ({ items, variant = metadataListDefaultVariantKey, layout = "vertical", emptyMessage = "No metadata", className, ...props }, ref) => {
+    ({ items, variant = metadataListDefaultVariantKey, layout = "vertical", emptyMessage = "No metadata", wrap = false, className, ...props }, ref) => {
         const classes = variantClasses[variant]
         const isHorizontal = layout === "horizontal"
 
@@ -56,7 +64,9 @@ const MetadataList = React.forwardRef<HTMLDListElement, MetadataListProps>(
                 )}
                 {...props}
             >
-                {items.map((item, index) => (
+                {items.map((item, index) => {
+                    const itemWrap = item.wrap ?? wrap
+                    return (
                     <div key={index} className={isHorizontal ? classes.horizontalRow : classes.row}>
                         <dt className="flex min-w-0 items-start gap-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
                             {item.icon ? <span className="mt-0.5 shrink-0 text-muted-foreground">{item.icon}</span> : null}
@@ -69,22 +79,23 @@ const MetadataList = React.forwardRef<HTMLDListElement, MetadataListProps>(
                         </dt>
                         <dd className={cn("min-w-0 font-medium text-foreground", isHorizontal ? "mt-1 text-left" : "text-right", classes.value)}>
                             <div
-                                className="truncate"
-                                title={typeof item.value === "string" ? item.value : undefined}
+                                className={itemWrap ? "break-words" : "truncate"}
+                                title={!itemWrap && typeof item.value === "string" ? item.value : undefined}
                             >
                                 {item.value}
                             </div>
                             {item.description ? (
                                 <div
-                                    className="mt-0.5 truncate text-xs font-normal text-muted-foreground"
-                                    title={typeof item.description === "string" ? item.description : undefined}
+                                    className={cn("mt-0.5 text-xs font-normal text-muted-foreground", itemWrap ? "break-words" : "truncate")}
+                                    title={!itemWrap && typeof item.description === "string" ? item.description : undefined}
                                 >
                                     {item.description}
                                 </div>
                             ) : null}
                         </dd>
                     </div>
-                ))}
+                    )
+                })}
             </dl>
         )
     }

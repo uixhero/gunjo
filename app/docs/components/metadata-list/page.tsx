@@ -135,6 +135,7 @@ const propsByLocale = {
         { name: "variant", type: "\"default\" | \"compact\"", default: "\"default\"", description: "行の密度を切り替えます。" },
         { name: "layout", type: "\"vertical\" | \"horizontal\"", default: "\"vertical\"", description: "縦並びか横並びかを切り替えます。" },
         { name: "emptyMessage", type: "ReactNode", description: "空の場合の表示内容です。日本語 UI では明示的に日本語の文言を渡してください。" },
+        { name: "wrap", type: "boolean", default: "false", description: "値を省略（truncate）せず折り返します。長い値（製造ライン名など）向け。項目ごとに MetadataListItem.wrap で上書き可。(#284)" },
         { name: "className", type: "string", description: "外側に追加するクラスです。" },
     ],
     en: [
@@ -142,6 +143,7 @@ const propsByLocale = {
         { name: "variant", type: "\"default\" | \"compact\"", default: "\"default\"", description: "Controls row density." },
         { name: "layout", type: "\"vertical\" | \"horizontal\"", default: "\"vertical\"", description: "Controls whether rows stack vertically or wrap into horizontal cards." },
         { name: "emptyMessage", type: "ReactNode", default: "\"No metadata\"", description: "Fallback content for an empty list." },
+        { name: "wrap", type: "boolean", default: "false", description: "Let values wrap instead of truncating — for long values (e.g. a full line name). Override per item with MetadataListItem.wrap. (#284)" },
         { name: "className", type: "string", description: "Optional class added to the root element." },
     ],
 } as const;
