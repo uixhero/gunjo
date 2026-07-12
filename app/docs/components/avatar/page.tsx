@@ -110,6 +110,13 @@ export function UserAvatar() {
             type: "ReactNode",
             description: locale === "ja" ? "画像が読み込めない時に表示する文字やアイコンです。" : "Text or icon shown when the image cannot be loaded.",
         },
+        {
+            name: "AvatarFallback.colorSeed",
+            type: "string",
+            description: locale === "ja"
+                ? "任意。名前などのシードをハッシュして、コントラスト安全なトーン対の1つに決定的に着色します（同じシード＝同じ色）。名簿など密な一覧の走査性向上に。既定はグレー。色は装飾（状態ではない）。(#331)"
+                : "Optional. Hashes a seed (e.g. the name) to one of a few contrast-safe tone pairs, deterministically (same seed = same color) — for scannable dense directories. Defaults to gray. The hue is decorative, not status. (#331)",
+        },
     ];
 
     return (
