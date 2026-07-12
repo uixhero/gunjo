@@ -11,9 +11,48 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 
+> **版判断保留中**: 以下は `0.0.1-alpha.3` 以降の全変更。次リリースを `0.1.0-beta.1`（beta ゲート達成済み。[docs/stability](./docs/stability) 参照）で切るか `0.0.1-alpha.4` で切るかは公開時に確定する。採用先影響は原則 **none**（追加 API・a11y 修正のみ・既存コード変更不要）。
+
+### Added
+
+- **`SemanticTone` 正準スケール＋変換器**（影響: **none**）。`SemanticTone`（`default|muted|primary|info|success|warning|destructive`）と `SEMANTIC_TONES`/`isSemanticTone`/`toChartTone`/`toMeterTone`/`toBadgeVariant`/`toDangerTone` を公開。tone 系コンポーネント間で共有し、語彙が違う所は変換器で橋渡し（画面ごとの変換表を不要に）。変換器は型のみ import で RSC-safe。(#294)
+- **`Button` `loading`**（影響: none）— Spinner＋`disabled`＋`aria-busy`。(#305)
+- **`Alert` 便利 props** `icon`/`title`/`description`（影響: none）— compound を書かずに1行で。(#303)
+- **`Badge` `size`（sm/default/lg）・`Tag` `icon`**（影響: none・既定は現状維持）。(#300)
+- **`Sheet` `size`（sm–xl/full）**（影響: none）— サイドドロワーを広く。死んでいた `w-[384px]` を除去。(#328)
+- **`Drawer` `direction`**（影響: none）— Root の `direction` を single source of truth 化（下記 Fixed 参照）。(#335)
+- **`DatePicker`/`DateRangePicker` `label`＋`description`**（影響: none）— `useId` で a11y 配線。(#315)
+- **`DataTable` `caption`/`aria-label`/`aria-labelledby`・`hidePaginationSummary`**（影響: none）。(#298, #311)
+- **`MetadataList` `wrap`**（影響: none）— 長い値を折り返す（既定は truncate）。(#284)
+- **`TreeView` `onNodeActivate`**（影響: none）— ラベルのドリルインを展開/折りたたみと分離。(#283)
+- **`RadioGroup` `disabled`**（影響: none）— グループ一括無効＋`<fieldset disabled>` 継承（下記 Fixed）。(#273)
+- **レイアウトの t-shirt gap エイリアス**（`VStack`/`HStack`/`Cluster` の `gap="sm|md|lg"…`、影響: none）＋ prop 語彙規約の文書化。(#330)
+- **直列化可能な `valueFormat`/`feeFormat`/`timeFormat`**（影響: none）— 11 チャート＋クライアント footgun 部品／`SignedRecord` に、関数 prop を使わず RSC から渡せる代替を追加。(#338 Phase 1–3)
+
+### Fixed
+
+- **RSC function-prop footgun のガード**（影響: none／CI）— Server Component から関数 prop を渡すと `next build` が壊れるが tsc/dev/CI が捕まえない問題に、CI へ本番ビルドゲートを追加＋直列化代替＋render props の RSC 注意書き。beta ゲートの実質単一ブロッカーを解消。(#338)
+- **overlay の Radix「Missing Description」警告**（a11y・影響: none）— Dialog/Sheet/Drawer/AlertDialog で description が無いときだけ `aria-describedby` を opt-out（ある時は配線維持・回帰なし）。(#322)
+- **`Drawer side` がポインタを飲む**（機能バグ・影響: none）— vaul の `direction` 未設定でサイドドロワーの子がクリック不能だった。Root `direction` を配線し、ミスマッチ時に dev 警告。(#335)
+- **`RadioGroup` が `<fieldset disabled>` を継承しない**（a11y・影響: none）— `:disabled` で検出し `aria-disabled` 反映＋roving tabindex から除外。(#273)
+- **`DataTable` 狭幅ヘッダ崩れ**（影響: none）— <480px コンテナでサマリが1文字ずつ改行 → `flex-wrap`＋`min-w-0`。(#311)
+- **`DataTable` ソートヘッダの a11y**（影響: none）— 冗長な英語ラベルがセル名に漏れる問題を解消、列名がアクセシブル名に。(#307)
+- **`ReferenceValue` の sr-only 二重読み上げ**（a11y・影響: none）。(#306)
+- **`MetadataList`/`TreeView`/`DatePicker` ほか** の細部（上記 Added に対応する挙動修正）。
+- **`Popover` の重複クラス**（影響: none・視覚不変）— `w-72 w-[288px]`／`rounded-md rounded-lg` を .pen に合わせ単一化、drift チェックの `cornerRadius:8→rounded-md` 誤マッピングも訂正。(#140)
+- **不正な `ChartColor` に dev 警告**（DX・影響: none）— tone でも CSS 色でもない値に開発時警告。(#296)
+
+### Docs
+
+- **パッケージ版ゲート**（alpha → beta → 1.0）を `/docs/stability` に追記。(#572)
+- **Semantic Tones ページ**（正準スケール＋ライブデモ＋変換器表）。(#294)
+- **Installation**: `@tabler/icons-react` を consumer 直依存として案内（pnpm/strict hoisting 対策）。(#309)
+- **Icon `icon={Glyph}` 契約**の可視化・**Banner は1行の帯**（Alert との使い分け）・**DataTable `renderCard`** の activatable-card 契約・**render props の RSC 安全性**注記。(#337, #324, #333, #338)
+
 ### Changed
 
 - **安定性の昇格 第一波：54 部品を Experimental → Beta**（採用先影響: **none**・ラベルのみ）。コールドテスト 170 画面での登場頻度（≥12 ラウンド）を「本番採用」の代理指標とし、docs Props 完全カバー（#559 監査済）と合わせて `/docs/stability` の Beta 基準を満たすコアを昇格。Beta = 機能完成・API はフィードバックで調整されうる（パッチでは壊れない）。対象: `Badge` `Button` `Card` `Separator` `Select` `Statistic` `MetadataList` `Alert` `Tabs` `Meter` `Sheet` `EmptyState` `StatGroup` `DataTable` `Container` `Input` `PageHeader` `Textarea` `Timeline` `Tag` `Dialog` `NumberInput` `ActionQueue` `Delta` `ToggleGroup` `ListCard` `AmountBreakdown` `Checkbox` `SignedRecord` `Table` `PersonCell` `Icon` `Label` `RouteStops` `CoSign` `Banner` `ReferenceValue` `SearchInput` `Avatar` `Switch` `Stepper` `Form` `ScheduleGrid` `Progress` `VStack` `ApprovalSteps` `Drawer` `FilterChips` `LineChart` `BottomActionBar` `RadioCard` `DatePicker` `EditableDataTable` `RadioGroup`。SSOT は `design/stability.json`。(#573)
+- **semver 規律の開始**（beta ゲート③）— 本リリース以降、破壊的変更はマイナーのみ・`@deprecated` で移行パスを提示し、その内容をこの CHANGELOG に記録する（[docs/versioning](./docs/versioning) の作法をここから有効化）。
 
 ## [0.0.1-alpha.3] — 2026-07-10
 
