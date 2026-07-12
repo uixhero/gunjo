@@ -42,3 +42,12 @@ public/renew/*.png
 /docs/pre-alpha-copy-and-ssot-audit.md
 /docs/public-contrast-audit.md
 /docs/component-page-crawl-audit.json
+/docs/public-contrast-audit.json
+/docs/component-page-crawl-audit.md
+# Internal audit / checklist / generated report artifacts under docs/ (repo hygiene #618)
+/docs/*-audit.md
+/docs/*-audit.json
+/docs/*-audit-rules.md
+/docs/*-checklist.md
+/docs/*.generated.md
+/docs/*.generated.json

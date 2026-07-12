@@ -71,7 +71,7 @@ Rules:
 
 ## Component docs audit gates
 
-Every component docs change must satisfy the reusable audit gates tracked in `docs/component-docs-audit-rules.md`. Do not treat a generated checklist pass as enough by itself.
+Every component docs change must satisfy the reusable audit gates below. Do not treat a generated checklist pass as enough by itself.
 
 Rules:
 
