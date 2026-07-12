@@ -81,8 +81,8 @@ export function PlanPicker() {
             default: "false",
             description:
                 locale === "ja"
-                    ? "項目側に渡すと、その選択肢を選べない状態にします。"
-                    : "Pass to a RadioGroupItem to prevent selecting that item.",
+                    ? "RadioGroup に渡すと全項目を、RadioGroupItem に渡すとその項目を無効化します。祖先の <fieldset disabled> も同様に尊重され、各 radio は aria-disabled になり roving tabindex から外れます。(#273)"
+                    : "On RadioGroup disables every item; on a RadioGroupItem disables that item. An ancestor <fieldset disabled> is honored the same way — each radio becomes aria-disabled and drops out of the roving tab order. (#273)",
         },
     ];
 
