@@ -7,7 +7,7 @@ import { CodeBlock } from "@/components/doc/CodeBlock";
 import { ChartPreviewWithControls } from "@/components/doc/ChartPreviewWithControls";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
-import { ChartLegend } from "@gunjo/ui";
+import { ChartLegend, DocNote } from "@gunjo/ui";
 
 const channelItems = [
     { label: "自然流入", value: "46%", color: "primary", description: "合計: 12,400" },
@@ -209,6 +209,27 @@ export default function ChartLegendPage() {
                 embedBase="/embed/chart-legend"
                 previewHeight={420}
             />
+
+            <DocNote variant="tip" heading={locale === "ja" ? "チャート専用ではない（SwatchLegend）" : "Not chart-only (SwatchLegend)"}>
+                <p className="text-sm leading-relaxed">
+                    {locale === "ja" ? (
+                        <>
+                            トーンで色分けする面（<code>WeekView</code> の online/onsite、<code>KanbanBoard</code>、カレンダー、
+                            ステータスボード）は、色付き <code>span</code> を手組みせず、この凡例を使えます。各 item に{" "}
+                            <code>color</code>（<code>&quot;success&quot;</code> 等のトーン or 任意の CSS 色）を渡すだけ。
+                            単体用途向けに <strong><code>SwatchLegend</code></strong> という別名でも export しています（props は同一）。
+                        </>
+                    ) : (
+                        <>
+                            Any surface that colors items by tone — <code>WeekView</code> (online vs onsite),{" "}
+                            <code>KanbanBoard</code>, a calendar, a status board — can render its key with this instead of
+                            hand-rolling colored <code>span</code>s. Pass each item a <code>color</code> (a tone like{" "}
+                            <code>&quot;success&quot;</code>, or any CSS color). Also exported as{" "}
+                            <strong><code>SwatchLegend</code></strong> for that standalone use (same props).
+                        </>
+                    )}
+                </p>
+            </DocNote>
 
             <div className="space-y-4">
                 <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">
