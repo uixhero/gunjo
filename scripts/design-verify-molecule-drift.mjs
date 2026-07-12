@@ -643,13 +643,17 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
     run: () => {
     const defaultVariant = popover.variants.find((variant) => variant?.key === "default");
     if (defaultVariant?.width === 288) {
-      assertMatch(errors, popoverSource, /\bw-72\b/, 'Popover should include "w-72"');
+      // Match the .pen style-hint (w-[288px]); w-72 is the same 288px but the
+      // component carries the arbitrary form to satisfy style-hints coverage. (#140)
+      assertMatch(errors, popoverSource, /(?<![\w-])w-\[288px\]/, 'Popover should include "w-[288px]"');
     }
     if (Array.isArray(defaultVariant?.padding) && defaultVariant.padding[0] === 16) {
       assertMatch(errors, popoverSource, /\bp-4\b/, 'Popover should include "p-4"');
     }
     if (defaultVariant?.cornerRadius === 8) {
-      assertMatch(errors, popoverSource, /\brounded-md\b/, 'Popover should include "rounded-md"');
+      // cornerRadius 8 → rounded-lg (8px). rounded-md is 6px — the old expectation
+      // was wrong and forced a redundant `rounded-md rounded-lg` pair. (#140)
+      assertMatch(errors, popoverSource, /\brounded-lg\b/, 'Popover should include "rounded-lg"');
     }
     if (defaultVariant?.stroke?.thickness === 1) {
       assertMatch(errors, popoverSource, /\bborder\b/, 'Popover should include "border"');
