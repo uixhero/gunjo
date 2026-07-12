@@ -78,6 +78,22 @@ export interface DataTableProps<TData, TValue> {
      * least-important chrome; the pager still wraps below on its own line. (#311)
      */
     hidePaginationSummary?: boolean
+    /**
+     * Accessible name for the `<table>`, rendered as a `<caption>`. Give each
+     * table a caption when a screen has several so screen-reader users can tell
+     * them apart. Visible by default — pass `captionClassName="sr-only"` to keep
+     * it screen-reader-only. (#298)
+     */
+    caption?: React.ReactNode
+    /** Class for the rendered `<caption>`. Pass `"sr-only"` to hide it visually. */
+    captionClassName?: string
+    /**
+     * Sets `aria-label` on the `<table>` when there's no visible caption. Prefer
+     * `aria-labelledby` to point at an existing heading (e.g. a `CardTitle`). (#298)
+     */
+    "aria-label"?: string
+    /** Sets `aria-labelledby` on the `<table>` — associate it with a heading's id. (#298) */
+    "aria-labelledby"?: string
     /** Optional row state used for styling composed tables. */
     getRowState?: (row: TData, index: number) => string | undefined
     /**
@@ -198,6 +214,10 @@ export function DataTable<TData, TValue>({
     labels,
     headerActions,
     hidePaginationSummary,
+    caption,
+    captionClassName,
+    "aria-label": ariaLabel,
+    "aria-labelledby": ariaLabelledby,
     getRowState,
     onRowClick,
     renderCard,
@@ -341,7 +361,16 @@ export function DataTable<TData, TValue>({
             </div>
 
             <div className={cn("overflow-x-auto rounded-md border", renderCard && "hidden md:block")}>
-                <table className="w-full min-w-[720px] table-fixed caption-bottom text-sm">
+                <table
+                    className="w-full min-w-[720px] table-fixed caption-bottom text-sm"
+                    aria-label={ariaLabel}
+                    aria-labelledby={ariaLabelledby}
+                >
+                    {caption ? (
+                        <caption className={cn("px-1 pt-2 text-left text-sm text-muted-foreground", captionClassName)}>
+                            {caption}
+                        </caption>
+                    ) : null}
                     <colgroup>
                         {visibleColumns.map((column) => {
                             const width = getColumnWidth(column)
@@ -497,7 +526,12 @@ export function DataTable<TData, TValue>({
             </div>
 
             {renderCard ? (
-                <div className="flex flex-col gap-2 md:hidden">
+                <div
+                    className="flex flex-col gap-2 md:hidden"
+                    role={ariaLabel || ariaLabelledby ? "group" : undefined}
+                    aria-label={ariaLabel}
+                    aria-labelledby={ariaLabelledby}
+                >
                     {table.getRowModel().rows?.length ? (
                         table.getRowModel().rows.map((row) => {
                             const rowState = getRowState?.(row.original, row.index) ?? (row.getIsSelected() ? "selected" : undefined)

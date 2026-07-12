@@ -321,6 +321,20 @@ export function MembersTable() {
                 : "Renders rows as a stacked card list on mobile (< md). With onRowClick the card is itself role=\"button\" — return non-interactive content (use onRowClick to make the whole card tappable; don't add your own button/link as the card root). Small per-row controls are fine. Function prop — pass only from a Client Component. (#333/#338)",
         },
         {
+            name: "caption",
+            type: "React.ReactNode",
+            description: isJa
+                ? "テーブルの <caption>（アクセシブル名）。複数テーブルがある画面で screen reader が区別できます。既定は可視、captionClassName=\"sr-only\" で読み上げ専用に。(#298)"
+                : "Renders a <caption> (the table's accessible name). Helps screen-reader users tell multiple tables apart. Visible by default; pass captionClassName=\"sr-only\" to hide it visually. (#298)",
+        },
+        {
+            name: "aria-label / aria-labelledby",
+            type: "string",
+            description: isJa
+                ? "可視 caption が無いとき <table> に名前を付けます。既存の見出し（CardTitle 等）の id を指す aria-labelledby を推奨。(#298)"
+                : "Names the <table> when there's no visible caption. Prefer aria-labelledby pointing at an existing heading's id (e.g. a CardTitle). (#298)",
+        },
+        {
             name: "hidePaginationSummary",
             type: "boolean",
             description: isJa
