@@ -7,7 +7,7 @@
 
 *[UIXHERO](https://www.uixhero.com) が手がけるデザインシステム — ライブの [コンポーネントギャラリー](https://www.uixhero.com/resources/ui-components) もどうぞ。*
 
-> ⚠️ **1.0 未満。** 現在の `0.0.1-alpha.x` は名前確保とリリース工程の試運転です。`1.0.0` stable まで public API は変わる可能性があります——バージョンを固定し、アップグレード前に [CHANGELOG](./CHANGELOG.md) を確認してください。
+> ⚠️ **1.0 未満。** 現在の `0.1.0-beta.x` は初の public beta です。`1.0.0` stable まで public API は変わる可能性があります——バージョンを固定し、アップグレード前に [CHANGELOG](./CHANGELOG.md) を確認してください。
 
 **Gunjo（群青）** は SSOT 駆動の React + Tailwind デザインシステムです。**pen デザインソース・React ソース・ドキュメントの 3 軸が常に同期している**ことを検証された 200+ コンポーネントを提供し、人だけでなく AI エージェントからも快適に使えるよう設計しています。
 
