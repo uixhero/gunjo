@@ -27,6 +27,14 @@ export interface TreeViewProps extends React.HTMLAttributes<HTMLUListElement> {
     selectionMode?: "single" | "multiple" | "none"
     onSelectedIdChange?: (id: string) => void
     /**
+     * Activate a node (drill into it) on label click / Enter — **distinct from
+     * expand/collapse**. When set, clicking a parent's label activates (and
+     * selects) it instead of toggling; expand/collapse then lives only on the
+     * chevron and the Left/Right arrow keys. Leave unset to keep the default,
+     * where a parent's label click toggles it. (#283)
+     */
+    onNodeActivate?: (id: string) => void
+    /**
      * Optional supplemental content shown after the label, such as item count or file size.
      *
      * **Function prop — pass only from a Client Component**; from a Server Component it breaks `next build`. Render props return JSX, so there is no serializable alternative — wrap in a thin `"use client"` component to pass it from an RSC. (#338)
@@ -77,6 +85,7 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
             selectedIds,
             selectionMode = "single",
             onSelectedIdChange,
+            onNodeActivate,
             renderNodeMeta,
             renderNodeActions,
             getNodeRowProps,
@@ -202,6 +211,7 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                         selectedIds={selectedSet}
                         selectionMode={selectionMode}
                         onSelect={onSelectedIdChange}
+                        onNodeActivate={onNodeActivate}
                         tabbableId={tabbableId}
                         onFocusItem={setFocusedId}
                         renderNodeMeta={renderNodeMeta}
@@ -224,6 +234,7 @@ interface TreeViewItemProps {
     selectedIds?: Set<string>
     selectionMode: "single" | "multiple" | "none"
     onSelect?: (id: string) => void
+    onNodeActivate?: (id: string) => void
     tabbableId?: string
     onFocusItem?: (id: string) => void
     renderNodeMeta?: (node: TreeNode) => React.ReactNode
@@ -240,6 +251,7 @@ function TreeViewItem({
     selectedIds,
     selectionMode,
     onSelect,
+    onNodeActivate,
     tabbableId,
     onFocusItem,
     renderNodeMeta,
@@ -311,8 +323,13 @@ function TreeViewItem({
                     tabIndex={node.id === tabbableId ? 0 : -1}
                     onFocus={() => onFocusItem?.(node.id)}
                     onClick={() => {
-                        if (hasChildren) onToggle(node.id)
                         onSelect?.(node.id)
+                        if (onNodeActivate) {
+                            // Label click drills in; expand/collapse stays on the chevron / arrows.
+                            onNodeActivate(node.id)
+                        } else if (hasChildren) {
+                            onToggle(node.id)
+                        }
                     }}
                     className="flex min-w-0 flex-1 items-center gap-1.5 rounded-sm py-1.5 pl-1 pr-2 text-left outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1"
                 >
@@ -347,6 +364,7 @@ function TreeViewItem({
                             selectedIds={selectedIds}
                             selectionMode={selectionMode}
                             onSelect={onSelect}
+                            onNodeActivate={onNodeActivate}
                             tabbableId={tabbableId}
                             onFocusItem={onFocusItem}
                             renderNodeMeta={renderNodeMeta}
