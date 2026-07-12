@@ -12,7 +12,8 @@ import { radioGroupDefaultVariantKey } from "./generated/default-variant-keys"
 const RadioGroupContext = React.createContext<{
     value?: string,
     onValueChange?: (value: string) => void,
-    name?: string
+    name?: string,
+    disabled?: boolean
 } | undefined>(undefined);
 
 const radioGroupItemStateClasses: Record<RadioGroupVariantKey, string> = {
@@ -20,15 +21,28 @@ const radioGroupItemStateClasses: Record<RadioGroupVariantKey, string> = {
     unchecked: "border-input",
 }
 
+// A radio is disabled for roving-tabindex / arrow-nav if it's natively disabled
+// (own `disabled` OR an ancestor `<fieldset disabled>` — the latter only shows up
+// via `:disabled`, not the `.disabled` IDL property) or marked `aria-disabled`. (#273)
+function isRadioDisabled(r: HTMLButtonElement): boolean {
+    return r.matches(":disabled") || r.getAttribute("aria-disabled") === "true"
+}
+
 export interface RadioGroupProps extends React.HTMLAttributes<HTMLDivElement> {
     value?: string
     defaultValue?: string
     onValueChange?: (value: string) => void
     name?: string
+    /**
+     * Disable every item in the group. Each `RadioGroupItem` reflects it as
+     * `aria-disabled` and drops out of the roving tab order. An ancestor
+     * `<fieldset disabled>` is honored the same way, even without this prop. (#273)
+     */
+    disabled?: boolean
 }
 
 const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
-    ({ className, value, onValueChange, defaultValue, name, children, ...props }, forwardedRef) => {
+    ({ className, value, onValueChange, defaultValue, name, disabled, children, ...props }, forwardedRef) => {
         const [internalValue, setInternalValue] = React.useState(defaultValue)
         const activeValue = value !== undefined ? value : internalValue
 
@@ -50,7 +64,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
                 el.querySelectorAll<HTMLButtonElement>('[role="radio"]')
             )
             if (radios.some((r) => r.getAttribute("aria-checked") === "true")) return
-            const firstEnabled = radios.find((r) => !r.disabled)
+            const firstEnabled = radios.find((r) => !isRadioDisabled(r))
             radios.forEach((r) => {
                 r.tabIndex = r === firstEnabled ? 0 : -1
             })
@@ -67,7 +81,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
             if (!el) return
             const radios = Array.from(
                 el.querySelectorAll<HTMLButtonElement>('[role="radio"]')
-            ).filter((r) => !r.disabled)
+            ).filter((r) => !isRadioDisabled(r))
             if (radios.length === 0) return
             event.preventDefault()
             const current = radios.indexOf(document.activeElement as HTMLButtonElement)
@@ -84,7 +98,7 @@ const RadioGroup = React.forwardRef<HTMLDivElement, RadioGroupProps>(
         }
 
         return (
-            <RadioGroupContext.Provider value={{ value: activeValue, onValueChange: handleValueChange, name }}>
+            <RadioGroupContext.Provider value={{ value: activeValue, onValueChange: handleValueChange, name, disabled }}>
                 <div
                     role="radiogroup"
                     className={cn("grid gap-2", className)}
@@ -121,6 +135,27 @@ const RadioGroupItem = React.forwardRef<HTMLButtonElement, RadioGroupItemProps>(
         const labelId = label ? `${reactId}-label` : undefined
         const descriptionId = description ? `${reactId}-description` : undefined
 
+        // Effective disabled = own prop OR RadioGroup `disabled` OR an ancestor
+        // `<fieldset disabled>`. The fieldset case is detected from the DOM
+        // (`:disabled`) after mount, so it's reflected in aria + tab order even
+        // though React never sees a `disabled` prop for it. (#273)
+        const ownOrGroupDisabled = (disabled ?? false) || (context?.disabled ?? false)
+        const buttonRef = React.useRef<HTMLButtonElement | null>(null)
+        const setRefs = React.useCallback(
+            (node: HTMLButtonElement | null) => {
+                buttonRef.current = node
+                if (typeof ref === "function") ref(node)
+                else if (ref) ref.current = node
+            },
+            [ref]
+        )
+        const [detectedDisabled, setDetectedDisabled] = React.useState(false)
+        React.useEffect(() => {
+            const el = buttonRef.current
+            setDetectedDisabled(el ? el.matches(":disabled") : false)
+        })
+        const isDisabled = ownOrGroupDisabled || detectedDisabled
+
         const control = (
             <button
                 type="button"
@@ -128,12 +163,13 @@ const RadioGroupItem = React.forwardRef<HTMLButtonElement, RadioGroupItemProps>(
                 aria-checked={checked}
                 aria-labelledby={labelId}
                 aria-describedby={descriptionId}
-                tabIndex={checked ? 0 : -1}
+                aria-disabled={isDisabled || undefined}
+                tabIndex={isDisabled ? -1 : checked ? 0 : -1}
                 onClick={() => context?.onValueChange?.(value)}
-                ref={ref}
-                disabled={disabled}
+                ref={setRefs}
+                disabled={ownOrGroupDisabled}
                 className={cn(
-                    "aspect-square h-4 w-4 shrink-0 rounded-lg border bg-transparent text-foreground ring-offset-background focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50",
+                    "aspect-square h-4 w-4 shrink-0 rounded-lg border bg-transparent text-foreground ring-offset-background focus:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50 aria-disabled:cursor-not-allowed aria-disabled:opacity-50",
                     radioGroupItemStateClasses[itemState],
                     className
                 )}
@@ -158,9 +194,9 @@ const RadioGroupItem = React.forwardRef<HTMLButtonElement, RadioGroupItemProps>(
                             id={labelId}
                             className={cn(
                                 "text-sm font-medium leading-none",
-                                disabled ? "text-muted-foreground" : "cursor-pointer"
+                                isDisabled ? "text-muted-foreground" : "cursor-pointer"
                             )}
-                            onClick={disabled ? undefined : () => context?.onValueChange?.(value)}
+                            onClick={isDisabled ? undefined : () => context?.onValueChange?.(value)}
                         >
                             {label}
                         </span>
