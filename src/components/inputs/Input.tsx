@@ -14,16 +14,30 @@ export interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> 
     label?: React.ReactNode
     /** Optional helper text under the control, wired via `aria-describedby`. */
     description?: React.ReactNode
+    /** Show a character-count readout under the control. Pairs with `maxLength` to render `count / max`. */
+    showCount?: boolean
 }
 
 const Input = React.forwardRef<HTMLInputElement, InputProps>(
-    ({ className, type, disabled, label, description, id, "aria-describedby": ariaDescribedby, ...props }, ref) => {
+    ({ className, type, disabled, label, description, showCount, id, maxLength, value, defaultValue, onChange, "aria-describedby": ariaDescribedby, ...props }, ref) => {
         const inputState: InputVariantKey = disabled ? "disabled" : inputDefaultVariantKey
         const reactId = React.useId()
-        const hasWrap = Boolean(label || description)
+        const [count, setCount] = React.useState(() => String(value ?? defaultValue ?? "").length)
+        React.useEffect(() => {
+            if (value !== undefined) setCount(String(value).length)
+        }, [value])
+        const handleChange = showCount
+            ? (event: React.ChangeEvent<HTMLInputElement>) => {
+                  setCount(event.target.value.length)
+                  onChange?.(event)
+              }
+            : onChange
+
+        const hasWrap = Boolean(label || description || showCount)
         const controlId = id ?? (hasWrap ? `${reactId}-input` : undefined)
         const descriptionId = description ? `${reactId}-description` : undefined
-        const describedBy = [descriptionId, ariaDescribedby].filter(Boolean).join(" ") || undefined
+        const countId = showCount ? `${reactId}-count` : undefined
+        const describedBy = [descriptionId, countId, ariaDescribedby].filter(Boolean).join(" ") || undefined
 
         const control = (
             <input
@@ -39,6 +53,10 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                 id={controlId}
                 suppressHydrationWarning
                 disabled={disabled}
+                maxLength={maxLength}
+                value={value}
+                defaultValue={defaultValue}
+                onChange={handleChange}
                 aria-describedby={describedBy}
                 {...props}
                 data-slot="input"
@@ -55,10 +73,21 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
                     </label>
                 ) : null}
                 {control}
-                {description ? (
-                    <p id={descriptionId} className="text-xs text-muted-foreground">
-                        {description}
-                    </p>
+                {description || showCount ? (
+                    <div className="flex items-start justify-between gap-2">
+                        {description ? (
+                            <p id={descriptionId} className="text-xs text-muted-foreground">
+                                {description}
+                            </p>
+                        ) : (
+                            <span />
+                        )}
+                        {showCount ? (
+                            <span id={countId} className="shrink-0 text-xs tabular-nums text-muted-foreground">
+                                {maxLength != null ? `${count} / ${maxLength}` : count}
+                            </span>
+                        ) : null}
+                    </div>
                 ) : null}
             </div>
         )
