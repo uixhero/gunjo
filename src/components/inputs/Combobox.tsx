@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { IconCheck as Check, IconSelector as ChevronsUpDown, IconX as X } from "@tabler/icons-react";
+import { IconCheck as Check, IconSelector as ChevronsUpDown, IconPlus as Plus, IconX as X } from "@tabler/icons-react";
 
 import { cn } from "../../lib/utils"
 import { Button } from "../inputs/Button"
@@ -42,6 +42,15 @@ export interface ComboboxProps {
     disabled?: boolean
     clearable?: boolean
     clearLabel?: string
+    /** Allow creating a new value from the search text when it matches no option. (#200) */
+    creatable?: boolean
+    /**
+     * Called when the user picks the "Create …" item. The Combobox only signals the
+     * intent — add the new option to `options` and set `value` in the parent.
+     */
+    onCreate?: (inputValue: string) => void
+    /** Label for the create item. Defaults to `Create "<text>"`. */
+    createLabel?: (inputValue: string) => React.ReactNode
     /** ARIA attributes forwarded to the trigger so a Combobox can participate in form validation. */
     "aria-invalid"?: boolean | "true" | "false"
     "aria-describedby"?: string
@@ -67,6 +76,9 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
             disabled,
             clearable = true,
             clearLabel = "Clear selection",
+            creatable = false,
+            onCreate,
+            createLabel,
             "aria-invalid": ariaInvalid,
             "aria-describedby": ariaDescribedby,
             "aria-labelledby": ariaLabelledby,
@@ -77,9 +89,27 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
         ref
     ) => {
         const [open, setOpen] = React.useState(false)
+        const [query, setQuery] = React.useState("")
         const { strings } = useLocale()
         const selected = options.find((option) => option.value === value)
         const canClear = clearable && Boolean(selected) && !disabled
+
+        // Offer to create only when the query is non-empty and no existing option
+        // exactly matches it (by label or value, case-insensitive). (#200)
+        const trimmedQuery = query.trim()
+        const showCreate =
+            creatable &&
+            trimmedQuery !== "" &&
+            !options.some(
+                (option) =>
+                    option.label.toLowerCase() === trimmedQuery.toLowerCase() ||
+                    option.value.toLowerCase() === trimmedQuery.toLowerCase()
+            )
+        const handleCreate = () => {
+            if (!trimmedQuery) return
+            onCreate?.(trimmedQuery)
+            setOpen(false)
+        }
 
         const renderOption = (option: ComboboxOption) => {
             const item = (
@@ -129,7 +159,15 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
         }
 
         return (
-            <Popover open={open} onOpenChange={setOpen}>
+            <Popover
+                open={open}
+                onOpenChange={(next) => {
+                    setOpen(next)
+                    // Reset the tracked query on close so a stale "Create …" item
+                    // doesn't reappear on the next open. (#200)
+                    if (!next) setQuery("")
+                }}
+            >
                 <div className="relative">
                     <PopoverTrigger asChild>
                         <Button
@@ -186,6 +224,7 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
                             placeholder={searchPlaceholder ?? strings.searchPlaceholder}
                             clearable
                             clearLabel={searchClearLabel}
+                            onValueChange={setQuery}
                         />
                         <CommandList>
                             <CommandEmpty>{emptyMessage}</CommandEmpty>
@@ -200,6 +239,22 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
                             ) : (
                                 <CommandGroup>{options.map(renderOption)}</CommandGroup>
                             )}
+                            {showCreate ? (
+                                <CommandGroup>
+                                    <CommandItem
+                                        // value === the raw query so cmdk keeps it visible
+                                        // for the current input; onCreate gets the trimmed text.
+                                        value={query}
+                                        keywords={[query]}
+                                        onSelect={handleCreate}
+                                    >
+                                        <Plus className="mr-2 h-4 w-4" />
+                                        <span className="min-w-0 flex-1 truncate">
+                                            {createLabel ? createLabel(trimmedQuery) : `Create "${trimmedQuery}"`}
+                                        </span>
+                                    </CommandItem>
+                                </CommandGroup>
+                            ) : null}
                         </CommandList>
                     </Command>
                 </PopoverContent>
