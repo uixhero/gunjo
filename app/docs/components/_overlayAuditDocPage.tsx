@@ -1950,6 +1950,71 @@ const commonOverlayProps = {
     ],
 };
 
+const sheetScrollCode = {
+    ja: `import { Button, Input, Label, Sheet, SheetBody, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@gunjo/ui";
+
+// SheetBody を直下に置くと SheetContent が flex 列になり、
+// ヘッダー/フッターは固定・中央だけがスクロールします。
+export function LongFormSheet() {
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">長いフォームを開く</Button>
+      </SheetTrigger>
+      <SheetContent side="right" closeLabel="閉じる">
+        <SheetHeader>
+          <SheetTitle>プロジェクト設定</SheetTitle>
+          <SheetDescription>ヘッダーとフッターは固定され、中央のフォームだけがスクロールします。</SheetDescription>
+        </SheetHeader>
+        <SheetBody className="space-y-4 py-4">
+          {fields.map((field) => (
+            <div key={field.id} className="space-y-1.5">
+              <Label htmlFor={field.id}>{field.label}</Label>
+              <Input id={field.id} defaultValue={field.value} />
+            </div>
+          ))}
+        </SheetBody>
+        <SheetFooter className="flex-row justify-end gap-2">
+          <SheetClose asChild><Button variant="outline">キャンセル</Button></SheetClose>
+          <SheetClose asChild><Button>保存</Button></SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  );
+}`,
+    en: `import { Button, Input, Label, Sheet, SheetBody, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@gunjo/ui";
+
+// A SheetBody as a direct child turns SheetContent into a flex column, so the
+// header and footer stay pinned while only the middle scrolls.
+export function LongFormSheet() {
+  return (
+    <Sheet>
+      <SheetTrigger asChild>
+        <Button variant="outline">Open long form</Button>
+      </SheetTrigger>
+      <SheetContent side="right" closeLabel="Close">
+        <SheetHeader>
+          <SheetTitle>Project settings</SheetTitle>
+          <SheetDescription>The header and footer stay pinned while only the middle form scrolls.</SheetDescription>
+        </SheetHeader>
+        <SheetBody className="space-y-4 py-4">
+          {fields.map((field) => (
+            <div key={field.id} className="space-y-1.5">
+              <Label htmlFor={field.id}>{field.label}</Label>
+              <Input id={field.id} defaultValue={field.value} />
+            </div>
+          ))}
+        </SheetBody>
+        <SheetFooter className="flex-row justify-end gap-2">
+          <SheetClose asChild><Button variant="outline">Cancel</Button></SheetClose>
+          <SheetClose asChild><Button>Save</Button></SheetClose>
+        </SheetFooter>
+      </SheetContent>
+    </Sheet>
+  );
+}`,
+};
+
 const configs: Record<OverlayAuditKind, OverlayDocConfig> = {
     "media-lightbox": {
         metadataKey: "mediaLightbox",
@@ -2209,6 +2274,7 @@ const configs: Record<OverlayAuditKind, OverlayDocConfig> = {
                 { name: "overlayClassName", type: "string", description: "オーバーレイに追加するクラスです。" },
                 { name: "className", type: "string", description: "シート本体に追加するクラスです。" },
                 { name: "closeLabel", type: "string", default: '"Close"', description: "右上の閉じるボタンとツールチップに使うラベルです。" },
+                { name: "SheetBody", type: "React.HTMLAttributes<HTMLDivElement>", description: "長いフォーム用のスクロール領域。SheetContent の直下に置くと Content が flex 列になり、ヘッダー/フッター固定・中央スクロールになります（left/right シート）。(#293)" },
             ],
             en: [
                 { name: "side", type: '"top" | "right" | "bottom" | "left"', default: '"right"', description: "Screen edge where the sheet appears." },
@@ -2216,6 +2282,7 @@ const configs: Record<OverlayAuditKind, OverlayDocConfig> = {
                 { name: "overlayClassName", type: "string", description: "Additional class names for the overlay." },
                 { name: "className", type: "string", description: "Additional class names for the sheet content." },
                 { name: "closeLabel", type: "string", default: '"Close"', description: "Label used by the top-right close button and tooltip." },
+                { name: "SheetBody", type: "React.HTMLAttributes<HTMLDivElement>", description: "Scroll region for long forms. As a direct child of SheetContent it makes the content a flex column — header/footer pinned, middle scrolls (left/right sheets). (#293)" },
             ],
         },
         states: {
@@ -2224,12 +2291,14 @@ const configs: Record<OverlayAuditKind, OverlayDocConfig> = {
                 overlayState("left", "左ナビゲーション", "モバイルメニューなどを左から表示します。", "/embed/sheet", "left", sheetLeftCode.ja, 520),
                 overlayState("bottom", "下部シート", "狭い画面で補助操作を下から表示します。", "/embed/sheet", "bottom", sheetBottomCode.ja, 520),
                 overlayState("top", "上部シート", "短い通知設定や補助操作を上から表示します。", "/embed/sheet", "top", sheetTopCode.ja, 520),
+                overlayState("scroll", "長いフォーム（スクロール）", "SheetBody を直下に置くと、ヘッダー/フッターは固定され中央だけがスクロールします。", "/embed/sheet", "scroll", sheetScrollCode.ja, 520),
             ],
             en: [
                 overlayState("settings", "Right settings", "Shows detailed settings from the right edge.", "/embed/sheet", "settings", sheetCode.en, 520),
                 overlayState("left", "Left navigation", "Shows mobile navigation from the left edge.", "/embed/sheet", "left", sheetLeftCode.en, 520),
                 overlayState("bottom", "Bottom sheet", "Shows supporting actions from the bottom on narrow screens.", "/embed/sheet", "bottom", sheetBottomCode.en, 520),
                 overlayState("top", "Top sheet", "Shows short notification settings or supporting actions from the top edge.", "/embed/sheet", "top", sheetTopCode.en, 520),
+                overlayState("scroll", "Long form (scroll)", "A SheetBody direct child pins the header/footer and scrolls only the middle.", "/embed/sheet", "scroll", sheetScrollCode.en, 520),
             ],
         },
     },
