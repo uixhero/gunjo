@@ -113,7 +113,7 @@ function ColdTestsGrid() {
                     </span>
                 </div>
                 <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
-                    {t.heading}
+                    {t.heading(entries.length)}
                 </h1>
                 <p className="max-w-2xl text-lg text-muted-foreground">
                     {t.subtitle(entries.length)}

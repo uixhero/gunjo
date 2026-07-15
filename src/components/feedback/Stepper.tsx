@@ -26,6 +26,13 @@ export interface StepperProps
     extends React.HTMLAttributes<HTMLDivElement>,
         VariantProps<typeof stepperVariants> {
     steps: StepperStep[]
+    /**
+     * Make the stepper double as navigation. When set, each step becomes a button
+     * calling this with its index (e.g. a Review step's "Edit → jump to step N").
+     * `upcoming` steps render `disabled` (not-yet-reachable); `completed` and
+     * `current` are clickable. Omit to keep the default non-interactive display. (#157)
+     */
+    onStepClick?: (index: number) => void
 }
 
 function StepCircle({ state, index }: { state: StepperState; index: number }) {
@@ -58,7 +65,7 @@ function StepCircle({ state, index }: { state: StepperState; index: number }) {
 }
 
 const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
-    ({ className, orientation, steps, role = "list", ...props }, ref) => {
+    ({ className, orientation, steps, onStepClick, role = "list", ...props }, ref) => {
         const isHorizontal = orientation !== "vertical"
         return (
             <div
@@ -80,18 +87,45 @@ const Stepper = React.forwardRef<HTMLDivElement, StepperProps>(
                                     isHorizontal ? "w-14 shrink-0 flex-col text-center sm:w-20" : "flex-row"
                                 )}
                             >
-                                <StepCircle state={step.state} index={idx} />
-                                <span
-                                    data-stepper-label
-                                    className={cn(
-                                        "max-w-full text-xs font-medium leading-tight",
-                                        step.state === "upcoming"
-                                            ? "text-muted-foreground"
-                                            : "text-foreground"
-                                    )}
-                                >
-                                    {step.label}
-                                </span>
+                                {(() => {
+                                    const circle = <StepCircle state={step.state} index={idx} />
+                                    const label = (
+                                        <span
+                                            data-stepper-label
+                                            className={cn(
+                                                "max-w-full text-xs font-medium leading-tight",
+                                                step.state === "upcoming"
+                                                    ? "text-muted-foreground"
+                                                    : "text-foreground"
+                                            )}
+                                        >
+                                            {step.label}
+                                        </span>
+                                    )
+                                    if (!onStepClick) {
+                                        return (
+                                            <>
+                                                {circle}
+                                                {label}
+                                            </>
+                                        )
+                                    }
+                                    return (
+                                        <button
+                                            type="button"
+                                            onClick={() => onStepClick(idx)}
+                                            disabled={step.state === "upcoming"}
+                                            className={cn(
+                                                "flex min-w-0 items-center gap-2 rounded-md outline-none transition-opacity focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                                                isHorizontal ? "w-full flex-col text-center" : "flex-row",
+                                                "hover:opacity-80 disabled:pointer-events-none disabled:hover:opacity-100"
+                                            )}
+                                        >
+                                            {circle}
+                                            {label}
+                                        </button>
+                                    )
+                                })()}
                             </div>
                             {!isLast ? (
                                 <div

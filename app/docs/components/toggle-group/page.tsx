@@ -129,6 +129,7 @@ export function AlignControl() {
         { name: "disabled", type: "boolean", default: "false", description: locale === "ja" ? "グループ全体、または項目ごとに操作を無効化します。理由が必要な場合はツールチップで補足します。" : "Disables the group or individual items. Explain the reason with a tooltip when needed." },
         { name: "variant", type: "'default' | 'outline'", default: "'default'", description: locale === "ja" ? "各項目の見た目です。枠線を見せたい時は outline を使います。" : "Visual variant for each ToggleGroupItem." },
         { name: "size", type: "'default' | 'sm' | 'lg'", default: "'default'", description: locale === "ja" ? "各 ToggleGroupItem のサイズです。" : "Size for each ToggleGroupItem." },
+        { name: "ToggleGroupItem.tone", type: "'default' | 'info' | 'success' | 'warning' | 'destructive'", default: "'default'", description: locale === "ja" ? "選択中の色を項目ごとに指定します（状態セグメント：休講→destructive、補講→info、通常→default など）。default は primary。(#288)" : "Per-item selected-state color (status segments: 休講→destructive, 補講→info, 通常→default). default = primary. (#288)" },
     ];
 
     return (

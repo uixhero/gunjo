@@ -39,8 +39,9 @@ export interface AlertProps
      */
     icon?: React.ReactNode
     /**
-     * Convenience title — equivalent to an `<AlertTitle>` child (renders an `h5`).
-     * For a specific heading level, use the compound `<AlertTitle as="…">`. (#303)
+     * Convenience title — equivalent to an `<AlertTitle>` child (renders a `p`,
+     * out of the heading order). For a section heading, use the compound
+     * `<AlertTitle as="…">`. (#303, #251)
      */
     title?: React.ReactNode
     /** Convenience description — equivalent to an `<AlertDescription>` child. (#303) */
@@ -66,15 +67,17 @@ Alert.displayName = "Alert"
 
 export interface AlertTitleProps extends React.HTMLAttributes<HTMLHeadingElement> {
     /**
-     * The element to render. Defaults to `"h5"`. Set this (e.g. `as="h2"` or
-     * `"p"`/`"div"`) to keep a skip-free heading order when an Alert sits under
-     * another heading — the visual style is identical regardless of element.
+     * The element to render. Defaults to `"p"` — a status/feedback banner title
+     * is **not** part of the document outline, so a heading here would inject an
+     * out-of-order level (e.g. h1 → h5). Pass `as="h2"` (etc.) when the Alert
+     * genuinely owns a section heading; the visual style is identical regardless
+     * of element. (#251)
      */
     as?: "h1" | "h2" | "h3" | "h4" | "h5" | "h6" | "p" | "div"
 }
 
 const AlertTitle = React.forwardRef<HTMLHeadingElement, AlertTitleProps>(
-    ({ className, as = "h5", ...props }, ref) => {
+    ({ className, as = "p", ...props }, ref) => {
         const Comp = as as React.ElementType
         return (
             <Comp

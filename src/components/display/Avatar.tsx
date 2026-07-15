@@ -109,14 +109,49 @@ const AvatarImage = React.forwardRef<
 ))
 AvatarImage.displayName = AvatarPrimitive.Image.displayName
 
+// Contrast-safe tone pairs (same subtle bg + foreground the Badge/Alert use), for
+// the opt-in deterministic fallback color. Decorative only — hue conveys identity,
+// not status. (#331)
+const avatarFallbackPalette = [
+    "bg-primary-subtle text-primary-subtle-foreground",
+    "bg-info-subtle text-info-subtle-foreground",
+    "bg-success-subtle text-success-subtle-foreground",
+    "bg-warning-subtle text-warning-subtle-foreground",
+    "bg-destructive-subtle text-destructive-subtle-foreground",
+] as const
+
+/** Deterministic djb2-ish hash → stable index for a given seed. */
+function avatarSeedIndex(seed: string, length: number): number {
+    let hash = 0
+    for (let i = 0; i < seed.length; i++) {
+        hash = (hash * 31 + seed.charCodeAt(i)) | 0
+    }
+    return Math.abs(hash) % length
+}
+
+export interface AvatarFallbackProps
+    extends React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback> {
+    /**
+     * Opt-in deterministic color: hashes this seed (e.g. the person's name) to one
+     * of a few theme-safe, contrast-safe tone pairs, so a dense directory of
+     * initials is scannable instead of a wall of identical gray. The same seed
+     * always maps to the same color. Omit for the default neutral gray. The hue is
+     * **decorative** (identity, not status). (#331)
+     */
+    colorSeed?: string
+}
+
 const AvatarFallback = React.forwardRef<
     React.ElementRef<typeof AvatarPrimitive.Fallback>,
-    React.ComponentPropsWithoutRef<typeof AvatarPrimitive.Fallback>
->(({ className, ...props }, ref) => (
+    AvatarFallbackProps
+>(({ className, colorSeed, ...props }, ref) => (
     <AvatarPrimitive.Fallback
         ref={ref}
         className={cn(
             avatarSlotClasses[avatarDefaultVariantKey],
+            colorSeed
+                ? avatarFallbackPalette[avatarSeedIndex(colorSeed, avatarFallbackPalette.length)]
+                : null,
             className
         )}
         {...props}
