@@ -30,7 +30,7 @@ When three independent screens hand-rolled the same missing thing, we built it. 
 
 Every round is public — including the bad ones. One screen scored 5/5; another scored 2.5/5 and was the most useful run we did, because it mapped what was missing:
 
-**→ [gunjo.jp/cold-tests](https://www.gunjo.jp/cold-tests)**
+**[gunjo.jp/cold-tests](https://www.gunjo.jp/cold-tests)**
 
 The finding that shaped the whole system: **an agent that has never seen your library is an honest inspector.** It has no reason to flatter you. Wherever it hand-rolls something, you have a gap — and the hand-rolled code is a precise map of it.
 
