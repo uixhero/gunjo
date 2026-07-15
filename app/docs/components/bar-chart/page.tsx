@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import { CodeCopyButton, ComponentLayout } from "@/components/doc/ComponentHelpers";
 import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { PropsTable } from "@/components/doc/PropsTable";
@@ -23,6 +24,37 @@ const channelData = [
     { label: "広告", value: 62, color: "warning" },
     { label: "紹介", value: 31, color: "success" },
 ];
+
+// Editable threshold demo: drag the limit and watch bars cross it turn destructive. (#285)
+function ThresholdBarDemo({ locale }: { locale: "ja" | "en" }) {
+    const isJa = locale === "ja";
+    const [threshold, setThreshold] = React.useState(55);
+    const data = [
+        { label: isJa ? "A棟" : "A", value: 42, color: "primary" as const },
+        { label: isJa ? "B棟" : "B", value: 68, color: "primary" as const },
+        { label: isJa ? "C棟" : "C", value: 51, color: "primary" as const },
+        { label: isJa ? "D棟" : "D", value: 73, color: "primary" as const },
+        { label: isJa ? "E棟" : "E", value: 38, color: "primary" as const },
+    ];
+    return (
+        <div className="mx-auto flex w-full max-w-md flex-col gap-4">
+            <BarChart data={data} threshold={threshold} thresholdLabel={isJa ? "上限" : "Limit"} showValues />
+            <label className="flex items-center gap-3 text-sm text-muted-foreground">
+                <span className="shrink-0">{isJa ? "上限" : "Limit"}</span>
+                <span className="w-8 shrink-0 font-medium tabular-nums text-foreground">{threshold}</span>
+                <input
+                    type="range"
+                    min={20}
+                    max={90}
+                    value={threshold}
+                    onChange={(event) => setThreshold(Number(event.target.value))}
+                    className="min-w-0 flex-1"
+                    aria-label={isJa ? "上限を調整" : "Adjust the limit"}
+                />
+            </label>
+        </div>
+    );
+}
 
 const codeByLocale = {
     en: `import { BarChart } from "@gunjo/ui";
@@ -176,6 +208,9 @@ const propsDataByLocale = {
         { name: "max", type: "number", description: "Explicit maximum value. Defaults to the largest data or reference value." },
         { name: "averageValue", type: "number", description: "Optional dashed average or reference marker." },
         { name: "averageLabel", type: "ReactNode", default: "\"Average\"", description: "Tooltip and accessible label for the average or reference marker." },
+        { name: "threshold", type: "number", description: "A capacity/limit line. Bars above it are painted in thresholdTone (over-limit = bad) and a reference line is drawn. (#285)" },
+        { name: "thresholdLabel", type: "ReactNode", default: "\"Limit\"", description: "Tooltip and accessible label for the threshold line." },
+        { name: "thresholdTone", type: "ChartTone", default: "\"destructive\"", description: "Tone applied to bars over the threshold." },
         { name: "showGrid", type: "boolean", default: "true", description: "Shows the horizontal reference grid in vertical mode." },
         { name: "showLabels", type: "boolean", default: "true", description: "Shows category labels next to or below bars." },
         { name: "showValues", type: "boolean", default: "false", description: "Shows formatted values next to horizontal bars or above vertical bars." },
@@ -187,6 +222,9 @@ const propsDataByLocale = {
         { name: "max", type: "number", description: "明示的な最大値です。未指定時は data または基準値の最大値を使います。" },
         { name: "averageValue", type: "number", description: "任意の平均値・基準値マーカーです。" },
         { name: "averageLabel", type: "ReactNode", default: "\"Average\"", description: "平均値・基準値マーカーのツールチップとアクセシブルラベルです。" },
+        { name: "threshold", type: "number", description: "容量・上限ライン。これを超えた棒を thresholdTone で塗り（超過＝bad）、基準線を描きます。(#285)" },
+        { name: "thresholdLabel", type: "ReactNode", default: "\"Limit\"", description: "閾値ラインのツールチップとアクセシブルラベルです。" },
+        { name: "thresholdTone", type: "ChartTone", default: "\"destructive\"", description: "閾値を超えた棒に適用するトーンです。" },
         { name: "showGrid", type: "boolean", default: "true", description: "縦棒表示の横方向の補助線を表示します。" },
         { name: "showLabels", type: "boolean", default: "true", description: "棒の横または下にカテゴリラベルを表示します。" },
         { name: "showValues", type: "boolean", default: "false", description: "横棒では棒の横に、縦棒では棒の上にフォーマット済みの値を表示します。" },
@@ -254,6 +292,25 @@ export default function BarChartPage() {
                                 />
                             ),
                             code: stateCodeByLocale[locale].reference,
+                        },
+                        {
+                            key: "threshold",
+                            title: locale === "ja" ? "閾値トーン（上限超え）" : "Threshold tone (over limit)",
+                            description: locale === "ja"
+                                ? "threshold を渡すと上限ラインを引き、それを超えた棒を destructive トーンで塗ります。スライダーで上限を動かすと、棒が超過した瞬間に色が変わります。"
+                                : "Pass threshold to draw a limit line and paint bars above it in the destructive tone. Drag the slider to move the limit and watch bars flip as they cross it.",
+                            preview: <ThresholdBarDemo locale={locale} />,
+                            code: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+  { label: "A", value: 42, color: "primary" },
+  { label: "B", value: 68, color: "primary" },
+  { label: "C", value: 51, color: "primary" },
+  { label: "D", value: 73, color: "primary" },
+];
+
+// Bars above 55 turn destructive; a limit line is drawn at 55.
+<BarChart data={data} threshold={55} thresholdLabel="${locale === "ja" ? "上限" : "Limit"}" showValues />`,
                         },
                         {
                             key: "horizontal",
