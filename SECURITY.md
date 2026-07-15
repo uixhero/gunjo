@@ -6,11 +6,11 @@ GunjoUI のセキュリティポリシー。脆弱性発見時の報告手順を
 
 | バージョン | サポート状況 |
 |---|---|
-| `0.0.1-alpha.x` | 🟢 active（current alpha） |
+| `0.1.0-beta.x` | 🟢 active（current beta） |
 | `1.0.0` 以降（将来） | 🟢 active 予定 |
-| `0.0.1-alpha.0` 以前 | ❌ 該当バージョンなし |
+| `0.0.1-alpha.x`（旧 pre-release） | ⚠️ 最新 beta への upgrade を推奨（back-port なし） |
 
-> alpha 段階では「critical bug fix のみ」というよりは、**最新 alpha への upgrade** を推奨します。古い alpha への back-port は基本的に行いません。
+> beta 段階では「critical bug fix のみ」というよりは、**最新 beta への upgrade** を推奨します。古い alpha / beta への back-port は基本的に行いません。
 > `1.0.0` stable 後のサポートポリシー（前 MAJOR ライン保守期間など）は [docs/versioning.md §サポートポリシー](./docs/versioning.md#サポートポリシー) を参照。
 
 ## 報告方法

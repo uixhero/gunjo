@@ -19,6 +19,7 @@ import {
     PopoverTrigger,
     ShareModal,
     Sheet,
+    SheetBody,
     SheetClose,
     SheetContent,
     SheetDescription,
@@ -819,13 +820,60 @@ export function SheetAuditDemo({
     variant = "settings",
 }: {
     locale: Locale;
-    variant?: "settings" | "left" | "bottom" | "top";
+    variant?: "settings" | "left" | "bottom" | "top" | "scroll";
 }) {
     const isJa = locale === "ja";
     const [publicLink, setPublicLink] = React.useState(true);
     const side = variant === "left" ? "left" : variant === "bottom" ? "bottom" : variant === "top" ? "top" : "right";
     const isNavigation = variant === "left";
     const isNotice = variant === "top";
+
+    // Managed-scroll long form: SheetBody flexes and scrolls between a pinned
+    // header and footer. (#293)
+    if (variant === "scroll") {
+        return (
+            <PreviewViewport height={520} fillHeight className="bg-muted/30">
+                {(container) => (
+                    <div className="flex h-full min-h-0 items-center justify-center p-6">
+                        <Sheet>
+                            <SheetTrigger asChild>
+                                <Button variant="outline" className="gap-2">
+                                    <Settings className="h-4 w-4" />
+                                    {isJa ? "長いフォームを開く" : "Open long form"}
+                                </Button>
+                            </SheetTrigger>
+                            <SheetContent portalContainer={container} side="right" closeLabel={isJa ? "閉じる" : "Close"}>
+                                <SheetHeader>
+                                    <SheetTitle>{isJa ? "プロジェクト設定" : "Project settings"}</SheetTitle>
+                                    <SheetDescription>
+                                        {isJa ? "ヘッダーとフッターは固定され、中央のフォームだけがスクロールします。" : "The header and footer stay pinned while only the middle form scrolls."}
+                                    </SheetDescription>
+                                </SheetHeader>
+                                <SheetBody className="space-y-4 py-4">
+                                    {Array.from({ length: 10 }).map((_, index) => (
+                                        <div key={index} className="space-y-1.5">
+                                            <Label htmlFor={`sheet-scroll-${index}`}>
+                                                {(isJa ? "項目 " : "Field ") + (index + 1)}
+                                            </Label>
+                                            <Input id={`sheet-scroll-${index}`} defaultValue={isJa ? `値 ${index + 1}` : `Value ${index + 1}`} />
+                                        </div>
+                                    ))}
+                                </SheetBody>
+                                <SheetFooter className="flex-row justify-end gap-2">
+                                    <SheetClose asChild>
+                                        <Button variant="outline">{isJa ? "キャンセル" : "Cancel"}</Button>
+                                    </SheetClose>
+                                    <SheetClose asChild>
+                                        <Button>{isJa ? "保存" : "Save"}</Button>
+                                    </SheetClose>
+                                </SheetFooter>
+                            </SheetContent>
+                        </Sheet>
+                    </div>
+                )}
+            </PreviewViewport>
+        );
+    }
 
     return (
         <PreviewViewport height={520} fillHeight className="bg-muted/30">
