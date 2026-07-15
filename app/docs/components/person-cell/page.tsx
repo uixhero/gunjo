@@ -75,6 +75,33 @@ function PersonCellPreview({ locale, mode = "list" }: { locale: Locale; mode?: "
   );
 }
 
+// Interactive variant: onActivate makes each cell a <button> — a chevron is the
+// affordance, and keyboard/click both activate. (#341)
+function InteractivePeopleDemo({ locale }: { locale: Locale }) {
+  const isJa = locale === "ja";
+  const [selected, setSelected] = React.useState<string | null>(null);
+  const rows = people(locale);
+  return (
+    <div className="flex w-full max-w-sm flex-col gap-1">
+      {rows.map((person) => (
+        <PersonCell
+          key={typeof person.name === "string" ? person.name : undefined}
+          name={person.name}
+          secondary={person.secondary}
+          avatar={person.avatar}
+          avatarClassName={person.avatarClassName}
+          presence={person.presence}
+          onActivate={() => setSelected(typeof person.name === "string" ? person.name : null)}
+        />
+      ))}
+      <p className="mt-2 text-sm text-muted-foreground" aria-live="polite">
+        {isJa ? "選択中: " : "Selected: "}
+        <span className="font-medium text-foreground">{selected ?? "—"}</span>
+      </p>
+    </div>
+  );
+}
+
 export default function PersonCellDocPage() {
   const { locale, sectionLabels } = useLocale();
   const content = getDocContent("components/person-cell", locale);
@@ -228,6 +255,48 @@ export function MinimalPersonCell() {
   );
 }`;
 
+  const interactiveStateCode = locale === "ja"
+    ? `import * as React from "react";
+import { PersonCell } from "@gunjo/ui";
+
+export function PeopleList({ people }) {
+  const [selected, setSelected] = React.useState(null);
+  return (
+    <div className="flex flex-col gap-1">
+      {people.map((p) => (
+        // onActivate → ルートが <button>、chevron が affordance。href なら <a>。
+        <PersonCell
+          key={p.id}
+          name={p.name}
+          secondary={p.secondary}
+          avatar={p.avatar}
+          onActivate={() => setSelected(p.id)}
+        />
+      ))}
+    </div>
+  );
+}`
+    : `import * as React from "react";
+import { PersonCell } from "@gunjo/ui";
+
+export function PeopleList({ people }) {
+  const [selected, setSelected] = React.useState(null);
+  return (
+    <div className="flex flex-col gap-1">
+      {people.map((p) => (
+        // onActivate → root is a <button>, chevron is the affordance. Use href for an <a>.
+        <PersonCell
+          key={p.id}
+          name={p.name}
+          secondary={p.secondary}
+          avatar={p.avatar}
+          onActivate={() => setSelected(p.id)}
+        />
+      ))}
+    </div>
+  );
+}`;
+
   const propsData = [
     { name: "name", type: "ReactNode", description: locale === "ja" ? "主行です。文字列なら avatar fallback の頭文字を自動導出します。" : "Primary line. String names derive a fallback initial automatically." },
     { name: "secondary", type: "ReactNode", description: locale === "ja" ? "役職、部署、メールなどの副行です。" : "Secondary line for role, department, or email." },
@@ -236,6 +305,7 @@ export function MinimalPersonCell() {
     { name: "presence / presenceLabel", type: "Avatar presence", description: locale === "ja" ? "Avatar に渡す在席状態と読み上げラベルです。" : "Presence dot and accessible presence label forwarded to Avatar." },
     { name: "size", type: '"sm" | "md" | "lg"', default: '"md"', description: locale === "ja" ? "アバターと文字のスケールです。" : "Avatar and text scale." },
     { name: "trailing", type: "ReactNode", description: locale === "ja" ? "ステータスバッジ、件数、操作などの末尾スロットです。" : "Trailing slot for badges, counts, or actions." },
+    { name: "href / onActivate", type: "string / () => void", description: locale === "ja" ? "セル全体を activation target にします。href は <a>、onActivate は <button> としてルート描画。未指定なら chevron を affordance に自動表示。ルート自体が interactive なので trailing は非インタラクティブ限定（ネストしない）。行に別アクションも要る場合は presentational のまま行レベルで activation する。(#341)" : "Makes the whole cell an activation target. href renders an <a>; onActivate renders a <button>. A chevron affordance is shown unless a custom trailing is set. Because the root is interactive, trailing must stay non-interactive (no nesting). For rows that also need separate actions, keep it presentational and activate at the row level. (#341)" },
     { name: "avatarClassName", type: "string", description: locale === "ja" ? "fallback avatar の背景色などを調整します。" : "Additional classes for fallback avatar styling." },
   ];
 
@@ -279,6 +349,16 @@ export function MinimalPersonCell() {
               description: locale === "ja" ? "画像がない場合でも fallback と副行で識別できます。" : "Fallback initials and secondary text keep the row identifiable without an image.",
               preview: <PersonCellPreview locale={locale} mode="minimal" />,
               code: minimalStateCode,
+              previewBodyWidth: "md",
+            },
+            {
+              key: "interactive",
+              title: locale === "ja" ? "インタラクティブ" : "Interactive",
+              description: locale === "ja"
+                ? "onActivate（または href）でセル全体を activation target に。ルートが <button>/<a> になり、chevron が affordance、クリックと Enter/Space で起動します。行に別アクションも要る場合は使わず、行レベルで activation してください。"
+                : "onActivate (or href) makes the whole cell the target — the root becomes a <button>/<a>, a chevron is the affordance, and click plus Enter/Space activate. For rows that also need separate actions, activate at the row level instead.",
+              preview: <InteractivePeopleDemo locale={locale} />,
+              code: interactiveStateCode,
               previewBodyWidth: "md",
             },
           ]}
