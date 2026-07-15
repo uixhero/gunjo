@@ -11,6 +11,29 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 
+> `0.1.0-beta.1` 以降の変更。**破壊的変更なし**（採用先影響は原則 **none**・追加 API と a11y 修正のみ・既存コード変更不要）。既定の挙動は据え置きで、新機能はすべて opt-in。
+
+### Added
+
+- **`Toast` の `description` / `action`**（影響: none）— 2行目の補足と操作ボタン1つを追加し、`ToastAction` を公開。`useToast().showToast` はオブジェクト形 `{ message, description, type, duration, action }` のオーバーロードも受け付ける（従来の位置引数呼び出しはそのまま動く）。`action` 付きで `duration` 未指定なら、押す前に消えないよう自動クローズを延長。(#301)
+- **`DataTable` の合計 / フッター行**（影響: none）— いずれかの列に TanStack の `footer` を定義すると `<tfoot>` を描画。`footer(({ table }) => …)` で `getFilteredRowModel()` を使えばフィルタ後の合計になる（表示中ページだけではない）。`footer` 未定義なら従来どおり何も出ない。card モード（`renderCard`）には出ない。(#255)
+- **`SheetBody` / `DialogBody`**（影響: none）— 長いフォーム用のスクロール領域。Content の**直下に置いた時だけ**高さ制限つき flex 列へ切り替え、ヘッダー / フッターを固定して中央だけスクロールする。Body が無い既存の Sheet / Dialog は出力不変。(#293)
+- **`PersonCell` の `href` / `onActivate`**（影響: none）— セル全体を activation target に（ルートが `<a>` / `<button>` になり chevron が affordance）。「人物行を毎回 button で包む」定型を解消。未指定なら従来どおり `<div>`。(#341)
+- **`Combobox` の `creatable`**（影響: none）— 検索テキストがどの候補にも一致しない時に「作成」項目を表示し、`onCreate(text)` で自由入力の値を追加できる（options への追加と value のセットは呼び出し側が担当）。`createLabel` でラベル差し替え。(#200)
+- **`BarChart` の `threshold`**（影響: none）— 上限ラインを引き、超えた棒を `thresholdTone`（既定 `destructive`）で塗る。縦棒・横棒の両 variant に対応。`thresholdLabel` でラベル指定。※ StackedBarChart は別途対応予定。(#285)
+- **`Input` / `Textarea` の `showCount`**（影響: none）— 文字数表示。`maxLength` 併用で `count / max` 形式になり、`aria-describedby` で関連付く。制御・非制御どちらでも動作。(#314)
+- **`Avatar` の `colorSeed`**（影響: none）— `AvatarFallback` の頭文字背景を名前から決定的に配色（ディレクトリの視認性）。opt-in。(#331)
+- **`SwatchLegend`**（影響: none）— `ChartLegend` を単体利用できる別名として公開（カレンダー / かんばんの tone → ラベル凡例）。(#327)
+- **`Stepper` の `onStepClick`**（影響: none）— 完了済みステップへのジャンプ移動。未指定なら従来どおり非インタラクティブ。(#157)
+- **`ReferenceValue` の `affirmative`**（影響: none）— 正常値のうち「良い」値を肯定的に強調できる（従来は中立か異常のみ）。(#291)
+- **`ToggleGroup` の項目ごとの tone**（影響: none）— 排他ステータスピル（休講 red / 補講 blue など）向けに `ToggleGroupItemTone` を追加。(#288)
+- **`ScheduleGrid` のセル単位 `selected` + `cellClassName`**（影響: none）— アクティブ / オープン中のセルを強調できる。(#299)
+- **`Timeline` の `items` data-prop**（影響: none）— compound API に加えてデータ駆動の形を追加（compound だけでは発見しづらかったため）。(#349)
+
+### Fixed
+
+- **`Alert` の見出し順序**（a11y・影響: none）— `AlertTitle` の既定要素が `h5` で、h1 → h5 と見出しレベルが飛んでいた。既定を `<p>` に変更（**見た目は不変**。見出しにしたい場合は `as="h5"` を明示）。(#251)
+
 ## [0.1.0-beta.1] — 2026-07-15
 
 > 初の **beta**。`0.0.1-alpha.3` 以降の全変更。beta 昇格ゲート（#572・4/4 達成）をクリアし、コア 54 部品を Beta に。**破壊的変更なし**（採用先影響は原則 **none**・追加 API と a11y 修正のみ・既存コード変更不要）。この版から **semver / `@deprecated` 規律が発効**（破壊はマイナーのみ・移行パスを提示）。
