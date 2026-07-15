@@ -20,6 +20,20 @@
 - **One source of truth, enforced.** Every shipped component is checked across three axes — design source (`.pen`), implementation (`src/`), and documentation — by an automated drift pipeline (`npm run design:verify`). Tokens, variants, and visuals can't silently diverge.
 - **Organized by what you build.** Components are grouped by function — Inputs · Display · Charts · Feedback · Navigation · Overlay · Layout — not by abstract tiers. All Radix-based, with accessibility (ARIA, keyboard) and dark mode built in.
 
+## Tested by AI that had never seen it
+
+Gunjo's components weren't picked by intuition. They were found by failure.
+
+We ran **170 cold tests**. Each one hands an AI agent **only the published npm package and the public docs** — no source access, no prior context — and asks it to build a real screen from a real industry: taxi dispatch, medication administration, flight operations, insurance claims, freight billing. Then we record what it couldn't find, what it hand-rolled anyway, and where it got it wrong.
+
+When three independent screens hand-rolled the same missing thing, we built it. That rule produced **26 of the components** in this library. Ideas that never hit three stayed out.
+
+Every round is public — including the bad ones. One screen scored 5/5; another scored 2.5/5 and was the most useful run we did, because it mapped what was missing:
+
+**→ [gunjo.jp/cold-tests](https://www.gunjo.jp/cold-tests)**
+
+The finding that shaped the whole system: **an agent that has never seen your library is an honest inspector.** It has no reason to flatter you. Wherever it hand-rolls something, you have a gap — and the hand-rolled code is a precise map of it.
+
 ## AI-consumable by design
 
 Gunjo treats "an agent will read and use this" as a first-class requirement, not an afterthought:
