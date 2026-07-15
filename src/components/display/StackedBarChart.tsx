@@ -3,7 +3,7 @@
 import * as React from "react"
 
 import { cn } from "../../lib/utils"
-import type { ChartColor, NumberFormatSpec } from "./chart-utils"
+import type { ChartColor, ChartTone, NumberFormatSpec } from "./chart-utils"
 import {
     chartLabelToString,
     defaultChartValueFormatter,
@@ -50,6 +50,22 @@ export interface StackedBarChartProps
      */
     valueFormat?: NumberFormatSpec
     totalLabel?: React.ReactNode
+    /**
+     * A capacity / limit line on each group's **total**. Draws a reference line and
+     * marks over-limit groups with a ring + a `thresholdTone` total readout.
+     *
+     * Segment colours are never changed — each segment carries its own meaning, so
+     * the over-limit signal lives at the group level, not on the stack. The state is
+     * also announced in each segment's `aria-label`, so it is never colour-only.
+     *
+     * Ignored when `normalize` is set: every group is then 100%, so an absolute
+     * total has no position on the track. (#285)
+     */
+    threshold?: number
+    /** Accessible name / tooltip label for the threshold line. Defaults to "Limit". */
+    thresholdLabel?: React.ReactNode
+    /** Tone for the limit line and the over-limit marking. Default `"destructive"`. */
+    thresholdTone?: ChartTone
 }
 
 const stackedBarChartVariantClasses: Record<StackedBarChartVariantKey, string> = {
@@ -144,12 +160,37 @@ const StackedBarChart = React.forwardRef<HTMLDivElement, StackedBarChartProps>(
             formatValue: formatValueProp,
             valueFormat,
             totalLabel = "Total",
+            threshold,
+            thresholdLabel = "Limit",
+            thresholdTone = "destructive",
             ...props
         },
         ref
     ) => {
         const formatValue = resolveValueFormatter(formatValueProp, valueFormat)
-        const maxTotal = getMaxTotal(data, max)
+        // A total-based limit has no position once every group is normalized to
+        // 100%, so `threshold` is ignored there. Warn rather than fail quietly. (#285)
+        const thresholdActive = threshold !== undefined && !normalize
+        if (
+            process.env.NODE_ENV !== "production" &&
+            threshold !== undefined &&
+            normalize
+        ) {
+            // eslint-disable-next-line no-console
+            console.warn(
+                "[gunjo] StackedBarChart: `threshold` is ignored while `normalize` is set — every group renders at 100%, so an absolute total has no position on the track."
+            )
+        }
+        // Keep the limit line inside the track when it sits above every total.
+        const maxTotal = Math.max(getMaxTotal(data, max), thresholdActive ? threshold : 0)
+        const thresholdPercent = thresholdActive
+            ? normalizeChartValue(threshold, maxTotal)
+            : null
+        const thresholdText = chartLabelToString(thresholdLabel, "Limit")
+        const thresholdColor = getChartColor(thresholdTone, 0)
+        const isOverThreshold = (total: number) => thresholdActive && total > threshold
+        const overSuffix = (total: number) =>
+            isOverThreshold(total) ? ` (over ${thresholdText})` : ""
         const legendItems = getLegendItems(data, formatValue, totalLabel)
         const shouldConstrainVerticalTrack = variant === "vertical" && data.length <= 5
         const verticalTrackStyle: React.CSSProperties = {
@@ -196,7 +237,14 @@ const StackedBarChart = React.forwardRef<HTMLDivElement, StackedBarChartProps>(
                                         {group.label}
                                     </span>
                                 ) : null}
-                                <div className="relative h-4 min-w-0 rounded-full bg-muted">
+                                <div
+                                    className="relative h-4 min-w-0 rounded-full bg-muted"
+                                    style={
+                                        isOverThreshold(total)
+                                            ? { boxShadow: `0 0 0 2px ${thresholdColor}` }
+                                            : undefined
+                                    }
+                                >
                                     {showGrid && !normalize
                                         ? [25, 50, 75].map((percent) => (
                                               <span
@@ -207,6 +255,13 @@ const StackedBarChart = React.forwardRef<HTMLDivElement, StackedBarChartProps>(
                                               />
                                           ))
                                         : null}
+                                    {thresholdPercent !== null ? (
+                                        <span
+                                            className="pointer-events-none absolute inset-y-[-3px] z-20 border-l-2"
+                                            style={{ left: `${thresholdPercent}%`, borderColor: thresholdColor }}
+                                            aria-hidden="true"
+                                        />
+                                    ) : null}
                                     <div
                                         className="flex h-full overflow-hidden rounded-full"
                                         style={{ width: `${stackPercent}%` }}
@@ -250,7 +305,7 @@ const StackedBarChart = React.forwardRef<HTMLDivElement, StackedBarChartProps>(
                                                                     : undefined,
                                                         }}
                                                         tabIndex={0}
-                                                        aria-label={`${chartLabelToString(group.label, "Group")} ${chartLabelToString(segment.label, "Segment")}: ${formatValue(segment.value)} (${chartLabelToString(totalLabel, "Total")} ${formatValue(total)} / ${percentText})`}
+                                                        aria-label={`${chartLabelToString(group.label, "Group")} ${chartLabelToString(segment.label, "Segment")}: ${formatValue(segment.value)} (${chartLabelToString(totalLabel, "Total")} ${formatValue(total)} / ${percentText})${overSuffix(total)}`}
                                                     />
                                                 </ChartTooltip>
                                             )
@@ -258,7 +313,13 @@ const StackedBarChart = React.forwardRef<HTMLDivElement, StackedBarChartProps>(
                                     </div>
                                 </div>
                                 {showValues ? (
-                                    <span className="text-xs tabular-nums text-muted-foreground">
+                                    <span
+                                        className={cn(
+                                            "text-xs tabular-nums",
+                                            isOverThreshold(total) ? "font-medium" : "text-muted-foreground"
+                                        )}
+                                        style={isOverThreshold(total) ? { color: thresholdColor } : undefined}
+                                    >
                                         {formatValue(total)}
                                     </span>
                                 ) : null}
@@ -287,14 +348,18 @@ const StackedBarChart = React.forwardRef<HTMLDivElement, StackedBarChartProps>(
                         className="grid pb-1 text-xs font-medium tabular-nums text-foreground"
                         style={verticalGridStyle}
                     >
-                        {data.map((group, index) => (
-                            <span
-                                key={`${chartLabelToString(group.label, "Group")}-value-${index}`}
-                                className="min-w-0 truncate text-center"
-                            >
-                                {formatValue(getGroupTotal(group))}
-                            </span>
-                        ))}
+                        {data.map((group, index) => {
+                            const groupTotal = getGroupTotal(group)
+                            return (
+                                <span
+                                    key={`${chartLabelToString(group.label, "Group")}-value-${index}`}
+                                    className="min-w-0 truncate text-center"
+                                    style={isOverThreshold(groupTotal) ? { color: thresholdColor } : undefined}
+                                >
+                                    {formatValue(groupTotal)}
+                                </span>
+                            )
+                        })}
                     </div>
                 ) : null}
                 <div
@@ -311,6 +376,13 @@ const StackedBarChart = React.forwardRef<HTMLDivElement, StackedBarChartProps>(
                               />
                           ))
                         : null}
+                    {thresholdPercent !== null ? (
+                        <span
+                            className="pointer-events-none absolute inset-x-0 z-20 border-t-2"
+                            style={{ bottom: `${thresholdPercent}%`, borderColor: thresholdColor }}
+                            aria-hidden="true"
+                        />
+                    ) : null}
                     {data.map((group, groupIndex) => {
                         const total = getGroupTotal(group)
                         const stackPercent = normalize
@@ -327,6 +399,9 @@ const StackedBarChart = React.forwardRef<HTMLDivElement, StackedBarChartProps>(
                                     style={{
                                         height: `${stackPercent}%`,
                                         maxWidth: verticalBarMaxWidth,
+                                        boxShadow: isOverThreshold(total)
+                                            ? `0 0 0 2px ${thresholdColor}`
+                                            : undefined,
                                     }}
                                 >
                                     {group.segments.map((segment, segmentIndex) => {
@@ -368,7 +443,7 @@ const StackedBarChart = React.forwardRef<HTMLDivElement, StackedBarChartProps>(
                                                                 : undefined,
                                                     }}
                                                     tabIndex={0}
-                                                    aria-label={`${chartLabelToString(group.label, "Group")} ${chartLabelToString(segment.label, "Segment")}: ${formatValue(segment.value)} (${chartLabelToString(totalLabel, "Total")} ${formatValue(total)} / ${percentText})`}
+                                                    aria-label={`${chartLabelToString(group.label, "Group")} ${chartLabelToString(segment.label, "Segment")}: ${formatValue(segment.value)} (${chartLabelToString(totalLabel, "Total")} ${formatValue(total)} / ${percentText})${overSuffix(total)}`}
                                                 />
                                             </ChartTooltip>
                                         )

@@ -20,7 +20,7 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 - **`SheetBody` / `DialogBody`**（影響: none）— 長いフォーム用のスクロール領域。Content の**直下に置いた時だけ**高さ制限つき flex 列へ切り替え、ヘッダー / フッターを固定して中央だけスクロールする。Body が無い既存の Sheet / Dialog は出力不変。(#293)
 - **`PersonCell` の `href` / `onActivate`**（影響: none）— セル全体を activation target に（ルートが `<a>` / `<button>` になり chevron が affordance）。「人物行を毎回 button で包む」定型を解消。未指定なら従来どおり `<div>`。(#341)
 - **`Combobox` の `creatable`**（影響: none）— 検索テキストがどの候補にも一致しない時に「作成」項目を表示し、`onCreate(text)` で自由入力の値を追加できる（options への追加と value のセットは呼び出し側が担当）。`createLabel` でラベル差し替え。(#200)
-- **`BarChart` の `threshold`**（影響: none）— 上限ラインを引き、超えた棒を `thresholdTone`（既定 `destructive`）で塗る。縦棒・横棒の両 variant に対応。`thresholdLabel` でラベル指定。※ StackedBarChart は別途対応予定。(#285)
+- **`BarChart` / `StackedBarChart` の `threshold`**（影響: none）— 上限ラインを引いて超過を示す。`BarChart` は超えた棒を `thresholdTone`（既定 `destructive`）で塗る。`StackedBarChart` は**グループ合計**に対する上限で、超過グループをリング＋`thresholdTone` の合計値で示す（**segment の色は一切変えない**——各 segment が固有の意味を持つため）。超過は `aria-label` にも出るので色だけに頼らない。両者とも縦横 variant 対応。`StackedBarChart` では `normalize` 併用時に無視（各グループが 100% になり絶対値の位置が無いため・dev 警告あり）。(#285)
 - **`Input` / `Textarea` の `showCount`**（影響: none）— 文字数表示。`maxLength` 併用で `count / max` 形式になり、`aria-describedby` で関連付く。制御・非制御どちらでも動作。(#314)
 - **`Avatar` の `colorSeed`**（影響: none）— `AvatarFallback` の頭文字背景を名前から決定的に配色（ディレクトリの視認性）。opt-in。(#331)
 - **`SwatchLegend`**（影響: none）— `ChartLegend` を単体利用できる別名として公開（カレンダー / かんばんの tone → ラベル凡例）。(#327)

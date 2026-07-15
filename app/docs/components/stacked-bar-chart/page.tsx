@@ -1,5 +1,6 @@
 "use client";
 
+import * as React from "react";
 import type { ComponentProps } from "react";
 import { AnalyticsCard, StackedBarChart } from "@gunjo/ui";
 
@@ -325,6 +326,23 @@ const propsData = {
             default: "false",
         },
         {
+            name: "threshold",
+            type: "number",
+            description: "A capacity/limit line on each group's total. Draws a reference line and marks over-limit groups with a ring + a thresholdTone total. Segment colours are never changed. Ignored when normalize is set (every group is 100%). (#285)",
+        },
+        {
+            name: "thresholdLabel",
+            type: "ReactNode",
+            default: "\"Limit\"",
+            description: "Accessible name for the threshold line; also used in the over-limit announcement.",
+        },
+        {
+            name: "thresholdTone",
+            type: "ChartTone",
+            default: "\"destructive\"",
+            description: "Tone for the limit line and the over-limit marking.",
+        },
+        {
             name: "formatValue",
             type: "(value: number) => ReactNode",
             description: "Formats each value. Function prop — pass only from a Client Component; from a Server Component it breaks next build. Use valueFormat for RSC-safe formatting.",
@@ -354,6 +372,23 @@ const propsData = {
             default: "false",
         },
         {
+            name: "threshold",
+            type: "number",
+            description: "各グループの「合計」に対する上限ライン。基準線を引き、超過グループをリング＋thresholdTone の合計値で示します。segment の色は一切変えません。normalize 指定時は無視（各グループが 100% になり絶対値の位置が無いため）。(#285)",
+        },
+        {
+            name: "thresholdLabel",
+            type: "ReactNode",
+            default: "\"Limit\"",
+            description: "閾値ラインのアクセシブル名。超過の読み上げにも使われます。",
+        },
+        {
+            name: "thresholdTone",
+            type: "ChartTone",
+            default: "\"destructive\"",
+            description: "上限ラインと超過マーキングのトーンです。",
+        },
+        {
             name: "formatValue",
             type: "(value: number) => ReactNode",
             description: "各値を整形します。関数propのため Client Component からのみ渡すこと（Server Component から渡すと next build が落ちる）。RSC 安全な整形には valueFormat を使う。",
@@ -365,6 +400,58 @@ const propsData = {
         },
     ],
 } as const;
+
+// Editable threshold demo: drag the limit and watch over-limit groups get the
+// ring + destructive total — segment colours stay untouched. (#285)
+const thresholdDataByLocale: Record<Locale, DataItem[]> = {
+    en: [
+        { label: "Team A", segments: [{ label: "Regular", value: 40, color: "primary" }, { label: "Overtime", value: 25, color: "info" }] },
+        { label: "Team B", segments: [{ label: "Regular", value: 55, color: "primary" }, { label: "Overtime", value: 45, color: "info" }] },
+        { label: "Team C", segments: [{ label: "Regular", value: 48, color: "primary" }, { label: "Overtime", value: 30, color: "info" }] },
+        { label: "Team D", segments: [{ label: "Regular", value: 60, color: "primary" }, { label: "Overtime", value: 50, color: "info" }] },
+    ],
+    ja: [
+        { label: "A班", segments: [{ label: "通常", value: 40, color: "primary" }, { label: "残業", value: 25, color: "info" }] },
+        { label: "B班", segments: [{ label: "通常", value: 55, color: "primary" }, { label: "残業", value: 45, color: "info" }] },
+        { label: "C班", segments: [{ label: "通常", value: 48, color: "primary" }, { label: "残業", value: 30, color: "info" }] },
+        { label: "D班", segments: [{ label: "通常", value: 60, color: "primary" }, { label: "残業", value: 50, color: "info" }] },
+    ],
+};
+
+function ThresholdStackDemo({ locale }: { locale: Locale }) {
+    const isJa = locale === "ja";
+    const [threshold, setThreshold] = React.useState(90);
+    return (
+        <div className="flex w-full flex-col gap-4">
+            <StackedBarChart
+                data={thresholdDataByLocale[locale]}
+                threshold={threshold}
+                thresholdLabel={isJa ? "上限" : "Limit"}
+                totalLabel={isJa ? "合計" : "Total"}
+                showValues
+                showLegend
+            />
+            <label className="flex items-center gap-3 text-sm text-muted-foreground">
+                <span className="shrink-0">{isJa ? "上限" : "Limit"}</span>
+                <span className="w-10 shrink-0 font-medium tabular-nums text-foreground">{threshold}</span>
+                <input
+                    type="range"
+                    min={50}
+                    max={130}
+                    value={threshold}
+                    onChange={(event) => setThreshold(Number(event.target.value))}
+                    className="min-w-0 flex-1"
+                    aria-label={isJa ? "上限を調整" : "Adjust the limit"}
+                />
+            </label>
+        </div>
+    );
+}
+
+const thresholdCode = `import { StackedBarChart } from "@gunjo/ui";
+
+// Over-limit groups get a ring + a destructive total — segment colours are untouched.
+<StackedBarChart data={data} threshold={90} thresholdLabel="Limit" showValues showLegend />`;
 
 const states = {
     en: [
@@ -399,6 +486,14 @@ const states = {
             preview: <StackedBarChart data={dataByLocale.en} variant="horizontal" showValues />,
             previewBodyWidth: "xl",
             code: `import { StackedBarChart } from "@gunjo/ui";\n\n${dataCode.en}\n\n<StackedBarChart data={data} variant="horizontal" showValues />`,
+        },
+        {
+            key: "threshold",
+            title: "Threshold (over limit)",
+            description: "threshold draws a limit line on each group's total and marks over-limit groups with a ring + a destructive total. Segment colours are never changed — they carry their own meaning. Drag the slider to move the limit. Ignored when normalize is set.",
+            preview: <ThresholdStackDemo locale="en" />,
+            previewBodyWidth: "xl",
+            code: thresholdCode,
         },
         {
             key: "normalized",
@@ -441,6 +536,14 @@ const states = {
             preview: <StackedBarChart data={dataByLocale.ja} variant="horizontal" showValues totalLabel="合計" />,
             previewBodyWidth: "xl",
             code: `import { StackedBarChart } from "@gunjo/ui";\n\n${dataCode.ja}\n\n<StackedBarChart data={data} variant="horizontal" showValues totalLabel="合計" />`,
+        },
+        {
+            key: "threshold",
+            title: "閾値（上限超え）",
+            description: "threshold は各グループの合計に上限ラインを引き、超過グループをリング＋destructive の合計値で示します。segment の色は一切変えません（それぞれ意味を持つため）。スライダーで上限を動かせます。normalize 指定時は無視されます。",
+            preview: <ThresholdStackDemo locale="ja" />,
+            previewBodyWidth: "xl",
+            code: thresholdCode,
         },
         {
             key: "normalized",
