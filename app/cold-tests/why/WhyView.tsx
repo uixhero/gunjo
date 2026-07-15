@@ -34,7 +34,14 @@ interface GalleryShape {
 }
 const galleryData = gallery as GalleryShape;
 const ROUND_COUNT = galleryData.count;
-const INDUSTRY_COUNT = galleryData.categories.length;
+// 業種の数は「運輸5モード」と併記して見せるので、運輸の各モードと、業種ではない
+// 汎用カテゴリを categories から除く（除かないと運輸を二重に数えることになる）。
+const TRANSPORT_CATEGORY_PREFIX = "運輸：";
+const GENERIC_CATEGORY = "基盤UI・汎用";
+const INDUSTRY_COUNT = galleryData.categories.filter(
+    (category) =>
+        category !== GENERIC_CATEGORY && !category.startsWith(TRANSPORT_CATEGORY_PREFIX),
+).length;
 const CRYSTALLIZED_COUNT = galleryData.crystallizedCount;
 
 function scoreOf(score: string): number {
@@ -122,7 +129,9 @@ export function WhyView() {
                     <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
                         {tw.heading}
                     </h1>
-                    <p className="max-w-2xl text-lg text-muted-foreground">{tw.subtitle}</p>
+                    <p className="max-w-2xl text-lg text-muted-foreground">
+                        {tw.subtitle(ROUND_COUNT)}
+                    </p>
                     <LocalNav />
                 </header>
 
@@ -238,7 +247,7 @@ export function WhyView() {
                 <section className="space-y-4">
                     <h2 className="text-2xl font-bold tracking-tight">
                         {isJa
-                            ? "3回確認 — 1回・2回では作らない"
+                            ? "3回確認：1回・2回では作らない"
                             : "3-confirm — never build on the first hit"}
                     </h2>
                     {isJa ? (
@@ -277,8 +286,8 @@ export function WhyView() {
                     </h2>
                     <p className="text-sm text-muted-foreground">
                         {isJa
-                            ? `${ROUND_COUNT} 画面を通るなかで群青に加わった ${CRYSTALLIZED_COUNT} 個のコンポーネントのうち、ここでは代表を抜粋しています。名前をクリックすると、それぞれのドキュメントへ移動します。`
-                            : `${CRYSTALLIZED_COUNT} primitives crystallised across ${ROUND_COUNT} rounds — a curated highlight sits below. Click any name to open its docs.`}
+                            ? `${ROUND_COUNT} 画面を通るなかで、業種ごとの扉ページが取り上げたコンポーネントは重複を除いて ${CRYSTALLIZED_COUNT} 個。ここではその代表を抜粋しています。名前をクリックすると、それぞれのドキュメントへ移動します。`
+                            : `Across ${ROUND_COUNT} rounds, the industry door pages name ${CRYSTALLIZED_COUNT} distinct components (deduped) — a curated highlight sits below. Click any name to open its docs.`}
                     </p>
                     <ul className="grid gap-2 sm:grid-cols-2">
                         {CRYSTALLISED.map((c) => (

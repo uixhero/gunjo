@@ -92,6 +92,13 @@ export function ReviewStepper() {
             description: isJa ? "横並びか縦並びかを指定します。" : "Controls whether steps flow horizontally or vertically.",
         },
         {
+            name: "onStepClick",
+            type: "(index: number) => void",
+            description: isJa
+                ? "指定すると各ステップがボタンになり、押下時に index を渡して呼びます（確認画面の「編集→ステップNへ」等）。upcoming は disabled、completed/current はクリック可。未指定なら従来どおり非インタラクティブ。(#157)"
+                : "When set, each step becomes a button called with its index (e.g. a Review step's Edit → jump to step N). upcoming steps are disabled; completed/current are clickable. Omit to keep the default non-interactive display. (#157)",
+        },
+        {
             name: "className",
             type: "string",
             description: isJa ? "ラッパーに追加するクラスです。狭い横並びでは横スクロールを付ける場合があります。" : "Additional class names applied to the wrapper. Horizontal flows may add overflow handling in narrow regions.",

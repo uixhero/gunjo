@@ -270,6 +270,7 @@ export function CompactReferenceValue() {
     { name: "showLabel", type: "boolean", default: "false", description: locale === "ja" ? "H/L/HH/LL の横に状態名を表示します。" : "Shows the flag label next to H/L/HH/LL." },
     { name: "showRange / rangeLabel", type: "boolean / string", description: locale === "ja" ? "基準範囲のテキストとその接頭辞です。" : "Normal-range text and its prefix." },
     { name: "hideFlag", type: "boolean", default: "false", description: locale === "ja" ? "チップを非表示にします。値のトーンと sr-only ラベルは残ります。" : "Hides the chip while preserving tone and screen-reader label." },
+    { name: "affirmative / positiveLabel", type: "boolean / string", default: "false", description: locale === "ja" ? "基準値内の値に肯定的な success チップ（✓＋positiveLabel、既定は normal ラベル）と success トーンを付けます。合格・平均以上など「良い」値を積極的に示したい時に。異常値では無視されます。(#291)" : "Give an in-range value an affirmative success chip (✓ + positiveLabel, default = the normal label) and success tone — for passing/above-average values worth a positive highlight. Ignored for abnormal values. (#291)" },
     { name: "size", type: '"default" | "inline"', default: '"default"', description: locale === "ja" ? "表セル向けの compact 表示にできます。" : "Compact inline size for table cells." },
     { name: "flagValue", type: "(value, range) => RangeFlag", description: locale === "ja" ? "UIなしで同じ判定を返す純関数です。" : "Pure helper that returns the same classification without UI." },
   ];

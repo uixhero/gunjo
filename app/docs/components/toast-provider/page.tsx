@@ -42,17 +42,33 @@ function SingleProviderTrigger({
     type,
     duration,
     variant = "default",
+    description,
+    actionLabel,
 }: {
     label: string;
     message: string;
     type: "success" | "error" | "info";
     duration?: number;
     variant?: "default" | "destructive" | "outline";
+    description?: React.ReactNode;
+    actionLabel?: string;
 }) {
     const { showToast } = useToast();
 
+    // Object form when rich fields are present; positional form otherwise. (#301)
+    const handleClick = () =>
+        description || actionLabel
+            ? showToast({
+                  message,
+                  type,
+                  duration,
+                  description,
+                  action: actionLabel ? { label: actionLabel, onClick: () => {} } : undefined,
+              })
+            : showToast(message, type, duration);
+
     return (
-        <Button variant={variant} onClick={() => showToast(message, type, duration)}>
+        <Button variant={variant} onClick={handleClick}>
             {label}
         </Button>
     );
@@ -178,8 +194,8 @@ export function LocalizedToastProvider() {
         },
         {
             name: "showToast",
-            type: "(message: string, type: ToastType, duration?: number) => void",
-            description: isJa ? "useToast から取得する通知表示関数です。duration はミリ秒です。" : "Function returned by useToast. Duration is in milliseconds.",
+            type: "(message, type?, duration?) | (options: ShowToastOptions)",
+            description: isJa ? "useToast から取得する通知表示関数。従来の位置引数に加え、リッチ表示用のオブジェクト形も受け付けます: { message, type?, duration?, description?, action? }。" : "Function returned by useToast. Accepts the positional args and, for rich toasts, an options object: { message, type?, duration?, description?, action? }.",
         },
     ];
 
@@ -268,6 +284,44 @@ export function LocalizedToastProvider() {
                             ),
                             previewBodyWidth: "lg",
                             code: localizedCode,
+                        },
+                        {
+                            key: "rich",
+                            title: isJa ? "補足＋操作つき（オブジェクト形）" : "Description + action (object form)",
+                            description: isJa ? "showToast にオブジェクトを渡すと description（2行目）と action（操作ボタン）を足せます。位置引数の呼び出しはそのまま使えます。" : "Pass showToast an object to add description (a second line) and action (a button). The positional call still works unchanged.",
+                            preview: (
+                                <ToastProvider labels={{ close: closeLabel }}>
+                                    <SingleProviderTrigger
+                                        label={isJa ? "削除する" : "Delete"}
+                                        message={isJa ? "プロジェクトを削除しました。" : "Project deleted."}
+                                        description={isJa ? "元に戻すには数秒以内に操作してください。" : "Undo within a few seconds to restore it."}
+                                        actionLabel={isJa ? "元に戻す" : "Undo"}
+                                        type="info"
+                                        variant="outline"
+                                    />
+                                </ToastProvider>
+                            ),
+                            previewBodyWidth: "lg",
+                            code: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+
+function DeleteButton() {
+  const { showToast } = useToast()
+  return (
+    <Button
+      variant="outline"
+      onClick={() =>
+        showToast({
+          message: "${isJa ? "プロジェクトを削除しました。" : "Project deleted."}",
+          description: "${isJa ? "元に戻すには数秒以内に操作してください。" : "Undo within a few seconds to restore it."}",
+          type: "info",
+          action: { label: "${isJa ? "元に戻す" : "Undo"}", onClick: handleUndo },
+        })
+      }
+    >
+      ${isJa ? "削除する" : "Delete"}
+    </Button>
+  )
+}`,
                         },
                     ]}
                 />

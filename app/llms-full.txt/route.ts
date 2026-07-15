@@ -78,7 +78,7 @@ export function GET() {
 > variant キーや Tailwind クラス署名を含む機械可読な完全仕様は ${BASE_URL}/api/specs/manifest (JSON)。
 > 概要と主要な入口は ${BASE_URL}/llms.txt。
 >
-> パッケージ: @gunjo/ui（現在 alpha・0.0.1-alpha 系。API は変わりえます）。
+> パッケージ: @gunjo/ui（現在 beta・0.1.0-beta 系。API は変わりえます）。
 > コンポーネント計 ${specs.length} 件 / コールドテスト計 ${gallery.count} 件。
 
 # コンポーネント

@@ -117,6 +117,7 @@ export function MemoField() {
     const propsData = [
         { name: "label", type: "ReactNode", description: locale === "ja" ? "コントロール上部に表示し htmlFor で関連付けるラベルです（Select / Checkbox と同様）。" : "Visible label rendered above the control and associated via htmlFor (like Select / Checkbox)." },
         { name: "description", type: "ReactNode", description: locale === "ja" ? "コントロール下の補助テキストです。aria-describedby で関連付きます。" : "Helper text under the control, wired via aria-describedby." },
+        { name: "showCount", type: "boolean", default: "false", description: locale === "ja" ? "コントロール下に文字数を表示します。maxLength と併用すると count / max 形式になり、aria-describedby で関連付きます。" : "Show a character-count readout under the control. With maxLength it renders count / max, wired via aria-describedby." },
         { name: "value / defaultValue", type: "string", description: locale === "ja" ? "入力値です。制御・非制御のどちらでも使えます。" : "Textarea value. Use controlled or uncontrolled mode." },
         { name: "onChange", type: "React.ChangeEventHandler<HTMLTextAreaElement>", description: locale === "ja" ? "入力内容が変わった時に呼ばれます。" : "Called when the text changes." },
         { name: "rows", type: "number", description: locale === "ja" ? "表示する行数です。" : "Visible row count." },
@@ -169,6 +170,24 @@ export function MemoField() {
                             preview: <TextareaStatePreview counter />,
                             previewHeight: 230,
                             code: `<Textarea value={value} onChange={setValue} maxLength={120} rows={4} />`,
+                        },
+                        {
+                            key: "show-count",
+                            title: locale === "ja" ? "文字数カウント（組み込み）" : "Built-in character count",
+                            description: locale === "ja" ? "showCount を付けるだけでカウント表示が出ます。maxLength と併用で count / max 形式に。" : "Add showCount for a built-in readout — pair with maxLength for count / max.",
+                            preview: (
+                                <div className="w-full max-w-sm">
+                                    <Textarea
+                                        label={locale === "ja" ? "メモ" : "Notes"}
+                                        showCount
+                                        maxLength={120}
+                                        rows={4}
+                                        defaultValue={locale === "ja" ? "次回リリースで確認する内容をまとめます。" : "Summarize what should be reviewed next release."}
+                                    />
+                                </div>
+                            ),
+                            previewHeight: 230,
+                            code: `<Textarea label="${locale === "ja" ? "メモ" : "Notes"}" showCount maxLength={120} rows={4} />`,
                         },
                         {
                             key: "invalid",

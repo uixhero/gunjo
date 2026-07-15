@@ -79,7 +79,12 @@ export interface ReferenceValueProps extends Omit<React.HTMLAttributes<HTMLSpanE
     format?: (value: number) => React.ReactNode
     /** Unit suffix (e.g. `"℃"`, `"mg"`, `"mEq/L"`). */
     unit?: string
-    /** Localized flag labels (announced + used when `showLabel`). Defaults to JA (高値/低値/異常…). */
+    /**
+     * Localized flag labels (announced + used when `showLabel`). Defaults to JA
+     * (高値/低値/異常…), which assume **higher = worse** (clinical). For domains
+     * where LOW is bad (grades, inventory-vs-safety-stock), override `labels` so
+     * `high`/`low` read correctly. (#291)
+     */
     labels?: Partial<Record<RangeFlag, string>>
     /** Show the flag label text visibly next to the code. Default `false` (code chip only; label is sr-only). */
     showLabel?: boolean
@@ -89,6 +94,16 @@ export interface ReferenceValueProps extends Omit<React.HTMLAttributes<HTMLSpanE
     rangeLabel?: string
     /** Hide the flag chip entirely (value is still toned + sr-only flag text kept). Default `false`. */
     hideFlag?: boolean
+    /**
+     * When the value is in range (`normal`), give it an **affirmative** success
+     * chip (✓ + `positiveLabel`) and success tone — for a passing / above-average
+     * value that deserves a positive highlight, not just the absence of a warning
+     * (e.g. a gradebook). The consumer decides when a value is "good". Ignored for
+     * abnormal values (their flag wins). Default `false`. (#291)
+     */
+    affirmative?: boolean
+    /** Label for the affirmative chip. Default: the `normal` label (e.g. pass "良"). (#291) */
+    positiveLabel?: string
     /** Compact size for table cells. Default `"default"`. */
     size?: "default" | "inline"
 }
@@ -113,6 +128,8 @@ const ReferenceValue = React.forwardRef<HTMLSpanElement, ReferenceValueProps>(
             showRange = false,
             rangeLabel = "基準",
             hideFlag = false,
+            affirmative = false,
+            positiveLabel,
             size = "default",
             ...props
         },
@@ -123,6 +140,9 @@ const ReferenceValue = React.forwardRef<HTMLSpanElement, ReferenceValueProps>(
         const Icon = config.icon
         const label = labels?.[flag] ?? config.defaultLabel
         const isAbnormal = flag !== "normal"
+        // Affirmative highlight only applies to an in-range value. (#291)
+        const isAffirmative = affirmative && !isAbnormal && !hideFlag
+        const affirmativeLabel = positiveLabel ?? label
         const rangeText = showRange ? formatBound(range, format) : null
 
         return (
@@ -131,7 +151,12 @@ const ReferenceValue = React.forwardRef<HTMLSpanElement, ReferenceValueProps>(
                 className={cn("inline-flex items-center gap-1.5", size === "inline" ? "text-sm" : "text-base", className)}
                 {...props}
             >
-                <span className={cn("font-medium tabular-nums", isAbnormal ? TONE_TEXT[config.tone] : "text-foreground")}>
+                <span
+                    className={cn(
+                        "font-medium tabular-nums",
+                        isAbnormal ? TONE_TEXT[config.tone] : isAffirmative ? TONE_TEXT.success : "text-foreground"
+                    )}
+                >
                     {format(value)}
                     {unit ? <span className="ml-0.5 text-xs font-normal text-muted-foreground">{unit}</span> : null}
                 </span>
@@ -147,6 +172,16 @@ const ReferenceValue = React.forwardRef<HTMLSpanElement, ReferenceValueProps>(
                         {config.code}
                         {showLabel ? <span className="font-normal">{label}</span> : null}
                     </span>
+                ) : isAffirmative ? (
+                    <span
+                        className={cn(
+                            "inline-flex items-center gap-0.5 rounded px-1.5 py-0.5 text-xs font-semibold",
+                            TONE_CHIP.success
+                        )}
+                    >
+                        <IconCheck className="h-3 w-3 shrink-0" aria-hidden="true" />
+                        {affirmativeLabel}
+                    </span>
                 ) : showLabel ? (
                     <span className="inline-flex items-center gap-0.5 text-xs text-success-strong">
                         <Icon className="h-3 w-3 shrink-0" aria-hidden="true" />
@@ -155,9 +190,9 @@ const ReferenceValue = React.forwardRef<HTMLSpanElement, ReferenceValueProps>(
                 ) : null}
 
                 {/* Announce the flag so it never rides on colour / code alone —
-                    but only when it isn't already shown visibly, otherwise a
-                    screen reader hears the label twice ("基準内 基準内"). (#306) */}
-                {!showLabel ? <span className="sr-only">{label}</span> : null}
+                    but only when it isn't already shown visibly (showLabel, or the
+                    affirmative chip), otherwise a screen reader hears it twice. (#306, #291) */}
+                {!showLabel && !isAffirmative ? <span className="sr-only">{label}</span> : null}
 
                 {rangeText != null ? (
                     <span className="text-xs text-muted-foreground">
