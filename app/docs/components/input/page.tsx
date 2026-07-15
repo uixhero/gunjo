@@ -147,6 +147,26 @@ export default function EmailField() {
 }`,
                         },
                         {
+                            key: "show-count",
+                            title: locale === "ja" ? "文字数カウント" : "Character count",
+                            description:
+                                locale === "ja"
+                                    ? "showCount を付けると文字数を表示します。SEO の meta title/description など上限のある入力に。maxLength と併用で count / max 形式に。"
+                                    : "Add showCount to surface a character count — handy for length-capped fields like SEO meta titles. Pair with maxLength for count / max.",
+	                            preview: (
+	                                <div className="w-full max-w-sm">
+	                                    <Input
+	                                        label={locale === "ja" ? "メタタイトル" : "Meta title"}
+	                                        showCount
+	                                        maxLength={60}
+	                                        defaultValue={locale === "ja" ? "群青 — AI 時代のデザインシステム" : "Gunjo — a design system for the AI era"}
+	                                    />
+	                                </div>
+	                            ),
+	                            previewHeight: 160,
+	                            code: `<Input label="${locale === "ja" ? "メタタイトル" : "Meta title"}" showCount maxLength={60} />`,
+                        },
+                        {
                             key: "invalid",
                             title:
                                 locale === "ja"
@@ -256,6 +276,12 @@ export default function DisabledEmail() {
 	                            name: "description",
 	                            type: "ReactNode",
 	                            description: locale === "ja" ? "コントロール下の補助テキストです。aria-describedby で関連付きます。" : "Helper text under the control, wired via aria-describedby.",
+	                        },
+	                        {
+	                            name: "showCount",
+	                            type: "boolean",
+	                            default: "false",
+	                            description: locale === "ja" ? "コントロール下に文字数を表示します。maxLength と併用すると count / max 形式になり、aria-describedby で関連付きます。" : "Show a character-count readout under the control. With maxLength it renders count / max, wired via aria-describedby.",
 	                        },
 	                        {
 	                            name: "type",
