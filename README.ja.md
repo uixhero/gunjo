@@ -57,7 +57,7 @@ import '@gunjo/ui/styles';
 import gunjoPreset from '@gunjo/ui/tailwind-preset';
 ```
 
-> **Next.js:** `next.config.ts` に `transpilePackages: ["@gunjo/ui"]` を追加してください（本パッケージは TypeScript ソースを直接配布します）。詳細は [docs/adoption.md](./docs/adoption.md)。
+> **インストールと import:** `npm install @gunjo/ui` だけで動きます。本パッケージは `dist/` からコンパイル済みの ESM と型定義を配布しており（各コンポーネントの `"use client"` 境界も保持）、Next.js でも Vite でも `transpilePackages` やバンドラの追加設定は不要です。詳細は [docs/adoption.md](./docs/adoption.md)。
 
 **別プロジェクトへ導入する**
 
