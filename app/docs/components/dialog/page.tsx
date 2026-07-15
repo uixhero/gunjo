@@ -295,12 +295,108 @@ export function ReviewChangesDialog() {
 }`,
 } as const;
 
+const scrollCodeByLocale = {
+    ja: `import {
+  Button,
+  Dialog,
+  DialogBody,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  Input,
+  Label,
+} from "@gunjo/ui";
+
+// DialogBody を直下に置くと DialogContent が高さ制限つきの flex 列になり、
+// ヘッダー/フッターは固定・中央だけがスクロールします。
+export function LongFormDialog() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline">長いフォームを開く</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[480px]">
+        <DialogHeader>
+          <DialogTitle>プロフィールを編集</DialogTitle>
+          <DialogDescription>ヘッダーとフッターは固定され、中央のフォームだけがスクロールします。</DialogDescription>
+        </DialogHeader>
+        <DialogBody className="space-y-4">
+          {fields.map((field) => (
+            <div key={field.id} className="space-y-1.5">
+              <Label htmlFor={field.id}>{field.label}</Label>
+              <Input id={field.id} defaultValue={field.value} />
+            </div>
+          ))}
+        </DialogBody>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline">キャンセル</Button>
+          </DialogClose>
+          <Button>保存</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}`,
+    en: `import {
+  Button,
+  Dialog,
+  DialogBody,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+  Input,
+  Label,
+} from "@gunjo/ui";
+
+// A DialogBody as a direct child makes DialogContent a bounded flex column, so
+// the header and footer stay pinned while only the middle scrolls.
+export function LongFormDialog() {
+  return (
+    <Dialog>
+      <DialogTrigger asChild>
+        <Button variant="outline">Open long form</Button>
+      </DialogTrigger>
+      <DialogContent className="sm:max-w-[480px]">
+        <DialogHeader>
+          <DialogTitle>Edit profile</DialogTitle>
+          <DialogDescription>The header and footer stay pinned while only the middle form scrolls.</DialogDescription>
+        </DialogHeader>
+        <DialogBody className="space-y-4">
+          {fields.map((field) => (
+            <div key={field.id} className="space-y-1.5">
+              <Label htmlFor={field.id}>{field.label}</Label>
+              <Input id={field.id} defaultValue={field.value} />
+            </div>
+          ))}
+        </DialogBody>
+        <DialogFooter>
+          <DialogClose asChild>
+            <Button variant="outline">Cancel</Button>
+          </DialogClose>
+          <Button>Save</Button>
+        </DialogFooter>
+      </DialogContent>
+    </Dialog>
+  );
+}`,
+} as const;
+
 export default function DialogPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
     const code = codeByLocale[locale];
     const confirmationCode = confirmationCodeByLocale[locale];
     const summaryCode = summaryCodeByLocale[locale];
+    const scrollCode = scrollCodeByLocale[locale];
 
     return (
         <ComponentLayout
@@ -369,6 +465,18 @@ export default function DialogPage() {
                             embedSrc: "/embed/dialog?variant=summary",
                             previewBodyWidth: "lg",
                         },
+                        {
+                            key: "scroll",
+                            title: isJa ? "長いフォーム（スクロール）" : "Long form (scroll)",
+                            description: isJa
+                                ? "DialogBody を直下に置くと、ダイアログが高さ制限され、ヘッダー/フッター固定・中央スクロールになります。"
+                                : "A DialogBody direct child bounds the dialog height — the header/footer stay pinned and only the middle scrolls.",
+                            preview: <DialogAuditDemo variant="scroll" />,
+                            code: scrollCode,
+                            previewHeight: 600,
+                            embedSrc: "/embed/dialog?variant=scroll",
+                            previewBodyWidth: "lg",
+                        },
                     ]}
                 />
             </section>
@@ -399,6 +507,13 @@ export default function DialogPage() {
                             name: "portalContainer",
                             type: "HTMLElement | null",
                             description: isJa ? "プレビュー枠や疑似ブラウザ内に閉じ込めたい場合のポータル先です。" : "Portal target for framed previews or contained app surfaces.",
+                        },
+                        {
+                            name: "DialogBody",
+                            type: "React.HTMLAttributes<HTMLDivElement>",
+                            description: isJa
+                                ? "長いフォーム用のスクロール領域。DialogContent の直下に置くと Content が高さ制限つき flex 列になり、ヘッダー/フッター固定・中央スクロールになります。(#293)"
+                                : "Scroll region for long forms. As a direct child of DialogContent it makes the content a bounded flex column — header/footer pinned, middle scrolls. (#293)",
                         },
                     ]}
                 />

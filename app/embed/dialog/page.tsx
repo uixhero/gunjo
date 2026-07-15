@@ -6,7 +6,7 @@ import { useSearchParams } from "next/navigation";
 export default function Embed() {
     const searchParams = useSearchParams();
     const variant = searchParams.get("variant");
-    const resolvedVariant = variant === "confirmation" || variant === "summary"
+    const resolvedVariant = variant === "confirmation" || variant === "summary" || variant === "scroll"
         ? variant
         : "form";
 

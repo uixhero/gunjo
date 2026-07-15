@@ -8,6 +8,17 @@ import { cn } from "../../lib/utils"
 import { useLocale } from "../utility/LocaleProvider"
 import { useDialogDescribedBy, useRegisterDialogDescription } from "./dialog-a11y"
 
+// True when a direct child has the given displayName. Used to opt DialogContent
+// into a managed-scroll flex column *only* when a DialogBody is present, so
+// existing dialogs (no DialogBody) render byte-identically. (#293)
+function hasChildOfType(children: React.ReactNode, displayName: string): boolean {
+    return React.Children.toArray(children).some(
+        (child) =>
+            React.isValidElement(child) &&
+            (child.type as { displayName?: string })?.displayName === displayName
+    )
+}
+
 const Dialog = DialogPrimitive.Root
 
 const DialogTrigger = DialogPrimitive.Trigger
@@ -44,6 +55,11 @@ const DialogContent = React.forwardRef<
     const { describedByProps, register, DescriptionProvider } = useDialogDescribedBy(
         "aria-describedby" in props
     )
+    // When a DialogBody is present, switch from the default `grid` to a bounded
+    // flex column (`flex` overrides `grid` via tailwind-merge) so the body
+    // scrolls within a max height instead of the dialog overflowing the
+    // viewport. Existing dialogs (no DialogBody) are unchanged. (#293)
+    const hasBody = hasChildOfType(children, "DialogBody")
     return (
     <DialogPortal container={portalContainer ?? undefined}>
         <DialogOverlay className={cn(portalContainer && "absolute", overlayClassName)} />
@@ -51,6 +67,7 @@ const DialogContent = React.forwardRef<
             ref={ref}
             className={cn(
                 "fixed left-1/2 top-1/2 z-50 grid w-[512px] w-[calc(100%-2rem)] max-w-lg -translate-x-1/2 -translate-y-1/2 gap-4 border bg-background p-6 shadow-lg duration-200 data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 data-[state=closed]:zoom-out-95 data-[state=open]:zoom-in-95 rounded-lg",
+                hasBody && "flex flex-col max-h-[calc(100dvh-2rem)]",
                 portalContainer && "absolute w-[calc(100%-2rem)] max-w-[calc(100%-2rem)]",
                 className
             )}
@@ -100,6 +117,18 @@ const DialogFooter = ({
 )
 DialogFooter.displayName = "DialogFooter"
 
+// Scrollable body region for long forms. Placed as a direct child of
+// DialogContent (between DialogHeader and DialogFooter), it flexes to fill the
+// bounded height and scrolls its own overflow while header/footer stay pinned.
+// Its presence switches DialogContent to a bounded flex column. (#293)
+const DialogBody = ({
+    className,
+    ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+    <div className={cn("flex-1 min-h-0 overflow-y-auto", className)} {...props} />
+)
+DialogBody.displayName = "DialogBody"
+
 const DialogTitle = React.forwardRef<
     React.ElementRef<typeof DialogPrimitive.Title>,
     React.ComponentPropsWithoutRef<typeof DialogPrimitive.Title>
@@ -139,6 +168,7 @@ export {
     DialogContent,
     DialogHeader,
     DialogFooter,
+    DialogBody,
     DialogTitle,
     DialogDescription,
 }
