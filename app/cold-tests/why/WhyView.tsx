@@ -245,7 +245,7 @@ export function WhyView() {
                 <section className="space-y-4">
                     <h2 className="text-2xl font-bold tracking-tight">
                         {isJa
-                            ? "3回確認 — 1回・2回では作らない"
+                            ? "3回確認：1回・2回では作らない"
                             : "3-confirm — never build on the first hit"}
                     </h2>
                     {isJa ? (

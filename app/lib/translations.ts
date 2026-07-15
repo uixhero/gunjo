@@ -1243,7 +1243,7 @@ export const translations: Record<
         label: "コールドテスト",
         heading: "群青を知らない AI に作らせた、170 画面。",
         subtitle: (count) =>
-          `${count} ラウンド。予備知識ゼロの AI に、公開 npm パッケージと gunjo.jp の docs だけを渡して——ソースは見せず——動く画面を組ませた記録です。`,
+          `${count} ラウンド。予備知識ゼロの AI に、公開 npm パッケージと gunjo.jp の docs だけを渡して（ソースは見せず）、動く画面を組ませた記録です。`,
         searchPlaceholder: "ラウンド・ルート・業種を検索...",
         allTab: "全て",
         emptyState: "該当するラウンドがありません。",
@@ -1285,7 +1285,7 @@ export const translations: Record<
           sourceCodeHint: "ファイル名をクリックでソースを展開できます。",
           sourceCodeFileLines: (lines) => `${lines} 行`,
           sourceCodeMissing: (overwrittenBy) =>
-            `この回のソースは保存されていません——同じルートが #${overwrittenBy} で別の画面として組み直され、ファイルが上書きされたためです。上の記事とスクショは、組まれた当時の姿を残しています。`,
+            `この回のソースは保存されていません。同じルートが #${overwrittenBy} で別の画面として組み直され、ファイルが上書きされたためです。上の記事とスクショは、組まれた当時の姿を残しています。`,
           componentsUsed: "使用した @gunjo/ui コンポーネント",
           componentsUsedHint: "この画面のソースが直接 import しているコンポーネントです。",
           componentDocsLabel: (name) => `${name} のドキュメントを開く`,
@@ -1306,7 +1306,7 @@ export const translations: Record<
           label: "方法論",
           heading: "なぜコールドテストするか",
           subtitle:
-            "予備知識ゼロの AI に、公開 npm パッケージと gunjo.jp の docs だけで実在の業種の画面を組ませる ── 170 ラウンドの記録から、どんなコンポーネントが群青に加わったか。",
+            "予備知識ゼロの AI に、公開 npm パッケージと gunjo.jp の docs だけで実在の業種の画面を組ませる。170 ラウンドの記録から、どんなコンポーネントが群青に加わったか。",
           ctaGalleryLabel: "170 ラウンドのカタログを見る",
           ctaComponentsLabel: "コンポーネント一覧へ",
           breadcrumbLabel: "なぜ",
