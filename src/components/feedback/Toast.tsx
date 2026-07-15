@@ -10,6 +10,13 @@ type TooltipContentProps = React.ComponentPropsWithoutRef<typeof TooltipContent>
 
 export type ToastType = ToastVariantKey;
 
+export interface ToastAction {
+    label: string;
+    onClick: () => void;
+    /** Accessible name for the action button when it should differ from `label`. */
+    altText?: string;
+}
+
 export interface ToastProps {
     message: string;
     type?: ToastType;
@@ -20,6 +27,10 @@ export interface ToastProps {
     closeLabel?: string;
     tooltipPortalContainer?: TooltipContentProps["portalContainer"];
     className?: string;
+    /** Secondary line rendered under `message` in a muted tone. */
+    description?: React.ReactNode;
+    /** A single action button rendered before the close button. Activating it runs `onClick` and then closes the toast. */
+    action?: ToastAction;
 }
 
 export function Toast({
@@ -27,22 +38,27 @@ export function Toast({
     type = toastDefaultVariantKey,
     isVisible,
     onClose,
-    duration = 3000,
+    duration,
     placement = "fixed",
     closeLabel = "Close notification",
     tooltipPortalContainer,
     className,
+    description,
+    action,
 }: ToastProps) {
     const [shouldRender, setShouldRender] = useState(isVisible);
+    // Action toasts need time to be acted on, so they auto-dismiss slower when
+    // the caller doesn't set an explicit duration. (#301)
+    const resolvedDuration = duration ?? (action ? 6000 : 3000);
 
     useEffect(() => {
         if (isVisible) {
             const timer = setTimeout(() => {
                 onClose();
-            }, duration);
+            }, resolvedDuration);
             return () => clearTimeout(timer);
         }
-    }, [isVisible, duration, onClose]);
+    }, [isVisible, resolvedDuration, onClose]);
 
     useEffect(() => {
         if (isVisible) {
@@ -87,7 +103,25 @@ export function Toast({
             )}
         >
             {icons[type]}
-            <p className="min-w-0 flex-1 break-words text-sm font-medium [overflow-wrap:anywhere]">{message}</p>
+            <div className="min-w-0 flex-1">
+                <p className="break-words text-sm font-medium [overflow-wrap:anywhere]">{message}</p>
+                {description ? (
+                    <p className="mt-0.5 break-words text-sm opacity-80 [overflow-wrap:anywhere]">{description}</p>
+                ) : null}
+            </div>
+            {action ? (
+                <button
+                    type="button"
+                    onClick={() => {
+                        action.onClick();
+                        onClose();
+                    }}
+                    aria-label={action.altText}
+                    className="shrink-0 self-start rounded-md border border-current/25 px-2.5 py-1 text-xs font-semibold transition-colors hover:bg-current/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-current/40"
+                >
+                    {action.label}
+                </button>
+            ) : null}
             <TooltipProvider>
                 <Tooltip>
                     <TooltipTrigger asChild>
