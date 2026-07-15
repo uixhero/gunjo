@@ -258,7 +258,7 @@ export function WeeklySchedule() {
       description={description}
       sectionLabels={sectionLabels}
       usedComponents={[{ name: "WeekView", href: "/docs/components/week-view" }]}
-      relatedComponents={[{ name: "EventCalendar", href: "/docs/components/event-calendar" }, { name: "ScheduleGrid", href: "/docs/components/schedule-grid" }]}
+      relatedComponents={[{ name: "EventCalendar", href: "/docs/components/event-calendar" }, { name: "ScheduleGrid", href: "/docs/components/schedule-grid" }, { name: "SwatchLegend", href: "/docs/components/chart-legend" }]}
     >
       <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewHeight="auto" previewBodyWidth="xl">
         <WeekViewPreview locale={locale} />

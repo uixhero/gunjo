@@ -18,7 +18,7 @@ GunjoUI を他の Next.js / React プロジェクトに導入する手順。**5 
 
 ### 1. パッケージ追加
 
-`0.0.1-alpha.0` から **`@gunjo/ui`** として npm に publish 済。alpha 段階のため API は変わり得るが、ドライラン採用は可：
+`0.0.1-alpha.0` から **`@gunjo/ui`** として npm に publish 済（現在は `0.1.0-beta.x`）。beta 段階（1.0 前）のため API は変わり得るが、ドライラン採用は可：
 
 ```bash
 # npm から（推奨、0.0.1-alpha.0 以降）

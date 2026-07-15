@@ -34,6 +34,14 @@ export interface ScheduleCell {
     description?: string
     /** Makes the cell an activatable button (click / Enter / Space). */
     onSelect?: () => void
+    /**
+     * Mark this cell as the active/open one (e.g. while its editor Sheet is
+     * open) — adds a persistent ring + `aria-selected`. Distinct from keyboard
+     * focus. (#299)
+     */
+    selected?: boolean
+    /** Extra classes for this cell, to inject emphasis beyond `tone`/`selected`. (#299) */
+    cellClassName?: string
     /** Mark the slot unavailable (e.g. no 6th period that day) — dashed, non-interactive. */
     unavailable?: boolean
     /** Explains why an unavailable slot cannot be used. Shown on hover/focus. */
@@ -296,6 +304,7 @@ const ScheduleGrid = React.forwardRef<HTMLDivElement, ScheduleGridProps>(
                                         aria-rowindex={ri + 2}
                                         aria-colindex={ci + 2}
                                         aria-label={accessibleName}
+                                        aria-selected={cell?.selected ? true : undefined}
                                         tabIndex={isActive ? 0 : -1}
                                         onClick={
                                             interactive
@@ -309,7 +318,9 @@ const ScheduleGrid = React.forwardRef<HTMLDivElement, ScheduleGridProps>(
                                         className={cn(
                                             "rounded-md border p-2 text-left text-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                                             CELL_TONE[cell?.tone ?? "default"],
-                                            interactive && "cursor-pointer hover:border-ring/60"
+                                            interactive && "cursor-pointer hover:border-ring/60",
+                                            cell?.selected && "ring-2 ring-primary ring-offset-2 ring-offset-background",
+                                            cell?.cellClassName
                                         )}
                                     >
                                         {cell?.content ??
