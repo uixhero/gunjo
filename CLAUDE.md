@@ -41,14 +41,8 @@ Follow the existing repo convention seen in `git log`:
 
 Do not push to `main` directly. Always go via PR.
 
-## Merging is automatic when CI is green
+## Merging
 
-The user has authorized Claude to merge PRs without per-PR confirmation, as of 2026-05-06. Policy:
-
-1. After opening a PR, **wait for CI** (`design-verify` workflow) to complete.
-2. If CI is **green** → `gh pr merge <N> --squash --delete-branch`. Then `git checkout main && git pull` locally and continue.
-3. If CI is **red** → do not merge. Report the failure and the suspected cause. Don't admin-override unless the user explicitly says to.
-4. Never merge to `main` if there are unresolved review comments or the user explicitly asks to hold.
-5. Force-pushing to `main` and force-merge despite failing CI both still require explicit user authorization.
-
-This applies only to this repo. Issues themselves still need user confirmation before closing (issues are durable; PR merges are reversible).
+- Open a PR and wait for CI (`design-verify`) to finish. Merge only when it's green (`gh pr merge <N> --squash --delete-branch`), then `git checkout main && git pull`.
+- Never merge with a red CI, unresolved review comments, or when a hold is requested. Force-push and force-merge to `main` are off-limits without explicit sign-off.
+- Issues still need confirmation before closing (issues are durable; PR merges are reversible).
