@@ -8,7 +8,7 @@ import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
-import { Badge, Button, DataTable, type DataTableLabels } from "@gunjo/ui";
+import { Badge, Button, DataTable, type DataTableLabels, Input } from "@gunjo/ui";
 
 type Member = {
     id: string;
@@ -70,6 +70,63 @@ function RowClickDemo() {
             <p className="text-sm text-muted-foreground" aria-live="polite" data-testid="rowclick-status">
                 行クリック: <span className="font-medium text-foreground">{selected ?? "—"}</span> ／ 詳細ボタン:{" "}
                 <span className="font-medium text-foreground">{action ?? "—"}</span>
+            </p>
+        </div>
+    );
+}
+
+// Totals/footer demo: a column's TanStack `footer` renders a totals row. The
+// totals sum the *filtered* rows so they match what's shown. Editing an amount
+// updates the footer live. (#255)
+type Invoice = { id: string; item: string; qty: number; amount: number };
+
+const yen = (n: number) => `¥${n.toLocaleString("ja-JP")}`;
+
+function FooterTotalsDemo({ isJa }: { isJa: boolean }) {
+    const [rows, setRows] = React.useState<Invoice[]>([
+        { id: "1", item: isJa ? "初期設定サポート" : "Onboarding", qty: 1, amount: 40000 },
+        { id: "2", item: isJa ? "月額プラン" : "Monthly plan", qty: 3, amount: 12000 },
+        { id: "3", item: isJa ? "追加ストレージ" : "Extra storage", qty: 2, amount: 3000 },
+    ]);
+    const setAmount = (id: string, value: number) =>
+        setRows((prev) => prev.map((r) => (r.id === id ? { ...r, amount: value } : r)));
+
+    const cols: ColumnDef<Invoice>[] = [
+        { accessorKey: "item", header: isJa ? "品目" : "Item", footer: () => (isJa ? "合計" : "Total") },
+        {
+            accessorKey: "qty",
+            header: isJa ? "数量" : "Qty",
+            footer: ({ table }) =>
+                table.getFilteredRowModel().rows.reduce((sum, r) => sum + r.original.qty, 0),
+        },
+        {
+            accessorKey: "amount",
+            header: isJa ? "金額" : "Amount",
+            cell: ({ row }) => (
+                <Input
+                    type="number"
+                    aria-label={`${row.original.item}${isJa ? " の金額" : " amount"}`}
+                    value={row.original.amount}
+                    onChange={(event) => setAmount(row.original.id, Number(event.target.value) || 0)}
+                    className="h-8 w-28"
+                />
+            ),
+            footer: ({ table }) =>
+                yen(table.getFilteredRowModel().rows.reduce((sum, r) => sum + r.original.amount, 0)),
+        },
+    ];
+
+    return (
+        <div className="flex w-full flex-col gap-2">
+            <DataTable
+                columns={cols}
+                data={rows}
+                filter={null}
+                caption={isJa ? "請求内訳" : "Invoice breakdown"}
+                captionClassName="sr-only"
+            />
+            <p className="text-xs text-muted-foreground">
+                {isJa ? "金額を編集すると合計行が追従します。" : "Edit an amount and the totals row follows."}
             </p>
         </div>
     );
@@ -286,6 +343,13 @@ export function MembersTable() {
             description: isJa ? "テーブルに表示する行データです。" : "Rows displayed in the table.",
         },
         {
+            name: "columns[].footer",
+            type: "ColumnDef['footer']",
+            description: isJa
+                ? "いずれかの列に TanStack の footer を定義すると、合計行（<tfoot>）を表示します。footer(({ table }) => …) で getFilteredRowModel() を使うとフィルタ後の合計になります。card モードでは表示されません。(#255)"
+                : "Defining a TanStack footer on any column renders a totals row (<tfoot>). Use footer(({ table }) => …) with getFilteredRowModel() to total the filtered rows. Not shown in card mode. (#255)",
+        },
+        {
             name: "filter",
             type: "{ columnId: string; placeholder?: string } | null",
             default: "undefined",
@@ -447,6 +511,37 @@ export function MembersTable() {
                             previewHeight: "auto",
                             previewClassName: "max-w-none",
                             code: code.replace("filter={{ columnId: \"name\", placeholder: labels.filterPlaceholder }}", "filter={null}"),
+                        },
+                        {
+                            key: "footer-totals",
+                            title: isJa ? "合計 / フッター行" : "Totals / footer row",
+                            description: isJa
+                                ? "列に TanStack の footer を定義すると、テーブル下部に合計行（<tfoot>）が出ます。合計は「フィルタ後の全行」で計算するので、表示中のページだけでなく絞り込み結果に一致します。金額を編集すると合計が追従します。card モード（renderCard）では出ないので、その場合は合計をカード外に置いてください。"
+                                : "Define a TanStack footer on a column to render a totals row (<tfoot>) at the bottom. Totals here sum the filtered rows, so they match the filter (not just the current page). Edit an amount to watch the total follow. Not shown in card mode (renderCard) — put totals outside the cards there.",
+                            preview: <FooterTotalsDemo isJa={isJa} />,
+                            previewHeight: "auto",
+                            previewClassName: "max-w-none",
+                            code: `import type { ColumnDef, Table } from "@tanstack/react-table"
+import { DataTable } from "@gunjo/ui"
+
+type Invoice = { id: string; item: string; qty: number; amount: number }
+
+// Total a numeric field over the *filtered* rows (not just the page).
+const sumColumn = (table: Table<Invoice>, get: (row: Invoice) => number) =>
+  table.getFilteredRowModel().rows.reduce((sum, r) => sum + get(r.original), 0)
+
+const columns: ColumnDef<Invoice>[] = [
+  { accessorKey: "item", header: "${isJa ? "品目" : "Item"}", footer: () => "${isJa ? "合計" : "Total"}" },
+  { accessorKey: "qty", header: "${isJa ? "数量" : "Qty"}", footer: ({ table }) => sumColumn(table, (r) => r.qty) },
+  {
+    accessorKey: "amount",
+    header: "${isJa ? "金額" : "Amount"}",
+    cell: ({ row }) => yen(row.original.amount),
+    footer: ({ table }) => yen(sumColumn(table, (r) => r.amount)),
+  },
+]
+
+<DataTable columns={columns} data={invoices} filter={null} />`,
                         },
                     ]}
                 />

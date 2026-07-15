@@ -45,7 +45,7 @@ export function OverlayAuditEmbed({ kind }: { kind: OverlayAuditKind }) {
             ) : kind === "share-modal" ? (
                 <ShareModalAuditDemo locale={locale} variant={variant as "default" | "private" | "stats"} />
             ) : kind === "sheet" ? (
-                <SheetAuditDemo locale={locale} variant={variant as "settings" | "left" | "bottom" | "top"} />
+                <SheetAuditDemo locale={locale} variant={variant as "settings" | "left" | "bottom" | "top" | "scroll"} />
             ) : (
                 <TooltipAuditDemo locale={locale} variant={tooltipVariant as "icon" | "shortcut" | "disabled" | "long" | "placement"} />
             )}

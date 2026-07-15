@@ -32,6 +32,7 @@ import {
     ContextMenuSubTrigger,
     ContextMenuTrigger,
     Dialog,
+    DialogBody,
     DialogClose,
     DialogContent,
     DialogDescription,
@@ -338,7 +339,7 @@ export function AlertDialogAuditDemo({ variant = "destructive" }: AlertDialogAud
     );
 }
 
-export type DialogAuditDemoVariant = "form" | "confirmation" | "summary";
+export type DialogAuditDemoVariant = "form" | "confirmation" | "summary" | "scroll";
 
 export interface DialogAuditDemoProps {
     variant?: DialogAuditDemoVariant;
@@ -349,6 +350,46 @@ export function DialogAuditDemo({ variant = "form" }: DialogAuditDemoProps) {
     const isJa = locale === "ja";
     const [portalContainer, setPortalContainer] = React.useState<HTMLDivElement | null>(null);
     const previewSurfaceClassName = "relative flex min-h-[560px] w-full items-center justify-center";
+
+    // Managed-scroll long form: DialogBody bounds the dialog height and scrolls
+    // its own overflow while the header and footer stay pinned. (#293)
+    if (variant === "scroll") {
+        return (
+            <div ref={setPortalContainer} className={previewSurfaceClassName}>
+                <Dialog>
+                    <DialogTrigger asChild>
+                        <Button variant="outline">{isJa ? "長いフォームを開く" : "Open long form"}</Button>
+                    </DialogTrigger>
+                    <DialogContent portalContainer={portalContainer} className="sm:max-w-[480px]">
+                        <DialogHeader>
+                            <DialogTitle>{isJa ? "プロフィールを編集" : "Edit profile"}</DialogTitle>
+                            <DialogDescription>
+                                {isJa
+                                    ? "ヘッダーとフッターは固定され、中央のフォームだけがスクロールします。"
+                                    : "The header and footer stay pinned while only the middle form scrolls."}
+                            </DialogDescription>
+                        </DialogHeader>
+                        <DialogBody className="space-y-4">
+                            {Array.from({ length: 10 }).map((_, index) => (
+                                <div key={index} className="space-y-1.5">
+                                    <Label htmlFor={`dialog-scroll-${index}`}>
+                                        {(isJa ? "項目 " : "Field ") + (index + 1)}
+                                    </Label>
+                                    <Input id={`dialog-scroll-${index}`} defaultValue={isJa ? `値 ${index + 1}` : `Value ${index + 1}`} />
+                                </div>
+                            ))}
+                        </DialogBody>
+                        <DialogFooter>
+                            <DialogClose asChild>
+                                <Button variant="outline">{isJa ? "キャンセル" : "Cancel"}</Button>
+                            </DialogClose>
+                            <Button>{isJa ? "保存" : "Save"}</Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
+            </div>
+        );
+    }
 
     if (variant === "confirmation") {
         return (

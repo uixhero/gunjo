@@ -8,18 +8,24 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import feedbackMetadata from "@design/feedback-metadata.json";
 import { getCategoryVariantUnionType } from "@/lib/docs-spec";
-import { Button, Toast, type ToastType } from "@gunjo/ui";
+import { Button, Toast, type ToastAction, type ToastType } from "@gunjo/ui";
 
 function ToastTriggerPreview({
     type,
     label,
     message,
     closeLabel,
+    description,
+    action,
+    duration = 2500,
 }: {
     type: ToastType;
     label: string;
     message: string;
     closeLabel: string;
+    description?: React.ReactNode;
+    action?: ToastAction;
+    duration?: number;
 }) {
     const [visible, setVisible] = React.useState(false);
 
@@ -30,10 +36,12 @@ function ToastTriggerPreview({
             </Button>
             <Toast
                 message={message}
+                description={description}
+                action={action}
                 type={type}
                 isVisible={visible}
                 onClose={() => setVisible(false)}
-                duration={2500}
+                duration={duration}
                 placement="inline"
                 closeLabel={closeLabel}
             />
@@ -184,10 +192,20 @@ export function FloatingToastExample() {
             required: true,
         },
         {
+            name: "description",
+            type: "ReactNode",
+            description: isJa ? "message の下に muted 色で表示する2行目の補足です。" : "Secondary line rendered under message in a muted tone.",
+        },
+        {
+            name: "action",
+            type: "{ label: string; onClick: () => void; altText?: string }",
+            description: isJa ? "閉じるボタンの手前に置く操作ボタンを1つ。押すと onClick を実行してからトーストを閉じます。" : "A single action button before the close button. Activating it runs onClick and then closes the toast.",
+        },
+        {
             name: "duration",
             type: "number",
-            default: "3000",
-            description: isJa ? "自動で閉じるまでの時間です。ミリ秒で指定します。" : "Auto-dismiss duration in milliseconds.",
+            default: isJa ? "3000（action ありは 6000）" : "3000 (6000 with action)",
+            description: isJa ? "自動で閉じるまでの時間（ミリ秒）。action があり未指定なら、押す前に消えないよう既定を長くします。" : "Auto-dismiss duration in ms. When action is set and duration is omitted, the default is longer so it isn't dismissed before it can be used.",
         },
         {
             name: "placement",
@@ -297,6 +315,45 @@ export function FloatingToastExample() {
                             ),
                             previewBodyWidth: "md",
                             code: fixedCode,
+                        },
+                        {
+                            key: "rich",
+                            title: isJa ? "補足＋操作つき" : "Description + action",
+                            description: isJa ? "description で2行目を、action で操作ボタンを1つ足せます。action を押すと onClick 実行後にトーストが閉じます。action があり duration 未指定なら、押す前に消えないよう既定を長めにします。" : "Add a second line via description and one action button via action. Activating action runs onClick and then closes the toast. With an action and no explicit duration, it auto-dismisses slower.",
+                            preview: (
+                                <ToastTriggerPreview
+                                    type="info"
+                                    label={isJa ? "削除する" : "Delete"}
+                                    message={isJa ? "プロジェクトを削除しました。" : "Project deleted."}
+                                    description={isJa ? "元に戻すには数秒以内に操作してください。" : "Undo within a few seconds to restore it."}
+                                    action={{ label: isJa ? "元に戻す" : "Undo", onClick: () => {} }}
+                                    closeLabel={closeLabel}
+                                />
+                            ),
+                            previewBodyWidth: "md",
+                            code: `import * as React from "react"
+import { Button, Toast } from "@gunjo/ui"
+
+export function DeleteToastExample() {
+  const [visible, setVisible] = React.useState(false)
+
+  return (
+    <div className="space-y-4">
+      <Button variant="outline" onClick={() => setVisible(true)}>
+        ${isJa ? "削除する" : "Delete"}
+      </Button>
+      <Toast
+        message="${isJa ? "プロジェクトを削除しました。" : "Project deleted."}"
+        description="${isJa ? "元に戻すには数秒以内に操作してください。" : "Undo within a few seconds to restore it."}"
+        type="info"
+        action={{ label: "${isJa ? "元に戻す" : "Undo"}", onClick: handleUndo }}
+        isVisible={visible}
+        onClose={() => setVisible(false)}
+        placement="inline"
+      />
+    </div>
+  )
+}`,
                         },
                     ]}
                 />
