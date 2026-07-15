@@ -127,8 +127,8 @@ export function TitleOnlyAlert() {
             name: "title",
             type: "React.ReactNode",
             description: isJa
-                ? "簡易タイトル。<AlertTitle>（h5）の子要素と同等です。見出しレベルを指定したい場合は compound の <AlertTitle as=…> を使います。"
-                : "Convenience title — equivalent to an <AlertTitle> child (h5). For a specific heading level, use <AlertTitle as=…>.",
+                ? "簡易タイトル。<AlertTitle>（既定 p・見出し順に入らない）の子要素と同等です。セクション見出しにしたい場合は compound の <AlertTitle as=…> を使います。(#251)"
+                : "Convenience title — equivalent to an <AlertTitle> child (defaults to p, out of the heading order). For a section heading, use <AlertTitle as=…>. (#251)",
         },
         {
             name: "description",
