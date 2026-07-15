@@ -34,7 +34,14 @@ interface GalleryShape {
 }
 const galleryData = gallery as GalleryShape;
 const ROUND_COUNT = galleryData.count;
-const INDUSTRY_COUNT = galleryData.categories.length;
+// 業種の数は「運輸5モード」と併記して見せるので、運輸の各モードと、業種ではない
+// 汎用カテゴリを categories から除く（除かないと運輸を二重に数えることになる）。
+const TRANSPORT_CATEGORY_PREFIX = "運輸：";
+const GENERIC_CATEGORY = "基盤UI・汎用";
+const INDUSTRY_COUNT = galleryData.categories.filter(
+    (category) =>
+        category !== GENERIC_CATEGORY && !category.startsWith(TRANSPORT_CATEGORY_PREFIX),
+).length;
 const CRYSTALLIZED_COUNT = galleryData.crystallizedCount;
 
 function scoreOf(score: string): number {
