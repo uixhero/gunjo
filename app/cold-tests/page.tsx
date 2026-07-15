@@ -18,8 +18,8 @@ const galleryData = gallery as GalleryShape;
 const ROUND_COUNT = galleryData.count;
 const CATEGORY_COUNT = galleryData.categories.length;
 
-const TITLE = `コールドテストカタログ — 文脈ゼロ AI が組んだ ${ROUND_COUNT} 画面 | GunjoUI`;
-const DESCRIPTION = `文脈ゼロの AI に gunjo/ui を実装させ続けて生まれた ${ROUND_COUNT} 画面の build-log。${CATEGORY_COUNT} の業種カテゴリ（運輸は toB/toC 両面で完走）を通り、3-confirm を経た新部品が結晶化していく過程を全公開。`;
+const TITLE = `コールドテストカタログ：予備知識ゼロの AI が組んだ ${ROUND_COUNT} 画面 | GunjoUI`;
+const DESCRIPTION = `予備知識ゼロの AI に gunjo/ui だけを渡して組ませた ${ROUND_COUNT} 画面の記録。${CATEGORY_COUNT} の業種カテゴリ（運輸は事業者向けの画面と利用者向けの画面の両方で完走）を通り、3回確認を経た新しいコンポーネントが群青に加わるまでを全公開。`;
 
 export const metadata: Metadata = {
     title: TITLE,

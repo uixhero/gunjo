@@ -29,7 +29,7 @@ export function GET() {
 コンポーネント仕様は一か所（Single Source of Truth）から機械可読な形で公開しているため、
 AI（Claude / Cursor / v0 など）にそのまま渡して @gunjo/ui で画面を組ませることができます。
 
-現在 alpha（npm: @gunjo/ui — 0.0.1-alpha 系）。API は今後変わりえます。
+現在 beta（npm: @gunjo/ui — 0.1.0-beta 系）。API は今後変わりえます。
 約 ${COMPONENT_COUNT} のコンポーネントを収録し、実際の画面での検証（コールドテスト ${coldTestCount} 件）を公開しています。
 
 ## はじめに / 導入
