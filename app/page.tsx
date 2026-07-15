@@ -44,6 +44,7 @@ import { useTheme } from "next-themes";
 import { HeroBackground } from "@/components/home/HeroBackground";
 import { PackCta } from "@/components/pack/PackCta";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { COLD_TEST_ROUND_COUNT } from "@/lib/cold-test-count";
 import { COMPONENT_COUNT } from "@/lib/component-count";
 
 const designerCardIcons = {
@@ -303,7 +304,7 @@ export default function Home() {
                             {home.ai.description}
                         </p>
                         <p className="text-sm text-muted-foreground">
-                            {home.ai.evidence}{" "}
+                            {home.ai.evidence(COLD_TEST_ROUND_COUNT)}{" "}
                             <Link
                                 href="/cold-tests/why"
                                 className="whitespace-nowrap font-medium text-foreground underline underline-offset-4 transition-colors hover:text-primary"

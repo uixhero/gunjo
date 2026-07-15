@@ -12,6 +12,7 @@ import {
     type PatternEntry,
 } from "@/lib/patterns";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { COLD_TEST_ROUND_COUNT } from "@/lib/cold-test-count";
 import type { PatternKey } from "@/lib/translations";
 
 function PreviewThumb({ slug, title }: { slug: string; title: string }) {
@@ -156,7 +157,7 @@ export default function PatternsIndexPage() {
                         {t.subtitle}
                     </p>
                     <p className="max-w-2xl text-sm text-muted-foreground">
-                        {t.evidence}{" "}
+                        {t.evidence(COLD_TEST_ROUND_COUNT)}{" "}
                         <Link
                             href="/cold-tests/why"
                             className="whitespace-nowrap font-medium text-foreground underline underline-offset-4 transition-colors hover:text-primary"
