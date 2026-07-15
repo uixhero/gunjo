@@ -186,6 +186,7 @@ export function CompactTimeline() {
 const propsByLocale = {
     ja: [
         { name: "Timeline", type: "HTMLOListElement props", description: "タイムライン全体の ol 要素です。" },
+        { name: "Timeline.items", type: "TimelineDataItem[]", description: "データ駆動の簡易API。<TimelineItem> を組む代わりに配列で渡せます（DataTable/StatGroup と同じ形）。各要素は time/title/description/variant/marker。最後の項目の線は自動で省略。compound children も併用可。(#349)" },
         { name: "TimelineItem.connector", type: "boolean", default: "true", description: "次の項目へつながる線を表示します。最後の項目では false にします。" },
         { name: "TimelineItem.variant", type: "\"default\" | \"muted\" | \"active\" | \"outline\"", default: "\"default\"", description: "マーカーの状態表現です。" },
         { name: "TimelineItem.marker", type: "ReactNode", description: "アイコンなどの独自マーカーです。指定すると標準の点を置き換えます。" },
@@ -195,6 +196,7 @@ const propsByLocale = {
     ],
     en: [
         { name: "Timeline", type: "HTMLOListElement props", description: "The root ordered list for timeline items." },
+        { name: "Timeline.items", type: "TimelineDataItem[]", description: "Data-prop convenience: pass rows as an array instead of composing <TimelineItem> children (same shape as DataTable/StatGroup). Each item: time/title/description/variant/marker. The last item's connector is dropped automatically. Compound children still work. (#349)" },
         { name: "TimelineItem.connector", type: "boolean", default: "true", description: "Draws the connector to the next item. Set false on the last item." },
         { name: "TimelineItem.variant", type: "\"default\" | \"muted\" | \"active\" | \"outline\"", default: "\"default\"", description: "State treatment for the marker." },
         { name: "TimelineItem.marker", type: "ReactNode", description: "Custom marker such as an icon. Replaces the default dot." },

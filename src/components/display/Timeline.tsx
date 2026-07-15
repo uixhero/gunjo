@@ -2,18 +2,6 @@ import * as React from "react"
 
 import { cn } from "../../lib/utils"
 
-const Timeline = React.forwardRef<
-    HTMLOListElement,
-    React.HTMLAttributes<HTMLOListElement>
->(({ className, ...props }, ref) => (
-    <ol
-        ref={ref}
-        className={cn("relative flex flex-col", className)}
-        {...props}
-    />
-))
-Timeline.displayName = "Timeline"
-
 export interface TimelineItemProps extends React.LiHTMLAttributes<HTMLLIElement> {
     /** Whether to draw a connector line below this item. Default true; set false on last item. */
     connector?: boolean
@@ -129,5 +117,59 @@ const TimelineTime = React.forwardRef<
     />
 ))
 TimelineTime.displayName = "TimelineTime"
+
+/** One entry for the `Timeline` `items` data-prop. (#349) */
+export interface TimelineDataItem {
+    /** Timestamp text (rendered as `<TimelineTime>`). */
+    time?: React.ReactNode
+    /** Title (rendered as `<TimelineTitle>`). */
+    title?: React.ReactNode
+    /** Body (rendered as `<TimelineDescription>`). */
+    description?: React.ReactNode
+    /** Marker variant — see {@link TimelineItemProps.variant}. */
+    variant?: TimelineItemProps["variant"]
+    /** Custom marker node (overrides the default dot). */
+    marker?: React.ReactNode
+    /** Render the description as `div` for block content (actions/lists). Default `p`. */
+    descriptionAs?: "p" | "div"
+    /** Extra classes for this item's `<li>`. */
+    className?: string
+}
+
+export interface TimelineProps extends React.HTMLAttributes<HTMLOListElement> {
+    /**
+     * **Data-prop convenience**: render rows from data instead of composing
+     * `<TimelineItem>` children — the same data-driven shape as `DataTable`,
+     * `StatGroup`, and `AmountBreakdown`. The last item's connector is dropped
+     * automatically. Omit `items` and pass compound children for full control
+     * (both are supported). (#349)
+     */
+    items?: TimelineDataItem[]
+}
+
+const Timeline = React.forwardRef<HTMLOListElement, TimelineProps>(
+    ({ className, items, children, ...props }, ref) => (
+        <ol ref={ref} className={cn("relative flex flex-col", className)} {...props}>
+            {items
+                ? items.map((item, index) => (
+                      <TimelineItem
+                          key={index}
+                          variant={item.variant}
+                          marker={item.marker}
+                          connector={index < items.length - 1}
+                          className={item.className}
+                      >
+                          {item.time != null ? <TimelineTime>{item.time}</TimelineTime> : null}
+                          {item.title != null ? <TimelineTitle>{item.title}</TimelineTitle> : null}
+                          {item.description != null ? (
+                              <TimelineDescription as={item.descriptionAs}>{item.description}</TimelineDescription>
+                          ) : null}
+                      </TimelineItem>
+                  ))
+                : children}
+        </ol>
+    )
+)
+Timeline.displayName = "Timeline"
 
 export { Timeline, TimelineItem, TimelineTitle, TimelineDescription, TimelineTime }
