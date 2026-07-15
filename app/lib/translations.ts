@@ -268,7 +268,7 @@ export type AiHandoffPageStrings = {
 
 export type ColdTestsPageStrings = {
   label: string;
-  heading: string;
+  heading: (count: number) => string;
   subtitle: (count: number) => string;
   searchPlaceholder: string;
   allTab: string;
@@ -310,7 +310,7 @@ export type ColdTestsPageStrings = {
   why: {
     label: string;
     heading: string;
-    subtitle: string;
+    subtitle: (count: number) => string;
     ctaGalleryLabel: string;
     ctaComponentsLabel: string;
     breadcrumbLabel: string;
@@ -609,7 +609,7 @@ export const translations: Record<
       },
       coldTests: {
         label: "Cold tests",
-        heading: "170 screens built by AI that had never seen Gunjo.",
+        heading: (count) => `${count} screens built by AI that had never seen Gunjo.`,
         subtitle: (count) =>
           `${count} rounds. Each one a context-free agent given only the public npm package and the gunjo.jp docs — no source access — and asked to build a working screen.`,
         searchPlaceholder: "Search rounds, routes, industries...",
@@ -673,9 +673,9 @@ export const translations: Record<
         why: {
           label: "Methodology",
           heading: "Why cold tests",
-          subtitle:
-            "What we measure when a context-free AI agent has to ship a real-industry screen with only the public npm package and gunjo.jp docs — and what crystallises after 170 rounds.",
-          ctaGalleryLabel: "See all 170 rounds",
+          subtitle: (count) =>
+            `What we measure when a context-free AI agent has to ship a real-industry screen with only the public npm package and gunjo.jp docs — and what crystallises after ${count} rounds.`,
+          ctaGalleryLabel: "See all rounds",
           ctaComponentsLabel: "Browse the component catalog",
           breadcrumbLabel: "Why",
         },
@@ -1241,7 +1241,7 @@ export const translations: Record<
       },
       coldTests: {
         label: "コールドテスト",
-        heading: "群青を知らない AI に作らせた、170 画面。",
+        heading: (count) => `群青を知らない AI に作らせた、${count} 画面。`,
         subtitle: (count) =>
           `${count} ラウンド。予備知識ゼロの AI に、公開 npm パッケージと gunjo.jp の docs だけを渡して（ソースは見せず）、動く画面を組ませた記録です。`,
         searchPlaceholder: "ラウンド・ルート・業種を検索...",
@@ -1305,9 +1305,9 @@ export const translations: Record<
         why: {
           label: "方法論",
           heading: "なぜコールドテストするか",
-          subtitle:
-            "予備知識ゼロの AI に、公開 npm パッケージと gunjo.jp の docs だけで実在の業種の画面を組ませる。170 ラウンドの記録から、どんなコンポーネントが群青に加わったか。",
-          ctaGalleryLabel: "170 ラウンドのカタログを見る",
+          subtitle: (count) =>
+            `予備知識ゼロの AI に、公開 npm パッケージと gunjo.jp の docs だけで実在の業種の画面を組ませる。${count} ラウンドの記録から、どんなコンポーネントが群青に加わったか。`,
+          ctaGalleryLabel: "カタログを見る",
           ctaComponentsLabel: "コンポーネント一覧へ",
           breadcrumbLabel: "なぜ",
         },

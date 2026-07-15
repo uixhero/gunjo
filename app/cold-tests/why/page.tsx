@@ -17,7 +17,7 @@ const CRYSTALLIZED_COUNT = (gallery as GalleryShape).crystallizedCount;
 // audience for this section. An EN swap can come later.
 const TITLE =
     "なぜコールドテストするか：予備知識ゼロの AI に gunjo/ui を実装させ続けて見えたこと";
-const DESCRIPTION = `公開 npm パッケージと gunjo.jp の docs だけを渡された AI が、${ROUND_COUNT} ラウンドの実業種画面を組んでみせた記録。3回確認を経て群青に加わった ${CRYSTALLIZED_COUNT} コンポーネント、業界の壁の薄さ、忖度しない検査役として AI を使う方法論。`;
+const DESCRIPTION = `公開 npm パッケージと gunjo.jp の docs だけを渡された AI が、${ROUND_COUNT} ラウンドの実業種画面を組んでみせた記録。業種ごとの扉ページが取り上げた ${CRYSTALLIZED_COUNT} コンポーネント（重複を除く）、業界の壁の薄さ、忖度しない検査役として AI を使う方法論。`;
 const SITE_URL = (
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.gunjo.jp"
 ).replace(/\/$/, "");
