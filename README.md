@@ -7,7 +7,7 @@
 
 *A design system from [UIXHERO](https://www.uixhero.com) — see the live [component gallery](https://www.uixhero.com/resources/ui-components).*
 
-> ⚠️ **Pre-1.0.** The current `0.0.1-alpha.x` publish reserves the name and exercises the release pipeline. Until the `1.0.0` stable release the public API may change — pin your version and check the [CHANGELOG](./CHANGELOG.md) before upgrading.
+> ⚠️ **Pre-1.0.** The current `0.1.0-beta.x` line is the first public beta. Until the `1.0.0` stable release the public API may change — pin your version and check the [CHANGELOG](./CHANGELOG.md) before upgrading.
 
 **Gunjo (群青)** is an SSOT-driven React + Tailwind design system — 200+ components whose **pen design source, React source, and docs are verified to stay in sync**, and which are built to be used as comfortably by AI agents as by people.
 

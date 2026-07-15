@@ -464,7 +464,7 @@ export const translations: Record<
         label: "The color story",
         gunjoTitle: "群青 — Gunjō",
         gunjoBody:
-          "Not yet blue. Becoming blue. The color of dawn before light arrives, of ink before it dries, of form before it sets. A design system in alpha — a color in becoming.",
+          "Not yet blue. Becoming blue. The color of dawn before light arrives, of ink before it dries, of form before it sets. A design system in beta — a color in becoming.",
         kobichaTitle: "媚茶 — Kobicha",
         kobichaBody:
           "The warm earth that supports the becoming. Where human intent meets the system — hover, selection, the moment of choice — kobicha lends its temperature.",
@@ -542,7 +542,7 @@ export const translations: Record<
       },
     },
     intro: {
-      alphaBadge: "Alpha · v0.0.1-alpha.3",
+      alphaBadge: "Beta · v0.1.0-beta.1",
       componentCountBadge: "200+ components",
       ctaPrimary: "Get Started",
       ctaSecondary: "Browse Components",
@@ -1097,7 +1097,7 @@ export const translations: Record<
         label: "色の物語",
         gunjoTitle: "群青 — Gunjō",
         gunjoBody:
-          "未だ青ならず、青になりつつあるもの。夜明け前の色、墨のまだ乾かぬ色、形になる前の色。alpha 段階のデザインシステムは、becoming する色そのもの。",
+          "未だ青ならず、青になりつつあるもの。夜明け前の色、墨のまだ乾かぬ色、形になる前の色。beta 段階のデザインシステムは、becoming する色そのもの。",
         kobichaTitle: "媚茶 — Kobicha",
         kobichaBody:
           "becoming を支える温かい土。ホバー、選択、人の意思が介在する瞬間に温度を加える色。",
@@ -1175,7 +1175,7 @@ export const translations: Record<
       },
     },
     intro: {
-      alphaBadge: "Alpha · v0.0.1-alpha.3",
+      alphaBadge: "Beta · v0.1.0-beta.1",
       componentCountBadge: "200+ コンポーネント",
       ctaPrimary: "はじめる",
       ctaSecondary: "コンポーネント一覧",
