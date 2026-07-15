@@ -259,6 +259,9 @@ export function DataTable<TData, TValue>({
     const rowTo = totalRows === 0 ? 0 : rowFrom + visibleRows - 1
     const pageItems = React.useMemo(() => getPageItems(currentPage, pageCount), [currentPage, pageCount])
     const visibleColumns = table.getVisibleLeafColumns()
+    // Render a totals/footer row only when at least one column defines a
+    // TanStack `footer`. Without any, the table renders exactly as before. (#255)
+    const hasFooter = visibleColumns.some((column) => column.columnDef.footer != null)
 
     React.useEffect(() => {
         table.setPageSize(pageSize)
@@ -522,6 +525,27 @@ export function DataTable<TData, TValue>({
                             </tr>
                         )}
                     </tbody>
+                    {hasFooter ? (
+                        <tfoot className="border-t bg-muted/50 font-medium">
+                            {table.getFooterGroups().map((footerGroup) => (
+                                <tr key={footerGroup.id}>
+                                    {footerGroup.headers.map((footer) => (
+                                        <td
+                                            key={footer.id}
+                                            className="h-11 whitespace-nowrap px-3 text-left align-middle"
+                                        >
+                                            {footer.isPlaceholder
+                                                ? null
+                                                : flexRender(
+                                                      footer.column.columnDef.footer,
+                                                      footer.getContext()
+                                                  )}
+                                        </td>
+                                    ))}
+                                </tr>
+                            ))}
+                        </tfoot>
+                    ) : null}
                 </table>
             </div>
 

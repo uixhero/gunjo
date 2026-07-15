@@ -55,6 +55,14 @@ function getLegendItemLabel(item: ChartLegendItem, index: number) {
     return [label, value, description].filter(Boolean).join(": ")
 }
 
+/**
+ * A tone → label legend. Despite the `Chart` name it isn't chart-only: any
+ * surface that colors items by tone — a `WeekView`/`KanbanBoard` (online vs
+ * onsite), a calendar, a status board — can render its key with this instead of
+ * hand-rolling colored swatches. Pass each item a `color` (a chart tone like
+ * `"success"`/`"info"`, or any CSS color); `value` is optional. Also exported as
+ * **`SwatchLegend`** for that standalone use. (#327)
+ */
 const ChartLegend = React.forwardRef<HTMLDivElement, ChartLegendProps>(
     (
         {
@@ -129,4 +137,11 @@ const ChartLegend = React.forwardRef<HTMLDivElement, ChartLegendProps>(
 )
 ChartLegend.displayName = "ChartLegend"
 
-export { ChartLegend }
+/**
+ * Standalone alias of {@link ChartLegend} — a tone → label legend for non-chart
+ * surfaces (calendars, kanban, status boards). Same props. (#327)
+ */
+const SwatchLegend = ChartLegend
+
+export { ChartLegend, SwatchLegend }
+export type { ChartLegendProps as SwatchLegendProps, ChartLegendItem as SwatchLegendItem }
