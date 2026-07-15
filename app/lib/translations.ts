@@ -1360,9 +1360,9 @@ export const translations: Record<
           },
         },
         designMd: {
-          title: "DESIGN.md ── canonical な仕様書",
+          title: "DESIGN.md：canonical な仕様書",
           description:
-            "DESIGN.md はデザインシステム全体を機械可読な Markdown でドキュメント化しており、AI ツール（v0 / Cursor / Claude / Figma Make）がそのまま消費できます。ブランドストーリー、hex/HSL カラーパレット、タイポグラフィ規則、コンポーネント単位の用法 ── 真実の唯一の源泉。",
+            "DESIGN.md はデザインシステム全体を機械可読な Markdown でドキュメント化しており、AI ツール（v0 / Cursor / Claude / Figma Make）がそのまま消費できます。ブランドストーリー、hex/HSL カラーパレット、タイポグラフィ規則、コンポーネント単位の用法。これが真実の唯一の源泉です。",
           cta: "完全な仕様を読む",
         },
       },
@@ -1404,7 +1404,7 @@ export const translations: Record<
           bannalyze: {
             title: "Bannalyze",
             description:
-              "Banner Review のアナライザー画面 ── データ密度の高いワークフローツール。",
+              "Banner Review のアナライザー画面。データ密度の高いワークフローツールです。",
           },
           "media-library": {
             title: "Media Library",
@@ -1509,7 +1509,7 @@ export const translations: Record<
         badge: "AI ネイティブ設計",
         heading: "選んだ AI に、そのまま渡す。",
         subtitle:
-          "GunjoUI の全コンポーネントは Markdown 仕様と JSON-Schema エンドポイントを公開しており、AI ツールが variant キー・Tailwind クラス・デザイントークンを正確に参照できます ── 人間が読むのと同じ SSOT です。",
+          "GunjoUI の全コンポーネントは Markdown 仕様と JSON-Schema エンドポイントを公開しており、AI ツールが variant キー・Tailwind クラス・デザイントークンを正確に参照できます。人間が読むのと同じ SSOT です。",
         capabilities: {
           spec: {
             title: "Spec を prompt に",
@@ -1527,7 +1527,7 @@ export const translations: Record<
             title: "DESIGN.md",
             badge: "公開済",
             description:
-              "canonical な仕様書 ── 色・タイポグラフィ・コンポーネント規則を AI 消費前提で記述。",
+              "canonical な仕様書。色・タイポグラフィ・コンポーネント規則を AI 消費前提で記述しています。",
           },
           mcp: {
             title: "MCP サーバー",
@@ -1569,14 +1569,14 @@ export const translations: Record<
           usage: {
             heading: "ファイルの使い方",
             pencilNote:
-              ".pen は Pencil のドキュメント — まだ入れていない場合は Pencil をインストールしてください。JSON（core / metadata）は普通の JSON なのでどんなツールでも読めます。",
+              ".pen は Pencil のドキュメントです。まだ入れていない場合は Pencil をインストールしてください。JSON（core / metadata）は普通の JSON なのでどんなツールでも読めます。",
             designer: {
               title: "デザインの参考として使う",
               intro:
                 ".pen を開いて、自分のデザインに取り込む素材として使ったり、コードエディタの横に並べて視覚リファレンスにできます。",
               steps: [
                 "必要な <category>.pen をダウンロード。",
-                "Pencil で開く — そのカテゴリの全コンポーネントが 1 枚の無限キャンバスに並びます。",
+                "Pencil で開く。そのカテゴリの全コンポーネントが 1 枚の無限キャンバスに並びます。",
                 "パン・ズームで観察。フレームをドラッグコピーして自分のドキュメントに持ち込めます。",
               ],
             },
@@ -1587,7 +1587,7 @@ export const translations: Record<
               steps: [
                 "gunjo を clone して、design/ の <category>.pen を Pencil で開く。",
                 "編集して保存。Pencil が同じ .pen ファイルに書き戻します。",
-                "`npm run design:sync` を実行 — metadata、core spec JSON、生成 variant-keys、manifest、public-exports、docs ナビが全部 .pen から再ビルドされます。",
+                "`npm run design:sync` を実行。metadata、core spec JSON、生成 variant-keys、manifest、public-exports、docs ナビが全部 .pen から再ビルドされます。",
                 ".pen と再生成された成果物を一緒にコミット（design:verify が整合性を検証します）。",
               ],
               readmeCta: "詳しい SSOT 運用手順（design/README.md）",
@@ -1600,13 +1600,13 @@ export const translations: Record<
                 "コード生成ツールや AI に流す場合の使い分け：",
               coreLabel: "<category>-core.json",
               coreDescription:
-                "構造化 spec — variant key、各 variant のジオメトリ、slot ID。コード生成や下流ツールのカノニカル入力。",
+                "構造化 spec（variant key、各 variant のジオメトリ、slot ID）。コード生成や下流ツールのカノニカル入力です。",
               metadataLabel: "<category>-metadata.json",
               metadataDescription:
                 "コンポーネントごとの title / description。i18n や docs のソース。",
               penLabel: "<category>.pen",
               penDescription:
-                "Pencil の元ドキュメント — 内部は JSON ですが、ラウンドトリップは Pencil で開いたときだけ可能です。",
+                "Pencil の元ドキュメントです。内部は JSON ですが、ラウンドトリップは Pencil で開いたときだけ可能です。",
             },
           },
         },
@@ -1646,7 +1646,7 @@ export const translations: Record<
           mcp: {
             title: "gunjo-ui MCP サーバー",
             description:
-              "Claude / Cursor が Model Context Protocol で gunjo-ui 名前空間を直接クエリ ── コピペ不要。",
+              "Claude / Cursor が Model Context Protocol で gunjo-ui 名前空間を直接クエリできます。コピペは不要です。",
             cta: "MCP プランを読む",
           },
           figma: {
