@@ -15,6 +15,7 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ### Added
 
+- **`SignedRecord` の複数署名**（影響: none）— `requiredSigners`（当事者一覧）を渡すと複数署名モードに。**全員が署名するまで下書きのまま編集でき、最後の署名でロック**する（単一署名は従来どおり1回でロック）。`value.signatures` に署名を蓄積し、当事者ごとの署名状況と進捗（N/M）を表示。同一人物の二重署名と当事者外の署名は理由つきで不可。追記の author は当事者ラベルで表示。`requiredSigners` 未指定なら従来の挙動のまま。(#259)
 - **`Toast` の `description` / `action`**（影響: none）— 2行目の補足と操作ボタン1つを追加し、`ToastAction` を公開。`useToast().showToast` はオブジェクト形 `{ message, description, type, duration, action }` のオーバーロードも受け付ける（従来の位置引数呼び出しはそのまま動く）。`action` 付きで `duration` 未指定なら、押す前に消えないよう自動クローズを延長。(#301)
 - **`DataTable` の合計 / フッター行**（影響: none）— いずれかの列に TanStack の `footer` を定義すると `<tfoot>` を描画。`footer(({ table }) => …)` で `getFilteredRowModel()` を使えばフィルタ後の合計になる（表示中ページだけではない）。`footer` 未定義なら従来どおり何も出ない。card モード（`renderCard`）には出ない。(#255)
 - **`SheetBody` / `DialogBody`**（影響: none）— 長いフォーム用のスクロール領域。Content の**直下に置いた時だけ**高さ制限つき flex 列へ切り替え、ヘッダー / フッターを固定して中央だけスクロールする。Body が無い既存の Sheet / Dialog は出力不変。(#293)

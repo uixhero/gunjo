@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import { IconLock, IconPlus } from "@tabler/icons-react"
+import { IconCheck, IconClock, IconLock, IconPlus } from "@tabler/icons-react"
 
 import { cn } from "../../lib/utils"
 import { Button } from "../inputs/Button"
@@ -23,13 +23,31 @@ export interface SignedRecordAddendum {
     body: React.ReactNode
 }
 
+export interface SignedRecordSigner {
+    /** Matches `signerId` / `SignedRecordSignature.signerId`. */
+    id: string
+    /** Display name for this party. Falls back to `id`. */
+    label?: React.ReactNode
+}
+
+export interface SignedRecordSignature {
+    signerId: string
+    /** ISO timestamp. */
+    at: string
+}
+
 export interface SignedRecordValue {
     /** `"draft"` is editable; `"signed"` is locked read-only (addendum-only). */
     status: "draft" | "signed"
-    /** Recorded on sign. */
+    /** Recorded on sign. Single-signatory mode only. */
     signedBy?: string
     /** ISO timestamp recorded on sign. */
     signedAt?: string
+    /**
+     * Collected signatures — multi-signatory mode only (`requiredSigners` set).
+     * The record locks once every required party appears here. (#259)
+     */
+    signatures?: SignedRecordSignature[]
     /** The append-only addendum chain. */
     addenda: SignedRecordAddendum[]
 }
@@ -47,6 +65,14 @@ export interface SignedRecordLabels {
     cancel?: string
     signedByLabel?: string
     authorAt?: (author: string, at: React.ReactNode) => React.ReactNode
+    /** Multi-signatory: shown next to a party who has not signed yet. Default `"未署名"`. (#259) */
+    pendingSignature?: string
+    /** Multi-signatory: sign-progress readout. Default `署名 {signed}/{total}`. (#259) */
+    signatureProgress?: (signed: number, total: number) => React.ReactNode
+    /** Multi-signatory: tooltip when the current user is not a required party. Default `"署名の当事者ではありません。"`. (#259) */
+    notASigner?: string
+    /** Multi-signatory: tooltip when the current user has already signed. Default `"すでに署名済みです。"`. (#259) */
+    alreadySigned?: string
 }
 
 export interface SignedRecordProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "children" | "onChange"> {
@@ -58,6 +84,16 @@ export interface SignedRecordProps extends Omit<React.HTMLAttributes<HTMLDivElem
     children: (state: { readOnly: boolean }) => React.ReactNode
     /** The signing user's id — recorded as `signedBy` and each addendum's `author`. */
     signerId: string
+    /**
+     * Opt into **multi-signatory** mode: the parties who must all sign before the
+     * record locks. Until every one of them appears in `value.signatures`, the
+     * record stays a `"draft"` (still editable); the last signature flips it to
+     * `"signed"`. `signerId` signs as the current user and may only sign once, and
+     * only if they are one of these parties.
+     *
+     * Omit for the single-signatory behaviour (one signature locks immediately). (#259)
+     */
+    requiredSigners?: SignedRecordSigner[]
     /** Whether the record can be signed now (required sections filled). Default `true`. */
     canSign?: boolean
     /** Reason shown in a tooltip when signing is disabled. */
@@ -105,6 +141,7 @@ const SignedRecord = React.forwardRef<HTMLDivElement, SignedRecordProps>(
             onChange,
             children,
             signerId,
+            requiredSigners,
             canSign = true,
             cannotSignReason,
             cannotSignReasonLabel,
@@ -127,9 +164,41 @@ const SignedRecord = React.forwardRef<HTMLDivElement, SignedRecordProps>(
         const [addReason, setAddReason] = React.useState("")
         const seq = React.useRef(0)
 
+        // Multi-signatory mode (#259): opt-in via `requiredSigners`. The record only
+        // locks once every required party has signed; until then it stays a draft.
+        const multi = requiredSigners !== undefined && requiredSigners.length > 0
+        const signatures = value.signatures ?? []
+        const hasSigned = (id: string) => signatures.some((s) => s.signerId === id)
+        const signedCount = multi ? requiredSigners.filter((s) => hasSigned(s.id)).length : 0
+        const isRequiredParty = multi && requiredSigners.some((s) => s.id === signerId)
+        const alreadySignedByMe = multi && hasSigned(signerId)
+        // In multi mode the button is only actionable for a required party who
+        // hasn't signed yet — on top of the caller's own `canSign` gate.
+        const signAllowed = multi ? canSign && isRequiredParty && !alreadySignedByMe : canSign
+        // Addenda display the party's label when it is a plain string; otherwise the
+        // raw id (which is what single-signatory mode has always shown).
+        const authorName = (id: string): string => {
+            const label = requiredSigners?.find((s) => s.id === id)?.label
+            return typeof label === "string" ? label : id
+        }
+
         const sign = () => {
-            if (readOnly || !canSign) return
-            onChange({ ...value, status: "signed", signedBy: signerId, signedAt: new Date().toISOString() })
+            if (readOnly || !signAllowed) return
+            const at = new Date().toISOString()
+            if (!multi) {
+                onChange({ ...value, status: "signed", signedBy: signerId, signedAt: at })
+                return
+            }
+            const nextSignatures = [...signatures, { signerId, at }]
+            const allSigned = requiredSigners.every((s) =>
+                nextSignatures.some((x) => x.signerId === s.id)
+            )
+            onChange({
+                ...value,
+                signatures: nextSignatures,
+                // The last required signature locks the record.
+                ...(allSigned ? { status: "signed" as const, signedAt: at } : {}),
+            })
         }
 
         const submitAddendum = () => {
@@ -148,44 +217,81 @@ const SignedRecord = React.forwardRef<HTMLDivElement, SignedRecordProps>(
         }
 
         const authorAt = labels?.authorAt ?? ((author: string, at: React.ReactNode) => `${author}・${at}`)
+        const progressText =
+            labels?.signatureProgress ?? ((signed: number, total: number) => `署名 ${signed}/${total}`)
+        // In multi mode the button reports progress so the user can see how many
+        // parties are still outstanding.
         const signButton = readOnly ? null : (
-            <Button size="sm" onClick={sign} disabled={!canSign}>
+            <Button size="sm" onClick={sign} disabled={!signAllowed}>
                 {labels?.sign ?? "署名・確定"}
+                {multi ? ` (${signedCount}/${requiredSigners.length})` : null}
             </Button>
         )
+        // Why the button is unavailable — the caller's reason first, then the
+        // multi-signatory rules.
+        const signBlockedReason: React.ReactNode = !canSign
+            ? cannotSignReason
+            : multi && !isRequiredParty
+              ? (labels?.notASigner ?? "署名の当事者ではありません。")
+              : multi && alreadySignedByMe
+                ? (labels?.alreadySigned ?? "すでに署名済みです。")
+                : undefined
 
         return (
             <div ref={ref} className={cn("flex w-full flex-col gap-3", className)} data-slot="signed-record" {...props}>
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                    {readOnly ? (
-                        <div className="flex flex-wrap items-center gap-2 text-sm">
+                    <div className="flex flex-wrap items-center gap-2 text-sm">
+                        {readOnly ? (
                             <Badge variant="success">{labels?.signed ?? "署名・確定済"}</Badge>
-                            {value.signedBy ? (
-                                <span className="text-muted-foreground">
-                                    {labels?.signedByLabel ?? "署名"}: {authorAt(value.signedBy, value.signedAt ? formatTime(value.signedAt) : "")}
-                                </span>
-                            ) : null}
-                        </div>
-                    ) : (
-                        <Badge variant="info">{labels?.draft ?? "下書き"}</Badge>
-                    )}
-                    {readOnly ? null : !canSign && cannotSignReason != null ? (
+                        ) : (
+                            <Badge variant="info">{labels?.draft ?? "下書き"}</Badge>
+                        )}
+                        {multi ? (
+                            <span className="text-xs text-muted-foreground">
+                                {progressText(signedCount, requiredSigners.length)}
+                            </span>
+                        ) : readOnly && value.signedBy ? (
+                            <span className="text-muted-foreground">
+                                {labels?.signedByLabel ?? "署名"}: {authorAt(value.signedBy, value.signedAt ? formatTime(value.signedAt) : "")}
+                            </span>
+                        ) : null}
+                    </div>
+                    {readOnly ? null : signBlockedReason != null ? (
                         <Tooltip>
                             <TooltipTrigger asChild>
                                 <span
                                     className="inline-flex"
                                     tabIndex={0}
-                                    aria-label={cannotSignReasonLabel ?? (typeof cannotSignReason === "string" ? cannotSignReason : undefined)}
+                                    aria-label={cannotSignReasonLabel ?? (typeof signBlockedReason === "string" ? signBlockedReason : undefined)}
                                 >
                                     {signButton}
                                 </span>
                             </TooltipTrigger>
-                            <TooltipContent>{cannotSignReason}</TooltipContent>
+                            <TooltipContent>{signBlockedReason}</TooltipContent>
                         </Tooltip>
                     ) : (
                         signButton
                     )}
                 </div>
+
+                {multi ? (
+                    <ul className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
+                        {requiredSigners.map((s) => {
+                            const sig = signatures.find((x) => x.signerId === s.id)
+                            return (
+                                <li key={s.id} className="flex items-center gap-1.5">
+                                    {sig ? (
+                                        <IconCheck className="h-3.5 w-3.5 shrink-0 text-success-strong" aria-hidden="true" />
+                                    ) : (
+                                        <IconClock className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                                    )}
+                                    <span className={cn(sig && "font-medium text-foreground")}>{s.label ?? s.id}</span>
+                                    <span>{sig ? formatTime(sig.at) : (labels?.pendingSignature ?? "未署名")}</span>
+                                </li>
+                            )
+                        })}
+                    </ul>
+                ) : null}
 
                 {readOnly ? (
                     <p className="inline-flex items-center gap-1.5 rounded-md border border-border bg-muted/40 px-3 py-2 text-xs text-muted-foreground">
@@ -204,7 +310,7 @@ const SignedRecord = React.forwardRef<HTMLDivElement, SignedRecordProps>(
                                 {value.addenda.map((a) => (
                                     <li key={a.id} className="rounded-md border border-border bg-card p-3 text-sm">
                                         <div className="mb-1 flex flex-wrap items-center gap-x-2 text-xs text-muted-foreground">
-                                            <span className="font-medium text-foreground">{authorAt(a.author, formatTime(a.at))}</span>
+                                            <span className="font-medium text-foreground">{authorAt(authorName(a.author), formatTime(a.at))}</span>
                                             {a.reason ? <span>／ {a.reason}</span> : null}
                                         </div>
                                         <div className="leading-relaxed text-foreground">{a.body}</div>
