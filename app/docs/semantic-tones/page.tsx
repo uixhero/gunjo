@@ -3,13 +3,14 @@
 import * as React from "react";
 import {
     Badge,
+    ExpiryBadge,
     Meter,
     DistributionBar,
+    Statistic,
+    StatusBoard,
     SEMANTIC_TONES,
     toBadgeVariant,
     toChartTone,
-    toMeterTone,
-    toDangerTone,
     type SemanticTone,
     DocNote,
 } from "@gunjo/ui";
@@ -56,8 +57,8 @@ const CONVERTERS: {
         fn: "toMeterTone",
         target: { ja: "Meter (MeterTone)", en: "Meter (MeterTone)" },
         note: {
-            ja: "Meter に default は無いため muted に対応。",
-            en: "Meter has no `default` → maps to `muted`.",
+            ja: "Meter は SemanticTone を直接受理し、default を muted に正規化する。既存の境界コード向けに変換器も維持。",
+            en: "Meter accepts SemanticTone directly and normalizes `default` to `muted`; the helper remains for existing boundaries.",
         },
     },
     {
@@ -70,10 +71,10 @@ const CONVERTERS: {
     },
     {
         fn: "toDangerTone",
-        target: { ja: "StatusBoard / Stringline", en: "StatusBoard / Stringline" },
+        target: { ja: "Stringline / 旧 StatusBoard 境界", en: "Stringline / legacy StatusBoard boundaries" },
         note: {
-            ja: "エラー tone を danger と綴る語彙。destructive→danger、他は同一。",
-            en: "Vocabularies that spell the error tone `danger`: `destructive`→`danger`, rest identical.",
+            ja: "Stringline はエラー tone を danger と綴る。StatusBoard は SemanticTone を直接受理し、danger も互換 alias として維持。",
+            en: "Stringline spells the error tone `danger`. StatusBoard accepts SemanticTone directly and keeps `danger` as a compatibility alias.",
         },
     },
 ];
@@ -85,8 +86,9 @@ export default function SemanticTonesPage() {
 
     const usageCode = `import {
   type SemanticTone,
-  toChartTone, toMeterTone, toBadgeVariant,
-  Badge, Meter, DistributionBar, ScheduleGrid,
+  toChartTone, toBadgeVariant,
+  Badge, Meter, Statistic, StatusBoard,
+  DistributionBar, ScheduleGrid,
 } from "@gunjo/ui"
 
 // One status drives every surface — no per-screen mapping table.
@@ -94,7 +96,9 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
 
 <ScheduleGrid cells={[{ tone: status /* shared union — direct */ }]} />
 <Badge variant={toBadgeVariant(status)}>${isJa ? "在庫" : "Stock"}</Badge>
-<Meter tone={toMeterTone(status)} value={68} max={100} />
+<Statistic label="SLA" value="99.8%" change="+0.2%" trend="up" tone={status} />
+<StatusBoard items={[{ id: 1, label: "API", status: "Healthy", tone: status }]} />
+<Meter tone={status} value={68} max={100} />
 <DistributionBar segments={[{ label: "${isJa ? "使用中" : "Used"}", value: 68, color: toChartTone(status) }]} />`;
 
     return (
@@ -114,16 +118,15 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
                 <p className="text-sm leading-relaxed">
                     {isJa ? (
                         <>
-                            同じステータスを <code>ScheduleGrid</code> セル・<code>Badge</code>・チャートセグメント・
-                            <code>Meter</code> に跨って出すとき、以前はコンポーネントごとに <code>Record</code> の変換表を手書きしていた。
-                            <code>SemanticTone</code> を単一の型にして、語彙が違う所だけ変換器を通せば良い。
+                            同じステータスを <code>ScheduleGrid</code> セル・<code>Statistic</code>・<code>StatusBoard</code>・
+                            <code>Meter</code> に跨って出すときは <code>SemanticTone</code> をそのまま渡せる。
+                            <code>Badge</code> やチャートのように表示方式を含む語彙だけ変換器を通す。
                         </>
                     ) : (
                         <>
-                            Rendering the same status across a <code>ScheduleGrid</code> cell, a <code>Badge</code>, a chart
-                            segment, and a <code>Meter</code> used to mean a hand-written <code>Record</code> map per
-                            component. Type the status once as <code>SemanticTone</code> and pass divergent vocabularies
-                            through a converter.
+                            A status can flow directly across a <code>ScheduleGrid</code> cell, <code>Statistic</code>,
+                            <code>StatusBoard</code>, and <code>Meter</code>. Use converters only for presentation
+                            vocabularies such as <code>Badge</code> variants or chart colours.
                         </>
                     )}
                 </p>
@@ -136,8 +139,8 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
                 </h2>
                 <p className="text-sm text-muted-foreground">
                     {isJa
-                        ? "SemanticTone = 次の 7 つ。ScheduleGrid / Leaderboard / KanbanBoard / Gantt はこの語彙そのものなので、値をそのまま tone に渡せる。"
-                        : "SemanticTone is these 7. ScheduleGrid / Leaderboard / KanbanBoard / Gantt use exactly this vocabulary, so a value flows straight into their `tone` prop."}
+                        ? "SemanticTone = 次の 7 つ。Statistic / StatGroup / StatusBoard / Meter を含む tone 対応部品へ値をそのまま渡せる。"
+                        : "SemanticTone is these 7. Tone-driven components including Statistic, StatGroup, StatusBoard, and Meter accept these values directly."}
                 </p>
                 <ul className="grid gap-2 sm:grid-cols-2">
                     {SEMANTIC_TONES.map((t) => (
@@ -163,8 +166,8 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
                 </h2>
                 <p className="text-sm text-muted-foreground">
                     {isJa
-                        ? "トーンを選ぶと、下の各コンポーネントが同じ SemanticTone から描画される（変換器経由）。"
-                        : "Pick a tone — every component below renders from the same SemanticTone (via converters)."}
+                        ? "トーンを選ぶと、下の各コンポーネントが同じ SemanticTone から描画される。変換が必要な境界だけ結果も表示する。"
+                        : "Pick a tone — every component below renders from the same SemanticTone, with converted results shown only at divergent boundaries."}
                 </p>
 
                 <div className="flex flex-wrap gap-2" role="group" aria-label={isJa ? "トーンを選択" : "Select tone"}>
@@ -202,10 +205,12 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
 
                     <div className="space-y-2">
                         <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                            Meter · toMeterTone
+                            Meter · direct
                         </p>
-                        <Meter tone={toMeterTone(tone)} value={68} max={100} label={isJa ? "使用率" : "Usage"} />
-                        <code className="text-xs text-muted-foreground">→ &quot;{toMeterTone(tone)}&quot;</code>
+                        <Meter tone={tone} value={68} max={100} label={isJa ? "使用率" : "Usage"} />
+                        <code className="text-xs text-muted-foreground">
+                            {tone === "default" ? 'default → "muted" visual' : `tone="${tone}"`}
+                        </code>
                     </div>
 
                     <div className="space-y-2">
@@ -223,17 +228,84 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
 
                     <div className="space-y-2">
                         <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
-                            StatusBoard / Stringline · toDangerTone
+                            Statistic · direct
                         </p>
-                        <div className="flex items-center gap-2">
-                            <span
-                                aria-hidden
-                                className="h-4 w-4 rounded border"
-                                style={{ backgroundColor: TONE_SWATCH[tone] }}
-                            />
-                            <code className="text-xs text-muted-foreground">tone → &quot;{toDangerTone(tone)}&quot;</code>
-                        </div>
+                        <Statistic
+                            label={isJa ? "処理成功率" : "Success rate"}
+                            value="99.8%"
+                            change="+0.2%"
+                            trend="up"
+                            tone={tone}
+                        />
                     </div>
+
+                    <div className="space-y-2 sm:col-span-2">
+                        <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                            StatusBoard · direct
+                        </p>
+                        <StatusBoard
+                            minTileWidth={180}
+                            items={[
+                                {
+                                    id: "api",
+                                    label: isJa ? "受付 API" : "Intake API",
+                                    status: tone,
+                                    tone,
+                                    note: isJa ? "同じ SemanticTone を直接利用" : "Uses the same SemanticTone directly",
+                                },
+                            ]}
+                        />
+                    </div>
+                </div>
+            </section>
+
+            {/* Migration */}
+            <section className="space-y-4">
+                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="migration">
+                    {isJa ? "0.1.x 互換と移行" : "0.1.x compatibility and migration"}
+                </h2>
+                <p className="text-sm text-muted-foreground">
+                    {isJa
+                        ? "旧値は 0.1.x の間も同じ見た目で動作する。新規コードは canonical 値を使い、削除は利用調査と codemod を用意した次 major 以降に再判断する。"
+                        : "Legacy values keep the same visuals throughout 0.1.x. New code should use canonical values; removal will be reconsidered no earlier than the next major, after a usage audit and codemod."}
+                </p>
+                <PropsTable
+                    data={[
+                        {
+                            name: "Statistic / StatGroup",
+                            type: "positive → success · negative → destructive · neutral → muted",
+                            description: isJa
+                                ? "trend と goodWhen は方向・評価ロジックとして維持し、tone には統合しない。"
+                                : "trend and goodWhen remain directional/evaluation logic; they are not collapsed into tone.",
+                        },
+                        {
+                            name: "StatusBoard",
+                            type: "danger → destructive",
+                            description: isJa
+                                ? "表示、重大度ソート、problemTones 判定の前に正規化する。"
+                                : "Normalized before styling, severity sorting, and problemTones matching.",
+                        },
+                        {
+                            name: "Meter",
+                            type: "default → muted visual",
+                            description: isJa
+                                ? "SemanticTone 全体を直接受理。toMeterTone も既存境界向けに維持。"
+                                : "Accepts all SemanticTone values directly; toMeterTone remains for existing boundaries.",
+                        },
+                        {
+                            name: "ExpiryBadge",
+                            type: "valid → success · expiring → warning · expired → destructive · missing → muted",
+                            description: isJa
+                                ? "公開 API はドメイン状態のまま。tone prop は追加しない。"
+                                : "The public API remains domain states; no tone prop is added.",
+                        },
+                    ]}
+                />
+                <div className="rounded-lg border p-4">
+                    <p className="mb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
+                        ExpiryBadge · domain state
+                    </p>
+                    <ExpiryBadge value="2026-08-01" today="2026-07-18" />
                 </div>
             </section>
 
@@ -244,8 +316,8 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
                 </h2>
                 <p className="text-sm text-muted-foreground">
                     {isJa
-                        ? "語彙が canonical と異なるコンポーネントには、キャスト無しで渡せる変換器を用意している。"
-                        : "For components whose vocabulary differs from the canonical scale, a converter hands you the right value — no casts."}
+                        ? "Badge・チャート・Stringline のように表示方式や旧語彙との境界が残る箇所には、キャスト無しで渡せる変換器を用意している。"
+                        : "Converters remain for presentation or legacy boundaries such as Badge, charts, and Stringline — no casts required."}
                 </p>
                 <PropsTable
                     data={CONVERTERS.map((c) => ({

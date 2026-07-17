@@ -55,12 +55,12 @@ const positiveDownCodeByLocale = {
     ja: `import { Statistic } from "@gunjo/ui";
 
 export function PositiveDecrease() {
-  return <Statistic label="エラー率" value="1.8%" change="-0.4pt" trend="down" tone="positive" hint="前週比" />;
+  return <Statistic label="エラー率" value="1.8%" change="-0.4pt" trend="down" tone="success" hint="前週比" />;
 }`,
     en: `import { Statistic } from "@gunjo/ui";
 
 export function PositiveDecrease() {
-  return <Statistic label="Error rate" value="1.8%" change="-0.4pt" trend="down" tone="positive" hint="vs last week" />;
+  return <Statistic label="Error rate" value="1.8%" change="-0.4pt" trend="down" tone="success" hint="vs last week" />;
 }`,
 } as const;
 
@@ -68,12 +68,12 @@ const negativeUpCodeByLocale = {
     ja: `import { Statistic } from "@gunjo/ui";
 
 export function NegativeIncrease() {
-  return <Statistic label="アラート" value="18件" change="+6件" trend="up" tone="negative" hint="前日比" />;
+  return <Statistic label="アラート" value="18件" change="+6件" trend="up" tone="destructive" hint="前日比" />;
 }`,
     en: `import { Statistic } from "@gunjo/ui";
 
 export function NegativeIncrease() {
-  return <Statistic label="Alerts" value="18" change="+6" trend="up" tone="negative" hint="vs yesterday" />;
+  return <Statistic label="Alerts" value="18" change="+6" trend="up" tone="destructive" hint="vs yesterday" />;
 }`,
 } as const;
 
@@ -97,7 +97,7 @@ export function StatisticGroup() {
   return (
     <div className="grid gap-3 sm:grid-cols-3">
       <Statistic label="売上" value="¥4,523,189" change="+20.1%" trend="up" hint="前月比" />
-      <Statistic label="エラー率" value="1.8%" change="-0.4pt" trend="down" tone="positive" hint="前週比" />
+      <Statistic label="エラー率" value="1.8%" change="-0.4pt" trend="down" tone="success" hint="前週比" />
       <Statistic label="処理待ち" value="24件" change="変化なし" trend="flat" />
     </div>
   );
@@ -108,7 +108,7 @@ export function StatisticGroup() {
   return (
     <div className="grid gap-3 sm:grid-cols-3">
       <Statistic label="Revenue" value="$45,231.89" change="+20.1%" trend="up" hint="vs last month" />
-      <Statistic label="Error rate" value="1.8%" change="-0.4pt" trend="down" tone="positive" hint="vs last week" />
+      <Statistic label="Error rate" value="1.8%" change="-0.4pt" trend="down" tone="success" hint="vs last week" />
       <Statistic label="Pending" value="24" change="No change" trend="flat" />
     </div>
   );
@@ -121,7 +121,7 @@ const propsByLocale = {
         { name: "value", type: "ReactNode", required: true, description: "大きく表示する主値です。" },
         { name: "change", type: "ReactNode", description: "増減や比較値です。" },
         { name: "trend", type: "\"up\" | \"down\" | \"flat\"", default: "\"flat\"", description: "増減アイコンの向きです。" },
-        { name: "tone", type: "\"positive\" | \"negative\" | \"neutral\"", description: "増減表示の意味色です。未指定時は変化の向きから推定します。" },
+        { name: "tone", type: "SemanticTone | LegacyStatisticTone", description: "増減表示の意味色です。positive / negative / neutral は 0.1.x の互換 alias として維持されます。" },
         { name: "hint", type: "ReactNode", description: "比較対象や計測時点などの補足です。" },
         { name: "className", type: "string", description: "外側に追加するクラスです。" },
     ],
@@ -130,7 +130,7 @@ const propsByLocale = {
         { name: "value", type: "ReactNode", required: true, description: "Primary metric value." },
         { name: "change", type: "ReactNode", description: "Optional change indicator." },
         { name: "trend", type: "\"up\" | \"down\" | \"flat\"", default: "\"flat\"", description: "Direction for the indicator icon." },
-        { name: "tone", type: "\"positive\" | \"negative\" | \"neutral\"", description: "Semantic color for the change indicator. Defaults from trend." },
+        { name: "tone", type: "SemanticTone | LegacyStatisticTone", description: "Semantic color for the change indicator. positive / negative / neutral remain 0.1.x compatibility aliases." },
         { name: "hint", type: "ReactNode", description: "Supporting comparison or timestamp text." },
         { name: "className", type: "string", description: "Optional class added to the root element." },
     ],
@@ -171,7 +171,7 @@ export default function StatisticPage() {
             <DocNote heading={locale === "ja" ? "変化の向きと意味色" : "Trend and tone"}>
                 {locale === "ja"
                     ? "変化の向きは矢印の向き、意味色はその変化が良い・悪い・中立のどれかを表します。売上の増加は上向きの良い変化、エラー率の減少は下向きでも良い変化として扱います。"
-                    : "trend controls the arrow direction, while tone communicates whether the change is positive, negative, or neutral. Revenue growth can stay trend=\"up\" with a positive tone; a lower error rate should use trend=\"down\" with tone=\"positive\"."}
+                    : "trend controls the arrow direction, while tone communicates the semantic result. Revenue growth can stay trend=\"up\" with tone=\"success\"; a lower error rate should use trend=\"down\" with tone=\"success\"."}
             </DocNote>
 
             <div className="space-y-4">
@@ -208,7 +208,7 @@ export default function StatisticPage() {
                                     value="1.8%"
                                     change="-0.4pt"
                                     trend="down"
-                                    tone="positive"
+                                    tone="success"
                                     hint={locale === "ja" ? "前週比" : "vs last week"}
                                     className="w-full max-w-xs"
                                 />
@@ -227,7 +227,7 @@ export default function StatisticPage() {
                                     value={locale === "ja" ? "18件" : "18"}
                                     change={locale === "ja" ? "+6件" : "+6"}
                                     trend="up"
-                                    tone="negative"
+                                    tone="destructive"
                                     hint={locale === "ja" ? "前日比" : "vs yesterday"}
                                     className="w-full max-w-xs"
                                 />
@@ -271,7 +271,7 @@ export default function StatisticPage() {
                                         value="1.8%"
                                         change="-0.4pt"
                                         trend="down"
-                                        tone="positive"
+                                        tone="success"
                                         hint={locale === "ja" ? "前週比" : "vs last week"}
                                     />
                                     <Statistic

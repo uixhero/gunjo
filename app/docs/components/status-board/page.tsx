@@ -41,7 +41,7 @@ function groups(locale: Locale, onSelect?: (id: string) => void): StatusBoardGro
           sublabel: "配車・点検",
           items: [
             { id: "501", label: "501号車", icon: <IconCar className="h-4 w-4" />, status: "空車", statusIcon: <IconCircleCheck className="h-3 w-3" />, tone: "success", location: "渋谷駅", note: "最終更新 2分前", trailing: <Badge variant="secondary">待機</Badge>, onSelect: () => onSelect?.("501") },
-            { id: "508", label: "508号車", icon: <IconCar className="h-4 w-4" />, status: "故障", statusIcon: <IconAlertTriangle className="h-3 w-3" />, tone: "danger", location: "営業所", note: "エンジン警告灯", onSelect: () => onSelect?.("508") },
+            { id: "508", label: "508号車", icon: <IconCar className="h-4 w-4" />, status: "故障", statusIcon: <IconAlertTriangle className="h-3 w-3" />, tone: "destructive", location: "営業所", note: "エンジン警告灯", onSelect: () => onSelect?.("508") },
             { id: "512", label: "512号車", icon: <IconCar className="h-4 w-4" />, status: "点検中", statusIcon: <IconTool className="h-3 w-3" />, tone: "warning", location: "整備レーン", note: "ブレーキ確認中", onSelect: () => onSelect?.("512") },
           ],
         },
@@ -60,7 +60,7 @@ function groups(locale: Locale, onSelect?: (id: string) => void): StatusBoardGro
           sublabel: "Dispatch and inspection",
           items: [
             { id: "501", label: "Car 501", icon: <IconCar className="h-4 w-4" />, status: "Available", statusIcon: <IconCircleCheck className="h-3 w-3" />, tone: "success", location: "Shibuya Station", note: "Updated 2 min ago", trailing: <Badge variant="secondary">Standby</Badge>, onSelect: () => onSelect?.("501") },
-            { id: "508", label: "Car 508", icon: <IconCar className="h-4 w-4" />, status: "Fault", statusIcon: <IconAlertTriangle className="h-3 w-3" />, tone: "danger", location: "Depot", note: "Engine warning", onSelect: () => onSelect?.("508") },
+            { id: "508", label: "Car 508", icon: <IconCar className="h-4 w-4" />, status: "Fault", statusIcon: <IconAlertTriangle className="h-3 w-3" />, tone: "destructive", location: "Depot", note: "Engine warning", onSelect: () => onSelect?.("508") },
             { id: "512", label: "Car 512", icon: <IconCar className="h-4 w-4" />, status: "Inspection", statusIcon: <IconTool className="h-3 w-3" />, tone: "warning", location: "Service lane", note: "Brake check", onSelect: () => onSelect?.("512") },
           ],
         },
@@ -123,7 +123,7 @@ function StatusBoardPreview({ locale, mode = "grouped" }: { locale: Locale; mode
         <div className="min-w-0 space-y-1.5">
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="text-sm font-semibold text-foreground">{selectedItem?.label}</h3>
-            <Badge variant={selectedItem?.tone === "danger" ? "destructive" : "secondary"}>{selectedItem?.status}</Badge>
+            <Badge variant={selectedItem?.tone === "destructive" ? "destructive" : "secondary"}>{selectedItem?.status}</Badge>
           </div>
           <p className="text-xs text-muted-foreground">{detail.area} / {selectedItem?.location}</p>
           <p className="text-sm text-foreground">{detail.summary}</p>
@@ -166,7 +166,7 @@ const groups: StatusBoardGroup[] = [
     sublabel: "配車・点検",
     items: [
       { id: "501", label: "501号車", icon: <IconCar className="h-4 w-4" />, status: "空車", statusIcon: <IconCircleCheck className="h-3 w-3" />, tone: "success", location: "渋谷駅", note: "最終更新 2分前", trailing: <Badge variant="secondary">待機</Badge> },
-      { id: "508", label: "508号車", icon: <IconCar className="h-4 w-4" />, status: "故障", statusIcon: <IconAlertTriangle className="h-3 w-3" />, tone: "danger", location: "営業所", note: "エンジン警告灯" },
+      { id: "508", label: "508号車", icon: <IconCar className="h-4 w-4" />, status: "故障", statusIcon: <IconAlertTriangle className="h-3 w-3" />, tone: "destructive", location: "営業所", note: "エンジン警告灯" },
       { id: "512", label: "512号車", icon: <IconCar className="h-4 w-4" />, status: "点検中", statusIcon: <IconTool className="h-3 w-3" />, tone: "warning", location: "整備レーン", note: "ブレーキ確認中" },
     ],
   },
@@ -204,7 +204,7 @@ export function DispatchBoard() {
         <div className="min-w-0 space-y-1.5">
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="text-sm font-semibold text-foreground">{selectedItem.label}</h3>
-            <Badge variant={selectedItem.tone === "danger" ? "destructive" : "secondary"}>{selectedItem.status}</Badge>
+            <Badge variant={selectedItem.tone === "destructive" ? "destructive" : "secondary"}>{selectedItem.status}</Badge>
           </div>
           <p className="text-xs text-muted-foreground">{detail.area} / {selectedItem.location}</p>
           <p className="text-sm text-foreground">{detail.summary}</p>
@@ -228,7 +228,7 @@ const groups: StatusBoardGroup[] = [
     sublabel: "Dispatch and inspection",
     items: [
       { id: "501", label: "Car 501", icon: <IconCar className="h-4 w-4" />, status: "Available", statusIcon: <IconCircleCheck className="h-3 w-3" />, tone: "success", location: "Shibuya Station", note: "Updated 2 min ago", trailing: <Badge variant="secondary">Standby</Badge> },
-      { id: "508", label: "Car 508", icon: <IconCar className="h-4 w-4" />, status: "Fault", statusIcon: <IconAlertTriangle className="h-3 w-3" />, tone: "danger", location: "Depot", note: "Engine warning" },
+      { id: "508", label: "Car 508", icon: <IconCar className="h-4 w-4" />, status: "Fault", statusIcon: <IconAlertTriangle className="h-3 w-3" />, tone: "destructive", location: "Depot", note: "Engine warning" },
       { id: "512", label: "Car 512", icon: <IconCar className="h-4 w-4" />, status: "Inspection", statusIcon: <IconTool className="h-3 w-3" />, tone: "warning", location: "Service lane", note: "Brake check" },
     ],
   },
@@ -266,7 +266,7 @@ export function DispatchBoard() {
         <div className="min-w-0 space-y-1.5">
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="text-sm font-semibold text-foreground">{selectedItem.label}</h3>
-            <Badge variant={selectedItem.tone === "danger" ? "destructive" : "secondary"}>{selectedItem.status}</Badge>
+            <Badge variant={selectedItem.tone === "destructive" ? "destructive" : "secondary"}>{selectedItem.status}</Badge>
           </div>
           <p className="text-xs text-muted-foreground">{detail.area} / {selectedItem.location}</p>
           <p className="text-sm text-foreground">{detail.summary}</p>
@@ -286,7 +286,7 @@ export function DispatchBoard() {
     { name: "items", type: "StatusBoardItem[]", description: locale === "ja" ? "グループなしで並べるフラットなタイルです。" : "Flat tile list when grouping is not needed." },
     { name: "selectedId", type: "string | number", description: locale === "ja" ? "詳細対象として強調するタイルIDです。" : "Tile id highlighted as the current detail target." },
     { name: "minTileWidth", type: "number", default: "150", description: locale === "ja" ? "auto-fill grid の最小タイル幅です。" : "Minimum tile width for the auto-fill grid." },
-    { name: "problemTones", type: "StatusBoardTone[]", default: '["danger","warning"]', description: locale === "ja" ? "要対応件数とソートで問題扱いするtoneです。" : "Tones counted as problems for counts and sorting." },
+    { name: "problemTones", type: "StatusBoardTone[]", default: '["destructive","warning"]', description: locale === "ja" ? "要対応件数とソートで問題扱いするtoneです。" : "Tones counted as problems for counts and sorting." },
     { name: "sort", type: "boolean", default: "true", description: locale === "ja" ? "rank とtone重大度で問題優先に並べます。" : "Sorts fault-first by rank and tone severity." },
     { name: "formatProblemCount / formatItemCount", type: "(count: number) => ReactNode", description: locale === "ja" ? "グループ見出し右側の件数表示をローカライズします。" : "Localizes the count copy in group headers." },
   ];

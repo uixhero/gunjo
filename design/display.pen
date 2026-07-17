@@ -3099,7 +3099,7 @@
               "type": "text",
               "id": "BODnd",
               "fill": "#64748b",
-              "content": "KPI metric card: label + value + delta indicator.",
+              "content": "KPI metric card: label + value + delta indicator. Change tones use the canonical SemanticTone scale; legacy positive/negative/neutral aliases map to success/destructive/muted.",
               "fontFamily": "Inter",
               "fontSize": 12,
               "fontWeight": "normal"

@@ -2,6 +2,7 @@ import * as React from "react"
 import { IconCircleCheck, IconAlertTriangle, IconCircleX, IconCircleDashed } from "@tabler/icons-react"
 
 import { cn } from "../../lib/utils"
+import type { SemanticTone } from "../../lib/semantic-tone"
 
 export type ExpiryState = "valid" | "expiring" | "expired" | "missing"
 
@@ -46,11 +47,20 @@ export function classifyExpiry(
   return { state: "valid", days }
 }
 
-const STATE_PILL: Record<ExpiryState, string> = {
-  valid: "bg-success-subtle text-success",
-  expiring: "bg-warning-subtle text-warning",
-  expired: "bg-destructive-subtle text-destructive",
-  missing: "bg-muted text-muted-foreground",
+type ExpirySemanticTone = Extract<SemanticTone, "success" | "warning" | "destructive" | "muted">
+
+const STATE_TONE: Record<ExpiryState, ExpirySemanticTone> = {
+  valid: "success",
+  expiring: "warning",
+  expired: "destructive",
+  missing: "muted",
+}
+
+const TONE_PILL: Record<ExpirySemanticTone, string> = {
+  success: "bg-success-subtle text-success",
+  warning: "bg-warning-subtle text-warning",
+  destructive: "bg-destructive-subtle text-destructive",
+  muted: "bg-muted text-muted-foreground",
 }
 
 const STATE_ICON: Record<ExpiryState, React.ComponentType<{ className?: string }>> = {
@@ -109,6 +119,7 @@ export const ExpiryBadge = React.forwardRef<HTMLSpanElement, ExpiryBadgeProps>(
     ref
   ) => {
     const { state, days } = classifyExpiry(value, { today, warnWithinDays })
+    const tone = STATE_TONE[state]
     const Icon = STATE_ICON[state]
     const label = labels?.[state] ?? STATE_LABEL[state]
     const date = toDate(value)
@@ -122,7 +133,7 @@ export const ExpiryBadge = React.forwardRef<HTMLSpanElement, ExpiryBadgeProps>(
       <span
         className={cn(
           "inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-xs font-medium",
-          STATE_PILL[state],
+          TONE_PILL[tone],
           stateClassName
         )}
       >

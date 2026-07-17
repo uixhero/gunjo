@@ -2,9 +2,19 @@ import * as React from "react"
 import { IconArrowDown as ArrowDown, IconArrowUp as ArrowUp, IconMinus as Minus } from "@tabler/icons-react";
 
 import { cn } from "../../lib/utils"
+import type { SemanticTone } from "../../lib/semantic-tone"
 
 export type StatisticTrend = "up" | "down" | "flat"
-export type StatisticTone = "positive" | "negative" | "neutral"
+
+/**
+ * @deprecated Use the canonical {@link SemanticTone} values instead:
+ * `positive` → `success`, `negative` → `destructive`, `neutral` → `muted`.
+ * Legacy values remain supported throughout 0.1.x. (#673)
+ */
+export type LegacyStatisticTone = "positive" | "negative" | "neutral"
+
+/** Canonical semantic tones plus the 0.1.x legacy aliases. */
+export type StatisticTone = SemanticTone | LegacyStatisticTone
 
 export interface StatisticProps extends React.HTMLAttributes<HTMLDivElement> {
     label: React.ReactNode
@@ -13,7 +23,7 @@ export interface StatisticProps extends React.HTMLAttributes<HTMLDivElement> {
     change?: React.ReactNode
     /** Trend direction for the change indicator. Default "flat" (muted). */
     trend?: StatisticTrend
-    /** Visual meaning for the change indicator. Defaults from trend (up = positive). */
+    /** Canonical visual meaning for the change indicator. Defaults from trend (up = success). */
     tone?: StatisticTone
     /**
      * Good-direction for an INVERTED metric — so the change colour encodes good/bad, not raw
@@ -26,10 +36,27 @@ export interface StatisticProps extends React.HTMLAttributes<HTMLDivElement> {
     hint?: React.ReactNode
 }
 
-const TONE_CLASS: Record<StatisticTone, string> = {
-    positive: "text-success",
-    negative: "text-destructive",
-    neutral: "text-muted-foreground",
+const TONE_CLASS: Record<SemanticTone, string> = {
+    default: "text-foreground",
+    muted: "text-muted-foreground",
+    primary: "text-primary",
+    info: "text-info",
+    success: "text-success",
+    warning: "text-warning",
+    destructive: "text-destructive",
+}
+
+function normalizeStatisticTone(tone: StatisticTone): SemanticTone {
+    switch (tone) {
+        case "positive":
+            return "success"
+        case "negative":
+            return "destructive"
+        case "neutral":
+            return "muted"
+        default:
+            return tone
+    }
 }
 
 const TREND_ICON: Record<StatisticTrend, React.ComponentType<{ className?: string }>> = {
@@ -44,13 +71,13 @@ const Statistic = React.forwardRef<HTMLDivElement, StatisticProps>(
         ref
     ) => {
         const TrendIcon = TREND_ICON[trend]
-        const autoTone: StatisticTone =
+        const autoTone: SemanticTone =
             trend === "flat"
-                ? "neutral"
+                ? "muted"
                 : goodWhen === "lower"
-                  ? trend === "up" ? "negative" : "positive"
-                  : trend === "up" ? "positive" : "negative"
-        const resolvedTone = tone ?? autoTone
+                  ? trend === "up" ? "destructive" : "success"
+                  : trend === "up" ? "success" : "destructive"
+        const resolvedTone = tone === undefined ? autoTone : normalizeStatisticTone(tone)
 
         return (
             <div
