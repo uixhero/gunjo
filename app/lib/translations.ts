@@ -1851,6 +1851,7 @@ export const translations: Record<
       OccupancyMeter: "稼働メーター",
       FilterChips: "フィルタチップ",
       PageHeader: "ページヘッダー",
+      DesktopPageHeader: "デスクトップページヘッダー",
       BottomActionBar: "ボトムアクションバー",
       Itinerary: "旅程",
       TicketStub: "チケット券面",

@@ -1141,6 +1141,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "beta"
     },
+    "desktopPageHeader": {
+      "title": "DesktopPageHeader",
+      "description": "A dense per-screen title bar for desktop consoles, with optional eyebrow, subtitle, and trailing actions.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/DesktopPageHeader.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "distributionBar": {
       "title": "DistributionBar",
       "description": "Stacked percentage distribution bar for segments, channels, and allocation data with hover/focus segment tooltips.",

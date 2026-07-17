@@ -199,6 +199,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "occupancy-meter": "Display",
   "filter-chips": "Display",
   "page-header": "Navigation",
+  "desktop-page-header": "Navigation",
   "bottom-action-bar": "Navigation",
   "itinerary": "Display",
   "ticket-stub": "Display",

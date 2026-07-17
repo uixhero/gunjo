@@ -31,14 +31,16 @@ const csp = [
   "img-src 'self' data: blob: https:",
   "font-src 'self'",
   "connect-src 'self' https://www.google-analytics.com https://*.google-analytics.com https://www.googletagmanager.com",
-  "frame-src https://www.googletagmanager.com",
+  "frame-src 'self' https://www.googletagmanager.com",
 ].join("; ");
 
-const securityHeaders = [
+const embedCsp = csp.replace("frame-ancestors 'none'", "frame-ancestors 'self'");
+
+const createSecurityHeaders = (policy: string, frameOptions: "DENY" | "SAMEORIGIN") => [
   // CSP は Report-Only（enforce は本番監視後の別PRで Content-Security-Policy に改名）。
-  { key: "Content-Security-Policy-Report-Only", value: csp },
+  { key: "Content-Security-Policy-Report-Only", value: policy },
   { key: "Strict-Transport-Security", value: "max-age=63072000; includeSubDomains" },
-  { key: "X-Frame-Options", value: "DENY" },
+  { key: "X-Frame-Options", value: frameOptions },
   { key: "X-Content-Type-Options", value: "nosniff" },
   { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
   {
@@ -47,12 +49,20 @@ const securityHeaders = [
   },
 ];
 
+const securityHeaders = createSecurityHeaders(csp, "DENY");
+// ComponentPreview は同一オリジンの /embed/* を iframe で表示する。外部オリジンは
+// 引き続き拒否しつつ、docs からの実プレビューだけを許可する。
+const embedSecurityHeaders = createSecurityHeaders(embedCsp, "SAMEORIGIN");
+
 const nextConfig: NextConfig = {
   devIndicators: false,
   transpilePackages: ["@gunjo/ui"],
   poweredByHeader: false,
   async headers() {
-    return [{ source: "/(.*)", headers: securityHeaders }];
+    return [
+      { source: "/(.*)", headers: securityHeaders },
+      { source: "/embed/:path*", headers: embedSecurityHeaders },
+    ];
   },
   // /api/ssot/files/[file] は design/ 配下の SSOT ファイルを実行時パスで
   // readFile するため、trace が cwd を広範に巻き込み function が 250MB 超で

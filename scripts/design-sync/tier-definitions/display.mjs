@@ -1104,6 +1104,14 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     nodeIds: {},
   },
   {
+    key: "desktopPageHeader",
+    frameId: "a44bWx",
+    titleId: "igvk8",
+    descId: "Q72sYG",
+    variantsId: "S2MDX",
+    nodeIds: {},
+  },
+  {
     key: "loyaltySummaryCard",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:loyaltySummaryCard",
