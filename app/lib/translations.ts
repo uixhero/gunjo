@@ -660,7 +660,7 @@ export const translations: Record<
           componentDocsLabel: (name) => `Open ${name} docs`,
           summaryFooter: "Summary",
           aiDisclosure:
-            "This series is co-created with AI (Claude). A human designs the experiments, makes the calls, and fact-checks before publishing; the AI does the hands-on work and drafting.",
+            "This series is co-created with AI (Claude and Codex). A human designs the experiments, makes the calls, and fact-checks before publishing; the AI does the hands-on work and drafting.",
           notFound: "Round not found.",
         },
         sidebar: {
@@ -1293,7 +1293,7 @@ export const translations: Record<
           componentDocsLabel: (name) => `${name} のドキュメントを開く`,
           summaryFooter: "まとめ",
           aiDisclosure:
-            "この連載は、作者が AI（Claude）と協働で制作しています。実験・検証の設計、判断、公開前の事実確認は人間が行い、実作業と下書き執筆は AI が担っています。",
+            "この連載は、作者が AI（Claude と Codex）と協働で制作しています。実験・検証の設計、判断、公開前の事実確認は人間が行い、実作業と下書き執筆は AI が担っています。",
           notFound: "該当するラウンドが見つかりません。",
         },
         sidebar: {
