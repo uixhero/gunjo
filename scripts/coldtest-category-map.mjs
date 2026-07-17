@@ -102,6 +102,7 @@ export function categoryOf(round) {
     if (round === 172) return "金融";
     if (round === 173) return "金融";
     if (round === 174) return "建設・建築";
+    if (round === 175) return "建設・建築";
     if (round <= 111) return "運輸：鉄道";
     return "運輸：航空";
 }

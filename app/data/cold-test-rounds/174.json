@@ -45,8 +45,8 @@
     "Timeline"
   ],
   "shots": {
-    "desktop": false,
-    "mobile": false,
+    "desktop": true,
+    "mobile": true,
     "en.desktop": false,
     "en.mobile": false
   },
