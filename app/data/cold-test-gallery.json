@@ -1,7 +1,7 @@
 {
   "generatedFrom": "promotion/cold-test-screens/README.md + zenn-yattemita-*.md",
   "generator": "scripts/build-coldtest-gallery.mjs",
-  "count": 170,
+  "count": 171,
   "crystallizedCount": 71,
   "categories": [
     "基盤UI・汎用",
@@ -23,7 +23,8 @@
     "運輸：航空",
     "運輸：バス",
     "運輸：タクシー",
-    "運輸：トラック"
+    "運輸：トラック",
+    "建設・建築"
   ],
   "entries": [
     {
@@ -3248,6 +3249,25 @@
       "article": {
         "file": "zenn-yattemita-173-subsidy-matching.md",
         "slug": "173-subsidy-matching"
+      },
+      "shots": {
+        "desktop": true,
+        "mobile": true,
+        "en.desktop": false,
+        "en.mobile": false
+      }
+    },
+    {
+      "round": 174,
+      "route": "/construction-schedule",
+      "slug": "construction-schedule",
+      "score": "4/5",
+      "category": "建設・建築",
+      "title": "AI に施工スケジュールを作らせてみた：運輸のために作った工程表コンポーネントが、建設現場でもそのまま動いた（やってみた #174）",
+      "summary": "予備知識ゼロの AI（群青を一度も触っていない設定）に、公開されている npm パッケージと gunjo.jp の docs だけを渡して組ませました。`tsc` は緑、モバイルとデスクトップの両対応です。",
+      "article": {
+        "file": "zenn-yattemita-174-construction-schedule.md",
+        "slug": "174-construction-schedule"
       },
       "shots": {
         "desktop": true,
