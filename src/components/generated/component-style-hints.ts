@@ -2103,6 +2103,22 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "occupancyMeter": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "flex flex-col items-center w-full gap-1.5",
+      "baseColorHint": null,
+      "slotIds": [
+        "ibxXb",
+        "KQNAO"
+      ],
+      "variantClasses": {
+        "default": "flex flex-col items-center w-full gap-1.5"
+      },
+      "variantColorHints": {}
+    },
     "originDestination": {
       "variantKeys": [
         "default"

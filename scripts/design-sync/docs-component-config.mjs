@@ -196,6 +196,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "loyalty-summary-card": "Display",
   "radio-card": "Display",
   "checkbox-card": "Display",
+  "occupancy-meter": "Display",
   "filter-chips": "Display",
   "page-header": "Navigation",
   "bottom-action-bar": "Navigation",

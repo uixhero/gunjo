@@ -1848,6 +1848,7 @@ export const translations: Record<
       LoyaltySummaryCard: "ロイヤリティ要約カード",
       RadioCard: "選択カード",
       CheckboxCard: "複数選択カード",
+      OccupancyMeter: "稼働メーター",
       FilterChips: "フィルタチップ",
       PageHeader: "ページヘッダー",
       BottomActionBar: "ボトムアクションバー",

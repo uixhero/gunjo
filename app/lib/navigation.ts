@@ -148,6 +148,7 @@ export const navigation = [
             { title: "MatchCard", href: "/docs/components/match-card" },
             { title: "MetadataList", href: "/docs/components/metadata-list" },
             { title: "Meter", href: "/docs/components/meter" },
+            { title: "OccupancyMeter", href: "/docs/components/occupancy-meter" },
             { title: "OriginDestination", href: "/docs/components/origin-destination" },
             { title: "PersonCell", href: "/docs/components/person-cell" },
             { title: "RadioCard", href: "/docs/components/radio-card" },

@@ -1096,6 +1096,14 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     },
   },
   {
+    key: "occupancyMeter",
+    frameId: "pSXHG",
+    titleId: "deaNR",
+    descId: "twns6",
+    variantsId: "cZW8r",
+    nodeIds: {},
+  },
+  {
     key: "loyaltySummaryCard",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:loyaltySummaryCard",

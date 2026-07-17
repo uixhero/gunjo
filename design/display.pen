@@ -3304,6 +3304,166 @@
               "fontWeight": "normal"
             }
           ]
+        },
+        {
+          "type": "frame",
+          "id": "pSXHG",
+          "name": "OccupancyMeter",
+          "width": "fill_container",
+          "fill": "#f8fafc",
+          "cornerRadius": 12,
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": 24,
+          "children": [
+            {
+              "type": "text",
+              "id": "deaNR",
+              "name": "OccupancyMeter Title",
+              "fill": "#0c0c12",
+              "content": "OccupancyMeter",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "twns6",
+              "name": "OccupancyMeter Description",
+              "fill": "#64748b",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "A labeled occupancy and capacity gauge with a neutral fill, formatted readout, and optional target marker.",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "cZW8r",
+              "name": "OccupancyMeter Variants",
+              "width": 420,
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "YWGVQ",
+                  "name": "OccupancyMeter/Default",
+                  "reusable": true,
+                  "width": "fill_container",
+                  "layout": "vertical",
+                  "gap": 6,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "ibxXb",
+                      "name": "Caption",
+                      "width": "fill_container",
+                      "justifyContent": "space_between",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "FNQx7",
+                          "name": "Label",
+                          "fill": "#0c0c12",
+                          "content": "満席率",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "500"
+                        },
+                        {
+                          "type": "text",
+                          "id": "NurmH",
+                          "name": "Readout",
+                          "fill": "#64748b",
+                          "content": "2 / 7卓",
+                          "fontFamily": "Geist Mono",
+                          "fontSize": 14
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "KQNAO",
+                      "name": "Meter Track",
+                      "width": "fill_container",
+                      "height": 8,
+                      "fill": "#e2e8f0",
+                      "cornerRadius": 999,
+                      "layout": "none",
+                      "children": [
+                        {
+                          "type": "frame",
+                          "id": "AV1WI",
+                          "x": 0,
+                          "y": 0,
+                          "name": "Neutral Fill",
+                          "width": 120,
+                          "height": 8,
+                          "fill": "#0c0c12",
+                          "cornerRadius": 999
+                        },
+                        {
+                          "type": "frame",
+                          "id": "tyqRQ",
+                          "x": 359,
+                          "y": 0,
+                          "name": "Target Marker",
+                          "width": 2,
+                          "height": 8,
+                          "fill": "#64748b",
+                          "cornerRadius": 1
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "i7iW3",
+          "name": "showcase/occupancyMeter",
+          "width": 452,
+          "fill": "#ffffff",
+          "layout": "vertical",
+          "gap": 12,
+          "padding": 16,
+          "children": [
+            {
+              "id": "tweYA",
+              "type": "ref",
+              "ref": "YWGVQ",
+              "name": "OccupancyMeter Preview",
+              "width": 420
+            },
+            {
+              "type": "text",
+              "id": "Q24AP",
+              "name": "Showcase Title",
+              "fill": "#0c0c12",
+              "content": "OccupancyMeter",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "gLaTX",
+              "name": "Showcase Description",
+              "fill": "#64748b",
+              "content": "Neutral occupancy gauge with a concise readout and target marker.",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
         }
       ]
     },
