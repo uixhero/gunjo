@@ -422,5 +422,9 @@
   "checkboxCard": {
     "title": "CheckboxCard",
     "description": "Multi-select choice cards with independent checkbox semantics, square check indicators, rich card content slots, form values, and disabled-reason tooltips."
+  },
+  "occupancyMeter": {
+    "title": "OccupancyMeter",
+    "description": "A labeled occupancy and capacity gauge with a neutral fill, formatted readout, and optional target marker."
   }
 }

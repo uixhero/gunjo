@@ -14,7 +14,6 @@ const usageCode = `import { OccupancyMeter } from "@gunjo/ui";
 <OccupancyMeter label="満席率" value={2} max={7} unit="卓" target={6} />`;
 
 export default function OccupancyMeterDocPage() {
-  const meta = displayMetadata as Record<string, { title?: string; description?: string }>;
   const { locale, sectionLabels } = useLocale();
   const isJa = locale === "ja";
 
@@ -40,8 +39,8 @@ export default function OccupancyMeterDocPage() {
 
   return (
     <ComponentLayout
-      title={meta.occupancyMeter?.title ?? "OccupancyMeter"}
-      description={meta.occupancyMeter?.description ?? ""}
+      title={displayMetadata.occupancyMeter.title}
+      description={displayMetadata.occupancyMeter.description}
       sectionLabels={sectionLabels}
       usedComponents={[{ name: "OccupancyMeter", href: "/docs/components/occupancy-meter" }, { name: "Meter", href: "/docs/components/meter" }]}
       relatedComponents={[{ name: "Meter", href: "/docs/components/meter" }, { name: "ReferenceValue", href: "/docs/components/reference-value" }]}

@@ -5196,6 +5196,83 @@
         }
       }
     },
+    "occupancyMeter": {
+      "frameId": "pSXHG",
+      "title": "OccupancyMeter",
+      "description": "A labeled occupancy and capacity gauge with a neutral fill, formatted readout, and optional target marker.",
+      "variants": [
+        {
+          "id": "YWGVQ",
+          "name": "OccupancyMeter/Default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "layout": "vertical",
+          "padding": null,
+          "gap": 6,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "reusable": true,
+          "children": [
+            "ibxXb",
+            "KQNAO"
+          ]
+        }
+      ],
+      "nodes": {
+        "ibxXb": {
+          "id": "ibxXb",
+          "type": "frame",
+          "name": "Caption",
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": "space_between",
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "FNQx7",
+            "NurmH"
+          ]
+        },
+        "KQNAO": {
+          "id": "KQNAO",
+          "type": "frame",
+          "name": "Meter Track",
+          "width": "fill_container",
+          "height": 8,
+          "layout": "none",
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 999,
+          "fill": "#e2e8f0",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "AV1WI",
+            "tyqRQ"
+          ]
+        }
+      }
+    },
     "loyaltySummaryCard": {
       "frameId": "synthetic:loyaltySummaryCard",
       "title": "LoyaltySummaryCard",
