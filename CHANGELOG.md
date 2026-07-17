@@ -20,6 +20,7 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ### Added
 
+- **subpath export の追加**（影響: none）— 重い runtime を引く部品を、依存クラスタ単位の subpath から narrow に import できるようにした：`@gunjo/ui/table`（DataTable / ActionDataTable ＋ `ColumnDef`・`@tanstack/react-table`）、`@gunjo/ui/calendar`（DatePicker / DateRangePicker / Calendar・`react-day-picker`）、`@gunjo/ui/drawer`（`vaul`）、`@gunjo/ui/carousel`（`embla-carousel-react`）、`@gunjo/ui/markdown`（`react-markdown`）、`@gunjo/ui/motion`（FloatingPanel・`framer-motion`）。**これらは 0.1.x では root barrel（`@gunjo/ui`）からも従来どおり import できる**（Phase 1・純追加）。`0.2.0` で root barrel からの重部品 export を撤去し、該当依存を optional peer 化する予定（Phase 2・破壊枠・移行表を別途提示）。(#492)
 - **`DesktopPageHeader`**（影響: none）— デスクトップ業務コンソールの各画面に置く、eyebrow・タイトル・説明・末尾アクションの軽量見出しバー。アプリ全体のクロームである `Header`、モバイル app-bar の `PageHeader` と責務を分離する。(#397)
 - **`OccupancyMeter`**（影響: none）— `Meter` の上にラベルと `value / max` readout をまとめた、満席率・稼働率・設備利用率向けの薄い合成。既定は `direction="neutral"` で低い値を失敗色にせず、`target`・`tone`・`formatValue`・`size` は `Meter` へ転送する。(#343)
 - **`CheckboxCard` / `CheckboxCardGroup`**（影響: none）— `RadioCard` の複数選択版。各カードは独立した `role="checkbox"` / Tab stop と角丸スクエアのチェックを持ち、配列の制御・非制御選択、フォーム送信用 `name`、無効化理由ツールチップに対応。矢印キーの roving navigation は行わない。(#378)

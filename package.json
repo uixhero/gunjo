@@ -30,6 +30,30 @@
       "types": "./dist/index.d.ts",
       "default": "./dist/index.js"
     },
+    "./table": {
+      "types": "./dist/entries/table.d.ts",
+      "default": "./dist/entries/table.js"
+    },
+    "./calendar": {
+      "types": "./dist/entries/calendar.d.ts",
+      "default": "./dist/entries/calendar.js"
+    },
+    "./drawer": {
+      "types": "./dist/entries/drawer.d.ts",
+      "default": "./dist/entries/drawer.js"
+    },
+    "./carousel": {
+      "types": "./dist/entries/carousel.d.ts",
+      "default": "./dist/entries/carousel.js"
+    },
+    "./markdown": {
+      "types": "./dist/entries/markdown.d.ts",
+      "default": "./dist/entries/markdown.js"
+    },
+    "./motion": {
+      "types": "./dist/entries/motion.d.ts",
+      "default": "./dist/entries/motion.js"
+    },
     "./styles": "./dist/globals.css",
     "./tailwind-preset": "./tailwind-preset.js",
     "./tailwind-theme-extend": "./tailwind-theme-extend.cjs"
