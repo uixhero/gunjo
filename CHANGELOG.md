@@ -11,7 +11,39 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 
-> **版判断保留中**: 以下は `0.0.1-alpha.3` 以降の全変更。次リリースを `0.1.0-beta.1`（beta ゲート達成済み。[docs/stability](./docs/stability) 参照）で切るか `0.0.1-alpha.4` で切るかは公開時に確定する。採用先影響は原則 **none**（追加 API・a11y 修正のみ・既存コード変更不要）。
+> `0.1.0-beta.1` 以降の変更。**破壊的変更なし**。新機能はすべて opt-in で既定挙動は据え置き（影響: none）。例外は下記 **Changed** の `RouteStops` 既定ラベル変更のみ（影響: **minor**・1プロップで復元可能・移行パス明記）。
+
+### Changed
+
+- **`RouteStops` の既定ステータスラベルを中立語彙に**（影響: **minor**）— ステータスキー（`pending/current/completed/failed/delayed`）は汎用なのに、既定ラベルだけが配送依存（`未配 / 配送中 / 不在`）だったのを、ドメイン中立な `未着手 / 進行中 / 完了 / 失敗 / 遅延` に変更。配送・介護・製造など各ドメインは従来どおり `statusLabels` で上書きする設計。**移行**：配送用途は `statusLabels={{ pending: "未配", current: "配送中", failed: "不在" }}` の1プロップで従来表示を復元（`completed`/`delayed` は既に中立で変更なし）。マーカーの色・アイコン、`aria-current`、予実 `Delta` は不変。(#282)
+
+### Added
+
+- **`Meter` の `direction="neutral"`**（影響: none）— 時間で埋まっていくゲージ（満席率・稼働率）向けの中立モード。**判定色を付けず（primary 一定）**、`target` は参照マーカーのみ。`higher-is-better` は目標未達を赤にするためサービス開始直後の低い値が誤警報になる問題（cold-test #95）を、意味論の明確な名前付きモードで回避できる。`tone` 上書きは従来どおり優先。docs に3+1モードのトーン意味論を明記。(#343)
+- **`SignedRecord` の複数署名**（影響: none）— `requiredSigners`（当事者一覧）を渡すと複数署名モードに。**全員が署名するまで下書きのまま編集でき、最後の署名でロック**する（単一署名は従来どおり1回でロック）。`value.signatures` に署名を蓄積し、当事者ごとの署名状況と進捗（N/M）を表示。同一人物の二重署名と当事者外の署名は理由つきで不可。追記の author は当事者ラベルで表示。`requiredSigners` 未指定なら従来の挙動のまま。(#259)
+- **`Toast` の `description` / `action`**（影響: none）— 2行目の補足と操作ボタン1つを追加し、`ToastAction` を公開。`useToast().showToast` はオブジェクト形 `{ message, description, type, duration, action }` のオーバーロードも受け付ける（従来の位置引数呼び出しはそのまま動く）。`action` 付きで `duration` 未指定なら、押す前に消えないよう自動クローズを延長。(#301)
+- **`DataTable` の合計 / フッター行**（影響: none）— いずれかの列に TanStack の `footer` を定義すると `<tfoot>` を描画。`footer(({ table }) => …)` で `getFilteredRowModel()` を使えばフィルタ後の合計になる（表示中ページだけではない）。`footer` 未定義なら従来どおり何も出ない。card モード（`renderCard`）には出ない。(#255)
+- **`SheetBody` / `DialogBody`**（影響: none）— 長いフォーム用のスクロール領域。Content の**直下に置いた時だけ**高さ制限つき flex 列へ切り替え、ヘッダー / フッターを固定して中央だけスクロールする。Body が無い既存の Sheet / Dialog は出力不変。(#293)
+- **`PersonCell` の `href` / `onActivate`**（影響: none）— セル全体を activation target に（ルートが `<a>` / `<button>` になり chevron が affordance）。「人物行を毎回 button で包む」定型を解消。未指定なら従来どおり `<div>`。(#341)
+- **`Combobox` の `creatable`**（影響: none）— 検索テキストがどの候補にも一致しない時に「作成」項目を表示し、`onCreate(text)` で自由入力の値を追加できる（options への追加と value のセットは呼び出し側が担当）。`createLabel` でラベル差し替え。(#200)
+- **`BarChart` / `StackedBarChart` の `threshold`**（影響: none）— 上限ラインを引いて超過を示す。`BarChart` は超えた棒を `thresholdTone`（既定 `destructive`）で塗る。`StackedBarChart` は**グループ合計**に対する上限で、超過グループをリング＋`thresholdTone` の合計値で示す（**segment の色は一切変えない**——各 segment が固有の意味を持つため）。超過は `aria-label` にも出るので色だけに頼らない。両者とも縦横 variant 対応。`StackedBarChart` では `normalize` 併用時に無視（各グループが 100% になり絶対値の位置が無いため・dev 警告あり）。(#285)
+- **`Input` / `Textarea` の `showCount`**（影響: none）— 文字数表示。`maxLength` 併用で `count / max` 形式になり、`aria-describedby` で関連付く。制御・非制御どちらでも動作。(#314)
+- **`Avatar` の `colorSeed`**（影響: none）— `AvatarFallback` の頭文字背景を名前から決定的に配色（ディレクトリの視認性）。opt-in。(#331)
+- **`SwatchLegend`**（影響: none）— `ChartLegend` を単体利用できる別名として公開（カレンダー / かんばんの tone → ラベル凡例）。(#327)
+- **`Stepper` の `onStepClick`**（影響: none）— 完了済みステップへのジャンプ移動。未指定なら従来どおり非インタラクティブ。(#157)
+- **`ReferenceValue` の `affirmative`**（影響: none）— 正常値のうち「良い」値を肯定的に強調できる（従来は中立か異常のみ）。(#291)
+- **`ToggleGroup` の項目ごとの tone**（影響: none）— 排他ステータスピル（休講 red / 補講 blue など）向けに `ToggleGroupItemTone` を追加。(#288)
+- **`ScheduleGrid` のセル単位 `selected` + `cellClassName`**（影響: none）— アクティブ / オープン中のセルを強調できる。(#299)
+- **`Timeline` の `items` data-prop**（影響: none）— compound API に加えてデータ駆動の形を追加（compound だけでは発見しづらかったため）。(#349)
+
+### Fixed
+
+- **`Table` / `DataTable` の横スクロール漏れ**（影響: none）— 狭い画面（375px 等）で、幅広の内側要素が `overflow-x-auto` スクローラから**ページ全体に横スクロールを漏らす**ことがあった（`html.scrollWidth` が膨らむ・祖先の `min-w-0` や `sticky` 除去では直らない）。両コンポーネントの横スクローラに `[contain:paint]` を付与して封じ込め（`ScheduleGrid` #287 と同じ手当て）。正しくレイアウトされている場合は no-op。自前の幅広コンテンツ（チャート・カスタムグリッド）向けに Table docs へ手順も記載。(#289)
+- **`Alert` の見出し順序**（a11y・影響: none）— `AlertTitle` の既定要素が `h5` で、h1 → h5 と見出しレベルが飛んでいた。既定を `<p>` に変更（**見た目は不変**。見出しにしたい場合は `as="h5"` を明示）。(#251)
+
+## [0.1.0-beta.1] — 2026-07-15
+
+> 初の **beta**。`0.0.1-alpha.3` 以降の全変更。beta 昇格ゲート（#572・4/4 達成）をクリアし、コア 54 部品を Beta に。**破壊的変更なし**（採用先影響は原則 **none**・追加 API と a11y 修正のみ・既存コード変更不要）。この版から **semver / `@deprecated` 規律が発効**（破壊はマイナーのみ・移行パスを提示）。
 
 ### Added
 

@@ -44,6 +44,7 @@ import { useTheme } from "next-themes";
 import { HeroBackground } from "@/components/home/HeroBackground";
 import { PackCta } from "@/components/pack/PackCta";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { COLD_TEST_ROUND_COUNT } from "@/lib/cold-test-count";
 import { COMPONENT_COUNT } from "@/lib/component-count";
 
 const designerCardIcons = {
@@ -100,7 +101,7 @@ export default function Home() {
                             className="on-hero-badge w-fit gap-1.5"
                         >
                             <Sparkles className="h-3 w-3" />
-                            Alpha · v0.0.1-alpha.3
+                            Beta · v0.1.0-beta.1
                         </Badge>
                         <div className="flex flex-col gap-2">
                             <p
@@ -303,7 +304,7 @@ export default function Home() {
                             {home.ai.description}
                         </p>
                         <p className="text-sm text-muted-foreground">
-                            {home.ai.evidence}{" "}
+                            {home.ai.evidence(COLD_TEST_ROUND_COUNT)}{" "}
                             <Link
                                 href="/cold-tests/why"
                                 className="whitespace-nowrap font-medium text-foreground underline underline-offset-4 transition-colors hover:text-primary"

@@ -3,7 +3,7 @@
 import * as React from "react"
 
 import { cn } from "../../lib/utils"
-import type { ChartDataPoint } from "./chart-utils"
+import type { ChartDataPoint, ChartTone } from "./chart-utils"
 import {
     chartLabelToString,
     defaultChartValueFormatter,
@@ -20,6 +20,16 @@ export interface BarChartProps extends React.HTMLAttributes<HTMLDivElement> {
     max?: number
     averageValue?: number
     averageLabel?: React.ReactNode
+    /**
+     * A capacity / limit line. Bars whose value exceeds it are painted in
+     * `thresholdTone` (a "this bar is over the limit = bad" signal), and a
+     * reference line is drawn at the threshold. (#285)
+     */
+    threshold?: number
+    /** Accessible name / tooltip label for the threshold line. Defaults to "Limit". */
+    thresholdLabel?: React.ReactNode
+    /** Tone applied to bars over the threshold. Default `"destructive"`. */
+    thresholdTone?: ChartTone
     formatValue?: (value: number) => React.ReactNode
     showGrid?: boolean
     showLabels?: boolean
@@ -40,6 +50,9 @@ const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
             max,
             averageValue,
             averageLabel = "Average",
+            threshold,
+            thresholdLabel = "Limit",
+            thresholdTone = "destructive",
             formatValue = defaultChartValueFormatter,
             showGrid = true,
             showLabels = true,
@@ -49,12 +62,23 @@ const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
         ref
     ) => {
         const values = data.map((item) => item.value)
-        const maxValue = Math.max(max ?? 0, averageValue ?? 0, ...values, 1)
+        const maxValue = Math.max(max ?? 0, averageValue ?? 0, threshold ?? 0, ...values, 1)
         const averagePercent =
             averageValue === undefined
                 ? null
                 : normalizeChartValue(averageValue, maxValue)
         const averageText = chartLabelToString(averageLabel, "Average")
+        const thresholdPercent =
+            threshold === undefined ? null : normalizeChartValue(threshold, maxValue)
+        const thresholdText = chartLabelToString(thresholdLabel, "Limit")
+        const thresholdColor = getChartColor(thresholdTone, 0)
+        // Resolve a bar's fill: over-threshold bars take the threshold tone. (#285)
+        const barColor = (item: ChartDataPoint, index: number) =>
+            threshold !== undefined && item.value > threshold
+                ? getChartColor(thresholdTone, index)
+                : getChartColor(item.color, index)
+        const overThresholdSuffix = (value: number) =>
+            threshold !== undefined && value > threshold ? ` (over ${thresholdText})` : ""
 
         if (variant === "horizontal") {
             return (
@@ -85,6 +109,22 @@ const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
                                     </span>
                                 ) : null}
                                 <div className="relative h-3 min-w-0 rounded-full bg-muted">
+                                    {thresholdPercent !== null ? (
+                                        <ChartTooltip label={thresholdLabel} value={formatValue(threshold ?? 0)}>
+                                            <span
+                                                className="absolute top-1/2 z-10 h-10 w-5 -translate-x-1/2 -translate-y-1/2 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                                                style={{ left: `${thresholdPercent}%` }}
+                                                tabIndex={index === 0 ? 0 : undefined}
+                                                aria-label={index === 0 ? `${thresholdText}: ${formatValue(threshold ?? 0)}` : undefined}
+                                            >
+                                                <span
+                                                    className="pointer-events-none absolute left-1/2 top-1/2 h-9 -translate-x-1/2 -translate-y-1/2 border-l-2"
+                                                    style={{ borderColor: thresholdColor }}
+                                                    aria-hidden="true"
+                                                />
+                                            </span>
+                                        </ChartTooltip>
+                                    ) : null}
                                     {averagePercent !== null ? (
                                         <ChartTooltip
                                             label={averageLabel}
@@ -120,14 +160,14 @@ const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
                                             className="block h-full rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                                             style={{
                                                 width: `${percent}%`,
-                                                backgroundColor: getChartColor(item.color, index),
+                                                backgroundColor: barColor(item, index),
                                             }}
                                             tabIndex={0}
                                             aria-label={`${chartLabelToString(item.label)}: ${formatValue(item.value)}${
                                                 averageValue !== undefined
                                                     ? ` (${averageText}: ${formatValue(averageValue)})`
                                                     : ""
-                                            }`}
+                                            }${overThresholdSuffix(item.value)}`}
                                         />
                                     </ChartTooltip>
                                 </div>
@@ -186,6 +226,22 @@ const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
                                 </span>
                             </ChartTooltip>
                         ) : null}
+                        {thresholdPercent !== null ? (
+                            <ChartTooltip label={thresholdLabel} value={formatValue(threshold ?? 0)}>
+                                <span
+                                    className="absolute inset-x-0 z-20 h-4 translate-y-1/2 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                                    style={{ bottom: `${thresholdPercent}%` }}
+                                    tabIndex={0}
+                                    aria-label={`${thresholdText}: ${formatValue(threshold ?? 0)}`}
+                                >
+                                    <span
+                                        className="pointer-events-none absolute inset-x-0 top-1/2 border-t-2"
+                                        style={{ borderColor: thresholdColor }}
+                                        aria-hidden="true"
+                                    />
+                                </span>
+                            </ChartTooltip>
+                        ) : null}
                         {data.map((item, index) => {
                             const percent = normalizeChartValue(item.value, maxValue)
                             return (
@@ -206,14 +262,14 @@ const BarChart = React.forwardRef<HTMLDivElement, BarChartProps>(
                                             className="w-full max-w-12 rounded-t-md shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                                             style={{
                                                 height: `${percent}%`,
-                                                backgroundColor: getChartColor(item.color, index),
+                                                backgroundColor: barColor(item, index),
                                             }}
                                             tabIndex={0}
                                             aria-label={`${chartLabelToString(item.label)}: ${formatValue(item.value)}${
                                                 averageValue !== undefined
                                                     ? ` (${averageText}: ${formatValue(averageValue)})`
                                                     : ""
-                                            }`}
+                                            }${overThresholdSuffix(item.value)}`}
                                         />
                                     </ChartTooltip>
                                     {showValues ? (

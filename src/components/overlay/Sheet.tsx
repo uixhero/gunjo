@@ -78,11 +78,26 @@ interface SheetContentProps
     closeLabel?: string
 }
 
+// True when a direct child has the given displayName. Used to opt SheetContent
+// into a managed-scroll flex column *only* when a SheetBody is present, so
+// existing sheets (no SheetBody) render byte-identically. (#293)
+function hasChildOfType(children: React.ReactNode, displayName: string): boolean {
+    return React.Children.toArray(children).some(
+        (child) =>
+            React.isValidElement(child) &&
+            (child.type as { displayName?: string })?.displayName === displayName
+    )
+}
+
 const SheetContent = React.forwardRef<
     React.ElementRef<typeof SheetPrimitive.Content>,
     SheetContentProps
 >(({ side = "right", size, className, children, portalContainer, overlayClassName, closeLabel, onOpenAutoFocus, ...props }, ref) => {
     const { strings } = useLocale()
+    // When a SheetBody is present, lay the content out as a flex column so the
+    // body can flex-1/scroll between a pinned header and footer. Left/right
+    // sheets are already `h-full`, which bounds the scroll. (#293)
+    const hasBody = hasChildOfType(children, "SheetBody")
     const resolvedCloseLabel = closeLabel ?? strings.close
     const { describedByProps, register, DescriptionProvider } = useDialogDescribedBy(
         "aria-describedby" in props
@@ -123,6 +138,7 @@ const SheetContent = React.forwardRef<
                 onOpenAutoFocus={handleOpenAutoFocus}
                 className={cn(
                     sheetVariants({ side, size }),
+                    hasBody && "flex flex-col",
                     portalContainer && "absolute",
                     portalContainer && "data-[state=open]:!transform-none data-[state=closed]:!transform-none",
                     portalContainer && side === "right" && "right-0 top-0 h-full",
@@ -187,6 +203,18 @@ const SheetFooter = ({
 )
 SheetFooter.displayName = "SheetFooter"
 
+// Scrollable body region for long forms. Placed as a direct child of
+// SheetContent (between SheetHeader and SheetFooter), it flexes to fill the
+// remaining height and scrolls its own overflow while header/footer stay
+// pinned. Works in left/right sheets (which are `h-full`). (#293)
+const SheetBody = ({
+    className,
+    ...props
+}: React.HTMLAttributes<HTMLDivElement>) => (
+    <div className={cn("flex-1 min-h-0 overflow-y-auto", className)} {...props} />
+)
+SheetBody.displayName = "SheetBody"
+
 const SheetTitle = React.forwardRef<
     React.ElementRef<typeof SheetPrimitive.Title>,
     React.ComponentPropsWithoutRef<typeof SheetPrimitive.Title>
@@ -223,6 +251,7 @@ export {
     SheetContent,
     SheetHeader,
     SheetFooter,
+    SheetBody,
     SheetTitle,
     SheetDescription,
 }

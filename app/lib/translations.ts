@@ -35,7 +35,7 @@ export type HomeTranslations = {
   ai: {
     heading: string;
     description: string;
-    evidence: string;
+    evidence: (count: number) => string;
     evidenceCta: string;
     cards: Record<
       "spec" | "schema" | "mcp" | "cookbook",
@@ -157,7 +157,7 @@ export type PatternsPageStrings = {
   label: string;
   heading: string;
   subtitle: string;
-  evidence: string;
+  evidence: (count: number) => string;
   evidenceCta: string;
   patterns: Record<PatternKey, { title: string; description: string }>;
   families: Record<PatternFamilyKey, { title: string; description: string }>;
@@ -268,7 +268,7 @@ export type AiHandoffPageStrings = {
 
 export type ColdTestsPageStrings = {
   label: string;
-  heading: string;
+  heading: (count: number) => string;
   subtitle: (count: number) => string;
   searchPlaceholder: string;
   allTab: string;
@@ -310,7 +310,7 @@ export type ColdTestsPageStrings = {
   why: {
     label: string;
     heading: string;
-    subtitle: string;
+    subtitle: (count: number) => string;
     ctaGalleryLabel: string;
     ctaComponentsLabel: string;
     breadcrumbLabel: string;
@@ -464,7 +464,7 @@ export const translations: Record<
         label: "The color story",
         gunjoTitle: "群青 — Gunjō",
         gunjoBody:
-          "Not yet blue. Becoming blue. The color of dawn before light arrives, of ink before it dries, of form before it sets. A design system in alpha — a color in becoming.",
+          "Not yet blue. Becoming blue. The color of dawn before light arrives, of ink before it dries, of form before it sets. A design system in beta — a color in becoming.",
         kobichaTitle: "媚茶 — Kobicha",
         kobichaBody:
           "The warm earth that supports the becoming. Where human intent meets the system — hover, selection, the moment of choice — kobicha lends its temperature.",
@@ -502,7 +502,8 @@ export const translations: Record<
       ai: {
         heading: "SSOT and AI handoff",
         description: "GunjoUI treats .pen and design metadata as the source of truth, then syncs tokens, component specs, docs registration, and export data. Pages are not fully auto-generated from .pen.",
-        evidence: "This handoff is verified by having AI that had never seen Gunjo build 170 screens.",
+        evidence: (count) =>
+          `This handoff is verified by having AI that had never seen Gunjo build ${count} screens.`,
         evidenceCta: "Read the verification log",
         cards: {
           spec: {
@@ -542,7 +543,7 @@ export const translations: Record<
       },
     },
     intro: {
-      alphaBadge: "Alpha · v0.0.1-alpha.3",
+      alphaBadge: "Beta · v0.1.0-beta.1",
       componentCountBadge: "200+ components",
       ctaPrimary: "Get Started",
       ctaSecondary: "Browse Components",
@@ -609,7 +610,7 @@ export const translations: Record<
       },
       coldTests: {
         label: "Cold tests",
-        heading: "170 screens built by AI that had never seen Gunjo.",
+        heading: (count) => `${count} screens built by AI that had never seen Gunjo.`,
         subtitle: (count) =>
           `${count} rounds. Each one a context-free agent given only the public npm package and the gunjo.jp docs — no source access — and asked to build a working screen.`,
         searchPlaceholder: "Search rounds, routes, industries...",
@@ -673,9 +674,9 @@ export const translations: Record<
         why: {
           label: "Methodology",
           heading: "Why cold tests",
-          subtitle:
-            "What we measure when a context-free AI agent has to ship a real-industry screen with only the public npm package and gunjo.jp docs — and what crystallises after 170 rounds.",
-          ctaGalleryLabel: "See all 170 rounds",
+          subtitle: (count) =>
+            `What we measure when a context-free AI agent has to ship a real-industry screen with only the public npm package and gunjo.jp docs — and what crystallises after ${count} rounds.`,
+          ctaGalleryLabel: "See all rounds",
           ctaComponentsLabel: "Browse the component catalog",
           breadcrumbLabel: "Why",
         },
@@ -736,8 +737,8 @@ export const translations: Record<
         heading: "Reference apps, fully composed.",
         subtitle:
           "Eight production-shaped GunjoUI demonstrations grouped by family, surface, and industry. Use the page chips to open the exact route included in each pattern.",
-        evidence:
-          "These patterns aren't drawing-board samples — they emerged when AI that had never seen Gunjo built 170 screens (our cold tests).",
+        evidence: (count) =>
+          `These patterns aren't drawing-board samples — they emerged when AI that had never seen Gunjo built ${count} screens (our cold tests).`,
         evidenceCta: "Verification log",
         patterns: {
           auth: {
@@ -1097,7 +1098,7 @@ export const translations: Record<
         label: "色の物語",
         gunjoTitle: "群青 — Gunjō",
         gunjoBody:
-          "未だ青ならず、青になりつつあるもの。夜明け前の色、墨のまだ乾かぬ色、形になる前の色。alpha 段階のデザインシステムは、becoming する色そのもの。",
+          "未だ青ならず、青になりつつあるもの。夜明け前の色、墨のまだ乾かぬ色、形になる前の色。beta 段階のデザインシステムは、becoming する色そのもの。",
         kobichaTitle: "媚茶 — Kobicha",
         kobichaBody:
           "becoming を支える温かい土。ホバー、選択、人の意思が介在する瞬間に温度を加える色。",
@@ -1135,7 +1136,8 @@ export const translations: Record<
       ai: {
         heading: "SSOT と AI 連携",
         description: "GunjoUI は .pen と design metadata を SSOT とし、トークン、コンポーネント仕様、docs 登録、export 情報へ同期します。ページ全体を .pen から完全自動生成するものではありません。",
-        evidence: "この連携は、群青を一度も見たことのない AI に 170 の画面を組ませて検証しています。",
+        evidence: (count) =>
+          `この連携は、群青を一度も見たことのない AI に ${count} の画面を組ませて検証しています。`,
         evidenceCta: "検証の記録を読む",
         cards: {
           spec: {
@@ -1175,7 +1177,7 @@ export const translations: Record<
       },
     },
     intro: {
-      alphaBadge: "Alpha · v0.0.1-alpha.3",
+      alphaBadge: "Beta · v0.1.0-beta.1",
       componentCountBadge: "200+ コンポーネント",
       ctaPrimary: "はじめる",
       ctaSecondary: "コンポーネント一覧",
@@ -1241,9 +1243,9 @@ export const translations: Record<
       },
       coldTests: {
         label: "コールドテスト",
-        heading: "群青を知らない AI に作らせた、170 画面。",
+        heading: (count) => `群青を知らない AI に作らせた、${count} 画面。`,
         subtitle: (count) =>
-          `${count} ラウンド。予備知識ゼロの AI に、公開 npm パッケージと gunjo.jp の docs だけを渡して——ソースは見せず——動く画面を組ませた記録です。`,
+          `${count} ラウンド。予備知識ゼロの AI に、公開 npm パッケージと gunjo.jp の docs だけを渡して（ソースは見せず）、動く画面を組ませた記録です。`,
         searchPlaceholder: "ラウンド・ルート・業種を検索...",
         allTab: "全て",
         emptyState: "該当するラウンドがありません。",
@@ -1285,7 +1287,7 @@ export const translations: Record<
           sourceCodeHint: "ファイル名をクリックでソースを展開できます。",
           sourceCodeFileLines: (lines) => `${lines} 行`,
           sourceCodeMissing: (overwrittenBy) =>
-            `この回のソースは保存されていません——同じルートが #${overwrittenBy} で別の画面として組み直され、ファイルが上書きされたためです。上の記事とスクショは、組まれた当時の姿を残しています。`,
+            `この回のソースは保存されていません。同じルートが #${overwrittenBy} で別の画面として組み直され、ファイルが上書きされたためです。上の記事とスクショは、組まれた当時の姿を残しています。`,
           componentsUsed: "使用した @gunjo/ui コンポーネント",
           componentsUsedHint: "この画面のソースが直接 import しているコンポーネントです。",
           componentDocsLabel: (name) => `${name} のドキュメントを開く`,
@@ -1305,9 +1307,9 @@ export const translations: Record<
         why: {
           label: "方法論",
           heading: "なぜコールドテストするか",
-          subtitle:
-            "予備知識ゼロの AI に、公開 npm パッケージと gunjo.jp の docs だけで実在の業種の画面を組ませる ── 170 ラウンドの記録から、どんなコンポーネントが群青に加わったか。",
-          ctaGalleryLabel: "170 ラウンドのカタログを見る",
+          subtitle: (count) =>
+            `予備知識ゼロの AI に、公開 npm パッケージと gunjo.jp の docs だけで実在の業種の画面を組ませる。${count} ラウンドの記録から、どんなコンポーネントが群青に加わったか。`,
+          ctaGalleryLabel: "カタログを見る",
           ctaComponentsLabel: "コンポーネント一覧へ",
           breadcrumbLabel: "なぜ",
         },
@@ -1358,9 +1360,9 @@ export const translations: Record<
           },
         },
         designMd: {
-          title: "DESIGN.md ── canonical な仕様書",
+          title: "DESIGN.md：canonical な仕様書",
           description:
-            "DESIGN.md はデザインシステム全体を機械可読な Markdown でドキュメント化しており、AI ツール（v0 / Cursor / Claude / Figma Make）がそのまま消費できます。ブランドストーリー、hex/HSL カラーパレット、タイポグラフィ規則、コンポーネント単位の用法 ── 真実の唯一の源泉。",
+            "DESIGN.md はデザインシステム全体を機械可読な Markdown でドキュメント化しており、AI ツール（v0 / Cursor / Claude / Figma Make）がそのまま消費できます。ブランドストーリー、hex/HSL カラーパレット、タイポグラフィ規則、コンポーネント単位の用法。これが真実の唯一の源泉です。",
           cta: "完全な仕様を読む",
         },
       },
@@ -1369,8 +1371,8 @@ export const translations: Record<
         heading: "リファレンスアプリ、完成形のまま。",
         subtitle:
           "本番想定の GunjoUI デモを、ファミリー・画面種別・業界で分類しています。チップから各パターンに含まれるページを直接開けます。",
-        evidence:
-          "ここにあるパターンは机上の見本ではなく、群青を知らない AI に 170 画面を組ませた検証（コールドテスト）で実際に現れた形から抽出しています。",
+        evidence: (count) =>
+          `ここにあるパターンは机上の見本ではなく、群青を知らない AI に ${count} 画面を組ませた検証（コールドテスト）で実際に現れた形から抽出しています。`,
         evidenceCta: "検証の記録",
         patterns: {
           auth: {
@@ -1402,7 +1404,7 @@ export const translations: Record<
           bannalyze: {
             title: "Bannalyze",
             description:
-              "Banner Review のアナライザー画面 ── データ密度の高いワークフローツール。",
+              "Banner Review のアナライザー画面。データ密度の高いワークフローツールです。",
           },
           "media-library": {
             title: "Media Library",
@@ -1507,7 +1509,7 @@ export const translations: Record<
         badge: "AI ネイティブ設計",
         heading: "選んだ AI に、そのまま渡す。",
         subtitle:
-          "GunjoUI の全コンポーネントは Markdown 仕様と JSON-Schema エンドポイントを公開しており、AI ツールが variant キー・Tailwind クラス・デザイントークンを正確に参照できます ── 人間が読むのと同じ SSOT です。",
+          "GunjoUI の全コンポーネントは Markdown 仕様と JSON-Schema エンドポイントを公開しており、AI ツールが variant キー・Tailwind クラス・デザイントークンを正確に参照できます。人間が読むのと同じ SSOT です。",
         capabilities: {
           spec: {
             title: "Spec を prompt に",
@@ -1525,7 +1527,7 @@ export const translations: Record<
             title: "DESIGN.md",
             badge: "公開済",
             description:
-              "canonical な仕様書 ── 色・タイポグラフィ・コンポーネント規則を AI 消費前提で記述。",
+              "canonical な仕様書。色・タイポグラフィ・コンポーネント規則を AI 消費前提で記述しています。",
           },
           mcp: {
             title: "MCP サーバー",
@@ -1567,14 +1569,14 @@ export const translations: Record<
           usage: {
             heading: "ファイルの使い方",
             pencilNote:
-              ".pen は Pencil のドキュメント — まだ入れていない場合は Pencil をインストールしてください。JSON（core / metadata）は普通の JSON なのでどんなツールでも読めます。",
+              ".pen は Pencil のドキュメントです。まだ入れていない場合は Pencil をインストールしてください。JSON（core / metadata）は普通の JSON なのでどんなツールでも読めます。",
             designer: {
               title: "デザインの参考として使う",
               intro:
                 ".pen を開いて、自分のデザインに取り込む素材として使ったり、コードエディタの横に並べて視覚リファレンスにできます。",
               steps: [
                 "必要な <category>.pen をダウンロード。",
-                "Pencil で開く — そのカテゴリの全コンポーネントが 1 枚の無限キャンバスに並びます。",
+                "Pencil で開く。そのカテゴリの全コンポーネントが 1 枚の無限キャンバスに並びます。",
                 "パン・ズームで観察。フレームをドラッグコピーして自分のドキュメントに持ち込めます。",
               ],
             },
@@ -1585,7 +1587,7 @@ export const translations: Record<
               steps: [
                 "gunjo を clone して、design/ の <category>.pen を Pencil で開く。",
                 "編集して保存。Pencil が同じ .pen ファイルに書き戻します。",
-                "`npm run design:sync` を実行 — metadata、core spec JSON、生成 variant-keys、manifest、public-exports、docs ナビが全部 .pen から再ビルドされます。",
+                "`npm run design:sync` を実行。metadata、core spec JSON、生成 variant-keys、manifest、public-exports、docs ナビが全部 .pen から再ビルドされます。",
                 ".pen と再生成された成果物を一緒にコミット（design:verify が整合性を検証します）。",
               ],
               readmeCta: "詳しい SSOT 運用手順（design/README.md）",
@@ -1598,13 +1600,13 @@ export const translations: Record<
                 "コード生成ツールや AI に流す場合の使い分け：",
               coreLabel: "<category>-core.json",
               coreDescription:
-                "構造化 spec — variant key、各 variant のジオメトリ、slot ID。コード生成や下流ツールのカノニカル入力。",
+                "構造化 spec（variant key、各 variant のジオメトリ、slot ID）。コード生成や下流ツールのカノニカル入力です。",
               metadataLabel: "<category>-metadata.json",
               metadataDescription:
                 "コンポーネントごとの title / description。i18n や docs のソース。",
               penLabel: "<category>.pen",
               penDescription:
-                "Pencil の元ドキュメント — 内部は JSON ですが、ラウンドトリップは Pencil で開いたときだけ可能です。",
+                "Pencil の元ドキュメントです。内部は JSON ですが、ラウンドトリップは Pencil で開いたときだけ可能です。",
             },
           },
         },
@@ -1644,7 +1646,7 @@ export const translations: Record<
           mcp: {
             title: "gunjo-ui MCP サーバー",
             description:
-              "Claude / Cursor が Model Context Protocol で gunjo-ui 名前空間を直接クエリ ── コピペ不要。",
+              "Claude / Cursor が Model Context Protocol で gunjo-ui 名前空間を直接クエリできます。コピペは不要です。",
             cta: "MCP プランを読む",
           },
           figma: {

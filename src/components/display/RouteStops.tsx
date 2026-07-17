@@ -39,7 +39,11 @@ export interface RouteStopItem {
 
 export interface RouteStopsProps extends Omit<React.HTMLAttributes<HTMLOListElement>, "children"> {
     stops: RouteStopItem[]
-    /** Localized status labels. */
+    /**
+     * Localized / domain status labels. The defaults are neutral
+     * (`未着手 / 進行中 / 完了 / 失敗 / 遅延`); override per domain — e.g. delivery
+     * `{ pending: "未配", current: "配送中", failed: "不在" }`. (#282)
+     */
     statusLabels?: Partial<Record<RouteStopStatus, string>>
     /** Localized label shown next to the current stop. Default `"現在地"`. */
     currentLabel?: string
@@ -59,10 +63,14 @@ const STATUS_CONFIG: Record<
     RouteStopStatus,
     { label: string; badge: BadgeVariant; marker: string; icon?: typeof IconCheck }
 > = {
-    pending: { label: "未配", badge: "secondary", marker: "bg-muted text-muted-foreground" },
-    current: { label: "配送中", badge: "info", marker: "bg-primary text-primary-foreground" },
+    // Neutral, domain-agnostic defaults — the status keys are generic, so the
+    // labels should be too. Delivery / care / manufacturing vocab is applied per
+    // domain via `statusLabels` (e.g. delivery: pending "未配", current "配送中",
+    // failed "不在"). (#282)
+    pending: { label: "未着手", badge: "secondary", marker: "bg-muted text-muted-foreground" },
+    current: { label: "進行中", badge: "info", marker: "bg-primary text-primary-foreground" },
     completed: { label: "完了", badge: "success", marker: "bg-success-strong text-success-strong-foreground", icon: IconCheck },
-    failed: { label: "不在", badge: "destructive", marker: "bg-destructive-strong text-destructive-strong-foreground", icon: IconX },
+    failed: { label: "失敗", badge: "destructive", marker: "bg-destructive-strong text-destructive-strong-foreground", icon: IconX },
     delayed: { label: "遅延", badge: "warning", marker: "bg-warning-strong text-warning-strong-foreground", icon: IconClock },
 }
 
@@ -74,9 +82,11 @@ function parseHM(t?: string): number | null {
 }
 
 /**
- * Ordered route / itinerary list. Numbered stops with a per-stop status
- * (pending / current / completed / failed / delayed) driving the marker and a
- * status label, the current stop wired with `aria-current="step"`, and a trailing
+ * Ordered route / itinerary / process-chain list. Numbered stops with a per-stop
+ * status (pending / current / completed / failed / delayed) driving the marker and
+ * a status label — labels default to neutral vocab (`未着手 / 進行中 / 完了 / 失敗 /
+ * 遅延`) and are overridden per domain via `statusLabels`. The current stop is wired
+ * with `aria-current="step"`, and a trailing
  * actions slot. Two time modes: an INTRADAY planned-vs-actual `"HH:MM"` pair with a
  * signed delay (via `Delta`) for same-day delivery routes; or a free-form per-stop
  * `dateLabel` for a MULTI-DAY / multi-week dated timeline (shipment / customs /

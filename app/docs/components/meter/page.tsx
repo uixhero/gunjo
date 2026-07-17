@@ -337,8 +337,8 @@ export function BinFillTable() {
     { name: "max", type: "number", default: "100", description: locale === "ja" ? "範囲の上限です。0 以下の値は安全な既定値に正規化されます。" : "Upper bound of the range. Non-positive values are normalized to a safe default." },
     { name: "incoming", type: "number", description: locale === "ja" ? "追加予定分を斜線の上乗せとして表示し、反映後のトーン判定にも使います。" : "Pending additional amount rendered as a striped overlay and included in tone resolution." },
     { name: "thresholds", type: "{ warning?: number; over?: number }", default: "{ warning: 0.8, over: 1 }", description: locale === "ja" ? "higher-is-worse で warning / destructive に切り替える割合です。" : "Fractions that switch higher-is-worse meters to warning or destructive." },
-    { name: "direction", type: '"higher-is-worse" | "higher-is-better" | "fill-is-good"', default: '"higher-is-worse"', description: locale === "ja" ? "高い値を悪い状態と見るか、目標以上を良い状態と見るか、満杯に近いほど良い状態と見るかを選びます。" : "Chooses whether high values are bad, at-target values are good, or fill toward max is good." },
-    { name: "target", type: "number", description: locale === "ja" ? "目標線です。higher-is-better ではトーン判定にも使います。" : "Goal marker. With higher-is-better it also drives tone." },
+    { name: "direction", type: '"higher-is-worse" | "higher-is-better" | "fill-is-good" | "neutral"', default: '"higher-is-worse"', description: locale === "ja" ? "トーンの意味論を選びます。higher-is-worse=満杯に近いほど warning/destructive。higher-is-better=target 以上が success・未達で赤。fill-is-good=max に近いほど success。neutral=判定色なし（primary 一定）＋target はマーカーのみ（満席率・稼働率など時間で埋まるゲージ向け・低い値を赤にしない）。(#343)" : "Chooses the tone semantics. higher-is-worse=near-full warns/fails; higher-is-better=success at/above target, red below; fill-is-good=success as it fills toward max; neutral=no judgment colour (steady primary) + target as a marker only, for gauges that just fill up over time (occupancy — a low reading isn't red). (#343)" },
+    { name: "target", type: "number", description: locale === "ja" ? "目標線です。higher-is-better ではトーン判定にも使います。neutral では参照マーカーのみ（色判定なし）。" : "Goal marker. With higher-is-better it also drives tone; with neutral it is a reference marker only (no colour judgment)." },
     { name: "tone", type: '"success" | "warning" | "destructive" | "info" | "primary" | "muted"', description: locale === "ja" ? "自動判定を使わず明示的なトーンを指定します。" : "Forces the tone instead of deriving it." },
     { name: "label", type: "ReactNode", description: locale === "ja" ? "meter のアクセシブル名として使われるラベルです。" : "Visible label that also names the meter when it is a string." },
     { name: "valueText", type: "string", description: locale === "ja" ? "支援技術に読み上げる値の説明を上書きします。" : "Overrides the announced value text." },
@@ -379,6 +379,36 @@ export function BinFillTable() {
               description: locale === "ja" ? "direction を切り替えると、同じバーを稼働率や充足率にも使えます。" : "Change direction to use the same bar for utilization targets or completion.",
               preview: <MeterPreview locale={locale} mode="target" />,
               code: targetStateCode,
+              previewBodyWidth: "lg",
+            },
+            {
+              key: "neutral-occupancy",
+              title: locale === "ja" ? "中立ゲージ（満席率・稼働率）" : "Neutral gauge (occupancy)",
+              description: locale === "ja"
+                ? "時間で埋まっていくゲージ（満席率など）には direction=\"neutral\"。判定色を付けず（primary 一定）、target は参照マーカーのみ。低い値でも赤にならないので、サービス開始直後の誤警報を防ぎます。（higher-is-better では 29% が赤くなってしまいます）"
+                : "For a gauge that just fills up over time (occupancy), use direction=\"neutral\": no judgment colour (steady primary), target as a reference marker only. A low reading early in service does not turn red the way higher-is-better would at 29%.",
+              preview: (
+                <div className="flex w-full max-w-md flex-col gap-4">
+                  <Meter
+                    label={locale === "ja" ? "満席率（2 / 7卓）" : "Occupancy (2 / 7 tables)"}
+                    value={2}
+                    max={7}
+                    target={6}
+                    direction="neutral"
+                    formatValue={(n) => `${Math.round(n)}${locale === "ja" ? "卓" : ""}`}
+                  />
+                  <p className="text-xs text-muted-foreground">
+                    {locale === "ja" ? "target=6 はマーカー。低い値でも赤くならない（primary 一定）。" : "target=6 is a marker; the low reading stays primary, never red."}
+                  </p>
+                </div>
+              ),
+              code: `<Meter
+  label="${locale === "ja" ? "満席率（2 / 7卓）" : "Occupancy (2 / 7 tables)"}"
+  value={2}
+  max={7}
+  target={6}
+  direction="neutral"
+/>`,
               previewBodyWidth: "lg",
             },
             {

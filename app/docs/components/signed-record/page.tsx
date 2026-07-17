@@ -13,6 +13,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
 import {
+  Button,
   SignedRecord,
   Textarea,
   type SignedRecordLabels,
@@ -70,6 +71,76 @@ function initialValue(locale: Locale, status: "draft" | "signed" = "draft"): Sig
           },
         ],
       };
+}
+
+// Multi-signatory demo (#259): switch the acting party and watch the record stay a
+// draft until every required signer has signed — the last signature locks it.
+function MultiSignerPreview({ locale }: { locale: Locale }) {
+  const isJa = locale === "ja";
+  const signers = React.useMemo(
+    () =>
+      isJa
+        ? [
+            { id: "doctor", label: "医師 山田" },
+            { id: "nurse", label: "看護師 佐藤" },
+          ]
+        : [
+            { id: "doctor", label: "Dr. Yamada" },
+            { id: "nurse", label: "Nurse Sato" },
+          ],
+    [isJa]
+  );
+  const [record, setRecord] = React.useState<SignedRecordValue>({ status: "draft", addenda: [], signatures: [] });
+  const [current, setCurrent] = React.useState("doctor");
+  const [body, setBody] = React.useState(
+    isJa ? "退院時説明を実施。次回外来は7月10日。" : "Discharge instructions completed. Follow-up is scheduled for July 10."
+  );
+
+  React.useEffect(() => {
+    setRecord({ status: "draft", addenda: [], signatures: [] });
+    setCurrent("doctor");
+  }, [locale]);
+
+  return (
+    <div className="flex w-full max-w-xl flex-col gap-3">
+      <div className="flex flex-wrap items-center gap-2 text-sm">
+        <span className="text-muted-foreground">{isJa ? "操作中の当事者" : "Acting as"}</span>
+        {signers.map((s) => (
+          <Button
+            key={s.id}
+            size="sm"
+            variant={current === s.id ? "default" : "outline"}
+            onClick={() => setCurrent(s.id)}
+          >
+            {s.label}
+          </Button>
+        ))}
+      </div>
+      <div className="rounded-lg border bg-card p-4">
+        <SignedRecord
+          value={record}
+          onChange={setRecord}
+          signerId={current}
+          requiredSigners={signers}
+          labels={labels(locale)}
+          formatTime={(iso) => iso.slice(0, 16).replace("T", " ")}
+        >
+          {({ readOnly }) =>
+            readOnly ? (
+              <p className="whitespace-pre-wrap rounded-md border bg-muted/30 px-3 py-2 text-sm leading-6 text-foreground">{body}</p>
+            ) : (
+              <Textarea
+                rows={3}
+                value={body}
+                onChange={(event) => setBody(event.target.value)}
+                aria-label={isJa ? "記録本文" : "Record body"}
+              />
+            )
+          }
+        </SignedRecord>
+      </div>
+    </div>
+  );
 }
 
 function SignedRecordPreview({ locale, mode = "draft" }: { locale: Locale; mode?: "draft" | "signed" | "blocked" }) {
@@ -345,11 +416,42 @@ export function MissingBodyDischargeRecord() {
   );
 }`;
 
+  const multiSignerCode = `import * as React from "react";
+import { SignedRecord, type SignedRecordValue } from "@gunjo/ui";
+
+const signers = [
+  { id: "doctor", label: "${locale === "ja" ? "医師 山田" : "Dr. Yamada"}" },
+  { id: "nurse", label: "${locale === "ja" ? "看護師 佐藤" : "Nurse Sato"}" },
+];
+
+export function MultiSignedNote({ currentUserId }: { currentUserId: string }) {
+  const [record, setRecord] = React.useState<SignedRecordValue>({
+    status: "draft",
+    addenda: [],
+    signatures: [],
+  });
+
+  // requiredSigners → the record stays an editable draft until BOTH parties sign;
+  // the last signature flips it to "signed" and locks the body.
+  return (
+    <SignedRecord
+      value={record}
+      onChange={setRecord}
+      signerId={currentUserId}
+      requiredSigners={signers}
+    >
+      {({ readOnly }) => (readOnly ? <p>{body}</p> : <Textarea value={body} onChange={onBodyChange} />)}
+    </SignedRecord>
+  );
+}`;
+
   const propsData = [
     { name: "value", type: "SignedRecordValue", description: locale === "ja" ? "status / signedBy / signedAt / addenda を含む controlled state です。" : "Controlled state with status, signedBy, signedAt, and addenda." },
     { name: "onChange", type: "(value: SignedRecordValue) => void", description: locale === "ja" ? "署名または追記時に呼ばれます。" : "Called when the record is signed or an addendum is appended." },
     { name: "children", type: "({ readOnly }) => ReactNode", description: locale === "ja" ? "本文の render prop です。確定後は readOnly が true になります。" : "Render prop for the body. readOnly becomes true after signing." },
     { name: "signerId", type: "string", description: locale === "ja" ? "署名者と追記者として記録されるIDです。" : "Identifier recorded as signer and addendum author." },
+    { name: "requiredSigners", type: "{ id: string; label?: ReactNode }[]", description: locale === "ja" ? "複数署名モードを有効化します。全員が署名するまで draft のまま（編集可）で、最後の署名でロック。signerId は当事者のうち1人として1回だけ署名できます。未指定なら単一署名（1回の署名で即ロック）。(#259)" : "Opts into multi-signatory mode: the record stays a draft (editable) until every party has signed; the last signature locks it. signerId may sign once, and only as one of these parties. Omit for single-signatory (one signature locks immediately). (#259)" },
+    { name: "value.signatures", type: "{ signerId: string; at: string }[]", description: locale === "ja" ? "複数署名モードで集まった署名。全 requiredSigners が揃うとロックします。" : "Signatures collected in multi-signatory mode. The record locks once every requiredSigner appears here." },
     { name: "canSign", type: "boolean", default: "true", description: locale === "ja" ? "署名できる状態かどうかを渡します。" : "Controls whether the record can be signed." },
     { name: "cannotSignReason", type: "ReactNode", description: locale === "ja" ? "署名ボタンが無効な理由と復帰条件をツールチップで表示します。" : "Tooltip content explaining why signing is disabled and how to recover." },
     { name: "requireAddendumReason", type: "boolean", default: "true", description: locale === "ja" ? "追記時の理由入力を必須にします。" : "Requires a reason for each addendum." },
@@ -382,6 +484,16 @@ export function MissingBodyDischargeRecord() {
             { key: "draft", title: locale === "ja" ? "下書き" : "Draft", description: locale === "ja" ? "本文を編集し、本文が入力されている間は署名できます。" : "The body remains editable, and signing is available while the body has content.", preview: <SignedRecordPreview locale={locale} />, code: usageCode, previewBodyWidth: "lg" },
             { key: "signed", title: locale === "ja" ? "署名済み" : "Signed", description: locale === "ja" ? "署名後は本文がロックされ、修正は追記で残します。" : "After signing, the body is locked and changes are appended.", preview: <SignedRecordPreview locale={locale} mode="signed" />, code: signedStateCode, previewBodyWidth: "lg" },
             { key: "blocked", title: locale === "ja" ? "署名不可" : "Cannot sign", description: locale === "ja" ? "本文が空の間だけ署名ボタンを無効化し、ボタンのツールチップで復帰条件を示します。" : "The sign button is disabled only while the body is empty, and its tooltip explains how to recover.", preview: <SignedRecordPreview locale={locale} mode="blocked" />, code: blockedStateCode, previewBodyWidth: "lg" },
+            {
+              key: "multi-signatory",
+              title: locale === "ja" ? "複数署名" : "Multi-signatory",
+              description: locale === "ja"
+                ? "requiredSigners を渡すと複数署名モードに。全員が署名するまで下書きのまま編集でき、最後の署名でロックします。当事者ごとの署名状況と進捗（N/M）を表示。上のボタンで操作中の当事者を切り替えて試せます（同じ人は2回署名できません）。"
+                : "Pass requiredSigners for multi-signatory mode: the record stays an editable draft until every party signs, and the last signature locks it. Each party's status and the N/M progress are shown. Switch the acting party above to try it (nobody can sign twice).",
+              preview: <MultiSignerPreview locale={locale} />,
+              code: multiSignerCode,
+              previewBodyWidth: "lg",
+            },
           ]}
         />
       </section>

@@ -1,11 +1,28 @@
 "use client"
 import React, { createContext, useContext, useState, useCallback } from 'react';
 import { createPortal } from "react-dom";
-import { Toast, ToastType } from './Toast';
+import { Toast, ToastType, ToastAction } from './Toast';
+
+export interface ShowToastOptions {
+    message: string;
+    type?: ToastType;
+    duration?: number;
+    /** Secondary line rendered under `message` in a muted tone. */
+    description?: React.ReactNode;
+    /** A single action button; activating it runs `onClick` and then closes the toast. */
+    action?: ToastAction;
+}
+
+interface ShowToast {
+    (message: string, type?: ToastType, duration?: number): void;
+    (options: ShowToastOptions): void;
+}
 
 interface ToastContextType {
-    showToast: (message: string, type: ToastType, duration?: number) => void;
+    showToast: ShowToast;
 }
+
+type ToastEntry = ShowToastOptions & { id: number; isVisible: boolean };
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
 
@@ -19,17 +36,27 @@ export interface ToastProviderProps {
 }
 
 export const ToastProvider = ({ children, labels, portalContainer, placement = "viewport" }: ToastProviderProps) => {
-    const [toasts, setToasts] = useState<{ id: number, message: string, type: ToastType, duration: number, isVisible: boolean }[]>([]);
+    const [toasts, setToasts] = useState<ToastEntry[]>([]);
     const [mounted, setMounted] = useState(false);
 
     React.useEffect(() => {
         setMounted(true);
     }, []);
 
-    const showToast = useCallback((message: string, type: ToastType, duration = 3000) => {
-        const id = Date.now();
-        setToasts(prev => [...prev, { id, message, type, duration, isVisible: true }]);
-    }, []);
+    const showToast = useCallback((
+        messageOrOptions: string | ShowToastOptions,
+        type?: ToastType,
+        // The positional legacy default stays 3000 (SSOT contract). The object
+        // form carries its own duration; when omitted, Toast applies the
+        // action-aware default (longer for action toasts). (#301)
+        duration = 3000,
+    ): void => {
+        const options: ShowToastOptions =
+            typeof messageOrOptions === "string"
+                ? { message: messageOrOptions, type, duration: duration as number }
+                : messageOrOptions;
+        setToasts(prev => [...prev, { ...options, id: Date.now(), isVisible: true }]);
+    }, []) as ShowToast;
 
     const closeToast = useCallback((id: number) => {
         setToasts(prev => prev.map(t => t.id === id ? { ...t, isVisible: false } : t));
@@ -51,6 +78,8 @@ export const ToastProvider = ({ children, labels, portalContainer, placement = "
                 <Toast
                     key={toast.id}
                     message={toast.message}
+                    description={toast.description}
+                    action={toast.action}
                     type={toast.type}
                     isVisible={toast.isVisible}
                     onClose={() => closeToast(toast.id)}

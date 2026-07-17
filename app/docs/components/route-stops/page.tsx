@@ -15,7 +15,13 @@ type Locale = "ja" | "en";
 function routeLabels(locale: Locale) {
   return locale === "ja"
     ? {
-        status: undefined,
+        status: {
+          pending: "未着手",
+          current: "進行中",
+          completed: "完了",
+          failed: "失敗",
+          delayed: "遅延",
+        } satisfies Partial<Record<RouteStopStatus, string>>,
         current: "現在地",
         times: { planned: "予定", actual: "実績" },
         delays: { late: "遅れ", early: "早着", onTime: "定刻" },
@@ -34,6 +40,13 @@ function routeLabels(locale: Locale) {
         delays: { late: "late", early: "early", onTime: "on time" },
         delay: (minutes: number) => `${Math.abs(minutes)} min`,
       };
+}
+
+// Delivery vocab — overrides the neutral component defaults for the delivery demo. (#282)
+function deliveryStatusLabels(locale: Locale): Partial<Record<RouteStopStatus, string>> {
+  return locale === "ja"
+    ? { pending: "未配", current: "配送中", completed: "完了", failed: "不在", delayed: "遅延" }
+    : { pending: "Undelivered", current: "In transit", completed: "Delivered", failed: "Missed", delayed: "Delayed" };
 }
 
 function deliveryStops(locale: Locale): RouteStopItem[] {
@@ -124,7 +137,7 @@ function RouteStopsPreview({ locale, mode = "delivery" }: { locale: Locale; mode
     <div className="flex w-full max-w-md flex-col rounded-lg border bg-card p-4">
       <RouteStops
         stops={stops}
-        statusLabels={labels.status}
+        statusLabels={deliveryStatusLabels(locale)}
         currentLabel={labels.current}
         timeLabels={labels.times}
         delayLabels={labels.delays}
@@ -331,7 +344,7 @@ export function RouteStopsWithoutTimes() {
     { name: "delayMinutes", type: "number", description: locale === "ja" ? "明示的な遅延分です。正は遅れ、負は早着です。" : "Explicit signed delay minutes. Positive is late, negative is early." },
     { name: "dateLabel", type: "ReactNode", description: locale === "ja" ? "複数日・複数週の輸送追跡で使う自由形式の日付行です。" : "Free-form date row for multi-day or multi-week shipment timelines." },
     { name: "actions", type: "ReactNode", description: locale === "ja" ? "停止地点ごとの状態更新などの操作です。" : "Per-stop actions such as status updates." },
-    { name: "statusLabels / currentLabel", type: "localized labels", description: locale === "ja" ? "状態バッジと現在地ラベルをローカライズします。" : "Localizes status badges and the current-stop label." },
+    { name: "statusLabels / currentLabel", type: "localized labels", description: locale === "ja" ? "状態バッジと現在地ラベルを上書きします。既定は中立語彙（未着手 / 進行中 / 完了 / 失敗 / 遅延）で、ドメインごとに上書きします（配送＝未配 / 配送中 / 不在 など）。(#282)" : "Overrides the status badges and current-stop label. Defaults are neutral (未着手 / 進行中 / 完了 / 失敗 / 遅延); override per domain (delivery: 未配 / 配送中 / 不在, etc.). (#282)" },
     { name: "timeLabels / delayLabels / formatDelay", type: "localized labels", description: locale === "ja" ? "予定/実績/遅延の表示をローカライズします。" : "Localizes planned, actual, and delay readouts." },
     { name: "hideTimes", type: "boolean", default: "false", description: locale === "ja" ? "時刻や遅延行を隠します。" : "Hides the time and delay row." },
   ];

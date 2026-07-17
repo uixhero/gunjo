@@ -360,6 +360,7 @@ export function ReviewKanban() {
         { name: "StatusBoard", href: "/docs/components/status-board" },
         { name: "ListCard", href: "/docs/components/list-card" },
         { name: "Card", href: "/docs/components/card" },
+        { name: "SwatchLegend", href: "/docs/components/chart-legend" },
       ]}
     >
       <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewHeight="auto" previewBodyWidth="xl">

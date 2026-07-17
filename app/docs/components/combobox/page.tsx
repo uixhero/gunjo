@@ -50,9 +50,24 @@ const ROLE_OPTIONS = {
 };
 
 function ComboboxStatesContent({ locale }: { locale: "ja" | "en" }) {
+    const isJa = locale === "ja";
     const [framework, setFramework] = React.useState<string>("next");
     const [role, setRole] = React.useState<string>("");
     const roleOptions = ROLE_OPTIONS[locale];
+
+    // creatable demo: add a free-text business partner not in the list. (#200)
+    const [partners, setPartners] = React.useState(
+        isJa
+            ? [
+                { value: "acme", label: "株式会社アクメ" },
+                { value: "globex", label: "グローベックス商事" },
+            ]
+            : [
+                { value: "acme", label: "Acme Inc." },
+                { value: "globex", label: "Globex Trading" },
+            ]
+    );
+    const [partner, setPartner] = React.useState<string>("");
 
     return (
         <ComponentDemoStates
@@ -217,6 +232,63 @@ export default function PickyCombobox() {
   );
 }`,
                 },
+                {
+                    key: "creatable",
+                    title: isJa ? "新規作成（creatable）" : "Create new (creatable)",
+                    description: isJa
+                        ? "検索テキストがどの候補にも一致しない時、「作成」項目で自由入力の値を追加できます。作成の合図（onCreate）を受けて、options への追加と value のセットは呼び出し側が行います。"
+                        : "When the search text matches no option, a Create item lets the user add a free-text value. onCreate signals the intent; the parent adds the option and sets the value.",
+                    preview: (
+                        <FormGroup className="w-full max-w-sm">
+                            <FormLabel htmlFor="state-partner">{isJa ? "取引先" : "Business partner"}</FormLabel>
+                            <FormControl>
+                                <Combobox
+                                    id="state-partner"
+                                    options={partners}
+                                    value={partner}
+                                    onValueChange={setPartner}
+                                    creatable
+                                    onCreate={(input) => {
+                                        setPartners((prev) => [...prev, { value: input, label: input }]);
+                                        setPartner(input);
+                                    }}
+                                    createLabel={(input) => (isJa ? `「${input}」を追加` : `Create "${input}"`)}
+                                    placeholder={isJa ? "取引先を選択" : "Select partner"}
+                                    searchPlaceholder={isJa ? "取引先名を入力" : "Type a partner name"}
+                                    searchClearLabel={isJa ? "検索をクリア" : "Clear search"}
+                                    clearLabel={isJa ? "選択をクリア" : "Clear selection"}
+                                />
+                            </FormControl>
+                            <FormDescription>{isJa ? "一覧に無い取引先は、入力してそのまま追加できます。" : "Add a partner that isn't in the list by typing it."}</FormDescription>
+                        </FormGroup>
+                    ),
+                    code: `import * as React from "react";
+import { Combobox, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+
+export default function PartnerPicker() {
+  const [partners, setPartners] = React.useState([
+    { value: "acme", label: "${isJa ? "株式会社アクメ" : "Acme Inc."}" },
+    { value: "globex", label: "${isJa ? "グローベックス商事" : "Globex Trading"}" },
+  ]);
+  const [partner, setPartner] = React.useState("");
+
+  return (
+    <Combobox
+      options={partners}
+      value={partner}
+      onValueChange={setPartner}
+      creatable
+      // onCreate only signals intent — add the option and set the value here.
+      onCreate={(input) => {
+        setPartners((prev) => [...prev, { value: input, label: input }]);
+        setPartner(input);
+      }}
+      createLabel={(input) => \`${isJa ? "「" : 'Create "'}\${input}${isJa ? "」を追加" : '"'}\`}
+      placeholder="${isJa ? "取引先を選択" : "Select partner"}"
+    />
+  );
+}`,
+                },
             ]}
         />
     );
@@ -334,6 +406,23 @@ export function ComboboxUsage() {
             type: "string",
             default: "'Clear selection'",
             description: locale === "ja" ? "選択をクリアするボタンの読み上げ用ラベルとツールチップです。" : "Accessible label and tooltip for the clear button.",
+        },
+        {
+            name: "creatable",
+            type: "boolean",
+            default: "false",
+            description: locale === "ja" ? "検索テキストがどの候補にも一致しない時、自由入力の値を追加する「作成」項目を表示します。(#200)" : "Shows a Create item to add a free-text value when the search matches no option. (#200)",
+        },
+        {
+            name: "onCreate",
+            type: "(inputValue: string) => void",
+            description: locale === "ja" ? "「作成」選択時に呼ばれます。合図のみで、options への追加と value のセットは呼び出し側が行います。" : "Called when the Create item is picked. It only signals intent — add the option and set the value in the parent.",
+        },
+        {
+            name: "createLabel",
+            type: "(inputValue: string) => ReactNode",
+            default: '`Create "<text>"`',
+            description: locale === "ja" ? "「作成」項目のラベルをカスタマイズします。既定は英語表記です。" : "Customize the create item's label. Defaults to English.",
         },
         {
             name: "disabled",
