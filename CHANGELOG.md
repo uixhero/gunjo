@@ -15,6 +15,7 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ### Changed
 
+- **`Statistic` / `StatGroup` / `StatusBoard` / `Meter` が `SemanticTone` を直接受理**（影響: **none**）— `Statistic` の `positive / negative / neutral` は `success / destructive / muted`、`StatusBoard` の `danger` は `destructive` へ内部正規化し、0.1.x の互換 alias として維持。`trend` / `goodWhen` の方向・評価ロジックは不変。`StatusBoard.problemTones` は正規化後に判定し、`Meter` は `default` を muted の見た目で描画する。`Badge` は presentation variant、`ExpiryBadge` は domain state の公開 API を維持。旧値の撤去は次 major 以降に利用調査＋codemod 付きで再判断。(#673)
 - **`RouteStops` の既定ステータスラベルを中立語彙に**（影響: **minor**）— ステータスキー（`pending/current/completed/failed/delayed`）は汎用なのに、既定ラベルだけが配送依存（`未配 / 配送中 / 不在`）だったのを、ドメイン中立な `未着手 / 進行中 / 完了 / 失敗 / 遅延` に変更。配送・介護・製造など各ドメインは従来どおり `statusLabels` で上書きする設計。**移行**：配送用途は `statusLabels={{ pending: "未配", current: "配送中", failed: "不在" }}` の1プロップで従来表示を復元（`completed`/`delayed` は既に中立で変更なし）。マーカーの色・アイコン、`aria-current`、予実 `Delta` は不変。(#282)
 
 ### Added

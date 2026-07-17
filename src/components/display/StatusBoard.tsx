@@ -3,15 +3,16 @@
 import * as React from "react"
 
 import { cn } from "../../lib/utils"
+import type { SemanticTone } from "../../lib/semantic-tone"
 
-export type StatusBoardTone =
-  | "default"
-  | "primary"
-  | "info"
-  | "success"
-  | "warning"
-  | "danger"
-  | "muted"
+/**
+ * @deprecated Use canonical `destructive`. The `danger` alias remains supported
+ * throughout 0.1.x. (#673)
+ */
+export type LegacyStatusBoardTone = "danger"
+
+/** Canonical semantic tones plus the 0.1.x `danger` alias. */
+export type StatusBoardTone = SemanticTone | LegacyStatusBoardTone
 
 export interface StatusBoardItem {
   id: string | number
@@ -33,7 +34,7 @@ export interface StatusBoardItem {
   trailing?: React.ReactNode
   /**
    * Explicit sort weight (lower sorts first). When omitted, items sort by tone severity
-   * (danger → warning → … → muted) so problems/availability rise — the fault-first read.
+   * (destructive → warning → … → muted) so problems/availability rise — the fault-first read.
    */
   rank?: number
   /** Make the tile selectable (opens detail). */
@@ -57,7 +58,7 @@ export interface StatusBoardProps extends Omit<React.HTMLAttributes<HTMLDivEleme
   selectedId?: string | number
   /** Min tile width (px) for the responsive auto-fill grid. Default 150. */
   minTileWidth?: number
-  /** Tones counted as "problems" for the per-group count + sort priority. Default danger + warning. */
+  /** Tones counted as "problems" for the per-group count + sort priority. Default destructive + warning. */
   problemTones?: StatusBoardTone[]
   /** Sort each group's tiles fault-first (by rank, then tone severity). Default `true`. */
   sort?: boolean
@@ -67,29 +68,29 @@ export interface StatusBoardProps extends Omit<React.HTMLAttributes<HTMLDivEleme
   formatItemCount?: (count: number) => React.ReactNode
 }
 
-const TONE_TILE: Record<StatusBoardTone, string> = {
+const TONE_TILE: Record<SemanticTone, string> = {
   default: "border-l-border",
   primary: "border-l-primary",
   info: "border-l-info",
   success: "border-l-success",
   warning: "border-l-warning",
-  danger: "border-l-destructive",
+  destructive: "border-l-destructive",
   muted: "border-l-border",
 }
 
-const TONE_PILL: Record<StatusBoardTone, string> = {
+const TONE_PILL: Record<SemanticTone, string> = {
   default: "bg-secondary text-secondary-foreground",
   primary: "bg-primary/15 text-foreground",
   info: "bg-info-subtle text-info",
   success: "bg-success-subtle text-success",
   warning: "bg-warning-subtle text-warning",
-  danger: "bg-destructive-subtle text-destructive",
+  destructive: "bg-destructive-subtle text-destructive",
   muted: "bg-muted text-muted-foreground",
 }
 
-// Higher = sorts earlier (fault-first): danger first, muted last.
-const TONE_SEVERITY: Record<StatusBoardTone, number> = {
-  danger: 6,
+// Higher = sorts earlier (fault-first): destructive first, muted last.
+const TONE_SEVERITY: Record<SemanticTone, number> = {
+  destructive: 6,
   warning: 5,
   success: 4,
   primary: 3,
@@ -98,7 +99,11 @@ const TONE_SEVERITY: Record<StatusBoardTone, number> = {
   muted: 0,
 }
 
-const DEFAULT_PROBLEM_TONES: StatusBoardTone[] = ["danger", "warning"]
+const DEFAULT_PROBLEM_TONES: StatusBoardTone[] = ["destructive", "warning"]
+
+function normalizeStatusBoardTone(tone: StatusBoardTone): SemanticTone {
+  return tone === "danger" ? "destructive" : tone
+}
 
 function sortItems(items: StatusBoardItem[]): StatusBoardItem[] {
   return [...items]
@@ -111,7 +116,9 @@ function sortItems(items: StatusBoardItem[]): StatusBoardItem[] {
         if (br == null) return -1
         if (ar !== br) return ar - br
       }
-      const sev = TONE_SEVERITY[b.item.tone ?? "default"] - TONE_SEVERITY[a.item.tone ?? "default"]
+      const sev =
+        TONE_SEVERITY[normalizeStatusBoardTone(b.item.tone ?? "default")] -
+        TONE_SEVERITY[normalizeStatusBoardTone(a.item.tone ?? "default")]
       if (sev !== 0) return sev
       return a.index - b.index
     })
@@ -119,7 +126,7 @@ function sortItems(items: StatusBoardItem[]): StatusBoardItem[] {
 }
 
 function Tile({ item, selected }: { item: StatusBoardItem; selected: boolean }) {
-  const tone = item.tone ?? "default"
+  const tone = normalizeStatusBoardTone(item.tone ?? "default")
   const body = (
     <>
       <div className="flex items-start justify-between gap-2">
@@ -200,8 +207,9 @@ export const StatusBoard = React.forwardRef<HTMLDivElement, StatusBoardProps>(
         </div>
       )
     }
+    const normalizedProblemTones = new Set(problemTones.map(normalizeStatusBoardTone))
     const problemCount = (list: StatusBoardItem[]) =>
-      list.filter((i) => problemTones.includes(i.tone ?? "default")).length
+      list.filter((i) => normalizedProblemTones.has(normalizeStatusBoardTone(i.tone ?? "default"))).length
 
     return (
       <div ref={ref} className={cn("w-full", className)} {...props}>

@@ -1235,7 +1235,7 @@ export const componentManifest = {
     },
     "expiryBadge": {
       "title": "ExpiryBadge",
-      "description": "The date-vs-deadline currency indicator: classifies an expiry date against today into 有効 / 期限間近 / 失効 / 未登録 and shows a colour-safe state chip (icon + label, never colour alone), the date, and a 残N日 / N日超過 readout. The date-domain sibling of Meter (value vs a capacity) and ReferenceValue (value vs a numeric range) — this is value vs a DEADLINE. For licence / 資格 / 適性診断 / 健診 / 車検 / 保険 / 認証 / 点検 currency across crew, asset and compliance consoles. Pairs with the pure classifyExpiry() helper (value → {state, days}), mirroring how ReferenceValue pairs with flagValue(). RSC-safe; pass today in for SSR determinism (defaults to new Date()).",
+      "description": "The date-vs-deadline currency indicator: classifies an expiry date against today into 有効 / 期限間近 / 失効 / 未登録 and shows a colour-safe state chip (icon + label, never colour alone), the date, and a 残N日 / N日超過 readout. ExpiryState is deliberately a domain-state API, not a tone API; its internal canonical mapping is valid→success, expiring→warning, expired→destructive, missing→muted. The date-domain sibling of Meter (value vs a capacity) and ReferenceValue (value vs a numeric range) — this is value vs a DEADLINE. For licence / 資格 / 適性診断 / 健診 / 車検 / 保険 / 認証 / 点検 currency across crew, asset and compliance consoles. Pairs with the pure classifyExpiry() helper (value → {state, days}), mirroring how ReferenceValue pairs with flagValue(). RSC-safe; pass today in for SSR determinism (defaults to new Date()).",
       "variantKeys": [
         "default"
       ],
@@ -1526,7 +1526,7 @@ export const componentManifest = {
     },
     "meter": {
       "title": "Meter",
-      "description": "Capacity / utilisation meter (role=meter): a value-against-max bar whose tone is derived from thresholds (near-full → warning, over → destructive), with an optional incoming overlay to preview 'after this change' and a compact inline size for table cells. For warehouse fill, truck load, storage usage and quota — or set direction='higher-is-better' with a target marker for occupancy / utilisation / SLA / yield goals, or direction='fill-is-good' (no target) for coverage / fulfillment. Pass formatValue to format the visible readout (e.g. grouped JPY).",
+      "description": "Capacity / utilisation meter (role=meter): a value-against-max bar whose tone is derived from thresholds (near-full → warning, over → destructive), with an optional incoming overlay to preview 'after this change' and a compact inline size for table cells. The tone contract accepts the complete canonical SemanticTone scale directly; default normalizes to the muted visual state while toMeterTone remains a compatible boundary helper. For warehouse fill, truck load, storage usage and quota — or set direction='higher-is-better' with a target marker for occupancy / utilisation / SLA / yield goals, or direction='fill-is-good' (no target) for coverage / fulfillment. Pass formatValue to format the visible readout (e.g. grouped JPY).",
       "variantKeys": [
         "default"
       ],
@@ -1891,7 +1891,7 @@ export const componentManifest = {
     },
     "statGroup": {
       "title": "StatGroup",
-      "description": "The summary metric strip: a responsive grid of Statistics (Card-wrapped by default) — the KPI row almost every back-office screen opens with (件数 / 金額 / 期限 / アラート …). Fixed or responsive column counts ({ base: 2, md: 4 }). Presentational and RSC-safe (no function props) — pass plain data. For one metric use Statistic; for the row, use this.",
+      "description": "The summary metric strip: a responsive grid of Statistics (Card-wrapped by default) — the KPI row almost every back-office screen opens with (件数 / 金額 / 期限 / アラート …). Each item inherits Statistic's canonical SemanticTone contract and its 0.1.x legacy aliases (positive→success, negative→destructive, neutral→muted); trend and goodWhen remain directional/evaluation inputs rather than tone aliases. Fixed or responsive column counts ({ base: 2, md: 4 }). Presentational and RSC-safe (no function props) — pass plain data. For one metric use Statistic; for the row, use this.",
       "variantKeys": [
         "default"
       ],
@@ -1902,7 +1902,7 @@ export const componentManifest = {
     },
     "statistic": {
       "title": "Statistic",
-      "description": "KPI metric card: label + value + delta indicator.",
+      "description": "KPI metric card: label + value + delta indicator. Change tones use the canonical SemanticTone scale; legacy positive/negative/neutral aliases map to success/destructive/muted.",
       "variantKeys": [],
       "defaultVariantKey": null,
       "sourceFile": "src/components/display/Statistic.tsx",
@@ -1911,7 +1911,7 @@ export const componentManifest = {
     },
     "statusBoard": {
       "title": "StatusBoard",
-      "description": "The live entity status board at the center of every dispatch / monitoring floor: many labeled entities (vehicles / machines / spots), each carrying a status (空車 / 故障 / 稼働中), a location, and a note, laid out as a responsive tile grid. Problems and availability stand out via a tone-accent rail + a colour-safe status pill (icon + text, never colour alone); tiles sort fault-first by default; tiles group by zone/area with a per-group problem count. items[] (flat) or groups[] of {id,label,status,tone,location?,note?,icon?,trailing?,rank?,onSelect?}. The board a Gantt / DataTable / HeatmapChart can't be — taxi 配車盤, 駅務の機器状態盤, ramp GSE board, factory line OEE. (Gantt = rows × time, DataTable = sortable grid of rows, HeatmapChart = read-only value-by-colour matrix; this is a spatial/grouped board of selectable status entities where problems pop.) RSC-safe except the opt-in onSelect.",
+      "description": "The live entity status board at the center of every dispatch / monitoring floor: many labeled entities (vehicles / machines / spots), each carrying a status (空車 / 故障 / 稼働中), a location, and a note, laid out as a responsive tile grid. The tone contract accepts canonical SemanticTone directly; the 0.1.x danger alias normalizes to destructive before styling, severity sorting, and problemTones matching. Problems and availability stand out via a tone-accent rail + a colour-safe status pill (icon + text, never colour alone); tiles sort fault-first by default; tiles group by zone/area with a per-group problem count. items[] (flat) or groups[] of {id,label,status,tone,location?,note?,icon?,trailing?,rank?,onSelect?}. The board a Gantt / DataTable / HeatmapChart can't be — taxi 配車盤, 駅務の機器状態盤, ramp GSE board, factory line OEE. (Gantt = rows × time, DataTable = sortable grid of rows, HeatmapChart = read-only value-by-colour matrix; this is a spatial/grouped board of selectable status entities where problems pop.) RSC-safe except the opt-in onSelect.",
       "variantKeys": [
         "default"
       ],

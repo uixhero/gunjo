@@ -15,7 +15,7 @@ import type { BadgeVariantKey } from "../components/display/generated/variant-ke
  * const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
  * <ScheduleGrid cells={[{ tone: status }]} />          // shared union — direct
  * <Badge variant={toBadgeVariant(status)} />           // superset — convert
- * <Meter tone={toMeterTone(status)} />
+ * <Meter tone={status} />                               // shared union — direct
  * <DistributionBar segments={[{ tone: toChartTone(status) }]} />
  * ```
  */
@@ -54,8 +54,10 @@ export function toChartTone(tone: SemanticTone): ChartTone {
 }
 
 /**
- * `SemanticTone` → {@link MeterTone}. Meter has no `default`; it maps to the
- * neutral `muted`.
+ * Normalize `SemanticTone` for consumers that need a concrete Meter colour.
+ * Meter accepts the complete canonical union directly and applies this same
+ * `default` → `muted` normalization internally; this converter remains for
+ * existing callers and explicit boundary maps.
  */
 export function toMeterTone(tone: SemanticTone): MeterTone {
     return tone === "default" ? "muted" : tone
@@ -79,8 +81,8 @@ export function toBadgeVariant(tone: SemanticTone): BadgeVariantKey {
 }
 
 /**
- * The tone spelling used by components that name the error tone `danger` instead
- * of `destructive` (StatusBoard, Stringline).
+ * The legacy tone spelling used by components that name the error tone `danger`
+ * instead of `destructive` (Stringline and pre-#673 StatusBoard callers).
  */
 export type SemanticToneDanger =
     | "default"
@@ -92,8 +94,8 @@ export type SemanticToneDanger =
     | "danger"
 
 /**
- * `SemanticTone` → the `danger`-spelled vocabulary used by StatusBoard and
- * Stringline. Only `destructive` differs; everything else is identical.
+ * `SemanticTone` → the `danger`-spelled vocabulary used by Stringline and legacy
+ * StatusBoard integrations. StatusBoard now accepts `SemanticTone` directly.
  */
 export function toDangerTone(tone: SemanticTone): SemanticToneDanger {
     return tone === "destructive" ? "danger" : tone

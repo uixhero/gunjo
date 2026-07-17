@@ -19,15 +19,15 @@ function stats(locale: Locale): StatisticProps[] {
   return locale === "ja"
     ? [
         { label: "請求対象者", value: "6名", hint: "未確定 3件" },
-        { label: "請求総額", value: "¥1,224,520", change: "+8.2%", trend: "up", tone: "positive" },
-        { label: "限度額超過者", value: "1名", change: "+1", trend: "up", tone: "negative" },
-        { label: "提出期限", value: "6/10", change: "あと4日", trend: "down", tone: "neutral" },
+        { label: "請求総額", value: "¥1,224,520", change: "+8.2%", trend: "up", tone: "success" },
+        { label: "限度額超過者", value: "1名", change: "+1", trend: "up", tone: "destructive" },
+        { label: "提出期限", value: "6/10", change: "あと4日", trend: "down", tone: "muted" },
       ]
     : [
         { label: "Billable people", value: "6", hint: "3 not finalized" },
-        { label: "Invoice total", value: "$8,164", change: "+8.2%", trend: "up", tone: "positive" },
-        { label: "Over limit", value: "1", change: "+1", trend: "up", tone: "negative" },
-        { label: "Due date", value: "Jun 10", change: "4 days left", trend: "down", tone: "neutral" },
+        { label: "Invoice total", value: "$8,164", change: "+8.2%", trend: "up", tone: "success" },
+        { label: "Over limit", value: "1", change: "+1", trend: "up", tone: "destructive" },
+        { label: "Due date", value: "Jun 10", change: "4 days left", trend: "down", tone: "muted" },
       ];
 }
 
@@ -58,9 +58,9 @@ export default function StatGroupDocPage() {
 
 const items = [
   { label: "請求対象者", value: "6名", hint: "未確定 3件" },
-  { label: "請求総額", value: "¥1,224,520", change: "+8.2%", trend: "up", tone: "positive" },
-  { label: "限度額超過者", value: "1名", change: "+1", trend: "up", tone: "negative" },
-  { label: "提出期限", value: "6/10", change: "あと4日", trend: "down", tone: "neutral" },
+  { label: "請求総額", value: "¥1,224,520", change: "+8.2%", trend: "up", tone: "success" },
+  { label: "限度額超過者", value: "1名", change: "+1", trend: "up", tone: "destructive" },
+  { label: "提出期限", value: "6/10", change: "あと4日", trend: "down", tone: "muted" },
 ];
 
 export function InvoiceSummary() {
@@ -74,9 +74,9 @@ export function InvoiceSummary() {
 
 const items = [
   { label: "Billable people", value: "6", hint: "3 not finalized" },
-  { label: "Invoice total", value: "$8,164", change: "+8.2%", trend: "up", tone: "positive" },
-  { label: "Over limit", value: "1", change: "+1", trend: "up", tone: "negative" },
-  { label: "Due date", value: "Jun 10", change: "4 days left", trend: "down", tone: "neutral" },
+  { label: "Invoice total", value: "$8,164", change: "+8.2%", trend: "up", tone: "success" },
+  { label: "Over limit", value: "1", change: "+1", trend: "up", tone: "destructive" },
+  { label: "Due date", value: "Jun 10", change: "4 days left", trend: "down", tone: "muted" },
 ];
 
 export function InvoiceSummary() {
@@ -93,9 +93,9 @@ export function InvoiceSummary() {
 
 const items = [
   { label: "請求対象者", value: "6名", hint: "未確定 3件" },
-  { label: "請求総額", value: "¥1,224,520", change: "+8.2%", trend: "up", tone: "positive" },
-  { label: "限度額超過者", value: "1名", change: "+1", trend: "up", tone: "negative" },
-  { label: "提出期限", value: "6/10", change: "あと4日", trend: "down", tone: "neutral" },
+  { label: "請求総額", value: "¥1,224,520", change: "+8.2%", trend: "up", tone: "success" },
+  { label: "限度額超過者", value: "1名", change: "+1", trend: "up", tone: "destructive" },
+  { label: "提出期限", value: "6/10", change: "あと4日", trend: "down", tone: "muted" },
 ];
 
 export function InvoiceSummaryPanel() {
@@ -109,9 +109,9 @@ export function InvoiceSummaryPanel() {
 
 const items = [
   { label: "Billable people", value: "6", hint: "3 not finalized" },
-  { label: "Invoice total", value: "$8,164", change: "+8.2%", trend: "up", tone: "positive" },
-  { label: "Over limit", value: "1", change: "+1", trend: "up", tone: "negative" },
-  { label: "Due date", value: "Jun 10", change: "4 days left", trend: "down", tone: "neutral" },
+  { label: "Invoice total", value: "$8,164", change: "+8.2%", trend: "up", tone: "success" },
+  { label: "Over limit", value: "1", change: "+1", trend: "up", tone: "destructive" },
+  { label: "Due date", value: "Jun 10", change: "4 days left", trend: "down", tone: "muted" },
 ];
 
 export function InvoiceSummaryPanel() {
@@ -128,8 +128,8 @@ export function InvoiceSummaryPanel() {
 
 const items = [
   { label: "請求対象者", value: "6名", hint: "未確定 3件" },
-  { label: "請求総額", value: "¥1,224,520", change: "+8.2%", trend: "up", tone: "positive" },
-  { label: "限度額超過者", value: "1名", change: "+1", trend: "up", tone: "negative" },
+  { label: "請求総額", value: "¥1,224,520", change: "+8.2%", trend: "up", tone: "success" },
+  { label: "限度額超過者", value: "1名", change: "+1", trend: "up", tone: "destructive" },
 ];
 
 export function CompactInvoiceSummary() {
@@ -143,8 +143,8 @@ export function CompactInvoiceSummary() {
 
 const items = [
   { label: "Billable people", value: "6", hint: "3 not finalized" },
-  { label: "Invoice total", value: "$8,164", change: "+8.2%", trend: "up", tone: "positive" },
-  { label: "Over limit", value: "1", change: "+1", trend: "up", tone: "negative" },
+  { label: "Invoice total", value: "$8,164", change: "+8.2%", trend: "up", tone: "success" },
+  { label: "Over limit", value: "1", change: "+1", trend: "up", tone: "destructive" },
 ];
 
 export function CompactInvoiceSummary() {

@@ -1,8 +1,12 @@
 import * as React from "react"
 
 import { cn } from "../../lib/utils"
+import type { SemanticTone } from "../../lib/semantic-tone"
 
-export type MeterTone = "success" | "warning" | "destructive" | "info" | "primary" | "muted"
+/** Meter accepts the complete canonical semantic-tone scale. */
+export type MeterTone = SemanticTone
+
+type ResolvedMeterTone = Exclude<SemanticTone, "default">
 
 export interface MeterThresholds {
     /** Fraction of `max` (0–1) at/above which the auto tone is `warning`. Default `0.8`. */
@@ -66,7 +70,7 @@ export interface MeterProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "
     showValue?: boolean
 }
 
-const TONE_FILL: Record<MeterTone, string> = {
+const TONE_FILL: Record<ResolvedMeterTone, string> = {
     success: "bg-success",
     warning: "bg-warning",
     destructive: "bg-destructive",
@@ -75,7 +79,7 @@ const TONE_FILL: Record<MeterTone, string> = {
     muted: "bg-muted-foreground",
 }
 
-const TONE_TEXT: Record<MeterTone, string> = {
+const TONE_TEXT: Record<ResolvedMeterTone, string> = {
     success: "text-success-strong",
     warning: "text-warning",
     destructive: "text-destructive",
@@ -93,7 +97,11 @@ const BAR_HEIGHT = {
 // A subtle diagonal hatch over the incoming segment, theme-neutral.
 const STRIPES = "repeating-linear-gradient(45deg, rgba(255,255,255,0.28) 0 4px, transparent 4px 8px)"
 
-function deriveTone(frac: number, thresholds: MeterThresholds | undefined): MeterTone {
+function normalizeMeterTone(tone: MeterTone): ResolvedMeterTone {
+    return tone === "default" ? "muted" : tone
+}
+
+function deriveTone(frac: number, thresholds: MeterThresholds | undefined): ResolvedMeterTone {
     const over = thresholds?.over ?? 1
     const warning = thresholds?.warning ?? 0.8
     if (frac >= over) return "destructive"
@@ -107,7 +115,7 @@ function deriveTone(frac: number, thresholds: MeterThresholds | undefined): Mete
 // there is nothing to judge against, so it stays success (never cries wolf).
 const HIGHER_IS_BETTER_WARNING_BAND = 0.9
 
-function deriveToneHigherIsBetter(value: number, target: number | undefined): MeterTone {
+function deriveToneHigherIsBetter(value: number, target: number | undefined): ResolvedMeterTone {
     if (target === undefined) return "success"
     if (value >= target) return "success"
     if (value >= target * HIGHER_IS_BETTER_WARNING_BAND) return "warning"
@@ -165,8 +173,8 @@ const Meter = React.forwardRef<HTMLDivElement, MeterProps>(
         const fillIsGood = direction === "fill-is-good"
         const neutral = direction === "neutral"
         const projectedValue = value + (incFrac > 0 ? (incoming as number) : 0)
-        const resolvedTone =
-            tone ??
+        const resolvedTone: ResolvedMeterTone =
+            (tone === undefined ? undefined : normalizeMeterTone(tone)) ??
             (neutral
                 ? // a fills-up-over-time gauge: no judgment colour, just a steady fill. (#343)
                   "primary"
