@@ -1037,6 +1037,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "checkboxCard": {
+      "title": "CheckboxCard",
+      "description": "Multi-select choice cards with independent checkbox semantics, square check indicators, rich card content slots, form values, and disabled-reason tooltips.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/CheckboxCard.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "checkList": {
       "title": "CheckList",
       "description": "A checklist / confirmable list: rows of a leading checkbox + label + description with a trailing slot (status badge, action, amount), bordered and divider-separated, each checkbox carrying the row label as its accessible name. Rows with no checked render as plain display rows. For document checklists, required-step / associated-procedure lists, recall/return scope confirmation, batch-approval pick lists and any 'tick these, see their status' surface. (For single/multi selection with roving keyboard nav — inbox / master-detail — that's a separate ListBox primitive.)",

@@ -1085,6 +1085,17 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     }),
   },
   {
+    key: "checkboxCard",
+    frameId: "TQgtb",
+    titleId: "g7XDHr",
+    descId: "i2aLD7",
+    variantsId: "NmUyl",
+    nodeIds: {},
+    variantOverrides: {
+      default: { gap: null },
+    },
+  },
+  {
     key: "loyaltySummaryCard",
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:loyaltySummaryCard",
