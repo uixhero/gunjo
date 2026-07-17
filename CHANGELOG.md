@@ -11,7 +11,11 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 
-> `0.1.0-beta.1` 以降の変更。**破壊的変更なし**（採用先影響は原則 **none**・追加 API と a11y 修正のみ・既存コード変更不要）。既定の挙動は据え置きで、新機能はすべて opt-in。
+> `0.1.0-beta.1` 以降の変更。**破壊的変更なし**。新機能はすべて opt-in で既定挙動は据え置き（影響: none）。例外は下記 **Changed** の `RouteStops` 既定ラベル変更のみ（影響: **minor**・1プロップで復元可能・移行パス明記）。
+
+### Changed
+
+- **`RouteStops` の既定ステータスラベルを中立語彙に**（影響: **minor**）— ステータスキー（`pending/current/completed/failed/delayed`）は汎用なのに、既定ラベルだけが配送依存（`未配 / 配送中 / 不在`）だったのを、ドメイン中立な `未着手 / 進行中 / 完了 / 失敗 / 遅延` に変更。配送・介護・製造など各ドメインは従来どおり `statusLabels` で上書きする設計。**移行**：配送用途は `statusLabels={{ pending: "未配", current: "配送中", failed: "不在" }}` の1プロップで従来表示を復元（`completed`/`delayed` は既に中立で変更なし）。マーカーの色・アイコン、`aria-current`、予実 `Delta` は不変。(#282)
 
 ### Added
 

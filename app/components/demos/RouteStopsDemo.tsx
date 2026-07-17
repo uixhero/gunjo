@@ -88,10 +88,11 @@ export function RouteStopsDemo() {
         <div className="flex w-full max-w-md flex-col gap-6">
             <div>
                 <p className="mb-2 text-sm font-medium text-foreground">当日配送（HH:MM・予実＋遅延）</p>
-                <RouteStops stops={STOPS} />
+                {/* Delivery vocab via statusLabels — the component defaults are neutral. (#282) */}
+                <RouteStops stops={STOPS} statusLabels={{ pending: "未配", current: "配送中", failed: "不在" }} />
             </div>
             <div className="border-t pt-4">
-                <p className="mb-2 text-sm font-medium text-foreground">多週の輸送追跡（<code>dateLabel</code>＝日付跨ぎ）</p>
+                <p className="mb-2 text-sm font-medium text-foreground">多週の輸送追跡（<code>dateLabel</code>＝日付跨ぎ・既定の中立ラベル）</p>
                 <RouteStops stops={SHIPMENT} />
             </div>
         </div>
