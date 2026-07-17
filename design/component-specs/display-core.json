@@ -5273,6 +5273,93 @@
         }
       }
     },
+    "desktopPageHeader": {
+      "frameId": "a44bWx",
+      "title": "DesktopPageHeader",
+      "description": "A dense per-screen title bar for desktop consoles, with optional eyebrow, subtitle, and trailing actions.",
+      "variants": [
+        {
+          "id": "YtHis",
+          "name": "DesktopPageHeader/Default",
+          "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            16,
+            0
+          ],
+          "gap": 24,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "alignItems": "end",
+          "reusable": true,
+          "children": [
+            "KW6GQ",
+            "zJQ5E"
+          ]
+        }
+      ],
+      "nodes": {
+        "KW6GQ": {
+          "id": "KW6GQ",
+          "type": "frame",
+          "name": "Header Copy",
+          "width": "fill_container",
+          "height": null,
+          "layout": "vertical",
+          "padding": null,
+          "gap": 4,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "Mib6a",
+            "mOWE7",
+            "twjtw"
+          ]
+        },
+        "zJQ5E": {
+          "id": "zJQ5E",
+          "type": "frame",
+          "name": "Actions Slot",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "vO4b8",
+            "Rt1Kk"
+          ]
+        }
+      }
+    },
     "loyaltySummaryCard": {
       "frameId": "synthetic:loyaltySummaryCard",
       "title": "LoyaltySummaryCard",

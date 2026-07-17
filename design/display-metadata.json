@@ -426,5 +426,9 @@
   "occupancyMeter": {
     "title": "OccupancyMeter",
     "description": "A labeled occupancy and capacity gauge with a neutral fill, formatted readout, and optional target marker."
+  },
+  "desktopPageHeader": {
+    "title": "DesktopPageHeader",
+    "description": "A dense per-screen title bar for desktop consoles, with optional eyebrow, subtitle, and trailing actions."
   }
 }

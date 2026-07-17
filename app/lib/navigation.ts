@@ -238,6 +238,7 @@ export const navigation = [
             { title: "Breadcrumb", href: "/docs/components/breadcrumb" },
             { title: "Command", href: "/docs/components/command" },
             { title: "CommandPalette", href: "/docs/components/command-palette" },
+            { title: "DesktopPageHeader", href: "/docs/components/desktop-page-header" },
             { title: "DocumentPager", href: "/docs/components/document-pager" },
             { title: "Footer", href: "/docs/components/footer" },
             { title: "Header", href: "/docs/components/header" },

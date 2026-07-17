@@ -1582,6 +1582,24 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "desktopPageHeader": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "flex flex-row items-center w-full pt-0 pb-4 px-0 gap-6 border",
+      "baseColorHint": "fill=#ffffff | stroke=#e2e8f0@1px",
+      "slotIds": [
+        "KW6GQ",
+        "zJQ5E"
+      ],
+      "variantClasses": {
+        "default": "flex flex-row items-center w-full pt-0 pb-4 px-0 gap-6 border"
+      },
+      "variantColorHints": {
+        "default": "fill=#ffffff | stroke=#e2e8f0@1px"
+      }
+    },
     "distributionBar": {
       "variantKeys": [
         "default"

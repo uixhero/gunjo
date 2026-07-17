@@ -3382,7 +3382,8 @@
                           "fill": "#64748b",
                           "content": "2 / 7卓",
                           "fontFamily": "Geist Mono",
-                          "fontSize": 14
+                          "fontSize": 14,
+                          "fontWeight": "normal"
                         }
                       ]
                     },
@@ -3459,6 +3460,197 @@
               "name": "Showcase Description",
               "fill": "#64748b",
               "content": "Neutral occupancy gauge with a concise readout and target marker.",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "a44bWx",
+          "name": "DesktopPageHeader",
+          "width": "fill_container",
+          "height": 293,
+          "fill": "#f8fafc",
+          "cornerRadius": 12,
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": 24,
+          "children": [
+            {
+              "type": "text",
+              "id": "igvk8",
+              "name": "DesktopPageHeader Title",
+              "fill": "#0c0c12",
+              "content": "DesktopPageHeader",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "Q72sYG",
+              "name": "DesktopPageHeader Description",
+              "fill": "#64748b",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "A dense per-screen title bar for desktop consoles, with optional eyebrow, subtitle, and trailing actions.",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "S2MDX",
+              "name": "DesktopPageHeader Variants",
+              "width": 960,
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "YtHis",
+                  "name": "DesktopPageHeader/Default",
+                  "reusable": true,
+                  "width": "fill_container",
+                  "fill": "#ffffff",
+                  "stroke": "#e2e8f0",
+                  "strokeWidth": {
+                    "bottom": 1
+                  },
+                  "strokeAlignment": "inner",
+                  "gap": 24,
+                  "padding": [
+                    0,
+                    0,
+                    16,
+                    0
+                  ],
+                  "alignItems": "end",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "KW6GQ",
+                      "name": "Header Copy",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "Mib6a",
+                          "name": "Eyebrow",
+                          "fill": "#64748b",
+                          "content": "群青交通　東京営業所",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "600"
+                        },
+                        {
+                          "type": "text",
+                          "id": "mOWE7",
+                          "name": "Title",
+                          "fill": "#0c0c12",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "車両管理・整備コンソール",
+                          "fontFamily": "Inter",
+                          "fontSize": 24,
+                          "fontWeight": "700"
+                        },
+                        {
+                          "type": "text",
+                          "id": "twjtw",
+                          "name": "Subtitle",
+                          "fill": "#64748b",
+                          "textGrowth": "fixed-width",
+                          "width": "fill_container",
+                          "content": "稼働状況、期限、入庫予定を一元管理",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "zJQ5E",
+                      "name": "Actions Slot",
+                      "slot": [
+                        "hDcb5",
+                        "CQspd"
+                      ],
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "id": "vO4b8",
+                          "type": "ref",
+                          "ref": "hDcb5",
+                          "name": "Secondary Action",
+                          "descendants": {
+                            "sN61x": {
+                              "content": "エクスポート"
+                            }
+                          }
+                        },
+                        {
+                          "id": "Rt1Kk",
+                          "type": "ref",
+                          "ref": "CQspd",
+                          "name": "Primary Action",
+                          "descendants": {
+                            "NLZwe": {
+                              "content": "整備記録を追加"
+                            }
+                          }
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "r716T",
+          "name": "showcase/desktopPageHeader",
+          "width": 992,
+          "height": 234,
+          "fill": "#ffffff",
+          "layout": "vertical",
+          "gap": 12,
+          "padding": 16,
+          "children": [
+            {
+              "id": "mNUnQ",
+              "type": "ref",
+              "ref": "YtHis",
+              "name": "DesktopPageHeader Preview",
+              "width": 960
+            },
+            {
+              "type": "text",
+              "id": "yBe76",
+              "name": "Showcase Title",
+              "fill": "#0c0c12",
+              "content": "DesktopPageHeader",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "ofPFk",
+              "name": "Showcase Description",
+              "fill": "#64748b",
+              "content": "Desktop per-screen title, context, summary, and actions without app-shell chrome.",
               "fontFamily": "Inter",
               "fontSize": 12,
               "fontWeight": "normal"

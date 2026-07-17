@@ -118,6 +118,7 @@ export * from './components/display/CompanyCell';
 export * from './components/display/ConcentricProgressCard';
 export * from './components/display/DataTable';
 export * from './components/display/Delta';
+export * from './components/display/DesktopPageHeader';
 export * from './components/display/DistributionBar';
 export * from './components/display/DocNote';
 export * from './components/display/DocumentRow';

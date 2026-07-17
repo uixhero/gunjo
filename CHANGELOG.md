@@ -19,6 +19,7 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ### Added
 
+- **`DesktopPageHeader`**（影響: none）— デスクトップ業務コンソールの各画面に置く、eyebrow・タイトル・説明・末尾アクションの軽量見出しバー。アプリ全体のクロームである `Header`、モバイル app-bar の `PageHeader` と責務を分離する。(#397)
 - **`OccupancyMeter`**（影響: none）— `Meter` の上にラベルと `value / max` readout をまとめた、満席率・稼働率・設備利用率向けの薄い合成。既定は `direction="neutral"` で低い値を失敗色にせず、`target`・`tone`・`formatValue`・`size` は `Meter` へ転送する。(#343)
 - **`CheckboxCard` / `CheckboxCardGroup`**（影響: none）— `RadioCard` の複数選択版。各カードは独立した `role="checkbox"` / Tab stop と角丸スクエアのチェックを持ち、配列の制御・非制御選択、フォーム送信用 `name`、無効化理由ツールチップに対応。矢印キーの roving navigation は行わない。(#378)
 - **`Meter` の `direction="neutral"`**（影響: none）— 時間で埋まっていくゲージ（満席率・稼働率）向けの中立モード。**判定色を付けず（primary 一定）**、`target` は参照マーカーのみ。`higher-is-better` は目標未達を赤にするためサービス開始直後の低い値が誤警報になる問題（cold-test #95）を、意味論の明確な名前付きモードで回避できる。`tone` 上書きは従来どおり優先。docs に3+1モードのトーン意味論を明記。(#343)
