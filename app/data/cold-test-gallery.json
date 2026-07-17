@@ -1,7 +1,7 @@
 {
   "generatedFrom": "promotion/cold-test-screens/README.md + zenn-yattemita-*.md",
   "generator": "scripts/build-coldtest-gallery.mjs",
-  "count": 173,
+  "count": 174,
   "crystallizedCount": 71,
   "categories": [
     "基盤UI・汎用",
@@ -3306,6 +3306,25 @@
       "article": {
         "file": "zenn-yattemita-176-safety-ky.md",
         "slug": "176-safety-ky"
+      },
+      "shots": {
+        "desktop": true,
+        "mobile": true,
+        "en.desktop": false,
+        "en.mobile": false
+      }
+    },
+    {
+      "round": 177,
+      "route": "/progress-billing",
+      "slug": "progress-billing",
+      "score": "5/5",
+      "category": "建設・建築",
+      "title": "AI に出来高査定を作らせてみた：金額の内訳も承認も確定ロックも既にそろっていて、新しく作るものがほぼ無かった（やってみた #177）",
+      "summary": "予備知識ゼロの AI に、公開されている npm パッケージと gunjo.jp の docs だけを渡して組ませました。`tsc` は緑、モバイルとデスクトップの両対応です。",
+      "article": {
+        "file": "zenn-yattemita-177-progress-billing.md",
+        "slug": "177-progress-billing"
       },
       "shots": {
         "desktop": true,

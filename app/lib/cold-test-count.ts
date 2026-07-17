@@ -4,4 +4,4 @@
  * The number of cold-test rounds, kept separate from the gallery snapshot
  * so client-side copy can cite it without bundling every entry.
  */
-export const COLD_TEST_ROUND_COUNT = 173;
+export const COLD_TEST_ROUND_COUNT = 174;
