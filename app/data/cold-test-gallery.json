@@ -1,7 +1,7 @@
 {
   "generatedFrom": "promotion/cold-test-screens/README.md + zenn-yattemita-*.md",
   "generator": "scripts/build-coldtest-gallery.mjs",
-  "count": 171,
+  "count": 172,
   "crystallizedCount": 71,
   "categories": [
     "基盤UI・汎用",
@@ -3268,6 +3268,25 @@
       "article": {
         "file": "zenn-yattemita-174-construction-schedule.md",
         "slug": "174-construction-schedule"
+      },
+      "shots": {
+        "desktop": true,
+        "mobile": true,
+        "en.desktop": false,
+        "en.mobile": false
+      }
+    },
+    {
+      "round": 175,
+      "route": "/construction-photos",
+      "slug": "construction-photos",
+      "score": "4/5",
+      "category": "建設・建築",
+      "title": "AI に施工写真台帳を作らせてみた：写真管理のために作ったコンポーネントが、工事写真の台帳にほぼそのまま効いた（やってみた #175）",
+      "summary": "予備知識ゼロの AI に、公開されている npm パッケージと gunjo.jp の docs だけを渡して組ませました。`tsc` は緑、モバイルとデスクトップの両対応です。",
+      "article": {
+        "file": "zenn-yattemita-175-construction-photos.md",
+        "slug": "175-construction-photos"
       },
       "shots": {
         "desktop": true,

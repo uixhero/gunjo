@@ -1847,6 +1847,7 @@ export const translations: Record<
       SeatMap: "座席表",
       LoyaltySummaryCard: "ロイヤリティ要約カード",
       RadioCard: "選択カード",
+      CheckboxCard: "複数選択カード",
       FilterChips: "フィルタチップ",
       PageHeader: "ページヘッダー",
       BottomActionBar: "ボトムアクションバー",

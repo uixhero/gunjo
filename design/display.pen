@@ -1,5 +1,5 @@
 {
-  "version": "2.13",
+  "version": "2.14",
   "children": [
     {
       "type": "frame",
@@ -1309,7 +1309,6 @@
           "fill": "#ffffff",
           "layout": "vertical",
           "gap": 12,
-          "padding": 0,
           "children": [
             {
               "type": "frame",
@@ -1339,7 +1338,6 @@
               "width": "fill_container",
               "fill": "#ffffff",
               "gap": 8,
-              "padding": 0,
               "alignItems": "center",
               "children": [
                 {
@@ -1387,16 +1385,14 @@
           "width": 460,
           "fill": "#ffffff",
           "gap": 12,
-          "padding": 0,
           "alignItems": "center",
           "children": [
             {
               "type": "frame",
               "id": "galleryStartThumbs",
-              "layout": "vertical",
               "fill": "#ffffff",
+              "layout": "vertical",
               "gap": 8,
-              "padding": 0,
               "children": [
                 {
                   "type": "frame",
@@ -3109,6 +3105,205 @@
               "fontWeight": "normal"
             }
           ]
+        },
+        {
+          "type": "frame",
+          "id": "TQgtb",
+          "name": "CheckboxCard",
+          "width": "fill_container",
+          "fill": "#f8fafc",
+          "cornerRadius": 12,
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": 24,
+          "children": [
+            {
+              "type": "text",
+              "id": "g7XDHr",
+              "name": "CheckboxCard Title",
+              "fill": "#0c0c12",
+              "content": "CheckboxCard",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "i2aLD7",
+              "name": "CheckboxCard Description",
+              "fill": "#64748b",
+              "textGrowth": "fixed-width",
+              "width": "fill_container",
+              "content": "Multi-select choice cards with independent checkbox semantics, square check indicators, rich card content slots, form values, and disabled-reason tooltips.",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "NmUyl",
+              "name": "CheckboxCard Variants",
+              "width": 420,
+              "layout": "vertical",
+              "gap": 12,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "ZFAdG",
+                  "name": "CheckboxCard/Default",
+                  "reusable": true,
+                  "width": "fill_container",
+                  "fill": "#ffffff",
+                  "cornerRadius": 8,
+                  "stroke": "#0c0c12",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
+                  "gap": 12,
+                  "padding": 16,
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "NeTD1",
+                      "name": "Selected Checkbox",
+                      "width": 20,
+                      "height": 20,
+                      "fill": "#0c0c12",
+                      "cornerRadius": 5,
+                      "stroke": "#0c0c12",
+                      "strokeWidth": 1,
+                      "strokeAlignment": "inner",
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "lWiab",
+                          "name": "Check",
+                          "width": 14,
+                          "height": 14,
+                          "icon": "check",
+                          "library": "lucide",
+                          "fill": "#ffffff"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "frame",
+                      "id": "B2L3y6",
+                      "name": "Content",
+                      "width": "fill_container",
+                      "layout": "vertical",
+                      "gap": 4,
+                      "children": [
+                        {
+                          "id": "mNJJc",
+                          "type": "ref",
+                          "ref": "ZJyo4",
+                          "name": "Tag",
+                          "descendants": {
+                            "honRM": {
+                              "content": "人気"
+                            }
+                          }
+                        },
+                        {
+                          "type": "frame",
+                          "id": "J6SWDX",
+                          "name": "Title and Price",
+                          "width": "fill_container",
+                          "gap": 12,
+                          "justifyContent": "space_between",
+                          "children": [
+                            {
+                              "type": "text",
+                              "id": "LO0EX",
+                              "name": "Title",
+                              "fill": "#0c0c12",
+                              "content": "旅行保険",
+                              "fontFamily": "Inter",
+                              "fontSize": 16,
+                              "fontWeight": "500"
+                            },
+                            {
+                              "type": "text",
+                              "id": "Oy8CI",
+                              "name": "Price",
+                              "fill": "#0c0c12",
+                              "content": "¥500",
+                              "fontFamily": "Inter",
+                              "fontSize": 16,
+                              "fontWeight": "700"
+                            }
+                          ]
+                        },
+                        {
+                          "type": "text",
+                          "id": "NGU2m",
+                          "name": "Description",
+                          "fill": "#64748b",
+                          "content": "ケガ・キャンセルを補償",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        },
+                        {
+                          "type": "text",
+                          "id": "N9svli",
+                          "name": "Highlight",
+                          "fill": "#15803d",
+                          "content": "予約時にまとめて追加できます",
+                          "fontFamily": "Inter",
+                          "fontSize": 12,
+                          "fontWeight": "500"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "Qf1jI",
+          "name": "showcase/checkboxCard",
+          "fill": "#ffffff",
+          "layout": "vertical",
+          "gap": 12,
+          "padding": 16,
+          "children": [
+            {
+              "id": "kQM1g",
+              "type": "ref",
+              "ref": "ZFAdG",
+              "name": "CheckboxCard Preview",
+              "width": 420
+            },
+            {
+              "type": "text",
+              "id": "rfDdC",
+              "name": "Showcase Title",
+              "fill": "#0c0c12",
+              "content": "CheckboxCard",
+              "fontFamily": "Inter",
+              "fontSize": 14,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "Mgozm",
+              "name": "Showcase Description",
+              "fill": "#64748b",
+              "content": "Independent multi-select card with a square check indicator.",
+              "fontFamily": "Inter",
+              "fontSize": 12,
+              "fontWeight": "normal"
+            }
+          ]
         }
       ]
     },
@@ -3476,5 +3671,6 @@
         }
       ]
     }
-  ]
+  ],
+  "fileToken": "285f8b19-34cd-4d88-af0a-e02b57c74c5f"
 }
