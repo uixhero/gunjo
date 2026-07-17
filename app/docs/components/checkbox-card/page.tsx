@@ -31,7 +31,7 @@ function CheckboxCardPreview({ locale }: { locale: Locale }) {
   const [selected, setSelected] = React.useState<string[]>(["insurance"]);
   return (
     <div className="w-full max-w-md">
-      <CheckboxCardGroup value={selected} onValueChange={setSelected} aria-label={locale === "ja" ? "追加オプション" : "Add-ons"}>
+      <CheckboxCardGroup value={selected} onValueChange={setSelected} aria-label={locale === "ja" ? "追加オプション" : "Add-ons"} name="addons">
         {addons(locale).map((a) => (
           <CheckboxCard
             key={a.value}
@@ -54,24 +54,34 @@ const usageCode = `import * as React from "react";
 import { Badge, CheckboxCard, CheckboxCardGroup } from "@gunjo/ui";
 
 const addons = [
-  { value: "insurance", title: "Travel insurance", description: "Injury & cancellation cover", price: "$5" },
+  { value: "insurance", title: "Travel insurance", description: "Injury & cancellation cover", price: "$5", tag: <Badge variant="info">Popular</Badge> },
   { value: "seat", title: "Seat selection", description: "Choose window or aisle", price: "$3" },
-  { value: "meal", title: "In-flight meal", description: "Japanese or Western", price: "$12" },
+  { value: "meal", title: "In-flight meal", description: "Japanese or Western", price: "$12", highlight: "$2 off when pre-ordered" },
+  { value: "lounge", title: "Lounge access", description: "One departure lounge visit", price: "$20", disabled: true, disabledReason: "Not available on this plan." },
 ];
 
 export function AddonPicker() {
   const [selected, setSelected] = React.useState<string[]>(["insurance"]);
   return (
-    <CheckboxCardGroup value={selected} onValueChange={setSelected} aria-label="Add-ons">
+    <CheckboxCardGroup value={selected} onValueChange={setSelected} aria-label="Add-ons" name="addons">
       {addons.map((a) => (
-        <CheckboxCard key={a.value} value={a.value} title={a.title} description={a.description} price={a.price} />
+        <CheckboxCard
+          key={a.value}
+          value={a.value}
+          title={a.title}
+          description={a.description}
+          price={a.price}
+          tags={a.tag}
+          highlight={a.highlight}
+          disabled={a.disabled}
+          disabledReason={a.disabledReason}
+        />
       ))}
     </CheckboxCardGroup>
   );
 }`;
 
 export default function CheckboxCardDocPage() {
-  const meta = displayMetadata as Record<string, { title?: string; description?: string }>;
   const { locale, sectionLabels } = useLocale();
 
   const propsData =
@@ -99,8 +109,8 @@ export default function CheckboxCardDocPage() {
 
   return (
     <ComponentLayout
-      title={meta.checkboxCard?.title ?? "CheckboxCard"}
-      description={meta.checkboxCard?.description ?? ""}
+      title={displayMetadata.checkboxCard.title ?? "CheckboxCard"}
+      description={displayMetadata.checkboxCard.description ?? ""}
       sectionLabels={sectionLabels}
       usedComponents={[{ name: "CheckboxCard", href: "/docs/components/checkbox-card" }, { name: "CheckboxCardGroup", href: "/docs/components/checkbox-card" }, { name: "Badge", href: "/docs/components/badge" }]}
       relatedComponents={[{ name: "RadioCard", href: "/docs/components/radio-card" }, { name: "Checkbox", href: "/docs/components/checkbox" }, { name: "ListCard", href: "/docs/components/list-card" }]}

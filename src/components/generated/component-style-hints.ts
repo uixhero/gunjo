@@ -1459,6 +1459,24 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "checkboxCard": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "flex w-full p-4 rounded-lg border",
+      "baseColorHint": "fill=#ffffff | stroke=#0c0c12@1px",
+      "slotIds": [
+        "NeTD1",
+        "B2L3y6"
+      ],
+      "variantClasses": {
+        "default": "flex w-full p-4 rounded-lg border"
+      },
+      "variantColorHints": {
+        "default": "fill=#ffffff | stroke=#0c0c12@1px"
+      }
+    },
     "checkList": {
       "variantKeys": [
         "default"
