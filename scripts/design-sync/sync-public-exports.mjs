@@ -48,6 +48,22 @@ const EXTRA_PUBLIC_EXPORT_SECTIONS = [
       "export type { ColumnDef } from '@tanstack/react-table';",
     ],
   },
+  {
+    label: "Variant Key Types",
+    // Surface the generated `*VariantKey` union types (e.g. BadgeVariantKey) so
+    // adopters can type `Record<Status, BadgeVariantKey>` without mirroring the
+    // literal union. Each component imports its key type internally but does not
+    // re-export it, so `export * from '<Component>'` never reached them. Types
+    // only via `export type *` — the runtime key arrays stay internal. (#411)
+    exports: [
+      "export type * from './components/display/generated/variant-keys';",
+      "export type * from './components/feedback/generated/variant-keys';",
+      "export type * from './components/inputs/generated/variant-keys';",
+      "export type * from './components/layout/generated/variant-keys';",
+      "export type * from './components/navigation/generated/variant-keys';",
+      "export type * from './components/overlay/generated/variant-keys';",
+    ],
+  },
 ];
 
 function withoutTsx(fileName) {
