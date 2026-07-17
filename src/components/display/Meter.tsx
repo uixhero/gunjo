@@ -32,8 +32,13 @@ export interface MeterProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "
      * - `"fill-is-good"` — coverage / fulfillment / completion: tone follows fill toward
      *   `max` (the goal) with **no `target` needed** — at/near full is success, well under
      *   is destructive. (#286)
+     * - `"neutral"` — a gauge that just **fills up over time** (occupancy, capacity through
+     *   the night): **no judgment colour** (a steady `primary` fill), with `target` drawn as
+     *   a reference marker. Use this instead of `higher-is-better` for 満席率 / 稼働率 so a
+     *   low reading early in service doesn't read as a red "failure". Override with `tone`
+     *   for a fixed brand colour. (#343)
      */
-    direction?: "higher-is-worse" | "higher-is-better" | "fill-is-good"
+    direction?: "higher-is-worse" | "higher-is-better" | "fill-is-good" | "neutral"
     /**
      * Goal value (same units as `value`) drawn as a marker line on the track. With
      * `direction="higher-is-better"` it also drives the auto tone (success at/above
@@ -122,7 +127,10 @@ function deriveToneHigherIsBetter(value: number, target: number | undefined): Me
  * `target` line also renders (as a reference only) under the default direction. (#256)
  *
  * `direction="fill-is-good"` tones by fill toward `max` (the implicit goal, no
- * `target` needed) — for coverage / fulfillment / completion. (#286) Pass
+ * `target` needed) — for coverage / fulfillment / completion. (#286) For a gauge
+ * that just fills up over time (occupancy / 満席率 / 稼働率) use `direction="neutral"`:
+ * a steady `primary` fill with `target` as a reference marker and **no failure
+ * colouring** — so a low reading early on doesn't cry wolf. (#343) Pass
  * `formatValue` to format the visible readout (e.g. grouped JPY). (#308) A
  * percentage meter (unit `"%"`, max 100) shows the value once, not `/ 100%（%）`. (#277)
  */
@@ -155,15 +163,19 @@ const Meter = React.forwardRef<HTMLDivElement, MeterProps>(
 
         const higherIsBetter = direction === "higher-is-better"
         const fillIsGood = direction === "fill-is-good"
+        const neutral = direction === "neutral"
         const projectedValue = value + (incFrac > 0 ? (incoming as number) : 0)
         const resolvedTone =
             tone ??
-            (higherIsBetter
-                ? deriveToneHigherIsBetter(projectedValue, target)
-                : fillIsGood
-                  ? // fill toward max is the goal — judge against max as the implicit target
-                    deriveToneHigherIsBetter(projectedValue, safeMax)
-                  : deriveTone(projected, thresholds))
+            (neutral
+                ? // a fills-up-over-time gauge: no judgment colour, just a steady fill. (#343)
+                  "primary"
+                : higherIsBetter
+                  ? deriveToneHigherIsBetter(projectedValue, target)
+                  : fillIsGood
+                    ? // fill toward max is the goal — judge against max as the implicit target
+                      deriveToneHigherIsBetter(projectedValue, safeMax)
+                    : deriveTone(projected, thresholds))
         const basePct = Math.min(100, Math.max(0, frac * 100))
         const incPct = incFrac > 0 ? Math.min(100 - basePct, incFrac * 100) : 0
         const pct = Math.round(frac * 100)
