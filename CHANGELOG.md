@@ -11,6 +11,8 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 
+## [0.1.0-beta.2] — 2026-07-17
+
 > `0.1.0-beta.1` 以降の変更。**破壊的変更なし**。新機能はすべて opt-in で既定挙動は据え置き（影響: none）。例外は下記 **Changed** の `RouteStops` 既定ラベル変更のみ（影響: **minor**・1プロップで復元可能・移行パス明記）。
 
 ### Changed

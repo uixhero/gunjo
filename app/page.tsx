@@ -101,7 +101,7 @@ export default function Home() {
                             className="on-hero-badge w-fit gap-1.5"
                         >
                             <Sparkles className="h-3 w-3" />
-                            Beta · v0.1.0-beta.1
+                            Beta · v0.1.0-beta.2
                         </Badge>
                         <div className="flex flex-col gap-2">
                             <p
