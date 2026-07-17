@@ -363,7 +363,9 @@ export function DataTable<TData, TValue>({
                 ) : null}
             </div>
 
-            <div className={cn("overflow-x-auto rounded-md border", renderCard && "hidden md:block")}>
+            {/* `[contain:paint]` keeps the wide table's horizontal scroll inside this
+                scroller instead of leaking page-level h-scroll on mobile. (#289) */}
+            <div className={cn("overflow-x-auto rounded-md border [contain:paint]", renderCard && "hidden md:block")}>
                 <table
                     className="w-full min-w-[720px] table-fixed caption-bottom text-sm"
                     aria-label={ariaLabel}

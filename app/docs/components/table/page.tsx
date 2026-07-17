@@ -536,6 +536,24 @@ export default function TablePage() {
             </div>
 
             <div className="space-y-4">
+                <h2 id="scroll-containment" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">
+                    {locale === "ja" ? "横スクロールの封じ込め" : "Horizontal scroll containment"}
+                </h2>
+                <p className="text-sm text-muted-foreground">
+                    {locale === "ja" ? (
+                        <>
+                            <code>Table</code> と <code>DataTable</code> は横スクロールを自分の枠内に封じ込めます（内部で <code>[contain:paint]</code> を付与済み）。狭い画面（375px 等）で、幅の広い内側要素を <code>overflow-x-auto</code> のスクローラに入れると、<strong>ページ全体に横スクロールが漏れる</strong>ことがあります（<code>body.scrollWidth</code> は据え置きでも <code>html.scrollWidth</code> が膨らむ）。祖先の <code>min-w-0</code> や <code>sticky</code> 除去では直らず、スクローラ自身の <code>[contain:paint]</code> だけが効きます。<strong>自前の幅広コンテンツ（カスタムグリッド・チャート・図表）を横スクロールさせる時は、スクローラに <code>[contain:paint]</code> を付けてください：</strong>
+                        </>
+                    ) : (
+                        <>
+                            <code>Table</code> and <code>DataTable</code> keep their horizontal scroll inside their own box (they bake in <code>[contain:paint]</code>). On narrow screens (e.g. 375px), a wide inner element inside an <code>overflow-x-auto</code> scroller can <strong>leak page-level horizontal scroll</strong> (<code>body.scrollWidth</code> stays put while <code>html.scrollWidth</code> blows out). Neither <code>min-w-0</code> on ancestors nor removing <code>sticky</code> fixes it — only <code>[contain:paint]</code> on the scroller does. <strong>For your own wide content (custom grids, charts, diagrams) that scrolls horizontally, add <code>[contain:paint]</code> to the scroller:</strong>
+                        </>
+                    )}
+                </p>
+                <CodeBlock code={`<div className="overflow-x-auto [contain:paint]">\n  {/* wide content — a chart, a custom grid, a diagram */}\n</div>`} />
+            </div>
+
+            <div className="space-y-4">
                 <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">
                     {sectionLabels.props}
                 </h2>

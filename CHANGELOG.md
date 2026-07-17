@@ -37,6 +37,7 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ### Fixed
 
+- **`Table` / `DataTable` の横スクロール漏れ**（影響: none）— 狭い画面（375px 等）で、幅広の内側要素が `overflow-x-auto` スクローラから**ページ全体に横スクロールを漏らす**ことがあった（`html.scrollWidth` が膨らむ・祖先の `min-w-0` や `sticky` 除去では直らない）。両コンポーネントの横スクローラに `[contain:paint]` を付与して封じ込め（`ScheduleGrid` #287 と同じ手当て）。正しくレイアウトされている場合は no-op。自前の幅広コンテンツ（チャート・カスタムグリッド）向けに Table docs へ手順も記載。(#289)
 - **`Alert` の見出し順序**（a11y・影響: none）— `AlertTitle` の既定要素が `h5` で、h1 → h5 と見出しレベルが飛んでいた。既定を `<p>` に変更（**見た目は不変**。見出しにしたい場合は `as="h5"` を明示）。(#251)
 
 ## [0.1.0-beta.1] — 2026-07-15
