@@ -55,6 +55,7 @@ function buildNavigation({ root }) {
       items: [
         { title: "Introduction", href: "/docs/introduction" },
         { title: "Installation", href: "/docs/installation" },
+        { title: "Without npm", href: "/docs/no-npm" },
         { title: "Theming", href: "/docs/theming" },
         { title: "i18n", href: "/docs/i18n" },
         { title: "Comparison", href: "/docs/comparison" },

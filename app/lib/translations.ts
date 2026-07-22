@@ -1667,6 +1667,7 @@ export const translations: Record<
       // Section group headers + intro pages
       Introduction: "はじめに",
       Installation: "インストール",
+      "Without npm": "npm なしで使う",
       Theming: "テーマ",
       i18n: "多言語対応",
       Comparison: "比較",

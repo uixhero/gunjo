@@ -157,6 +157,116 @@ export default function Page() {
 
 Dark mode (\`next-themes\`), Vite specifics, fonts, and the migration playbook live in the [Adoption Guide](/docs/adoption). Theme tokens you can override are documented in [Theming](/docs/theming).`,
   },
+  "no-npm": {
+    title: "Using GunjoUI without npm",
+    description: "Build GunjoUI-look screens in self-contained HTML environments (Claude Artifacts and similar) where npm and CDNs are unavailable, using tokens.css.",
+    body: `In self-contained HTML environments — Claude Artifacts, ChatGPT Canvas, HTML email, code sandboxes — **neither npm nor CDNs are available**, so \`@gunjo/ui\` cannot be installed. For these environments GunjoUI publishes its design tokens as **plain CSS with no Tailwind dependency** at a fixed URL:
+
+\`\`\`
+https://www.gunjo.jp/tokens.css
+\`\`\`
+
+The file is generated from the same single source of truth as the package, so the values always match \`@gunjo/ui\` itself.
+
+### 1. Bring in tokens.css
+
+Self-contained HTML usually cannot load external stylesheets, so the baseline is to **copy the file's contents into a \`<style>\` block**:
+
+\`\`\`html
+<style>
+/* paste the contents of https://www.gunjo.jp/tokens.css here */
+</style>
+\`\`\`
+
+An AI agent can do the same by fetching the URL. Where external resources are allowed (a normal static site, for example), a \`<link>\` works too:
+
+\`\`\`html
+<link rel="stylesheet" href="https://www.gunjo.jp/tokens.css">
+\`\`\`
+
+### 2. Reading the tokens
+
+Values are \`H S% L%\` HSL triplets (the same convention as [Theming](/docs/theming)). Wrap them in \`hsl()\` to use them, and compose opacity with slash notation:
+
+\`\`\`css
+.card {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+}
+.button-primary:hover {
+  background: hsl(var(--primary) / 0.9);
+}
+\`\`\`
+
+There are 5 semantic tones (\`primary\` / \`info\` / \`success\` / \`warning\` / \`destructive\`). Each has 3 steps — \`subtle\` (soft background), base, and \`strong\` (heavy emphasis) — plus a dedicated \`border\`. Use them in pairs: a \`-subtle\` background takes \`-subtle-foreground\` text. See [Semantic Tones](/docs/semantic-tones) for details.
+
+Shadows (\`--shadow-*\`) drop straight into \`box-shadow\`; \`--duration-*\` and \`--ease-*\` go into \`transition\`.
+
+### 3. Dark mode
+
+Toggle with \`<html class="dark">\` or \`<html data-theme="dark">\`. To follow the OS setting, add one line to \`<head>\`:
+
+\`\`\`html
+<script>if(matchMedia("(prefers-color-scheme: dark)").matches)document.documentElement.classList.add("dark")</script>
+\`\`\`
+
+### Sample: one card
+
+After pasting the tokens, drop this into \`<body>\` for a GunjoUI-look card:
+
+\`\`\`html
+<style>
+.demo-card {
+  max-width: 360px;
+  padding: 24px;
+  background: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+.demo-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  background: hsl(var(--success-subtle));
+  color: hsl(var(--success-subtle-foreground));
+  border: 1px solid hsl(var(--success-border));
+  border-radius: 9999px;
+}
+.demo-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-radius: calc(var(--radius) - 2px);
+  cursor: pointer;
+}
+.demo-button:hover { background: hsl(var(--primary) / 0.9); }
+</style>
+
+<div class="demo-card">
+  <span class="demo-badge">Active</span>
+  <h2 style="margin: 12px 0 4px; font-size: 18px;">Bookings this month</h2>
+  <p style="margin: 0 0 16px; font-size: 14px; color: hsl(var(--muted-foreground));">
+    Up 12 from last month.
+  </p>
+  <button class="demo-button">View details</button>
+</div>
+\`\`\`
+
+### Prompting an AI
+
+A ready-to-use instruction:
+
+> When npm and CDNs are unavailable, paste the design tokens from https://www.gunjo.jp/tokens.css into a \`<style>\` block instead of using @gunjo/ui, and reproduce the GunjoUI look with \`hsl(var(--token))\` notation.
+
+### What this gives you, and what it does not
+
+tokens.css carries **the tokens (color, radius, shadow, motion) and a minimal base style** — nothing more. Component implementations (accessibility, keyboard handling, state management) are not included. Where npm is available, [install \`@gunjo/ui\` itself](/docs/installation).`,
+  },
   theming: {
     title: "Theming",
     description: "Override Gunjo UI's CSS variables to customize the system.",
