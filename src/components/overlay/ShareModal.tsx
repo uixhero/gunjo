@@ -18,6 +18,7 @@ export interface ShareData {
 export interface ShareableItem {
     id: string;
     share?: ShareData;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any -- open passthrough record; `unknown` would force casts on every consumer read
     [key: string]: any;
 }
 

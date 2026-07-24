@@ -33,6 +33,7 @@ export default function GlobalError({
                         >
                             もう一度試す / Try again
                         </button>
+                        {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- global-error replaces the crashed app shell; a full document reload is the recovery path */}
                         <a
                             href="/"
                             className="inline-flex items-center justify-center rounded-md border border-border px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted"

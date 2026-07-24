@@ -176,7 +176,6 @@ const StackedBarChart = React.forwardRef<HTMLDivElement, StackedBarChartProps>(
             threshold !== undefined &&
             normalize
         ) {
-            // eslint-disable-next-line no-console
             console.warn(
                 "[gunjo] StackedBarChart: `threshold` is ignored while `normalize` is set — every group renders at 100%, so an absolute total has no position on the track."
             )
