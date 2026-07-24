@@ -157,6 +157,116 @@ export default function Page() {
 
 Dark mode（\`next-themes\`）、Vite 個別の調整、フォント設定、既存アプリへの段階移行は [採用ガイド](/docs/adoption) に。トークンの上書きは [テーマ](/docs/theming) を参照。`,
   },
+  "no-npm": {
+    title: "npm が使えない環境で使う",
+    description: "Claude Artifact など npm・CDN 不可の自己完結 HTML 環境で、tokens.css を使って GunjoUI ルックの画面を組む方法。",
+    body: `Claude Artifact、ChatGPT Canvas、メール内 HTML、コードサンドボックスなど、**npm も CDN も使えない自己完結 HTML 環境**では \`@gunjo/ui\` をインストールできません。この環境向けに、GunjoUI はデザイントークンを **Tailwind 非依存の純 CSS** として固定 URL で配布しています。
+
+\`\`\`
+https://www.gunjo.jp/tokens.css
+\`\`\`
+
+パッケージと同じソース・オブ・トゥルースから生成しているため、値は \`@gunjo/ui\` 本体と常に一致します。
+
+### 1. tokens.css を取り込む
+
+自己完結 HTML では外部 CSS を読み込めないことが多いため、**内容をコピーして \`<style>\` に貼る**のが基本です：
+
+\`\`\`html
+<style>
+/* https://www.gunjo.jp/tokens.css の内容をここに貼る */
+</style>
+\`\`\`
+
+AI エージェントなら URL を fetch して同じことができます。外部リソースの読み込みが許される環境（通常の静的サイトなど）では \`<link>\` でも構いません：
+
+\`\`\`html
+<link rel="stylesheet" href="https://www.gunjo.jp/tokens.css">
+\`\`\`
+
+### 2. トークンの読み方
+
+値は \`H S% L%\` の HSL トリプレットです（[テーマ](/docs/theming) と同じ規約）。使うときは \`hsl()\` で包み、透明度は slash 記法で合成します：
+
+\`\`\`css
+.card {
+  background: hsl(var(--card));
+  border: 1px solid hsl(var(--border));
+}
+.button-primary:hover {
+  background: hsl(var(--primary) / 0.9);
+}
+\`\`\`
+
+セマンティックトーンは 5 色（\`primary\` / \`info\` / \`success\` / \`warning\` / \`destructive\`）。各色に \`subtle\`（淡い背景）・base（標準）・\`strong\`（濃い強調）の 3 段と専用の \`border\` があり、背景に \`-subtle\` を使ったらその上の文字は \`-subtle-foreground\`、のように対で使います。詳細は [セマンティックトーン](/docs/semantic-tones) を参照してください。
+
+影（\`--shadow-*\`）はそのまま \`box-shadow\` に、\`--duration-*\` と \`--ease-*\` は \`transition\` に使えます。
+
+### 3. ダークモード
+
+\`<html class="dark">\` または \`<html data-theme="dark">\` で切り替わります。OS 設定に追従させる場合は \`<head>\` に 1 行：
+
+\`\`\`html
+<script>if(matchMedia("(prefers-color-scheme: dark)").matches)document.documentElement.classList.add("dark")</script>
+\`\`\`
+
+### サンプル：カード 1 枚
+
+トークンを貼ったあと、このまま \`<body>\` に貼れば GunjoUI ルックのカードが表示されます：
+
+\`\`\`html
+<style>
+.demo-card {
+  max-width: 360px;
+  padding: 24px;
+  background: hsl(var(--card));
+  color: hsl(var(--card-foreground));
+  border: 1px solid hsl(var(--border));
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+.demo-badge {
+  display: inline-block;
+  padding: 2px 10px;
+  font-size: 12px;
+  font-weight: 600;
+  background: hsl(var(--success-subtle));
+  color: hsl(var(--success-subtle-foreground));
+  border: 1px solid hsl(var(--success-border));
+  border-radius: 9999px;
+}
+.demo-button {
+  padding: 8px 16px;
+  font-size: 14px;
+  font-weight: 500;
+  background: hsl(var(--primary));
+  color: hsl(var(--primary-foreground));
+  border-radius: calc(var(--radius) - 2px);
+  cursor: pointer;
+}
+.demo-button:hover { background: hsl(var(--primary) / 0.9); }
+</style>
+
+<div class="demo-card">
+  <span class="demo-badge">稼働中</span>
+  <h2 style="margin: 12px 0 4px; font-size: 18px;">今月の予約</h2>
+  <p style="margin: 0 0 16px; font-size: 14px; color: hsl(var(--muted-foreground));">
+    前月より 12 件増えています。
+  </p>
+  <button class="demo-button">詳細を見る</button>
+</div>
+\`\`\`
+
+### AI に指示する場合
+
+そのまま使える指示文の例：
+
+> npm・CDN が使えない環境では、@gunjo/ui の代わりに https://www.gunjo.jp/tokens.css のデザイントークンを \`<style>\` に貼り、\`hsl(var(--トークン名))\` 記法で GunjoUI ルックを再現してください。
+
+### この方法で得られるもの・得られないもの
+
+tokens.css が持つのは**トークン（色・角丸・影・モーション）と最小のベーススタイル**だけです。コンポーネント実装（アクセシビリティ対応、キーボード操作、状態管理）は含まれません。npm が使える環境では [\`@gunjo/ui\` 本体のインストール](/docs/installation) を使ってください。`,
+  },
   theming: {
     title: "テーマ",
     description: "Gunjo UI の CSS 変数を上書きしてシステムをカスタマイズする。",

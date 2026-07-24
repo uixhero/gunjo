@@ -3,6 +3,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { syncTokens } from "./design-sync/sync-tokens.mjs";
+import { syncStandaloneTokens } from "./design-sync/sync-standalone-tokens.mjs";
 import { syncMetadata } from "./design-sync/sync-metadata.mjs";
 import { syncComponentSpecs } from "./design-sync/sync-component-specs.mjs";
 import { syncDocsNavigation } from "./design-sync/sync-docs-navigation.mjs";
@@ -37,6 +38,7 @@ function dedupe(values) {
 
 const STATIC_GENERATED_FILES = [
   "src/globals.css",
+  "public/tokens.css",
   "src/components/generated/component-manifest.ts",
   "src/components/generated/component-style-hints.ts",
   "src/index.ts",
@@ -85,6 +87,7 @@ function main() {
   const before = snapshotGeneratedFiles();
 
   syncTokens();
+  syncStandaloneTokens();
   syncMetadata();
   syncComponentSpecs();
   syncDocsNavigation();

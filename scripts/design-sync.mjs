@@ -20,6 +20,7 @@
  */
 
 import { syncTokens } from "./design-sync/sync-tokens.mjs";
+import { syncStandaloneTokens } from "./design-sync/sync-standalone-tokens.mjs";
 import { syncMetadata } from "./design-sync/sync-metadata.mjs";
 import { syncComponentSpecs } from "./design-sync/sync-component-specs.mjs";
 import { syncDocsNavigation } from "./design-sync/sync-docs-navigation.mjs";
@@ -85,6 +86,7 @@ function main() {
 
   if (runTokens) {
     syncTokens();
+    syncStandaloneTokens();
   }
 
   if (runMetadata) {

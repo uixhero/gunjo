@@ -80,6 +80,8 @@ export function GET() {
 >
 > パッケージ: @gunjo/ui（現在 beta・0.1.0-beta 系。API は変わりえます）。
 > コンポーネント計 ${specs.length} 件 / コールドテスト計 ${gallery.count} 件。
+> npm が使えない環境（単一 HTML 等）では ${BASE_URL}/tokens.css（純 CSS トークン）と
+> ${BASE_URL}/docs/no-npm を参照。
 
 # コンポーネント
 
