@@ -146,8 +146,40 @@ export default function Page() {
 
 \`npm run dev\` and the buttons render with Gunjo UI styles.
 
+### Using it from Server Components (Next.js App Router / RSC)
+
+Importing \`@gunjo/ui@0.1.0-beta.1\` from npm through the barrel (\`import { X } from "@gunjo/ui"\`) inside a Server Component (\`layout.tsx\`, \`page.tsx\`, etc.) on Next.js 16 (Turbopack) makes \`next build\` fail with:
+
+\`\`\`
+TypeError: createContext is not a function
+\`\`\`
+
+The cause: when Turbopack resolves through the package barrel, it does not honor the internal \`"use client"\` boundaries, so client-only modules get evaluated on the server side. \`next dev\` does not surface this — it only shows up in \`next build\`.
+
+As a workaround, create one re-export file marked \`"use client"\` and route all app imports through it:
+
+\`\`\`tsx
+// components/ui.ts
+"use client";
+export {
+  Button,
+  Card,
+  CardHeader,
+  CardContent,
+  // list the components you use
+} from "@gunjo/ui";
+\`\`\`
+
+\`\`\`tsx
+// app/layout.tsx (still a Server Component)
+import { Button } from "@/components/ui";
+\`\`\`
+
+> Per-component subpath exports (\`@gunjo/ui/table\` and friends) are planned for npm release as the recommended import path. Once published, this shim should no longer be needed.
+
 ### Troubleshooting
 
+- **\`next build\` fails with \`createContext is not a function\`** → barrel import from a Server Component. Route imports through the \`"use client"\` re-export shim (see "Using it from Server Components" above).
 - **Build fails with \`SyntaxError: Unexpected token\`** → \`transpilePackages\` is missing in \`next.config.ts\` (step 2).
 - **Tailwind classes don't apply** → the \`@source\` (v4) or \`content\` glob (v3) for \`node_modules/@gunjo/ui/src/**/*\` is missing.
 - **Everything renders pure black or white** → \`@import "@gunjo/ui/styles"\` is missing or comes before \`@import "tailwindcss"\`.
