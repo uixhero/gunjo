@@ -75,6 +75,7 @@ export function SiteFooter({
                     <FooterLink href="/docs/introduction">{header("docs")}</FooterLink>
                     <FooterLink href="/docs/comparison">{t("Comparison")}</FooterLink>
                     <FooterLink href="/docs/tokens">{t("Tokens")}</FooterLink>
+                    <FooterLink href="/docs/no-npm">{t("Without npm")}</FooterLink>
                     <FooterLink href="/docs/ai-handoff">{t("AI handoff")}</FooterLink>
                     {SUPPORT_URL ? (
                         <FooterLink
