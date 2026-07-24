@@ -146,8 +146,40 @@ export default function Page() {
 
 \`npm run dev\` でボタンが GunjoUI のスタイルで表示されれば成功。
 
+### Server Component から使う場合（Next.js App Router / RSC）
+
+npm 版 \`@gunjo/ui@0.1.0-beta.1\` を Next.js 16（Turbopack）の Server Component（\`layout.tsx\` / \`page.tsx\` など）から \`import { X } from "@gunjo/ui"\` の形（バレル import）で使うと、\`next build\` が次のエラーで失敗します：
+
+\`\`\`
+TypeError: createContext is not a function
+\`\`\`
+
+原因は、Turbopack がパッケージ本体（バレル）経由の解決時に内部の \`"use client"\` 境界を正しく扱えず、client 専用モジュールが Server 側で評価されるためです。\`next dev\` では発生せず、\`next build\` で顕在化します。
+
+回避策として、\`"use client"\` を付けた再エクスポートファイルを 1 枚作り、アプリからの import はそこを経由させてください：
+
+\`\`\`tsx
+// components/ui.ts
+"use client";
+export {
+  Button,
+  Card,
+  CardHeader,
+  CardContent,
+  // 使うコンポーネントを列挙
+} from "@gunjo/ui";
+\`\`\`
+
+\`\`\`tsx
+// app/layout.tsx（Server Component のまま）
+import { Button } from "@/components/ui";
+\`\`\`
+
+> コンポーネント単位の subpath exports（\`@gunjo/ui/table\` など）の npm 公開と推奨経路化を予定しています。公開後はこのシムは不要になる見込みです。
+
 ### トラブルシューティング
 
+- **\`createContext is not a function\` で \`next build\` が落ちる** → Server Component からのバレル import が原因。\`"use client"\` 再エクスポートシムを経由させる（上記「Server Component から使う場合」）。
 - **\`SyntaxError: Unexpected token\` でビルドが落ちる** → \`next.config.ts\` の \`transpilePackages\` 入れ忘れ（手順 2）。
 - **Tailwind クラスが効かない** → v4 の \`@source\` または v3 の \`content\` で \`node_modules/@gunjo/ui/src/**/*\` を指していない。
 - **画面が真っ黒・真っ白** → \`@import "@gunjo/ui/styles"\` が抜けている、または \`@import "tailwindcss"\` の **前** にきている。

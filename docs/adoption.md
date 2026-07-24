@@ -38,6 +38,8 @@ npm install /absolute/path/to/gunjo
 
 > 旧 alpha（`main: "src/index.ts"` で生 TS を配布していた頃）は `transpilePackages: ["@gunjo/ui"]` が必須だった。dist 配布化以降は削除してよい。
 
+> **⚠️ ただし RSC からのバレル import に既知の制約あり**：Next.js App Router の Server Component から `import { X } from "@gunjo/ui"` すると `next build` が失敗する（`0.1.0-beta.1` + Next.js 16 / Turbopack で確認）。[§ Server Component からのバレル import](#server-component-からのバレル-importrsc) の回避シムを参照。
+
 ### 3. Tailwind プリセット取り込み
 
 採用先の Tailwind 系統で手順が分岐する。
@@ -123,6 +125,48 @@ export default function Page() {
 ```
 
 `npm run dev` で `Button` が GunjoUI のスタイルで表示されれば成功。
+
+## Server Component からのバレル import（RSC）
+
+### 現象
+
+npm 版 `@gunjo/ui@0.1.0-beta.1` を Next.js 16（Turbopack）の Server Component（`layout.tsx` / `page.tsx` など）からバレル import すると、`next build` の Collecting page data 段階で失敗する：
+
+```
+TypeError: i.createContext is not a function
+```
+
+`next dev` では発生せず、`transpilePackages` の有無も無関係（2026-07-24 実測。詳細は [#684](https://github.com/uixhero/gunjo/issues/684)）。
+
+### 原因
+
+Turbopack がバレル（`dist/index.js`）経由でモジュールを解決する際、leaf 側の `"use client"` 境界を正しく扱えず、`createContext` を含む client 専用モジュールが Server 側で評価されるため。
+
+### 回避策：`"use client"` 再エクスポートシム
+
+利用側プロジェクトに `"use client"` を付けた再エクスポートファイルを 1 枚作り、アプリからの import はすべてそこを経由させる：
+
+```tsx
+// components/ui.ts
+"use client";
+export {
+  Button,
+  Card,
+  CardHeader,
+  CardContent,
+  TooltipProvider,
+  // 使うコンポーネントを列挙
+} from "@gunjo/ui";
+```
+
+```tsx
+// app/layout.tsx（Server Component のまま）
+import { TooltipProvider } from "@/components/ui";
+```
+
+シム自体が client 境界になるため、Server Component からでもビルドが通る。
+
+> **今後の予定**：コンポーネント単位の subpath exports（`@gunjo/ui/table` など、[#677](https://github.com/uixhero/gunjo/issues/677)）の npm 公開と推奨経路化を予定している。公開後はバレル一括解決を避けられるため、このシムは不要になる見込み。進捗は [#684](https://github.com/uixhero/gunjo/issues/684) を参照。
 
 ## Server Components と関数prop（RSC）
 
@@ -214,6 +258,10 @@ v3 の場合は `tailwind.config.ts` の `content` に `node_modules/@gunjo/ui/d
 ### Tailwind v4 で動かない
 
 本リポジトリの docs サイトは v4 + Next 16 で稼働確認済（[dependencies.md](./dependencies.md#テスト済み組み合わせ) の ✅ 行）。v4 で問題が出る場合は最初に `@config` のパス解決を疑う（採用先の `globals.css` から見た相対パスが正しいか）。それでもだめなら issue で報告。
+
+### `createContext is not a function` でビルドが落ちる
+
+Server Component から `@gunjo/ui` をバレル import している（Next.js 16 + Turbopack、`0.1.0-beta.1`）。[§ Server Component からのバレル import](#server-component-からのバレル-importrsc) の `"use client"` 再エクスポートシムで回避する。
 
 ### `Functions cannot be passed directly to Client Components` でビルドが落ちる
 
