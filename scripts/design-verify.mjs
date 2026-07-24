@@ -4,6 +4,10 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { syncTokens } from "./design-sync/sync-tokens.mjs";
 import { syncStandaloneTokens } from "./design-sync/sync-standalone-tokens.mjs";
+import {
+  syncStarter,
+  findUndefinedPatternTokens,
+} from "./design-sync/sync-starter.mjs";
 import { syncMetadata } from "./design-sync/sync-metadata.mjs";
 import { syncComponentSpecs } from "./design-sync/sync-component-specs.mjs";
 import { syncDocsNavigation } from "./design-sync/sync-docs-navigation.mjs";
@@ -39,6 +43,7 @@ function dedupe(values) {
 const STATIC_GENERATED_FILES = [
   "src/globals.css",
   "public/tokens.css",
+  "public/starter.html",
   "src/components/generated/component-manifest.ts",
   "src/components/generated/component-style-hints.ts",
   "src/index.ts",
@@ -88,6 +93,7 @@ function main() {
 
   syncTokens();
   syncStandaloneTokens();
+  syncStarter();
   syncMetadata();
   syncComponentSpecs();
   syncDocsNavigation();
@@ -111,6 +117,15 @@ function main() {
   verifyCssVariableCoverage({ root: ROOT });
   verifyColorContrast({ root: ROOT });
   verifyAppGlobalsSync({ root: ROOT });
+
+  const undefinedPatternTokens = findUndefinedPatternTokens({ root: ROOT });
+  if (undefinedPatternTokens.length > 0) {
+    throwLinesError([
+      "design:verify: public/patterns.css references tokens not defined in public/tokens.css:",
+      ...undefinedPatternTokens.map((name) => `- ${name}`),
+      "Every var(--token) in patterns.css (except inline positioning vars) must ship in tokens.css.",
+    ]);
+  }
 
   const after = snapshotGeneratedFiles();
   const changedFiles = detectChangedFiles(before, after);

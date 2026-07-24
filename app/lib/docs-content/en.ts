@@ -257,15 +257,43 @@ After pasting the tokens, drop this into \`<body>\` for a GunjoUI-look card:
 </div>
 \`\`\`
 
+### Patterns you can also just paste (patterns.css)
+
+On top of the tokens, **patterns.css** bundles the look of common parts as \`gj-\` classes. Paste it **after** tokens.css and you get card / stat tile / badge / button / form / table / tabs / timeline / gantt / meter in the GunjoUI look.
+
+\`\`\`
+https://www.gunjo.jp/patterns.css
+\`\`\`
+
+\`\`\`html
+<span class="gj-badge gj-badge--ok">Active</span>
+<button class="gj-btn gj-btn--primary">Save</button>
+
+<div class="gj-card gj-card--bar gj-card--bar-ok">
+  <h2 class="gj-card__title">Bookings this month</h2>
+  <p class="gj-card__desc">Up 12 from last month.</p>
+</div>
+\`\`\`
+
+States are unified as \`ok\` (running/success), \`warn\` (caution), and \`crit\` (danger). Business-screen primitives like gantt (period bars + today line + milestones) and timeline are included.
+
+### One file that opens on its own (starter.html)
+
+**starter.html** packs tokens.css, patterns.css, and a demo screen into a single file. Open it to see every part; copy it for a working starting point.
+
+\`\`\`
+https://www.gunjo.jp/starter.html
+\`\`\`
+
 ### Prompting an AI
 
 A ready-to-use instruction:
 
-> When npm and CDNs are unavailable, paste the design tokens from https://www.gunjo.jp/tokens.css into a \`<style>\` block instead of using @gunjo/ui, and reproduce the GunjoUI look with \`hsl(var(--token))\` notation.
+> When npm and CDNs are unavailable, paste the design tokens from https://www.gunjo.jp/tokens.css and the pattern classes from https://www.gunjo.jp/patterns.css into a \`<style>\` block instead of using @gunjo/ui, and reproduce the GunjoUI look with the \`gj-\` classes and \`hsl(var(--token))\` notation. A worked example is at https://www.gunjo.jp/starter.html.
 
 ### What this gives you, and what it does not
 
-tokens.css carries **the tokens (color, radius, shadow, motion) and a minimal base style** — nothing more. Component implementations (accessibility, keyboard handling, state management) are not included. Where npm is available, [install \`@gunjo/ui\` itself](/docs/installation).`,
+tokens.css / patterns.css carry **the tokens and the look (color, radius, shadow, motion, and the pattern CSS)** — nothing more. Component implementations (accessibility, keyboard handling, state management) are not included; behaviors like switching tab panels need a little JavaScript of your own (there's a minimal example in starter.html). Where npm is available, [install \`@gunjo/ui\` itself](/docs/installation).`,
   },
   theming: {
     title: "Theming",

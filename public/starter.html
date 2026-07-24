@@ -1,0 +1,729 @@
+<!doctype html>
+<html lang="ja">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>GunjoUI スターター（単一 HTML）</title>
+    <!--
+      GunjoUI single-file starter. Self-contained: no npm, no CDN, no build.
+      配布元: https://www.gunjo.jp/starter.html ／ 解説: https://www.gunjo.jp/docs/no-npm
+      このファイルは tokens.css + patterns.css + デモから生成されています。
+      値を変えたいときは編集元の CSS（gunjo.jp/tokens.css, gunjo.jp/patterns.css）を使ってください。
+    -->
+    <style>
+/* === tokens.css （https://www.gunjo.jp/tokens.css） === */
+/*
+ * GunjoUI デザイントークン（スタンドアロン版・Tailwind 不要の純 CSS）
+ * GunjoUI design tokens, standalone. No build step required.
+ *
+ * 配布元: https://www.gunjo.jp/tokens.css
+ * 使い方の解説: https://www.gunjo.jp/docs/no-npm
+ * License: MIT (https://github.com/uixhero/gunjo)
+ *
+ * 値は "H S% L%" の HSL トリプレットです（hsl() で包んでいないのは、
+ * 透明度を後から合成できるようにするためです）:
+ *
+ *   color: hsl(var(--primary));
+ *   background: hsl(var(--primary) / 0.1);
+ *
+ * セマンティックトーンは 5 色（primary / info / success / warning /
+ * destructive）。各色に subtle（淡い背景）・base（標準）・strong（濃い強調）
+ * の 3 段と、専用の border があり、背景には -subtle、その上の文字には
+ * -subtle-foreground のように、対になる foreground を組み合わせます。
+ *
+ * ダークモードは <html class="dark"> または <html data-theme="dark"> で
+ * 切り替えます。OS 設定に追従させる場合は <head> にこの 1 行:
+ *
+ *   <script>if(matchMedia("(prefers-color-scheme: dark)").matches)document.documentElement.classList.add("dark")</script>
+ *
+ * 影は box-shadow: var(--shadow-md) のようにそのまま使えます。
+ * --duration-* と --ease-* は transition / animation に使います。
+ */
+
+:root {
+    --primary-subtle: 220 60% 96%;
+    --primary-subtle-foreground: 220 43% 28%;
+    --primary: 220 62% 49%;
+    --primary-foreground: 210 40% 98%;
+    --primary-strong: 220 47% 38%;
+    --primary-strong-foreground: 210 40% 98%;
+    --primary-border: 220 55% 82%;
+
+    --info-subtle: 214 100% 97%;
+    --info-subtle-foreground: 217 91% 28%;
+    --info: 217 91% 60%;
+    --info-foreground: 222 47% 11%;
+    --info-strong: 224 76% 48%;
+    --info-strong-foreground: 210 40% 98%;
+    --info-border: 214 95% 86%;
+
+    --success-subtle: 138 76% 97%;
+    --success-subtle-foreground: 143 64% 24%;
+    --success: 142 71% 45%;
+    --success-foreground: 144 61% 10%;
+    --success-strong: 142 72% 29%;
+    --success-strong-foreground: 210 40% 98%;
+    --success-border: 141 84% 85%;
+
+    --warning-subtle: 48 96% 89%;
+    --warning-subtle-foreground: 32 95% 20%;
+    --warning: 45 93% 47%;
+    --warning-foreground: 24 10% 10%;
+    --warning-strong: 32 95% 35%;
+    --warning-strong-foreground: 210 40% 98%;
+    --warning-border: 45 96% 75%;
+
+    --destructive-subtle: 0 86% 97%;
+    --destructive-subtle-foreground: 0 63% 31%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+    --destructive-strong: 0 72% 43%;
+    --destructive-strong-foreground: 210 40% 98%;
+    --destructive-border: 0 93% 84%;
+
+    --overlay: 0 0% 0%;
+    --background: 0 0% 100%;
+    --foreground: 240 20% 6%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 240 20% 6%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 20% 6%;
+
+    --secondary: 210 40% 96%;
+    --secondary-foreground: 240 6% 10%;
+
+    --muted: 210 40% 96%;
+    --muted-foreground: 215 20% 40%;
+
+    --accent: 29 31% 87%;
+    --accent-foreground: 14 22% 19%;
+
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 220 62% 49%;
+
+    --radius: 0.5rem;
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -4px rgb(0 0 0 / 0.1);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.1), 0 8px 10px -6px rgb(0 0 0 / 0.1);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.25);
+    --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.05);
+    --shadow-none: none;
+
+    --duration-75: 75ms;
+    --duration-100: 100ms;
+    --duration-150: 150ms;
+    --duration-200: 200ms;
+    --duration-300: 300ms;
+    --duration-500: 500ms;
+    --duration-700: 700ms;
+    --duration-1000: 1000ms;
+    --ease-linear: linear;
+    --ease-in: cubic-bezier(0.4, 0, 1, 1);
+    --ease-out: cubic-bezier(0, 0, 0.2, 1);
+    --ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+
+    --palette-red: 0 84% 60%;
+    --palette-green: 142 71% 45%;
+    --palette-blue: 221 83% 53%;
+    --palette-yellow: 48 96% 53%;
+    --palette-cyan: 188 86% 53%;
+    --palette-magenta: 292 84% 61%;
+    --palette-gray: 220 9% 46%;
+    --palette-white: 0 0% 100%;
+    --palette-black: 0 0% 0%;
+    --pure-white: 0 0% 100%;
+    --pure-black: 220 60% 4%;
+}
+
+.dark,
+[data-theme="dark"] {
+    --primary-subtle: 218 50% 18%;
+    --primary-subtle-foreground: 218 90% 88%;
+    --primary: 218 68% 63%;
+    --primary-foreground: 220 60% 8%;
+    --primary-strong: 218 55% 72%;
+    --primary-strong-foreground: 220 60% 8%;
+    --primary-border: 218 50% 38%;
+
+    --info-subtle: 220 47% 16%;
+    --info-subtle-foreground: 213 94% 88%;
+    --info: 213 94% 68%;
+    --info-foreground: 222 47% 11%;
+    --info-strong: 213 94% 68%;
+    --info-strong-foreground: 222 47% 11%;
+    --info-border: 217 55% 35%;
+
+    --success-subtle: 150 50% 14%;
+    --success-subtle-foreground: 142 76% 85%;
+    --success: 142 69% 58%;
+    --success-foreground: 144 61% 9%;
+    --success-strong: 142 69% 58%;
+    --success-strong-foreground: 144 61% 9%;
+    --success-border: 145 52% 32%;
+
+    --warning-subtle: 38 60% 15%;
+    --warning-subtle-foreground: 48 96% 82%;
+    --warning: 43 96% 56%;
+    --warning-foreground: 26 83% 14%;
+    --warning-strong: 43 96% 56%;
+    --warning-strong-foreground: 26 83% 14%;
+    --warning-border: 40 64% 34%;
+
+    --destructive-subtle: 0 50% 16%;
+    --destructive-subtle-foreground: 0 93% 88%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 210 40% 98%;
+    --destructive-strong: 0 72% 43%;
+    --destructive-strong-foreground: 210 40% 98%;
+    --destructive-border: 0 55% 36%;
+
+    --overlay: 0 0% 0%;
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 14 22% 19%;
+    --accent-foreground: 29 31% 87%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 218 68% 63%;
+
+    --palette-red: 0 84% 60%;
+    --palette-green: 142 71% 45%;
+    --palette-blue: 221 83% 53%;
+    --palette-yellow: 48 96% 53%;
+    --palette-cyan: 188 86% 53%;
+    --palette-magenta: 292 84% 61%;
+    --palette-gray: 220 9% 46%;
+    --palette-white: 0 0% 100%;
+    --palette-black: 0 0% 0%;
+
+    --shadow-sm: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+    --shadow: 0 1px 3px 0 rgb(0 0 0 / 0.2), 0 1px 2px -1px rgb(0 0 0 / 0.2);
+    --shadow-md: 0 4px 6px -1px rgb(0 0 0 / 0.2), 0 2px 4px -2px rgb(0 0 0 / 0.2);
+    --shadow-lg: 0 10px 15px -3px rgb(0 0 0 / 0.2), 0 4px 6px -4px rgb(0 0 0 / 0.2);
+    --shadow-xl: 0 20px 25px -5px rgb(0 0 0 / 0.2), 0 8px 10px -6px rgb(0 0 0 / 0.2);
+    --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.4);
+    --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.1);
+    --shadow-none: none;
+}
+
+/* 最小のベーススタイル（Tailwind preflight の要点だけを純 CSS で再現） */
+*,
+::before,
+::after {
+    box-sizing: border-box;
+    border-width: 0;
+    border-style: solid;
+    border-color: hsl(var(--border));
+}
+
+body {
+    margin: 0;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    font-family: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+}
+
+    </style>
+    <style>
+/* === patterns.css （https://www.gunjo.jp/patterns.css） === */
+/*
+ * GunjoUI パターン（スタンドアロン版・Tailwind 不要の純 CSS）
+ * GunjoUI component patterns, standalone. No build step required.
+ *
+ * 配布元: https://www.gunjo.jp/patterns.css
+ * まとめて開ける単一 HTML: https://www.gunjo.jp/starter.html
+ * 使い方の解説: https://www.gunjo.jp/docs/no-npm
+ * License: MIT (https://github.com/uixhero/gunjo)
+ *
+ * 前提: 先に tokens.css を読み込むこと（https://www.gunjo.jp/tokens.css）。
+ * このファイルは色・角丸・影を tokens.css の変数から引くので、単体では
+ * スタイルが付きません。
+ *
+ * これは npm 不可の単一 HTML 環境（Claude Artifact 等）向けの資産です。
+ * npm が使える環境では @gunjo/ui 本体を使ってください（アクセシビリティ・
+ * キーボード操作・状態管理は本体にしかありません）。ここにあるのは
+ * 「GunjoUI ルックを手早く再現するための見た目クラス」だけです。
+ *
+ * クラスはすべて gj- プレフィックス付きで、既存の CSS と衝突しません。
+ * セマンティック状態は ok=稼働/成功・warn=注意・crit=危険の 3 系統
+ * （tokens の success / warning / destructive を割り当て）。
+ */
+
+/* ---------- レイアウト補助（最小限） ---------- */
+.gj-stack { display: flex; flex-direction: column; gap: 16px; }
+.gj-cluster { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.gj-grid { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+
+/* ---------- Card ---------- */
+.gj-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 24px;
+    background: hsl(var(--card));
+    color: hsl(var(--card-foreground));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+    box-shadow: var(--shadow-sm);
+}
+.gj-card__title { font-size: 18px; font-weight: 600; line-height: 1.2; letter-spacing: -0.01em; }
+.gj-card__desc { font-size: 14px; color: hsl(var(--muted-foreground)); }
+.gj-card__body { margin-top: 12px; }
+
+/* ステータスバー変種＝左端の色帯 */
+.gj-card--bar { padding-left: 28px; }
+.gj-card--bar::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    border-radius: var(--radius) 0 0 var(--radius);
+    background: hsl(var(--primary));
+}
+.gj-card--bar-ok::before { background: hsl(var(--success)); }
+.gj-card--bar-warn::before { background: hsl(var(--warning)); }
+.gj-card--bar-crit::before { background: hsl(var(--destructive)); }
+.gj-card--bar-info::before { background: hsl(var(--info)); }
+
+/* ---------- Stat tile ---------- */
+.gj-stat {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 16px 20px;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+}
+.gj-stat__label { font-size: 12px; font-weight: 500; color: hsl(var(--muted-foreground)); }
+.gj-stat__value {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.1;
+    font-variant-numeric: tabular-nums;
+    font-feature-settings: "tnum";
+}
+.gj-stat__delta { font-size: 12px; font-variant-numeric: tabular-nums; color: hsl(var(--muted-foreground)); }
+.gj-stat__delta--ok { color: hsl(var(--success-strong)); }
+.gj-stat__delta--warn { color: hsl(var(--warning-strong)); }
+.gj-stat__delta--crit { color: hsl(var(--destructive-strong)); }
+
+/* ---------- Badge / chip（pill） ---------- */
+.gj-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    width: fit-content;
+    padding: 2px 10px;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.4;
+    border: 1px solid transparent;
+    border-radius: 9999px;
+}
+.gj-badge--neutral { background: hsl(var(--secondary)); color: hsl(var(--secondary-foreground)); }
+.gj-badge--primary { background: hsl(var(--primary-subtle)); color: hsl(var(--primary-subtle-foreground)); border-color: hsl(var(--primary-border)); }
+.gj-badge--ok { background: hsl(var(--success-subtle)); color: hsl(var(--success-subtle-foreground)); border-color: hsl(var(--success-border)); }
+.gj-badge--warn { background: hsl(var(--warning-subtle)); color: hsl(var(--warning-subtle-foreground)); border-color: hsl(var(--warning-border)); }
+.gj-badge--crit { background: hsl(var(--destructive-subtle)); color: hsl(var(--destructive-subtle-foreground)); border-color: hsl(var(--destructive-border)); }
+.gj-badge--info { background: hsl(var(--info-subtle)); color: hsl(var(--info-subtle-foreground)); border-color: hsl(var(--info-border)); }
+.gj-badge--outline { background: transparent; color: hsl(var(--foreground)); border-color: hsl(var(--border)); }
+
+/* ---------- Button ---------- */
+.gj-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: fit-content;
+    height: 36px;
+    padding: 0 16px;
+    font-size: 14px;
+    font-weight: 500;
+    border: 1px solid transparent;
+    border-radius: var(--radius);
+    cursor: pointer;
+    transition: background-color var(--duration-150) var(--ease-out), color var(--duration-150) var(--ease-out);
+}
+.gj-btn:focus-visible { outline: none; box-shadow: 0 0 0 1px hsl(var(--ring)); }
+.gj-btn[disabled] { pointer-events: none; opacity: 0.5; }
+.gj-btn--primary { background: hsl(var(--primary-strong)); color: hsl(var(--primary-strong-foreground)); box-shadow: var(--shadow-sm); }
+.gj-btn--primary:hover { background: hsl(var(--primary)); }
+.gj-btn--secondary { background: hsl(var(--secondary)); color: hsl(var(--secondary-foreground)); box-shadow: var(--shadow-sm); }
+.gj-btn--secondary:hover { background: hsl(var(--secondary) / 0.8); }
+.gj-btn--outline { background: transparent; color: hsl(var(--foreground)); border-color: hsl(var(--border)); box-shadow: var(--shadow-sm); }
+.gj-btn--outline:hover { background: hsl(var(--muted)); }
+.gj-btn--ghost { background: transparent; color: hsl(var(--foreground)); }
+.gj-btn--ghost:hover { background: hsl(var(--muted)); }
+.gj-btn--destructive { background: hsl(var(--destructive-strong)); color: hsl(var(--destructive-strong-foreground)); box-shadow: var(--shadow-sm); }
+.gj-btn--sm { height: 32px; padding: 0 12px; font-size: 12px; }
+
+/* ---------- Form ---------- */
+.gj-field { display: flex; flex-direction: column; gap: 6px; }
+.gj-label { font-size: 14px; font-weight: 500; color: hsl(var(--foreground)); }
+.gj-input {
+    height: 36px;
+    padding: 0 12px;
+    font-size: 14px;
+    color: hsl(var(--foreground));
+    background: hsl(var(--background));
+    border: 1px solid hsl(var(--input));
+    border-radius: var(--radius);
+}
+.gj-input::placeholder { color: hsl(var(--muted-foreground)); }
+.gj-input:focus-visible { outline: none; border-color: hsl(var(--ring)); box-shadow: 0 0 0 1px hsl(var(--ring)); }
+textarea.gj-input { height: auto; padding: 8px 12px; line-height: 1.5; }
+
+/* ---------- Table ---------- */
+.gj-table-wrap {
+    position: relative;
+    width: 100%;
+    overflow-x: auto;
+    background: hsl(var(--card));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--radius);
+}
+.gj-table { width: 100%; border-collapse: collapse; font-size: 14px; }
+.gj-table th {
+    padding: 12px;
+    text-align: left;
+    font-size: 12px;
+    font-weight: 600;
+    color: hsl(var(--muted-foreground));
+    background: hsl(var(--accent) / 0.55);
+    white-space: nowrap;
+}
+.gj-table td { padding: 12px; vertical-align: middle; border-top: 1px solid hsl(var(--border)); }
+.gj-table tbody tr:hover { background: hsl(var(--muted) / 0.5); }
+.gj-table--striped tbody tr:nth-child(even) { background: hsl(var(--muted) / 0.25); }
+.gj-table .gj-num { font-variant-numeric: tabular-nums; text-align: right; }
+
+/* ---------- Tabs（pill） ---------- */
+.gj-tabs {
+    display: inline-flex;
+    gap: 2px;
+    padding: 4px;
+    background: hsl(var(--muted) / 0.6);
+    border-radius: var(--radius);
+}
+.gj-tab {
+    padding: 6px 14px;
+    font-size: 14px;
+    font-weight: 500;
+    color: hsl(var(--muted-foreground));
+    background: transparent;
+    border: none;
+    border-radius: calc(var(--radius) - 2px);
+    cursor: pointer;
+    transition: background-color var(--duration-150) var(--ease-out), color var(--duration-150) var(--ease-out);
+}
+.gj-tab:hover { color: hsl(var(--foreground)); }
+.gj-tab[aria-selected="true"] { background: hsl(var(--card)); color: hsl(var(--foreground)); box-shadow: var(--shadow-sm); }
+.gj-tabpanel[hidden] { display: none; }
+
+/* ---------- Timeline（縦：when / dot / rail / what） ---------- */
+.gj-timeline { display: flex; flex-direction: column; }
+.gj-timeline__item {
+    position: relative;
+    display: grid;
+    grid-template-columns: 88px 1fr;
+    gap: 12px;
+    padding-bottom: 20px;
+}
+.gj-timeline__item::before { /* rail */
+    content: "";
+    position: absolute;
+    left: 95px;
+    top: 6px;
+    bottom: -6px;
+    width: 2px;
+    background: hsl(var(--border));
+}
+.gj-timeline__item:last-child::before { display: none; }
+.gj-timeline__when { font-size: 12px; color: hsl(var(--muted-foreground)); text-align: right; padding-top: 1px; }
+.gj-timeline__body { position: relative; padding-left: 16px; }
+.gj-timeline__body::before { /* dot */
+    content: "";
+    position: absolute;
+    left: -9px;
+    top: 4px;
+    width: 10px;
+    height: 10px;
+    border-radius: 9999px;
+    background: hsl(var(--primary));
+    box-shadow: 0 0 0 3px hsl(var(--background));
+}
+.gj-timeline__title { font-size: 14px; font-weight: 600; }
+.gj-timeline__desc { font-size: 13px; color: hsl(var(--muted-foreground)); }
+.gj-timeline__item--ok .gj-timeline__body::before { background: hsl(var(--success)); }
+.gj-timeline__item--warn .gj-timeline__body::before { background: hsl(var(--warning)); }
+.gj-timeline__item--crit .gj-timeline__body::before { background: hsl(var(--destructive)); }
+
+/* ---------- Gantt / schedule bar（横：期間バー＋菱形マイルストーン＋今日線） ----------
+ * 各行の期間バーは inline style の --from / --to（トラック幅に対する %）で置く:
+ *   <div class="gj-gantt__bar" style="--from: 10%; --to: 60%"></div>
+ * マイルストーン・今日線は --at:
+ *   <div class="gj-gantt__milestone" style="--at: 60%"></div>
+ *   <div class="gj-gantt__today" style="--at: 42%"></div>
+ */
+.gj-gantt { display: flex; flex-direction: column; gap: 8px; }
+.gj-gantt__row { display: grid; grid-template-columns: 120px 1fr; align-items: center; gap: 12px; }
+.gj-gantt__label { font-size: 13px; color: hsl(var(--foreground)); }
+.gj-gantt__track {
+    position: relative;
+    height: 22px;
+    background: hsl(var(--muted) / 0.5);
+    border-radius: 9999px;
+}
+.gj-gantt__bar {
+    position: absolute;
+    top: 3px;
+    bottom: 3px;
+    left: var(--from);
+    width: calc(var(--to) - var(--from));
+    background: hsl(var(--primary));
+    border-radius: 9999px;
+}
+.gj-gantt__bar--ok { background: hsl(var(--success)); }
+.gj-gantt__bar--warn { background: hsl(var(--warning)); }
+.gj-gantt__bar--crit { background: hsl(var(--destructive)); }
+.gj-gantt__milestone {
+    position: absolute;
+    top: 50%;
+    left: var(--at);
+    width: 12px;
+    height: 12px;
+    transform: translate(-50%, -50%) rotate(45deg);
+    background: hsl(var(--primary-strong));
+    border: 2px solid hsl(var(--card));
+}
+.gj-gantt__today {
+    position: absolute;
+    top: -4px;
+    bottom: -4px;
+    left: var(--at);
+    width: 2px;
+    background: hsl(var(--destructive));
+}
+
+/* ---------- Meter（バー型・KPI 進捗など） ---------- */
+.gj-meter {
+    position: relative;
+    height: 8px;
+    background: hsl(var(--muted) / 0.6);
+    border-radius: 9999px;
+    overflow: hidden;
+}
+.gj-meter__fill {
+    height: 100%;
+    width: var(--value, 0%);
+    background: hsl(var(--primary));
+    border-radius: 9999px;
+    transition: width var(--duration-300) var(--ease-out);
+}
+.gj-meter__fill--ok { background: hsl(var(--success)); }
+.gj-meter__fill--warn { background: hsl(var(--warning)); }
+.gj-meter__fill--crit { background: hsl(var(--destructive)); }
+
+    </style>
+    <style>
+        .page { max-width: 880px; margin: 0 auto; padding: 32px 20px; display: flex; flex-direction: column; gap: 20px; }
+        .page__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; }
+        .page__title { margin: 0; font-size: 24px; font-weight: 700; letter-spacing: -0.01em; }
+        .page__sub { margin: 4px 0 0; font-size: 14px; color: hsl(var(--muted-foreground)); }
+    </style>
+</head>
+<body>
+<div class="page">
+    <header class="page__head">
+        <div>
+            <h1 class="page__title">今月のステータス</h1>
+            <p class="page__sub">GunjoUI パターン（patterns.css）だけで組んだ単一 HTML のデモ画面です。</p>
+        </div>
+        <button class="gj-btn gj-btn--outline gj-btn--sm" onclick="document.documentElement.classList.toggle('dark')">
+            ダーク切替
+        </button>
+    </header>
+
+    <div class="gj-tabs" role="tablist">
+        <button class="gj-tab" role="tab" aria-selected="true" aria-controls="panel-overview">概要</button>
+        <button class="gj-tab" role="tab" aria-selected="false" aria-controls="panel-plan">予定</button>
+    </div>
+
+    <section id="panel-overview" class="gj-tabpanel gj-stack" role="tabpanel">
+        <div class="gj-grid">
+            <div class="gj-stat">
+                <span class="gj-stat__label">今月の予約</span>
+                <span class="gj-stat__value">1,284</span>
+                <span class="gj-stat__delta gj-stat__delta--ok">前月比 +12%</span>
+            </div>
+            <div class="gj-stat">
+                <span class="gj-stat__label">キャンセル率</span>
+                <span class="gj-stat__value">4.2%</span>
+                <span class="gj-stat__delta gj-stat__delta--warn">前月比 +0.8pt</span>
+            </div>
+            <div class="gj-stat">
+                <span class="gj-stat__label">未対応の問い合わせ</span>
+                <span class="gj-stat__value">7</span>
+                <span class="gj-stat__delta gj-stat__delta--crit">SLA 超過 2 件</span>
+            </div>
+        </div>
+
+        <div class="gj-card gj-card--bar gj-card--bar-ok">
+            <div class="gj-cluster">
+                <span class="gj-badge gj-badge--ok">稼働中</span>
+                <span class="gj-badge gj-badge--primary">処理中 3</span>
+                <span class="gj-badge gj-badge--warn">要確認 2</span>
+                <span class="gj-badge gj-badge--outline">全店舗</span>
+            </div>
+            <h2 class="gj-card__title">店舗別の予約</h2>
+            <p class="gj-card__desc">タップで詳細。数値は当月確定分。</p>
+            <div class="gj-card__body">
+                <div class="gj-table-wrap">
+                    <table class="gj-table gj-table--striped">
+                        <thead>
+                            <tr><th>店舗</th><th>状態</th><th class="gj-num">予約</th><th class="gj-num">稼働率</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>本店</td><td><span class="gj-badge gj-badge--ok">稼働中</span></td><td class="gj-num">642</td><td class="gj-num">88%</td></tr>
+                            <tr><td>駅前店</td><td><span class="gj-badge gj-badge--warn">混雑</span></td><td class="gj-num">418</td><td class="gj-num">96%</td></tr>
+                            <tr><td>郊外店</td><td><span class="gj-badge gj-badge--neutral">通常</span></td><td class="gj-num">224</td><td class="gj-num">61%</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <div class="gj-card">
+            <h2 class="gj-card__title">目標の進捗</h2>
+            <div class="gj-card__body gj-stack">
+                <div>
+                    <div class="gj-cluster" style="justify-content: space-between;">
+                        <span class="gj-stat__label">月間予約 目標 1,400</span>
+                        <span class="gj-stat__delta">92%</span>
+                    </div>
+                    <div class="gj-meter" style="margin-top: 6px;"><div class="gj-meter__fill gj-meter__fill--ok" style="--value: 92%;"></div></div>
+                </div>
+                <div>
+                    <div class="gj-cluster" style="justify-content: space-between;">
+                        <span class="gj-stat__label">スタッフ充足</span>
+                        <span class="gj-stat__delta">67%</span>
+                    </div>
+                    <div class="gj-meter" style="margin-top: 6px;"><div class="gj-meter__fill gj-meter__fill--warn" style="--value: 67%;"></div></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="panel-plan" class="gj-tabpanel gj-stack" role="tabpanel" hidden>
+        <div class="gj-card">
+            <h2 class="gj-card__title">導入スケジュール</h2>
+            <div class="gj-card__body">
+                <div class="gj-gantt">
+                    <div class="gj-gantt__row">
+                        <span class="gj-gantt__label">要件定義</span>
+                        <div class="gj-gantt__track"><div class="gj-gantt__bar gj-gantt__bar--ok" style="--from: 0%; --to: 25%;"></div></div>
+                    </div>
+                    <div class="gj-gantt__row">
+                        <span class="gj-gantt__label">設計・実装</span>
+                        <div class="gj-gantt__track">
+                            <div class="gj-gantt__bar" style="--from: 20%; --to: 70%;"></div>
+                            <div class="gj-gantt__today" style="--at: 42%;"></div>
+                        </div>
+                    </div>
+                    <div class="gj-gantt__row">
+                        <span class="gj-gantt__label">検証・本番</span>
+                        <div class="gj-gantt__track">
+                            <div class="gj-gantt__bar gj-gantt__bar--warn" style="--from: 65%; --to: 95%;"></div>
+                            <div class="gj-gantt__milestone" style="--at: 95%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gj-card">
+            <h2 class="gj-card__title">直近の動き</h2>
+            <div class="gj-card__body">
+                <div class="gj-timeline">
+                    <div class="gj-timeline__item gj-timeline__item--ok">
+                        <span class="gj-timeline__when">7/10</span>
+                        <div class="gj-timeline__body">
+                            <div class="gj-timeline__title">要件定義 完了</div>
+                            <div class="gj-timeline__desc">3 店舗のヒアリングを反映。</div>
+                        </div>
+                    </div>
+                    <div class="gj-timeline__item">
+                        <span class="gj-timeline__when">7/18</span>
+                        <div class="gj-timeline__body">
+                            <div class="gj-timeline__title">実装 着手</div>
+                            <div class="gj-timeline__desc">予約導線から先行。</div>
+                        </div>
+                    </div>
+                    <div class="gj-timeline__item gj-timeline__item--warn">
+                        <span class="gj-timeline__when">7/24</span>
+                        <div class="gj-timeline__body">
+                            <div class="gj-timeline__title">仕様変更の相談</div>
+                            <div class="gj-timeline__desc">キャンセル料の扱いを再検討中。</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gj-card">
+            <h2 class="gj-card__title">連絡先を登録</h2>
+            <div class="gj-card__body gj-stack" style="max-width: 360px;">
+                <div class="gj-field">
+                    <label class="gj-label" for="demo-name">担当者名</label>
+                    <input class="gj-input" id="demo-name" placeholder="山田 太郎">
+                </div>
+                <div class="gj-field">
+                    <label class="gj-label" for="demo-note">メモ</label>
+                    <textarea class="gj-input" id="demo-note" rows="2" placeholder="任意"></textarea>
+                </div>
+                <div class="gj-cluster">
+                    <button class="gj-btn gj-btn--primary">保存</button>
+                    <button class="gj-btn gj-btn--ghost">キャンセル</button>
+                </div>
+            </div>
+        </div>
+    </section>
+</div>
+<script>
+document.querySelectorAll('[role="tab"]').forEach(function (tab) {
+    tab.addEventListener('click', function () {
+        var group = tab.parentElement.querySelectorAll('[role="tab"]');
+        group.forEach(function (t) {
+            var on = t === tab;
+            t.setAttribute('aria-selected', on ? 'true' : 'false');
+            document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
+        });
+    });
+});
+</script>
+</body>
+</html>
