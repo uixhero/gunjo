@@ -18,7 +18,7 @@ const DECLARATION_PATTERN = /^\s*(--[a-z0-9-]+)\s*:\s*([^;]+);\s*$/;
  * Comments inside the block are tolerated as long as they contain no braces
  * (true for the generated source; a mismatch fails the sanity check below).
  */
-function extractBlock(css, selector) {
+export function extractBlock(css, selector) {
   const start = css.indexOf(`${selector} {`);
   if (start === -1) {
     throw new Error(

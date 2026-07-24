@@ -182,6 +182,50 @@ export default function AiHandoffPage() {
                     </div>
                 </section>
 
+                {/* Fixed-URL assets for npm-less environments (#687) */}
+                <section id="no-npm" className="scroll-mt-24 space-y-4">
+                    <h2 className="text-2xl font-semibold tracking-tight">
+                        {t.noNpm.heading}
+                    </h2>
+                    <p className="max-w-3xl text-sm text-muted-foreground">
+                        {t.noNpm.description}
+                    </p>
+                    <ul className="space-y-2 rounded-lg border border-border/40 bg-muted/20 p-4 text-sm">
+                        {(
+                            [
+                                { key: "tokensCss", url: "https://www.gunjo.jp/tokens.css", href: "/tokens.css" },
+                                { key: "patternsCss", url: "https://www.gunjo.jp/patterns.css", href: "/patterns.css" },
+                                { key: "starterHtml", url: "https://www.gunjo.jp/starter.html", href: "/starter.html" },
+                            ] as const
+                        ).map((asset) => (
+                            <li
+                                key={asset.key}
+                                className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-2"
+                            >
+                                <a
+                                    href={asset.href}
+                                    className="font-mono font-medium text-primary hover:underline"
+                                >
+                                    {asset.url}
+                                </a>
+                                <span className="text-muted-foreground">
+                                    {t.noNpm.links[asset.key]}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                    <p className="text-sm text-muted-foreground">
+                        {t.noNpm.docsLead}
+                        <Link
+                            href="/docs/no-npm"
+                            className="font-medium text-primary hover:underline"
+                        >
+                            {t.noNpm.docsLinkText}
+                        </Link>
+                        {t.noNpm.docsTail}
+                    </p>
+                </section>
+
                 {/* SSOT files */}
                 <section id="ssot-files" className="scroll-mt-24 space-y-6">
                     <div className="space-y-3">

@@ -4,6 +4,7 @@ import Link from "next/link";
 import {
     IconArrowRight as ArrowRight,
     IconFileText as FileText,
+    IconLink as LinkIcon,
     IconMaximize as Maximize2,
     IconPalette as Palette,
     IconRuler as Ruler,
@@ -13,7 +14,43 @@ import {
 } from "@tabler/icons-react";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { TOKEN_VALUES } from "@/lib/data/token-values.generated";
 import type { TokenGroupKey } from "@/lib/translations";
+
+type FixedAssetKey = "tokensCss" | "patternsCss" | "starterHtml";
+
+const FIXED_ASSETS: { key: FixedAssetKey; href: string; url: string }[] = [
+    { key: "tokensCss", href: "/tokens.css", url: "https://www.gunjo.jp/tokens.css" },
+    { key: "patternsCss", href: "/patterns.css", url: "https://www.gunjo.jp/patterns.css" },
+    { key: "starterHtml", href: "/starter.html", url: "https://www.gunjo.jp/starter.html" },
+];
+
+// Static excerpt of the tokens an AI (or a human skimming) most often needs.
+// Values come from the generated SSOT map, so the text in the server-rendered
+// HTML is always the real, current value. (#687)
+const KEY_TOKEN_NAMES = [
+    "--background",
+    "--foreground",
+    "--primary",
+    "--primary-foreground",
+    "--info",
+    "--success",
+    "--warning",
+    "--destructive",
+    "--border",
+    "--muted-foreground",
+    "--radius",
+];
+
+function keyTokenBlock(theme: "light" | "dark"): string {
+    // .dark only redefines what changes per theme (e.g. --radius stays put),
+    // so emit only the tokens that block actually declares.
+    return KEY_TOKEN_NAMES.filter((name) => TOKEN_VALUES[theme][name] !== undefined)
+        .map((name) => `  ${name}: ${TOKEN_VALUES[theme][name]};`)
+        .join("\n");
+}
+
+const KEY_TOKEN_CSS = `:root {\n${keyTokenBlock("light")}\n}\n\n.dark {\n${keyTokenBlock("dark")}\n}`;
 
 const TOKEN_GROUPS: { key: TokenGroupKey; href: string; Icon: typeof Palette }[] = [
     { key: "colors", href: "/docs/colors", Icon: Palette },
@@ -77,6 +114,57 @@ export default function DocsTokensOverviewPage() {
                     );
                 })}
             </div>
+
+            <Card>
+                <CardHeader>
+                    <div className="mb-2 flex h-9 w-9 items-center justify-center rounded-lg bg-primary-subtle text-primary-subtle-foreground">
+                        <LinkIcon className="h-4 w-4" />
+                    </div>
+                    <CardTitle>{t.fixedAssets.title}</CardTitle>
+                    <CardDescription>{t.fixedAssets.description}</CardDescription>
+                </CardHeader>
+                <CardContent className="space-y-4">
+                    <ul className="space-y-2 text-sm">
+                        {FIXED_ASSETS.map((asset) => (
+                            <li
+                                key={asset.key}
+                                className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-2"
+                            >
+                                <a
+                                    href={asset.href}
+                                    className="font-mono font-medium text-primary hover:underline"
+                                >
+                                    {asset.url}
+                                </a>
+                                <span className="text-muted-foreground">
+                                    {t.fixedAssets.links[asset.key]}
+                                </span>
+                            </li>
+                        ))}
+                    </ul>
+                    <p className="text-sm text-muted-foreground">
+                        {t.fixedAssets.noNpmLead}
+                        <Link
+                            href="/docs/no-npm"
+                            className="font-medium text-primary hover:underline"
+                        >
+                            {t.fixedAssets.noNpmLinkText}
+                        </Link>
+                        {t.fixedAssets.noNpmTail}
+                    </p>
+                    <div className="space-y-1">
+                        <p className="text-sm font-medium">
+                            {t.fixedAssets.valuesHeading}
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                            {t.fixedAssets.valuesHint}
+                        </p>
+                        <pre className="overflow-x-auto rounded-lg border border-border/40 bg-muted/20 p-3 font-mono text-xs leading-relaxed">
+                            {KEY_TOKEN_CSS}
+                        </pre>
+                    </div>
+                </CardContent>
+            </Card>
 
             <Card className="border-primary-border bg-primary-subtle">
                 <CardHeader>
