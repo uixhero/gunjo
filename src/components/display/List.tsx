@@ -45,10 +45,12 @@ const List = React.forwardRef<HTMLElement, ListProps>(
                     : "none");
         const usesCustomMarker = isListVariantKey(effectiveMarker)
         const customMarkerLayout = usesCustomMarker ? listLayoutClasses[effectiveMarker] : undefined
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any -- polymorphic ol/ul: the concrete ref element type is only known per branch
+        const listRef = ref as any
 
         return (
             <Comp
-                ref={ref as any}
+                ref={listRef}
                 className={cn(
                     "text-muted-foreground",
                     divided ? "flex flex-col divide-y divide-border/70" : customMarkerLayout,

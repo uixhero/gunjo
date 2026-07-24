@@ -120,7 +120,7 @@ export default function McpServerPage() {
                     <p className="text-base leading-7 text-muted-foreground">
                         MCP turns the Phase 5 spec endpoints into a typed,
                         discoverable namespace. Instead of pasting Markdown,
-                        users say "use GunjoUI" and the AI tool calls
+                        users say &quot;use GunjoUI&quot; and the AI tool calls
                         <code className="mx-1 rounded bg-muted px-1.5 py-0.5 text-sm font-mono">
                             list_components
                         </code>
@@ -210,7 +210,7 @@ npx gunjo-ui-mcp \\
                         </h2>
                     </div>
                     <p className="text-sm text-muted-foreground">
-                        The Markdown "Copy spec for AI" button on every
+                        The Markdown &quot;Copy spec for AI&quot; button on every
                         component page already covers the manual workflow.
                         Drop into v0 or Cursor — same fidelity, just a
                         copy-paste away.

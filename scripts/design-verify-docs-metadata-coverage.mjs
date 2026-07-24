@@ -6,7 +6,6 @@ import {
   DOCS_COMPONENT_CATEGORY_CONFIGS,
   DOCS_COMPONENT_COMPOSITES,
   metadataKeyToSlug,
-  // eslint-disable-next-line no-unused-vars
 } from "./design-sync/docs-component-config.mjs";
 import { ROOT, readJson } from "./design-sync/shared.mjs";
 import { runVerificationCli, throwLinesError } from "./design-verify-assertions.mjs";

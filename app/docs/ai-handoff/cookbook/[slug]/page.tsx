@@ -28,20 +28,22 @@ export default function RecipeDetailPage() {
     const recipe = slug ? getRecipe(slug) : undefined;
     const [copied, setCopied] = React.useState(false);
 
-    if (!recipe) {
-        if (typeof window !== "undefined") notFound();
-        return null;
-    }
-
+    const promptText = recipe?.prompt;
     const onCopy = React.useCallback(async () => {
+        if (!promptText) return;
         try {
-            await navigator.clipboard.writeText(recipe.prompt);
+            await navigator.clipboard.writeText(promptText);
             setCopied(true);
             setTimeout(() => setCopied(false), 1500);
         } catch {
             // ignore
         }
-    }, [recipe.prompt]);
+    }, [promptText]);
+
+    if (!recipe) {
+        if (typeof window !== "undefined") notFound();
+        return null;
+    }
 
     return (
         <div className="container py-10">
