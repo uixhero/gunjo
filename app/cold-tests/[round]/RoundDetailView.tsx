@@ -325,8 +325,8 @@ export function RoundDetailView({
                                             detail.slug
                                         );
                                         if (!fixed) return null;
-                                        /* eslint-disable-next-line @next/next/no-img-element */
                                         return (
+                                            /* eslint-disable-next-line @next/next/no-img-element -- article images come from arbitrary cold-test material, not the optimized pipeline */
                                             <img
                                                 src={fixed}
                                                 alt={alt ?? ""}

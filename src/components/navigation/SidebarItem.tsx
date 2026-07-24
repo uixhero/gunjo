@@ -45,7 +45,7 @@ export interface SidebarItemProps {
     className?: string;
 }
 
-export const SidebarItem = memo(({
+export const SidebarItem = memo(function SidebarItem({
     icon,
     label,
     count,
@@ -69,7 +69,7 @@ export const SidebarItem = memo(({
     onDragStart,
     onDragEnd,
     className
-}: SidebarItemProps) => {
+}: SidebarItemProps) {
     const baseVariant: SidebarItemVariantKey = isActive ? "active" : sidebarItemDefaultVariantKey;
     const variantClasses: Record<SidebarItemVariantKey, string> = {
         active: "bg-secondary text-foreground",

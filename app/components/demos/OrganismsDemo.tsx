@@ -6,6 +6,7 @@ import {
     FloatingPanel,
     SpatialCanvas,
     ShareModal,
+    type ShareableItem,
     ToastProvider,
     useToast,
     Button,
@@ -111,7 +112,7 @@ export function ShareModalDemo() {
         }
     });
 
-    const handleUpdate = (id: string, updates: any) => {
+    const handleUpdate = (id: string, updates: Partial<ShareableItem>) => {
         console.log("Updated", id, updates);
         setItem(prev => ({ ...prev, share: { ...prev.share, ...updates.share } }));
     };

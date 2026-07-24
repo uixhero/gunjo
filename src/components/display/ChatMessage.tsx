@@ -246,16 +246,6 @@ export function ChatMessage({
         isEmptyTyping
     );
 
-    if (role === "system") {
-        return (
-            <div className={cn("my-4 inline-flex", chatMessageVariantClassNames[resolvedVariant], className)}>
-                <span className="rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">
-                    {content}
-                </span>
-            </div>
-        );
-    }
-
     const isUser = role === "user";
     const actionLabels = {
         copy: labels?.copy ?? "コピー",
@@ -265,6 +255,26 @@ export function ChatMessage({
     };
     const resolvedContent = isEmptyTyping ? animatedTypingText : content;
     const resolvedCopyValue = copyValue ?? (typeof resolvedContent === "string" ? resolvedContent : undefined);
+
+    const handleAction = React.useCallback(
+        (actionKey: ChatMessageActionKey, event: React.MouseEvent<HTMLButtonElement>) => {
+            if (actionKey === "copy" && resolvedCopyValue && navigator.clipboard) {
+                void navigator.clipboard.writeText(resolvedCopyValue).catch(() => undefined);
+            }
+            onAction?.(actionKey, event);
+        },
+        [onAction, resolvedCopyValue]
+    );
+
+    if (role === "system") {
+        return (
+            <div className={cn("my-4 inline-flex", chatMessageVariantClassNames[resolvedVariant], className)}>
+                <span className="rounded-full bg-muted px-3 py-1 text-xs text-muted-foreground">
+                    {content}
+                </span>
+            </div>
+        );
+    }
     const defaultActions: ChatMessageAction[] = isUser
         ? [
             {
@@ -296,16 +306,6 @@ export function ChatMessage({
             },
         ];
     const resolvedActions = actions ?? defaultActions;
-
-    const handleAction = React.useCallback(
-        (actionKey: ChatMessageActionKey, event: React.MouseEvent<HTMLButtonElement>) => {
-            if (actionKey === "copy" && resolvedCopyValue && navigator.clipboard) {
-                void navigator.clipboard.writeText(resolvedCopyValue).catch(() => undefined);
-            }
-            onAction?.(actionKey, event);
-        },
-        [onAction, resolvedCopyValue]
-    );
 
     return (
         <div

@@ -134,14 +134,6 @@ export function ChartTooltip({
     children,
     side = "top",
 }: ChartTooltipProps) {
-    if (
-        !hasTooltipContent(label) &&
-        !hasTooltipContent(value) &&
-        !hasTooltipContent(description)
-    ) {
-        return children
-    }
-
     const tooltipId = React.useId()
     const [open, setOpen] = React.useState(false)
     const [position, setPosition] = React.useState<ChartTooltipPosition | null>(
@@ -235,6 +227,15 @@ export function ChartTooltip({
             window.visualViewport?.removeEventListener("resize", closeTooltip)
         }
     }, [open])
+
+    // After all hooks: bail out without tooltip behavior when there is nothing to show
+    if (
+        !hasTooltipContent(label) &&
+        !hasTooltipContent(value) &&
+        !hasTooltipContent(description)
+    ) {
+        return children
+    }
 
     const tooltip =
         open && position && typeof document !== "undefined"
