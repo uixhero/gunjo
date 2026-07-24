@@ -116,6 +116,20 @@ export type TokensPageStrings = {
     description: string;
     cta: string;
   };
+  fixedAssets: {
+    title: string;
+    description: string;
+    links: {
+      tokensCss: string;
+      patternsCss: string;
+      starterHtml: string;
+    };
+    noNpmLead: string;
+    noNpmLinkText: string;
+    noNpmTail: string;
+    valuesHeading: string;
+    valuesHint: string;
+  };
 };
 
 export type PatternKey =
@@ -212,6 +226,18 @@ export type AiHandoffPageStrings = {
     oneComponent: string;
     allComponents: string;
     tryButton: (path: string) => string;
+  };
+  noNpm: {
+    heading: string;
+    description: string;
+    links: {
+      tokensCss: string;
+      patternsCss: string;
+      starterHtml: string;
+    };
+    docsLead: string;
+    docsLinkText: string;
+    docsTail: string;
   };
   ssotFiles: {
     heading: string;
@@ -731,6 +757,24 @@ export const translations: Record<
             "DESIGN.md documents the full design system in machine-readable Markdown so AI tools (v0, Cursor, Claude, Figma Make) can consume it directly. Brand story, color palette with hex/HSL, typography rules, component-level usage. One source of truth.",
           cta: "Read the full spec",
         },
+        fixedAssets: {
+          title: "Fixed-URL assets — plain CSS, no build step",
+          description:
+            "The token values on this site are also served as standalone files at fixed URLs. They are generated from the same source of truth as @gunjo/ui, so the values always match the package.",
+          links: {
+            tokensCss: "All design tokens as plain CSS (light and dark).",
+            patternsCss:
+              "CSS patterns — card, badge, table, tabs, and more as gj- classes.",
+            starterHtml:
+              "Self-contained single-file starter: tokens, patterns, and a demo.",
+          },
+          noNpmLead: "Where npm or build tools are unavailable, see ",
+          noNpmLinkText: "Without npm",
+          noNpmTail: ".",
+          valuesHeading: "Key token values (excerpt)",
+          valuesHint:
+            "Static excerpt from the source of truth. The full set ships in tokens.css.",
+        },
       },
       patterns: {
         label: "Patterns",
@@ -913,6 +957,21 @@ export const translations: Record<
           oneComponent: "One component",
           allComponents: "All components",
           tryButton: (path) => `Try ${path}`,
+        },
+        noNpm: {
+          heading: "No npm? Fixed-URL CSS assets",
+          description:
+            "For environments without npm or build tools (Claude Artifacts, single-file HTML, sandboxes), GunjoUI ships standalone files at fixed URLs. Fetch or copy-paste; the values are generated from the same source of truth as the package.",
+          links: {
+            tokensCss: "All design tokens as plain CSS (light and dark).",
+            patternsCss:
+              "CSS patterns — card, badge, table, tabs, and more as gj- classes.",
+            starterHtml:
+              "Self-contained single-file starter: tokens, patterns, and a demo.",
+          },
+          docsLead: "Where npm or build tools are unavailable, see ",
+          docsLinkText: "Without npm",
+          docsTail: ".",
         },
         ssotFiles: {
           heading: "SSOT files",
@@ -1365,6 +1424,24 @@ export const translations: Record<
             "DESIGN.md はデザインシステム全体を機械可読な Markdown でドキュメント化しており、AI ツール（v0 / Cursor / Claude / Figma Make）がそのまま消費できます。ブランドストーリー、hex/HSL カラーパレット、タイポグラフィ規則、コンポーネント単位の用法。これが真実の唯一の源泉です。",
           cta: "完全な仕様を読む",
         },
+        fixedAssets: {
+          title: "固定 URL の配布ファイル：ビルド不要の純 CSS",
+          description:
+            "このサイトのトークン実値は、固定 URL のスタンドアロンファイルとしても配信しています。@gunjo/ui と同じ SSOT から生成しているため、値がパッケージとずれることはありません。",
+          links: {
+            tokensCss: "全デザイントークンの純 CSS（ライト・ダーク両対応）。",
+            patternsCss:
+              "CSS パターン集。card / badge / table / tabs などを gj- クラスで提供。",
+            starterHtml:
+              "自己完結の単一 HTML スターター。tokens とパターンとデモを連結。",
+          },
+          noNpmLead: "npm やビルドツールが使えない環境では「",
+          noNpmLinkText: "npm なしで使う",
+          noNpmTail: "」を参照してください。",
+          valuesHeading: "主要トークンの実値（抜粋）",
+          valuesHint:
+            "SSOT からの静的な抜粋です。全量は tokens.css で配信しています。",
+        },
       },
       patterns: {
         label: "Patterns",
@@ -1547,6 +1624,21 @@ export const translations: Record<
           oneComponent: "コンポーネント単体",
           allComponents: "全コンポーネント",
           tryButton: (path) => `${path} を試す`,
+        },
+        noNpm: {
+          heading: "npm が使えない環境へ：固定 URL の CSS 資産",
+          description:
+            "npm やビルドツールが使えない環境（Claude Artifacts、単一 HTML、サンドボックス）向けに、固定 URL のスタンドアロンファイルを配信しています。fetch でもコピペでも使えます。値はパッケージと同じ SSOT から生成しています。",
+          links: {
+            tokensCss: "全デザイントークンの純 CSS（ライト・ダーク両対応）。",
+            patternsCss:
+              "CSS パターン集。card / badge / table / tabs などを gj- クラスで提供。",
+            starterHtml:
+              "自己完結の単一 HTML スターター。tokens とパターンとデモを連結。",
+          },
+          docsLead: "npm やビルドツールが使えない環境では「",
+          docsLinkText: "npm なしで使う",
+          docsTail: "」を参照してください。",
         },
         ssotFiles: {
           heading: "SSOT ファイル",

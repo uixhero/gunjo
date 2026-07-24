@@ -5,6 +5,16 @@
 
 ライトモードの色は `app/globals.css` の `:root` トークンを HSL → hex に換算した値です。コンポーネント固有の Tailwind ユーティリティはソース実装に基づきます。
 
+## Fixed-URL Assets（機械可読な配布ファイル）
+
+トークンとパターンの実値は、固定 URL のスタンドアロンファイルとしても配信しています。すべて `@gunjo/ui` と同じ SSOT から生成されるため、値がパッケージとずれることはありません。
+
+- <https://www.gunjo.jp/tokens.css> : 全デザイントークンの純 CSS（Tailwind 非依存・ライト/ダーク両対応）
+- <https://www.gunjo.jp/patterns.css> : CSS パターン集（card / badge / table / tabs などの `gj-` クラス）
+- <https://www.gunjo.jp/starter.html> : 自己完結の単一 HTML スターター（tokens + patterns + デモ）
+
+npm・ビルドツールが使えない環境（Claude Artifacts などの単一 HTML）はこちら: <https://www.gunjo.jp/docs/no-npm>
+
 ---
 
 ## 0. Design System Usage Rule

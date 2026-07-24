@@ -1,10 +1,12 @@
 "use client";
 
 import * as React from "react";
+import Link from "next/link";
 import { IconCheck as Check, IconCopy as Copy } from "@tabler/icons-react";
 import { cn } from "@gunjo/ui";
 
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { TOKEN_VALUES } from "@/lib/data/token-values.generated";
 
 type Locale = "en" | "ja";
 
@@ -192,6 +194,11 @@ const COPY = {
         copyVar: "CSS変数をコピー",
         copyHex: "hexをコピー",
         copyHsl: "HSLをコピー",
+        fixedUrlLead: "実値は純 CSS の固定 URL（",
+        fixedUrlTail: "）でも配信しています。",
+        noNpmLead: "npm やビルドツールが使えない環境では「",
+        noNpmLinkText: "npm なしで使う",
+        noNpmTail: "」を参照してください。",
     },
     en: {
         eyebrow: "Tokens · Colors",
@@ -216,8 +223,34 @@ const COPY = {
         copyVar: "Copy CSS variable",
         copyHex: "Copy hex",
         copyHsl: "Copy HSL",
+        fixedUrlLead: "Values are also served as plain CSS at a fixed URL (",
+        fixedUrlTail: ").",
+        noNpmLead: "Where npm or build tools are unavailable, see ",
+        noNpmLinkText: "Without npm",
+        noNpmTail: ".",
     },
 } as const;
+
+/**
+ * Convert an "H S% L%" triplet (the tokens.css value format) to hex, so the
+ * server-rendered HTML carries a concrete hex before getComputedStyle runs.
+ */
+function hslTripletToHex(triplet: string): string {
+    const match = triplet.match(/^([\d.]+)\s+([\d.]+)%\s+([\d.]+)%$/);
+    if (!match) return "";
+    const h = parseFloat(match[1]) / 360;
+    const s = parseFloat(match[2]) / 100;
+    const l = parseFloat(match[3]) / 100;
+    const channel = (n: number) => {
+        const k = (n + h * 12) % 12;
+        const a = s * Math.min(l, 1 - l);
+        const value = l - a * Math.max(-1, Math.min(k - 3, 9 - k, 1));
+        return Math.round(value * 255)
+            .toString(16)
+            .padStart(2, "0");
+    };
+    return `#${channel(0)}${channel(8)}${channel(4)}`.toUpperCase();
+}
 
 function rgbToHex(rgb: string): string {
     const match = rgb.match(/(\d+(?:\.\d+)?)/g);
@@ -254,8 +287,12 @@ async function writeClipboardText(value: string) {
 
 function useTokenValue(cssVar: string, valueTemplate?: (cssVar: string) => string) {
     const ref = React.useRef<HTMLElement | null>(null);
-    const [raw, setRaw] = React.useState("");
-    const [hex, setHex] = React.useState("");
+    // Static light-theme value from the token SSOT so the value is already in
+    // the server-rendered HTML; getComputedStyle takes over on the client and
+    // keeps it in sync with the active theme. (#687)
+    const staticRaw = TOKEN_VALUES.light[cssVar] ?? "";
+    const [raw, setRaw] = React.useState(staticRaw);
+    const [hex, setHex] = React.useState(() => hslTripletToHex(staticRaw));
     const setRef = React.useCallback((node: HTMLElement | null) => {
         ref.current = node;
     }, []);
@@ -665,6 +702,24 @@ export default function ColorsPage() {
                 </p>
                 <h1 className="text-4xl font-bold tracking-tight">{c.heading}</h1>
                 <p className="max-w-3xl text-lg text-muted-foreground">{c.subtitle}</p>
+                <p className="max-w-3xl text-sm text-muted-foreground">
+                    {c.fixedUrlLead}
+                    <a
+                        href="/tokens.css"
+                        className="font-medium text-primary hover:underline"
+                    >
+                        https://www.gunjo.jp/tokens.css
+                    </a>
+                    {c.fixedUrlTail}
+                    {c.noNpmLead}
+                    <Link
+                        href="/docs/no-npm"
+                        className="font-medium text-primary hover:underline"
+                    >
+                        {c.noNpmLinkText}
+                    </Link>
+                    {c.noNpmTail}
+                </p>
             </header>
 
             <section className="space-y-6">

@@ -8,6 +8,7 @@ import {
   syncStarter,
   findUndefinedPatternTokens,
 } from "./design-sync/sync-starter.mjs";
+import { syncTokenValues } from "./design-sync/sync-token-values.mjs";
 import { syncMetadata } from "./design-sync/sync-metadata.mjs";
 import { syncComponentSpecs } from "./design-sync/sync-component-specs.mjs";
 import { syncDocsNavigation } from "./design-sync/sync-docs-navigation.mjs";
@@ -44,6 +45,7 @@ const STATIC_GENERATED_FILES = [
   "src/globals.css",
   "public/tokens.css",
   "public/starter.html",
+  "app/lib/data/token-values.generated.ts",
   "src/components/generated/component-manifest.ts",
   "src/components/generated/component-style-hints.ts",
   "src/index.ts",
@@ -94,6 +96,7 @@ function main() {
   syncTokens();
   syncStandaloneTokens();
   syncStarter();
+  syncTokenValues();
   syncMetadata();
   syncComponentSpecs();
   syncDocsNavigation();
