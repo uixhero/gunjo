@@ -6,6 +6,8 @@ import { cn } from '../../lib/utils';
 import type { SidebarItemVariantKey } from './generated/variant-keys';
 import { sidebarItemDefaultVariantKey } from "./generated/default-variant-keys";
 import { TooltipButton } from "../inputs/TooltipButton";
+import { Tooltip, TooltipContent, TooltipTrigger } from "../overlay/Tooltip";
+import { useSidebarCollapsed } from "./Sidebar";
 
 export interface SidebarItemProps {
     icon: React.ReactNode;
@@ -42,6 +44,14 @@ export interface SidebarItemProps {
     draggable?: boolean;
     onDragStart?: (e: React.DragEvent) => void;
     onDragEnd?: (e: React.DragEvent) => void;
+    /**
+     * Renders the icon-only rail row: label, chevron, delete and count are
+     * hidden and the label moves into a tooltip. Defaults to the nearest
+     * `<SidebarProvider>`'s collapsed state, so items follow `SidebarToggle`
+     * with no wiring; pass it explicitly to use the row outside a provider.
+     * (#692)
+     */
+    collapsed?: boolean;
     className?: string;
 }
 
@@ -68,8 +78,11 @@ export const SidebarItem = memo(function SidebarItem({
     draggable,
     onDragStart,
     onDragEnd,
+    collapsed: collapsedProp,
     className
 }: SidebarItemProps) {
+    const collapsedFromSidebar = useSidebarCollapsed();
+    const collapsed = collapsedProp ?? collapsedFromSidebar ?? false;
     const baseVariant: SidebarItemVariantKey = isActive ? "active" : sidebarItemDefaultVariantKey;
     const variantClasses: Record<SidebarItemVariantKey, string> = {
         active: "bg-secondary text-foreground",
@@ -85,15 +98,18 @@ export const SidebarItem = memo(function SidebarItem({
         dragOverId === id && dragAction === "nest"
             ? "bg-primary-subtle text-primary-subtle-foreground ring-2 ring-primary-border shadow-lg shadow-primary-border scale-[1.02] z-10"
             : null;
-    const showChevronSlot = hasChildren || reserveChevronSpace;
+    const showChevronSlot = (hasChildren || reserveChevronSpace) && !collapsed;
     const deleteAriaLabel = typeof deleteLabel === "string" ? deleteLabel : undefined;
     // Associate the count with the item in the button's accessible name so it
     // isn't read as a detached number. (#134)
     const resolvedCount =
         count !== undefined ? (countLabel ? countLabel(count) : String(count)) : undefined;
-    const buttonAriaLabel = resolvedCount !== undefined ? `${label}, ${resolvedCount}` : undefined;
+    // Collapsed rows hide the label text, so the button needs the name spelled
+    // out or it reads as an unlabelled control. (#692)
+    const buttonAriaLabel =
+        resolvedCount !== undefined ? `${label}, ${resolvedCount}` : collapsed ? label : undefined;
 
-    return (
+    const row = (
         <div
             onDragOver={onDragOver}
             onDrop={onDrop}
@@ -101,7 +117,8 @@ export const SidebarItem = memo(function SidebarItem({
             onDragStart={onDragStart}
             onDragEnd={onDragEnd}
             className={cn(
-                "group relative flex h-9 w-full flex-row items-center justify-between rounded-md text-sm cursor-pointer transition-colors",
+                "group relative flex h-9 w-full flex-row items-center rounded-md text-sm cursor-pointer transition-colors",
+                collapsed ? "justify-center" : "justify-between",
                 dragNestClass ?? stateClass,
                 className
             )}
@@ -127,8 +144,19 @@ export const SidebarItem = memo(function SidebarItem({
                     }
                 }}
                 data-sidebar-item-button
-                className="flex h-full min-w-0 flex-1 items-center gap-2 overflow-hidden py-1.5 pr-0 text-left"
-                style={{ "--sidebar-item-indent": `calc(0.5rem + ${level}rem)` } as React.CSSProperties}
+                className={cn(
+                    "flex h-full min-w-0 flex-1 items-center gap-2 overflow-hidden py-1.5 pr-0 text-left",
+                    collapsed && "justify-center gap-0"
+                )}
+                style={
+                    {
+                        // Nesting has no meaning on a 60px rail, and the
+                        // inherited left padding would push the icon off centre.
+                        "--sidebar-item-indent": collapsed
+                            ? "0px"
+                            : `calc(0.5rem + ${level}rem)`,
+                    } as React.CSSProperties
+                }
                 aria-current={isActive ? "page" : undefined}
                 aria-label={buttonAriaLabel}
             >
@@ -154,10 +182,12 @@ export const SidebarItem = memo(function SidebarItem({
                 <div className={cn("flex-shrink-0", isActive || onPath ? "text-primary" : "text-muted-foreground group-hover:text-foreground")}>
                     {icon}
                 </div>
-                <span className="truncate" title={label}>{label}</span>
+                {!collapsed && <span className="truncate" title={label}>{label}</span>}
             </button>
 
-            {/* Right Side: Delete + Count */}
+            {/* Right Side: Delete + Count. The 56px reservation would eat most
+                of a 60px rail, so it is dropped entirely when collapsed. */}
+            {!collapsed && (
             <div className="grid w-14 shrink-0 grid-cols-[1.5rem_1.5rem] items-center justify-end">
                 {onDelete ? (
                     <TooltipButton
@@ -188,6 +218,19 @@ export const SidebarItem = memo(function SidebarItem({
                     <span aria-hidden="true" className="text-xs opacity-60 w-6 text-center tabular-nums text-muted-foreground translate-y-[0.5px]">{count}</span>
                 )}
             </div>
+            )}
         </div>
+    );
+
+    if (!collapsed) return row;
+
+    // The label is the only thing that says what the row is, so on the rail it
+    // moves into a tooltip rather than being clipped away. Consumers used to
+    // have to wrap every item themselves. (#692)
+    return (
+        <Tooltip>
+            <TooltipTrigger asChild>{row}</TooltipTrigger>
+            <TooltipContent side="right">{label}</TooltipContent>
+        </Tooltip>
     );
 });

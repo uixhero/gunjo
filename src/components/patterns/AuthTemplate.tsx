@@ -18,8 +18,12 @@ export function AuthTemplate({
 }: AuthTemplateProps) {
     return (
         <div className={cn("relative flex h-fit min-h-screen w-full flex-col items-center justify-center md:grid lg:max-w-none lg:grid-cols-2 lg:px-0", className)} {...props}>
-            <div className="relative hidden h-full flex-col bg-muted p-10 text-background dark:border-r lg:flex">
-                <div className="absolute inset-0 bg-foreground" />
+            {/* Brand panel. `--pure-black` / `--pure-white` are not redefined
+                under `.dark`, so the panel stays dark in both themes — the
+                design source fills it with a fixed dark (#18181b), not with
+                `foreground`, which flips. Same tokens as CodeBlock. (#693) */}
+            <div className="relative hidden h-full flex-col border-r bg-muted p-10 text-[hsl(var(--pure-white))] lg:flex">
+                <div className="absolute inset-0 bg-[hsl(var(--pure-black))]" />
                 <div className="relative z-20 flex items-center text-lg font-medium">
                     {logo || (
                         <>

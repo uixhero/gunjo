@@ -279,6 +279,14 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
         /\bborder-b\b/,
         'AccordionItem should include "border-b"'
       );
+      // The Accordion root carries a full border; without this the last item's
+      // rule sits on top of the root's bottom edge and reads as a double line.
+      assertMatch(
+        errors,
+        accordionSource,
+        /\blast:border-b-0\b/,
+        'AccordionItem should include "last:border-b-0" so its rule does not double the root border'
+      );
     }
 
     const triggerCollapsed = accordion.nodes?.triggerCollapsed;
@@ -1711,6 +1719,34 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
     const count = sidebarItem.nodes?.count;
     if (count?.fontSize === 12) {
       assertMatch(errors, sidebarItemSource, /\btext-xs\b/, 'SidebarItem count should include "text-xs"');
+    }
+
+    // The icon-only row for a collapsed rail. The label is the only thing that
+    // identifies a row, so it has to survive as a tooltip rather than being
+    // clipped, and the row has to follow the sidebar without the caller
+    // threading state through. (#692)
+    const collapsedRow = sidebarItem.nodes?.collapsed;
+    if (collapsedRow) {
+      assertMatch(
+        errors,
+        sidebarItemSource,
+        /\buseSidebarCollapsed\(\)/,
+        "SidebarItem should follow the sidebar's collapsed state via useSidebarCollapsed()"
+      );
+      assertMatch(
+        errors,
+        sidebarItemSource,
+        /<TooltipContent side="right">\{label\}<\/TooltipContent>/,
+        "Collapsed SidebarItem should surface its label in a right-side tooltip"
+      );
+    }
+    if (collapsedRow?.justifyContent === "center") {
+      assertMatch(
+        errors,
+        sidebarItemSource,
+        /collapsed \? "justify-center" : "justify-between"/,
+        'Collapsed SidebarItem should centre its icon with "justify-center"'
+      );
     }
     },
   });

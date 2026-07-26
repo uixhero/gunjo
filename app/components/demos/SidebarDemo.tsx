@@ -8,13 +8,14 @@ import {
     SidebarBody,
     SidebarFooter,
     SidebarHeader,
+    SidebarItem,
     SidebarProvider,
     SidebarToggle,
     useSidebar,
 } from "@gunjo/ui";
 
 const NAV_ITEMS = [
-    { id: "dashboard", icon: "📊", label: "Dashboard", active: true },
+    { id: "dashboard", icon: "📊", label: "Dashboard" },
     { id: "projects", icon: "📁", label: "Projects" },
     { id: "team", icon: "👥", label: "Team" },
     { id: "settings", icon: "⚙️", label: "Settings" },
@@ -22,30 +23,32 @@ const NAV_ITEMS = [
 
 function SidebarBodyDemo() {
     const { collapsed } = useSidebar();
+    const [active, setActive] = React.useState("dashboard");
     return (
         <Sidebar>
             <SidebarHeader>
-                <div className="h-6 w-6 rounded bg-foreground" aria-hidden />
+                <div className="h-6 w-6 shrink-0 rounded bg-foreground" aria-hidden />
                 {!collapsed && (
                     <span className="text-sm font-semibold">Workspace</span>
                 )}
             </SidebarHeader>
             <SidebarBody>
+                {/* SidebarItem reads the collapse from the provider, so the
+                    rows go icon-only with a tooltip on their own. */}
                 {NAV_ITEMS.map((item) => (
-                    <button
+                    <SidebarItem
                         key={item.id}
-                        type="button"
-                        className={`flex items-center gap-2 rounded-md px-2 py-2 text-sm hover:bg-muted ${
-                            item.active ? "bg-muted font-medium" : ""
-                        }`}
-                    >
-                        <span>{item.icon}</span>
-                        {!collapsed && <span>{item.label}</span>}
-                    </button>
+                        id={item.id}
+                        icon={<span aria-hidden>{item.icon}</span>}
+                        label={item.label}
+                        isActive={active === item.id}
+                        reserveChevronSpace={false}
+                        onClick={() => setActive(item.id)}
+                    />
                 ))}
             </SidebarBody>
             <SidebarFooter>
-                <Avatar className="h-6 w-6">
+                <Avatar className="h-6 w-6 shrink-0">
                     <AvatarFallback>HK</AvatarFallback>
                 </Avatar>
                 {!collapsed && <span className="text-sm">hikaby</span>}

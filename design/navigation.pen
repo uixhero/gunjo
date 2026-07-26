@@ -1263,6 +1263,161 @@
         },
         {
           "type": "frame",
+          "id": "sbCollapsed",
+          "name": "Sidebar/Collapsed",
+          "reusable": true,
+          "width": 60,
+          "height": 380,
+          "fill": "#f8fafc",
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
+          "layout": "vertical",
+          "children": [
+            {
+              "type": "frame",
+              "id": "sbColHeader",
+              "name": "sbHeaderCollapsed",
+              "width": "fill_container",
+              "fill": "#ffffff",
+              "gap": 8,
+              "padding": 16,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "sbColMark",
+                  "width": 24,
+                  "height": 24,
+                  "fill": "#0c0c12",
+                  "cornerRadius": 6
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "sbColBody",
+              "name": "sbBodyCollapsed",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 2,
+              "padding": 8,
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "sbColItem1",
+                  "name": "SidebarItem/CollapsedActive",
+                  "width": "fill_container",
+                  "height": 36,
+                  "fill": "#f1f5f9",
+                  "cornerRadius": 6,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "sbColItem1Icon",
+                      "fill": "#0c0c12",
+                      "content": "📊",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "sbColItem2",
+                  "width": "fill_container",
+                  "height": 36,
+                  "cornerRadius": 6,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "sbColItem2Icon",
+                      "fill": "#475569",
+                      "content": "📁",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "sbColItem3",
+                  "width": "fill_container",
+                  "height": 36,
+                  "cornerRadius": 6,
+                  "justifyContent": "center",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "text",
+                      "id": "sbColItem3Icon",
+                      "fill": "#475569",
+                      "content": "⚙️",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "normal"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "type": "frame",
+              "id": "sbColFooter",
+              "name": "sbFooterCollapsed",
+              "width": "fill_container",
+              "fill": "#ffffff",
+              "stroke": "#e2e8f0",
+              "strokeWidth": 1,
+              "strokeAlignment": "inner",
+              "gap": 8,
+              "padding": 16,
+              "justifyContent": "center",
+              "alignItems": "center",
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "sbColAvatar",
+                  "width": 24,
+                  "height": 24,
+                  "fill": "#94a3b8",
+                  "cornerRadius": 9999
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "sbItemCollapsed",
+          "name": "SidebarItem/Collapsed",
+          "reusable": true,
+          "width": 44,
+          "height": 36,
+          "cornerRadius": 6,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "children": [
+            {
+              "type": "frame",
+              "id": "sbItemCollapsedIcon",
+              "name": "iconSlot",
+              "width": 16,
+              "height": 16,
+              "children": []
+            }
+          ]
+        },
+        {
+          "type": "frame",
           "id": "ZabQJ",
           "name": "NavigationMenu/Default",
           "reusable": true,

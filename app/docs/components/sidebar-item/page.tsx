@@ -485,6 +485,7 @@ export function FlatNavigationItems() {
                         { name: "icon", type: "ReactNode", description: isJa ? "ラベルの前に表示するアイコン。" : "Icon rendered before the label." },
                         { name: "count", type: "number", description: isJa ? "右端に表示する件数。" : "Count shown at the end of the row." },
                         { name: "isActive", type: "boolean", description: isJa ? "現在選択中の項目かどうか。" : "Whether this item is currently selected." },
+                        { name: "collapsed", type: "boolean", description: isJa ? "アイコンのみの行にします。既定では最も近い SidebarProvider の折りたたみ状態に追従するため、通常は指定不要です。畳んだ行はラベルをツールチップで出します。" : "Renders the icon-only rail row. Defaults to the nearest SidebarProvider's collapsed state, so you rarely pass it; a collapsed row moves its label into a tooltip." },
                         { name: "level", type: "number", default: "0", description: isJa ? "階層の深さ。子要素のインデントに使います。" : "Indentation level for nested rows." },
                         { name: "hasChildren", type: "boolean", default: "false", description: isJa ? "開閉できる子要素を持つことを示します。" : "Shows that the item can expand nested children." },
                         { name: "isExpanded", type: "boolean", default: "false", description: isJa ? "子要素が開いている状態を示します。" : "Whether nested children are expanded." },

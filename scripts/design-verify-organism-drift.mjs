@@ -3,6 +3,7 @@
 import { ROOT } from "./design-sync/shared.mjs";
 import {
   assertMatch,
+  assertNoMatch,
   runVerificationCli,
   throwVerificationErrors,
   withRequiredVariants,
@@ -29,6 +30,7 @@ export function verifyOrganismDrift({ root = ROOT } = {}) {
     readCategorySpec({ root, category: "inputs" });
 
   const appRail = navigationSpec.components?.appRail;
+  const sidebar = navigationSpec.components?.sidebar;
   const commandPalette = navigationSpec.components?.commandPalette;
   const rightRail = navigationSpec.components?.rightRail;
   const floatingPanel = overlaySpec.components?.floatingPanel;
@@ -52,10 +54,12 @@ export function verifyOrganismDrift({ root = ROOT } = {}) {
     appRail: appRailSource,
     commandPalette: commandPaletteSource,
     rightRail: rightRailSource,
+    sidebar: sidebarSource,
   } = readNamedSources(navigationSourceDirPath, {
     appRail: "AppRail.tsx",
     commandPalette: "CommandPalette.tsx",
     rightRail: "RightRail.tsx",
+    sidebar: "Sidebar.tsx",
   });
 
   const { toastProvider: toastProviderSource } = readNamedSources(feedbackSourceDirPath, {
@@ -71,6 +75,47 @@ export function verifyOrganismDrift({ root = ROOT } = {}) {
   });
 
   const errors = [];
+
+  // Sidebar has no variant frames (the two widths are node snapshots, since
+  // collapsing is a state rather than a colour variant), so it is checked
+  // directly instead of through withRequiredVariants. (#692)
+  if (sidebar) {
+    const expanded = sidebar.nodes?.default;
+    const collapsed = sidebar.nodes?.collapsed;
+
+    if (expanded?.width === 240) {
+      assertMatch(
+        errors,
+        sidebarSource,
+        /w-\[240px\]/,
+        'Sidebar expanded rail should include "w-[240px]"'
+      );
+    }
+    if (collapsed?.width === 60) {
+      assertMatch(
+        errors,
+        sidebarSource,
+        /w-\[60px\]/,
+        'Sidebar collapsed rail should include "w-[60px]"'
+      );
+    }
+
+    // `h-full` resolves against the parent, so a parent with no definite
+    // height silently collapsed the rail to its own content height — and it
+    // also cancelled the flex stretch that would have filled the column.
+    assertMatch(
+      errors,
+      sidebarSource,
+      /\bself-stretch\b/,
+      'Sidebar should include "self-stretch" so it fills a flex/grid parent'
+    );
+    assertNoMatch(
+      errors,
+      sidebarSource,
+      /\bh-full\b/,
+      "Sidebar must not use h-full — it requires a definite-height parent and cancels flex stretch"
+    );
+  }
 
   withRequiredVariants({
     errors,

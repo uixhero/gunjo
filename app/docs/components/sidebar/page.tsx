@@ -7,7 +7,7 @@ import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import navigationMetadata from "@design/navigation-metadata.json";
-import { Avatar, AvatarFallback, Sidebar, SidebarBody, SidebarFooter, SidebarHeader, SidebarItem, SidebarProvider, SidebarToggle, TooltipButton, useSidebar } from "@gunjo/ui";
+import { Avatar, AvatarFallback, Sidebar, SidebarBody, SidebarFooter, SidebarHeader, SidebarItem, SidebarProvider, SidebarToggle, useSidebar } from "@gunjo/ui";
 import {
     IconChartBar as BarChart3,
     IconHome as Home,
@@ -30,7 +30,7 @@ function SidebarContent({ initialActive = "projects" }: { initialActive?: string
 
     return (
         <Sidebar className="min-h-[360px]">
-            <SidebarHeader className={collapsed ? "justify-center px-2" : undefined}>
+            <SidebarHeader>
                 <div className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-primary text-xs font-semibold text-primary-foreground">
                     G
                 </div>
@@ -39,42 +39,21 @@ function SidebarContent({ initialActive = "projects" }: { initialActive?: string
             <SidebarBody>
                 {NAV_ITEMS.map((item) => {
                     const Icon = item.icon;
-                    const active = activeId === item.id;
-                    const label = item.label[locale];
-
-                    if (collapsed) {
-                        return (
-                            <TooltipButton
-                                key={item.id}
-                                type="button"
-                                variant={active ? "secondary" : "ghost"}
-                                size="icon"
-                                className="h-9 w-full"
-                                tooltip={label}
-                                aria-label={label}
-                                aria-current={active ? "page" : undefined}
-                                onClick={() => setActiveId(item.id)}
-                            >
-                                <Icon className="h-4 w-4 shrink-0" />
-                            </TooltipButton>
-                        );
-                    }
-
                     return (
                         <SidebarItem
                             key={item.id}
                             id={item.id}
                             icon={<Icon className="h-4 w-4 shrink-0" />}
-                            label={label}
-                            isActive={active}
+                            label={item.label[locale]}
+                            isActive={activeId === item.id}
                             onClick={() => setActiveId(item.id)}
                             reserveChevronSpace={false}
                         />
                     );
                 })}
             </SidebarBody>
-            <SidebarFooter className={collapsed ? "justify-center px-2" : undefined}>
-                <Avatar className="h-7 w-7">
+            <SidebarFooter>
+                <Avatar className="h-7 w-7 shrink-0">
                     <AvatarFallback>UI</AvatarFallback>
                 </Avatar>
                 {!collapsed ? <span className="min-w-0 flex-1 truncate text-sm">{isJa ? "デザインチーム" : "Design team"}</span> : null}
@@ -106,7 +85,7 @@ export default function SidebarPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
 const code = `import * as React from "react"
-import { Avatar, AvatarFallback, Sidebar, SidebarBody, SidebarFooter, SidebarHeader, SidebarItem, SidebarProvider, SidebarToggle, TooltipButton, useSidebar } from "@gunjo/ui"
+import { Avatar, AvatarFallback, Sidebar, SidebarBody, SidebarFooter, SidebarHeader, SidebarItem, SidebarProvider, SidebarToggle, useSidebar } from "@gunjo/ui"
 import { IconChartBar as BarChart3, IconHome as Home, IconLayoutKanban as FolderKanban, IconSettings as Settings } from "@tabler/icons-react"
 
 const navItems = [
@@ -122,48 +101,30 @@ function SidebarContent() {
 
   return (
     <Sidebar className="min-h-[360px]">
-      <SidebarHeader className={collapsed ? "justify-center px-2" : undefined}>
+      <SidebarHeader>
         <div className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-primary text-xs font-semibold text-primary-foreground">G</div>
         {!collapsed ? <span className="truncate text-sm font-semibold">Gunjo UI</span> : null}
       </SidebarHeader>
       <SidebarBody>
+        {/* SidebarItem reads the collapse from the provider: the row goes
+            icon-only and its label moves into a tooltip on its own. */}
         {navItems.map((item) => {
           const Icon = item.icon
-          const active = activeId === item.id
-
-          if (collapsed) {
-            return (
-              <TooltipButton
-                key={item.id}
-                type="button"
-                variant={active ? "secondary" : "ghost"}
-                size="icon"
-                className="h-9 w-full"
-                tooltip={item.label}
-                aria-label={item.label}
-                aria-current={active ? "page" : undefined}
-                onClick={() => setActiveId(item.id)}
-              >
-                <Icon className="h-4 w-4 shrink-0" />
-              </TooltipButton>
-            )
-          }
-
           return (
             <SidebarItem
               key={item.id}
               id={item.id}
               icon={<Icon className="h-4 w-4 shrink-0" />}
               label={item.label}
-              isActive={active}
+              isActive={activeId === item.id}
               onClick={() => setActiveId(item.id)}
               reserveChevronSpace={false}
             />
           )
         })}
       </SidebarBody>
-      <SidebarFooter className={collapsed ? "justify-center px-2" : undefined}>
-        <Avatar className="h-7 w-7"><AvatarFallback>UI</AvatarFallback></Avatar>
+      <SidebarFooter>
+        <Avatar className="h-7 w-7 shrink-0"><AvatarFallback>UI</AvatarFallback></Avatar>
         {!collapsed ? <span className="min-w-0 flex-1 truncate text-sm">${isJa ? "デザインチーム" : "Design team"}</span> : null}
       </SidebarFooter>
       <SidebarToggle
@@ -197,7 +158,6 @@ export function SidebarLayout() {
                 { name: "Sidebar", href: "/docs/components/sidebar" },
                 { name: "SidebarItem", href: "/docs/components/sidebar-item" },
                 { name: "SidebarToggle", href: "/docs/components/sidebar" },
-                { name: "TooltipButton", href: "/docs/components/tooltip-button" },
                 { name: "Avatar", href: "/docs/components/avatar" },
             ]}
             relatedComponents={[
@@ -234,10 +194,12 @@ export function SidebarLayout() {
                 </h2>
                 <PropsTable
                     data={[
+                        { name: "Sidebar", type: "aside", description: isJa ? "レールそのもの。フレックス／グリッド親の高さいっぱいに自分で伸びます（240px ⇄ 折りたたみ 60px）。ブロック親に置く場合だけ高さを明示してください。" : "The rail itself (240px, 60px collapsed). It stretches to fill a flex or grid parent on its own; give it an explicit height only when the parent is a block container." },
                         { name: "SidebarProvider.defaultCollapsed", type: "boolean", default: "false", description: isJa ? "非制御時の初期折りたたみ状態。" : "Initial collapsed state for uncontrolled sidebars." },
                         { name: "SidebarProvider.collapsed", type: "boolean", description: isJa ? "折りたたみ状態を外部 state で制御します。" : "Controls the collapsed state from app state." },
                         { name: "SidebarProvider.onCollapsedChange", type: "(collapsed: boolean) => void", description: isJa ? "折りたたみ状態が変わった時に呼ばれます。" : "Called when the collapsed state changes." },
-                        { name: "useSidebar()", type: "{ collapsed, setCollapsed, toggleCollapsed }", description: isJa ? "子孫コンポーネントからサイドバー状態を読み書きします。" : "Reads and updates sidebar state from descendants." },
+                        { name: "useSidebar()", type: "{ collapsed, setCollapsed, toggleCollapsed }", description: isJa ? "子孫コンポーネントからサイドバー状態を読み書きします。プロバイダ外で呼ぶと例外になります。" : "Reads and updates sidebar state from descendants. Throws outside a provider." },
+                        { name: "useSidebarCollapsed()", type: "boolean | null", description: isJa ? "最も近い SidebarProvider の折りたたみ状態。プロバイダが無ければ null を返し、例外は投げません。サイドバーの内外どちらでも成立する部品向け。" : "Collapsed state of the nearest provider, or null when there is none. Does not throw, for components that are valid both inside and outside a sidebar." },
                         { name: "SidebarToggle", type: "button", description: isJa ? "サイドバー境界線上に配置する折りたたみトグル。フッターや本文のレイアウト幅を消費しません。" : "Boundary toggle for collapsing the sidebar without consuming footer or body layout space." },
                         { name: "SidebarToggle.expandLabel", type: "ReactNode", default: "\"Expand sidebar\"", description: isJa ? "折りたたみ時に表示するツールチップと aria-label。" : "Tooltip and aria-label shown when the sidebar is collapsed." },
                         { name: "SidebarToggle.collapseLabel", type: "ReactNode", default: "\"Collapse sidebar\"", description: isJa ? "展開時に表示するツールチップと aria-label。" : "Tooltip and aria-label shown when the sidebar is expanded." },
