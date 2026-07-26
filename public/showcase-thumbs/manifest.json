@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-06-14T20:32:45.530Z",
+  "generatedAt": "2026-07-26T03:52:20.690Z",
   "baseUrl": "http://127.0.0.1:13030",
   "viewport": {
     "width": 1280,
     "height": 720,
     "deviceScaleFactor": 2
   },
-  "total": 320,
-  "captured": 312,
+  "total": 430,
+  "captured": 422,
   "failed": 8,
   "results": [
     {
@@ -18,9 +18,9 @@
       "file": "public/showcase-thumbs/inputs.light.png",
       "clip": {
         "x": 224,
-        "y": 133,
+        "y": 120,
         "width": 832,
-        "height": 454
+        "height": 480
       },
       "error": null
     },
@@ -32,9 +32,9 @@
       "file": "public/showcase-thumbs/inputs.dark.png",
       "clip": {
         "x": 224,
-        "y": 133,
+        "y": 120,
         "width": 832,
-        "height": 454
+        "height": 480
       },
       "error": null
     },
@@ -120,9 +120,9 @@
       "file": "public/showcase-thumbs/chat-input.light.png",
       "clip": {
         "x": 272,
-        "y": 250,
+        "y": 253,
         "width": 736,
-        "height": 220
+        "height": 214
       },
       "error": null
     },
@@ -134,9 +134,9 @@
       "file": "public/showcase-thumbs/chat-input.dark.png",
       "clip": {
         "x": 272,
-        "y": 250,
+        "y": 253,
         "width": 736,
-        "height": 220
+        "height": 214
       },
       "error": null
     },
@@ -216,16 +216,47 @@
     },
     {
       "category": "Inputs",
+      "slug": "co-sign",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/co-sign.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "co-sign",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/co-sign.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "currency-input",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/currency-input.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "currency-input",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/currency-input.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
       "slug": "date-picker",
       "mode": "light",
       "status": "captured",
       "file": "public/showcase-thumbs/date-picker.light.png",
-      "clip": {
-        "x": 416,
-        "y": 285,
-        "width": 448,
-        "height": 150
-      },
+      "clip": null,
       "error": null
     },
     {
@@ -234,12 +265,7 @@
       "mode": "dark",
       "status": "captured",
       "file": "public/showcase-thumbs/date-picker.dark.png",
-      "clip": {
-        "x": 416,
-        "y": 285,
-        "width": 448,
-        "height": 150
-      },
+      "clip": null,
       "error": null
     },
     {
@@ -248,12 +274,7 @@
       "mode": "light",
       "status": "captured",
       "file": "public/showcase-thumbs/date-range-picker.light.png",
-      "clip": {
-        "x": 416,
-        "y": 289,
-        "width": 448,
-        "height": 142
-      },
+      "clip": null,
       "error": null
     },
     {
@@ -262,12 +283,7 @@
       "mode": "dark",
       "status": "captured",
       "file": "public/showcase-thumbs/date-range-picker.dark.png",
-      "clip": {
-        "x": 416,
-        "y": 289,
-        "width": 448,
-        "height": 142
-      },
+      "clip": null,
       "error": null
     },
     {
@@ -738,6 +754,42 @@
     },
     {
       "category": "Inputs",
+      "slug": "scan-gate",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/scan-gate.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "scan-gate",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/scan-gate.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "scan-input",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/scan-input.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "scan-input",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/scan-input.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
       "slug": "search-input",
       "mode": "light",
       "status": "captured",
@@ -762,6 +814,24 @@
         "width": 448,
         "height": 142
       },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "segmented-control",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/segmented-control.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "segmented-control",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/segmented-control.dark.png",
+      "clip": "docs-preview-surface",
       "error": null
     },
     {
@@ -912,9 +982,9 @@
       "file": "public/showcase-thumbs/textarea.light.png",
       "clip": {
         "x": 416,
-        "y": 264,
+        "y": 267,
         "width": 448,
-        "height": 192
+        "height": 186
       },
       "error": null
     },
@@ -926,9 +996,9 @@
       "file": "public/showcase-thumbs/textarea.dark.png",
       "clip": {
         "x": 416,
-        "y": 264,
+        "y": 267,
         "width": 448,
-        "height": 192
+        "height": 186
       },
       "error": null
     },
@@ -1128,6 +1198,78 @@
     },
     {
       "category": "Display",
+      "slug": "action-queue",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/action-queue.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "action-queue",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/action-queue.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "amount-breakdown",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/amount-breakdown.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "amount-breakdown",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/amount-breakdown.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "approval-steps",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/approval-steps.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "approval-steps",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/approval-steps.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "approval-workflow",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/approval-workflow.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "approval-workflow",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/approval-workflow.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
       "slug": "asset-card",
       "mode": "light",
       "status": "captured",
@@ -1322,6 +1464,42 @@
     },
     {
       "category": "Display",
+      "slug": "checkbox-card",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/checkbox-card.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "checkbox-card",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/checkbox-card.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "check-list",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/check-list.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "check-list",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/check-list.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
       "slug": "code",
       "mode": "light",
       "status": "captured",
@@ -1406,6 +1584,24 @@
     },
     {
       "category": "Display",
+      "slug": "company-cell",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/company-cell.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "company-cell",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/company-cell.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
       "slug": "data-table",
       "mode": "light",
       "status": "captured",
@@ -1434,6 +1630,24 @@
     },
     {
       "category": "Display",
+      "slug": "delta",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/delta.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "delta",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/delta.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
       "slug": "doc-note",
       "mode": "light",
       "status": "captured",
@@ -1447,6 +1661,42 @@
       "mode": "dark",
       "status": "captured",
       "file": "public/showcase-thumbs/doc-note.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "document-row",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/document-row.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "document-row",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/document-row.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "editable-data-table",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/editable-data-table.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "editable-data-table",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/editable-data-table.dark.png",
       "clip": "docs-preview-surface",
       "error": null
     },
@@ -1480,6 +1730,42 @@
     },
     {
       "category": "Display",
+      "slug": "event-calendar",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/event-calendar.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "event-calendar",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/event-calendar.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "expiry-badge",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/expiry-badge.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "expiry-badge",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/expiry-badge.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
       "slug": "file-tree",
       "mode": "light",
       "status": "captured",
@@ -1493,6 +1779,60 @@
       "mode": "dark",
       "status": "captured",
       "file": "public/showcase-thumbs/file-tree.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "filter-chips",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/filter-chips.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "filter-chips",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/filter-chips.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "gallery",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/gallery.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "gallery",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/gallery.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "gantt",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/gantt.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "gantt",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/gantt.dark.png",
       "clip": "docs-preview-surface",
       "error": null
     },
@@ -1562,6 +1902,42 @@
     },
     {
       "category": "Display",
+      "slug": "itinerary",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/itinerary.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "itinerary",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/itinerary.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "kanban-board",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/kanban-board.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "kanban-board",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/kanban-board.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
       "slug": "kbd",
       "mode": "light",
       "status": "captured",
@@ -1590,6 +1966,60 @@
     },
     {
       "category": "Display",
+      "slug": "limit-monitor",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/limit-monitor.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "limit-monitor",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/limit-monitor.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "lineage-graph",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/lineage-graph.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "lineage-graph",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/lineage-graph.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "line-chip",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/line-chip.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "line-chip",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/line-chip.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
       "slug": "list",
       "mode": "light",
       "status": "captured",
@@ -1603,6 +2033,42 @@
       "mode": "dark",
       "status": "captured",
       "file": "public/showcase-thumbs/list.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "list-card",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/list-card.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "list-card",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/list-card.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "loyalty-summary-card",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/loyalty-summary-card.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "loyalty-summary-card",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/loyalty-summary-card.dark.png",
       "clip": "docs-preview-surface",
       "error": null
     },
@@ -1636,6 +2102,24 @@
     },
     {
       "category": "Display",
+      "slug": "match-card",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/match-card.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "match-card",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/match-card.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
       "slug": "metadata-list",
       "mode": "light",
       "status": "captured",
@@ -1649,6 +2133,204 @@
       "mode": "dark",
       "status": "captured",
       "file": "public/showcase-thumbs/metadata-list.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "meter",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/meter.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "meter",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/meter.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "occupancy-meter",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/occupancy-meter.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "occupancy-meter",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/occupancy-meter.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "origin-destination",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/origin-destination.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "origin-destination",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/origin-destination.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "person-cell",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/person-cell.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "person-cell",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/person-cell.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "radio-card",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/radio-card.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "radio-card",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/radio-card.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "rating",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/rating.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "rating",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/rating.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "reference-value",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/reference-value.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "reference-value",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/reference-value.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "relationship-row",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/relationship-row.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "relationship-row",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/relationship-row.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "reveal-section",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/reveal-section.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "reveal-section",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/reveal-section.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "route-stops",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/route-stops.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "route-stops",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/route-stops.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "schedule-grid",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/schedule-grid.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "schedule-grid",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/schedule-grid.dark.png",
       "clip": "docs-preview-surface",
       "error": null
     },
@@ -1668,6 +2350,42 @@
       "status": "captured",
       "file": "public/showcase-thumbs/searchable-accordion.dark.png",
       "clip": null,
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "seat-map",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/seat-map.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "seat-map",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/seat-map.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "section-list",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/section-list.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "section-list",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/section-list.dark.png",
+      "clip": "docs-preview-surface",
       "error": null
     },
     {
@@ -1700,14 +2418,32 @@
     },
     {
       "category": "Display",
+      "slug": "signed-record",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/signed-record.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "signed-record",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/signed-record.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
       "slug": "skeleton",
       "mode": "light",
       "status": "captured",
       "file": "public/showcase-thumbs/skeleton.light.png",
       "clip": {
-        "x": 476,
+        "x": 576,
         "y": 298,
-        "width": 328,
+        "width": 128,
         "height": 124
       },
       "error": null
@@ -1719,9 +2455,9 @@
       "status": "captured",
       "file": "public/showcase-thumbs/skeleton.dark.png",
       "clip": {
-        "x": 476,
+        "x": 576,
         "y": 298,
-        "width": 328,
+        "width": 128,
         "height": 124
       },
       "error": null
@@ -1756,6 +2492,24 @@
     },
     {
       "category": "Display",
+      "slug": "stat-group",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/stat-group.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "stat-group",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/stat-group.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
       "slug": "statistic",
       "mode": "light",
       "status": "captured",
@@ -1780,6 +2534,42 @@
         "width": 736,
         "height": 288
       },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "status-board",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/status-board.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "status-board",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/status-board.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "swatch-group",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/swatch-group.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "swatch-group",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/swatch-group.dark.png",
+      "clip": "docs-preview-surface",
       "error": null
     },
     {
@@ -1858,15 +2648,33 @@
     },
     {
       "category": "Display",
+      "slug": "ticket-stub",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/ticket-stub.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "ticket-stub",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/ticket-stub.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
       "slug": "timeline",
       "mode": "light",
       "status": "captured",
       "file": "public/showcase-thumbs/timeline.light.png",
       "clip": {
         "x": 384,
-        "y": 208,
+        "y": 110,
         "width": 512,
-        "height": 304
+        "height": 500
       },
       "error": null
     },
@@ -1878,9 +2686,9 @@
       "file": "public/showcase-thumbs/timeline.dark.png",
       "clip": {
         "x": 384,
-        "y": 208,
+        "y": 110,
         "width": 512,
-        "height": 304
+        "height": 500
       },
       "error": null
     },
@@ -1938,6 +2746,24 @@
         "width": 384,
         "height": 280
       },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "week-view",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/week-view.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "week-view",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/week-view.dark.png",
+      "clip": "docs-preview-surface",
       "error": null
     },
     {
@@ -2158,6 +2984,24 @@
     },
     {
       "category": "Charts",
+      "slug": "leaderboard",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/leaderboard.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "leaderboard",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/leaderboard.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Charts",
       "slug": "line-chart",
       "mode": "light",
       "status": "captured",
@@ -2190,6 +3034,24 @@
       "status": "captured",
       "file": "public/showcase-thumbs/mini-distribution-bar-card.dark.png",
       "clip": null,
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "pareto-chart",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/pareto-chart.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "pareto-chart",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/pareto-chart.dark.png",
+      "clip": "docs-preview-surface",
       "error": null
     },
     {
@@ -2373,6 +3235,24 @@
       "error": null
     },
     {
+      "category": "Charts",
+      "slug": "stringline",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/stringline.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Charts",
+      "slug": "stringline",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/stringline.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
       "category": "Feedback",
       "slug": "feedback",
       "mode": "light",
@@ -2396,9 +3276,9 @@
       "file": "public/showcase-thumbs/alert.light.png",
       "clip": {
         "x": 384,
-        "y": 235,
+        "y": 254,
         "width": 512,
-        "height": 250
+        "height": 211
       },
       "error": null
     },
@@ -2410,9 +3290,9 @@
       "file": "public/showcase-thumbs/alert.dark.png",
       "clip": {
         "x": 384,
-        "y": 235,
+        "y": 254,
         "width": 512,
-        "height": 250
+        "height": 211
       },
       "error": null
     },
@@ -2520,6 +3400,24 @@
     },
     {
       "category": "Feedback",
+      "slug": "safety-banner",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/safety-banner.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "safety-banner",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/safety-banner.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Feedback",
       "slug": "spinner",
       "mode": "light",
       "status": "captured",
@@ -2589,9 +3487,9 @@
       "status": "captured",
       "file": "public/showcase-thumbs/stepper.light.png",
       "clip": {
-        "x": 396,
+        "x": 452,
         "y": 164,
-        "width": 488,
+        "width": 376,
         "height": 391
       },
       "error": null
@@ -2603,9 +3501,9 @@
       "status": "captured",
       "file": "public/showcase-thumbs/stepper.dark.png",
       "clip": {
-        "x": 396,
+        "x": 452,
         "y": 164,
-        "width": 488,
+        "width": 376,
         "height": 391
       },
       "error": null
@@ -2692,6 +3590,24 @@
     },
     {
       "category": "Navigation",
+      "slug": "bottom-action-bar",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/bottom-action-bar.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "bottom-action-bar",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/bottom-action-bar.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Navigation",
       "slug": "breadcrumb",
       "mode": "light",
       "status": "captured",
@@ -2771,6 +3687,34 @@
         "y": 104,
         "width": 832,
         "height": 512
+      },
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "desktop-page-header",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/desktop-page-header.light.png",
+      "clip": {
+        "x": 0,
+        "y": 281,
+        "width": 1280,
+        "height": 157
+      },
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "desktop-page-header",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/desktop-page-header.dark.png",
+      "clip": {
+        "x": 0,
+        "y": 281,
+        "width": 1280,
+        "height": 157
       },
       "error": null
     },
@@ -2886,6 +3830,24 @@
     },
     {
       "category": "Navigation",
+      "slug": "nav-row",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/nav-row.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "nav-row",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/nav-row.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Navigation",
       "slug": "page-aside",
       "mode": "light",
       "status": "captured",
@@ -2900,6 +3862,24 @@
       "status": "captured",
       "file": "public/showcase-thumbs/page-aside.dark.png",
       "clip": null,
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "page-header",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/page-header.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Navigation",
+      "slug": "page-header",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/page-header.dark.png",
+      "clip": "docs-preview-surface",
       "error": null
     },
     {
