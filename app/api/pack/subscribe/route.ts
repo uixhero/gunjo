@@ -15,12 +15,20 @@ import {
 //   BREVO_LIST_ID   numeric id of the target contact list
 //
 // Custom contact attributes must exist in Brevo first (KeEem creates them):
-//   INDUSTRY (text), PURPOSE (text), ROLE (text), TROUBLE (text)
+//   INDUSTRY (text), PURPOSE (text), ROLE (text), TROUBLE (text), SOURCE (text)
 // PURPOSE = "find_vendor" marks a sales lead — filter on it for the 9/30 KPI.
+// SOURCE marks which entry point the contact came from. The 教育事業3層設計 v1.1
+// pools all three entry points into one Brevo list and tells them apart by this
+// attribute: "pack" (here), "learning-waitlist" (uixhero /learning),
+// "ai-checklist". Keep the spelling in sync across the three senders.
 
 export const runtime = "nodejs";
 
 const BREVO_ENDPOINT = "https://api.brevo.com/v3/contacts";
+
+/** Entry-point marker for the shared prospect list. Server-set, never taken
+ * from the request body — /pack is the only thing that posts here. */
+const PACK_SOURCE = "pack";
 
 interface BrevoErrorBody {
     code?: string;
@@ -91,6 +99,7 @@ export async function POST(request: Request) {
                 PURPOSE: purpose,
                 ROLE: role,
                 TROUBLE: trouble || undefined,
+                SOURCE: PACK_SOURCE,
             },
             listIds: [listId],
             // Re-submitting the same email updates the contact instead of 400ing.
