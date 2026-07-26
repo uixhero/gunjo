@@ -1,3 +1,39 @@
 {
-  "exceptions": []
+  "exceptions": [
+    {
+      "file": "app/components/layout/Sidebar.tsx",
+      "className": "shadow-[inset_0_0_0_1px_hsl(var(--primary-border))]",
+      "reason": "Inset hairline on the active nav item. Colour is already tokenised (--primary-border); only the box-shadow geometry is arbitrary, and the 8-step elevation scale models drop shadows, not inset hairlines. Pending a first-class inset-hairline token. (#699)",
+      "addedOn": "2026-07-26",
+      "expiresOn": "2026-10-31"
+    },
+    {
+      "file": "app/docs/components/scan-gate/page.tsx",
+      "className": "shadow-[0_0_16px_hsl(var(--success))]",
+      "reason": "Scan-line glow. Colour is already tokenised (--success); only the blur geometry is arbitrary, and the elevation scale has no glow step. Pending a first-class glow token. (#699)",
+      "addedOn": "2026-07-26",
+      "expiresOn": "2026-10-31"
+    },
+    {
+      "file": "app/docs/shadows/page.tsx",
+      "className": "shadow-[...]",
+      "reason": "Not a class name. This is documentation prose inside a <code> element telling authors never to use arbitrary shadow-[...] utilities, so the guard is matching the text of its own rule.",
+      "addedOn": "2026-07-26",
+      "expiresOn": "permanent"
+    },
+    {
+      "file": "src/components/display/SegmentTimelineCard.tsx",
+      "className": "shadow-[0_0_0_2px_hsl(var(--foreground))]",
+      "reason": "Selection ring on the selected segment. Colour is already tokenised (--foreground); only the ring geometry is arbitrary, and the elevation scale models drop shadows, not rings. Pending a first-class ring token. (#699)",
+      "addedOn": "2026-07-26",
+      "expiresOn": "2026-10-31"
+    },
+    {
+      "file": "src/components/display/chart-tooltip.tsx",
+      "className": "shadow-[0_0_0_3px_hsl(var(--background)),0_0_0_6px_hsl(var(--ring)/0.2)]",
+      "reason": "Double halo around the chart hover marker, keeping it legible over any series colour. Colours are already tokenised (--background / --ring); only the two-ring geometry is arbitrary. Pending a first-class ring token. (#699)",
+      "addedOn": "2026-07-26",
+      "expiresOn": "2026-10-31"
+    }
+  ]
 }

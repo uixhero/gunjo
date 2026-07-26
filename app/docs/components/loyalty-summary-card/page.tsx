@@ -69,7 +69,7 @@ function LoyaltyPreview({ locale, tone = "brand", noAlert = false }: { locale: L
             <p className="text-sm font-medium text-foreground">{locale === "ja" ? "ハッピーズドラッグ メンバーズ" : "Happy's Drug Members"}</p>
             <div
               aria-label={locale === "ja" ? "会員番号 3480 0626 2026 のバーコード" : "Barcode for member number 3480 0626 2026"}
-              className="mx-auto h-24 w-full max-w-[260px] rounded bg-[repeating-linear-gradient(90deg,#111_0_2px,transparent_2px_4px,#111_4px_7px,transparent_7px_10px,#111_10px_11px,transparent_11px_14px)] dark:bg-[repeating-linear-gradient(90deg,#f8fafc_0_2px,transparent_2px_4px,#f8fafc_4px_7px,transparent_7px_10px,#f8fafc_10px_11px,transparent_11px_14px)]"
+              className="mx-auto h-24 w-full max-w-[260px] rounded bg-[repeating-linear-gradient(90deg,hsl(var(--foreground))_0_2px,transparent_2px_4px,hsl(var(--foreground))_4px_7px,transparent_7px_10px,hsl(var(--foreground))_10px_11px,transparent_11px_14px)]"
             />
             <p className="font-mono text-sm tracking-widest text-foreground">3480 0626 2026</p>
           </div>
@@ -136,7 +136,7 @@ export function MemberSummary() {
           </DialogHeader>
           <div className="grid gap-3 rounded-lg border bg-card p-4 text-center">
             <p className="text-sm font-medium text-foreground">ハッピーズドラッグ メンバーズ</p>
-            <div className="mx-auto h-24 w-full max-w-[260px] rounded bg-[repeating-linear-gradient(90deg,#111_0_2px,transparent_2px_4px,#111_4px_7px,transparent_7px_10px,#111_10px_11px,transparent_11px_14px)]" />
+            <div className="mx-auto h-24 w-full max-w-[260px] rounded bg-[repeating-linear-gradient(90deg,hsl(var(--foreground))_0_2px,transparent_2px_4px,hsl(var(--foreground))_4px_7px,transparent_7px_10px,hsl(var(--foreground))_10px_11px,transparent_11px_14px)]" />
             <p className="font-mono text-sm tracking-widest text-foreground">3480 0626 2026</p>
           </div>
           <DialogFooter>
@@ -191,7 +191,7 @@ export function MemberSummary() {
           </DialogHeader>
           <div className="grid gap-3 rounded-lg border bg-card p-4 text-center">
             <p className="text-sm font-medium text-foreground">Happy's Drug Members</p>
-            <div className="mx-auto h-24 w-full max-w-[260px] rounded bg-[repeating-linear-gradient(90deg,#111_0_2px,transparent_2px_4px,#111_4px_7px,transparent_7px_10px,#111_10px_11px,transparent_11px_14px)]" />
+            <div className="mx-auto h-24 w-full max-w-[260px] rounded bg-[repeating-linear-gradient(90deg,hsl(var(--foreground))_0_2px,transparent_2px_4px,hsl(var(--foreground))_4px_7px,transparent_7px_10px,hsl(var(--foreground))_10px_11px,transparent_11px_14px)]" />
             <p className="font-mono text-sm tracking-widest text-foreground">3480 0626 2026</p>
           </div>
           <DialogFooter>
