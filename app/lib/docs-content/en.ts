@@ -325,7 +325,9 @@ A ready-to-use instruction:
 
 ### What this gives you, and what it does not
 
-tokens.css / patterns.css carry **the tokens and the look (color, radius, shadow, motion, and the pattern CSS)** — nothing more. Component implementations (accessibility, keyboard handling, state management) are not included; behaviors like switching tab panels need a little JavaScript of your own (there's a minimal example in starter.html). Where npm is available, [install \`@gunjo/ui\` itself](/docs/installation).`,
+tokens.css / patterns.css carry **the tokens and the look (color, radius, shadow, motion, and the pattern CSS)** — nothing more. Component implementations (accessibility, keyboard handling, state management) are not included; behaviors like switching tab panels need a little JavaScript of your own (there's a minimal example in starter.html). Where npm is available, [install \`@gunjo/ui\` itself](/docs/installation).
+
+If you have npm but not Tailwind, the same tokens.css / patterns.css also ship inside the package as subpath imports (\`@gunjo/ui/tokens.css\` / \`@gunjo/ui/patterns.css\`) — not in \`0.1.0-beta.1\`, available from the next release. See the [adoption guide](/docs/adoption) for details.`,
   },
   theming: {
     title: "Theming",
