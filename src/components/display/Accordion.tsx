@@ -51,7 +51,9 @@ const AccordionItem = React.forwardRef<
 >(({ className, ...props }, ref) => (
     <AccordionPrimitive.Item
         ref={ref}
-        className={cn("border-b", className)}
+        // The root already draws a full border, so the last row's rule would
+        // double up against it. (#695)
+        className={cn("border-b last:border-b-0", className)}
         {...props}
     />
 ))

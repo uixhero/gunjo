@@ -208,7 +208,15 @@ export const NAVIGATION_SPEC_DEFINITIONS = [
     titleId: "G8MpzT",
     descId: "s2VQ30",
     variantsId: "V0XxoV",
-    nodeIds: {},
+    // The rail's two widths are a design contract (240 expanded / 60 collapsed),
+    // so they get node snapshots rather than living only in the React source. (#692)
+    nodeIds: {
+      default: "JDZtP",
+      collapsed: "sbCollapsed",
+      header: "T6osOa",
+      body: "sbZKK",
+      footer: "SwLJK",
+    },
   },
   {
     key: "sidebarItem",
@@ -226,6 +234,10 @@ export const NAVIGATION_SPEC_DEFINITIONS = [
       right: "ag7i8",
       delete: "YOJHn",
       count: "WAPDC",
+      // Icon-only row shown when the sidebar is collapsed. A node rather than a
+      // variant: collapsing is orthogonal to default/active, not a third
+      // colour state. (#692)
+      collapsed: "sbItemCollapsed",
     },
     componentOverrides: {
       interaction: {

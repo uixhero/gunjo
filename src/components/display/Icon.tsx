@@ -6,11 +6,21 @@ import { cn } from "../../lib/utils"
 import type { IconVariantKey } from "./generated/variant-keys"
 import { iconDefaultVariantKey } from "./generated/default-variant-keys"
 
-export type IconGlyph = React.ForwardRefExoticComponent<
-    Omit<React.SVGProps<SVGSVGElement>, "ref" | "stroke"> & {
-        size?: string | number
-        stroke?: string | number
-    } & React.RefAttributes<SVGSVGElement>
+/** Props every accepted glyph component takes. */
+export type IconGlyphProps = Omit<React.SVGProps<SVGSVGElement>, "ref" | "stroke"> & {
+    size?: string | number
+    stroke?: string | number
+}
+
+/**
+ * A glyph component. Deliberately `ComponentType`, not `ForwardRefExoticComponent`:
+ * Tabler's individual icons are forwardRef components, but the *type* it exports
+ * (`Icon`) is `FunctionComponent<IconProps>`. Narrowing to the forwardRef shape
+ * meant `icon={IconChevronRight}` compiled while the same glyph routed through a
+ * typed variable or registry failed with "Property '$$typeof' is missing". (#694)
+ */
+export type IconGlyph = React.ComponentType<
+    IconGlyphProps & React.RefAttributes<SVGSVGElement>
 >
 
 export interface IconProps

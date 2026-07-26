@@ -108,7 +108,7 @@
           "id": "dashboardTemplateSidebar",
           "type": "frame",
           "name": null,
-          "width": 256,
+          "width": 240,
           "height": null,
           "layout": "vertical",
           "padding": [

@@ -18,9 +18,11 @@ const EXCEPTION_POLICY_PATH = "design/policy/hardcoded-color-class-exceptions.js
 
 const COLOR_SCALE_CLASS_PATTERN =
   /\b(?:bg|text|border|ring|from|to|via|shadow|drop-shadow|stroke|fill)-(?:slate|gray|zinc|neutral|stone|red|orange|amber|yellow|lime|green|emerald|teal|cyan|sky|blue|indigo|violet|purple|fuchsia|pink|rose|black|white)(?:-[0-9]{2,3})?(?:\/[0-9]{1,3})?\b/g
+// 末尾に `\b` を置かないこと。直前が `]`（非単語文字）、直後も引用符/空白/行末（非単語文字）
+// になるため境界が成立せず、パターン全体が永久にマッチしなくなる（#698）。
 const ARBITRARY_COLOR_CLASS_PATTERN =
-  /\b(?:bg|text|border|ring|from|to|via|shadow|drop-shadow|stroke|fill)-\[[^\]]*(?:#|rgb|hsl|oklch|oklab|lab|lch)[^\]]*\]\b/g
-const ARBITRARY_SHADOW_CLASS_PATTERN = /\b(?:shadow|drop-shadow)-\[[^\]]+\]\b/g
+  /\b(?:bg|text|border|ring|from|to|via|shadow|drop-shadow|stroke|fill)-\[[^\]]*(?:#|rgb|hsl|oklch|oklab|lab|lch)[^\]]*\]/g
+const ARBITRARY_SHADOW_CLASS_PATTERN = /\b(?:shadow|drop-shadow)-\[[^\]]+\]/g
 const INLINE_STYLE_COLOR_LITERAL_PATTERN =
   /\b(?:background(?:Color|Image)?|color|fill|stroke|boxShadow|filter)\s*:\s*["'`][^"'`]*(?:#(?:[0-9a-fA-F]{3,8})\b|rgba?\(|hsla?\()[^"'`]*["'`]/g
 
@@ -56,27 +58,64 @@ function listTargetFiles(root, relativePath) {
   return listSourceFiles(absolutePath)
 }
 
-function loadExceptionEntries(root) {
+const DATE_PATTERN = /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/
+
+function isNonEmptyString(value) {
+  return typeof value === "string" && value.length > 0
+}
+
+// coverage-exclusions.md は例外に「対象 key / 理由 / 想定期限 / 追加日」を必須にしている。
+// 記録されるだけで検証されない項目は形骸化するため、ここで強制する。
+function loadExceptionPolicy(root) {
   const absolutePath = join(root, EXCEPTION_POLICY_PATH)
   const policy = JSON.parse(readFileSync(absolutePath, "utf-8"))
-  const entries = Array.isArray(policy?.exceptions) ? policy.exceptions : []
+  const rawEntries = Array.isArray(policy?.exceptions) ? policy.exceptions : []
 
-  return entries
-    .filter(
-      (entry) =>
-        typeof entry?.file === "string" &&
-        entry.file.length > 0 &&
-        typeof entry?.className === "string" &&
-        entry.className.length > 0
-    )
-    .map((entry) => ({ file: entry.file, className: entry.className }))
+  const entries = []
+  const policyIssues = []
+  const today = new Date().toISOString().slice(0, 10)
+
+  for (const [index, entry] of rawEntries.entries()) {
+    const label = isNonEmptyString(entry?.file)
+      ? `${entry.file}::${entry?.className ?? "(className 未設定)"}`
+      : `exceptions[${index}]`
+
+    if (!isNonEmptyString(entry?.file) || !isNonEmptyString(entry?.className)) {
+      policyIssues.push(`${label} は file / className が必要です`)
+      continue
+    }
+    if (!isNonEmptyString(entry?.reason)) {
+      policyIssues.push(`${label} は reason が必要です`)
+      continue
+    }
+    if (!DATE_PATTERN.test(entry?.addedOn ?? "")) {
+      policyIssues.push(`${label} は addedOn を YYYY-MM-DD で記録してください`)
+      continue
+    }
+
+    const expiresOn = entry?.expiresOn
+    if (expiresOn !== "permanent" && !DATE_PATTERN.test(expiresOn ?? "")) {
+      policyIssues.push(
+        `${label} は expiresOn を YYYY-MM-DD または "permanent" で記録してください`
+      )
+      continue
+    }
+    if (expiresOn !== "permanent" && expiresOn < today) {
+      policyIssues.push(`${label} は ${expiresOn} に期限切れです（再判断が必要）`)
+      continue
+    }
+
+    entries.push({ file: entry.file, className: entry.className })
+  }
+
+  return { entries, policyIssues }
 }
 
 function collectHardcodedColorClassIssues(root) {
   const files = TARGET_PATHS.flatMap((relativePath) =>
     listTargetFiles(root, relativePath)
   )
-  const exceptionEntries = loadExceptionEntries(root)
+  const { entries: exceptionEntries, policyIssues } = loadExceptionPolicy(root)
   const exceptionKeySet = new Set(
     exceptionEntries.map(({ file, className }) => `${file}::${className}`)
   )
@@ -143,12 +182,19 @@ function collectHardcodedColorClassIssues(root) {
   return {
     issues: issues.sort((a, b) => a.localeCompare(b)),
     unusedExceptions,
+    policyIssues,
   }
 }
 
 export function verifyNoHardcodedColorClasses({ root = ROOT } = {}) {
-  const { issues, unusedExceptions } = collectHardcodedColorClassIssues(root)
-  if (issues.length === 0 && unusedExceptions.length === 0) return
+  const { issues, unusedExceptions, policyIssues } =
+    collectHardcodedColorClassIssues(root)
+  if (
+    issues.length === 0 &&
+    unusedExceptions.length === 0 &&
+    policyIssues.length === 0
+  )
+    return
 
   const lines = []
   if (issues.length > 0) {
@@ -157,6 +203,14 @@ export function verifyNoHardcodedColorClasses({ root = ROOT } = {}) {
       "Replace class names with design tokens (for example `bg-primary`, `text-muted-foreground`) and avoid arbitrary shadow utilities."
     )
     lines.push(...issues.map((issue) => `- ${issue}`))
+  }
+
+  if (policyIssues.length > 0) {
+    if (lines.length > 0) lines.push("")
+    lines.push(
+      `design:verify: ${EXCEPTION_POLICY_PATH} のエントリが不正です（reason / addedOn / expiresOn は必須）。`
+    )
+    lines.push(...policyIssues.map((entry) => `- ${entry}`))
   }
 
   if (unusedExceptions.length > 0) {
