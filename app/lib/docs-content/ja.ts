@@ -325,7 +325,9 @@ https://www.gunjo.jp/starter.html
 
 ### この方法で得られるもの・得られないもの
 
-tokens.css / patterns.css が持つのは**トークンと見た目（色・角丸・影・モーション・基本パターンの CSS）**だけです。コンポーネントの実装（アクセシビリティ対応、キーボード操作、状態管理）は含まれません。tabs のパネル切替のような挙動には別途 JavaScript が要ります（starter.html に最小例あり）。npm が使える環境では [\`@gunjo/ui\` 本体のインストール](/docs/installation) を使ってください。`,
+tokens.css / patterns.css が持つのは**トークンと見た目（色・角丸・影・モーション・基本パターンの CSS）**だけです。コンポーネントの実装（アクセシビリティ対応、キーボード操作、状態管理）は含まれません。tabs のパネル切替のような挙動には別途 JavaScript が要ります（starter.html に最小例あり）。npm が使える環境では [\`@gunjo/ui\` 本体のインストール](/docs/installation) を使ってください。
+
+なお、npm はあるが Tailwind は使わないプロジェクトでは、同じ tokens.css / patterns.css をパッケージの subpath（\`@gunjo/ui/tokens.css\` / \`@gunjo/ui/patterns.css\`）として import できます（\`0.1.0-beta.1\` には未収録・次回リリース以降）。詳細は [採用ガイド](/docs/adoption) を参照してください。`,
   },
   theming: {
     title: "テーマ",

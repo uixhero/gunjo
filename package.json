@@ -55,6 +55,8 @@
       "default": "./dist/entries/motion.js"
     },
     "./styles": "./dist/globals.css",
+    "./tokens.css": "./dist/tokens.css",
+    "./patterns.css": "./dist/patterns.css",
     "./tailwind-preset": "./tailwind-preset.js",
     "./tailwind-theme-extend": "./tailwind-theme-extend.cjs"
   },

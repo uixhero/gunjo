@@ -20,6 +20,7 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ### Added
 
+- **純 CSS 資産の subpath export**（影響: none）— npm 不可環境向けに gunjo.jp の固定 URL で配布している Tailwind 非依存の純 CSS 資産をパッケージにも同梱し、`@gunjo/ui/tokens.css`（純 CSS トークン）・`@gunjo/ui/patterns.css`（`gj-` パターンクラス）として import できるようにした。中身は配信版と同一（同じ SSOT から生成・drift 検証つき）。固定 URL 配布（/docs/no-npm）は従来どおり併存。(#684)
 - **subpath export の追加**（影響: none）— 重い runtime を引く部品を、依存クラスタ単位の subpath から narrow に import できるようにした：`@gunjo/ui/table`（DataTable / ActionDataTable ＋ `ColumnDef`・`@tanstack/react-table`）、`@gunjo/ui/calendar`（DatePicker / DateRangePicker / Calendar・`react-day-picker`）、`@gunjo/ui/drawer`（`vaul`）、`@gunjo/ui/carousel`（`embla-carousel-react`）、`@gunjo/ui/markdown`（`react-markdown`）、`@gunjo/ui/motion`（FloatingPanel・`framer-motion`）。**これらは 0.1.x では root barrel（`@gunjo/ui`）からも従来どおり import できる**（Phase 1・純追加）。`0.2.0` で root barrel からの重部品 export を撤去し、該当依存を optional peer 化する予定（Phase 2・破壊枠・移行表を別途提示）。(#492)
 - **`DesktopPageHeader`**（影響: none）— デスクトップ業務コンソールの各画面に置く、eyebrow・タイトル・説明・末尾アクションの軽量見出しバー。アプリ全体のクロームである `Header`、モバイル app-bar の `PageHeader` と責務を分離する。(#397)
 - **`OccupancyMeter`**（影響: none）— `Meter` の上にラベルと `value / max` readout をまとめた、満席率・稼働率・設備利用率向けの薄い合成。既定は `direction="neutral"` で低い値を失敗色にせず、`target`・`tone`・`formatValue`・`size` は `Meter` へ転送する。(#343)

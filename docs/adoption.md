@@ -126,6 +126,21 @@ export default function Page() {
 
 `npm run dev` で `Button` が GunjoUI のスタイルで表示されれば成功。
 
+## Tailwind を使わないプロジェクト（純 CSS サブパス）
+
+npm 不可環境向けに固定 URL で配布している **Tailwind 非依存の純 CSS 資産** は、パッケージにも同梱しており subpath で import できる：
+
+```css
+@import "@gunjo/ui/tokens.css";    /* 純 CSS トークン（:root / .dark。hsl(var(--…)) 記法） */
+@import "@gunjo/ui/patterns.css";  /* gj- パターンクラス（card / badge / button / table / tabs / timeline / gantt / meter 等） */
+```
+
+JS からの `import "@gunjo/ui/tokens.css";` でもよい（bundler が CSS import を扱える構成の場合）。
+
+- **`@gunjo/ui/styles` との違い**：`styles`（`dist/globals.css`）は Tailwind 前提のフル定義で、コンポーネント（React）利用時はこちら。`tokens.css` / `patterns.css` は Tailwind の無いプロジェクトで GUNJO のトークンと基本パターンだけ使いたい場合に選ぶ
+- 中身は [gunjo.jp/tokens.css](https://www.gunjo.jp/tokens.css) / [gunjo.jp/patterns.css](https://www.gunjo.jp/patterns.css) の配信版と同一（同じソース・オブ・トゥルースから生成し drift 検証つき）。npm も使えない環境では固定 URL をコピペする（[/docs/no-npm](https://www.gunjo.jp/docs/no-npm) 参照）
+- **公開状況**：`0.1.0-beta.1` には未収録。次回リリースから利用可（それまでは `npm install file:../gunjo` の手元 clone なら使える）。進捗は [#684](https://github.com/uixhero/gunjo/issues/684)
+
 ## Server Component からのバレル import（RSC）
 
 ### 現象
