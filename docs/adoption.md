@@ -38,7 +38,7 @@ npm install /absolute/path/to/gunjo
 
 > 旧 alpha（`main: "src/index.ts"` で生 TS を配布していた頃）は `transpilePackages: ["@gunjo/ui"]` が必須だった。dist 配布化以降は削除してよい。
 
-> **⚠️ ただし RSC からのバレル import に既知の制約あり**：Next.js App Router の Server Component から `import { X } from "@gunjo/ui"` すると `next build` が失敗する（`0.1.0-beta.1` + Next.js 16 / Turbopack で確認）。[§ Server Component からのバレル import](#server-component-からのバレル-importrsc) の回避シムを参照。
+> **⚠️ ただし RSC からのバレル import に既知の制約あり**：Next.js App Router の Server Component から `import { X } from "@gunjo/ui"` すると `next build` が失敗する（`0.1.0-beta.2` 時点でも未解消・Next.js 16 / Turbopack で確認、追跡は [#684](https://github.com/uixhero/gunjo/issues/684)）。[§ Server Component からのバレル import](#server-component-からのバレル-importrsc) の回避シムを参照。
 
 ### 3. Tailwind プリセット取り込み
 
@@ -139,13 +139,13 @@ JS からの `import "@gunjo/ui/tokens.css";` でもよい（bundler が CSS imp
 
 - **`@gunjo/ui/styles` との違い**：`styles`（`dist/globals.css`）は Tailwind 前提のフル定義で、コンポーネント（React）利用時はこちら。`tokens.css` / `patterns.css` は Tailwind の無いプロジェクトで GUNJO のトークンと基本パターンだけ使いたい場合に選ぶ
 - 中身は [gunjo.jp/tokens.css](https://www.gunjo.jp/tokens.css) / [gunjo.jp/patterns.css](https://www.gunjo.jp/patterns.css) の配信版と同一（同じソース・オブ・トゥルースから生成し drift 検証つき）。npm も使えない環境では固定 URL をコピペする（[/docs/no-npm](https://www.gunjo.jp/docs/no-npm) 参照）
-- **公開状況**：`0.1.0-beta.1` には未収録。次回リリースから利用可（それまでは `npm install file:../gunjo` の手元 clone なら使える）。進捗は [#684](https://github.com/uixhero/gunjo/issues/684)
+- **公開状況**：`0.1.0-beta.2` から収録済み（npm 版でそのまま import できる）
 
 ## Server Component からのバレル import（RSC）
 
 ### 現象
 
-npm 版 `@gunjo/ui@0.1.0-beta.1` を Next.js 16（Turbopack）の Server Component（`layout.tsx` / `page.tsx` など）からバレル import すると、`next build` の Collecting page data 段階で失敗する：
+npm 版 `@gunjo/ui@0.1.0-beta.2`（それ以前の beta も同様）を Next.js 16（Turbopack）の Server Component（`layout.tsx` / `page.tsx` など）からバレル import すると、`next build` の Collecting page data 段階で失敗する：
 
 ```
 TypeError: i.createContext is not a function
@@ -276,7 +276,7 @@ v3 の場合は `tailwind.config.ts` の `content` に `node_modules/@gunjo/ui/d
 
 ### `createContext is not a function` でビルドが落ちる
 
-Server Component から `@gunjo/ui` をバレル import している（Next.js 16 + Turbopack、`0.1.0-beta.1`）。[§ Server Component からのバレル import](#server-component-からのバレル-importrsc) の `"use client"` 再エクスポートシムで回避する。
+Server Component から `@gunjo/ui` をバレル import している（Next.js 16 + Turbopack、`0.1.0-beta.2` 時点でも未解消）。[§ Server Component からのバレル import](#server-component-からのバレル-importrsc) の `"use client"` 再エクスポートシムで回避する。
 
 ### `Functions cannot be passed directly to Client Components` でビルドが落ちる
 

@@ -23,7 +23,7 @@ export const contentEn: Record<string, DocContent> = {
     description: "An SSOT-driven React + Tailwind design system for rich, data-dense applications. 200+ components, three-axis verified (Pen / source / docs).",
     body: `GunjoUI is built around a single source of truth: design tokens and component variants are derived from \`.pen\` design files and synchronized into TypeScript implementation, structured JSON specs, and docs registration. Every primitive is verified across Pen / source / docs. It does not fully auto-generate every page from \`.pen\`; instead, it keeps design data, implementation, and documentation aligned through sync and verification.
 
-It uses **Radix UI** primitives for accessibility and **Tailwind CSS** for styling. Distributed as **\`@gunjo/ui\`** on npm — currently beta (\`0.1.0-beta.1\`), API may change before 1.0 stable.
+It uses **Radix UI** primitives for accessibility and **Tailwind CSS** for styling. Distributed as **\`@gunjo/ui\`** on npm — currently beta (\`0.1.0-beta.2\`), API may change before 1.0 stable.
 
 ### Adoption modes
 
@@ -148,7 +148,7 @@ export default function Page() {
 
 ### Using it from Server Components (Next.js App Router / RSC)
 
-Importing \`@gunjo/ui@0.1.0-beta.1\` from npm through the barrel (\`import { X } from "@gunjo/ui"\`) inside a Server Component (\`layout.tsx\`, \`page.tsx\`, etc.) on Next.js 16 (Turbopack) makes \`next build\` fail with:
+Importing \`@gunjo/ui@0.1.0-beta.2\` (and earlier betas) from npm through the barrel (\`import { X } from "@gunjo/ui"\`) inside a Server Component (\`layout.tsx\`, \`page.tsx\`, etc.) on Next.js 16 (Turbopack) makes \`next build\` fail with:
 
 \`\`\`
 TypeError: createContext is not a function
@@ -327,7 +327,7 @@ A ready-to-use instruction:
 
 tokens.css / patterns.css carry **the tokens and the look (color, radius, shadow, motion, and the pattern CSS)** — nothing more. Component implementations (accessibility, keyboard handling, state management) are not included; behaviors like switching tab panels need a little JavaScript of your own (there's a minimal example in starter.html). Where npm is available, [install \`@gunjo/ui\` itself](/docs/installation).
 
-If you have npm but not Tailwind, the same tokens.css / patterns.css also ship inside the package as subpath imports (\`@gunjo/ui/tokens.css\` / \`@gunjo/ui/patterns.css\`) — not in \`0.1.0-beta.1\`, available from the next release. See the [adoption guide](/docs/adoption) for details.`,
+If you have npm but not Tailwind, the same tokens.css / patterns.css also ship inside the package as subpath imports (\`@gunjo/ui/tokens.css\` / \`@gunjo/ui/patterns.css\`) — available since \`0.1.0-beta.2\`. See the [adoption guide](/docs/adoption) for details.`,
   },
   theming: {
     title: "Theming",

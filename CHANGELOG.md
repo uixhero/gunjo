@@ -11,15 +11,21 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 
-> `0.1.0-beta.1` 以降の変更。**破壊的変更なし**。新機能はすべて opt-in で既定挙動は据え置き（影響: none）。例外は下記 **Changed** の `RouteStops` 既定ラベル変更のみ（影響: **minor**・1プロップで復元可能・移行パス明記）。
+## [0.1.0-beta.2] — 2026-07-27
+
+> `0.1.0-beta.1` 以降の変更。**破壊的変更（構造変更を要する break）なし**。新機能はすべて opt-in で既定挙動は据え置き（影響: none）。例外は下記 **Changed** の2件のみ、いずれも影響 **minor**・移行パス明記 — `RouteStops` の既定ラベル変更（1プロップで復元可能）と `DashboardTemplate` のシェル所有化（ラッパーを外して行だけ渡す機械的変更）。
 
 ### Changed
 
+- **`DashboardTemplate` がダッシュボードのシェルを自前で所有**（影響: **minor**）— 旧実装の sidebar スロットは固定 `hidden border-r w-64 md:block` の枠で、`<Sidebar>` を開いたまま固定して折りたたみ不能にし、`md` 未満ではナビが丸ごと消えて携帯で画面遷移できなかった。テンプレート自身が `SidebarProvider` / `Sidebar` / `SidebarBody` を組み、小画面では**同じナビ行を `Sheet` で開く**ように変更。**呼び出し側は `sidebar` に「行」（通常は `SidebarItem` 群）だけを渡す**。新 props: `sidebarHeader` / `sidebarFooter`（ブランド行・アカウント行）・`collapsible`（既定 `true`）・`defaultCollapsed` / `collapsed` / `onCollapsedChange`・`navLabel`・`navOpen` / `onNavOpenChange`。外枠は `min-h-screen` → `h-dvh`＋`overflow-hidden`（レールには確定高さの親が要り、ダッシュボードはページではなく main 列がスクロールするため）。**移行**：`sidebar={<Sidebar><SidebarBody>…</SidebarBody></Sidebar>}` のように完成品を渡していた場合はラッパーを外して行だけ渡す。`SidebarHeader` / `SidebarFooter` に入れていた内容は `sidebarHeader` / `sidebarFooter` へ。行だけ渡していた場合は変更不要で、折りたたみと小画面ナビが自動で付く。(#692, #697)
+- **design-verify の arbitrary color / shadow クラスガードを復活**（内部・影響: none）— `ARBITRARY_COLOR_CLASS_PATTERN` / `ARBITRARY_SHADOW_CLASS_PATTERN` が `]` 直後の `\b`（充足不能な境界）で一度もマッチしていなかったのを修正。例外リストは `reason` / `addedOn` / `expiresOn` を必須化し、期限切れは fail するため、ポリシーが再び静かに死ぬことはない。復活で検出された実バグは下記 **Fixed** の loyalty-summary-card を参照。(#698, #702)
 - **`Statistic` / `StatGroup` / `StatusBoard` / `Meter` が `SemanticTone` を直接受理**（影響: **none**）— `Statistic` の `positive / negative / neutral` は `success / destructive / muted`、`StatusBoard` の `danger` は `destructive` へ内部正規化し、0.1.x の互換 alias として維持。`trend` / `goodWhen` の方向・評価ロジックは不変。`StatusBoard.problemTones` は正規化後に判定し、`Meter` は `default` を muted の見た目で描画する。`Badge` は presentation variant、`ExpiryBadge` は domain state の公開 API を維持。旧値の撤去は次 major 以降に利用調査＋codemod 付きで再判断。(#673)
 - **`RouteStops` の既定ステータスラベルを中立語彙に**（影響: **minor**）— ステータスキー（`pending/current/completed/failed/delayed`）は汎用なのに、既定ラベルだけが配送依存（`未配 / 配送中 / 不在`）だったのを、ドメイン中立な `未着手 / 進行中 / 完了 / 失敗 / 遅延` に変更。配送・介護・製造など各ドメインは従来どおり `statusLabels` で上書きする設計。**移行**：配送用途は `statusLabels={{ pending: "未配", current: "配送中", failed: "不在" }}` の1プロップで従来表示を復元（`completed`/`delayed` は既に中立で変更なし）。マーカーの色・アイコン、`aria-current`、予実 `Delta` は不変。(#282)
 
 ### Added
 
+- **`useSidebarCollapsed()`**（影響: none）— `useSidebar` の非例外版。`SidebarProvider` の外では throw せず `null` を返すので、Sidebar 内外どちらに置かれても成立する部品（`SidebarItem` 自身がこれを使う）が折りたたみ状態に追従できる。(#692, #697)
+- **`LocaleProvider` の文字列に `navigation` を追加**（影響: none）— `DashboardTemplate` のナビ領域・開閉ボタン・Sheet のアクセシブル名（en: `Navigation` / ja: `ナビゲーション`）。`navLabel` prop で個別上書き可。(#697)
 - **純 CSS 資産の subpath export**（影響: none）— npm 不可環境向けに gunjo.jp の固定 URL で配布している Tailwind 非依存の純 CSS 資産をパッケージにも同梱し、`@gunjo/ui/tokens.css`（純 CSS トークン）・`@gunjo/ui/patterns.css`（`gj-` パターンクラス）として import できるようにした。中身は配信版と同一（同じ SSOT から生成・drift 検証つき）。固定 URL 配布（/docs/no-npm）は従来どおり併存。(#684)
 - **subpath export の追加**（影響: none）— 重い runtime を引く部品を、依存クラスタ単位の subpath から narrow に import できるようにした：`@gunjo/ui/table`（DataTable / ActionDataTable ＋ `ColumnDef`・`@tanstack/react-table`）、`@gunjo/ui/calendar`（DatePicker / DateRangePicker / Calendar・`react-day-picker`）、`@gunjo/ui/drawer`（`vaul`）、`@gunjo/ui/carousel`（`embla-carousel-react`）、`@gunjo/ui/markdown`（`react-markdown`）、`@gunjo/ui/motion`（FloatingPanel・`framer-motion`）。**これらは 0.1.x では root barrel（`@gunjo/ui`）からも従来どおり import できる**（Phase 1・純追加）。`0.2.0` で root barrel からの重部品 export を撤去し、該当依存を optional peer 化する予定（Phase 2・破壊枠・移行表を別途提示）。(#492)
 - **`DesktopPageHeader`**（影響: none）— デスクトップ業務コンソールの各画面に置く、eyebrow・タイトル・説明・末尾アクションの軽量見出しバー。アプリ全体のクロームである `Header`、モバイル app-bar の `PageHeader` と責務を分離する。(#397)
@@ -44,6 +50,13 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ### Fixed
 
+- **`Sidebar` が高さ不定の親で潰れる**（影響: none）— `h-full` の百分率高さは親の確定高さが無い（例: `min-h-*`）と解決できず、レールが自身のコンテンツ高まで潰れ、flex の stretch まで打ち消していた。`self-stretch` に変更（実測: `min-height:500px` の flex 行で旧契約は 0px、新契約は 500px で描画）。(#692, #697)
+- **`SidebarItem` が折りたたみに追従しない**（影響: none）— 60px レールでアイコンを中央寄せし、56px の末尾予約を落とし、ラベルはツールチップへ移動、可視ラベルが消えるぶん `aria-label` に名前を明示。呼び出し側で行ごとに Tooltip で包む定型が不要になった。(#692, #697)
+- **`SidebarHeader` / `SidebarFooter` が 60px レールからはみ出す**（影響: none）— 両者も折りたたみに追従するようになり、ブランド行やアカウント行がレール幅を突き破らない。(#692, #697)
+- **`AuthTemplate` の左ブランド面がダークで白へ反転**（影響: none）— `bg-foreground` / `text-background` はダークモードで白面＋黒字になり、隣のフォームと真逆だった。デザインソースどおりテーマ不変の `--pure-black` / `--pure-white` に変更（`CodeBlock` と同じ手当て）。(#693, #697)
+- **`Icon` の `IconGlyph` 型が実態より狭い**（DX・影響: none）— `ForwardRefExoticComponent` 固定だったため、`@tabler/icons-react` が公開する `Icon` 型（`FunctionComponent<IconProps>`）の**型付き変数・レジストリ経由**で渡すと `Property '$$typeof' is missing` で落ち、インラインの `icon={IconChevronRight}` しか通らなかった。`React.ComponentType` に拡張して両方受理（`IconGlyphProps` も公開）。(#694, #697)
+- **`Accordion` の最終項目の下線がルート枠と二重**（影響: none）— 最後の項目に `last:border-b-0`。(#695, #697)
+- **loyalty-summary-card デモのバーコードがダークでほぼ不可視**（docs・影響: none）— デモのバーコード3枚中2枚が `#111` 直書きで `dark:` variant を持たず、ダークのカード（`rgb(2,8,23)`）上で実質見えなかった。`hsl(var(--foreground))` に変更し、コピー元コードもテーマ追従に。上記 **Changed** のガード復活（#698）で検出。(#702)
 - **`*VariantKey` 型が barrel から出ていなかった**（DX・影響: none）— `BadgeVariantKey` などの variant-key union は各部品が内部で `import type` するだけで re-export しておらず、`import type { BadgeVariantKey } from "@gunjo/ui"` が tsc で落ちていた。採用先が `Record<Status, BadgeVariantKey>` を書くのに literal union を手写しする必要があった。barrel 生成器を更新し、全カテゴリの `*VariantKey` 型を `export type *` で公開（**型のみ**・runtime のキー配列は非公開のまま）。純追加なので既存コードに影響なし。(#411)
 - **`Table` / `DataTable` の横スクロール漏れ**（影響: none）— 狭い画面（375px 等）で、幅広の内側要素が `overflow-x-auto` スクローラから**ページ全体に横スクロールを漏らす**ことがあった（`html.scrollWidth` が膨らむ・祖先の `min-w-0` や `sticky` 除去では直らない）。両コンポーネントの横スクローラに `[contain:paint]` を付与して封じ込め（`ScheduleGrid` #287 と同じ手当て）。正しくレイアウトされている場合は no-op。自前の幅広コンテンツ（チャート・カスタムグリッド）向けに Table docs へ手順も記載。(#289)
 - **`Alert` の見出し順序**（a11y・影響: none）— `AlertTitle` の既定要素が `h5` で、h1 → h5 と見出しレベルが飛んでいた。既定を `<p>` に変更（**見た目は不変**。見出しにしたい場合は `as="h5"` を明示）。(#251)
