@@ -176,7 +176,7 @@
                             {
                               "type": "frame",
                               "id": "dashboardTemplateSidebar",
-                              "width": 256,
+                              "width": 240,
                               "fill": "#ffffff",
                               "stroke": "#e5e7eb",
                               "strokeWidth": 1,

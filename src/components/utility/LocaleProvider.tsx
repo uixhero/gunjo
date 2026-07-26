@@ -53,6 +53,8 @@ export interface LocaleStrings {
     close: string
     /** Expand/open control label (Accordion, PageAside). */
     open: string
+    /** Accessible name for a primary navigation region and the control that opens it (DashboardTemplate). */
+    navigation: string
 }
 
 const EN_STRINGS: LocaleStrings = {
@@ -67,6 +69,7 @@ const EN_STRINGS: LocaleStrings = {
     commandEmpty: "No results found.",
     close: "Close",
     open: "Open",
+    navigation: "Navigation",
 }
 
 const JA_STRINGS: LocaleStrings = {
@@ -81,6 +84,7 @@ const JA_STRINGS: LocaleStrings = {
     commandEmpty: "見つかりませんでした",
     close: "閉じる",
     open: "開く",
+    navigation: "ナビゲーション",
 }
 
 /** Built-in bundles. `en` is the default when no provider is mounted. */

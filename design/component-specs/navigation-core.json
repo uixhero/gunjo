@@ -743,7 +743,161 @@
       "title": "Sidebar",
       "description": "Full sidebar orchestrator with provider, header, nav items, and footer slots.",
       "variants": [],
-      "nodes": {}
+      "nodes": {
+        "default": {
+          "id": "JDZtP",
+          "type": "frame",
+          "name": "Sidebar/Default",
+          "width": 240,
+          "height": 380,
+          "layout": "vertical",
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#f8fafc",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "T6osOa",
+            "sbZKK",
+            "SwLJK"
+          ]
+        },
+        "collapsed": {
+          "id": "sbCollapsed",
+          "type": "frame",
+          "name": "Sidebar/Collapsed",
+          "width": 60,
+          "height": 380,
+          "layout": "vertical",
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#f8fafc",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "sbColHeader",
+            "sbColBody",
+            "sbColFooter"
+          ]
+        },
+        "header": {
+          "id": "T6osOa",
+          "type": "frame",
+          "name": "sbHeader",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "PuO7Q",
+            "RteNC"
+          ]
+        },
+        "body": {
+          "id": "sbZKK",
+          "type": "frame",
+          "name": "sbBody",
+          "width": "fill_container",
+          "height": null,
+          "layout": "vertical",
+          "padding": [
+            8,
+            8,
+            8,
+            8
+          ],
+          "gap": 2,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "Rqyxe",
+            "RBFnE",
+            "rI5zA"
+          ]
+        },
+        "footer": {
+          "id": "SwLJK",
+          "type": "frame",
+          "name": "sbFooter",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            16,
+            16,
+            16,
+            16
+          ],
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "Q97v3e",
+            "mGQDc"
+          ]
+        }
+      }
     },
     "sidebarItem": {
       "frameId": "sidebarItemFrame",
@@ -999,6 +1153,29 @@
           "iconFontName": null,
           "textGrowth": null,
           "children": []
+        },
+        "collapsed": {
+          "id": "sbItemCollapsed",
+          "type": "frame",
+          "name": "SidebarItem/Collapsed",
+          "width": 44,
+          "height": 36,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": 6,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "sbItemCollapsedIcon"
+          ]
         },
         "UYZHt": {
           "id": "UYZHt",

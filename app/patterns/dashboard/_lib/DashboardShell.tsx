@@ -804,9 +804,10 @@ function DashboardApp({
                         t={t}
                     />
                 }
+                sidebarHeader={showSidebar ? <DashboardSidebarSection t={t} /> : null}
                 sidebar={
                     showSidebar ? (
-                        <DashboardSidebar
+                        <DashboardSidebarNav
                             page={activePage}
                             projects={projects}
                             t={t}
@@ -814,6 +815,7 @@ function DashboardApp({
                         />
                     ) : null
                 }
+                sidebarFooter={showSidebar ? <DashboardSidebarTeamCard t={t} /> : null}
             >
                 {activePage === "overview" ? (
                     <OverviewPage projects={projects} notices={notices} viewport={viewport} t={t} />
@@ -1173,7 +1175,15 @@ function AccountMenu({
     );
 }
 
-function DashboardSidebar({
+function DashboardSidebarSection({ t }: { t: typeof COPY.en | typeof COPY.ja }) {
+    return (
+        <div className="text-xs font-semibold uppercase text-muted-foreground">
+            {t.sidebar.section}
+        </div>
+    );
+}
+
+function DashboardSidebarNav({
     page,
     projects,
     t,
@@ -1191,41 +1201,73 @@ function DashboardSidebar({
     ).length;
 
     return (
+        <nav aria-label={t.nav.label} className="space-y-1">
+            {ROUTES.map(({ id, href, Icon }) => (
+                <SidebarItem
+                    key={id}
+                    id={id}
+                    icon={<Icon size={18} />}
+                    label={t.nav[id]}
+                    count={id === "projects" ? projects.length : id === "overview" ? riskCount : undefined}
+                    isActive={page === id}
+                    onClick={() => {
+                        navigateDashboard(href);
+                        onNavigate?.();
+                    }}
+                />
+            ))}
+        </nav>
+    );
+}
+
+function DashboardSidebarTeamCard({ t }: { t: typeof COPY.en | typeof COPY.ja }) {
+    return (
+        <Card className="w-full">
+            <CardContent className="space-y-3 p-4">
+                <div className="flex flex-col items-start gap-2">
+                    <div className="text-sm font-medium leading-tight">{t.sidebar.team}</div>
+                    <Badge variant="secondary">{t.sidebar.plan}</Badge>
+                </div>
+                <Progress
+                    value={68}
+                    className="h-2 w-full"
+                    aria-label={t.sidebar.team}
+                />
+            </CardContent>
+        </Card>
+    );
+}
+
+// The marquee simulates a phone inside a desktop window, so its own sheet can't
+// rely on the template's media-query fallback and composes the same pieces here.
+function DashboardSidebar({
+    page,
+    projects,
+    t,
+    navigateDashboard,
+    onNavigate,
+}: {
+    page: DashboardPage;
+    projects: DashboardProject[];
+    t: typeof COPY.en | typeof COPY.ja;
+    navigateDashboard: DashboardNavigate;
+    onNavigate?: () => void;
+}) {
+    return (
         <div className="flex h-full flex-col bg-background px-3 py-4">
             <div className="px-2 pb-4">
-                <div className="text-xs font-semibold uppercase text-muted-foreground">
-                    {t.sidebar.section}
-                </div>
+                <DashboardSidebarSection t={t} />
             </div>
-            <nav aria-label={t.nav.label} className="space-y-1">
-                {ROUTES.map(({ id, href, Icon }) => (
-                    <SidebarItem
-                        key={id}
-                        id={id}
-                        icon={<Icon size={18} />}
-                        label={t.nav[id]}
-                        count={id === "projects" ? projects.length : id === "overview" ? riskCount : undefined}
-                        isActive={page === id}
-                        onClick={() => {
-                            navigateDashboard(href);
-                            onNavigate?.();
-                        }}
-                    />
-                ))}
-            </nav>
-            <Card className="mt-auto w-full">
-                <CardContent className="space-y-3 p-4">
-                    <div className="flex flex-col items-start gap-2">
-                        <div className="text-sm font-medium leading-tight">{t.sidebar.team}</div>
-                        <Badge variant="secondary">{t.sidebar.plan}</Badge>
-                    </div>
-                    <Progress
-                        value={68}
-                        className="h-2 w-full"
-                        aria-label={t.sidebar.team}
-                    />
-                </CardContent>
-            </Card>
+            <DashboardSidebarNav
+                page={page}
+                projects={projects}
+                t={t}
+                navigateDashboard={navigateDashboard}
+                onNavigate={onNavigate}
+            />
+            <div className="mt-auto">
+                <DashboardSidebarTeamCard t={t} />
+            </div>
         </div>
     );
 }

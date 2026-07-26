@@ -21,6 +21,7 @@ import {
     KanbanTemplate,
     LandingTemplate,
     ChatTemplate,
+    useSidebarCollapsed,
 } from "@gunjo/ui";
 import {
     IconBox as Box,
@@ -37,10 +38,25 @@ import {
     IconVideo as Video,
 } from "@tabler/icons-react";
 
+// Slot content can read the collapse itself, which is how a brand keeps its
+// mark and drops its name on the rail.
+function DashboardDemoBrand() {
+    const collapsed = useSidebarCollapsed();
+    return (
+        <>
+            <div className="h-6 w-6 shrink-0 rounded-md bg-foreground" />
+            {!collapsed && <span className="truncate font-semibold">Acme</span>}
+        </>
+    );
+}
+
 export function DashboardTemplateDemo() {
     return (
         <div className="h-[600px] border rounded-xl overflow-hidden shadow-xl transform scale-90 origin-top bg-background flex flex-col">
             <DashboardTemplate
+                // The demo lives in a fixed 600px box, so it overrides the
+                // template's viewport height.
+                className="h-full"
                 // Simplified header for demo
                 header={
                     <div className="h-16 flex items-center px-6 justify-between bg-card">
@@ -50,12 +66,13 @@ export function DashboardTemplateDemo() {
                         </div>
                     </div>
                 }
+                sidebarHeader={<DashboardDemoBrand />}
                 sidebar={
-                    <div className="h-full py-4 bg-card">
+                    <>
                         <SidebarItem icon={<LayoutDashboard size={20} />} isActive={true} onClick={() => { }} id="overview" label="Overview" />
                         <SidebarItem icon={<User size={20} />} isActive={false} onClick={() => { }} id="customers" label="Customers" />
                         <SidebarItem icon={<Settings size={20} />} isActive={false} onClick={() => { }} id="settings" label="Settings" />
-                    </div>
+                    </>
                 }
             >
                 <div>

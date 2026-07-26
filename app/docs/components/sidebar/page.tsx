@@ -234,10 +234,12 @@ export function SidebarLayout() {
                 </h2>
                 <PropsTable
                     data={[
+                        { name: "Sidebar", type: "aside", description: isJa ? "レールそのもの。フレックス／グリッド親の高さいっぱいに自分で伸びます（240px ⇄ 折りたたみ 60px）。ブロック親に置く場合だけ高さを明示してください。" : "The rail itself (240px, 60px collapsed). It stretches to fill a flex or grid parent on its own; give it an explicit height only when the parent is a block container." },
                         { name: "SidebarProvider.defaultCollapsed", type: "boolean", default: "false", description: isJa ? "非制御時の初期折りたたみ状態。" : "Initial collapsed state for uncontrolled sidebars." },
                         { name: "SidebarProvider.collapsed", type: "boolean", description: isJa ? "折りたたみ状態を外部 state で制御します。" : "Controls the collapsed state from app state." },
                         { name: "SidebarProvider.onCollapsedChange", type: "(collapsed: boolean) => void", description: isJa ? "折りたたみ状態が変わった時に呼ばれます。" : "Called when the collapsed state changes." },
-                        { name: "useSidebar()", type: "{ collapsed, setCollapsed, toggleCollapsed }", description: isJa ? "子孫コンポーネントからサイドバー状態を読み書きします。" : "Reads and updates sidebar state from descendants." },
+                        { name: "useSidebar()", type: "{ collapsed, setCollapsed, toggleCollapsed }", description: isJa ? "子孫コンポーネントからサイドバー状態を読み書きします。プロバイダ外で呼ぶと例外になります。" : "Reads and updates sidebar state from descendants. Throws outside a provider." },
+                        { name: "useSidebarCollapsed()", type: "boolean | null", description: isJa ? "最も近い SidebarProvider の折りたたみ状態。プロバイダが無ければ null を返し、例外は投げません。サイドバーの内外どちらでも成立する部品向け。" : "Collapsed state of the nearest provider, or null when there is none. Does not throw, for components that are valid both inside and outside a sidebar." },
                         { name: "SidebarToggle", type: "button", description: isJa ? "サイドバー境界線上に配置する折りたたみトグル。フッターや本文のレイアウト幅を消費しません。" : "Boundary toggle for collapsing the sidebar without consuming footer or body layout space." },
                         { name: "SidebarToggle.expandLabel", type: "ReactNode", default: "\"Expand sidebar\"", description: isJa ? "折りたたみ時に表示するツールチップと aria-label。" : "Tooltip and aria-label shown when the sidebar is collapsed." },
                         { name: "SidebarToggle.collapseLabel", type: "ReactNode", default: "\"Collapse sidebar\"", description: isJa ? "展開時に表示するツールチップと aria-label。" : "Tooltip and aria-label shown when the sidebar is expanded." },

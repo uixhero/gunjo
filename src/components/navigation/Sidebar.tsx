@@ -24,6 +24,16 @@ export function useSidebar() {
     return ctx
 }
 
+/**
+ * Collapsed state of the nearest `<SidebarProvider>`, or `null` when there is
+ * none. Unlike `useSidebar`, this does not throw, so components that are valid
+ * both inside and outside a sidebar (e.g. `SidebarItem`) can follow the
+ * collapse without forcing every caller to wrap them in a provider. (#692)
+ */
+export function useSidebarCollapsed(): boolean | null {
+    return React.useContext(SidebarContext)?.collapsed ?? null
+}
+
 export interface SidebarProviderProps {
     defaultCollapsed?: boolean
     collapsed?: boolean
@@ -68,6 +78,18 @@ const SidebarProvider = ({
 }
 SidebarProvider.displayName = "SidebarProvider"
 
+/**
+ * The sidebar column. Fills the cross size of a flex or grid parent on its own
+ * (`self-stretch`), so it reaches the bottom whether the parent's height is
+ * fixed (`h-dvh`) or content-driven (`min-h-dvh`).
+ *
+ * It used to set `height:100%`, which resolves against the parent — `auto` when
+ * the parent has no definite height — and also cancels the flex stretch that
+ * would otherwise have done the right thing. The sidebar then stopped at the
+ * height of its own contents with nothing on screen to explain why. If you
+ * place it in a *block* parent, where neither stretch nor percentage height
+ * applies, give it an explicit height yourself. (#692)
+ */
 const Sidebar = React.forwardRef<
     HTMLElement,
     React.HTMLAttributes<HTMLElement>
@@ -78,7 +100,7 @@ const Sidebar = React.forwardRef<
             ref={ref}
             data-collapsed={collapsed}
             className={cn(
-                "relative flex h-full flex-col overflow-visible border-r bg-muted/40 transition-[width] duration-200",
+                "relative flex flex-col self-stretch overflow-visible border-r bg-muted/40 transition-[width] duration-200",
                 collapsed ? "w-[60px]" : "w-[240px]",
                 className
             )}
@@ -88,19 +110,26 @@ const Sidebar = React.forwardRef<
 })
 Sidebar.displayName = "Sidebar"
 
+// Header and footer follow the collapse too: at 60px the 16px side padding
+// leaves almost nothing, so they centre, tighten, and clip rather than letting
+// a brand name or account row spill past the rail. (#692)
 const SidebarHeader = React.forwardRef<
     HTMLDivElement,
     React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-    <div
-        ref={ref}
-        className={cn(
-            "flex items-center gap-2 border-b bg-background px-4 py-3",
-            className
-        )}
-        {...props}
-    />
-))
+>(({ className, ...props }, ref) => {
+    const collapsed = useSidebarCollapsed()
+    return (
+        <div
+            ref={ref}
+            className={cn(
+                "flex items-center gap-2 overflow-hidden border-b bg-background py-3",
+                collapsed ? "justify-center px-2" : "px-4",
+                className
+            )}
+            {...props}
+        />
+    )
+})
 SidebarHeader.displayName = "SidebarHeader"
 
 const SidebarBody = React.forwardRef<
@@ -132,16 +161,20 @@ SidebarBody.displayName = "SidebarBody"
 const SidebarFooter = React.forwardRef<
     HTMLDivElement,
     React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
-    <div
-        ref={ref}
-        className={cn(
-            "flex items-center gap-2 border-t bg-background px-4 py-3",
-            className
-        )}
-        {...props}
-    />
-))
+>(({ className, ...props }, ref) => {
+    const collapsed = useSidebarCollapsed()
+    return (
+        <div
+            ref={ref}
+            className={cn(
+                "flex items-center gap-2 overflow-hidden border-t bg-background py-3",
+                collapsed ? "justify-center px-2" : "px-4",
+                className
+            )}
+            {...props}
+        />
+    )
+})
 SidebarFooter.displayName = "SidebarFooter"
 
 export interface SidebarToggleProps

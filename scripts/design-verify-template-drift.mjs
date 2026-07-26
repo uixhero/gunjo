@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+import { join } from "node:path";
+
 import { ROOT } from "./design-sync/shared.mjs";
 import {
   assertAnyMatch,
@@ -53,6 +55,13 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
     mediaLibrary: "MediaLibraryTemplate.tsx",
   });
 
+  // DashboardTemplate delegates its rail to the navigation-tier Sidebar, so the
+  // width contract is verified against that component's source. (#692)
+  const { sidebar: sidebarNavigationSource } = readNamedSources(
+    join(root, "src", "components", "navigation"),
+    { sidebar: "Sidebar.tsx" }
+  );
+
   const errors = [];
 
   withRequiredVariants({
@@ -63,11 +72,13 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
     run: () => {
     const defaultVariant = dashboardTemplate.variants.find((variant) => variant?.key === "default");
     if (defaultVariant) {
+      // A dashboard scrolls inside its main column, and the rail needs a
+      // parent whose height is definite. `min-h-screen` gave neither. (#692)
       assertMatch(
         errors,
         dashboardSource,
-        /\bmin-h-screen\b/,
-        'DashboardTemplate should include "min-h-screen"'
+        /\bh-dvh\b/,
+        'DashboardTemplate should include "h-dvh"'
       );
     }
 
@@ -81,15 +92,45 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
       );
     }
 
+    // The sidebar slot used to be a fixed frame in the template, which pinned a
+    // real <Sidebar> open and hid navigation entirely below `md`. The template
+    // now composes the sidebar itself and owns a small-screen fallback, so the
+    // width contract belongs to Sidebar and is asserted against its source. (#692)
     const sidebar = dashboardTemplate.nodes?.sidebar;
-    if (sidebar?.width === 256) {
+    if (sidebar?.width === 240) {
       assertMatch(
         errors,
         dashboardSource,
-        /\bw-64\b/,
-        'DashboardTemplate sidebar should include "w-64"'
+        /<Sidebar\b/,
+        "DashboardTemplate should compose <Sidebar> rather than a fixed-width frame"
+      );
+      assertMatch(
+        errors,
+        dashboardSource,
+        /<SidebarProvider\b/,
+        "DashboardTemplate should own the <SidebarProvider> so the rail can collapse"
+      );
+      assertMatch(
+        errors,
+        sidebarNavigationSource,
+        /w-\[240px\]/,
+        'Sidebar should ship the 240px expanded rail the dashboardTemplateSidebar node specifies'
       );
     }
+
+    // Hiding the rail below `md` is only acceptable with a replacement.
+    assertMatch(
+      errors,
+      dashboardSource,
+      /<Sheet\b/,
+      "DashboardTemplate should open its navigation in a Sheet on small screens"
+    );
+    assertNoMatch(
+      errors,
+      dashboardSource,
+      /hidden[^"]*\bmd:block\b/,
+      "DashboardTemplate must not hide the nav below md without a Sheet fallback"
+    );
 
     const main = dashboardTemplate.nodes?.main;
     if (main?.fill) {
@@ -335,8 +376,28 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
     if (Array.isArray(visualPanel?.padding) && visualPanel.padding[0] === 40) {
       assertMatch(errors, authSource, /\bp-10\b/, 'AuthTemplate visual panel should include "p-10"');
     }
+    // The design source fills the brand panel with a fixed dark, so the panel
+    // must not be painted with a theme-flipping token like `foreground`.
+    // `--pure-black` / `--pure-white` are theme-invariant. (#693)
     if (visualPanel?.fill) {
-      assertMatch(errors, authSource, /\bbg-foreground\b/, 'AuthTemplate should include "bg-foreground"');
+      assertMatch(
+        errors,
+        authSource,
+        /bg-\[hsl\(var\(--pure-black\)\)\]/,
+        'AuthTemplate brand panel should include "bg-[hsl(var(--pure-black))]"'
+      );
+      assertMatch(
+        errors,
+        authSource,
+        /text-\[hsl\(var\(--pure-white\)\)\]/,
+        'AuthTemplate brand panel should include "text-[hsl(var(--pure-white))]"'
+      );
+      assertNoMatch(
+        errors,
+        authSource,
+        /\bbg-foreground\b/,
+        "AuthTemplate brand panel must not use bg-foreground — it inverts in dark mode"
+      );
     }
 
     const formPanel = authTemplate.nodes?.formPanel;

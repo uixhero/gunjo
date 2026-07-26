@@ -14,22 +14,24 @@ export function DashboardPage() {
   return (
     <DashboardTemplate
         header={
-            <div className="h-16 flex items-center px-6 border-b">
+            <div className="flex h-16 items-center px-6">
                 <div className="font-bold">Dashboard</div>
             </div>
         }
+        sidebarHeader={<div className="font-semibold">Acme</div>}
+        // Pass the rows themselves. The template supplies the provider, the
+        // collapsible rail, and the sheet that opens the same rows on phones.
         sidebar={
-            <div className="h-full py-4 bg-card border-r">
+            <>
                 <SidebarItem icon={<LayoutDashboard size={20} />} isActive={true} onClick={() => {}} id="overview" label="Overview" />
                 <SidebarItem icon={<User size={20} />} isActive={false} onClick={() => {}} id="customers" label="Customers" />
                 <SidebarItem icon={<Settings size={20} />} isActive={false} onClick={() => {}} id="settings" label="Settings" />
-            </div>
+            </>
         }
+        sidebarFooter={<div className="text-sm text-muted-foreground">hikaby</div>}
     >
-        <div className="p-8">
-            <h2 className="text-3xl font-bold">Overview</h2>
-            {/* Dashboard Content */}
-        </div>
+        <h2 className="text-3xl font-bold">Overview</h2>
+        {/* Dashboard Content */}
     </DashboardTemplate>
   )
 }`;
@@ -38,22 +40,68 @@ const propsData = [
     {
         name: "header",
         type: "React.ReactNode",
-        description: "Content for the top header section.",
+        description: "Content for the top header section. On small screens the button that opens the navigation sheet sits to its left.",
     },
     {
         name: "sidebar",
         type: "React.ReactNode",
-        description: "Content for the sidebar navigation.",
+        description: "The navigation rows themselves — normally SidebarItems. The template owns the provider, the collapsible desktop rail, and the small-screen sheet, so pass rows rather than a sidebar of your own.",
+    },
+    {
+        name: "sidebarHeader",
+        type: "React.ReactNode",
+        description: "Brand or workspace switcher, pinned above the rows.",
+    },
+    {
+        name: "sidebarFooter",
+        type: "React.ReactNode",
+        description: "Account menu or similar, pinned below the rows.",
+    },
+    {
+        name: "collapsible",
+        type: "boolean",
+        default: "true",
+        description: "Show the collapse control on the desktop rail. Collapsed rows become icon-only with their label in a tooltip.",
+    },
+    {
+        name: "defaultCollapsed",
+        type: "boolean",
+        description: "Initial collapsed state when uncontrolled.",
+    },
+    {
+        name: "collapsed",
+        type: "boolean",
+        description: "Controlled collapsed state of the desktop rail.",
+    },
+    {
+        name: "onCollapsedChange",
+        type: "(collapsed: boolean) => void",
+        description: "Called when the rail is collapsed or expanded.",
+    },
+    {
+        name: "navLabel",
+        type: "string",
+        description: "Accessible name for the nav region, its open control, and the sheet. Defaults to the active locale's wording.",
+    },
+    {
+        name: "navOpen",
+        type: "boolean",
+        description: "Controlled open state of the small-screen navigation sheet.",
+    },
+    {
+        name: "onNavOpenChange",
+        type: "(open: boolean) => void",
+        description: "Called when the navigation sheet opens or closes.",
     },
     {
         name: "children",
         type: "React.ReactNode",
-        description: "The main content area of the dashboard.",
+        description: "The main content area of the dashboard. It scrolls independently; the shell itself is viewport height.",
     },
     {
         name: "className",
         type: "string",
-        description: "Additional classes for the root container.",
+        description: "Additional classes for the root container. Override the height here when embedding the template in a fixed-size box.",
     }
 ];
 
