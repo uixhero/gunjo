@@ -23,7 +23,7 @@ export const contentJa: Record<string, DocContent> = {
     description: "データ密度の高いアプリ向けの SSOT 駆動 React + Tailwind デザインシステム。200+ コンポーネントを Pen / source / docs の3軸で検証。",
     body: `GunjoUI は単一のソース・オブ・トゥルースを起点に構築されています。デザイントークンとコンポーネントバリアントは \`.pen\` デザインファイルを元に TypeScript 実装、仕様 JSON、ドキュメント登録へ同期され、すべてのプリミティブが Pen / source / docs の3軸で検証されます。ページ全体を \`.pen\` から完全自動生成するのではなく、設計データと実装・ドキュメントのずれを同期と検証で抑える仕組みです。
 
-アクセシビリティのために **Radix UI** を、スタイリングに **Tailwind CSS** を採用。npm パッケージ **\`@gunjo/ui\`** として配布（現在 beta = \`0.1.0-beta.1\`、1.0 stable 前は API が変更される可能性あり）。
+アクセシビリティのために **Radix UI** を、スタイリングに **Tailwind CSS** を採用。npm パッケージ **\`@gunjo/ui\`** として配布（現在 beta = \`0.1.0-beta.2\`、1.0 stable 前は API が変更される可能性あり）。
 
 ### 採用モード
 
@@ -148,7 +148,7 @@ export default function Page() {
 
 ### Server Component から使う場合（Next.js App Router / RSC）
 
-npm 版 \`@gunjo/ui@0.1.0-beta.1\` を Next.js 16（Turbopack）の Server Component（\`layout.tsx\` / \`page.tsx\` など）から \`import { X } from "@gunjo/ui"\` の形（バレル import）で使うと、\`next build\` が次のエラーで失敗します：
+npm 版 \`@gunjo/ui@0.1.0-beta.2\`（それ以前の beta も同様）を Next.js 16（Turbopack）の Server Component（\`layout.tsx\` / \`page.tsx\` など）から \`import { X } from "@gunjo/ui"\` の形（バレル import）で使うと、\`next build\` が次のエラーで失敗します：
 
 \`\`\`
 TypeError: createContext is not a function
@@ -327,7 +327,7 @@ https://www.gunjo.jp/starter.html
 
 tokens.css / patterns.css が持つのは**トークンと見た目（色・角丸・影・モーション・基本パターンの CSS）**だけです。コンポーネントの実装（アクセシビリティ対応、キーボード操作、状態管理）は含まれません。tabs のパネル切替のような挙動には別途 JavaScript が要ります（starter.html に最小例あり）。npm が使える環境では [\`@gunjo/ui\` 本体のインストール](/docs/installation) を使ってください。
 
-なお、npm はあるが Tailwind は使わないプロジェクトでは、同じ tokens.css / patterns.css をパッケージの subpath（\`@gunjo/ui/tokens.css\` / \`@gunjo/ui/patterns.css\`）として import できます（\`0.1.0-beta.1\` には未収録・次回リリース以降）。詳細は [採用ガイド](/docs/adoption) を参照してください。`,
+なお、npm はあるが Tailwind は使わないプロジェクトでは、同じ tokens.css / patterns.css をパッケージの subpath（\`@gunjo/ui/tokens.css\` / \`@gunjo/ui/patterns.css\`）として import できます（\`0.1.0-beta.2\` から収録）。詳細は [採用ガイド](/docs/adoption) を参照してください。`,
   },
   theming: {
     title: "テーマ",
