@@ -3,6 +3,7 @@
 import * as React from "react";
 import Link from "next/link";
 import { track } from "@vercel/analytics";
+import { sendGTMEvent } from "@next/third-parties/google";
 import { IconArrowLeft, IconCircleCheckFilled, IconMailCheck } from "@tabler/icons-react";
 import {
     Form,
@@ -93,6 +94,17 @@ export function PackForm({ industries, coldTestCount, returnPath }: PackFormProp
             if (!res.ok) throw new Error(`status ${res.status}`);
             // Submit count + a coarse breakdown (no email — just the survey axes).
             track("pack_registered", { purpose, industry, role });
+            // Same moment, different destination: GA4 via GTM. This site loads GA4
+            // through <GoogleTagManager> only (no gtag.js), so the event has to be an
+            // object-shaped dataLayer.push — a gtag() call would go nowhere.
+            // Category values only; never the email, name, or the free-text trouble field.
+            sendGTMEvent({
+                event: "pack_register",
+                form_location: "/pack",
+                industry,
+                purpose,
+                role,
+            });
             setStatus("success");
         } catch {
             setStatus("error");
