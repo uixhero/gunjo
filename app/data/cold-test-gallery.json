@@ -1,7 +1,7 @@
 {
   "generatedFrom": "promotion/cold-test-screens/README.md + zenn-yattemita-*.md",
   "generator": "scripts/build-coldtest-gallery.mjs",
-  "count": 174,
+  "count": 175,
   "crystallizedCount": 71,
   "categories": [
     "基盤UI・汎用",
@@ -3325,6 +3325,25 @@
       "article": {
         "file": "zenn-yattemita-177-progress-billing.md",
         "slug": "177-progress-billing"
+      },
+      "shots": {
+        "desktop": true,
+        "mobile": true,
+        "en.desktop": false,
+        "en.mobile": false
+      }
+    },
+    {
+      "round": 178,
+      "route": "/owner-portal",
+      "slug": "owner-portal",
+      "score": "4/5",
+      "category": "建設・建築",
+      "title": "AI に施主ポータルを作らせてみた：事業者向けにそろったコンポーネントは、消費者向けの温かい画面では少し硬かった（やってみた #178）",
+      "summary": "予備知識ゼロの AI に、公開されている npm パッケージと gunjo.jp の docs だけを渡して組ませました。`tsc` は緑、スマホを主に据えた作りです。",
+      "article": {
+        "file": "zenn-yattemita-178-owner-portal.md",
+        "slug": "178-owner-portal"
       },
       "shots": {
         "desktop": true,
