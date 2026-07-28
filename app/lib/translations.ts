@@ -1930,6 +1930,7 @@ export const translations: Record<
       ApprovalSteps: "承認ステップ",
       ApprovalWorkflow: "承認ワークフロー",
       CheckList: "チェックリスト",
+      CommentThread: "コメントスレッド",
       EventCalendar: "月間カレンダー",
       KanbanBoard: "カンバンボード",
       WeekView: "週間カレンダー",

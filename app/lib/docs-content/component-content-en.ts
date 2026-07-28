@@ -41,6 +41,10 @@ export const componentContentEn: Record<string, DocContent> = {
     title: "CheckList",
     description: "A confirmable list with checkable rows, display rows, trailing status, and disabled feedback.",
   },
+  "components/comment-thread": {
+    title: "CommentThread",
+    description: "A business comment thread: chronological posts with the author's side, hanging replies and a per-comment resolved state.",
+  },
   "components/company-cell": {
     title: "CompanyCell",
     description: "An identity cell for companies or programs with a logo or generated initial tile and secondary metadata.",

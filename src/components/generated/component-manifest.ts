@@ -1098,6 +1098,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "commentThread": {
+      "title": "CommentThread",
+      "description": "A business comment thread: chronological posts carrying the author AND the side they speak for (requesting department / legal, client / site supervisor), hanging replies, and a per-comment resolved-or-open state with a toggle. Every post is a real heading so screen-reader users can move between posts; both parties render in one chronological column rather than left/right bubbles, because neither side is 'the user'. For clause comments on a contract under review, a requesting department talking to legal on a matter, review notes on a submission and internal notes on a ticket. (Not ChatMessage/ChatPanel — those model a conversation with an AI assistant and carry no replies, resolution or affiliation.)",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/CommentThread.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "companyCell": {
       "title": "CompanyCell",
       "description": "The organization / entity identity cell: a SQUARE logo tile (or an initial fallback) + name + a secondary line (業種 / 所在地 / 制度区分). The org analogue of PersonCell (a ROUND avatar + person name) — use this for companies, programs, vendors, accounts, any non-person entity, so a card or a MatchCard side isn't forced into a person's avatar/presence model. name + secondary?/logo?/size?. RSC-safe.",
