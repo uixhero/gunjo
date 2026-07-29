@@ -1,0 +1,145 @@
+import * as React from "react";
+import type { Metadata } from "next";
+import { notFound } from "next/navigation";
+import gallery from "@/data/cold-test-gallery.json";
+import { ColdTestShell } from "@/cold-tests/[round]/ColdTestShell";
+import { RoundDetailView } from "@/cold-tests/[round]/RoundDetailView";
+import type { SidebarRound } from "@/cold-tests/[round]/RoundsSidebar";
+import { listEnRounds, readEnRound, readMergedEnRound } from "@/lib/cold-test-en";
+import { EN_COLD_TEST_BASE, JA_COLD_TEST_BASE } from "@/lib/cold-test-paths";
+
+const SITE_URL = (
+    process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.gunjo.jp"
+).replace(/\/$/, "");
+
+interface GalleryShape {
+    entries: {
+        round: number;
+        slug: string;
+        score: string;
+        category: string;
+        shots: { desktop: boolean };
+    }[];
+    categories: string[];
+}
+
+const galleryData = gallery as GalleryShape;
+
+// Only translated rounds get an English page. A round with no translation is
+// simply absent from /en rather than rendered as English chrome wrapped around
+// a Japanese write-up.
+export function generateStaticParams() {
+    return listEnRounds().map((round) => ({ round: String(round) }));
+}
+
+export async function generateMetadata({
+    params,
+}: {
+    params: Promise<{ round: string }>;
+}): Promise<Metadata> {
+    const { round: roundStr } = await params;
+    const round = parseInt(roundStr, 10);
+    const detail = Number.isFinite(round) ? readMergedEnRound(round) : null;
+    if (!detail) return { title: "Round not found — GunjoUI cold tests" };
+    const title = `#${detail.round} ${detail.title} — GunjoUI cold tests`;
+    const description = detail.summary || detail.title;
+    const url = `${SITE_URL}${EN_COLD_TEST_BASE}/${detail.round}`;
+    const jaUrl = `${SITE_URL}${JA_COLD_TEST_BASE}/${detail.round}`;
+    const ogImage = detail.shots.desktop
+        ? `${SITE_URL}/cold-test-shots/${detail.slug}.desktop.lg.webp`
+        : undefined;
+    return {
+        title,
+        description,
+        alternates: {
+            canonical: url,
+            // The Japanese round is the original, so it stays x-default.
+            languages: { en: url, ja: jaUrl, "x-default": jaUrl },
+        },
+        openGraph: {
+            title,
+            description,
+            url,
+            type: "article",
+            siteName: "GunjoUI",
+            locale: "en",
+            images: ogImage ? [ogImage] : undefined,
+        },
+        twitter: {
+            card: ogImage ? "summary_large_image" : "summary",
+            title,
+            description,
+            images: ogImage ? [ogImage] : undefined,
+        },
+    };
+}
+
+export default async function EnColdTestRoundPage({
+    params,
+}: {
+    params: Promise<{ round: string }>;
+}) {
+    const { round: roundStr } = await params;
+    const round = parseInt(roundStr, 10);
+    if (!Number.isFinite(round)) notFound();
+    const detail = readMergedEnRound(round);
+    if (!detail) notFound();
+
+    // The sidebar and the pager stay inside the translated set, so every link
+    // out of an English page lands on another English page.
+    const enRounds = listEnRounds();
+    const enTitles = new Map(
+        enRounds.map((n) => [n, readEnRound(n)?.title ?? String(n)])
+    );
+    const galleryByRound = new Map(galleryData.entries.map((e) => [e.round, e]));
+
+    const sidebarRounds: SidebarRound[] = enRounds.flatMap((n) => {
+        const entry = galleryByRound.get(n);
+        if (!entry) return [];
+        return [
+            {
+                round: n,
+                title: enTitles.get(n) ?? "",
+                score: entry.score,
+                category: entry.category,
+            },
+        ];
+    });
+    const sidebarCategories = galleryData.categories.filter((c) =>
+        sidebarRounds.some((r) => r.category === c)
+    );
+
+    const idx = enRounds.indexOf(round);
+    const prev = idx > 0 ? enRounds[idx - 1] : null;
+    const next = idx >= 0 && idx < enRounds.length - 1 ? enRounds[idx + 1] : null;
+
+    const toPagerItem = (n: number | null) => {
+        if (n === null) return null;
+        const entry = galleryByRound.get(n);
+        if (!entry) return null;
+        return {
+            round: n,
+            href: `${EN_COLD_TEST_BASE}/${n}`,
+            title: enTitles.get(n) ?? "",
+            category: entry.category,
+            thumbnailSrc: entry.shots.desktop
+                ? `/cold-test-shots/${entry.slug}.desktop.webp`
+                : undefined,
+        };
+    };
+
+    return (
+        <ColdTestShell
+            rounds={sidebarRounds}
+            categories={sidebarCategories}
+            current={round}
+        >
+            <RoundDetailView
+                detail={detail}
+                previous={toPagerItem(prev)}
+                next={toPagerItem(next)}
+                translationHref={`${JA_COLD_TEST_BASE}/${round}`}
+            />
+        </ColdTestShell>
+    );
+}

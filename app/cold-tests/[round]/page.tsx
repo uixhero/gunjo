@@ -1,14 +1,13 @@
 import * as React from "react";
-import fs from "node:fs";
-import path from "node:path";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import gallery from "@/data/cold-test-gallery.json";
 import { ColdTestShell } from "./ColdTestShell";
-import { RoundDetailView, type RoundDetail } from "./RoundDetailView";
+import { RoundDetailView } from "./RoundDetailView";
 import type { SidebarRound } from "./RoundsSidebar";
+import { hasEnRound, readJaRound } from "@/lib/cold-test-en";
+import { EN_COLD_TEST_BASE, JA_COLD_TEST_BASE } from "@/lib/cold-test-paths";
 
-const ROUND_DIR = path.join(process.cwd(), "app", "data", "cold-test-rounds");
 const SITE_URL = (
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.gunjo.jp"
 ).replace(/\/$/, "");
@@ -42,18 +41,28 @@ export async function generateMetadata({
 }): Promise<Metadata> {
     const { round: roundStr } = await params;
     const round = parseInt(roundStr, 10);
-    const detail = Number.isFinite(round) ? readRound(round) : null;
+    const detail = Number.isFinite(round) ? readJaRound(round) : null;
     if (!detail) return { title: "Round not found — GunjoUI cold tests" };
     const title = `#${detail.round} ${detail.title} — GunjoUI cold tests`;
     const description = detail.summary || detail.title;
-    const url = `${SITE_URL}/cold-tests/${detail.round}`;
+    const url = `${SITE_URL}${JA_COLD_TEST_BASE}/${detail.round}`;
+    const enUrl = hasEnRound(detail.round)
+        ? `${SITE_URL}${EN_COLD_TEST_BASE}/${detail.round}`
+        : null;
     const ogImage = detail.shots.desktop
         ? `${SITE_URL}/cold-test-shots/${detail.slug}.desktop.lg.webp`
         : undefined;
     return {
         title,
         description,
-        alternates: { canonical: url },
+        alternates: {
+            canonical: url,
+            // Only advertise the English page once a translation is actually
+            // publishable, so hreflang never points at a 404.
+            languages: enUrl
+                ? { ja: url, en: enUrl, "x-default": url }
+                : undefined,
+        },
         openGraph: {
             title,
             description,
@@ -71,12 +80,6 @@ export async function generateMetadata({
     };
 }
 
-function readRound(round: number): RoundDetail | null {
-    const file = path.join(ROUND_DIR, `${round}.json`);
-    if (!fs.existsSync(file)) return null;
-    return JSON.parse(fs.readFileSync(file, "utf8")) as RoundDetail;
-}
-
 export default async function ColdTestRoundPage({
     params,
 }: {
@@ -85,7 +88,7 @@ export default async function ColdTestRoundPage({
     const { round: roundStr } = await params;
     const round = parseInt(roundStr, 10);
     if (!Number.isFinite(round)) notFound();
-    const detail = readRound(round);
+    const detail = readJaRound(round);
     if (!detail) notFound();
 
     // Sidebar data: derive once from the full gallery (170 rounds).
@@ -130,6 +133,9 @@ export default async function ColdTestRoundPage({
                 detail={detail}
                 previous={toPagerItem(prev)}
                 next={toPagerItem(next)}
+                translationHref={
+                    hasEnRound(round) ? `${EN_COLD_TEST_BASE}/${round}` : undefined
+                }
             />
         </ColdTestShell>
     );

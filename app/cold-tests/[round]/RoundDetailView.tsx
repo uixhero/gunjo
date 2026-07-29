@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import {
     IconArrowUpRight as ArrowUpRight,
     IconAlertCircle as AlertCircle,
@@ -32,6 +33,7 @@ import type { AssetCardAsset } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { PackCta } from "@/components/pack/PackCta";
 import { LocalNav } from "@/components/layout/TableOfContents";
+import { EN_COLD_TEST_BASE, coldTestBaseFor } from "@/lib/cold-test-paths";
 import categoriesData from "@/data/cold-test-categories.json";
 
 const CATEGORY_SLUG_MAP = (categoriesData as { slugMap: Record<string, string> })
@@ -104,14 +106,24 @@ export function RoundDetailView({
     detail,
     previous,
     next,
+    translationHref,
 }: {
     detail: RoundDetail;
     previous: PagerNeighbour | null;
     next: PagerNeighbour | null;
+    /**
+     * The same round in the other language. Present on a Japanese round once a
+     * reviewed English translation exists, and always present on an English
+     * round (the Japanese original is the source and never goes away).
+     */
+    translationHref?: string;
 }) {
     const { pages } = useLocale();
     const t = pages.coldTests;
     const td = t.detail;
+    const pathname = usePathname();
+    const base = coldTestBaseFor(pathname);
+    const isEnglish = base === EN_COLD_TEST_BASE;
 
     // Inline preview uses the .lg tier (retina-sharp at the detail page's
     // display width); the lightbox opens .full (cwebp of the original
@@ -177,7 +189,7 @@ export function RoundDetailView({
                 <BreadcrumbList>
                     <BreadcrumbItem>
                         <BreadcrumbLink asChild>
-                            <Link href="/cold-tests">{t.label}</Link>
+                            <Link href={base}>{t.label}</Link>
                         </BreadcrumbLink>
                     </BreadcrumbItem>
                     <BreadcrumbSeparator />
@@ -186,12 +198,15 @@ export function RoundDetailView({
                             {/* Category crumb routes to the industry door page
                                 once a slug is registered. The slugMap covers
                                 all 20 categories; legacy ?cat= grid filter is
-                                kept only as a fallback for an unknown name. */}
+                                kept only as a fallback for an unknown name.
+                                The door pages have no English version yet, so
+                                the English tree always uses the filtered grid
+                                rather than crossing back into Japanese. */}
                             <Link
                                 href={
-                                    CATEGORY_SLUG_MAP[detail.category]
-                                        ? `/cold-tests/categories/${CATEGORY_SLUG_MAP[detail.category]}`
-                                        : `/cold-tests?cat=${encodeURIComponent(detail.category)}`
+                                    !isEnglish && CATEGORY_SLUG_MAP[detail.category]
+                                        ? `${base}/categories/${CATEGORY_SLUG_MAP[detail.category]}`
+                                        : `${base}?cat=${encodeURIComponent(detail.category)}`
                                 }
                             >
                                 {t.categories[detail.category] ?? detail.category}
@@ -229,6 +244,21 @@ export function RoundDetailView({
                 <div className="text-sm text-muted-foreground">
                     {td.routeLabel}: <code className="font-mono text-foreground">{detail.route}</code>
                 </div>
+                {/* Cross-language link. Each label is written in the language it
+                    leads to, so a reader who cannot read the current page can
+                    still recognise the way out. */}
+                {translationHref && (
+                    <div>
+                        <Link
+                            href={translationHref}
+                            hrefLang={isEnglish ? "ja" : "en"}
+                            className="inline-flex items-center gap-1 text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        >
+                            {isEnglish ? "日本語で読む" : "Read this round in English"}
+                            <ArrowUpRight className="h-3.5 w-3.5" />
+                        </Link>
+                    </div>
+                )}
                 {/* In-page section nav. Auto-discovers h2/h3 in the main column
                     (previews / 解説記事 / 使用部品 / cold AI が組み上げた実コード
                     + every h2/h3 inside the article markdown) and renders the
@@ -296,6 +326,16 @@ export function RoundDetailView({
                         </figure>
                     )}
                 </section>
+            )}
+
+            {/* The screenshots stay in Japanese on the English pages too. Each
+                round is a real screen for a real Japanese industry, and a
+                translated capture would be a rebuilt screen rather than the one
+                the agent actually produced. */}
+            {isEnglish && (desktopInlineSrc || mobileInlineSrc) && (
+                <p className="-mt-6 text-xs leading-5 text-muted-foreground">
+                    {td.screenshotLanguageNote}
+                </p>
             )}
 
             <MediaLightbox

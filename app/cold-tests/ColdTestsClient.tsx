@@ -18,7 +18,7 @@ import { PackCta } from "@/components/pack/PackCta";
 import gallery from "@/data/cold-test-gallery.json";
 import { PreviewThumb } from "./PreviewThumb";
 
-interface ColdTestEntry {
+export interface ColdTestEntry {
     round: number;
     route: string;
     slug: string;
@@ -43,22 +43,44 @@ interface ColdTestGallery {
 
 const data = gallery as ColdTestGallery;
 
+export interface ColdTestsClientProps {
+    /** Defaults to the full Japanese gallery. `/en/cold-tests` passes the
+     *  translated subset. */
+    entries?: ColdTestEntry[];
+    /** Route prefix for the cards, so the English grid links into /en. */
+    basePath?: string;
+    heading?: string;
+    subtitle?: string;
+    /** The methodology page is Japanese only, so the English grid hides it. */
+    showWhyLink?: boolean;
+    /** Extra link under the header, used by the English grid to point at the
+     *  full Japanese gallery. */
+    secondaryLink?: { href: string; label: string };
+}
+
 // Next.js requires useSearchParams() consumers to sit inside a Suspense
 // boundary so the static prerender can bail out of the dynamic branch — wrap
 // the grid component instead of marking the whole page dynamic.
-export function ColdTestsClient() {
+export function ColdTestsClient(props: ColdTestsClientProps = {}) {
     return (
         <React.Suspense fallback={null}>
-            <ColdTestsGrid />
+            <ColdTestsGrid {...props} />
         </React.Suspense>
     );
 }
 
-function ColdTestsGrid() {
+function ColdTestsGrid({
+    entries: entriesProp,
+    basePath = "/cold-tests",
+    heading,
+    subtitle,
+    showWhyLink = true,
+    secondaryLink,
+}: ColdTestsClientProps) {
     const { pages } = useLocale();
     const t = pages.coldTests;
 
-    const entries = React.useMemo(() => data.entries, []);
+    const entries = React.useMemo(() => entriesProp ?? data.entries, [entriesProp]);
     const categories = React.useMemo(() => data.categories, []);
 
     // `/cold-tests?cat=<category>` lands pre-filtered to that industry — the
@@ -113,19 +135,30 @@ function ColdTestsGrid() {
                     </span>
                 </div>
                 <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
-                    {t.heading(entries.length)}
+                    {heading ?? t.heading(entries.length)}
                 </h1>
                 <p className="max-w-2xl text-lg text-muted-foreground">
-                    {t.subtitle(entries.length)}
+                    {subtitle ?? t.subtitle(entries.length)}
                 </p>
-                <div>
-                    <Link
-                        href="/cold-tests/why"
-                        className="inline-flex items-center gap-1 text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
-                    >
-                        {t.whyLink}
-                        <ArrowUpRight className="h-3.5 w-3.5" />
-                    </Link>
+                <div className="flex flex-wrap items-center gap-x-5 gap-y-2">
+                    {showWhyLink && (
+                        <Link
+                            href="/cold-tests/why"
+                            className="inline-flex items-center gap-1 text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        >
+                            {t.whyLink}
+                            <ArrowUpRight className="h-3.5 w-3.5" />
+                        </Link>
+                    )}
+                    {secondaryLink && (
+                        <Link
+                            href={secondaryLink.href}
+                            className="inline-flex items-center gap-1 text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        >
+                            {secondaryLink.label}
+                            <ArrowUpRight className="h-3.5 w-3.5" />
+                        </Link>
+                    )}
                 </div>
             </header>
 
@@ -187,7 +220,7 @@ function ColdTestsGrid() {
                     {filtered.map((entry) => (
                         <Link
                             key={entry.round}
-                            href={`/cold-tests/${entry.round}`}
+                            href={`${basePath}/${entry.round}`}
                             aria-label={t.openDetailLabel(entry.round)}
                             className="group block focus-visible:outline-none"
                         >
