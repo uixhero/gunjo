@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import gallery from "@/data/cold-test-gallery.json";
 import { ColdTestsClient } from "./ColdTestsClient";
+import { EN_COLD_TEST_BASE } from "@/lib/cold-test-paths";
+import { listEnRounds } from "@/lib/cold-test-en";
 
 const SITE_URL = (
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.gunjo.jp"
@@ -24,7 +26,16 @@ const DESCRIPTION = `予備知識ゼロの AI に gunjo/ui だけを渡して組
 export const metadata: Metadata = {
     title: TITLE,
     description: DESCRIPTION,
-    alternates: { canonical: URL },
+    alternates: {
+        canonical: URL,
+        // The Japanese gallery is the complete record, so it stays x-default
+        // even though only part of it exists in English. The English grid is
+        // only advertised once something has actually been translated into it.
+        languages:
+            listEnRounds().length > 0
+                ? { ja: URL, en: `${SITE_URL}${EN_COLD_TEST_BASE}`, "x-default": URL }
+                : undefined,
+    },
     openGraph: {
         title: TITLE,
         description: DESCRIPTION,

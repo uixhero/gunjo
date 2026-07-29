@@ -312,6 +312,9 @@ export type ColdTestsPageStrings = {
     desktopPreview: string;
     mobilePreview: string;
     mobilePreviewHint: string;
+    // Shown on the English round pages only: the captures stay Japanese
+    // because they are the real screens the agent built.
+    screenshotLanguageNote: string;
     openLightboxLabel: (which: string) => string;
     article: string;
     sourceCode: string;
@@ -349,6 +352,14 @@ export type ColdTestsPageStrings = {
     allRoundsHeading: (label: string) => string;
     allRoundsIntro: (count: number, label: string) => string;
     backToGallery: string;
+  };
+  // `/en/cold-tests` — the English index. It lists only the rounds that have
+  // been translated, so it needs its own heading and a plain statement of how
+  // much of the series is available in English so far.
+  enIndex: {
+    heading: string;
+    subtitle: (available: number, total: number) => string;
+    jaGalleryLink: string;
   };
   whyLink: string;
 };
@@ -675,6 +686,8 @@ export const translations: Record<
           desktopPreview: "Desktop preview",
           mobilePreview: "Mobile preview",
           mobilePreviewHint: "Captured at 375px viewport. Long pages scroll inside the frame.",
+          screenshotLanguageNote:
+            "The screenshots stay in Japanese. Every round is a real screen for a real Japanese industry, and re-rendering it in English would show you a screen we rebuilt rather than the one the agent actually produced.",
           openLightboxLabel: (which) => `Open ${which.toLowerCase()} at full size`,
           article: "Write-up",
           sourceCode: "Source built by the cold agent",
@@ -714,6 +727,12 @@ export const translations: Record<
           allRoundsIntro: (count, label) =>
             `Every ${label} round in chronological order — ${count} screens, each with the AI's source, write-up, and a desktop/mobile preview.`,
           backToGallery: "Back to all rounds",
+        },
+        enIndex: {
+          heading: "Cold tests, in English.",
+          subtitle: (available, total) =>
+            `English translations so far: ${available} of ${total} rounds. The rest are Japanese only, and the full gallery has all of them.`,
+          jaGalleryLink: "See all rounds (Japanese)",
         },
         whyLink: "Why cold tests",
       },
@@ -1342,6 +1361,8 @@ export const translations: Record<
           desktopPreview: "デスクトップ表示",
           mobilePreview: "モバイル表示",
           mobilePreviewHint: "375px のビューポートで撮影。縦長のページはフレーム内をスクロールします。",
+          screenshotLanguageNote:
+            "スクリーンショットは日本語のままです。各ラウンドは実在する日本の業種の画面で、英語で組み直したものを見せると、AI が実際に作った画面ではなくなってしまうためです。",
           openLightboxLabel: (which) => `${which} を原寸で開く`,
           article: "解説記事",
           sourceCode: "cold AI が組み上げた実コード",
@@ -1381,6 +1402,12 @@ export const translations: Record<
           allRoundsIntro: (count, label) =>
             `${label} カテゴリの ${count} 画面を、ラウンド順に並べています。各カードから cold AI が組んだソース、解説記事、デスクトップ／モバイルのプレビューに飛べます。`,
           backToGallery: "カタログ全体に戻る",
+        },
+        enIndex: {
+          heading: "コールドテスト（英語版）",
+          subtitle: (available, total) =>
+            `全 ${total} ラウンドのうち ${available} 本を英訳済みです。残りは日本語のみで、全ラウンドはカタログから見られます。`,
+          jaGalleryLink: "全ラウンドを見る（日本語）",
         },
         whyLink: "なぜコールドテストするか",
       },

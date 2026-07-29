@@ -12,10 +12,10 @@ interface PreviewThumbProps {
     unavailableLabel: string;
 }
 
-// Card-sized desktop screenshot used by both the cold-test grid and the
-// industry door pages. Prefers the localized shot when the viewer is on EN
-// and `<slug>.en.desktop.webp` exists; otherwise falls back to the JA shot
-// (the series is JA-first and most rounds only have JA screenshots).
+// Card-sized desktop screenshot used by the cold-test grid, the industry door
+// pages and the English grid. Prefers the localized shot when the viewer is on
+// EN and `<slug>.en.desktop.webp` exists, and falls back to the JA shot both
+// when no English capture is recorded and when the recorded one fails to load.
 export function PreviewThumb({
     slug,
     desktopAvailable,
@@ -28,11 +28,11 @@ export function PreviewThumb({
     const [loaded, setLoaded] = React.useState(false);
     const [errored, setErrored] = React.useState(false);
 
-    const useEn = locale === "en" && enDesktopAvailable;
+    const jaSrc = `/cold-test-shots/${slug}.desktop.webp`;
+    const [fellBackToJa, setFellBackToJa] = React.useState(false);
+    const useEn = locale === "en" && enDesktopAvailable && !fellBackToJa;
     const available = useEn || desktopAvailable;
-    const src = useEn
-        ? `/cold-test-shots/${slug}.en.desktop.webp`
-        : `/cold-test-shots/${slug}.desktop.webp`;
+    const src = useEn ? `/cold-test-shots/${slug}.en.desktop.webp` : jaSrc;
 
     React.useEffect(() => {
         setLoaded(false);
@@ -44,6 +44,19 @@ export function PreviewThumb({
             else setErrored(true);
         }
     }, [src]);
+
+    // The `en.desktop` flags are snapshotted from the local promotion/ folder,
+    // which holds PNGs that were never converted into public/cold-test-shots.
+    // 29 rounds therefore claim an English capture that 404s. Fall back to the
+    // Japanese shot instead of showing "preview unavailable" over a screenshot
+    // that exists.
+    const handleError = () => {
+        if (useEn) {
+            setFellBackToJa(true);
+            return;
+        }
+        setErrored(true);
+    };
 
     if (!available) {
         return (
@@ -69,7 +82,7 @@ export function PreviewThumb({
                     src={src}
                     alt={`${title} preview`}
                     onLoad={() => setLoaded(true)}
-                    onError={() => setErrored(true)}
+                    onError={handleError}
                     loading="lazy"
                     decoding="async"
                     className={cn(

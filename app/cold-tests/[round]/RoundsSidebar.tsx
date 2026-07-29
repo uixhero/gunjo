@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import {
     SidebarProvider,
     Sidebar,
@@ -12,6 +12,7 @@ import {
     TextLink,
 } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { coldTestBaseFor } from "@/lib/cold-test-paths";
 
 export interface SidebarRound {
     round: number;
@@ -35,8 +36,11 @@ export function RoundsSidebar({
     current: number;
 }) {
     const router = useRouter();
+    const pathname = usePathname();
     const { pages } = useLocale();
     const t = pages.coldTests;
+    // Keep the sidebar inside the language tree the reader is already in.
+    const base = coldTestBaseFor(pathname);
 
     const currentCat = rounds.find((r) => r.round === current)?.category;
 
@@ -79,7 +83,7 @@ export function RoundsSidebar({
             <Sidebar className="h-full w-full">
                 <SidebarHeader className="flex-col items-stretch gap-2">
                     <TextLink
-                        href="/cold-tests"
+                        href={base}
                         variant="muted"
                         className="text-sm font-semibold no-underline hover:underline"
                     >
@@ -134,7 +138,7 @@ export function RoundsSidebar({
                                                     count={scoreNum(r.score)}
                                                     countLabel={(n) => t.sidebar.scoreLabel(n)}
                                                     isActive={r.round === current}
-                                                    onClick={() => router.push(`/cold-tests/${r.round}`)}
+                                                    onClick={() => router.push(`${base}/${r.round}`)}
                                                 />
                                             </div>
                                         ))}

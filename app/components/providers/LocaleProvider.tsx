@@ -1,9 +1,11 @@
 "use client";
 
 import * as React from "react";
+import { usePathname } from "next/navigation";
 import { type Locale, type HomeTranslations, type IntroTranslations, type HeaderKey, type TooltipKey, type PagesTranslations, type ThemeSwitcherStrings, type StabilityBadgeStrings, translations, getBilingualTitle } from "@/lib/translations";
 import { getSectionLabels } from "@/lib/docs-content";
 import type { SectionLabels } from "@/lib/docs-content";
+import { isEnRoute } from "@/lib/cold-test-paths";
 
 const STORAGE_KEY = "gunjo-docs-locale";
 
@@ -38,12 +40,18 @@ type LocaleContextValue = {
 const LocaleContext = React.createContext<LocaleContextValue | null>(null);
 
 export function LocaleProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocaleState] = React.useState<Locale>("ja");
-  const [mounted, setMounted] = React.useState(false);
+  const [storedLocale, setLocaleState] = React.useState<Locale>("ja");
+
+  // Routes under /en carry English content that was rendered on the server,
+  // so the locale there is a property of the URL, not of the visitor's toggle
+  // state. Pinning it here means the server render and the first paint are
+  // already English (the stored preference only ever drives the JA tree, where
+  // the toggle localizes chrome).
+  const pathname = usePathname();
+  const locale: Locale = isEnRoute(pathname) ? "en" : storedLocale;
 
   React.useEffect(() => {
     setLocaleState(getStoredLocale());
-    setMounted(true);
   }, []);
 
   const setLocale = React.useCallback((next: Locale) => {
@@ -59,9 +67,8 @@ export function LocaleProvider({ children }: { children: React.ReactNode }) {
   }, []);
 
   React.useEffect(() => {
-    if (!mounted) return;
     document.documentElement.lang = locale === "ja" ? "ja" : "en";
-  }, [locale, mounted]);
+  }, [locale]);
 
   const t = React.useCallback(
     (key: string) => translations[locale].nav[key] ?? key,

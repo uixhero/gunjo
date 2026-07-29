@@ -3,6 +3,8 @@ import { navigation } from "@/lib/navigation";
 import { PATTERNS, isPublicPatternSlug } from "@/lib/patterns";
 import coldTestGallery from "@/data/cold-test-gallery.json";
 import coldTestCategories from "@/data/cold-test-categories.json";
+import { listEnRounds } from "@/lib/cold-test-en";
+import { EN_COLD_TEST_BASE } from "@/lib/cold-test-paths";
 
 interface ColdTestGalleryShape {
     entries: { round: number }[];
@@ -64,6 +66,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     // as thin content in Search Console.
     for (const cat of (coldTestCategories as ColdTestCategoriesShape).published) {
         paths.add(`/cold-tests/categories/${cat.slug}`);
+    }
+
+    // English cold-test pages. Only rounds with a publishable translation are
+    // listed, which in production means `status: "reviewed"` — a draft
+    // translation never reaches the sitemap.
+    const enRounds = listEnRounds();
+    if (enRounds.length > 0) {
+        paths.add(EN_COLD_TEST_BASE);
+        for (const round of enRounds) {
+            paths.add(`${EN_COLD_TEST_BASE}/${round}`);
+        }
     }
 
     const lastModified = new Date();
