@@ -1,7 +1,7 @@
 {
   "generatedFrom": "promotion/cold-test-screens/README.md + zenn-yattemita-*.md",
   "generator": "scripts/build-coldtest-gallery.mjs",
-  "count": 175,
+  "count": 177,
   "crystallizedCount": 71,
   "categories": [
     "基盤UI・汎用",
@@ -24,7 +24,8 @@
     "運輸：バス",
     "運輸：タクシー",
     "運輸：トラック",
-    "建設・建築"
+    "建設・建築",
+    "法務・リーガル"
   ],
   "entries": [
     {
@@ -3344,6 +3345,44 @@
       "article": {
         "file": "zenn-yattemita-178-owner-portal.md",
         "slug": "178-owner-portal"
+      },
+      "shots": {
+        "desktop": true,
+        "mobile": true,
+        "en.desktop": false,
+        "en.mobile": false
+      }
+    },
+    {
+      "round": 179,
+      "route": "/contract-review",
+      "slug": "contract-review",
+      "score": "3.5/5",
+      "category": "法務・リーガル",
+      "title": "AI に契約審査を作らせてみた：表と数字にはそろっていたコンポーネントが、文章を見比べるところで無かった（やってみた #179）",
+      "summary": "予備知識ゼロの AI に、公開されている npm パッケージと gunjo.jp の docs だけを渡して組ませました。`tsc` は緑、デスクトップとスマホの両対応です。",
+      "article": {
+        "file": "zenn-yattemita-179-contract-review.md",
+        "slug": "179-contract-review"
+      },
+      "shots": {
+        "desktop": true,
+        "mobile": true,
+        "en.desktop": false,
+        "en.mobile": false
+      }
+    },
+    {
+      "round": 180,
+      "route": "/legal-matters",
+      "slug": "legal-matters",
+      "score": "4/5",
+      "category": "法務・リーガル",
+      "title": "AI に法務の案件管理を作らせてみた：3つの画面で同じものを手で組ませてしまったので、コンポーネントにしました（やってみた #180）",
+      "summary": "予備知識ゼロの AI に、公開されている npm パッケージと gunjo.jp の docs だけを渡して組ませました。`tsc` は緑、デスクトップとスマホの両対応です。",
+      "article": {
+        "file": "zenn-yattemita-180-legal-matters.md",
+        "slug": "180-legal-matters"
       },
       "shots": {
         "desktop": true,
