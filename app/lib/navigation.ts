@@ -226,6 +226,7 @@ export const navigation = [
             { title: "StatusBar", href: "/docs/components/status-bar" },
             { title: "StatusScreen", href: "/docs/components/status-screen" },
             { title: "Stepper", href: "/docs/components/stepper" },
+            { title: "StickyNoticeBar", href: "/docs/components/sticky-notice-bar" },
             { title: "Toast", href: "/docs/components/toast" },
             { title: "ToastProvider", href: "/docs/components/toast-provider" },
         ],

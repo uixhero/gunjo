@@ -9,7 +9,9 @@ import { runVerificationCli, throwLinesError } from "./design-verify-assertions.
 
 function getExpectedDefaults(spec) {
   return Object.fromEntries(
-    buildVariantKeyEntries(spec).map((entry) => [entry.key, entry.defaultKey])
+    buildVariantKeyEntries(spec)
+      .filter((entry) => typeof entry.defaultKey === "string")
+      .map((entry) => [entry.key, entry.defaultKey])
   );
 }
 

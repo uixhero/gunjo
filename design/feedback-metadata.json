@@ -35,6 +35,10 @@
     "title": "Banner",
     "description": "Page-wide announcement bar, optionally dismissible."
   },
+  "stickyNoticeBar": {
+    "title": "StickyNoticeBar",
+    "description": "A single fixed site-announcement slot at an explicitly selected top or bottom edge."
+  },
   "toastProvider": {
     "title": "Toast Provider",
     "description": "Global toast stack manager for showing transient feedback messages."

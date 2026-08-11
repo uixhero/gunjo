@@ -342,6 +342,10 @@ export const componentContentJa: Record<string, DocContent> = {
     title: "バナー",
     description: "ページ全体に関係するお知らせや状態を横長のバーで表示します。",
   },
+  "components/sticky-notice-bar": {
+    title: "追従告知バー",
+    description: "アクションにつなげたいサイト告知を、明示的に選んだ上端または下端の一方へ追従表示します。",
+  },
   "components/doc-note": {
     title: "DocNote",
     description: "本文中の補足説明、参考リンク、緊急ではない注釈を表示します。",
