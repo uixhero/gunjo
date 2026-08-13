@@ -179,8 +179,8 @@ export function ContainedAnnouncement() {
                 <div className="space-y-2 text-sm leading-relaxed">
                     <p>
                         {isJa
-                            ? "edge は必須で既定値がありません。同じ document に複数 mount すると先着1件だけを表示し、開発時はエラーを記録します。上下を同時に使う運用はできません。"
-                            : "edge is required with no default. When multiple instances mount in one document, only the first renders and development logs an error, so top and bottom cannot be used together."}
+                            ? "edge は必須で既定値がありません。同じ document に複数 mount すると先着1件だけを表示し、後着は描画せず hidden な data-sticky-notice-bar-suppressed=\"true\" を残して、すべてのビルドで console.error を記録します。上下を同時に使う運用はできません。"
+                            : "edge is required with no default. When multiple instances mount in one document, only the first renders; later instances remain hidden, leave data-sticky-notice-bar-suppressed=\"true\", and log console.error in every build. Top and bottom cannot be used together."}
                     </p>
                     <p>
                         {isJa

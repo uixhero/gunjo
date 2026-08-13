@@ -43,9 +43,9 @@ export interface StickyNoticeBarProps extends React.HTMLAttributes<HTMLDivElemen
  * action remain understandable on narrow screens.
  *
  * StickyNoticeBar owns one document-level slot. If more than one instance is
- * mounted, the first remains visible, later instances fail closed, and
- * development builds log an error. This prevents simultaneous top and bottom
- * notices and makes stale duplicate announcements visible during development.
+ * mounted, the first remains visible, later instances fail closed, leave a
+ * hidden suppression marker, and log an error in every build. This prevents
+ * simultaneous top and bottom notices while keeping duplicates detectable.
  */
 const StickyNoticeBar = React.forwardRef<HTMLDivElement, StickyNoticeBarProps>(
     (
@@ -66,17 +66,18 @@ const StickyNoticeBar = React.forwardRef<HTMLDivElement, StickyNoticeBarProps>(
     ) => {
         const ownerRef = React.useRef(Symbol("StickyNoticeBar"))
         const [portalTarget, setPortalTarget] = React.useState<HTMLElement | null>(null)
+        const [isSuppressed, setIsSuppressed] = React.useState(false)
 
         React.useEffect(() => {
+            setIsSuppressed(false)
+
             const target = portalContainer ?? (typeof document === "undefined" ? null : document.body)
             if (!target) return
 
             if (placement === "container" && !portalContainer) {
-                if (process.env.NODE_ENV !== "production") {
-                    console.error(
-                        "StickyNoticeBar: placement=\"container\" requires portalContainer."
-                    )
-                }
+                console.error(
+                    "StickyNoticeBar: placement=\"container\" requires portalContainer."
+                )
                 return
             }
 
@@ -87,11 +88,10 @@ const StickyNoticeBar = React.forwardRef<HTMLDivElement, StickyNoticeBarProps>(
             ) as symbol | undefined
 
             if (existingOwner && existingOwner !== ownerRef.current) {
-                if (process.env.NODE_ENV !== "production") {
-                    console.error(
-                        "StickyNoticeBar: only one instance may be mounted per document. Remove the duplicate top/bottom notice."
-                    )
-                }
+                console.error(
+                    "StickyNoticeBar: only one instance may be mounted per document. Remove the duplicate top/bottom notice."
+                )
+                setIsSuppressed(true)
                 return
             }
 
@@ -108,6 +108,16 @@ const StickyNoticeBar = React.forwardRef<HTMLDivElement, StickyNoticeBarProps>(
                 setPortalTarget(null)
             }
         }, [placement, portalContainer])
+
+        if (isSuppressed) {
+            return (
+                <span
+                    hidden
+                    aria-hidden="true"
+                    data-sticky-notice-bar-suppressed="true"
+                />
+            )
+        }
 
         if (!portalTarget) return null
 
