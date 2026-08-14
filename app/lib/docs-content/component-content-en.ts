@@ -333,6 +333,10 @@ export const componentContentEn: Record<string, DocContent> = {
     title: "StatusScreen",
     description: "Full-page status feedback for not-found, error, offline, forbidden, maintenance, and coming-soon states.",
   },
+  "components/sticky-notice-bar": {
+    title: "StickyNoticeBar",
+    description: "Keeps one actionable site announcement visible at an explicitly selected top or bottom edge.",
+  },
   "components/doc-note": {
     title: "DocNote",
     description: "Displays supplemental explanatory copy, reference links, and non-urgent documentation notes.",

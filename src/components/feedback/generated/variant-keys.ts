@@ -10,6 +10,9 @@ export type SpinnerVariantKey = (typeof spinnerVariantKeys)[number];
 export const statusScreenVariantKeys = ["coming-soon", "error", "forbidden", "maintenance", "not-found", "offline"] as const;
 export type StatusScreenVariantKey = (typeof statusScreenVariantKeys)[number];
 
+export const stickyNoticeBarVariantKeys = ["bottom", "top"] as const;
+export type StickyNoticeBarVariantKey = (typeof stickyNoticeBarVariantKeys)[number];
+
 export const toastVariantKeys = ["error", "info", "success"] as const;
 export type ToastVariantKey = (typeof toastVariantKeys)[number];
 
@@ -17,5 +20,6 @@ export const feedbackVariantKeys = {
   alert: alertVariantKeys,
   spinner: spinnerVariantKeys,
   statusScreen: statusScreenVariantKeys,
+  stickyNoticeBar: stickyNoticeBarVariantKeys,
   toast: toastVariantKeys,
 } as const;

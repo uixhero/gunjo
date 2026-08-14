@@ -30,6 +30,7 @@ export * from './components/feedback/Spinner';
 export * from './components/feedback/StatusBar';
 export * from './components/feedback/StatusScreen';
 export * from './components/feedback/Stepper';
+export * from './components/feedback/StickyNoticeBar';
 export * from './components/feedback/Toast';
 export * from './components/feedback/ToastProvider';
 

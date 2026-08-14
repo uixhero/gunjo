@@ -11,6 +11,10 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 
+### Added
+
+- **`StickyNoticeBar`**（影響: **none**）— サイト告知を body portal + `fixed` で上端または下端へ追従表示する Feedback 部品。`edge` は必須で既定値なし。同一 document の単一スロットに限定し、複数 mount 時は先着1件だけを表示して開発エラーを記録する。長文折り返し、アクション、44px の閉じるボタン、上下セーフエリア、ライト／ダークに対応。(#810)
+
 ## [0.1.0-beta.2] — 2026-07-27
 
 > `0.1.0-beta.1` 以降の変更。**破壊的変更（構造変更を要する break）なし**。新機能はすべて opt-in で既定挙動は据え置き（影響: none）。例外は下記 **Changed** の2件のみ、いずれも影響 **minor**・移行パス明記 — `RouteStops` の既定ラベル変更（1プロップで復元可能）と `DashboardTemplate` のシェル所有化（ラッパーを外して行だけ渡す機械的変更）。

@@ -390,6 +390,28 @@ export const componentStyleHints = {
       "variantClasses": {},
       "variantColorHints": {}
     },
+    "stickyNoticeBar": {
+      "variantKeys": [
+        "top",
+        "bottom"
+      ],
+      "defaultVariantKey": null,
+      "baseClasses": "flex flex-row items-center w-full py-2 px-4 gap-3 border",
+      "baseColorHint": "fill=#ffffff | stroke=#e2e8f0@1px",
+      "slotIds": [
+        "stickyNoticeBarTopMessage",
+        "stickyNoticeBarTopAction",
+        "stickyNoticeBarTopDismiss"
+      ],
+      "variantClasses": {
+        "top": "flex flex-row items-center w-full py-2 px-4 gap-3 border",
+        "bottom": "flex flex-row items-center w-full py-2 px-4 gap-3 border"
+      },
+      "variantColorHints": {
+        "top": "fill=#ffffff | stroke=#e2e8f0@1px",
+        "bottom": "fill=#ffffff | stroke=#e2e8f0@1px"
+      }
+    },
     "toast": {
       "variantKeys": [
         "success",
