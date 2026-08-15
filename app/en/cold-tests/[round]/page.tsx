@@ -139,6 +139,14 @@ export default async function EnColdTestRoundPage({
                 previous={toPagerItem(prev)}
                 next={toPagerItem(next)}
                 translationHref={`${JA_COLD_TEST_BASE}/${round}`}
+                // English rounds cite the same round numbers as the Japanese
+                // originals. A cited round that has no translation yet still
+                // has a Japanese page, so both sets are passed and the
+                // resolver falls back rather than dropping the citation.
+                roundIndex={{
+                    ja: galleryData.entries.map((e) => e.round),
+                    en: enRounds,
+                }}
             />
         </ColdTestShell>
     );
