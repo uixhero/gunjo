@@ -4,6 +4,7 @@ import { ROOT } from "./design-sync/shared.mjs";
 import {
   assertAnyMatch,
   assertMatch,
+  assertNoMatch,
   runVerificationCli,
   throwVerificationErrors,
   withRequiredVariants,
@@ -59,6 +60,7 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
   const sidebarItem = navigationSpec.components?.sidebarItem;
   const chatInput = inputsSpec.components?.chatInput;
   const chatMessage = displaySpec.components?.chatMessage;
+  const markdownRenderer = displaySpec.components?.markdownRenderer;
   const chatPanel = overlaySpec.components?.chatPanel;
   const filterButton = inputsSpec.components?.filterButton;
   const sortButton = inputsSpec.components?.sortButton;
@@ -83,6 +85,7 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
     table: tableSource,
     carousel: carouselSource,
     chatMessage: chatMessageSource,
+    markdownRenderer: markdownRendererSource,
   } = readNamedSources(displaySourceDirPath, {
     card: "Card.tsx",
     accordion: "Accordion.tsx",
@@ -90,6 +93,7 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
     table: "Table.tsx",
     carousel: "Carousel.tsx",
     chatMessage: "ChatMessage.tsx",
+    markdownRenderer: "MarkdownRenderer.tsx",
   });
 
   const {
@@ -1776,6 +1780,42 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
     assertMatch(errors, chatMessageSource, /\bh-8 w-8\b/, 'ChatMessage avatar should include "h-8 w-8"');
     assertMatch(errors, chatMessageSource, /\brounded-2xl\b/, 'ChatMessage bubble should include "rounded-2xl"');
     assertMatch(errors, chatMessageSource, /\bTooltipButton\b/, "ChatMessage icon actions should use TooltipButton");
+    },
+  });
+
+  withRequiredVariants({
+    errors,
+    componentSpec: markdownRenderer,
+    componentKey: "markdownRenderer",
+    specPath: DISPLAY_SPEC_PATH,
+    run: () => {
+    // react-markdown v10 renders with `passNode: true`, so every entry in the
+    // `components` map receives the mdast `node`. Forwarding a raw rest object
+    // to the DOM puts `node="[object Object]"` on the element (#855).
+    assertMatch(
+      errors,
+      markdownRendererSource,
+      /function withoutNode\b/,
+      "MarkdownRenderer should define withoutNode() to drop react-markdown's mdast node"
+    );
+    assertMatch(
+      errors,
+      markdownRendererSource,
+      /delete\s+\w+\.node\b/,
+      "MarkdownRenderer withoutNode() should actually remove the node prop"
+    );
+    assertNoMatch(
+      errors,
+      markdownRendererSource,
+      /\{\.\.\.props\}/,
+      'MarkdownRenderer must not spread raw markdown props onto an element (that emits node="[object Object]"); spread {...withoutNode(props)} instead'
+    );
+    assertNoMatch(
+      errors,
+      markdownRendererSource,
+      /\{\.\.\.rest\}/,
+      'MarkdownRenderer must not spread a raw rest object onto an element (that emits node="[object Object]"); route it through withoutNode() first'
+    );
     },
   });
 
