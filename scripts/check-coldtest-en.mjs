@@ -73,6 +73,7 @@ const files = fs
 
 const errors = [];
 const warnings = [];
+const batchSeries = {};
 let reviewed = 0;
 let draft = 0;
 
@@ -132,6 +133,36 @@ for (const name of files) {
 
     if (en.status === "reviewed") reviewed += 1;
     else draft += 1;
+
+    // §33（COLDTEST-GLOSSARY-EN.md・2026-08-19）：バッチ生成の型崩れ。
+    // 41本を1発注で生成したとき最後の1本だけ summary / series 行 / 見出しが別物になった（#170）ので、
+    // 「全本に必ずある定型」だけを機械で見る。節の構成（core observation の数・What it flagged の有無）は
+    // 回ごとに正当に違うので、ここでは見ない（独立レビューの領域）。
+    const md = en.article?.markdown ?? "";
+    const headings = md.split("\n").filter((l) => l.startsWith("## "));
+    if (!headings.some((h) => h.startsWith("## Result"))) {
+        errors.push(`${where}: missing "## Result" heading (§33 template drift)`);
+    }
+    if (!md.includes("**Build log series**") && !md.includes("**Cold Test series**")) {
+        errors.push(`${where}: missing the series blockquote line (§33 template drift)`);
+    }
+    const batch = en.translator ?? "(none)";
+    const seriesLabel = md.includes("**Build log series**") ? "Build log series" : "Cold Test series";
+    (batchSeries[batch] ??= new Map()).set(name, seriesLabel);
+    if (typeof en.summary === "string" && en.summary.length < 40) {
+        warnings.push(`${where}: summary is very short (${en.summary.length} chars) — check it is not a leftover (§33)`);
+    }
+}
+
+// 同じ translator（＝同じバッチ）内で series 行の呼び名が割れていたら error（#170 が Cold Test series になった件）
+for (const [batch, m] of Object.entries(batchSeries)) {
+    const labels = new Set(m.values());
+    if (labels.size > 1) {
+        const tally = {};
+        for (const v of m.values()) tally[v] = (tally[v] ?? 0) + 1;
+        const majority = Object.entries(tally).sort((a, b) => b[1] - a[1])[0][0];
+        for (const [file, v] of m) if (v !== majority) errors.push(`en/${file}: series line says "${v}" but the rest of batch "${batch}" says "${majority}" (§33)`);
+    }
 }
 
 const jaCount = fs
