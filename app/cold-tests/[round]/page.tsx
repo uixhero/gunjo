@@ -5,7 +5,7 @@ import gallery from "@/data/cold-test-gallery.json";
 import { ColdTestShell } from "./ColdTestShell";
 import { RoundDetailView } from "./RoundDetailView";
 import type { SidebarRound } from "./RoundsSidebar";
-import { hasEnRound, readJaRound } from "@/lib/cold-test-en";
+import { hasEnRound, listEnRounds, readJaRound } from "@/lib/cold-test-en";
 import { EN_COLD_TEST_BASE, JA_COLD_TEST_BASE } from "@/lib/cold-test-paths";
 
 const SITE_URL = (
@@ -136,6 +136,12 @@ export default async function ColdTestRoundPage({
                 translationHref={
                     hasEnRound(round) ? `${EN_COLD_TEST_BASE}/${round}` : undefined
                 }
+                // Which rounds exist, so the article's `[#12](#)` citations
+                // resolve without pointing at a gap in the series (94/99/100).
+                roundIndex={{
+                    ja: galleryData.entries.map((e) => e.round),
+                    en: listEnRounds(),
+                }}
             />
         </ColdTestShell>
     );

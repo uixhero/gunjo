@@ -1,0 +1,236 @@
+"use client";
+
+import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
+import { CodeBlock } from "@/components/doc/CodeBlock";
+import {
+    CodeCopyButton,
+    ComponentLayout,
+    ComponentPreview,
+} from "@/components/doc/ComponentHelpers";
+import { PropsTable } from "@/components/doc/PropsTable";
+import { useLocale } from "@/components/providers/LocaleProvider";
+import {
+    StickyNoticeBarContainedDemo,
+    StickyNoticeBarViewportDemo,
+} from "@/components/demos/StickyNoticeBarDemo";
+import feedbackMetadata from "@design/feedback-metadata.json";
+import { DocNote } from "@gunjo/ui";
+
+export default function StickyNoticeBarPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
+
+    const topCode = `import * as React from "react"
+import { Button, StickyNoticeBar, TextLink } from "@gunjo/ui"
+import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
+
+export function SiteAnnouncement() {
+  const [visible, setVisible] = React.useState(true)
+
+  return (
+    <main className="h-screen overflow-hidden bg-background text-foreground">
+      {visible ? (
+        <StickyNoticeBar
+          edge="top"
+          icon={<Speakerphone className="h-5 w-5" />}
+          action={<TextLink href="#release-notes">${isJa ? "変更点を見る" : "View changes"}</TextLink>}
+          dismissLabel="${isJa ? "告知を閉じる" : "Dismiss announcement"}"
+          onDismiss={() => setVisible(false)}
+        >
+          ${isJa ? "デザインレビュー用チェックリストを更新しました。長い告知は狭い画面で折り返します。" : "The design review checklist has been updated. Long announcements wrap on narrow screens."}
+        </StickyNoticeBar>
+      ) : null}
+
+      <div className="h-full overflow-y-auto px-6 pb-24 pt-28">
+        {!visible ? (
+          <Button size="touch" onClick={() => setVisible(true)}>
+            ${isJa ? "告知をもう一度表示" : "Show announcement again"}
+          </Button>
+        ) : null}
+        <section id="release-notes" className="mt-[36rem] scroll-mt-28">
+          <h2>${isJa ? "変更点" : "Changes"}</h2>
+        </section>
+      </div>
+    </main>
+  )
+}`;
+
+    const bottomCode = `import * as React from "react"
+import { StickyNoticeBar, TextLink } from "@gunjo/ui"
+import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
+
+export function ContainedAnnouncement() {
+  const [container, setContainer] = React.useState<HTMLDivElement | null>(null)
+  const [visible, setVisible] = React.useState(true)
+
+  return (
+    <div ref={setContainer} className="relative h-72 overflow-hidden rounded-lg border">
+      {container && visible ? (
+        <StickyNoticeBar
+          edge="bottom"
+          placement="container"
+          portalContainer={container}
+          icon={<Speakerphone className="h-5 w-5" />}
+          action={<TextLink href="#details">${isJa ? "変更点を見る" : "View changes"}</TextLink>}
+          dismissLabel="${isJa ? "告知を閉じる" : "Dismiss announcement"}"
+          onDismiss={() => setVisible(false)}
+        >
+          ${isJa ? "デザインレビュー用チェックリストを更新しました。" : "The design review checklist has been updated."}
+        </StickyNoticeBar>
+      ) : null}
+      <div className="h-full overflow-y-auto pb-32">
+        <section id="details">${isJa ? "変更点" : "Changes"}</section>
+      </div>
+    </div>
+  )
+}`;
+
+    const propsData = [
+        {
+            name: "edge",
+            type: "'top' | 'bottom'",
+            required: true,
+            description: isJa
+                ? "表示する端です。既定値はなく、必ず一方を選びます。"
+                : "Required edge. There is intentionally no default.",
+        },
+        {
+            name: "children",
+            type: "React.ReactNode",
+            required: true,
+            description: isJa
+                ? "告知本文です。長文は省略せず折り返します。"
+                : "Announcement content. Long copy wraps instead of truncating.",
+        },
+        {
+            name: "icon",
+            type: "React.ReactNode",
+            description: isJa ? "装飾扱いの先頭アイコンです。" : "Optional decorative leading icon.",
+        },
+        {
+            name: "action",
+            type: "React.ReactNode",
+            description: isJa
+                ? "閉じるボタンより前に置くリンクまたはボタンです。"
+                : "Link or button rendered before the dismiss control.",
+        },
+        {
+            name: "onDismiss",
+            type: "() => void",
+            description: isJa
+                ? "指定すると44pxの閉じるボタンを表示します。表示状態は利用側で管理します。"
+                : "Shows a 44px dismiss control. The consumer owns visibility state.",
+        },
+        {
+            name: "dismissLabel",
+            type: "string",
+            default: "'Dismiss announcement'",
+            description: isJa
+                ? "閉じるボタンの aria-label とツールチップです。"
+                : "aria-label and tooltip for the dismiss button.",
+        },
+        {
+            name: "placement",
+            type: "'viewport' | 'container'",
+            default: "'viewport'",
+            description: isJa
+                ? "通常は fixed。疑似ブラウザ内では container を使います。"
+                : "Fixed by default; use container for a contained fake viewport.",
+        },
+        {
+            name: "portalContainer",
+            type: "HTMLElement | null",
+            description: isJa
+                ? "container 配置の portal 先です。位置決めの基準を持つ要素を渡します。"
+                : "Portal target for container placement; it must establish positioning.",
+        },
+    ];
+
+    return (
+        <ComponentLayout
+            title={feedbackMetadata.stickyNoticeBar.title}
+            description={feedbackMetadata.stickyNoticeBar.description}
+            usedComponents={[
+                { name: "StickyNoticeBar", href: "/docs/components/sticky-notice-bar" },
+                { name: "TextLink", href: "/docs/components/text-link" },
+                { name: "TooltipButton", href: "/docs/components/tooltip-button" },
+            ]}
+            relatedComponents={[
+                { name: "Banner", href: "/docs/components/banner" },
+                { name: "ToastProvider", href: "/docs/components/toast-provider" },
+                { name: "BottomActionBar", href: "/docs/components/bottom-action-bar" },
+            ]}
+            sectionLabels={sectionLabels}
+        >
+            <ComponentPreview
+                embedSrc="/embed/sticky-notice-bar"
+                code={topCode}
+                codeBlock={<CodeBlock code={topCode} />}
+                previewHeight={420}
+                fitEmbedHeightContent={false}
+                previewBodyWidth="xl"
+                sectionLabels={sectionLabels}
+            >
+                <StickyNoticeBarViewportDemo locale={locale} />
+            </ComponentPreview>
+
+            <DocNote variant="note" heading={isJa ? "単一スロットと配置の契約" : "Single-slot and positioning contract"}>
+                <div className="space-y-2 text-sm leading-relaxed">
+                    <p>
+                        {isJa
+                            ? "edge は必須で既定値がありません。同じ document に複数 mount すると先着1件だけを表示し、後着は描画せず hidden な data-sticky-notice-bar-suppressed=\"true\" を残して、すべてのビルドで console.error を記録します。上下を同時に使う運用はできません。"
+                            : "edge is required with no default. When multiple instances mount in one document, only the first renders; later instances remain hidden, leave data-sticky-notice-bar-suppressed=\"true\", and log console.error in every build. Top and bottom cannot be used together."}
+                    </p>
+                    <p>
+                        {isJa
+                            ? "viewport 配置は body portal + fixed です。祖先 overflow の影響を避け、z-40 で標準 overlay より下、装飾層より前に置きます。透明な外枠は pointer-events-none、実バーだけ pointer-events-auto です。"
+                            : "Viewport placement uses a body portal and fixed positioning to avoid ancestor overflow. It sits at z-40 below standard overlays; only the visible bar accepts pointer events."}
+                    </p>
+                    <p>
+                        {isJa
+                            ? "上下のセーフエリアを反映し、出入りのアニメーションは付けていないため reduced-motion で追加対応が必要な動きはありません。"
+                            : "Top and bottom safe areas are respected. There is no enter/exit animation, so the component introduces no motion that needs a reduced-motion override."}
+                    </p>
+                </div>
+            </DocNote>
+
+            <section className="space-y-4">
+                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="states">
+                    {statesTitle}
+                </h2>
+                <ComponentDemoStates
+                    states={[
+                        {
+                            key: "bottom-contained",
+                            title: isJa ? "下端・疑似ブラウザ内" : "Bottom edge in a contained viewport",
+                            description: isJa
+                                ? "下端はホームインジケータ用の safe-area-inset-bottom を含みます。"
+                                : "The bottom edge includes safe-area-inset-bottom for home indicators.",
+                            preview: <StickyNoticeBarContainedDemo locale={locale} />,
+                            previewBodyWidth: "xl",
+                            code: bottomCode,
+                        },
+                    ]}
+                />
+            </section>
+
+            <section className="space-y-4">
+                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="props">
+                    {sectionLabels.props ?? "Props"}
+                </h2>
+                <PropsTable data={propsData} />
+            </section>
+
+            <section className="space-y-4">
+                <div className="flex items-center justify-between gap-4 border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
+                        {sectionLabels.usage ?? "Usage"}
+                    </h2>
+                    <CodeCopyButton code={topCode} />
+                </div>
+                <CodeBlock code={topCode} />
+            </section>
+        </ComponentLayout>
+    );
+}

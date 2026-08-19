@@ -340,6 +340,27 @@ export const FEEDBACK_SPEC_DEFINITIONS = [
     nodeIds: {},
   },
   {
+    key: "stickyNoticeBar",
+    frameId: "stickyNoticeBarFrame",
+    titleId: "stickyNoticeBarTitle",
+    descId: "stickyNoticeBarDesc",
+    variantsId: "stickyNoticeBarVariants",
+    componentOverrides: {
+      // A placement must be selected explicitly; neither edge is a default.
+      defaultVariantKey: null,
+    },
+    nodeIds: {
+      top: "stickyNoticeBarTop",
+      topMessage: "stickyNoticeBarTopMessage",
+      topAction: "stickyNoticeBarTopAction",
+      topDismiss: "stickyNoticeBarTopDismiss",
+      bottom: "stickyNoticeBarBottom",
+      bottomMessage: "stickyNoticeBarBottomMessage",
+      bottomAction: "stickyNoticeBarBottomAction",
+      bottomDismiss: "stickyNoticeBarBottomDismiss",
+    },
+  },
+  {
     key: "safetyBanner",
     syntheticSpec: createSyntheticFeedbackSpec({
       frameId: "synthetic:safetyBanner",

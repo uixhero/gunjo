@@ -270,6 +270,18 @@ export const componentManifest = {
       "specSource": "design/feedback.pen",
       "stability": "beta"
     },
+    "stickyNoticeBar": {
+      "title": "StickyNoticeBar",
+      "description": "A single fixed site-announcement slot at an explicitly selected top or bottom edge.",
+      "variantKeys": [
+        "top",
+        "bottom"
+      ],
+      "defaultVariantKey": null,
+      "sourceFile": "src/components/feedback/StickyNoticeBar.tsx",
+      "specSource": "design/feedback.pen",
+      "stability": "experimental"
+    },
     "toast": {
       "title": "Toast",
       "description": "Transient feedback message with semantic variants.",

@@ -1903,6 +1903,7 @@ export const translations: Record<
       AssetInspectorPanel: "アセットインスペクター",
       AvatarGroup: "アバターグループ",
       Banner: "バナー",
+      StickyNoticeBar: "追従告知バー",
       SafetyBanner: "安全バナー",
       Breadcrumb: "パンくず",
       Calendar: "カレンダー",

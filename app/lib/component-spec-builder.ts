@@ -159,7 +159,9 @@ export function specToMarkdown(spec: ComponentSpec): string {
         lines.push("");
         lines.push("## Variants");
         lines.push(
-            `Default: \`${spec.variants.default ?? spec.variants.keys[0]}\``
+            spec.variants.default === null
+                ? "Default: none (an explicit variant is required)"
+                : `Default: \`${spec.variants.default}\``
         );
         for (const v of spec.styling.perVariant) {
             lines.push("");

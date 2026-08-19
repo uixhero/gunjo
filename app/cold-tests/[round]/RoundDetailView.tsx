@@ -27,13 +27,23 @@ import {
     DocumentPager,
     MarkdownRenderer,
     MediaLightbox,
+    TextLink,
     cn,
 } from "@gunjo/ui";
 import type { AssetCardAsset } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { PackCta } from "@/components/pack/PackCta";
 import { LocalNav } from "@/components/layout/TableOfContents";
-import { EN_COLD_TEST_BASE, coldTestBaseFor } from "@/lib/cold-test-paths";
+import {
+    EN_COLD_TEST_BASE,
+    JA_COLD_TEST_BASE,
+    coldTestBaseFor,
+} from "@/lib/cold-test-paths";
+import {
+    UNRESOLVED_ARTICLE_HREF,
+    coldTestRoundHref,
+    roundRefFromLinkText,
+} from "@/lib/cold-test-article-links";
 import categoriesData from "@/data/cold-test-categories.json";
 
 const CATEGORY_SLUG_MAP = (categoriesData as { slugMap: Record<string, string> })
@@ -94,6 +104,19 @@ function rewriteArticleImageSrc(src: string | undefined, slug: string): string |
     return src;
 }
 
+// The visible label of a markdown link, flattened. `[**#12** データテーブル](#)`
+// arrives as a mix of strings and elements, and the round number can sit
+// inside the emphasis.
+function linkLabelText(node: React.ReactNode): string {
+    if (node === null || node === undefined || typeof node === "boolean") return "";
+    if (typeof node === "string" || typeof node === "number") return String(node);
+    if (Array.isArray(node)) return node.map(linkLabelText).join("");
+    if (React.isValidElement(node)) {
+        return linkLabelText((node.props as { children?: React.ReactNode }).children);
+    }
+    return "";
+}
+
 // Names of components we publicly document at /docs/components/<slug>.
 function docSlugFor(componentName: string): string {
     return componentName
@@ -107,6 +130,7 @@ export function RoundDetailView({
     previous,
     next,
     translationHref,
+    roundIndex,
 }: {
     detail: RoundDetail;
     previous: PagerNeighbour | null;
@@ -117,6 +141,12 @@ export function RoundDetailView({
      * round (the Japanese original is the source and never goes away).
      */
     translationHref?: string;
+    /**
+     * Which rounds actually have a page, per language. Used to resolve the
+     * `[#12](#)` citations in the article body — a reference to a round that
+     * was never published stays plain text instead of becoming a 404.
+     */
+    roundIndex: { ja: number[]; en: number[] };
 }) {
     const { pages } = useLocale();
     const t = pages.coldTests;
@@ -124,6 +154,72 @@ export function RoundDetailView({
     const pathname = usePathname();
     const base = coldTestBaseFor(pathname);
     const isEnglish = base === EN_COLD_TEST_BASE;
+
+    const roundLookup = React.useMemo(
+        () => ({ ja: new Set(roundIndex.ja), en: new Set(roundIndex.en) }),
+        [roundIndex.ja, roundIndex.en]
+    );
+
+    // Article links whose href is a bare `#` are unresolved round citations
+    // left in the source markdown (issue #726). Resolve them against the
+    // rounds that exist; anything else keeps the renderer's default anchor.
+    const articleComponents = React.useMemo(
+        () => ({
+            // Only the attributes a markdown link can carry are forwarded.
+            // react-markdown also hands every component the mdast `node`
+            // (passNode), which is not a DOM attribute — spreading the rest
+            // would put it on the anchor.
+            a: ({ href, title, children }: React.ComponentPropsWithoutRef<"a">) => {
+                if (href !== UNRESOLVED_ARTICLE_HREF) {
+                    return (
+                        <TextLink href={href} title={title}>
+                            {children}
+                        </TextLink>
+                    );
+                }
+                const round = roundRefFromLinkText(linkLabelText(children));
+                const resolved =
+                    round === null ? null : coldTestRoundHref(round, base, roundLookup);
+                if (!resolved) {
+                    // No page to point at — a round that was never published
+                    // (94 / 99 / 100), or a label that is not a round
+                    // reference at all (the "まとめ記事" placeholders from the
+                    // first 27 rounds, whose destination is still undecided).
+                    // Render the label as text rather than a dead anchor.
+                    return <>{children}</>;
+                }
+                const crossesToJapanese =
+                    isEnglish && resolved.startsWith(`${JA_COLD_TEST_BASE}/`);
+                return (
+                    <TextLink
+                        href={resolved}
+                        title={title}
+                        hrefLang={crossesToJapanese ? "ja" : undefined}
+                    >
+                        {children}
+                    </TextLink>
+                );
+            },
+            img: ({ src, alt, title }: React.ComponentPropsWithoutRef<"img">) => {
+                const fixed = rewriteArticleImageSrc(
+                    typeof src === "string" ? src : undefined,
+                    detail.slug
+                );
+                if (!fixed) return null;
+                return (
+                    /* eslint-disable-next-line @next/next/no-img-element -- article images come from arbitrary cold-test material, not the optimized pipeline */
+                    <img
+                        src={fixed}
+                        alt={alt ?? ""}
+                        title={title}
+                        loading="lazy"
+                        decoding="async"
+                    />
+                );
+            },
+        }),
+        [base, roundLookup, isEnglish, detail.slug]
+    );
 
     // Inline preview uses the .lg tier (retina-sharp at the detail page's
     // display width); the lightbox opens .full (cwebp of the original
@@ -358,25 +454,7 @@ export function RoundDetailView({
                         <CardContent className="px-6 py-5">
                             <MarkdownRenderer
                                 content={detail.article.markdown}
-                                components={{
-                                    img: ({ src, alt, ...rest }) => {
-                                        const fixed = rewriteArticleImageSrc(
-                                            typeof src === "string" ? src : undefined,
-                                            detail.slug
-                                        );
-                                        if (!fixed) return null;
-                                        return (
-                                            /* eslint-disable-next-line @next/next/no-img-element -- article images come from arbitrary cold-test material, not the optimized pipeline */
-                                            <img
-                                                src={fixed}
-                                                alt={alt ?? ""}
-                                                loading="lazy"
-                                                decoding="async"
-                                                {...rest}
-                                            />
-                                        );
-                                    },
-                                }}
+                                components={articleComponents}
                             />
                         </CardContent>
                     </Card>

@@ -1815,6 +1815,219 @@
               "ref": "toastProviderDefault"
             }
           ]
+        },
+        {
+          "type": "frame",
+          "id": "stickyNoticeBarFrame",
+          "name": "StickyNoticeBar",
+          "width": "fill_container",
+          "fill": "#f8fafc",
+          "cornerRadius": 12,
+          "stroke": "#e2e8f0",
+          "strokeWidth": 1,
+          "strokeAlignment": "inner",
+          "layout": "vertical",
+          "gap": 24,
+          "padding": 24,
+          "children": [
+            {
+              "type": "text",
+              "id": "stickyNoticeBarTitle",
+              "fill": "#0c0c12",
+              "content": "StickyNoticeBar",
+              "fontFamily": "Inter",
+              "fontSize": 24,
+              "fontWeight": "600"
+            },
+            {
+              "type": "text",
+              "id": "stickyNoticeBarDesc",
+              "fill": "#64748b",
+              "content": "A single fixed site-announcement slot at an explicitly selected top or bottom edge.",
+              "fontFamily": "Inter",
+              "fontSize": 18,
+              "fontWeight": "normal"
+            },
+            {
+              "type": "frame",
+              "id": "stickyNoticeBarVariants",
+              "width": "fill_container",
+              "layout": "vertical",
+              "gap": 16,
+              "children": [
+                {
+                  "type": "frame",
+                  "id": "stickyNoticeBarTop",
+                  "name": "StickyNoticeBar/Top",
+                  "reusable": true,
+                  "width": "fill_container",
+                  "fill": "#ffffff",
+                  "stroke": "#e2e8f0",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
+                  "layout": "horizontal",
+                  "gap": 12,
+                  "padding": [8, 16],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "stickyNoticeBarTopMessage",
+                      "width": "fill_container",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "stickyNoticeBarTopIcon",
+                          "width": 20,
+                          "height": 20,
+                          "icon": "speakerphone",
+                          "library": "lucide",
+                          "fill": "#475569"
+                        },
+                        {
+                          "type": "text",
+                          "id": "stickyNoticeBarTopText",
+                          "fill": "#0f172a",
+                          "content": "Design QA checklist 2026 is available.",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "stickyNoticeBarTopAction",
+                      "fill": "#1d4ed8",
+                      "content": "View details",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500",
+                      "underline": true
+                    },
+                    {
+                      "type": "frame",
+                      "id": "stickyNoticeBarTopDismiss",
+                      "width": 44,
+                      "height": 44,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "stickyNoticeBarTopDismissIcon",
+                          "fill": "#475569",
+                          "content": "×",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  "type": "frame",
+                  "id": "stickyNoticeBarBottom",
+                  "name": "StickyNoticeBar/Bottom",
+                  "reusable": true,
+                  "width": "fill_container",
+                  "fill": "#ffffff",
+                  "stroke": "#e2e8f0",
+                  "strokeWidth": 1,
+                  "strokeAlignment": "inner",
+                  "layout": "horizontal",
+                  "gap": 12,
+                  "padding": [8, 16],
+                  "justifyContent": "space_between",
+                  "alignItems": "center",
+                  "children": [
+                    {
+                      "type": "frame",
+                      "id": "stickyNoticeBarBottomMessage",
+                      "width": "fill_container",
+                      "gap": 8,
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "icon",
+                          "id": "stickyNoticeBarBottomIcon",
+                          "width": 20,
+                          "height": 20,
+                          "icon": "speakerphone",
+                          "library": "lucide",
+                          "fill": "#475569"
+                        },
+                        {
+                          "type": "text",
+                          "id": "stickyNoticeBarBottomText",
+                          "fill": "#0f172a",
+                          "content": "Design QA checklist 2026 is available.",
+                          "fontFamily": "Inter",
+                          "fontSize": 14,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    },
+                    {
+                      "type": "text",
+                      "id": "stickyNoticeBarBottomAction",
+                      "fill": "#1d4ed8",
+                      "content": "View details",
+                      "fontFamily": "Inter",
+                      "fontSize": 14,
+                      "fontWeight": "500",
+                      "underline": true
+                    },
+                    {
+                      "type": "frame",
+                      "id": "stickyNoticeBarBottomDismiss",
+                      "width": 44,
+                      "height": 44,
+                      "justifyContent": "center",
+                      "alignItems": "center",
+                      "children": [
+                        {
+                          "type": "text",
+                          "id": "stickyNoticeBarBottomDismissIcon",
+                          "fill": "#475569",
+                          "content": "×",
+                          "fontFamily": "Inter",
+                          "fontSize": 16,
+                          "fontWeight": "normal"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "type": "frame",
+          "id": "stickyNoticeBarShowcase",
+          "name": "showcase/stickyNoticeBar",
+          "width": "fill_container",
+          "fill": "#ffffff",
+          "layout": "vertical",
+          "gap": 16,
+          "padding": 16,
+          "children": [
+            {
+              "id": "stickyNoticeBarShowcaseTop",
+              "type": "ref",
+              "ref": "stickyNoticeBarTop"
+            },
+            {
+              "id": "stickyNoticeBarShowcaseBottom",
+              "type": "ref",
+              "ref": "stickyNoticeBarBottom"
+            }
+          ]
         }
       ]
     },
