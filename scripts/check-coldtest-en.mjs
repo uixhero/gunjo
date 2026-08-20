@@ -149,6 +149,11 @@ for (const name of files) {
     const batch = en.translator ?? "(none)";
     const seriesLabel = md.includes("**Build log series**") ? "Build log series" : "Cold Test series";
     (batchSeries[batch] ??= new Map()).set(name, seriesLabel);
+    // §36（2026-08-20）：本文の画像行は落とさない（altだけ英訳）。原文と行数を照合する。
+    const imgCount = (t) => ((t ?? "").match(/!\[/g) ?? []).length;
+    if (imgCount(md) !== imgCount(ja.article?.markdown)) {
+        errors.push(`${where}: image lines differ from the Japanese original (ja=${imgCount(ja.article?.markdown)}, en=${imgCount(md)}) (§36)`);
+    }
     if (typeof en.summary === "string" && en.summary.length < 40) {
         warnings.push(`${where}: summary is very short (${en.summary.length} chars) — check it is not a leftover (§33)`);
     }
