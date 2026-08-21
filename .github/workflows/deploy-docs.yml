@@ -58,7 +58,11 @@ jobs:
 
       - name: Install Vercel CLI
         if: steps.guard.outputs.configured == 'true'
-        run: npm install --global vercel@latest
+        # ⚠️ バージョンを固定する。`vercel@latest` のままだと CLI の挙動変更だけで
+        # 本番が止まる（#866）。実際 58.1.0 → 58.9.0 で prebuilt の filePathMap 参照が
+        # .vercelignore で捨てられるようになり、7/29 から3週間デプロイが全滅した。
+        # 上げるときは手元で `vercel build --prod --standalone` を再現してから。
+        run: npm install --global vercel@59.3.0
 
       - name: Pull Vercel environment (production)
         if: steps.guard.outputs.configured == 'true'
@@ -66,10 +70,16 @@ jobs:
 
       - name: Build project artifacts
         if: steps.guard.outputs.configured == 'true'
-        run: vercel build --prod --token="${{ secrets.VERCEL_TOKEN }}"
+        # --standalone＝依存を各 .func の中に実体で入れる。これが無いと CLI は
+        # .vc-config.json の filePathMap に「デプロイルートからの相対パス」で
+        # 参照だけ書き（実測 8827件・うち 6958件が node_modules/.next/dist 配下）、
+        # その参照先を .vercelignore が除外しているためアップロードから消えて、
+        # Vercel の "Deploying outputs..." が ENOENT で落ちる（#866）。
+        run: vercel build --prod --standalone --token="${{ secrets.VERCEL_TOKEN }}"
 
       - name: Deploy to production
         if: steps.guard.outputs.configured == 'true'
         # --archive=tgz uploads the build as a single tarball; the prebuilt
-        # output exceeds Vercel's 15k-file upload limit (~18k files) otherwise.
+        # output exceeds Vercel's 15k-file upload limit (~24k files with
+        # --standalone) otherwise.
         run: vercel deploy --prebuilt --prod --archive=tgz --token="${{ secrets.VERCEL_TOKEN }}"
