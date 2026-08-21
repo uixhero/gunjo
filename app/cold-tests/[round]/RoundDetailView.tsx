@@ -463,12 +463,21 @@ export function RoundDetailView({
                         </Link>
                     </div>
                 )}
-                {/* In-page section nav. Auto-discovers h2/h3 in the main column
-                    (previews / 解説記事 / この回の発見 / 使用部品 /
+                {/* In-page section nav. Auto-discovers the h2 sections in the
+                    main column (previews / 解説記事 / この回の発見 / 使用部品 /
                     cold AI が組み上げた実コード
-                    + every h2/h3 inside the article markdown) and renders the
-                    same "ページ内" surface the docs pages use. */}
-                <LocalNav />
+                    + every h2 inside the article markdown) and renders the
+                    same "ページ内" surface the docs pages use.
+
+                    maxLevel={2} on purpose: the nav wraps its entries into a
+                    horizontal row, where an h3 is distinguished only by a dot
+                    and a smaller type size. On a round with several h3
+                    sub-sections the list read as one flat pile of 17 links
+                    rather than a hierarchy. The h3 headings stay in the
+                    article body — they just aren't listed here. Docs pages
+                    keep the default (h2 + h3) because there each h3 is a
+                    component demo and the nav is its only link. */}
+                <LocalNav maxLevel={2} />
             </header>
 
             {/* Previews — each is a button that opens the MediaLightbox with
