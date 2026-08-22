@@ -353,9 +353,13 @@ export type ColdTestsPageStrings = {
     allRoundsIntro: (count: number, label: string) => string;
     backToGallery: string;
   };
-  // `/en/cold-tests` — the English index. It lists only the rounds that have
-  // been translated, so it needs its own heading and a plain statement of how
-  // much of the series is available in English so far.
+  // `/en/cold-tests`: the English index. It lists only the rounds that have a
+  // publishable translation, so it needs its own heading and subtitle. Both
+  // lead with what the series is, never with the fact that these pages were
+  // translated: an English-speaking reader has no stake in how far our
+  // translation queue has got. `available` is the number of rounds on this
+  // page and is stated as what you can read, never as a fraction of an
+  // untranslated whole. `total` stays in the signature for the Japanese entry.
   enIndex: {
     heading: string;
     subtitle: (available: number, total: number) => string;
@@ -729,10 +733,10 @@ export const translations: Record<
           backToGallery: "Back to all rounds",
         },
         enIndex: {
-          heading: "Cold tests, in English.",
-          subtitle: (available, total) =>
-            `English translations so far: ${available} of ${total} rounds. The rest are Japanese only, and the full gallery has all of them.`,
-          jaGalleryLink: "See all rounds (Japanese)",
+          heading: "Screens built by an AI that had never seen Gunjo.",
+          subtitle: (available) =>
+            `Each round gives the AI one screen to build for a real Japanese industry (construction, insurance, taxi dispatch), with only Gunjo's public npm package and the gunjo.jp docs to work from. Every write-up logs what worked as-is, what the AI hand-rolled, and which components the design system was missing. Browse ${available} rounds below.`,
+          jaGalleryLink: "Read every round in Japanese",
         },
         whyLink: "Why cold tests",
       },
