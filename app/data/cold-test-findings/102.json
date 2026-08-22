@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "round": 102,
+  "lang": "ja",
+  "findings": [
+    {
+      "id": "102-agent-policy-relationship",
+      "kind": "requirement",
+      "phenomenon": "どの募集人がどの契約を担当しているかが、1行のまとまりとして読めます。",
+      "where": {
+        "round": 102,
+        "screen": "損保の契約管理 / 代理店ダッシュボード",
+        "spot": "募集人と担当契約の関係"
+      },
+      "status": "resolved",
+      "links": [
+        { "kind": "component", "slug": "relationship-row", "label": "RelationshipRow" }
+      ],
+      "selfCheck": "担当者と契約を並べた行を見て、どちらが担当する側かが行だけで分かるか確かめてください。"
+    },
+    {
+      "id": "102-agency-performance-against-target",
+      "kind": "requirement",
+      "phenomenon": "代理店ごとの業績が、数字の羅列ではなく目盛りとして出ます。",
+      "where": {
+        "round": 102,
+        "screen": "損保の契約管理 / 代理店ダッシュボード",
+        "spot": "代理店業績"
+      },
+      "status": "resolved",
+      "links": [
+        { "kind": "component", "slug": "meter", "label": "Meter" }
+      ],
+      "selfCheck": "代理店の一覧を開いて、業績が数字を読み込まなくても見比べられるか確かめてください。"
+    },
+    {
+      "id": "102-premium-breakdown-handrolled",
+      "kind": "pitfall",
+      "group": "amount-derivation",
+      "phenomenon": "基本保険料に特約を足し、各種の割引を引いて年間保険料を出すところを、また手で書くことになりました。",
+      "where": {
+        "round": 102,
+        "screen": "損保の契約管理 / 代理店ダッシュボード",
+        "spot": "保険料の内訳"
+      },
+      "cause": "読むための「明細と符号つきの調整と合計」を出すコンポーネントが無く、別々のAIが独立に同じところで手を止めたためです。",
+      "status": "resolved",
+      "links": [
+        { "kind": "issue", "id": 347 },
+        { "kind": "pr", "id": 348 },
+        { "kind": "component", "slug": "amount-breakdown", "label": "AmountBreakdown" }
+      ],
+      "selfCheck": "金額を積み上げて出す画面を開いて、小計と合計を自分で書いていないか確かめてください。"
+    },
+    {
+      "id": "102-use-case-index-misroute",
+      "kind": "pitfall",
+      "phenomenon": "用途から引く索引で保険料の内訳を探すと、編集用の入力グリッドに案内されました。読むだけの明細には作法が合いません。",
+      "where": {
+        "round": 102,
+        "screen": "損保の契約管理 / 代理店ダッシュボード",
+        "spot": "用途から引く索引"
+      },
+      "cause": "索引が、読むための金額導出と、入力するための編集グリッドを分けていなかったためです。",
+      "status": "resolved",
+      "links": [
+        { "kind": "docs", "href": "/docs/by-use-case", "label": "用途から引く索引" },
+        { "kind": "component", "slug": "amount-breakdown", "label": "AmountBreakdown" },
+        { "kind": "component", "slug": "editable-data-table", "label": "EditableDataTable" }
+      ],
+      "selfCheck": "索引で「金額の導出」を引いて、読むための明細と入力用のグリッドが別々に出てくるか確かめてください。"
+    },
+    {
+      "id": "102-change-handler-vocabulary",
+      "kind": "pitfall",
+      "phenomenon": "隣り合うフィルタで、値の変化の受け取り方が違いました。Select は素の onChange、検索欄は onValueChange です。",
+      "where": {
+        "round": 102,
+        "screen": "損保の契約管理 / 代理店ダッシュボード",
+        "spot": "保有契約一覧のフィルタ行"
+      },
+      "cause": "Select は素の select 要素の作法をそのまま通し、SearchInput は値だけを渡す作法にしているためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 330 },
+        { "kind": "component", "slug": "select", "label": "Select" },
+        { "kind": "component", "slug": "search-input", "label": "SearchInput" }
+      ],
+      "selfCheck": "フィルタ行に入力を2つ並べて、変化の受け取り方が同じ書き方で済むか確かめてください。"
+    },
+    {
+      "id": "102-drawer-side-and-width",
+      "kind": "pitfall",
+      "phenomenon": "横から出すパネルで、出す向きを Root と Content の2箇所で合わせることになりました。既定の幅も、契約の詳細を見るには狭いままです。",
+      "where": {
+        "round": 102,
+        "screen": "損保の契約管理 / 代理店ダッシュボード",
+        "spot": "契約を掘り下げる詳細パネル"
+      },
+      "cause": "向きの指定が Content 側の見た目と Root 側の動きに分かれていて、既定の幅が w-80 のままだったためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 335 },
+        { "kind": "component", "slug": "drawer", "label": "Drawer" },
+        { "kind": "component", "slug": "sheet", "label": "Sheet" }
+      ],
+      "selfCheck": "横から出すパネルを開いて、向きの指定が1箇所で済むか、幅が詳細に足りるか確かめてください。"
+    }
+  ]
+}

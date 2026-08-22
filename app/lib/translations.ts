@@ -344,6 +344,28 @@ export type ColdTestsPageStrings = {
     ctaComponentsLabel: string;
     breadcrumbLabel: string;
   };
+  // The findings data layer (`app/data/cold-test-findings/*.json`), rendered
+  // twice: a per-round summary block on the round page, and the aggregate on
+  // the industry door page. Chrome only — every finding's own wording lives in
+  // the JSON, which is Japanese for now, so the round-page block renders on the
+  // Japanese tree only. The English labels here are the frame for when the
+  // English findings land.
+  findings: {
+    roundHeading: string;
+    roundIntro: string;
+    roundRequirementHeading: string;
+    roundPitfallHeading: string;
+    categoryRequirementHeading: string;
+    categoryPitfallHeading: string;
+    categoryIntro: string;
+    whereText: (screen: string, spot: string) => string;
+    causeLabel: string;
+    selfCheckLabel: string;
+    evidenceLabel: string;
+    roundLinkLabel: (round: number) => string;
+    statusPrefix: string;
+    status: { resolved: string; "fix-known": string; tracking: string };
+  };
   // Per-industry door page (`/cold-tests/categories/<slug>`). Strings here are
   // chrome only — the per-category prose (challenge / discovered / left)
   // lives in cold-test-categories.json so KeEem can edit it without touching code.
@@ -719,6 +741,27 @@ export const translations: Record<
           ctaGalleryLabel: "See all rounds",
           ctaComponentsLabel: "Browse the component catalog",
           breadcrumbLabel: "Why",
+        },
+        findings: {
+          roundHeading: "What this round found",
+          roundIntro: "Pulled from the write-up above.",
+          roundRequirementHeading: "What this round showed the industry needs",
+          roundPitfallHeading: "Holes this round hit",
+          categoryRequirementHeading: "What this industry needs",
+          categoryPitfallHeading: "Holes we hit first",
+          categoryIntro:
+            "Pulled from each round's write-up. Anything seen in more than one round is listed once, with every round that is evidence for it.",
+          whereText: (screen, spot) => `${spot} (${screen})`,
+          causeLabel: "Cause",
+          selfCheckLabel: "Check it on your own screen",
+          evidenceLabel: "Evidence",
+          roundLinkLabel: (round) => `Round #${round}`,
+          statusPrefix: "Status",
+          status: {
+            resolved: "Fixed",
+            "fix-known": "Fix on record",
+            tracking: "Tracking",
+          },
         },
         categoryPage: {
           roundsSummary: (count, label) =>
@@ -1394,6 +1437,27 @@ export const translations: Record<
           ctaGalleryLabel: "カタログを見る",
           ctaComponentsLabel: "コンポーネント一覧へ",
           breadcrumbLabel: "なぜ",
+        },
+        findings: {
+          roundHeading: "この回の発見",
+          roundIntro: "上の記事から抜き出した、この回で分かったことです。",
+          roundRequirementHeading: "この回で要ると分かったもの",
+          roundPitfallHeading: "この回で踏んだ穴",
+          categoryRequirementHeading: "この業界で要るもの",
+          categoryPitfallHeading: "先に踏んだ穴",
+          categoryIntro:
+            "各回の記事から抜き出した項目です。複数の回で出たものは1つにまとめ、根拠になった回を並べています。",
+          whereText: (screen, spot) => `${spot}（${screen}）`,
+          causeLabel: "原因",
+          selfCheckLabel: "自分の画面で確かめる",
+          evidenceLabel: "根拠",
+          roundLinkLabel: (round) => `#${round} の回`,
+          statusPrefix: "状態",
+          status: {
+            resolved: "対応済み",
+            "fix-known": "直し方記録済み",
+            tracking: "追跡中",
+          },
         },
         categoryPage: {
           roundsSummary: (count, label) =>

@@ -1,0 +1,54 @@
+{
+  "schemaVersion": 1,
+  "round": 104,
+  "lang": "ja",
+  "findings": [
+    {
+      "id": "104-reference-values",
+      "kind": "requirement",
+      "phenomenon": "BMIや血圧や既往の数値が、基準の範囲に対してどのくらい外れているかまで込みで出ます。",
+      "where": {
+        "round": 104,
+        "screen": "生命保険の引受査定（アンダーライティング）",
+        "spot": "告知・リスク評価"
+      },
+      "status": "resolved",
+      "links": [
+        { "kind": "component", "slug": "reference-value", "label": "ReferenceValue" }
+      ],
+      "selfCheck": "検査値を並べた画面で、値そのものと基準からの外れ方の両方が読めるか確かめてください。"
+    },
+    {
+      "id": "104-premium-derivation-with-decline",
+      "kind": "requirement",
+      "phenomenon": "主契約と特約と特別条件と割引を積んで保険料を出します。引受をしない判定のときは、合計が0円として出ます。",
+      "where": {
+        "round": 104,
+        "screen": "生命保険の引受査定（アンダーライティング）",
+        "spot": "保険料算定"
+      },
+      "status": "resolved",
+      "links": [
+        { "kind": "component", "slug": "amount-breakdown", "label": "AmountBreakdown" }
+      ],
+      "selfCheck": "引受をしない判定に切り替えて、合計が0円のまま崩れずに出るか確かめてください。"
+    },
+    {
+      "id": "104-timeline-compound-api",
+      "kind": "pitfall",
+      "phenomenon": "DataTable や StatGroup はデータを渡せば描けるのに、Timeline だけ中身を入れ子で書きます。最初に書いた形が通らず、ソースを読むまで気づけませんでした。",
+      "where": {
+        "round": 104,
+        "screen": "生命保険の引受査定（アンダーライティング）",
+        "spot": "時系列の表示"
+      },
+      "cause": "同じライブラリの中にデータを渡す作法と入れ子で組む作法が混ざっていて、その違いが型名にも索引にも出ていなかったためです。",
+      "status": "resolved",
+      "links": [
+        { "kind": "issue", "id": 349 },
+        { "kind": "component", "slug": "timeline", "label": "Timeline" }
+      ],
+      "selfCheck": "時系列の表示を、他の一覧と同じようにデータを渡す書き方で組めるか確かめてください。"
+    }
+  ]
+}

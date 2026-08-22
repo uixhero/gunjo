@@ -44,6 +44,8 @@ import {
     coldTestRoundHref,
     roundRefFromLinkText,
 } from "@/lib/cold-test-article-links";
+import type { Finding } from "@/lib/cold-test-findings";
+import { FindingList, type FindingCardModel } from "../FindingList";
 import categoriesData from "@/data/cold-test-categories.json";
 
 const CATEGORY_SLUG_MAP = (categoriesData as { slugMap: Record<string, string> })
@@ -125,12 +127,32 @@ function docSlugFor(componentName: string): string {
         .toLowerCase();
 }
 
+// The findings JSON is Japanese for now, so only the Japanese page passes any.
+// See app/data/cold-test-findings/README.md.
+function toFindingCard(finding: Finding): FindingCardModel {
+    return {
+        id: finding.id,
+        kind: finding.kind,
+        status: finding.status,
+        phenomenon: finding.phenomenon,
+        screen: finding.where.screen,
+        spot: finding.where.spot,
+        cause: finding.cause,
+        selfCheck: finding.selfCheck,
+        links: finding.links,
+        // Only the *other* rounds that hit the same thing — a round page
+        // linking to itself is noise.
+        rounds: finding.where.alsoRounds ?? [],
+    };
+}
+
 export function RoundDetailView({
     detail,
     previous,
     next,
     translationHref,
     roundIndex,
+    findings = [],
 }: {
     detail: RoundDetail;
     previous: PagerNeighbour | null;
@@ -147,10 +169,26 @@ export function RoundDetailView({
      * was never published stays plain text instead of becoming a 404.
      */
     roundIndex: { ja: number[]; en: number[] };
+    /**
+     * What this round found, from `app/data/cold-test-findings/<round>.json`.
+     * Empty (and the block is skipped) for a round with no findings file, and
+     * on the English tree, which has no translated findings yet.
+     */
+    findings?: Finding[];
 }) {
     const { pages } = useLocale();
     const t = pages.coldTests;
     const td = t.detail;
+    const tf = t.findings;
+
+    const requirementCards = React.useMemo(
+        () => findings.filter((f) => f.kind === "requirement").map(toFindingCard),
+        [findings]
+    );
+    const pitfallCards = React.useMemo(
+        () => findings.filter((f) => f.kind === "pitfall").map(toFindingCard),
+        [findings]
+    );
     const pathname = usePathname();
     const base = coldTestBaseFor(pathname);
     const isEnglish = base === EN_COLD_TEST_BASE;
@@ -443,6 +481,34 @@ export function RoundDetailView({
                 onPrevious={() => hasPrevious && setLightboxIndex((i) => i - 1)}
                 onNext={() => hasNext && setLightboxIndex((i) => i + 1)}
             />
+
+            {/* What this round found. A summary of the article below, pulled
+                out as data so the industry door page can aggregate the same
+                items. Only rendered for rounds that have a findings file. */}
+            {findings.length > 0 && (
+                <section className="space-y-4">
+                    <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                        {tf.roundHeading}
+                    </h2>
+                    <p className="text-sm text-muted-foreground">{tf.roundIntro}</p>
+                    {requirementCards.length > 0 && (
+                        <div className="space-y-3" data-toc-skip>
+                            <h3 className="text-sm font-semibold tracking-tight">
+                                {tf.roundRequirementHeading}
+                            </h3>
+                            <FindingList items={requirementCards} />
+                        </div>
+                    )}
+                    {pitfallCards.length > 0 && (
+                        <div className="space-y-3" data-toc-skip>
+                            <h3 className="text-sm font-semibold tracking-tight">
+                                {tf.roundPitfallHeading}
+                            </h3>
+                            <FindingList items={pitfallCards} />
+                        </div>
+                    )}
+                </section>
+            )}
 
             {/* Article */}
             {detail.article?.markdown ? (
