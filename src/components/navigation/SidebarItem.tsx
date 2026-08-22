@@ -89,10 +89,10 @@ export const SidebarItem = memo(function SidebarItem({
         default: "text-muted-foreground hover:bg-muted hover:text-foreground",
     };
     // On the active path but not the current item: indicate with an accent
-    // (bar + icon), never a fill, so an expanded parent doesn't stack a solid
+    // (medium-weight text + icon), never a fill, so an expanded parent doesn't stack a solid
     // background against its active child's fill.
     const onPath = isCurrentAncestor && !isActive;
-    const stateClass = onPath ? "text-foreground hover:bg-muted" : variantClasses[baseVariant];
+    const stateClass = onPath ? "font-medium text-foreground hover:bg-muted" : variantClasses[baseVariant];
 
     const dragNestClass =
         dragOverId === id && dragAction === "nest"
@@ -123,12 +123,6 @@ export const SidebarItem = memo(function SidebarItem({
                 className
             )}
         >
-            {onPath && (
-                <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-y-1.5 left-0 w-0.5 rounded-full bg-primary"
-                />
-            )}
             {dragOverId === id && dragAction === 'reorder-above' && (
                 <div className="absolute top-0 left-0 right-0 h-0.5 bg-primary z-20 pointer-events-none" />
             )}
