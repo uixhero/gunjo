@@ -122,6 +122,8 @@
     "design:verify:component-style-drift": "node scripts/design-verify-component-style-drift-report.mjs --strict",
     "design:verify:component-style-drift:scoped": "node scripts/design-verify-component-style-drift-report.mjs --strict --strict-target-policy",
     "design:verify:hardcoded-color-classes": "node scripts/design-verify-hardcoded-color-classes.mjs",
+    "design:verify:left-emphasis": "node scripts/check-left-emphasis.mjs",
+    "design:verify:left-emphasis:self-test": "node scripts/check-left-emphasis.mjs --self-test",
     "design:verify:tailwind-color-tokens": "node scripts/design-verify-tailwind-color-tokens.mjs",
     "design:verify:tailwind-foundation-tokens": "node scripts/design-verify-tailwind-foundation-tokens.mjs",
     "design:verify:tailwind-theme-ssot": "node scripts/design-verify-tailwind-theme-ssot.mjs",

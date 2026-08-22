@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { IconArrowUpRight as ArrowUpRight } from "@tabler/icons-react";
 import { Badge, ListCard, Tag } from "@gunjo/ui";
-import type { BadgeProps, ListCardSeverity } from "@gunjo/ui";
+import type { BadgeProps } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import {
     findingLinkHref,
@@ -33,15 +33,9 @@ export interface FindingCardModel {
     rounds: number[];
 }
 
-// Status carries a written badge, and the accent rail repeats it in colour —
-// the rail is never the only signal.
+// Status is carried by the written badge alone — no ListCard `severity`
+// (left accent rails are banned in the site UI; see CLAUDE.md).
 const STATUS_BADGE: Record<FindingStatus, NonNullable<BadgeProps["variant"]>> = {
-    resolved: "success",
-    "fix-known": "warning",
-    tracking: "info",
-};
-
-const STATUS_SEVERITY: Record<FindingStatus, ListCardSeverity> = {
     resolved: "success",
     "fix-known": "warning",
     tracking: "info",
@@ -84,7 +78,6 @@ export function FindingList({ items }: { items: FindingCardModel[] }) {
             {items.map((item) => (
                 <li key={item.id}>
                     <ListCard
-                        severity={STATUS_SEVERITY[item.status]}
                         title={item.phenomenon}
                         status={
                             <Badge
