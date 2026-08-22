@@ -437,7 +437,7 @@ export const translations: Record<
       tokens: "Tokens",
       patterns: "Patterns",
       aiHandoff: "AI",
-      why: "Why",
+      why: "Comparison",
     },
     tooltips: {
       openMenu: "Open menu",
@@ -462,7 +462,7 @@ export const translations: Record<
       exportHint:
         "Paste this snippet into your app's :root to use the same theme.",
       copy: "Copy",
-      copied: "Copied!",
+      copied: "Copied",
     },
     stabilityBadge: {
       labels: {
@@ -474,7 +474,7 @@ export const translations: Record<
         beta: {
           label: "Beta",
           tooltip:
-            "Feature-complete and used internally, but the API may still adjust based on feedback. Pin a version if you adopt.",
+            "Feature-complete and already in real use, but the API may still change based on feedback. Pin a version if you adopt.",
         },
         experimental: {
           label: "Experimental",
@@ -495,24 +495,24 @@ export const translations: Record<
       showcase: {
         label: "Start here",
         description:
-          "Tools to give your color form, fast — components, tokens, guidelines, patterns, and AI handoff.",
+          "Tools to give your color form, fast: components, tokens, guidelines, patterns, and AI handoff.",
       },
       story: {
         label: "The color story",
         gunjoTitle: "群青 — Gunjō",
         gunjoBody:
-          "Not yet blue. Becoming blue. The color of dawn before light arrives, of ink before it dries, of form before it sets. A design system in beta — a color in becoming.",
+          "Not yet blue. Becoming blue. The color of dawn before light arrives, of ink before it dries, of form before it sets. A design system in beta, a color in becoming.",
         kobichaTitle: "媚茶 — Kobicha",
         kobichaBody:
-          "The warm earth that supports the becoming. Where human intent meets the system — hover, selection, the moment of choice — kobicha lends its temperature.",
+          "The warm earth that supports the becoming. Where human intent meets the system (hover, selection, the moment of choice), kobicha lends its temperature.",
       },
       designers: {
         heading: "Primary entry points",
-        description: "Open the system by task: inspect components, copy tokens, read guidelines, or review composed patterns.",
+        description: "Open it by what you need to do: inspect components, copy tokens, read the guidelines, or review composed patterns.",
         cards: {
           showcase: {
             title: "Component catalog",
-            description: "All 200+ audited components with docs pages, preview/code parity, and category overviews.",
+            description: "All 200+ components, each with a docs page, a live preview beside its code, and a category overview.",
             cta: "Open Showcase",
             href: "/showcase",
           },
@@ -530,17 +530,17 @@ export const translations: Record<
           },
           patterns: {
             title: "Public patterns",
-            description: "Dashboard, auth, and media library are kept visible for the alpha; the rest stay out of production until rebuilt.",
+            description: "Dashboard, auth, and media library are the ones you can open during the alpha. The rest will return once they are rebuilt.",
             cta: "See patterns",
             href: "/patterns",
           },
         },
       },
       ai: {
-        heading: "SSOT and AI handoff",
-        description: "GunjoUI treats .pen and design metadata as the source of truth, then syncs tokens, component specs, docs registration, and export data. Pages are not fully auto-generated from .pen.",
+        heading: "Single source of truth, and AI handoff",
+        description: "GunjoUI treats .pen and design metadata as the source of truth, then syncs tokens, component specs, docs registration, and export data from it. Page layouts are still written by hand.",
         evidence: (count) =>
-          `This handoff is verified by having AI that had never seen Gunjo build ${count} screens.`,
+          `Working from this handoff alone, an AI that had never seen Gunjo built ${count} screens.`,
         evidenceCta: "Read the verification log",
         cards: {
           spec: {
@@ -574,7 +574,7 @@ export const translations: Record<
       },
       becoming: {
         heading: "Your color is already there.",
-        body: "Gunjo is a blue still becoming — and so are you. Make the color only you can, from here.",
+        body: "Gunjo is a blue still becoming, and so are you. Make the color only you can, from here.",
         changelogCta: "View CHANGELOG",
         githubCta: "Star on GitHub",
       },
@@ -582,8 +582,8 @@ export const translations: Record<
     intro: {
       alphaBadge: "Beta · v0.1.0-beta.2",
       componentCountBadge: "200+ components",
-      ctaPrimary: "Get Started",
-      ctaSecondary: "Browse Components",
+      ctaPrimary: "Get started",
+      ctaSecondary: "Browse components",
       livePreviewLabel: "Live preview",
       quickstart: {
         heading: "60-second start",
@@ -596,7 +596,7 @@ export const translations: Record<
           "Open the Showcase to scan all 200+ components in one place.",
         showcaseCta: "Open Showcase",
         copyLabel: "Copy",
-        copiedLabel: "Copied!",
+        copiedLabel: "Copied",
       },
       pathwaysHeading: "Pick your path",
       pathwaysDescription: "Different goals, different starting points.",
@@ -618,12 +618,12 @@ export const translations: Record<
         },
         adoption: {
           title: "Plan adoption",
-          description: "Migration playbook, version policy, peer-dep matrix for moving an existing app.",
+          description: "Migration playbook, version policy, and peer-dep matrix for moving an existing app.",
           cta: "Read adoption guide",
         },
       },
-      resourcesHeading: "Internal resources",
-      resourcesDescription: "Reference docs maintained alongside the codebase.",
+      resourcesHeading: "Reference docs",
+      resourcesDescription: "Kept in the repo and updated with the code, so they match the version you install.",
       resources: [
         { label: "Adoption Guide", description: "5-minute install for downstream apps.", href: "/docs/adoption" },
         { label: "Migration Playbook", description: "Phase-by-phase rollout for existing apps.", href: "/docs/migration-playbook" },
@@ -636,9 +636,9 @@ export const translations: Record<
     pages: {
       showcase: {
         label: "Showcase",
-        heading: "Every component, in one canvas.",
+        heading: "Every component, on one canvas.",
         subtitle: (count) =>
-          `Live previews of all ${count} components rendered from the system itself. Click any card to dive into props, states, and code.`,
+          `Live previews of all ${count} components, each drawn by the real component rather than a screenshot. Click any card to dive into props, states, and code.`,
         searchPlaceholder: "Search components...",
         allTab: "All",
         emptyState: "No components match.",
@@ -649,7 +649,7 @@ export const translations: Record<
         label: "Cold tests",
         heading: (count) => `${count} screens built by AI that had never seen Gunjo.`,
         subtitle: (count) =>
-          `${count} rounds. Each one a context-free agent given only the public npm package and the gunjo.jp docs — no source access — and asked to build a working screen.`,
+          `${count} rounds. In each one, an AI that had never seen Gunjo gets the public npm package and the gunjo.jp docs, no source access, and has to build a working screen.`,
         searchPlaceholder: "Search rounds, routes, industries...",
         allTab: "All",
         emptyState: "No rounds match.",
@@ -685,18 +685,18 @@ export const translations: Record<
           scoreLabel: "Score",
           desktopPreview: "Desktop preview",
           mobilePreview: "Mobile preview",
-          mobilePreviewHint: "Captured at 375px viewport. Long pages scroll inside the frame.",
+          mobilePreviewHint: "Captured at a 375px viewport. Long pages scroll inside the frame.",
           screenshotLanguageNote:
-            "The screenshots stay in Japanese. Every round is a real screen for a real Japanese industry, and re-rendering it in English would show you a screen we rebuilt rather than the one the agent actually produced.",
+            "The screenshots stay in Japanese. Every round is a real screen for a real Japanese industry, so an English re-render would no longer be the screen the agent actually produced.",
           openLightboxLabel: (which) => `Open ${which.toLowerCase()} at full size`,
           article: "Write-up",
-          sourceCode: "Source built by the cold agent",
+          sourceCode: "The code the agent actually wrote",
           sourceCodeHint: "Click a file to expand its source.",
           sourceCodeFileLines: (lines) => `${lines} line${lines === 1 ? "" : "s"}`,
           sourceCodeMissing: (overwrittenBy) =>
-            `Source for this round is not preserved — the same route was rebuilt from scratch in round #${overwrittenBy}, overwriting these files. The write-up and screenshot above capture what was built at the time.`,
+            `The source for this round was overwritten: round #${overwrittenBy} rebuilt the same route from scratch. The write-up and screenshot above still show what was built at the time.`,
           componentsUsed: "Components from @gunjo/ui",
-          componentsUsedHint: "Direct imports across this screen's source.",
+          componentsUsedHint: "The components this screen's source imports directly.",
           componentDocsLabel: (name) => `Open ${name} docs`,
           summaryFooter: "Summary",
           aiDisclosure:
@@ -715,7 +715,7 @@ export const translations: Record<
           label: "Methodology",
           heading: "Why cold tests",
           subtitle: (count) =>
-            `What we measure when a context-free AI agent has to ship a real-industry screen with only the public npm package and gunjo.jp docs — and what crystallises after ${count} rounds.`,
+            `What happens when an AI that had never seen Gunjo has to ship a real-industry screen with only the public npm package and the gunjo.jp docs, and which components ended up in Gunjo after ${count} rounds.`,
           ctaGalleryLabel: "See all rounds",
           ctaComponentsLabel: "Browse the component catalog",
           breadcrumbLabel: "Why",
@@ -725,7 +725,7 @@ export const translations: Record<
             `${count} cold-test rounds across ${label}.`,
           allRoundsHeading: (label) => `All ${label} rounds`,
           allRoundsIntro: (count, label) =>
-            `Every ${label} round in chronological order — ${count} screens, each with the AI's source, write-up, and a desktop/mobile preview.`,
+            `Every ${label} round in chronological order, ${count} screens. Open any card to read the code the agent wrote, the write-up, and the desktop and mobile previews.`,
           backToGallery: "Back to all rounds",
         },
         enIndex: {
@@ -740,7 +740,7 @@ export const translations: Record<
         label: "Tokens",
         heading: "Design tokens, made tangible.",
         descriptionLead:
-          "Every variable that shapes the system. Click any swatch to copy its value. The full canonical spec — written for human and AI consumers alike — lives in",
+          "Every variable that shapes the system. Click any swatch to copy its value. The full canonical spec, written for human and AI consumers alike, lives in",
         descriptionTail: ".",
         designMdLinkText: "DESIGN.md",
         exploreCta: "Explore",
@@ -760,7 +760,7 @@ export const translations: Record<
           },
           shadows: {
             title: "Shadows",
-            description: "Elevation tokens — shadow-sm through shadow-2xl.",
+            description: "Elevation tokens, shadow-sm through shadow-2xl.",
           },
           radius: {
             title: "Radius",
@@ -772,23 +772,23 @@ export const translations: Record<
           },
         },
         designMd: {
-          title: "DESIGN.md — the canonical spec",
+          title: "DESIGN.md, the canonical spec",
           description:
             "DESIGN.md documents the full design system in machine-readable Markdown so AI tools (v0, Cursor, Claude, Figma Make) can consume it directly. Brand story, color palette with hex/HSL, typography rules, component-level usage. One source of truth.",
           cta: "Read the full spec",
         },
         fixedAssets: {
-          title: "Fixed-URL assets — plain CSS, no build step",
+          title: "Fixed-URL assets: plain CSS, no build step",
           description:
             "The token values on this site are also served as standalone files at fixed URLs. They are generated from the same source of truth as @gunjo/ui, so the values always match the package.",
           links: {
             tokensCss: "All design tokens as plain CSS (light and dark).",
             patternsCss:
-              "CSS patterns — card, badge, table, tabs, and more as gj- classes.",
+              "CSS patterns: card, badge, table, tabs, and more as gj- classes.",
             starterHtml:
               "Self-contained single-file starter: tokens, patterns, and a demo.",
           },
-          noNpmLead: "Where npm or build tools are unavailable, see ",
+          noNpmLead: "If npm or build tools are unavailable, see ",
           noNpmLinkText: "Without npm",
           noNpmTail: ".",
           valuesHeading: "Key token values (excerpt)",
@@ -800,9 +800,9 @@ export const translations: Record<
         label: "Patterns",
         heading: "Reference apps, fully composed.",
         subtitle:
-          "Eight production-shaped GunjoUI demonstrations grouped by family, surface, and industry. Use the page chips to open the exact route included in each pattern.",
+          "GunjoUI demonstrations built the way a real product would be, grouped by family, surface, and industry. Each pattern lists its pages, so you can open the exact route you want.",
         evidence: (count) =>
-          `These patterns aren't drawing-board samples — they emerged when AI that had never seen Gunjo built ${count} screens (our cold tests).`,
+          `Every pattern here came out of the cold tests, where an AI that had never seen Gunjo built ${count} screens.`,
         evidenceCta: "Verification log",
         patterns: {
           auth: {
@@ -834,7 +834,7 @@ export const translations: Record<
           bannalyze: {
             title: "Bannalyze",
             description:
-              "Banner Review's analyzer surface — data-dense workflow tool.",
+              "Banner Review's analyzer surface, a data-dense workflow tool.",
           },
           "media-library": {
             title: "Media Library",
@@ -859,7 +859,7 @@ export const translations: Record<
           industry: {
             title: "Industry patterns",
             description:
-              "Domain-shaped screens for finance, commerce, media, healthcare, and other verticals.",
+              "Screens with an industry context: finance, commerce, media, healthcare, and other verticals.",
           },
           marketing: {
             title: "Marketing patterns",
@@ -896,8 +896,8 @@ export const translations: Record<
           complexity: "Complexity",
           includes: "Includes",
           patternDetails: "Pattern details",
-          usedComponents: "Used Components",
-          fieldTested: "Battle-tested in",
+          usedComponents: "Components used",
+          fieldTested: "Real-world examples",
           planned: "Planned",
           availableCount: (count: number) =>
             `${count} ${count === 1 ? "pattern" : "patterns"}`,
@@ -908,9 +908,9 @@ export const translations: Record<
           openComponent: (label: string) => `Open ${label} component docs`,
         },
         planned: {
-          title: "Planned industry lanes",
+          title: "Industry patterns still to come",
           description:
-            "Reserved taxonomy for future pattern families. These will reuse shared chart primitives instead of adding local chart markup.",
+            "Pattern families that do not exist yet. When they arrive they will reuse the shared chart components, so charts read the same way in every pattern.",
           patterns: {
             "finance-wallet": {
               title: "Finance / Wallet",
@@ -939,7 +939,7 @@ export const translations: Record<
         badge: "AI-native by design",
         heading: "Hand off to your AI of choice.",
         subtitle:
-          "Every component in GunjoUI exposes a Markdown spec and a JSON-Schema endpoint so AI tools can reference exact variant keys, Tailwind class signatures, and design tokens — the same SSOT humans read.",
+          "Every component in GunjoUI exposes a Markdown spec and a JSON-Schema endpoint so AI tools can reference exact variant keys, Tailwind class signatures, and design tokens. It is the same single source of truth (SSOT) that humans read.",
         capabilities: {
           spec: {
             title: "Spec as prompt",
@@ -957,7 +957,7 @@ export const translations: Record<
             title: "DESIGN.md",
             badge: "Live",
             description:
-              "The canonical spec — color palette, typography, component rules — written for AI consumption.",
+              "The canonical spec (color palette, typography, component rules) written for AI consumption.",
           },
           mcp: {
             title: "MCP server",
@@ -985,18 +985,18 @@ export const translations: Record<
           links: {
             tokensCss: "All design tokens as plain CSS (light and dark).",
             patternsCss:
-              "CSS patterns — card, badge, table, tabs, and more as gj- classes.",
+              "CSS patterns: card, badge, table, tabs, and more as gj- classes.",
             starterHtml:
               "Self-contained single-file starter: tokens, patterns, and a demo.",
           },
-          docsLead: "Where npm or build tools are unavailable, see ",
+          docsLead: "If npm or build tools are unavailable, see ",
           docsLinkText: "Without npm",
           docsTail: ".",
         },
         ssotFiles: {
           heading: "SSOT files",
           description:
-            "Raw design source-of-truth files. .pen files open in Pencil; the JSON files are what design:sync reads to drive specs and codegen. GunjoUI syncs design data into code and docs, but pages are not fully auto-generated from .pen.",
+            "Raw design source-of-truth files. .pen files open in Pencil; the JSON files are what design:sync reads to drive specs and codegen. GunjoUI syncs design data into code and docs; page layouts are still written by hand.",
           manifestLabel: "Manifest",
           manifestHint: "JSON catalog with URL + size for every SSOT file.",
           fileLabel: "Per-category files",
@@ -1014,14 +1014,14 @@ export const translations: Record<
           usage: {
             heading: "How to use these files",
             pencilNote:
-              ".pen files are Pencil documents — install Pencil first if you don't have it. The JSON files (core / metadata) are plain JSON anything can read.",
+              ".pen files are Pencil documents, so install Pencil first if you don't have it. The JSON files (core / metadata) are plain JSON that anything can read.",
             designer: {
               title: "As a design reference",
               intro:
                 "Use the .pen as a working canvas to copy components into your own designs, or as a visual reference next to your code editor.",
               steps: [
                 "Download the <category>.pen file you need.",
-                "Open it in Pencil — the file shows every component for that category in one infinite canvas.",
+                "Open it in Pencil. The file shows every component for that category in one infinite canvas.",
                 "Pan / zoom to inspect. Drag-copy frames into your own document if you want to remix.",
               ],
             },
@@ -1032,7 +1032,7 @@ export const translations: Record<
               steps: [
                 "Clone gunjo and open <category>.pen from design/ in Pencil.",
                 "Edit. Save. Pencil writes back to the .pen file in place.",
-                "Run `npm run design:sync` — metadata, core spec JSON, generated variant-keys, manifest, public-exports, and docs nav all rebuild from the .pen.",
+                "Run `npm run design:sync`. Metadata, core spec JSON, generated variant-keys, manifest, public-exports, and docs nav all rebuild from the .pen.",
                 "Commit the .pen plus all regenerated artifacts together (design:verify enforces parity).",
               ],
               readmeCta: "Full SSOT runbook (design/README.md)",
@@ -1044,13 +1044,13 @@ export const translations: Record<
               intro: "If you're feeding these into a code generator or AI tool:",
               coreLabel: "<category>-core.json",
               coreDescription:
-                "Structured spec — variant keys, geometry per variant, slot IDs. The canonical input for codegen and downstream tools.",
+                "Structured spec: variant keys, geometry per variant, slot IDs. The canonical input for codegen and downstream tools.",
               metadataLabel: "<category>-metadata.json",
               metadataDescription:
                 "Per-component title and description text. The localization / docs source.",
               penLabel: "<category>.pen",
               penDescription:
-                "The original Pencil document — JSON internally, but only round-trippable when opened in Pencil.",
+                "The original Pencil document. JSON internally, but only round-trippable when opened in Pencil.",
             },
           },
         },
@@ -1075,14 +1075,14 @@ export const translations: Record<
             figmaMake: {
               name: "Figma Make",
               description:
-                "Token spec helps the model align generated frames with the design system's HSL values.",
+                "The token spec helps the model align generated frames with the design system's HSL values.",
             },
           },
         },
         cookbook: {
           heading: "Prompt cookbook",
           description:
-            "8 ready-to-paste prompts for common screens — dashboards, login, data tables, onboarding, settings, landings, AI chat, and Kanban — each pre-wired to the GunjoUI spec endpoints.",
+            "8 ready-to-paste prompts for common screens (dashboards, login, data tables, onboarding, settings, landings, AI chat, and Kanban), each pre-wired to the GunjoUI spec endpoints.",
           cta: "Open cookbook",
         },
         roadmap: {
@@ -1090,7 +1090,7 @@ export const translations: Record<
           mcp: {
             title: "gunjo-ui MCP server",
             description:
-              "Claude / Cursor query the gunjo-ui namespace directly via Model Context Protocol — no copy-paste.",
+              "Claude / Cursor query the gunjo-ui namespace directly via Model Context Protocol, with no copy-paste.",
             cta: "Read the MCP plan",
           },
           figma: {
