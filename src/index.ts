@@ -115,6 +115,7 @@ export * from './components/display/ChoroplethMap';
 export * from './components/display/Code';
 export * from './components/display/CodeBlock';
 export * from './components/display/ColorSwatch';
+export * from './components/display/CommentThread';
 export * from './components/display/CompanyCell';
 export * from './components/display/ConcentricProgressCard';
 export * from './components/display/DataTable';

@@ -31,6 +31,7 @@ export const CATEGORIES = [
     "運輸：タクシー",
     "運輸：トラック",
     "建設・建築",
+    "法務・リーガル",
 ];
 
 export function categoryOf(round) {
@@ -106,6 +107,8 @@ export function categoryOf(round) {
     if (round === 176) return "建設・建築";
     if (round === 177) return "建設・建築";
     if (round === 178) return "建設・建築";
+    if (round === 179) return "法務・リーガル";
+    if (round === 180) return "法務・リーガル";
     if (round <= 111) return "運輸：鉄道";
     return "運輸：航空";
 }

@@ -120,6 +120,7 @@ export const navigation = [
             { title: "Code", href: "/docs/components/code" },
             { title: "CodeBlock", href: "/docs/components/code-block" },
             { title: "ColorSwatch", href: "/docs/components/color-swatch" },
+            { title: "CommentThread", href: "/docs/components/comment-thread" },
             { title: "CompanyCell", href: "/docs/components/company-cell" },
             { title: "DataTable", href: "/docs/components/data-table" },
             { title: "Delta", href: "/docs/components/delta" },

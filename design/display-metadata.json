@@ -430,5 +430,9 @@
   "desktopPageHeader": {
     "title": "DesktopPageHeader",
     "description": "A dense per-screen title bar for desktop consoles, with optional eyebrow, subtitle, and trailing actions."
+  },
+  "commentThread": {
+    "title": "CommentThread",
+    "description": "A business comment thread: chronological posts carrying the author AND the side they speak for (requesting department / legal, client / site supervisor), hanging replies, and a per-comment resolved-or-open state with a toggle. Every post is a real heading so screen-reader users can move between posts; both parties render in one chronological column rather than left/right bubbles, because neither side is 'the user'. For clause comments on a contract under review, a requesting department talking to legal on a matter, review notes on a submission and internal notes on a ticket. (Not ChatMessage/ChatPanel — those model a conversation with an AI assistant and carry no replies, resolution or affiliation.)"
   }
 }

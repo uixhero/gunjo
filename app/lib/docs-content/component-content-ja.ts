@@ -42,6 +42,10 @@ export const componentContentJa: Record<string, DocContent> = {
     title: "CheckList",
     description: "チェック可能な行、表示専用行、右側の状態表示をまとめて扱う確認リストです。",
   },
+  "components/comment-thread": {
+    title: "CommentThread",
+    description: "依頼元と担当者のやり取りを、返信と解決済みの区別つきで時系列に並べる業務用のコメントスレッドです。",
+  },
   "components/company-cell": {
     title: "CompanyCell",
     description: "企業名や制度名を、ロゴまたはイニシャルタイルと補足情報で表示する識別セルです。",
