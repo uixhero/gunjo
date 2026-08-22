@@ -518,9 +518,14 @@ export function RoundDetailView({
                     </h2>
                     <Card className="border-border/80">
                         <CardContent className="px-6 py-5">
+                            {/* break-words: long unbroken `code` runs (component
+                                names joined by slashes, plus the renderer's CJK
+                                word-joiners) have no break opportunity and push
+                                375px viewports sideways otherwise. */}
                             <MarkdownRenderer
                                 content={detail.article.markdown}
                                 components={articleComponents}
+                                className="break-words"
                             />
                         </CardContent>
                     </Card>

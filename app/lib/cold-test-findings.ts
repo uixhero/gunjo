@@ -113,9 +113,12 @@ export function findingLinkHref(link: FindingLink): string {
 
 export function findingLinkLabel(link: FindingLink): string {
     switch (link.kind) {
+        // Spelled out ("Issue #347", not "#347") so the chip is not mistaken
+        // for a round number next to the "#101 の回" chips.
         case "issue":
+            return `Issue #${link.id}`;
         case "pr":
-            return `#${link.id}`;
+            return `PR #${link.id}`;
         case "component":
         case "docs":
             return link.label;

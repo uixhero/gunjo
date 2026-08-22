@@ -7,9 +7,10 @@ import { runVerificationCli, throwLinesError } from "./design-verify-assertions.
 // item with a vertical colour rail on its left edge — border-left, inset
 // box-shadow, or an absolute left-0 bar, decorative included. Alternatives:
 // background tint, font weight, border-top, spacing. A blockquote's border-left
-// is exempt. Scope: app/**/*.tsx (the gunjo.jp site UI). `src/` components are
-// out of scope here — what ListCard itself does with `severity` is a separate
-// design decision.
+// is exempt. Scope: app/**/*.tsx (the gunjo.jp site UI); `src/` components are
+// out of scope here. (A ListCard-`severity` ban used to live here too — removed
+// after PR #871 changed `severity` to a full-perimeter border + tint, so the
+// prop no longer draws a left rail.)
 
 const TARGET_PATH = "app"
 const EXCEPTION_POLICY_PATH = "design/policy/left-emphasis-exceptions.json"
@@ -24,15 +25,7 @@ const START_BORDER_CLASS_PATTERN = /\bborder-s-(?!0(?![\w.])|transparent\b)[A-Za
 // (w-72 etc.) do not match — only rail-thin widths.
 const THIN_WIDTH_PATTERN = /\bw-(?:0\.5|1\.5|1|2)(?![\w.])|\bw-\[[1-8]px\]/
 
-const LIST_CARD_SEVERITY_KEY = "listcard-severity"
 const ABSOLUTE_LEFT_BAR_KEY = "absolute-left-bar"
-
-// (d) exception: these two surfaces document the ListCard component itself, so
-// they may demonstrate `severity`. Everywhere else in app/ it is banned.
-const LIST_CARD_ALLOWED_PATHS = [
-  "app/docs/components/list-card/",
-  "app/components/demos/ListCardDemo.tsx",
-]
 
 function listTsxFiles(rootDir) {
   const files = []
@@ -103,85 +96,11 @@ function collectAbsoluteLeftBarIssues(relativeFilePath, content) {
   return issues
 }
 
-// Walks one `<ListCard ...>` opening tag. `>` inside {…} expressions (arrow
-// functions, JSX children passed as props) must not end the tag, so braces and
-// string literals are tracked and only a depth-0 `>` closes it.
-function scanListCardOpeningTag(content, start) {
-  let depth = 0
-  let inString = null
-  let severityIndex = -1
-
-  for (let i = start; i < content.length; i += 1) {
-    const ch = content[i]
-    if (inString) {
-      if (ch === inString && content[i - 1] !== "\\") inString = null
-      continue
-    }
-    if (ch === '"' || ch === "'" || ch === "`") {
-      inString = ch
-      continue
-    }
-    if (ch === "{") {
-      depth += 1
-      continue
-    }
-    if (ch === "}") {
-      depth = Math.max(0, depth - 1)
-      continue
-    }
-    if (depth > 0) continue
-    if (ch === ">") return { tagEnd: i + 1, severityIndex }
-    if (
-      severityIndex === -1 &&
-      /\s/.test(content[i - 1] ?? "") &&
-      content.startsWith("severity", i) &&
-      /^\s*=/.test(content.slice(i + "severity".length, i + "severity".length + 4))
-    ) {
-      severityIndex = i
-    }
-  }
-
-  return { tagEnd: content.length, severityIndex }
-}
-
-function collectListCardSeverityIssues(relativeFilePath, content) {
-  if (
-    LIST_CARD_ALLOWED_PATHS.some(
-      (allowed) => relativeFilePath === allowed || relativeFilePath.startsWith(allowed)
-    )
-  ) {
-    return []
-  }
-
-  const issues = []
-  let searchFrom = 0
-  for (;;) {
-    const tagStart = content.indexOf("<ListCard", searchFrom)
-    if (tagStart === -1) break
-    const nextChar = content[tagStart + "<ListCard".length]
-    if (nextChar && /[A-Za-z0-9]/.test(nextChar)) {
-      searchFrom = tagStart + 1
-      continue
-    }
-    const { tagEnd, severityIndex } = scanListCardOpeningTag(content, tagStart)
-    if (severityIndex !== -1) {
-      issues.push({
-        file: relativeFilePath,
-        className: LIST_CARD_SEVERITY_KEY,
-        line: lineNumberAt(content, severityIndex),
-      })
-    }
-    searchFrom = tagEnd
-  }
-  return issues
-}
-
 function collectIssuesFromContent(relativeFilePath, content) {
   return [
     ...collectBorderClassIssues(relativeFilePath, content, LEFT_BORDER_CLASS_PATTERN),
     ...collectBorderClassIssues(relativeFilePath, content, START_BORDER_CLASS_PATTERN),
     ...collectAbsoluteLeftBarIssues(relativeFilePath, content),
-    ...collectListCardSeverityIssues(relativeFilePath, content),
   ]
 }
 
@@ -336,30 +255,6 @@ const SELF_TEST_FIXTURES = [
     content: `<div className="absolute inset-y-0 left-0 z-50 w-72 max-w-[86%] border-r bg-background" />`,
     expect: [],
   },
-  {
-    name: "ListCard の severity をサイトUIで検出する（複数行タグ）",
-    file: "app/fixtures/listcard.tsx",
-    content: `<ListCard\n    severity={STATUS_SEVERITY[item.status]}\n    title={item.phenomenon}\n    status={<Badge onClick={() => setOpen((v) => !v)} />}\n/>`,
-    expect: [LIST_CARD_SEVERITY_KEY],
-  },
-  {
-    name: "severity 無しの ListCard は適法（=> を含む props でも誤検出しない）",
-    file: "app/fixtures/listcard-legal.tsx",
-    content: `<ListCard title="x" status={<Badge onClick={() => setSeverity("severity=high")} />} />`,
-    expect: [],
-  },
-  {
-    name: "部品の docs ページ・デモでは severity のデモを許可する",
-    file: "app/docs/components/list-card/page.tsx",
-    content: `<ListCard severity="warning" title="demo" />`,
-    expect: [],
-  },
-  {
-    name: "文章中の ListCard / severity という語は誤検出しない",
-    file: "app/fixtures/prose.tsx",
-    content: `<p>{'ListCard supports a severity accent. severity= is written as text.'}</p>`,
-    expect: [],
-  },
 ]
 
 function runSelfTest({ verbose } = {}) {
@@ -401,7 +296,7 @@ export function verifyNoLeftEmphasis({ root = ROOT } = {}) {
       "KeEemルール（new-4px DECISIONS.md 2026-08-16）: 左端の縦色帯で強調しない — border-left / inset box-shadow / absolute left-0 のいずれも・飾りも含む。"
     )
     lines.push(
-      "代替: 背景の淡い色・字の強さ・上罫（border-top）・余白。blockquote の border-left は対象外（自動適法）。ListCard の severity は app のサイトUIで使わない。"
+      "代替: 背景の淡い色・字の強さ・上罫（border-top）・余白。blockquote の border-left は対象外（自動適法）。"
     )
     lines.push(...violations.map((violation) => `- ${violation}`))
   }

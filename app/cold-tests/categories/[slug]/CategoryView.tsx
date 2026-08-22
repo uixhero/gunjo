@@ -252,6 +252,9 @@ export function CategoryView({
                                 <h2 className="text-2xl font-semibold tracking-tight">
                                     {tf.categoryPitfallHeading}
                                 </h2>
+                                <p className="text-sm text-muted-foreground">
+                                    {tf.categoryPitfallIntro}
+                                </p>
                                 <FindingList items={pitfallCards} />
                             </section>
                         )}

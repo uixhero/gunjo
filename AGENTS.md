@@ -31,11 +31,10 @@ KeEemルール（new-4px DECISIONS.md 2026-08-16）。gunjo.jp のUI（`app/` �
 ルール:
 
 - 左端に縦の色帯を置いて強調する形そのものを使わない。実装手段を問わない — `border-left`（`border-l-*` / `border-s-*`）・inset `box-shadow`・`absolute left-0` の細い色帯、いずれも。強調だけでなく飾りも含めて全部。
-- `@gunjo/ui` `ListCard` の `severity` プロパティは左罫（`border-l-4`）を出すため、app のサイトUIでは使わない。状態は文字つき Badge で伝える。例外＝部品自体の説明である `app/docs/components/list-card/` と `app/components/demos/ListCardDemo.tsx` のみ。
 - 例外: `blockquote` の border-left は対象外（引用の慣習表現）。パネル仕切りの素の `border-l`（1px・強調でない構造線）も対象外。
 - 代替: 背景の淡い色・字の強さ（weight）・上罫（`border-top`）・余白。
 - 機械検査: `npm run design:verify:left-emphasis`（`design:verify` に含まれ、CI で走る）。既存分は `design/policy/left-emphasis-exceptions.json` に理由つきで基線化済み＝新規の追加はここで落ちる。許可リストへ追加する前に KeEem に確認する。
-- この規則は app のサイトUIに対するもの。`src/` の ListCard 部品本体（`severity` API）をどうするかは別途 KeEem の設計判断。
+- `@gunjo/ui` `ListCard` の `severity` は、PR #871（2026-08-22 マージ）で左罫から全周の境界線＋淡い背景に変わった＝左端強調ではなくなったので、この規則の対象外（かつての app 内使用禁止の条項は撤去済み）。
 
 ## Icon and toggle button tooltips
 

@@ -33,8 +33,9 @@ export interface FindingCardModel {
     rounds: number[];
 }
 
-// Status is carried by the written badge alone — no ListCard `severity`
-// (left accent rails are banned in the site UI; see CLAUDE.md).
+// Status is carried by the written badge alone. ListCard `severity` (a
+// full-perimeter border + tint since PR #871) would read as urgency these
+// mostly-resolved rows don't have.
 const STATUS_BADGE: Record<FindingStatus, NonNullable<BadgeProps["variant"]>> = {
     resolved: "success",
     "fix-known": "warning",
