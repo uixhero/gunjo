@@ -281,6 +281,30 @@ export function RouteResults() {
   );
 }`;
 
+  const presentationalCode = `<div className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border bg-card p-4">
+  <div className="grid content-start gap-3">
+    <ListCard
+      leading={<LineChip label="JC" color="#f15a24" />}
+      title="${locale === "ja" ? "中央線快速" : "Chuo rapid line"}"
+      description="${locale === "ja" ? "人身事故の影響" : "Service suspended due to an incident"}"
+      status={<Badge variant="destructive">${locale === "ja" ? "運転見合わせ" : "Suspended"}</Badge>}
+      meta="${locale === "ja" ? "7:42 更新" : "Updated 7:42"}"
+      severity="critical"
+    />
+    <ListCard
+      title="${locale === "ja" ? "10:42 → 11:14" : "10:42 to 11:14"}"
+      description="${locale === "ja" ? "32分・乗換0回・34.1km" : "32 min / 0 transfers / 34.1 km"}"
+      tags={
+        <>
+          <Badge variant="secondary">${locale === "ja" ? "最速" : "Fastest"}</Badge>
+          <Badge variant="secondary">${locale === "ja" ? "最安" : "Lowest fare"}</Badge>
+        </>
+      }
+      meta="¥580"
+    />
+  </div>
+</div>`;
+
   const propsData = [
     { name: "title", type: "ReactNode", description: locale === "ja" ? "主要行です。" : "Primary line." },
     { name: "leading", type: "ReactNode", description: locale === "ja" ? "先頭アクセサリです。アイコン、アバター、路線チップなどを置きます。" : "Leading accessory such as icon, avatar, or line chip." },
@@ -289,7 +313,7 @@ export function RouteResults() {
     { name: "status", type: "ReactNode", description: locale === "ja" ? "右側の状態 Badge です。色だけに依存しない文言を含めます。" : "Right-side status badge. Include text, not color alone." },
     { name: "meta", type: "ReactNode", description: locale === "ja" ? "右側の補足値です。" : "Right-side secondary value." },
     { name: "trailing", type: "ReactNode", description: locale === "ja" ? "末尾アクセサリです。onSelect 時は既定で chevron です。" : "Trailing accessory. Defaults to a chevron when onSelect is set." },
-    { name: "severity", type: '"critical" | "warning" | "info" | "success" | "neutral"', description: locale === "ja" ? "左アクセントレールのトーンです。" : "Tone for the left accent rail." },
+    { name: "severity", type: '"critical" | "warning" | "info" | "success" | "neutral"', description: locale === "ja" ? "重大度に応じた境界線と淡い背景です。状態の意味は status の文言で伝えます。" : "Semantic border and subtle background for severity emphasis. The status text carries the meaning." },
     { name: "selected", type: "boolean", description: locale === "ja" ? "選択中の見た目です。" : "Selected visual state." },
     { name: "onSelect", type: "() => void", description: locale === "ja" ? "渡すとカード全体が44px以上のボタンになります。" : "Makes the entire card a tappable button of at least 44px." },
   ];
@@ -333,12 +357,7 @@ export function RouteResults() {
               title: locale === "ja" ? "表示専用" : "Presentational",
               description: locale === "ja" ? "onSelect を省略すると button ではなく表示用 div になります。" : "Omit onSelect to render a presentational div instead of a button.",
               preview: <ListCardPreview locale={locale} readonly />,
-              code: `<ListCard
-  title="${locale === "ja" ? "中央線快速" : "Chuo rapid line"}"
-  description="${locale === "ja" ? "人身事故の影響" : "Service suspended due to an incident"}"
-  status={<Badge variant="destructive">${locale === "ja" ? "運転見合わせ" : "Suspended"}</Badge>}
-  severity="critical"
-/>`,
+              code: presentationalCode,
               previewBodyWidth: "md",
             },
           ]}
