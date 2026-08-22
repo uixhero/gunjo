@@ -15,8 +15,10 @@ import {
     CardContent,
 } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import type { AggregatedFinding } from "@/lib/cold-test-findings";
 import categories from "@/data/cold-test-categories.json";
 import gallery from "@/data/cold-test-gallery.json";
+import { FindingList, type FindingCardModel } from "../../FindingList";
 import { PreviewThumb } from "../../PreviewThumb";
 
 interface CategoryCopy {
@@ -83,11 +85,49 @@ function docSlugForName(name: string): string {
         .toLowerCase();
 }
 
-export function CategoryView({ slug }: { slug: string }) {
+// A grouped finding keeps the earliest round's wording; the whole group's
+// rounds become the evidence links.
+function toFindingCard(entry: AggregatedFinding): FindingCardModel {
+    const { representative } = entry;
+    return {
+        id: entry.key,
+        kind: entry.kind,
+        status: entry.status,
+        phenomenon: representative.phenomenon,
+        screen: representative.where.screen,
+        spot: representative.where.spot,
+        cause: representative.cause,
+        selfCheck: representative.selfCheck,
+        links: entry.links,
+        rounds: entry.rounds,
+    };
+}
+
+export function CategoryView({
+    slug,
+    findings = [],
+}: {
+    slug: string;
+    /**
+     * Every round in this industry, aggregated. Japanese only for now — the
+     * door pages have no English tree yet.
+     */
+    findings?: AggregatedFinding[];
+}) {
     const { locale, pages } = useLocale();
     const t = pages.coldTests;
     const tc = t.categoryPage;
+    const tf = t.findings;
     const isJa = locale === "ja";
+
+    const requirementCards = React.useMemo(
+        () => findings.filter((f) => f.kind === "requirement").map(toFindingCard),
+        [findings]
+    );
+    const pitfallCards = React.useMemo(
+        () => findings.filter((f) => f.kind === "pitfall").map(toFindingCard),
+        [findings]
+    );
 
     const category = React.useMemo(
         () => catData.published.find((c) => c.slug === slug),
@@ -190,6 +230,36 @@ export function CategoryView({ slug }: { slug: string }) {
                         </p>
                     ) : null}
                 </section>
+
+                {/* The findings data layer, aggregated across the industry's
+                    rounds. Separate sections from the hand-written copy above
+                    so both can be edited without disturbing the other. */}
+                {(requirementCards.length > 0 || pitfallCards.length > 0) && (
+                    <>
+                        {requirementCards.length > 0 && (
+                            <section className="space-y-4">
+                                <h2 className="text-2xl font-semibold tracking-tight">
+                                    {tf.categoryRequirementHeading}
+                                </h2>
+                                <p className="text-sm text-muted-foreground">
+                                    {tf.categoryIntro}
+                                </p>
+                                <FindingList items={requirementCards} />
+                            </section>
+                        )}
+                        {pitfallCards.length > 0 && (
+                            <section className="space-y-4">
+                                <h2 className="text-2xl font-semibold tracking-tight">
+                                    {tf.categoryPitfallHeading}
+                                </h2>
+                                <p className="text-sm text-muted-foreground">
+                                    {tf.categoryPitfallIntro}
+                                </p>
+                                <FindingList items={pitfallCards} />
+                            </section>
+                        )}
+                    </>
+                )}
 
                 <section className="space-y-4">
                     <h2 className="text-2xl font-semibold tracking-tight">
