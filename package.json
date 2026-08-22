@@ -86,6 +86,8 @@
     "coldtest-gallery:rounds": "node scripts/build-coldtest-rounds.mjs",
     "coldtest-primitives:aggregate": "node scripts/aggregate-coldtest-primitives.mjs",
     "coldtest-en:check": "node scripts/check-coldtest-en.mjs",
+    "coldtest-en:parity": "node scripts/check-coldtest-en-parity.mjs",
+    "coldtest-en:ledger": "node scripts/build-coldtest-en-review-ledger.mjs",
     "prepare": "npm run build:lib && npm run hooks:install",
     "hooks:install": "node scripts/install-git-hooks.mjs",
     "design:sync": "node scripts/design-sync.mjs",
