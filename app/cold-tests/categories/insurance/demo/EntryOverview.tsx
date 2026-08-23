@@ -154,16 +154,16 @@ export function EntryOverview() {
 
     return (
         <div className="space-y-10">
-            <section className="space-y-3">
+            <section className="space-y-4">
                 <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
                     {isJa ? "業務の全体像と画面一覧" : "The business at a glance"}
                 </h1>
-                <p className="max-w-3xl text-sm leading-6 text-muted-foreground">
+                <p className="text-sm leading-7 text-muted-foreground">
                     {isJa
                         ? "このデモが扱うのは、損害保険会社の社員と代理店の担当者が日々使う画面です。まず業務の流れを2つの図で示し、いまある画面がどのステップに当たるかを対応づけます。図の中の箱のうち、実線の箱がいまある画面で、押すとその場で操作できます。破線の箱はまだ作っていない画面です。押すと「まだありません」と書かれたページが開き、そこから流れの前後の画面へ進めるので、業務の流れを最初から最後まで辿れます。"
                         : "This demo covers the screens used day to day by the insurer's own staff and by its agencies. The two diagrams below show how the work flows and map each existing screen to its step. In the diagrams, a solid box is a screen that exists: open it and you can use it. A dashed box is a screen not built yet; opening it gives a page saying so, with links onward to the screens before and after it, so the whole flow can still be walked from start to finish."}
                 </p>
-                <p className="max-w-3xl text-sm leading-6 text-muted-foreground">
+                <p className="text-sm leading-7 text-muted-foreground">
                     {isJa
                         ? "まだ作っていない画面は、このデモのもとになった連載「コールドテスト」（文脈を知らないAIに仕様書だけで画面を作らせる企画）の今後の回で、1画面ずつAIに作ってもらう予定です。"
                         : "The screens not built yet will be handed to an AI one at a time in future rounds of the cold-test series this demo grew out of, where an AI with no project context builds screens from a spec alone."}
@@ -178,7 +178,7 @@ export function EntryOverview() {
                     >
                         {isJa ? flow.titleJa : flow.titleEn}
                     </h2>
-                    <p className="max-w-3xl text-sm leading-6 text-muted-foreground">
+                    <p className="text-sm leading-7 text-muted-foreground">
                         {isJa ? flow.introJa : flow.introEn}
                     </p>
                     <FlowDiagram flow={flow} isJa={isJa} />
@@ -272,7 +272,7 @@ export function EntryOverview() {
                 >
                     {isJa ? "この見本の来歴" : "History of this demo"}
                 </h2>
-                <p className="max-w-3xl text-sm leading-6 text-muted-foreground">
+                <p className="text-sm leading-7 text-muted-foreground">
                     {isJa
                         ? "この見本は、コールドテストの成果から1つの完成品に仕上げ、いまも育てている業務アプリです。出発点になった3回と、1社のアプリにまとめるときに加えた変更、その後の変更履歴をここに記録しています。"
                         : "This demo was shaped into one finished piece from cold-test results, and it keeps growing. Recorded here: the three rounds it started from, the changes made to unify them into one company's app, and everything since."}
@@ -303,7 +303,7 @@ export function EntryOverview() {
                 {/* 制作側の記録なので、開いた人が最後まで読み進める必要はない。
                     以前はここで判定者が離脱した（「読むこと自体が作業になった」）。
                     消さずに畳んで、読みたい人だけが開く形にする。 */}
-                <Accordion type="single" collapsible className="max-w-3xl">
+                <Accordion type="single" collapsible>
                     <AccordionItem value="adaptations">
                         <AccordionTrigger className="text-sm font-semibold">
                             {isJa
@@ -311,7 +311,7 @@ export function EntryOverview() {
                                 : `Changed when the three rounds were merged into one app (${ADAPTATION_NOTES.length})`}
                         </AccordionTrigger>
                         <AccordionContent>
-                            <ul className="list-disc space-y-1.5 pl-5 text-sm leading-6 text-muted-foreground">
+                            <ul className="list-disc space-y-2 pl-5 text-sm leading-7 text-muted-foreground">
                                 {ADAPTATION_NOTES.map((note, index) => (
                                     <li key={index}>{isJa ? note.ja : note.en}</li>
                                 ))}
@@ -325,12 +325,12 @@ export function EntryOverview() {
                                 : `Changed since then (${PROVENANCE_LOG.length})`}
                         </AccordionTrigger>
                         <AccordionContent>
-                            <ul className="space-y-1.5 text-sm leading-6">
+                            <ul className="space-y-2 text-sm leading-7">
                                 {PROVENANCE_LOG.map((entry, index) => (
                                     <li key={index} className="flex flex-wrap gap-x-3 gap-y-0.5">
                                         <time
                                             dateTime={entry.date}
-                                            className="shrink-0 font-mono text-xs leading-6 text-muted-foreground"
+                                            className="shrink-0 font-mono text-xs leading-7 text-muted-foreground"
                                         >
                                             {entry.date}
                                         </time>
