@@ -16,6 +16,8 @@ import {
 } from "./fictional";
 
 // タブの並び＝入口（業務フロー図と画面一覧）＋3画面。
+// 準備中の5画面（仮ページ）はタブに並べない＝8タブになると本物の3画面が
+// 埋もれるため、入口のフロー図・画面一覧と仮ページの前後ナビからのみ到達。
 const NAV_ITEMS = [
     { href: DEMO_BASE, ja: "全体像", en: "Overview" },
     ...DEMO_SCREENS.map((screen) => ({

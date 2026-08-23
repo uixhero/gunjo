@@ -18,6 +18,7 @@ import {
     PLANNED_SCREENS,
     PROVENANCE_LOG,
     SCREEN_DESCRIPTIONS,
+    plannedBySlug,
     screenBySlug,
     type BusinessFlow,
 } from "./_lib/entry";
@@ -28,7 +29,7 @@ const linkClass =
 
 /**
  * 業務フロー図 — ステップの列（モバイルは縦・sm以上は横）。各ステップは
- * 対応画面へのリンク、または準備中バッジを持つ。ページ固有グルー：
+ * 対応画面へのリンク、または準備中画面の仮ページへのリンク（バッジ表示）を持つ。ページ固有グルー：
  * 見本の入口に固有の「業務ステップと画面の対応図」で、@gunjo/ui 候補として
  * #886 で追跡（業界デモが増えて3回目の手組みになったら部品化）。
  * 左端の色帯は使わない（design:verify:left-emphasis）。
@@ -37,7 +38,10 @@ function FlowDiagram({ flow, isJa }: { flow: BusinessFlow; isJa: boolean }) {
     return (
         <div role="list" className="flex flex-col gap-1 sm:flex-row sm:items-stretch">
             {flow.steps.map((step, index) => {
-                const screen = step.screen ? screenBySlug(step.screen) : null;
+                const screen =
+                    step.target.kind === "screen" ? screenBySlug(step.target.slug) : null;
+                const planned =
+                    step.target.kind === "planned" ? plannedBySlug(step.target.slug) : null;
                 return (
                     <React.Fragment key={`${flow.id}-${index}`}>
                         {index > 0 ? (
@@ -81,14 +85,28 @@ function FlowDiagram({ flow, isJa }: { flow: BusinessFlow; isJa: boolean }) {
                                             aria-hidden
                                         />
                                     </Link>
-                                ) : (
-                                    <Badge
-                                        variant="secondary"
-                                        className="whitespace-normal text-left"
+                                ) : planned ? (
+                                    <Link
+                                        href={planned.href}
+                                        aria-label={
+                                            isJa
+                                                ? `準備中の画面「${planned.ja}」を開く`
+                                                : `Open the planned screen: ${planned.en}`
+                                        }
+                                        className="group inline-flex rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                                     >
-                                        {isJa ? PLANNED_BADGE_JA : PLANNED_BADGE_EN}
-                                    </Badge>
-                                )}
+                                        <Badge
+                                            variant="secondary"
+                                            className="gap-1 whitespace-normal text-left transition-colors group-hover:bg-secondary/80"
+                                        >
+                                            {isJa ? PLANNED_BADGE_JA : PLANNED_BADGE_EN}
+                                            <IconArrowUpRight
+                                                className="h-3 w-3 shrink-0"
+                                                aria-hidden
+                                            />
+                                        </Badge>
+                                    </Link>
+                                ) : null}
                             </div>
                         </div>
                     </React.Fragment>
@@ -111,8 +129,8 @@ export function EntryOverview() {
                 </h1>
                 <p className="max-w-3xl text-sm leading-6 text-muted-foreground">
                     {isJa
-                        ? "このデモが扱うのは、損害保険会社の社内と代理店の仕事です。まず業務の流れを2本の図で示し、いまある画面がどのステップに当たるかを対応づけます。図の中でリンクになっているステップは、その画面をこの場で操作できます。リンクの無いステップは準備中です。準備中の画面は、このデモのもとになった連載「コールドテスト」（文脈を知らないAIに仕様書だけで画面を作らせる企画）の今後の回で、1画面ずつ出題する予定です。"
-                        : "This demo covers the work inside a property and casualty insurer and its agencies. The two diagrams below show how the work flows and map each existing screen to its step. Steps with a link open a working screen; the others are still in preparation, to be posed as assignments one screen at a time in future rounds of the cold-test series this demo grew out of, where an AI with no project context builds screens from a spec alone."}
+                        ? "このデモが扱うのは、損害保険会社の社内と代理店の仕事です。まず業務の流れを2本の図で示し、いまある画面がどのステップに当たるかを対応づけます。画面名のリンクになっているステップは、押すとその画面をその場で操作できます。準備中のステップも押せます。中身はまだありませんが、前後の画面に移動できるので、業務の流れを最初から最後まで辿れます。準備中の画面は、このデモのもとになった連載「コールドテスト」（文脈を知らないAIに仕様書だけで画面を作らせる企画）の今後の回で、1画面ずつ出題する予定です。"
+                        : "This demo covers the work inside a property and casualty insurer and its agencies. The two diagrams below show how the work flows and map each existing screen to its step. A step with a screen-name link opens that working screen. Steps marked as in preparation are clickable too: there is nothing in them yet, but each one links to the screens before and after it, so the whole flow can be walked from start to finish. The planned screens will be posed as assignments one screen at a time in future rounds of the cold-test series this demo grew out of, where an AI with no project context builds screens from a spec alone."}
                 </p>
             </section>
 
@@ -165,20 +183,28 @@ export function EntryOverview() {
                 </h3>
                 <div className="space-y-2">
                     {PLANNED_SCREENS.map((planned) => (
-                        <ListCard
-                            key={planned.ja}
-                            title={isJa ? planned.ja : planned.en}
-                            description={isJa ? planned.stepJa : planned.stepEn}
-                            status={
-                                <Badge
-                                    variant="secondary"
-                                    className="whitespace-normal text-left"
-                                >
-                                    {isJa ? PLANNED_BADGE_JA : PLANNED_BADGE_EN}
-                                </Badge>
-                            }
-                            className="bg-muted/40"
-                        />
+                        <Link
+                            key={planned.slug}
+                            href={planned.href}
+                            className="block rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                        >
+                            <ListCard
+                                title={isJa ? planned.ja : planned.en}
+                                description={isJa ? planned.stepJa : planned.stepEn}
+                                status={
+                                    <Badge
+                                        variant="secondary"
+                                        className="whitespace-normal text-left"
+                                    >
+                                        {isJa ? PLANNED_BADGE_JA : PLANNED_BADGE_EN}
+                                    </Badge>
+                                }
+                                trailing={
+                                    <IconChevronRight className="size-5" aria-hidden />
+                                }
+                                className="bg-muted/40 transition-colors hover:bg-accent"
+                            />
+                        </Link>
                     ))}
                 </div>
             </section>
