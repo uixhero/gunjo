@@ -7,12 +7,23 @@ import { IconInfoCircle, IconArrowUpRight, IconShieldHalfFilled } from "@tabler/
 import { Alert, AlertDescription, Badge, Container, cn } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import {
+    DEMO_BASE,
     DEMO_SCREENS,
     FICTIONAL_COMPANY,
     FICTIONAL_COMPANY_EN,
     FICTIONAL_DISCLAIMER_EN,
     FICTIONAL_DISCLAIMER_JA,
 } from "./fictional";
+
+// タブの並び＝入口（業務フロー図と画面一覧）＋3画面。
+const NAV_ITEMS = [
+    { href: DEMO_BASE, ja: "全体像", en: "Overview" },
+    ...DEMO_SCREENS.map((screen) => ({
+        href: screen.href,
+        ja: screen.navJa,
+        en: screen.navEn,
+    })),
+];
 
 /**
  * 架空の保険会社デモの共有シェル。全画面に共通して:
@@ -62,7 +73,7 @@ export function DemoShell({ children }: { children: React.ReactNode }) {
                     href="/cold-tests/categories/insurance"
                     className="inline-flex items-center gap-1 text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
-                    {isJa ? "保険の業界ページに戻る" : "Back to the insurance page"}
+                    {isJa ? "保険UIのコールドテストに戻る" : "Back to the insurance cold tests"}
                     <IconArrowUpRight className="h-3.5 w-3.5" aria-hidden />
                 </Link>
             </header>
@@ -72,12 +83,12 @@ export function DemoShell({ children }: { children: React.ReactNode }) {
                 className="mb-6 overflow-x-auto border-b border-border"
             >
                 <ul className="flex min-w-max items-stretch gap-1">
-                    {DEMO_SCREENS.map((screen) => {
-                        const active = pathname === screen.href;
+                    {NAV_ITEMS.map((item) => {
+                        const active = pathname === item.href;
                         return (
-                            <li key={screen.slug}>
+                            <li key={item.href}>
                                 <Link
-                                    href={screen.href}
+                                    href={item.href}
                                     aria-current={active ? "page" : undefined}
                                     className={cn(
                                         "inline-flex items-center whitespace-nowrap border-b-2 px-3 py-2.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
@@ -86,7 +97,7 @@ export function DemoShell({ children }: { children: React.ReactNode }) {
                                             : "border-transparent text-muted-foreground hover:border-border hover:text-foreground"
                                     )}
                                 >
-                                    {isJa ? screen.navJa : screen.navEn}
+                                    {isJa ? item.ja : item.en}
                                 </Link>
                             </li>
                         );
