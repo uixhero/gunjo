@@ -13,6 +13,7 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ### Added
 
+- **`StatusLevel`**（影響: **none**）— 順序のある段（平常運転＜遅延＜迂回＜運休、空いています＜やや混雑＜混雑、低＜中＜高＜緊急、good＜watch＜bad）を表す Display 部品。段は `levels[]` に軽い順で1回だけ書き、同じ配列がピルと並べ替え（`compareStatusLevel`）と全体の導出（`highestStatusLevel`）を動かすので、順序の書き写しが1か所に減る。段バーは意味トーンではなく前景色と枠線色の濃淡で描くため色を落としても段を数えられ（明色 13 対 230・実測）、読み上げには「4段階中 3段目」が乗る。順序のない状態は従来どおり `Badge`、工程の位置は `Stepper` / `ApprovalSteps` / `RouteStops`。純関数 `statusLevelIndex` / `statusLevelStep` / `compareStatusLevel` / `highestStatusLevel` を同梱。`Badge` の挙動と公開 API は不変。(#376)
 - **`StickyNoticeBar`**（影響: **none**）— サイト告知を body portal + `fixed` で上端または下端へ追従表示する Feedback 部品。`edge` は必須で既定値なし。同一 document の単一スロットに限定し、複数 mount 時は先着1件だけを表示して開発エラーを記録する。長文折り返し、アクション、44px の閉じるボタン、上下セーフエリア、ライト／ダークに対応。(#810)
 
 ### Changed
