@@ -13,6 +13,11 @@
  * Output: public/insurance-demo-shots/<slug>.<mode>.webp   (600px — card)
  *         public/insurance-demo-shots/<slug>.<mode>.lg.webp (1400px — retina)
  *
+ * Both tiers are served from one `srcset` by the screen list's ScreenShot
+ * component (app/cold-tests/categories/insurance/demo/_lib/ScreenShot.tsx);
+ * the browser picks 600w at DPR 1 and 1400w at DPR 2+. If you drop a tier
+ * here, drop it there too — an unreferenced tier is dead weight in the repo.
+ *
  * Capture follows scripts/showcase-capture-thumbs.mjs (in-repo routes, both
  * colour schemes via prefers-color-scheme). Delivery follows
  * scripts/build-coldtest-thumbs.mjs (cwebp q85, which is 5-7x smaller than PNG

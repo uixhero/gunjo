@@ -6,7 +6,8 @@ import { Skeleton, cn } from "@gunjo/ui";
 
 /**
  * 画面一覧に置く実画面のサムネイル。`public/insurance-demo-shots/` の
- * `<slug>.<light|dark>.webp` を、いまのテーマに合わせて出し分ける。
+ * `<slug>.<light|dark>.webp`（600px）と `.lg.webp`（1400px）を、いまのテーマと
+ * 画面の解像度に合わせて出し分ける。
  * 撮影は `npm run insurance-demo:shots`（scripts/capture-insurance-demo-shots.mjs）。
  *
  * ページ固有グルー。⚠️ 同じ形の「テーマ連動サムネイル」は app/showcase・
@@ -36,6 +37,11 @@ export function ScreenShot({
     const mode: "light" | "dark" =
         mounted && resolvedTheme === "light" ? "light" : "dark";
     const src = `/insurance-demo-shots/${slug}.${mode}.webp`;
+    // 600px（カード）と 1400px（retina）の2段。cold-test の図版と同じ段組みで、
+    // 向こうは表示幅ごとに段を決め打ちしている（RoundDetailView の
+    // desktopInlineSrc が .lg を直接指す）。ここはカードの幅が
+    // auto-fill で変わるので、段をブラウザに選ばせる。
+    const srcSet = `${src} 600w, /insurance-demo-shots/${slug}.${mode}.lg.webp 1400w`;
 
     // 画像がすでにブラウザのキャッシュにあると、マウント時点で onLoad は
     // 発火済み＝loaded が true にならない。img.complete から同期する。
@@ -64,6 +70,14 @@ export function ScreenShot({
                 <img
                     ref={imgRef}
                     src={src}
+                    srcSet={srcSet}
+                    /* 枠は h-44（176px）固定で object-cover なので、描かれる画像の
+                       幅は枠の幅ではなく「176px × 元画像の縦横比」以上になる。
+                       実測（2026-08-23・DPR2）で 304〜356px＝必要な実画素は
+                       609〜712 で、600px 版はどの幅でも足りていなかった。
+                       360px と書いて DPR1 なら 600w・DPR2 以上なら 1400w を
+                       選ばせる。 */
+                    sizes="360px"
                     alt={alt}
                     onLoad={() => setLoaded(true)}
                     onError={() => setErrored(true)}
