@@ -1,7 +1,7 @@
 // デモ入口ページの内容定義 — 業務フロー図・画面一覧・来歴ログの唯一の出どころ。
 // KeEem決定（2026-08-23）: このデモは「来歴のあるショーケース」＝入口で業務の
 // 全体像を先に見せ、画面がどのステップに当たるかを明示する。無い画面は
-// 「準備中（今後の回で出題予定）」の仮ページを置き、あるふりをしない
+// 準備中の仮ページを置き、あるふりをしない
 // （ダミーのUI部品も架空のデータも置かない）。仮ページは前後の画面へ
 // つないで、業務の流れを通しで辿れるようにする。
 
@@ -12,6 +12,13 @@ import { DEMO_BASE, DEMO_SCREENS, type DemoScreen } from "./fictional";
  * 次の1回とは書けない（writing-review 2巡目の高指摘）。 */
 export const PLANNED_BADGE_JA = "準備中（今後の回で出題予定）";
 export const PLANNED_BADGE_EN = "In preparation (future rounds)";
+
+/** 準備中の短い言い方。図と一覧では、上の全文ではなくこちらを使う。
+ * 全文は1ページに11回出ていて、5つ並んだ枠が「どれも同じ」に見える
+ * 最大の原因になっていた（visual-rhythm 1段目・9件中4件がこの反復）。
+ * 全文は仮ページの見出しに1回だけ残す＝意味は失わない。 */
+export const PLANNED_BADGE_SHORT_JA = "準備中";
+export const PLANNED_BADGE_SHORT_EN = "In preparation";
 
 /** 準備中画面の slug。ルートは既存3画面と同じく DEMO_BASE 直下。 */
 export type PlannedScreenSlug =
@@ -98,6 +105,23 @@ export const SCREEN_DESCRIPTIONS: Record<
     payments: {
         ja: "査定が確定した請求の支払管理。認定した損害額から何が差し引かれて今回の支払額になるかを内訳で確かめ、承認して振込を手配します。",
         en: "Payment management for adjudicated claims: see what is deducted from the assessed amount to reach the payable amount, approve, and arrange the transfer.",
+    },
+};
+
+/** 画面一覧に置く実画面サムネイルの代替テキスト。⛔「〜のプレビュー」で埋めない
+ * ＝読み上げ環境で情報がゼロになる。画面に何が写っているかを書く。 */
+export const SCREEN_SHOT_ALT: Record<DemoScreen["slug"], { ja: string; en: string }> = {
+    policies: {
+        ja: "契約管理ダッシュボードの画面。上部に6枚の数字のカードが並ぶ（保有している契約の件数、今月の保険料収入、代理店に払う手数料、今月満期になる契約の件数、更新率、失効しそうな契約の件数）。その下に、満期が30日以内に迫った契約を並べた「更新管理・失効リスク」の一覧。",
+        en: "The policy management dashboard: six figure cards across the top (policies in force, monthly premium income, agency commission, expiring this month, renewal rate, lapse risk) above a renewal and lapse-risk list of policies expiring within 30 days.",
+    },
+    claims: {
+        ja: "保険金請求・査定管理の画面。上部に7枚の数字のカードが並ぶ（今日届いた請求の件数、査定中の件数、承認待ちの件数、今月支払った保険金、査定にかかった平均日数、社内で決めた対応期限を過ぎた件数、要注意の印がついた件数）。その下に、絞り込みと検索のついた請求一覧の表。",
+        en: "The claims and adjudication screen: seven figure cards across the top (new claims today, under adjudication, awaiting approval, paid this month, average days to adjudicate, SLA breaches, flagged for attention) above a claims table with a status filter and a search box.",
+    },
+    payments: {
+        ja: "保険金支払・精算管理の画面。上部に6枚の数字のカードが並ぶ（今日支払う予定の件数、承認待ちの件数、振込を手配中の件数、金額の大きい案件の件数、まだ払っていない金額の合計、今月支払った総額）。その下に、状態で絞り込める支払一覧の表。列は保険証券の番号、支払先、補償の種類、今回支払う額、支払う予定の日、状態、担当。",
+        en: "The claim payments and settlement screen: six figure cards across the top (due today, awaiting approval, transfer being arranged, high-value cases, unpaid amount due, total paid this month) above a payments table filtered by status, with policy number, payee, coverage, amount due, due date, status, and owner.",
     },
 };
 
@@ -265,6 +289,11 @@ export const PROVENANCE_LOG: ProvenanceLogEntry[] = [
         ja: "まだ作っていない5画面に仮のページを追加（業務の流れを通しで辿れるように）。",
         en: "Placed a placeholder page for each of the five screens not built yet, so the whole flow can be walked through.",
     },
+    {
+        date: "2026-08-23",
+        ja: "入口に図を追加。画面一覧に3画面の写真、業務の流れの図に「どの画面がどのステップを受け持つか」の対応を出し、まだ作っていない画面のページに現在地の図を置いた。",
+        en: "Added figures to the entry page: three screenshots in the screen list, a step-to-screen mapping in the flow diagrams, and a you-are-here strip on the placeholder pages.",
+    },
 ];
 
 /** slug から画面定義を引く。 */
@@ -279,6 +308,58 @@ export function plannedBySlug(slug: PlannedScreenSlug): PlannedScreen {
     const planned = PLANNED_SCREENS.find((p) => p.slug === slug);
     if (!planned) throw new Error(`unknown planned screen: ${slug}`);
     return planned;
+}
+
+/** フロー図の1区画＝連続する何ステップかを1つの画面が受け持つ、そのまとまり。 */
+export interface FlowRun {
+    target: FlowTarget;
+    /** この区画が受け持つステップ（連続）。 */
+    steps: FlowStep[];
+    /** 1始まりの通し番号（表示用）。 */
+    firstStepNumber: number;
+}
+
+/**
+ * ステップの列を「同じ画面が受け持つ連続したまとまり」に畳む。
+ *
+ * これがフロー図の芯。ステップは10個あるのに画面は8つで、「契約管理」は
+ * 契約と異動・更新の2ステップ分を、「立件・損害調査」は立件と調査の
+ * 2ステップ分をまたぐ。ステップの粒度と画面の粒度がずれていることが、
+ * ステップを1つずつ並べた図では読み取れなかった（figure-review 1段目の
+ * 3件が全部これ。3件とも「枠と画面をくくる線」1本で解ける）。
+ */
+export function flowRuns(flow: BusinessFlow): FlowRun[] {
+    const runs: FlowRun[] = [];
+    flow.steps.forEach((step, index) => {
+        const last = runs[runs.length - 1];
+        const sameAsLast =
+            last &&
+            last.target.kind === step.target.kind &&
+            last.target.slug === step.target.slug;
+        if (sameAsLast) {
+            last.steps.push(step);
+            return;
+        }
+        runs.push({ target: step.target, steps: [step], firstStepNumber: index + 1 });
+    });
+    return runs;
+}
+
+/** ある行き先が属する業務フローを引く（仮ページの現在地表示で使う）。 */
+export function flowForTarget(target: FlowTarget): BusinessFlow | null {
+    return (
+        BUSINESS_FLOWS.find((flow) =>
+            flow.steps.some(
+                (step) =>
+                    step.target.kind === target.kind && step.target.slug === target.slug
+            )
+        ) ?? null
+    );
+}
+
+/** 2つの行き先が同じ画面を指すか。 */
+export function isSameTarget(a: FlowTarget, b: FlowTarget): boolean {
+    return a.kind === b.kind && a.slug === b.slug;
 }
 
 /** フローの行き先の href。 */

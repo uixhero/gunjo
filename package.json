@@ -79,6 +79,7 @@
     "start": "next start",
     "lint": "eslint",
     "showcase:thumbs": "node scripts/showcase-capture-thumbs.mjs && node scripts/sync-thumb-manifest.mjs",
+    "insurance-demo:shots": "node scripts/capture-insurance-demo-shots.mjs",
     "patterns:thumbs": "node scripts/patterns-capture-thumbs.mjs && node scripts/sync-thumb-manifest.mjs",
     "thumbs:manifest": "node scripts/sync-thumb-manifest.mjs",
     "coldtest-gallery:snapshot": "node scripts/build-coldtest-gallery.mjs",

@@ -4,62 +4,120 @@ import * as React from "react";
 import Link from "next/link";
 import {
     IconArrowUpRight,
-    IconChevronLeft,
     IconChevronRight,
     IconHourglass,
 } from "@tabler/icons-react";
-import { Button, EmptyState, Separator } from "@gunjo/ui";
+import { Badge, EmptyState, Separator, cn } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { DEMO_BASE } from "./fictional";
 import {
     PLANNED_BADGE_EN,
     PLANNED_BADGE_JA,
+    PLANNED_BADGE_SHORT_EN,
+    PLANNED_BADGE_SHORT_JA,
+    flowForTarget,
+    flowRuns,
     flowTargetHref,
     flowTargetLabel,
+    isSameTarget,
     plannedBySlug,
     type FlowTarget,
     type PlannedScreenSlug,
 } from "./entry";
 
-/** 前へ・次へのボタン1つ。行き先は既存画面か準備中画面。 */
-function FlowNavButton({
-    target,
-    direction,
-    isJa,
-}: {
-    target: FlowTarget;
-    direction: "prev" | "next";
-    isJa: boolean;
-}) {
-    const label = flowTargetLabel(target, isJa);
-    // 「前の画面」だとブラウザの戻る・進むに読めるため、業務の流れ上の前後だと
-    // 分かる「前のステップ」「次のステップ」にする（独立レビューの指摘）。
-    const prefix =
-        direction === "prev"
-            ? isJa
-                ? "前のステップ"
-                : "Previous step"
-            : isJa
-              ? "次のステップ"
-              : "Next step";
+/**
+ * 現在地の図 — この画面が、業務の流れのどこに当たるかを1本の帯で示す。
+ *
+ * 判定者が仮ページで掴めなかったのが「準備中の画面が1本につながっているのか
+ * 2本に分かれているのか」で、前後2つのボタンだけでは鎖の全体が見えなかった
+ * （figure-review 1段目）。流れ全体を出し、いまいる区画に印を付ける。
+ * 中身のあるUIやデータは置かない＝あるふりをしない（KeEem決定 2026-08-23）。
+ * 左端の色帯は使わない（design:verify:left-emphasis）。
+ */
+function FlowPosition({ current, isJa }: { current: FlowTarget; isJa: boolean }) {
+    const flow = flowForTarget(current);
+    if (!flow) return null;
+    const runs = flowRuns(flow);
+
     return (
-        <Button asChild variant="outline" size="sm">
-            <Link href={flowTargetHref(target)}>
-                {direction === "prev" ? (
-                    <IconChevronLeft className="h-4 w-4" aria-hidden />
-                ) : null}
-                {isJa ? `${prefix}：${label}` : `${prefix}: ${label}`}
-                {direction === "next" ? (
-                    <IconChevronRight className="h-4 w-4" aria-hidden />
-                ) : null}
-            </Link>
-        </Button>
+        <section aria-labelledby="flow-position" className="mb-6 space-y-2">
+            <h2 id="flow-position" className="text-sm font-semibold text-foreground">
+                {isJa
+                    ? `業務の流れ「${flow.titleJa}」の中で、この画面が出てくるところ`
+                    : `Where this screen comes up in ${flow.titleEn}`}
+            </h2>
+            <ol className="flex flex-col gap-1 sm:flex-row sm:items-stretch">
+                {runs.map((run, index) => {
+                    const here = isSameTarget(run.target, current);
+                    const isScreen = run.target.kind === "screen";
+                    const label = flowTargetLabel(run.target, isJa);
+                    const stepNames = run.steps
+                        .map((step) => (isJa ? step.ja : step.en))
+                        .join(isJa ? "・" : " / ");
+                    return (
+                        <React.Fragment key={`${flow.id}-${run.firstStepNumber}`}>
+                            {index > 0 ? (
+                                <div
+                                    aria-hidden
+                                    className="hidden text-muted-foreground sm:flex sm:items-center sm:px-0.5"
+                                >
+                                    <IconChevronRight className="h-4 w-4" />
+                                </div>
+                            ) : null}
+                            <li
+                                style={{ flexGrow: run.steps.length }}
+                                aria-current={here ? "page" : undefined}
+                                className={cn(
+                                    "min-w-0 basis-0 rounded-lg p-2.5",
+                                    here
+                                        ? "border-2 border-primary bg-primary/5"
+                                        : isScreen
+                                          ? "border bg-card"
+                                          : "border border-dashed bg-muted/40"
+                                )}
+                            >
+                                <p className="text-xs text-muted-foreground">{stepNames}</p>
+                                {here ? (
+                                    <p className="mt-0.5 text-sm font-semibold text-foreground">
+                                        {label}
+                                        <span className="ml-1.5 align-middle text-xs font-medium text-primary">
+                                            {isJa ? "いま見ている画面" : "You are here"}
+                                        </span>
+                                    </p>
+                                ) : (
+                                    <Link
+                                        href={flowTargetHref(run.target)}
+                                        className={cn(
+                                            "mt-0.5 inline-flex items-center gap-1 text-sm font-medium underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                                            isScreen ? "text-primary" : "text-muted-foreground"
+                                        )}
+                                    >
+                                        {label}
+                                        {isScreen ? null : (
+                                            <Badge variant="secondary">
+                                                {isJa
+                                                    ? PLANNED_BADGE_SHORT_JA
+                                                    : PLANNED_BADGE_SHORT_EN}
+                                            </Badge>
+                                        )}
+                                        <IconArrowUpRight
+                                            className="h-3 w-3 shrink-0"
+                                            aria-hidden
+                                        />
+                                    </Link>
+                                )}
+                            </li>
+                        </React.Fragment>
+                    );
+                })}
+            </ol>
+        </section>
     );
 }
 
 /**
- * 準備中画面の仮ページ。中身は「準備中」の表示と、業務の流れを通しで
- * 辿るための前後ナビだけ。動くふりをするUIや架空のデータは置かない
+ * 準備中画面の仮ページ。中身は「準備中」の表示と、業務の流れの中での現在地だけ。
+ * 動くふりをするUIや架空のデータは置かない
  * （KeEem決定 2026-08-23：無い画面は、あるふりをしない）。
  * ページ固有グルー：このデモのルーティング専用で @gunjo/ui 候補ではない。
  */
@@ -67,6 +125,7 @@ export function PlannedScreenView({ slug }: { slug: PlannedScreenSlug }) {
     const { locale } = useLocale();
     const isJa = locale === "ja";
     const planned = plannedBySlug(slug);
+    const current: FlowTarget = { kind: "planned", slug };
 
     return (
         <>
@@ -79,26 +138,14 @@ export function PlannedScreenView({ slug }: { slug: PlannedScreenSlug }) {
                 </p>
             </header>
             <Separator className="mb-6" />
+            <FlowPosition current={current} isJa={isJa} />
             <EmptyState
                 icon={<IconHourglass className="h-6 w-6" aria-hidden />}
                 title={isJa ? PLANNED_BADGE_JA : PLANNED_BADGE_EN}
                 description={
                     isJa
-                        ? "この画面はまだありません。このデモは、文脈を知らないAIに仕様書だけを渡して画面を作らせる連載「コールドテスト」から生まれました。この画面も、この先の回でAIに作ってもらい、できあがったらここに載せます。"
-                        : "This screen does not exist yet. This demo grew out of the cold-test series, where an AI with no project context builds screens from a spec alone. This screen will be built in a future round, and the finished screen will land here."
-                }
-                action={
-                    <nav
-                        aria-label={isJa ? "業務の流れの前後の画面" : "Adjacent screens in the flow"}
-                        className="flex flex-wrap items-center justify-center gap-2"
-                    >
-                        {planned.prev ? (
-                            <FlowNavButton target={planned.prev} direction="prev" isJa={isJa} />
-                        ) : null}
-                        {planned.next ? (
-                            <FlowNavButton target={planned.next} direction="next" isJa={isJa} />
-                        ) : null}
-                    </nav>
+                        ? "この画面はまだありません。この先の回でAIに作ってもらい、できあがったらここに載せます。"
+                        : "This screen does not exist yet. It will be built in a future round, and the finished screen will land here."
                 }
             >
                 <Link
