@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import categories from "@/data/cold-test-categories.json";
 import gallery from "@/data/cold-test-gallery.json";
+import { publishableJaEntries } from "@/lib/cold-test-drafts";
 import { aggregateFindings } from "@/lib/cold-test-findings";
 import { readFindingsForRounds } from "@/lib/cold-test-findings-server";
 import { CategoryView } from "./CategoryView";
@@ -95,7 +96,10 @@ export default async function CategoryPage({
     const category = findPublished(slug);
     if (!category) notFound();
 
-    const rounds = galleryData.entries
+    // Drafts (cold-test-drafts.ts) are filtered here on the server — the
+    // client CategoryView receives the visible round list because it cannot
+    // see VERCEL_ENV itself.
+    const rounds = publishableJaEntries(galleryData.entries)
         .filter((e) => e.category === category.jaCategory)
         .map((e) => e.round)
         .sort((a, b) => a - b);
@@ -139,6 +143,7 @@ export default async function CategoryPage({
             />
             <CategoryView
                 slug={slug}
+                visibleRounds={rounds}
                 findings={aggregateFindings(readFindingsForRounds(rounds))}
             />
         </>

@@ -36,6 +36,22 @@ const QUALITY = 85;
 // kind: source viewport, suffix: output filename qualifier (empty = grid),
 // width: 0 means use the source's native width (no resize — the source IS
 // already at retina resolution for that viewport).
+// WebP's hard limit per side. Sources longer than this are scaled to fit
+// (see the native-width branch below) rather than dropped.
+const WEBP_MAX_SIDE = 16383;
+
+/** Read a PNG's pixel dimensions from its IHDR header (no image library). */
+function pngSize(file) {
+    const head = Buffer.alloc(24);
+    const fd = fs.openSync(file, "r");
+    try {
+        fs.readSync(fd, head, 0, 24, 0);
+    } finally {
+        fs.closeSync(fd);
+    }
+    return { width: head.readUInt32BE(16), height: head.readUInt32BE(20) };
+}
+
 const VARIANTS = [
     { kind: "desktop", suffix: "", width: 600 },
     { kind: "desktop", suffix: ".lg", width: 1400 },
@@ -91,6 +107,19 @@ for (const entry of data.entries) {
         }
         const args = ["-q", String(QUALITY), "-mt"];
         if (v.width > 0) args.push("-resize", String(v.width), "0");
+        else {
+            // WebP tops out at 16383px per side. Full-page captures of long
+            // business screens go past that (a 375px round can be 23,000px
+            // tall at 2x), and cwebp fails with BAD_DIMENSION after creating
+            // an empty file. Scale the native variant down to fit instead of
+            // losing the shot.
+            const { width: sw, height: sh } = pngSize(src);
+            if (sh > WEBP_MAX_SIDE || sw > WEBP_MAX_SIDE) {
+                const scale = WEBP_MAX_SIDE / Math.max(sw, sh);
+                args.push("-resize", String(Math.floor(sw * scale)), "0");
+                s.clamped = (s.clamped ?? 0) + 1;
+            }
+        }
         args.push(src, "-o", dst);
         // cwebp writes a verbose summary to stderr per file even on success;
         // swallow it so the script output stays readable. On failure
@@ -111,6 +140,7 @@ for (const v of VARIANTS) {
     const s = stats[key];
     const widthLabel = v.width === 0 ? "native" : `${v.width}px`;
     console.log(
-        `  ${key.padEnd(14)} (${widthLabel.padStart(7)}): written=${s.written} skipped=${s.skipped} missing=${s.missing}`
+        `  ${key.padEnd(14)} (${widthLabel.padStart(7)}): written=${s.written} skipped=${s.skipped} missing=${s.missing}` +
+            (s.clamped ? ` clamped=${s.clamped}` : "")
     );
 }

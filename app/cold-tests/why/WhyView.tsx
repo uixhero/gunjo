@@ -33,15 +33,10 @@ interface GalleryShape {
     entries: GalleryEntry[];
 }
 const galleryData = gallery as GalleryShape;
-const ROUND_COUNT = galleryData.count;
 // 業種の数は「運輸5モード」と併記して見せるので、運輸の各モードと、業種ではない
 // 汎用カテゴリを categories から除く（除かないと運輸を二重に数えることになる）。
 const TRANSPORT_CATEGORY_PREFIX = "運輸：";
 const GENERIC_CATEGORY = "基盤UI・汎用";
-const INDUSTRY_COUNT = galleryData.categories.filter(
-    (category) =>
-        category !== GENERIC_CATEGORY && !category.startsWith(TRANSPORT_CATEGORY_PREFIX),
-).length;
 const CRYSTALLIZED_COUNT = galleryData.crystallizedCount;
 
 function scoreOf(score: string): number {
@@ -52,9 +47,9 @@ function scoreOf(score: string): number {
 // "many real industries, actually built." Derived from the snapshot (highest
 // score per category, desktop shot required) so it never goes stale as the
 // series grows. Capped so the strip stays a band, not a second gallery.
-const HERO_TILES: GalleryEntry[] = (() => {
+function buildHeroTiles(entries: GalleryEntry[]): GalleryEntry[] {
     const bestPerCategory = new Map<string, GalleryEntry>();
-    for (const e of galleryData.entries) {
+    for (const e of entries) {
         if (!e.shots.desktop) continue;
         const current = bestPerCategory.get(e.category);
         if (!current || scoreOf(e.score) > scoreOf(current.score)) {
@@ -68,7 +63,7 @@ const HERO_TILES: GalleryEntry[] = (() => {
         if (pick) ordered.push(pick);
     }
     return ordered.slice(0, 8);
-})();
+}
 
 // Components called out in the flagship soushuuhen as the ones that
 // crystallised during the cold-test run. Linked to their docs pages so
@@ -97,11 +92,35 @@ function docSlugFor(name: string): string {
         .toLowerCase();
 }
 
-export function WhyView() {
+export function WhyView({
+    visibleRounds,
+}: {
+    /** Rounds this environment may show, decided by the server page (drafts
+     *  are hidden in production — see app/lib/cold-test-drafts.ts). */
+    visibleRounds?: number[];
+} = {}) {
     const { locale, pages } = useLocale();
     const t = pages.coldTests;
     const tw = t.why;
     const isJa = locale === "ja";
+
+    const entries = React.useMemo(() => {
+        if (!visibleRounds) return galleryData.entries;
+        const visible = new Set(visibleRounds);
+        return galleryData.entries.filter((e) => visible.has(e.round));
+    }, [visibleRounds]);
+    const ROUND_COUNT = entries.length;
+    const INDUSTRY_COUNT = React.useMemo(
+        () =>
+            galleryData.categories.filter(
+                (category) =>
+                    category !== GENERIC_CATEGORY &&
+                    !category.startsWith(TRANSPORT_CATEGORY_PREFIX) &&
+                    entries.some((e) => e.category === category)
+            ).length,
+        [entries]
+    );
+    const HERO_TILES = React.useMemo(() => buildHeroTiles(entries), [entries]);
 
     return (
         <div className="container py-10 md:py-12">

@@ -3451,6 +3451,106 @@
         "en.desktop": false,
         "en.mobile": false
       }
+    },
+    {
+      "round": 240,
+      "route": "/quotation",
+      "slug": "quotation",
+      "score": "4/5",
+      "category": "保険",
+      "title": "AI に保険の見積を作る画面を作らせてみた：3案を並べる部品は、既定が「推す」側だった（やってみた #240）",
+      "summary": "予備知識ゼロの AI に、公開されている npm パッケージと gunjo.jp のドキュメントだけを渡して組ませました。4ファイル・2,068行です。型検査は緑で、実際に起動してもエラーは出ませんでした。パソコン幅でも375pxでも、横スクロールは出ていません。",
+      "article": {
+        "file": "zenn-yattemita-240-quotation.md",
+        "slug": "240-quotation"
+      },
+      "shots": {
+        "desktop": true,
+        "mobile": true,
+        "en.desktop": false,
+        "en.mobile": false
+      },
+      "audience": "toB"
+    },
+    {
+      "round": 241,
+      "route": "/application-desk",
+      "slug": "application-desk",
+      "score": "3.5/5",
+      "category": "保険",
+      "title": "AI に保険の申込受付の画面を作らせてみた：責めない言葉は、一文残らずこちらで書くことになった（やってみた #241）",
+      "summary": "予備知識ゼロの AI に、公開されている npm パッケージと gunjo.jp のドキュメントだけを渡して組ませました。8ファイル・2,343行、うち架空データが1,064行なので画面のコードは1,279行です。型検査は緑で、起動してもエラーは出ません。パソコン幅でも375pxでも横スクロールは出ていません。",
+      "article": {
+        "file": "zenn-yattemita-241-application-desk.md",
+        "slug": "241-application-desk"
+      },
+      "shots": {
+        "desktop": true,
+        "mobile": true,
+        "en.desktop": false,
+        "en.mobile": false
+      },
+      "audience": "toB"
+    },
+    {
+      "round": 242,
+      "route": "/underwriting-review",
+      "slug": "underwriting-review",
+      "score": "4/5",
+      "category": "保険",
+      "title": "AI に損保の引受査定の画面を作らせてみた：「重い」を表す色が、赤しか無かった（やってみた #242）",
+      "summary": "予備知識ゼロの AI に、公開されている npm パッケージと gunjo.jp のドキュメントだけを渡して組ませました。13ファイル・3,142行（データ722・型184・処理453・画面1,783）です。型検査は緑で、起動してもエラーは出ません。パソコン幅でも375pxでも横スクロールは出ていません。この5枚のうち、画面の題名（ブラウザのタブに出る文字）を設定できた2枚のうちの1枚でもあります。",
+      "article": {
+        "file": "zenn-yattemita-242-underwriting-review.md",
+        "slug": "242-underwriting-review"
+      },
+      "shots": {
+        "desktop": true,
+        "mobile": true,
+        "en.desktop": false,
+        "en.mobile": false
+      },
+      "audience": "toB"
+    },
+    {
+      "round": 243,
+      "route": "/accident-intake",
+      "slug": "accident-intake",
+      "score": "3.5/5",
+      "category": "保険",
+      "title": "AI に事故受付の画面を作らせてみた：「まだ聞いていない」を表す仕組みが、1つも無かった（やってみた #243）",
+      "summary": "予備知識ゼロの AI に、公開されている npm パッケージと gunjo.jp のドキュメントだけを渡して組ませました。7ファイル・1,863行です。型検査は緑で、起動してもエラーは出ません。パソコン幅でも375pxでも横スクロールは出ていません。",
+      "article": {
+        "file": "zenn-yattemita-243-accident-intake.md",
+        "slug": "243-accident-intake"
+      },
+      "shots": {
+        "desktop": true,
+        "mobile": true,
+        "en.desktop": false,
+        "en.mobile": false
+      },
+      "audience": "toB"
+    },
+    {
+      "round": 244,
+      "route": "/loss-survey",
+      "slug": "loss-survey",
+      "score": "4/5",
+      "category": "保険",
+      "title": "AI に損害調査の画面を作らせてみた：金額は90点、止まっている日数は自前だった（やってみた #244）",
+      "summary": "予備知識ゼロの AI に、公開されている npm パッケージと gunjo.jp のドキュメントだけを渡して組ませました。5ファイル・3,280行、うち架空データが1,727行なので画面のコードは1,553行です。型検査も静的検査も緑で、起動してもエラーは出ません。パソコン幅でも375pxでも横スクロールは出ていません。",
+      "article": {
+        "file": "zenn-yattemita-244-loss-survey.md",
+        "slug": "244-loss-survey"
+      },
+      "shots": {
+        "desktop": true,
+        "mobile": true,
+        "en.desktop": false,
+        "en.mobile": false
+      },
+      "audience": "toB"
     }
   ]
 }
