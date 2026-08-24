@@ -90,35 +90,77 @@ function ToggleGroupStatePreview({
 
 export default function ToggleGroupPage() {
     const { locale, sectionLabels } = useLocale();
-    const code = `import { ToggleGroup, ToggleGroupItem } from "@gunjo/ui";
+    const code = locale === "ja"
+        ? `import { ToggleGroup, ToggleGroupItem } from "@gunjo/ui";
 import { IconBold, IconItalic, IconUnderline } from "@tabler/icons-react";
 
 export function ToggleGroupDemo() {
   return (
     <ToggleGroup type="multiple">
-      <ToggleGroupItem value="bold" aria-label="${locale === "ja" ? "太字" : "Bold"}">
+      <ToggleGroupItem value="bold" aria-label="太字">
         <IconBold className="h-4 w-4" />
       </ToggleGroupItem>
-      <ToggleGroupItem value="italic" aria-label="${locale === "ja" ? "斜体" : "Italic"}">
+      <ToggleGroupItem value="italic" aria-label="斜体">
         <IconItalic className="h-4 w-4" />
       </ToggleGroupItem>
-      <ToggleGroupItem value="underline" aria-label="${locale === "ja" ? "下線" : "Underline"}">
+      <ToggleGroupItem value="underline" aria-label="下線">
+        <IconUnderline className="h-4 w-4" />
+      </ToggleGroupItem>
+    </ToggleGroup>
+  );
+}`
+        : `import { ToggleGroup, ToggleGroupItem } from "@gunjo/ui";
+import { IconBold, IconItalic, IconUnderline } from "@tabler/icons-react";
+
+export function ToggleGroupDemo() {
+  return (
+    <ToggleGroup type="multiple">
+      <ToggleGroupItem value="bold" aria-label="Bold">
+        <IconBold className="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="italic" aria-label="Italic">
+        <IconItalic className="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="underline" aria-label="Underline">
         <IconUnderline className="h-4 w-4" />
       </ToggleGroupItem>
     </ToggleGroup>
   );
 }`;
-    const usageCode = `import * as React from "react";
+    const usageCode = locale === "ja"
+        ? `import * as React from "react";
 import { ToggleGroup, ToggleGroupItem } from "@gunjo/ui";
 
 export function AlignControl() {
   const [value, setValue] = React.useState("left");
 
   return (
-    <ToggleGroup type="single" value={value} onValueChange={(next) => next && setValue(next)}>
-      <ToggleGroupItem value="left">${locale === "ja" ? "左" : "Left"}</ToggleGroupItem>
-      <ToggleGroupItem value="center">${locale === "ja" ? "中央" : "Center"}</ToggleGroupItem>
-      <ToggleGroupItem value="right">${locale === "ja" ? "右" : "Right"}</ToggleGroupItem>
+    <ToggleGroup
+      type="single"
+      value={value}
+      onValueChange={(next) => next && setValue(next)}
+    >
+      <ToggleGroupItem value="left">左</ToggleGroupItem>
+      <ToggleGroupItem value="center">中央</ToggleGroupItem>
+      <ToggleGroupItem value="right">右</ToggleGroupItem>
+    </ToggleGroup>
+  );
+}`
+        : `import * as React from "react";
+import { ToggleGroup, ToggleGroupItem } from "@gunjo/ui";
+
+export function AlignControl() {
+  const [value, setValue] = React.useState("left");
+
+  return (
+    <ToggleGroup
+      type="single"
+      value={value}
+      onValueChange={(next) => next && setValue(next)}
+    >
+      <ToggleGroupItem value="left">Left</ToggleGroupItem>
+      <ToggleGroupItem value="center">Center</ToggleGroupItem>
+      <ToggleGroupItem value="right">Right</ToggleGroupItem>
     </ToggleGroup>
   );
 }`;
@@ -172,7 +214,24 @@ export function AlignControl() {
                             description: locale === "ja" ? "配置や表示モードなど、1つだけ選ぶ操作に使います。" : "Use for mutually exclusive choices such as alignment.",
                             preview: <ToggleGroupStatePreview type="single" />,
                             previewHeight: 150,
-                            code: `<ToggleGroup type="single" value={value} onValueChange={setValue}>...</ToggleGroup>`,
+                            code: `import * as React from "react";
+import { ToggleGroup, ToggleGroupItem } from "@gunjo/ui";
+
+export function AlignControl() {
+  const [value, setValue] = React.useState("left");
+
+  return (
+    <ToggleGroup
+      type="single"
+      value={value}
+      onValueChange={(next) => next && setValue(next)}
+    >
+      <ToggleGroupItem value="left">左</ToggleGroupItem>
+      <ToggleGroupItem value="center">中央</ToggleGroupItem>
+      <ToggleGroupItem value="right">右</ToggleGroupItem>
+    </ToggleGroup>
+  );
+}`,
                         },
                         {
                             key: "outline",
@@ -180,7 +239,15 @@ export function AlignControl() {
                             description: locale === "ja" ? "ツールバー内でボタン境界を見せたい場合に使います。" : "Use when toolbar item boundaries should be visible.",
                             preview: <ToggleGroupStatePreview outline />,
                             previewHeight: 150,
-                            code: `<ToggleGroupItem variant="outline" value="bold" />`,
+                            code: `import { ToggleGroup, ToggleGroupItem } from "@gunjo/ui";
+
+export function OutlineToggleGroup() {
+  return (
+    <ToggleGroup type="multiple">
+      <ToggleGroupItem variant="outline" value="bold" />
+    </ToggleGroup>
+  );
+}`,
                         },
                         {
                             key: "disabled",
@@ -188,14 +255,53 @@ export function AlignControl() {
                             description: locale === "ja" ? "一時的に操作できない項目はボタンの形を保ち、ツールチップで理由を補足します。" : "Disabled items keep their button shape and explain the reason with a tooltip.",
                             preview: <ToggleGroupStatePreview disabled />,
                             previewHeight: 150,
-                            code: `<Tooltip>
-  <TooltipTrigger asChild>
-    <span className="inline-flex cursor-not-allowed">
-      <ToggleGroupItem value="bold" disabled />
-    </span>
-  </TooltipTrigger>
-  <TooltipContent>${locale === "ja" ? "権限がないため、この項目は変更できません。" : "You do not have permission to change this item."}</TooltipContent>
-</Tooltip>`,
+                            code: locale === "ja"
+                                ? `import {
+  ToggleGroup,
+  ToggleGroupItem,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@gunjo/ui";
+
+export function DisabledToggleGroupItem() {
+  return (
+    <ToggleGroup type="multiple">
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <span className="inline-flex cursor-not-allowed">
+            <ToggleGroupItem value="bold" disabled />
+          </span>
+        </TooltipTrigger>
+        <TooltipContent>権限がないため、この項目は変更できません。</TooltipContent>
+      </Tooltip>
+    </ToggleGroup>
+  );
+}`
+                                : `import {
+  ToggleGroup,
+  ToggleGroupItem,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@gunjo/ui";
+
+export function DisabledToggleGroupItem() {
+  return (
+    <ToggleGroup type="multiple">
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <span className="inline-flex cursor-not-allowed">
+            <ToggleGroupItem value="bold" disabled />
+          </span>
+        </TooltipTrigger>
+        <TooltipContent>
+          You do not have permission to change this item.
+        </TooltipContent>
+      </Tooltip>
+    </ToggleGroup>
+  );
+}`,
                         },
                     ]}
                 />

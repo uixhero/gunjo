@@ -74,7 +74,13 @@ function DatePickerStates({ locale }: { locale: "ja" | "en" }) {
                         </FormGroup>
                     ),
                     code: `import * as React from "react";
-import { DatePicker, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+import {
+  DatePicker,
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+} from "@gunjo/ui";
 
 export default function PublishDateField() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
@@ -122,7 +128,12 @@ export default function EmptyDateField() {
     <FormGroup className="w-full max-w-sm">
       <FormLabel htmlFor="deadline">Deadline</FormLabel>
       <FormControl>
-        <DatePicker id="deadline" value={date} onValueChange={setDate} placeholder="yyyy-mm-dd" />
+        <DatePicker
+          id="deadline"
+          value={date}
+          onValueChange={setDate}
+          placeholder="yyyy-mm-dd"
+        />
       </FormControl>
     </FormGroup>
   );
@@ -154,7 +165,13 @@ export default function EmptyDateField() {
                         </FormGroup>
                     ),
                     code: `import * as React from "react";
-import { DatePicker, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+import {
+  DatePicker,
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+} from "@gunjo/ui";
 
 export default function PersistentDateField() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
@@ -163,7 +180,12 @@ export default function PersistentDateField() {
     <FormGroup className="w-full max-w-sm">
       <FormLabel htmlFor="review-date">Review date</FormLabel>
       <FormControl>
-        <DatePicker id="review-date" value={date} onValueChange={setDate} closeOnSelect={false} />
+        <DatePicker
+          id="review-date"
+          value={date}
+          onValueChange={setDate}
+          closeOnSelect={false}
+        />
       </FormControl>
       <FormDescription>Compare multiple dates without reopening the calendar.</FormDescription>
     </FormGroup>
@@ -203,7 +225,13 @@ export default function PersistentDateField() {
                         </FormGroup>
                     ),
                     code: `import * as React from "react";
-import { DatePicker, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+import {
+  DatePicker,
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+} from "@gunjo/ui";
 
 export default function BookingDateField() {
   const [date, setDate] = React.useState<Date | undefined>();
@@ -277,14 +305,25 @@ export default function BookingDateField() {
                         </FormGroup>
                     ),
                     code: `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
-import { DatePicker, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+import {
+  DatePicker,
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+} from "@gunjo/ui";
 
-export default function LockedDateField({ date }: { date: Date }) {
+const date = new Date(2026, 5, 30);
+
+export default function LockedDateField() {
   return (
     <FormGroup className="w-full max-w-sm">
       <FormLabel htmlFor="billing-date">Billing date</FormLabel>
       <FormControl>
-        <DisabledReasonTooltip fullWidth reason="Locked because the invoice date is final.">
+        <DisabledReasonTooltip
+          fullWidth
+          reason="Locked because the invoice date is final."
+        >
           <DatePicker id="billing-date" value={date} disabled />
         </DisabledReasonTooltip>
       </FormControl>
@@ -300,19 +339,48 @@ export default function LockedDateField({ date }: { date: Date }) {
 
 export default function DatePickerPage() {
     const { locale, sectionLabels } = useLocale();
-    const code = `import * as React from "react";
-import { DatePicker, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+    const code = locale === "ja"
+        ? `import * as React from "react";
+import {
+  DatePicker,
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+} from "@gunjo/ui";
 
 export function DatePickerDemo() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="publish-date">${locale === "ja" ? "公開日" : "Publish date"}</FormLabel>
+      <FormLabel htmlFor="publish-date">公開日</FormLabel>
       <FormControl>
         <DatePicker id="publish-date" value={date} onValueChange={setDate} />
       </FormControl>
-      <FormDescription>${locale === "ja" ? "スケジュールに使う日付を選択します。" : "Pick the date used for scheduling."}</FormDescription>
+      <FormDescription>スケジュールに使う日付を選択します。</FormDescription>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import {
+  DatePicker,
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+} from "@gunjo/ui";
+
+export function DatePickerDemo() {
+  const [date, setDate] = React.useState<Date | undefined>(new Date());
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="publish-date">Publish date</FormLabel>
+      <FormControl>
+        <DatePicker id="publish-date" value={date} onValueChange={setDate} />
+      </FormControl>
+      <FormDescription>Pick the date used for scheduling.</FormDescription>
     </FormGroup>
   );
 }`;
@@ -327,7 +395,12 @@ export function DatePickerUsage() {
     <FormGroup className="w-full max-w-sm">
       <FormLabel htmlFor="date">Date</FormLabel>
       <FormControl>
-        <DatePicker id="date" value={date} onValueChange={setDate} placeholder="yyyy-mm-dd" />
+        <DatePicker
+          id="date"
+          value={date}
+          onValueChange={setDate}
+          placeholder="yyyy-mm-dd"
+        />
       </FormControl>
     </FormGroup>
   );

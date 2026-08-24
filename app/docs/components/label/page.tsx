@@ -14,8 +14,18 @@ export default function LabelPage() {
     const { locale, sectionLabels } = useLocale();
     const [newsletterChecked, setNewsletterChecked] = React.useState(false);
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
-    const code = `import * as React from "react";
-import { Checkbox, FormControl, FormGroup, FormLabel, HStack, Input, Label, VStack } from "@gunjo/ui";
+    const code = locale === "ja"
+        ? `import * as React from "react";
+import {
+  Checkbox,
+  FormControl,
+  FormGroup,
+  FormLabel,
+  HStack,
+  Input,
+  Label,
+  VStack,
+} from "@gunjo/ui";
 
 export function LabelDemo() {
   const [accepted, setAccepted] = React.useState(false);
@@ -24,24 +34,67 @@ export function LabelDemo() {
     <VStack gap={4} className="w-full max-w-sm">
       <HStack gap={2}>
         <Checkbox id="terms" checked={accepted} onCheckedChange={setAccepted} />
-        <Label htmlFor="terms">${locale === "ja" ? "利用規約に同意する" : "Accept terms and conditions"}</Label>
+        <Label htmlFor="terms">利用規約に同意する</Label>
       </HStack>
       <FormGroup>
-        <FormLabel htmlFor="display-name">${locale === "ja" ? "表示名" : "Display name"}</FormLabel>
+        <FormLabel htmlFor="display-name">表示名</FormLabel>
         <FormControl>
-          <Input id="display-name" placeholder="${locale === "ja" ? "田中そら" : "Sora Tanaka"}" />
+          <Input id="display-name" placeholder="田中そら" />
+        </FormControl>
+      </FormGroup>
+    </VStack>
+  );
+}`
+        : `import * as React from "react";
+import {
+  Checkbox,
+  FormControl,
+  FormGroup,
+  FormLabel,
+  HStack,
+  Input,
+  Label,
+  VStack,
+} from "@gunjo/ui";
+
+export function LabelDemo() {
+  const [accepted, setAccepted] = React.useState(false);
+
+  return (
+    <VStack gap={4} className="w-full max-w-sm">
+      <HStack gap={2}>
+        <Checkbox id="terms" checked={accepted} onCheckedChange={setAccepted} />
+        <Label htmlFor="terms">Accept terms and conditions</Label>
+      </HStack>
+      <FormGroup>
+        <FormLabel htmlFor="display-name">Display name</FormLabel>
+        <FormControl>
+          <Input id="display-name" placeholder="Sora Tanaka" />
         </FormControl>
       </FormGroup>
     </VStack>
   );
 }`;
 
-    const usageCode = `import { FormControl, FormGroup, FormLabel, Input } from "@gunjo/ui";
+    const usageCode = locale === "ja"
+        ? `import { FormControl, FormGroup, FormLabel, Input } from "@gunjo/ui";
 
 export function DisplayNameField() {
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="display-name">${locale === "ja" ? "表示名" : "Display name"}</FormLabel>
+      <FormLabel htmlFor="display-name">表示名</FormLabel>
+      <FormControl>
+        <Input id="display-name" />
+      </FormControl>
+    </FormGroup>
+  );
+}`
+        : `import { FormControl, FormGroup, FormLabel, Input } from "@gunjo/ui";
+
+export function DisplayNameField() {
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="display-name">Display name</FormLabel>
       <FormControl>
         <Input id="display-name" />
       </FormControl>
@@ -128,7 +181,8 @@ export function DisplayNameField() {
                                 </HStack>
                             ),
                             previewHeight: 140,
-                            code: `import * as React from "react";
+                            code: locale === "ja"
+                                ? `import * as React from "react";
 import { Checkbox, HStack, Label } from "@gunjo/ui";
 
 export function NewsletterLabel() {
@@ -137,7 +191,20 @@ export function NewsletterLabel() {
   return (
     <HStack gap={2}>
       <Checkbox id="newsletter" checked={checked} onCheckedChange={setChecked} />
-      <Label htmlFor="newsletter">${locale === "ja" ? "メールで更新を受け取る" : "Receive email updates"}</Label>
+      <Label htmlFor="newsletter">メールで更新を受け取る</Label>
+    </HStack>
+  );
+}`
+                                : `import * as React from "react";
+import { Checkbox, HStack, Label } from "@gunjo/ui";
+
+export function NewsletterLabel() {
+  const [checked, setChecked] = React.useState(false);
+
+  return (
+    <HStack gap={2}>
+      <Checkbox id="newsletter" checked={checked} onCheckedChange={setChecked} />
+      <Label htmlFor="newsletter">Receive email updates</Label>
     </HStack>
   );
 }`,
@@ -162,18 +229,35 @@ export function NewsletterLabel() {
                                 </RadioGroup>
                             ),
                             previewHeight: 170,
-                            code: `import { HStack, Label, RadioGroup, RadioGroupItem } from "@gunjo/ui";
+                            code: locale === "ja"
+                                ? `import { HStack, Label, RadioGroup, RadioGroupItem } from "@gunjo/ui";
 
 export function PlanLabels() {
   return (
     <RadioGroup defaultValue="standard" className="gap-3">
       <HStack gap={2}>
         <RadioGroupItem id="plan-basic" value="basic" />
-        <Label htmlFor="plan-basic">${locale === "ja" ? "ベーシック" : "Basic"}</Label>
+        <Label htmlFor="plan-basic">ベーシック</Label>
       </HStack>
       <HStack gap={2}>
         <RadioGroupItem id="plan-standard" value="standard" />
-        <Label htmlFor="plan-standard">${locale === "ja" ? "スタンダード" : "Standard"}</Label>
+        <Label htmlFor="plan-standard">スタンダード</Label>
+      </HStack>
+    </RadioGroup>
+  );
+}`
+                                : `import { HStack, Label, RadioGroup, RadioGroupItem } from "@gunjo/ui";
+
+export function PlanLabels() {
+  return (
+    <RadioGroup defaultValue="standard" className="gap-3">
+      <HStack gap={2}>
+        <RadioGroupItem id="plan-basic" value="basic" />
+        <Label htmlFor="plan-basic">Basic</Label>
+      </HStack>
+      <HStack gap={2}>
+        <RadioGroupItem id="plan-standard" value="standard" />
+        <Label htmlFor="plan-standard">Standard</Label>
       </HStack>
     </RadioGroup>
   );
