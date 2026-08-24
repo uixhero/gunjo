@@ -67,28 +67,63 @@ function TimePickerStatePreview({
 
 export default function TimePickerPage() {
     const { locale, sectionLabels } = useLocale();
-    const code = `import * as React from "react";
-import { FormControl, FormDescription, FormGroup, FormLabel, TimePicker } from "@gunjo/ui";
+    const code = locale === "ja"
+        ? `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  TimePicker,
+} from "@gunjo/ui";
 
 export function TimePickerDemo() {
   const [time, setTime] = React.useState("14:30");
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel>${locale === "ja" ? "開始時刻" : "Start time"}</FormLabel>
+      <FormLabel>開始時刻</FormLabel>
       <FormControl>
         <TimePicker
           value={time}
           onValueChange={setTime}
-          hourLabel="${locale === "ja" ? "時" : "Hour"}"
-          minuteLabel="${locale === "ja" ? "分" : "Minute"}"
+          hourLabel="時"
+          minuteLabel="分"
         />
       </FormControl>
-      <FormDescription>${locale === "ja" ? '24時間表記で表示しています。保存される値は「${time}」です。' : '24-hour time, value = "${time}".'}</FormDescription>
+      <FormDescription>24時間表記で表示しています。保存される値は「\${time}」です。</FormDescription>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  TimePicker,
+} from "@gunjo/ui";
+
+export function TimePickerDemo() {
+  const [time, setTime] = React.useState("14:30");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel>Start time</FormLabel>
+      <FormControl>
+        <TimePicker
+          value={time}
+          onValueChange={setTime}
+          hourLabel="Hour"
+          minuteLabel="Minute"
+        />
+      </FormControl>
+      <FormDescription>24-hour time, value = "\${time}".</FormDescription>
     </FormGroup>
   );
 }`;
-    const usageCode = `import * as React from "react";
+    const usageCode = locale === "ja"
+        ? `import * as React from "react";
 import { FormControl, FormGroup, FormLabel, TimePicker } from "@gunjo/ui";
 
 export function MeetingTimeField() {
@@ -96,14 +131,35 @@ export function MeetingTimeField() {
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel>${locale === "ja" ? "会議時刻" : "Meeting time"}</FormLabel>
+      <FormLabel>会議時刻</FormLabel>
       <FormControl>
         <TimePicker
           value={time}
           onValueChange={setTime}
           minuteStep={15}
-          hourLabel="${locale === "ja" ? "時" : "Hour"}"
-          minuteLabel="${locale === "ja" ? "分" : "Minute"}"
+          hourLabel="時"
+          minuteLabel="分"
+        />
+      </FormControl>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import { FormControl, FormGroup, FormLabel, TimePicker } from "@gunjo/ui";
+
+export function MeetingTimeField() {
+  const [time, setTime] = React.useState("09:00");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel>Meeting time</FormLabel>
+      <FormControl>
+        <TimePicker
+          value={time}
+          onValueChange={setTime}
+          minuteStep={15}
+          hourLabel="Hour"
+          minuteLabel="Minute"
         />
       </FormControl>
     </FormGroup>
@@ -161,7 +217,16 @@ export function MeetingTimeField() {
                             description: locale === "ja" ? "画面上は午前/午後で選べるようにし、保存値は24時間表記に統一します。" : "Show AM/PM in the UI while storing a 24-hour value.",
                             preview: <TimePickerStatePreview hour12 minuteStep={15} />,
                             previewHeight: 170,
-                            code: `<TimePicker value={time} onValueChange={setTime} hour12 minuteStep={15} />`,
+                            code: `import * as React from "react";
+import { TimePicker } from "@gunjo/ui";
+
+export function StartTimeField12Hour() {
+  const [time, setTime] = React.useState<string | undefined>("14:30");
+
+  return (
+    <TimePicker value={time} onValueChange={setTime} hour12 minuteStep={15} />
+  );
+}`,
                         },
                         {
                             key: "step",
@@ -169,7 +234,16 @@ export function MeetingTimeField() {
                             description: locale === "ja" ? "予約やスケジュールでは分の選択肢を絞れます。" : "Limit minute options for scheduling use cases.",
                             preview: <TimePickerStatePreview minuteStep={15} />,
                             previewHeight: 170,
-                            code: `<TimePicker value={time} onValueChange={setTime} minuteStep={15} />`,
+                            code: `import * as React from "react";
+import { TimePicker } from "@gunjo/ui";
+
+export function StartTimeFieldQuarterHour() {
+  const [time, setTime] = React.useState<string | undefined>("14:30");
+
+  return (
+    <TimePicker value={time} onValueChange={setTime} minuteStep={15} />
+  );
+}`,
                         },
                         {
                             key: "disabled",
@@ -177,11 +251,30 @@ export function MeetingTimeField() {
                             description: locale === "ja" ? "変更できない理由はツールチップと補足文で説明します。" : "Explain disabled state with a tooltip and helper text.",
                             preview: <TimePickerStatePreview disabled />,
                             previewHeight: 170,
-                            code: `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
+                            code: locale === "ja"
+                                ? `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
+import { TimePicker } from "@gunjo/ui";
 
-<DisabledReasonTooltip fullWidth reason="${locale === "ja" ? "公開後の開始時刻は変更できません。" : "The start time cannot be changed after publishing."}">
-  <TimePicker value="14:30" disabled />
-</DisabledReasonTooltip>`,
+export function LockedStartTimeField() {
+  return (
+    <DisabledReasonTooltip fullWidth reason="公開後の開始時刻は変更できません。">
+      <TimePicker value="14:30" disabled />
+    </DisabledReasonTooltip>
+  );
+}`
+                                : `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
+import { TimePicker } from "@gunjo/ui";
+
+export function LockedStartTimeField() {
+  return (
+    <DisabledReasonTooltip
+      fullWidth
+      reason="The start time cannot be changed after publishing."
+    >
+      <TimePicker value="14:30" disabled />
+    </DisabledReasonTooltip>
+  );
+}`,
                         },
                     ]}
                 />

@@ -69,44 +69,109 @@ export default function SearchInputPage() {
     const content = getDocContent("components/search-input", locale);
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
 
-    const code = `import * as React from "react";
-import { FormControl, FormDescription, FormGroup, FormLabel, SearchInput } from "@gunjo/ui";
+    const code = locale === "ja"
+        ? `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  SearchInput,
+} from "@gunjo/ui";
 
 export function SearchInputDemo() {
   const [value, setValue] = React.useState("");
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="component-search">${locale === "ja" ? "検索" : "Search"}</FormLabel>
+      <FormLabel htmlFor="component-search">検索</FormLabel>
       <FormControl>
         <SearchInput
           id="component-search"
           value={value}
           onValueChange={setValue}
-          placeholder="${locale === "ja" ? "コンポーネントを検索..." : "Search components..."}"
-          clearLabel="${locale === "ja" ? "検索語をクリア" : "Clear search"}"
+          placeholder="コンポーネントを検索..."
+          clearLabel="検索語をクリア"
         />
       </FormControl>
       <FormDescription>
-        {value ? \`${locale === "ja" ? "検索語" : "query"}: "\${value}"\` : "${locale === "ja" ? "入力すると検索語が反映され、クリアボタンで消せます。" : "Type to search; clear with x"}"}
+        {value ? \`検索語: "\${value}"\` : "入力すると検索語が反映され、クリアボタンで消せます。"}
+      </FormDescription>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  SearchInput,
+} from "@gunjo/ui";
+
+export function SearchInputDemo() {
+  const [value, setValue] = React.useState("");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="component-search">Search</FormLabel>
+      <FormControl>
+        <SearchInput
+          id="component-search"
+          value={value}
+          onValueChange={setValue}
+          placeholder="Search components..."
+          clearLabel="Clear search"
+        />
+      </FormControl>
+      <FormDescription>
+        {value ? \`query: "\${value}"\` : "Type to search; clear with x"}
       </FormDescription>
     </FormGroup>
   );
 }`;
 
-    const usageCode = `import { FormControl, FormGroup, FormLabel, SearchInput } from "@gunjo/ui";
+    const usageCode = locale === "ja"
+        ? `import * as React from "react";
+import { FormControl, FormGroup, FormLabel, SearchInput } from "@gunjo/ui";
 
-<FormGroup className="w-full max-w-sm">
-  <FormLabel htmlFor="search">${locale === "ja" ? "検索" : "Search"}</FormLabel>
-  <FormControl>
-    <SearchInput
-      id="search"
-      value={query}
-      onValueChange={setQuery}
-      clearLabel="${locale === "ja" ? "検索語をクリア" : "Clear search"}"
-    />
-  </FormControl>
-</FormGroup>`;
+export function AssetSearchField() {
+  const [query, setQuery] = React.useState("");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="search">検索</FormLabel>
+      <FormControl>
+        <SearchInput
+          id="search"
+          value={query}
+          onValueChange={setQuery}
+          clearLabel="検索語をクリア"
+        />
+      </FormControl>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import { FormControl, FormGroup, FormLabel, SearchInput } from "@gunjo/ui";
+
+export function AssetSearchField() {
+  const [query, setQuery] = React.useState("");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="search">Search</FormLabel>
+      <FormControl>
+        <SearchInput
+          id="search"
+          value={query}
+          onValueChange={setQuery}
+          clearLabel="Clear search"
+        />
+      </FormControl>
+    </FormGroup>
+  );
+}`;
 
     const propsData = [
         { name: "value", type: "string", description: locale === "ja" ? "外部から渡す検索語です。" : "Controlled search query." },
@@ -149,26 +214,63 @@ export function SearchInputDemo() {
                             title: locale === "ja" ? "クリア可能" : "Clearable",
                             description: locale === "ja" ? "入力済みの時だけクリアボタンを表示します。" : "Shows a clear button only while a query is present.",
                             preview: <SearchInputStatePreview initialValue={locale === "ja" ? "バナー" : "banner"} />,
-                            code: `import * as React from "react";
-import { FormControl, FormDescription, FormGroup, FormLabel, SearchInput } from "@gunjo/ui";
+                            code: locale === "ja"
+                                ? `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  SearchInput,
+} from "@gunjo/ui";
 
 export function ClearableSearchInput() {
-  const [value, setValue] = React.useState("${locale === "ja" ? "バナー" : "banner"}");
+  const [value, setValue] = React.useState("バナー");
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="asset-search">${locale === "ja" ? "素材検索" : "Asset search"}</FormLabel>
+      <FormLabel htmlFor="asset-search">素材検索</FormLabel>
       <FormControl>
         <SearchInput
           id="asset-search"
           value={value}
           onValueChange={setValue}
-          placeholder="${locale === "ja" ? "キーワードを入力" : "Search keyword"}"
-          clearLabel="${locale === "ja" ? "検索語をクリア" : "Clear search"}"
+          placeholder="キーワードを入力"
+          clearLabel="検索語をクリア"
         />
       </FormControl>
       <FormDescription>
-        {value ? \`${locale === "ja" ? "検索語" : "query"}: "\${value}"\` : "${locale === "ja" ? "入力した検索語は即時に反映されます。" : "The query updates as you type."}"}
+        {value ? \`検索語: "\${value}"\` : "入力した検索語は即時に反映されます。"}
+      </FormDescription>
+    </FormGroup>
+  );
+}`
+                                : `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  SearchInput,
+} from "@gunjo/ui";
+
+export function ClearableSearchInput() {
+  const [value, setValue] = React.useState("banner");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="asset-search">Asset search</FormLabel>
+      <FormControl>
+        <SearchInput
+          id="asset-search"
+          value={value}
+          onValueChange={setValue}
+          placeholder="Search keyword"
+          clearLabel="Clear search"
+        />
+      </FormControl>
+      <FormDescription>
+        {value ? \`query: "\${value}"\` : "The query updates as you type."}
       </FormDescription>
     </FormGroup>
   );
@@ -179,26 +281,63 @@ export function ClearableSearchInput() {
                             title: locale === "ja" ? "クリアボタンなし" : "Without clear button",
                             description: locale === "ja" ? "候補やフィルター側でリセットする検索欄では、クリアボタンを非表示にできます。" : "Hide the clear button when reset is handled elsewhere.",
                             preview: <SearchInputStatePreview clearable={false} initialValue={locale === "ja" ? "画像" : "image"} />,
-                            code: `import * as React from "react";
-import { FormControl, FormDescription, FormGroup, FormLabel, SearchInput } from "@gunjo/ui";
+                            code: locale === "ja"
+                                ? `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  SearchInput,
+} from "@gunjo/ui";
 
 export function SearchWithoutClearButton() {
-  const [value, setValue] = React.useState("${locale === "ja" ? "画像" : "image"}");
+  const [value, setValue] = React.useState("画像");
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="asset-search">${locale === "ja" ? "素材検索" : "Asset search"}</FormLabel>
+      <FormLabel htmlFor="asset-search">素材検索</FormLabel>
       <FormControl>
         <SearchInput
           id="asset-search"
           value={value}
           onValueChange={setValue}
           clearable={false}
-          placeholder="${locale === "ja" ? "キーワードを入力" : "Search keyword"}"
+          placeholder="キーワードを入力"
         />
       </FormControl>
       <FormDescription>
-        {value ? \`${locale === "ja" ? "検索語" : "query"}: "\${value}"\` : "${locale === "ja" ? "入力した検索語は即時に反映されます。" : "The query updates as you type."}"}
+        {value ? \`検索語: "\${value}"\` : "入力した検索語は即時に反映されます。"}
+      </FormDescription>
+    </FormGroup>
+  );
+}`
+                                : `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  SearchInput,
+} from "@gunjo/ui";
+
+export function SearchWithoutClearButton() {
+  const [value, setValue] = React.useState("image");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="asset-search">Asset search</FormLabel>
+      <FormControl>
+        <SearchInput
+          id="asset-search"
+          value={value}
+          onValueChange={setValue}
+          clearable={false}
+          placeholder="Search keyword"
+        />
+      </FormControl>
+      <FormDescription>
+        {value ? \`query: "\${value}"\` : "The query updates as you type."}
       </FormDescription>
     </FormGroup>
   );
@@ -209,29 +348,79 @@ export function SearchWithoutClearButton() {
                             title: locale === "ja" ? "無効化" : "Disabled",
                             description: locale === "ja" ? "検索できない理由はツールチップと補足文で伝えます。" : "Explain why search is unavailable with a tooltip and helper text.",
                             preview: <SearchInputStatePreview disabled initialValue={locale === "ja" ? "処理中" : "indexing"} />,
-                            code: `import { FormControl, FormDescription, FormGroup, FormLabel, SearchInput, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                            code: locale === "ja"
+                                ? `import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  SearchInput,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@gunjo/ui";
 
-<FormGroup className="w-full max-w-sm">
-  <FormLabel htmlFor="asset-search">${locale === "ja" ? "素材検索" : "Asset search"}</FormLabel>
-  <FormControl>
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <span className="block w-full" tabIndex={0}>
-          <SearchInput
-            id="asset-search"
-            disabled
-            value="${locale === "ja" ? "処理中" : "indexing"}"
-            placeholder="${locale === "ja" ? "キーワードを入力" : "Search keyword"}"
-          />
-        </span>
-      </TooltipTrigger>
-      <TooltipContent>${locale === "ja" ? "検索インデックスの更新中です。" : "The search index is currently updating."}</TooltipContent>
-    </Tooltip>
-  </FormControl>
-  <FormDescription>
-    ${locale === "ja" ? "更新が完了すると検索できます。" : "Search will be available after indexing finishes."}
-  </FormDescription>
-</FormGroup>`,
+export function LockedAssetSearchField() {
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="asset-search">素材検索</FormLabel>
+      <FormControl>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <span className="block w-full" tabIndex={0}>
+              <SearchInput
+                id="asset-search"
+                disabled
+                value="処理中"
+                placeholder="キーワードを入力"
+              />
+            </span>
+          </TooltipTrigger>
+          <TooltipContent>検索インデックスの更新中です。</TooltipContent>
+        </Tooltip>
+      </FormControl>
+      <FormDescription>
+        更新が完了すると検索できます。
+      </FormDescription>
+    </FormGroup>
+  );
+}`
+                                : `import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  SearchInput,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@gunjo/ui";
+
+export function LockedAssetSearchField() {
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="asset-search">Asset search</FormLabel>
+      <FormControl>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <span className="block w-full" tabIndex={0}>
+              <SearchInput
+                id="asset-search"
+                disabled
+                value="indexing"
+                placeholder="Search keyword"
+              />
+            </span>
+          </TooltipTrigger>
+          <TooltipContent>The search index is currently updating.</TooltipContent>
+        </Tooltip>
+      </FormControl>
+      <FormDescription>
+        Search will be available after indexing finishes.
+      </FormDescription>
+    </FormGroup>
+  );
+}`,
                         },
                     ]}
                 />

@@ -62,15 +62,22 @@ function ControlledNumberInput({
 export default function NumberInputPage() {
     const { locale, sectionLabels } = useLocale();
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
-    const code = `import * as React from "react";
-import { FormControl, FormDescription, FormGroup, FormLabel, NumberInput } from "@gunjo/ui";
+    const code = locale === "ja"
+        ? `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  NumberInput,
+} from "@gunjo/ui";
 
 export function NumberInputDemo() {
   const [value, setValue] = React.useState(42);
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="quantity">${locale === "ja" ? "数量" : "Quantity"}</FormLabel>
+      <FormLabel htmlFor="quantity">数量</FormLabel>
       <FormControl>
         <NumberInput
           id="quantity"
@@ -78,23 +85,54 @@ export function NumberInputDemo() {
           onValueChange={setValue}
           min={0}
           max={100}
-          incrementLabel="${locale === "ja" ? "数量を増やす" : "Increase quantity"}"
-          decrementLabel="${locale === "ja" ? "数量を減らす" : "Decrease quantity"}"
+          incrementLabel="数量を増やす"
+          decrementLabel="数量を減らす"
         />
       </FormControl>
-      <FormDescription>${locale === "ja" ? "現在の値" : "Current value"}: {value}</FormDescription>
+      <FormDescription>現在の値: {value}</FormDescription>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  NumberInput,
+} from "@gunjo/ui";
+
+export function NumberInputDemo() {
+  const [value, setValue] = React.useState(42);
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="quantity">Quantity</FormLabel>
+      <FormControl>
+        <NumberInput
+          id="quantity"
+          value={value}
+          onValueChange={setValue}
+          min={0}
+          max={100}
+          incrementLabel="Increase quantity"
+          decrementLabel="Decrease quantity"
+        />
+      </FormControl>
+      <FormDescription>Current value: {value}</FormDescription>
     </FormGroup>
   );
 }`;
 
-    const usageCode = `import { FormControl, FormGroup, FormLabel, NumberInput } from "@gunjo/ui";
+    const usageCode = locale === "ja"
+        ? `import { FormControl, FormGroup, FormLabel, NumberInput } from "@gunjo/ui";
 
 export function CountField() {
   const [count, setCount] = React.useState(0);
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="count">${locale === "ja" ? "件数" : "Count"}</FormLabel>
+      <FormLabel htmlFor="count">件数</FormLabel>
       <FormControl>
         <NumberInput
           id="count"
@@ -103,8 +141,31 @@ export function CountField() {
           min={0}
           max={100}
           step={5}
-          incrementLabel="${locale === "ja" ? "件数を増やす" : "Increase count"}"
-          decrementLabel="${locale === "ja" ? "件数を減らす" : "Decrease count"}"
+          incrementLabel="件数を増やす"
+          decrementLabel="件数を減らす"
+        />
+      </FormControl>
+    </FormGroup>
+  );
+}`
+        : `import { FormControl, FormGroup, FormLabel, NumberInput } from "@gunjo/ui";
+
+export function CountField() {
+  const [count, setCount] = React.useState(0);
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="count">Count</FormLabel>
+      <FormControl>
+        <NumberInput
+          id="count"
+          value={count}
+          onValueChange={setCount}
+          min={0}
+          max={100}
+          step={5}
+          incrementLabel="Increase count"
+          decrementLabel="Decrease count"
         />
       </FormControl>
     </FormGroup>
@@ -218,9 +279,22 @@ export function CountField() {
                                     : "Use a larger step for values that move in fixed increments such as points or currency.",
                             preview: <ControlledNumberInput min={0} max={500} step={25} initialValue={125} />,
                             previewHeight: 170,
-                            code: `import { NumberInput } from "@gunjo/ui";
+                            code: `import * as React from "react";
+import { NumberInput } from "@gunjo/ui";
 
-<NumberInput value={value} onValueChange={setValue} min={0} max={500} step={25} />`,
+export function SteppedQuantityField() {
+  const [value, setValue] = React.useState<number | undefined>(100);
+
+  return (
+    <NumberInput
+      value={value}
+      onValueChange={setValue}
+      min={0}
+      max={500}
+      step={25}
+    />
+  );
+}`,
                         },
                         {
                             key: "disabled",
@@ -231,12 +305,30 @@ export function CountField() {
                                     : "Explain why the value cannot be changed with a Tooltip and helper copy.",
                             preview: <ControlledNumberInput disabled initialValue={12} />,
                             previewHeight: 170,
-                            code: `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
+                            code: locale === "ja"
+                                ? `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
 import { NumberInput } from "@gunjo/ui";
 
-<DisabledReasonTooltip fullWidth reason="${locale === "ja" ? "在庫連携中のため数量を変更できません。" : "Quantity is locked while inventory sync is running."}">
-  <NumberInput disabled value={12} />
-</DisabledReasonTooltip>`,
+export function LockedQuantityField() {
+  return (
+    <DisabledReasonTooltip fullWidth reason="在庫連携中のため数量を変更できません。">
+      <NumberInput disabled value={12} />
+    </DisabledReasonTooltip>
+  );
+}`
+                                : `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
+import { NumberInput } from "@gunjo/ui";
+
+export function LockedQuantityField() {
+  return (
+    <DisabledReasonTooltip
+      fullWidth
+      reason="Quantity is locked while inventory sync is running."
+    >
+      <NumberInput disabled value={12} />
+    </DisabledReasonTooltip>
+  );
+}`,
                         },
                     ]}
                 />

@@ -77,20 +77,35 @@ function TextareaStatePreview({
 
 export default function TextareaPage() {
     const { locale, sectionLabels } = useLocale();
-    const code = `import { FormControl, FormDescription, FormGroup, FormLabel, Textarea } from "@gunjo/ui";
+    const code = locale === "ja"
+        ? `import { FormControl, FormDescription, FormGroup, FormLabel, Textarea } from "@gunjo/ui";
 
 export function TextareaDemo() {
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="message">${locale === "ja" ? "お問い合わせ内容" : "Your message"}</FormLabel>
+      <FormLabel htmlFor="message">お問い合わせ内容</FormLabel>
       <FormControl>
-        <Textarea id="message" placeholder="${locale === "ja" ? "内容を入力してください。" : "Type your message here."}" />
+        <Textarea id="message" placeholder="内容を入力してください。" />
       </FormControl>
-      <FormDescription>${locale === "ja" ? "送信内容はサポートチームに共有されます。" : "Your message will be copied to the support team."}</FormDescription>
+      <FormDescription>送信内容はサポートチームに共有されます。</FormDescription>
+    </FormGroup>
+  );
+}`
+        : `import { FormControl, FormDescription, FormGroup, FormLabel, Textarea } from "@gunjo/ui";
+
+export function TextareaDemo() {
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="message">Your message</FormLabel>
+      <FormControl>
+        <Textarea id="message" placeholder="Type your message here." />
+      </FormControl>
+      <FormDescription>Your message will be copied to the support team.</FormDescription>
     </FormGroup>
   );
 }`;
-    const usageCode = `import * as React from "react";
+    const usageCode = locale === "ja"
+        ? `import * as React from "react";
 import { FormControl, FormDescription, FormGroup, FormLabel, Textarea } from "@gunjo/ui";
 
 const LIMIT = 120;
@@ -100,7 +115,7 @@ export function MemoField() {
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="memo">${locale === "ja" ? "メモ" : "Notes"}</FormLabel>
+      <FormLabel htmlFor="memo">メモ</FormLabel>
       <FormControl>
         <Textarea
           id="memo"
@@ -110,7 +125,31 @@ export function MemoField() {
           rows={4}
         />
       </FormControl>
-      <FormDescription>${locale === "ja" ? "複数行の説明や補足を入力できます。" : "Use this for multi-line descriptions."}</FormDescription>
+      <FormDescription>複数行の説明や補足を入力できます。</FormDescription>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import { FormControl, FormDescription, FormGroup, FormLabel, Textarea } from "@gunjo/ui";
+
+const LIMIT = 120;
+
+export function MemoField() {
+  const [value, setValue] = React.useState("");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="memo">Notes</FormLabel>
+      <FormControl>
+        <Textarea
+          id="memo"
+          value={value}
+          onChange={(event) => setValue(event.currentTarget.value)}
+          maxLength={LIMIT}
+          rows={4}
+        />
+      </FormControl>
+      <FormDescription>Use this for multi-line descriptions.</FormDescription>
     </FormGroup>
   );
 }`;
@@ -169,7 +208,21 @@ export function MemoField() {
                             description: locale === "ja" ? "残り文字数を表示し、送信前に入力制限を確認できます。" : "Show the remaining character budget before submit.",
                             preview: <TextareaStatePreview counter />,
                             previewHeight: 230,
-                            code: `<Textarea value={value} onChange={setValue} maxLength={120} rows={4} />`,
+                            code: `import * as React from "react";
+import { Textarea } from "@gunjo/ui";
+
+export function CountedTextarea() {
+  const [value, setValue] = React.useState("");
+
+  return (
+    <Textarea
+      value={value}
+      onChange={(event) => setValue(event.target.value)}
+      maxLength={120}
+      rows={4}
+    />
+  );
+}`,
                         },
                         {
                             key: "show-count",
@@ -187,7 +240,21 @@ export function MemoField() {
                                 </div>
                             ),
                             previewHeight: 230,
-                            code: `<Textarea label="${locale === "ja" ? "メモ" : "Notes"}" showCount maxLength={120} rows={4} />`,
+                            code: locale === "ja"
+                                ? `import { Textarea } from "@gunjo/ui";
+
+export function NoteTextarea() {
+  return (
+    <Textarea label="メモ" showCount maxLength={120} rows={4} />
+  );
+}`
+                                : `import { Textarea } from "@gunjo/ui";
+
+export function NoteTextarea() {
+  return (
+    <Textarea label="Notes" showCount maxLength={120} rows={4} />
+  );
+}`,
                         },
                         {
                             key: "invalid",
@@ -195,7 +262,13 @@ export function MemoField() {
                             description: locale === "ja" ? "エラー時は aria-invalid と destructive 色の補足文で伝えます。" : "Use aria-invalid and destructive helper text for errors.",
                             preview: <TextareaStatePreview invalid />,
                             previewHeight: 230,
-                            code: `<Textarea aria-invalid rows={4} />`,
+                            code: `import { Textarea } from "@gunjo/ui";
+
+export function InvalidTextarea() {
+  return (
+    <Textarea aria-invalid rows={4} />
+  );
+}`,
                         },
                         {
                             key: "disabled",
@@ -203,11 +276,30 @@ export function MemoField() {
                             description: locale === "ja" ? "編集できない理由はツールチップと補足文で説明します。" : "Explain disabled state with a tooltip and helper text.",
                             preview: <TextareaStatePreview disabled />,
                             previewHeight: 230,
-                            code: `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
+                            code: locale === "ja"
+                                ? `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
+import { Textarea } from "@gunjo/ui";
 
-<DisabledReasonTooltip fullWidth reason="${locale === "ja" ? "このメモは承認済みのため編集できません。" : "This note is approved and cannot be edited."}">
-  <Textarea disabled rows={4} />
-</DisabledReasonTooltip>`,
+export function LockedNoteTextarea() {
+  return (
+    <DisabledReasonTooltip fullWidth reason="このメモは承認済みのため編集できません。">
+      <Textarea disabled rows={4} />
+    </DisabledReasonTooltip>
+  );
+}`
+                                : `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
+import { Textarea } from "@gunjo/ui";
+
+export function LockedNoteTextarea() {
+  return (
+    <DisabledReasonTooltip
+      fullWidth
+      reason="This note is approved and cannot be edited."
+    >
+      <Textarea disabled rows={4} />
+    </DisabledReasonTooltip>
+  );
+}`,
                         },
                     ]}
                 />
