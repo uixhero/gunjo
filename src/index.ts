@@ -159,6 +159,7 @@ export * from './components/display/OccupancyMeter';
 export * from './components/display/OriginDestination';
 export * from './components/display/PageHeader';
 export * from './components/display/ParetoChart';
+export * from './components/display/PendingValue';
 export * from './components/display/PersonCell';
 export * from './components/display/PieChart';
 export * from './components/display/QuadrantMatrix';

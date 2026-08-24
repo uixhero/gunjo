@@ -122,6 +122,10 @@ export const componentContentJa: Record<string, DocContent> = {
     title: "ParetoChart",
     description: "大きい要因から並べた棒と累積率の線で、少数の主要因が全体に与える影響を示します。",
   },
+  "components/pending-value": {
+    title: "PendingValue",
+    description: "値がまだ確定していないこと、そして確定していない理由を、破線の枠とアイコンつきのバッジで示す表示です。",
+  },
   "components/person-cell": {
     title: "PersonCell",
     description: "人物のアバター、名前、所属、補足、在席状態、末尾情報を1行で表示する識別セルです。",

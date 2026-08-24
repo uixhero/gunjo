@@ -121,6 +121,10 @@ export const componentContentEn: Record<string, DocContent> = {
     title: "ParetoChart",
     description: "Descending bars with a cumulative line for showing which few causes drive most of the total.",
   },
+  "components/pending-value": {
+    title: "PendingValue",
+    description: "Marks a value as not yet settled and says why, with a dashed frame and an icon-and-text pill.",
+  },
   "components/person-cell": {
     title: "PersonCell",
     description: "An identity cell for avatar, name, affiliation, metadata, presence, and trailing status.",
