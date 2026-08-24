@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import categories from "@/data/cold-test-categories.json";
 import gallery from "@/data/cold-test-gallery.json";
+import { aggregateFindings } from "@/lib/cold-test-findings";
+import { readFindingsForRounds } from "@/lib/cold-test-findings-server";
 import { CategoryView } from "./CategoryView";
 
 interface CategoryCopy {
@@ -135,7 +137,10 @@ export default async function CategoryPage({
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <CategoryView slug={slug} />
+            <CategoryView
+                slug={slug}
+                findings={aggregateFindings(readFindingsForRounds(rounds))}
+            />
         </>
     );
 }

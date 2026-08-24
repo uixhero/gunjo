@@ -23,7 +23,7 @@ export default function DesignSpecPage() {
                     Tokens · Spec
                 </p>
                 <h1 className="text-4xl font-bold tracking-tight">DESIGN.md</h1>
-                <p className="max-w-2xl text-lg text-muted-foreground">
+                <p className="text-lg text-muted-foreground">
                     The canonical design specification for GunjoUI. Authored for
                     AI tools (v0, Cursor, Claude, Figma Make) so the same spec
                     that humans read is the spec AI consumes.

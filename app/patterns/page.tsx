@@ -6,6 +6,7 @@ import { useTheme } from "next-themes";
 import { IconArrowUpRight as ArrowUpRight, IconArrowRight as ArrowRight, IconPackages as Boxes } from "@tabler/icons-react";
 import { Badge, Card, CardContent, Skeleton, cn } from "@gunjo/ui";
 import {
+    INDUSTRY_SHOWCASES,
     PATTERN_FAMILY_ORDER,
     PLANNED_INDUSTRY_PATTERNS,
     VISIBLE_PATTERNS,
@@ -191,6 +192,52 @@ export default function PatternsIndexPage() {
                             </div>
                         </section>
                     ))}
+
+                    {/* 業界の見本レーン — カードは業界ページへ。そこに動く見本
+                        （架空の会社のデモ）と裏付けのコールドテスト記録が並ぶ。 */}
+                    <section className="space-y-4 border-t border-border/60 pt-8">
+                        <div className="space-y-1">
+                            <h2 className="text-2xl font-semibold tracking-tight">
+                                {t.industryShowcase.title}
+                            </h2>
+                            <p className="max-w-2xl text-sm text-muted-foreground">
+                                {t.industryShowcase.description}
+                            </p>
+                        </div>
+                        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                            {INDUSTRY_SHOWCASES.map((entry) => {
+                                const copy = t.industryShowcase.entries[entry.key];
+                                return (
+                                    <Link
+                                        key={entry.key}
+                                        href={entry.href}
+                                        aria-label={t.industryShowcase.openLabel(copy.title)}
+                                        className="group block focus-visible:outline-none"
+                                    >
+                                        <Card className="flex h-full w-full flex-col transition-all hover:border-primary-border hover:shadow-md group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-2">
+                                            <CardContent className="flex flex-1 flex-col gap-3 p-4">
+                                                <div className="flex flex-wrap items-center gap-2">
+                                                    <Badge variant="secondary">
+                                                        {t.industryShowcase.screensBadge(entry.screenCount)}
+                                                    </Badge>
+                                                    <Badge variant="outline">
+                                                        {t.industryShowcase.roundsBadge(entry.roundCount)}
+                                                    </Badge>
+                                                </div>
+                                                <div className="inline-flex items-center justify-between gap-2 font-semibold tracking-tight transition-colors group-hover:text-primary">
+                                                    <span>{copy.title}</span>
+                                                    <ArrowUpRight className="h-3.5 w-3.5 opacity-60 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
+                                                </div>
+                                                <p className="text-sm text-muted-foreground">
+                                                    {copy.description}
+                                                </p>
+                                            </CardContent>
+                                        </Card>
+                                    </Link>
+                                );
+                            })}
+                        </div>
+                    </section>
 
                     <section className="space-y-4 border-t border-border/60 pt-8">
                         <div className="space-y-1">
