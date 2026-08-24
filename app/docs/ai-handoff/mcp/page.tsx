@@ -48,7 +48,7 @@ const TOOLS = [
 export default function McpServerPage() {
     return (
         <div className="container py-12">
-            <div className="mx-auto max-w-3xl space-y-12">
+            <div className="space-y-12">
                 <Link
                     href="/docs/ai-handoff"
                     className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
