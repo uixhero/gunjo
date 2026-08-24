@@ -100,27 +100,58 @@ function ToggleSizePreview() {
 
 export default function TogglePage() {
     const { locale, sectionLabels } = useLocale();
-    const code = `import { Toggle, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+    const code = locale === "ja"
+        ? `import { Toggle, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 import { IconBold } from "@tabler/icons-react";
 
 export function ToggleDemo() {
   return (
     <Tooltip>
       <TooltipTrigger asChild>
-        <Toggle aria-label="${locale === "ja" ? "太字を切り替え" : "Toggle bold"}">
+        <Toggle aria-label="太字を切り替え">
           <IconBold className="h-4 w-4" />
         </Toggle>
       </TooltipTrigger>
-      <TooltipContent>${locale === "ja" ? "太字を切り替え" : "Toggle bold"}</TooltipContent>
+      <TooltipContent>太字を切り替え</TooltipContent>
+    </Tooltip>
+  );
+}`
+        : `import { Toggle, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+import { IconBold } from "@tabler/icons-react";
+
+export function ToggleDemo() {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <Toggle aria-label="Toggle bold">
+          <IconBold className="h-4 w-4" />
+        </Toggle>
+      </TooltipTrigger>
+      <TooltipContent>Toggle bold</TooltipContent>
     </Tooltip>
   );
 }`;
-    const usageCode = `import { Toggle } from "@gunjo/ui";
+    const usageCode = locale === "ja"
+        ? `import { Toggle } from "@gunjo/ui";
 import { IconBold } from "@tabler/icons-react";
 
-<Toggle aria-label="${locale === "ja" ? "太字を切り替え" : "Toggle bold"}">
-  <IconBold className="h-4 w-4" />
-</Toggle>`;
+export function BoldToggle() {
+  return (
+    <Toggle aria-label="太字を切り替え">
+      <IconBold className="h-4 w-4" />
+    </Toggle>
+  );
+}`
+        : `import { Toggle } from "@gunjo/ui";
+import { IconBold } from "@tabler/icons-react";
+
+export function BoldToggle() {
+  return (
+    <Toggle aria-label="Toggle bold">
+      <IconBold className="h-4 w-4" />
+    </Toggle>
+  );
+}`;
     const propsData = [
         { name: "variant", type: "'default' | 'outline'", default: "'default'", description: locale === "ja" ? "見た目の種類です。枠線を見せたい時は outline を使います。" : "Visual variant. Outline adds a border." },
         { name: "size", type: "'default' | 'sm' | 'lg'", default: "'default'", description: locale === "ja" ? "トグルボタンのサイズです。" : "Toggle button size." },
@@ -169,7 +200,21 @@ import { IconBold } from "@tabler/icons-react";
                             description: locale === "ja" ? "選択中は背景色と文字色を反転し、オンになっていることを明確に示します。" : "The pressed state inverts the background and text color.",
                             preview: <ToggleStatePreview pressed />,
                             previewHeight: 150,
-                            code: `<Toggle defaultPressed aria-label="${locale === "ja" ? "太字を切り替え" : "Toggle bold"}" />`,
+                            code: locale === "ja"
+                                ? `import { Toggle } from "@gunjo/ui";
+
+export function PressedBoldToggle() {
+  return (
+    <Toggle defaultPressed aria-label="太字を切り替え" />
+  );
+}`
+                                : `import { Toggle } from "@gunjo/ui";
+
+export function PressedBoldToggle() {
+  return (
+    <Toggle defaultPressed aria-label="Toggle bold" />
+  );
+}`,
                         },
                         {
                             key: "outline",
@@ -177,7 +222,21 @@ import { IconBold } from "@tabler/icons-react";
                             description: locale === "ja" ? "ツールバー上で境界を見せたい場合に使います。" : "Use when the toolbar needs visible button boundaries.",
                             preview: <ToggleStatePreview outline />,
                             previewHeight: 150,
-                            code: `<Toggle variant="outline" aria-label="${locale === "ja" ? "太字を切り替え" : "Toggle bold"}" />`,
+                            code: locale === "ja"
+                                ? `import { Toggle } from "@gunjo/ui";
+
+export function OutlineBoldToggle() {
+  return (
+    <Toggle variant="outline" aria-label="太字を切り替え" />
+  );
+}`
+                                : `import { Toggle } from "@gunjo/ui";
+
+export function OutlineBoldToggle() {
+  return (
+    <Toggle variant="outline" aria-label="Toggle bold" />
+  );
+}`,
                         },
                         {
                             key: "size",
@@ -185,9 +244,29 @@ import { IconBold } from "@tabler/icons-react";
                             description: locale === "ja" ? "配置するツールバーや密度に合わせて、sm / default / lg を使い分けます。" : "Use sm, default, and lg according to toolbar density and available space.",
                             preview: <ToggleSizePreview />,
                             previewHeight: 150,
-                            code: `<Toggle size="sm" defaultPressed aria-label="${locale === "ja" ? "小さいサイズ" : "Small size"}">SM</Toggle>
-<Toggle defaultPressed aria-label="${locale === "ja" ? "標準サイズ" : "Default size"}">DF</Toggle>
-<Toggle size="lg" defaultPressed aria-label="${locale === "ja" ? "大きいサイズ" : "Large size"}">LG</Toggle>`,
+                            code: locale === "ja"
+                                ? `import { Toggle } from "@gunjo/ui";
+
+export function ToggleSizes() {
+  return (
+    <div className="flex items-center gap-2">
+      <Toggle size="sm" defaultPressed aria-label="小さいサイズ">SM</Toggle>
+      <Toggle defaultPressed aria-label="標準サイズ">DF</Toggle>
+      <Toggle size="lg" defaultPressed aria-label="大きいサイズ">LG</Toggle>
+    </div>
+  );
+}`
+                                : `import { Toggle } from "@gunjo/ui";
+
+export function ToggleSizes() {
+  return (
+    <div className="flex items-center gap-2">
+      <Toggle size="sm" defaultPressed aria-label="Small size">SM</Toggle>
+      <Toggle defaultPressed aria-label="Default size">DF</Toggle>
+      <Toggle size="lg" defaultPressed aria-label="Large size">LG</Toggle>
+    </div>
+  );
+}`,
                         },
                         {
                             key: "disabled",
@@ -195,14 +274,35 @@ import { IconBold } from "@tabler/icons-react";
                             description: locale === "ja" ? "操作できない状態でもボタンの形は保ち、ツールチップで理由を補足します。" : "Disabled toggles keep their button shape and explain the reason with a tooltip.",
                             preview: <ToggleStatePreview disabled />,
                             previewHeight: 150,
-                            code: `<Tooltip>
-  <TooltipTrigger asChild>
-    <span className="inline-flex cursor-not-allowed">
-      <Toggle disabled aria-label="${locale === "ja" ? "太字を切り替え" : "Toggle bold"}" />
-    </span>
-  </TooltipTrigger>
-  <TooltipContent>${locale === "ja" ? "公開済みの設定では変更できません。" : "This setting cannot be changed after publishing."}</TooltipContent>
-</Tooltip>`,
+                            code: locale === "ja"
+                                ? `import { Toggle, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+
+export function DisabledBoldToggle() {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <span className="inline-flex cursor-not-allowed">
+          <Toggle disabled aria-label="太字を切り替え" />
+        </span>
+      </TooltipTrigger>
+      <TooltipContent>公開済みの設定では変更できません。</TooltipContent>
+    </Tooltip>
+  );
+}`
+                                : `import { Toggle, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+
+export function DisabledBoldToggle() {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <span className="inline-flex cursor-not-allowed">
+          <Toggle disabled aria-label="Toggle bold" />
+        </span>
+      </TooltipTrigger>
+      <TooltipContent>This setting cannot be changed after publishing.</TooltipContent>
+    </Tooltip>
+  );
+}`,
                         },
                     ]}
                 />

@@ -32,34 +32,66 @@ export default function InputPage() {
     const invalidMessage = locale === "ja" ? "有効なメールアドレスを入力してください。" : "Please enter a valid email address.";
     const disabledReason = locale === "ja" ? "このアカウントは組織によって管理されています。" : "This account is managed by your organization.";
 
-    const code = `import { Button, Form, FormControl, FormDescription, FormGroup, FormLabel, FormMessage, Input } from "@gunjo/ui"
+    const code = locale === "ja"
+        ? `import { Button, Form, FormControl, FormDescription, FormGroup, FormLabel, FormMessage, Input } from "@gunjo/ui"
 
 export function InputDemo() {
   return (
 	    <Form className="w-full max-w-sm">
 	      <FormGroup>
-	        <FormLabel htmlFor="email">${emailLabel}</FormLabel>
+	        <FormLabel htmlFor="email">メールアドレス</FormLabel>
 	        <FormControl>
 	          <Input type="email" id="email" defaultValue="not-an-email" aria-invalid />
 	        </FormControl>
-	        <FormDescription>${helpText}</FormDescription>
-	        <FormMessage>${invalidMessage}</FormMessage>
+	        <FormDescription>アカウントと通知の更新に使います。</FormDescription>
+	        <FormMessage>有効なメールアドレスを入力してください。</FormMessage>
 	      </FormGroup>
-	      <Button type="submit" className="w-full">${submitLabel}</Button>
+	      <Button type="submit" className="w-full">登録する</Button>
+	    </Form>
+	  )
+	}`
+        : `import { Button, Form, FormControl, FormDescription, FormGroup, FormLabel, FormMessage, Input } from "@gunjo/ui"
+
+export function InputDemo() {
+  return (
+	    <Form className="w-full max-w-sm">
+	      <FormGroup>
+	        <FormLabel htmlFor="email">Email</FormLabel>
+	        <FormControl>
+	          <Input type="email" id="email" defaultValue="not-an-email" aria-invalid />
+	        </FormControl>
+	        <FormDescription>Used for account and notification updates.</FormDescription>
+	        <FormMessage>Please enter a valid email address.</FormMessage>
+	      </FormGroup>
+	      <Button type="submit" className="w-full">Subscribe</Button>
 	    </Form>
 	  )
 	}`
 
-    const usageCode = `import { FormControl, FormDescription, FormGroup, FormLabel, Input } from "@gunjo/ui"
+    const usageCode = locale === "ja"
+        ? `import { FormControl, FormDescription, FormGroup, FormLabel, Input } from "@gunjo/ui"
 
 export function LoginInput() {
   return (
 	    <FormGroup className="w-full max-w-sm">
-	      <FormLabel htmlFor="email">${emailLabel}</FormLabel>
+	      <FormLabel htmlFor="email">メールアドレス</FormLabel>
 	      <FormControl>
 	        <Input type="email" id="email" placeholder="name@example.com" />
 	      </FormControl>
-	      <FormDescription>${locale === "ja" ? "アカウントに紐づくメールアドレスを入力します。" : "Use the address tied to your account."}</FormDescription>
+	      <FormDescription>アカウントに紐づくメールアドレスを入力します。</FormDescription>
+	    </FormGroup>
+	  )
+	}`
+        : `import { FormControl, FormDescription, FormGroup, FormLabel, Input } from "@gunjo/ui"
+
+export function LoginInput() {
+  return (
+	    <FormGroup className="w-full max-w-sm">
+	      <FormLabel htmlFor="email">Email</FormLabel>
+	      <FormControl>
+	        <Input type="email" id="email" placeholder="name@example.com" />
+	      </FormControl>
+	      <FormDescription>Use the address tied to your account.</FormDescription>
 	    </FormGroup>
 	  )
 	}`
@@ -133,12 +165,25 @@ export function LoginInput() {
 	                                </FormGroup>
 	                            ),
 	                            previewHeight: 160,
-	                            code: `import { FormControl, FormGroup, FormLabel, Input } from "@gunjo/ui";
+	                            code: locale === "ja"
+                                 ? `import { FormControl, FormGroup, FormLabel, Input } from "@gunjo/ui";
 
 export default function EmailField() {
   return (
     <FormGroup className="w-full max-w-sm">
-	      <FormLabel htmlFor="email">${emailLabel}</FormLabel>
+	      <FormLabel htmlFor="email">メールアドレス</FormLabel>
+      <FormControl>
+        <Input type="email" id="email" placeholder="you@example.com" />
+      </FormControl>
+    </FormGroup>
+  );
+}`
+                                 : `import { FormControl, FormGroup, FormLabel, Input } from "@gunjo/ui";
+
+export default function EmailField() {
+  return (
+    <FormGroup className="w-full max-w-sm">
+	      <FormLabel htmlFor="email">Email</FormLabel>
       <FormControl>
         <Input type="email" id="email" placeholder="you@example.com" />
       </FormControl>
@@ -164,7 +209,21 @@ export default function EmailField() {
 	                                </div>
 	                            ),
 	                            previewHeight: 160,
-	                            code: `<Input label="${locale === "ja" ? "メタタイトル" : "Meta title"}" showCount maxLength={60} />`,
+	                            code: locale === "ja"
+                                 ? `import { Input } from "@gunjo/ui";
+
+export function MetaTitleField() {
+  return (
+    <Input label="メタタイトル" showCount maxLength={60} />
+  );
+}`
+                                 : `import { Input } from "@gunjo/ui";
+
+export function MetaTitleField() {
+  return (
+    <Input label="Meta title" showCount maxLength={60} />
+  );
+}`,
                         },
                         {
                             key: "invalid",
@@ -192,12 +251,13 @@ export default function EmailField() {
 	                                </FormGroup>
 	                            ),
 	                            previewHeight: 180,
-	                            code: `import { FormControl, FormGroup, FormLabel, FormMessage, Input } from "@gunjo/ui";
+	                            code: locale === "ja"
+                                 ? `import { FormControl, FormGroup, FormLabel, FormMessage, Input } from "@gunjo/ui";
 
 export default function InvalidEmail() {
   return (
     <FormGroup className="w-full max-w-sm">
-	      <FormLabel htmlFor="email">${emailLabel}</FormLabel>
+	      <FormLabel htmlFor="email">メールアドレス</FormLabel>
       <FormControl>
         <Input
           type="email"
@@ -207,7 +267,26 @@ export default function InvalidEmail() {
           className="border-destructive ring-destructive focus-visible:ring-destructive"
         />
       </FormControl>
-	      <FormMessage>${invalidMessage}</FormMessage>
+	      <FormMessage>有効なメールアドレスを入力してください。</FormMessage>
+    </FormGroup>
+  );
+}`
+                                 : `import { FormControl, FormGroup, FormLabel, FormMessage, Input } from "@gunjo/ui";
+
+export default function InvalidEmail() {
+  return (
+    <FormGroup className="w-full max-w-sm">
+	      <FormLabel htmlFor="email">Email</FormLabel>
+      <FormControl>
+        <Input
+          type="email"
+          id="email"
+          defaultValue="not-an-email"
+          aria-invalid
+          className="border-destructive ring-destructive focus-visible:ring-destructive"
+        />
+      </FormControl>
+	      <FormMessage>Please enter a valid email address.</FormMessage>
     </FormGroup>
   );
 }`,
@@ -236,12 +315,13 @@ export default function InvalidEmail() {
 	                                </FormGroup>
 	                            ),
 	                            previewHeight: 180,
-	                            code: `import { FormControl, FormDescription, FormGroup, FormLabel, Input, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+	                            code: locale === "ja"
+                                 ? `import { FormControl, FormDescription, FormGroup, FormLabel, Input, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 
 export default function DisabledEmail() {
   return (
     <FormGroup className="w-full max-w-sm">
-	      <FormLabel htmlFor="email">${emailLabel}</FormLabel>
+	      <FormLabel htmlFor="email">メールアドレス</FormLabel>
       <FormControl>
         <Tooltip>
           <TooltipTrigger asChild>
@@ -249,11 +329,33 @@ export default function DisabledEmail() {
               <Input type="email" id="email" defaultValue="user@locked.com" disabled />
             </span>
           </TooltipTrigger>
-          <TooltipContent>${disabledReason}</TooltipContent>
+          <TooltipContent>このアカウントは組織によって管理されています。</TooltipContent>
         </Tooltip>
       </FormControl>
       <FormDescription>
-	        ${disabledReason}
+	        このアカウントは組織によって管理されています。
+      </FormDescription>
+    </FormGroup>
+  );
+}`
+                                 : `import { FormControl, FormDescription, FormGroup, FormLabel, Input, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+
+export default function DisabledEmail() {
+  return (
+    <FormGroup className="w-full max-w-sm">
+	      <FormLabel htmlFor="email">Email</FormLabel>
+      <FormControl>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <span tabIndex={0}>
+              <Input type="email" id="email" defaultValue="user@locked.com" disabled />
+            </span>
+          </TooltipTrigger>
+          <TooltipContent>This account is managed by your organization.</TooltipContent>
+        </Tooltip>
+      </FormControl>
+      <FormDescription>
+	        This account is managed by your organization.
       </FormDescription>
     </FormGroup>
   );

@@ -258,8 +258,8 @@ function ScanGatePackingPreview({
       return {
         ok: false,
         message: locale === "ja"
-          ? `${localizedItemName(line.name, locale)} は梱包済みです`
-          : `${line.name} is already packed`,
+            ? `${localizedItemName(line.name, locale)} は梱包済みです`
+            : `${line.name} is already packed`,
         advance: "stay",
       };
     }
@@ -271,8 +271,8 @@ function ScanGatePackingPreview({
     return {
       ok: true,
       message: locale === "ja"
-        ? `${localizedItemName(line.name, locale)} を ${carton?.barcode ?? "carton"} に梱包（${next} / ${line.ordered}）`
-        : `Packed ${line.name} into ${carton?.barcode ?? "carton"} (${next} / ${line.ordered})`,
+          ? `${localizedItemName(line.name, locale)} を ${carton?.barcode ?? "carton"} に梱包（${next} / ${line.ordered}）`
+          : `Packed ${line.name} into ${carton?.barcode ?? "carton"} (${next} / ${line.ordered})`,
       advance: allPacked ? "ship" : "stay",
     };
   };
@@ -587,7 +587,7 @@ export default function ScanGateDocPage() {
   const description = content?.description ?? metadata.scanGate.description;
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+      ? `import * as React from "react";
 import {
   Button,
   Dialog,
@@ -624,7 +624,13 @@ function BarcodeVisual({ value }: { value: string }) {
 }
 
 function QrVisual({ value }: { value: string }) {
-  const cells = Array.from({ length: 49 }, (_, index) => [0, 1, 2, 6, 7, 8, 12, 14, 18, 20, 21, 24, 28, 30, 32, 35, 36, 40, 42, 45, 48].includes(index));
+  const filledCells = [
+    0, 1, 2, 6, 7, 8, 12, 14, 18, 20, 21, 24,
+    28, 30, 32, 35, 36, 40, 42, 45, 48,
+  ];
+  const cells = Array.from({ length: 49 }, (_, index) =>
+    filledCells.includes(index)
+  );
   return (
     <div className="grid h-12 w-12 grid-cols-7 gap-0.5 rounded bg-background p-1" aria-hidden="true">
       {cells.map((filled, index) => <span key={index} className={filled ? "bg-foreground" : "bg-transparent"} />)}
@@ -632,7 +638,9 @@ function QrVisual({ value }: { value: string }) {
   );
 }
 
-function ScannerPanel({ target, onClose }: { target: ScannerTarget; onClose: () => void }) {
+function ScannerPanel(props: { target: ScannerTarget; onClose: () => void }) {
+  const { target, onClose } = props;
+
   return (
     <Dialog open onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="gap-4 p-4 sm:max-w-md" closeLabel="閉じる">
@@ -647,7 +655,9 @@ function ScannerPanel({ target, onClose }: { target: ScannerTarget; onClose: () 
             <button
               key={item.code}
               type="button"
-              className="grid grid-cols-[1fr_auto] items-center gap-3 rounded-md border border-background/20 bg-background/10 px-3 py-2 text-left hover:bg-background/20"
+              className="grid grid-cols-[1fr_auto] items-center gap-3 rounded-md
+                border border-background/20 bg-background/10 px-3 py-2 text-left
+                hover:bg-background/20"
               onClick={() => {
                 target.action.commit(item.code);
                 onClose();
@@ -669,7 +679,10 @@ function ScannerPanel({ target, onClose }: { target: ScannerTarget; onClose: () 
 
 export function PackingGate() {
   const [openCarton, setOpenCarton] = React.useState<string | null>(null);
-  const [activeStage, setActiveStage] = React.useState<"carton" | "item" | "ship">("carton");
+  const [
+    activeStage,
+    setActiveStage,
+  ] = React.useState<"carton" | "item" | "ship">("carton");
   const [scannerTarget, setScannerTarget] = React.useState<ScannerTarget | null>(null);
   const [shipped, setShipped] = React.useState(false);
   const [lines, setLines] = React.useState([
@@ -677,6 +690,8 @@ export function PackingGate() {
     { code: "4902222222225", name: "USB-C ケーブル 1m", ordered: 1, packed: 0 },
   ]);
   const gateRef = React.useRef<ScanGateHandle>(null);
+  const orderedTotal = lines.reduce((total, line) => total + line.ordered, 0);
+  const packedTotal = lines.reduce((total, line) => total + line.packed, 0);
 
   const handleCarton = (code: string): ScanGateResult => {
     if (!["CTN-001", "CTN-002"].includes(code)) {
@@ -697,7 +712,10 @@ export function PackingGate() {
     const line = lines[index];
     const next = line.packed + 1;
     setLines((current) =>
-      current.map((item, itemIndex) => itemIndex === index ? { ...item, packed: next } : item)
+      current.map((item, itemIndex) => itemIndex === index ? {
+        ...item,
+        packed: next,
+      } : item)
     );
 
     return {
@@ -725,7 +743,10 @@ export function PackingGate() {
               title: "カートンラベルを読み取る",
               description: "箱に貼られたラベルをスキャンします。",
               action,
-              codes: ["CTN-001", "CTN-002"].map((code) => ({ code, label: "出荷カートン", meta: "箱ラベル" })),
+              codes: [
+                "CTN-001",
+                "CTN-002",
+              ].map((code) => ({ code, label: "出荷カートン", meta: "箱ラベル" })),
             }),
             onScan: handleCarton,
           },
@@ -741,7 +762,11 @@ export function PackingGate() {
               title: "商品バーコードを読み取る",
               description: "梱包明細の商品バーコードをスキャンします。",
               action,
-              codes: lines.map((line) => ({ code: line.code, label: line.name, meta: line.packed + " / " + line.ordered })),
+              codes: lines.map((line) => ({
+                code: line.code,
+                label: line.name,
+                meta: line.packed + " / " + line.ordered,
+              })),
             }),
             onScan: handleItem,
           },
@@ -756,7 +781,11 @@ export function PackingGate() {
               title: "出荷ラベルを読み取る",
               description: "梱包完了後のカートンに貼る出荷ラベルを読み取ります。",
               action,
-              codes: [{ code: openCarton ? "SHIP-" + openCarton : "SHIP-CTN-001", label: "出荷ラベル", meta: openCarton ?? "CTN-001" }],
+              codes: [{
+                code: openCarton ? "SHIP-" + openCarton : "SHIP-CTN-001",
+                label: "出荷ラベル",
+                meta: openCarton ?? "CTN-001",
+              }],
             }),
             onScan: (code, ctx) => {
               const expected = "SHIP-" + (ctx.values.carton?.barcode ?? openCarton ?? "CTN-001");
@@ -770,7 +799,9 @@ export function PackingGate() {
         ]}
       />
 
-      {scannerTarget ? <ScannerPanel target={scannerTarget} onClose={() => setScannerTarget(null)} /> : null}
+      {scannerTarget ? (
+        <ScannerPanel target={scannerTarget} onClose={() => setScannerTarget(null)} />
+      ) : null}
 
       <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border bg-card px-3 py-2">
         <div className="min-w-0 space-y-0.5">
@@ -843,7 +874,7 @@ export function PackingGate() {
     </div>
   );
 }`
-    : `import * as React from "react";
+      : `import * as React from "react";
 import {
   Button,
   Dialog,
@@ -880,7 +911,13 @@ function BarcodeVisual({ value }: { value: string }) {
 }
 
 function QrVisual({ value }: { value: string }) {
-  const cells = Array.from({ length: 49 }, (_, index) => [0, 1, 2, 6, 7, 8, 12, 14, 18, 20, 21, 24, 28, 30, 32, 35, 36, 40, 42, 45, 48].includes(index));
+  const filledCells = [
+    0, 1, 2, 6, 7, 8, 12, 14, 18, 20, 21, 24,
+    28, 30, 32, 35, 36, 40, 42, 45, 48,
+  ];
+  const cells = Array.from({ length: 49 }, (_, index) =>
+    filledCells.includes(index)
+  );
   return (
     <div className="grid h-12 w-12 grid-cols-7 gap-0.5 rounded bg-background p-1" aria-hidden="true">
       {cells.map((filled, index) => <span key={index} className={filled ? "bg-foreground" : "bg-transparent"} />)}
@@ -888,7 +925,9 @@ function QrVisual({ value }: { value: string }) {
   );
 }
 
-function ScannerPanel({ target, onClose }: { target: ScannerTarget; onClose: () => void }) {
+function ScannerPanel(props: { target: ScannerTarget; onClose: () => void }) {
+  const { target, onClose } = props;
+
   return (
     <Dialog open onOpenChange={(open) => !open && onClose()}>
       <DialogContent className="gap-4 p-4 sm:max-w-md" closeLabel="Close">
@@ -903,7 +942,9 @@ function ScannerPanel({ target, onClose }: { target: ScannerTarget; onClose: () 
             <button
               key={item.code}
               type="button"
-              className="grid grid-cols-[1fr_auto] items-center gap-3 rounded-md border border-background/20 bg-background/10 px-3 py-2 text-left hover:bg-background/20"
+              className="grid grid-cols-[1fr_auto] items-center gap-3 rounded-md
+                border border-background/20 bg-background/10 px-3 py-2 text-left
+                hover:bg-background/20"
               onClick={() => {
                 target.action.commit(item.code);
                 onClose();
@@ -925,7 +966,10 @@ function ScannerPanel({ target, onClose }: { target: ScannerTarget; onClose: () 
 
 export function PackingGate() {
   const [openCarton, setOpenCarton] = React.useState<string | null>(null);
-  const [activeStage, setActiveStage] = React.useState<"carton" | "item" | "ship">("carton");
+  const [
+    activeStage,
+    setActiveStage,
+  ] = React.useState<"carton" | "item" | "ship">("carton");
   const [scannerTarget, setScannerTarget] = React.useState<ScannerTarget | null>(null);
   const [shipped, setShipped] = React.useState(false);
   const [lines, setLines] = React.useState([
@@ -933,6 +977,8 @@ export function PackingGate() {
     { code: "4902222222225", name: "USB-C cable 1m", ordered: 1, packed: 0 },
   ]);
   const gateRef = React.useRef<ScanGateHandle>(null);
+  const orderedTotal = lines.reduce((total, line) => total + line.ordered, 0);
+  const packedTotal = lines.reduce((total, line) => total + line.packed, 0);
 
   const handleCarton = (code: string): ScanGateResult => {
     if (!["CTN-001", "CTN-002"].includes(code)) {
@@ -953,7 +999,10 @@ export function PackingGate() {
     const line = lines[index];
     const next = line.packed + 1;
     setLines((current) =>
-      current.map((item, itemIndex) => itemIndex === index ? { ...item, packed: next } : item)
+      current.map((item, itemIndex) => itemIndex === index ? {
+        ...item,
+        packed: next,
+      } : item)
     );
 
     return {
@@ -981,7 +1030,10 @@ export function PackingGate() {
               title: "Scan a carton label",
               description: "Scan the label on the shipping carton.",
               action,
-              codes: ["CTN-001", "CTN-002"].map((code) => ({ code, label: "Shipping carton", meta: "Carton label" })),
+              codes: [
+                "CTN-001",
+                "CTN-002",
+              ].map((code) => ({ code, label: "Shipping carton", meta: "Carton label" })),
             }),
             onScan: handleCarton,
           },
@@ -997,7 +1049,11 @@ export function PackingGate() {
               title: "Scan an item barcode",
               description: "Scan the item barcode from the packing line.",
               action,
-              codes: lines.map((line) => ({ code: line.code, label: line.name, meta: line.packed + " / " + line.ordered })),
+              codes: lines.map((line) => ({
+                code: line.code,
+                label: line.name,
+                meta: line.packed + " / " + line.ordered,
+              })),
             }),
             onScan: handleItem,
           },
@@ -1012,7 +1068,11 @@ export function PackingGate() {
               title: "Scan the shipment label",
               description: "Scan the shipment label applied after packing.",
               action,
-              codes: [{ code: openCarton ? "SHIP-" + openCarton : "SHIP-CTN-001", label: "Shipment label", meta: openCarton ?? "CTN-001" }],
+              codes: [{
+                code: openCarton ? "SHIP-" + openCarton : "SHIP-CTN-001",
+                label: "Shipment label",
+                meta: openCarton ?? "CTN-001",
+              }],
             }),
             onScan: (code, ctx) => {
               const expected = "SHIP-" + (ctx.values.carton?.barcode ?? openCarton ?? "CTN-001");
@@ -1026,7 +1086,9 @@ export function PackingGate() {
         ]}
       />
 
-      {scannerTarget ? <ScannerPanel target={scannerTarget} onClose={() => setScannerTarget(null)} /> : null}
+      {scannerTarget ? (
+        <ScannerPanel target={scannerTarget} onClose={() => setScannerTarget(null)} />
+      ) : null}
 
       <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border bg-card px-3 py-2">
         <div className="min-w-0 space-y-0.5">
@@ -1242,78 +1304,176 @@ export function PackingGate() {
                 : "advance=\"done\" holds the final stage and passes the verified context to onComplete.",
               preview: <ScanGateDonePreview locale={locale} />,
               code: locale === "ja"
-                ? `const [complete, setComplete] = React.useState(false);
-const [scannerTarget, setScannerTarget] = React.useState(null);
+                  ? `import * as React from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  ScanGate,
+  type ScanInputAction,
+} from "@gunjo/ui";
 
-<div className="relative flex w-full max-w-md flex-col gap-3">
-  <ScanGate
-    autoFocus={false}
-    onComplete={() => setComplete(true)}
-    stages={[
-      {
-        id: "badge",
-        label: "社員証をスキャン",
-        title: "社員証",
-        placeholder: "EMP-104",
-        scannerLabel: "社員証用のスキャン画面を開く",
-        onScannerOpen: (action) => setScannerTarget({
-          stage: "badge",
-          title: "社員証を読み取る",
-          description: "作業者の社員証ラベルを読み取ります。",
-          action,
-          codes: [{ code: "EMP-104", label: "作業者 ID", meta: "社員証ラベル" }],
-        }),
-        onScan: (code) => ({
-          ok: code === "EMP-104",
-          message: code === "EMP-104" ? "担当者を確認しました" : "担当者が一致しません",
-          advance: code === "EMP-104" ? "done" : "stay",
-          value: code,
-        }),
-      },
-    ]}
-    clearOnScan={false}
-  />
-  {scannerTarget ? <ScannerPanel target={scannerTarget} onClose={() => setScannerTarget(null)} /> : null}
-  <p className="text-xs text-muted-foreground" aria-live="polite">
-    {complete ? "確認が完了しました。" : "EMP-104 を入力して確認します。"}
-  </p>
-</div>`
-                : `const [complete, setComplete] = React.useState(false);
-const [scannerTarget, setScannerTarget] = React.useState(null);
+type ScannerTarget = {
+  title: string;
+  codes: { code: string; label: string; meta: string }[];
+  action: ScanInputAction;
+};
 
-<div className="relative flex w-full max-w-md flex-col gap-3">
-  <ScanGate
-    autoFocus={false}
-    onComplete={() => setComplete(true)}
-    stages={[
-      {
-        id: "badge",
-        label: "Scan employee badge",
-        title: "Badge",
-        placeholder: "EMP-104",
-        scannerLabel: "Open employee badge scanner",
-        onScannerOpen: (action) => setScannerTarget({
-          stage: "badge",
-          title: "Scan an employee badge",
-          description: "Scan the operator badge label.",
-          action,
-          codes: [{ code: "EMP-104", label: "Operator ID", meta: "Badge label" }],
-        }),
-        onScan: (code) => ({
-          ok: code === "EMP-104",
-          message: code === "EMP-104" ? "Operator verified" : "Operator does not match",
-          advance: code === "EMP-104" ? "done" : "stay",
-          value: code,
-        }),
-      },
-    ]}
-    clearOnScan={false}
-  />
-  {scannerTarget ? <ScannerPanel target={scannerTarget} onClose={() => setScannerTarget(null)} /> : null}
-  <p className="text-xs text-muted-foreground" aria-live="polite">
-    {complete ? "Verification complete." : "Enter EMP-104 to verify."}
-  </p>
-</div>`,
+function ScannerPanel(props: { target: ScannerTarget; onClose: () => void }) {
+  const { target, onClose } = props;
+
+  return (
+    <Dialog open onOpenChange={(open) => !open && onClose()}>
+      <DialogContent className="gap-4 p-4 sm:max-w-md" closeLabel="閉じる">
+        <DialogHeader>
+          <DialogTitle>{target.title}</DialogTitle>
+        </DialogHeader>
+        {target.codes.map((item) => (
+          <button
+            key={item.code}
+            type="button"
+            className="rounded-md border px-3 py-2 text-left font-mono text-sm"
+            onClick={() => {
+              target.action.commit(item.code);
+              onClose();
+            }}
+          >
+            {item.code}
+          </button>
+        ))}
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+export function BadgeGate() {
+  const [complete, setComplete] = React.useState(false);
+  const [scannerTarget, setScannerTarget] = React.useState<ScannerTarget | null>(
+    null
+  );
+
+  return (
+    <div className="relative flex w-full max-w-md flex-col gap-3">
+      <ScanGate
+        autoFocus={false}
+        onComplete={() => setComplete(true)}
+        stages={[
+          {
+            id: "badge",
+            label: "社員証をスキャン",
+            title: "社員証",
+            placeholder: "EMP-104",
+            scannerLabel: "社員証用のスキャン画面を開く",
+            onScannerOpen: (action) => setScannerTarget({
+              title: "社員証を読み取る",
+              action,
+              codes: [{ code: "EMP-104", label: "作業者 ID", meta: "社員証ラベル" }],
+            }),
+            onScan: (code) => ({
+              ok: code === "EMP-104",
+              message: code === "EMP-104" ? "担当者を確認しました" : "担当者が一致しません",
+              advance: code === "EMP-104" ? "done" : "stay",
+              value: code,
+            }),
+          },
+        ]}
+        clearOnScan={false}
+      />
+      {scannerTarget ? (
+        <ScannerPanel target={scannerTarget} onClose={() => setScannerTarget(null)} />
+      ) : null}
+      <p className="text-xs text-muted-foreground" aria-live="polite">
+        {complete ? "確認が完了しました。" : "EMP-104 を入力して確認します。"}
+      </p>
+    </div>
+  );
+}`
+                  : `import * as React from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  ScanGate,
+  type ScanInputAction,
+} from "@gunjo/ui";
+
+type ScannerTarget = {
+  title: string;
+  codes: { code: string; label: string; meta: string }[];
+  action: ScanInputAction;
+};
+
+function ScannerPanel(props: { target: ScannerTarget; onClose: () => void }) {
+  const { target, onClose } = props;
+
+  return (
+    <Dialog open onOpenChange={(open) => !open && onClose()}>
+      <DialogContent className="gap-4 p-4 sm:max-w-md" closeLabel="Close">
+        <DialogHeader>
+          <DialogTitle>{target.title}</DialogTitle>
+        </DialogHeader>
+        {target.codes.map((item) => (
+          <button
+            key={item.code}
+            type="button"
+            className="rounded-md border px-3 py-2 text-left font-mono text-sm"
+            onClick={() => {
+              target.action.commit(item.code);
+              onClose();
+            }}
+          >
+            {item.code}
+          </button>
+        ))}
+      </DialogContent>
+    </Dialog>
+  );
+}
+
+export function BadgeGate() {
+  const [complete, setComplete] = React.useState(false);
+  const [scannerTarget, setScannerTarget] = React.useState<ScannerTarget | null>(
+    null
+  );
+
+  return (
+    <div className="relative flex w-full max-w-md flex-col gap-3">
+      <ScanGate
+        autoFocus={false}
+        onComplete={() => setComplete(true)}
+        stages={[
+          {
+            id: "badge",
+            label: "Scan employee badge",
+            title: "Badge",
+            placeholder: "EMP-104",
+            scannerLabel: "Open employee badge scanner",
+            onScannerOpen: (action) => setScannerTarget({
+              title: "Scan an employee badge",
+              action,
+              codes: [{ code: "EMP-104", label: "Operator ID", meta: "Badge label" }],
+            }),
+            onScan: (code) => ({
+              ok: code === "EMP-104",
+              message: code === "EMP-104" ? "Operator verified" : "Operator does not match",
+              advance: code === "EMP-104" ? "done" : "stay",
+              value: code,
+            }),
+          },
+        ]}
+        clearOnScan={false}
+      />
+      {scannerTarget ? (
+        <ScannerPanel target={scannerTarget} onClose={() => setScannerTarget(null)} />
+      ) : null}
+      <p className="text-xs text-muted-foreground" aria-live="polite">
+        {complete ? "Verification complete." : "Enter EMP-104 to verify."}
+      </p>
+    </div>
+  );
+}`,
             },
             {
               key: "compact",

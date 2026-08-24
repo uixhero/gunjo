@@ -71,8 +71,16 @@ function ValueSlider({ disabled, steps }: { disabled?: boolean; steps?: boolean 
 export default function SliderPage() {
     const { locale, sectionLabels } = useLocale();
     const content = getDocContent("components/slider", locale);
-    const code = `import * as React from "react";
-import { FormControl, FormDescription, FormGroup, FormLabel, HStack, Slider } from "@gunjo/ui";
+    const code = locale === "ja"
+        ? `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  HStack,
+  Slider,
+} from "@gunjo/ui";
 
 export function SliderDemo() {
   const [value, setValue] = React.useState(64);
@@ -80,28 +88,112 @@ export function SliderDemo() {
   return (
     <FormGroup className="w-full max-w-sm">
       <HStack justify="between">
-        <FormLabel htmlFor="volume">${locale === "ja" ? "音量" : "Volume"}</FormLabel>
+        <FormLabel htmlFor="volume">音量</FormLabel>
         <span className="font-mono text-sm text-muted-foreground">{value}%</span>
       </HStack>
       <FormControl>
-        <Slider id="volume" value={value} onValueChange={setValue} min={0} max={100} step={1} className="w-full" />
+        <Slider
+          id="volume"
+          value={value}
+          onValueChange={setValue}
+          min={0}
+          max={100}
+          step={1}
+          className="w-full"
+        />
       </FormControl>
-      <FormDescription>${locale === "ja" ? "現在値を横に表示して、ドラッグ中も数値を確認できます。" : "Show the current value beside the label while dragging."}</FormDescription>
+      <FormDescription>現在値を横に表示して、ドラッグ中も数値を確認できます。</FormDescription>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  HStack,
+  Slider,
+} from "@gunjo/ui";
+
+export function SliderDemo() {
+  const [value, setValue] = React.useState(64);
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <HStack justify="between">
+        <FormLabel htmlFor="volume">Volume</FormLabel>
+        <span className="font-mono text-sm text-muted-foreground">{value}%</span>
+      </HStack>
+      <FormControl>
+        <Slider
+          id="volume"
+          value={value}
+          onValueChange={setValue}
+          min={0}
+          max={100}
+          step={1}
+          className="w-full"
+        />
+      </FormControl>
+      <FormDescription>Show the current value beside the label while dragging.</FormDescription>
     </FormGroup>
   );
 }`;
 
-    const usageCode = `import { FormControl, FormGroup, FormLabel, HStack, Slider } from "@gunjo/ui";
+    const usageCode = locale === "ja"
+        ? `import * as React from "react";
+import { FormControl, FormGroup, FormLabel, HStack, Slider } from "@gunjo/ui";
 
-<FormGroup className="w-full max-w-sm">
-  <HStack justify="between">
-    <FormLabel htmlFor="volume">${locale === "ja" ? "音量" : "Volume"}</FormLabel>
-    <span className="font-mono text-sm text-muted-foreground">{value}%</span>
-  </HStack>
-  <FormControl>
-    <Slider id="volume" value={value} onValueChange={setValue} min={0} max={100} step={1} className="w-full" />
-  </FormControl>
-</FormGroup>`;
+export function VolumeField() {
+  const [value, setValue] = React.useState(60);
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <HStack justify="between">
+        <FormLabel htmlFor="volume">音量</FormLabel>
+        <span className="font-mono text-sm text-muted-foreground">{value}%</span>
+      </HStack>
+      <FormControl>
+        <Slider
+          id="volume"
+          value={value}
+          onValueChange={setValue}
+          min={0}
+          max={100}
+          step={1}
+          className="w-full"
+        />
+      </FormControl>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import { FormControl, FormGroup, FormLabel, HStack, Slider } from "@gunjo/ui";
+
+export function VolumeField() {
+  const [value, setValue] = React.useState(60);
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <HStack justify="between">
+        <FormLabel htmlFor="volume">Volume</FormLabel>
+        <span className="font-mono text-sm text-muted-foreground">{value}%</span>
+      </HStack>
+      <FormControl>
+        <Slider
+          id="volume"
+          value={value}
+          onValueChange={setValue}
+          min={0}
+          max={100}
+          step={1}
+          className="w-full"
+        />
+      </FormControl>
+    </FormGroup>
+  );
+}`;
 
     const propsData = [
         { name: "value", type: "number", description: locale === "ja" ? "外部から制御する値です。" : "Controlled slider value." },
@@ -152,21 +244,76 @@ export function SliderDemo() {
                             title: locale === "ja" ? "段階ラベル" : "Step labels",
                             description: locale === "ja" ? "数値を意味のある段階名へ対応させる時に使います。" : "Map numeric steps to meaningful labels.",
                             preview: <ValueSlider steps />,
-                            code: `import * as React from "react";
-import { FormControl, FormDescription, FormGroup, FormLabel, HStack, Slider } from "@gunjo/ui";
+                            code: locale === "ja"
+                                ? `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  HStack,
+  Slider,
+} from "@gunjo/ui";
 
 export function StepLabelSlider() {
-  const labels = [${locale === "ja" ? '"低", "標準", "高", "最高"' : '"Low", "Standard", "High", "Lossless"'}];
+  const labels = ["低", "標準", "高", "最高"];
   const [value, setValue] = React.useState(2);
 
   return (
     <FormGroup className="w-full max-w-sm">
       <HStack justify="between">
-        <FormLabel htmlFor="quality-slider">${locale === "ja" ? "品質" : "Quality"}</FormLabel>
+        <FormLabel htmlFor="quality-slider">品質</FormLabel>
         <span className="font-mono text-sm text-muted-foreground">{labels[value]}</span>
       </HStack>
       <FormControl>
-        <Slider id="quality-slider" value={value} onValueChange={setValue} min={0} max={labels.length - 1} step={1} className="w-full" />
+        <Slider
+          id="quality-slider"
+          value={value}
+          onValueChange={setValue}
+          min={0}
+          max={labels.length - 1}
+          step={1}
+          className="w-full"
+        />
+      </FormControl>
+      <FormDescription className="flex justify-between text-[11px]">
+        {labels.map((label) => (
+          <span key={label}>{label}</span>
+        ))}
+      </FormDescription>
+    </FormGroup>
+  );
+}`
+                                : `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  HStack,
+  Slider,
+} from "@gunjo/ui";
+
+export function StepLabelSlider() {
+  const labels = ["Low", "Standard", "High", "Lossless"];
+  const [value, setValue] = React.useState(2);
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <HStack justify="between">
+        <FormLabel htmlFor="quality-slider">Quality</FormLabel>
+        <span className="font-mono text-sm text-muted-foreground">{labels[value]}</span>
+      </HStack>
+      <FormControl>
+        <Slider
+          id="quality-slider"
+          value={value}
+          onValueChange={setValue}
+          min={0}
+          max={labels.length - 1}
+          step={1}
+          className="w-full"
+        />
       </FormControl>
       <FormDescription className="flex justify-between text-[11px]">
         {labels.map((label) => (
@@ -182,26 +329,66 @@ export function StepLabelSlider() {
                             title: locale === "ja" ? "無効化" : "Disabled",
                             description: locale === "ja" ? "操作できない理由はツールチップと補足文で伝えます。" : "Explain why the slider is disabled with a tooltip and helper text.",
                             preview: <ValueSlider disabled />,
-                            code: `import { FormControl, FormDescription, FormGroup, FormLabel, HStack, Slider, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                            code: locale === "ja"
+                                ? `import { FormControl, FormDescription, FormGroup, FormLabel, HStack, Slider, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 
 export function DisabledSlider() {
   return (
     <FormGroup className="w-full max-w-sm">
       <HStack justify="between">
-        <FormLabel htmlFor="volume-slider">${locale === "ja" ? "音量" : "Volume"}</FormLabel>
+        <FormLabel htmlFor="volume-slider">音量</FormLabel>
         <span className="font-mono text-sm text-muted-foreground">64%</span>
       </HStack>
       <FormControl>
         <Tooltip>
           <TooltipTrigger asChild>
             <span className="block w-full" tabIndex={0}>
-              <Slider id="volume-slider" value={64} min={0} max={100} step={1} disabled className="w-full" />
+              <Slider
+                id="volume-slider"
+                value={64}
+                min={0}
+                max={100}
+                step={1}
+                disabled
+                className="w-full"
+              />
             </span>
           </TooltipTrigger>
-          <TooltipContent>${locale === "ja" ? "管理者が音量を固定しています。" : "Volume is locked by your administrator."}</TooltipContent>
+          <TooltipContent>管理者が音量を固定しています。</TooltipContent>
         </Tooltip>
       </FormControl>
-      <FormDescription>${locale === "ja" ? "この設定は現在変更できません。" : "This setting cannot be changed right now."}</FormDescription>
+      <FormDescription>この設定は現在変更できません。</FormDescription>
+    </FormGroup>
+  );
+}`
+                                : `import { FormControl, FormDescription, FormGroup, FormLabel, HStack, Slider, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+
+export function DisabledSlider() {
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <HStack justify="between">
+        <FormLabel htmlFor="volume-slider">Volume</FormLabel>
+        <span className="font-mono text-sm text-muted-foreground">64%</span>
+      </HStack>
+      <FormControl>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <span className="block w-full" tabIndex={0}>
+              <Slider
+                id="volume-slider"
+                value={64}
+                min={0}
+                max={100}
+                step={1}
+                disabled
+                className="w-full"
+              />
+            </span>
+          </TooltipTrigger>
+          <TooltipContent>Volume is locked by your administrator.</TooltipContent>
+        </Tooltip>
+      </FormControl>
+      <FormDescription>This setting cannot be changed right now.</FormDescription>
     </FormGroup>
   );
 }`,
