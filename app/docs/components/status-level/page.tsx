@@ -170,11 +170,17 @@ const SERVICE_LEVELS = [
   { value: "suspended", label: "運休", tone: "destructive" },
 ] as const;
 
-export function ServiceStatusList({ routes }) {
+const ROUTES = [
+  { id: "ke96", name: "品96 品川駅港南口〜八潮パークタウン", note: "平常どおり", level: "normal" },
+  { id: "ke98", name: "品98 品川駅港南口〜大井競馬場前", note: "工事のため迂回", level: "detour" },
+  { id: "ke99", name: "品99 品川駅高輪口〜五反田駅", note: "終日運休", level: "suspended" },
+] as const;
+
+export function ServiceStatusList() {
   // 重い順（運休が上）。
-  const sorted = [...routes].sort((a, b) => compareStatusLevel(SERVICE_LEVELS, b.level, a.level));
+  const sorted = [...ROUTES].sort((a, b) => compareStatusLevel(SERVICE_LEVELS, b.level, a.level));
   // 全体の運行状況＝いちばん重い段。
-  const overall = highestStatusLevel(SERVICE_LEVELS, routes.map((r) => r.level));
+  const overall = highestStatusLevel(SERVICE_LEVELS, ROUTES.map((r) => r.level));
 
   return (
     <div className="flex flex-col gap-2">
@@ -200,11 +206,17 @@ const SERVICE_LEVELS = [
   { value: "suspended", label: "Suspended", tone: "destructive" },
 ] as const;
 
-export function ServiceStatusList({ routes }) {
+const ROUTES = [
+  { id: "ke96", name: "Route 96 — Shinagawa to Yashio Park Town", note: "Running to schedule", level: "normal" },
+  { id: "ke98", name: "Route 98 — Shinagawa to Oi Racecourse", note: "Detoured around roadworks", level: "detour" },
+  { id: "ke99", name: "Route 99 — Shinagawa to Gotanda", note: "Suspended all day", level: "suspended" },
+] as const;
+
+export function ServiceStatusList() {
   // Heaviest first.
-  const sorted = [...routes].sort((a, b) => compareStatusLevel(SERVICE_LEVELS, b.level, a.level));
+  const sorted = [...ROUTES].sort((a, b) => compareStatusLevel(SERVICE_LEVELS, b.level, a.level));
   // Line-wide status = the heaviest step present.
-  const overall = highestStatusLevel(SERVICE_LEVELS, routes.map((r) => r.level));
+  const overall = highestStatusLevel(SERVICE_LEVELS, ROUTES.map((r) => r.level));
 
   return (
     <div className="flex flex-col gap-2">
@@ -481,6 +493,82 @@ export function ServiceStatusList({ routes }) {
         <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
+      </section>
+
+      <section className="space-y-4">
+        <div className="border-b pb-2">
+          <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+            {isJa ? "設計の判断" : "Design decisions"}
+          </h2>
+        </div>
+        {isJa ? (
+          <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+            <li>
+              <strong>色だけで段を伝えない。</strong>段バーを常に出しているのは、彩度をゼロにしても
+              「何段目か」を数えられるようにするためです。コールドテストで繰り返し出た粗さで、
+              UIXHERO の記事にも実例が載っています。
+              <br />
+              <a
+                className="underline underline-offset-4"
+                href="https://www.uixhero.com/blog/ai-generated-ui-29-failures#28-状態の違いが色だけに乗る"
+                target="_blank"
+                rel="noreferrer"
+              >
+                AIが作った画面で、実際に起きた29の失敗 — 28. 状態の違いが、色だけに乗る
+              </a>
+            </li>
+            <li>
+              <strong>段の定義は1か所だけに書く。</strong>並べ替えも「いちばん重い段」の導出も同じ
+              配列から引きます。定義が2か所に分かれると、片方が必ず古くなります。
+            </li>
+            <li>
+              <strong>色に頼らない伝え方の考え方</strong>は資料にまとめてあります。
+              <br />
+              <a
+                className="underline underline-offset-4"
+                href="https://www.uixhero.com/resources/ui-design/color-independence"
+                target="_blank"
+                rel="noreferrer"
+              >
+                色だけに頼らない
+              </a>
+            </li>
+          </ul>
+        ) : (
+          <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+            <li>
+              <strong>Never let colour alone carry the step.</strong> The step bar is always visible so
+              that the reading of &ldquo;which step is this?&rdquo; survives with saturation at zero.
+              This is a recurring finding in our cold tests, with worked examples written up on
+              UIXHERO.
+              <br />
+              <a
+                className="underline underline-offset-4"
+                href="https://www.uixhero.com/blog/ai-generated-ui-29-failures#28-状態の違いが色だけに乗る"
+                target="_blank"
+                rel="noreferrer"
+              >
+                29 failures we found in AI-generated screens — no. 28, state carried by colour alone
+              </a>
+            </li>
+            <li>
+              <strong>Declare the scale in exactly one place.</strong> Sorting and the roll-up both read
+              the same array. Split the definition in two and one half will go stale.
+            </li>
+            <li>
+              <strong>The wider reasoning</strong> on communicating without relying on colour:
+              <br />
+              <a
+                className="underline underline-offset-4"
+                href="https://www.uixhero.com/resources/ui-design/color-independence"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Not relying on colour alone
+              </a>
+            </li>
+          </ul>
+        )}
       </section>
     </ComponentLayout>
   );
