@@ -132,9 +132,13 @@ function toFindingCard(entry: AggregatedFinding): FindingCardModel {
 
 export function CategoryView({
     slug,
+    visibleRounds,
     findings = [],
 }: {
     slug: string;
+    /** Rounds this environment may show, decided by the server page (drafts
+     *  are hidden in production — see app/lib/cold-test-drafts.ts). */
+    visibleRounds?: number[];
     /**
      * Every round in this industry, aggregated. Japanese only for now — the
      * door pages have no English tree yet.
@@ -163,10 +167,12 @@ export function CategoryView({
 
     const entries = React.useMemo(() => {
         if (!category) return [] as ColdTestEntry[];
+        const visible = visibleRounds ? new Set(visibleRounds) : null;
         return galleryData.entries
             .filter((e) => e.category === category.jaCategory)
+            .filter((e) => !visible || visible.has(e.round))
             .sort((a, b) => a.round - b.round);
-    }, [category]);
+    }, [category, visibleRounds]);
 
     if (!category) return null;
 
