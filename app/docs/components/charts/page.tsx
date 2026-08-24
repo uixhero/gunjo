@@ -622,7 +622,7 @@ export default function ChartsPage() {
                     <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
                         {isJa ? "チャートの概要" : "Charts Overview"}
                     </h1>
-                    <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground">
+                    <p className="text-lg leading-relaxed text-muted-foreground">
                         {isJa
                             ? "ダッシュボードパターンで使うチャートプリミティブとチャートカードのカテゴリ概要です。データの形、比較対象、表示密度に合わせて適切なチャートへ移動できます。"
                             : "A category overview for composable chart primitives and chart cards used in dashboard patterns. Choose by data shape, comparison target, and display density."}
