@@ -844,7 +844,7 @@ export default function InputsOverviewPage() {
                             {isJa ? "Inputs" : "入力"}
                         </span>
                     </div>
-                    <p className="max-w-3xl text-lg text-muted-foreground">
+                    <p className="text-lg text-muted-foreground">
                         {isJa
                             ? "入力系コンポーネントの一覧、共通ルール、迷いやすい使い分けをまとめたカテゴリ概要です。完成例を見るページではなく、どのコンポーネントから確認するべきかを判断するための入口です。"
                             : "A category overview for input components, shared rules, and common decision points. This is an entry point for choosing the right component, not a Showcase page."}
