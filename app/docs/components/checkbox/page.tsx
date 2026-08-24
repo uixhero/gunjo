@@ -14,23 +14,65 @@ export default function CheckboxPage() {
     const statesHeading = locale === "ja" ? "状態とバリエーション" : "States and variants";
     const disabledReason = locale === "ja" ? "管理者が通知設定を固定しています。" : "Your administrator has locked notification settings.";
 
-    const code = `import { Checkbox, Label } from "@gunjo/ui"
+    const isJa = locale === "ja";
+    const code = isJa
+        ? `import { Checkbox, Label } from "@gunjo/ui";
 
-export function CheckboxDemo() {
+export function TermsCheckbox() {
   return (
     <div className="flex items-center gap-2">
       <Checkbox id="terms" />
-      <Label htmlFor="terms">${locale === "ja" ? "利用規約に同意する" : "Accept terms"}</Label>
+      <Label htmlFor="terms">利用規約に同意する</Label>
     </div>
-  )
+  );
+}`
+        : `import { Checkbox, Label } from "@gunjo/ui";
+
+export function TermsCheckbox() {
+  return (
+    <div className="flex items-center gap-2">
+      <Checkbox id="terms" />
+      <Label htmlFor="terms">Accept terms</Label>
+    </div>
+  );
 }`;
 
-    const usageCode = `import { Checkbox, Label } from "@gunjo/ui"
+    const usageCode = isJa
+        ? `import * as React from "react";
+import { Checkbox, Label } from "@gunjo/ui";
 
-export function CheckboxWithText() {
+export function TermsCheckboxWithText() {
+  const [accepted, setAccepted] = React.useState(false);
+
   return (
     <div className="flex items-start gap-2">
-      <Checkbox id="terms" />
+      <Checkbox
+        id="terms"
+        checked={accepted}
+        onCheckedChange={setAccepted}
+      />
+      <div className="grid gap-1.5 leading-none">
+        <Label htmlFor="terms">利用規約に同意する</Label>
+        <p className="text-sm text-muted-foreground">
+          利用規約とプライバシーポリシーに同意したものとみなします。
+        </p>
+      </div>
+    </div>
+  );
+}`
+        : `import * as React from "react";
+import { Checkbox, Label } from "@gunjo/ui";
+
+export function TermsCheckboxWithText() {
+  const [accepted, setAccepted] = React.useState(false);
+
+  return (
+    <div className="flex items-start gap-2">
+      <Checkbox
+        id="terms"
+        checked={accepted}
+        onCheckedChange={setAccepted}
+      />
       <div className="grid gap-1.5 leading-none">
         <Label htmlFor="terms">Accept terms and conditions</Label>
         <p className="text-sm text-muted-foreground">
@@ -38,7 +80,7 @@ export function CheckboxWithText() {
         </p>
       </div>
     </div>
-  )
+  );
 }`;
 
     const propsData = [
@@ -93,13 +135,24 @@ export function CheckboxWithText() {
                                     </Label>
                                 </div>
                             ),
-                            code: `import { Checkbox, Label } from "@gunjo/ui";
+                            code: isJa
+                                ? `import { Checkbox, Label } from "@gunjo/ui";
 
-export default function EmailUpdates() {
+export function EmailUpdatesCheckbox() {
   return (
     <div className="flex items-center gap-2">
       <Checkbox id="updates" />
-      <Label htmlFor="updates">${locale === "ja" ? "メールで通知を受け取る" : "Receive email updates"}</Label>
+      <Label htmlFor="updates">メールで通知を受け取る</Label>
+    </div>
+  );
+}`
+                                : `import { Checkbox, Label } from "@gunjo/ui";
+
+export function EmailUpdatesCheckbox() {
+  return (
+    <div className="flex items-center gap-2">
+      <Checkbox id="updates" />
+      <Label htmlFor="updates">Receive email updates</Label>
     </div>
   );
 }`,
@@ -119,13 +172,38 @@ export default function EmailUpdates() {
                                     </Label>
                                 </div>
                             ),
-                            code: `import { Checkbox, Label } from "@gunjo/ui";
+                            code: isJa
+                                ? `import * as React from "react";
+import { Checkbox, Label } from "@gunjo/ui";
 
-export default function AcceptedTerms() {
+export function AcceptedTermsCheckbox() {
+  const [accepted, setAccepted] = React.useState(true);
+
   return (
     <div className="flex items-center gap-2">
-      <Checkbox id="terms" checked onCheckedChange={() => {}} />
-      <Label htmlFor="terms">${locale === "ja" ? "利用規約に同意済み" : "Terms accepted"}</Label>
+      <Checkbox
+        id="terms"
+        checked={accepted}
+        onCheckedChange={setAccepted}
+      />
+      <Label htmlFor="terms">利用規約に同意済み</Label>
+    </div>
+  );
+}`
+                                : `import * as React from "react";
+import { Checkbox, Label } from "@gunjo/ui";
+
+export function AcceptedTermsCheckbox() {
+  const [accepted, setAccepted] = React.useState(true);
+
+  return (
+    <div className="flex items-center gap-2">
+      <Checkbox
+        id="terms"
+        checked={accepted}
+        onCheckedChange={setAccepted}
+      />
+      <Label htmlFor="terms">Terms accepted</Label>
     </div>
   );
 }`,
@@ -147,16 +225,30 @@ export default function AcceptedTerms() {
                                     </Label>
                                 </div>
                             ),
-                            code: `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
+                            code: isJa
+                                ? `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
 import { Checkbox, Label } from "@gunjo/ui";
 
-export default function LockedCheckbox() {
+export function LockedNotificationCheckbox() {
   return (
     <div className="flex items-center gap-2">
-      <DisabledReasonTooltip reason="${locale === "ja" ? "管理者が通知設定を固定しています。" : "Your administrator has locked notification settings."}">
+      <DisabledReasonTooltip reason="管理者が通知設定を固定しています。">
         <Checkbox id="locked" disabled />
       </DisabledReasonTooltip>
-      <Label htmlFor="locked">${locale === "ja" ? "管理者により固定されています" : "Locked by an administrator"}</Label>
+      <Label htmlFor="locked">管理者により固定されています</Label>
+    </div>
+  );
+}`
+                                : `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
+import { Checkbox, Label } from "@gunjo/ui";
+
+export function LockedNotificationCheckbox() {
+  return (
+    <div className="flex items-center gap-2">
+      <DisabledReasonTooltip reason="Your administrator has locked notification settings.">
+        <Checkbox id="locked" disabled />
+      </DisabledReasonTooltip>
+      <Label htmlFor="locked">Locked by an administrator</Label>
     </div>
   );
 }`,

@@ -66,15 +66,17 @@ function RangeStatePreview({
 export default function RangeSliderPage() {
     const { locale, sectionLabels } = useLocale();
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
-    const code = `import * as React from "react";
+    const isJa = locale === "ja";
+    const code = isJa
+        ? `import * as React from "react";
 import { FormControl, FormGroup, FormLabel, RangeSlider } from "@gunjo/ui";
 
-export function RangeSliderDemo() {
+export function PriceRangeSlider() {
   const [range, setRange] = React.useState<[number, number]>([24, 72]);
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="price-range">${locale === "ja" ? "価格帯" : "Price range"}</FormLabel>
+      <FormLabel htmlFor="price-range">価格帯</FormLabel>
       <FormControl>
         <RangeSlider
           id="price-range"
@@ -84,28 +86,78 @@ export function RangeSliderDemo() {
           min={0}
           max={100}
           step={1}
-          minLabel="${locale === "ja" ? "最小値" : "Minimum"}"
-          maxLabel="${locale === "ja" ? "最大値" : "Maximum"}"
+          minLabel="最小値"
+          maxLabel="最大値"
+        />
+      </FormControl>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import { FormControl, FormGroup, FormLabel, RangeSlider } from "@gunjo/ui";
+
+export function PriceRangeSlider() {
+  const [range, setRange] = React.useState<[number, number]>([24, 72]);
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="price-range">Price range</FormLabel>
+      <FormControl>
+        <RangeSlider
+          id="price-range"
+          className="w-full"
+          value={range}
+          onValueChange={setRange}
+          min={0}
+          max={100}
+          step={1}
+          minLabel="Minimum"
+          maxLabel="Maximum"
         />
       </FormControl>
     </FormGroup>
   );
 }`;
 
-    const usageCode = `import { RangeSlider } from "@gunjo/ui";
+    const usageCode = isJa
+        ? `import * as React from "react";
+import { RangeSlider } from "@gunjo/ui";
 
-<RangeSlider
-  value={[min, max]}
-  onValueChange={([nextMin, nextMax]) => {
-    setMin(nextMin);
-    setMax(nextMax);
-  }}
-  min={0}
-  max={100}
-  step={1}
-  minLabel="${locale === "ja" ? "最小値" : "Minimum value"}"
-  maxLabel="${locale === "ja" ? "最大値" : "Maximum value"}"
-/>`;
+export function PriceRangeFilter() {
+  const [range, setRange] = React.useState<[number, number]>([24, 72]);
+
+  return (
+    <RangeSlider
+      className="w-full max-w-sm"
+      value={range}
+      onValueChange={setRange}
+      min={0}
+      max={100}
+      step={1}
+      minLabel="最小値"
+      maxLabel="最大値"
+    />
+  );
+}`
+        : `import * as React from "react";
+import { RangeSlider } from "@gunjo/ui";
+
+export function PriceRangeFilter() {
+  const [range, setRange] = React.useState<[number, number]>([24, 72]);
+
+  return (
+    <RangeSlider
+      className="w-full max-w-sm"
+      value={range}
+      onValueChange={setRange}
+      min={0}
+      max={100}
+      step={1}
+      minLabel="Minimum value"
+      maxLabel="Maximum value"
+    />
+  );
+}`;
 
     const propsData = [
         {
@@ -202,9 +254,45 @@ export function RangeSliderDemo() {
                                     : "Use a larger step for values that should move in fixed increments.",
                             preview: <RangeStatePreview step={10} initialValue={[20, 80]} />,
                             previewHeight: 190,
-                            code: `import { RangeSlider } from "@gunjo/ui";
+                            code: isJa
+                                ? `import * as React from "react";
+import { RangeSlider } from "@gunjo/ui";
 
-<RangeSlider value={range} onValueChange={setRange} min={0} max={100} step={10} />`,
+export function SteppedPriceRangeSlider() {
+  const [range, setRange] = React.useState<[number, number]>([20, 80]);
+
+  return (
+    <RangeSlider
+      className="w-full max-w-sm"
+      value={range}
+      onValueChange={setRange}
+      min={0}
+      max={100}
+      step={10}
+      minLabel="最小値"
+      maxLabel="最大値"
+    />
+  );
+}`
+                                : `import * as React from "react";
+import { RangeSlider } from "@gunjo/ui";
+
+export function SteppedPriceRangeSlider() {
+  const [range, setRange] = React.useState<[number, number]>([20, 80]);
+
+  return (
+    <RangeSlider
+      className="w-full max-w-sm"
+      value={range}
+      onValueChange={setRange}
+      min={0}
+      max={100}
+      step={10}
+      minLabel="Minimum value"
+      maxLabel="Maximum value"
+    />
+  );
+}`,
                         },
                         {
                             key: "with-inputs",
@@ -215,11 +303,65 @@ export function RangeSliderDemo() {
                                     : "Pair with NumberInput when users need exact values.",
                             preview: <RangeSliderDemo />,
                             previewHeight: 250,
-                            code: `import { NumberInput, RangeSlider } from "@gunjo/ui";
+                            code: isJa
+                                ? `import * as React from "react";
+import { NumberInput, RangeSlider } from "@gunjo/ui";
 
-<RangeSlider value={range} onValueChange={setRange} />
-<NumberInput value={range[0]} onValueChange={(value) => setRange([value, range[1]])} />
-<NumberInput value={range[1]} onValueChange={(value) => setRange([range[0], value])} />`,
+export function PriceRangeWithInputs() {
+  const [range, setRange] = React.useState<[number, number]>([24, 72]);
+
+  return (
+    <div className="flex w-full max-w-sm flex-col gap-3">
+      <RangeSlider
+        value={range}
+        onValueChange={setRange}
+        minLabel="最小値"
+        maxLabel="最大値"
+      />
+      <div className="flex items-center gap-2">
+        <NumberInput
+          label="最小値"
+          value={range[0]}
+          onValueChange={(next) => setRange([next ?? 0, range[1]])}
+        />
+        <NumberInput
+          label="最大値"
+          value={range[1]}
+          onValueChange={(next) => setRange([range[0], next ?? 100])}
+        />
+      </div>
+    </div>
+  );
+}`
+                                : `import * as React from "react";
+import { NumberInput, RangeSlider } from "@gunjo/ui";
+
+export function PriceRangeWithInputs() {
+  const [range, setRange] = React.useState<[number, number]>([24, 72]);
+
+  return (
+    <div className="flex w-full max-w-sm flex-col gap-3">
+      <RangeSlider
+        value={range}
+        onValueChange={setRange}
+        minLabel="Minimum value"
+        maxLabel="Maximum value"
+      />
+      <div className="flex items-center gap-2">
+        <NumberInput
+          label="Minimum"
+          value={range[0]}
+          onValueChange={(next) => setRange([next ?? 0, range[1]])}
+        />
+        <NumberInput
+          label="Maximum"
+          value={range[1]}
+          onValueChange={(next) => setRange([range[0], next ?? 100])}
+        />
+      </div>
+    </div>
+  );
+}`,
                         },
                         {
                             key: "disabled",
@@ -230,12 +372,33 @@ export function RangeSliderDemo() {
                                     : "Explain why the range cannot be changed with a Tooltip.",
                             preview: <RangeStatePreview disabled initialValue={[32, 68]} />,
                             previewHeight: 190,
-                            code: `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
+                            code: isJa
+                                ? `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
 import { RangeSlider } from "@gunjo/ui";
 
-<DisabledReasonTooltip fullWidth reason="${locale === "ja" ? "契約プランで範囲が固定されています。" : "The range is fixed by the current plan."}">
-  <RangeSlider disabled value={[32, 68]} />
-</DisabledReasonTooltip>`,
+export function LockedPriceRangeSlider() {
+  return (
+    <DisabledReasonTooltip
+      fullWidth
+      reason="契約プランで範囲が固定されています。"
+    >
+      <RangeSlider disabled value={[32, 68]} />
+    </DisabledReasonTooltip>
+  );
+}`
+                                : `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
+import { RangeSlider } from "@gunjo/ui";
+
+export function LockedPriceRangeSlider() {
+  return (
+    <DisabledReasonTooltip
+      fullWidth
+      reason="The range is fixed by the current plan."
+    >
+      <RangeSlider disabled value={[32, 68]} />
+    </DisabledReasonTooltip>
+  );
+}`,
                         },
                     ]}
                 />

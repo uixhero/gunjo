@@ -33,23 +33,64 @@ function SwitchRow({ checked, disabled }: { checked?: boolean; disabled?: boolea
 export default function SwitchPage() {
     const { locale, sectionLabels } = useLocale();
     const content = getDocContent("components/switch", locale);
-    const code = `import { Label, Switch } from "@gunjo/ui";
+    const isJa = locale === "ja";
+    const code = isJa
+        ? `import { Label, Switch } from "@gunjo/ui";
 
-export function SwitchDemo() {
+export function EmailNotificationSwitch() {
   return (
     <div className="flex items-center gap-2">
       <Switch id="notifications" defaultChecked />
-      <Label htmlFor="notifications">${locale === "ja" ? "メール通知" : "Email notifications"}</Label>
+      <Label htmlFor="notifications">メール通知</Label>
+    </div>
+  );
+}`
+        : `import { Label, Switch } from "@gunjo/ui";
+
+export function EmailNotificationSwitch() {
+  return (
+    <div className="flex items-center gap-2">
+      <Switch id="notifications" defaultChecked />
+      <Label htmlFor="notifications">Email notifications</Label>
     </div>
   );
 }`;
 
-    const usageCode = `import { Label, Switch } from "@gunjo/ui";
+    const usageCode = isJa
+        ? `import * as React from "react";
+import { Label, Switch } from "@gunjo/ui";
 
-<div className="flex items-center gap-2">
-  <Switch id="notifications" defaultChecked />
-  <Label htmlFor="notifications">${locale === "ja" ? "メール通知" : "Email notifications"}</Label>
-</div>`;
+export function NotificationSettingSwitch() {
+  const [enabled, setEnabled] = React.useState(true);
+
+  return (
+    <div className="flex items-center gap-2">
+      <Switch
+        id="notifications"
+        checked={enabled}
+        onCheckedChange={setEnabled}
+      />
+      <Label htmlFor="notifications">メール通知</Label>
+    </div>
+  );
+}`
+        : `import * as React from "react";
+import { Label, Switch } from "@gunjo/ui";
+
+export function NotificationSettingSwitch() {
+  const [enabled, setEnabled] = React.useState(true);
+
+  return (
+    <div className="flex items-center gap-2">
+      <Switch
+        id="notifications"
+        checked={enabled}
+        onCheckedChange={setEnabled}
+      />
+      <Label htmlFor="notifications">Email notifications</Label>
+    </div>
+  );
+}`;
 
     const propsData = [
         { name: "checked", type: "boolean", description: locale === "ja" ? "外部から制御するオン/オフ状態です。" : "Controlled checked state." },
@@ -94,45 +135,113 @@ export function SwitchDemo() {
                             title: locale === "ja" ? "オフ" : "Off",
                             description: locale === "ja" ? "機能が無効な状態です。単一設定のオン/オフに使います。" : "The setting is off. Use switches for a single on/off decision.",
                             preview: <SwitchRow />,
-                            code: `import { Label, Switch } from "@gunjo/ui";
+                            code: isJa
+                                ? `import { Label, Switch } from "@gunjo/ui";
 
-<div className="flex items-center gap-2">
-  <Switch id="autosave" />
-  <Label htmlFor="autosave">${locale === "ja" ? "自動保存" : "Auto-save"}</Label>
-</div>`,
+export function AutoSaveSwitchOff() {
+  return (
+    <div className="flex items-center gap-2">
+      <Switch id="autosave" />
+      <Label htmlFor="autosave">自動保存</Label>
+    </div>
+  );
+}`
+                                : `import { Label, Switch } from "@gunjo/ui";
+
+export function AutoSaveSwitchOff() {
+  return (
+    <div className="flex items-center gap-2">
+      <Switch id="autosave" />
+      <Label htmlFor="autosave">Auto-save</Label>
+    </div>
+  );
+}`,
                         },
                         {
                             key: "on",
                             title: locale === "ja" ? "オン" : "On",
                             description: locale === "ja" ? "初期値として有効にする場合は defaultChecked を使います。" : "Use defaultChecked when the setting should start on.",
                             preview: <SwitchRow checked />,
-                            code: `import { Label, Switch } from "@gunjo/ui";
+                            code: isJa
+                                ? `import { Label, Switch } from "@gunjo/ui";
 
-<div className="flex items-center gap-2">
-  <Switch id="autosave" defaultChecked />
-  <Label htmlFor="autosave">${locale === "ja" ? "自動保存" : "Auto-save"}</Label>
-</div>`,
+export function AutoSaveSwitchOn() {
+  return (
+    <div className="flex items-center gap-2">
+      <Switch id="autosave" defaultChecked />
+      <Label htmlFor="autosave">自動保存</Label>
+    </div>
+  );
+}`
+                                : `import { Label, Switch } from "@gunjo/ui";
+
+export function AutoSaveSwitchOn() {
+  return (
+    <div className="flex items-center gap-2">
+      <Switch id="autosave" defaultChecked />
+      <Label htmlFor="autosave">Auto-save</Label>
+    </div>
+  );
+}`,
                         },
                         {
                             key: "disabled",
                             title: locale === "ja" ? "無効化" : "Disabled",
                             description: locale === "ja" ? "切り替えできない理由はツールチップとラベルで示します。" : "Explain why the switch is disabled with a tooltip and label.",
                             preview: <SwitchRow disabled />,
-                            code: `import { Label, Switch, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                            code: isJa
+                                ? `import {
+  Label,
+  Switch,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@gunjo/ui";
 
-<div className="flex items-center gap-2">
-  <Tooltip>
-    <TooltipTrigger asChild>
-      <span tabIndex={0}>
-        <Switch id="switch-managed" checked disabled />
-      </span>
-    </TooltipTrigger>
-    <TooltipContent>${locale === "ja" ? "組織設定で固定されています。" : "This setting is managed by your organization."}</TooltipContent>
-  </Tooltip>
-  <Label htmlFor="switch-managed" className="text-muted-foreground">
-    ${locale === "ja" ? "組織設定で固定" : "Managed by organization"}
-  </Label>
-</div>`,
+export function ManagedAutoSaveSwitch() {
+  return (
+    <div className="flex items-center gap-2">
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <span tabIndex={0}>
+            <Switch id="switch-managed" checked disabled />
+          </span>
+        </TooltipTrigger>
+        <TooltipContent>組織設定で固定されています。</TooltipContent>
+      </Tooltip>
+      <Label htmlFor="switch-managed" className="text-muted-foreground">
+        組織設定で固定
+      </Label>
+    </div>
+  );
+}`
+                                : `import {
+  Label,
+  Switch,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@gunjo/ui";
+
+export function ManagedAutoSaveSwitch() {
+  return (
+    <div className="flex items-center gap-2">
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <span tabIndex={0}>
+            <Switch id="switch-managed" checked disabled />
+          </span>
+        </TooltipTrigger>
+        <TooltipContent>
+          This setting is managed by your organization.
+        </TooltipContent>
+      </Tooltip>
+      <Label htmlFor="switch-managed" className="text-muted-foreground">
+        Managed by organization
+      </Label>
+    </div>
+  );
+}`,
                         },
                     ]}
                 />

@@ -9,19 +9,59 @@ import { PostalCodeInput } from "@gunjo/ui";
 export default function PostalCodeInputPage() {
     const { locale } = useLocale();
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
-    const code = `import * as React from "react";
-import { FormControl, FormDescription, FormGroup, FormLabel, PostalCodeInput } from "@gunjo/ui";
+    const isJa = locale === "ja";
+    const code = isJa
+        ? `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  PostalCodeInput,
+} from "@gunjo/ui";
 
-export function PostalCodeInputDemo() {
+export function ShippingPostalCodeField() {
   const [value, setValue] = React.useState("150-0001");
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="postal-code">${locale === "ja" ? "郵便番号" : "Postal code"}</FormLabel>
+      <FormLabel htmlFor="postal-code">郵便番号</FormLabel>
       <FormControl>
-        <PostalCodeInput id="postal-code" value={value} onValueChange={setValue} />
+        <PostalCodeInput
+          id="postal-code"
+          value={value}
+          onValueChange={setValue}
+        />
       </FormControl>
-      <FormDescription>${locale === "ja" ? "住所補完は上位で接続します。" : "Connect address lookup above this input."}</FormDescription>
+      <FormDescription>住所補完は上位で接続します。</FormDescription>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  PostalCodeInput,
+} from "@gunjo/ui";
+
+export function ShippingPostalCodeField() {
+  const [value, setValue] = React.useState("150-0001");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="postal-code">Postal code</FormLabel>
+      <FormControl>
+        <PostalCodeInput
+          id="postal-code"
+          value={value}
+          onValueChange={setValue}
+        />
+      </FormControl>
+      <FormDescription>
+        Connect address lookup above this input.
+      </FormDescription>
     </FormGroup>
   );
 }`;
@@ -82,7 +122,31 @@ export function PostalCodeInputDemo() {
                     description: locale === "ja" ? "表組みなど、文脈上 prefix が不要な場合は空にできます。" : "Remove the prefix when surrounding context already explains the value.",
                     preview: <PostalCodeInput className="w-full max-w-sm" value="150-0001" prefix={null} aria-label={locale === "ja" ? "郵便番号" : "Postal code"} />,
                     previewHeight: 100,
-                    code: `<PostalCodeInput value="150-0001" prefix={null} />`,
+                    code: isJa
+                        ? `import { PostalCodeInput } from "@gunjo/ui";
+
+export function PlainPostalCodeField() {
+  return (
+    <PostalCodeInput
+      className="w-full max-w-sm"
+      value="150-0001"
+      prefix={null}
+      aria-label="郵便番号"
+    />
+  );
+}`
+                        : `import { PostalCodeInput } from "@gunjo/ui";
+
+export function PlainPostalCodeField() {
+  return (
+    <PostalCodeInput
+      className="w-full max-w-sm"
+      value="150-0001"
+      prefix={null}
+      aria-label="Postal code"
+    />
+  );
+}`,
                 },
             ]}
         />

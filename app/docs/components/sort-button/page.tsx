@@ -38,17 +38,34 @@ export default function SortButtonDocPage() {
     const { locale, sectionLabels } = useLocale();
     const content = getDocContent("components/sort-button", locale);
     const sortVariantType = getCategoryVariantUnionType("inputs", "sortButton");
-    const usageCode = `import * as React from "react";
+    const isJa = locale === "ja";
+    const usageCode = isJa
+        ? `import * as React from "react";
 import { SortButton, type SortButtonVariantKey } from "@gunjo/ui";
 
-export function SortExample() {
+export function DateJoinedSortButton() {
   const [sort, setSort] = React.useState<SortButtonVariantKey>("none");
 
   return (
     <SortButton
       value={sort}
       onSortChange={setSort}
-      label="${locale === "ja" ? "登録日" : "Date joined"}"
+      label="登録日"
+      className="flex-row"
+    />
+  );
+}`
+        : `import * as React from "react";
+import { SortButton, type SortButtonVariantKey } from "@gunjo/ui";
+
+export function DateJoinedSortButton() {
+  const [sort, setSort] = React.useState<SortButtonVariantKey>("none");
+
+  return (
+    <SortButton
+      value={sort}
+      onSortChange={setSort}
+      label="Date joined"
       className="flex-row"
     />
   );
@@ -91,7 +108,8 @@ export function SortExample() {
                             title: locale === "ja" ? "未指定" : "None",
                             description: locale === "ja" ? "クリックすると昇順、降順、未指定の順に切り替わります。" : "Click to cycle through ascending, descending, and none.",
                             preview: <SortButtonStatePreview />,
-                            code: `import * as React from "react";
+                            code: isJa
+                                ? `import * as React from "react";
 import { SortButton, type SortButtonVariantKey } from "@gunjo/ui";
 
 export function UnsortedButton() {
@@ -101,7 +119,22 @@ export function UnsortedButton() {
     <SortButton
       value={sort}
       onSortChange={setSort}
-      label="${locale === "ja" ? "登録日" : "Date joined"}"
+      label="登録日"
+      className="flex-row"
+    />
+  );
+}`
+                                : `import * as React from "react";
+import { SortButton, type SortButtonVariantKey } from "@gunjo/ui";
+
+export function UnsortedButton() {
+  const [sort, setSort] = React.useState<SortButtonVariantKey>("none");
+
+  return (
+    <SortButton
+      value={sort}
+      onSortChange={setSort}
+      label="Date joined"
       className="flex-row"
     />
   );
@@ -112,7 +145,8 @@ export function UnsortedButton() {
                             title: locale === "ja" ? "昇順" : "Ascending",
                             description: locale === "ja" ? "現在の並び替え方向をアイコンとラベルで示します。" : "The icon and label show the current direction.",
                             preview: <SortButtonStatePreview initial="asc" />,
-                            code: `import * as React from "react";
+                            code: isJa
+                                ? `import * as React from "react";
 import { SortButton, type SortButtonVariantKey } from "@gunjo/ui";
 
 export function AscendingSortButton() {
@@ -122,7 +156,22 @@ export function AscendingSortButton() {
     <SortButton
       value={sort}
       onSortChange={setSort}
-      label="${locale === "ja" ? "登録日" : "Date joined"}"
+      label="登録日"
+      className="flex-row"
+    />
+  );
+}`
+                                : `import * as React from "react";
+import { SortButton, type SortButtonVariantKey } from "@gunjo/ui";
+
+export function AscendingSortButton() {
+  const [sort, setSort] = React.useState<SortButtonVariantKey>("asc");
+
+  return (
+    <SortButton
+      value={sort}
+      onSortChange={setSort}
+      label="Date joined"
       className="flex-row"
     />
   );
@@ -133,16 +182,49 @@ export function AscendingSortButton() {
                             title: locale === "ja" ? "無効化" : "Disabled",
                             description: locale === "ja" ? "並び替えできない理由はツールチップで伝えます。" : "Explain why sorting is unavailable with a tooltip.",
                             preview: <SortButtonStatePreview disabled />,
-                            code: `import { SortButton, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                            code: isJa
+                                ? `import {
+  SortButton,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@gunjo/ui";
 
-<Tooltip>
-  <TooltipTrigger asChild>
-    <span tabIndex={0}>
-      <SortButton disabled label="${locale === "ja" ? "登録日" : "Date joined"}" className="flex-row" />
-    </span>
-  </TooltipTrigger>
-  <TooltipContent>${locale === "ja" ? "一覧が固定表示のため並び替えできません。" : "Sorting is unavailable while the list order is locked."}</TooltipContent>
-</Tooltip>`,
+export function LockedSortButton() {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <span tabIndex={0}>
+          <SortButton disabled label="登録日" className="flex-row" />
+        </span>
+      </TooltipTrigger>
+      <TooltipContent>
+        一覧が固定表示のため並び替えできません。
+      </TooltipContent>
+    </Tooltip>
+  );
+}`
+                                : `import {
+  SortButton,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@gunjo/ui";
+
+export function LockedSortButton() {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <span tabIndex={0}>
+          <SortButton disabled label="Date joined" className="flex-row" />
+        </span>
+      </TooltipTrigger>
+      <TooltipContent>
+        Sorting is unavailable while the list order is locked.
+      </TooltipContent>
+    </Tooltip>
+  );
+}`,
                         },
                     ]}
                 />

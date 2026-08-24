@@ -9,15 +9,30 @@ import { PasswordRequirementList } from "@gunjo/ui";
 export default function PasswordRequirementListPage() {
     const { locale } = useLocale();
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
-    const code = `import { PasswordRequirementList } from "@gunjo/ui";
+    const isJa = locale === "ja";
+    const code = isJa
+        ? `import { PasswordRequirementList } from "@gunjo/ui";
 
-export function PasswordRequirementListDemo() {
+export function SignUpPasswordRequirements() {
   return (
     <PasswordRequirementList
       requirements={[
-        { id: "length", label: "${locale === "ja" ? "12文字以上" : "At least 12 characters"}", met: true },
-        { id: "number", label: "${locale === "ja" ? "数字を含む" : "Includes a number"}", met: true },
-        { id: "symbol", label: "${locale === "ja" ? "記号を含む" : "Includes a symbol"}", met: false },
+        { id: "length", label: "12文字以上", met: true },
+        { id: "number", label: "数字を含む", met: true },
+        { id: "symbol", label: "記号を含む", met: false },
+      ]}
+    />
+  );
+}`
+        : `import { PasswordRequirementList } from "@gunjo/ui";
+
+export function SignUpPasswordRequirements() {
+  return (
+    <PasswordRequirementList
+      requirements={[
+        { id: "length", label: "At least 12 characters", met: true },
+        { id: "number", label: "Includes a number", met: true },
+        { id: "symbol", label: "Includes a symbol", met: false },
       ]}
     />
   );
@@ -74,7 +89,33 @@ export function PasswordRequirementListDemo() {
                         />
                     ),
                     previewHeight: 120,
-                    code: `<PasswordRequirementList requirements={[{ id: "length", label: "${locale === "ja" ? "12文字以上" : "At least 12 characters"}" }]} />`,
+                    code: isJa
+                        ? `import { PasswordRequirementList } from "@gunjo/ui";
+
+export function PendingPasswordRequirements() {
+  return (
+    <PasswordRequirementList
+      className="w-full max-w-sm"
+      requirements={[
+        { id: "length", label: "12文字以上" },
+        { id: "number", label: "数字を含む" },
+      ]}
+    />
+  );
+}`
+                        : `import { PasswordRequirementList } from "@gunjo/ui";
+
+export function PendingPasswordRequirements() {
+  return (
+    <PasswordRequirementList
+      className="w-full max-w-sm"
+      requirements={[
+        { id: "length", label: "At least 12 characters" },
+        { id: "number", label: "Includes a number" },
+      ]}
+    />
+  );
+}`,
                 },
             ]}
         />

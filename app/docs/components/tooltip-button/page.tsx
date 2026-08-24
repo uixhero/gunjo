@@ -59,7 +59,9 @@ function TooltipButtonStatePreview({ iconOnly, destructive }: { iconOnly?: boole
 
 export default function TooltipButtonDocPage() {
     const { locale, sectionLabels } = useLocale();
-    const code = `import { TooltipButton } from "@gunjo/ui";
+    const isJa = locale === "ja";
+    const code = isJa
+        ? `import { TooltipButton } from "@gunjo/ui";
 import { IconSparkles } from "@tabler/icons-react";
 
 export function CopySpecAction() {
@@ -68,27 +70,66 @@ export function CopySpecAction() {
       type="button"
       variant="outline"
       size="sm"
-      tooltip="${locale === "ja" ? "コンポーネント仕様を Markdown でコピーし、AI への依頼文に貼り付けられるようにします。" : "Copy the component spec as Markdown for AI prompts."}"
+      tooltip="コンポーネント仕様を Markdown でコピーします。"
       tooltipContentClassName="max-w-[260px] text-left"
     >
       <IconSparkles className="h-3.5 w-3.5" />
-      ${locale === "ja" ? "AI用仕様をコピー" : "Copy spec for AI"}
+      AI用仕様をコピー
+    </TooltipButton>
+  );
+}`
+        : `import { TooltipButton } from "@gunjo/ui";
+import { IconSparkles } from "@tabler/icons-react";
+
+export function CopySpecAction() {
+  return (
+    <TooltipButton
+      type="button"
+      variant="outline"
+      size="sm"
+      tooltip="Copy the component spec as Markdown for AI prompts."
+      tooltipContentClassName="max-w-[260px] text-left"
+    >
+      <IconSparkles className="h-3.5 w-3.5" />
+      Copy spec for AI
     </TooltipButton>
   );
 }`;
-    const usageCode = `import { TooltipButton } from "@gunjo/ui";
+    const usageCode = isJa
+        ? `import { TooltipButton } from "@gunjo/ui";
 import { IconCopy } from "@tabler/icons-react";
 
-<TooltipButton
-  type="button"
-  variant="ghost"
-  size="icon"
-  aria-label="${locale === "ja" ? "コードをコピー" : "Copy code"}"
-  tooltip="${locale === "ja" ? "表示中のコード例をコピーします。" : "Copy the visible code example."}"
-  tooltipOpenOnClick
->
-  <IconCopy className="h-4 w-4" />
-</TooltipButton>`;
+export function CopyCodeIconAction() {
+  return (
+    <TooltipButton
+      type="button"
+      variant="ghost"
+      size="icon"
+      aria-label="コードをコピー"
+      tooltip="表示中のコード例をコピーします。"
+      tooltipOpenOnClick
+    >
+      <IconCopy className="h-4 w-4" />
+    </TooltipButton>
+  );
+}`
+        : `import { TooltipButton } from "@gunjo/ui";
+import { IconCopy } from "@tabler/icons-react";
+
+export function CopyCodeIconAction() {
+  return (
+    <TooltipButton
+      type="button"
+      variant="ghost"
+      size="icon"
+      aria-label="Copy code"
+      tooltip="Copy the visible code example."
+      tooltipOpenOnClick
+    >
+      <IconCopy className="h-4 w-4" />
+    </TooltipButton>
+  );
+}`;
     const propsData = [
         { name: "tooltip", type: "React.ReactNode", description: locale === "ja" ? "ボタン操作の意味や結果を説明するツールチップ内容です。" : "Tooltip content explaining the button action." },
         { name: "tooltipSide", type: '"top" | "right" | "bottom" | "left"', default: '"top"', description: locale === "ja" ? "ツールチップを表示したい方向です。" : "Preferred tooltip side." },
@@ -151,7 +192,39 @@ import { IconCopy } from "@tabler/icons-react";
                             description: locale === "ja" ? "取り消しにくい操作は破壊的な見た目と説明文で意図を明確にします。" : "Use destructive styling and explanatory copy for irreversible actions.",
                             preview: <TooltipButtonStatePreview destructive />,
                             previewHeight: 150,
-                            code: `<TooltipButton variant="destructive" tooltip="${locale === "ja" ? "この操作は取り消せません。" : "This action cannot be undone."}">${locale === "ja" ? "削除する" : "Delete"}</TooltipButton>`,
+                            code: isJa
+                                ? `import { TooltipButton } from "@gunjo/ui";
+import { IconTrash } from "@tabler/icons-react";
+
+export function DeleteAssetAction() {
+  return (
+    <TooltipButton
+      type="button"
+      variant="destructive"
+      tooltip="この操作は取り消せません。実行前に確認してください。"
+      tooltipContentClassName="max-w-64 text-left"
+    >
+      <IconTrash className="h-4 w-4" />
+      削除する
+    </TooltipButton>
+  );
+}`
+                                : `import { TooltipButton } from "@gunjo/ui";
+import { IconTrash } from "@tabler/icons-react";
+
+export function DeleteAssetAction() {
+  return (
+    <TooltipButton
+      type="button"
+      variant="destructive"
+      tooltip="This action cannot be undone. Confirm before continuing."
+      tooltipContentClassName="max-w-64 text-left"
+    >
+      <IconTrash className="h-4 w-4" />
+      Delete
+    </TooltipButton>
+  );
+}`,
                         },
                     ]}
                 />

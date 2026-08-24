@@ -148,37 +148,90 @@ export default function FrameworkPicker() {
                             <FormDescription>{locale === "ja" ? "利用できないロールは表示したまま無効化します。" : "Unavailable roles stay visible but disabled."}</FormDescription>
                         </FormGroup>
                     ),
-                    code: `import * as React from "react";
-import { Combobox, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+                    code: isJa
+                        ? `import * as React from "react";
+import {
+  Combobox,
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+} from "@gunjo/ui";
 
 const ROLES = [
-  { value: "owner", label: "${locale === "ja" ? "オーナー" : "Owner"}" },
-  { value: "admin", label: "${locale === "ja" ? "管理者" : "Admin"}" },
-  { value: "member", label: "${locale === "ja" ? "メンバー" : "Member"}" },
+  { value: "owner", label: "オーナー" },
+  { value: "admin", label: "管理者" },
+  { value: "member", label: "メンバー" },
   {
     value: "viewer",
-    label: "${locale === "ja" ? "閲覧者" : "Viewer"}",
+    label: "閲覧者",
     disabled: true,
-    disabledReason: "${locale === "ja" ? "現在のプランでは閲覧者ロールを追加できません。" : "Viewer roles are not available on the current plan."}",
+    disabledReason: "現在のプランでは閲覧者ロールを追加できません。",
   },
 ];
 
-export default function RolePicker() {
+export function RolePicker() {
   const [role, setRole] = React.useState("");
+
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="role">${locale === "ja" ? "ロール" : "Role"}</FormLabel>
+      <FormLabel htmlFor="role">ロール</FormLabel>
       <FormControl>
         <Combobox
           id="role"
           options={ROLES}
           value={role}
           onValueChange={setRole}
-          placeholder="${locale === "ja" ? "ロールを選択" : "Select role"}"
-          clearLabel="${locale === "ja" ? "選択をクリア" : "Clear selection"}"
+          placeholder="ロールを選択"
+          clearLabel="選択をクリア"
         />
       </FormControl>
-      <FormDescription>${locale === "ja" ? "利用できないロールは表示したまま無効化します。" : "Unavailable roles stay visible but disabled."}</FormDescription>
+      <FormDescription>
+        利用できないロールは表示したまま無効化します。
+      </FormDescription>
+    </FormGroup>
+  );
+}`
+                        : `import * as React from "react";
+import {
+  Combobox,
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+} from "@gunjo/ui";
+
+const ROLES = [
+  { value: "owner", label: "Owner" },
+  { value: "admin", label: "Admin" },
+  { value: "member", label: "Member" },
+  {
+    value: "viewer",
+    label: "Viewer",
+    disabled: true,
+    disabledReason: "Viewer roles are not available on the current plan.",
+  },
+];
+
+export function RolePicker() {
+  const [role, setRole] = React.useState("");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="role">Role</FormLabel>
+      <FormControl>
+        <Combobox
+          id="role"
+          options={ROLES}
+          value={role}
+          onValueChange={setRole}
+          placeholder="Select role"
+          clearLabel="Clear selection"
+        />
+      </FormControl>
+      <FormDescription>
+        Unavailable roles stay visible but disabled.
+      </FormDescription>
     </FormGroup>
   );
 }`,
@@ -262,29 +315,58 @@ export default function PickyCombobox() {
                             <FormDescription>{isJa ? "一覧に無い取引先は、入力してそのまま追加できます。" : "Add a partner that isn't in the list by typing it."}</FormDescription>
                         </FormGroup>
                     ),
-                    code: `import * as React from "react";
-import { Combobox, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+                    code: isJa
+                        ? `import * as React from "react";
+import { Combobox } from "@gunjo/ui";
 
-export default function PartnerPicker() {
+export function PartnerPicker() {
   const [partners, setPartners] = React.useState([
-    { value: "acme", label: "${isJa ? "株式会社アクメ" : "Acme Inc."}" },
-    { value: "globex", label: "${isJa ? "グローベックス商事" : "Globex Trading"}" },
+    { value: "acme", label: "株式会社アクメ" },
+    { value: "globex", label: "グローベックス商事" },
   ]);
   const [partner, setPartner] = React.useState("");
 
   return (
     <Combobox
+      className="w-full max-w-sm"
       options={partners}
       value={partner}
       onValueChange={setPartner}
       creatable
-      // onCreate only signals intent — add the option and set the value here.
+      // onCreate は合図だけです。候補への追加と値のセットはここで行います。
       onCreate={(input) => {
         setPartners((prev) => [...prev, { value: input, label: input }]);
         setPartner(input);
       }}
-      createLabel={(input) => \`${isJa ? "「" : 'Create "'}\${input}${isJa ? "」を追加" : '"'}\`}
-      placeholder="${isJa ? "取引先を選択" : "Select partner"}"
+      createLabel={(input) => "「" + input + "」を追加"}
+      placeholder="取引先を選択"
+    />
+  );
+}`
+                        : `import * as React from "react";
+import { Combobox } from "@gunjo/ui";
+
+export function PartnerPicker() {
+  const [partners, setPartners] = React.useState([
+    { value: "acme", label: "Acme Inc." },
+    { value: "globex", label: "Globex Trading" },
+  ]);
+  const [partner, setPartner] = React.useState("");
+
+  return (
+    <Combobox
+      className="w-full max-w-sm"
+      options={partners}
+      value={partner}
+      onValueChange={setPartner}
+      creatable
+      // onCreate only signals intent - add the option and set the value here.
+      onCreate={(input) => {
+        setPartners((prev) => [...prev, { value: input, label: input }]);
+        setPartner(input);
+      }}
+      createLabel={(input) => 'Create "' + input + '"'}
+      placeholder="Select partner"
     />
   );
 }`,
@@ -296,37 +378,83 @@ export default function PartnerPicker() {
 
 export default function ComboboxPage() {
     const { locale, sectionLabels } = useLocale();
-    const code = `import * as React from "react";
-import { Combobox, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+    const isJa = locale === "ja";
+    const code = isJa
+        ? `import * as React from "react";
+import {
+  Combobox,
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+} from "@gunjo/ui";
 
 const frameworks = [
-    { value: "next", label: "Next.js" },
-    { value: "remix", label: "Remix" },
-    { value: "sveltekit", label: "SvelteKit" },
+  { value: "next", label: "Next.js" },
+  { value: "remix", label: "Remix" },
+  { value: "sveltekit", label: "SvelteKit" },
 ];
 
-export function ComboboxDemo() {
-    const [value, setValue] = React.useState<string>("");
+export function FrameworkCombobox() {
+  const [value, setValue] = React.useState<string>("");
 
-    return (
-        <FormGroup className="w-full max-w-sm">
-            <FormLabel htmlFor="framework">${locale === "ja" ? "フレームワーク" : "Framework"}</FormLabel>
-            <FormControl>
-                <Combobox
-                    id="framework"
-                    options={frameworks}
-                    value={value}
-                    onValueChange={setValue}
-                    placeholder="${locale === "ja" ? "フレームワークを選択..." : "Select framework..."}"
-                    searchPlaceholder="${locale === "ja" ? "フレームワークを検索..." : "Search framework..."}"
-                    searchClearLabel="${locale === "ja" ? "検索をクリア" : "Clear search"}"
-                    emptyMessage="${locale === "ja" ? "一致するフレームワークがありません。" : "No framework found."}"
-                    clearLabel="${locale === "ja" ? "選択をクリア" : "Clear selection"}"
-                />
-            </FormControl>
-            <FormDescription>${locale === "ja" ? "検索するか、一覧から選択します。" : "Search or choose from the list."}</FormDescription>
-        </FormGroup>
-    );
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="framework">フレームワーク</FormLabel>
+      <FormControl>
+        <Combobox
+          id="framework"
+          options={frameworks}
+          value={value}
+          onValueChange={setValue}
+          placeholder="フレームワークを選択..."
+          searchPlaceholder="フレームワークを検索..."
+          searchClearLabel="検索をクリア"
+          emptyMessage="一致するフレームワークがありません。"
+          clearLabel="選択をクリア"
+        />
+      </FormControl>
+      <FormDescription>検索するか、一覧から選択します。</FormDescription>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import {
+  Combobox,
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+} from "@gunjo/ui";
+
+const frameworks = [
+  { value: "next", label: "Next.js" },
+  { value: "remix", label: "Remix" },
+  { value: "sveltekit", label: "SvelteKit" },
+];
+
+export function FrameworkCombobox() {
+  const [value, setValue] = React.useState<string>("");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="framework">Framework</FormLabel>
+      <FormControl>
+        <Combobox
+          id="framework"
+          options={frameworks}
+          value={value}
+          onValueChange={setValue}
+          placeholder="Select framework..."
+          searchPlaceholder="Search framework..."
+          searchClearLabel="Clear search"
+          emptyMessage="No framework found."
+          clearLabel="Clear selection"
+        />
+      </FormControl>
+      <FormDescription>Search or choose from the list.</FormDescription>
+    </FormGroup>
+  );
 }`;
 
     const usageCode = `import * as React from "react";

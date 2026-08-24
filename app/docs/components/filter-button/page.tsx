@@ -49,7 +49,7 @@ const options = [
   { label: "Completed", value: "completed" },
 ];
 
-export function FilterExample() {
+export function StatusFilterButton() {
   const [selected, setSelected] = useState<Set<string>>(new Set());
 
   return (
@@ -72,13 +72,13 @@ const options = [
   { label: "Done", value: "done" },
 ];
 
-export function SelectedFilter() {
+export function PreselectedStatusFilter() {
   return (
     <FilterButton
       title="Status"
       options={options}
       selectedValues={new Set(["doing", "review"])}
-      selectedLabel={(count) => \`\${count} filters selected\`}
+      selectedLabel={(count) => count + " filters selected"}
     />
   );
 }`,
@@ -91,13 +91,13 @@ const options = [
   { label: "完了", value: "done" },
 ];
 
-export function SelectedFilter() {
+export function PreselectedStatusFilter() {
   return (
     <FilterButton
       title="ステータス"
       options={options}
       selectedValues={new Set(["doing", "review"])}
-      selectedLabel={(count) => \`\${count}件選択中\`}
+      selectedLabel={(count) => count + "件選択中"}
     />
   );
 }`,
@@ -165,7 +165,7 @@ export function TagFilter() {
       title="タグ"
       selectedValues={selected}
       onFilterChange={setSelected}
-      selectedLabel={(count) => \`\${count}件のタグを選択中\`}
+      selectedLabel={(count) => count + "件のタグを選択中"}
       contentClassName="w-64 p-3"
     >
       <div className="flex flex-wrap gap-2">
@@ -371,7 +371,7 @@ const options = [
   { label: "完了", value: "done" },
 ];
 
-export function FilterExample() {
+export function StatusFilterButton() {
   const [selected, setSelected] = useState<Set<string>>(new Set());
 
   return (
@@ -381,7 +381,7 @@ export function FilterExample() {
       selectedValues={selected}
       onFilterChange={setSelected}
       clearLabel="クリア"
-      selectedLabel={(count) => \`\${count}件選択中\`}
+      selectedLabel={(count) => count + "件選択中"}
     />
   );
 }`

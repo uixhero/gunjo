@@ -7,25 +7,40 @@ import { ScanInputDemo } from "@/components/demos/ScanInputDemo";
 
 const meta = inputsMetadata as Record<string, { title?: string; description?: string }>;
 
-const usageCode = `import { ScanInput, type ScanResult } from "@gunjo/ui"
+const usageCode = `import * as React from "react";
+import { ScanInput, type ScanResult } from "@gunjo/ui";
 
-export function Example() {
+const ORDER_LINES = [
+  { jan: "4901234567894", name: "アスコルビン酸 500mg" },
+  { jan: "4901234567900", name: "コットンパッド 80枚" },
+];
+
+export function ReceivingScanField() {
+  const [counts, setCounts] = React.useState<Record<string, number>>({});
+
   function handleScan(code: string): ScanResult {
-    const line = lines.find((l) => l.jan === code)
-    if (!line) return { ok: false, message: \`発注に無い商品です（\${code}）\` }
-    increment(line) // your state update
-    return { ok: true, message: \`\${line.name} を1点 検品\` }
+    const line = ORDER_LINES.find((l) => l.jan === code);
+    if (!line) {
+      return { ok: false, message: "発注に無い商品です（" + code + "）" };
+    }
+    setCounts((prev) => ({ ...prev, [line.jan]: (prev[line.jan] ?? 0) + 1 }));
+    return { ok: true, message: line.name + " を1点 検品" };
   }
 
   return (
-    <ScanInput
-      label="バーコード / JAN をスキャン"
-      placeholder="コードを入力して Enter"
-      inputMode="numeric"
-      onScan={handleScan}
-      showFeed
-    />
-  )
+    <div className="flex w-full max-w-sm flex-col gap-3">
+      <ScanInput
+        label="バーコード / JAN をスキャン"
+        placeholder="コードを入力して Enter"
+        inputMode="numeric"
+        onScan={handleScan}
+        showFeed
+      />
+      <p className="text-sm text-muted-foreground">
+        検品済み: {Object.values(counts).reduce((a, b) => a + b, 0)} 点
+      </p>
+    </div>
+  );
 }`;
 
 const propsData = [
