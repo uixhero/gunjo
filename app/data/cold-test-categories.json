@@ -807,6 +807,46 @@
           "leftBody": "Insurance finalised the derived-amount block as a gunjo floor and proved the heavy-operation floor (ApprovalWorkflow, CoSign, SignedRecord, ReferenceValue) composes across P&C, life, and agent views without modification. The final agent-portal round (#105) reached the state where every component named in the spec composed — and the discovery index named the right primitive every time. The arc is on record as \"fully delivered in five.\""
         }
       },
+      "demo": {
+        "href": "/cold-tests/categories/insurance/demo",
+        "screens": [
+          {
+            "slug": "policies",
+            "ja": "契約管理",
+            "en": "Policy management"
+          },
+          {
+            "slug": "claims",
+            "ja": "保険金請求・査定",
+            "en": "Claims and adjudication"
+          },
+          {
+            "slug": "payments",
+            "ja": "保険金支払・精算",
+            "en": "Payments and settlement"
+          }
+        ],
+        "copy": {
+          "ja": {
+            "heading": "動く見本：架空の保険会社の業務アプリ",
+            "intro": "この業界で実際に何が組めるのかを、読むだけでなく触って確かめられるように、架空の保険会社の業務アプリを1本用意しました。契約管理、保険金請求・査定、保険金支払・精算の3画面がこのサイトの上でそのまま動きます。UIコンポーネントはすべて @gunjo/ui のものだけを使っています。",
+            "company": "群青損害保険",
+            "companyBadge": "架空のデモ",
+            "body": "損害保険会社の社内と代理店の仕事を、契約の管理から保険金の支払まで一続きで見られます。一覧の絞り込み、詳細への掘り下げ、承認の流れ、金額の内訳まで実際に操作できます。",
+            "cta": "見本を開く",
+            "disclaimer": "これは架空の保険会社「群青損害保険」のデモです。実在の会社・商品とは関係なく、保険の勧誘ではありません。"
+          },
+          "en": {
+            "heading": "Working demo: a fictional insurer's operations app",
+            "intro": "So you can try what this industry's screens feel like instead of just reading about them, we built one fictional insurer's operations app. Three screens run right on this site: policy management, claims and adjudication, and payments and settlement. Every UI component comes from @gunjo/ui.",
+            "company": "Gunjo General Insurance",
+            "companyBadge": "Fictional demo",
+            "body": "Follow a P&C insurer's work end to end, from managing policies to paying claims. Filter the lists, drill into details, walk the approval flows, and inspect every amount breakdown.",
+            "cta": "Open the demo",
+            "disclaimer": "This is a demo of a fictional insurer, Gunjo General Insurance. It has no relation to any real company or product, and it is not a solicitation of insurance."
+          }
+        }
+      },
       "discoveredComponents": [
         {
           "name": "AmountBreakdown",

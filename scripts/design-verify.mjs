@@ -26,6 +26,8 @@ import { verifyNavTranslationCoverage } from "./design-verify-nav-translation-co
 import { verifyDocsSpecImports } from "./design-verify-docs-spec-imports.mjs";
 import { verifySsotPrCommentDocs } from "./design-verify-ssot-pr-comment-docs.mjs";
 import { verifyNoHardcodedColorClasses } from "./design-verify-hardcoded-color-classes.mjs";
+import { verifyNoLeftEmphasis } from "./check-left-emphasis.mjs";
+import { verifyFictionalNames } from "./check-fictional-names.mjs";
 import { verifyAppGlobalsSync } from "./design-verify-app-globals-sync.mjs";
 import { verifyTailwindColorTokens } from "./design-verify-tailwind-color-tokens.mjs";
 import { verifyTailwindFoundationTokens } from "./design-verify-tailwind-foundation-tokens.mjs";
@@ -113,6 +115,8 @@ function main() {
   verifyGeneratedDocsPageCoverage({ root: ROOT });
   verifyAllComponentDrift({ root: ROOT });
   verifyNoHardcodedColorClasses({ root: ROOT });
+  verifyNoLeftEmphasis({ root: ROOT });
+  verifyFictionalNames({ root: ROOT });
   verifyTailwindColorTokens({ root: ROOT });
   verifyTailwindFoundationTokens({ root: ROOT });
   verifyTailwindThemeSsot({ root: ROOT });

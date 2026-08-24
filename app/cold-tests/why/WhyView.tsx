@@ -105,7 +105,7 @@ export function WhyView() {
 
     return (
         <div className="container py-10 md:py-12">
-            <article className="mx-auto w-full max-w-3xl space-y-10">
+            <article className="w-full space-y-10">
                 <Breadcrumb>
                     <BreadcrumbList>
                         <BreadcrumbItem>
@@ -129,7 +129,7 @@ export function WhyView() {
                     <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
                         {tw.heading}
                     </h1>
-                    <p className="max-w-2xl text-lg text-muted-foreground">
+                    <p className="text-lg text-muted-foreground">
                         {tw.subtitle(ROUND_COUNT)}
                     </p>
                     <LocalNav />
