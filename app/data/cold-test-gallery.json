@@ -1,7 +1,7 @@
 {
   "generatedFrom": "promotion/cold-test-screens/README.md + zenn-yattemita-*.md",
   "generator": "scripts/build-coldtest-gallery.mjs",
-  "count": 175,
+  "count": 180,
   "crystallizedCount": 71,
   "categories": [
     "基盤UI・汎用",
@@ -3344,6 +3344,106 @@
       "article": {
         "file": "zenn-yattemita-178-owner-portal.md",
         "slug": "178-owner-portal"
+      },
+      "shots": {
+        "desktop": true,
+        "mobile": true,
+        "en.desktop": false,
+        "en.mobile": false
+      }
+    },
+    {
+      "round": 200,
+      "route": "/policy-portal",
+      "slug": "policy-portal",
+      "score": "4/5",
+      "category": "保険",
+      "audience": "toC",
+      "title": "AI に保険の契約者マイページを作らせてみた：「人生の長さ」を描く道具が無かった（やってみた #200）",
+      "summary": "予備知識ゼロの AI に、公開されている npm パッケージと gunjo.jp の docs だけを渡して組ませました。`tsc` は緑、実行してもエラーはありません。",
+      "article": {
+        "file": "zenn-yattemita-200-policy-portal.md",
+        "slug": "200-policy-portal"
+      },
+      "shots": {
+        "desktop": true,
+        "mobile": true,
+        "en.desktop": false,
+        "en.mobile": false
+      }
+    },
+    {
+      "round": 201,
+      "route": "/claim-filing",
+      "slug": "claim-filing",
+      "score": "4/5",
+      "category": "保険",
+      "audience": "toC",
+      "title": "AI に給付金の請求画面を作らせてみた：前の回が見つけた不具合を、今回の AI は素通りした（やってみた #201）",
+      "summary": "前の #192（入居者マイページ）で、**写真を添える部品がキーボードから一切操作できない**という重い不具合を見つけました。そのときの AI は実装を読んで気づき、**採用を見送っています**。",
+      "article": {
+        "file": "zenn-yattemita-201-claim-filing.md",
+        "slug": "201-claim-filing"
+      },
+      "shots": {
+        "desktop": true,
+        "mobile": true,
+        "en.desktop": false,
+        "en.mobile": false
+      }
+    },
+    {
+      "round": 202,
+      "route": "/premium-quote",
+      "slug": "premium-quote",
+      "score": "4/5",
+      "category": "保険",
+      "audience": "toC",
+      "title": "AI に保険料の試算画面を作らせてみた：年齢欄に「45」と打つと、75になった（やってみた #202）",
+      "summary": "予備知識ゼロの AI に、公開されている npm パッケージと gunjo.jp の docs だけを渡して組ませました。`tsc` は緑、実行してもエラーはありません。それでも、いちばん大きい発見は不具合でした。",
+      "article": {
+        "file": "zenn-yattemita-202-premium-quote.md",
+        "slug": "202-premium-quote"
+      },
+      "shots": {
+        "desktop": true,
+        "mobile": true,
+        "en.desktop": false,
+        "en.mobile": false
+      }
+    },
+    {
+      "round": 203,
+      "route": "/health-disclosure",
+      "slug": "health-disclosure",
+      "score": "4/5",
+      "category": "保険",
+      "audience": "toC",
+      "title": "AI に保険の告知画面を作らせてみた：「構造は正しく出してくれて、温度は全部こちらに残した」（やってみた #203）",
+      "summary": "告知は、連載202枚のフォームとは性格が逆です。",
+      "article": {
+        "file": "zenn-yattemita-203-health-disclosure.md",
+        "slug": "203-health-disclosure"
+      },
+      "shots": {
+        "desktop": true,
+        "mobile": true,
+        "en.desktop": false,
+        "en.mobile": false
+      }
+    },
+    {
+      "round": 204,
+      "route": "/policy-renewal",
+      "slug": "policy-renewal",
+      "score": "4/5",
+      "category": "保険",
+      "audience": "toC",
+      "title": "AI に保険の更新画面を作らせてみた：前と後を並べる部品が、7回目の手組みになった（やってみた #204）",
+      "summary": "予備知識ゼロの AI に、公開されている npm パッケージと gunjo.jp の docs だけを渡して組ませました。`tsc` は緑、実行してもエラーはありません。",
+      "article": {
+        "file": "zenn-yattemita-204-policy-renewal.md",
+        "slug": "204-policy-renewal"
       },
       "shots": {
         "desktop": true,

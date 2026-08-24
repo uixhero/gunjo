@@ -455,7 +455,7 @@ export function CategoryOverviewPage({ category }: { category: CategoryName }) {
                     <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
                         {copy.title[locale]}
                     </h1>
-                    <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground">
+                    <p className="text-lg leading-relaxed text-muted-foreground">
                         {copy.description[locale]}
                     </p>
                     <Badge variant="secondary">{copy.badge[locale]}</Badge>

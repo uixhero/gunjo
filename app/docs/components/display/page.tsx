@@ -299,7 +299,7 @@ export default function DisplayOverviewPage() {
                     <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
                         {isJa ? "表示の概要" : "Display Overview"}
                     </h1>
-                    <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground">
+                    <p className="text-lg leading-relaxed text-muted-foreground">
                         {isJa
                             ? "表示系コンポーネントは、情報の構造、人物、状態、メディアを読み取りやすく整理するための部品です。まず用途を俯瞰し、必要な個別コンポーネントへ移動できます。"
                             : "Display components organize structure, people, status, and media so information remains easy to scan. Start here to choose the component that fits the job."}
