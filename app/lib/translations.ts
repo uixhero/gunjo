@@ -166,6 +166,8 @@ export type PlannedIndustryPatternKey =
   | "health-wellness"
   | "public-safety"
   | "creator-commerce";
+// 業界の見本レーン（/patterns）。動く架空アプリのデモを持つ業界だけが並ぶ。
+export type IndustryShowcaseKey = "insurance";
 
 export type PatternsPageStrings = {
   label: string;
@@ -197,6 +199,15 @@ export type PatternsPageStrings = {
     title: string;
     description: string;
     patterns: Record<PlannedIndustryPatternKey, { title: string; description: string }>;
+  };
+  // 業界の見本レーン。カードは業界ページ（/cold-tests/categories/<slug>）へ送る。
+  industryShowcase: {
+    title: string;
+    description: string;
+    openLabel: (title: string) => string;
+    screensBadge: (count: number) => string;
+    roundsBadge: (count: number) => string;
+    entries: Record<IndustryShowcaseKey, { title: string; description: string }>;
   };
 };
 
@@ -990,6 +1001,23 @@ export const translations: Record<
             },
           },
         },
+        industryShowcase: {
+          title: "Industry demos",
+          description:
+            "Working demo apps for one industry at a time, built as fictional companies with @gunjo/ui components only. Each card opens the industry page, where the demo sits next to the cold-test evidence behind it.",
+          openLabel: (title: string) => `Open the ${title} industry page`,
+          screensBadge: (count: number) =>
+            `${count} demo ${count === 1 ? "screen" : "screens"}`,
+          roundsBadge: (count: number) =>
+            `${count} cold-test ${count === 1 ? "round" : "rounds"}`,
+          entries: {
+            insurance: {
+              title: "Insurance",
+              description:
+                "A fictional P&C insurer's operations app: policy management, claims and adjudication, and payments and settlement. Every screen is interactive.",
+            },
+          },
+        },
       },
       aiHandoff: {
         badge: "AI-native by design",
@@ -1687,6 +1715,21 @@ export const translations: Record<
             "creator-commerce": {
               title: "Creator commerce",
               description: "ライブ配信、視聴者推移、コンテンツ実績、売上。",
+            },
+          },
+        },
+        industryShowcase: {
+          title: "業界の見本",
+          description:
+            "業界ごとに架空の会社を1社つくり、その業務アプリを @gunjo/ui のコンポーネントだけで組んで、実際に動く見本として置いています。カードを開くと業界ページに移動し、見本と、その裏付けになったコールドテストの記録を見られます。",
+          openLabel: (title: string) => `${title}の業界ページを開く`,
+          screensBadge: (count: number) => `デモ${count}画面`,
+          roundsBadge: (count: number) => `コールドテスト${count}回`,
+          entries: {
+            insurance: {
+              title: "保険",
+              description:
+                "架空の損害保険会社の業務アプリです。契約管理、保険金請求・査定、保険金支払・精算の3画面を実際に操作できます。",
             },
           },
         },

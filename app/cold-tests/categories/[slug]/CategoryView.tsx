@@ -11,6 +11,7 @@ import {
     BreadcrumbList,
     BreadcrumbPage,
     BreadcrumbSeparator,
+    Button,
     Card,
     CardContent,
 } from "@gunjo/ui";
@@ -41,10 +42,36 @@ interface DiscoveredComponent {
     blurbEn: string;
 }
 
+// 「動く見本」（架空アプリのデモ）を持つ業界だけが demo を宣言する。
+// 節の並びは KeEem 決定（2026-08-23）: 見本が表・発見リストは裏付け。
+// 見本の節は発見リスト（要るもの・落とし穴）より上に置く。
+interface CategoryDemoScreen {
+    slug: string;
+    ja: string;
+    en: string;
+}
+
+interface CategoryDemoCopy {
+    heading: string;
+    intro: string;
+    company: string;
+    companyBadge: string;
+    body: string;
+    cta: string;
+    disclaimer: string;
+}
+
+interface CategoryDemo {
+    href: string;
+    screens: CategoryDemoScreen[];
+    copy: { ja: CategoryDemoCopy; en: CategoryDemoCopy };
+}
+
 interface PublishedCategory {
     slug: string;
     jaCategory: string;
     copy: { ja: CategoryCopy; en: CategoryCopy };
+    demo?: CategoryDemo;
     discoveredComponents: DiscoveredComponent[];
 }
 
@@ -145,6 +172,8 @@ export function CategoryView({
 
     const copy = isJa ? category.copy.ja : category.copy.en;
     const categoryLabel = t.categories[category.jaCategory] ?? category.jaCategory;
+    const demo = category.demo;
+    const demoCopy = demo ? (isJa ? demo.copy.ja : demo.copy.en) : null;
 
     return (
         <div className="container py-10 md:py-12">
@@ -187,6 +216,50 @@ export function CategoryView({
                     </h2>
                     <p className="leading-7 text-foreground">{copy.challengeBody}</p>
                 </section>
+
+                {/* 動く見本（架空アプリのデモ）。発見リストより上に置く＝
+                    見本が表・リストは裏付け（KeEem 2026-08-23）。 */}
+                {demo && demoCopy ? (
+                    <section className="space-y-4">
+                        <h2 className="text-2xl font-semibold tracking-tight">
+                            {demoCopy.heading}
+                        </h2>
+                        <p className="text-sm text-muted-foreground">{demoCopy.intro}</p>
+                        <Card className="border-border/80">
+                            <CardContent className="space-y-4 p-5">
+                                <div className="flex flex-wrap items-center gap-2">
+                                    <span className="text-lg font-bold tracking-tight">
+                                        {demoCopy.company}
+                                    </span>
+                                    <Badge variant="outline">{demoCopy.companyBadge}</Badge>
+                                </div>
+                                <p className="text-sm leading-6 text-muted-foreground">
+                                    {demoCopy.body}
+                                </p>
+                                <div className="flex flex-wrap gap-1.5">
+                                    {demo.screens.map((screen) => (
+                                        <Link
+                                            key={screen.slug}
+                                            href={`${demo.href}/${screen.slug}`}
+                                            className="rounded-md border bg-background px-2 py-1 text-xs text-muted-foreground transition-colors hover:border-primary-border hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                        >
+                                            {isJa ? screen.ja : screen.en}
+                                        </Link>
+                                    ))}
+                                </div>
+                                <Button asChild>
+                                    <Link href={demo.href}>
+                                        {demoCopy.cta}
+                                        <ArrowUpRight className="h-4 w-4" aria-hidden />
+                                    </Link>
+                                </Button>
+                                <p className="text-xs text-muted-foreground">
+                                    {demoCopy.disclaimer}
+                                </p>
+                            </CardContent>
+                        </Card>
+                    </section>
+                ) : null}
 
                 <section className="space-y-4">
                     <h2 className="text-2xl font-semibold tracking-tight">
