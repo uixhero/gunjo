@@ -154,10 +154,10 @@ export default function PatternsIndexPage() {
                     <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
                         {t.heading}
                     </h1>
-                    <p className="max-w-2xl text-lg text-muted-foreground">
+                    <p className="text-lg text-muted-foreground">
                         {t.subtitle}
                     </p>
-                    <p className="max-w-2xl text-sm text-muted-foreground">
+                    <p className="text-sm text-muted-foreground">
                         {t.evidence(COLD_TEST_ROUND_COUNT)}{" "}
                         <Link
                             href="/cold-tests/why"
@@ -177,7 +177,7 @@ export default function PatternsIndexPage() {
                                     <h2 className="text-2xl font-semibold tracking-tight">
                                         {t.families[family].title}
                                     </h2>
-                                    <p className="max-w-2xl text-sm text-muted-foreground">
+                                    <p className="text-sm text-muted-foreground">
                                         {t.families[family].description}
                                     </p>
                                 </div>
@@ -247,7 +247,7 @@ export default function PatternsIndexPage() {
                                 </h2>
                                 <Badge variant="secondary">{t.meta.planned}</Badge>
                             </div>
-                            <p className="max-w-2xl text-sm text-muted-foreground">
+                            <p className="text-sm text-muted-foreground">
                                 {t.planned.description}
                             </p>
                         </div>

@@ -137,7 +137,7 @@ function ColdTestsGrid({
                 <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
                     {heading ?? t.heading(entries.length)}
                 </h1>
-                <p className="max-w-2xl text-lg text-muted-foreground">
+                <p className="text-lg text-muted-foreground">
                     {subtitle ?? t.subtitle(entries.length)}
                 </p>
                 <div className="flex flex-wrap items-center gap-x-5 gap-y-2">

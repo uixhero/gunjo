@@ -177,7 +177,7 @@ export function CategoryView({
 
     return (
         <div className="container py-10 md:py-12">
-            <article className="mx-auto w-full max-w-3xl space-y-10">
+            <article className="w-full space-y-10">
                 <Breadcrumb>
                     <BreadcrumbList>
                         <BreadcrumbItem>
@@ -202,7 +202,7 @@ export function CategoryView({
                     <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
                         {copy.title}
                     </h1>
-                    <p className="max-w-2xl text-base text-muted-foreground md:text-lg">
+                    <p className="text-base text-muted-foreground md:text-lg">
                         {copy.description}
                     </p>
                     <p className="text-sm text-muted-foreground">
