@@ -79,7 +79,7 @@ export default function Home() {
                 className="relative -mt-14 flex min-h-screen items-center overflow-hidden"
             >
                 <HeroBackground />
-                <div className="container relative z-10 flex items-center gap-8 py-20 md:gap-12 lg:gap-16">
+                <div className="relative z-10 mx-auto flex w-full max-w-6xl items-center gap-8 px-6 py-20 md:gap-12 lg:gap-16">
                     {/* Vertical 群青 — outlined SVG (font-independent), tablet up */}
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -89,7 +89,7 @@ export default function Home() {
                     />
 
                     {/* Content */}
-                    <div className="on-hero flex flex-1 flex-col gap-6">
+                    <div className="on-hero flex max-w-2xl flex-1 flex-col gap-6">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                             src="/renew/SVG/title_h_ol.svg"
@@ -121,7 +121,7 @@ export default function Home() {
                                 {home.hero.taglineMain}
                             </h1>
                         </div>
-                        <p className="on-hero text-base lg:text-lg">
+                        <p className="on-hero max-w-xl text-base lg:text-lg">
                             {home.hero.subtitle}
                         </p>
                         <div className="mt-2 flex flex-wrap gap-4">
