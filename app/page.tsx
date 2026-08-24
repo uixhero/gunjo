@@ -79,7 +79,7 @@ export default function Home() {
                 className="relative -mt-14 flex min-h-screen items-center overflow-hidden"
             >
                 <HeroBackground />
-                <div className="relative z-10 mx-auto flex w-full max-w-6xl items-center gap-8 px-6 py-20 md:gap-12 lg:gap-16">
+                <div className="container relative z-10 flex items-center gap-8 py-20 md:gap-12 lg:gap-16">
                     {/* Vertical 群青 — outlined SVG (font-independent), tablet up */}
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
@@ -89,7 +89,7 @@ export default function Home() {
                     />
 
                     {/* Content */}
-                    <div className="on-hero flex max-w-2xl flex-1 flex-col gap-6">
+                    <div className="on-hero flex flex-1 flex-col gap-6">
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
                             src="/renew/SVG/title_h_ol.svg"
@@ -121,7 +121,7 @@ export default function Home() {
                                 {home.hero.taglineMain}
                             </h1>
                         </div>
-                        <p className="on-hero max-w-xl text-base lg:text-lg">
+                        <p className="on-hero text-base lg:text-lg">
                             {home.hero.subtitle}
                         </p>
                         <div className="mt-2 flex flex-wrap gap-4">
@@ -160,7 +160,7 @@ export default function Home() {
                     className="pointer-events-none absolute inset-x-0 top-0 h-1/2 gunjo-intro-fade-top"
                     aria-hidden
                 />
-                <div className="on-hero relative z-10 mx-auto max-w-2xl px-6 text-center">
+                <div className="on-hero relative z-10 px-6 text-center">
                     <p
                         className="text-3xl font-medium leading-relaxed md:text-4xl"
                         style={{ fontFamily: "var(--font-mincho), serif" }}
@@ -184,8 +184,8 @@ export default function Home() {
 
             {/* ============== Section 2 — PRIMARY ENTRY POINTS ============== */}
             <section className="border-t border-border/40 bg-background py-24">
-                <div className="mx-auto w-full max-w-6xl px-6">
-                    <div className="mb-12 max-w-3xl">
+                <div className="container">
+                    <div className="mb-12">
                         <p className="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
                             {home.showcase.label}
                         </p>
@@ -241,7 +241,7 @@ export default function Home() {
 
             {/* ============== Section 5 — THE 群青 STORY ============== */}
             <section className="bg-muted/30 py-24">
-                <div className="mx-auto w-full max-w-6xl px-6">
+                <div className="container">
                     <p className="mb-12 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
                         {home.story.label}
                     </p>
@@ -288,8 +288,8 @@ export default function Home() {
 
             {/* ============== Section 6 — SSOT AND AI HANDOFF ============== */}
             <section className="border-t border-border/40 bg-gradient-to-b from-background via-accent/20 to-background py-24">
-                <div className="mx-auto w-full max-w-6xl px-6">
-                    <div className="mb-12 max-w-2xl space-y-3">
+                <div className="container">
+                    <div className="mb-12 space-y-3">
                         <Badge
                             variant="outline"
                             className="gap-1.5 border-accent-foreground/20 bg-accent text-accent-foreground"
@@ -353,7 +353,7 @@ export default function Home() {
 
             {/* ============== Section 7 — FOR ENGINEERS ============== */}
             <section className="border-t border-border/40 bg-background py-20">
-                <div className="mx-auto w-full max-w-6xl px-6">
+                <div className="container">
                     <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
                         <div className="space-y-3">
                             <h2 className="text-3xl font-bold tracking-tight">
@@ -384,7 +384,7 @@ export default function Home() {
 
             {/* ============== Section 8 — ALPHA SCOPE ============== */}
             <section className="border-t border-border/40 bg-muted/20 py-20">
-                <div className="mx-auto w-full max-w-3xl px-6 text-center">
+                <div className="container text-center">
                     <Badge variant="outline" className="mb-4 gap-1.5">
                         <Sparkles className="h-3 w-3" />
                         Becoming
@@ -445,8 +445,8 @@ function LiveComponentWorkbench({ isJa }: { isJa: boolean }) {
 
     return (
         <section className="border-t border-border/40 bg-background py-24">
-            <div className="mx-auto w-full max-w-6xl px-6">
-                <div className="mb-12 max-w-3xl">
+            <div className="container">
+                <div className="mb-12">
                     <p className="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
                         Live components
                     </p>
@@ -768,9 +768,9 @@ const publicPatternSlides = [
 function PatternBrowserCarousel({ isJa }: { isJa: boolean }) {
     return (
         <section className="border-t border-border/40 bg-muted/20 py-24">
-            <div className="mx-auto w-full max-w-6xl px-6">
+            <div className="container">
                 <div className="mb-10 grid gap-4 lg:grid-cols-[1fr_auto] lg:items-end">
-                    <div className="max-w-3xl">
+                    <div>
                         <p className="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
                             Public patterns
                         </p>
