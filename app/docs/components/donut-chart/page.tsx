@@ -71,7 +71,7 @@ const segments = [
     { label: "Expansion", value: 8, color: "info" },
 ];
 
-export function SegmentMix() {
+export function SegmentMixDonut() {
     return (
         <DonutChart
             segments={segments}
@@ -91,7 +91,7 @@ const segments = [
     { label: "拡張", value: 8, color: "info" },
 ];
 
-export function SegmentMix() {
+export function SegmentMixDonut() {
     return (
         <DonutChart
             segments={segments}
@@ -114,10 +114,25 @@ const segments = [
     { label: "Ads", value: 8, color: "info" },
 ];
 
-<DonutChart segments={segments} />
-<DonutChart segments={segments} centerValue="100" centerLabel="Total" totalLabel="Total" showLegend />
-<DonutChart segments={segments} variant="compact" thickness={18} />
-<DonutChart segments={segments} formatValue={(value) => \`$\${value.toLocaleString()}\`} />`,
+export function DonutChartUsage() {
+    return (
+        <div className="grid gap-6">
+            <DonutChart segments={segments} />
+            <DonutChart
+                segments={segments}
+                centerValue="100"
+                centerLabel="Total"
+                totalLabel="Total"
+                showLegend
+            />
+            <DonutChart segments={segments} variant="compact" thickness={18} />
+            <DonutChart
+                segments={segments}
+                formatValue={(value) => "$" + value.toLocaleString()}
+            />
+        </div>
+    );
+}`,
     ja: `import { DonutChart } from "@gunjo/ui";
 
 const segments = [
@@ -127,148 +142,273 @@ const segments = [
     { label: "広告", value: 8, color: "info" },
 ];
 
-<DonutChart segments={segments} />
-<DonutChart segments={segments} centerValue="100" centerLabel="合計" totalLabel="合計" showLegend />
-<DonutChart segments={segments} variant="compact" thickness={18} />
-<DonutChart segments={segments} formatValue={(value) => \`\${value.toLocaleString()}円\`} />`,
+export function DonutChartUsage() {
+    return (
+        <div className="grid gap-6">
+            <DonutChart segments={segments} />
+            <DonutChart
+                segments={segments}
+                centerValue="100"
+                centerLabel="合計"
+                totalLabel="合計"
+                showLegend
+            />
+            <DonutChart segments={segments} variant="compact" thickness={18} />
+            <DonutChart
+                segments={segments}
+                formatValue={(value) => value.toLocaleString() + "円"}
+            />
+        </div>
+    );
+}`,
 } as const;
 
 const stateCodeByLocale = {
     en: {
-        default: `const segments = [
-  { label: "Core", value: 46, color: "primary" },
-  { label: "Growth", value: 28, color: "success" },
-  { label: "Retention", value: 18, color: "warning" },
-  { label: "Expansion", value: 8, color: "info" },
+        default: `import { DonutChart } from "@gunjo/ui";
+
+const segments = [
+    { label: "Core", value: 46, color: "primary" },
+    { label: "Growth", value: 28, color: "success" },
+    { label: "Retention", value: 18, color: "warning" },
+    { label: "Expansion", value: 8, color: "info" },
 ];
 
-<DonutChart
-  segments={segments}
-  centerValue="100"
-  centerLabel="Total"
-  totalLabel="Total"
-/>`,
-        legend: `const segments = [
-  { label: "Core", value: 46, color: "primary" },
-  { label: "Growth", value: 28, color: "success" },
-  { label: "Retention", value: 18, color: "warning" },
-  { label: "Expansion", value: 8, color: "info" },
+export function SegmentMixDonut() {
+    return (
+        <DonutChart
+            segments={segments}
+            centerValue="100"
+            centerLabel="Total"
+            totalLabel="Total"
+        />
+    );
+}`,
+        legend: `import { DonutChart } from "@gunjo/ui";
+
+const segments = [
+    { label: "Core", value: 46, color: "primary" },
+    { label: "Growth", value: 28, color: "success" },
+    { label: "Retention", value: 18, color: "warning" },
+    { label: "Expansion", value: 8, color: "info" },
 ];
 
-<DonutChart
-  segments={segments}
-  centerValue="100"
-  centerLabel="Total"
-  totalLabel="Total"
-  showLegend
-/>`,
-        compact: `<DonutChart
-  segments={segments}
-  variant="compact"
-  centerValue="100%"
-  centerLabel="Share"
-  thickness={18}
-/>`,
-        thick: `<DonutChart
-  segments={segments}
-  centerValue="100%"
-  centerLabel="Share"
-  thickness={34}
-  showLegend
-/>`,
-        formatted: `const segments = [
-  { label: "Product", value: 132000, color: "primary" },
-  { label: "Operations", value: 84000, color: "info" },
-  { label: "Support", value: 41000, color: "success" },
-  { label: "Reserve", value: 18000, color: "warning" },
+export function SegmentMixDonutWithLegend() {
+    return (
+        <DonutChart
+            segments={segments}
+            centerValue="100"
+            centerLabel="Total"
+            totalLabel="Total"
+            showLegend
+        />
+    );
+}`,
+        compact: `import { DonutChart } from "@gunjo/ui";
+
+const segments = [
+    { label: "Core", value: 46, color: "primary" },
+    { label: "Growth", value: 28, color: "success" },
+    { label: "Retention", value: 18, color: "warning" },
+    { label: "Expansion", value: 8, color: "info" },
 ];
 
-<DonutChart
-  segments={segments}
-  centerValue="$275K"
-  centerLabel="Budget"
-  totalLabel="Budget"
-  showLegend
-  formatValue={(value) => \`$\${value.toLocaleString()}\`}
-/>`,
-        dense: `const segments = [
-  { label: "Search", value: 34, color: "primary" },
-  { label: "Social", value: 22, color: "info" },
-  { label: "Email", value: 16, color: "success" },
-  { label: "Ads", value: 12, color: "warning" },
-  { label: "Partner", value: 9, color: "accent" },
-  { label: "Other", value: 7, color: "muted" },
+export function CompactSegmentDonut() {
+    return (
+        <DonutChart
+            segments={segments}
+            variant="compact"
+            centerValue="100%"
+            centerLabel="Share"
+            thickness={18}
+        />
+    );
+}`,
+        thick: `import { DonutChart } from "@gunjo/ui";
+
+const segments = [
+    { label: "Core", value: 46, color: "primary" },
+    { label: "Growth", value: 28, color: "success" },
+    { label: "Retention", value: 18, color: "warning" },
+    { label: "Expansion", value: 8, color: "info" },
 ];
 
-<DonutChart segments={segments} centerValue="6" centerLabel="Sources" showLegend />`,
+export function ThickSegmentDonut() {
+    return (
+        <DonutChart
+            segments={segments}
+            centerValue="100%"
+            centerLabel="Share"
+            thickness={34}
+            showLegend
+        />
+    );
+}`,
+        formatted: `import { DonutChart } from "@gunjo/ui";
+
+const segments = [
+    { label: "Product", value: 132000, color: "primary" },
+    { label: "Operations", value: 84000, color: "info" },
+    { label: "Support", value: 41000, color: "success" },
+    { label: "Reserve", value: 18000, color: "warning" },
+];
+
+export function BudgetDonut() {
+    return (
+        <DonutChart
+            segments={segments}
+            centerValue="$275K"
+            centerLabel="Budget"
+            totalLabel="Budget"
+            showLegend
+            formatValue={(value) => "$" + value.toLocaleString()}
+        />
+    );
+}`,
+        dense: `import { DonutChart } from "@gunjo/ui";
+
+const segments = [
+    { label: "Search", value: 34, color: "primary" },
+    { label: "Social", value: 22, color: "info" },
+    { label: "Email", value: 16, color: "success" },
+    { label: "Ads", value: 12, color: "warning" },
+    { label: "Partner", value: 9, color: "accent" },
+    { label: "Other", value: 7, color: "muted" },
+];
+
+export function DenseSourceDonut() {
+    return (
+        <DonutChart
+            segments={segments}
+            centerValue="6"
+            centerLabel="Sources"
+            showLegend
+        />
+    );
+}`,
     },
     ja: {
-        default: `const segments = [
-  { label: "コア", value: 46, color: "primary" },
-  { label: "成長", value: 28, color: "success" },
-  { label: "継続", value: 18, color: "warning" },
-  { label: "拡張", value: 8, color: "info" },
+        default: `import { DonutChart } from "@gunjo/ui";
+
+const segments = [
+    { label: "コア", value: 46, color: "primary" },
+    { label: "成長", value: 28, color: "success" },
+    { label: "継続", value: 18, color: "warning" },
+    { label: "拡張", value: 8, color: "info" },
 ];
 
-<DonutChart
-  segments={segments}
-  centerValue="100"
-  centerLabel="合計"
-  totalLabel="合計"
-/>`,
-        legend: `const segments = [
-  { label: "コア", value: 46, color: "primary" },
-  { label: "成長", value: 28, color: "success" },
-  { label: "継続", value: 18, color: "warning" },
-  { label: "拡張", value: 8, color: "info" },
+export function SegmentMixDonut() {
+    return (
+        <DonutChart
+            segments={segments}
+            centerValue="100"
+            centerLabel="合計"
+            totalLabel="合計"
+        />
+    );
+}`,
+        legend: `import { DonutChart } from "@gunjo/ui";
+
+const segments = [
+    { label: "コア", value: 46, color: "primary" },
+    { label: "成長", value: 28, color: "success" },
+    { label: "継続", value: 18, color: "warning" },
+    { label: "拡張", value: 8, color: "info" },
 ];
 
-<DonutChart
-  segments={segments}
-  centerValue="100"
-  centerLabel="合計"
-  totalLabel="合計"
-  showLegend
-/>`,
-        compact: `<DonutChart
-  segments={segments}
-  variant="compact"
-  centerValue="100%"
-  centerLabel="構成比"
-  thickness={18}
-/>`,
-        thick: `<DonutChart
-  segments={segments}
-  centerValue="100%"
-  centerLabel="構成比"
-  thickness={34}
-  showLegend
-/>`,
-        formatted: `const segments = [
-  { label: "プロダクト", value: 132000, color: "primary" },
-  { label: "運用", value: 84000, color: "info" },
-  { label: "サポート", value: 41000, color: "success" },
-  { label: "予備", value: 18000, color: "warning" },
+export function SegmentMixDonutWithLegend() {
+    return (
+        <DonutChart
+            segments={segments}
+            centerValue="100"
+            centerLabel="合計"
+            totalLabel="合計"
+            showLegend
+        />
+    );
+}`,
+        compact: `import { DonutChart } from "@gunjo/ui";
+
+const segments = [
+    { label: "コア", value: 46, color: "primary" },
+    { label: "成長", value: 28, color: "success" },
+    { label: "継続", value: 18, color: "warning" },
+    { label: "拡張", value: 8, color: "info" },
 ];
 
-<DonutChart
-  segments={segments}
-  centerValue="27.5万円"
-  centerLabel="予算"
-  totalLabel="予算"
-  showLegend
-  formatValue={(value) => \`\${value.toLocaleString()}円\`}
-/>`,
-        dense: `const segments = [
-  { label: "検索", value: 34, color: "primary" },
-  { label: "SNS", value: 22, color: "info" },
-  { label: "メール", value: 16, color: "success" },
-  { label: "広告", value: 12, color: "warning" },
-  { label: "提携", value: 9, color: "accent" },
-  { label: "その他", value: 7, color: "muted" },
+export function CompactSegmentDonut() {
+    return (
+        <DonutChart
+            segments={segments}
+            variant="compact"
+            centerValue="100%"
+            centerLabel="構成比"
+            thickness={18}
+        />
+    );
+}`,
+        thick: `import { DonutChart } from "@gunjo/ui";
+
+const segments = [
+    { label: "コア", value: 46, color: "primary" },
+    { label: "成長", value: 28, color: "success" },
+    { label: "継続", value: 18, color: "warning" },
+    { label: "拡張", value: 8, color: "info" },
 ];
 
-<DonutChart segments={segments} centerValue="6" centerLabel="チャネル" showLegend />`,
+export function ThickSegmentDonut() {
+    return (
+        <DonutChart
+            segments={segments}
+            centerValue="100%"
+            centerLabel="構成比"
+            thickness={34}
+            showLegend
+        />
+    );
+}`,
+        formatted: `import { DonutChart } from "@gunjo/ui";
+
+const segments = [
+    { label: "プロダクト", value: 132000, color: "primary" },
+    { label: "運用", value: 84000, color: "info" },
+    { label: "サポート", value: 41000, color: "success" },
+    { label: "予備", value: 18000, color: "warning" },
+];
+
+export function BudgetDonut() {
+    return (
+        <DonutChart
+            segments={segments}
+            centerValue="27.5万円"
+            centerLabel="予算"
+            totalLabel="予算"
+            showLegend
+            formatValue={(value) => value.toLocaleString() + "円"}
+        />
+    );
+}`,
+        dense: `import { DonutChart } from "@gunjo/ui";
+
+const segments = [
+    { label: "検索", value: 34, color: "primary" },
+    { label: "SNS", value: 22, color: "info" },
+    { label: "メール", value: 16, color: "success" },
+    { label: "広告", value: 12, color: "warning" },
+    { label: "提携", value: 9, color: "accent" },
+    { label: "その他", value: 7, color: "muted" },
+];
+
+export function DenseSourceDonut() {
+    return (
+        <DonutChart
+            segments={segments}
+            centerValue="6"
+            centerLabel="チャネル"
+            showLegend
+        />
+    );
+}`,
     },
 } as const;
 

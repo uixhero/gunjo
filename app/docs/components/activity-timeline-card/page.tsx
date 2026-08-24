@@ -14,9 +14,9 @@ const codeByLocale = {
 import { ActivityTimelineCard } from "@gunjo/ui";
 
 const metrics = [
-    { label: "Than yesterday", value: "+23%", tooltip: "Compared with the same time slot baseline." },
-    { label: "Burned", value: "760 kcal", tooltip: "Sum of activity across all time slots." },
-    { label: "Daily avg", value: "253 kcal", tooltip: "Burned total divided by the number of slots." },
+    { label: "Than yesterday", value: "+23%" },
+    { label: "Burned", value: "760 kcal" },
+    { label: "Daily avg", value: "253 kcal" },
 ];
 
 const segments = [
@@ -26,10 +26,11 @@ const segments = [
 ];
 
 const segmentTotal = segments.reduce((sum, segment) => sum + segment.value, 0);
-const createSlotSegments = (value: number) =>
+
+const createSlotSegments = (slotValue: number) =>
     segments.map((segment) => ({
         ...segment,
-        value: Math.round((value * segment.value) / segmentTotal),
+        value: Math.round((slotValue * segment.value) / segmentTotal),
     }));
 
 const slots = [
@@ -41,9 +42,9 @@ const slots = [
     { label: "4 PM", value: 46, segments: createSlotSegments(46) },
 ];
 
-export function ActivityPanel() {
+export function ActivityTimelinePanel() {
     const [selectedSlot, setSelectedSlot] = useState(3);
-    const selectedSegments = slots[selectedSlot]?.segments ?? segments;
+    const selectedSegments = slots[selectedSlot].segments;
 
     return (
         <ActivityTimelineCard
@@ -54,7 +55,7 @@ export function ActivityPanel() {
             slots={slots}
             segments={selectedSegments}
             selectedSlot={selectedSlot}
-            onSlotSelect={(_, index) => setSelectedSlot(index)}
+            onSlotSelect={(slot, index) => setSelectedSlot(index)}
             max={200}
             caption="Inspect the selected time slot load and segment contribution."
         />
@@ -64,9 +65,9 @@ export function ActivityPanel() {
 import { ActivityTimelineCard } from "@gunjo/ui";
 
 const metrics = [
-    { label: "昨日比", value: "+23%", tooltip: "同じ時間帯の基準値と比較しています。" },
-    { label: "消費", value: "760 kcal", tooltip: "全時間帯の活動量を合計しています。" },
-    { label: "日平均", value: "253 kcal", tooltip: "消費合計を時間帯数で割っています。" },
+    { label: "昨日比", value: "+23%" },
+    { label: "消費", value: "760 kcal" },
+    { label: "日平均", value: "253 kcal" },
 ];
 
 const segments = [
@@ -76,10 +77,11 @@ const segments = [
 ];
 
 const segmentTotal = segments.reduce((sum, segment) => sum + segment.value, 0);
-const createSlotSegments = (value: number) =>
+
+const createSlotSegments = (slotValue: number) =>
     segments.map((segment) => ({
         ...segment,
-        value: Math.round((value * segment.value) / segmentTotal),
+        value: Math.round((slotValue * segment.value) / segmentTotal),
     }));
 
 const slots = [
@@ -91,9 +93,9 @@ const slots = [
     { label: "16時", value: 46, segments: createSlotSegments(46) },
 ];
 
-export function ActivityPanel() {
+export function ActivityTimelinePanel() {
     const [selectedSlot, setSelectedSlot] = useState(3);
-    const selectedSegments = slots[selectedSlot]?.segments ?? segments;
+    const selectedSegments = slots[selectedSlot].segments;
 
     return (
         <ActivityTimelineCard
@@ -104,7 +106,7 @@ export function ActivityPanel() {
             slots={slots}
             segments={selectedSegments}
             selectedSlot={selectedSlot}
-            onSlotSelect={(_, index) => setSelectedSlot(index)}
+            onSlotSelect={(slot, index) => setSelectedSlot(index)}
             max={200}
             caption="選択した時間帯の活動量と内訳を一枚のカードで確認します。"
         />
@@ -136,10 +138,35 @@ const slots = [
     { label: "4 PM", value: 46 },
 ];
 
-<ActivityTimelineCard metrics={metrics} slots={slots} segments={segments} />
-<ActivityTimelineCard metrics={metrics} slots={slots} segments={segments} selectedSlot={3} />
-<ActivityTimelineCard metrics={metrics} slots={slots} segments={segments} showSlotValues />
-<ActivityTimelineCard metrics={metrics} slots={slots} segments={segments} variant="compact" />`,
+export function ActivityTimelineCardUsage() {
+    return (
+        <div className="grid gap-8">
+            <ActivityTimelineCard
+                metrics={metrics}
+                slots={slots}
+                segments={segments}
+            />
+            <ActivityTimelineCard
+                metrics={metrics}
+                slots={slots}
+                segments={segments}
+                selectedSlot={3}
+            />
+            <ActivityTimelineCard
+                metrics={metrics}
+                slots={slots}
+                segments={segments}
+                showSlotValues
+            />
+            <ActivityTimelineCard
+                metrics={metrics}
+                slots={slots}
+                segments={segments}
+                variant="compact"
+            />
+        </div>
+    );
+}`,
     ja: `import { ActivityTimelineCard } from "@gunjo/ui";
 
 const metrics = [
@@ -163,64 +190,267 @@ const slots = [
     { label: "16時", value: 46 },
 ];
 
-<ActivityTimelineCard metrics={metrics} slots={slots} segments={segments} />
-<ActivityTimelineCard metrics={metrics} slots={slots} segments={segments} selectedSlot={3} />
-<ActivityTimelineCard metrics={metrics} slots={slots} segments={segments} showSlotValues />
-<ActivityTimelineCard metrics={metrics} slots={slots} segments={segments} variant="compact" />`,
+export function ActivityTimelineCardUsage() {
+    return (
+        <div className="grid gap-8">
+            <ActivityTimelineCard
+                metrics={metrics}
+                slots={slots}
+                segments={segments}
+            />
+            <ActivityTimelineCard
+                metrics={metrics}
+                slots={slots}
+                segments={segments}
+                selectedSlot={3}
+            />
+            <ActivityTimelineCard
+                metrics={metrics}
+                slots={slots}
+                segments={segments}
+                showSlotValues
+            />
+            <ActivityTimelineCard
+                metrics={metrics}
+                slots={slots}
+                segments={segments}
+                variant="compact"
+            />
+        </div>
+    );
+}`,
 } as const;
 
 const stateCodeByLocale = {
     en: {
-        default: `<ActivityTimelineCard
-  title="Energy timeline"
-  metrics={metrics}
-  slots={slots}
-  segments={segments}
-  max={200}
-/>`,
-        selected: `<ActivityTimelineCard
-  title="Selected time slot"
-  metrics={metrics}
-  slots={slots}
-  segments={slots[3].segments}
-  selectedSlot={3}
-  showSlotValues
-  max={200}
-/>`,
-        compact: `<ActivityTimelineCard
-  title="Compact timeline"
-  metrics={metrics}
-  slots={slots}
-  segments={segments}
-  variant="compact"
-  max={200}
-/>`,
+        default: `import { ActivityTimelineCard } from "@gunjo/ui";
+
+const metrics = [
+    { label: "Than yesterday", value: "+23%" },
+    { label: "Burned", value: "760 kcal" },
+    { label: "Daily avg", value: "253 kcal" },
+];
+
+const segments = [
+    { label: "Walking", value: 127 },
+    { label: "Running", value: 384 },
+    { label: "Workout", value: 249 },
+];
+
+const slots = [
+    { label: "6 AM", value: 42 },
+    { label: "8 AM", value: 84 },
+    { label: "10 AM", value: 58 },
+    { label: "12 PM", value: 156 },
+    { label: "2 PM", value: 92 },
+    { label: "4 PM", value: 46 },
+];
+
+export function ActivityTimelinePanel() {
+    return (
+        <ActivityTimelineCard
+            title="Energy timeline"
+            metrics={metrics}
+            slots={slots}
+            segments={segments}
+            max={200}
+        />
+    );
+}`,
+        selected: `import { ActivityTimelineCard } from "@gunjo/ui";
+
+const metrics = [
+    { label: "Than yesterday", value: "+23%" },
+    { label: "Burned", value: "760 kcal" },
+    { label: "Daily avg", value: "253 kcal" },
+];
+
+const segments = [
+    { label: "Walking", value: 127 },
+    { label: "Running", value: 384 },
+    { label: "Workout", value: 249 },
+];
+
+const segmentTotal = segments.reduce((sum, segment) => sum + segment.value, 0);
+
+const createSlotSegments = (slotValue: number) =>
+    segments.map((segment) => ({
+        ...segment,
+        value: Math.round((slotValue * segment.value) / segmentTotal),
+    }));
+
+const slots = [
+    { label: "6 AM", value: 42, segments: createSlotSegments(42) },
+    { label: "8 AM", value: 84, segments: createSlotSegments(84) },
+    { label: "10 AM", value: 58, segments: createSlotSegments(58) },
+    { label: "12 PM", value: 156, segments: createSlotSegments(156) },
+    { label: "2 PM", value: 92, segments: createSlotSegments(92) },
+    { label: "4 PM", value: 46, segments: createSlotSegments(46) },
+];
+
+export function SelectedSlotTimeline() {
+    return (
+        <ActivityTimelineCard
+            title="Selected time slot"
+            metrics={metrics}
+            slots={slots}
+            segments={slots[3].segments}
+            selectedSlot={3}
+            showSlotValues
+            max={200}
+        />
+    );
+}`,
+        compact: `import { ActivityTimelineCard } from "@gunjo/ui";
+
+const metrics = [
+    { label: "Than yesterday", value: "+23%" },
+    { label: "Burned", value: "760 kcal" },
+    { label: "Daily avg", value: "253 kcal" },
+];
+
+const segments = [
+    { label: "Walking", value: 127 },
+    { label: "Running", value: 384 },
+    { label: "Workout", value: 249 },
+];
+
+const slots = [
+    { label: "6 AM", value: 42 },
+    { label: "8 AM", value: 84 },
+    { label: "10 AM", value: 58 },
+    { label: "12 PM", value: 156 },
+    { label: "2 PM", value: 92 },
+    { label: "4 PM", value: 46 },
+];
+
+export function CompactActivityTimeline() {
+    return (
+        <ActivityTimelineCard
+            title="Compact timeline"
+            metrics={metrics}
+            slots={slots}
+            segments={segments}
+            variant="compact"
+            max={200}
+        />
+    );
+}`,
     },
     ja: {
-        default: `<ActivityTimelineCard
-  title="活動量タイムライン"
-  metrics={metrics}
-  slots={slots}
-  segments={segments}
-  max={200}
-/>`,
-        selected: `<ActivityTimelineCard
-  title="選択中の時間帯"
-  metrics={metrics}
-  slots={slots}
-  segments={slots[3].segments}
-  selectedSlot={3}
-  showSlotValues
-  max={200}
-/>`,
-        compact: `<ActivityTimelineCard
-  title="コンパクト表示"
-  metrics={metrics}
-  slots={slots}
-  segments={segments}
-  variant="compact"
-  max={200}
-/>`,
+        default: `import { ActivityTimelineCard } from "@gunjo/ui";
+
+const metrics = [
+    { label: "昨日比", value: "+23%" },
+    { label: "消費", value: "760 kcal" },
+    { label: "日平均", value: "253 kcal" },
+];
+
+const segments = [
+    { label: "ウォーク", value: 127 },
+    { label: "ラン", value: 384 },
+    { label: "ワークアウト", value: 249 },
+];
+
+const slots = [
+    { label: "6時", value: 42 },
+    { label: "8時", value: 84 },
+    { label: "10時", value: 58 },
+    { label: "12時", value: 156 },
+    { label: "14時", value: 92 },
+    { label: "16時", value: 46 },
+];
+
+export function ActivityTimelinePanel() {
+    return (
+        <ActivityTimelineCard
+            title="活動量タイムライン"
+            metrics={metrics}
+            slots={slots}
+            segments={segments}
+            max={200}
+        />
+    );
+}`,
+        selected: `import { ActivityTimelineCard } from "@gunjo/ui";
+
+const metrics = [
+    { label: "昨日比", value: "+23%" },
+    { label: "消費", value: "760 kcal" },
+    { label: "日平均", value: "253 kcal" },
+];
+
+const segments = [
+    { label: "ウォーク", value: 127 },
+    { label: "ラン", value: 384 },
+    { label: "ワークアウト", value: 249 },
+];
+
+const segmentTotal = segments.reduce((sum, segment) => sum + segment.value, 0);
+
+const createSlotSegments = (slotValue: number) =>
+    segments.map((segment) => ({
+        ...segment,
+        value: Math.round((slotValue * segment.value) / segmentTotal),
+    }));
+
+const slots = [
+    { label: "6時", value: 42, segments: createSlotSegments(42) },
+    { label: "8時", value: 84, segments: createSlotSegments(84) },
+    { label: "10時", value: 58, segments: createSlotSegments(58) },
+    { label: "12時", value: 156, segments: createSlotSegments(156) },
+    { label: "14時", value: 92, segments: createSlotSegments(92) },
+    { label: "16時", value: 46, segments: createSlotSegments(46) },
+];
+
+export function SelectedSlotTimeline() {
+    return (
+        <ActivityTimelineCard
+            title="選択中の時間帯"
+            metrics={metrics}
+            slots={slots}
+            segments={slots[3].segments}
+            selectedSlot={3}
+            showSlotValues
+            max={200}
+        />
+    );
+}`,
+        compact: `import { ActivityTimelineCard } from "@gunjo/ui";
+
+const metrics = [
+    { label: "昨日比", value: "+23%" },
+    { label: "消費", value: "760 kcal" },
+    { label: "日平均", value: "253 kcal" },
+];
+
+const segments = [
+    { label: "ウォーク", value: 127 },
+    { label: "ラン", value: 384 },
+    { label: "ワークアウト", value: 249 },
+];
+
+const slots = [
+    { label: "6時", value: 42 },
+    { label: "8時", value: 84 },
+    { label: "10時", value: 58 },
+    { label: "12時", value: 156 },
+    { label: "14時", value: 92 },
+    { label: "16時", value: 46 },
+];
+
+export function CompactActivityTimeline() {
+    return (
+        <ActivityTimelineCard
+            title="コンパクト表示"
+            metrics={metrics}
+            slots={slots}
+            segments={segments}
+            variant="compact"
+            max={200}
+        />
+    );
+}`,
     },
 } as const;
 
@@ -327,49 +557,6 @@ const propsDataByLocale = {
     ],
 } as const;
 
-const stateCodeDataByLocale = {
-    en: `const metrics = [
-  { label: "Than yesterday", value: "+23%" },
-  { label: "Burned", value: "760 kcal" },
-  { label: "Daily avg", value: "253 kcal" },
-];
-
-const segments = [
-  { label: "Walking", value: 127 },
-  { label: "Running", value: 384 },
-  { label: "Workout", value: 249 },
-];
-
-const slots = [
-  { label: "6 AM", value: 42 },
-  { label: "8 AM", value: 84 },
-  { label: "10 AM", value: 58 },
-  { label: "12 PM", value: 156 },
-  { label: "2 PM", value: 92 },
-  { label: "4 PM", value: 46 },
-];`,
-    ja: `const metrics = [
-  { label: "昨日比", value: "+23%" },
-  { label: "消費", value: "760 kcal" },
-  { label: "日平均", value: "253 kcal" },
-];
-
-const segments = [
-  { label: "ウォーク", value: 127 },
-  { label: "ラン", value: 384 },
-  { label: "ワークアウト", value: 249 },
-];
-
-const slots = [
-  { label: "6時", value: 42 },
-  { label: "8時", value: 84 },
-  { label: "10時", value: 58 },
-  { label: "12時", value: 156 },
-  { label: "14時", value: 92 },
-  { label: "16時", value: 46 },
-];`,
-} as const;
-
 function buildActivityTimelineData(locale: "ja" | "en") {
     const metrics = locale === "ja"
         ? [
@@ -416,7 +603,6 @@ export default function ActivityTimelineCardPage() {
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
     const { locale, sectionLabels } = useLocale();
     const stateData = buildActivityTimelineData(locale);
-    const withStateCodeData = (nextCode: string) => `${stateCodeDataByLocale[locale]}\n\n${nextCode}`;
 
     return (
         <ComponentLayout
@@ -467,7 +653,7 @@ export default function ActivityTimelineCardPage() {
                                     max={200}
                                 />
                             ),
-                            code: withStateCodeData(stateCodeByLocale[locale].default),
+                            code: stateCodeByLocale[locale].default,
                         },
                         {
                             key: "selected",
@@ -489,7 +675,7 @@ export default function ActivityTimelineCardPage() {
                                     max={200}
                                 />
                             ),
-                            code: withStateCodeData(stateCodeByLocale[locale].selected),
+                            code: stateCodeByLocale[locale].selected,
                         },
                         {
                             key: "compact",
@@ -508,7 +694,7 @@ export default function ActivityTimelineCardPage() {
                                     max={200}
                                 />
                             ),
-                            code: withStateCodeData(stateCodeByLocale[locale].compact),
+                            code: stateCodeByLocale[locale].compact,
                         },
                     ]}
                 />

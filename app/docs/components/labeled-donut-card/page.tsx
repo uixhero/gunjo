@@ -44,12 +44,27 @@ const codeByLocale = {
     en: `import { LabeledDonutCard } from "@gunjo/ui";
 
 const segments = [
-    { label: "Amazon", calloutLabel: "Amazon", value: 45, comparison: "Sales channel 1" },
-    { label: "Alibaba", calloutLabel: "Alibaba", value: 35, comparison: "Sales channel 2" },
-    { label: "Tokopedia", calloutLabel: "Tokopedia", value: 25, comparison: "Sales channel 3" },
+    {
+        label: "Amazon",
+        calloutLabel: "Amazon",
+        value: 45,
+        comparison: "Sales channel 1",
+    },
+    {
+        label: "Alibaba",
+        calloutLabel: "Alibaba",
+        value: 35,
+        comparison: "Sales channel 2",
+    },
+    {
+        label: "Tokopedia",
+        calloutLabel: "Tokopedia",
+        value: 25,
+        comparison: "Sales channel 3",
+    },
 ];
 
-export function PlatformSales() {
+export function PlatformSalesDonut() {
     return (
         <LabeledDonutCard
             title="Sales by platform"
@@ -66,12 +81,27 @@ export function PlatformSales() {
     ja: `import { LabeledDonutCard } from "@gunjo/ui";
 
 const segments = [
-    { label: "Amazon", calloutLabel: "Amazon", value: 45, comparison: "販売チャネル 1" },
-    { label: "Alibaba", calloutLabel: "Alibaba", value: 35, comparison: "販売チャネル 2" },
-    { label: "Tokopedia", calloutLabel: "Tokopedia", value: 25, comparison: "販売チャネル 3" },
+    {
+        label: "Amazon",
+        calloutLabel: "Amazon",
+        value: 45,
+        comparison: "販売チャネル 1",
+    },
+    {
+        label: "Alibaba",
+        calloutLabel: "Alibaba",
+        value: 35,
+        comparison: "販売チャネル 2",
+    },
+    {
+        label: "Tokopedia",
+        calloutLabel: "Tokopedia",
+        value: 25,
+        comparison: "販売チャネル 3",
+    },
 ];
 
-export function PlatformSales() {
+export function PlatformSalesDonut() {
     return (
         <LabeledDonutCard
             title="プラットフォーム別売上"
@@ -91,123 +121,509 @@ const usageCodeByLocale = {
     en: `import { LabeledDonutCard } from "@gunjo/ui";
 
 const segments = [
-    { label: "Amazon", calloutLabel: "Amazon", value: 45, comparison: "Sales channel 1" },
-    { label: "Alibaba", calloutLabel: "Alibaba", value: 35, comparison: "Sales channel 2" },
-    { label: "Tokopedia", calloutLabel: "Tokopedia", value: 25, comparison: "Sales channel 3" },
+    {
+        label: "Amazon",
+        calloutLabel: "Amazon",
+        value: 45,
+        comparison: "Sales channel 1",
+    },
+    {
+        label: "Alibaba",
+        calloutLabel: "Alibaba",
+        value: 35,
+        comparison: "Sales channel 2",
+    },
+    {
+        label: "Tokopedia",
+        calloutLabel: "Tokopedia",
+        value: 25,
+        comparison: "Sales channel 3",
+    },
 ];
 
-<LabeledDonutCard segments={segments} centerValue="105" centerLabel="Total" />
-<LabeledDonutCard segments={segments} selectedIndex={1} />
-<LabeledDonutCard segments={segments} showCallouts={false} />
-<LabeledDonutCard segments={segments} variant="compact" />`,
+export function LabeledDonutCardUsage() {
+    return (
+        <div className="grid gap-6">
+            <LabeledDonutCard
+                segments={segments}
+                centerValue="105"
+                centerLabel="Total"
+            />
+            <LabeledDonutCard segments={segments} selectedIndex={1} />
+            <LabeledDonutCard segments={segments} showCallouts={false} />
+            <LabeledDonutCard segments={segments} variant="compact" />
+        </div>
+    );
+}`,
     ja: `import { LabeledDonutCard } from "@gunjo/ui";
 
 const segments = [
-    { label: "Amazon", calloutLabel: "Amazon", value: 45, comparison: "販売チャネル 1" },
-    { label: "Alibaba", calloutLabel: "Alibaba", value: 35, comparison: "販売チャネル 2" },
-    { label: "Tokopedia", calloutLabel: "Tokopedia", value: 25, comparison: "販売チャネル 3" },
+    {
+        label: "Amazon",
+        calloutLabel: "Amazon",
+        value: 45,
+        comparison: "販売チャネル 1",
+    },
+    {
+        label: "Alibaba",
+        calloutLabel: "Alibaba",
+        value: 35,
+        comparison: "販売チャネル 2",
+    },
+    {
+        label: "Tokopedia",
+        calloutLabel: "Tokopedia",
+        value: 25,
+        comparison: "販売チャネル 3",
+    },
 ];
 
-<LabeledDonutCard segments={segments} centerValue="105" centerLabel="合計" />
-<LabeledDonutCard segments={segments} selectedIndex={1} />
-<LabeledDonutCard segments={segments} showCallouts={false} />
-<LabeledDonutCard segments={segments} variant="compact" />`,
+export function LabeledDonutCardUsage() {
+    return (
+        <div className="grid gap-6">
+            <LabeledDonutCard
+                segments={segments}
+                centerValue="105"
+                centerLabel="合計"
+            />
+            <LabeledDonutCard segments={segments} selectedIndex={1} />
+            <LabeledDonutCard segments={segments} showCallouts={false} />
+            <LabeledDonutCard segments={segments} variant="compact" />
+        </div>
+    );
+}`,
 } as const;
 
 const stateCodeByLocale = {
     en: {
-        default: `<LabeledDonutCard
-  title="Sales by platform"
-  description="Labeled donut"
-  centerValue="105"
-  centerLabel="Total"
-  segments={segments}
-/>`,
-        selected: `<LabeledDonutCard
-  title="Sales by platform"
-  centerValue="105"
-  centerLabel="Total"
-  delta="33%"
-  segments={segments}
-  selectedIndex={1}
-/>`,
-        noCallouts: `<LabeledDonutCard
-  title="Sales by platform"
-  centerValue="105"
-  centerLabel="Total"
-  segments={segments}
-  showCallouts={false}
-/>`,
-        compact: `<LabeledDonutCard
-  title="Sales by platform"
-  centerValue="105"
-  centerLabel="Total"
-  segments={segments}
-  variant="compact"
-/>`,
-        formatted: `<LabeledDonutCard
-  title="Budget allocation"
-  centerValue="$275K"
-  centerLabel="Budget"
-  segments={budgetSegments}
-  selectedIndex={0}
-  formatValue={(value) => \`$\${value.toLocaleString()}\`}
-/>`,
-        caption: `<LabeledDonutCard
-  title="Sales by platform"
-  centerValue="105"
-  centerLabel="Total"
-  segments={segments}
-  selectedIndex={0}
-  caption="Compare segment share with external callout labels."
-/>`,
+        default: `import { LabeledDonutCard } from "@gunjo/ui";
+
+const segments = [
+    {
+        label: "Amazon",
+        calloutLabel: "Amazon",
+        value: 45,
+        comparison: "Sales channel 1",
+    },
+    {
+        label: "Alibaba",
+        calloutLabel: "Alibaba",
+        value: 35,
+        comparison: "Sales channel 2",
+    },
+    {
+        label: "Tokopedia",
+        calloutLabel: "Tokopedia",
+        value: 25,
+        comparison: "Sales channel 3",
+    },
+];
+
+export function PlatformSalesDonut() {
+    return (
+        <LabeledDonutCard
+            title="Sales by platform"
+            description="Labeled donut"
+            centerValue="105"
+            centerLabel="Total"
+            segments={segments}
+        />
+    );
+}`,
+        selected: `import { LabeledDonutCard } from "@gunjo/ui";
+
+const segments = [
+    {
+        label: "Amazon",
+        calloutLabel: "Amazon",
+        value: 45,
+        comparison: "Sales channel 1",
+    },
+    {
+        label: "Alibaba",
+        calloutLabel: "Alibaba",
+        value: 35,
+        comparison: "Sales channel 2",
+    },
+    {
+        label: "Tokopedia",
+        calloutLabel: "Tokopedia",
+        value: 25,
+        comparison: "Sales channel 3",
+    },
+];
+
+export function SelectedSegmentDonut() {
+    return (
+        <LabeledDonutCard
+            title="Sales by platform"
+            centerValue="105"
+            centerLabel="Total"
+            delta="33%"
+            segments={segments}
+            selectedIndex={1}
+        />
+    );
+}`,
+        noCallouts: `import { LabeledDonutCard } from "@gunjo/ui";
+
+const segments = [
+    {
+        label: "Amazon",
+        calloutLabel: "Amazon",
+        value: 45,
+        comparison: "Sales channel 1",
+    },
+    {
+        label: "Alibaba",
+        calloutLabel: "Alibaba",
+        value: 35,
+        comparison: "Sales channel 2",
+    },
+    {
+        label: "Tokopedia",
+        calloutLabel: "Tokopedia",
+        value: 25,
+        comparison: "Sales channel 3",
+    },
+];
+
+export function DonutWithoutCallouts() {
+    return (
+        <LabeledDonutCard
+            title="Sales by platform"
+            centerValue="105"
+            centerLabel="Total"
+            segments={segments}
+            showCallouts={false}
+        />
+    );
+}`,
+        compact: `import { LabeledDonutCard } from "@gunjo/ui";
+
+const segments = [
+    {
+        label: "Amazon",
+        calloutLabel: "Amazon",
+        value: 45,
+        comparison: "Sales channel 1",
+    },
+    {
+        label: "Alibaba",
+        calloutLabel: "Alibaba",
+        value: 35,
+        comparison: "Sales channel 2",
+    },
+    {
+        label: "Tokopedia",
+        calloutLabel: "Tokopedia",
+        value: 25,
+        comparison: "Sales channel 3",
+    },
+];
+
+export function CompactPlatformDonut() {
+    return (
+        <LabeledDonutCard
+            title="Sales by platform"
+            centerValue="105"
+            centerLabel="Total"
+            segments={segments}
+            variant="compact"
+        />
+    );
+}`,
+        formatted: `import { LabeledDonutCard } from "@gunjo/ui";
+
+const budgetSegments = [
+    {
+        label: "Product",
+        calloutLabel: "Product",
+        value: 132000,
+        comparison: "Roadmap",
+    },
+    {
+        label: "Operations",
+        calloutLabel: "Operations",
+        value: 84000,
+        comparison: "Run cost",
+    },
+    {
+        label: "Support",
+        calloutLabel: "Support",
+        value: 41000,
+        comparison: "Customer work",
+    },
+    {
+        label: "Reserve",
+        calloutLabel: "Reserve",
+        value: 18000,
+        comparison: "Buffer",
+    },
+];
+
+export function BudgetAllocationDonut() {
+    return (
+        <LabeledDonutCard
+            title="Budget allocation"
+            centerValue="$275K"
+            centerLabel="Budget"
+            segments={budgetSegments}
+            selectedIndex={0}
+            formatValue={(value) => "$" + value.toLocaleString()}
+        />
+    );
+}`,
+        caption: `import { LabeledDonutCard } from "@gunjo/ui";
+
+const segments = [
+    {
+        label: "Amazon",
+        calloutLabel: "Amazon",
+        value: 45,
+        comparison: "Sales channel 1",
+    },
+    {
+        label: "Alibaba",
+        calloutLabel: "Alibaba",
+        value: 35,
+        comparison: "Sales channel 2",
+    },
+    {
+        label: "Tokopedia",
+        calloutLabel: "Tokopedia",
+        value: 25,
+        comparison: "Sales channel 3",
+    },
+];
+
+export function CaptionedPlatformDonut() {
+    return (
+        <LabeledDonutCard
+            title="Sales by platform"
+            centerValue="105"
+            centerLabel="Total"
+            segments={segments}
+            selectedIndex={0}
+            caption="Compare segment share with external callout labels."
+        />
+    );
+}`,
     },
     ja: {
-        default: `<LabeledDonutCard
-  title="プラットフォーム別売上"
-  description="ラベル付きドーナツ"
-  centerValue="105"
-  centerLabel="合計"
-  segments={segments}
-/>`,
-        selected: `<LabeledDonutCard
-  title="プラットフォーム別売上"
-  centerValue="105"
-  centerLabel="合計"
-  delta="33%"
-  segments={segments}
-  selectedIndex={1}
-/>`,
-        noCallouts: `<LabeledDonutCard
-  title="プラットフォーム別売上"
-  centerValue="105"
-  centerLabel="合計"
-  segments={segments}
-  showCallouts={false}
-/>`,
-        compact: `<LabeledDonutCard
-  title="プラットフォーム別売上"
-  centerValue="105"
-  centerLabel="合計"
-  segments={segments}
-  variant="compact"
-/>`,
-        formatted: `<LabeledDonutCard
-  title="予算配分"
-  centerValue="27.5万円"
-  centerLabel="予算"
-  segments={budgetSegments}
-  selectedIndex={0}
-  formatValue={(value) => \`\${value.toLocaleString()}円\`}
-/>`,
-        caption: `<LabeledDonutCard
-  title="プラットフォーム別売上"
-  centerValue="105"
-  centerLabel="合計"
-  segments={segments}
-  selectedIndex={0}
-  caption="セグメントの構成比を外部ラベル付きで比較します。"
-/>`,
+        default: `import { LabeledDonutCard } from "@gunjo/ui";
+
+const segments = [
+    {
+        label: "Amazon",
+        calloutLabel: "Amazon",
+        value: 45,
+        comparison: "販売チャネル 1",
+    },
+    {
+        label: "Alibaba",
+        calloutLabel: "Alibaba",
+        value: 35,
+        comparison: "販売チャネル 2",
+    },
+    {
+        label: "Tokopedia",
+        calloutLabel: "Tokopedia",
+        value: 25,
+        comparison: "販売チャネル 3",
+    },
+];
+
+export function PlatformSalesDonut() {
+    return (
+        <LabeledDonutCard
+            title="プラットフォーム別売上"
+            description="ラベル付きドーナツ"
+            centerValue="105"
+            centerLabel="合計"
+            segments={segments}
+        />
+    );
+}`,
+        selected: `import { LabeledDonutCard } from "@gunjo/ui";
+
+const segments = [
+    {
+        label: "Amazon",
+        calloutLabel: "Amazon",
+        value: 45,
+        comparison: "販売チャネル 1",
+    },
+    {
+        label: "Alibaba",
+        calloutLabel: "Alibaba",
+        value: 35,
+        comparison: "販売チャネル 2",
+    },
+    {
+        label: "Tokopedia",
+        calloutLabel: "Tokopedia",
+        value: 25,
+        comparison: "販売チャネル 3",
+    },
+];
+
+export function SelectedSegmentDonut() {
+    return (
+        <LabeledDonutCard
+            title="プラットフォーム別売上"
+            centerValue="105"
+            centerLabel="合計"
+            delta="33%"
+            segments={segments}
+            selectedIndex={1}
+        />
+    );
+}`,
+        noCallouts: `import { LabeledDonutCard } from "@gunjo/ui";
+
+const segments = [
+    {
+        label: "Amazon",
+        calloutLabel: "Amazon",
+        value: 45,
+        comparison: "販売チャネル 1",
+    },
+    {
+        label: "Alibaba",
+        calloutLabel: "Alibaba",
+        value: 35,
+        comparison: "販売チャネル 2",
+    },
+    {
+        label: "Tokopedia",
+        calloutLabel: "Tokopedia",
+        value: 25,
+        comparison: "販売チャネル 3",
+    },
+];
+
+export function DonutWithoutCallouts() {
+    return (
+        <LabeledDonutCard
+            title="プラットフォーム別売上"
+            centerValue="105"
+            centerLabel="合計"
+            segments={segments}
+            showCallouts={false}
+        />
+    );
+}`,
+        compact: `import { LabeledDonutCard } from "@gunjo/ui";
+
+const segments = [
+    {
+        label: "Amazon",
+        calloutLabel: "Amazon",
+        value: 45,
+        comparison: "販売チャネル 1",
+    },
+    {
+        label: "Alibaba",
+        calloutLabel: "Alibaba",
+        value: 35,
+        comparison: "販売チャネル 2",
+    },
+    {
+        label: "Tokopedia",
+        calloutLabel: "Tokopedia",
+        value: 25,
+        comparison: "販売チャネル 3",
+    },
+];
+
+export function CompactPlatformDonut() {
+    return (
+        <LabeledDonutCard
+            title="プラットフォーム別売上"
+            centerValue="105"
+            centerLabel="合計"
+            segments={segments}
+            variant="compact"
+        />
+    );
+}`,
+        formatted: `import { LabeledDonutCard } from "@gunjo/ui";
+
+const budgetSegments = [
+    {
+        label: "プロダクト",
+        calloutLabel: "プロダクト",
+        value: 132000,
+        comparison: "ロードマップ",
+    },
+    {
+        label: "運用",
+        calloutLabel: "運用",
+        value: 84000,
+        comparison: "運用費",
+    },
+    {
+        label: "サポート",
+        calloutLabel: "サポート",
+        value: 41000,
+        comparison: "顧客対応",
+    },
+    {
+        label: "予備",
+        calloutLabel: "予備",
+        value: 18000,
+        comparison: "バッファ",
+    },
+];
+
+export function BudgetAllocationDonut() {
+    return (
+        <LabeledDonutCard
+            title="予算配分"
+            centerValue="27.5万円"
+            centerLabel="予算"
+            segments={budgetSegments}
+            selectedIndex={0}
+            formatValue={(value) => value.toLocaleString() + "円"}
+        />
+    );
+}`,
+        caption: `import { LabeledDonutCard } from "@gunjo/ui";
+
+const segments = [
+    {
+        label: "Amazon",
+        calloutLabel: "Amazon",
+        value: 45,
+        comparison: "販売チャネル 1",
+    },
+    {
+        label: "Alibaba",
+        calloutLabel: "Alibaba",
+        value: 35,
+        comparison: "販売チャネル 2",
+    },
+    {
+        label: "Tokopedia",
+        calloutLabel: "Tokopedia",
+        value: 25,
+        comparison: "販売チャネル 3",
+    },
+];
+
+export function CaptionedPlatformDonut() {
+    return (
+        <LabeledDonutCard
+            title="プラットフォーム別売上"
+            centerValue="105"
+            centerLabel="合計"
+            segments={segments}
+            selectedIndex={0}
+            caption="セグメントの構成比を外部ラベル付きで比較します。"
+        />
+    );
+}`,
     },
 } as const;
 
@@ -295,10 +711,6 @@ const propsDataByLocale = {
 export default function LabeledDonutCardPage() {
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
     const { locale, sectionLabels } = useLocale();
-    const stateCodeData = usageCodeByLocale[locale]
-        .split("\n\n<LabeledDonutCard")[0]
-        .replace('import { LabeledDonutCard } from "@gunjo/ui";\n\n', "");
-    const withStateCodeData = (nextCode: string) => `${stateCodeData}\n\n${nextCode}`;
     const segments = platformSegmentsByLocale[locale];
     const budgetSegments = budgetSegmentsByLocale[locale];
 
@@ -352,7 +764,7 @@ export default function LabeledDonutCardPage() {
                                 />
                             ),
                             previewBodyWidth: "xl",
-                            code: withStateCodeData(stateCodeByLocale[locale].default),
+                            code: stateCodeByLocale[locale].default,
                         },
                         {
                             key: "selected",
@@ -373,7 +785,7 @@ export default function LabeledDonutCardPage() {
                                 />
                             ),
                             previewBodyWidth: "xl",
-                            code: withStateCodeData(stateCodeByLocale[locale].selected),
+                            code: stateCodeByLocale[locale].selected,
                         },
                         {
                             key: "no-callouts",
@@ -392,7 +804,7 @@ export default function LabeledDonutCardPage() {
                                 />
                             ),
                             previewBodyWidth: "md",
-                            code: withStateCodeData(stateCodeByLocale[locale].noCallouts),
+                            code: stateCodeByLocale[locale].noCallouts,
                         },
                         {
                             key: "compact",
@@ -411,7 +823,7 @@ export default function LabeledDonutCardPage() {
                                 />
                             ),
                             previewBodyWidth: "lg",
-                            code: withStateCodeData(stateCodeByLocale[locale].compact),
+                            code: stateCodeByLocale[locale].compact,
                         },
                         {
                             key: "formatted-values",
@@ -435,7 +847,7 @@ export default function LabeledDonutCardPage() {
                                 />
                             ),
                             previewBodyWidth: "xl",
-                            code: withStateCodeData(stateCodeByLocale[locale].formatted),
+                            code: stateCodeByLocale[locale].formatted,
                         },
                         {
                             key: "caption",
@@ -459,7 +871,7 @@ export default function LabeledDonutCardPage() {
                                 />
                             ),
                             previewBodyWidth: "xl",
-                            code: withStateCodeData(stateCodeByLocale[locale].caption),
+                            code: stateCodeByLocale[locale].caption,
                         },
                     ]}
                 />

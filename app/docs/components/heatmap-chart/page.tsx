@@ -64,12 +64,13 @@ const data = times.flatMap((y, row) =>
         value: Math.min(100, 30 + row * 8 + column * 4),
     }))
 );
+
 const summary = days.map((x) => ({
     x,
     value: Math.max(...data.filter((cell) => cell.x === x).map((cell) => cell.value)),
 }));
 
-export function DensityMap() {
+export function TrafficDensityHeatmap() {
     return (
         <HeatmapChart
             data={data}
@@ -94,12 +95,13 @@ const data = times.flatMap((y, row) =>
         value: Math.min(100, 30 + row * 8 + column * 4),
     }))
 );
+
 const summary = days.map((x) => ({
     x,
     value: Math.max(...data.filter((cell) => cell.x === x).map((cell) => cell.value)),
 }));
 
-export function DensityMap() {
+export function TrafficDensityHeatmap() {
     return (
         <HeatmapChart
             data={data}
@@ -127,16 +129,38 @@ const data = times.flatMap((y, row) =>
         value: Math.min(100, 30 + row * 8 + column * 4),
     }))
 );
+
 const summary = days.map((x) => ({
     x,
     value: Math.max(...data.filter((cell) => cell.x === x).map((cell) => cell.value)),
 }));
 
-<HeatmapChart data={data} xLabels={days} yLabels={times} />
-<HeatmapChart data={data} xLabels={days} yLabels={times} summary={summary} />
-<HeatmapChart data={data} xLabels={days} yLabels={times} showValues />
-<HeatmapChart data={data} xLabels={days} yLabels={times} selectedCell={{ x: "Thu", y: "12" }} />
-<HeatmapChart data={data} xLabels={days} yLabels={times} variant="compact" />`,
+export function HeatmapChartUsage() {
+    return (
+        <div className="grid gap-8">
+            <HeatmapChart data={data} xLabels={days} yLabels={times} />
+            <HeatmapChart
+                data={data}
+                xLabels={days}
+                yLabels={times}
+                summary={summary}
+            />
+            <HeatmapChart data={data} xLabels={days} yLabels={times} showValues />
+            <HeatmapChart
+                data={data}
+                xLabels={days}
+                yLabels={times}
+                selectedCell={{ x: "Thu", y: "12" }}
+            />
+            <HeatmapChart
+                data={data}
+                xLabels={days}
+                yLabels={times}
+                variant="compact"
+            />
+        </div>
+    );
+}`,
     ja: `import { HeatmapChart } from "@gunjo/ui";
 
 const days = ["月", "火", "水", "木", "金", "土", "日"];
@@ -148,120 +172,364 @@ const data = times.flatMap((y, row) =>
         value: Math.min(100, 30 + row * 8 + column * 4),
     }))
 );
+
 const summary = days.map((x) => ({
     x,
     value: Math.max(...data.filter((cell) => cell.x === x).map((cell) => cell.value)),
 }));
 
-<HeatmapChart data={data} xLabels={days} yLabels={times} />
-<HeatmapChart data={data} xLabels={days} yLabels={times} summary={summary} />
-<HeatmapChart data={data} xLabels={days} yLabels={times} showValues />
-<HeatmapChart data={data} xLabels={days} yLabels={times} selectedCell={{ x: "木", y: "12" }} />
-<HeatmapChart data={data} xLabels={days} yLabels={times} variant="compact" />`,
+export function HeatmapChartUsage() {
+    return (
+        <div className="grid gap-8">
+            <HeatmapChart data={data} xLabels={days} yLabels={times} />
+            <HeatmapChart
+                data={data}
+                xLabels={days}
+                yLabels={times}
+                summary={summary}
+            />
+            <HeatmapChart data={data} xLabels={days} yLabels={times} showValues />
+            <HeatmapChart
+                data={data}
+                xLabels={days}
+                yLabels={times}
+                selectedCell={{ x: "木", y: "12" }}
+            />
+            <HeatmapChart
+                data={data}
+                xLabels={days}
+                yLabels={times}
+                variant="compact"
+            />
+        </div>
+    );
+}`,
 } as const;
 
 const stateCodeByLocale = {
     en: {
-        default: `<HeatmapChart
-  data={data}
-  xLabels={days}
-  yLabels={times}
-  max={100}
-/>`,
-        summary: `<HeatmapChart
-  data={data}
-  xLabels={days}
-  yLabels={times}
-  summary={summary}
-  summaryLabel="Peak"
-  max={100}
-  summaryMax={100}
-/>`,
-        values: `<HeatmapChart
-  data={data}
-  xLabels={days}
-  yLabels={times}
-  max={100}
-  showValues
-  formatValue={(value) => \`\${value}%\`}
-/>`,
-        selected: `<HeatmapChart
-  data={data}
-  xLabels={days}
-  yLabels={times}
-  summary={summary}
-  summaryLabel="Peak"
-  max={100}
-  selectedCell={{ x: "Thu", y: "12" }}
-  showValues
-/>`,
-        compact: `<HeatmapChart
-  data={data}
-  xLabels={days}
-  yLabels={times}
-  variant="compact"
-  max={100}
-/>`,
-        alternateColor: `<HeatmapChart
-  data={data}
-  xLabels={days}
-  yLabels={times}
-  summary={summary}
-  summaryLabel="Peak"
-  max={100}
-  color="success"
-/>`,
+        default: `import { HeatmapChart } from "@gunjo/ui";
+
+const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const times = ["00", "04", "08", "12", "16", "20"];
+const data = times.flatMap((y, row) =>
+    days.map((x, column) => ({
+        x,
+        y,
+        value: Math.min(100, 30 + row * 8 + column * 4),
+    }))
+);
+
+export function TrafficDensityHeatmap() {
+    return (
+        <HeatmapChart
+            data={data}
+            xLabels={days}
+            yLabels={times}
+            max={100}
+        />
+    );
+}`,
+        summary: `import { HeatmapChart } from "@gunjo/ui";
+
+const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const times = ["00", "04", "08", "12", "16", "20"];
+const data = times.flatMap((y, row) =>
+    days.map((x, column) => ({
+        x,
+        y,
+        value: Math.min(100, 30 + row * 8 + column * 4),
+    }))
+);
+
+const summary = days.map((x) => ({
+    x,
+    value: Math.max(...data.filter((cell) => cell.x === x).map((cell) => cell.value)),
+}));
+
+export function HeatmapWithPeakSummary() {
+    return (
+        <HeatmapChart
+            data={data}
+            xLabels={days}
+            yLabels={times}
+            summary={summary}
+            summaryLabel="Peak"
+            max={100}
+            summaryMax={100}
+        />
+    );
+}`,
+        values: `import { HeatmapChart } from "@gunjo/ui";
+
+const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const times = ["00", "04", "08", "12", "16", "20"];
+const data = times.flatMap((y, row) =>
+    days.map((x, column) => ({
+        x,
+        y,
+        value: Math.min(100, 30 + row * 8 + column * 4),
+    }))
+);
+
+export function HeatmapWithValues() {
+    return (
+        <HeatmapChart
+            data={data}
+            xLabels={days}
+            yLabels={times}
+            max={100}
+            showValues
+            formatValue={(value) => value + "%"}
+        />
+    );
+}`,
+        selected: `import { HeatmapChart } from "@gunjo/ui";
+
+const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const times = ["00", "04", "08", "12", "16", "20"];
+const data = times.flatMap((y, row) =>
+    days.map((x, column) => ({
+        x,
+        y,
+        value: Math.min(100, 30 + row * 8 + column * 4),
+    }))
+);
+
+const summary = days.map((x) => ({
+    x,
+    value: Math.max(...data.filter((cell) => cell.x === x).map((cell) => cell.value)),
+}));
+
+export function HeatmapWithSelectedCell() {
+    return (
+        <HeatmapChart
+            data={data}
+            xLabels={days}
+            yLabels={times}
+            summary={summary}
+            summaryLabel="Peak"
+            max={100}
+            selectedCell={{ x: "Thu", y: "12" }}
+            showValues
+        />
+    );
+}`,
+        compact: `import { HeatmapChart } from "@gunjo/ui";
+
+const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const times = ["00", "04", "08", "12", "16", "20"];
+const data = times.flatMap((y, row) =>
+    days.map((x, column) => ({
+        x,
+        y,
+        value: Math.min(100, 30 + row * 8 + column * 4),
+    }))
+);
+
+export function CompactTrafficHeatmap() {
+    return (
+        <HeatmapChart
+            data={data}
+            xLabels={days}
+            yLabels={times}
+            variant="compact"
+            max={100}
+        />
+    );
+}`,
+        alternateColor: `import { HeatmapChart } from "@gunjo/ui";
+
+const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+const times = ["00", "04", "08", "12", "16", "20"];
+const data = times.flatMap((y, row) =>
+    days.map((x, column) => ({
+        x,
+        y,
+        value: Math.min(100, 30 + row * 8 + column * 4),
+    }))
+);
+
+const summary = days.map((x) => ({
+    x,
+    value: Math.max(...data.filter((cell) => cell.x === x).map((cell) => cell.value)),
+}));
+
+export function SuccessToneHeatmap() {
+    return (
+        <HeatmapChart
+            data={data}
+            xLabels={days}
+            yLabels={times}
+            summary={summary}
+            summaryLabel="Peak"
+            max={100}
+            color="success"
+        />
+    );
+}`,
     },
     ja: {
-        default: `<HeatmapChart
-  data={data}
-  xLabels={days}
-  yLabels={times}
-  max={100}
-/>`,
-        summary: `<HeatmapChart
-  data={data}
-  xLabels={days}
-  yLabels={times}
-  summary={summary}
-  summaryLabel="ピーク"
-  max={100}
-  summaryMax={100}
-/>`,
-        values: `<HeatmapChart
-  data={data}
-  xLabels={days}
-  yLabels={times}
-  max={100}
-  showValues
-  formatValue={(value) => \`\${value}%\`}
-/>`,
-        selected: `<HeatmapChart
-  data={data}
-  xLabels={days}
-  yLabels={times}
-  summary={summary}
-  summaryLabel="ピーク"
-  max={100}
-  selectedCell={{ x: "木", y: "12" }}
-  showValues
-/>`,
-        compact: `<HeatmapChart
-  data={data}
-  xLabels={days}
-  yLabels={times}
-  variant="compact"
-  max={100}
-/>`,
-        alternateColor: `<HeatmapChart
-  data={data}
-  xLabels={days}
-  yLabels={times}
-  summary={summary}
-  summaryLabel="ピーク"
-  max={100}
-  color="success"
-/>`,
+        default: `import { HeatmapChart } from "@gunjo/ui";
+
+const days = ["月", "火", "水", "木", "金", "土", "日"];
+const times = ["00", "04", "08", "12", "16", "20"];
+const data = times.flatMap((y, row) =>
+    days.map((x, column) => ({
+        x,
+        y,
+        value: Math.min(100, 30 + row * 8 + column * 4),
+    }))
+);
+
+export function TrafficDensityHeatmap() {
+    return (
+        <HeatmapChart
+            data={data}
+            xLabels={days}
+            yLabels={times}
+            max={100}
+        />
+    );
+}`,
+        summary: `import { HeatmapChart } from "@gunjo/ui";
+
+const days = ["月", "火", "水", "木", "金", "土", "日"];
+const times = ["00", "04", "08", "12", "16", "20"];
+const data = times.flatMap((y, row) =>
+    days.map((x, column) => ({
+        x,
+        y,
+        value: Math.min(100, 30 + row * 8 + column * 4),
+    }))
+);
+
+const summary = days.map((x) => ({
+    x,
+    value: Math.max(...data.filter((cell) => cell.x === x).map((cell) => cell.value)),
+}));
+
+export function HeatmapWithPeakSummary() {
+    return (
+        <HeatmapChart
+            data={data}
+            xLabels={days}
+            yLabels={times}
+            summary={summary}
+            summaryLabel="ピーク"
+            max={100}
+            summaryMax={100}
+        />
+    );
+}`,
+        values: `import { HeatmapChart } from "@gunjo/ui";
+
+const days = ["月", "火", "水", "木", "金", "土", "日"];
+const times = ["00", "04", "08", "12", "16", "20"];
+const data = times.flatMap((y, row) =>
+    days.map((x, column) => ({
+        x,
+        y,
+        value: Math.min(100, 30 + row * 8 + column * 4),
+    }))
+);
+
+export function HeatmapWithValues() {
+    return (
+        <HeatmapChart
+            data={data}
+            xLabels={days}
+            yLabels={times}
+            max={100}
+            showValues
+            formatValue={(value) => value + "%"}
+        />
+    );
+}`,
+        selected: `import { HeatmapChart } from "@gunjo/ui";
+
+const days = ["月", "火", "水", "木", "金", "土", "日"];
+const times = ["00", "04", "08", "12", "16", "20"];
+const data = times.flatMap((y, row) =>
+    days.map((x, column) => ({
+        x,
+        y,
+        value: Math.min(100, 30 + row * 8 + column * 4),
+    }))
+);
+
+const summary = days.map((x) => ({
+    x,
+    value: Math.max(...data.filter((cell) => cell.x === x).map((cell) => cell.value)),
+}));
+
+export function HeatmapWithSelectedCell() {
+    return (
+        <HeatmapChart
+            data={data}
+            xLabels={days}
+            yLabels={times}
+            summary={summary}
+            summaryLabel="ピーク"
+            max={100}
+            selectedCell={{ x: "木", y: "12" }}
+            showValues
+        />
+    );
+}`,
+        compact: `import { HeatmapChart } from "@gunjo/ui";
+
+const days = ["月", "火", "水", "木", "金", "土", "日"];
+const times = ["00", "04", "08", "12", "16", "20"];
+const data = times.flatMap((y, row) =>
+    days.map((x, column) => ({
+        x,
+        y,
+        value: Math.min(100, 30 + row * 8 + column * 4),
+    }))
+);
+
+export function CompactTrafficHeatmap() {
+    return (
+        <HeatmapChart
+            data={data}
+            xLabels={days}
+            yLabels={times}
+            variant="compact"
+            max={100}
+        />
+    );
+}`,
+        alternateColor: `import { HeatmapChart } from "@gunjo/ui";
+
+const days = ["月", "火", "水", "木", "金", "土", "日"];
+const times = ["00", "04", "08", "12", "16", "20"];
+const data = times.flatMap((y, row) =>
+    days.map((x, column) => ({
+        x,
+        y,
+        value: Math.min(100, 30 + row * 8 + column * 4),
+    }))
+);
+
+const summary = days.map((x) => ({
+    x,
+    value: Math.max(...data.filter((cell) => cell.x === x).map((cell) => cell.value)),
+}));
+
+export function SuccessToneHeatmap() {
+    return (
+        <HeatmapChart
+            data={data}
+            xLabels={days}
+            yLabels={times}
+            summary={summary}
+            summaryLabel="ピーク"
+            max={100}
+            color="success"
+        />
+    );
+}`,
     },
 } as const;
 
@@ -344,10 +612,6 @@ const propsDataByLocale = {
 export default function HeatmapChartPage() {
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
     const { locale, sectionLabels } = useLocale();
-    const stateCodeData = usageCodeByLocale[locale]
-        .split("\n\n<HeatmapChart")[0]
-        .replace('import { HeatmapChart } from "@gunjo/ui";\n\n', "");
-    const withStateCodeData = (nextCode: string) => `${stateCodeData}\n\n${nextCode}`;
     const code = codeByLocale[locale];
     const usageCode = usageCodeByLocale[locale];
     const labels = heatmapLabelsByLocale[locale];
@@ -405,7 +669,7 @@ export default function HeatmapChartPage() {
                                 />
                             ),
                             previewBodyWidth: "lg",
-                            code: withStateCodeData(stateCodeByLocale[locale].default),
+                            code: stateCodeByLocale[locale].default,
                         },
                         {
                             key: "summary",
@@ -425,7 +689,7 @@ export default function HeatmapChartPage() {
                                 />
                             ),
                             previewBodyWidth: "lg",
-                            code: withStateCodeData(stateCodeByLocale[locale].summary),
+                            code: stateCodeByLocale[locale].summary,
                         },
                         {
                             key: "values",
@@ -444,7 +708,7 @@ export default function HeatmapChartPage() {
                                 />
                             ),
                             previewBodyWidth: "lg",
-                            code: withStateCodeData(stateCodeByLocale[locale].values),
+                            code: stateCodeByLocale[locale].values,
                         },
                         {
                             key: "selected",
@@ -465,7 +729,7 @@ export default function HeatmapChartPage() {
                                 />
                             ),
                             previewBodyWidth: "lg",
-                            code: withStateCodeData(stateCodeByLocale[locale].selected),
+                            code: stateCodeByLocale[locale].selected,
                         },
                         {
                             key: "compact",
@@ -483,7 +747,7 @@ export default function HeatmapChartPage() {
                                 />
                             ),
                             previewBodyWidth: "lg",
-                            code: withStateCodeData(stateCodeByLocale[locale].compact),
+                            code: stateCodeByLocale[locale].compact,
                         },
                         {
                             key: "alternate-color",
@@ -503,7 +767,7 @@ export default function HeatmapChartPage() {
                                 />
                             ),
                             previewBodyWidth: "lg",
-                            code: withStateCodeData(stateCodeByLocale[locale].alternateColor),
+                            code: stateCodeByLocale[locale].alternateColor,
                         },
                     ]}
                 />
