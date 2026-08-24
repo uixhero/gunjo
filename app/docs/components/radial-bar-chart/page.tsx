@@ -31,7 +31,12 @@ const data = [
 ];
 
 export function ChannelProgressRings() {
-    return <RadialBarChart data={data} centerValue="64%" centerLabel="Average" showLegend />;
+    return <RadialBarChart
+      data={data}
+      centerValue="64%"
+      centerLabel="Average"
+      showLegend
+    />;
 }`, ja: `import { RadialBarChart } from "@gunjo/ui";
 
 const data = [
@@ -41,7 +46,13 @@ const data = [
 ];
 
 export function ChannelProgressRings() {
-    return <RadialBarChart data={data} centerValue="64%" centerLabel="平均" showLegend maxLabel="最大" />;
+    return <RadialBarChart
+      data={data}
+      centerValue="64%"
+      centerLabel="平均"
+      showLegend
+      maxLabel="最大"
+    />;
 }` } as const;
 const usageCode = { en: `import { RadialBarChart } from "@gunjo/ui";
 

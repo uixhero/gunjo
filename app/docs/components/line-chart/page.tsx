@@ -27,27 +27,87 @@ const seriesCode = {
 const code = { en: `import { LineChart } from "@gunjo/ui";
 
 const series = [
-  { label: "Revenue", color: "primary", data: [{ label: "Jan", value: 42 }, { label: "Feb", value: 58 }, { label: "Mar", value: 36 }] },
-  { label: "Target", color: "success", data: [{ label: "Jan", value: 46 }, { label: "Feb", value: 52 }, { label: "Mar", value: 48 }] },
+  {
+    label: "Revenue",
+    color: "primary",
+    data: [
+      { label: "Jan", value: 42 },
+      { label: "Feb", value: 58 },
+      { label: "Mar", value: 36 },
+    ],
+  },
+  {
+    label: "Target",
+    color: "success",
+    data: [
+      { label: "Jan", value: 46 },
+      { label: "Feb", value: 52 },
+      { label: "Mar", value: 48 },
+    ],
+  },
 ];
 
 export function RevenueComparison() {
-  return <LineChart series={series} variant="area" referenceValue={55} referenceLabel="Average" showLegend />;
+  return <LineChart
+    series={series}
+    variant="area"
+    referenceValue={55}
+    referenceLabel="Average"
+    showLegend
+  />;
 }`, ja: `import { LineChart } from "@gunjo/ui";
 
 const series = [
-  { label: "売上", color: "primary", data: [{ label: "1月", value: 42 }, { label: "2月", value: 58 }, { label: "3月", value: 36 }] },
-  { label: "目標", color: "success", data: [{ label: "1月", value: 46 }, { label: "2月", value: 52 }, { label: "3月", value: 48 }] },
+  {
+    label: "売上",
+    color: "primary",
+    data: [
+      { label: "1月", value: 42 },
+      { label: "2月", value: 58 },
+      { label: "3月", value: 36 },
+    ],
+  },
+  {
+    label: "目標",
+    color: "success",
+    data: [
+      { label: "1月", value: 46 },
+      { label: "2月", value: 52 },
+      { label: "3月", value: 48 },
+    ],
+  },
 ];
 
 export function RevenueComparison() {
-  return <LineChart series={series} variant="area" referenceValue={55} referenceLabel="平均" showLegend />;
+  return <LineChart
+    series={series}
+    variant="area"
+    referenceValue={55}
+    referenceLabel="平均"
+    showLegend
+  />;
 }` } as const;
 const usageCode = { en: `import { LineChart } from "@gunjo/ui";
 
 const series = [
-  { label: "Revenue", color: "primary", data: [{ label: "Jan", value: 42 }, { label: "Feb", value: 58 }, { label: "Mar", value: 36 }] },
-  { label: "Target", color: "success", data: [{ label: "Jan", value: 46 }, { label: "Feb", value: 52 }, { label: "Mar", value: 48 }] },
+  {
+    label: "Revenue",
+    color: "primary",
+    data: [
+      { label: "Jan", value: 42 },
+      { label: "Feb", value: 58 },
+      { label: "Mar", value: 36 },
+    ],
+  },
+  {
+    label: "Target",
+    color: "success",
+    data: [
+      { label: "Jan", value: 46 },
+      { label: "Feb", value: 52 },
+      { label: "Mar", value: 48 },
+    ],
+  },
 ];
 
 export function RevenueTrendVariants() {
@@ -55,14 +115,35 @@ export function RevenueTrendVariants() {
         <div className="grid gap-6">
             <LineChart series={series} />
             <LineChart series={series} variant="area" showLegend />
-            <LineChart series={series} referenceValue={50} referenceLabel="Goal" showDots={false} />
+            <LineChart
+              series={series}
+              referenceValue={50}
+              referenceLabel="Goal"
+              showDots={false}
+            />
         </div>
     );
 }`, ja: `import { LineChart } from "@gunjo/ui";
 
 const series = [
-  { label: "売上", color: "primary", data: [{ label: "1月", value: 42 }, { label: "2月", value: 58 }, { label: "3月", value: 36 }] },
-  { label: "目標", color: "success", data: [{ label: "1月", value: 46 }, { label: "2月", value: 52 }, { label: "3月", value: 48 }] },
+  {
+    label: "売上",
+    color: "primary",
+    data: [
+      { label: "1月", value: 42 },
+      { label: "2月", value: 58 },
+      { label: "3月", value: 36 },
+    ],
+  },
+  {
+    label: "目標",
+    color: "success",
+    data: [
+      { label: "1月", value: 46 },
+      { label: "2月", value: 52 },
+      { label: "3月", value: 48 },
+    ],
+  },
 ];
 
 export function RevenueTrendVariants() {
@@ -70,7 +151,12 @@ export function RevenueTrendVariants() {
         <div className="grid gap-6">
             <LineChart series={series} />
             <LineChart series={series} variant="area" showLegend />
-            <LineChart series={series} referenceValue={50} referenceLabel="目標" showDots={false} />
+            <LineChart
+              series={series}
+              referenceValue={50}
+              referenceLabel="目標"
+              showDots={false}
+            />
         </div>
     );
 }` } as const;
@@ -97,8 +183,24 @@ const states = {
         { key: "line", title: "Line", description: "The registered line variant for direct time-series comparison.", preview: <LineChart series={seriesByLocale.en} />, previewBodyWidth: "full", code: `import { LineChart } from "@gunjo/ui";
 
 const series = [
-  { label: "Revenue", color: "primary", data: [{ label: "Jan", value: 42 }, { label: "Feb", value: 58 }, { label: "Mar", value: 36 }] },
-  { label: "Target", color: "success", data: [{ label: "Jan", value: 46 }, { label: "Feb", value: 52 }, { label: "Mar", value: 48 }] },
+  {
+    label: "Revenue",
+    color: "primary",
+    data: [
+      { label: "Jan", value: 42 },
+      { label: "Feb", value: 58 },
+      { label: "Mar", value: 36 },
+    ],
+  },
+  {
+    label: "Target",
+    color: "success",
+    data: [
+      { label: "Jan", value: 46 },
+      { label: "Feb", value: 52 },
+      { label: "Mar", value: 48 },
+    ],
+  },
 ];
 
 export function RevenueTrendLine() {
@@ -107,20 +209,58 @@ export function RevenueTrendLine() {
         { key: "area", title: "Area with legend", description: "Adds area fill, a reference line, and series legend for dashboard panels.", preview: <LineChart series={seriesByLocale.en} variant="area" referenceValue={55} referenceLabel="Average" showLegend />, previewBodyWidth: "full", code: `import { LineChart } from "@gunjo/ui";
 
 const series = [
-  { label: "Revenue", color: "primary", data: [{ label: "Jan", value: 42 }, { label: "Feb", value: 58 }, { label: "Mar", value: 36 }] },
-  { label: "Target", color: "success", data: [{ label: "Jan", value: 46 }, { label: "Feb", value: 52 }, { label: "Mar", value: 48 }] },
+  {
+    label: "Revenue",
+    color: "primary",
+    data: [
+      { label: "Jan", value: 42 },
+      { label: "Feb", value: 58 },
+      { label: "Mar", value: 36 },
+    ],
+  },
+  {
+    label: "Target",
+    color: "success",
+    data: [
+      { label: "Jan", value: 46 },
+      { label: "Feb", value: 52 },
+      { label: "Mar", value: 48 },
+    ],
+  },
 ];
 
 export function RevenueTrendArea() {
     return (
-        <LineChart series={series} variant="area" referenceValue={55} referenceLabel="Average" showLegend />
+        <LineChart
+          series={series}
+          variant="area"
+          referenceValue={55}
+          referenceLabel="Average"
+          showLegend
+        />
     );
 }` },
         { key: "no-dots", title: "Without point markers", description: "Hides markers when the trend shape matters more than individual samples.", preview: <LineChart series={seriesByLocale.en} showDots={false} showGrid={false} />, previewBodyWidth: "full", code: `import { LineChart } from "@gunjo/ui";
 
 const series = [
-  { label: "Revenue", color: "primary", data: [{ label: "Jan", value: 42 }, { label: "Feb", value: 58 }, { label: "Mar", value: 36 }] },
-  { label: "Target", color: "success", data: [{ label: "Jan", value: 46 }, { label: "Feb", value: 52 }, { label: "Mar", value: 48 }] },
+  {
+    label: "Revenue",
+    color: "primary",
+    data: [
+      { label: "Jan", value: 42 },
+      { label: "Feb", value: 58 },
+      { label: "Mar", value: 36 },
+    ],
+  },
+  {
+    label: "Target",
+    color: "success",
+    data: [
+      { label: "Jan", value: 46 },
+      { label: "Feb", value: 52 },
+      { label: "Mar", value: 48 },
+    ],
+  },
 ];
 
 export function RevenueTrendWithoutDots() {
@@ -129,13 +269,36 @@ export function RevenueTrendWithoutDots() {
         { key: "bounded", title: "Explicit range", description: "Locks the vertical domain when multiple charts need comparable scale.", preview: <LineChart series={seriesByLocale.en} min={0} max={100} referenceValue={75} referenceLabel="Goal" showLegend />, previewBodyWidth: "full", code: `import { LineChart } from "@gunjo/ui";
 
 const series = [
-  { label: "Revenue", color: "primary", data: [{ label: "Jan", value: 42 }, { label: "Feb", value: 58 }, { label: "Mar", value: 36 }] },
-  { label: "Target", color: "success", data: [{ label: "Jan", value: 46 }, { label: "Feb", value: 52 }, { label: "Mar", value: 48 }] },
+  {
+    label: "Revenue",
+    color: "primary",
+    data: [
+      { label: "Jan", value: 42 },
+      { label: "Feb", value: 58 },
+      { label: "Mar", value: 36 },
+    ],
+  },
+  {
+    label: "Target",
+    color: "success",
+    data: [
+      { label: "Jan", value: 46 },
+      { label: "Feb", value: 52 },
+      { label: "Mar", value: 48 },
+    ],
+  },
 ];
 
 export function RevenueTrendFixedRange() {
     return (
-        <LineChart series={series} min={0} max={100} referenceValue={75} referenceLabel="Goal" showLegend />
+        <LineChart
+          series={series}
+          min={0}
+          max={100}
+          referenceValue={75}
+          referenceLabel="Goal"
+          showLegend
+        />
     );
 }` },
     ],
@@ -143,8 +306,24 @@ export function RevenueTrendFixedRange() {
         { key: "line", title: "線表示", description: "時系列を直接比較する SSOT 登録済みの線バリエーションです。", preview: <LineChart series={seriesByLocale.ja} />, previewBodyWidth: "full", code: `import { LineChart } from "@gunjo/ui";
 
 const series = [
-  { label: "売上", color: "primary", data: [{ label: "1月", value: 42 }, { label: "2月", value: 58 }, { label: "3月", value: 36 }] },
-  { label: "目標", color: "success", data: [{ label: "1月", value: 46 }, { label: "2月", value: 52 }, { label: "3月", value: 48 }] },
+  {
+    label: "売上",
+    color: "primary",
+    data: [
+      { label: "1月", value: 42 },
+      { label: "2月", value: 58 },
+      { label: "3月", value: 36 },
+    ],
+  },
+  {
+    label: "目標",
+    color: "success",
+    data: [
+      { label: "1月", value: 46 },
+      { label: "2月", value: 52 },
+      { label: "3月", value: 48 },
+    ],
+  },
 ];
 
 export function RevenueTrendLine() {
@@ -153,18 +332,56 @@ export function RevenueTrendLine() {
         { key: "area", title: "面表示と凡例", description: "面の塗り、基準線、系列凡例を加えてダッシュボードで読みやすくします。", preview: <LineChart series={seriesByLocale.ja} variant="area" referenceValue={55} referenceLabel="平均" showLegend />, previewBodyWidth: "full", code: `import { LineChart } from "@gunjo/ui";
 
 const series = [
-  { label: "売上", color: "primary", data: [{ label: "1月", value: 42 }, { label: "2月", value: 58 }, { label: "3月", value: 36 }] },
-  { label: "目標", color: "success", data: [{ label: "1月", value: 46 }, { label: "2月", value: 52 }, { label: "3月", value: 48 }] },
+  {
+    label: "売上",
+    color: "primary",
+    data: [
+      { label: "1月", value: 42 },
+      { label: "2月", value: 58 },
+      { label: "3月", value: 36 },
+    ],
+  },
+  {
+    label: "目標",
+    color: "success",
+    data: [
+      { label: "1月", value: 46 },
+      { label: "2月", value: 52 },
+      { label: "3月", value: 48 },
+    ],
+  },
 ];
 
 export function RevenueTrendArea() {
-    return <LineChart series={series} variant="area" referenceValue={55} referenceLabel="平均" showLegend />;
+    return <LineChart
+      series={series}
+      variant="area"
+      referenceValue={55}
+      referenceLabel="平均"
+      showLegend
+    />;
 }` },
         { key: "no-dots", title: "点なし", description: "個別の点より傾向線を優先したい場合はマーカーを非表示にします。", preview: <LineChart series={seriesByLocale.ja} showDots={false} showGrid={false} />, previewBodyWidth: "full", code: `import { LineChart } from "@gunjo/ui";
 
 const series = [
-  { label: "売上", color: "primary", data: [{ label: "1月", value: 42 }, { label: "2月", value: 58 }, { label: "3月", value: 36 }] },
-  { label: "目標", color: "success", data: [{ label: "1月", value: 46 }, { label: "2月", value: 52 }, { label: "3月", value: 48 }] },
+  {
+    label: "売上",
+    color: "primary",
+    data: [
+      { label: "1月", value: 42 },
+      { label: "2月", value: 58 },
+      { label: "3月", value: 36 },
+    ],
+  },
+  {
+    label: "目標",
+    color: "success",
+    data: [
+      { label: "1月", value: 46 },
+      { label: "2月", value: 52 },
+      { label: "3月", value: 48 },
+    ],
+  },
 ];
 
 export function RevenueTrendWithoutDots() {
@@ -173,13 +390,36 @@ export function RevenueTrendWithoutDots() {
         { key: "bounded", title: "範囲固定", description: "複数チャートのスケールを揃えたい場合に縦軸の範囲を固定します。", preview: <LineChart series={seriesByLocale.ja} min={0} max={100} referenceValue={75} referenceLabel="目標" showLegend />, previewBodyWidth: "full", code: `import { LineChart } from "@gunjo/ui";
 
 const series = [
-  { label: "売上", color: "primary", data: [{ label: "1月", value: 42 }, { label: "2月", value: 58 }, { label: "3月", value: 36 }] },
-  { label: "目標", color: "success", data: [{ label: "1月", value: 46 }, { label: "2月", value: 52 }, { label: "3月", value: 48 }] },
+  {
+    label: "売上",
+    color: "primary",
+    data: [
+      { label: "1月", value: 42 },
+      { label: "2月", value: 58 },
+      { label: "3月", value: 36 },
+    ],
+  },
+  {
+    label: "目標",
+    color: "success",
+    data: [
+      { label: "1月", value: 46 },
+      { label: "2月", value: 52 },
+      { label: "3月", value: 48 },
+    ],
+  },
 ];
 
 export function RevenueTrendFixedRange() {
     return (
-        <LineChart series={series} min={0} max={100} referenceValue={75} referenceLabel="目標" showLegend />
+        <LineChart
+          series={series}
+          min={0}
+          max={100}
+          referenceValue={75}
+          referenceLabel="目標"
+          showLegend
+        />
     );
 }` },
     ],

@@ -32,7 +32,12 @@ const segments = [
 
 export function ProductCategoryDistribution() {
     return (
-        <MiniDistributionBarCard title="Product categories" value="58%" segments={segments} selectedIndex={0} />
+        <MiniDistributionBarCard
+          title="Product categories"
+          value="58%"
+          segments={segments}
+          selectedIndex={0}
+        />
     );
 }`, ja: `import { MiniDistributionBarCard } from "@gunjo/ui";
 
@@ -43,7 +48,12 @@ const segments = [
 ];
 
 export function ProductCategoryDistribution() {
-    return <MiniDistributionBarCard title="商品カテゴリ" value="58%" segments={segments} selectedIndex={0} />;
+    return <MiniDistributionBarCard
+      title="商品カテゴリ"
+      value="58%"
+      segments={segments}
+      selectedIndex={0}
+    />;
 }` } as const;
 const usageCode = { en: `import { MiniDistributionBarCard } from "@gunjo/ui";
 
@@ -89,7 +99,12 @@ const segments = [
 
 export function ProductCategoryDistribution() {
     return (
-        <MiniDistributionBarCard title="Product categories" value="58%" segments={segments} selectedIndex={0} />
+        <MiniDistributionBarCard
+          title="Product categories"
+          value="58%"
+          segments={segments}
+          selectedIndex={0}
+        />
     );
 }` }, { key: "selected", title: "Selected segment", description: "Highlights the segment currently being inspected.", preview: <MiniDistributionBarCard title="Product categories" value="26%" segments={segmentsByLocale.en} selectedIndex={1} />, previewBodyWidth: "md", code: `import { MiniDistributionBarCard } from "@gunjo/ui";
 
@@ -130,7 +145,12 @@ const segments = [
 ];
 
 export function ProductCategoryDistribution() {
-    return <MiniDistributionBarCard title="商品カテゴリ" value="58%" segments={segments} selectedIndex={0} />;
+    return <MiniDistributionBarCard
+      title="商品カテゴリ"
+      value="58%"
+      segments={segments}
+      selectedIndex={0}
+    />;
 }` }, { key: "selected", title: "選択中セグメント", description: "確認中のセグメントを強調します。", preview: <MiniDistributionBarCard title="商品カテゴリ" value="26%" segments={segmentsByLocale.ja} selectedIndex={1} />, previewBodyWidth: "md", code: `import { MiniDistributionBarCard } from "@gunjo/ui";
 
 const segments = [

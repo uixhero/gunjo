@@ -42,9 +42,30 @@ const quadrantLabelsCode = {
 const code = { en: `import { QuadrantMatrix } from "@gunjo/ui";
 
 const items = [
-    { id: "activation", label: "Activation", description: "High impact", value: 88, x: 72, y: 34 },
-    { id: "expansion", label: "Expansion", description: "Scale candidate", value: 76, x: 58, y: 24 },
-    { id: "retention", label: "Retention", description: "Strong fit", value: 64, x: 42, y: 44 },
+    {
+      id: "activation",
+      label: "Activation",
+      description: "High impact",
+      value: 88,
+      x: 72,
+      y: 34,
+    },
+    {
+      id: "expansion",
+      label: "Expansion",
+      description: "Scale candidate",
+      value: 76,
+      x: 58,
+      y: 24,
+    },
+    {
+      id: "retention",
+      label: "Retention",
+      description: "Strong fit",
+      value: 64,
+      x: 42,
+      y: 44,
+    },
     { id: "risk", label: "Risk", description: "Needs review", value: 52, x: 30, y: 72 },
 ];
 
@@ -97,9 +118,30 @@ export function OpportunityQuadrant() {
 const usageCode = { en: `import { QuadrantMatrix } from "@gunjo/ui";
 
 const items = [
-    { id: "activation", label: "Activation", description: "High impact", value: 88, x: 72, y: 34 },
-    { id: "expansion", label: "Expansion", description: "Scale candidate", value: 76, x: 58, y: 24 },
-    { id: "retention", label: "Retention", description: "Strong fit", value: 64, x: 42, y: 44 },
+    {
+      id: "activation",
+      label: "Activation",
+      description: "High impact",
+      value: 88,
+      x: 72,
+      y: 34,
+    },
+    {
+      id: "expansion",
+      label: "Expansion",
+      description: "Scale candidate",
+      value: 76,
+      x: 58,
+      y: 24,
+    },
+    {
+      id: "retention",
+      label: "Retention",
+      description: "Strong fit",
+      value: 64,
+      x: 42,
+      y: 44,
+    },
     { id: "risk", label: "Risk", description: "Needs review", value: 52, x: 30, y: 72 },
 ];
 
@@ -157,9 +199,30 @@ const propsData = { en: [{"name":"items","type":"QuadrantMatrixItem[]","descript
 const states = { en: [{ key: "default", title: "Default", description: "Matrix with side ranking.", preview: <QuadrantMatrix items={itemsByLocale.en} xAxisLabel="Reach" yAxisLabel="Impact" showRanking />, previewBodyWidth: "xl", code: `import { QuadrantMatrix } from "@gunjo/ui";
 
 const items = [
-    { id: "activation", label: "Activation", description: "High impact", value: 88, x: 72, y: 34 },
-    { id: "expansion", label: "Expansion", description: "Scale candidate", value: 76, x: 58, y: 24 },
-    { id: "retention", label: "Retention", description: "Strong fit", value: 64, x: 42, y: 44 },
+    {
+      id: "activation",
+      label: "Activation",
+      description: "High impact",
+      value: 88,
+      x: 72,
+      y: 34,
+    },
+    {
+      id: "expansion",
+      label: "Expansion",
+      description: "Scale candidate",
+      value: 76,
+      x: 58,
+      y: 24,
+    },
+    {
+      id: "retention",
+      label: "Retention",
+      description: "Strong fit",
+      value: 64,
+      x: 42,
+      y: 44,
+    },
     { id: "risk", label: "Risk", description: "Needs review", value: 52, x: 30, y: 72 },
 ];
 
@@ -172,14 +235,41 @@ const quadrantLabels = {
 
 export function OpportunityQuadrant() {
     return (
-        <QuadrantMatrix items={items} xAxisLabel="Reach" yAxisLabel="Impact" quadrantLabels={quadrantLabels} showRanking />
+        <QuadrantMatrix
+          items={items}
+          xAxisLabel="Reach"
+          yAxisLabel="Impact"
+          quadrantLabels={quadrantLabels}
+          showRanking
+        />
     );
 }` }, { key: "selected", title: "Selected item", description: "Highlights the inspected item.", preview: <QuadrantMatrix items={itemsByLocale.en} selectedId="activation" xAxisLabel="Reach" yAxisLabel="Impact" showRanking />, previewBodyWidth: "xl", code: `import { QuadrantMatrix } from "@gunjo/ui";
 
 const items = [
-    { id: "activation", label: "Activation", description: "High impact", value: 88, x: 72, y: 34 },
-    { id: "expansion", label: "Expansion", description: "Scale candidate", value: 76, x: 58, y: 24 },
-    { id: "retention", label: "Retention", description: "Strong fit", value: 64, x: 42, y: 44 },
+    {
+      id: "activation",
+      label: "Activation",
+      description: "High impact",
+      value: 88,
+      x: 72,
+      y: 34,
+    },
+    {
+      id: "expansion",
+      label: "Expansion",
+      description: "Scale candidate",
+      value: 76,
+      x: 58,
+      y: 24,
+    },
+    {
+      id: "retention",
+      label: "Retention",
+      description: "Strong fit",
+      value: 64,
+      x: 42,
+      y: 44,
+    },
     { id: "risk", label: "Risk", description: "Needs review", value: 52, x: 30, y: 72 },
 ];
 
@@ -192,14 +282,42 @@ const quadrantLabels = {
 
 export function SelectedOpportunityQuadrant() {
     return (
-        <QuadrantMatrix items={items} selectedId="activation" xAxisLabel="Reach" yAxisLabel="Impact" quadrantLabels={quadrantLabels} showRanking />
+        <QuadrantMatrix
+          items={items}
+          selectedId="activation"
+          xAxisLabel="Reach"
+          yAxisLabel="Impact"
+          quadrantLabels={quadrantLabels}
+          showRanking
+        />
     );
 }` }, { key: "bottom", title: "Bottom ranking", description: "Moves ranking below the matrix for narrower containers.", preview: <QuadrantMatrix items={itemsByLocale.en} rankingPlacement="bottom" rankingLimit={3} />, previewBodyWidth: "lg", code: `import { QuadrantMatrix } from "@gunjo/ui";
 
 const items = [
-    { id: "activation", label: "Activation", description: "High impact", value: 88, x: 72, y: 34 },
-    { id: "expansion", label: "Expansion", description: "Scale candidate", value: 76, x: 58, y: 24 },
-    { id: "retention", label: "Retention", description: "Strong fit", value: 64, x: 42, y: 44 },
+    {
+      id: "activation",
+      label: "Activation",
+      description: "High impact",
+      value: 88,
+      x: 72,
+      y: 34,
+    },
+    {
+      id: "expansion",
+      label: "Expansion",
+      description: "Scale candidate",
+      value: 76,
+      x: 58,
+      y: 24,
+    },
+    {
+      id: "retention",
+      label: "Retention",
+      description: "Strong fit",
+      value: 64,
+      x: 42,
+      y: 44,
+    },
     { id: "risk", label: "Risk", description: "Needs review", value: 52, x: 30, y: 72 },
 ];
 
@@ -208,9 +326,30 @@ export function OpportunityQuadrantBottomRanking() {
 }` }, { key: "compact", title: "Compact", description: "Compact variant with limited ranking.", preview: <QuadrantMatrix items={itemsByLocale.en} variant="compact" rankingLimit={3} />, previewBodyWidth: "md", code: `import { QuadrantMatrix } from "@gunjo/ui";
 
 const items = [
-    { id: "activation", label: "Activation", description: "High impact", value: 88, x: 72, y: 34 },
-    { id: "expansion", label: "Expansion", description: "Scale candidate", value: 76, x: 58, y: 24 },
-    { id: "retention", label: "Retention", description: "Strong fit", value: 64, x: 42, y: 44 },
+    {
+      id: "activation",
+      label: "Activation",
+      description: "High impact",
+      value: 88,
+      x: 72,
+      y: 34,
+    },
+    {
+      id: "expansion",
+      label: "Expansion",
+      description: "Scale candidate",
+      value: 76,
+      x: 58,
+      y: 24,
+    },
+    {
+      id: "retention",
+      label: "Retention",
+      description: "Strong fit",
+      value: 64,
+      x: 42,
+      y: 44,
+    },
     { id: "risk", label: "Risk", description: "Needs review", value: 52, x: 30, y: 72 },
 ];
 
@@ -234,7 +373,13 @@ const quadrantLabels = {
 
 export function OpportunityQuadrant() {
     return (
-        <QuadrantMatrix items={items} xAxisLabel="到達範囲" yAxisLabel="影響度" quadrantLabels={quadrantLabels} showRanking />
+        <QuadrantMatrix
+          items={items}
+          xAxisLabel="到達範囲"
+          yAxisLabel="影響度"
+          quadrantLabels={quadrantLabels}
+          showRanking
+        />
     );
 }` }, { key: "selected", title: "選択項目", description: "確認中の項目を強調します。", preview: <QuadrantMatrix items={itemsByLocale.ja} selectedId="activation" xAxisLabel="到達範囲" yAxisLabel="影響度" showRanking />, previewBodyWidth: "xl", code: `import { QuadrantMatrix } from "@gunjo/ui";
 
@@ -254,7 +399,14 @@ const quadrantLabels = {
 
 export function SelectedOpportunityQuadrant() {
     return (
-        <QuadrantMatrix items={items} selectedId="activation" xAxisLabel="到達範囲" yAxisLabel="影響度" quadrantLabels={quadrantLabels} showRanking />
+        <QuadrantMatrix
+          items={items}
+          selectedId="activation"
+          xAxisLabel="到達範囲"
+          yAxisLabel="影響度"
+          quadrantLabels={quadrantLabels}
+          showRanking
+        />
     );
 }` }, { key: "bottom", title: "下部ランキング", description: "狭い領域向けにランキングを下へ移動します。", preview: <QuadrantMatrix items={itemsByLocale.ja} rankingPlacement="bottom" rankingLimit={3} />, previewBodyWidth: "lg", code: `import { QuadrantMatrix } from "@gunjo/ui";
 

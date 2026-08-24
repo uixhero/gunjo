@@ -25,9 +25,42 @@ const layersCode = {
 const code = { en: `import { AnalyticsCard, RibbonChart } from "@gunjo/ui";
 
 const layers = [
-    { label: "New", color: "primary", data: [{ label: "Jan", value: 22 }, { label: "Feb", value: 30 }, { label: "Mar", value: 36 }, { label: "Apr", value: 44 }, { label: "May", value: 52 }, { label: "Jun", value: 60 }] },
-    { label: "Returning", color: "success", data: [{ label: "Jan", value: 16 }, { label: "Feb", value: 22 }, { label: "Mar", value: 30 }, { label: "Apr", value: 38 }, { label: "May", value: 46 }, { label: "Jun", value: 52 }] },
-    { label: "Expansion", color: "warning", data: [{ label: "Jan", value: 8 }, { label: "Feb", value: 14 }, { label: "Mar", value: 22 }, { label: "Apr", value: 30 }, { label: "May", value: 38 }, { label: "Jun", value: 48 }] },
+    {
+      label: "New",
+      color: "primary",
+      data: [
+        { label: "Jan", value: 22 },
+        { label: "Feb", value: 30 },
+        { label: "Mar", value: 36 },
+        { label: "Apr", value: 44 },
+        { label: "May", value: 52 },
+        { label: "Jun", value: 60 },
+      ],
+    },
+    {
+      label: "Returning",
+      color: "success",
+      data: [
+        { label: "Jan", value: 16 },
+        { label: "Feb", value: 22 },
+        { label: "Mar", value: 30 },
+        { label: "Apr", value: 38 },
+        { label: "May", value: 46 },
+        { label: "Jun", value: 52 },
+      ],
+    },
+    {
+      label: "Expansion",
+      color: "warning",
+      data: [
+        { label: "Jan", value: 8 },
+        { label: "Feb", value: 14 },
+        { label: "Mar", value: 22 },
+        { label: "Apr", value: 30 },
+        { label: "May", value: 38 },
+        { label: "Jun", value: 48 },
+      ],
+    },
 ];
 
 export function RevenueFlowCard() {
@@ -51,9 +84,42 @@ export function RevenueFlowCard() {
 }`, ja: `import { AnalyticsCard, RibbonChart } from "@gunjo/ui";
 
 const layers = [
-    { label: "新規", color: "primary", data: [{ label: "1月", value: 22 }, { label: "2月", value: 30 }, { label: "3月", value: 36 }, { label: "4月", value: 44 }, { label: "5月", value: 52 }, { label: "6月", value: 60 }] },
-    { label: "継続", color: "success", data: [{ label: "1月", value: 16 }, { label: "2月", value: 22 }, { label: "3月", value: 30 }, { label: "4月", value: 38 }, { label: "5月", value: 46 }, { label: "6月", value: 52 }] },
-    { label: "拡張", color: "warning", data: [{ label: "1月", value: 8 }, { label: "2月", value: 14 }, { label: "3月", value: 22 }, { label: "4月", value: 30 }, { label: "5月", value: 38 }, { label: "6月", value: 48 }] },
+    {
+      label: "新規",
+      color: "primary",
+      data: [
+        { label: "1月", value: 22 },
+        { label: "2月", value: 30 },
+        { label: "3月", value: 36 },
+        { label: "4月", value: 44 },
+        { label: "5月", value: 52 },
+        { label: "6月", value: 60 },
+      ],
+    },
+    {
+      label: "継続",
+      color: "success",
+      data: [
+        { label: "1月", value: 16 },
+        { label: "2月", value: 22 },
+        { label: "3月", value: 30 },
+        { label: "4月", value: 38 },
+        { label: "5月", value: 46 },
+        { label: "6月", value: 52 },
+      ],
+    },
+    {
+      label: "拡張",
+      color: "warning",
+      data: [
+        { label: "1月", value: 8 },
+        { label: "2月", value: 14 },
+        { label: "3月", value: 22 },
+        { label: "4月", value: 30 },
+        { label: "5月", value: 38 },
+        { label: "6月", value: 48 },
+      ],
+    },
 ];
 
 export function RevenueFlowCard() {
@@ -78,9 +144,42 @@ export function RevenueFlowCard() {
 const usageCode = { en: `import { RibbonChart } from "@gunjo/ui";
 
 const layers = [
-    { label: "New", color: "primary", data: [{ label: "Jan", value: 22 }, { label: "Feb", value: 30 }, { label: "Mar", value: 36 }, { label: "Apr", value: 44 }, { label: "May", value: 52 }, { label: "Jun", value: 60 }] },
-    { label: "Returning", color: "success", data: [{ label: "Jan", value: 16 }, { label: "Feb", value: 22 }, { label: "Mar", value: 30 }, { label: "Apr", value: 38 }, { label: "May", value: 46 }, { label: "Jun", value: 52 }] },
-    { label: "Expansion", color: "warning", data: [{ label: "Jan", value: 8 }, { label: "Feb", value: 14 }, { label: "Mar", value: 22 }, { label: "Apr", value: 30 }, { label: "May", value: 38 }, { label: "Jun", value: 48 }] },
+    {
+      label: "New",
+      color: "primary",
+      data: [
+        { label: "Jan", value: 22 },
+        { label: "Feb", value: 30 },
+        { label: "Mar", value: 36 },
+        { label: "Apr", value: 44 },
+        { label: "May", value: 52 },
+        { label: "Jun", value: 60 },
+      ],
+    },
+    {
+      label: "Returning",
+      color: "success",
+      data: [
+        { label: "Jan", value: 16 },
+        { label: "Feb", value: 22 },
+        { label: "Mar", value: 30 },
+        { label: "Apr", value: 38 },
+        { label: "May", value: 46 },
+        { label: "Jun", value: 52 },
+      ],
+    },
+    {
+      label: "Expansion",
+      color: "warning",
+      data: [
+        { label: "Jan", value: 8 },
+        { label: "Feb", value: 14 },
+        { label: "Mar", value: 22 },
+        { label: "Apr", value: 30 },
+        { label: "May", value: 38 },
+        { label: "Jun", value: 48 },
+      ],
+    },
 ];
 
 export function RevenueFlowVariants() {
@@ -94,9 +193,42 @@ export function RevenueFlowVariants() {
 }`, ja: `import { RibbonChart } from "@gunjo/ui";
 
 const layers = [
-    { label: "新規", color: "primary", data: [{ label: "1月", value: 22 }, { label: "2月", value: 30 }, { label: "3月", value: 36 }, { label: "4月", value: 44 }, { label: "5月", value: 52 }, { label: "6月", value: 60 }] },
-    { label: "継続", color: "success", data: [{ label: "1月", value: 16 }, { label: "2月", value: 22 }, { label: "3月", value: 30 }, { label: "4月", value: 38 }, { label: "5月", value: 46 }, { label: "6月", value: 52 }] },
-    { label: "拡張", color: "warning", data: [{ label: "1月", value: 8 }, { label: "2月", value: 14 }, { label: "3月", value: 22 }, { label: "4月", value: 30 }, { label: "5月", value: 38 }, { label: "6月", value: 48 }] },
+    {
+      label: "新規",
+      color: "primary",
+      data: [
+        { label: "1月", value: 22 },
+        { label: "2月", value: 30 },
+        { label: "3月", value: 36 },
+        { label: "4月", value: 44 },
+        { label: "5月", value: 52 },
+        { label: "6月", value: 60 },
+      ],
+    },
+    {
+      label: "継続",
+      color: "success",
+      data: [
+        { label: "1月", value: 16 },
+        { label: "2月", value: 22 },
+        { label: "3月", value: 30 },
+        { label: "4月", value: 38 },
+        { label: "5月", value: 46 },
+        { label: "6月", value: 52 },
+      ],
+    },
+    {
+      label: "拡張",
+      color: "warning",
+      data: [
+        { label: "1月", value: 8 },
+        { label: "2月", value: 14 },
+        { label: "3月", value: 22 },
+        { label: "4月", value: 30 },
+        { label: "5月", value: 38 },
+        { label: "6月", value: 48 },
+      ],
+    },
 ];
 
 export function RevenueFlowVariants() {
@@ -112,9 +244,42 @@ const propsData = { en: [{"name":"layers","type":"RibbonChartLayer[]","descripti
 const states = { en: [{ key: "flow", title: "Flow", description: "Centered flow variant for changing volume.", preview: <RibbonChart layers={layersByLocale.en} variant="flow" totalLabel="Total" showLegend />, previewBodyWidth: "xl", code: `import { RibbonChart } from "@gunjo/ui";
 
 const layers = [
-    { label: "New", color: "primary", data: [{ label: "Jan", value: 22 }, { label: "Feb", value: 30 }, { label: "Mar", value: 36 }, { label: "Apr", value: 44 }, { label: "May", value: 52 }, { label: "Jun", value: 60 }] },
-    { label: "Returning", color: "success", data: [{ label: "Jan", value: 16 }, { label: "Feb", value: 22 }, { label: "Mar", value: 30 }, { label: "Apr", value: 38 }, { label: "May", value: 46 }, { label: "Jun", value: 52 }] },
-    { label: "Expansion", color: "warning", data: [{ label: "Jan", value: 8 }, { label: "Feb", value: 14 }, { label: "Mar", value: 22 }, { label: "Apr", value: 30 }, { label: "May", value: 38 }, { label: "Jun", value: 48 }] },
+    {
+      label: "New",
+      color: "primary",
+      data: [
+        { label: "Jan", value: 22 },
+        { label: "Feb", value: 30 },
+        { label: "Mar", value: 36 },
+        { label: "Apr", value: 44 },
+        { label: "May", value: 52 },
+        { label: "Jun", value: 60 },
+      ],
+    },
+    {
+      label: "Returning",
+      color: "success",
+      data: [
+        { label: "Jan", value: 16 },
+        { label: "Feb", value: 22 },
+        { label: "Mar", value: 30 },
+        { label: "Apr", value: 38 },
+        { label: "May", value: 46 },
+        { label: "Jun", value: 52 },
+      ],
+    },
+    {
+      label: "Expansion",
+      color: "warning",
+      data: [
+        { label: "Jan", value: 8 },
+        { label: "Feb", value: 14 },
+        { label: "Mar", value: 22 },
+        { label: "Apr", value: 30 },
+        { label: "May", value: 38 },
+        { label: "Jun", value: 48 },
+      ],
+    },
 ];
 
 export function RevenueFlowRibbon() {
@@ -122,19 +287,90 @@ export function RevenueFlowRibbon() {
 }` }, { key: "stacked", title: "Stacked", description: "Stacked area variant for cumulative totals.", preview: <RibbonChart layers={layersByLocale.en} variant="stacked" totalLabel="Total" showLegend />, previewBodyWidth: "xl", code: `import { RibbonChart } from "@gunjo/ui";
 
 const layers = [
-    { label: "New", color: "primary", data: [{ label: "Jan", value: 22 }, { label: "Feb", value: 30 }, { label: "Mar", value: 36 }, { label: "Apr", value: 44 }, { label: "May", value: 52 }, { label: "Jun", value: 60 }] },
-    { label: "Returning", color: "success", data: [{ label: "Jan", value: 16 }, { label: "Feb", value: 22 }, { label: "Mar", value: 30 }, { label: "Apr", value: 38 }, { label: "May", value: 46 }, { label: "Jun", value: 52 }] },
-    { label: "Expansion", color: "warning", data: [{ label: "Jan", value: 8 }, { label: "Feb", value: 14 }, { label: "Mar", value: 22 }, { label: "Apr", value: 30 }, { label: "May", value: 38 }, { label: "Jun", value: 48 }] },
+    {
+      label: "New",
+      color: "primary",
+      data: [
+        { label: "Jan", value: 22 },
+        { label: "Feb", value: 30 },
+        { label: "Mar", value: 36 },
+        { label: "Apr", value: 44 },
+        { label: "May", value: 52 },
+        { label: "Jun", value: 60 },
+      ],
+    },
+    {
+      label: "Returning",
+      color: "success",
+      data: [
+        { label: "Jan", value: 16 },
+        { label: "Feb", value: 22 },
+        { label: "Mar", value: 30 },
+        { label: "Apr", value: 38 },
+        { label: "May", value: 46 },
+        { label: "Jun", value: 52 },
+      ],
+    },
+    {
+      label: "Expansion",
+      color: "warning",
+      data: [
+        { label: "Jan", value: 8 },
+        { label: "Feb", value: 14 },
+        { label: "Mar", value: 22 },
+        { label: "Apr", value: 30 },
+        { label: "May", value: 38 },
+        { label: "Jun", value: 48 },
+      ],
+    },
 ];
 
 export function StackedRevenueRibbon() {
-    return <RibbonChart layers={layers} variant="stacked" totalLabel="Total" showLegend />;
+    return <RibbonChart
+      layers={layers}
+      variant="stacked"
+      totalLabel="Total"
+      showLegend
+    />;
 }` }, { key: "no-labels", title: "No labels", description: "Hides period labels in compact contexts.", preview: <RibbonChart layers={layersByLocale.en} showLabels={false} />, previewBodyWidth: "xl", code: `import { RibbonChart } from "@gunjo/ui";
 
 const layers = [
-    { label: "New", color: "primary", data: [{ label: "Jan", value: 22 }, { label: "Feb", value: 30 }, { label: "Mar", value: 36 }, { label: "Apr", value: 44 }, { label: "May", value: 52 }, { label: "Jun", value: 60 }] },
-    { label: "Returning", color: "success", data: [{ label: "Jan", value: 16 }, { label: "Feb", value: 22 }, { label: "Mar", value: 30 }, { label: "Apr", value: 38 }, { label: "May", value: 46 }, { label: "Jun", value: 52 }] },
-    { label: "Expansion", color: "warning", data: [{ label: "Jan", value: 8 }, { label: "Feb", value: 14 }, { label: "Mar", value: 22 }, { label: "Apr", value: 30 }, { label: "May", value: 38 }, { label: "Jun", value: 48 }] },
+    {
+      label: "New",
+      color: "primary",
+      data: [
+        { label: "Jan", value: 22 },
+        { label: "Feb", value: 30 },
+        { label: "Mar", value: 36 },
+        { label: "Apr", value: 44 },
+        { label: "May", value: 52 },
+        { label: "Jun", value: 60 },
+      ],
+    },
+    {
+      label: "Returning",
+      color: "success",
+      data: [
+        { label: "Jan", value: 16 },
+        { label: "Feb", value: 22 },
+        { label: "Mar", value: 30 },
+        { label: "Apr", value: 38 },
+        { label: "May", value: 46 },
+        { label: "Jun", value: 52 },
+      ],
+    },
+    {
+      label: "Expansion",
+      color: "warning",
+      data: [
+        { label: "Jan", value: 8 },
+        { label: "Feb", value: 14 },
+        { label: "Mar", value: 22 },
+        { label: "Apr", value: 30 },
+        { label: "May", value: 38 },
+        { label: "Jun", value: 48 },
+      ],
+    },
 ];
 
 export function RevenueRibbonWithoutLabels() {
@@ -142,9 +378,42 @@ export function RevenueRibbonWithoutLabels() {
 }` }, { key: "bounded", title: "Explicit max", description: "Keeps multiple ribbon charts on the same scale.", preview: <RibbonChart layers={layersByLocale.en} max={160} totalLabel="Total" showLegend />, previewBodyWidth: "xl", code: `import { RibbonChart } from "@gunjo/ui";
 
 const layers = [
-    { label: "New", color: "primary", data: [{ label: "Jan", value: 22 }, { label: "Feb", value: 30 }, { label: "Mar", value: 36 }, { label: "Apr", value: 44 }, { label: "May", value: 52 }, { label: "Jun", value: 60 }] },
-    { label: "Returning", color: "success", data: [{ label: "Jan", value: 16 }, { label: "Feb", value: 22 }, { label: "Mar", value: 30 }, { label: "Apr", value: 38 }, { label: "May", value: 46 }, { label: "Jun", value: 52 }] },
-    { label: "Expansion", color: "warning", data: [{ label: "Jan", value: 8 }, { label: "Feb", value: 14 }, { label: "Mar", value: 22 }, { label: "Apr", value: 30 }, { label: "May", value: 38 }, { label: "Jun", value: 48 }] },
+    {
+      label: "New",
+      color: "primary",
+      data: [
+        { label: "Jan", value: 22 },
+        { label: "Feb", value: 30 },
+        { label: "Mar", value: 36 },
+        { label: "Apr", value: 44 },
+        { label: "May", value: 52 },
+        { label: "Jun", value: 60 },
+      ],
+    },
+    {
+      label: "Returning",
+      color: "success",
+      data: [
+        { label: "Jan", value: 16 },
+        { label: "Feb", value: 22 },
+        { label: "Mar", value: 30 },
+        { label: "Apr", value: 38 },
+        { label: "May", value: 46 },
+        { label: "Jun", value: 52 },
+      ],
+    },
+    {
+      label: "Expansion",
+      color: "warning",
+      data: [
+        { label: "Jan", value: 8 },
+        { label: "Feb", value: 14 },
+        { label: "Mar", value: 22 },
+        { label: "Apr", value: 30 },
+        { label: "May", value: 38 },
+        { label: "Jun", value: 48 },
+      ],
+    },
 ];
 
 export function RevenueRibbonFixedMax() {
@@ -152,9 +421,42 @@ export function RevenueRibbonFixedMax() {
 }` }], ja: [{ key: "flow", title: "フロー", description: "量の変化を中央寄せの流れとして表示します。", preview: <RibbonChart layers={layersByLocale.ja} variant="flow" totalLabel="合計" showLegend />, previewBodyWidth: "xl", code: `import { RibbonChart } from "@gunjo/ui";
 
 const layers = [
-    { label: "新規", color: "primary", data: [{ label: "1月", value: 22 }, { label: "2月", value: 30 }, { label: "3月", value: 36 }, { label: "4月", value: 44 }, { label: "5月", value: 52 }, { label: "6月", value: 60 }] },
-    { label: "継続", color: "success", data: [{ label: "1月", value: 16 }, { label: "2月", value: 22 }, { label: "3月", value: 30 }, { label: "4月", value: 38 }, { label: "5月", value: 46 }, { label: "6月", value: 52 }] },
-    { label: "拡張", color: "warning", data: [{ label: "1月", value: 8 }, { label: "2月", value: 14 }, { label: "3月", value: 22 }, { label: "4月", value: 30 }, { label: "5月", value: 38 }, { label: "6月", value: 48 }] },
+    {
+      label: "新規",
+      color: "primary",
+      data: [
+        { label: "1月", value: 22 },
+        { label: "2月", value: 30 },
+        { label: "3月", value: 36 },
+        { label: "4月", value: 44 },
+        { label: "5月", value: 52 },
+        { label: "6月", value: 60 },
+      ],
+    },
+    {
+      label: "継続",
+      color: "success",
+      data: [
+        { label: "1月", value: 16 },
+        { label: "2月", value: 22 },
+        { label: "3月", value: 30 },
+        { label: "4月", value: 38 },
+        { label: "5月", value: 46 },
+        { label: "6月", value: 52 },
+      ],
+    },
+    {
+      label: "拡張",
+      color: "warning",
+      data: [
+        { label: "1月", value: 8 },
+        { label: "2月", value: 14 },
+        { label: "3月", value: 22 },
+        { label: "4月", value: 30 },
+        { label: "5月", value: 38 },
+        { label: "6月", value: 48 },
+      ],
+    },
 ];
 
 export function RevenueFlowRibbon() {
@@ -162,9 +464,42 @@ export function RevenueFlowRibbon() {
 }` }, { key: "stacked", title: "積み上げ", description: "合計量を読みやすい積み上げ面で表示します。", preview: <RibbonChart layers={layersByLocale.ja} variant="stacked" totalLabel="合計" showLegend />, previewBodyWidth: "xl", code: `import { RibbonChart } from "@gunjo/ui";
 
 const layers = [
-    { label: "新規", color: "primary", data: [{ label: "1月", value: 22 }, { label: "2月", value: 30 }, { label: "3月", value: 36 }, { label: "4月", value: 44 }, { label: "5月", value: 52 }, { label: "6月", value: 60 }] },
-    { label: "継続", color: "success", data: [{ label: "1月", value: 16 }, { label: "2月", value: 22 }, { label: "3月", value: 30 }, { label: "4月", value: 38 }, { label: "5月", value: 46 }, { label: "6月", value: 52 }] },
-    { label: "拡張", color: "warning", data: [{ label: "1月", value: 8 }, { label: "2月", value: 14 }, { label: "3月", value: 22 }, { label: "4月", value: 30 }, { label: "5月", value: 38 }, { label: "6月", value: 48 }] },
+    {
+      label: "新規",
+      color: "primary",
+      data: [
+        { label: "1月", value: 22 },
+        { label: "2月", value: 30 },
+        { label: "3月", value: 36 },
+        { label: "4月", value: 44 },
+        { label: "5月", value: 52 },
+        { label: "6月", value: 60 },
+      ],
+    },
+    {
+      label: "継続",
+      color: "success",
+      data: [
+        { label: "1月", value: 16 },
+        { label: "2月", value: 22 },
+        { label: "3月", value: 30 },
+        { label: "4月", value: 38 },
+        { label: "5月", value: 46 },
+        { label: "6月", value: 52 },
+      ],
+    },
+    {
+      label: "拡張",
+      color: "warning",
+      data: [
+        { label: "1月", value: 8 },
+        { label: "2月", value: 14 },
+        { label: "3月", value: 22 },
+        { label: "4月", value: 30 },
+        { label: "5月", value: 38 },
+        { label: "6月", value: 48 },
+      ],
+    },
 ];
 
 export function StackedRevenueRibbon() {
@@ -172,9 +507,42 @@ export function StackedRevenueRibbon() {
 }` }, { key: "no-labels", title: "ラベルなし", description: "コンパクトな領域では期間ラベルを非表示にできます。", preview: <RibbonChart layers={layersByLocale.ja} showLabels={false} />, previewBodyWidth: "xl", code: `import { RibbonChart } from "@gunjo/ui";
 
 const layers = [
-    { label: "新規", color: "primary", data: [{ label: "1月", value: 22 }, { label: "2月", value: 30 }, { label: "3月", value: 36 }, { label: "4月", value: 44 }, { label: "5月", value: 52 }, { label: "6月", value: 60 }] },
-    { label: "継続", color: "success", data: [{ label: "1月", value: 16 }, { label: "2月", value: 22 }, { label: "3月", value: 30 }, { label: "4月", value: 38 }, { label: "5月", value: 46 }, { label: "6月", value: 52 }] },
-    { label: "拡張", color: "warning", data: [{ label: "1月", value: 8 }, { label: "2月", value: 14 }, { label: "3月", value: 22 }, { label: "4月", value: 30 }, { label: "5月", value: 38 }, { label: "6月", value: 48 }] },
+    {
+      label: "新規",
+      color: "primary",
+      data: [
+        { label: "1月", value: 22 },
+        { label: "2月", value: 30 },
+        { label: "3月", value: 36 },
+        { label: "4月", value: 44 },
+        { label: "5月", value: 52 },
+        { label: "6月", value: 60 },
+      ],
+    },
+    {
+      label: "継続",
+      color: "success",
+      data: [
+        { label: "1月", value: 16 },
+        { label: "2月", value: 22 },
+        { label: "3月", value: 30 },
+        { label: "4月", value: 38 },
+        { label: "5月", value: 46 },
+        { label: "6月", value: 52 },
+      ],
+    },
+    {
+      label: "拡張",
+      color: "warning",
+      data: [
+        { label: "1月", value: 8 },
+        { label: "2月", value: 14 },
+        { label: "3月", value: 22 },
+        { label: "4月", value: 30 },
+        { label: "5月", value: 38 },
+        { label: "6月", value: 48 },
+      ],
+    },
 ];
 
 export function RevenueRibbonWithoutLabels() {
@@ -182,9 +550,42 @@ export function RevenueRibbonWithoutLabels() {
 }` }, { key: "bounded", title: "最大値指定", description: "複数のリボンチャートを同じスケールで比較します。", preview: <RibbonChart layers={layersByLocale.ja} max={160} totalLabel="合計" showLegend />, previewBodyWidth: "xl", code: `import { RibbonChart } from "@gunjo/ui";
 
 const layers = [
-    { label: "新規", color: "primary", data: [{ label: "1月", value: 22 }, { label: "2月", value: 30 }, { label: "3月", value: 36 }, { label: "4月", value: 44 }, { label: "5月", value: 52 }, { label: "6月", value: 60 }] },
-    { label: "継続", color: "success", data: [{ label: "1月", value: 16 }, { label: "2月", value: 22 }, { label: "3月", value: 30 }, { label: "4月", value: 38 }, { label: "5月", value: 46 }, { label: "6月", value: 52 }] },
-    { label: "拡張", color: "warning", data: [{ label: "1月", value: 8 }, { label: "2月", value: 14 }, { label: "3月", value: 22 }, { label: "4月", value: 30 }, { label: "5月", value: 38 }, { label: "6月", value: 48 }] },
+    {
+      label: "新規",
+      color: "primary",
+      data: [
+        { label: "1月", value: 22 },
+        { label: "2月", value: 30 },
+        { label: "3月", value: 36 },
+        { label: "4月", value: 44 },
+        { label: "5月", value: 52 },
+        { label: "6月", value: 60 },
+      ],
+    },
+    {
+      label: "継続",
+      color: "success",
+      data: [
+        { label: "1月", value: 16 },
+        { label: "2月", value: 22 },
+        { label: "3月", value: 30 },
+        { label: "4月", value: 38 },
+        { label: "5月", value: 46 },
+        { label: "6月", value: 52 },
+      ],
+    },
+    {
+      label: "拡張",
+      color: "warning",
+      data: [
+        { label: "1月", value: 8 },
+        { label: "2月", value: 14 },
+        { label: "3月", value: 22 },
+        { label: "4月", value: 30 },
+        { label: "5月", value: 38 },
+        { label: "6月", value: 48 },
+      ],
+    },
 ];
 
 export function RevenueRibbonFixedMax() {

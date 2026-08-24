@@ -67,9 +67,21 @@ const formatDuration = (minutes) => \`\${Math.floor(minutes / 60)}時間\${minut
 const code = { en: `import { SegmentTimelineCard } from "@gunjo/ui";
 
 const metrics = [
-    { label: "Sleep quality", value: "83%", description: "Sleep quality score compared with the 76% baseline." },
-    { label: "Time asleep", value: "7h 26m", description: "Total sleep duration excluding awake time." },
-    { label: "Awake time", value: "28m", description: "Total duration classified as awake." },
+    {
+      label: "Sleep quality",
+      value: "83%",
+      description: "Sleep quality score compared with the 76% baseline.",
+    },
+    {
+      label: "Time asleep",
+      value: "7h 26m",
+      description: "Total sleep duration excluding awake time.",
+    },
+    {
+      label: "Awake time",
+      value: "28m",
+      description: "Total duration classified as awake.",
+    },
 ];
 const segments = [
     { label: "Light sleep", value: 31, start: 0, end: 31, color: "info" },
@@ -183,7 +195,12 @@ export function SleepStageTimelineVariants() {
         <div className="grid gap-6">
             <SegmentTimelineCard segments={segments} />
             <SegmentTimelineCard segments={segments} selectedIndex={1} />
-            <SegmentTimelineCard segments={segments} min={0} max={474} markers={[{ value: 360, label: "Alarm" }]} />
+            <SegmentTimelineCard
+              segments={segments}
+              min={0}
+              max={474}
+              markers={[{ value: 360, label: "Alarm" }]}
+            />
         </div>
     );
 }`, ja: `import { SegmentTimelineCard } from "@gunjo/ui";
@@ -212,7 +229,12 @@ export function SleepStageTimelineVariants() {
         <div className="grid gap-6">
             <SegmentTimelineCard segments={segments} />
             <SegmentTimelineCard segments={segments} selectedIndex={1} />
-            <SegmentTimelineCard segments={segments} min={0} max={474} markers={[{ value: 360, label: "アラーム" }]} />
+            <SegmentTimelineCard
+              segments={segments}
+              min={0}
+              max={474}
+              markers={[{ value: 360, label: "アラーム" }]}
+            />
         </div>
     );
 }` } as const;
@@ -220,9 +242,21 @@ const propsData = { en: [{"name":"segments","type":"SegmentTimelineSegment[]","d
 const states = { en: [{ key: "default", title: "Default", description: "Standard timeline card with metrics.", preview: <SegmentTimelineCard title="Sleep stages" metrics={metricsByLocale.en} segments={segmentsByLocale.en} min={0} max={474} startLabel="11:42 PM" endLabel="7:18 AM" formatValue={(value) => `${Math.floor(value / 60)}h ${value % 60}m`} rangeLabel="Stage duration" />, previewBodyWidth: "xl", code: `import { SegmentTimelineCard } from "@gunjo/ui";
 
 const metrics = [
-    { label: "Sleep quality", value: "83%", description: "Sleep quality score compared with the 76% baseline." },
-    { label: "Time asleep", value: "7h 26m", description: "Total sleep duration excluding awake time." },
-    { label: "Awake time", value: "28m", description: "Total duration classified as awake." },
+    {
+      label: "Sleep quality",
+      value: "83%",
+      description: "Sleep quality score compared with the 76% baseline.",
+    },
+    {
+      label: "Time asleep",
+      value: "7h 26m",
+      description: "Total sleep duration excluding awake time.",
+    },
+    {
+      label: "Awake time",
+      value: "28m",
+      description: "Total duration classified as awake.",
+    },
 ];
 const segments = [
     { label: "Light sleep", value: 31, start: 0, end: 31, color: "info" },
@@ -246,14 +280,36 @@ const formatDuration = (minutes) => Math.floor(minutes / 60) + "h " + (minutes %
 
 export function SleepStageTimeline() {
     return (
-        <SegmentTimelineCard title="Sleep stages" metrics={metrics} segments={segments} min={0} max={474} startLabel="11:42 PM" endLabel="7:18 AM" formatValue={(value) => formatDuration(value)} rangeLabel="Stage duration" />
+        <SegmentTimelineCard
+          title="Sleep stages"
+          metrics={metrics}
+          segments={segments}
+          min={0}
+          max={474}
+          startLabel="11:42 PM"
+          endLabel="7:18 AM"
+          formatValue
+          value
+        > formatDuration(value)} rangeLabel="Stage duration" />
     );
 }` }, { key: "selected", title: "Selected segment", description: "Highlights one timeline segment.", preview: <SegmentTimelineCard title="Sleep stages" metrics={metricsByLocale.en} segments={segmentsByLocale.en} selectedIndex={0} min={0} max={474} formatValue={(value) => `${Math.floor(value / 60)}h ${value % 60}m`} rangeLabel="Stage duration" />, previewBodyWidth: "xl", code: `import { SegmentTimelineCard } from "@gunjo/ui";
 
 const metrics = [
-    { label: "Sleep quality", value: "83%", description: "Sleep quality score compared with the 76% baseline." },
-    { label: "Time asleep", value: "7h 26m", description: "Total sleep duration excluding awake time." },
-    { label: "Awake time", value: "28m", description: "Total duration classified as awake." },
+    {
+      label: "Sleep quality",
+      value: "83%",
+      description: "Sleep quality score compared with the 76% baseline.",
+    },
+    {
+      label: "Time asleep",
+      value: "7h 26m",
+      description: "Total sleep duration excluding awake time.",
+    },
+    {
+      label: "Awake time",
+      value: "28m",
+      description: "Total duration classified as awake.",
+    },
 ];
 const segments = [
     { label: "Light sleep", value: 31, start: 0, end: 31, color: "info" },
@@ -277,7 +333,16 @@ const formatDuration = (minutes) => Math.floor(minutes / 60) + "h " + (minutes %
 
 export function SelectedSleepStageTimeline() {
     return (
-        <SegmentTimelineCard title="Sleep stages" metrics={metrics} segments={segments} selectedIndex={0} min={0} max={474} formatValue={(value) => formatDuration(value)} rangeLabel="Stage duration" />
+        <SegmentTimelineCard
+          title="Sleep stages"
+          metrics={metrics}
+          segments={segments}
+          selectedIndex={0}
+          min={0}
+          max={474}
+          formatValue
+          value
+        > formatDuration(value)} rangeLabel="Stage duration" />
     );
 }` }, { key: "markers", title: "With markers", description: "Shows reference points on the timeline.", preview: <SegmentTimelineCard title="Sleep stages" segments={segmentsByLocale.en} markers={[{ value: 360, label: "Alarm" }]} min={0} max={474} formatValue={(value) => `${Math.floor(value / 60)}h ${value % 60}m`} rangeLabel="Stage duration" />, previewBodyWidth: "xl", code: `import { SegmentTimelineCard } from "@gunjo/ui";
 
@@ -303,7 +368,15 @@ const formatDuration = (minutes) => Math.floor(minutes / 60) + "h " + (minutes %
 
 export function SleepStageTimelineWithMarkers() {
     return (
-        <SegmentTimelineCard title="Sleep stages" segments={segments} min={0} max={474} markers={[{ value: 360, label: "Alarm" }]} formatValue={(value) => formatDuration(value)} rangeLabel="Stage duration" />
+        <SegmentTimelineCard
+          title="Sleep stages"
+          segments={segments}
+          min={0}
+          max={474}
+          markers={[{ value: 360, label: "Alarm" }]}
+          formatValue
+          value
+        > formatDuration(value)} rangeLabel="Stage duration" />
     );
 }` }, { key: "compact", title: "Compact", description: "Compact card density.", preview: <SegmentTimelineCard title="Sleep stages" segments={segmentsByLocale.en} variant="compact" min={0} max={474} formatValue={(value) => `${Math.floor(value / 60)}h ${value % 60}m`} />, previewBodyWidth: "lg", code: `import { SegmentTimelineCard } from "@gunjo/ui";
 
@@ -329,7 +402,15 @@ const formatDuration = (minutes) => Math.floor(minutes / 60) + "h " + (minutes %
 
 export function CompactSleepStageTimeline() {
     return (
-        <SegmentTimelineCard title="Sleep stages" segments={segments} variant="compact" min={0} max={474} formatValue={(value) => formatDuration(value)} />
+        <SegmentTimelineCard
+          title="Sleep stages"
+          segments={segments}
+          variant="compact"
+          min={0}
+          max={474}
+          formatValue
+          value
+        > formatDuration(value)} />
     );
 }` }], ja: [{ key: "default", title: "標準表示", description: "指標付きの標準タイムラインカードです。", preview: <SegmentTimelineCard title="睡眠ステージ" metrics={metricsByLocale.ja} segments={segmentsByLocale.ja} min={0} max={474} startLabel="23:42" endLabel="07:18" formatValue={(value) => `${Math.floor(value / 60)}時間${value % 60}分`} rangeLabel="ステージ時間" />, previewBodyWidth: "xl", code: `import { SegmentTimelineCard } from "@gunjo/ui";
 
@@ -360,7 +441,17 @@ const formatDuration = (minutes) => Math.floor(minutes / 60) + "\\u6642\\u9593" 
 
 export function SleepStageTimeline() {
     return (
-        <SegmentTimelineCard title="睡眠ステージ" metrics={metrics} segments={segments} min={0} max={474} startLabel="23:42" endLabel="07:18" formatValue={(value) => formatDuration(value)} rangeLabel="ステージ時間" />
+        <SegmentTimelineCard
+          title="睡眠ステージ"
+          metrics={metrics}
+          segments={segments}
+          min={0}
+          max={474}
+          startLabel="23:42"
+          endLabel="07:18"
+          formatValue
+          value
+        > formatDuration(value)} rangeLabel="ステージ時間" />
     );
 }` }, { key: "selected", title: "選択セグメント", description: "確認中の時間範囲を強調します。", preview: <SegmentTimelineCard title="睡眠ステージ" metrics={metricsByLocale.ja} segments={segmentsByLocale.ja} selectedIndex={0} min={0} max={474} formatValue={(value) => `${Math.floor(value / 60)}時間${value % 60}分`} rangeLabel="ステージ時間" />, previewBodyWidth: "xl", code: `import { SegmentTimelineCard } from "@gunjo/ui";
 
@@ -391,7 +482,16 @@ const formatDuration = (minutes) => Math.floor(minutes / 60) + "\\u6642\\u9593" 
 
 export function SelectedSleepStageTimeline() {
     return (
-        <SegmentTimelineCard title="睡眠ステージ" metrics={metrics} segments={segments} selectedIndex={0} min={0} max={474} formatValue={(value) => formatDuration(value)} rangeLabel="ステージ時間" />
+        <SegmentTimelineCard
+          title="睡眠ステージ"
+          metrics={metrics}
+          segments={segments}
+          selectedIndex={0}
+          min={0}
+          max={474}
+          formatValue
+          value
+        > formatDuration(value)} rangeLabel="ステージ時間" />
     );
 }` }, { key: "markers", title: "マーカー付き", description: "タイムライン上に基準点を表示します。", preview: <SegmentTimelineCard title="睡眠ステージ" segments={segmentsByLocale.ja} markers={[{ value: 360, label: "アラーム" }]} min={0} max={474} formatValue={(value) => `${Math.floor(value / 60)}時間${value % 60}分`} rangeLabel="ステージ時間" />, previewBodyWidth: "xl", code: `import { SegmentTimelineCard } from "@gunjo/ui";
 
@@ -417,7 +517,15 @@ const formatDuration = (minutes) => Math.floor(minutes / 60) + "\\u6642\\u9593" 
 
 export function SleepStageTimelineWithMarkers() {
     return (
-        <SegmentTimelineCard title="睡眠ステージ" segments={segments} min={0} max={474} markers={[{ value: 360, label: "アラーム" }]} formatValue={(value) => formatDuration(value)} rangeLabel="ステージ時間" />
+        <SegmentTimelineCard
+          title="睡眠ステージ"
+          segments={segments}
+          min={0}
+          max={474}
+          markers={[{ value: 360, label: "アラーム" }]}
+          formatValue
+          value
+        > formatDuration(value)} rangeLabel="ステージ時間" />
     );
 }` }, { key: "compact", title: "コンパクト", description: "カード密度を抑えた表示です。", preview: <SegmentTimelineCard title="睡眠ステージ" segments={segmentsByLocale.ja} variant="compact" min={0} max={474} formatValue={(value) => `${Math.floor(value / 60)}時間${value % 60}分`} />, previewBodyWidth: "lg", code: `import { SegmentTimelineCard } from "@gunjo/ui";
 
@@ -443,7 +551,15 @@ const formatDuration = (minutes) => Math.floor(minutes / 60) + "\\u6642\\u9593" 
 
 export function CompactSleepStageTimeline() {
     return (
-        <SegmentTimelineCard title="睡眠ステージ" segments={segments} variant="compact" min={0} max={474} formatValue={(value) => formatDuration(value)} />
+        <SegmentTimelineCard
+          title="睡眠ステージ"
+          segments={segments}
+          variant="compact"
+          min={0}
+          max={474}
+          formatValue
+          value
+        > formatDuration(value)} />
     );
 }` }] } as const;
 

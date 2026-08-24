@@ -420,7 +420,13 @@ export function AcquisitionMixVariants() {
         <div className="grid gap-6">
             <StackedBarChart data={data} />
             <StackedBarChart data={data} showLegend showValues totalLabel="合計" />
-            <StackedBarChart data={data} variant="horizontal" normalize showLegend totalLabel="合計" />
+            <StackedBarChart
+              data={data}
+              variant="horizontal"
+              normalize
+              showLegend
+              totalLabel="合計"
+            />
         </div>
     );
 }`,
@@ -572,10 +578,34 @@ const thresholdCode = {
     en: `import { StackedBarChart } from "@gunjo/ui";
 
 const shiftHours = [
-    { label: "Team A", segments: [{ label: "Regular", value: 40, color: "primary" }, { label: "Overtime", value: 25, color: "info" }] },
-    { label: "Team B", segments: [{ label: "Regular", value: 55, color: "primary" }, { label: "Overtime", value: 45, color: "info" }] },
-    { label: "Team C", segments: [{ label: "Regular", value: 48, color: "primary" }, { label: "Overtime", value: 30, color: "info" }] },
-    { label: "Team D", segments: [{ label: "Regular", value: 60, color: "primary" }, { label: "Overtime", value: 50, color: "info" }] },
+    {
+      label: "Team A",
+      segments: [
+        { label: "Regular", value: 40, color: "primary" },
+        { label: "Overtime", value: 25, color: "info" },
+      ],
+    },
+    {
+      label: "Team B",
+      segments: [
+        { label: "Regular", value: 55, color: "primary" },
+        { label: "Overtime", value: 45, color: "info" },
+      ],
+    },
+    {
+      label: "Team C",
+      segments: [
+        { label: "Regular", value: 48, color: "primary" },
+        { label: "Overtime", value: 30, color: "info" },
+      ],
+    },
+    {
+      label: "Team D",
+      segments: [
+        { label: "Regular", value: 60, color: "primary" },
+        { label: "Overtime", value: 50, color: "info" },
+      ],
+    },
 ];
 
 // Over-limit groups get a ring and a destructive total. Segment colours are untouched.
@@ -595,10 +625,34 @@ export function ShiftHoursWithLimit() {
     ja: `import { StackedBarChart } from "@gunjo/ui";
 
 const shiftHours = [
-    { label: "A班", segments: [{ label: "通常", value: 40, color: "primary" }, { label: "残業", value: 25, color: "info" }] },
-    { label: "B班", segments: [{ label: "通常", value: 55, color: "primary" }, { label: "残業", value: 45, color: "info" }] },
-    { label: "C班", segments: [{ label: "通常", value: 48, color: "primary" }, { label: "残業", value: 30, color: "info" }] },
-    { label: "D班", segments: [{ label: "通常", value: 60, color: "primary" }, { label: "残業", value: 50, color: "info" }] },
+    {
+      label: "A班",
+      segments: [
+        { label: "通常", value: 40, color: "primary" },
+        { label: "残業", value: 25, color: "info" },
+      ],
+    },
+    {
+      label: "B班",
+      segments: [
+        { label: "通常", value: 55, color: "primary" },
+        { label: "残業", value: 45, color: "info" },
+      ],
+    },
+    {
+      label: "C班",
+      segments: [
+        { label: "通常", value: 48, color: "primary" },
+        { label: "残業", value: 30, color: "info" },
+      ],
+    },
+    {
+      label: "D班",
+      segments: [
+        { label: "通常", value: 60, color: "primary" },
+        { label: "残業", value: 50, color: "info" },
+      ],
+    },
 ];
 
 // 上限を超えたグループはリングと destructive の合計値で示します。セグメントの色は変わりません。
@@ -1009,7 +1063,12 @@ const data = [
 ];
 
 export function HorizontalAcquisitionMix() {
-    return <StackedBarChart data={data} variant="horizontal" showValues totalLabel="合計" />;
+    return <StackedBarChart
+      data={data}
+      variant="horizontal"
+      showValues
+      totalLabel="合計"
+    />;
 }`,
         },
         {
@@ -1056,7 +1115,13 @@ const data = [
 ];
 
 export function NormalizedAcquisitionMix() {
-    return <StackedBarChart data={data} variant="horizontal" normalize showLegend totalLabel="合計" />;
+    return <StackedBarChart
+      data={data}
+      variant="horizontal"
+      normalize
+      showLegend
+      totalLabel="合計"
+    />;
 }`,
         },
     ],

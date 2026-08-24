@@ -90,9 +90,18 @@ const segments = [
 export function SpendBreakdownGaugeVariants() {
     return (
         <div className="grid gap-6">
-            <SegmentedGaugeCard segments={segments} value={82} targetValue={90} max={100} />
+            <SegmentedGaugeCard
+              segments={segments}
+              value={82}
+              targetValue={90}
+              max={100}
+            />
             <SegmentedGaugeCard segments={segments} selectedIndex={1} />
-            <SegmentedGaugeCard segments={segments} variant="compact" showLegend={false} />
+            <SegmentedGaugeCard
+              segments={segments}
+              variant="compact"
+              showLegend={false}
+            />
         </div>
     );
 }`, ja: `import { SegmentedGaugeCard } from "@gunjo/ui";
@@ -106,9 +115,18 @@ const segments = [
 export function SpendBreakdownGaugeVariants() {
     return (
         <div className="grid gap-6">
-            <SegmentedGaugeCard segments={segments} value={82} targetValue={90} max={100} />
+            <SegmentedGaugeCard
+              segments={segments}
+              value={82}
+              targetValue={90}
+              max={100}
+            />
             <SegmentedGaugeCard segments={segments} selectedIndex={1} />
-            <SegmentedGaugeCard segments={segments} variant="compact" showLegend={false} />
+            <SegmentedGaugeCard
+              segments={segments}
+              variant="compact"
+              showLegend={false}
+            />
         </div>
     );
 }` } as const;
@@ -123,7 +141,13 @@ const segments = [
 
 export function SpendBreakdownGauge() {
     return (
-        <SegmentedGaugeCard title="Spend breakdown" segments={segments} value={82} valueLabel="82%" targetValue={90} />
+        <SegmentedGaugeCard
+          title="Spend breakdown"
+          segments={segments}
+          value={82}
+          valueLabel="82%"
+          targetValue={90}
+        />
     );
 }` }, { key: "selected", title: "Selected segment", description: "Highlights one range segment.", preview: <SegmentedGaugeCard title="Spend breakdown" value={82} valueLabel="82%" targetValue={90} segments={segmentsByLocale.en} selectedIndex={1} />, previewBodyWidth: "md", code: `import { SegmentedGaugeCard } from "@gunjo/ui";
 
@@ -135,7 +159,14 @@ const segments = [
 
 export function SelectedSegmentSpendGauge() {
     return (
-        <SegmentedGaugeCard title="Spend breakdown" segments={segments} value={82} valueLabel="82%" targetValue={90} selectedIndex={1} />
+        <SegmentedGaugeCard
+          title="Spend breakdown"
+          segments={segments}
+          value={82}
+          valueLabel="82%"
+          targetValue={90}
+          selectedIndex={1}
+        />
     );
 }` }, { key: "no-legend", title: "No legend", description: "Hides legend rows when the parent owns details.", preview: <SegmentedGaugeCard title="Spend breakdown" value={82} valueLabel="82%" targetValue={90} segments={segmentsByLocale.en} showLegend={false} />, previewBodyWidth: "md", code: `import { SegmentedGaugeCard } from "@gunjo/ui";
 
@@ -147,7 +178,14 @@ const segments = [
 
 export function SpendBreakdownGaugeWithoutLegend() {
     return (
-        <SegmentedGaugeCard title="Spend breakdown" segments={segments} value={82} valueLabel="82%" targetValue={90} showLegend={false} />
+        <SegmentedGaugeCard
+          title="Spend breakdown"
+          segments={segments}
+          value={82}
+          valueLabel="82%"
+          targetValue={90}
+          showLegend={false}
+        />
     );
 }` }, { key: "compact", title: "Compact", description: "Compact density for small cards.", preview: <SegmentedGaugeCard title="Spend breakdown" value={82} valueLabel="82%" segments={segmentsByLocale.en} variant="compact" />, previewBodyWidth: "sm", code: `import { SegmentedGaugeCard } from "@gunjo/ui";
 
@@ -159,7 +197,13 @@ const segments = [
 
 export function CompactSpendBreakdownGauge() {
     return (
-        <SegmentedGaugeCard title="Spend breakdown" segments={segments} value={82} valueLabel="82%" variant="compact" />
+        <SegmentedGaugeCard
+          title="Spend breakdown"
+          segments={segments}
+          value={82}
+          valueLabel="82%"
+          variant="compact"
+        />
     );
 }` }], ja: [{ key: "default", title: "標準表示", description: "標準のセグメントゲージカードです。", preview: <SegmentedGaugeCard title="支出内訳" value={82} valueLabel="82%" targetValue={90} segments={segmentsByLocale.ja} />, previewBodyWidth: "md", code: `import { SegmentedGaugeCard } from "@gunjo/ui";
 
@@ -171,7 +215,13 @@ const segments = [
 
 export function SpendBreakdownGauge() {
     return (
-        <SegmentedGaugeCard title="支出内訳" segments={segments} value={82} valueLabel="82%" targetValue={90} />
+        <SegmentedGaugeCard
+          title="支出内訳"
+          segments={segments}
+          value={82}
+          valueLabel="82%"
+          targetValue={90}
+        />
     );
 }` }, { key: "selected", title: "選択セグメント", description: "確認中の範囲セグメントを強調します。", preview: <SegmentedGaugeCard title="支出内訳" value={82} valueLabel="82%" targetValue={90} segments={segmentsByLocale.ja} selectedIndex={1} />, previewBodyWidth: "md", code: `import { SegmentedGaugeCard } from "@gunjo/ui";
 
@@ -183,7 +233,14 @@ const segments = [
 
 export function SelectedSegmentSpendGauge() {
     return (
-        <SegmentedGaugeCard title="支出内訳" segments={segments} value={82} valueLabel="82%" targetValue={90} selectedIndex={1} />
+        <SegmentedGaugeCard
+          title="支出内訳"
+          segments={segments}
+          value={82}
+          valueLabel="82%"
+          targetValue={90}
+          selectedIndex={1}
+        />
     );
 }` }, { key: "no-legend", title: "凡例なし", description: "親ビュー側で詳細を持つ場合は凡例行を隠せます。", preview: <SegmentedGaugeCard title="支出内訳" value={82} valueLabel="82%" targetValue={90} segments={segmentsByLocale.ja} showLegend={false} />, previewBodyWidth: "md", code: `import { SegmentedGaugeCard } from "@gunjo/ui";
 
@@ -195,7 +252,14 @@ const segments = [
 
 export function SpendBreakdownGaugeWithoutLegend() {
     return (
-        <SegmentedGaugeCard title="支出内訳" segments={segments} value={82} valueLabel="82%" targetValue={90} showLegend={false} />
+        <SegmentedGaugeCard
+          title="支出内訳"
+          segments={segments}
+          value={82}
+          valueLabel="82%"
+          targetValue={90}
+          showLegend={false}
+        />
     );
 }` }, { key: "compact", title: "コンパクト", description: "小さなカード向けの密度です。", preview: <SegmentedGaugeCard title="支出内訳" value={82} valueLabel="82%" segments={segmentsByLocale.ja} variant="compact" />, previewBodyWidth: "sm", code: `import { SegmentedGaugeCard } from "@gunjo/ui";
 
@@ -207,7 +271,13 @@ const segments = [
 
 export function CompactSpendBreakdownGauge() {
     return (
-        <SegmentedGaugeCard title="支出内訳" segments={segments} value={82} valueLabel="82%" variant="compact" />
+        <SegmentedGaugeCard
+          title="支出内訳"
+          segments={segments}
+          value={82}
+          valueLabel="82%"
+          variant="compact"
+        />
     );
 }` }] } as const;
 

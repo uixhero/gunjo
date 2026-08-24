@@ -164,7 +164,12 @@ export function MonthlyTrendSparklineVariants() {
         <div className="grid gap-6">
             <SparklineChart data={data} />
             <SparklineChart data={data} variant="area" color="success" />
-            <SparklineChart data={data} variant="step" referenceValue={50} referenceLabel="Target" />
+            <SparklineChart
+              data={data}
+              variant="step"
+              referenceValue={50}
+              referenceLabel="Target"
+            />
         </div>
     );
 }`, ja: `import { SparklineChart } from "@gunjo/ui";
@@ -189,7 +194,12 @@ export function MonthlyTrendSparklineVariants() {
         <div className="grid gap-6">
             <SparklineChart data={data} />
             <SparklineChart data={data} variant="area" color="success" />
-            <SparklineChart data={data} variant="step" referenceValue={50} referenceLabel="目標" />
+            <SparklineChart
+              data={data}
+              variant="step"
+              referenceValue={50}
+              referenceLabel="目標"
+            />
         </div>
     );
 }` } as const;
@@ -270,7 +280,13 @@ const data = [
 
 export function MonthlyTrendWithReference() {
     return (
-        <SparklineChart data={data} variant="area" referenceValue={42} referenceLabel="Average" showDots />
+        <SparklineChart
+          data={data}
+          variant="area"
+          referenceValue={42}
+          referenceLabel="Average"
+          showDots
+        />
     );
 }` }], ja: [{ key: "line", title: "線表示", description: "密度の高いカードで使うシンプルな傾向線です。", preview: <SparklineChart data={dataByLocale.ja} />, previewBodyWidth: "md", code: `import { SparklineChart } from "@gunjo/ui";
 
@@ -347,7 +363,13 @@ const data = [
 ];
 
 export function MonthlyTrendWithReference() {
-    return <SparklineChart data={data} variant="area" referenceValue={42} referenceLabel="平均" showDots />;
+    return <SparklineChart
+      data={data}
+      variant="area"
+      referenceValue={42}
+      referenceLabel="平均"
+      showDots
+    />;
 }` }] } as const;
 
 export default function SparklineChartPage() {

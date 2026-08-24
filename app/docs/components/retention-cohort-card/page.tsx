@@ -52,12 +52,66 @@ const code = { en: `import { RetentionCohortCard } from "@gunjo/ui";
 
 const periods = ["M0", "M1", "M2", "M3", "M4", "M5", "M6", "M7"];
 const cohorts = [
-    { label: "Jan cohort", size: 1240, values: [{ value: 100 }, { value: 76 }, { value: 64 }, { value: 58 }, { value: 51 }, { value: 46 }, { value: 41 }, { value: 36 }] },
-    { label: "Feb cohort", size: 1144, values: [{ value: 100 }, { value: 72 }, { value: 62 }, { value: 62 }, { value: 48 }, { value: 42 }, { value: 37 }] },
-    { label: "Mar cohort", size: 1048, values: [{ value: 100 }, { value: 68 }, { value: 56 }, { value: 49 }, { value: 43 }, { value: 38 }] },
-    { label: "Apr cohort", size: 952, values: [{ value: 100 }, { value: 70 }, { value: 59 }, { value: 50 }, { value: 44 }] },
-    { label: "May cohort", size: 856, values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }] },
-    { label: "Jun cohort", size: 760, values: [{ value: 100 }, { value: 63 }, { value: 51 }] },
+    {
+      label: "Jan cohort",
+      size: 1240,
+      values: [
+        { value: 100 },
+        { value: 76 },
+        { value: 64 },
+        { value: 58 },
+        { value: 51 },
+        { value: 46 },
+        { value: 41 },
+        { value: 36 },
+      ],
+    },
+    {
+      label: "Feb cohort",
+      size: 1144,
+      values: [
+        { value: 100 },
+        { value: 72 },
+        { value: 62 },
+        { value: 62 },
+        { value: 48 },
+        { value: 42 },
+        { value: 37 },
+      ],
+    },
+    {
+      label: "Mar cohort",
+      size: 1048,
+      values: [
+        { value: 100 },
+        { value: 68 },
+        { value: 56 },
+        { value: 49 },
+        { value: 43 },
+        { value: 38 },
+      ],
+    },
+    {
+      label: "Apr cohort",
+      size: 952,
+      values: [
+        { value: 100 },
+        { value: 70 },
+        { value: 59 },
+        { value: 50 },
+        { value: 44 },
+      ],
+    },
+    {
+      label: "May cohort",
+      size: 856,
+      values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }],
+    },
+    {
+      label: "Jun cohort",
+      size: 760,
+      values: [{ value: 100 }, { value: 63 }, { value: 51 }],
+    },
 ];
 
 export function CohortRetentionTable() {
@@ -78,12 +132,66 @@ export function CohortRetentionTable() {
 
 const periods = ["初月", "1か月", "2か月", "3か月", "4か月", "5か月", "6か月", "7か月"];
 const cohorts = [
-    { label: "1月コホート", size: 1240, values: [{ value: 100 }, { value: 76 }, { value: 64 }, { value: 58 }, { value: 51 }, { value: 46 }, { value: 41 }, { value: 36 }] },
-    { label: "2月コホート", size: 1144, values: [{ value: 100 }, { value: 72 }, { value: 62 }, { value: 62 }, { value: 48 }, { value: 42 }, { value: 37 }] },
-    { label: "3月コホート", size: 1048, values: [{ value: 100 }, { value: 68 }, { value: 56 }, { value: 49 }, { value: 43 }, { value: 38 }] },
-    { label: "4月コホート", size: 952, values: [{ value: 100 }, { value: 70 }, { value: 59 }, { value: 50 }, { value: 44 }] },
-    { label: "5月コホート", size: 856, values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }] },
-    { label: "6月コホート", size: 760, values: [{ value: 100 }, { value: 63 }, { value: 51 }] },
+    {
+      label: "1月コホート",
+      size: 1240,
+      values: [
+        { value: 100 },
+        { value: 76 },
+        { value: 64 },
+        { value: 58 },
+        { value: 51 },
+        { value: 46 },
+        { value: 41 },
+        { value: 36 },
+      ],
+    },
+    {
+      label: "2月コホート",
+      size: 1144,
+      values: [
+        { value: 100 },
+        { value: 72 },
+        { value: 62 },
+        { value: 62 },
+        { value: 48 },
+        { value: 42 },
+        { value: 37 },
+      ],
+    },
+    {
+      label: "3月コホート",
+      size: 1048,
+      values: [
+        { value: 100 },
+        { value: 68 },
+        { value: 56 },
+        { value: 49 },
+        { value: 43 },
+        { value: 38 },
+      ],
+    },
+    {
+      label: "4月コホート",
+      size: 952,
+      values: [
+        { value: 100 },
+        { value: 70 },
+        { value: 59 },
+        { value: 50 },
+        { value: 44 },
+      ],
+    },
+    {
+      label: "5月コホート",
+      size: 856,
+      values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }],
+    },
+    {
+      label: "6月コホート",
+      size: 760,
+      values: [{ value: 100 }, { value: 63 }, { value: 51 }],
+    },
 ];
 
 export function CohortRetentionTable() {
@@ -105,12 +213,66 @@ const usageCode = { en: `import { RetentionCohortCard } from "@gunjo/ui";
 
 const periods = ["M0", "M1", "M2", "M3", "M4", "M5", "M6", "M7"];
 const cohorts = [
-    { label: "Jan cohort", size: 1240, values: [{ value: 100 }, { value: 76 }, { value: 64 }, { value: 58 }, { value: 51 }, { value: 46 }, { value: 41 }, { value: 36 }] },
-    { label: "Feb cohort", size: 1144, values: [{ value: 100 }, { value: 72 }, { value: 62 }, { value: 62 }, { value: 48 }, { value: 42 }, { value: 37 }] },
-    { label: "Mar cohort", size: 1048, values: [{ value: 100 }, { value: 68 }, { value: 56 }, { value: 49 }, { value: 43 }, { value: 38 }] },
-    { label: "Apr cohort", size: 952, values: [{ value: 100 }, { value: 70 }, { value: 59 }, { value: 50 }, { value: 44 }] },
-    { label: "May cohort", size: 856, values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }] },
-    { label: "Jun cohort", size: 760, values: [{ value: 100 }, { value: 63 }, { value: 51 }] },
+    {
+      label: "Jan cohort",
+      size: 1240,
+      values: [
+        { value: 100 },
+        { value: 76 },
+        { value: 64 },
+        { value: 58 },
+        { value: 51 },
+        { value: 46 },
+        { value: 41 },
+        { value: 36 },
+      ],
+    },
+    {
+      label: "Feb cohort",
+      size: 1144,
+      values: [
+        { value: 100 },
+        { value: 72 },
+        { value: 62 },
+        { value: 62 },
+        { value: 48 },
+        { value: 42 },
+        { value: 37 },
+      ],
+    },
+    {
+      label: "Mar cohort",
+      size: 1048,
+      values: [
+        { value: 100 },
+        { value: 68 },
+        { value: 56 },
+        { value: 49 },
+        { value: 43 },
+        { value: 38 },
+      ],
+    },
+    {
+      label: "Apr cohort",
+      size: 952,
+      values: [
+        { value: 100 },
+        { value: 70 },
+        { value: 59 },
+        { value: 50 },
+        { value: 44 },
+      ],
+    },
+    {
+      label: "May cohort",
+      size: 856,
+      values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }],
+    },
+    {
+      label: "Jun cohort",
+      size: 760,
+      values: [{ value: 100 }, { value: 63 }, { value: 51 }],
+    },
 ];
 
 export function CohortRetentionVariants() {
@@ -125,12 +287,66 @@ export function CohortRetentionVariants() {
 
 const periods = ["初月", "1か月", "2か月", "3か月", "4か月", "5か月", "6か月", "7か月"];
 const cohorts = [
-    { label: "1月コホート", size: 1240, values: [{ value: 100 }, { value: 76 }, { value: 64 }, { value: 58 }, { value: 51 }, { value: 46 }, { value: 41 }, { value: 36 }] },
-    { label: "2月コホート", size: 1144, values: [{ value: 100 }, { value: 72 }, { value: 62 }, { value: 62 }, { value: 48 }, { value: 42 }, { value: 37 }] },
-    { label: "3月コホート", size: 1048, values: [{ value: 100 }, { value: 68 }, { value: 56 }, { value: 49 }, { value: 43 }, { value: 38 }] },
-    { label: "4月コホート", size: 952, values: [{ value: 100 }, { value: 70 }, { value: 59 }, { value: 50 }, { value: 44 }] },
-    { label: "5月コホート", size: 856, values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }] },
-    { label: "6月コホート", size: 760, values: [{ value: 100 }, { value: 63 }, { value: 51 }] },
+    {
+      label: "1月コホート",
+      size: 1240,
+      values: [
+        { value: 100 },
+        { value: 76 },
+        { value: 64 },
+        { value: 58 },
+        { value: 51 },
+        { value: 46 },
+        { value: 41 },
+        { value: 36 },
+      ],
+    },
+    {
+      label: "2月コホート",
+      size: 1144,
+      values: [
+        { value: 100 },
+        { value: 72 },
+        { value: 62 },
+        { value: 62 },
+        { value: 48 },
+        { value: 42 },
+        { value: 37 },
+      ],
+    },
+    {
+      label: "3月コホート",
+      size: 1048,
+      values: [
+        { value: 100 },
+        { value: 68 },
+        { value: 56 },
+        { value: 49 },
+        { value: 43 },
+        { value: 38 },
+      ],
+    },
+    {
+      label: "4月コホート",
+      size: 952,
+      values: [
+        { value: 100 },
+        { value: 70 },
+        { value: 59 },
+        { value: 50 },
+        { value: 44 },
+      ],
+    },
+    {
+      label: "5月コホート",
+      size: 856,
+      values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }],
+    },
+    {
+      label: "6月コホート",
+      size: 760,
+      values: [{ value: 100 }, { value: 63 }, { value: 51 }],
+    },
 ];
 
 export function CohortRetentionVariants() {
@@ -147,12 +363,66 @@ const states = { en: [{ key: "default", title: "Default", description: "Standard
 
 const periods = ["M0", "M1", "M2", "M3", "M4", "M5", "M6", "M7"];
 const cohorts = [
-    { label: "Jan cohort", size: 1240, values: [{ value: 100 }, { value: 76 }, { value: 64 }, { value: 58 }, { value: 51 }, { value: 46 }, { value: 41 }, { value: 36 }] },
-    { label: "Feb cohort", size: 1144, values: [{ value: 100 }, { value: 72 }, { value: 62 }, { value: 62 }, { value: 48 }, { value: 42 }, { value: 37 }] },
-    { label: "Mar cohort", size: 1048, values: [{ value: 100 }, { value: 68 }, { value: 56 }, { value: 49 }, { value: 43 }, { value: 38 }] },
-    { label: "Apr cohort", size: 952, values: [{ value: 100 }, { value: 70 }, { value: 59 }, { value: 50 }, { value: 44 }] },
-    { label: "May cohort", size: 856, values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }] },
-    { label: "Jun cohort", size: 760, values: [{ value: 100 }, { value: 63 }, { value: 51 }] },
+    {
+      label: "Jan cohort",
+      size: 1240,
+      values: [
+        { value: 100 },
+        { value: 76 },
+        { value: 64 },
+        { value: 58 },
+        { value: 51 },
+        { value: 46 },
+        { value: 41 },
+        { value: 36 },
+      ],
+    },
+    {
+      label: "Feb cohort",
+      size: 1144,
+      values: [
+        { value: 100 },
+        { value: 72 },
+        { value: 62 },
+        { value: 62 },
+        { value: 48 },
+        { value: 42 },
+        { value: 37 },
+      ],
+    },
+    {
+      label: "Mar cohort",
+      size: 1048,
+      values: [
+        { value: 100 },
+        { value: 68 },
+        { value: 56 },
+        { value: 49 },
+        { value: 43 },
+        { value: 38 },
+      ],
+    },
+    {
+      label: "Apr cohort",
+      size: 952,
+      values: [
+        { value: 100 },
+        { value: 70 },
+        { value: 59 },
+        { value: 50 },
+        { value: 44 },
+      ],
+    },
+    {
+      label: "May cohort",
+      size: 856,
+      values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }],
+    },
+    {
+      label: "Jun cohort",
+      size: 760,
+      values: [{ value: 100 }, { value: 63 }, { value: 51 }],
+    },
 ];
 
 export function CohortRetentionTable() {
@@ -161,28 +431,140 @@ export function CohortRetentionTable() {
 
 const periods = ["M0", "M1", "M2", "M3", "M4", "M5", "M6", "M7"];
 const cohorts = [
-    { label: "Jan cohort", size: 1240, values: [{ value: 100 }, { value: 76 }, { value: 64 }, { value: 58 }, { value: 51 }, { value: 46 }, { value: 41 }, { value: 36 }] },
-    { label: "Feb cohort", size: 1144, values: [{ value: 100 }, { value: 72 }, { value: 62 }, { value: 62 }, { value: 48 }, { value: 42 }, { value: 37 }] },
-    { label: "Mar cohort", size: 1048, values: [{ value: 100 }, { value: 68 }, { value: 56 }, { value: 49 }, { value: 43 }, { value: 38 }] },
-    { label: "Apr cohort", size: 952, values: [{ value: 100 }, { value: 70 }, { value: 59 }, { value: 50 }, { value: 44 }] },
-    { label: "May cohort", size: 856, values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }] },
-    { label: "Jun cohort", size: 760, values: [{ value: 100 }, { value: 63 }, { value: 51 }] },
+    {
+      label: "Jan cohort",
+      size: 1240,
+      values: [
+        { value: 100 },
+        { value: 76 },
+        { value: 64 },
+        { value: 58 },
+        { value: 51 },
+        { value: 46 },
+        { value: 41 },
+        { value: 36 },
+      ],
+    },
+    {
+      label: "Feb cohort",
+      size: 1144,
+      values: [
+        { value: 100 },
+        { value: 72 },
+        { value: 62 },
+        { value: 62 },
+        { value: 48 },
+        { value: 42 },
+        { value: 37 },
+      ],
+    },
+    {
+      label: "Mar cohort",
+      size: 1048,
+      values: [
+        { value: 100 },
+        { value: 68 },
+        { value: 56 },
+        { value: 49 },
+        { value: 43 },
+        { value: 38 },
+      ],
+    },
+    {
+      label: "Apr cohort",
+      size: 952,
+      values: [
+        { value: 100 },
+        { value: 70 },
+        { value: 59 },
+        { value: 50 },
+        { value: 44 },
+      ],
+    },
+    {
+      label: "May cohort",
+      size: 856,
+      values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }],
+    },
+    {
+      label: "Jun cohort",
+      size: 760,
+      values: [{ value: 100 }, { value: 63 }, { value: 51 }],
+    },
 ];
 
 export function SelectedCellCohortRetention() {
     return (
-        <RetentionCohortCard periods={periods} cohorts={cohorts} selectedCell={{ cohortIndex: 1, periodIndex: 2 }} />
+        <RetentionCohortCard
+          periods={periods}
+          cohorts={cohorts}
+          selectedCell={{ cohortIndex: 1, periodIndex: 2 }}
+        />
     );
 }` }, { key: "no-values", title: "No values", description: "Keeps intensity while hiding cell text.", preview: <RetentionCohortCard title="Cohort retention" periods={periodsByLocale.en} cohorts={cohortsByLocale.en} showValues={false} />, previewBodyWidth: "xl", code: `import { RetentionCohortCard } from "@gunjo/ui";
 
 const periods = ["M0", "M1", "M2", "M3", "M4", "M5", "M6", "M7"];
 const cohorts = [
-    { label: "Jan cohort", size: 1240, values: [{ value: 100 }, { value: 76 }, { value: 64 }, { value: 58 }, { value: 51 }, { value: 46 }, { value: 41 }, { value: 36 }] },
-    { label: "Feb cohort", size: 1144, values: [{ value: 100 }, { value: 72 }, { value: 62 }, { value: 62 }, { value: 48 }, { value: 42 }, { value: 37 }] },
-    { label: "Mar cohort", size: 1048, values: [{ value: 100 }, { value: 68 }, { value: 56 }, { value: 49 }, { value: 43 }, { value: 38 }] },
-    { label: "Apr cohort", size: 952, values: [{ value: 100 }, { value: 70 }, { value: 59 }, { value: 50 }, { value: 44 }] },
-    { label: "May cohort", size: 856, values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }] },
-    { label: "Jun cohort", size: 760, values: [{ value: 100 }, { value: 63 }, { value: 51 }] },
+    {
+      label: "Jan cohort",
+      size: 1240,
+      values: [
+        { value: 100 },
+        { value: 76 },
+        { value: 64 },
+        { value: 58 },
+        { value: 51 },
+        { value: 46 },
+        { value: 41 },
+        { value: 36 },
+      ],
+    },
+    {
+      label: "Feb cohort",
+      size: 1144,
+      values: [
+        { value: 100 },
+        { value: 72 },
+        { value: 62 },
+        { value: 62 },
+        { value: 48 },
+        { value: 42 },
+        { value: 37 },
+      ],
+    },
+    {
+      label: "Mar cohort",
+      size: 1048,
+      values: [
+        { value: 100 },
+        { value: 68 },
+        { value: 56 },
+        { value: 49 },
+        { value: 43 },
+        { value: 38 },
+      ],
+    },
+    {
+      label: "Apr cohort",
+      size: 952,
+      values: [
+        { value: 100 },
+        { value: 70 },
+        { value: 59 },
+        { value: 50 },
+        { value: 44 },
+      ],
+    },
+    {
+      label: "May cohort",
+      size: 856,
+      values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }],
+    },
+    {
+      label: "Jun cohort",
+      size: 760,
+      values: [{ value: 100 }, { value: 63 }, { value: 51 }],
+    },
 ];
 
 export function CohortRetentionWithoutValues() {
@@ -191,12 +573,66 @@ export function CohortRetentionWithoutValues() {
 
 const periods = ["M0", "M1", "M2", "M3", "M4", "M5", "M6", "M7"];
 const cohorts = [
-    { label: "Jan cohort", size: 1240, values: [{ value: 100 }, { value: 76 }, { value: 64 }, { value: 58 }, { value: 51 }, { value: 46 }, { value: 41 }, { value: 36 }] },
-    { label: "Feb cohort", size: 1144, values: [{ value: 100 }, { value: 72 }, { value: 62 }, { value: 62 }, { value: 48 }, { value: 42 }, { value: 37 }] },
-    { label: "Mar cohort", size: 1048, values: [{ value: 100 }, { value: 68 }, { value: 56 }, { value: 49 }, { value: 43 }, { value: 38 }] },
-    { label: "Apr cohort", size: 952, values: [{ value: 100 }, { value: 70 }, { value: 59 }, { value: 50 }, { value: 44 }] },
-    { label: "May cohort", size: 856, values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }] },
-    { label: "Jun cohort", size: 760, values: [{ value: 100 }, { value: 63 }, { value: 51 }] },
+    {
+      label: "Jan cohort",
+      size: 1240,
+      values: [
+        { value: 100 },
+        { value: 76 },
+        { value: 64 },
+        { value: 58 },
+        { value: 51 },
+        { value: 46 },
+        { value: 41 },
+        { value: 36 },
+      ],
+    },
+    {
+      label: "Feb cohort",
+      size: 1144,
+      values: [
+        { value: 100 },
+        { value: 72 },
+        { value: 62 },
+        { value: 62 },
+        { value: 48 },
+        { value: 42 },
+        { value: 37 },
+      ],
+    },
+    {
+      label: "Mar cohort",
+      size: 1048,
+      values: [
+        { value: 100 },
+        { value: 68 },
+        { value: 56 },
+        { value: 49 },
+        { value: 43 },
+        { value: 38 },
+      ],
+    },
+    {
+      label: "Apr cohort",
+      size: 952,
+      values: [
+        { value: 100 },
+        { value: 70 },
+        { value: 59 },
+        { value: 50 },
+        { value: 44 },
+      ],
+    },
+    {
+      label: "May cohort",
+      size: 856,
+      values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }],
+    },
+    {
+      label: "Jun cohort",
+      size: 760,
+      values: [{ value: 100 }, { value: 63 }, { value: 51 }],
+    },
 ];
 
 export function CompactCohortRetention() {
@@ -205,12 +641,66 @@ export function CompactCohortRetention() {
 
 const periods = ["初月", "1か月", "2か月", "3か月", "4か月", "5か月", "6か月", "7か月"];
 const cohorts = [
-    { label: "1月コホート", size: 1240, values: [{ value: 100 }, { value: 76 }, { value: 64 }, { value: 58 }, { value: 51 }, { value: 46 }, { value: 41 }, { value: 36 }] },
-    { label: "2月コホート", size: 1144, values: [{ value: 100 }, { value: 72 }, { value: 62 }, { value: 62 }, { value: 48 }, { value: 42 }, { value: 37 }] },
-    { label: "3月コホート", size: 1048, values: [{ value: 100 }, { value: 68 }, { value: 56 }, { value: 49 }, { value: 43 }, { value: 38 }] },
-    { label: "4月コホート", size: 952, values: [{ value: 100 }, { value: 70 }, { value: 59 }, { value: 50 }, { value: 44 }] },
-    { label: "5月コホート", size: 856, values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }] },
-    { label: "6月コホート", size: 760, values: [{ value: 100 }, { value: 63 }, { value: 51 }] },
+    {
+      label: "1月コホート",
+      size: 1240,
+      values: [
+        { value: 100 },
+        { value: 76 },
+        { value: 64 },
+        { value: 58 },
+        { value: 51 },
+        { value: 46 },
+        { value: 41 },
+        { value: 36 },
+      ],
+    },
+    {
+      label: "2月コホート",
+      size: 1144,
+      values: [
+        { value: 100 },
+        { value: 72 },
+        { value: 62 },
+        { value: 62 },
+        { value: 48 },
+        { value: 42 },
+        { value: 37 },
+      ],
+    },
+    {
+      label: "3月コホート",
+      size: 1048,
+      values: [
+        { value: 100 },
+        { value: 68 },
+        { value: 56 },
+        { value: 49 },
+        { value: 43 },
+        { value: 38 },
+      ],
+    },
+    {
+      label: "4月コホート",
+      size: 952,
+      values: [
+        { value: 100 },
+        { value: 70 },
+        { value: 59 },
+        { value: 50 },
+        { value: 44 },
+      ],
+    },
+    {
+      label: "5月コホート",
+      size: 856,
+      values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }],
+    },
+    {
+      label: "6月コホート",
+      size: 760,
+      values: [{ value: 100 }, { value: 63 }, { value: 51 }],
+    },
 ];
 
 export function CohortRetentionTable() {
@@ -219,28 +709,140 @@ export function CohortRetentionTable() {
 
 const periods = ["初月", "1か月", "2か月", "3か月", "4か月", "5か月", "6か月", "7か月"];
 const cohorts = [
-    { label: "1月コホート", size: 1240, values: [{ value: 100 }, { value: 76 }, { value: 64 }, { value: 58 }, { value: 51 }, { value: 46 }, { value: 41 }, { value: 36 }] },
-    { label: "2月コホート", size: 1144, values: [{ value: 100 }, { value: 72 }, { value: 62 }, { value: 62 }, { value: 48 }, { value: 42 }, { value: 37 }] },
-    { label: "3月コホート", size: 1048, values: [{ value: 100 }, { value: 68 }, { value: 56 }, { value: 49 }, { value: 43 }, { value: 38 }] },
-    { label: "4月コホート", size: 952, values: [{ value: 100 }, { value: 70 }, { value: 59 }, { value: 50 }, { value: 44 }] },
-    { label: "5月コホート", size: 856, values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }] },
-    { label: "6月コホート", size: 760, values: [{ value: 100 }, { value: 63 }, { value: 51 }] },
+    {
+      label: "1月コホート",
+      size: 1240,
+      values: [
+        { value: 100 },
+        { value: 76 },
+        { value: 64 },
+        { value: 58 },
+        { value: 51 },
+        { value: 46 },
+        { value: 41 },
+        { value: 36 },
+      ],
+    },
+    {
+      label: "2月コホート",
+      size: 1144,
+      values: [
+        { value: 100 },
+        { value: 72 },
+        { value: 62 },
+        { value: 62 },
+        { value: 48 },
+        { value: 42 },
+        { value: 37 },
+      ],
+    },
+    {
+      label: "3月コホート",
+      size: 1048,
+      values: [
+        { value: 100 },
+        { value: 68 },
+        { value: 56 },
+        { value: 49 },
+        { value: 43 },
+        { value: 38 },
+      ],
+    },
+    {
+      label: "4月コホート",
+      size: 952,
+      values: [
+        { value: 100 },
+        { value: 70 },
+        { value: 59 },
+        { value: 50 },
+        { value: 44 },
+      ],
+    },
+    {
+      label: "5月コホート",
+      size: 856,
+      values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }],
+    },
+    {
+      label: "6月コホート",
+      size: 760,
+      values: [{ value: 100 }, { value: 63 }, { value: 51 }],
+    },
 ];
 
 export function SelectedCellCohortRetention() {
     return (
-        <RetentionCohortCard periods={periods} cohorts={cohorts} selectedCell={{ cohortIndex: 1, periodIndex: 2 }} />
+        <RetentionCohortCard
+          periods={periods}
+          cohorts={cohorts}
+          selectedCell={{ cohortIndex: 1, periodIndex: 2 }}
+        />
     );
 }` }, { key: "no-values", title: "値なし", description: "セル内テキストを消して濃淡だけで確認します。", preview: <RetentionCohortCard title="コホート継続率" periods={periodsByLocale.ja} cohorts={cohortsByLocale.ja} showValues={false} />, previewBodyWidth: "xl", code: `import { RetentionCohortCard } from "@gunjo/ui";
 
 const periods = ["初月", "1か月", "2か月", "3か月", "4か月", "5か月", "6か月", "7か月"];
 const cohorts = [
-    { label: "1月コホート", size: 1240, values: [{ value: 100 }, { value: 76 }, { value: 64 }, { value: 58 }, { value: 51 }, { value: 46 }, { value: 41 }, { value: 36 }] },
-    { label: "2月コホート", size: 1144, values: [{ value: 100 }, { value: 72 }, { value: 62 }, { value: 62 }, { value: 48 }, { value: 42 }, { value: 37 }] },
-    { label: "3月コホート", size: 1048, values: [{ value: 100 }, { value: 68 }, { value: 56 }, { value: 49 }, { value: 43 }, { value: 38 }] },
-    { label: "4月コホート", size: 952, values: [{ value: 100 }, { value: 70 }, { value: 59 }, { value: 50 }, { value: 44 }] },
-    { label: "5月コホート", size: 856, values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }] },
-    { label: "6月コホート", size: 760, values: [{ value: 100 }, { value: 63 }, { value: 51 }] },
+    {
+      label: "1月コホート",
+      size: 1240,
+      values: [
+        { value: 100 },
+        { value: 76 },
+        { value: 64 },
+        { value: 58 },
+        { value: 51 },
+        { value: 46 },
+        { value: 41 },
+        { value: 36 },
+      ],
+    },
+    {
+      label: "2月コホート",
+      size: 1144,
+      values: [
+        { value: 100 },
+        { value: 72 },
+        { value: 62 },
+        { value: 62 },
+        { value: 48 },
+        { value: 42 },
+        { value: 37 },
+      ],
+    },
+    {
+      label: "3月コホート",
+      size: 1048,
+      values: [
+        { value: 100 },
+        { value: 68 },
+        { value: 56 },
+        { value: 49 },
+        { value: 43 },
+        { value: 38 },
+      ],
+    },
+    {
+      label: "4月コホート",
+      size: 952,
+      values: [
+        { value: 100 },
+        { value: 70 },
+        { value: 59 },
+        { value: 50 },
+        { value: 44 },
+      ],
+    },
+    {
+      label: "5月コホート",
+      size: 856,
+      values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }],
+    },
+    {
+      label: "6月コホート",
+      size: 760,
+      values: [{ value: 100 }, { value: 63 }, { value: 51 }],
+    },
 ];
 
 export function CohortRetentionWithoutValues() {
@@ -249,12 +851,66 @@ export function CohortRetentionWithoutValues() {
 
 const periods = ["初月", "1か月", "2か月", "3か月", "4か月", "5か月", "6か月", "7か月"];
 const cohorts = [
-    { label: "1月コホート", size: 1240, values: [{ value: 100 }, { value: 76 }, { value: 64 }, { value: 58 }, { value: 51 }, { value: 46 }, { value: 41 }, { value: 36 }] },
-    { label: "2月コホート", size: 1144, values: [{ value: 100 }, { value: 72 }, { value: 62 }, { value: 62 }, { value: 48 }, { value: 42 }, { value: 37 }] },
-    { label: "3月コホート", size: 1048, values: [{ value: 100 }, { value: 68 }, { value: 56 }, { value: 49 }, { value: 43 }, { value: 38 }] },
-    { label: "4月コホート", size: 952, values: [{ value: 100 }, { value: 70 }, { value: 59 }, { value: 50 }, { value: 44 }] },
-    { label: "5月コホート", size: 856, values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }] },
-    { label: "6月コホート", size: 760, values: [{ value: 100 }, { value: 63 }, { value: 51 }] },
+    {
+      label: "1月コホート",
+      size: 1240,
+      values: [
+        { value: 100 },
+        { value: 76 },
+        { value: 64 },
+        { value: 58 },
+        { value: 51 },
+        { value: 46 },
+        { value: 41 },
+        { value: 36 },
+      ],
+    },
+    {
+      label: "2月コホート",
+      size: 1144,
+      values: [
+        { value: 100 },
+        { value: 72 },
+        { value: 62 },
+        { value: 62 },
+        { value: 48 },
+        { value: 42 },
+        { value: 37 },
+      ],
+    },
+    {
+      label: "3月コホート",
+      size: 1048,
+      values: [
+        { value: 100 },
+        { value: 68 },
+        { value: 56 },
+        { value: 49 },
+        { value: 43 },
+        { value: 38 },
+      ],
+    },
+    {
+      label: "4月コホート",
+      size: 952,
+      values: [
+        { value: 100 },
+        { value: 70 },
+        { value: 59 },
+        { value: 50 },
+        { value: 44 },
+      ],
+    },
+    {
+      label: "5月コホート",
+      size: 856,
+      values: [{ value: 100 }, { value: 66 }, { value: 53 }, { value: 47 }],
+    },
+    {
+      label: "6月コホート",
+      size: 760,
+      values: [{ value: 100 }, { value: 63 }, { value: 51 }],
+    },
 ];
 
 export function CompactCohortRetention() {

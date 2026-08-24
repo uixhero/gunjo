@@ -96,7 +96,12 @@ const data = [
 ];
 
 export function ScoreRadar() {
-    return <RadarChart data={data} max={100} formatValue={(value) => value + "%"} maxLabel="Max" />;
+    return <RadarChart
+      data={data}
+      max={100}
+      formatValue
+      value
+    > value + "%"} maxLabel="Max" />;
 }`, ja: `import { RadarChart } from "@gunjo/ui";
 
 const data = [
@@ -109,7 +114,12 @@ const data = [
 ];
 
 export function ScoreRadar() {
-    return <RadarChart data={data} max={100} formatValue={(value) => value + "%"} maxLabel="最大" />;
+    return <RadarChart
+      data={data}
+      max={100}
+      formatValue
+      value
+    > value + "%"} maxLabel="最大" />;
 }` } as const;
 const usageCode = { en: `import { RadarChart } from "@gunjo/ui";
 
@@ -276,8 +286,20 @@ const series = [
 export function GrowthRadar() {
     return (
         <div className="grid gap-6">
-            <RadarChart data={currentData} series={series} max={100} formatValue={(value) => value + "%"} maxLabel="Max" />
-            <ChartLegend className="justify-center" items={[{ label: "As-is", value: "46%", color: "muted" }, { label: "To-be", value: "66%", color: "success" }]} />
+            <RadarChart
+              data={currentData}
+              series={series}
+              max={100}
+              formatValue
+              value
+            > value + "%"} maxLabel="Max" />
+            <ChartLegend
+              className="justify-center"
+              items={[
+                { label: "As-is", value: "46%", color: "muted" },
+                { label: "To-be", value: "66%", color: "success" },
+              ]}
+            />
         </div>
     );
 }`,
@@ -422,8 +444,20 @@ const series = [
 export function GrowthRadar() {
     return (
         <div className="grid gap-6">
-            <RadarChart data={currentData} series={series} max={100} formatValue={(value) => value + "%"} maxLabel="最大" />
-            <ChartLegend className="justify-center" items={[{ label: "現在", value: "46%", color: "muted" }, { label: "成長後", value: "66%", color: "success" }]} />
+            <RadarChart
+              data={currentData}
+              series={series}
+              max={100}
+              formatValue
+              value
+            > value + "%"} maxLabel="最大" />
+            <ChartLegend
+              className="justify-center"
+              items={[
+                { label: "現在", value: "46%", color: "muted" },
+                { label: "成長後", value: "66%", color: "success" },
+              ]}
+            />
         </div>
     );
 }`,
