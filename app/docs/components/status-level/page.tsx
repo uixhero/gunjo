@@ -160,7 +160,12 @@ export default function StatusLevelDocPage() {
   const copy = copyFor(locale);
 
   const usageCode = isJa
-    ? `import { ListCard, StatusLevel, compareStatusLevel, highestStatusLevel } from "@gunjo/ui";
+    ? `import {
+  ListCard,
+  StatusLevel,
+  compareStatusLevel,
+  highestStatusLevel,
+} from "@gunjo/ui";
 
 // 段は軽い順に1回だけ書く。並べ替えも全体の導出もこの配列から引く。
 const SERVICE_LEVELS = [
@@ -178,7 +183,9 @@ const ROUTES = [
 
 export function ServiceStatusList() {
   // 重い順（運休が上）。
-  const sorted = [...ROUTES].sort((a, b) => compareStatusLevel(SERVICE_LEVELS, b.level, a.level));
+  const sorted = [...ROUTES].sort((a, b) =>
+    compareStatusLevel(SERVICE_LEVELS, b.level, a.level),
+  );
   // 全体の運行状況＝いちばん重い段。
   const overall = highestStatusLevel(SERVICE_LEVELS, ROUTES.map((r) => r.level));
 
@@ -196,7 +203,12 @@ export function ServiceStatusList() {
     </div>
   );
 }`
-    : `import { ListCard, StatusLevel, compareStatusLevel, highestStatusLevel } from "@gunjo/ui";
+    : `import {
+  ListCard,
+  StatusLevel,
+  compareStatusLevel,
+  highestStatusLevel,
+} from "@gunjo/ui";
 
 // Write the scale once, lightest first. Sorting and the roll-up read the same array.
 const SERVICE_LEVELS = [
@@ -207,14 +219,31 @@ const SERVICE_LEVELS = [
 ] as const;
 
 const ROUTES = [
-  { id: "ke96", name: "Route 96 — Shinagawa to Yashio Park Town", note: "Running to schedule", level: "normal" },
-  { id: "ke98", name: "Route 98 — Shinagawa to Oi Racecourse", note: "Detoured around roadworks", level: "detour" },
-  { id: "ke99", name: "Route 99 — Shinagawa to Gotanda", note: "Suspended all day", level: "suspended" },
+  {
+    id: "ke96",
+    name: "Route 96 — Shinagawa to Yashio Park Town",
+    note: "Running to schedule",
+    level: "normal",
+  },
+  {
+    id: "ke98",
+    name: "Route 98 — Shinagawa to Oi Racecourse",
+    note: "Detoured around roadworks",
+    level: "detour",
+  },
+  {
+    id: "ke99",
+    name: "Route 99 — Shinagawa to Gotanda",
+    note: "Suspended all day",
+    level: "suspended",
+  },
 ] as const;
 
 export function ServiceStatusList() {
   // Heaviest first.
-  const sorted = [...ROUTES].sort((a, b) => compareStatusLevel(SERVICE_LEVELS, b.level, a.level));
+  const sorted = [...ROUTES].sort((a, b) =>
+    compareStatusLevel(SERVICE_LEVELS, b.level, a.level),
+  );
   // Line-wide status = the heaviest step present.
   const overall = highestStatusLevel(SERVICE_LEVELS, ROUTES.map((r) => r.level));
 
