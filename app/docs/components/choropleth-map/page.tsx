@@ -56,12 +56,8 @@ const regions = [
         geometry: {
             type: "Polygon",
             coordinates: [[
-                [139.686, 35.707],
-                [139.704, 35.714],
-                [139.721, 35.702],
-                [139.716, 35.683],
-                [139.697, 35.676],
-                [139.681, 35.690],
+                [139.686, 35.707], [139.704, 35.714], [139.721, 35.702],
+                [139.716, 35.683], [139.697, 35.676], [139.681, 35.690],
             ]],
         },
     },
@@ -72,20 +68,28 @@ const regions = [
         geometry: {
             type: "Polygon",
             coordinates: [[
-                [139.671, 35.680],
-                [139.697, 35.676],
-                [139.716, 35.683],
-                [139.712, 35.655],
-                [139.690, 35.638],
-                [139.666, 35.652],
+                [139.671, 35.680], [139.697, 35.676], [139.716, 35.683],
+                [139.712, 35.655], [139.690, 35.638], [139.666, 35.652],
             ]],
         },
     },
 ];
 
 const markers = [
-    { id: "station", label: "Shinjuku station", regionId: "shinjuku", value: 92, coordinate: [139.7006, 35.6909] },
-    { id: "crossing", label: "Shibuya crossing", regionId: "shibuya", value: 84, coordinate: [139.7004, 35.6595] },
+    {
+        id: "station",
+        label: "Shinjuku station",
+        regionId: "shinjuku",
+        value: 92,
+        coordinate: [139.7006, 35.6909],
+    },
+    {
+        id: "crossing",
+        label: "Shibuya crossing",
+        regionId: "shibuya",
+        value: 84,
+        coordinate: [139.7004, 35.6595],
+    },
 ];
 
 export function TokyoIncidentMap() {
@@ -98,7 +102,7 @@ export function TokyoIncidentMap() {
             selectedId={selectedId}
             showRanking
             onRegionSelect={(region) => setSelectedId(region.id ?? region.label)}
-            onMarkerSelect={(marker) => marker.regionId && setSelectedId(marker.regionId)}
+            onMarkerSelect={(marker) => setSelectedId(marker.regionId)}
             aria-label="Tokyo incident density by ward"
         />
     );
@@ -114,12 +118,8 @@ const regions = [
         geometry: {
             type: "Polygon",
             coordinates: [[
-                [139.686, 35.707],
-                [139.704, 35.714],
-                [139.721, 35.702],
-                [139.716, 35.683],
-                [139.697, 35.676],
-                [139.681, 35.690],
+                [139.686, 35.707], [139.704, 35.714], [139.721, 35.702],
+                [139.716, 35.683], [139.697, 35.676], [139.681, 35.690],
             ]],
         },
     },
@@ -130,20 +130,28 @@ const regions = [
         geometry: {
             type: "Polygon",
             coordinates: [[
-                [139.671, 35.680],
-                [139.697, 35.676],
-                [139.716, 35.683],
-                [139.712, 35.655],
-                [139.690, 35.638],
-                [139.666, 35.652],
+                [139.671, 35.680], [139.697, 35.676], [139.716, 35.683],
+                [139.712, 35.655], [139.690, 35.638], [139.666, 35.652],
             ]],
         },
     },
 ];
 
 const markers = [
-    { id: "station", label: "新宿駅", regionId: "shinjuku", value: 92, coordinate: [139.7006, 35.6909] },
-    { id: "crossing", label: "渋谷交差点", regionId: "shibuya", value: 84, coordinate: [139.7004, 35.6595] },
+    {
+        id: "station",
+        label: "新宿駅",
+        regionId: "shinjuku",
+        value: 92,
+        coordinate: [139.7006, 35.6909],
+    },
+    {
+        id: "crossing",
+        label: "渋谷交差点",
+        regionId: "shibuya",
+        value: 84,
+        coordinate: [139.7004, 35.6595],
+    },
 ];
 
 export function TokyoIncidentMap() {
@@ -156,7 +164,7 @@ export function TokyoIncidentMap() {
             selectedId={selectedId}
             showRanking
             onRegionSelect={(region) => setSelectedId(region.id ?? region.label)}
-            onMarkerSelect={(marker) => marker.regionId && setSelectedId(marker.regionId)}
+            onMarkerSelect={(marker) => setSelectedId(marker.regionId)}
             aria-label="区ごとのインシデント密度"
         />
     );
@@ -173,7 +181,10 @@ const regions = [
         value: 92,
         geometry: {
             type: "Polygon",
-            coordinates: [[[139.686, 35.707], [139.704, 35.714], [139.721, 35.702], [139.716, 35.683], [139.697, 35.676], [139.681, 35.690]]],
+            coordinates: [[
+                [139.686, 35.707], [139.704, 35.714], [139.721, 35.702],
+                [139.716, 35.683], [139.697, 35.676], [139.681, 35.690],
+            ]],
         },
     },
     {
@@ -182,22 +193,33 @@ const regions = [
         value: 84,
         geometry: {
             type: "Polygon",
-            coordinates: [[[139.686, 35.675], [139.704, 35.683], [139.716, 35.668], [139.708, 35.651], [139.688, 35.646], [139.676, 35.661]]],
+            coordinates: [[
+                [139.671, 35.680], [139.697, 35.676], [139.716, 35.683],
+                [139.712, 35.655], [139.690, 35.638], [139.666, 35.652],
+            ]],
         },
     },
 ];
 
-const markers = [
-    { label: "Shinjuku Station", x: 42, y: 32, value: 92 },
-    { label: "Shibuya Crossing", x: 48, y: 58, value: 84 },
-];
-
-<ChoroplethMap regions={regions} />
-<ChoroplethMap regions={regions} markers={markers} selectedId="shinjuku" />
-<ChoroplethMap regions={regions} onRegionSelect={(region) => console.log(region.id ?? region.label)} />
-<ChoroplethMap regions={regions} variant="compact" rankingLimit={4} />
-<ChoroplethMap regions={regions} showRanking={false} showSelectedRegion={false} />
-<ChoroplethMap regions={regions} selectedLabel="Selected" rankLabel="Rank" />`,
+export function ChoroplethMapUsage() {
+    return (
+        <div className="grid gap-8">
+            <ChoroplethMap regions={regions} />
+            <ChoroplethMap regions={regions} selectedId="shinjuku" />
+            <ChoroplethMap regions={regions} variant="compact" rankingLimit={4} />
+            <ChoroplethMap
+                regions={regions}
+                showRanking={false}
+                showSelectedRegion={false}
+            />
+            <ChoroplethMap
+                regions={regions}
+                selectedLabel="Selected"
+                rankLabel="Rank"
+            />
+        </div>
+    );
+}`,
     ja: `import { ChoroplethMap } from "@gunjo/ui";
 
 const regions = [
@@ -207,7 +229,10 @@ const regions = [
         value: 92,
         geometry: {
             type: "Polygon",
-            coordinates: [[[139.686, 35.707], [139.704, 35.714], [139.721, 35.702], [139.716, 35.683], [139.697, 35.676], [139.681, 35.690]]],
+            coordinates: [[
+                [139.686, 35.707], [139.704, 35.714], [139.721, 35.702],
+                [139.716, 35.683], [139.697, 35.676], [139.681, 35.690],
+            ]],
         },
     },
     {
@@ -216,94 +241,473 @@ const regions = [
         value: 84,
         geometry: {
             type: "Polygon",
-            coordinates: [[[139.686, 35.675], [139.704, 35.683], [139.716, 35.668], [139.708, 35.651], [139.688, 35.646], [139.676, 35.661]]],
+            coordinates: [[
+                [139.671, 35.680], [139.697, 35.676], [139.716, 35.683],
+                [139.712, 35.655], [139.690, 35.638], [139.666, 35.652],
+            ]],
+        },
+    },
+];
+
+export function ChoroplethMapUsage() {
+    return (
+        <div className="grid gap-8">
+            <ChoroplethMap regions={regions} />
+            <ChoroplethMap regions={regions} selectedId="shinjuku" />
+            <ChoroplethMap regions={regions} variant="compact" rankingLimit={4} />
+            <ChoroplethMap
+                regions={regions}
+                showRanking={false}
+                showSelectedRegion={false}
+            />
+            <ChoroplethMap
+                regions={regions}
+                selectedLabel="選択中"
+                rankLabel="順位"
+            />
+        </div>
+    );
+}`,
+} as const;
+
+const stateCodeByLocale = {
+    en: {
+        default: `import { ChoroplethMap } from "@gunjo/ui";
+
+const regions = [
+    {
+        id: "shinjuku",
+        label: "Shinjuku",
+        value: 92,
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [139.686, 35.707], [139.704, 35.714], [139.721, 35.702],
+                [139.716, 35.683], [139.697, 35.676], [139.681, 35.690],
+            ]],
+        },
+    },
+    {
+        id: "shibuya",
+        label: "Shibuya",
+        value: 84,
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [139.671, 35.680], [139.697, 35.676], [139.716, 35.683],
+                [139.712, 35.655], [139.690, 35.638], [139.666, 35.652],
+            ]],
+        },
+    },
+];
+
+export function WardDensityMap() {
+    return (
+        <ChoroplethMap
+            regions={regions}
+            selectedId="shinjuku"
+            selectedLabel="Selected"
+            rankLabel="Rank"
+        />
+    );
+}`,
+        markers: `import { useState } from "react";
+import { ChoroplethMap } from "@gunjo/ui";
+
+const regions = [
+    {
+        id: "shinjuku",
+        label: "Shinjuku",
+        value: 92,
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [139.686, 35.707], [139.704, 35.714], [139.721, 35.702],
+                [139.716, 35.683], [139.697, 35.676], [139.681, 35.690],
+            ]],
+        },
+    },
+    {
+        id: "shibuya",
+        label: "Shibuya",
+        value: 84,
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [139.671, 35.680], [139.697, 35.676], [139.716, 35.683],
+                [139.712, 35.655], [139.690, 35.638], [139.666, 35.652],
+            ]],
         },
     },
 ];
 
 const markers = [
-    { label: "新宿駅", x: 42, y: 32, value: 92 },
-    { label: "渋谷交差点", x: 48, y: 58, value: 84 },
+    {
+        id: "station",
+        label: "Shinjuku station",
+        regionId: "shinjuku",
+        value: 92,
+        coordinate: [139.7006, 35.6909],
+    },
+    {
+        id: "crossing",
+        label: "Shibuya crossing",
+        regionId: "shibuya",
+        value: 84,
+        coordinate: [139.7004, 35.6595],
+    },
 ];
 
-<ChoroplethMap regions={regions} />
-<ChoroplethMap regions={regions} markers={markers} selectedId="shinjuku" />
-<ChoroplethMap regions={regions} onRegionSelect={(region) => console.log(region.id ?? region.label)} />
-<ChoroplethMap regions={regions} variant="compact" rankingLimit={4} />
-<ChoroplethMap regions={regions} showRanking={false} showSelectedRegion={false} />
-<ChoroplethMap regions={regions} selectedLabel="選択中" rankLabel="順位" />`,
-} as const;
+export function WardDensityMapWithMarkers() {
+    const [selectedId, setSelectedId] = useState("shibuya");
 
-const stateCodeByLocale = {
-    en: {
-        default: `<ChoroplethMap
-  regions={regions}
-  selectedId="shinjuku"
-  selectedLabel="Selected"
-  rankLabel="Rank"
-/>`,
-        markers: `<ChoroplethMap
-  regions={regions}
-  markers={markers}
-  selectedId="shibuya"
-  onRegionSelect={(region) => setSelectedId(region.id ?? region.label)}
-  onMarkerSelect={(marker) => marker.regionId && setSelectedId(marker.regionId)}
-/>`,
-        compact: `<ChoroplethMap
-  regions={regions}
-  variant="compact"
-  rankingLimit={4}
-  showSelectedRegion={false}
-/>`,
-        alternateColor: `<ChoroplethMap
-  regions={regions.map(({ color, ...region }) => region)}
-  color="info"
-  selectedId="minato"
-  selectedLabel="Selected"
-/>`,
-        mapOnly: `<ChoroplethMap
-  regions={regions}
-  markers={markers}
-  selectedId="shinjuku"
-  showRanking={false}
-  showSelectedRegion={false}
-  className="mx-auto max-w-xl"
-/>`,
+    return (
+        <ChoroplethMap
+            regions={regions}
+            markers={markers}
+            selectedId={selectedId}
+            onRegionSelect={(region) => setSelectedId(region.id ?? region.label)}
+            onMarkerSelect={(marker) => setSelectedId(marker.regionId)}
+        />
+    );
+}`,
+        compact: `import { ChoroplethMap } from "@gunjo/ui";
+
+const regions = [
+    {
+        id: "shinjuku",
+        label: "Shinjuku",
+        value: 92,
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [139.686, 35.707], [139.704, 35.714], [139.721, 35.702],
+                [139.716, 35.683], [139.697, 35.676], [139.681, 35.690],
+            ]],
+        },
+    },
+    {
+        id: "shibuya",
+        label: "Shibuya",
+        value: 84,
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [139.671, 35.680], [139.697, 35.676], [139.716, 35.683],
+                [139.712, 35.655], [139.690, 35.638], [139.666, 35.652],
+            ]],
+        },
+    },
+];
+
+export function CompactWardDensityMap() {
+    return (
+        <ChoroplethMap
+            regions={regions}
+            variant="compact"
+            rankingLimit={4}
+            showSelectedRegion={false}
+        />
+    );
+}`,
+        alternateColor: `import { ChoroplethMap } from "@gunjo/ui";
+
+const regions = [
+    {
+        id: "shinjuku",
+        label: "Shinjuku",
+        value: 92,
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [139.686, 35.707], [139.704, 35.714], [139.721, 35.702],
+                [139.716, 35.683], [139.697, 35.676], [139.681, 35.690],
+            ]],
+        },
+    },
+    {
+        id: "shibuya",
+        label: "Shibuya",
+        value: 84,
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [139.671, 35.680], [139.697, 35.676], [139.716, 35.683],
+                [139.712, 35.655], [139.690, 35.638], [139.666, 35.652],
+            ]],
+        },
+    },
+];
+
+export function SingleToneWardMap() {
+    return (
+        <ChoroplethMap
+            regions={regions}
+            color="info"
+            selectedId="shibuya"
+            selectedLabel="Selected"
+        />
+    );
+}`,
+        mapOnly: `import { ChoroplethMap } from "@gunjo/ui";
+
+const regions = [
+    {
+        id: "shinjuku",
+        label: "Shinjuku",
+        value: 92,
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [139.686, 35.707], [139.704, 35.714], [139.721, 35.702],
+                [139.716, 35.683], [139.697, 35.676], [139.681, 35.690],
+            ]],
+        },
+    },
+    {
+        id: "shibuya",
+        label: "Shibuya",
+        value: 84,
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [139.671, 35.680], [139.697, 35.676], [139.716, 35.683],
+                [139.712, 35.655], [139.690, 35.638], [139.666, 35.652],
+            ]],
+        },
+    },
+];
+
+export function WardMapOnly() {
+    return (
+        <ChoroplethMap
+            regions={regions}
+            selectedId="shinjuku"
+            showRanking={false}
+            showSelectedRegion={false}
+            className="mx-auto max-w-xl"
+        />
+    );
+}`,
     },
     ja: {
-        default: `<ChoroplethMap
-  regions={regions}
-  selectedId="shinjuku"
-  selectedLabel="選択中"
-  rankLabel="順位"
-/>`,
-        markers: `<ChoroplethMap
-  regions={regions}
-  markers={markers}
-  selectedId="shibuya"
-  onRegionSelect={(region) => setSelectedId(region.id ?? region.label)}
-  onMarkerSelect={(marker) => marker.regionId && setSelectedId(marker.regionId)}
-/>`,
-        compact: `<ChoroplethMap
-  regions={regions}
-  variant="compact"
-  rankingLimit={4}
-  showSelectedRegion={false}
-/>`,
-        alternateColor: `<ChoroplethMap
-  regions={regions.map(({ color, ...region }) => region)}
-  color="info"
-  selectedId="minato"
-  selectedLabel="選択中"
-/>`,
-        mapOnly: `<ChoroplethMap
-  regions={regions}
-  markers={markers}
-  selectedId="shinjuku"
-  showRanking={false}
-  showSelectedRegion={false}
-  className="mx-auto max-w-xl"
-/>`,
+        default: `import { ChoroplethMap } from "@gunjo/ui";
+
+const regions = [
+    {
+        id: "shinjuku",
+        label: "新宿",
+        value: 92,
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [139.686, 35.707], [139.704, 35.714], [139.721, 35.702],
+                [139.716, 35.683], [139.697, 35.676], [139.681, 35.690],
+            ]],
+        },
+    },
+    {
+        id: "shibuya",
+        label: "渋谷",
+        value: 84,
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [139.671, 35.680], [139.697, 35.676], [139.716, 35.683],
+                [139.712, 35.655], [139.690, 35.638], [139.666, 35.652],
+            ]],
+        },
+    },
+];
+
+export function WardDensityMap() {
+    return (
+        <ChoroplethMap
+            regions={regions}
+            selectedId="shinjuku"
+            selectedLabel="選択中"
+            rankLabel="順位"
+        />
+    );
+}`,
+        markers: `import { useState } from "react";
+import { ChoroplethMap } from "@gunjo/ui";
+
+const regions = [
+    {
+        id: "shinjuku",
+        label: "新宿",
+        value: 92,
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [139.686, 35.707], [139.704, 35.714], [139.721, 35.702],
+                [139.716, 35.683], [139.697, 35.676], [139.681, 35.690],
+            ]],
+        },
+    },
+    {
+        id: "shibuya",
+        label: "渋谷",
+        value: 84,
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [139.671, 35.680], [139.697, 35.676], [139.716, 35.683],
+                [139.712, 35.655], [139.690, 35.638], [139.666, 35.652],
+            ]],
+        },
+    },
+];
+
+const markers = [
+    {
+        id: "station",
+        label: "新宿駅",
+        regionId: "shinjuku",
+        value: 92,
+        coordinate: [139.7006, 35.6909],
+    },
+    {
+        id: "crossing",
+        label: "渋谷交差点",
+        regionId: "shibuya",
+        value: 84,
+        coordinate: [139.7004, 35.6595],
+    },
+];
+
+export function WardDensityMapWithMarkers() {
+    const [selectedId, setSelectedId] = useState("shibuya");
+
+    return (
+        <ChoroplethMap
+            regions={regions}
+            markers={markers}
+            selectedId={selectedId}
+            onRegionSelect={(region) => setSelectedId(region.id ?? region.label)}
+            onMarkerSelect={(marker) => setSelectedId(marker.regionId)}
+        />
+    );
+}`,
+        compact: `import { ChoroplethMap } from "@gunjo/ui";
+
+const regions = [
+    {
+        id: "shinjuku",
+        label: "新宿",
+        value: 92,
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [139.686, 35.707], [139.704, 35.714], [139.721, 35.702],
+                [139.716, 35.683], [139.697, 35.676], [139.681, 35.690],
+            ]],
+        },
+    },
+    {
+        id: "shibuya",
+        label: "渋谷",
+        value: 84,
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [139.671, 35.680], [139.697, 35.676], [139.716, 35.683],
+                [139.712, 35.655], [139.690, 35.638], [139.666, 35.652],
+            ]],
+        },
+    },
+];
+
+export function CompactWardDensityMap() {
+    return (
+        <ChoroplethMap
+            regions={regions}
+            variant="compact"
+            rankingLimit={4}
+            showSelectedRegion={false}
+        />
+    );
+}`,
+        alternateColor: `import { ChoroplethMap } from "@gunjo/ui";
+
+const regions = [
+    {
+        id: "shinjuku",
+        label: "新宿",
+        value: 92,
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [139.686, 35.707], [139.704, 35.714], [139.721, 35.702],
+                [139.716, 35.683], [139.697, 35.676], [139.681, 35.690],
+            ]],
+        },
+    },
+    {
+        id: "shibuya",
+        label: "渋谷",
+        value: 84,
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [139.671, 35.680], [139.697, 35.676], [139.716, 35.683],
+                [139.712, 35.655], [139.690, 35.638], [139.666, 35.652],
+            ]],
+        },
+    },
+];
+
+export function SingleToneWardMap() {
+    return (
+        <ChoroplethMap
+            regions={regions}
+            color="info"
+            selectedId="shibuya"
+            selectedLabel="選択中"
+        />
+    );
+}`,
+        mapOnly: `import { ChoroplethMap } from "@gunjo/ui";
+
+const regions = [
+    {
+        id: "shinjuku",
+        label: "新宿",
+        value: 92,
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [139.686, 35.707], [139.704, 35.714], [139.721, 35.702],
+                [139.716, 35.683], [139.697, 35.676], [139.681, 35.690],
+            ]],
+        },
+    },
+    {
+        id: "shibuya",
+        label: "渋谷",
+        value: 84,
+        geometry: {
+            type: "Polygon",
+            coordinates: [[
+                [139.671, 35.680], [139.697, 35.676], [139.716, 35.683],
+                [139.712, 35.655], [139.690, 35.638], [139.666, 35.652],
+            ]],
+        },
+    },
+];
+
+export function WardMapOnly() {
+    return (
+        <ChoroplethMap
+            regions={regions}
+            selectedId="shinjuku"
+            showRanking={false}
+            showSelectedRegion={false}
+            className="mx-auto max-w-xl"
+        />
+    );
+}`,
     },
 } as const;
 
@@ -416,10 +820,6 @@ const propsDataByLocale = {
 export default function ChoroplethMapPage() {
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
     const { locale, sectionLabels } = useLocale();
-    const stateCodeData = usageCodeByLocale[locale]
-        .split("\n\n<ChoroplethMap")[0]
-        .replace('import { ChoroplethMap } from "@gunjo/ui";\n\n', "");
-    const withStateCodeData = (nextCode: string) => `${stateCodeData}\n\n${nextCode}`;
     const code = codeByLocale[locale];
     const usageCode = usageCodeByLocale[locale];
     const regions = getDemoRegions(locale);
@@ -470,7 +870,7 @@ export default function ChoroplethMapPage() {
                                 />
                             ),
                             previewBodyWidth: "2xl",
-                            code: withStateCodeData(stateCodeByLocale[locale].default),
+                            code: stateCodeByLocale[locale].default,
                         },
                         {
                             key: "markers",
@@ -490,7 +890,7 @@ export default function ChoroplethMapPage() {
                                 />
                             ),
                             previewBodyWidth: "2xl",
-                            code: withStateCodeData(stateCodeByLocale[locale].markers),
+                            code: stateCodeByLocale[locale].markers,
                         },
                         {
                             key: "compact",
@@ -508,7 +908,7 @@ export default function ChoroplethMapPage() {
                                 />
                             ),
                             previewBodyWidth: "2xl",
-                            code: withStateCodeData(stateCodeByLocale[locale].compact),
+                            code: stateCodeByLocale[locale].compact,
                         },
                         {
                             key: "alternate-color",
@@ -526,7 +926,7 @@ export default function ChoroplethMapPage() {
                                 />
                             ),
                             previewBodyWidth: "2xl",
-                            code: withStateCodeData(stateCodeByLocale[locale].alternateColor),
+                            code: stateCodeByLocale[locale].alternateColor,
                         },
                         {
                             key: "map-only",
@@ -545,7 +945,7 @@ export default function ChoroplethMapPage() {
                                 />
                             ),
                             previewBodyWidth: "2xl",
-                            code: withStateCodeData(stateCodeByLocale[locale].mapOnly),
+                            code: stateCodeByLocale[locale].mapOnly,
                         },
                     ]}
                 />

@@ -66,8 +66,10 @@ const data = [
     { label: "Thu", value: 68, color: "info" },
 ];
 
-export function WeeklyActivity() {
-    return <BarChart data={data} averageValue={50} averageLabel="Average" />;
+export function WeeklyActivityBars() {
+    return (
+        <BarChart data={data} averageValue={50} averageLabel="Average" />
+    );
 }`,
     ja: `import { BarChart } from "@gunjo/ui";
 
@@ -78,8 +80,10 @@ const data = [
     { label: "木", value: 68, color: "info" },
 ];
 
-export function WeeklyActivity() {
-    return <BarChart data={data} averageValue={50} averageLabel="平均" />;
+export function WeeklyActivityBars() {
+    return (
+        <BarChart data={data} averageValue={50} averageLabel="平均" />
+    );
 }`,
 } as const;
 
@@ -93,10 +97,16 @@ const data = [
     { label: "Thu", value: 68, color: "info" },
 ];
 
-<BarChart data={data} />
-<BarChart data={data} variant="horizontal" showValues />
-<BarChart data={data} averageValue={50} averageLabel="Average" />
-<BarChart data={data} showGrid={false} showLabels={false} />`,
+export function BarChartUsage() {
+    return (
+        <div className="grid gap-6">
+            <BarChart data={data} />
+            <BarChart data={data} variant="horizontal" showValues />
+            <BarChart data={data} averageValue={50} averageLabel="Average" />
+            <BarChart data={data} showGrid={false} showLabels={false} />
+        </div>
+    );
+}`,
     ja: `import { BarChart } from "@gunjo/ui";
 
 const data = [
@@ -106,98 +116,202 @@ const data = [
     { label: "木", value: 68, color: "info" },
 ];
 
-<BarChart data={data} />
-<BarChart data={data} variant="horizontal" showValues />
-<BarChart data={data} averageValue={50} averageLabel="平均" />
-<BarChart data={data} showGrid={false} showLabels={false} />`,
+export function BarChartUsage() {
+    return (
+        <div className="grid gap-6">
+            <BarChart data={data} />
+            <BarChart data={data} variant="horizontal" showValues />
+            <BarChart data={data} averageValue={50} averageLabel="平均" />
+            <BarChart data={data} showGrid={false} showLabels={false} />
+        </div>
+    );
+}`,
 } as const;
 
 const stateCodeByLocale = {
     en: {
-        vertical: `const data = [
-  { label: "Mon", value: 42, color: "primary" },
-  { label: "Tue", value: 58, color: "success" },
-  { label: "Wed", value: 36, color: "warning" },
-  { label: "Thu", value: 68, color: "info" },
-  { label: "Fri", value: 54, color: "primary" },
+        vertical: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+    { label: "Mon", value: 42, color: "primary" },
+    { label: "Tue", value: 58, color: "success" },
+    { label: "Wed", value: 36, color: "warning" },
+    { label: "Thu", value: 68, color: "info" },
+    { label: "Fri", value: 54, color: "primary" },
 ];
 
-<BarChart data={data} className="mx-auto max-w-md" />`,
-        reference: `const data = [
-  { label: "Mon", value: 42, color: "primary" },
-  { label: "Tue", value: 58, color: "success" },
-  { label: "Wed", value: 36, color: "warning" },
-  { label: "Thu", value: 68, color: "info" },
-  { label: "Fri", value: 54, color: "primary" },
+export function WeeklyActivityBars() {
+    return (
+        <BarChart data={data} className="mx-auto max-w-md" />
+    );
+}`,
+        reference: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+    { label: "Mon", value: 42, color: "primary" },
+    { label: "Tue", value: 58, color: "success" },
+    { label: "Wed", value: 36, color: "warning" },
+    { label: "Thu", value: 68, color: "info" },
+    { label: "Fri", value: 54, color: "primary" },
 ];
 
-<BarChart
-  data={data}
-  averageValue={50}
-  averageLabel="Average"
-  className="mx-auto max-w-md"
-  showValues
-/>`,
-        horizontal: `const data = [
-  { label: "Search", value: 74, color: "primary" },
-  { label: "Social", value: 48, color: "info" },
-  { label: "Ads", value: 62, color: "warning" },
-  { label: "Referral", value: 31, color: "success" },
+export function WeeklyActivityWithAverage() {
+    return (
+        <BarChart
+            data={data}
+            averageValue={50}
+            averageLabel="Average"
+            className="mx-auto max-w-md"
+            showValues
+        />
+    );
+}`,
+        horizontal: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+    { label: "Search", value: 74, color: "primary" },
+    { label: "Social", value: 48, color: "info" },
+    { label: "Ads", value: 62, color: "warning" },
+    { label: "Referral", value: 31, color: "success" },
 ];
 
-<BarChart data={data} variant="horizontal" showValues />`,
-        quiet: `const data = [
-  { label: "Mon", value: 42, color: "primary" },
-  { label: "Tue", value: 58, color: "success" },
-  { label: "Wed", value: 36, color: "warning" },
-  { label: "Thu", value: 68, color: "info" },
-  { label: "Fri", value: 54, color: "primary" },
+export function ChannelRankingBars() {
+    return (
+        <BarChart data={data} variant="horizontal" showValues />
+    );
+}`,
+        threshold: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+    { label: "A", value: 42, color: "primary" },
+    { label: "B", value: 68, color: "primary" },
+    { label: "C", value: 51, color: "primary" },
+    { label: "D", value: 73, color: "primary" },
 ];
 
-<BarChart data={data} className="mx-auto max-w-md" showGrid={false} showLabels={false} />`,
+// Bars above 55 turn destructive; a limit line is drawn at 55.
+export function ThresholdBars() {
+    return (
+        <BarChart
+            data={data}
+            threshold={55}
+            thresholdLabel="Limit"
+            showValues
+        />
+    );
+}`,
+        quiet: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+    { label: "Mon", value: 42, color: "primary" },
+    { label: "Tue", value: 58, color: "success" },
+    { label: "Wed", value: 36, color: "warning" },
+    { label: "Thu", value: 68, color: "info" },
+    { label: "Fri", value: 54, color: "primary" },
+];
+
+export function QuietWeeklyBars() {
+    return (
+        <BarChart
+            data={data}
+            className="mx-auto max-w-md"
+            showGrid={false}
+            showLabels={false}
+        />
+    );
+}`,
     },
     ja: {
-        vertical: `const data = [
-  { label: "月", value: 42, color: "primary" },
-  { label: "火", value: 58, color: "success" },
-  { label: "水", value: 36, color: "warning" },
-  { label: "木", value: 68, color: "info" },
-  { label: "金", value: 54, color: "primary" },
+        vertical: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+    { label: "月", value: 42, color: "primary" },
+    { label: "火", value: 58, color: "success" },
+    { label: "水", value: 36, color: "warning" },
+    { label: "木", value: 68, color: "info" },
+    { label: "金", value: 54, color: "primary" },
 ];
 
-<BarChart data={data} className="mx-auto max-w-md" />`,
-        reference: `const data = [
-  { label: "月", value: 42, color: "primary" },
-  { label: "火", value: 58, color: "success" },
-  { label: "水", value: 36, color: "warning" },
-  { label: "木", value: 68, color: "info" },
-  { label: "金", value: 54, color: "primary" },
+export function WeeklyActivityBars() {
+    return (
+        <BarChart data={data} className="mx-auto max-w-md" />
+    );
+}`,
+        reference: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+    { label: "月", value: 42, color: "primary" },
+    { label: "火", value: 58, color: "success" },
+    { label: "水", value: 36, color: "warning" },
+    { label: "木", value: 68, color: "info" },
+    { label: "金", value: 54, color: "primary" },
 ];
 
-<BarChart
-  data={data}
-  averageValue={50}
-  averageLabel="平均"
-  className="mx-auto max-w-md"
-  showValues
-/>`,
-        horizontal: `const data = [
-  { label: "検索", value: 74, color: "primary" },
-  { label: "SNS", value: 48, color: "info" },
-  { label: "広告", value: 62, color: "warning" },
-  { label: "紹介", value: 31, color: "success" },
+export function WeeklyActivityWithAverage() {
+    return (
+        <BarChart
+            data={data}
+            averageValue={50}
+            averageLabel="平均"
+            className="mx-auto max-w-md"
+            showValues
+        />
+    );
+}`,
+        horizontal: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+    { label: "検索", value: 74, color: "primary" },
+    { label: "SNS", value: 48, color: "info" },
+    { label: "広告", value: 62, color: "warning" },
+    { label: "紹介", value: 31, color: "success" },
 ];
 
-<BarChart data={data} variant="horizontal" showValues />`,
-        quiet: `const data = [
-  { label: "月", value: 42, color: "primary" },
-  { label: "火", value: 58, color: "success" },
-  { label: "水", value: 36, color: "warning" },
-  { label: "木", value: 68, color: "info" },
-  { label: "金", value: 54, color: "primary" },
+export function ChannelRankingBars() {
+    return (
+        <BarChart data={data} variant="horizontal" showValues />
+    );
+}`,
+        threshold: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+    { label: "A", value: 42, color: "primary" },
+    { label: "B", value: 68, color: "primary" },
+    { label: "C", value: 51, color: "primary" },
+    { label: "D", value: 73, color: "primary" },
 ];
 
-<BarChart data={data} className="mx-auto max-w-md" showGrid={false} showLabels={false} />`,
+// 55 を超えた棒は destructive トーンになり、55 の位置に上限ラインを引きます。
+export function ThresholdBars() {
+    return (
+        <BarChart
+            data={data}
+            threshold={55}
+            thresholdLabel="上限"
+            showValues
+        />
+    );
+}`,
+        quiet: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+    { label: "月", value: 42, color: "primary" },
+    { label: "火", value: 58, color: "success" },
+    { label: "水", value: 36, color: "warning" },
+    { label: "木", value: 68, color: "info" },
+    { label: "金", value: 54, color: "primary" },
+];
+
+export function QuietWeeklyBars() {
+    return (
+        <BarChart
+            data={data}
+            className="mx-auto max-w-md"
+            showGrid={false}
+            showLabels={false}
+        />
+    );
+}`,
     },
 } as const;
 
@@ -300,17 +414,7 @@ export default function BarChartPage() {
                                 ? "threshold を渡すと上限ラインを引き、それを超えた棒を destructive トーンで塗ります。スライダーで上限を動かすと、棒が超過した瞬間に色が変わります。"
                                 : "Pass threshold to draw a limit line and paint bars above it in the destructive tone. Drag the slider to move the limit and watch bars flip as they cross it.",
                             preview: <ThresholdBarDemo locale={locale} />,
-                            code: `import { BarChart } from "@gunjo/ui";
-
-const data = [
-  { label: "A", value: 42, color: "primary" },
-  { label: "B", value: 68, color: "primary" },
-  { label: "C", value: 51, color: "primary" },
-  { label: "D", value: 73, color: "primary" },
-];
-
-// Bars above 55 turn destructive; a limit line is drawn at 55.
-<BarChart data={data} threshold={55} thresholdLabel="${locale === "ja" ? "上限" : "Limit"}" showValues />`,
+                            code: stateCodeByLocale[locale].threshold,
                         },
                         {
                             key: "horizontal",

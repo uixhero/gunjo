@@ -62,7 +62,12 @@ export function DashboardPanel() {
             value: values[0],
             geometry: {
                 type: "Polygon",
-                coordinates: [[[139.68, 35.71], [139.72, 35.71], [139.72, 35.67], [139.68, 35.67]]],
+                coordinates: [[
+                    [139.68, 35.71],
+                    [139.72, 35.71],
+                    [139.72, 35.67],
+                    [139.68, 35.67],
+                ]],
             },
         },
         {
@@ -71,7 +76,12 @@ export function DashboardPanel() {
             value: values[1],
             geometry: {
                 type: "Polygon",
-                coordinates: [[[139.67, 35.67], [139.71, 35.67], [139.71, 35.63], [139.67, 35.63]]],
+                coordinates: [[
+                    [139.67, 35.67],
+                    [139.71, 35.67],
+                    [139.71, 35.63],
+                    [139.67, 35.63],
+                ]],
             },
         },
         {
@@ -80,7 +90,12 @@ export function DashboardPanel() {
             value: values[2],
             geometry: {
                 type: "Polygon",
-                coordinates: [[[139.74, 35.70], [139.78, 35.70], [139.78, 35.67], [139.74, 35.67]]],
+                coordinates: [[
+                    [139.74, 35.70],
+                    [139.78, 35.70],
+                    [139.78, 35.67],
+                    [139.74, 35.67],
+                ]],
             },
         },
     ];
@@ -94,7 +109,14 @@ export function DashboardPanel() {
         value,
     }));
     const retentionPeriods = ["M0", "M1", "M2", "M3", "M4", "M5"];
-    const activitySlots = ["6 AM", "8 AM", "10 AM", "12 PM", "2 PM", "4 PM"].map((label, index) => ({
+    const activitySlots = [
+        "6 AM",
+        "8 AM",
+        "10 AM",
+        "12 PM",
+        "2 PM",
+        "4 PM",
+    ].map((label, index) => ({
         label,
         value: Math.min(200, values[index] * 2),
     }));
@@ -192,27 +214,66 @@ export function DashboardPanel() {
         label,
         segments: [
             { label: "Organic", value: values[index], color: "primary" },
-            { label: "Referral", value: values[(index + 1) % values.length], color: "success" },
-            { label: "Paid", value: values[(index + 2) % values.length], color: "warning" },
+            {
+                label: "Referral",
+                value: values[(index + 1) % values.length],
+                color: "success",
+            },
+            {
+                label: "Paid",
+                value: values[(index + 2) % values.length],
+                color: "warning",
+            },
         ],
     }));
 
     return (
         <div className="grid gap-4">
-            <AnalyticsCard title="Revenue" value="$45,231" delta="+8.2%" deltaDescription="Compared with the previous period." trend="up">
+            <AnalyticsCard
+                title="Revenue"
+                value="$45,231"
+                delta="+8.2%"
+                deltaDescription="Compared with the previous period."
+                trend="up"
+            >
                 <SparklineChart data={values} variant="area" />
             </AnalyticsCard>
-            <AnalyticsCard title="Sessions" value="18,420" delta="avg" deltaDescription="Average of the current values.">
+            <AnalyticsCard
+                title="Sessions"
+                value="18,420"
+                delta="avg"
+                deltaDescription="Average of the current values."
+            >
                 <BarChart data={barData} showValues />
             </AnalyticsCard>
-            <AnalyticsCard title="Revenue trend" value="$45,231" delta="+8.2%" deltaDescription="Compared with the previous period.">
-                <LineChart series={lineSeries} variant="area" referenceValue={55} showLegend />
+            <AnalyticsCard
+                title="Revenue trend"
+                value="$45,231"
+                delta="+8.2%"
+                deltaDescription="Compared with the previous period."
+            >
+                <LineChart
+                    series={lineSeries}
+                    variant="area"
+                    referenceValue={55}
+                    showLegend
+                />
             </AnalyticsCard>
-            <AnalyticsCard title="Flow distribution" value="612" delta="+18" deltaDescription="Change from the first point in the preview data.">
+            <AnalyticsCard
+                title="Flow distribution"
+                value="612"
+                delta="+18"
+                deltaDescription="Change from the first point in the preview data."
+            >
                 <RibbonChart layers={ribbonLayers} variant="flow" showLegend />
             </AnalyticsCard>
             <AnalyticsCard title="Channel progress" value="64% avg">
-                <RadialBarChart data={radialData} centerValue="64%" centerLabel="Average" showLegend />
+                <RadialBarChart
+                    data={radialData}
+                    centerValue="64%"
+                    centerLabel="Average"
+                    showLegend
+                />
             </AnalyticsCard>
             <ConcentricProgressCard
                 title="Storage overview"
@@ -248,7 +309,12 @@ export function DashboardPanel() {
                 segments={labeledDonutSegments}
                 selectedIndex={0}
             />
-            <AnalyticsCard title="Density" value="84% peak" delta="+12pt" deltaDescription="Difference between the peak value and the current average.">
+            <AnalyticsCard
+                title="Density"
+                value="84% peak"
+                delta="+12pt"
+                deltaDescription="Difference between the peak value and the current average."
+            >
                 <HeatmapChart data={heatmapData} xLabels={days} yLabels={times} />
             </AnalyticsCard>
             <ActivityTimelineCard
@@ -281,11 +347,22 @@ export function DashboardPanel() {
                 startLabel="11:42 PM"
                 endLabel="7:18 AM"
             />
-            <RetentionCohortCard title="Cohort retention" value="62%" periods={retentionPeriods} cohorts={retentionCohorts} selectedCell={{ cohortIndex: 1, periodIndex: 2 }} />
+            <RetentionCohortCard
+                title="Cohort retention"
+                value="62%"
+                periods={retentionPeriods}
+                cohorts={retentionCohorts}
+                selectedCell={{ cohortIndex: 1, periodIndex: 2 }}
+            />
             <AnalyticsCard title="Tokyo incidents" value="92 peak">
                 <ChoroplethMap regions={tokyoRegions} selectedId="shinjuku" showRanking />
             </AnalyticsCard>
-            <AnalyticsCard title="Quadrant matrix" value="88% peak" delta="+18pt" deltaDescription="Difference between the top ranked value and the current average.">
+            <AnalyticsCard
+                title="Quadrant matrix"
+                value="88% peak"
+                delta="+18pt"
+                deltaDescription="Difference between the top ranked value and the current average."
+            >
                 <QuadrantMatrix items={matrixItems} selectedId="activation" showRanking />
             </AnalyticsCard>
             <SegmentedGaugeCard
@@ -301,7 +378,12 @@ export function DashboardPanel() {
                 max={100}
                 formatValue={(value) => \`\${value}%\`}
             />
-            <AnalyticsCard title="Capability balance" value="64% avg" delta="+14pt" deltaDescription="Difference from the 50% reference baseline.">
+            <AnalyticsCard
+                title="Capability balance"
+                value="64% avg"
+                delta="+14pt"
+                deltaDescription="Difference from the 50% reference baseline."
+            >
                 <RadarChart data={radarData} max={100} />
             </AnalyticsCard>
             <NumberInput value={values[0]} min={0} max={100} onValueChange={(value) => {

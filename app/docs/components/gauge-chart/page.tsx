@@ -12,26 +12,26 @@ import { GaugeChart } from "@gunjo/ui";
 const codeByLocale = {
     en: `import { GaugeChart } from "@gunjo/ui";
 
-export function PerformanceScore() {
+export function PerformanceScoreGauge() {
     return (
         <GaugeChart
             value={82}
             label="Score"
             valueLabel="82%"
-            formatValue={(value) => \`\${value}%\`}
+            formatValue={(value) => value + "%"}
             rangeLabel="Range"
         />
     );
 }`,
     ja: `import { GaugeChart } from "@gunjo/ui";
 
-export function PerformanceScore() {
+export function PerformanceScoreGauge() {
     return (
         <GaugeChart
             value={82}
             label="スコア"
             valueLabel="82%"
-            formatValue={(value) => \`\${value}%\`}
+            formatValue={(value) => value + "%"}
             rangeLabel="範囲"
         />
     );
@@ -41,116 +41,222 @@ export function PerformanceScore() {
 const usageCodeByLocale = {
     en: `import { GaugeChart } from "@gunjo/ui";
 
-<GaugeChart value={82} label="Score" valueLabel="82%" formatValue={(value) => \`\${value}%\`} rangeLabel="Range" />
-<GaugeChart value={420} max={500} label="Capacity" />
-<GaugeChart value={64} variant="compact" color="success" />
-<GaugeChart value={260} max={500} color="warning" formatValue={(value) => \`\${value}GB\`} />`,
+export function GaugeChartUsage() {
+    return (
+        <div className="grid gap-6">
+            <GaugeChart
+                value={82}
+                label="Score"
+                valueLabel="82%"
+                formatValue={(value) => value + "%"}
+                rangeLabel="Range"
+            />
+            <GaugeChart value={420} max={500} label="Capacity" />
+            <GaugeChart value={64} variant="compact" color="success" />
+            <GaugeChart
+                value={260}
+                max={500}
+                color="warning"
+                formatValue={(value) => value + "GB"}
+            />
+        </div>
+    );
+}`,
     ja: `import { GaugeChart } from "@gunjo/ui";
 
-<GaugeChart value={82} label="スコア" valueLabel="82%" formatValue={(value) => \`\${value}%\`} rangeLabel="範囲" />
-<GaugeChart value={420} max={500} label="容量" />
-<GaugeChart value={64} variant="compact" color="success" />
-<GaugeChart value={260} max={500} color="warning" formatValue={(value) => \`\${value}GB\`} />`,
+export function GaugeChartUsage() {
+    return (
+        <div className="grid gap-6">
+            <GaugeChart
+                value={82}
+                label="スコア"
+                valueLabel="82%"
+                formatValue={(value) => value + "%"}
+                rangeLabel="範囲"
+            />
+            <GaugeChart value={420} max={500} label="容量" />
+            <GaugeChart value={64} variant="compact" color="success" />
+            <GaugeChart
+                value={260}
+                max={500}
+                color="warning"
+                formatValue={(value) => value + "GB"}
+            />
+        </div>
+    );
+}`,
 } as const;
 
 const stateCodeByLocale = {
     en: {
-        default: `<GaugeChart
-  value={82}
-  label="Score"
-  valueLabel="82%"
-  formatValue={(value) => \`\${value}%\`}
-  rangeLabel="Range"
-/>`,
-        compact: `<GaugeChart
-  value={64}
-  variant="compact"
-  color="success"
-  label="Progress"
-  valueLabel="64%"
-  formatValue={(value) => \`\${value}%\`}
-/>`,
-        capacity: `<GaugeChart
-  value={420}
-  max={500}
-  label="Capacity"
-  valueLabel="420GB"
-  formatValue={(value) => \`\${value}GB\`}
-  rangeLabel="Capacity"
-/>`,
-        offsetRange: `<GaugeChart
-  value={12}
-  min={-50}
-  max={50}
-  label="Delta"
-  valueLabel="+12pt"
-  color="info"
-  formatValue={(value) => \`\${value}pt\`}
-  rangeLabel="Range"
-/>`,
-        warning: `<GaugeChart
-  value={73}
-  label="Load"
-  valueLabel="73%"
-  color="warning"
-  formatValue={(value) => \`\${value}%\`}
-/>`,
-        critical: `<GaugeChart
-  value={91}
-  label="Risk"
-  valueLabel="91%"
-  color="destructive"
-  formatValue={(value) => \`\${value}%\`}
-/>`,
+        default: `import { GaugeChart } from "@gunjo/ui";
+
+export function ScoreGauge() {
+    return (
+        <GaugeChart
+            value={82}
+            label="Score"
+            valueLabel="82%"
+            formatValue={(value) => value + "%"}
+            rangeLabel="Range"
+        />
+    );
+}`,
+        compact: `import { GaugeChart } from "@gunjo/ui";
+
+export function CompactProgressGauge() {
+    return (
+        <GaugeChart
+            value={64}
+            variant="compact"
+            color="success"
+            label="Progress"
+            valueLabel="64%"
+            formatValue={(value) => value + "%"}
+        />
+    );
+}`,
+        capacity: `import { GaugeChart } from "@gunjo/ui";
+
+export function CapacityGauge() {
+    return (
+        <GaugeChart
+            value={420}
+            max={500}
+            label="Capacity"
+            valueLabel="420GB"
+            formatValue={(value) => value + "GB"}
+            rangeLabel="Capacity"
+        />
+    );
+}`,
+        offsetRange: `import { GaugeChart } from "@gunjo/ui";
+
+export function DeltaGauge() {
+    return (
+        <GaugeChart
+            value={12}
+            min={-50}
+            max={50}
+            label="Delta"
+            valueLabel="+12pt"
+            color="info"
+            formatValue={(value) => value + "pt"}
+            rangeLabel="Range"
+        />
+    );
+}`,
+        warning: `import { GaugeChart } from "@gunjo/ui";
+
+export function LoadGauge() {
+    return (
+        <GaugeChart
+            value={73}
+            label="Load"
+            valueLabel="73%"
+            color="warning"
+            formatValue={(value) => value + "%"}
+        />
+    );
+}`,
+        critical: `import { GaugeChart } from "@gunjo/ui";
+
+export function RiskGauge() {
+    return (
+        <GaugeChart
+            value={91}
+            label="Risk"
+            valueLabel="91%"
+            color="destructive"
+            formatValue={(value) => value + "%"}
+        />
+    );
+}`,
     },
     ja: {
-        default: `<GaugeChart
-  value={82}
-  label="スコア"
-  valueLabel="82%"
-  formatValue={(value) => \`\${value}%\`}
-  rangeLabel="範囲"
-/>`,
-        compact: `<GaugeChart
-  value={64}
-  variant="compact"
-  color="success"
-  label="進捗"
-  valueLabel="64%"
-  formatValue={(value) => \`\${value}%\`}
-/>`,
-        capacity: `<GaugeChart
-  value={420}
-  max={500}
-  label="容量"
-  valueLabel="420GB"
-  formatValue={(value) => \`\${value}GB\`}
-  rangeLabel="容量"
-/>`,
-        offsetRange: `<GaugeChart
-  value={12}
-  min={-50}
-  max={50}
-  label="差分"
-  valueLabel="+12pt"
-  color="info"
-  formatValue={(value) => \`\${value}pt\`}
-  rangeLabel="範囲"
-/>`,
-        warning: `<GaugeChart
-  value={73}
-  label="負荷"
-  valueLabel="73%"
-  color="warning"
-  formatValue={(value) => \`\${value}%\`}
-/>`,
-        critical: `<GaugeChart
-  value={91}
-  label="リスク"
-  valueLabel="91%"
-  color="destructive"
-  formatValue={(value) => \`\${value}%\`}
-/>`,
+        default: `import { GaugeChart } from "@gunjo/ui";
+
+export function ScoreGauge() {
+    return (
+        <GaugeChart
+            value={82}
+            label="スコア"
+            valueLabel="82%"
+            formatValue={(value) => value + "%"}
+            rangeLabel="範囲"
+        />
+    );
+}`,
+        compact: `import { GaugeChart } from "@gunjo/ui";
+
+export function CompactProgressGauge() {
+    return (
+        <GaugeChart
+            value={64}
+            variant="compact"
+            color="success"
+            label="進捗"
+            valueLabel="64%"
+            formatValue={(value) => value + "%"}
+        />
+    );
+}`,
+        capacity: `import { GaugeChart } from "@gunjo/ui";
+
+export function CapacityGauge() {
+    return (
+        <GaugeChart
+            value={420}
+            max={500}
+            label="容量"
+            valueLabel="420GB"
+            formatValue={(value) => value + "GB"}
+            rangeLabel="容量"
+        />
+    );
+}`,
+        offsetRange: `import { GaugeChart } from "@gunjo/ui";
+
+export function DeltaGauge() {
+    return (
+        <GaugeChart
+            value={12}
+            min={-50}
+            max={50}
+            label="差分"
+            valueLabel="+12pt"
+            color="info"
+            formatValue={(value) => value + "pt"}
+            rangeLabel="範囲"
+        />
+    );
+}`,
+        warning: `import { GaugeChart } from "@gunjo/ui";
+
+export function LoadGauge() {
+    return (
+        <GaugeChart
+            value={73}
+            label="負荷"
+            valueLabel="73%"
+            color="warning"
+            formatValue={(value) => value + "%"}
+        />
+    );
+}`,
+        critical: `import { GaugeChart } from "@gunjo/ui";
+
+export function RiskGauge() {
+    return (
+        <GaugeChart
+            value={91}
+            label="リスク"
+            valueLabel="91%"
+            color="destructive"
+            formatValue={(value) => value + "%"}
+        />
+    );
+}`,
     },
 } as const;
 

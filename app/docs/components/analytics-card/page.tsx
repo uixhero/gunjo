@@ -55,104 +55,172 @@ const usageCodeByLocale = {
 
 const data = [24, 28, 22, 36, 32, 44, 39, 52, 48, 57, 51, 64];
 
-<AnalyticsCard
-    title="Revenue"
-    value="$128,430"
-    delta="+12.4%"
-    deltaDescription="Compared with the previous period."
-    variant="positive"
-    trend="up"
->
-    <SparklineChart data={data} variant="area" />
-</AnalyticsCard>`,
+export function AnalyticsCardUsage() {
+    return (
+        <AnalyticsCard
+            title="Revenue"
+            value="$128,430"
+            delta="+12.4%"
+            deltaDescription="Compared with the previous period."
+            variant="positive"
+            trend="up"
+        >
+            <SparklineChart data={data} variant="area" />
+        </AnalyticsCard>
+    );
+}`,
     ja: `import { AnalyticsCard, SparklineChart } from "@gunjo/ui";
 
 const data = [24, 28, 22, 36, 32, 44, 39, 52, 48, 57, 51, 64];
 
-<AnalyticsCard
-    title="売上"
-    value="128,430円"
-    delta="+12.4%"
-    deltaDescription="前期間と比較しています。"
-    variant="positive"
-    trend="up"
->
-    <SparklineChart data={data} variant="area" />
-</AnalyticsCard>`,
+export function AnalyticsCardUsage() {
+    return (
+        <AnalyticsCard
+            title="売上"
+            value="128,430円"
+            delta="+12.4%"
+            deltaDescription="前期間と比較しています。"
+            variant="positive"
+            trend="up"
+        >
+            <SparklineChart data={data} variant="area" />
+        </AnalyticsCard>
+    );
+}`,
 } as const;
 
 const stateCodeByLocale = {
     en: {
-        up: `<AnalyticsCard
-  title="Revenue"
-  description="Last 12 months"
-  value="$128,430"
-  delta="+12.4%"
-  deltaDescription="Compared with the previous period."
-  variant="positive"
-  trend="up"
->
-  <SparklineChart data={revenueData} variant="area" />
-</AnalyticsCard>`,
-        down: `<AnalyticsCard
-  title="Churn risk"
-  description="Current cohort"
-  value="8.6%"
-  delta="+2.1pt"
-  deltaDescription="Higher than the previous cohort."
-  variant="riskIncrease"
-  trend="down"
->
-  <SparklineChart data={riskData} color="destructive" />
-</AnalyticsCard>`,
-        flat: `<AnalyticsCard
-  title="Active users"
-  description="Daily average"
-  value="24,180"
-  delta="0.2%"
-  deltaDescription="Almost unchanged from the previous period."
-  variant="flatWithFooter"
-  trend="flat"
-  footer="Updated 5 minutes ago"
->
-  <SparklineChart data={activeUsersData} variant="step" showDots />
-</AnalyticsCard>`,
+        up: `import { AnalyticsCard, SparklineChart } from "@gunjo/ui";
+
+const data = [24, 28, 22, 36, 32, 44, 39, 52, 48, 57, 51, 64];
+
+export function RevenueCard() {
+    return (
+        <AnalyticsCard
+            title="Revenue"
+            description="Last 12 months"
+            value="$128,430"
+            delta="+12.4%"
+            deltaDescription="Compared with the previous period."
+            variant="positive"
+            trend="up"
+        >
+            <SparklineChart data={data} variant="area" />
+        </AnalyticsCard>
+    );
+}`,
+        down: `import { AnalyticsCard, SparklineChart } from "@gunjo/ui";
+
+const data = [
+    4.8, 5.1, 5.4, 5.2, 6.1, 6.8,
+    6.5, 7.2, 7.8, 8.1, 8.4, 8.6,
+];
+
+export function ChurnRiskCard() {
+    return (
+        <AnalyticsCard
+            title="Churn risk"
+            description="Current cohort"
+            value="8.6%"
+            delta="+2.1pt"
+            deltaDescription="Higher than the previous cohort."
+            variant="riskIncrease"
+            trend="down"
+        >
+            <SparklineChart data={data} color="destructive" />
+        </AnalyticsCard>
+    );
+}`,
+        flat: `import { AnalyticsCard, SparklineChart } from "@gunjo/ui";
+
+const data = [
+    23800, 24120, 23940, 24200, 24180, 24320,
+    24080, 24160, 24240, 24190, 24210, 24180,
+];
+
+export function ActiveUsersCard() {
+    return (
+        <AnalyticsCard
+            title="Active users"
+            description="Daily average"
+            value="24,180"
+            delta="0.2%"
+            deltaDescription="Almost unchanged from the previous period."
+            variant="flatWithFooter"
+            trend="flat"
+            footer="Updated 5 minutes ago"
+        >
+            <SparklineChart data={data} variant="step" showDots />
+        </AnalyticsCard>
+    );
+}`,
     },
     ja: {
-        up: `<AnalyticsCard
-  title="売上"
-  description="直近12か月"
-  value="128,430円"
-  delta="+12.4%"
-  deltaDescription="前期間と比較しています。"
-  variant="positive"
-  trend="up"
->
-  <SparklineChart data={revenueData} variant="area" />
-</AnalyticsCard>`,
-        down: `<AnalyticsCard
-  title="解約リスク"
-  description="現在のコホート"
-  value="8.6%"
-  delta="+2.1pt"
-  deltaDescription="前コホートより高くなっています。"
-  variant="riskIncrease"
-  trend="down"
->
-  <SparklineChart data={riskData} color="destructive" />
-</AnalyticsCard>`,
-        flat: `<AnalyticsCard
-  title="アクティブユーザー"
-  description="日次平均"
-  value="24,180"
-  delta="0.2%"
-  deltaDescription="前期間からほぼ変化していません。"
-  variant="flatWithFooter"
-  trend="flat"
-  footer="5分前に更新"
->
-  <SparklineChart data={activeUsersData} variant="step" showDots />
-</AnalyticsCard>`,
+        up: `import { AnalyticsCard, SparklineChart } from "@gunjo/ui";
+
+const data = [24, 28, 22, 36, 32, 44, 39, 52, 48, 57, 51, 64];
+
+export function RevenueCard() {
+    return (
+        <AnalyticsCard
+            title="売上"
+            description="直近12か月"
+            value="128,430円"
+            delta="+12.4%"
+            deltaDescription="前期間と比較しています。"
+            variant="positive"
+            trend="up"
+        >
+            <SparklineChart data={data} variant="area" />
+        </AnalyticsCard>
+    );
+}`,
+        down: `import { AnalyticsCard, SparklineChart } from "@gunjo/ui";
+
+const data = [
+    4.8, 5.1, 5.4, 5.2, 6.1, 6.8,
+    6.5, 7.2, 7.8, 8.1, 8.4, 8.6,
+];
+
+export function ChurnRiskCard() {
+    return (
+        <AnalyticsCard
+            title="解約リスク"
+            description="現在のコホート"
+            value="8.6%"
+            delta="+2.1pt"
+            deltaDescription="前コホートより高くなっています。"
+            variant="riskIncrease"
+            trend="down"
+        >
+            <SparklineChart data={data} color="destructive" />
+        </AnalyticsCard>
+    );
+}`,
+        flat: `import { AnalyticsCard, SparklineChart } from "@gunjo/ui";
+
+const data = [
+    23800, 24120, 23940, 24200, 24180, 24320,
+    24080, 24160, 24240, 24190, 24210, 24180,
+];
+
+export function ActiveUsersCard() {
+    return (
+        <AnalyticsCard
+            title="アクティブユーザー"
+            description="日次平均"
+            value="24,180"
+            delta="0.2%"
+            deltaDescription="前期間からほぼ変化していません。"
+            variant="flatWithFooter"
+            trend="flat"
+            footer="5分前に更新"
+        >
+            <SparklineChart data={data} variant="step" showDots />
+        </AnalyticsCard>
+    );
+}`,
     },
 } as const;
 

@@ -61,7 +61,7 @@ const rings = [
     { label: "System", value: 18 },
 ];
 
-export function StorageWidget() {
+export function StorageOverviewCard() {
     return (
         <ConcentricProgressCard
             title="Storage overview"
@@ -72,7 +72,7 @@ export function StorageWidget() {
             rings={rings}
             selectedIndex={1}
             max={256}
-            formatValue={(value) => \`\${value}GB\`}
+            formatValue={(value) => value + "GB"}
             maxLabel="Capacity"
             caption="Compare storage, usage, and quota values with selectable rings."
         />
@@ -87,7 +87,7 @@ const rings = [
     { label: "システム", value: 18 },
 ];
 
-export function StorageWidget() {
+export function StorageOverviewCard() {
     return (
         <ConcentricProgressCard
             title="ストレージ概要"
@@ -98,7 +98,7 @@ export function StorageWidget() {
             rings={rings}
             selectedIndex={1}
             max={256}
-            formatValue={(value) => \`\${value}GB\`}
+            formatValue={(value) => value + "GB"}
             maxLabel="総容量"
             caption="ストレージ、使用量、クォータなどを複数リングで比較します。"
         />
@@ -122,11 +122,17 @@ const metrics = [
     { label: "Selected", value: "Media", description: "68GB" },
 ];
 
-<ConcentricProgressCard rings={rings} max={256} />
-<ConcentricProgressCard rings={rings} selectedIndex={1} />
-<ConcentricProgressCard rings={rings} metrics={metrics} />
-<ConcentricProgressCard rings={rings} showLegend={false} />
-<ConcentricProgressCard rings={rings} variant="compact" />`,
+export function ConcentricProgressCardUsage() {
+    return (
+        <div className="grid gap-8">
+            <ConcentricProgressCard rings={rings} max={256} />
+            <ConcentricProgressCard rings={rings} selectedIndex={1} />
+            <ConcentricProgressCard rings={rings} metrics={metrics} />
+            <ConcentricProgressCard rings={rings} showLegend={false} />
+            <ConcentricProgressCard rings={rings} variant="compact" />
+        </div>
+    );
+}`,
     ja: `import { ConcentricProgressCard } from "@gunjo/ui";
 
 const rings = [
@@ -142,147 +148,295 @@ const metrics = [
     { label: "選択中", value: "メディア", description: "68GB" },
 ];
 
-<ConcentricProgressCard rings={rings} max={256} />
-<ConcentricProgressCard rings={rings} selectedIndex={1} />
-<ConcentricProgressCard rings={rings} metrics={metrics} />
-<ConcentricProgressCard rings={rings} showLegend={false} />
-<ConcentricProgressCard rings={rings} variant="compact" />`,
+export function ConcentricProgressCardUsage() {
+    return (
+        <div className="grid gap-8">
+            <ConcentricProgressCard rings={rings} max={256} />
+            <ConcentricProgressCard rings={rings} selectedIndex={1} />
+            <ConcentricProgressCard rings={rings} metrics={metrics} />
+            <ConcentricProgressCard rings={rings} showLegend={false} />
+            <ConcentricProgressCard rings={rings} variant="compact" />
+        </div>
+    );
+}`,
 } as const;
 
 const stateCodeByLocale = {
     en: {
-        default: `<ConcentricProgressCard
-  title="Storage overview"
-  description="Storage by category"
-  value="155GB"
-  centerLabel="Used storage"
-  delta="61%"
-  metrics={metrics}
-  rings={rings}
-  selectedIndex={1}
-  max={256}
-  formatValue={(value) => \`\${value}GB\`}
-  maxLabel="Capacity"
-/>`,
-        compact: `<ConcentricProgressCard
-  variant="compact"
-  title="Resource load"
-  description="Current utilization"
-  value="74%"
-  centerLabel="Peak"
-  rings={rings}
-  selectedIndex={0}
-  max={100}
-  formatValue={(value) => \`\${value}%\`}
-/>`,
-        selected: `import { useState } from "react";
+        default: `import { ConcentricProgressCard } from "@gunjo/ui";
 
-export function StorageSelection() {
-  const [selectedIndex, setSelectedIndex] = useState(1);
+const rings = [
+    { label: "Documents", value: 42 },
+    { label: "Media", value: 68 },
+    { label: "Apps", value: 27 },
+    { label: "System", value: 18 },
+];
 
-  return (
-    <ConcentricProgressCard
-      title="Selected ring"
-      description="Use selectedIndex to keep one ring in focus."
-      value="68GB"
-      centerLabel="Media"
-      rings={rings}
-      selectedIndex={selectedIndex}
-      onRingSelect={(_, index) => setSelectedIndex(index)}
-      max={256}
-      formatValue={(value) => \`\${value}GB\`}
-      maxLabel="Capacity"
-    />
-  );
+const metrics = [
+    { label: "Used", value: "155GB", description: "61%" },
+    { label: "Capacity", value: "256GB" },
+    { label: "Selected", value: "Media", description: "68GB" },
+];
+
+export function StorageOverviewCard() {
+    return (
+        <ConcentricProgressCard
+            title="Storage overview"
+            description="Storage by category"
+            value="155GB"
+            centerLabel="Used storage"
+            delta="61%"
+            metrics={metrics}
+            rings={rings}
+            selectedIndex={1}
+            max={256}
+            formatValue={(value) => value + "GB"}
+            maxLabel="Capacity"
+        />
+    );
 }`,
-        metrics: `<ConcentricProgressCard
-  title="Capacity summary"
-  description="Metrics can summarize the chart above the rings."
-  metrics={metrics}
-  rings={rings}
-  selectedIndex={2}
-  max={256}
-  formatValue={(value) => \`\${value}GB\`}
-  maxLabel="Capacity"
-/>`,
-        chartOnly: `<ConcentricProgressCard
-  title="Chart only"
-  description="Hide the legend when the parent view owns the details."
-  value="155GB"
-  centerLabel="Used"
-  rings={rings}
-  showLegend={false}
-  max={256}
-  formatValue={(value) => \`\${value}GB\`}
-  maxLabel="Capacity"
-/>`,
+        compact: `import { ConcentricProgressCard } from "@gunjo/ui";
+
+const rings = [
+    { label: "CPU", value: 74 },
+    { label: "Memory", value: 62 },
+    { label: "Queue", value: 36 },
+];
+
+export function CompactResourceLoadCard() {
+    return (
+        <ConcentricProgressCard
+            variant="compact"
+            title="Resource load"
+            description="Current utilization"
+            value="74%"
+            centerLabel="Peak"
+            rings={rings}
+            selectedIndex={0}
+            max={100}
+            formatValue={(value) => value + "%"}
+        />
+    );
+}`,
+        selected: `import { useState } from "react";
+import { ConcentricProgressCard } from "@gunjo/ui";
+
+const rings = [
+    { label: "Documents", value: 42 },
+    { label: "Media", value: 68 },
+    { label: "Apps", value: 27 },
+    { label: "System", value: 18 },
+];
+
+export function SelectedRingCard() {
+    const [selectedIndex, setSelectedIndex] = useState(1);
+
+    return (
+        <ConcentricProgressCard
+            title="Selected ring"
+            description="Use selectedIndex to keep one ring in focus."
+            value="68GB"
+            centerLabel="Media"
+            rings={rings}
+            selectedIndex={selectedIndex}
+            onRingSelect={(ring, index) => setSelectedIndex(index)}
+            max={256}
+            formatValue={(value) => value + "GB"}
+            maxLabel="Capacity"
+        />
+    );
+}`,
+        metrics: `import { ConcentricProgressCard } from "@gunjo/ui";
+
+const rings = [
+    { label: "Documents", value: 42 },
+    { label: "Media", value: 68 },
+    { label: "Apps", value: 27 },
+    { label: "System", value: 18 },
+];
+
+const metrics = [
+    { label: "Used", value: "155GB", description: "61%" },
+    { label: "Capacity", value: "256GB" },
+    { label: "Selected", value: "Media", description: "68GB" },
+];
+
+export function CapacitySummaryCard() {
+    return (
+        <ConcentricProgressCard
+            title="Capacity summary"
+            description="Metrics can summarize the chart above the rings."
+            metrics={metrics}
+            rings={rings}
+            selectedIndex={2}
+            max={256}
+            formatValue={(value) => value + "GB"}
+            maxLabel="Capacity"
+        />
+    );
+}`,
+        chartOnly: `import { ConcentricProgressCard } from "@gunjo/ui";
+
+const rings = [
+    { label: "Documents", value: 42 },
+    { label: "Media", value: 68 },
+    { label: "Apps", value: 27 },
+    { label: "System", value: 18 },
+];
+
+export function ChartOnlyStorageCard() {
+    return (
+        <ConcentricProgressCard
+            title="Chart only"
+            description="Hide the legend when the parent view owns the details."
+            value="155GB"
+            centerLabel="Used"
+            rings={rings}
+            showLegend={false}
+            max={256}
+            formatValue={(value) => value + "GB"}
+            maxLabel="Capacity"
+        />
+    );
+}`,
     },
     ja: {
-        default: `<ConcentricProgressCard
-  title="ストレージ概要"
-  description="カテゴリ別の使用量"
-  value="155GB"
-  centerLabel="使用済み容量"
-  delta="61%"
-  metrics={metrics}
-  rings={rings}
-  selectedIndex={1}
-  max={256}
-  formatValue={(value) => \`\${value}GB\`}
-  maxLabel="総容量"
-/>`,
-        compact: `<ConcentricProgressCard
-  variant="compact"
-  title="リソース負荷"
-  description="現在の利用率"
-  value="74%"
-  centerLabel="ピーク"
-  rings={rings}
-  selectedIndex={0}
-  max={100}
-  formatValue={(value) => \`\${value}%\`}
-/>`,
-        selected: `import { useState } from "react";
+        default: `import { ConcentricProgressCard } from "@gunjo/ui";
 
-export function StorageSelection() {
-  const [selectedIndex, setSelectedIndex] = useState(1);
+const rings = [
+    { label: "書類", value: 42 },
+    { label: "メディア", value: 68 },
+    { label: "アプリ", value: 27 },
+    { label: "システム", value: 18 },
+];
 
-  return (
-    <ConcentricProgressCard
-      title="選択中リング"
-      description="selectedIndex で確認中のリングを固定します。"
-      value="68GB"
-      centerLabel="メディア"
-      rings={rings}
-      selectedIndex={selectedIndex}
-      onRingSelect={(_, index) => setSelectedIndex(index)}
-      max={256}
-      formatValue={(value) => \`\${value}GB\`}
-      maxLabel="総容量"
-    />
-  );
+const metrics = [
+    { label: "使用済み", value: "155GB", description: "61%" },
+    { label: "総容量", value: "256GB" },
+    { label: "選択中", value: "メディア", description: "68GB" },
+];
+
+export function StorageOverviewCard() {
+    return (
+        <ConcentricProgressCard
+            title="ストレージ概要"
+            description="カテゴリ別の使用量"
+            value="155GB"
+            centerLabel="使用済み容量"
+            delta="61%"
+            metrics={metrics}
+            rings={rings}
+            selectedIndex={1}
+            max={256}
+            formatValue={(value) => value + "GB"}
+            maxLabel="総容量"
+        />
+    );
 }`,
-        metrics: `<ConcentricProgressCard
-  title="容量サマリー"
-  description="リング上部に概要値を並べます。"
-  metrics={metrics}
-  rings={rings}
-  selectedIndex={2}
-  max={256}
-  formatValue={(value) => \`\${value}GB\`}
-  maxLabel="総容量"
-/>`,
-        chartOnly: `<ConcentricProgressCard
-  title="チャートのみ"
-  description="詳細を上位ビューで持つ場合は凡例を非表示にできます。"
-  value="155GB"
-  centerLabel="使用済み"
-  rings={rings}
-  showLegend={false}
-  max={256}
-  formatValue={(value) => \`\${value}GB\`}
-  maxLabel="総容量"
-/>`,
+        compact: `import { ConcentricProgressCard } from "@gunjo/ui";
+
+const rings = [
+    { label: "CPU", value: 74 },
+    { label: "メモリ", value: 62 },
+    { label: "キュー", value: 36 },
+];
+
+export function CompactResourceLoadCard() {
+    return (
+        <ConcentricProgressCard
+            variant="compact"
+            title="リソース負荷"
+            description="現在の利用率"
+            value="74%"
+            centerLabel="ピーク"
+            rings={rings}
+            selectedIndex={0}
+            max={100}
+            formatValue={(value) => value + "%"}
+        />
+    );
+}`,
+        selected: `import { useState } from "react";
+import { ConcentricProgressCard } from "@gunjo/ui";
+
+const rings = [
+    { label: "書類", value: 42 },
+    { label: "メディア", value: 68 },
+    { label: "アプリ", value: 27 },
+    { label: "システム", value: 18 },
+];
+
+export function SelectedRingCard() {
+    const [selectedIndex, setSelectedIndex] = useState(1);
+
+    return (
+        <ConcentricProgressCard
+            title="選択中リング"
+            description="selectedIndex で確認中のリングを固定します。"
+            value="68GB"
+            centerLabel="メディア"
+            rings={rings}
+            selectedIndex={selectedIndex}
+            onRingSelect={(ring, index) => setSelectedIndex(index)}
+            max={256}
+            formatValue={(value) => value + "GB"}
+            maxLabel="総容量"
+        />
+    );
+}`,
+        metrics: `import { ConcentricProgressCard } from "@gunjo/ui";
+
+const rings = [
+    { label: "書類", value: 42 },
+    { label: "メディア", value: 68 },
+    { label: "アプリ", value: 27 },
+    { label: "システム", value: 18 },
+];
+
+const metrics = [
+    { label: "使用済み", value: "155GB", description: "61%" },
+    { label: "総容量", value: "256GB" },
+    { label: "選択中", value: "メディア", description: "68GB" },
+];
+
+export function CapacitySummaryCard() {
+    return (
+        <ConcentricProgressCard
+            title="容量サマリー"
+            description="リング上部に概要値を並べます。"
+            metrics={metrics}
+            rings={rings}
+            selectedIndex={2}
+            max={256}
+            formatValue={(value) => value + "GB"}
+            maxLabel="総容量"
+        />
+    );
+}`,
+        chartOnly: `import { ConcentricProgressCard } from "@gunjo/ui";
+
+const rings = [
+    { label: "書類", value: 42 },
+    { label: "メディア", value: 68 },
+    { label: "アプリ", value: 27 },
+    { label: "システム", value: 18 },
+];
+
+export function ChartOnlyStorageCard() {
+    return (
+        <ConcentricProgressCard
+            title="チャートのみ"
+            description="詳細を上位ビューで持つ場合は凡例を非表示にできます。"
+            value="155GB"
+            centerLabel="使用済み"
+            rings={rings}
+            showLegend={false}
+            max={256}
+            formatValue={(value) => value + "GB"}
+            maxLabel="総容量"
+        />
+    );
+}`,
     },
 } as const;
 
@@ -412,10 +566,6 @@ const propsDataByLocale = {
 export default function ConcentricProgressCardPage() {
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
     const { locale, sectionLabels } = useLocale();
-    const stateCodeData = usageCodeByLocale[locale]
-        .split("\n\n<ConcentricProgressCard")[0]
-        .replace('import { ConcentricProgressCard } from "@gunjo/ui";\n\n', "");
-    const withStateCodeData = (nextCode: string) => `${stateCodeData}\n\n${nextCode}`;
     const rings = ringsByLocale[locale];
     const compactRings = compactRingsByLocale[locale];
     const metrics = metricsByLocale[locale];
@@ -472,7 +622,7 @@ export default function ConcentricProgressCardPage() {
                                 />
                             ),
                             previewBodyWidth: "xl",
-                            code: withStateCodeData(stateCodeByLocale[locale].default),
+                            code: stateCodeByLocale[locale].default,
                         },
                         {
                             key: "compact",
@@ -496,7 +646,7 @@ export default function ConcentricProgressCardPage() {
                                 />
                             ),
                             previewBodyWidth: "md",
-                            code: withStateCodeData(stateCodeByLocale[locale].compact),
+                            code: stateCodeByLocale[locale].compact,
                         },
                         {
                             key: "selected-ring",
@@ -520,7 +670,7 @@ export default function ConcentricProgressCardPage() {
                                 />
                             ),
                             previewBodyWidth: "lg",
-                            code: withStateCodeData(stateCodeByLocale[locale].selected),
+                            code: stateCodeByLocale[locale].selected,
                         },
                         {
                             key: "metrics",
@@ -542,7 +692,7 @@ export default function ConcentricProgressCardPage() {
                                 />
                             ),
                             previewBodyWidth: "xl",
-                            code: withStateCodeData(stateCodeByLocale[locale].metrics),
+                            code: stateCodeByLocale[locale].metrics,
                         },
                         {
                             key: "chart-only",
@@ -565,7 +715,7 @@ export default function ConcentricProgressCardPage() {
                                 />
                             ),
                             previewBodyWidth: "md",
-                            code: withStateCodeData(stateCodeByLocale[locale].chartOnly),
+                            code: stateCodeByLocale[locale].chartOnly,
                         },
                     ]}
                 />
