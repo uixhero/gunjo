@@ -2112,6 +2112,7 @@ export const translations: Record<
       SettingGroup: "設定グループ",
       LineChip: "路線チップ",
       StatusBoard: "状態ボード",
+      StatusLevel: "レベル表示",
       ExpiryBadge: "有効期限",
       LimitMonitor: "上限監視",
       RevealSection: "条件付きセクション",
