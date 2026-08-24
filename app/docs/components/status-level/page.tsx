@@ -420,12 +420,67 @@ export function ServiceStatusList() {
                   </div>
                 </div>
               ),
-              code: `<StatusLevel levels={CROWDING_LEVELS} value="empty" />
-<StatusLevel levels={CROWDING_LEVELS} value="some" />
-<StatusLevel levels={CROWDING_LEVELS} value="crowded" />
+              code: isJa
+                ? `import { StatusLevel } from "@gunjo/ui";
 
-<StatusLevel levels={SERVICE_LEVELS} value="normal" />
-<StatusLevel levels={SERVICE_LEVELS} value="suspended" />`,
+const CROWDING_LEVELS = [
+  { value: "empty", label: "空いています", tone: "success" },
+  { value: "some", label: "やや混雑", tone: "warning" },
+  { value: "crowded", label: "混雑", tone: "destructive" },
+] as const;
+
+const SERVICE_LEVELS = [
+  { value: "normal", label: "平常運転", tone: "success" },
+  { value: "delay", label: "遅延", tone: "warning" },
+  { value: "detour", label: "迂回", tone: "warning" },
+  { value: "suspended", label: "運休", tone: "destructive" },
+] as const;
+
+export function AllSteps() {
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-wrap items-center gap-3">
+        <StatusLevel levels={CROWDING_LEVELS} value="empty" />
+        <StatusLevel levels={CROWDING_LEVELS} value="some" />
+        <StatusLevel levels={CROWDING_LEVELS} value="crowded" />
+      </div>
+      <div className="flex flex-wrap items-center gap-3">
+        <StatusLevel levels={SERVICE_LEVELS} value="normal" />
+        <StatusLevel levels={SERVICE_LEVELS} value="suspended" />
+      </div>
+    </div>
+  );
+}`
+                : `import { StatusLevel } from "@gunjo/ui";
+
+const CROWDING_LEVELS = [
+  { value: "empty", label: "Quiet", tone: "success" },
+  { value: "some", label: "Filling up", tone: "warning" },
+  { value: "crowded", label: "Crowded", tone: "destructive" },
+] as const;
+
+const SERVICE_LEVELS = [
+  { value: "normal", label: "On time", tone: "success" },
+  { value: "delay", label: "Delayed", tone: "warning" },
+  { value: "detour", label: "Detour", tone: "warning" },
+  { value: "suspended", label: "Suspended", tone: "destructive" },
+] as const;
+
+export function AllSteps() {
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-wrap items-center gap-3">
+        <StatusLevel levels={CROWDING_LEVELS} value="empty" />
+        <StatusLevel levels={CROWDING_LEVELS} value="some" />
+        <StatusLevel levels={CROWDING_LEVELS} value="crowded" />
+      </div>
+      <div className="flex flex-wrap items-center gap-3">
+        <StatusLevel levels={SERVICE_LEVELS} value="normal" />
+        <StatusLevel levels={SERVICE_LEVELS} value="suspended" />
+      </div>
+    </div>
+  );
+}`,
             },
             {
               key: "greyscale",
@@ -442,9 +497,55 @@ export function ServiceStatusList() {
                   </div>
                 </div>
               ),
-              code: `<div className="grayscale">
-  <StatusLevel levels={SERVICE_LEVELS} value="detour" />
-</div>`,
+              code: isJa
+                ? `import { StatusLevel } from "@gunjo/ui";
+
+const CROWDING_LEVELS = [
+  { value: "empty", label: "空いています", tone: "success" },
+  { value: "some", label: "やや混雑", tone: "warning" },
+  { value: "crowded", label: "混雑", tone: "destructive" },
+] as const;
+
+const SERVICE_LEVELS = [
+  { value: "normal", label: "平常運転", tone: "success" },
+  { value: "delay", label: "遅延", tone: "warning" },
+  { value: "detour", label: "迂回", tone: "warning" },
+  { value: "suspended", label: "運休", tone: "destructive" },
+] as const;
+
+export function WithoutColour() {
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="grayscale">
+        <StatusLevel levels={SERVICE_LEVELS} value="detour" />
+      </div>
+    </div>
+  );
+}`
+                : `import { StatusLevel } from "@gunjo/ui";
+
+const CROWDING_LEVELS = [
+  { value: "empty", label: "Quiet", tone: "success" },
+  { value: "some", label: "Filling up", tone: "warning" },
+  { value: "crowded", label: "Crowded", tone: "destructive" },
+] as const;
+
+const SERVICE_LEVELS = [
+  { value: "normal", label: "On time", tone: "success" },
+  { value: "delay", label: "Delayed", tone: "warning" },
+  { value: "detour", label: "Detour", tone: "warning" },
+  { value: "suspended", label: "Suspended", tone: "destructive" },
+] as const;
+
+export function WithoutColour() {
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="grayscale">
+        <StatusLevel levels={SERVICE_LEVELS} value="detour" />
+      </div>
+    </div>
+  );
+}`,
             },
             {
               key: "sizes",
@@ -466,11 +567,69 @@ export function ServiceStatusList() {
                   </div>
                 </div>
               ),
-              code: `<StatusLevel levels={SERVICE_LEVELS} value="delay" size="sm" />
-<StatusLevel levels={SERVICE_LEVELS} value="delay" size="lg" />
-<StatusLevel levels={SERVICE_LEVELS} value="suspended" barPosition="start" />
-<StatusLevel levels={SERVICE_LEVELS} value="suspended" showLabel={false} />
-<StatusLevel levels={SERVICE_LEVELS} value="unknown-value" />`,
+              code: isJa
+                ? `import { StatusLevel } from "@gunjo/ui";
+
+const CROWDING_LEVELS = [
+  { value: "empty", label: "空いています", tone: "success" },
+  { value: "some", label: "やや混雑", tone: "warning" },
+  { value: "crowded", label: "混雑", tone: "destructive" },
+] as const;
+
+const SERVICE_LEVELS = [
+  { value: "normal", label: "平常運転", tone: "success" },
+  { value: "delay", label: "遅延", tone: "warning" },
+  { value: "detour", label: "迂回", tone: "warning" },
+  { value: "suspended", label: "運休", tone: "destructive" },
+] as const;
+
+export function SizesAndLayout() {
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-wrap items-center gap-3">
+        <StatusLevel levels={SERVICE_LEVELS} value="delay" size="sm" />
+        <StatusLevel levels={SERVICE_LEVELS} value="delay" />
+        <StatusLevel levels={SERVICE_LEVELS} value="delay" size="lg" />
+      </div>
+      <div className="flex flex-wrap items-center gap-3">
+        <StatusLevel levels={SERVICE_LEVELS} value="suspended" barPosition="start" />
+        <StatusLevel levels={SERVICE_LEVELS} value="suspended" showLabel={false} />
+        <StatusLevel levels={SERVICE_LEVELS} value="unknown-value" />
+      </div>
+    </div>
+  );
+}`
+                : `import { StatusLevel } from "@gunjo/ui";
+
+const CROWDING_LEVELS = [
+  { value: "empty", label: "Quiet", tone: "success" },
+  { value: "some", label: "Filling up", tone: "warning" },
+  { value: "crowded", label: "Crowded", tone: "destructive" },
+] as const;
+
+const SERVICE_LEVELS = [
+  { value: "normal", label: "On time", tone: "success" },
+  { value: "delay", label: "Delayed", tone: "warning" },
+  { value: "detour", label: "Detour", tone: "warning" },
+  { value: "suspended", label: "Suspended", tone: "destructive" },
+] as const;
+
+export function SizesAndLayout() {
+  return (
+    <div className="flex flex-col gap-3">
+      <div className="flex flex-wrap items-center gap-3">
+        <StatusLevel levels={SERVICE_LEVELS} value="delay" size="sm" />
+        <StatusLevel levels={SERVICE_LEVELS} value="delay" />
+        <StatusLevel levels={SERVICE_LEVELS} value="delay" size="lg" />
+      </div>
+      <div className="flex flex-wrap items-center gap-3">
+        <StatusLevel levels={SERVICE_LEVELS} value="suspended" barPosition="start" />
+        <StatusLevel levels={SERVICE_LEVELS} value="suspended" showLabel={false} />
+        <StatusLevel levels={SERVICE_LEVELS} value="unknown-value" />
+      </div>
+    </div>
+  );
+}`,
             },
           ]}
         />
