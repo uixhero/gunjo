@@ -4,7 +4,7 @@ import * as React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { IconInfoCircle, IconArrowUpRight, IconShieldHalfFilled } from "@tabler/icons-react";
-import { Alert, AlertDescription, Badge, Container, cn } from "@gunjo/ui";
+import { Alert, AlertDescription, Badge, cn } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import {
     DEMO_BASE,
@@ -34,6 +34,12 @@ const NAV_ITEMS = [
  * - 3画面のタブナビ
  * を与える。ナビはルーティング用のページ固有グルー（リンク3本）で、
  * 状態タブ（Tabs）ではなくリンクなので app-local に留める。
+ *
+ * 外枠は Tailwind の `container`（tailwind.config.ts で最大1400px・左右2rem）＝
+ * サイト標準の本文幅。@gunjo/ui の Container size="2xl"（1536px）を使っていたが、
+ * サイトの他の面より136px広く、ワイドモニターで本文だけが伸びていた。
+ * コールドテストの面（扉ページ・回のシェル・一覧・なぜ）は全て `container` を
+ * 使っているので、そこから入ってきたときに本文の左端がずれない。
  */
 export function DemoShell({ children }: { children: React.ReactNode }) {
     const pathname = usePathname();
@@ -41,7 +47,7 @@ export function DemoShell({ children }: { children: React.ReactNode }) {
     const isJa = locale === "ja";
 
     return (
-        <Container size="2xl" className="py-6 sm:py-8">
+        <div className="container py-6 sm:py-8">
             <Alert variant="info" className="mb-5">
                 <IconInfoCircle className="h-4 w-4" aria-hidden />
                 <AlertDescription>
@@ -108,6 +114,6 @@ export function DemoShell({ children }: { children: React.ReactNode }) {
             </nav>
 
             {children}
-        </Container>
+        </div>
     );
 }
