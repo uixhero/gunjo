@@ -63,9 +63,17 @@ function intersects(a: Bounds, b: Bounds) {
 export function SelectionCanvas() {
   const canvasRef = useRef<HTMLDivElement | null>(null);
   const [dragStart, setDragStart] = useState<Point | null>(null);
-  const [selection, setSelection] = useState<Bounds>({ left: 32, top: 32, width: 360, height: 184 });
+  const [
+    selection,
+    setSelection,
+  ] = useState<Bounds>({ left: 32, top: 32, width: 360, height: 184 });
   const selectedNodes = useMemo(
-    () => nodes.filter((node) => intersects(selection, { left: node.x, top: node.y, width: node.width, height: node.height })),
+    () => nodes.filter((node) => intersects(selection, {
+      left: node.x,
+      top: node.y,
+      width: node.width,
+      height: node.height,
+    })),
     [selection]
   );
   const selectionLabelTop = Math.min(selection.top + selection.height + 8, 328);
@@ -118,7 +126,10 @@ export function SelectionCanvas() {
           </div>
         ))}
         <div className="pointer-events-none absolute rounded-md border border-primary-border bg-primary-subtle" style={selection} />
-        <div className="pointer-events-none absolute rounded bg-primary px-2 py-1 text-xs text-primary-foreground" style={{ left: selection.left, top: selectionLabelTop }}>
+        <div className="pointer-events-none absolute rounded bg-primary px-2 py-1 text-xs text-primary-foreground" style={{
+          left: selection.left,
+          top: selectionLabelTop,
+        }}>
           {selectedNodes.length} items selected
         </div>
       </SpatialCanvas>
@@ -144,9 +155,17 @@ function intersects(a: Bounds, b: Bounds) {
 export function SelectionCanvas() {
   const canvasRef = useRef<HTMLDivElement | null>(null);
   const [dragStart, setDragStart] = useState<Point | null>(null);
-  const [selection, setSelection] = useState<Bounds>({ left: 32, top: 32, width: 360, height: 184 });
+  const [
+    selection,
+    setSelection,
+  ] = useState<Bounds>({ left: 32, top: 32, width: 360, height: 184 });
   const selectedNodes = useMemo(
-    () => nodes.filter((node) => intersects(selection, { left: node.x, top: node.y, width: node.width, height: node.height })),
+    () => nodes.filter((node) => intersects(selection, {
+      left: node.x,
+      top: node.y,
+      width: node.width,
+      height: node.height,
+    })),
     [selection]
   );
   const selectionLabelTop = Math.min(selection.top + selection.height + 8, 328);
@@ -199,7 +218,10 @@ export function SelectionCanvas() {
           </div>
         ))}
         <div className="pointer-events-none absolute rounded-md border border-primary-border bg-primary-subtle" style={selection} />
-        <div className="pointer-events-none absolute rounded bg-primary px-2 py-1 text-xs text-primary-foreground" style={{ left: selection.left, top: selectionLabelTop }}>
+        <div className="pointer-events-none absolute rounded bg-primary px-2 py-1 text-xs text-primary-foreground" style={{
+          left: selection.left,
+          top: selectionLabelTop,
+        }}>
           {selectedNodes.length}件を選択中
         </div>
       </SpatialCanvas>

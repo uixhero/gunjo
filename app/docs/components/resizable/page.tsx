@@ -17,7 +17,10 @@ const codeByLocale = {
 export function ResizableWorkspace() {
   return (
     <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border">
-      <ResizablePanelGroup direction="horizontal" defaultLayout={{ sidebar: 32, canvas: 68 }} className="h-full w-full">
+      <ResizablePanelGroup direction="horizontal" defaultLayout={{
+        sidebar: 32,
+        canvas: 68,
+      }} className="h-full w-full">
         <ResizablePanel id="sidebar" defaultSize="32%" minSize="20%">
           <div className="flex h-full items-center justify-center p-4">Sidebar</div>
         </ResizablePanel>
@@ -38,7 +41,10 @@ export function ResizableWorkspace() {
 export function ResizableWorkspace() {
   return (
     <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border">
-      <ResizablePanelGroup direction="horizontal" defaultLayout={{ sidebar: 32, canvas: 68 }} className="h-full w-full">
+      <ResizablePanelGroup direction="horizontal" defaultLayout={{
+        sidebar: 32,
+        canvas: 68,
+      }} className="h-full w-full">
         <ResizablePanel id="sidebar" defaultSize="32%" minSize="20%">
           <div className="flex h-full items-center justify-center p-4">サイドバー</div>
         </ResizablePanel>
@@ -64,7 +70,10 @@ const stateCodeByLocale = {
 export function VerticalResizableWorkspace() {
   return (
     <div className="h-72 w-full max-w-2xl overflow-hidden rounded-lg border">
-      <ResizablePanelGroup direction="vertical" defaultLayout={{ preview: 45, console: 55 }} className="h-full w-full">
+      <ResizablePanelGroup direction="vertical" defaultLayout={{
+        preview: 45,
+        console: 55,
+      }} className="h-full w-full">
         <ResizablePanel id="preview" defaultSize="45%" minSize="25%">
           <div className="flex h-full items-center justify-center p-4">Preview</div>
         </ResizablePanel>
@@ -85,13 +94,19 @@ export function VerticalResizableWorkspace() {
 export function NestedResizableWorkspace() {
   return (
     <div className="h-72 w-full max-w-2xl overflow-hidden rounded-lg border">
-      <ResizablePanelGroup direction="horizontal" defaultLayout={{ files: 28, workspace: 72 }} className="h-full w-full">
+      <ResizablePanelGroup direction="horizontal" defaultLayout={{
+        files: 28,
+        workspace: 72,
+      }} className="h-full w-full">
         <ResizablePanel id="files" defaultSize="28%" minSize="18%">
           <div className="flex h-full items-center justify-center p-4">Files</div>
         </ResizablePanel>
         <ResizableHandle />
         <ResizablePanel id="workspace" defaultSize="72%">
-          <ResizablePanelGroup direction="vertical" defaultLayout={{ editor: 65, terminal: 35 }} className="h-full w-full">
+          <ResizablePanelGroup direction="vertical" defaultLayout={{
+            editor: 65,
+            terminal: 35,
+          }} className="h-full w-full">
             <ResizablePanel id="editor" defaultSize="65%">
               <div className="flex h-full items-center justify-center p-4">Editor</div>
             </ResizablePanel>
@@ -114,7 +129,10 @@ export function NestedResizableWorkspace() {
 export function CollapsibleResizableWorkspace() {
   return (
     <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border">
-      <ResizablePanelGroup direction="horizontal" defaultLayout={{ support: 25, main: 75 }} className="h-full w-full">
+      <ResizablePanelGroup direction="horizontal" defaultLayout={{
+        support: 25,
+        main: 75,
+      }} className="h-full w-full">
         <ResizablePanel id="support" defaultSize="25%" minSize="15%" collapsible>
           <div className="flex h-full items-center justify-center p-4">Collapsible</div>
         </ResizablePanel>
@@ -135,7 +153,11 @@ export function CollapsibleResizableWorkspace() {
 export function ThreeColumnResizableWorkspace() {
   return (
     <div className="h-72 w-full max-w-3xl overflow-hidden rounded-lg border">
-      <ResizablePanelGroup direction="horizontal" defaultLayout={{ navigation: 24, content: 48, inspector: 28 }} className="h-full w-full">
+      <ResizablePanelGroup direction="horizontal" defaultLayout={{
+        navigation: 24,
+        content: 48,
+        inspector: 28,
+      }} className="h-full w-full">
         <ResizablePanel id="navigation" defaultSize="24%" minSize="16%">
           <div className="flex h-full items-center justify-center p-4">Navigation</div>
         </ResizablePanel>
@@ -163,7 +185,10 @@ export function ThreeColumnResizableWorkspace() {
 export function VerticalResizableWorkspace() {
   return (
     <div className="h-72 w-full max-w-2xl overflow-hidden rounded-lg border">
-      <ResizablePanelGroup direction="vertical" defaultLayout={{ preview: 45, console: 55 }} className="h-full w-full">
+      <ResizablePanelGroup direction="vertical" defaultLayout={{
+        preview: 45,
+        console: 55,
+      }} className="h-full w-full">
         <ResizablePanel id="preview" defaultSize="45%" minSize="25%">
           <div className="flex h-full items-center justify-center p-4">プレビュー</div>
         </ResizablePanel>
@@ -184,13 +209,19 @@ export function VerticalResizableWorkspace() {
 export function NestedResizableWorkspace() {
   return (
     <div className="h-72 w-full max-w-2xl overflow-hidden rounded-lg border">
-      <ResizablePanelGroup direction="horizontal" defaultLayout={{ files: 28, workspace: 72 }} className="h-full w-full">
+      <ResizablePanelGroup direction="horizontal" defaultLayout={{
+        files: 28,
+        workspace: 72,
+      }} className="h-full w-full">
         <ResizablePanel id="files" defaultSize="28%" minSize="18%">
           <div className="flex h-full items-center justify-center p-4">ファイル</div>
         </ResizablePanel>
         <ResizableHandle />
         <ResizablePanel id="workspace" defaultSize="72%">
-          <ResizablePanelGroup direction="vertical" defaultLayout={{ editor: 65, terminal: 35 }} className="h-full w-full">
+          <ResizablePanelGroup direction="vertical" defaultLayout={{
+            editor: 65,
+            terminal: 35,
+          }} className="h-full w-full">
             <ResizablePanel id="editor" defaultSize="65%">
               <div className="flex h-full items-center justify-center p-4">エディタ</div>
             </ResizablePanel>
@@ -213,7 +244,10 @@ export function NestedResizableWorkspace() {
 export function CollapsibleResizableWorkspace() {
   return (
     <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border">
-      <ResizablePanelGroup direction="horizontal" defaultLayout={{ support: 25, main: 75 }} className="h-full w-full">
+      <ResizablePanelGroup direction="horizontal" defaultLayout={{
+        support: 25,
+        main: 75,
+      }} className="h-full w-full">
         <ResizablePanel id="support" defaultSize="25%" minSize="15%" collapsible>
           <div className="flex h-full items-center justify-center p-4">折りたたみ可能</div>
         </ResizablePanel>
@@ -234,7 +268,11 @@ export function CollapsibleResizableWorkspace() {
 export function ThreeColumnResizableWorkspace() {
   return (
     <div className="h-72 w-full max-w-3xl overflow-hidden rounded-lg border">
-      <ResizablePanelGroup direction="horizontal" defaultLayout={{ navigation: 24, content: 48, inspector: 28 }} className="h-full w-full">
+      <ResizablePanelGroup direction="horizontal" defaultLayout={{
+        navigation: 24,
+        content: 48,
+        inspector: 28,
+      }} className="h-full w-full">
         <ResizablePanel id="navigation" defaultSize="24%" minSize="16%">
           <div className="flex h-full items-center justify-center p-4">ナビゲーション</div>
         </ResizablePanel>

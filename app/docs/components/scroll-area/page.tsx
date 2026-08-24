@@ -38,7 +38,10 @@ const wideTableRows = {
 const codeByLocale = {
     en: `import { ScrollArea, Separator } from "@gunjo/ui";
 
-const releases = Array.from({ length: 18 }, (_, index) => \`v2.\${Math.floor((18 - index) / 3)}.\${18 - index}\`);
+const releases = Array.from(
+  { length: 18 },
+  (_, index) => "v2." + Math.floor((18 - index) / 3) + "." + (18 - index),
+);
 
 export function ReleaseList() {
   return (
@@ -55,7 +58,10 @@ export function ReleaseList() {
 }`,
     ja: `import { ScrollArea, Separator } from "@gunjo/ui";
 
-const releases = Array.from({ length: 18 }, (_, index) => \`v2.\${Math.floor((18 - index) / 3)}.\${18 - index}\`);
+const releases = Array.from(
+  { length: 18 },
+  (_, index) => "v2." + Math.floor((18 - index) / 3) + "." + (18 - index),
+);
 
 export function ReleaseList() {
   return (
@@ -127,7 +133,10 @@ const rows = [
 
 export function WideScrollableTable() {
   return (
-    <ScrollArea className="h-44 w-full max-w-xl rounded-md border bg-background" scrollbarOrientation="both">
+    <ScrollArea
+      className="h-44 w-full max-w-xl rounded-md border bg-background"
+      scrollbarOrientation="both"
+    >
       <table className="min-w-[760px] text-left text-sm">
         <thead className="bg-muted/60 text-muted-foreground">
           <tr>{columns.map((column) => <th key={column} className="px-3 py-2 font-medium">{column}</th>)}</tr>
@@ -145,11 +154,16 @@ export function WideScrollableTable() {
 }`,
         always: `import { ScrollArea } from "@gunjo/ui";
 
+const rows = Array.from({ length: 12 }, (_, i) => i + 1);
+
 export function AlwaysVisibleScrollbar() {
   return (
-    <ScrollArea type="always" className="h-48 w-full max-w-sm rounded-md border bg-background p-4">
-      {Array.from({ length: 12 }, (_, index) => (
-        <p key={index} className="text-sm text-muted-foreground">Always visible row {index + 1}</p>
+    <ScrollArea
+      type="always"
+      className="h-48 w-full max-w-sm rounded-md border bg-background p-4"
+    >
+      {rows.map((row) => (
+        <p key={row} className="text-sm text-muted-foreground">Always visible row {row}</p>
       ))}
     </ScrollArea>
   );
@@ -209,7 +223,10 @@ const rows = [
 
 export function WideScrollableTable() {
   return (
-    <ScrollArea className="h-44 w-full max-w-xl rounded-md border bg-background" scrollbarOrientation="both">
+    <ScrollArea
+      className="h-44 w-full max-w-xl rounded-md border bg-background"
+      scrollbarOrientation="both"
+    >
       <table className="min-w-[760px] text-left text-sm">
         <thead className="bg-muted/60 text-muted-foreground">
           <tr>{columns.map((column) => <th key={column} className="px-3 py-2 font-medium">{column}</th>)}</tr>
@@ -227,11 +244,16 @@ export function WideScrollableTable() {
 }`,
         always: `import { ScrollArea } from "@gunjo/ui";
 
+const rows = Array.from({ length: 12 }, (_, i) => i + 1);
+
 export function AlwaysVisibleScrollbar() {
   return (
-    <ScrollArea type="always" className="h-48 w-full max-w-sm rounded-md border bg-background p-4">
-      {Array.from({ length: 12 }, (_, index) => (
-        <p key={index} className="text-sm text-muted-foreground">常時表示の行 {index + 1}</p>
+    <ScrollArea
+      type="always"
+      className="h-48 w-full max-w-sm rounded-md border bg-background p-4"
+    >
+      {rows.map((row) => (
+        <p key={row} className="text-sm text-muted-foreground">常時表示の行 {row}</p>
       ))}
     </ScrollArea>
   );

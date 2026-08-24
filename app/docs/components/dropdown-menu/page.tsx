@@ -44,7 +44,10 @@ export function ViewSettingsMenu() {
           ステータスバー
           <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
         </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem checked={showActivity} onCheckedChange={setShowActivity}>
+        <DropdownMenuCheckboxItem
+          checked={showActivity}
+          onCheckedChange={setShowActivity}
+        >
           アクティビティバー
         </DropdownMenuCheckboxItem>
         <DropdownMenuSeparator />
@@ -89,7 +92,10 @@ export function ViewSettingsMenu() {
           Status bar
           <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
         </DropdownMenuCheckboxItem>
-        <DropdownMenuCheckboxItem checked={showActivity} onCheckedChange={setShowActivity}>
+        <DropdownMenuCheckboxItem
+          checked={showActivity}
+          onCheckedChange={setShowActivity}
+        >
           Activity bar
         </DropdownMenuCheckboxItem>
         <DropdownMenuSeparator />
@@ -217,7 +223,12 @@ const userMenuCodeByLocale = {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@gunjo/ui";
-import { IconLogout as LogOut, IconSettings as Settings, IconTrash as Trash2, IconUser as User } from "@tabler/icons-react";
+import {
+  IconLogout as LogOut,
+  IconSettings as Settings,
+  IconTrash as Trash2,
+  IconUser as User,
+} from "@tabler/icons-react";
 
 export function AccountMenu() {
   return (
@@ -261,7 +272,12 @@ export function AccountMenu() {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@gunjo/ui";
-import { IconLogout as LogOut, IconSettings as Settings, IconTrash as Trash2, IconUser as User } from "@tabler/icons-react";
+import {
+  IconLogout as LogOut,
+  IconSettings as Settings,
+  IconTrash as Trash2,
+  IconUser as User,
+} from "@tabler/icons-react";
 
 export function AccountMenu() {
   return (

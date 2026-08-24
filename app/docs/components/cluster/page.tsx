@@ -68,6 +68,33 @@ export function ToolbarActions() {
 }`,
 } as const;
 
+const centeredCodeByLocale = {
+    en: `import { Badge, Cluster } from "@gunjo/ui";
+
+export function CenteredStatusCluster() {
+  return (
+    <div className="w-full rounded-lg border bg-background p-4">
+      <Cluster gap={3} justify="center">
+        <Badge>Selected</Badge>
+        <Badge variant="secondary">Reviewing</Badge>
+      </Cluster>
+    </div>
+  );
+}`,
+    ja: `import { Badge, Cluster } from "@gunjo/ui";
+
+export function CenteredStatusCluster() {
+  return (
+    <div className="w-full rounded-lg border bg-background p-4">
+      <Cluster gap={3} justify="center">
+        <Badge>選択中</Badge>
+        <Badge variant="secondary">レビュー中</Badge>
+      </Cluster>
+    </div>
+  );
+}`,
+} as const;
+
 export default function ClusterPage() {
     const { locale } = useLocale();
     const meta = layoutMetadata as Record<string, { title: string; description: string }>;
@@ -166,7 +193,12 @@ export default function ClusterPage() {
                                     : "Center short status labels or supporting metadata."}
                             </p>
                         </div>
-                        <ComponentPreview code={`<Cluster justify="center" gap={3}>{/* items */}</Cluster>`} codeBlock={<CodeBlock code={`<Cluster justify="center" gap={3}>{/* items */}</Cluster>`} />} previewBodyWidth="md" previewHeight="auto">
+                        <ComponentPreview
+                            code={centeredCodeByLocale[locale]}
+                            codeBlock={<CodeBlock code={centeredCodeByLocale[locale]} />}
+                            previewBodyWidth="md"
+                            previewHeight="auto"
+                        >
                             <div className="w-full rounded-lg border bg-background p-4">
                                 <Cluster gap={3} justify="center">
                                     <Badge>{locale === "ja" ? "選択中" : "Selected"}</Badge>

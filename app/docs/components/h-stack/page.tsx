@@ -36,39 +36,105 @@ export function ToolbarActions() {
 const stateCodeByLocale = {
     en: {
         toolbar: codeByLocale.en,
-        between: `<HStack justify="between" align="center" className="w-full rounded-md border bg-background p-3">
-  <span className="text-sm font-medium">Project status</span>
-  <Button size="sm">Publish</Button>
-</HStack>`,
-        wrap: `<HStack gap={2} wrap className="w-56 rounded-md border bg-background p-3">
-  {["Draft", "Needs review", "Ready", "Published", "Archived"].map((label) => (
-    <span key={label} className="shrink-0 rounded-md border bg-muted/50 px-2 py-1 text-sm">
-      {label}
-    </span>
-  ))}
-</HStack>`,
-        baseline: `<HStack align="baseline" gap={2}>
-  <span className="text-2xl font-semibold">128</span>
-  <span className="text-sm text-muted-foreground">active users</span>
-</HStack>`,
+        between: `import { Button, HStack } from "@gunjo/ui";
+
+export function StatusBar() {
+  return (
+    <HStack
+      justify="between"
+      align="center"
+      className="w-full rounded-md border bg-background p-3"
+    >
+      <span className="text-sm font-medium">Project status</span>
+      <Button size="sm">Publish</Button>
+    </HStack>
+  );
+}`,
+        wrap: `import { HStack } from "@gunjo/ui";
+
+const statuses = [
+  "Draft",
+  "Needs review",
+  "Ready",
+  "Published",
+  "Archived",
+];
+
+export function StatusPills() {
+  return (
+    <HStack gap={2} wrap className="w-56 rounded-md border bg-background p-3">
+      {statuses.map((label) => (
+        <span
+          key={label}
+          className="shrink-0 rounded-md border bg-muted/50 px-2 py-1 text-sm"
+        >
+          {label}
+        </span>
+      ))}
+    </HStack>
+  );
+}`,
+        baseline: `import { HStack } from "@gunjo/ui";
+
+export function ActiveUserCount() {
+  return (
+    <HStack align="baseline" gap={2}>
+      <span className="text-2xl font-semibold">128</span>
+      <span className="text-sm text-muted-foreground">active users</span>
+    </HStack>
+  );
+}`,
     },
     ja: {
         toolbar: codeByLocale.ja,
-        between: `<HStack justify="between" align="center" className="w-full rounded-md border bg-background p-3">
-  <span className="text-sm font-medium">プロジェクト状態</span>
-  <Button size="sm">公開</Button>
-</HStack>`,
-        wrap: `<HStack gap={2} wrap className="w-56 rounded-md border bg-background p-3">
-  {["下書き", "公開前確認", "準備完了", "公開済み", "保管済み"].map((label) => (
-    <span key={label} className="shrink-0 rounded-md border bg-muted/50 px-2 py-1 text-sm">
-      {label}
-    </span>
-  ))}
-</HStack>`,
-        baseline: `<HStack align="baseline" gap={2}>
-  <span className="text-2xl font-semibold">128</span>
-  <span className="text-sm text-muted-foreground">人が利用中</span>
-</HStack>`,
+        between: `import { Button, HStack } from "@gunjo/ui";
+
+export function StatusBar() {
+  return (
+    <HStack
+      justify="between"
+      align="center"
+      className="w-full rounded-md border bg-background p-3"
+    >
+      <span className="text-sm font-medium">プロジェクト状態</span>
+      <Button size="sm">公開</Button>
+    </HStack>
+  );
+}`,
+        wrap: `import { HStack } from "@gunjo/ui";
+
+const statuses = [
+  "下書き",
+  "公開前確認",
+  "準備完了",
+  "公開済み",
+  "保管済み",
+];
+
+export function StatusPills() {
+  return (
+    <HStack gap={2} wrap className="w-56 rounded-md border bg-background p-3">
+      {statuses.map((label) => (
+        <span
+          key={label}
+          className="shrink-0 rounded-md border bg-muted/50 px-2 py-1 text-sm"
+        >
+          {label}
+        </span>
+      ))}
+    </HStack>
+  );
+}`,
+        baseline: `import { HStack } from "@gunjo/ui";
+
+export function ActiveUserCount() {
+  return (
+    <HStack align="baseline" gap={2}>
+      <span className="text-2xl font-semibold">128</span>
+      <span className="text-sm text-muted-foreground">人が利用中</span>
+    </HStack>
+  );
+}`,
     },
 } as const;
 
