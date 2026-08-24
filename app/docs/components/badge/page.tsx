@@ -10,6 +10,7 @@ import displayMetadata from "@design/display-metadata.json";
 import {
     Badge,
     Button,
+    DocNote,
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
@@ -332,6 +333,7 @@ export function StatusBadges() {
                 { name: "Badge", href: "/docs/components/badge" },
             ]}
             relatedComponents={[
+                { name: "StatusLevel", href: "/docs/components/status-level" },
                 { name: "Tag", href: "/docs/components/tag" },
                 { name: "TagInput", href: "/docs/components/tag-input" },
                 { name: "FilterButton", href: "/docs/components/filter-button" },
@@ -350,6 +352,11 @@ export function StatusBadges() {
                         ? "バッジは短い状態や分類を伝えるための表示です。色だけに頼らず、ラベルで意味が伝わるようにします。"
                         : "Badges communicate short status or category labels. The text should carry the meaning without relying on color alone."}
                 </p>
+                <DocNote heading={locale === "ja" ? "順序があるなら StatusLevel、無いなら Badge" : "Order means StatusLevel, no order means Badge"}>
+                    {locale === "ja"
+                        ? "支払済／請求中、下書き／公開のように、どれが上か決まっていない状態は Badge です。平常運転＜遅延＜迂回＜運休のように段に順番があり、並べ替えや「いちばん重い段」の導出が要るものは StatusLevel を使います。variant は重さであって順序ではないので、段の数だけ用意されていません。"
+                        : "Use Badge for states with no rank — paid / invoiced, draft / published. When the steps have an order (on time < delayed < detour < suspended) and you need sorting or a heaviest-step roll-up, use StatusLevel instead. A variant is a weight, not a rung, so there are not enough of them to spell out a ladder."}
+                </DocNote>
                 <BadgeVariantSummary locale={locale} />
                 <ComponentDemoStates
                     states={[

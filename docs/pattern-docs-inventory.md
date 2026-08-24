@@ -1,6 +1,6 @@
 # Pattern Docs Inventory
 
-Generated: 2026-07-09
+Generated: 2026-08-23
 
 Parent issue: #202
 

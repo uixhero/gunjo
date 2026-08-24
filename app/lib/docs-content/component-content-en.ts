@@ -165,6 +165,10 @@ export const componentContentEn: Record<string, DocContent> = {
     title: "StatusBoard",
     description: "A grouped status tile board that prioritizes problems across vehicles, equipment, or workstations.",
   },
+  "components/status-level": {
+    title: "StatusLevel",
+    description: "An ordered level indicator that reads the current step off a scale you declare once, as a chip plus a filled-step bar.",
+  },
   "components/stringline": {
     title: "Stringline",
     description: "A time-distance run diagram for planned and actual movement, directions, and the current time.",
