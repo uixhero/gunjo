@@ -4,6 +4,7 @@ import { PATTERNS, isPublicPatternSlug } from "@/lib/patterns";
 import coldTestGallery from "@/data/cold-test-gallery.json";
 import coldTestCategories from "@/data/cold-test-categories.json";
 import { listEnRounds } from "@/lib/cold-test-en";
+import { publishableJaEntries } from "@/lib/cold-test-drafts";
 import { EN_COLD_TEST_BASE } from "@/lib/cold-test-paths";
 
 interface ColdTestGalleryShape {
@@ -56,7 +57,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // Per-round cold-test detail pages — each is a distinct article with its
     // own metadata. Without these, Google would only know about the grid.
-    for (const entry of (coldTestGallery as ColdTestGalleryShape).entries) {
+    // Draft rounds (cold-test-drafts.ts) 404 in production, so they must not
+    // surface here either.
+    for (const entry of publishableJaEntries(
+        (coldTestGallery as ColdTestGalleryShape).entries
+    )) {
         paths.add(`/cold-tests/${entry.round}`);
     }
 
