@@ -75,14 +75,24 @@ const denseSegmentsCode = {
 const code = {
     en: `import { PieChart } from "@gunjo/ui";
 
-${segmentsCode.en}
+const segments = [
+    { label: "Core", value: 46, color: "primary" },
+    { label: "Growth", value: 28, color: "success" },
+    { label: "Retention", value: 18, color: "warning" },
+    { label: "Expansion", value: 8, color: "info" },
+];
 
 export function AudienceShare() {
     return <PieChart segments={segments} totalLabel="Total" showLegend />;
 }`,
     ja: `import { PieChart } from "@gunjo/ui";
 
-${segmentsCode.ja}
+const segments = [
+    { label: "基盤", value: 46, color: "primary" },
+    { label: "成長", value: 28, color: "success" },
+    { label: "継続", value: 18, color: "warning" },
+    { label: "拡張", value: 8, color: "info" },
+];
 
 export function AudienceShare() {
     return <PieChart segments={segments} totalLabel="合計" showLegend />;
@@ -92,18 +102,40 @@ export function AudienceShare() {
 const usageCode = {
     en: `import { PieChart } from "@gunjo/ui";
 
-${segmentsCode.en}
+const segments = [
+    { label: "Core", value: 46, color: "primary" },
+    { label: "Growth", value: 28, color: "success" },
+    { label: "Retention", value: 18, color: "warning" },
+    { label: "Expansion", value: 8, color: "info" },
+];
 
-<PieChart segments={segments} />
-<PieChart segments={segments} showLegend totalLabel="Total" />
-<PieChart segments={segments} variant="compact" showLegend />`,
+export function RevenueMixPieVariants() {
+    return (
+        <div className="grid gap-6">
+            <PieChart segments={segments} />
+            <PieChart segments={segments} showLegend totalLabel="Total" />
+            <PieChart segments={segments} variant="compact" showLegend />
+        </div>
+    );
+}`,
     ja: `import { PieChart } from "@gunjo/ui";
 
-${segmentsCode.ja}
+const segments = [
+    { label: "基盤", value: 46, color: "primary" },
+    { label: "成長", value: 28, color: "success" },
+    { label: "継続", value: 18, color: "warning" },
+    { label: "拡張", value: 8, color: "info" },
+];
 
-<PieChart segments={segments} />
-<PieChart segments={segments} showLegend totalLabel="合計" />
-<PieChart segments={segments} variant="compact" showLegend />`,
+export function RevenueMixPieVariants() {
+    return (
+        <div className="grid gap-6">
+            <PieChart segments={segments} />
+            <PieChart segments={segments} showLegend totalLabel="合計" />
+            <PieChart segments={segments} variant="compact" showLegend />
+        </div>
+    );
+}`,
 } as const;
 
 const propsData = {
@@ -131,9 +163,18 @@ const states = {
             description: "Standard proportional share display.",
             preview: <PieChart segments={segmentsByLocale.en} />,
             previewBodyWidth: "md",
-            code: `${segmentsCode.en}
+            code: `import { PieChart } from "@gunjo/ui";
 
-<PieChart segments={segments} />`,
+const segments = [
+    { label: "Core", value: 46, color: "primary" },
+    { label: "Growth", value: 28, color: "success" },
+    { label: "Retention", value: 18, color: "warning" },
+    { label: "Expansion", value: 8, color: "info" },
+];
+
+export function RevenueMixPie() {
+    return <PieChart segments={segments} />;
+}`,
         },
         {
             key: "legend",
@@ -141,9 +182,18 @@ const states = {
             description: "Adds labels and values below the pie.",
             preview: <PieChart segments={segmentsByLocale.en} showLegend totalLabel="Total" />,
             previewBodyWidth: "md",
-            code: `${segmentsCode.en}
+            code: `import { PieChart } from "@gunjo/ui";
 
-<PieChart segments={segments} showLegend totalLabel="Total" />`,
+const segments = [
+    { label: "Core", value: 46, color: "primary" },
+    { label: "Growth", value: 28, color: "success" },
+    { label: "Retention", value: 18, color: "warning" },
+    { label: "Expansion", value: 8, color: "info" },
+];
+
+export function RevenueMixPieWithLegend() {
+    return <PieChart segments={segments} showLegend totalLabel="Total" />;
+}`,
         },
         {
             key: "compact",
@@ -151,9 +201,18 @@ const states = {
             description: "Registered compact size for narrow panels.",
             preview: <PieChart segments={segmentsByLocale.en} variant="compact" showLegend />,
             previewBodyWidth: "sm",
-            code: `${segmentsCode.en}
+            code: `import { PieChart } from "@gunjo/ui";
 
-<PieChart segments={segments} variant="compact" showLegend />`,
+const segments = [
+    { label: "Core", value: 46, color: "primary" },
+    { label: "Growth", value: 28, color: "success" },
+    { label: "Retention", value: 18, color: "warning" },
+    { label: "Expansion", value: 8, color: "info" },
+];
+
+export function CompactRevenueMixPie() {
+    return <PieChart segments={segments} variant="compact" showLegend />;
+}`,
         },
         {
             key: "dense",
@@ -161,9 +220,19 @@ const states = {
             description: "Checks readability with more segments.",
             preview: <PieChart segments={denseSegmentsByLocale.en} showLegend totalLabel="Sources" />,
             previewBodyWidth: "md",
-            code: `${denseSegmentsCode.en}
+            code: `import { PieChart } from "@gunjo/ui";
 
-<PieChart segments={sourceSegments} showLegend totalLabel="Sources" />`,
+const sourceSegments = [
+    { label: "Search", value: 34, color: "primary" },
+    { label: "Social", value: 22, color: "info" },
+    { label: "Email", value: 16, color: "success" },
+    { label: "Ads", value: 12, color: "warning" },
+    { label: "Other", value: 16, color: "muted" },
+];
+
+export function ChannelMixPie() {
+    return <PieChart segments={sourceSegments} showLegend totalLabel="Sources" />;
+}`,
         },
     ],
     ja: [
@@ -173,9 +242,18 @@ const states = {
             description: "構成比を標準サイズで表示します。",
             preview: <PieChart segments={segmentsByLocale.ja} />,
             previewBodyWidth: "md",
-            code: `${segmentsCode.ja}
+            code: `import { PieChart } from "@gunjo/ui";
 
-<PieChart segments={segments} />`,
+const segments = [
+    { label: "基盤", value: 46, color: "primary" },
+    { label: "成長", value: 28, color: "success" },
+    { label: "継続", value: 18, color: "warning" },
+    { label: "拡張", value: 8, color: "info" },
+];
+
+export function RevenueMixPie() {
+    return <PieChart segments={segments} />;
+}`,
         },
         {
             key: "legend",
@@ -183,9 +261,18 @@ const states = {
             description: "ラベルと値を円グラフ下で確認します。",
             preview: <PieChart segments={segmentsByLocale.ja} showLegend totalLabel="合計" />,
             previewBodyWidth: "md",
-            code: `${segmentsCode.ja}
+            code: `import { PieChart } from "@gunjo/ui";
 
-<PieChart segments={segments} showLegend totalLabel="合計" />`,
+const segments = [
+    { label: "基盤", value: 46, color: "primary" },
+    { label: "成長", value: 28, color: "success" },
+    { label: "継続", value: 18, color: "warning" },
+    { label: "拡張", value: 8, color: "info" },
+];
+
+export function RevenueMixPieWithLegend() {
+    return <PieChart segments={segments} showLegend totalLabel="合計" />;
+}`,
         },
         {
             key: "compact",
@@ -193,9 +280,18 @@ const states = {
             description: "狭い領域向けの SSOT 登録済みサイズです。",
             preview: <PieChart segments={segmentsByLocale.ja} variant="compact" showLegend />,
             previewBodyWidth: "sm",
-            code: `${segmentsCode.ja}
+            code: `import { PieChart } from "@gunjo/ui";
 
-<PieChart segments={segments} variant="compact" showLegend />`,
+const segments = [
+    { label: "基盤", value: 46, color: "primary" },
+    { label: "成長", value: 28, color: "success" },
+    { label: "継続", value: 18, color: "warning" },
+    { label: "拡張", value: 8, color: "info" },
+];
+
+export function CompactRevenueMixPie() {
+    return <PieChart segments={segments} variant="compact" showLegend />;
+}`,
         },
         {
             key: "dense",
@@ -203,9 +299,19 @@ const states = {
             description: "区分が多い時の見え方を確認します。",
             preview: <PieChart segments={denseSegmentsByLocale.ja} showLegend totalLabel="流入元" />,
             previewBodyWidth: "md",
-            code: `${denseSegmentsCode.ja}
+            code: `import { PieChart } from "@gunjo/ui";
 
-<PieChart segments={sourceSegments} showLegend totalLabel="流入元" />`,
+const sourceSegments = [
+    { label: "検索", value: 34, color: "primary" },
+    { label: "SNS", value: 22, color: "info" },
+    { label: "メール", value: 16, color: "success" },
+    { label: "広告", value: 12, color: "warning" },
+    { label: "その他", value: 16, color: "muted" },
+];
+
+export function ChannelMixPie() {
+    return <PieChart segments={sourceSegments} showLegend totalLabel="流入元" />;
+}`,
         },
     ],
 } as const;

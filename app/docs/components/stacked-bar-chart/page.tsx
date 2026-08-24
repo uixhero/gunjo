@@ -251,59 +251,179 @@ const fiveBarDataCode = {
 const code = {
     en: `import { AnalyticsCard, StackedBarChart } from "@gunjo/ui";
 
-${dataCode.en}
+const data = [
+    {
+        label: "Jan",
+        segments: [
+            { label: "Organic", value: 42, color: "primary" },
+            { label: "Referral", value: 24, color: "success" },
+            { label: "Paid", value: 18, color: "warning" },
+        ],
+    },
+    {
+        label: "Feb",
+        segments: [
+            { label: "Organic", value: 48, color: "primary" },
+            { label: "Referral", value: 31, color: "success" },
+            { label: "Paid", value: 16, color: "warning" },
+        ],
+    },
+    {
+        label: "Mar",
+        segments: [
+            { label: "Organic", value: 38, color: "primary" },
+            { label: "Referral", value: 28, color: "success" },
+            { label: "Paid", value: 26, color: "warning" },
+        ],
+    },
+];
 
-<AnalyticsCard
-    title="Channel mix"
-    description="Monthly revenue"
-    value="271"
-    delta="95 peak"
-    trend="up"
->
-    <StackedBarChart
-        data={data}
-        showLegend
-        showValues
-        totalLabel="Total"
-        aria-label="Channel mix"
-    />
-</AnalyticsCard>;`,
+export function AcquisitionMixCard() {
+    return (
+        <AnalyticsCard
+            title="Channel mix"
+            description="Monthly revenue"
+            value="271"
+            delta="95 peak"
+            trend="up"
+        >
+            <StackedBarChart
+                data={data}
+                showLegend
+                showValues
+                totalLabel="Total"
+                aria-label="Channel mix"
+            />
+        </AnalyticsCard>
+    );
+}`,
     ja: `import { AnalyticsCard, StackedBarChart } from "@gunjo/ui";
 
-${dataCode.ja}
+const data = [
+    {
+        label: "1月",
+        segments: [
+            { label: "自然流入", value: 42, color: "primary" },
+            { label: "紹介", value: 24, color: "success" },
+            { label: "広告", value: 18, color: "warning" },
+        ],
+    },
+    {
+        label: "2月",
+        segments: [
+            { label: "自然流入", value: 48, color: "primary" },
+            { label: "紹介", value: 31, color: "success" },
+            { label: "広告", value: 16, color: "warning" },
+        ],
+    },
+    {
+        label: "3月",
+        segments: [
+            { label: "自然流入", value: 38, color: "primary" },
+            { label: "紹介", value: 28, color: "success" },
+            { label: "広告", value: 26, color: "warning" },
+        ],
+    },
+];
 
-<AnalyticsCard
-    title="チャネル構成"
-    description="月次売上"
-    value="271"
-    delta="95 ピーク"
-    trend="up"
->
-    <StackedBarChart
-        data={data}
-        showLegend
-        showValues
-        totalLabel="合計"
-        aria-label="チャネル構成"
-    />
-</AnalyticsCard>;`,
+export function AcquisitionMixCard() {
+    return (
+        <AnalyticsCard
+            title="チャネル構成"
+            description="月次売上"
+            value="271"
+            delta="95 ピーク"
+            trend="up"
+        >
+            <StackedBarChart
+                data={data}
+                showLegend
+                showValues
+                totalLabel="合計"
+                aria-label="チャネル構成"
+            />
+        </AnalyticsCard>
+    );
+}`,
 } as const;
 
 const usageCode = {
     en: `import { StackedBarChart } from "@gunjo/ui";
 
-${dataCode.en}
+const data = [
+    {
+        label: "Jan",
+        segments: [
+            { label: "Organic", value: 42, color: "primary" },
+            { label: "Referral", value: 24, color: "success" },
+            { label: "Paid", value: 18, color: "warning" },
+        ],
+    },
+    {
+        label: "Feb",
+        segments: [
+            { label: "Organic", value: 48, color: "primary" },
+            { label: "Referral", value: 31, color: "success" },
+            { label: "Paid", value: 16, color: "warning" },
+        ],
+    },
+    {
+        label: "Mar",
+        segments: [
+            { label: "Organic", value: 38, color: "primary" },
+            { label: "Referral", value: 28, color: "success" },
+            { label: "Paid", value: 26, color: "warning" },
+        ],
+    },
+];
 
-<StackedBarChart data={data} />
-<StackedBarChart data={data} showLegend showValues totalLabel="Total" />
-<StackedBarChart data={data} variant="horizontal" normalize showLegend />`,
+export function AcquisitionMixVariants() {
+    return (
+        <div className="grid gap-6">
+            <StackedBarChart data={data} />
+            <StackedBarChart data={data} showLegend showValues totalLabel="Total" />
+            <StackedBarChart data={data} variant="horizontal" normalize showLegend />
+        </div>
+    );
+}`,
     ja: `import { StackedBarChart } from "@gunjo/ui";
 
-${dataCode.ja}
+const data = [
+    {
+        label: "1月",
+        segments: [
+            { label: "自然流入", value: 42, color: "primary" },
+            { label: "紹介", value: 24, color: "success" },
+            { label: "広告", value: 18, color: "warning" },
+        ],
+    },
+    {
+        label: "2月",
+        segments: [
+            { label: "自然流入", value: 48, color: "primary" },
+            { label: "紹介", value: 31, color: "success" },
+            { label: "広告", value: 16, color: "warning" },
+        ],
+    },
+    {
+        label: "3月",
+        segments: [
+            { label: "自然流入", value: 38, color: "primary" },
+            { label: "紹介", value: 28, color: "success" },
+            { label: "広告", value: 26, color: "warning" },
+        ],
+    },
+];
 
-<StackedBarChart data={data} />
-<StackedBarChart data={data} showLegend showValues totalLabel="合計" />
-<StackedBarChart data={data} variant="horizontal" normalize showLegend totalLabel="合計" />`,
+export function AcquisitionMixVariants() {
+    return (
+        <div className="grid gap-6">
+            <StackedBarChart data={data} />
+            <StackedBarChart data={data} showLegend showValues totalLabel="合計" />
+            <StackedBarChart data={data} variant="horizontal" normalize showLegend totalLabel="合計" />
+        </div>
+    );
+}`,
 } as const;
 
 const propsData = {
@@ -448,10 +568,54 @@ function ThresholdStackDemo({ locale }: { locale: Locale }) {
     );
 }
 
-const thresholdCode = `import { StackedBarChart } from "@gunjo/ui";
+const thresholdCode = {
+    en: `import { StackedBarChart } from "@gunjo/ui";
 
-// Over-limit groups get a ring + a destructive total — segment colours are untouched.
-<StackedBarChart data={data} threshold={90} thresholdLabel="Limit" showValues showLegend />`;
+const shiftHours = [
+    { label: "Team A", segments: [{ label: "Regular", value: 40, color: "primary" }, { label: "Overtime", value: 25, color: "info" }] },
+    { label: "Team B", segments: [{ label: "Regular", value: 55, color: "primary" }, { label: "Overtime", value: 45, color: "info" }] },
+    { label: "Team C", segments: [{ label: "Regular", value: 48, color: "primary" }, { label: "Overtime", value: 30, color: "info" }] },
+    { label: "Team D", segments: [{ label: "Regular", value: 60, color: "primary" }, { label: "Overtime", value: 50, color: "info" }] },
+];
+
+// Over-limit groups get a ring and a destructive total. Segment colours are untouched.
+
+export function ShiftHoursWithLimit() {
+    return (
+        <StackedBarChart
+            data={shiftHours}
+            threshold={90}
+            thresholdLabel="Limit"
+            totalLabel="Total"
+            showValues
+            showLegend
+        />
+    );
+}`,
+    ja: `import { StackedBarChart } from "@gunjo/ui";
+
+const shiftHours = [
+    { label: "A班", segments: [{ label: "通常", value: 40, color: "primary" }, { label: "残業", value: 25, color: "info" }] },
+    { label: "B班", segments: [{ label: "通常", value: 55, color: "primary" }, { label: "残業", value: 45, color: "info" }] },
+    { label: "C班", segments: [{ label: "通常", value: 48, color: "primary" }, { label: "残業", value: 30, color: "info" }] },
+    { label: "D班", segments: [{ label: "通常", value: 60, color: "primary" }, { label: "残業", value: 50, color: "info" }] },
+];
+
+// 上限を超えたグループはリングと destructive の合計値で示します。セグメントの色は変わりません。
+
+export function ShiftHoursWithLimit() {
+    return (
+        <StackedBarChart
+            data={shiftHours}
+            threshold={90}
+            thresholdLabel="上限"
+            totalLabel="合計"
+            showValues
+            showLegend
+        />
+    );
+}`,
+} as const;
 
 const states = {
     en: [
@@ -461,7 +625,38 @@ const states = {
             description: "Default vertical stacked bars.",
             preview: <StackedBarChart data={dataByLocale.en} />,
             previewBodyWidth: "xl",
-            code: `import { StackedBarChart } from "@gunjo/ui";\n\n${dataCode.en}\n\n<StackedBarChart data={data} />`,
+            code: `import { StackedBarChart } from "@gunjo/ui";
+
+const data = [
+    {
+        label: "Jan",
+        segments: [
+            { label: "Organic", value: 42, color: "primary" },
+            { label: "Referral", value: 24, color: "success" },
+            { label: "Paid", value: 18, color: "warning" },
+        ],
+    },
+    {
+        label: "Feb",
+        segments: [
+            { label: "Organic", value: 48, color: "primary" },
+            { label: "Referral", value: 31, color: "success" },
+            { label: "Paid", value: 16, color: "warning" },
+        ],
+    },
+    {
+        label: "Mar",
+        segments: [
+            { label: "Organic", value: 38, color: "primary" },
+            { label: "Referral", value: 28, color: "success" },
+            { label: "Paid", value: 26, color: "warning" },
+        ],
+    },
+];
+
+export function VerticalAcquisitionMix() {
+    return <StackedBarChart data={data} />;
+}`,
         },
         {
             key: "five-bars",
@@ -469,7 +664,54 @@ const states = {
             description: "Checks spacing with five vertical groups.",
             preview: <StackedBarChart data={fiveBarDataByLocale.en} showValues />,
             previewBodyWidth: "xl",
-            code: `import { StackedBarChart } from "@gunjo/ui";\n\n${fiveBarDataCode.en}\n\n<StackedBarChart data={data} showValues />`,
+            code: `import { StackedBarChart } from "@gunjo/ui";
+
+const data = [
+    {
+        label: "Jan",
+        segments: [
+            { label: "Organic", value: 42, color: "primary" },
+            { label: "Referral", value: 24, color: "success" },
+            { label: "Paid", value: 18, color: "warning" },
+        ],
+    },
+    {
+        label: "Feb",
+        segments: [
+            { label: "Organic", value: 48, color: "primary" },
+            { label: "Referral", value: 31, color: "success" },
+            { label: "Paid", value: 16, color: "warning" },
+        ],
+    },
+    {
+        label: "Mar",
+        segments: [
+            { label: "Organic", value: 38, color: "primary" },
+            { label: "Referral", value: 28, color: "success" },
+            { label: "Paid", value: 26, color: "warning" },
+        ],
+    },
+    {
+        label: "Apr",
+        segments: [
+            { label: "Organic", value: 52, color: "primary" },
+            { label: "Referral", value: 35, color: "success" },
+            { label: "Paid", value: 26, color: "warning" },
+        ],
+    },
+    {
+        label: "May",
+        segments: [
+            { label: "Organic", value: 45, color: "primary" },
+            { label: "Referral", value: 30, color: "success" },
+            { label: "Paid", value: 22, color: "warning" },
+        ],
+    },
+];
+
+export function FiveMonthAcquisitionMix() {
+    return <StackedBarChart data={data} showValues />;
+}`,
         },
         {
             key: "legend",
@@ -477,7 +719,38 @@ const states = {
             description: "Shows totals and segment legend.",
             preview: <StackedBarChart data={dataByLocale.en} showLegend showValues totalLabel="Total" />,
             previewBodyWidth: "xl",
-            code: `import { StackedBarChart } from "@gunjo/ui";\n\n${dataCode.en}\n\n<StackedBarChart data={data} showLegend showValues totalLabel="Total" />`,
+            code: `import { StackedBarChart } from "@gunjo/ui";
+
+const data = [
+    {
+        label: "Jan",
+        segments: [
+            { label: "Organic", value: 42, color: "primary" },
+            { label: "Referral", value: 24, color: "success" },
+            { label: "Paid", value: 18, color: "warning" },
+        ],
+    },
+    {
+        label: "Feb",
+        segments: [
+            { label: "Organic", value: 48, color: "primary" },
+            { label: "Referral", value: 31, color: "success" },
+            { label: "Paid", value: 16, color: "warning" },
+        ],
+    },
+    {
+        label: "Mar",
+        segments: [
+            { label: "Organic", value: 38, color: "primary" },
+            { label: "Referral", value: 28, color: "success" },
+            { label: "Paid", value: 26, color: "warning" },
+        ],
+    },
+];
+
+export function AcquisitionMixWithLegend() {
+    return <StackedBarChart data={data} showLegend showValues totalLabel="Total" />;
+}`,
         },
         {
             key: "horizontal",
@@ -485,7 +758,38 @@ const states = {
             description: "Registered horizontal variant for row comparison.",
             preview: <StackedBarChart data={dataByLocale.en} variant="horizontal" showValues />,
             previewBodyWidth: "xl",
-            code: `import { StackedBarChart } from "@gunjo/ui";\n\n${dataCode.en}\n\n<StackedBarChart data={data} variant="horizontal" showValues />`,
+            code: `import { StackedBarChart } from "@gunjo/ui";
+
+const data = [
+    {
+        label: "Jan",
+        segments: [
+            { label: "Organic", value: 42, color: "primary" },
+            { label: "Referral", value: 24, color: "success" },
+            { label: "Paid", value: 18, color: "warning" },
+        ],
+    },
+    {
+        label: "Feb",
+        segments: [
+            { label: "Organic", value: 48, color: "primary" },
+            { label: "Referral", value: 31, color: "success" },
+            { label: "Paid", value: 16, color: "warning" },
+        ],
+    },
+    {
+        label: "Mar",
+        segments: [
+            { label: "Organic", value: 38, color: "primary" },
+            { label: "Referral", value: 28, color: "success" },
+            { label: "Paid", value: 26, color: "warning" },
+        ],
+    },
+];
+
+export function HorizontalAcquisitionMix() {
+    return <StackedBarChart data={data} variant="horizontal" showValues />;
+}`,
         },
         {
             key: "threshold",
@@ -493,7 +797,7 @@ const states = {
             description: "threshold draws a limit line on each group's total and marks over-limit groups with a ring + a destructive total. Segment colours are never changed — they carry their own meaning. Drag the slider to move the limit. Ignored when normalize is set.",
             preview: <ThresholdStackDemo locale="en" />,
             previewBodyWidth: "xl",
-            code: thresholdCode,
+            code: thresholdCode.en,
         },
         {
             key: "normalized",
@@ -501,7 +805,38 @@ const states = {
             description: "Compares every group as a 100% composition.",
             preview: <StackedBarChart data={dataByLocale.en} variant="horizontal" normalize showLegend />,
             previewBodyWidth: "xl",
-            code: `import { StackedBarChart } from "@gunjo/ui";\n\n${dataCode.en}\n\n<StackedBarChart data={data} variant="horizontal" normalize showLegend />`,
+            code: `import { StackedBarChart } from "@gunjo/ui";
+
+const data = [
+    {
+        label: "Jan",
+        segments: [
+            { label: "Organic", value: 42, color: "primary" },
+            { label: "Referral", value: 24, color: "success" },
+            { label: "Paid", value: 18, color: "warning" },
+        ],
+    },
+    {
+        label: "Feb",
+        segments: [
+            { label: "Organic", value: 48, color: "primary" },
+            { label: "Referral", value: 31, color: "success" },
+            { label: "Paid", value: 16, color: "warning" },
+        ],
+    },
+    {
+        label: "Mar",
+        segments: [
+            { label: "Organic", value: 38, color: "primary" },
+            { label: "Referral", value: 28, color: "success" },
+            { label: "Paid", value: 26, color: "warning" },
+        ],
+    },
+];
+
+export function NormalizedAcquisitionMix() {
+    return <StackedBarChart data={data} variant="horizontal" normalize showLegend />;
+}`,
         },
     ],
     ja: [
@@ -511,7 +846,38 @@ const states = {
             description: "標準の縦積み上げ棒です。",
             preview: <StackedBarChart data={dataByLocale.ja} totalLabel="合計" />,
             previewBodyWidth: "xl",
-            code: `import { StackedBarChart } from "@gunjo/ui";\n\n${dataCode.ja}\n\n<StackedBarChart data={data} totalLabel="合計" />`,
+            code: `import { StackedBarChart } from "@gunjo/ui";
+
+const data = [
+    {
+        label: "1月",
+        segments: [
+            { label: "自然流入", value: 42, color: "primary" },
+            { label: "紹介", value: 24, color: "success" },
+            { label: "広告", value: 18, color: "warning" },
+        ],
+    },
+    {
+        label: "2月",
+        segments: [
+            { label: "自然流入", value: 48, color: "primary" },
+            { label: "紹介", value: 31, color: "success" },
+            { label: "広告", value: 16, color: "warning" },
+        ],
+    },
+    {
+        label: "3月",
+        segments: [
+            { label: "自然流入", value: 38, color: "primary" },
+            { label: "紹介", value: 28, color: "success" },
+            { label: "広告", value: 26, color: "warning" },
+        ],
+    },
+];
+
+export function VerticalAcquisitionMix() {
+    return <StackedBarChart data={data} totalLabel="合計" />;
+}`,
         },
         {
             key: "five-bars",
@@ -519,7 +885,54 @@ const states = {
             description: "5つのグループで、棒の太さと間隔を確認します。",
             preview: <StackedBarChart data={fiveBarDataByLocale.ja} showValues totalLabel="合計" />,
             previewBodyWidth: "xl",
-            code: `import { StackedBarChart } from "@gunjo/ui";\n\n${fiveBarDataCode.ja}\n\n<StackedBarChart data={data} showValues totalLabel="合計" />`,
+            code: `import { StackedBarChart } from "@gunjo/ui";
+
+const data = [
+    {
+        label: "1月",
+        segments: [
+            { label: "自然流入", value: 42, color: "primary" },
+            { label: "紹介", value: 24, color: "success" },
+            { label: "広告", value: 18, color: "warning" },
+        ],
+    },
+    {
+        label: "2月",
+        segments: [
+            { label: "自然流入", value: 48, color: "primary" },
+            { label: "紹介", value: 31, color: "success" },
+            { label: "広告", value: 16, color: "warning" },
+        ],
+    },
+    {
+        label: "3月",
+        segments: [
+            { label: "自然流入", value: 38, color: "primary" },
+            { label: "紹介", value: 28, color: "success" },
+            { label: "広告", value: 26, color: "warning" },
+        ],
+    },
+    {
+        label: "4月",
+        segments: [
+            { label: "自然流入", value: 52, color: "primary" },
+            { label: "紹介", value: 35, color: "success" },
+            { label: "広告", value: 26, color: "warning" },
+        ],
+    },
+    {
+        label: "5月",
+        segments: [
+            { label: "自然流入", value: 45, color: "primary" },
+            { label: "紹介", value: 30, color: "success" },
+            { label: "広告", value: 22, color: "warning" },
+        ],
+    },
+];
+
+export function FiveMonthAcquisitionMix() {
+    return <StackedBarChart data={data} showValues totalLabel="合計" />;
+}`,
         },
         {
             key: "legend",
@@ -527,7 +940,38 @@ const states = {
             description: "合計値とセグメント凡例を表示します。",
             preview: <StackedBarChart data={dataByLocale.ja} showLegend showValues totalLabel="合計" />,
             previewBodyWidth: "xl",
-            code: `import { StackedBarChart } from "@gunjo/ui";\n\n${dataCode.ja}\n\n<StackedBarChart data={data} showLegend showValues totalLabel="合計" />`,
+            code: `import { StackedBarChart } from "@gunjo/ui";
+
+const data = [
+    {
+        label: "1月",
+        segments: [
+            { label: "自然流入", value: 42, color: "primary" },
+            { label: "紹介", value: 24, color: "success" },
+            { label: "広告", value: 18, color: "warning" },
+        ],
+    },
+    {
+        label: "2月",
+        segments: [
+            { label: "自然流入", value: 48, color: "primary" },
+            { label: "紹介", value: 31, color: "success" },
+            { label: "広告", value: 16, color: "warning" },
+        ],
+    },
+    {
+        label: "3月",
+        segments: [
+            { label: "自然流入", value: 38, color: "primary" },
+            { label: "紹介", value: 28, color: "success" },
+            { label: "広告", value: 26, color: "warning" },
+        ],
+    },
+];
+
+export function AcquisitionMixWithLegend() {
+    return <StackedBarChart data={data} showLegend showValues totalLabel="合計" />;
+}`,
         },
         {
             key: "horizontal",
@@ -535,7 +979,38 @@ const states = {
             description: "行ごとに比較しやすい横向きバリエーションです。",
             preview: <StackedBarChart data={dataByLocale.ja} variant="horizontal" showValues totalLabel="合計" />,
             previewBodyWidth: "xl",
-            code: `import { StackedBarChart } from "@gunjo/ui";\n\n${dataCode.ja}\n\n<StackedBarChart data={data} variant="horizontal" showValues totalLabel="合計" />`,
+            code: `import { StackedBarChart } from "@gunjo/ui";
+
+const data = [
+    {
+        label: "1月",
+        segments: [
+            { label: "自然流入", value: 42, color: "primary" },
+            { label: "紹介", value: 24, color: "success" },
+            { label: "広告", value: 18, color: "warning" },
+        ],
+    },
+    {
+        label: "2月",
+        segments: [
+            { label: "自然流入", value: 48, color: "primary" },
+            { label: "紹介", value: 31, color: "success" },
+            { label: "広告", value: 16, color: "warning" },
+        ],
+    },
+    {
+        label: "3月",
+        segments: [
+            { label: "自然流入", value: 38, color: "primary" },
+            { label: "紹介", value: 28, color: "success" },
+            { label: "広告", value: 26, color: "warning" },
+        ],
+    },
+];
+
+export function HorizontalAcquisitionMix() {
+    return <StackedBarChart data={data} variant="horizontal" showValues totalLabel="合計" />;
+}`,
         },
         {
             key: "threshold",
@@ -543,7 +1018,7 @@ const states = {
             description: "threshold は各グループの合計に上限ラインを引き、超過グループをリング＋destructive の合計値で示します。segment の色は一切変えません（それぞれ意味を持つため）。スライダーで上限を動かせます。normalize 指定時は無視されます。",
             preview: <ThresholdStackDemo locale="ja" />,
             previewBodyWidth: "xl",
-            code: thresholdCode,
+            code: thresholdCode.ja,
         },
         {
             key: "normalized",
@@ -551,7 +1026,38 @@ const states = {
             description: "各グループを 100% にそろえて構成比を比較します。",
             preview: <StackedBarChart data={dataByLocale.ja} variant="horizontal" normalize showLegend totalLabel="合計" />,
             previewBodyWidth: "xl",
-            code: `import { StackedBarChart } from "@gunjo/ui";\n\n${dataCode.ja}\n\n<StackedBarChart data={data} variant="horizontal" normalize showLegend totalLabel="合計" />`,
+            code: `import { StackedBarChart } from "@gunjo/ui";
+
+const data = [
+    {
+        label: "1月",
+        segments: [
+            { label: "自然流入", value: 42, color: "primary" },
+            { label: "紹介", value: 24, color: "success" },
+            { label: "広告", value: 18, color: "warning" },
+        ],
+    },
+    {
+        label: "2月",
+        segments: [
+            { label: "自然流入", value: 48, color: "primary" },
+            { label: "紹介", value: 31, color: "success" },
+            { label: "広告", value: 16, color: "warning" },
+        ],
+    },
+    {
+        label: "3月",
+        segments: [
+            { label: "自然流入", value: 38, color: "primary" },
+            { label: "紹介", value: 28, color: "success" },
+            { label: "広告", value: 26, color: "warning" },
+        ],
+    },
+];
+
+export function NormalizedAcquisitionMix() {
+    return <StackedBarChart data={data} variant="horizontal" normalize showLegend totalLabel="合計" />;
+}`,
         },
     ],
 } as const;
