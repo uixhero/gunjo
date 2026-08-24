@@ -166,6 +166,8 @@ export type PlannedIndustryPatternKey =
   | "health-wellness"
   | "public-safety"
   | "creator-commerce";
+// 業界の見本レーン（/patterns）。動く架空アプリのデモを持つ業界だけが並ぶ。
+export type IndustryShowcaseKey = "insurance";
 
 export type PatternsPageStrings = {
   label: string;
@@ -197,6 +199,15 @@ export type PatternsPageStrings = {
     title: string;
     description: string;
     patterns: Record<PlannedIndustryPatternKey, { title: string; description: string }>;
+  };
+  // 業界の見本レーン。カードは業界ページ（/cold-tests/categories/<slug>）へ送る。
+  industryShowcase: {
+    title: string;
+    description: string;
+    openLabel: (title: string) => string;
+    screensBadge: (count: number) => string;
+    roundsBadge: (count: number) => string;
+    entries: Record<IndustryShowcaseKey, { title: string; description: string }>;
   };
 };
 
@@ -343,6 +354,34 @@ export type ColdTestsPageStrings = {
     ctaGalleryLabel: string;
     ctaComponentsLabel: string;
     breadcrumbLabel: string;
+  };
+  // The findings data layer (`app/data/cold-test-findings/*.json`), rendered
+  // twice: a per-round summary block on the round page, and the aggregate on
+  // the industry door page. Chrome only — every finding's own wording lives in
+  // the JSON, which is Japanese for now, so the round-page block renders on the
+  // Japanese tree only. The English labels here are the frame for when the
+  // English findings land.
+  findings: {
+    roundHeading: string;
+    roundIntro: string;
+    roundRequirementHeading: string;
+    roundPitfallHeading: string;
+    categoryRequirementHeading: string;
+    categoryPitfallHeading: string;
+    categoryIntro: string;
+    /**
+     * Under the category pitfall heading — explains the round-merging, which
+     * (today) only ever manifests in the pitfall list. Keeping it out of
+     * `categoryIntro` avoids promising merged rows in a section that has none.
+     */
+    categoryPitfallIntro: string;
+    whereText: (screen: string, spot: string) => string;
+    causeLabel: string;
+    selfCheckLabel: string;
+    evidenceLabel: string;
+    roundLinkLabel: (round: number) => string;
+    statusPrefix: string;
+    status: { resolved: string; "fix-known": string; tracking: string };
   };
   // Per-industry door page (`/cold-tests/categories/<slug>`). Strings here are
   // chrome only — the per-category prose (challenge / discovered / left)
@@ -724,6 +763,30 @@ export const translations: Record<
           ctaComponentsLabel: "Browse the component catalog",
           breadcrumbLabel: "Why",
         },
+        findings: {
+          roundHeading: "What this round found",
+          roundIntro:
+            "Pulled from the write-up below. Status badges show where the component library stands today, not at the time of the round.",
+          roundRequirementHeading: "What this round showed the industry needs",
+          roundPitfallHeading: "Where this round stumbled",
+          categoryRequirementHeading: "What this industry needs",
+          categoryPitfallHeading: "Where the series stumbled first",
+          categoryIntro:
+            "Pulled from each round's write-up. Status badges show where the component library stands today, not at the time of the round.",
+          categoryPitfallIntro:
+            "Anything seen in more than one round is listed once, with every round that is evidence for it.",
+          whereText: (screen, spot) => `${spot} (${screen})`,
+          causeLabel: "Cause",
+          selfCheckLabel: "Check it on your own screen",
+          evidenceLabel: "Evidence",
+          roundLinkLabel: (round) => `Round #${round}`,
+          statusPrefix: "Status",
+          status: {
+            resolved: "Fixed",
+            "fix-known": "Fix on record, not applied",
+            tracking: "Tracking",
+          },
+        },
         categoryPage: {
           roundsSummary: (count, label) =>
             `${count} cold-test rounds across ${label}.`,
@@ -935,6 +998,23 @@ export const translations: Record<
             "creator-commerce": {
               title: "Creator commerce",
               description: "Live sessions, audience flow, content performance, and sales.",
+            },
+          },
+        },
+        industryShowcase: {
+          title: "Industry demos",
+          description:
+            "Working demo apps for one industry at a time, built as fictional companies with @gunjo/ui components only. Each card opens the industry page, where the demo sits next to the cold-test evidence behind it.",
+          openLabel: (title: string) => `Open the ${title} industry page`,
+          screensBadge: (count: number) =>
+            `${count} demo ${count === 1 ? "screen" : "screens"}`,
+          roundsBadge: (count: number) =>
+            `${count} cold-test ${count === 1 ? "round" : "rounds"}`,
+          entries: {
+            insurance: {
+              title: "Insurance",
+              description:
+                "A fictional P&C insurer's operations app: policy management, claims and adjudication, and payments and settlement. Every screen is interactive.",
             },
           },
         },
@@ -1399,6 +1479,30 @@ export const translations: Record<
           ctaComponentsLabel: "コンポーネント一覧へ",
           breadcrumbLabel: "なぜ",
         },
+        findings: {
+          roundHeading: "この回の発見",
+          roundIntro:
+            "この下の記事から抜き出した、この回で分かったことです。状態は記事の時点ではなく、コンポーネント側のいまの実測です。",
+          roundRequirementHeading: "この回で要ると分かったもの",
+          roundPitfallHeading: "この回でつまずいたところ",
+          categoryRequirementHeading: "この業界で要るもの",
+          categoryPitfallHeading: "連載が先につまずいたところ",
+          categoryIntro:
+            "各回の記事から抜き出した項目です。状態は記事の時点ではなく、コンポーネント側のいまの実測です。",
+          categoryPitfallIntro:
+            "複数の回で出たものは1つにまとめ、根拠になった回を全部並べています。",
+          whereText: (screen, spot) => `${spot}（${screen}）`,
+          causeLabel: "原因",
+          selfCheckLabel: "自分の画面で確かめる",
+          evidenceLabel: "根拠",
+          roundLinkLabel: (round) => `#${round} の回`,
+          statusPrefix: "状態",
+          status: {
+            resolved: "対応済み",
+            "fix-known": "未修正・直し方記録済み",
+            tracking: "追跡中",
+          },
+        },
         categoryPage: {
           roundsSummary: (count, label) =>
             `${label} の cold test、${count} 画面のまとめ。`,
@@ -1611,6 +1715,21 @@ export const translations: Record<
             "creator-commerce": {
               title: "Creator commerce",
               description: "ライブ配信、視聴者推移、コンテンツ実績、売上。",
+            },
+          },
+        },
+        industryShowcase: {
+          title: "業界の見本",
+          description:
+            "業界ごとに架空の会社を1社つくり、その業務アプリを @gunjo/ui のコンポーネントだけで組んで、実際に動く見本として置いています。カードを開くと業界ページに移動し、見本と、その裏付けになったコールドテストの記録を見られます。",
+          openLabel: (title: string) => `${title}の業界ページを開く`,
+          screensBadge: (count: number) => `デモ${count}画面`,
+          roundsBadge: (count: number) => `コールドテスト${count}回`,
+          entries: {
+            insurance: {
+              title: "保険",
+              description:
+                "架空の損害保険会社の業務アプリです。契約管理、保険金請求・査定、保険金支払・精算の3画面を実際に操作できます。",
             },
           },
         },

@@ -62,7 +62,7 @@ export default function AiHandoffPage() {
         <div className="container py-12">
             <div className="space-y-12">
                 {/* Hero */}
-                <header className="max-w-3xl space-y-4">
+                <header className="space-y-4">
                     <Badge
                         variant="outline"
                         className="gap-1.5 border-accent-foreground/20 bg-accent text-accent-foreground"
@@ -122,7 +122,7 @@ export default function AiHandoffPage() {
                             <h2 className="text-2xl font-semibold tracking-tight">
                                 {t.tryIt.heading}
                             </h2>
-                            <p className="mt-1 max-w-2xl text-sm text-muted-foreground">
+                            <p className="mt-1 text-sm text-muted-foreground">
                                 {t.tryIt.description}
                             </p>
                         </div>
@@ -187,7 +187,7 @@ export default function AiHandoffPage() {
                     <h2 className="text-2xl font-semibold tracking-tight">
                         {t.noNpm.heading}
                     </h2>
-                    <p className="max-w-3xl text-sm text-muted-foreground">
+                    <p className="text-sm text-muted-foreground">
                         {t.noNpm.description}
                     </p>
                     <ul className="space-y-2 rounded-lg border border-border/40 bg-muted/20 p-4 text-sm">
@@ -232,7 +232,7 @@ export default function AiHandoffPage() {
                         <h2 className="text-2xl font-semibold tracking-tight">
                             {t.ssotFiles.heading}
                         </h2>
-                        <p className="text-sm text-muted-foreground max-w-3xl">
+                        <p className="text-sm text-muted-foreground">
                             {t.ssotFiles.description}
                         </p>
                     </div>
@@ -336,7 +336,7 @@ curl -fsSL https://gunjo.dev/api/ssot/manifest \\
                             <h3 className="text-lg font-semibold">
                                 {t.ssotFiles.usage.heading}
                             </h3>
-                            <p className="text-xs text-muted-foreground max-w-3xl">
+                            <p className="text-xs text-muted-foreground">
                                 {t.ssotFiles.usage.pencilNote}
                             </p>
                         </div>

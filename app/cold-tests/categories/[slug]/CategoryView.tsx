@@ -11,12 +11,15 @@ import {
     BreadcrumbList,
     BreadcrumbPage,
     BreadcrumbSeparator,
+    Button,
     Card,
     CardContent,
 } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import type { AggregatedFinding } from "@/lib/cold-test-findings";
 import categories from "@/data/cold-test-categories.json";
 import gallery from "@/data/cold-test-gallery.json";
+import { FindingList, type FindingCardModel } from "../../FindingList";
 import { PreviewThumb } from "../../PreviewThumb";
 
 interface CategoryCopy {
@@ -39,10 +42,36 @@ interface DiscoveredComponent {
     blurbEn: string;
 }
 
+// 「動く見本」（架空アプリのデモ）を持つ業界だけが demo を宣言する。
+// 節の並びは KeEem 決定（2026-08-23）: 見本が表・発見リストは裏付け。
+// 見本の節は発見リスト（要るもの・落とし穴）より上に置く。
+interface CategoryDemoScreen {
+    slug: string;
+    ja: string;
+    en: string;
+}
+
+interface CategoryDemoCopy {
+    heading: string;
+    intro: string;
+    company: string;
+    companyBadge: string;
+    body: string;
+    cta: string;
+    disclaimer: string;
+}
+
+interface CategoryDemo {
+    href: string;
+    screens: CategoryDemoScreen[];
+    copy: { ja: CategoryDemoCopy; en: CategoryDemoCopy };
+}
+
 interface PublishedCategory {
     slug: string;
     jaCategory: string;
     copy: { ja: CategoryCopy; en: CategoryCopy };
+    demo?: CategoryDemo;
     discoveredComponents: DiscoveredComponent[];
 }
 
@@ -83,11 +112,49 @@ function docSlugForName(name: string): string {
         .toLowerCase();
 }
 
-export function CategoryView({ slug }: { slug: string }) {
+// A grouped finding keeps the earliest round's wording; the whole group's
+// rounds become the evidence links.
+function toFindingCard(entry: AggregatedFinding): FindingCardModel {
+    const { representative } = entry;
+    return {
+        id: entry.key,
+        kind: entry.kind,
+        status: entry.status,
+        phenomenon: representative.phenomenon,
+        screen: representative.where.screen,
+        spot: representative.where.spot,
+        cause: representative.cause,
+        selfCheck: representative.selfCheck,
+        links: entry.links,
+        rounds: entry.rounds,
+    };
+}
+
+export function CategoryView({
+    slug,
+    findings = [],
+}: {
+    slug: string;
+    /**
+     * Every round in this industry, aggregated. Japanese only for now — the
+     * door pages have no English tree yet.
+     */
+    findings?: AggregatedFinding[];
+}) {
     const { locale, pages } = useLocale();
     const t = pages.coldTests;
     const tc = t.categoryPage;
+    const tf = t.findings;
     const isJa = locale === "ja";
+
+    const requirementCards = React.useMemo(
+        () => findings.filter((f) => f.kind === "requirement").map(toFindingCard),
+        [findings]
+    );
+    const pitfallCards = React.useMemo(
+        () => findings.filter((f) => f.kind === "pitfall").map(toFindingCard),
+        [findings]
+    );
 
     const category = React.useMemo(
         () => catData.published.find((c) => c.slug === slug),
@@ -105,10 +172,12 @@ export function CategoryView({ slug }: { slug: string }) {
 
     const copy = isJa ? category.copy.ja : category.copy.en;
     const categoryLabel = t.categories[category.jaCategory] ?? category.jaCategory;
+    const demo = category.demo;
+    const demoCopy = demo ? (isJa ? demo.copy.ja : demo.copy.en) : null;
 
     return (
         <div className="container py-10 md:py-12">
-            <article className="mx-auto w-full max-w-3xl space-y-10">
+            <article className="w-full space-y-10">
                 <Breadcrumb>
                     <BreadcrumbList>
                         <BreadcrumbItem>
@@ -133,7 +202,7 @@ export function CategoryView({ slug }: { slug: string }) {
                     <h1 className="text-3xl font-bold tracking-tight md:text-4xl">
                         {copy.title}
                     </h1>
-                    <p className="max-w-2xl text-base text-muted-foreground md:text-lg">
+                    <p className="text-base text-muted-foreground md:text-lg">
                         {copy.description}
                     </p>
                     <p className="text-sm text-muted-foreground">
@@ -147,6 +216,50 @@ export function CategoryView({ slug }: { slug: string }) {
                     </h2>
                     <p className="leading-7 text-foreground">{copy.challengeBody}</p>
                 </section>
+
+                {/* 動く見本（架空アプリのデモ）。発見リストより上に置く＝
+                    見本が表・リストは裏付け（KeEem 2026-08-23）。 */}
+                {demo && demoCopy ? (
+                    <section className="space-y-4">
+                        <h2 className="text-2xl font-semibold tracking-tight">
+                            {demoCopy.heading}
+                        </h2>
+                        <p className="text-sm text-muted-foreground">{demoCopy.intro}</p>
+                        <Card className="border-border/80">
+                            <CardContent className="space-y-4 p-5">
+                                <div className="flex flex-wrap items-center gap-2">
+                                    <span className="text-lg font-bold tracking-tight">
+                                        {demoCopy.company}
+                                    </span>
+                                    <Badge variant="outline">{demoCopy.companyBadge}</Badge>
+                                </div>
+                                <p className="text-sm leading-6 text-muted-foreground">
+                                    {demoCopy.body}
+                                </p>
+                                <div className="flex flex-wrap gap-1.5">
+                                    {demo.screens.map((screen) => (
+                                        <Link
+                                            key={screen.slug}
+                                            href={`${demo.href}/${screen.slug}`}
+                                            className="rounded-md border bg-background px-2 py-1 text-xs text-muted-foreground transition-colors hover:border-primary-border hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                        >
+                                            {isJa ? screen.ja : screen.en}
+                                        </Link>
+                                    ))}
+                                </div>
+                                <Button asChild>
+                                    <Link href={demo.href}>
+                                        {demoCopy.cta}
+                                        <ArrowUpRight className="h-4 w-4" aria-hidden />
+                                    </Link>
+                                </Button>
+                                <p className="text-xs text-muted-foreground">
+                                    {demoCopy.disclaimer}
+                                </p>
+                            </CardContent>
+                        </Card>
+                    </section>
+                ) : null}
 
                 <section className="space-y-4">
                     <h2 className="text-2xl font-semibold tracking-tight">
@@ -190,6 +303,36 @@ export function CategoryView({ slug }: { slug: string }) {
                         </p>
                     ) : null}
                 </section>
+
+                {/* The findings data layer, aggregated across the industry's
+                    rounds. Separate sections from the hand-written copy above
+                    so both can be edited without disturbing the other. */}
+                {(requirementCards.length > 0 || pitfallCards.length > 0) && (
+                    <>
+                        {requirementCards.length > 0 && (
+                            <section className="space-y-4">
+                                <h2 className="text-2xl font-semibold tracking-tight">
+                                    {tf.categoryRequirementHeading}
+                                </h2>
+                                <p className="text-sm text-muted-foreground">
+                                    {tf.categoryIntro}
+                                </p>
+                                <FindingList items={requirementCards} />
+                            </section>
+                        )}
+                        {pitfallCards.length > 0 && (
+                            <section className="space-y-4">
+                                <h2 className="text-2xl font-semibold tracking-tight">
+                                    {tf.categoryPitfallHeading}
+                                </h2>
+                                <p className="text-sm text-muted-foreground">
+                                    {tf.categoryPitfallIntro}
+                                </p>
+                                <FindingList items={pitfallCards} />
+                            </section>
+                        )}
+                    </>
+                )}
 
                 <section className="space-y-4">
                     <h2 className="text-2xl font-semibold tracking-tight">

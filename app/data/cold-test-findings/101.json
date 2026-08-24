@@ -1,0 +1,91 @@
+{
+  "schemaVersion": 1,
+  "round": 101,
+  "lang": "ja",
+  "findings": [
+    {
+      "id": "101-two-person-approval",
+      "kind": "requirement",
+      "phenomenon": "査定額の大きい案件は、担当者がひとり承認しても止まったままになります。もうひとりが承認し、確定が署名として残って、はじめて次の工程に進みます。",
+      "where": {
+        "round": 101,
+        "screen": "自動車保険 保険金請求・査定管理",
+        "spot": "高額案件の承認"
+      },
+      "status": "resolved",
+      "links": [
+        { "kind": "component", "slug": "co-sign", "label": "CoSign" },
+        { "kind": "component", "slug": "signed-record", "label": "SignedRecord" }
+      ],
+      "selfCheck": "高額の1件を開いて、ひとりの承認だけで支払の工程まで進めてしまわないか確かめてください。"
+    },
+    {
+      "id": "101-claim-workflow",
+      "kind": "requirement",
+      "phenomenon": "1件の請求が、受付・損害調査・査定・承認・支払のどこまで来ているかが一目で分かり、途中で差し戻すこともできます。",
+      "where": {
+        "round": 101,
+        "screen": "自動車保険 保険金請求・査定管理",
+        "spot": "査定ワークフロー"
+      },
+      "status": "resolved",
+      "links": [
+        { "kind": "component", "slug": "approval-workflow", "label": "ApprovalWorkflow" }
+      ],
+      "selfCheck": "差し戻した1件を開いて、いま止まっている工程が画面のどこかに出ているか確かめてください。"
+    },
+    {
+      "id": "101-approval-state-labels-english",
+      "kind": "pitfall",
+      "phenomenon": "同じ承認の画面なのに、ボタンは「次へ進める」「差戻し」と日本語で、状態だけ Pending や In progress と英語で出ました。",
+      "where": {
+        "round": 101,
+        "screen": "自動車保険 保険金請求・査定管理",
+        "spot": "査定ワークフローの状態表示"
+      },
+      "cause": "ApprovalSteps の状態ラベルの既定値が英語のままで、同じ仲間のコンポーネントのボタンだけが日本語だったためです。",
+      "status": "resolved",
+      "links": [
+        { "kind": "pr", "id": 346 },
+        { "kind": "component", "slug": "approval-steps", "label": "ApprovalSteps" }
+      ],
+      "selfCheck": "承認の画面を開いて、状態の文字とボタンの文字が同じ言語で出ているか見てください。"
+    },
+    {
+      "id": "101-statgroup-cols-capped",
+      "kind": "pitfall",
+      "phenomenon": "並べたいKPIのカードが7枚あるのに、1行に6枚までしか置けませんでした。",
+      "where": {
+        "round": 101,
+        "screen": "自動車保険 保険金請求・査定管理",
+        "spot": "KPIの行"
+      },
+      "cause": "StatGroup の列数が6までしか受け付けなかったためです。",
+      "status": "resolved",
+      "links": [
+        { "kind": "pr", "id": 346 },
+        { "kind": "component", "slug": "stat-group", "label": "StatGroup" }
+      ],
+      "selfCheck": "KPIを7枚以上並べる画面で、7枚目が意図した列に入るか確かめてください。"
+    },
+    {
+      "id": "101-amount-derivation-handrolled",
+      "kind": "pitfall",
+      "group": "amount-derivation",
+      "phenomenon": "請求額から過失相殺と免責を引いて査定額を出すところだけ、明細と合計行を手で書くことになりました。",
+      "where": {
+        "round": 101,
+        "screen": "自動車保険 保険金請求・査定管理",
+        "spot": "査定額の内訳"
+      },
+      "cause": "ラベル付きの明細、マイナス記号つきで引き算を見せる行、強調した合計、数式の4つをまとめて見せるコンポーネントが当時はまだ無かったためです。",
+      "status": "resolved",
+      "links": [
+        { "kind": "issue", "id": 347 },
+        { "kind": "pr", "id": 348 },
+        { "kind": "component", "slug": "amount-breakdown", "label": "AmountBreakdown" }
+      ],
+      "selfCheck": "金額を引き算して出す画面を開いて、合計行と数式を自分で書いていないか確かめてください。"
+    }
+  ]
+}

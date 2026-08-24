@@ -148,12 +148,12 @@ export default function ByUseCasePage() {
     const t = (x: T) => (locale === "ja" ? x.ja : x.en);
 
     return (
-        <Container className="py-8">
+        <Container size="full" className="py-8">
             <header className="mb-8 space-y-2">
                 <h1 className="text-3xl font-bold tracking-tight">
                     {locale === "ja" ? "ユースケース別（逆引き）" : "By use case (reverse lookup)"}
                 </h1>
-                <p className="max-w-2xl text-muted-foreground">
+                <p className="text-muted-foreground">
                     {locale === "ja"
                         ? "「何を作りたいか」から正しいコンポーネントを引く。名前だけでは見つけにくい部品（ABC分析→ParetoChart、シフト表→ScheduleGrid、署名記録→SignedRecord 等）を、作るものの言葉で。"
                         : "Find the right component from what you're building — including the ones whose names don't shout their use case (ABC analysis → ParetoChart, shift roster → ScheduleGrid, signed record → SignedRecord)."}
