@@ -76,36 +76,104 @@ function SelectField({
 export default function SelectPage() {
     const { locale, sectionLabels } = useLocale();
     const content = getDocContent("components/select", locale);
-    const code = `import { FormControl, FormDescription, FormGroup, FormLabel, Select } from "@gunjo/ui";
+    const isJa = locale === "ja";
+    const code = isJa
+        ? `import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  Select,
+} from "@gunjo/ui";
 
-export function SelectDemo() {
+export function OfficeSelectField() {
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="office">${locale === "ja" ? "拠点" : "Office"}</FormLabel>
+      <FormLabel htmlFor="office">拠点</FormLabel>
       <FormControl>
         <Select id="office" defaultValue="tokyo">
-          <option value="tokyo">${locale === "ja" ? "東京" : "Tokyo"}</option>
-          <option value="osaka">${locale === "ja" ? "大阪" : "Osaka"}</option>
-          <option value="fukuoka">${locale === "ja" ? "福岡" : "Fukuoka"}</option>
+          <option value="tokyo">東京</option>
+          <option value="osaka">大阪</option>
+          <option value="fukuoka">福岡</option>
         </Select>
       </FormControl>
-      <FormDescription>${locale === "ja" ? "他の入力欄と同じ幅で揃います。" : "The select aligns to the same field width as other inputs."}</FormDescription>
+      <FormDescription>他の入力欄と同じ幅で揃います。</FormDescription>
+    </FormGroup>
+  );
+}`
+        : `import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  Select,
+} from "@gunjo/ui";
+
+export function OfficeSelectField() {
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="office">Office</FormLabel>
+      <FormControl>
+        <Select id="office" defaultValue="tokyo">
+          <option value="tokyo">Tokyo</option>
+          <option value="osaka">Osaka</option>
+          <option value="fukuoka">Fukuoka</option>
+        </Select>
+      </FormControl>
+      <FormDescription>
+        The select aligns to the same field width as other inputs.
+      </FormDescription>
     </FormGroup>
   );
 }`;
 
-    const usageCode = `import { FormControl, FormGroup, FormLabel, Select } from "@gunjo/ui";
+    const usageCode = isJa
+        ? `import * as React from "react";
+import { FormControl, FormGroup, FormLabel, Select } from "@gunjo/ui";
 
-<FormGroup className="w-full max-w-sm">
-  <FormLabel htmlFor="office">${locale === "ja" ? "拠点" : "Office"}</FormLabel>
-  <FormControl>
-    <Select id="office" defaultValue="tokyo">
-      <option value="tokyo">${locale === "ja" ? "東京" : "Tokyo"}</option>
-      <option value="osaka">${locale === "ja" ? "大阪" : "Osaka"}</option>
-      <option value="fukuoka">${locale === "ja" ? "福岡" : "Fukuoka"}</option>
-    </Select>
-  </FormControl>
-</FormGroup>`;
+export function OfficePicker() {
+  const [office, setOffice] = React.useState("tokyo");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="office">拠点</FormLabel>
+      <FormControl>
+        <Select
+          id="office"
+          value={office}
+          onChange={(event) => setOffice(event.target.value)}
+        >
+          <option value="tokyo">東京</option>
+          <option value="osaka">大阪</option>
+          <option value="fukuoka">福岡</option>
+        </Select>
+      </FormControl>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import { FormControl, FormGroup, FormLabel, Select } from "@gunjo/ui";
+
+export function OfficePicker() {
+  const [office, setOffice] = React.useState("tokyo");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="office">Office</FormLabel>
+      <FormControl>
+        <Select
+          id="office"
+          value={office}
+          onChange={(event) => setOffice(event.target.value)}
+        >
+          <option value="tokyo">Tokyo</option>
+          <option value="osaka">Osaka</option>
+          <option value="fukuoka">Fukuoka</option>
+        </Select>
+      </FormControl>
+    </FormGroup>
+  );
+}`;
 
     const propsData = [
         { name: "value", type: "string", description: locale === "ja" ? "外部から制御する選択値です。" : "Controlled selected value." },
@@ -156,26 +224,64 @@ export function SelectDemo() {
                             title: locale === "ja" ? "グループ化" : "Grouped options",
                             description: locale === "ja" ? "候補が多い時は optgroup で分類します。" : "Use optgroup to organize longer option lists.",
                             preview: <SelectField grouped />,
-                            code: `import { FormControl, FormDescription, FormGroup, FormLabel, Select } from "@gunjo/ui";
+                            code: isJa
+                                ? `import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  Select,
+} from "@gunjo/ui";
 
 export function GroupedSelect() {
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="select-framework">${locale === "ja" ? "技術スタック" : "Technology stack"}</FormLabel>
+      <FormLabel htmlFor="select-framework">技術スタック</FormLabel>
       <FormControl>
         <Select id="select-framework" defaultValue="next">
-          <optgroup label="${locale === "ja" ? "フレームワーク" : "Frameworks"}">
+          <optgroup label="フレームワーク">
             <option value="next">Next.js</option>
             <option value="remix">Remix</option>
             <option value="astro">Astro</option>
           </optgroup>
-          <optgroup label="${locale === "ja" ? "静的サイト" : "Static sites"}">
+          <optgroup label="静的サイト">
             <option value="gatsby">Gatsby</option>
             <option value="hugo">Hugo</option>
           </optgroup>
         </Select>
       </FormControl>
-      <FormDescription>${locale === "ja" ? "候補が多い場合はカテゴリで整理します。" : "Use groups when the option list grows."}</FormDescription>
+      <FormDescription>候補が多い場合はカテゴリで整理します。</FormDescription>
+    </FormGroup>
+  );
+}`
+                                : `import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  Select,
+} from "@gunjo/ui";
+
+export function GroupedSelect() {
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="select-framework">Technology stack</FormLabel>
+      <FormControl>
+        <Select id="select-framework" defaultValue="next">
+          <optgroup label="Frameworks">
+            <option value="next">Next.js</option>
+            <option value="remix">Remix</option>
+            <option value="astro">Astro</option>
+          </optgroup>
+          <optgroup label="Static sites">
+            <option value="gatsby">Gatsby</option>
+            <option value="hugo">Hugo</option>
+          </optgroup>
+        </Select>
+      </FormControl>
+      <FormDescription>
+        Use groups when the option list grows.
+      </FormDescription>
     </FormGroup>
   );
 }`,
@@ -185,27 +291,76 @@ export function GroupedSelect() {
                             title: locale === "ja" ? "無効化" : "Disabled",
                             description: locale === "ja" ? "選べない理由はツールチップと補足文で伝えます。" : "Explain why the field is disabled with a tooltip and helper text.",
                             preview: <SelectField disabled />,
-                            code: `import { FormControl, FormDescription, FormGroup, FormLabel, Select, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                            code: isJa
+                                ? `import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  Select,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@gunjo/ui";
 
-export function DisabledSelect() {
+export function DisabledOfficeSelect() {
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="office">${locale === "ja" ? "拠点" : "Office"}</FormLabel>
+      <FormLabel htmlFor="office">拠点</FormLabel>
       <FormControl>
         <Tooltip>
           <TooltipTrigger asChild>
             <span className="block w-full" tabIndex={0}>
               <Select id="office" disabled defaultValue="tokyo">
-                <option value="tokyo">${locale === "ja" ? "東京" : "Tokyo"}</option>
-                <option value="osaka">${locale === "ja" ? "大阪" : "Osaka"}</option>
-                <option value="fukuoka">${locale === "ja" ? "福岡" : "Fukuoka"}</option>
+                <option value="tokyo">東京</option>
+                <option value="osaka">大阪</option>
+                <option value="fukuoka">福岡</option>
               </Select>
             </span>
           </TooltipTrigger>
-          <TooltipContent>${locale === "ja" ? "拠点は管理者が固定しています。" : "The office is managed by your administrator."}</TooltipContent>
+          <TooltipContent>拠点は管理者が固定しています。</TooltipContent>
         </Tooltip>
       </FormControl>
-      <FormDescription>${locale === "ja" ? "変更が必要な場合は管理者に依頼してください。" : "Contact an administrator to change this value."}</FormDescription>
+      <FormDescription>
+        変更が必要な場合は管理者に依頼してください。
+      </FormDescription>
+    </FormGroup>
+  );
+}`
+                                : `import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  Select,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@gunjo/ui";
+
+export function DisabledOfficeSelect() {
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="office">Office</FormLabel>
+      <FormControl>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <span className="block w-full" tabIndex={0}>
+              <Select id="office" disabled defaultValue="tokyo">
+                <option value="tokyo">Tokyo</option>
+                <option value="osaka">Osaka</option>
+                <option value="fukuoka">Fukuoka</option>
+              </Select>
+            </span>
+          </TooltipTrigger>
+          <TooltipContent>
+            The office is managed by your administrator.
+          </TooltipContent>
+        </Tooltip>
+      </FormControl>
+      <FormDescription>
+        Contact an administrator to change this value.
+      </FormDescription>
     </FormGroup>
   );
 }`,

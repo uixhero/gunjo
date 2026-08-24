@@ -473,9 +473,18 @@ export default function SaveIconButton() {
                                 </Tooltip>
                             ),
                             code: locale === "ja"
-                                ? `import { Button, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                                ? `import * as React from "react";
+import {
+  Button,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@gunjo/ui";
 
-export default function SubmitButton({ ready }: { ready: boolean }) {
+export function SubmitButton() {
+  // 実際のフォームでは、必須項目が埋まったかどうかを入れます。
+  const [ready] = React.useState(false);
+
   if (ready) {
     return <Button>送信</Button>;
   }
@@ -491,9 +500,18 @@ export default function SubmitButton({ ready }: { ready: boolean }) {
     </Tooltip>
   );
 }`
-                                : `import { Button, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                                : `import * as React from "react";
+import {
+  Button,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@gunjo/ui";
 
-export default function SubmitButton({ ready }: { ready: boolean }) {
+export function SubmitButton() {
+  // In a real form, this tracks whether the required fields are filled in.
+  const [ready] = React.useState(false);
+
   if (ready) {
     return <Button>Submit</Button>;
   }

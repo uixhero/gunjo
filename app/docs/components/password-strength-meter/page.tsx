@@ -9,15 +9,29 @@ import { PasswordStrengthMeter } from "@gunjo/ui";
 export default function PasswordStrengthMeterPage() {
     const { locale } = useLocale();
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
-    const code = `import { PasswordStrengthMeter } from "@gunjo/ui";
+    const isJa = locale === "ja";
+    const code = isJa
+        ? `import { PasswordStrengthMeter } from "@gunjo/ui";
 
-export function PasswordStrengthMeterDemo() {
+export function StrongPasswordStrengthMeter() {
   return (
     <PasswordStrengthMeter
       score={3}
-      label="${locale === "ja" ? "パスワード強度" : "Password strength"}"
-      valueLabel="${locale === "ja" ? "強い" : "Strong"}"
-      description="${locale === "ja" ? "評価ロジックはアプリ側で計算します。" : "Calculate strength in your app."}"
+      label="パスワード強度"
+      valueLabel="強い"
+      description="評価ロジックはアプリ側で計算します。"
+    />
+  );
+}`
+        : `import { PasswordStrengthMeter } from "@gunjo/ui";
+
+export function StrongPasswordStrengthMeter() {
+  return (
+    <PasswordStrengthMeter
+      score={3}
+      label="Password strength"
+      valueLabel="Strong"
+      description="Calculate strength in your app."
     />
   );
 }`;
@@ -69,7 +83,31 @@ export function PasswordStrengthMeterDemo() {
                     description: locale === "ja" ? "スコアが低い場合は destructive 色で注意を示します。" : "Low scores use the destructive color.",
                     preview: <PasswordStrengthMeter className="w-full max-w-sm" score={1} label={locale === "ja" ? "パスワード強度" : "Password strength"} valueLabel={locale === "ja" ? "弱い" : "Weak"} />,
                     previewHeight: 110,
-                    code: `<PasswordStrengthMeter score={1} label="${locale === "ja" ? "パスワード強度" : "Password strength"}" valueLabel="${locale === "ja" ? "弱い" : "Weak"}" />`,
+                    code: isJa
+                        ? `import { PasswordStrengthMeter } from "@gunjo/ui";
+
+export function WeakPasswordStrengthMeter() {
+  return (
+    <PasswordStrengthMeter
+      className="w-full max-w-sm"
+      score={1}
+      label="パスワード強度"
+      valueLabel="弱い"
+    />
+  );
+}`
+                        : `import { PasswordStrengthMeter } from "@gunjo/ui";
+
+export function WeakPasswordStrengthMeter() {
+  return (
+    <PasswordStrengthMeter
+      className="w-full max-w-sm"
+      score={1}
+      label="Password strength"
+      valueLabel="Weak"
+    />
+  );
+}`,
                 },
             ]}
         />

@@ -10,19 +10,53 @@ import * as React from "react";
 export default function PhoneInputPage() {
     const { locale } = useLocale();
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
-    const code = `import * as React from "react";
-import { FormControl, FormDescription, FormGroup, FormLabel, PhoneInput } from "@gunjo/ui";
+    const isJa = locale === "ja";
+    const code = isJa
+        ? `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  PhoneInput,
+} from "@gunjo/ui";
 
-export function PhoneInputDemo() {
+export function ContactPhoneField() {
   const [value, setValue] = React.useState("090-1234-5678");
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="phone">${locale === "ja" ? "電話番号" : "Phone number"}</FormLabel>
+      <FormLabel htmlFor="phone">電話番号</FormLabel>
       <FormControl>
         <PhoneInput id="phone" value={value} onValueChange={setValue} />
       </FormControl>
-      <FormDescription>${locale === "ja" ? "国番号の表示と電話番号の入力補助を組み合わせます。" : "Combines country calling code and phone input assistance."}</FormDescription>
+      <FormDescription>
+        国番号の表示と電話番号の入力補助を組み合わせます。
+      </FormDescription>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  PhoneInput,
+} from "@gunjo/ui";
+
+export function ContactPhoneField() {
+  const [value, setValue] = React.useState("090-1234-5678");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="phone">Phone number</FormLabel>
+      <FormControl>
+        <PhoneInput id="phone" value={value} onValueChange={setValue} />
+      </FormControl>
+      <FormDescription>
+        Combines country calling code and phone input assistance.
+      </FormDescription>
     </FormGroup>
   );
 }`;
@@ -88,7 +122,33 @@ export function PhoneInputDemo() {
                     description: locale === "ja" ? "値を参照だけにする場合は disabled と disabledReason を渡します。" : "Use disabled and disabledReason when the value is read-only.",
                     preview: <DisabledPreview />,
                     previewHeight: 100,
-                    code: `<PhoneInput value="090-1234-5678" disabled disabledReason="${disabledReason}" />`,
+                    code: isJa
+                        ? `import { PhoneInput } from "@gunjo/ui";
+
+export function ManagedContactPhoneField() {
+  return (
+    <PhoneInput
+      className="w-full max-w-sm"
+      value="090-1234-5678"
+      disabled
+      disabledReason="プロフィールで管理されているため、この画面では変更できません。"
+      aria-label="電話番号"
+    />
+  );
+}`
+                        : `import { PhoneInput } from "@gunjo/ui";
+
+export function ManagedContactPhoneField() {
+  return (
+    <PhoneInput
+      className="w-full max-w-sm"
+      value="090-1234-5678"
+      disabled
+      disabledReason="Managed in the profile and cannot be changed here."
+      aria-label="Phone number"
+    />
+  );
+}`,
                 },
             ]}
         />

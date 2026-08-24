@@ -131,10 +131,11 @@ export default function RangeCalendar() {
                             disabledReason={disabledPastReason}
                         />
                     ),
-                    code: `import { Calendar } from "@gunjo/ui";
-import * as React from "react";
+                    code: locale === "ja"
+                        ? `import * as React from "react";
+import { Calendar } from "@gunjo/ui";
 
-export default function FutureOnlyCalendar() {
+export function FutureOnlyCalendar() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
   const today = new Date();
   today.setHours(0, 0, 0, 0);
@@ -146,7 +147,26 @@ export default function FutureOnlyCalendar() {
       onSelect={setDate}
       className="rounded-md border"
       disabled={{ before: today }}
-      disabledReason="${locale === "ja" ? "過去日は予約できません。今日以降の日付を選択してください。" : "Past dates cannot be booked. Choose today or a future date."}"
+      disabledReason="過去日は予約できません。今日以降の日付を選択してください。"
+    />
+  );
+}`
+                        : `import * as React from "react";
+import { Calendar } from "@gunjo/ui";
+
+export function FutureOnlyCalendar() {
+  const [date, setDate] = React.useState<Date | undefined>(new Date());
+  const today = new Date();
+  today.setHours(0, 0, 0, 0);
+
+  return (
+    <Calendar
+      mode="single"
+      selected={date}
+      onSelect={setDate}
+      className="rounded-md border"
+      disabled={{ before: today }}
+      disabledReason="Past dates cannot be booked. Choose today or a future date."
     />
   );
 }`,

@@ -12,39 +12,84 @@ import { Label, RadioGroup, RadioGroupItem } from "@gunjo/ui";
 
 export default function RadioGroupPage() {
     const { locale, sectionLabels } = useLocale();
-    const code = `import { Label, RadioGroup, RadioGroupItem } from "@gunjo/ui";
+    const isJa = locale === "ja";
+    const code = isJa
+        ? `import { Label, RadioGroup, RadioGroupItem } from "@gunjo/ui";
 
-export function RadioGroupDemo() {
+export function PlanRadioGroup() {
   return (
     <RadioGroup defaultValue="standard">
       <div className="flex items-center space-x-2">
         <RadioGroupItem value="basic" id="plan-basic" />
-        <Label htmlFor="plan-basic">${locale === "ja" ? "ベーシック" : "Basic"}</Label>
+        <Label htmlFor="plan-basic">ベーシック</Label>
       </div>
       <div className="flex items-center space-x-2">
         <RadioGroupItem value="standard" id="plan-standard" />
-        <Label htmlFor="plan-standard">${locale === "ja" ? "スタンダード" : "Standard"}</Label>
+        <Label htmlFor="plan-standard">スタンダード</Label>
+      </div>
+    </RadioGroup>
+  );
+}`
+        : `import { Label, RadioGroup, RadioGroupItem } from "@gunjo/ui";
+
+export function PlanRadioGroup() {
+  return (
+    <RadioGroup defaultValue="standard">
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="basic" id="plan-basic" />
+        <Label htmlFor="plan-basic">Basic</Label>
+      </div>
+      <div className="flex items-center space-x-2">
+        <RadioGroupItem value="standard" id="plan-standard" />
+        <Label htmlFor="plan-standard">Standard</Label>
       </div>
     </RadioGroup>
   );
 }`;
 
-    const usageCode = `import { Label, RadioGroup, RadioGroupItem } from "@gunjo/ui";
+    const usageCode = isJa
+        ? `import * as React from "react";
+import { Label, RadioGroup, RadioGroupItem } from "@gunjo/ui";
 
 export function PlanPicker() {
+  const [plan, setPlan] = React.useState("standard");
+
   return (
-    <RadioGroup defaultValue="standard">
+    <RadioGroup value={plan} onValueChange={setPlan}>
       <div className="flex items-center gap-2">
         <RadioGroupItem value="basic" id="plan-basic" />
-        <Label htmlFor="plan-basic">${locale === "ja" ? "ベーシック" : "Basic"}</Label>
+        <Label htmlFor="plan-basic">ベーシック</Label>
       </div>
       <div className="flex items-center gap-2">
         <RadioGroupItem value="standard" id="plan-standard" />
-        <Label htmlFor="plan-standard">${locale === "ja" ? "スタンダード" : "Standard"}</Label>
+        <Label htmlFor="plan-standard">スタンダード</Label>
       </div>
       <div className="flex items-center gap-2">
         <RadioGroupItem value="team" id="plan-team" />
-        <Label htmlFor="plan-team">${locale === "ja" ? "チーム" : "Team"}</Label>
+        <Label htmlFor="plan-team">チーム</Label>
+      </div>
+    </RadioGroup>
+  );
+}`
+        : `import * as React from "react";
+import { Label, RadioGroup, RadioGroupItem } from "@gunjo/ui";
+
+export function PlanPicker() {
+  const [plan, setPlan] = React.useState("standard");
+
+  return (
+    <RadioGroup value={plan} onValueChange={setPlan}>
+      <div className="flex items-center gap-2">
+        <RadioGroupItem value="basic" id="plan-basic" />
+        <Label htmlFor="plan-basic">Basic</Label>
+      </div>
+      <div className="flex items-center gap-2">
+        <RadioGroupItem value="standard" id="plan-standard" />
+        <Label htmlFor="plan-standard">Standard</Label>
+      </div>
+      <div className="flex items-center gap-2">
+        <RadioGroupItem value="team" id="plan-team" />
+        <Label htmlFor="plan-team">Team</Label>
       </div>
     </RadioGroup>
   );
@@ -181,14 +226,47 @@ export function PlanPicker() {
                                 </RadioGroup>
                             ),
                             previewHeight: 150,
-                            code: `import { Label, RadioGroup, RadioGroupItem } from "@gunjo/ui";
+                            code: isJa
+                                ? `import { Label, RadioGroup, RadioGroupItem } from "@gunjo/ui";
 
-<RadioGroup defaultValue="comfortable" className="flex gap-4">
-  <div className="flex items-center gap-2">
-    <RadioGroupItem value="compact" id="density-compact" />
-    <Label htmlFor="density-compact">${locale === "ja" ? "コンパクト" : "Compact"}</Label>
-  </div>
-</RadioGroup>`,
+export function DensityRadioGroup() {
+  return (
+    <RadioGroup defaultValue="comfortable" className="flex flex-wrap gap-4">
+      <div className="flex items-center gap-2">
+        <RadioGroupItem value="compact" id="density-compact" />
+        <Label htmlFor="density-compact">コンパクト</Label>
+      </div>
+      <div className="flex items-center gap-2">
+        <RadioGroupItem value="comfortable" id="density-comfortable" />
+        <Label htmlFor="density-comfortable">標準</Label>
+      </div>
+      <div className="flex items-center gap-2">
+        <RadioGroupItem value="spacious" id="density-spacious" />
+        <Label htmlFor="density-spacious">広め</Label>
+      </div>
+    </RadioGroup>
+  );
+}`
+                                : `import { Label, RadioGroup, RadioGroupItem } from "@gunjo/ui";
+
+export function DensityRadioGroup() {
+  return (
+    <RadioGroup defaultValue="comfortable" className="flex flex-wrap gap-4">
+      <div className="flex items-center gap-2">
+        <RadioGroupItem value="compact" id="density-compact" />
+        <Label htmlFor="density-compact">Compact</Label>
+      </div>
+      <div className="flex items-center gap-2">
+        <RadioGroupItem value="comfortable" id="density-comfortable" />
+        <Label htmlFor="density-comfortable">Comfortable</Label>
+      </div>
+      <div className="flex items-center gap-2">
+        <RadioGroupItem value="spacious" id="density-spacious" />
+        <Label htmlFor="density-spacious">Spacious</Label>
+      </div>
+    </RadioGroup>
+  );
+}`,
                         },
                         {
                             key: "disabled-option",
@@ -214,15 +292,49 @@ export function PlanPicker() {
                                 </RadioGroup>
                             ),
                             previewHeight: 170,
-                            code: `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
-import { Label, RadioGroupItem } from "@gunjo/ui";
+                            code: isJa
+                                ? `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
+import { Label, RadioGroup, RadioGroupItem } from "@gunjo/ui";
 
-<DisabledReasonTooltip reason="${locale === "ja" ? "エンタープライズプランは審査後に選択できます。" : "Enterprise is available after review."}">
-  <div className="flex items-center gap-2">
-    <RadioGroupItem value="enterprise" id="enterprise" disabled />
-    <Label htmlFor="enterprise">${locale === "ja" ? "エンタープライズ" : "Enterprise"}</Label>
-  </div>
-</DisabledReasonTooltip>`,
+export function PlanRadioGroupWithLockedOption() {
+  return (
+    <RadioGroup defaultValue="standard" className="space-y-3">
+      <div className="flex items-center gap-2">
+        <RadioGroupItem value="standard" id="radio-standard" />
+        <Label htmlFor="radio-standard">スタンダード</Label>
+      </div>
+      <DisabledReasonTooltip reason="エンタープライズプランは審査後に選択できます。">
+        <div className="flex items-center gap-2">
+          <RadioGroupItem value="enterprise" id="radio-enterprise" disabled />
+          <Label htmlFor="radio-enterprise" className="text-muted-foreground">
+            エンタープライズ
+          </Label>
+        </div>
+      </DisabledReasonTooltip>
+    </RadioGroup>
+  );
+}`
+                                : `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
+import { Label, RadioGroup, RadioGroupItem } from "@gunjo/ui";
+
+export function PlanRadioGroupWithLockedOption() {
+  return (
+    <RadioGroup defaultValue="standard" className="space-y-3">
+      <div className="flex items-center gap-2">
+        <RadioGroupItem value="standard" id="radio-standard" />
+        <Label htmlFor="radio-standard">Standard</Label>
+      </div>
+      <DisabledReasonTooltip reason="Enterprise is available after review.">
+        <div className="flex items-center gap-2">
+          <RadioGroupItem value="enterprise" id="radio-enterprise" disabled />
+          <Label htmlFor="radio-enterprise" className="text-muted-foreground">
+            Enterprise
+          </Label>
+        </div>
+      </DisabledReasonTooltip>
+    </RadioGroup>
+  );
+}`,
                         },
                     ]}
                 />

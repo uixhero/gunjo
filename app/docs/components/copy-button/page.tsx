@@ -18,38 +18,99 @@ export default function CopyButtonPage() {
     const failedLabel = isJa ? "コピーに失敗しました" : "Copy failed";
     const copyValue = "const total = items.length";
 
-    const code = `import { CopyButton } from "@gunjo/ui"
+    const code = isJa
+        ? `import { CopyButton } from "@gunjo/ui";
 
-export function CopyButtonDemo() {
+export function SnippetCopyButton() {
+  const snippet = "const total = items.length";
+
   return (
     <CopyButton
-      value="${copyValue}"
-      copyLabel="${copyLabel}"
-      copiedLabel="${copiedLabel}"
-      copyFailedLabel="${failedLabel}"
+      value={snippet}
+      copyLabel="コードをコピー"
+      copiedLabel="コピーしました"
+      copyFailedLabel="コピーに失敗しました"
       variant="label"
     />
-  )
+  );
+}`
+        : `import { CopyButton } from "@gunjo/ui";
+
+export function SnippetCopyButton() {
+  const snippet = "const total = items.length";
+
+  return (
+    <CopyButton
+      value={snippet}
+      copyLabel="Copy code"
+      copiedLabel="Copied"
+      copyFailedLabel="Copy failed"
+      variant="label"
+    />
+  );
 }`;
 
-    const usageCode = `import { CopyButton } from "@gunjo/ui"
+    const usageCode = isJa
+        ? `import { CopyButton } from "@gunjo/ui";
 
-<CopyButton
-  value="${copyValue}"
-  copyLabel="${copyLabel}"
-  copiedLabel="${copiedLabel}"
-  copyFailedLabel="${failedLabel}"
-  variant="label"
-/>`;
+export function InstallCommandCopyButton() {
+  const command = "npm install @gunjo/ui";
 
-    const iconCode = `import { CopyButton } from "@gunjo/ui"
+  return (
+    <CopyButton
+      value={command}
+      copyLabel="コマンドをコピー"
+      copiedLabel="コピーしました"
+      copyFailedLabel="コピーに失敗しました"
+      variant="label"
+    />
+  );
+}`
+        : `import { CopyButton } from "@gunjo/ui";
 
-<CopyButton
-  value="${copyValue}"
-  copyLabel="${copyLabel}"
-  copiedLabel="${copiedLabel}"
-  copyFailedLabel="${failedLabel}"
-/>`;
+export function InstallCommandCopyButton() {
+  const command = "npm install @gunjo/ui";
+
+  return (
+    <CopyButton
+      value={command}
+      copyLabel="Copy command"
+      copiedLabel="Copied"
+      copyFailedLabel="Copy failed"
+      variant="label"
+    />
+  );
+}`;
+
+    const iconCode = isJa
+        ? `import { CopyButton } from "@gunjo/ui";
+
+export function SnippetCopyIconButton() {
+  const snippet = "const total = items.length";
+
+  return (
+    <CopyButton
+      value={snippet}
+      copyLabel="コードをコピー"
+      copiedLabel="コピーしました"
+      copyFailedLabel="コピーに失敗しました"
+    />
+  );
+}`
+        : `import { CopyButton } from "@gunjo/ui";
+
+export function SnippetCopyIconButton() {
+  const snippet = "const total = items.length";
+
+  return (
+    <CopyButton
+      value={snippet}
+      copyLabel="Copy code"
+      copiedLabel="Copied"
+      copyFailedLabel="Copy failed"
+    />
+  );
+}`;
 
     const propsData = [
         {
@@ -155,17 +216,37 @@ export function CopyButtonDemo() {
                                 />
                             ),
                             previewHeight: "auto",
-                            code: `import { CopyButton } from "@gunjo/ui"
+                            code: isJa
+                                ? `import { CopyButton } from "@gunjo/ui";
 
-<CopyButton
-  value="npm install @gunjo/ui"
-  copyLabel="${commandCopyLabel}"
-  copiedLabel="${copiedLabel}"
-  copyFailedLabel="${failedLabel}"
-  copiedDuration={5000}
-  variant="label"
-  className="h-8 px-2 text-xs"
-/>`,
+export function CompactCommandCopyButton() {
+  return (
+    <CopyButton
+      value="npm install @gunjo/ui"
+      copyLabel="コマンドをコピー"
+      copiedLabel="コピーしました"
+      copyFailedLabel="コピーに失敗しました"
+      copiedDuration={5000}
+      variant="label"
+      className="h-8 px-2 text-xs"
+    />
+  );
+}`
+                                : `import { CopyButton } from "@gunjo/ui";
+
+export function CompactCommandCopyButton() {
+  return (
+    <CopyButton
+      value="npm install @gunjo/ui"
+      copyLabel="Copy command"
+      copiedLabel="Copied"
+      copyFailedLabel="Copy failed"
+      copiedDuration={5000}
+      variant="label"
+      className="h-8 px-2 text-xs"
+    />
+  );
+}`,
                         },
                     ]}
                 />
