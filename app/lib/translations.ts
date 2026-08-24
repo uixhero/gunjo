@@ -344,6 +344,34 @@ export type ColdTestsPageStrings = {
     ctaComponentsLabel: string;
     breadcrumbLabel: string;
   };
+  // The findings data layer (`app/data/cold-test-findings/*.json`), rendered
+  // twice: a per-round summary block on the round page, and the aggregate on
+  // the industry door page. Chrome only — every finding's own wording lives in
+  // the JSON, which is Japanese for now, so the round-page block renders on the
+  // Japanese tree only. The English labels here are the frame for when the
+  // English findings land.
+  findings: {
+    roundHeading: string;
+    roundIntro: string;
+    roundRequirementHeading: string;
+    roundPitfallHeading: string;
+    categoryRequirementHeading: string;
+    categoryPitfallHeading: string;
+    categoryIntro: string;
+    /**
+     * Under the category pitfall heading — explains the round-merging, which
+     * (today) only ever manifests in the pitfall list. Keeping it out of
+     * `categoryIntro` avoids promising merged rows in a section that has none.
+     */
+    categoryPitfallIntro: string;
+    whereText: (screen: string, spot: string) => string;
+    causeLabel: string;
+    selfCheckLabel: string;
+    evidenceLabel: string;
+    roundLinkLabel: (round: number) => string;
+    statusPrefix: string;
+    status: { resolved: string; "fix-known": string; tracking: string };
+  };
   // Per-industry door page (`/cold-tests/categories/<slug>`). Strings here are
   // chrome only — the per-category prose (challenge / discovered / left)
   // lives in cold-test-categories.json so KeEem can edit it without touching code.
@@ -723,6 +751,30 @@ export const translations: Record<
           ctaGalleryLabel: "See all rounds",
           ctaComponentsLabel: "Browse the component catalog",
           breadcrumbLabel: "Why",
+        },
+        findings: {
+          roundHeading: "What this round found",
+          roundIntro:
+            "Pulled from the write-up below. Status badges show where the component library stands today, not at the time of the round.",
+          roundRequirementHeading: "What this round showed the industry needs",
+          roundPitfallHeading: "Where this round stumbled",
+          categoryRequirementHeading: "What this industry needs",
+          categoryPitfallHeading: "Where the series stumbled first",
+          categoryIntro:
+            "Pulled from each round's write-up. Status badges show where the component library stands today, not at the time of the round.",
+          categoryPitfallIntro:
+            "Anything seen in more than one round is listed once, with every round that is evidence for it.",
+          whereText: (screen, spot) => `${spot} (${screen})`,
+          causeLabel: "Cause",
+          selfCheckLabel: "Check it on your own screen",
+          evidenceLabel: "Evidence",
+          roundLinkLabel: (round) => `Round #${round}`,
+          statusPrefix: "Status",
+          status: {
+            resolved: "Fixed",
+            "fix-known": "Fix on record, not applied",
+            tracking: "Tracking",
+          },
         },
         categoryPage: {
           roundsSummary: (count, label) =>
@@ -1398,6 +1450,30 @@ export const translations: Record<
           ctaGalleryLabel: "カタログを見る",
           ctaComponentsLabel: "コンポーネント一覧へ",
           breadcrumbLabel: "なぜ",
+        },
+        findings: {
+          roundHeading: "この回の発見",
+          roundIntro:
+            "この下の記事から抜き出した、この回で分かったことです。状態は記事の時点ではなく、コンポーネント側のいまの実測です。",
+          roundRequirementHeading: "この回で要ると分かったもの",
+          roundPitfallHeading: "この回でつまずいたところ",
+          categoryRequirementHeading: "この業界で要るもの",
+          categoryPitfallHeading: "連載が先につまずいたところ",
+          categoryIntro:
+            "各回の記事から抜き出した項目です。状態は記事の時点ではなく、コンポーネント側のいまの実測です。",
+          categoryPitfallIntro:
+            "複数の回で出たものは1つにまとめ、根拠になった回を全部並べています。",
+          whereText: (screen, spot) => `${spot}（${screen}）`,
+          causeLabel: "原因",
+          selfCheckLabel: "自分の画面で確かめる",
+          evidenceLabel: "根拠",
+          roundLinkLabel: (round) => `#${round} の回`,
+          statusPrefix: "状態",
+          status: {
+            resolved: "対応済み",
+            "fix-known": "未修正・直し方記録済み",
+            tracking: "追跡中",
+          },
         },
         categoryPage: {
           roundsSummary: (count, label) =>

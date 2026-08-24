@@ -6,6 +6,7 @@ import { ColdTestShell } from "./ColdTestShell";
 import { RoundDetailView } from "./RoundDetailView";
 import type { SidebarRound } from "./RoundsSidebar";
 import { hasEnRound, listEnRounds, readJaRound } from "@/lib/cold-test-en";
+import { readRoundFindings } from "@/lib/cold-test-findings-server";
 import { EN_COLD_TEST_BASE, JA_COLD_TEST_BASE } from "@/lib/cold-test-paths";
 
 const SITE_URL = (
@@ -142,6 +143,9 @@ export default async function ColdTestRoundPage({
                     ja: galleryData.entries.map((e) => e.round),
                     en: listEnRounds(),
                 }}
+                // The findings data layer is Japanese-only for now, so it is
+                // passed from the Japanese tree only.
+                findings={readRoundFindings(round)?.findings ?? []}
             />
         </ColdTestShell>
     );
