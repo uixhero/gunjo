@@ -74,6 +74,261 @@ function SingleProviderTrigger({
     );
 }
 
+const codeByLocale = {
+    ja: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+
+function ToastActions() {
+  const { showToast } = useToast()
+
+  return (
+    <div className="flex flex-wrap gap-2">
+      <Button onClick={() => showToast("設定を保存しました。", "success")}>
+        成功通知
+      </Button>
+      <Button
+        variant="destructive"
+        onClick={() => showToast("保存できませんでした。接続を確認してください。", "error", 4500)}
+      >
+        失敗通知
+      </Button>
+      <Button variant="outline" onClick={() => showToast("同期をバックグラウンドで続行しています。", "info")}>
+        情報通知
+      </Button>
+    </div>
+  )
+}
+
+export function ToastProviderExample() {
+  return (
+    <ToastProvider labels={{ close: "通知を閉じる" }}>
+      <ToastActions />
+    </ToastProvider>
+  )
+}`,
+    en: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+
+function ToastActions() {
+  const { showToast } = useToast()
+
+  return (
+    <div className="flex flex-wrap gap-2">
+      <Button onClick={() => showToast("Settings saved.", "success")}>
+        Success toast
+      </Button>
+      <Button
+        variant="destructive"
+        onClick={() => showToast("Could not save. Check your connection.", "error", 4500)}
+      >
+        Error toast
+      </Button>
+      <Button variant="outline" onClick={() => showToast("Sync continues in the background.", "info")}>
+        Info toast
+      </Button>
+    </div>
+  )
+}
+
+export function ToastProviderExample() {
+  return (
+    <ToastProvider labels={{ close: "Close notification" }}>
+      <ToastActions />
+    </ToastProvider>
+  )
+}`,
+};
+
+const successOnlyCodeByLocale = {
+    ja: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+
+function SaveAction() {
+  const { showToast } = useToast()
+
+  return (
+    <Button onClick={() => showToast("設定を保存しました。", "success")}>
+      保存する
+    </Button>
+  )
+}
+
+export function SaveToastProvider() {
+  return (
+    <ToastProvider labels={{ close: "通知を閉じる" }}>
+      <SaveAction />
+    </ToastProvider>
+  )
+}`,
+    en: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+
+function SaveAction() {
+  const { showToast } = useToast()
+
+  return (
+    <Button onClick={() => showToast("Settings saved.", "success")}>
+      Save
+    </Button>
+  )
+}
+
+export function SaveToastProvider() {
+  return (
+    <ToastProvider labels={{ close: "Close notification" }}>
+      <SaveAction />
+    </ToastProvider>
+  )
+}`,
+};
+
+const durationCodeByLocale = {
+    ja: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+
+function RetryAction() {
+  const { showToast } = useToast()
+
+  return (
+    <Button
+      variant="destructive"
+      onClick={() => showToast("保存できませんでした。接続を確認してください。", "error", 4500)}
+    >
+      失敗通知を出す
+    </Button>
+  )
+}
+
+export function ErrorToastProvider() {
+  return (
+    <ToastProvider labels={{ close: "通知を閉じる" }}>
+      <RetryAction />
+    </ToastProvider>
+  )
+}`,
+    en: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+
+function RetryAction() {
+  const { showToast } = useToast()
+
+  return (
+    <Button
+      variant="destructive"
+      onClick={() => showToast("Could not save. Check your connection.", "error", 4500)}
+    >
+      Show failure
+    </Button>
+  )
+}
+
+export function ErrorToastProvider() {
+  return (
+    <ToastProvider labels={{ close: "Close notification" }}>
+      <RetryAction />
+    </ToastProvider>
+  )
+}`,
+};
+
+const localizedCodeByLocale = {
+    ja: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+
+function LocalizedToastAction() {
+  const { showToast } = useToast()
+
+  return (
+    <Button onClick={() => showToast("同期をバックグラウンドで続行しています。", "info")}>
+      同期状態を表示
+    </Button>
+  )
+}
+
+export function LocalizedToastProvider() {
+  return (
+    <ToastProvider labels={{ close: "通知を閉じる" }}>
+      <LocalizedToastAction />
+    </ToastProvider>
+  )
+}`,
+    en: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+
+function LocalizedToastAction() {
+  const { showToast } = useToast()
+
+  return (
+    <Button onClick={() => showToast("Sync continues in the background.", "info")}>
+      Show sync status
+    </Button>
+  )
+}
+
+export function LocalizedToastProvider() {
+  return (
+    <ToastProvider labels={{ close: "Close notification" }}>
+      <LocalizedToastAction />
+    </ToastProvider>
+  )
+}`,
+};
+
+const richCodeByLocale = {
+    ja: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+
+function DeleteButton() {
+  const { showToast } = useToast()
+  const handleUndo = () => {}
+
+  return (
+    <Button
+      variant="outline"
+      onClick={() =>
+        showToast({
+          message: "プロジェクトを削除しました。",
+          description: "元に戻すには数秒以内に操作してください。",
+          type: "info",
+          action: { label: "元に戻す", onClick: handleUndo },
+        })
+      }
+    >
+      削除する
+    </Button>
+  )
+}
+
+export function RichToastProvider() {
+  return (
+    <ToastProvider labels={{ close: "通知を閉じる" }}>
+      <DeleteButton />
+    </ToastProvider>
+  )
+}`,
+    en: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+
+function DeleteButton() {
+  const { showToast } = useToast()
+  const handleUndo = () => {}
+
+  return (
+    <Button
+      variant="outline"
+      onClick={() =>
+        showToast({
+          message: "Project deleted.",
+          description: "Undo within a few seconds to restore it.",
+          type: "info",
+          action: { label: "Undo", onClick: handleUndo },
+        })
+      }
+    >
+      Delete
+    </Button>
+  )
+}
+
+export function RichToastProvider() {
+  return (
+    <ToastProvider labels={{ close: "Close notification" }}>
+      <DeleteButton />
+    </ToastProvider>
+  )
+}`,
+};
+
 export default function ToastProviderPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
@@ -85,99 +340,15 @@ export default function ToastProviderPage() {
         info: isJa ? "同期をバックグラウンドで続行しています。" : "Sync continues in the background.",
     };
 
-    const code = `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+    const code = codeByLocale[locale];
 
-function ToastActions() {
-  const { showToast } = useToast()
+    const successOnlyCode = successOnlyCodeByLocale[locale];
 
-  return (
-    <div className="flex flex-wrap gap-2">
-      <Button onClick={() => showToast("${messages.success}", "success")}>
-        ${isJa ? "成功通知" : "Success toast"}
-      </Button>
-      <Button
-        variant="destructive"
-        onClick={() => showToast("${messages.error}", "error", 4500)}
-      >
-        ${isJa ? "失敗通知" : "Error toast"}
-      </Button>
-      <Button variant="outline" onClick={() => showToast("${messages.info}", "info")}>
-        ${isJa ? "情報通知" : "Info toast"}
-      </Button>
-    </div>
-  )
-}
+    const durationCode = durationCodeByLocale[locale];
 
-export function ToastProviderExample() {
-  return (
-    <ToastProvider labels={{ close: "${closeLabel}" }}>
-      <ToastActions />
-    </ToastProvider>
-  )
-}`;
+    const localizedCode = localizedCodeByLocale[locale];
 
-    const successOnlyCode = `import { Button, ToastProvider, useToast } from "@gunjo/ui"
-
-function SaveAction() {
-  const { showToast } = useToast()
-
-  return (
-    <Button onClick={() => showToast("${messages.success}", "success")}>
-      ${isJa ? "保存する" : "Save"}
-    </Button>
-  )
-}
-
-export function SaveToastProvider() {
-  return (
-    <ToastProvider labels={{ close: "${closeLabel}" }}>
-      <SaveAction />
-    </ToastProvider>
-  )
-}`;
-
-    const durationCode = `import { Button, ToastProvider, useToast } from "@gunjo/ui"
-
-function RetryAction() {
-  const { showToast } = useToast()
-
-  return (
-    <Button
-      variant="destructive"
-      onClick={() => showToast("${messages.error}", "error", 4500)}
-    >
-      ${isJa ? "失敗通知を出す" : "Show failure"}
-    </Button>
-  )
-}
-
-export function ErrorToastProvider() {
-  return (
-    <ToastProvider labels={{ close: "${closeLabel}" }}>
-      <RetryAction />
-    </ToastProvider>
-  )
-}`;
-
-    const localizedCode = `import { Button, ToastProvider, useToast } from "@gunjo/ui"
-
-function LocalizedToastAction() {
-  const { showToast } = useToast()
-
-  return (
-    <Button onClick={() => showToast("${messages.info}", "info")}>
-      ${isJa ? "同期状態を表示" : "Show sync status"}
-    </Button>
-  )
-}
-
-export function LocalizedToastProvider() {
-  return (
-    <ToastProvider labels={{ close: "${closeLabel}" }}>
-      <LocalizedToastAction />
-    </ToastProvider>
-  )
-}`;
+    const richCode = richCodeByLocale[locale];
 
     const propsData = [
         {
@@ -302,26 +473,7 @@ export function LocalizedToastProvider() {
                                 </ToastProvider>
                             ),
                             previewBodyWidth: "lg",
-                            code: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
-
-function DeleteButton() {
-  const { showToast } = useToast()
-  return (
-    <Button
-      variant="outline"
-      onClick={() =>
-        showToast({
-          message: "${isJa ? "プロジェクトを削除しました。" : "Project deleted."}",
-          description: "${isJa ? "元に戻すには数秒以内に操作してください。" : "Undo within a few seconds to restore it."}",
-          type: "info",
-          action: { label: "${isJa ? "元に戻す" : "Undo"}", onClick: handleUndo },
-        })
-      }
-    >
-      ${isJa ? "削除する" : "Delete"}
-    </Button>
-  )
-}`,
+                            code: richCode,
                         },
                     ]}
                 />

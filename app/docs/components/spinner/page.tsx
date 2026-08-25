@@ -8,30 +8,46 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import feedbackMetadata from "@design/feedback-metadata.json";
 import { Button, Spinner, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 
-export default function SpinnerPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
-
-    const code = `import { Spinner } from "@gunjo/ui"
+const codeByLocale = {
+    ja: `import { Spinner } from "@gunjo/ui"
 
 export function LoadingSpinner() {
-  return <Spinner size="lg" aria-label="${isJa ? "読み込み中" : "Loading"}" />
-}`;
+  return <Spinner size="lg" aria-label="読み込み中" />
+}`,
+    en: `import { Spinner } from "@gunjo/ui"
 
-    const sizesCode = `import { Spinner } from "@gunjo/ui"
+export function LoadingSpinner() {
+  return <Spinner size="lg" aria-label="Loading" />
+}`,
+};
+
+const sizesCodeByLocale = {
+    ja: `import { Spinner } from "@gunjo/ui"
 
 export function SpinnerSizes() {
   return (
     <div className="flex items-center gap-4">
-      <Spinner size="sm" aria-label="${isJa ? "小さい読み込み表示" : "Small loading indicator"}" />
-      <Spinner aria-label="${isJa ? "読み込み中" : "Loading"}" />
-      <Spinner size="lg" aria-label="${isJa ? "大きい読み込み表示" : "Large loading indicator"}" />
+      <Spinner size="sm" aria-label="小さい読み込み表示" />
+      <Spinner aria-label="読み込み中" />
+      <Spinner size="lg" aria-label="大きい読み込み表示" />
     </div>
   )
-}`;
+}`,
+    en: `import { Spinner } from "@gunjo/ui"
 
-    const buttonCode = `import { Button, Spinner, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui"
+export function SpinnerSizes() {
+  return (
+    <div className="flex items-center gap-4">
+      <Spinner size="sm" aria-label="Small loading indicator" />
+      <Spinner aria-label="Loading" />
+      <Spinner size="lg" aria-label="Large loading indicator" />
+    </div>
+  )
+}`,
+};
+
+const buttonCodeByLocale = {
+    ja: `import { Button, Spinner, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui"
 
 export function SavingButton() {
   return (
@@ -40,16 +56,35 @@ export function SavingButton() {
         <span className="inline-flex" tabIndex={0}>
           <Button disabled className="gap-2">
             <Spinner size="sm" aria-hidden />
-            ${isJa ? "保存中" : "Saving"}
+            保存中
           </Button>
         </span>
       </TooltipTrigger>
-      <TooltipContent>${isJa ? "保存処理が完了するまで操作できません。" : "This action is unavailable until saving finishes."}</TooltipContent>
+      <TooltipContent>保存処理が完了するまで操作できません。</TooltipContent>
     </Tooltip>
   )
-}`;
+}`,
+    en: `import { Button, Spinner, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui"
 
-    const blockingCode = `import { Spinner } from "@gunjo/ui"
+export function SavingButton() {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <span className="inline-flex" tabIndex={0}>
+          <Button disabled className="gap-2">
+            <Spinner size="sm" aria-hidden />
+            Saving
+          </Button>
+        </span>
+      </TooltipTrigger>
+      <TooltipContent>This action is unavailable until saving finishes.</TooltipContent>
+    </Tooltip>
+  )
+}`,
+};
+
+const blockingCodeByLocale = {
+    ja: `import { Spinner } from "@gunjo/ui"
 
 export function BlockingLoader() {
   return (
@@ -60,22 +95,66 @@ export function BlockingLoader() {
     >
       <Spinner size="lg" aria-hidden />
       <span className="text-sm text-muted-foreground">
-        ${isJa ? "データを読み込んでいます。" : "Loading data."}
+        データを読み込んでいます。
       </span>
     </div>
   )
-}`;
+}`,
+    en: `import { Spinner } from "@gunjo/ui"
 
-    const inlineCode = `import { Spinner } from "@gunjo/ui"
+export function BlockingLoader() {
+  return (
+    <div
+      role="status"
+      aria-live="polite"
+      className="flex h-40 w-full flex-col items-center justify-center gap-3 rounded-lg border bg-muted/40"
+    >
+      <Spinner size="lg" aria-hidden />
+      <span className="text-sm text-muted-foreground">
+        Loading data.
+      </span>
+    </div>
+  )
+}`,
+};
+
+const inlineCodeByLocale = {
+    ja: `import { Spinner } from "@gunjo/ui"
 
 export function InlineRefreshing() {
   return (
     <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
       <Spinner size="sm" aria-hidden />
-      ${isJa ? "最新状態に更新しています。" : "Refreshing the latest state."}
+      最新状態に更新しています。
     </span>
   )
-}`;
+}`,
+    en: `import { Spinner } from "@gunjo/ui"
+
+export function InlineRefreshing() {
+  return (
+    <span className="inline-flex items-center gap-2 text-sm text-muted-foreground">
+      <Spinner size="sm" aria-hidden />
+      Refreshing the latest state.
+    </span>
+  )
+}`,
+};
+
+export default function SpinnerPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
+
+    const code = codeByLocale[locale];
+
+    const sizesCode = sizesCodeByLocale[locale];
+
+    const buttonCode = buttonCodeByLocale[locale];
+
+    const blockingCode = blockingCodeByLocale[locale];
+
+    const inlineCode = inlineCodeByLocale[locale];
 
     const propsData = [
         {

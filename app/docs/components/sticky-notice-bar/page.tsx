@@ -16,12 +16,8 @@ import {
 import feedbackMetadata from "@design/feedback-metadata.json";
 import { DocNote } from "@gunjo/ui";
 
-export default function StickyNoticeBarPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
-
-    const topCode = `import * as React from "react"
+const topCodeByLocale = {
+    ja: `import * as React from "react"
 import { Button, StickyNoticeBar, TextLink } from "@gunjo/ui"
 import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
 
@@ -34,29 +30,65 @@ export function SiteAnnouncement() {
         <StickyNoticeBar
           edge="top"
           icon={<Speakerphone className="h-5 w-5" />}
-          action={<TextLink href="#release-notes">${isJa ? "変更点を見る" : "View changes"}</TextLink>}
-          dismissLabel="${isJa ? "告知を閉じる" : "Dismiss announcement"}"
+          action={<TextLink href="#release-notes">変更点を見る</TextLink>}
+          dismissLabel="告知を閉じる"
           onDismiss={() => setVisible(false)}
         >
-          ${isJa ? "デザインレビュー用チェックリストを更新しました。長い告知は狭い画面で折り返します。" : "The design review checklist has been updated. Long announcements wrap on narrow screens."}
+          デザインレビュー用チェックリストを更新しました。長い告知は狭い画面で折り返します。
         </StickyNoticeBar>
       ) : null}
 
       <div className="h-full overflow-y-auto px-6 pb-24 pt-28">
         {!visible ? (
           <Button size="touch" onClick={() => setVisible(true)}>
-            ${isJa ? "告知をもう一度表示" : "Show announcement again"}
+            告知をもう一度表示
           </Button>
         ) : null}
         <section id="release-notes" className="mt-[36rem] scroll-mt-28">
-          <h2>${isJa ? "変更点" : "Changes"}</h2>
+          <h2>変更点</h2>
         </section>
       </div>
     </main>
   )
-}`;
+}`,
+    en: `import * as React from "react"
+import { Button, StickyNoticeBar, TextLink } from "@gunjo/ui"
+import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
 
-    const bottomCode = `import * as React from "react"
+export function SiteAnnouncement() {
+  const [visible, setVisible] = React.useState(true)
+
+  return (
+    <main className="h-screen overflow-hidden bg-background text-foreground">
+      {visible ? (
+        <StickyNoticeBar
+          edge="top"
+          icon={<Speakerphone className="h-5 w-5" />}
+          action={<TextLink href="#release-notes">View changes</TextLink>}
+          dismissLabel="Dismiss announcement"
+          onDismiss={() => setVisible(false)}
+        >
+          The design review checklist has been updated. Long announcements wrap on narrow screens.
+        </StickyNoticeBar>
+      ) : null}
+
+      <div className="h-full overflow-y-auto px-6 pb-24 pt-28">
+        {!visible ? (
+          <Button size="touch" onClick={() => setVisible(true)}>
+            Show announcement again
+          </Button>
+        ) : null}
+        <section id="release-notes" className="mt-[36rem] scroll-mt-28">
+          <h2>Changes</h2>
+        </section>
+      </div>
+    </main>
+  )
+}`,
+};
+
+const bottomCodeByLocale = {
+    ja: `import * as React from "react"
 import { StickyNoticeBar, TextLink } from "@gunjo/ui"
 import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
 
@@ -72,19 +104,58 @@ export function ContainedAnnouncement() {
           placement="container"
           portalContainer={container}
           icon={<Speakerphone className="h-5 w-5" />}
-          action={<TextLink href="#details">${isJa ? "変更点を見る" : "View changes"}</TextLink>}
-          dismissLabel="${isJa ? "告知を閉じる" : "Dismiss announcement"}"
+          action={<TextLink href="#details">変更点を見る</TextLink>}
+          dismissLabel="告知を閉じる"
           onDismiss={() => setVisible(false)}
         >
-          ${isJa ? "デザインレビュー用チェックリストを更新しました。" : "The design review checklist has been updated."}
+          デザインレビュー用チェックリストを更新しました。
         </StickyNoticeBar>
       ) : null}
       <div className="h-full overflow-y-auto pb-32">
-        <section id="details">${isJa ? "変更点" : "Changes"}</section>
+        <section id="details">変更点</section>
       </div>
     </div>
   )
-}`;
+}`,
+    en: `import * as React from "react"
+import { StickyNoticeBar, TextLink } from "@gunjo/ui"
+import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
+
+export function ContainedAnnouncement() {
+  const [container, setContainer] = React.useState<HTMLDivElement | null>(null)
+  const [visible, setVisible] = React.useState(true)
+
+  return (
+    <div ref={setContainer} className="relative h-72 overflow-hidden rounded-lg border">
+      {container && visible ? (
+        <StickyNoticeBar
+          edge="bottom"
+          placement="container"
+          portalContainer={container}
+          icon={<Speakerphone className="h-5 w-5" />}
+          action={<TextLink href="#details">View changes</TextLink>}
+          dismissLabel="Dismiss announcement"
+          onDismiss={() => setVisible(false)}
+        >
+          The design review checklist has been updated.
+        </StickyNoticeBar>
+      ) : null}
+      <div className="h-full overflow-y-auto pb-32">
+        <section id="details">Changes</section>
+      </div>
+    </div>
+  )
+}`,
+};
+
+export default function StickyNoticeBarPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
+
+    const topCode = topCodeByLocale[locale];
+
+    const bottomCode = bottomCodeByLocale[locale];
 
     const propsData = [
         {

@@ -49,28 +49,39 @@ function ToastTriggerPreview({
     );
 }
 
-export default function ToastPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
-    const closeLabel = isJa ? "通知を閉じる" : "Close notification";
-
-    const code = `import { Toast } from "@gunjo/ui"
+const codeByLocale = {
+    ja: `import { Toast } from "@gunjo/ui"
 
 export function SavedToast() {
   return (
     <Toast
-      message="${isJa ? "プロジェクトを保存しました。" : "Project saved."}"
+      message="プロジェクトを保存しました。"
       type="success"
       isVisible={true}
       onClose={() => {}}
       placement="inline"
-      closeLabel="${closeLabel}"
+      closeLabel="通知を閉じる"
     />
   )
-}`;
+}`,
+    en: `import { Toast } from "@gunjo/ui"
 
-    const successCode = `import * as React from "react"
+export function SavedToast() {
+  return (
+    <Toast
+      message="Project saved."
+      type="success"
+      isVisible={true}
+      onClose={() => {}}
+      placement="inline"
+      closeLabel="Close notification"
+    />
+  )
+}`,
+};
+
+const successCodeByLocale = {
+    ja: `import * as React from "react"
 import { Button, Toast } from "@gunjo/ui"
 
 export function SaveToastExample() {
@@ -79,22 +90,47 @@ export function SaveToastExample() {
   return (
     <div className="space-y-4">
       <Button variant="outline" onClick={() => setVisible(true)}>
-        ${isJa ? "保存する" : "Save"}
+        保存する
       </Button>
       <Toast
-        message="${isJa ? "プロジェクトを保存しました。" : "Project saved."}"
+        message="プロジェクトを保存しました。"
         type="success"
         isVisible={visible}
         onClose={() => setVisible(false)}
         duration={2500}
         placement="inline"
-        closeLabel="${closeLabel}"
+        closeLabel="通知を閉じる"
       />
     </div>
   )
-}`;
+}`,
+    en: `import * as React from "react"
+import { Button, Toast } from "@gunjo/ui"
 
-    const errorCode = `import * as React from "react"
+export function SaveToastExample() {
+  const [visible, setVisible] = React.useState(false)
+
+  return (
+    <div className="space-y-4">
+      <Button variant="outline" onClick={() => setVisible(true)}>
+        Save
+      </Button>
+      <Toast
+        message="Project saved."
+        type="success"
+        isVisible={visible}
+        onClose={() => setVisible(false)}
+        duration={2500}
+        placement="inline"
+        closeLabel="Close notification"
+      />
+    </div>
+  )
+}`,
+};
+
+const errorCodeByLocale = {
+    ja: `import * as React from "react"
 import { Button, Toast } from "@gunjo/ui"
 
 export function ErrorToastExample() {
@@ -103,22 +139,47 @@ export function ErrorToastExample() {
   return (
     <div className="space-y-4">
       <Button variant="outline" onClick={() => setVisible(true)}>
-        ${isJa ? "エラーを表示" : "Show error"}
+        エラーを表示
       </Button>
       <Toast
-        message="${isJa ? "接続が切れたため保存できませんでした。" : "Could not save because the connection was lost."}"
+        message="接続が切れたため保存できませんでした。"
         type="error"
         isVisible={visible}
         onClose={() => setVisible(false)}
         duration={4000}
         placement="inline"
-        closeLabel="${closeLabel}"
+        closeLabel="通知を閉じる"
       />
     </div>
   )
-}`;
+}`,
+    en: `import * as React from "react"
+import { Button, Toast } from "@gunjo/ui"
 
-    const infoCode = `import * as React from "react"
+export function ErrorToastExample() {
+  const [visible, setVisible] = React.useState(false)
+
+  return (
+    <div className="space-y-4">
+      <Button variant="outline" onClick={() => setVisible(true)}>
+        Show error
+      </Button>
+      <Toast
+        message="Could not save because the connection was lost."
+        type="error"
+        isVisible={visible}
+        onClose={() => setVisible(false)}
+        duration={4000}
+        placement="inline"
+        closeLabel="Close notification"
+      />
+    </div>
+  )
+}`,
+};
+
+const infoCodeByLocale = {
+    ja: `import * as React from "react"
 import { Button, Toast } from "@gunjo/ui"
 
 export function InfoToastExample() {
@@ -127,22 +188,47 @@ export function InfoToastExample() {
   return (
     <div className="space-y-4">
       <Button variant="outline" onClick={() => setVisible(true)}>
-        ${isJa ? "お知らせを表示" : "Show info"}
+        お知らせを表示
       </Button>
       <Toast
-        message="${isJa ? "新しいダッシュボードを有効にしました。" : "The new dashboard has been enabled."}"
+        message="新しいダッシュボードを有効にしました。"
         type="info"
         isVisible={visible}
         onClose={() => setVisible(false)}
         duration={3000}
         placement="inline"
-        closeLabel="${closeLabel}"
+        closeLabel="通知を閉じる"
       />
     </div>
   )
-}`;
+}`,
+    en: `import * as React from "react"
+import { Button, Toast } from "@gunjo/ui"
 
-    const fixedCode = `import * as React from "react"
+export function InfoToastExample() {
+  const [visible, setVisible] = React.useState(false)
+
+  return (
+    <div className="space-y-4">
+      <Button variant="outline" onClick={() => setVisible(true)}>
+        Show info
+      </Button>
+      <Toast
+        message="The new dashboard has been enabled."
+        type="info"
+        isVisible={visible}
+        onClose={() => setVisible(false)}
+        duration={3000}
+        placement="inline"
+        closeLabel="Close notification"
+      />
+    </div>
+  )
+}`,
+};
+
+const fixedCodeByLocale = {
+    ja: `import * as React from "react"
 import { Button, Toast } from "@gunjo/ui"
 
 export function FloatingToastExample() {
@@ -151,19 +237,111 @@ export function FloatingToastExample() {
   return (
     <div className="space-y-4">
       <Button onClick={() => setVisible(true)}>
-        ${isJa ? "通知を出す" : "Show toast"}
+        通知を出す
       </Button>
       <Toast
-        message="${isJa ? "処理が完了しました。" : "The task is complete."}"
+        message="処理が完了しました。"
         type="success"
         isVisible={visible}
         onClose={() => setVisible(false)}
         placement="inline"
-        closeLabel="${closeLabel}"
+        closeLabel="通知を閉じる"
       />
     </div>
   )
-}`;
+}`,
+    en: `import * as React from "react"
+import { Button, Toast } from "@gunjo/ui"
+
+export function FloatingToastExample() {
+  const [visible, setVisible] = React.useState(false)
+
+  return (
+    <div className="space-y-4">
+      <Button onClick={() => setVisible(true)}>
+        Show toast
+      </Button>
+      <Toast
+        message="The task is complete."
+        type="success"
+        isVisible={visible}
+        onClose={() => setVisible(false)}
+        placement="inline"
+        closeLabel="Close notification"
+      />
+    </div>
+  )
+}`,
+};
+
+const deleteCodeByLocale = {
+    ja: `import * as React from "react"
+import { Button, Toast } from "@gunjo/ui"
+
+export function DeleteToastExample() {
+  const [visible, setVisible] = React.useState(false)
+  const handleUndo = () => setVisible(false)
+
+  return (
+    <div className="space-y-4">
+      <Button variant="outline" onClick={() => setVisible(true)}>
+        削除する
+      </Button>
+      <Toast
+        message="プロジェクトを削除しました。"
+        description="元に戻すには数秒以内に操作してください。"
+        type="info"
+        action={{ label: "元に戻す", onClick: handleUndo }}
+        isVisible={visible}
+        onClose={() => setVisible(false)}
+        placement="inline"
+      />
+    </div>
+  )
+}`,
+    en: `import * as React from "react"
+import { Button, Toast } from "@gunjo/ui"
+
+export function DeleteToastExample() {
+  const [visible, setVisible] = React.useState(false)
+  const handleUndo = () => setVisible(false)
+
+  return (
+    <div className="space-y-4">
+      <Button variant="outline" onClick={() => setVisible(true)}>
+        Delete
+      </Button>
+      <Toast
+        message="Project deleted."
+        description="Undo within a few seconds to restore it."
+        type="info"
+        action={{ label: "Undo", onClick: handleUndo }}
+        isVisible={visible}
+        onClose={() => setVisible(false)}
+        placement="inline"
+      />
+    </div>
+  )
+}`,
+};
+
+export default function ToastPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
+    const closeLabel = isJa ? "通知を閉じる" : "Close notification";
+
+    const code = codeByLocale[locale];
+
+    const successCode = successCodeByLocale[locale];
+
+    const errorCode = errorCodeByLocale[locale];
+
+    const infoCode = infoCodeByLocale[locale];
+
+    const fixedCode = fixedCodeByLocale[locale];
+
+    const deleteCode = deleteCodeByLocale[locale];
 
     const toastVariantType = getCategoryVariantUnionType("feedback", "toast");
     const propsData = [
@@ -331,29 +509,7 @@ export function FloatingToastExample() {
                                 />
                             ),
                             previewBodyWidth: "md",
-                            code: `import * as React from "react"
-import { Button, Toast } from "@gunjo/ui"
-
-export function DeleteToastExample() {
-  const [visible, setVisible] = React.useState(false)
-
-  return (
-    <div className="space-y-4">
-      <Button variant="outline" onClick={() => setVisible(true)}>
-        ${isJa ? "削除する" : "Delete"}
-      </Button>
-      <Toast
-        message="${isJa ? "プロジェクトを削除しました。" : "Project deleted."}"
-        description="${isJa ? "元に戻すには数秒以内に操作してください。" : "Undo within a few seconds to restore it."}"
-        type="info"
-        action={{ label: "${isJa ? "元に戻す" : "Undo"}", onClick: handleUndo }}
-        isVisible={visible}
-        onClose={() => setVisible(false)}
-        placement="inline"
-      />
-    </div>
-  )
-}`,
+                            code: deleteCode,
                         },
                     ]}
                 />

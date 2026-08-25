@@ -8,22 +8,18 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import feedbackMetadata from "@design/feedback-metadata.json";
 import { StatusBar } from "@gunjo/ui";
 
-export default function StatusBarDocPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
-
-    const code = `import { StatusBar } from "@gunjo/ui"
+const codeByLocale = {
+    ja: `import { StatusBar } from "@gunjo/ui"
 
 export function EditorStatusBar() {
   return (
     <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
       <div className="border-b bg-muted/40 px-4 py-2 text-sm font-medium">
-        ${isJa ? "記事エディタ" : "Article editor"}
+        記事エディタ
       </div>
       <div className="grid min-h-40 grid-cols-1 text-sm sm:grid-cols-[160px_1fr]">
         <aside className="border-r bg-muted/20 p-3 text-muted-foreground">
-          ${isJa ? "下書き / 公開設定 / 履歴" : "Drafts / Publish / History"}
+          下書き / 公開設定 / 履歴
         </aside>
         <main className="space-y-3 p-4">
           <div className="h-4 w-2/3 rounded bg-muted" />
@@ -34,23 +30,54 @@ export function EditorStatusBar() {
       <StatusBar
         fixed={false}
         className="w-full"
-        leftNode={<span>${isJa ? "保存済み" : "Saved"}</span>}
+        leftNode={<span>保存済み</span>}
         rightNode={<span>UTF-8</span>}
       >
-        <span>${isJa ? "バックグラウンド処理なし" : "No background jobs"}</span>
+        <span>バックグラウンド処理なし</span>
       </StatusBar>
     </div>
   )
-}`;
+}`,
+    en: `import { StatusBar } from "@gunjo/ui"
 
-    const workspaceCode = `import { StatusBar } from "@gunjo/ui"
+export function EditorStatusBar() {
+  return (
+    <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
+      <div className="border-b bg-muted/40 px-4 py-2 text-sm font-medium">
+        Article editor
+      </div>
+      <div className="grid min-h-40 grid-cols-1 text-sm sm:grid-cols-[160px_1fr]">
+        <aside className="border-r bg-muted/20 p-3 text-muted-foreground">
+          Drafts / Publish / History
+        </aside>
+        <main className="space-y-3 p-4">
+          <div className="h-4 w-2/3 rounded bg-muted" />
+          <div className="h-3 w-full rounded bg-muted/70" />
+          <div className="h-3 w-5/6 rounded bg-muted/70" />
+        </main>
+      </div>
+      <StatusBar
+        fixed={false}
+        className="w-full"
+        leftNode={<span>Saved</span>}
+        rightNode={<span>UTF-8</span>}
+      >
+        <span>No background jobs</span>
+      </StatusBar>
+    </div>
+  )
+}`,
+};
+
+const workspaceCodeByLocale = {
+    ja: `import { StatusBar } from "@gunjo/ui"
 
 export function WorkspaceStatusBar() {
   return (
     <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
       <div className="grid min-h-44 grid-cols-1 sm:grid-cols-[180px_1fr]">
         <aside className="border-r bg-muted/30 p-3 text-sm text-muted-foreground">
-          ${isJa ? "すべて / 画像 / 動画" : "All / Images / Videos"}
+          すべて / 画像 / 動画
         </aside>
         <main className="grid grid-cols-2 gap-3 p-4 sm:grid-cols-3">
           <div className="aspect-video rounded bg-muted" />
@@ -61,18 +88,44 @@ export function WorkspaceStatusBar() {
       <StatusBar
         fixed={false}
         className="w-full"
-        leftNode={<span>${isJa ? "同期済み" : "Synced"}</span>}
-        rightNode={<span>${isJa ? "3 件選択中" : "3 selected"}</span>}
+        leftNode={<span>同期済み</span>}
+        rightNode={<span>3 件選択中</span>}
       >
-        <span>${isJa ? "アップロード待ちはありません" : "No pending uploads"}</span>
+        <span>アップロード待ちはありません</span>
       </StatusBar>
     </div>
   )
-}`;
+}`,
+    en: `import { StatusBar } from "@gunjo/ui"
 
-    const editorCode = code;
+export function WorkspaceStatusBar() {
+  return (
+    <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
+      <div className="grid min-h-44 grid-cols-1 sm:grid-cols-[180px_1fr]">
+        <aside className="border-r bg-muted/30 p-3 text-sm text-muted-foreground">
+          All / Images / Videos
+        </aside>
+        <main className="grid grid-cols-2 gap-3 p-4 sm:grid-cols-3">
+          <div className="aspect-video rounded bg-muted" />
+          <div className="aspect-video rounded bg-muted" />
+          <div className="aspect-video rounded bg-muted" />
+        </main>
+      </div>
+      <StatusBar
+        fixed={false}
+        className="w-full"
+        leftNode={<span>Synced</span>}
+        rightNode={<span>3 selected</span>}
+      >
+        <span>No pending uploads</span>
+      </StatusBar>
+    </div>
+  )
+}`,
+};
 
-    const issueCode = `import { StatusBar } from "@gunjo/ui"
+const issueCodeByLocale = {
+    ja: `import { StatusBar } from "@gunjo/ui"
 
 export function IssueStatusBar() {
   return (
@@ -85,34 +138,92 @@ export function IssueStatusBar() {
       <StatusBar
         fixed={false}
         className="w-full bg-destructive text-foreground"
-        leftNode={<span>${isJa ? "未保存" : "Unsaved"}</span>}
-        rightNode={<span>${isJa ? "再接続中" : "Reconnecting"}</span>}
+        leftNode={<span>未保存</span>}
+        rightNode={<span>再接続中</span>}
       >
-        <span>${isJa ? "接続が不安定です" : "Connection is unstable"}</span>
+        <span>接続が不安定です</span>
       </StatusBar>
     </div>
   )
-}`;
+}`,
+    en: `import { StatusBar } from "@gunjo/ui"
 
-    const fixedCode = `import { StatusBar } from "@gunjo/ui"
+export function IssueStatusBar() {
+  return (
+    <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
+      <div className="min-h-36 space-y-3 p-4 text-sm">
+        <div className="h-4 w-40 rounded bg-muted" />
+        <div className="h-3 w-full rounded bg-muted/70" />
+        <div className="h-3 w-3/4 rounded bg-muted/70" />
+      </div>
+      <StatusBar
+        fixed={false}
+        className="w-full bg-destructive text-foreground"
+        leftNode={<span>Unsaved</span>}
+        rightNode={<span>Reconnecting</span>}
+      >
+        <span>Connection is unstable</span>
+      </StatusBar>
+    </div>
+  )
+}`,
+};
+
+const fixedCodeByLocale = {
+    ja: `import { StatusBar } from "@gunjo/ui"
 
 export function AppShellStatusBar() {
   return (
     <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
       <div className="flex min-h-40 items-center justify-center bg-muted/20 text-sm text-muted-foreground">
-        ${isJa ? "アプリケーションの作業領域" : "Application workspace"}
+        アプリケーションの作業領域
       </div>
       <StatusBar
         fixed={false}
         className="w-full"
-        leftNode={<span>${isJa ? "準備完了" : "Ready"}</span>}
+        leftNode={<span>準備完了</span>}
         rightNode={<span>v1.4.0</span>}
       >
-        <span>${isJa ? "バックグラウンド処理はありません" : "No background jobs"}</span>
+        <span>バックグラウンド処理はありません</span>
       </StatusBar>
     </div>
   )
-}`;
+}`,
+    en: `import { StatusBar } from "@gunjo/ui"
+
+export function AppShellStatusBar() {
+  return (
+    <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
+      <div className="flex min-h-40 items-center justify-center bg-muted/20 text-sm text-muted-foreground">
+        Application workspace
+      </div>
+      <StatusBar
+        fixed={false}
+        className="w-full"
+        leftNode={<span>Ready</span>}
+        rightNode={<span>v1.4.0</span>}
+      >
+        <span>No background jobs</span>
+      </StatusBar>
+    </div>
+  )
+}`,
+};
+
+export default function StatusBarDocPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
+
+    const code = codeByLocale[locale];
+
+    const workspaceCode = workspaceCodeByLocale[locale];
+
+    const editorCode = code;
+
+    const issueCode = issueCodeByLocale[locale];
+
+    const fixedCode = fixedCodeByLocale[locale];
 
     const propsData = [
         {
