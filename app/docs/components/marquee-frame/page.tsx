@@ -65,7 +65,9 @@ export function Example() {
               <p className="text-xs font-medium uppercase text-muted-foreground">{path}</p>
               <h3 className="mt-2 text-xl font-semibold text-foreground">{copy.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{copy.description}</p>
-              <p className="mt-4 text-xs text-muted-foreground">Active viewport: {viewport}</p>
+              <p className="mt-4 text-xs text-muted-foreground">
+                {"Active viewport: " + viewport}
+              </p>
             </div>
           </div>
         )}
@@ -129,7 +131,9 @@ export function Example() {
               <p className="text-xs font-medium uppercase text-muted-foreground">{path}</p>
               <h3 className="mt-2 text-xl font-semibold text-foreground">{copy.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{copy.description}</p>
-              <p className="mt-4 text-xs text-muted-foreground">現在の表示サイズ: {viewport}</p>
+              <p className="mt-4 text-xs text-muted-foreground">
+                {"現在の表示サイズ: " + viewport}
+              </p>
             </div>
           </div>
         )}
@@ -149,7 +153,7 @@ export function MobileFirstFrame() {
     <MarqueeFrame path="/preview" initialViewport="mobile" maxCanvasHeight={620}>
       {(viewport) => (
         <div className="flex h-full items-center justify-center bg-background p-6">
-          Mobile-first preview / {viewport}
+          {"Mobile-first preview / " + viewport}
         </div>
       )}
     </MarqueeFrame>
@@ -168,7 +172,7 @@ export function CustomViewportFrame() {
     <MarqueeFrame path="/custom" viewportSizes={viewportSizes} maxCanvasHeight={540}>
       {(viewport) => (
         <div className="flex h-full items-center justify-center bg-background p-6">
-          Custom viewport / {viewport}
+          {"Custom viewport / " + viewport}
         </div>
       )}
     </MarqueeFrame>
@@ -184,7 +188,7 @@ export function MobileFirstFrame() {
     <MarqueeFrame path="/preview" initialViewport="mobile" maxCanvasHeight={620}>
       {(viewport) => (
         <div className="flex h-full items-center justify-center bg-background p-6">
-          モバイル優先プレビュー / {viewport}
+          {"モバイル優先プレビュー / " + viewport}
         </div>
       )}
     </MarqueeFrame>
@@ -203,7 +207,7 @@ export function CustomViewportFrame() {
     <MarqueeFrame path="/custom" viewportSizes={viewportSizes} maxCanvasHeight={540}>
       {(viewport) => (
         <div className="flex h-full items-center justify-center bg-background p-6">
-          カスタム表示サイズ / {viewport}
+          {"カスタム表示サイズ / " + viewport}
         </div>
       )}
     </MarqueeFrame>

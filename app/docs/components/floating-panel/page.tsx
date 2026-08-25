@@ -11,7 +11,11 @@ import overlayMetadata from "@design/overlay-metadata.json";
 const floatingPanelCodes = {
     canvas: {
         ja: `import { FloatingPanel } from "@gunjo/ui";
-import { IconBox as Box, IconPointer as MousePointer2, IconStack2 as Layers } from "@tabler/icons-react";
+import {
+  IconBox as Box,
+  IconPointer as MousePointer2,
+  IconStack2 as Layers,
+} from "@tabler/icons-react";
 
 export function CanvasFloatingPanels() {
   const tools = [
@@ -69,7 +73,11 @@ export function CanvasFloatingPanels() {
   );
 }`,
         en: `import { FloatingPanel } from "@gunjo/ui";
-import { IconBox as Box, IconPointer as MousePointer2, IconStack2 as Layers } from "@tabler/icons-react";
+import {
+  IconBox as Box,
+  IconPointer as MousePointer2,
+  IconStack2 as Layers,
+} from "@tabler/icons-react";
 
 export function CanvasFloatingPanels() {
   const tools = [
@@ -201,7 +209,12 @@ export function DraggableResizableFloatingPanel() {
     },
     toolbar: {
         ja: `import { FloatingPanel, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@gunjo/ui";
-import { IconBox as Box, IconPointer as MousePointer2, IconSettings as Settings, IconStack2 as Layers } from "@tabler/icons-react";
+import {
+  IconBox as Box,
+  IconPointer as MousePointer2,
+  IconSettings as Settings,
+  IconStack2 as Layers,
+} from "@tabler/icons-react";
 
 export function FloatingToolbar() {
   const tools = [
@@ -222,7 +235,11 @@ export function FloatingToolbar() {
       >
         編集対象
       </div>
-      <FloatingPanel variant="glass" className="absolute left-8 top-8 w-auto" contentClassName="flex items-center gap-1 p-1">
+      <FloatingPanel
+        variant="glass"
+        className="absolute left-8 top-8 w-auto"
+        contentClassName="flex items-center gap-1 p-1"
+      >
         <TooltipProvider>
           {tools.map(({ icon: Icon, label }) => (
             <Tooltip key={label}>
@@ -240,7 +257,12 @@ export function FloatingToolbar() {
   );
 }`,
         en: `import { FloatingPanel, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@gunjo/ui";
-import { IconBox as Box, IconPointer as MousePointer2, IconSettings as Settings, IconStack2 as Layers } from "@tabler/icons-react";
+import {
+  IconBox as Box,
+  IconPointer as MousePointer2,
+  IconSettings as Settings,
+  IconStack2 as Layers,
+} from "@tabler/icons-react";
 
 export function FloatingToolbar() {
   const tools = [
@@ -261,7 +283,11 @@ export function FloatingToolbar() {
       >
         Editable surface
       </div>
-      <FloatingPanel variant="glass" className="absolute left-8 top-8 w-auto" contentClassName="flex items-center gap-1 p-1">
+      <FloatingPanel
+        variant="glass"
+        className="absolute left-8 top-8 w-auto"
+        contentClassName="flex items-center gap-1 p-1"
+      >
         <TooltipProvider>
           {tools.map(({ icon: Icon, label }) => (
             <Tooltip key={label}>
@@ -295,7 +321,12 @@ export function StatusFloatingPanel() {
       >
         レビュー画面
       </div>
-      <FloatingPanel title="通知" variant="solid" className="absolute bottom-8 left-8 w-80" contentClassName="p-3">
+      <FloatingPanel
+        title="通知"
+        variant="solid"
+        className="absolute bottom-8 left-8 w-80"
+        contentClassName="p-3"
+      >
         <div className="space-y-3 text-sm">
           <div className="flex items-start gap-3">
             <Bell className="mt-0.5 h-4 w-4 text-primary" />
@@ -327,7 +358,12 @@ export function StatusFloatingPanel() {
       >
         Review surface
       </div>
-      <FloatingPanel title="Notifications" variant="solid" className="absolute bottom-8 left-8 w-80" contentClassName="p-3">
+      <FloatingPanel
+        title="Notifications"
+        variant="solid"
+        className="absolute bottom-8 left-8 w-80"
+        contentClassName="p-3"
+      >
         <div className="space-y-3 text-sm">
           <div className="flex items-start gap-3">
             <Bell className="mt-0.5 h-4 w-4 text-primary" />

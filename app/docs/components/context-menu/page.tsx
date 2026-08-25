@@ -41,7 +41,11 @@ export function FileContextMenu() {
           パスをコピー
           <ContextMenuShortcut>⌘C</ContextMenuShortcut>
         </ContextMenuItem>
-        <ContextMenuItem inset disabled disabledReason="権限を変更するには管理者ロールが必要です。">権限を変更</ContextMenuItem>
+        <ContextMenuItem
+          inset
+          disabled
+          disabledReason="権限を変更するには管理者ロールが必要です。"
+        >権限を変更</ContextMenuItem>
         <ContextMenuSeparator />
         <ContextMenuCheckboxItem checked>お気に入り</ContextMenuCheckboxItem>
         <ContextMenuRadioGroup value="viewer">
@@ -85,7 +89,11 @@ export function FileContextMenu() {
           Copy path
           <ContextMenuShortcut>⌘C</ContextMenuShortcut>
         </ContextMenuItem>
-        <ContextMenuItem inset disabled disabledReason="You need the administrator role to change permissions.">Change permissions</ContextMenuItem>
+        <ContextMenuItem
+          inset
+          disabled
+          disabledReason="You need the administrator role to change permissions."
+        >Change permissions</ContextMenuItem>
         <ContextMenuSeparator />
         <ContextMenuCheckboxItem checked>Favorite</ContextMenuCheckboxItem>
         <ContextMenuRadioGroup value="viewer">
@@ -122,7 +130,10 @@ export function TextOnlyContextMenu() {
         <ContextMenuItem>名前を変更</ContextMenuItem>
         <ContextMenuItem>複製</ContextMenuItem>
         <ContextMenuSeparator />
-        <ContextMenuItem disabled disabledReason="固定フォルダー内の項目は移動できません。">移動</ContextMenuItem>
+        <ContextMenuItem
+          disabled
+          disabledReason="固定フォルダー内の項目は移動できません。"
+        >移動</ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>
   );
@@ -149,7 +160,10 @@ export function TextOnlyContextMenu() {
         <ContextMenuItem>Rename</ContextMenuItem>
         <ContextMenuItem>Duplicate</ContextMenuItem>
         <ContextMenuSeparator />
-        <ContextMenuItem disabled disabledReason="Items in a locked folder cannot be moved.">Move</ContextMenuItem>
+        <ContextMenuItem
+          disabled
+          disabledReason="Items in a locked folder cannot be moved."
+        >Move</ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>
   );
@@ -169,7 +183,11 @@ const nestedCodeByLocale = {
   ContextMenuSubTrigger,
   ContextMenuTrigger,
 } from "@gunjo/ui";
-import { IconCopy as Copy, IconFileText as FileText, IconSettings as Settings } from "@tabler/icons-react";
+import {
+  IconCopy as Copy,
+  IconFileText as FileText,
+  IconSettings as Settings,
+} from "@tabler/icons-react";
 
 export function NestedContextMenu() {
   return (
@@ -201,7 +219,11 @@ export function NestedContextMenu() {
           <ContextMenuShortcut>⌘L</ContextMenuShortcut>
         </ContextMenuItem>
         <ContextMenuSeparator />
-        <ContextMenuItem inset disabled disabledReason="非公開プロジェクトでは共有リンクを作成できません。">共有</ContextMenuItem>
+        <ContextMenuItem
+          inset
+          disabled
+          disabledReason="非公開プロジェクトでは共有リンクを作成できません。"
+        >共有</ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>
   );
@@ -218,7 +240,11 @@ export function NestedContextMenu() {
   ContextMenuSubTrigger,
   ContextMenuTrigger,
 } from "@gunjo/ui";
-import { IconCopy as Copy, IconFileText as FileText, IconSettings as Settings } from "@tabler/icons-react";
+import {
+  IconCopy as Copy,
+  IconFileText as FileText,
+  IconSettings as Settings,
+} from "@tabler/icons-react";
 
 export function NestedContextMenu() {
   return (
@@ -250,7 +276,11 @@ export function NestedContextMenu() {
           <ContextMenuShortcut>⌘L</ContextMenuShortcut>
         </ContextMenuItem>
         <ContextMenuSeparator />
-        <ContextMenuItem inset disabled disabledReason="Private projects cannot create share links.">Share</ContextMenuItem>
+        <ContextMenuItem
+          inset
+          disabled
+          disabledReason="Private projects cannot create share links."
+        >Share</ContextMenuItem>
       </ContextMenuContent>
     </ContextMenu>
   );

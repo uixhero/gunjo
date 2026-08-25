@@ -92,74 +92,164 @@ export function ShapeInspector() {
 
 const stateCodeByLocale = {
     en: {
-        compact: `<InspectorPanel title="Text layer" className="h-[320px] w-[280px] rounded-lg border">
-  <InspectorSection title="Typography">
-    <InspectorField label="Font size">
-      <Input defaultValue="16" className="h-8 w-full min-w-0" />
-    </InspectorField>
-    <InspectorField label="Weight">
-      <Input defaultValue="Medium" className="h-8 w-full min-w-0" />
-    </InspectorField>
-  </InspectorSection>
-</InspectorPanel>`,
-        customHeader: `<InspectorPanel
-  className="h-[360px] w-[320px] rounded-lg border"
-  header={
-    <HStack justify="between" className="border-b bg-muted/30 px-4 py-3">
-      <span className="text-sm font-semibold">Image settings</span>
-      <Button size="sm" variant="outline">Replace</Button>
-    </HStack>
-  }
->
-  <InspectorSection title="Asset">
-    <InspectorField label="File name">
-      <Input defaultValue="hero-cover.jpg" className="h-8 w-full min-w-0" />
-    </InspectorField>
-  </InspectorSection>
-</InspectorPanel>`,
-        footerless: `<InspectorPanel title="Read-only metadata" className="h-[280px] w-[320px] rounded-lg border">
-  <InspectorSection title="Details">
-    <dl className="grid gap-2 text-sm">
-      <div className="flex justify-between gap-4"><dt className="text-muted-foreground">Type</dt><dd>PNG</dd></div>
-      <div className="flex justify-between gap-4"><dt className="text-muted-foreground">Size</dt><dd>2.4 MB</dd></div>
-    </dl>
-  </InspectorSection>
-</InspectorPanel>`,
+        compact: `import {
+  InspectorField,
+  InspectorPanel,
+  InspectorSection,
+  Input,
+} from "@gunjo/ui";
+
+export function TextLayerInspector() {
+  return (
+    <InspectorPanel
+      title="Text layer"
+      className="h-[320px] w-[280px] rounded-lg border"
+    >
+      <InspectorSection title="Typography">
+        <InspectorField label="Font size">
+          <Input defaultValue="16" className="h-8 w-full min-w-0" />
+        </InspectorField>
+        <InspectorField label="Weight">
+          <Input defaultValue="Medium" className="h-8 w-full min-w-0" />
+        </InspectorField>
+      </InspectorSection>
+    </InspectorPanel>
+  );
+}`,
+        customHeader: `import {
+  Button,
+  HStack,
+  InspectorField,
+  InspectorPanel,
+  InspectorSection,
+  Input,
+} from "@gunjo/ui";
+
+export function ImageSettingsInspector() {
+  return (
+    <InspectorPanel
+      className="h-[360px] w-[320px] rounded-lg border"
+      header={
+        <HStack justify="between" className="border-b bg-muted/30 px-4 py-3">
+          <span className="text-sm font-semibold">Image settings</span>
+          <Button size="sm" variant="outline">Replace</Button>
+        </HStack>
+      }
+    >
+      <InspectorSection title="Asset">
+        <InspectorField label="File name">
+          <Input defaultValue="hero-cover.jpg" className="h-8 w-full min-w-0" />
+        </InspectorField>
+      </InspectorSection>
+    </InspectorPanel>
+  );
+}`,
+        footerless: `import {
+  InspectorPanel,
+  InspectorSection,
+} from "@gunjo/ui";
+
+export function ReadOnlyMetadataInspector() {
+  return (
+    <InspectorPanel
+      title="Read-only metadata"
+      className="h-[280px] w-[320px] rounded-lg border"
+    >
+      <InspectorSection title="Details">
+        <dl className="grid gap-2 text-sm">
+          <div className="flex justify-between gap-4">
+            <dt className="text-muted-foreground">Type</dt>
+            <dd>PNG</dd>
+          </div>
+          <div className="flex justify-between gap-4">
+            <dt className="text-muted-foreground">Size</dt>
+            <dd>2.4 MB</dd>
+          </div>
+        </dl>
+      </InspectorSection>
+    </InspectorPanel>
+  );
+}`,
     },
     ja: {
-        compact: `<InspectorPanel title="テキストレイヤー" className="h-[320px] w-[280px] rounded-lg border">
-  <InspectorSection title="タイポグラフィ">
-    <InspectorField label="文字サイズ">
-      <Input defaultValue="16" className="h-8 w-full min-w-0" />
-    </InspectorField>
-    <InspectorField label="太さ">
-      <Input defaultValue="Medium" className="h-8 w-full min-w-0" />
-    </InspectorField>
-  </InspectorSection>
-</InspectorPanel>`,
-        customHeader: `<InspectorPanel
-  className="h-[360px] w-[320px] rounded-lg border"
-  header={
-    <HStack justify="between" className="border-b bg-muted/30 px-4 py-3">
-      <span className="text-sm font-semibold">画像設定</span>
-      <Button size="sm" variant="outline">差し替え</Button>
-    </HStack>
-  }
->
-  <InspectorSection title="アセット">
-    <InspectorField label="ファイル名">
-      <Input defaultValue="hero-cover.jpg" className="h-8 w-full min-w-0" />
-    </InspectorField>
-  </InspectorSection>
-</InspectorPanel>`,
-        footerless: `<InspectorPanel title="読み取り専用メタデータ" className="h-[280px] w-[320px] rounded-lg border">
-  <InspectorSection title="詳細">
-    <dl className="grid gap-2 text-sm">
-      <div className="flex justify-between gap-4"><dt className="text-muted-foreground">形式</dt><dd>PNG</dd></div>
-      <div className="flex justify-between gap-4"><dt className="text-muted-foreground">サイズ</dt><dd>2.4 MB</dd></div>
-    </dl>
-  </InspectorSection>
-</InspectorPanel>`,
+        compact: `import {
+  InspectorField,
+  InspectorPanel,
+  InspectorSection,
+  Input,
+} from "@gunjo/ui";
+
+export function TextLayerInspector() {
+  return (
+    <InspectorPanel
+      title="テキストレイヤー"
+      className="h-[320px] w-[280px] rounded-lg border"
+    >
+      <InspectorSection title="タイポグラフィ">
+        <InspectorField label="文字サイズ">
+          <Input defaultValue="16" className="h-8 w-full min-w-0" />
+        </InspectorField>
+        <InspectorField label="太さ">
+          <Input defaultValue="Medium" className="h-8 w-full min-w-0" />
+        </InspectorField>
+      </InspectorSection>
+    </InspectorPanel>
+  );
+}`,
+        customHeader: `import {
+  Button,
+  HStack,
+  InspectorField,
+  InspectorPanel,
+  InspectorSection,
+  Input,
+} from "@gunjo/ui";
+
+export function ImageSettingsInspector() {
+  return (
+    <InspectorPanel
+      className="h-[360px] w-[320px] rounded-lg border"
+      header={
+        <HStack justify="between" className="border-b bg-muted/30 px-4 py-3">
+          <span className="text-sm font-semibold">画像設定</span>
+          <Button size="sm" variant="outline">差し替え</Button>
+        </HStack>
+      }
+    >
+      <InspectorSection title="アセット">
+        <InspectorField label="ファイル名">
+          <Input defaultValue="hero-cover.jpg" className="h-8 w-full min-w-0" />
+        </InspectorField>
+      </InspectorSection>
+    </InspectorPanel>
+  );
+}`,
+        footerless: `import {
+  InspectorPanel,
+  InspectorSection,
+} from "@gunjo/ui";
+
+export function ReadOnlyMetadataInspector() {
+  return (
+    <InspectorPanel
+      title="読み取り専用メタデータ"
+      className="h-[280px] w-[320px] rounded-lg border"
+    >
+      <InspectorSection title="詳細">
+        <dl className="grid gap-2 text-sm">
+          <div className="flex justify-between gap-4">
+            <dt className="text-muted-foreground">形式</dt>
+            <dd>PNG</dd>
+          </div>
+          <div className="flex justify-between gap-4">
+            <dt className="text-muted-foreground">サイズ</dt>
+            <dd>2.4 MB</dd>
+          </div>
+        </dl>
+      </InspectorSection>
+    </InspectorPanel>
+  );
+}`,
     },
 } as const;
 

@@ -51,42 +51,92 @@ export function ContainerSizePreview() {
 } as const;
 
 const proseCodeByLocale = {
-    en: `<Container size="prose" className="space-y-2 rounded-md border bg-background p-4">
-  <h3 className="font-semibold">Readable article content</h3>
-  <p className="text-sm text-muted-foreground">
-    Long-form text stays narrower than dashboard surfaces.
-  </p>
-</Container>`,
-    ja: `<Container size="prose" className="space-y-2 rounded-md border bg-background p-4">
-  <h3 className="font-semibold">読みやすい本文</h3>
-  <p className="text-sm text-muted-foreground">
-    長文は広げすぎず、本文として読みやすい横幅に保ちます。
-  </p>
-</Container>`,
+    en: `import { Container } from "@gunjo/ui";
+
+export function ProseContainer() {
+  return (
+    <Container size="prose" className="space-y-2 rounded-md border bg-background p-4">
+      <h3 className="font-semibold">Readable article content</h3>
+      <p className="text-sm text-muted-foreground">
+        Long-form text stays narrower than dashboard surfaces.
+      </p>
+    </Container>
+  );
+}`,
+    ja: `import { Container } from "@gunjo/ui";
+
+export function ProseContainer() {
+  return (
+    <Container size="prose" className="space-y-2 rounded-md border bg-background p-4">
+      <h3 className="font-semibold">読みやすい本文</h3>
+      <p className="text-sm text-muted-foreground">
+        長文は広げすぎず、本文として読みやすい横幅に保ちます。
+      </p>
+    </Container>
+  );
+}`,
 } as const;
 
 const sectionCodeByLocale = {
-    en: `<Container as="section" size="lg" className="space-y-2 rounded-md border bg-background p-4">
-  <h3 className="font-semibold">Release notes</h3>
-  <p className="text-sm text-muted-foreground">
-    Use a section-width container for standard documentation blocks.
-  </p>
-</Container>`,
-    ja: `<Container as="section" size="lg" className="space-y-2 rounded-md border bg-background p-4">
-  <h3 className="font-semibold">リリースノート</h3>
-  <p className="text-sm text-muted-foreground">
-    標準的なドキュメントブロックには、セクション幅のコンテナを使います。
-  </p>
-</Container>`,
+    en: `import { Container } from "@gunjo/ui";
+
+export function SectionContainer() {
+  return (
+    <Container
+      as="section"
+      size="lg"
+      className="space-y-2 rounded-md border bg-background p-4"
+    >
+      <h3 className="font-semibold">Release notes</h3>
+      <p className="text-sm text-muted-foreground">
+        Use a section-width container for standard documentation blocks.
+      </p>
+    </Container>
+  );
+}`,
+    ja: `import { Container } from "@gunjo/ui";
+
+export function SectionContainer() {
+  return (
+    <Container
+      as="section"
+      size="lg"
+      className="space-y-2 rounded-md border bg-background p-4"
+    >
+      <h3 className="font-semibold">リリースノート</h3>
+      <p className="text-sm text-muted-foreground">
+        標準的なドキュメントブロックには、セクション幅のコンテナを使います。
+      </p>
+    </Container>
+  );
+}`,
 } as const;
 
 const fullCodeByLocale = {
-    en: `<Container size="full" className="rounded-md border bg-muted/40 py-5 text-center text-sm text-muted-foreground">
-  App surface or horizontally rich area
-</Container>`,
-    ja: `<Container size="full" className="rounded-md border bg-muted/40 py-5 text-center text-sm text-muted-foreground">
-  アプリ面や横スクロール可能な領域
-</Container>`,
+    en: `import { Container } from "@gunjo/ui";
+
+export function FullWidthContainer() {
+  return (
+    <Container
+      size="full"
+      className="rounded-md border bg-muted/40 py-5 text-center text-sm text-muted-foreground"
+    >
+      App surface or horizontally rich area
+    </Container>
+  );
+}`,
+    ja: `import { Container } from "@gunjo/ui";
+
+export function FullWidthContainer() {
+  return (
+    <Container
+      size="full"
+      className="rounded-md border bg-muted/40 py-5 text-center text-sm text-muted-foreground"
+    >
+      アプリ面や横スクロール可能な領域
+    </Container>
+  );
+}`,
 } as const;
 
 export default function ContainerPage() {

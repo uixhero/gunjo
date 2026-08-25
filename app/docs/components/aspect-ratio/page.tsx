@@ -89,32 +89,120 @@ export function MediaCard() {
 
 const variantCodeByLocale = {
     en: {
-        video: `<AspectRatio ratio={16 / 9} className="grid place-items-center rounded-md border bg-primary-subtle">
-  <span className="text-sm font-medium">16:9 hero video</span>
-</AspectRatio>`,
-        photo: `<AspectRatio ratio={4 / 3} className="grid place-items-center rounded-md border bg-success-subtle">
-  <span className="text-sm font-medium">4:3 article image</span>
-</AspectRatio>`,
-        square: `<AspectRatio ratio={1} className="grid place-items-center rounded-md border bg-warning-subtle">
-  <span className="text-sm font-medium">1:1 avatar crop</span>
-</AspectRatio>`,
-        portrait: `<AspectRatio ratio={3 / 4} className="grid place-items-center rounded-md border bg-muted/70">
-  <span className="text-sm font-medium">3:4 portrait card</span>
-</AspectRatio>`,
+        video: `import { AspectRatio } from "@gunjo/ui";
+
+export function HeroVideoRatio() {
+  return (
+    <div className="w-full max-w-md">
+      <AspectRatio
+        ratio={16 / 9}
+        className="grid place-items-center rounded-md border bg-primary-subtle"
+      >
+        <span className="text-sm font-medium">16:9 hero video</span>
+      </AspectRatio>
+    </div>
+  );
+}`,
+        photo: `import { AspectRatio } from "@gunjo/ui";
+
+export function ArticleImageRatio() {
+  return (
+    <div className="w-full max-w-sm">
+      <AspectRatio
+        ratio={4 / 3}
+        className="grid place-items-center rounded-md border bg-success-subtle"
+      >
+        <span className="text-sm font-medium">4:3 article image</span>
+      </AspectRatio>
+    </div>
+  );
+}`,
+        square: `import { AspectRatio } from "@gunjo/ui";
+
+export function AvatarCropRatio() {
+  return (
+    <div className="w-full max-w-56">
+      <AspectRatio
+        ratio={1}
+        className="grid place-items-center rounded-md border bg-warning-subtle"
+      >
+        <span className="text-sm font-medium">1:1 avatar crop</span>
+      </AspectRatio>
+    </div>
+  );
+}`,
+        portrait: `import { AspectRatio } from "@gunjo/ui";
+
+export function PortraitCardRatio() {
+  return (
+    <div className="w-full max-w-48">
+      <AspectRatio
+        ratio={3 / 4}
+        className="grid place-items-center rounded-md border bg-muted/70"
+      >
+        <span className="text-sm font-medium">3:4 portrait card</span>
+      </AspectRatio>
+    </div>
+  );
+}`,
     },
     ja: {
-        video: `<AspectRatio ratio={16 / 9} className="grid place-items-center rounded-md border bg-primary-subtle">
-  <span className="text-sm font-medium">16:9 ヒーロー動画</span>
-</AspectRatio>`,
-        photo: `<AspectRatio ratio={4 / 3} className="grid place-items-center rounded-md border bg-success-subtle">
-  <span className="text-sm font-medium">4:3 記事画像</span>
-</AspectRatio>`,
-        square: `<AspectRatio ratio={1} className="grid place-items-center rounded-md border bg-warning-subtle">
-  <span className="text-sm font-medium">1:1 アバター切り抜き</span>
-</AspectRatio>`,
-        portrait: `<AspectRatio ratio={3 / 4} className="grid place-items-center rounded-md border bg-muted/70">
-  <span className="text-sm font-medium">3:4 縦長カード</span>
-</AspectRatio>`,
+        video: `import { AspectRatio } from "@gunjo/ui";
+
+export function HeroVideoRatio() {
+  return (
+    <div className="w-full max-w-md">
+      <AspectRatio
+        ratio={16 / 9}
+        className="grid place-items-center rounded-md border bg-primary-subtle"
+      >
+        <span className="text-sm font-medium">16:9 ヒーロー動画</span>
+      </AspectRatio>
+    </div>
+  );
+}`,
+        photo: `import { AspectRatio } from "@gunjo/ui";
+
+export function ArticleImageRatio() {
+  return (
+    <div className="w-full max-w-sm">
+      <AspectRatio
+        ratio={4 / 3}
+        className="grid place-items-center rounded-md border bg-success-subtle"
+      >
+        <span className="text-sm font-medium">4:3 記事画像</span>
+      </AspectRatio>
+    </div>
+  );
+}`,
+        square: `import { AspectRatio } from "@gunjo/ui";
+
+export function AvatarCropRatio() {
+  return (
+    <div className="w-full max-w-56">
+      <AspectRatio
+        ratio={1}
+        className="grid place-items-center rounded-md border bg-warning-subtle"
+      >
+        <span className="text-sm font-medium">1:1 アバター切り抜き</span>
+      </AspectRatio>
+    </div>
+  );
+}`,
+        portrait: `import { AspectRatio } from "@gunjo/ui";
+
+export function PortraitCardRatio() {
+  return (
+    <div className="w-full max-w-48">
+      <AspectRatio
+        ratio={3 / 4}
+        className="grid place-items-center rounded-md border bg-muted/70"
+      >
+        <span className="text-sm font-medium">3:4 縦長カード</span>
+      </AspectRatio>
+    </div>
+  );
+}`,
     },
 } as const;
 

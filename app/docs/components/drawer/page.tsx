@@ -18,10 +18,23 @@ function createDrawerCode(locale: "ja" | "en", side: DrawerSide = "bottom") {
         left: "LeftDeliverySettingsDrawer",
         top: "TopDeliverySettingsDrawer",
     };
-    const componentName = componentNameBySide[side];
     // `direction` on the Root is the single source of truth — it drives both the
     // styling and vaul's drag layer. DrawerContent derives its side from it. (#335)
-    const directionProp = side === "bottom" ? "" : ` direction="${side}"`;
+    const t = {
+        name: componentNameBySide[side],
+        direction: side === "bottom" ? "" : ` direction="${side}"`,
+        trigger: isJa ? "詳細を開く" : "Open details",
+        title: isJa ? "配信設定" : "Delivery settings",
+        description: isJa
+            ? "画面を離れずに補助的な設定を確認・変更します。"
+            : "Review and change supporting settings without leaving the page.",
+        titleLabel: isJa ? "タイトル" : "Title",
+        titleValue: isJa ? "週次レポート" : "Weekly report",
+        noteLabel: isJa ? "補足" : "Note",
+        noteValue: isJa ? "公開前にレビューが必要です。" : "Review is required before publishing.",
+        cancel: isJa ? "キャンセル" : "Cancel",
+        save: isJa ? "保存" : "Save",
+    };
 
     return `import * as React from "react";
 import {
@@ -39,35 +52,39 @@ import {
   Textarea,
 } from "@gunjo/ui";
 
-export function ${componentName}() {
-  const [portalContainer, setPortalContainer] = React.useState<HTMLDivElement | null>(null);
+export function ${t.name}() {
+  const [
+    portalContainer,
+    setPortalContainer,
+  ] = React.useState<HTMLDivElement | null>(null);
 
   return (
-    <div ref={setPortalContainer} className="relative min-h-[420px] overflow-hidden rounded-md">
-      <Drawer${directionProp} shouldScaleBackground={false} container={portalContainer}>
+    <div
+      ref={setPortalContainer}
+      className="relative min-h-[420px] overflow-hidden rounded-md"
+    >
+      <Drawer${t.direction} shouldScaleBackground={false} container={portalContainer}>
         <DrawerTrigger asChild>
-          <Button variant="outline">${isJa ? "詳細を開く" : "Open details"}</Button>
+          <Button variant="outline">${t.trigger}</Button>
         </DrawerTrigger>
         <DrawerContent portalContainer={portalContainer}>
           <DrawerHeader>
-            <DrawerTitle>${isJa ? "配信設定" : "Delivery settings"}</DrawerTitle>
+            <DrawerTitle>${t.title}</DrawerTitle>
             <DrawerDescription>
-              ${isJa
-                ? "画面を離れずに補助的な設定を確認・変更します。"
-                : "Review and change supporting settings without leaving the page."}
+              ${t.description}
             </DrawerDescription>
           </DrawerHeader>
           <div className="grid gap-3 px-4 pb-4">
-            <Label htmlFor="title">${isJa ? "タイトル" : "Title"}</Label>
-            <Input id="title" className="w-full" defaultValue="${isJa ? "週次レポート" : "Weekly report"}" />
-            <Label htmlFor="note">${isJa ? "補足" : "Note"}</Label>
-            <Textarea id="note" className="w-full" defaultValue="${isJa ? "公開前にレビューが必要です。" : "Review is required before publishing."}" />
+            <Label htmlFor="title">${t.titleLabel}</Label>
+            <Input id="title" className="w-full" defaultValue="${t.titleValue}" />
+            <Label htmlFor="note">${t.noteLabel}</Label>
+            <Textarea id="note" className="w-full" defaultValue="${t.noteValue}" />
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
-              <Button variant="outline">${isJa ? "キャンセル" : "Cancel"}</Button>
+              <Button variant="outline">${t.cancel}</Button>
             </DrawerClose>
-            <Button>${isJa ? "保存" : "Save"}</Button>
+            <Button>${t.save}</Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
@@ -75,6 +92,7 @@ export function ${componentName}() {
   );
 }`;
 }
+
 
 export default function DrawerPage() {
     const { locale, sectionLabels } = useLocale();
