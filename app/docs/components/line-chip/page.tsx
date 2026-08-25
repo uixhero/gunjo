@@ -84,6 +84,28 @@ export function RouteCandidate() {
 
   const compactCode = usageCode.replace(/<LineChip([^>]*)\/>/g, '<LineChip$1 size="sm" />');
 
+  const neutralCode = locale === "ja"
+    ? `import { LineChip } from "@gunjo/ui";
+
+export function NeutralLineChip() {
+  return (
+    <div className="flex items-center gap-2">
+      <LineChip label="路線色なし" />
+      <span className="text-sm text-muted-foreground">ブランド色が未登録の路線</span>
+    </div>
+  );
+}`
+    : `import { LineChip } from "@gunjo/ui";
+
+export function NeutralLineChip() {
+  return (
+    <div className="flex items-center gap-2">
+      <LineChip label="No color" />
+      <span className="text-sm text-muted-foreground">A route without registered brand color</span>
+    </div>
+  );
+}`;
+
   const propsData = [
     { name: "label", type: "ReactNode", description: locale === "ja" ? "路線名や系統番号です。色に依存せず意味を担います。" : "Transit line or route identifier. The label carries meaning, not color alone." },
     { name: "color", type: "string", description: locale === "ja" ? "hex のブランド色です。非 hex または省略時は中立チップになります。" : "Hex brand color. Non-hex or omitted values render a neutral chip." },
@@ -128,12 +150,7 @@ export function RouteCandidate() {
               title: locale === "ja" ? "中立色" : "Neutral",
               description: locale === "ja" ? "色がない場合でも label が意味を担ち、中立トーンで表示します。" : "When no color is provided, the label still carries meaning and the chip uses the neutral tone.",
               preview: <LineChip label={locale === "ja" ? "路線色なし" : "No color"} />,
-              code: `<div className="flex items-center gap-2">
-  <LineChip label="${locale === "ja" ? "路線色なし" : "No color"}" />
-  <span className="text-sm text-muted-foreground">
-    ${locale === "ja" ? "ブランド色が未登録の路線" : "A route without registered brand color"}
-  </span>
-</div>`,
+              code: neutralCode,
             },
             {
               key: "small",

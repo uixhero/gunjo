@@ -248,6 +248,57 @@ export function ClaimPaymentBreakdown() {
   );
 }`;
 
+  const noFaultCode = locale === "ja"
+    ? `import { AmountBreakdown, type AmountLine } from "@gunjo/ui";
+
+const lines: AmountLine[] = [
+  { type: "heading", label: "認定損害額" },
+  { label: "修理費", amount: 480000 },
+  { label: "レッカー費用", amount: 22000 },
+  { label: "代車費用", amount: 38000 },
+  { type: "subtotal", label: "認定損害額 計", amount: 540000 },
+  { label: "過失相殺", kind: "subtract", amount: 0, note: "認定額 × 過失割合 0%" },
+  { label: "免責金額", kind: "subtract", amount: 50000 },
+  { label: "既払金（内払）", kind: "subtract", amount: 100000 },
+];
+
+export function NoFaultPaymentBreakdown() {
+  return (
+    <AmountBreakdown
+      lines={lines}
+      total={{ label: "今回支払額", amount: 390000 }}
+      formula="今回支払額 = 認定損害額 - 過失相殺 - 免責 - 既払金"
+    />
+  );
+}`
+    : `import { AmountBreakdown, type AmountLine } from "@gunjo/ui";
+
+const lines: AmountLine[] = [
+  { type: "heading", label: "Certified loss" },
+  { label: "Repair", amount: 480000 },
+  { label: "Towing", amount: 22000 },
+  { label: "Rental car", amount: 38000 },
+  { type: "subtotal", label: "Certified loss total", amount: 540000 },
+  {
+    label: "Fault deduction",
+    kind: "subtract",
+    amount: 0,
+    note: "Certified total x 0% fault ratio",
+  },
+  { label: "Deductible", kind: "subtract", amount: 50000 },
+  { label: "Already paid", kind: "subtract", amount: 100000 },
+];
+
+export function NoFaultPaymentBreakdown() {
+  return (
+    <AmountBreakdown
+      lines={lines}
+      total={{ label: "Payment this time", amount: 390000 }}
+      formula="Payment = certified loss - fault deduction - deductible - already paid"
+    />
+  );
+}`;
+
   const propsData = [
     {
       name: "lines",
@@ -330,35 +381,7 @@ export function ClaimPaymentBreakdown() {
                 ? "上位の入力で金額が変わる場合も、AmountBreakdown は導出済みの値を表示します。"
                 : "When parent inputs change the math, AmountBreakdown displays the derived values.",
               preview: <AmountBreakdownPreview locale={locale} initialFault="0" />,
-              code: locale === "ja"
-                ? `<AmountBreakdown
-  lines={[
-    { type: "heading", label: "認定損害額" },
-    { label: "修理費", amount: 480000 },
-    { label: "レッカー費用", amount: 22000 },
-    { label: "代車費用", amount: 38000 },
-    { type: "subtotal", label: "認定損害額 計", amount: 540000 },
-    { label: "過失相殺", kind: "subtract", amount: 0, note: "認定額 × 過失割合 0%" },
-    { label: "免責金額", kind: "subtract", amount: 50000 },
-    { label: "既払金（内払）", kind: "subtract", amount: 100000 },
-  ]}
-  total={{ label: "今回支払額", amount: 390000 }}
-  formula="今回支払額 = 認定損害額 - 過失相殺 - 免責 - 既払金"
-/>`
-                : `<AmountBreakdown
-  lines={[
-    { type: "heading", label: "Certified loss" },
-    { label: "Repair", amount: 480000 },
-    { label: "Towing", amount: 22000 },
-    { label: "Rental car", amount: 38000 },
-    { type: "subtotal", label: "Certified loss total", amount: 540000 },
-    { label: "Fault deduction", kind: "subtract", amount: 0, note: "Certified total x 0% fault ratio" },
-    { label: "Deductible", kind: "subtract", amount: 50000 },
-    { label: "Already paid", kind: "subtract", amount: 100000 },
-  ]}
-  total={{ label: "Payment this time", amount: 390000 }}
-  formula="Payment = certified loss - fault deduction - deductible - already paid"
-/>`,
+              code: noFaultCode,
             },
           ]}
         />

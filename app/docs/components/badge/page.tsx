@@ -535,7 +535,7 @@ export function AddableTags() {
               type="button"
               variant="outline"
               className="h-6 rounded-full border-dashed px-2.5 text-xs font-semibold"
-              onClick={() => setTags((current) => [...current, \`テスト\${current.length + 1}\`])}
+              onClick={() => setTags((current) => [...current, "テスト" + (current.length + 1)])}
             >
               <IconPlus className="h-3 w-3" />
               タグを追加
@@ -565,7 +565,7 @@ export function AddableTags() {
               type="button"
               variant="outline"
               className="h-6 rounded-full border-dashed px-2.5 text-xs font-semibold"
-              onClick={() => setTags((current) => [...current, \`Test \${current.length + 1}\`])}
+              onClick={() => setTags((current) => [...current, "Test " + (current.length + 1)])}
             >
               <IconPlus className="h-3 w-3" />
               Add tag

@@ -281,29 +281,65 @@ export function RouteResults() {
   );
 }`;
 
-  const presentationalCode = `<div className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border bg-card p-4">
-  <div className="grid content-start gap-3">
-    <ListCard
-      leading={<LineChip label="JC" color="#f15a24" />}
-      title="${locale === "ja" ? "中央線快速" : "Chuo rapid line"}"
-      description="${locale === "ja" ? "人身事故の影響" : "Service suspended due to an incident"}"
-      status={<Badge variant="destructive">${locale === "ja" ? "運転見合わせ" : "Suspended"}</Badge>}
-      meta="${locale === "ja" ? "7:42 更新" : "Updated 7:42"}"
-      severity="critical"
-    />
-    <ListCard
-      title="${locale === "ja" ? "10:42 → 11:14" : "10:42 to 11:14"}"
-      description="${locale === "ja" ? "32分・乗換0回・34.1km" : "32 min / 0 transfers / 34.1 km"}"
-      tags={
-        <>
-          <Badge variant="secondary">${locale === "ja" ? "最速" : "Fastest"}</Badge>
-          <Badge variant="secondary">${locale === "ja" ? "最安" : "Lowest fare"}</Badge>
-        </>
-      }
-      meta="¥580"
-    />
-  </div>
-</div>`;
+  const presentationalCode = locale === "ja"
+    ? `import { Badge, LineChip, ListCard } from "@gunjo/ui";
+
+export function ServiceStatusListCards() {
+  return (
+    <div className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border bg-card p-4">
+      <div className="grid content-start gap-3">
+        <ListCard
+          leading={<LineChip label="JC" color="#f15a24" />}
+          title="中央線快速"
+          description="人身事故の影響"
+          status={<Badge variant="destructive">運転見合わせ</Badge>}
+          meta="7:42 更新"
+          severity="critical"
+        />
+        <ListCard
+          title="10:42 → 11:14"
+          description="32分・乗換0回・34.1km"
+          tags={
+            <>
+              <Badge variant="secondary">最速</Badge>
+              <Badge variant="secondary">最安</Badge>
+            </>
+          }
+          meta="¥580"
+        />
+      </div>
+    </div>
+  );
+}`
+    : `import { Badge, LineChip, ListCard } from "@gunjo/ui";
+
+export function ServiceStatusListCards() {
+  return (
+    <div className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border bg-card p-4">
+      <div className="grid content-start gap-3">
+        <ListCard
+          leading={<LineChip label="JC" color="#f15a24" />}
+          title="Chuo rapid line"
+          description="Service suspended due to an incident"
+          status={<Badge variant="destructive">Suspended</Badge>}
+          meta="Updated 7:42"
+          severity="critical"
+        />
+        <ListCard
+          title="10:42 to 11:14"
+          description="32 min / 0 transfers / 34.1 km"
+          tags={
+            <>
+              <Badge variant="secondary">Fastest</Badge>
+              <Badge variant="secondary">Lowest fare</Badge>
+            </>
+          }
+          meta="¥580"
+        />
+      </div>
+    </div>
+  );
+}`;
 
   const propsData = [
     { name: "title", type: "ReactNode", description: locale === "ja" ? "主要行です。" : "Primary line." },

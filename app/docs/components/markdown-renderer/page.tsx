@@ -43,14 +43,22 @@ const tableMarkdownByLocale = {
 - [ ] Pre-release review`,
 } as const;
 
-function markdownRendererCode(content: string, propSuffix = "") {
-    return `import { MarkdownRenderer } from "@gunjo/ui";
+function markdownRendererCode(content: string, disableGfm = false) {
+    return disableGfm
+        ? `import { MarkdownRenderer } from "@gunjo/ui";
 
 const content = \`${content}\`;
 
-export function Example() {
-  return <MarkdownRenderer content={content}${propSuffix} />;
+export function ReleaseNotes() {
+  return <MarkdownRenderer content={content} disableGfm />;
 }`
+        : `import { MarkdownRenderer } from "@gunjo/ui";
+
+const content = \`${content}\`;
+
+export function ReleaseNotes() {
+  return <MarkdownRenderer content={content} />;
+}`;
 }
 
 const codeByLocale = {
@@ -64,8 +72,8 @@ const gfmCodeByLocale = {
 } as const;
 
 const plainCodeByLocale = {
-    ja: markdownRendererCode(tableMarkdownByLocale.ja, " disableGfm"),
-    en: markdownRendererCode(tableMarkdownByLocale.en, " disableGfm"),
+    ja: markdownRendererCode(tableMarkdownByLocale.ja, true),
+    en: markdownRendererCode(tableMarkdownByLocale.en, true),
 } as const;
 
 const propsByLocale = {
