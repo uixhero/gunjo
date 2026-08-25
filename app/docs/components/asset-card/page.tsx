@@ -105,6 +105,7 @@ const propsDataByLocale = {
 export default function AssetCardDocPage() {
     const [selected, setSelected] = React.useState(true);
     const { locale, sectionLabels } = useLocale();
+    const usageCode = codeByLocale[locale];
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
 
     return (
@@ -125,8 +126,8 @@ export default function AssetCardDocPage() {
             ]}
         >
             <ComponentPreview
-                code={codeByLocale[locale]}
-                codeBlock={<CodeBlock code={codeByLocale[locale]} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 previewBodyWidth="sm"
                 previewHeight="auto"
             >
@@ -166,7 +167,7 @@ export default function AssetCardDocPage() {
                                 />
                             ),
                             previewHeight: "auto",
-                            code: codeByLocale[locale],
+                            code: usageCode,
                         },
                         {
                             key: "compact",
@@ -325,10 +326,10 @@ export function FileAssetCard() {
             <div className="space-y-4">
                 <div className="flex items-center justify-between gap-3 border-b pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{locale === "ja" ? "使い方" : "Usage"}</h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </div>
         </ComponentLayout>

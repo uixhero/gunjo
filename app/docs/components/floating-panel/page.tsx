@@ -412,7 +412,7 @@ export function SolidFloatingPanel() {
 export default function FloatingPanelPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
-    const code = floatingPanelCodes.canvas[locale];
+    const usageCode = floatingPanelCodes.canvas[locale];
 
     return (
         <ComponentLayout
@@ -431,8 +431,8 @@ export default function FloatingPanelPage() {
         >
             <ComponentPreview
                 embedSrc="/embed/floating-panel"
-                code={code}
-                codeBlock={<CodeBlock code={code} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewBodyWidth="full"
                 previewHeight={520}
@@ -555,12 +555,14 @@ export default function FloatingPanelPage() {
 
             <section className="space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
-                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </section>
         </ComponentLayout>
     );

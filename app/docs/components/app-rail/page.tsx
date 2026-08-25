@@ -586,7 +586,7 @@ export default function AppRailDocPage() {
     const isJa = locale === "ja";
     const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
 
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
 
     const compactCode = compactCodeByLocale[locale];
 
@@ -611,8 +611,8 @@ export default function AppRailDocPage() {
             ]}
         >
             <ComponentPreview
-                code={code}
-                codeBlock={<CodeBlock code={code} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewBodyWidth="xl"
                 previewHeight="auto"
@@ -640,7 +640,7 @@ export default function AppRailDocPage() {
                                 : "Use icon buttons for app-level destinations. Because labels are hidden, pair every icon with a tooltip and aria-label.",
                             preview: <AppRailExample />,
                             previewBodyWidth: "xl",
-                            code,
+                            code: usageCode,
                         },
                         {
                             key: "compact",
@@ -681,10 +681,10 @@ export default function AppRailDocPage() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={code} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </div>
         </ComponentLayout>

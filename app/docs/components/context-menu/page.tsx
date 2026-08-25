@@ -290,7 +290,7 @@ export function NestedContextMenu() {
 export default function ContextMenuPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
     const textOnlyCode = textOnlyCodeByLocale[locale];
     const nestedCode = nestedCodeByLocale[locale];
 
@@ -308,8 +308,8 @@ export default function ContextMenuPage() {
         >
             <ComponentPreview
                 embedSrc="/embed/context-menu"
-                code={code}
-                codeBlock={<CodeBlock code={code} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewHeight={360}
                 previewBodyWidth="lg"
@@ -330,7 +330,7 @@ export default function ContextMenuPage() {
                                 ? "右クリック、キーボード操作、チェック項目、単一選択を同じメニュー内で扱う例です。"
                                 : "A context menu with right-click access, keyboard support, checkboxes, and radio selection.",
                             preview: <ContextMenuAuditDemo />,
-                            code,
+                            code: usageCode,
                             embedSrc: "/embed/context-menu?variant=file-actions",
                             previewHeight: 360,
                             previewBodyWidth: "lg",
@@ -405,12 +405,14 @@ export default function ContextMenuPage() {
 
             <section className="space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
-                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </section>
         </ComponentLayout>
     );

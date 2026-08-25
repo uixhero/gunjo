@@ -484,7 +484,7 @@ export default function CommandPage() {
     const isJa = locale === "ja";
     const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
 
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
 
     const searchCode = searchCodeByLocale[locale];
 
@@ -510,8 +510,8 @@ export default function CommandPage() {
         >
             <ComponentPreview
                 embedSrc="/embed/command"
-                code={code}
-                codeBlock={<CodeBlock code={code} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewBodyWidth="xl"
             >
@@ -532,7 +532,7 @@ export default function CommandPage() {
                                 : "Group commands by purpose and show shortcuts for frequent actions.",
                             preview: <CommandExample />,
                             previewBodyWidth: "xl",
-                            code,
+                            code: usageCode,
                         },
                         {
                             key: "empty",
@@ -664,10 +664,10 @@ export default function CommandPage() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={code} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </div>
         </ComponentLayout>

@@ -335,7 +335,7 @@ export function DeleteFolderDialog() {
 export default function AlertDialogPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
     const leavePageCode = leavePageCodeByLocale[locale];
     const accessRequestCode = accessRequestCodeByLocale[locale];
     const targetSummaryCode = targetSummaryCodeByLocale[locale];
@@ -355,8 +355,8 @@ export default function AlertDialogPage() {
         >
             <ComponentPreview
                 embedSrc="/embed/alert-dialog"
-                code={code}
-                codeBlock={<CodeBlock code={code} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewHeight={360}
             >
@@ -376,7 +376,7 @@ export default function AlertDialogPage() {
                                 ? "削除など取り消せない操作は、起点のボタンと確定操作の両方を destructive にします。"
                                 : "Use destructive styling for both the trigger and final action when the operation cannot be undone.",
                             preview: <AlertDialogAuditDemo />,
-                            code,
+                            code: usageCode,
                             embedSrc: "/embed/alert-dialog?variant=destructive",
                             previewHeight: 360,
                         },
@@ -446,12 +446,14 @@ export default function AlertDialogPage() {
 
             <section className="space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
-                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </section>
         </ComponentLayout>
     );
