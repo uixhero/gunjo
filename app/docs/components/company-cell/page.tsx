@@ -134,6 +134,101 @@ export function CompanyDirectory() {
   );
 }`;
 
+  const fallbackCode = locale === "ja"
+    ? `import { CompanyCell } from "@gunjo/ui";
+
+export function SubsidyCompanyCell() {
+  return <CompanyCell name="ものづくり補助金" secondary="設備投資・補助上限 1,250万円" />;
+}`
+    : `import { CompanyCell } from "@gunjo/ui";
+
+export function SubsidyCompanyCell() {
+  return <CompanyCell
+    name="Manufacturing subsidy"
+    secondary="Capital investment / up to JPY 12.5M"
+  />;
+}`;
+
+  const logoCode = locale === "ja"
+    ? `import { CompanyCell } from "@gunjo/ui";
+
+const uixheroLogoUrl = "https://www.uixhero.com/images/512grid_wh.svg";
+
+export function BrandCompanyCell() {
+  return (
+    <CompanyCell
+      name="UIXHERO"
+      secondary="デザインシステム・UIコンポーネント"
+      logo={<img src={uixheroLogoUrl} alt="" className="h-6 w-6 object-contain" />}
+      logoClassName="bg-foreground text-background"
+    />
+  );
+}`
+    : `import { CompanyCell } from "@gunjo/ui";
+
+const uixheroLogoUrl = "https://www.uixhero.com/images/512grid_wh.svg";
+
+export function BrandCompanyCell() {
+  return (
+    <CompanyCell
+      name="UIXHERO"
+      secondary="Design system / UI components"
+      logo={<img src={uixheroLogoUrl} alt="" className="h-6 w-6 object-contain" />}
+      logoClassName="bg-foreground text-background"
+    />
+  );
+}`;
+
+  const sizesCode = locale === "ja"
+    ? `import { CompanyCell } from "@gunjo/ui";
+import { IconSchool } from "@tabler/icons-react";
+
+const uixheroLogoUrl = "https://www.uixhero.com/images/512grid_wh.svg";
+
+export function CompanyCellSizes() {
+  return (
+    <div className="grid gap-3">
+      <CompanyCell
+        size="sm"
+        name="小規模事業者持続化補助金"
+        secondary="販路開拓・補助率 2/3"
+        logo={<IconSchool className="h-4 w-4" />}
+      />
+      <CompanyCell
+        size="lg"
+        name="UIXHERO"
+        secondary="デザインシステム・UIコンポーネント"
+        logo={<img src={uixheroLogoUrl} alt="" className="h-6 w-6 object-contain" />}
+        logoClassName="bg-foreground text-background"
+      />
+    </div>
+  );
+}`
+    : `import { CompanyCell } from "@gunjo/ui";
+import { IconSchool } from "@tabler/icons-react";
+
+const uixheroLogoUrl = "https://www.uixhero.com/images/512grid_wh.svg";
+
+export function CompanyCellSizes() {
+  return (
+    <div className="grid gap-3">
+      <CompanyCell
+        size="sm"
+        name="Small business growth grant"
+        secondary="Market development / two-thirds rate"
+        logo={<IconSchool className="h-4 w-4" />}
+      />
+      <CompanyCell
+        size="lg"
+        name="UIXHERO"
+        secondary="Design system / UI components"
+        logo={<img src={uixheroLogoUrl} alt="" className="h-6 w-6 object-contain" />}
+        logoClassName="bg-foreground text-background"
+      />
+    </div>
+  );
+}`;
+
   const propsData = [
     {
       name: "name",
@@ -199,9 +294,7 @@ export function CompanyDirectory() {
                   secondary={locale === "ja" ? "設備投資・補助上限 1,250万円" : "Capital investment / up to JPY 12.5M"}
                 />
               ),
-              code: locale === "ja"
-                ? `<CompanyCell name="ものづくり補助金" secondary="設備投資・補助上限 1,250万円" />`
-                : `<CompanyCell name="Manufacturing subsidy" secondary="Capital investment / up to JPY 12.5M" />`,
+              code: fallbackCode,
             },
             {
               key: "custom-logo",
@@ -217,12 +310,7 @@ export function CompanyDirectory() {
                   logoClassName="bg-foreground text-background"
                 />
               ),
-              code: `<CompanyCell
-  name="UIXHERO"
-  secondary="${locale === "ja" ? "デザインシステム・UIコンポーネント" : "Design system / UI components"}"
-  logo={<img src="${uixheroLogoUrl}" alt="" className="h-6 w-6 object-contain" />}
-  logoClassName="bg-foreground text-background"
-/>`,
+              code: logoCode,
             },
             {
               key: "sizes",
@@ -241,14 +329,7 @@ export function CompanyDirectory() {
                   <CompanyCellPreview locale={locale} size="lg" />
                 </div>
               ),
-              code: `<CompanyCell size="sm" name="${locale === "ja" ? "小規模事業者持続化補助金" : "Small business growth grant"}" secondary="${locale === "ja" ? "販路開拓・補助率 2/3" : "Market development / two-thirds rate"}" />
-<CompanyCell
-  size="lg"
-  name="UIXHERO"
-  secondary="${locale === "ja" ? "デザインシステム・UIコンポーネント" : "Design system / UI components"}"
-  logo={<img src="${uixheroLogoUrl}" alt="" className="h-6 w-6 object-contain" />}
-  logoClassName="bg-foreground text-background"
-/>`,
+              code: sizesCode,
               previewBodyWidth: "md",
             },
           ]}

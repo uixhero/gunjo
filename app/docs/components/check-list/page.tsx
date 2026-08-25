@@ -137,9 +137,17 @@ import { Badge, CheckList, type CheckListItem } from "@gunjo/ui";
 
 const requiredDocs = [
   { id: "id", label: "Identity document" },
-  { id: "former", label: "Move-out certificate", description: "Issued by the previous municipality" },
+  {
+    id: "former",
+    label: "Move-out certificate",
+    description: "Issued by the previous municipality",
+  },
   { id: "mynumber", label: "My Number card / notification card" },
-  { id: "seal", label: "Household head seal", disabledReason: "Seal verification is skipped for online applications." },
+  {
+    id: "seal",
+    label: "Household head seal",
+    disabledReason: "Seal verification is skipped for online applications.",
+  },
 ];
 
 export function RequiredDocumentCheckList() {
@@ -168,6 +176,90 @@ export function RequiredDocumentCheckList() {
       </p>
     </div>
   );
+}`;
+
+  const mixedRowCode = locale === "ja"
+    ? `import * as React from "react";
+import { Badge, CheckList, type CheckListItem } from "@gunjo/ui";
+
+export function MixedRowCheckList() {
+  const [checked, setChecked] = React.useState({ id: true });
+  const items: CheckListItem[] = [
+    { id: "id", label: "本人確認書類", checked: checked.id },
+    {
+      id: "note",
+      label: "備考",
+      description: "世帯主のみ来庁",
+      trailing: <Badge variant="secondary">{"補足"}</Badge>,
+    },
+  ];
+
+  return (
+    <CheckList
+      items={items}
+      onCheckedChange={(id, value) =>
+        setChecked((current) => ({ ...current, [id]: value }))
+      }
+    />
+  );
+}`
+    : `import * as React from "react";
+import { Badge, CheckList, type CheckListItem } from "@gunjo/ui";
+
+export function MixedRowCheckList() {
+  const [checked, setChecked] = React.useState({ id: true });
+  const items: CheckListItem[] = [
+    { id: "id", label: "Identity document", checked: checked.id },
+    {
+      id: "note",
+      label: "Note",
+      description: "Only the household head visits the counter",
+      trailing: <Badge variant="secondary">{"Info"}</Badge>,
+    },
+  ];
+
+  return (
+    <CheckList
+      items={items}
+      onCheckedChange={(id, value) =>
+        setChecked((current) => ({ ...current, [id]: value }))
+      }
+    />
+  );
+}`;
+
+  const disabledReasonCode = locale === "ja"
+    ? `import { Badge, CheckList, type CheckListItem } from "@gunjo/ui";
+
+const items: CheckListItem[] = [
+  {
+    id: "seal",
+    label: "印鑑（世帯主分）",
+    checked: false,
+    disabled: true,
+    disabledReason: "オンライン申請では印鑑確認を省略します。",
+    trailing: <Badge variant="warning">{"未確認"}</Badge>,
+  },
+];
+
+export function DisabledReasonCheckList() {
+  return <CheckList items={items} />;
+}`
+    : `import { Badge, CheckList, type CheckListItem } from "@gunjo/ui";
+
+const items: CheckListItem[] = [
+  {
+    id: "seal",
+    label: "Household head seal",
+    checked: false,
+    disabled: true,
+    disabledReason: "Seal verification is skipped for online applications.",
+    trailing: <Badge variant="warning">{"Unchecked"}</Badge>,
+  },
+];
+
+export function DisabledReasonCheckList() {
+  return <CheckList items={items} />;
 }`;
 
   const propsData = [
@@ -259,19 +351,7 @@ export function RequiredDocumentCheckList() {
                 ? "checked を省略した行はチェックボックスなしの情報行として同じリストに混ぜられます。"
                 : "Rows without checked render as informational rows in the same list.",
               preview: <CheckListPreview locale={locale} includeDisplayRow includeDisabled={false} />,
-              code: locale === "ja"
-                ? `const items = [
-  { id: "id", label: "本人確認書類", checked: true },
-  { id: "note", label: "備考", description: "世帯主のみ来庁", trailing: <Badge variant="secondary">補足</Badge> },
-];
-
-<CheckList items={items} />`
-                : `const items = [
-  { id: "id", label: "Identity document", checked: true },
-  { id: "note", label: "Note", description: "Only the household head visits the counter", trailing: <Badge variant="secondary">Info</Badge> },
-];
-
-<CheckList items={items} />`,
+              code: mixedRowCode,
             },
             {
               key: "disabled-reason",
@@ -280,31 +360,7 @@ export function RequiredDocumentCheckList() {
                 ? "無効行を見せる時は、disabledReason で hover/focus の理由を行に紐づけます。"
                 : "When showing a disabled row, use disabledReason so hover/focus explains why on that row.",
               preview: <CheckListPreview locale={locale} />,
-              code: locale === "ja"
-                ? `const items = [
-  {
-    id: "seal",
-    label: "印鑑（世帯主分）",
-    checked: false,
-    disabled: true,
-    disabledReason: "オンライン申請では印鑑確認を省略します。",
-    trailing: <Badge variant="warning">未確認</Badge>,
-  },
-];
-
-<CheckList items={items} />`
-                : `const items = [
-  {
-    id: "seal",
-    label: "Household head seal",
-    checked: false,
-    disabled: true,
-    disabledReason: "Seal verification is skipped for online applications.",
-    trailing: <Badge variant="warning">Unchecked</Badge>,
-  },
-];
-
-<CheckList items={items} />`,
+              code: disabledReasonCode,
             },
           ]}
         />

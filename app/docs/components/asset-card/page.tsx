@@ -37,7 +37,7 @@ const asset = {
   rating: 4.5,
 };
 
-export function Example() {
+export function CampaignAssetCard() {
   return (
     <AssetCard
       asset={asset}
@@ -61,7 +61,7 @@ const asset = {
   rating: 4.5,
 };
 
-export function Example() {
+export function CampaignAssetCard() {
   return (
     <AssetCard
       asset={asset}
@@ -186,12 +186,36 @@ export default function AssetCardDocPage() {
                             code: locale === "ja"
                                 ? `import { AssetCard } from "@gunjo/ui";
 
-export function CompactAssetCard({ asset }) {
+const asset = {
+  id: "hero",
+  title: "Instagram_Story_v2.png",
+  src: "/assets/campaign-hero.jpg",
+  width: 1920,
+  height: 1080,
+  type: "JPG",
+  size: "1.4MB",
+  isFavorite: true,
+  rating: 4.5,
+};
+
+export function CompactAssetCard() {
   return <AssetCard asset={asset} variant="compact" onSelect={() => {}} />;
 }`
                                 : `import { AssetCard } from "@gunjo/ui";
 
-export function CompactAssetCard({ asset }) {
+const asset = {
+  id: "hero",
+  title: "Instagram_Story_v2.png",
+  src: "/assets/campaign-hero.jpg",
+  width: 1920,
+  height: 1080,
+  type: "JPG",
+  size: "1.4MB",
+  isFavorite: true,
+  rating: 4.5,
+};
+
+export function CompactAssetCard() {
   return <AssetCard asset={asset} variant="compact" onSelect={() => {}} />;
 }`,
                         },
@@ -213,12 +237,36 @@ export function CompactAssetCard({ asset }) {
                             code: locale === "ja"
                                 ? `import { AssetCard } from "@gunjo/ui";
 
-export function FullAssetCard({ asset }) {
+const asset = {
+  id: "hero",
+  title: "Instagram_Story_v2.png",
+  src: "/assets/campaign-hero.jpg",
+  width: 1920,
+  height: 1080,
+  type: "JPG",
+  size: "1.4MB",
+  isFavorite: true,
+  rating: 4.5,
+};
+
+export function FullAssetCard() {
   return <AssetCard asset={asset} imageFit="contain" onSelect={() => {}} />;
 }`
                                 : `import { AssetCard } from "@gunjo/ui";
 
-export function FullAssetCard({ asset }) {
+const asset = {
+  id: "hero",
+  title: "Instagram_Story_v2.png",
+  src: "/assets/campaign-hero.jpg",
+  width: 1920,
+  height: 1080,
+  type: "JPG",
+  size: "1.4MB",
+  isFavorite: true,
+  rating: 4.5,
+};
+
+export function FullAssetCard() {
   return <AssetCard asset={asset} imageFit="contain" onSelect={() => {}} />;
 }`,
                         },

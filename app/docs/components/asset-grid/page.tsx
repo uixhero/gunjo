@@ -46,27 +46,99 @@ const assets: AssetCardAsset[] = [
 ];
 
 const codeByLocale = {
-    en: `import { AssetGrid } from "@gunjo/ui";
+    en: `import { AssetGrid, type AssetCardAsset } from "@gunjo/ui";
 
-export function Example({ assets }) {
+const assets: AssetCardAsset[] = [
+  {
+    id: "hero",
+    title: "Campaign_Hero.jpg",
+    src: "/patterns-thumbs/media-library.light.png",
+    width: 1920,
+    height: 1080,
+    type: "JPG",
+    size: "1.4MB",
+    createdAt: "2026-05-12",
+    isFavorite: true,
+    rating: 4.5,
+  },
+  {
+    id: "story",
+    title: "Instagram_Story.png",
+    src: "/patterns-thumbs/dashboard.light.png",
+    width: 1080,
+    height: 1920,
+    type: "PNG",
+    size: "2.1MB",
+    createdAt: "2026-05-10",
+    rating: 3.5,
+  },
+  {
+    id: "square",
+    title: "Product_Square.png",
+    src: "/showcase-thumbs/blog.light.png",
+    width: 1200,
+    height: 1200,
+    type: "PNG",
+    size: "980KB",
+    createdAt: "2026-05-09",
+  },
+];
+
+export function MediaAssetGrid() {
   return (
     <AssetGrid
       items={assets}
       selectedIds={["hero"]}
       layout="content"
-      onSelect={(asset) => console.log(asset.id)}
+      onSelect={({ id }) => console.log(id)}
     />
   );
 }`,
-    ja: `import { AssetGrid } from "@gunjo/ui";
+    ja: `import { AssetGrid, type AssetCardAsset } from "@gunjo/ui";
 
-export function Example({ assets }) {
+const assets: AssetCardAsset[] = [
+  {
+    id: "hero",
+    title: "Campaign_Hero.jpg",
+    src: "/patterns-thumbs/media-library.light.png",
+    width: 1920,
+    height: 1080,
+    type: "JPG",
+    size: "1.4MB",
+    createdAt: "2026-05-12",
+    isFavorite: true,
+    rating: 4.5,
+  },
+  {
+    id: "story",
+    title: "Instagram_Story.png",
+    src: "/patterns-thumbs/dashboard.light.png",
+    width: 1080,
+    height: 1920,
+    type: "PNG",
+    size: "2.1MB",
+    createdAt: "2026-05-10",
+    rating: 3.5,
+  },
+  {
+    id: "square",
+    title: "Product_Square.png",
+    src: "/showcase-thumbs/blog.light.png",
+    width: 1200,
+    height: 1200,
+    type: "PNG",
+    size: "980KB",
+    createdAt: "2026-05-09",
+  },
+];
+
+export function MediaAssetGrid() {
   return (
     <AssetGrid
       items={assets}
       selectedIds={["hero"]}
       layout="content"
-      onSelect={(asset) => console.log(asset.id)}
+      onSelect={({ id }) => console.log(id)}
     />
   );
 }`,
@@ -167,15 +239,101 @@ export default function AssetGridDocPage() {
                             ),
                             previewHeight: "auto",
                             code: locale === "ja"
-                                ? `import { AssetGrid } from "@gunjo/ui";
+                                ? `import { AssetGrid, type AssetCardAsset } from "@gunjo/ui";
 
-export function CompactAssetGrid({ assets }) {
-  return <AssetGrid items={assets} variant="compact" layout="content" minColumnWidth={120} />;
+const assets: AssetCardAsset[] = [
+  {
+    id: "hero",
+    title: "Campaign_Hero.jpg",
+    src: "/patterns-thumbs/media-library.light.png",
+    width: 1920,
+    height: 1080,
+    type: "JPG",
+    size: "1.4MB",
+    createdAt: "2026-05-12",
+    isFavorite: true,
+    rating: 4.5,
+  },
+  {
+    id: "story",
+    title: "Instagram_Story.png",
+    src: "/patterns-thumbs/dashboard.light.png",
+    width: 1080,
+    height: 1920,
+    type: "PNG",
+    size: "2.1MB",
+    createdAt: "2026-05-10",
+    rating: 3.5,
+  },
+  {
+    id: "square",
+    title: "Product_Square.png",
+    src: "/showcase-thumbs/blog.light.png",
+    width: 1200,
+    height: 1200,
+    type: "PNG",
+    size: "980KB",
+    createdAt: "2026-05-09",
+  },
+];
+
+export function CompactAssetGrid() {
+  return (
+    <AssetGrid
+      items={assets}
+      variant="compact"
+      layout="content"
+      minColumnWidth={120}
+    />
+  );
 }`
-                                : `import { AssetGrid } from "@gunjo/ui";
+                                : `import { AssetGrid, type AssetCardAsset } from "@gunjo/ui";
 
-export function CompactAssetGrid({ assets }) {
-  return <AssetGrid items={assets} variant="compact" layout="content" minColumnWidth={120} />;
+const assets: AssetCardAsset[] = [
+  {
+    id: "hero",
+    title: "Campaign_Hero.jpg",
+    src: "/patterns-thumbs/media-library.light.png",
+    width: 1920,
+    height: 1080,
+    type: "JPG",
+    size: "1.4MB",
+    createdAt: "2026-05-12",
+    isFavorite: true,
+    rating: 4.5,
+  },
+  {
+    id: "story",
+    title: "Instagram_Story.png",
+    src: "/patterns-thumbs/dashboard.light.png",
+    width: 1080,
+    height: 1920,
+    type: "PNG",
+    size: "2.1MB",
+    createdAt: "2026-05-10",
+    rating: 3.5,
+  },
+  {
+    id: "square",
+    title: "Product_Square.png",
+    src: "/showcase-thumbs/blog.light.png",
+    width: 1200,
+    height: 1200,
+    type: "PNG",
+    size: "980KB",
+    createdAt: "2026-05-09",
+  },
+];
+
+export function CompactAssetGrid() {
+  return (
+    <AssetGrid
+      items={assets}
+      variant="compact"
+      layout="content"
+      minColumnWidth={120}
+    />
+  );
 }`,
                         },
                         {
@@ -202,9 +360,45 @@ export function CompactAssetGrid({ assets }) {
                             ),
                             previewHeight: "auto",
                             code: locale === "ja"
-                                ? `import { AssetGrid } from "@gunjo/ui";
+                                ? `import { AssetGrid, type AssetCardAsset } from "@gunjo/ui";
 
-export function GroupedAssetGrid({ assets }) {
+const assets: AssetCardAsset[] = [
+  {
+    id: "hero",
+    title: "Campaign_Hero.jpg",
+    src: "/patterns-thumbs/media-library.light.png",
+    width: 1920,
+    height: 1080,
+    type: "JPG",
+    size: "1.4MB",
+    createdAt: "2026-05-12",
+    isFavorite: true,
+    rating: 4.5,
+  },
+  {
+    id: "story",
+    title: "Instagram_Story.png",
+    src: "/patterns-thumbs/dashboard.light.png",
+    width: 1080,
+    height: 1920,
+    type: "PNG",
+    size: "2.1MB",
+    createdAt: "2026-05-10",
+    rating: 3.5,
+  },
+  {
+    id: "square",
+    title: "Product_Square.png",
+    src: "/showcase-thumbs/blog.light.png",
+    width: 1200,
+    height: 1200,
+    type: "PNG",
+    size: "980KB",
+    createdAt: "2026-05-09",
+  },
+];
+
+export function GroupedAssetGrid() {
   return (
     <AssetGrid
       layout="content"
@@ -219,9 +413,45 @@ export function GroupedAssetGrid({ assets }) {
     />
   );
 }`
-                                : `import { AssetGrid } from "@gunjo/ui";
+                                : `import { AssetGrid, type AssetCardAsset } from "@gunjo/ui";
 
-export function GroupedAssetGrid({ assets }) {
+const assets: AssetCardAsset[] = [
+  {
+    id: "hero",
+    title: "Campaign_Hero.jpg",
+    src: "/patterns-thumbs/media-library.light.png",
+    width: 1920,
+    height: 1080,
+    type: "JPG",
+    size: "1.4MB",
+    createdAt: "2026-05-12",
+    isFavorite: true,
+    rating: 4.5,
+  },
+  {
+    id: "story",
+    title: "Instagram_Story.png",
+    src: "/patterns-thumbs/dashboard.light.png",
+    width: 1080,
+    height: 1920,
+    type: "PNG",
+    size: "2.1MB",
+    createdAt: "2026-05-10",
+    rating: 3.5,
+  },
+  {
+    id: "square",
+    title: "Product_Square.png",
+    src: "/showcase-thumbs/blog.light.png",
+    width: 1200,
+    height: 1200,
+    type: "PNG",
+    size: "980KB",
+    createdAt: "2026-05-09",
+  },
+];
+
+export function GroupedAssetGrid() {
   return (
     <AssetGrid
       layout="content"

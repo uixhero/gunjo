@@ -194,7 +194,15 @@ export default function KanbanBoardDocPage() {
 
   const usageCode = locale === "ja"
     ? `import * as React from "react";
-import { Badge, KanbanBoard, Sheet, SheetContent, SheetHeader, SheetTitle, type KanbanColumn } from "@gunjo/ui";
+import {
+  Badge,
+  KanbanBoard,
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  type KanbanColumn,
+} from "@gunjo/ui";
 
 type Task = { id: string; status: string; title: string; assignee: string; priority: string; due: string; summary: string };
 
@@ -206,17 +214,68 @@ const columns: KanbanColumn[] = [
 ];
 
 const tasks: Task[] = [
-  { id: "t1", status: "todo", title: "申請フォームの入力確認", assignee: "青井", priority: "通常", due: "7月10日", summary: "必須項目、エラー文言、入力補助の整合性を確認します。" },
-  { id: "t2", status: "doing", title: "通知メールの文面調整", assignee: "三宅", priority: "高", due: "7月8日", summary: "審査完了と差し戻し時のメール文面を最終確認します。" },
-  { id: "t5", status: "doing", title: "権限変更ログの表示", assignee: "宇佐美", priority: "通常", due: "7月8日", summary: "管理者が確認できる変更履歴の表示項目を整理します。" },
-  { id: "t6", status: "doing", title: "添付ファイルの容量確認", assignee: "青井", priority: "通常", due: "7月9日", summary: "アップロード上限とエラー表示が仕様どおりか確認します。" },
-  { id: "t3", status: "review", title: "公開前チェックリスト", assignee: "黒川", priority: "高", due: "7月9日", summary: "公開前レビューの残項目と承認者を確認します。" },
-  { id: "t4", status: "done", title: "権限ロールの棚卸し", assignee: "宇佐美", priority: "通常", due: "完了", summary: "既存ロールの利用状況を整理し、不要な権限を削除しました。" },
+  {
+    id: "t1",
+    status: "todo",
+    title: "申請フォームの入力確認",
+    assignee: "青井",
+    priority: "通常",
+    due: "7月10日",
+    summary: "必須項目、エラー文言、入力補助の整合性を確認します。",
+  },
+  {
+    id: "t2",
+    status: "doing",
+    title: "通知メールの文面調整",
+    assignee: "三宅",
+    priority: "高",
+    due: "7月8日",
+    summary: "審査完了と差し戻し時のメール文面を最終確認します。",
+  },
+  {
+    id: "t5",
+    status: "doing",
+    title: "権限変更ログの表示",
+    assignee: "宇佐美",
+    priority: "通常",
+    due: "7月8日",
+    summary: "管理者が確認できる変更履歴の表示項目を整理します。",
+  },
+  {
+    id: "t6",
+    status: "doing",
+    title: "添付ファイルの容量確認",
+    assignee: "青井",
+    priority: "通常",
+    due: "7月9日",
+    summary: "アップロード上限とエラー表示が仕様どおりか確認します。",
+  },
+  {
+    id: "t3",
+    status: "review",
+    title: "公開前チェックリスト",
+    assignee: "黒川",
+    priority: "高",
+    due: "7月9日",
+    summary: "公開前レビューの残項目と承認者を確認します。",
+  },
+  {
+    id: "t4",
+    status: "done",
+    title: "権限ロールの棚卸し",
+    assignee: "宇佐美",
+    priority: "通常",
+    due: "完了",
+    summary: "既存ロールの利用状況を整理し、不要な権限を削除しました。",
+  },
 ];
 
 export function ReviewKanban() {
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
-  const [portalContainer, setPortalContainer] = React.useState<HTMLDivElement | null>(null);
+  const [
+    portalContainer,
+    setPortalContainer,
+  ] = React.useState<HTMLDivElement | null>(null);
   const selectedTask = selectedId ? tasks.find((task) => task.id === selectedId) : undefined;
   const selectedColumn = selectedTask ? columns.find((column) => column.id === selectedTask.status) : undefined;
 
@@ -229,16 +288,21 @@ export function ReviewKanban() {
         getColumnId={(task) => task.status}
         emptyLabel="なし"
         onCardSelect={(task) => setSelectedId(task.id)}
-        renderCard={(task) => (
+        renderCard={({ title, assignee, priority }) => (
           <div className="flex flex-col gap-1">
-            <span className="text-sm font-medium">{task.title}</span>
-            <span className="text-xs text-muted-foreground">担当: {task.assignee}</span>
-            <Badge variant={task.priority === "高" ? "destructive" : "secondary"}>{task.priority}</Badge>
+            <span className="text-sm font-medium">{title}</span>
+            <span className="text-xs text-muted-foreground">担当: {assignee}</span>
+            <Badge variant={priority === "高" ? "destructive" : "secondary"}>{priority}</Badge>
           </div>
         )}
       />
       <Sheet modal={false} open={selectedTask != null} onOpenChange={(open) => !open && setSelectedId(null)}>
-        <SheetContent portalContainer={portalContainer} overlayClassName="rounded-lg" closeLabel="閉じる" className="w-80 max-w-[calc(100%-1rem)] overflow-y-auto p-4">
+        <SheetContent
+          portalContainer={portalContainer}
+          overlayClassName="rounded-lg"
+          closeLabel="閉じる"
+          className="w-80 max-w-[calc(100%-1rem)] overflow-y-auto p-4"
+        >
           {selectedTask ? (
             <>
               <SheetHeader className="pr-8">
@@ -264,7 +328,15 @@ export function ReviewKanban() {
   );
 }`
     : `import * as React from "react";
-import { Badge, KanbanBoard, Sheet, SheetContent, SheetHeader, SheetTitle, type KanbanColumn } from "@gunjo/ui";
+import {
+  Badge,
+  KanbanBoard,
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  type KanbanColumn,
+} from "@gunjo/ui";
 
 type Task = { id: string; status: string; title: string; assignee: string; priority: string; due: string; summary: string };
 
@@ -276,17 +348,68 @@ const columns: KanbanColumn[] = [
 ];
 
 const tasks: Task[] = [
-  { id: "t1", status: "todo", title: "Review application form inputs", assignee: "Aoi", priority: "Normal", due: "Jul 10", summary: "Check required fields, validation copy, and input assistance." },
-  { id: "t2", status: "doing", title: "Adjust notification email copy", assignee: "Miyake", priority: "High", due: "Jul 8", summary: "Finalize approval and send-back email copy." },
-  { id: "t5", status: "doing", title: "Show permission change log", assignee: "Usami", priority: "Normal", due: "Jul 8", summary: "Confirm which change-history fields administrators can review." },
-  { id: "t6", status: "doing", title: "Check attachment size limits", assignee: "Aoi", priority: "Normal", due: "Jul 9", summary: "Verify upload limits and error messages against the spec." },
-  { id: "t3", status: "review", title: "Pre-publication checklist", assignee: "Kurokawa", priority: "High", due: "Jul 9", summary: "Review remaining launch tasks and approvers." },
-  { id: "t4", status: "done", title: "Audit permission roles", assignee: "Usami", priority: "Normal", due: "Done", summary: "Reviewed role usage and removed obsolete permissions." },
+  {
+    id: "t1",
+    status: "todo",
+    title: "Review application form inputs",
+    assignee: "Aoi",
+    priority: "Normal",
+    due: "Jul 10",
+    summary: "Check required fields, validation copy, and input assistance.",
+  },
+  {
+    id: "t2",
+    status: "doing",
+    title: "Adjust notification email copy",
+    assignee: "Miyake",
+    priority: "High",
+    due: "Jul 8",
+    summary: "Finalize approval and send-back email copy.",
+  },
+  {
+    id: "t5",
+    status: "doing",
+    title: "Show permission change log",
+    assignee: "Usami",
+    priority: "Normal",
+    due: "Jul 8",
+    summary: "Confirm which change-history fields administrators can review.",
+  },
+  {
+    id: "t6",
+    status: "doing",
+    title: "Check attachment size limits",
+    assignee: "Aoi",
+    priority: "Normal",
+    due: "Jul 9",
+    summary: "Verify upload limits and error messages against the spec.",
+  },
+  {
+    id: "t3",
+    status: "review",
+    title: "Pre-publication checklist",
+    assignee: "Kurokawa",
+    priority: "High",
+    due: "Jul 9",
+    summary: "Review remaining launch tasks and approvers.",
+  },
+  {
+    id: "t4",
+    status: "done",
+    title: "Audit permission roles",
+    assignee: "Usami",
+    priority: "Normal",
+    due: "Done",
+    summary: "Reviewed role usage and removed obsolete permissions.",
+  },
 ];
 
 export function ReviewKanban() {
   const [selectedId, setSelectedId] = React.useState<string | null>(null);
-  const [portalContainer, setPortalContainer] = React.useState<HTMLDivElement | null>(null);
+  const [
+    portalContainer,
+    setPortalContainer,
+  ] = React.useState<HTMLDivElement | null>(null);
   const selectedTask = selectedId ? tasks.find((task) => task.id === selectedId) : undefined;
   const selectedColumn = selectedTask ? columns.find((column) => column.id === selectedTask.status) : undefined;
 
@@ -299,16 +422,21 @@ export function ReviewKanban() {
         getColumnId={(task) => task.status}
         emptyLabel="None"
         onCardSelect={(task) => setSelectedId(task.id)}
-        renderCard={(task) => (
+        renderCard={({ title, assignee, priority }) => (
           <div className="flex flex-col gap-1">
-            <span className="text-sm font-medium">{task.title}</span>
-            <span className="text-xs text-muted-foreground">Owner: {task.assignee}</span>
-            <Badge variant={task.priority === "High" ? "destructive" : "secondary"}>{task.priority}</Badge>
+            <span className="text-sm font-medium">{title}</span>
+            <span className="text-xs text-muted-foreground">Owner: {assignee}</span>
+            <Badge variant={priority === "High" ? "destructive" : "secondary"}>{priority}</Badge>
           </div>
         )}
       />
       <Sheet modal={false} open={selectedTask != null} onOpenChange={(open) => !open && setSelectedId(null)}>
-        <SheetContent portalContainer={portalContainer} overlayClassName="rounded-lg" closeLabel="Close" className="w-80 max-w-[calc(100%-1rem)] overflow-y-auto p-4">
+        <SheetContent
+          portalContainer={portalContainer}
+          overlayClassName="rounded-lg"
+          closeLabel="Close"
+          className="w-80 max-w-[calc(100%-1rem)] overflow-y-auto p-4"
+        >
           {selectedTask ? (
             <>
               <SheetHeader className="pr-8">
@@ -331,6 +459,116 @@ export function ReviewKanban() {
         </SheetContent>
       </Sheet>
     </div>
+  );
+}`;
+
+  const emptyColumnCode = locale === "ja"
+    ? `import { KanbanBoard, type KanbanColumn } from "@gunjo/ui";
+
+type Task = { id: string; status: string; title: string };
+
+const columns: KanbanColumn[] = [
+  { id: "todo", title: "未着手" },
+  { id: "review", title: "レビュー" },
+];
+
+const tasks: Task[] = [
+  { id: "t1", status: "todo", title: "申請フォームの入力確認" },
+];
+
+export function EmptyColumnKanban() {
+  return (
+    <KanbanBoard<Task>
+      columns={columns}
+      items={tasks}
+      getItemId={(task) => task.id}
+      getColumnId={(task) => task.status}
+      emptyLabel="なし"
+      renderCard={({ title }) => (
+        <span className="text-sm font-medium">{title}</span>
+      )}
+    />
+  );
+}`
+    : `import { KanbanBoard, type KanbanColumn } from "@gunjo/ui";
+
+type Task = { id: string; status: string; title: string };
+
+const columns: KanbanColumn[] = [
+  { id: "todo", title: "To do" },
+  { id: "review", title: "Review" },
+];
+
+const tasks: Task[] = [
+  { id: "t1", status: "todo", title: "Review application form inputs" },
+];
+
+export function EmptyColumnKanban() {
+  return (
+    <KanbanBoard<Task>
+      columns={columns}
+      items={tasks}
+      getItemId={(task) => task.id}
+      getColumnId={(task) => task.status}
+      emptyLabel="None"
+      renderCard={({ title }) => (
+        <span className="text-sm font-medium">{title}</span>
+      )}
+    />
+  );
+}`;
+
+  const withoutCountCode = locale === "ja"
+    ? `import { KanbanBoard, type KanbanColumn } from "@gunjo/ui";
+
+type Task = { id: string; status: string; title: string };
+
+const columns: KanbanColumn[] = [
+  { id: "todo", title: "未着手" },
+];
+
+const tasks: Task[] = [
+  { id: "t1", status: "todo", title: "申請フォームの入力確認" },
+];
+
+export function KanbanWithoutCounts() {
+  return (
+    <KanbanBoard<Task>
+      columns={columns}
+      items={tasks}
+      getItemId={(task) => task.id}
+      getColumnId={(task) => task.status}
+      showCount={false}
+      renderCard={({ title }) => (
+        <span className="text-sm font-medium">{title}</span>
+      )}
+    />
+  );
+}`
+    : `import { KanbanBoard, type KanbanColumn } from "@gunjo/ui";
+
+type Task = { id: string; status: string; title: string };
+
+const columns: KanbanColumn[] = [
+  { id: "todo", title: "To do" },
+];
+
+const tasks: Task[] = [
+  { id: "t1", status: "todo", title: "Review application form inputs" },
+];
+
+export function KanbanWithoutCounts() {
+  return (
+    <KanbanBoard<Task>
+      columns={columns}
+      items={tasks}
+      getItemId={(task) => task.id}
+      getColumnId={(task) => task.status}
+      showCount={false}
+      renderCard={({ title }) => (
+        <span className="text-sm font-medium">{title}</span>
+      )}
+    />
   );
 }`;
 
@@ -386,17 +624,7 @@ export function ReviewKanban() {
               title: locale === "ja" ? "空列" : "Empty column",
               description: locale === "ja" ? "該当カードがない列には emptyLabel を表示します。" : "Columns without cards render emptyLabel.",
               preview: <KanbanBoardPreview locale={locale} emptyColumn />,
-              code: `<KanbanBoard
-  columns={[
-    { id: "todo", title: "${locale === "ja" ? "未着手" : "To do"}" },
-    { id: "review", title: "${locale === "ja" ? "レビュー" : "Review"}" },
-  ]}
-  items={[{ id: "t1", status: "todo", title: "${locale === "ja" ? "申請フォームの入力確認" : "Review application form inputs"}" }]}
-  getItemId={(task) => task.id}
-  getColumnId={(task) => task.status}
-  emptyLabel="${locale === "ja" ? "なし" : "None"}"
-  renderCard={(task) => <span className="text-sm font-medium">{task.title}</span>}
-/>`,
+              code: emptyColumnCode,
               previewBodyWidth: "xl",
             },
             {
@@ -404,14 +632,7 @@ export function ReviewKanban() {
               title: locale === "ja" ? "件数なし" : "Without counts",
               description: locale === "ja" ? "列数が十分に少ない場合は showCount={false} で件数を隠せます。" : "Use showCount={false} when the column count is visually redundant.",
               preview: <KanbanBoardPreview locale={locale} hideCount />,
-              code: `<KanbanBoard
-  columns={[{ id: "todo", title: "${locale === "ja" ? "未着手" : "To do"}" }]}
-  items={[{ id: "t1", status: "todo", title: "${locale === "ja" ? "申請フォームの入力確認" : "Review application form inputs"}" }]}
-  getItemId={(task) => task.id}
-  getColumnId={(task) => task.status}
-  showCount={false}
-  renderCard={(task) => <span className="text-sm font-medium">{task.title}</span>}
-/>`,
+              code: withoutCountCode,
               previewBodyWidth: "xl",
             },
           ]}

@@ -275,10 +275,25 @@ import {
 } from "@tabler/icons-react";
 
 const categories: FilterChip[] = [
-  { value: "all", label: "すべて", count: 24, icon: <IconPlaneDeparture className="h-4 w-4" /> },
+  {
+    value: "all",
+    label: "すべて",
+    count: 24,
+    icon: <IconPlaneDeparture className="h-4 w-4" />,
+  },
   { value: "gate", label: "搭乗口", count: 8, icon: <IconDoorEnter className="h-4 w-4" /> },
-  { value: "lounge", label: "ラウンジ", count: 3, icon: <IconArmchair2 className="h-4 w-4" /> },
-  { value: "food", label: "飲食", count: 6, icon: <IconToolsKitchen2 className="h-4 w-4" /> },
+  {
+    value: "lounge",
+    label: "ラウンジ",
+    count: 3,
+    icon: <IconArmchair2 className="h-4 w-4" />,
+  },
+  {
+    value: "food",
+    label: "飲食",
+    count: 6,
+    icon: <IconToolsKitchen2 className="h-4 w-4" />,
+  },
   { value: "cafe", label: "カフェ", count: 4, icon: <IconCup className="h-4 w-4" /> },
   { value: "wifi", label: "Wi-Fi", count: 2, icon: <IconWifi className="h-4 w-4" /> },
   {
@@ -291,11 +306,46 @@ const categories: FilterChip[] = [
 ];
 
 const facilities = [
-  { id: "gate-12", category: "gate", title: "12番搭乗口", description: "国内線・保安検査場から徒歩4分", status: "搭乗中", meta: "4分" },
-  { id: "sakura-lounge", category: "lounge", title: "サクララウンジ", description: "対象カード・上級会員向け", status: "空席あり", meta: "3F" },
-  { id: "ramen", category: "food", title: "空港食堂 そら", description: "定食・ラーメン・朝食営業", status: "営業中", meta: "2F" },
-  { id: "coffee", category: "cafe", title: "Blue Coffee Stand", description: "テイクアウト・電源席あり", status: "混雑", meta: "1F" },
-  { id: "wifi-counter", category: "wifi", title: "Wi-Fi カウンター", description: "接続サポート・充電ケーブル貸出", status: "受付中", meta: "B1F" },
+  {
+    id: "gate-12",
+    category: "gate",
+    title: "12番搭乗口",
+    description: "国内線・保安検査場から徒歩4分",
+    status: "搭乗中",
+    meta: "4分",
+  },
+  {
+    id: "sakura-lounge",
+    category: "lounge",
+    title: "サクララウンジ",
+    description: "対象カード・上級会員向け",
+    status: "空席あり",
+    meta: "3F",
+  },
+  {
+    id: "ramen",
+    category: "food",
+    title: "空港食堂 そら",
+    description: "定食・ラーメン・朝食営業",
+    status: "営業中",
+    meta: "2F",
+  },
+  {
+    id: "coffee",
+    category: "cafe",
+    title: "Blue Coffee Stand",
+    description: "テイクアウト・電源席あり",
+    status: "混雑",
+    meta: "1F",
+  },
+  {
+    id: "wifi-counter",
+    category: "wifi",
+    title: "Wi-Fi カウンター",
+    description: "接続サポート・充電ケーブル貸出",
+    status: "受付中",
+    meta: "B1F",
+  },
 ];
 
 type PreviewSelection = { type: "facility"; facility: (typeof facilities)[number] };
@@ -349,7 +399,11 @@ export function FacilityFinder() {
         )
         : null}
       <Sheet modal={false} open={selection != null} onOpenChange={(open) => !open && setSelection(null)}>
-        <SheetContent portalContainer={portalContainer} overlayClassName="rounded-md" closeLabel="閉じる">
+        <SheetContent
+          portalContainer={portalContainer}
+          overlayClassName="rounded-md"
+          closeLabel="閉じる"
+        >
           <SheetHeader>
             <SheetTitle asChild>
               <p>プレビュー</p>
@@ -403,10 +457,30 @@ import {
 } from "@tabler/icons-react";
 
 const categories: FilterChip[] = [
-  { value: "all", label: "All", count: 24, icon: <IconPlaneDeparture className="h-4 w-4" /> },
-  { value: "gate", label: "Gates", count: 8, icon: <IconDoorEnter className="h-4 w-4" /> },
-  { value: "lounge", label: "Lounges", count: 3, icon: <IconArmchair2 className="h-4 w-4" /> },
-  { value: "food", label: "Food", count: 6, icon: <IconToolsKitchen2 className="h-4 w-4" /> },
+  {
+    value: "all",
+    label: "All",
+    count: 24,
+    icon: <IconPlaneDeparture className="h-4 w-4" />,
+  },
+  {
+    value: "gate",
+    label: "Gates",
+    count: 8,
+    icon: <IconDoorEnter className="h-4 w-4" />,
+  },
+  {
+    value: "lounge",
+    label: "Lounges",
+    count: 3,
+    icon: <IconArmchair2 className="h-4 w-4" />,
+  },
+  {
+    value: "food",
+    label: "Food",
+    count: 6,
+    icon: <IconToolsKitchen2 className="h-4 w-4" />,
+  },
   { value: "cafe", label: "Cafe", count: 4, icon: <IconCup className="h-4 w-4" /> },
   { value: "wifi", label: "Wi-Fi", count: 2, icon: <IconWifi className="h-4 w-4" /> },
   {
@@ -419,11 +493,46 @@ const categories: FilterChip[] = [
 ];
 
 const facilities = [
-  { id: "gate-12", category: "gate", title: "Gate 12", description: "Domestic flights / 4 min from security", status: "Boarding", meta: "4 min" },
-  { id: "sakura-lounge", category: "lounge", title: "Sakura Lounge", description: "Eligible cards and premium members", status: "Seats open", meta: "3F" },
-  { id: "ramen", category: "food", title: "Airport Kitchen Sora", description: "Set meals, ramen, breakfast", status: "Open", meta: "2F" },
-  { id: "coffee", category: "cafe", title: "Blue Coffee Stand", description: "Takeout and power seats", status: "Busy", meta: "1F" },
-  { id: "wifi-counter", category: "wifi", title: "Wi-Fi Counter", description: "Connection support and charging cable rental", status: "Open", meta: "B1F" },
+  {
+    id: "gate-12",
+    category: "gate",
+    title: "Gate 12",
+    description: "Domestic flights / 4 min from security",
+    status: "Boarding",
+    meta: "4 min",
+  },
+  {
+    id: "sakura-lounge",
+    category: "lounge",
+    title: "Sakura Lounge",
+    description: "Eligible cards and premium members",
+    status: "Seats open",
+    meta: "3F",
+  },
+  {
+    id: "ramen",
+    category: "food",
+    title: "Airport Kitchen Sora",
+    description: "Set meals, ramen, breakfast",
+    status: "Open",
+    meta: "2F",
+  },
+  {
+    id: "coffee",
+    category: "cafe",
+    title: "Blue Coffee Stand",
+    description: "Takeout and power seats",
+    status: "Busy",
+    meta: "1F",
+  },
+  {
+    id: "wifi-counter",
+    category: "wifi",
+    title: "Wi-Fi Counter",
+    description: "Connection support and charging cable rental",
+    status: "Open",
+    meta: "B1F",
+  },
 ];
 
 type PreviewSelection = { type: "facility"; facility: (typeof facilities)[number] };
@@ -477,7 +586,11 @@ export function FacilityFinder() {
         )
         : null}
       <Sheet modal={false} open={selection != null} onOpenChange={(open) => !open && setSelection(null)}>
-        <SheetContent portalContainer={portalContainer} overlayClassName="rounded-md" closeLabel="Close">
+        <SheetContent
+          portalContainer={portalContainer}
+          overlayClassName="rounded-md"
+          closeLabel="Close"
+        >
           <SheetHeader>
             <SheetTitle asChild>
               <p>Preview</p>
@@ -505,6 +618,206 @@ export function FacilityFinder() {
           ) : null}
         </SheetContent>
       </Sheet>
+    </div>
+  );
+}`;
+
+  const selectedCode = locale === "ja"
+    ? `import * as React from "react";
+import { FilterChips, type FilterChip } from "@gunjo/ui";
+
+const categories: FilterChip[] = [
+  { value: "all", label: "すべて", count: 24 },
+  { value: "gate", label: "搭乗口", count: 8 },
+  { value: "lounge", label: "ラウンジ", count: 3 },
+];
+
+export function FacilityCategoryChips() {
+  const [category, setCategory] = React.useState("gate");
+
+  return (
+    <FilterChips
+      items={categories}
+      value={category}
+      onValueChange={setCategory}
+      aria-label="施設カテゴリ"
+    />
+  );
+}`
+    : `import * as React from "react";
+import { FilterChips, type FilterChip } from "@gunjo/ui";
+
+const categories: FilterChip[] = [
+  { value: "all", label: "All", count: 24 },
+  { value: "gate", label: "Gates", count: 8 },
+  { value: "lounge", label: "Lounges", count: 3 },
+];
+
+export function FacilityCategoryChips() {
+  const [category, setCategory] = React.useState("gate");
+
+  return (
+    <FilterChips
+      items={categories}
+      value={category}
+      onValueChange={setCategory}
+      aria-label="Facility category"
+    />
+  );
+}`;
+
+  const disabledCode = locale === "ja"
+    ? `import * as React from "react";
+import { Badge, FilterChips, ListCard, type FilterChip } from "@gunjo/ui";
+
+const categories: FilterChip[] = [
+  { value: "all", label: "すべて", count: 3 },
+  { value: "gate", label: "搭乗口", count: 3 },
+  {
+    value: "lounge",
+    label: "ラウンジ",
+    count: 0,
+    disabled: true,
+    disabledReason: "ラウンジは満席のため、この時間帯は選択できません。",
+  },
+  {
+    value: "smoking",
+    label: "喫煙所",
+    count: 0,
+    disabled: true,
+    disabledReason: "喫煙所は改修中のため、このフロアでは選択できません。",
+  },
+];
+
+const facilities = [
+  {
+    id: "gate-11",
+    category: "gate",
+    title: "11番搭乗口",
+    description: "国内線・保安検査場から徒歩3分",
+    status: "搭乗中",
+    meta: "3分",
+  },
+  {
+    id: "gate-12",
+    category: "gate",
+    title: "12番搭乗口",
+    description: "国内線・保安検査場から徒歩4分",
+    status: "搭乗中",
+    meta: "4分",
+  },
+  {
+    id: "gate-13",
+    category: "gate",
+    title: "13番搭乗口",
+    description: "国内線・保安検査場から徒歩5分",
+    status: "搭乗中",
+    meta: "5分",
+  },
+];
+
+export function DisabledCategoryChips() {
+  const [category, setCategory] = React.useState("gate");
+  const visible = category === "all"
+    ? facilities
+    : facilities.filter((facility) => facility.category === category);
+
+  return (
+    <div className="grid gap-4">
+      <FilterChips
+        items={categories}
+        value={category}
+        onValueChange={setCategory}
+        aria-label="施設カテゴリ"
+      />
+      <div className="grid gap-2">
+        {visible.map((facility) => (
+          <ListCard
+            key={facility.id}
+            title={facility.title}
+            description={facility.description}
+            status={<Badge variant="secondary">{facility.status}</Badge>}
+            meta={facility.meta}
+          />
+        ))}
+      </div>
+    </div>
+  );
+}`
+    : `import * as React from "react";
+import { Badge, FilterChips, ListCard, type FilterChip } from "@gunjo/ui";
+
+const categories: FilterChip[] = [
+  { value: "all", label: "All", count: 3 },
+  { value: "gate", label: "Gates", count: 3 },
+  {
+    value: "lounge",
+    label: "Lounges",
+    count: 0,
+    disabled: true,
+    disabledReason: "Lounges are full for this time slot.",
+  },
+  {
+    value: "smoking",
+    label: "Smoking",
+    count: 0,
+    disabled: true,
+    disabledReason: "Smoking areas are under renovation on this floor.",
+  },
+];
+
+const facilities = [
+  {
+    id: "gate-11",
+    category: "gate",
+    title: "Gate 11",
+    description: "Domestic flights / 3 min from security",
+    status: "Boarding",
+    meta: "3 min",
+  },
+  {
+    id: "gate-12",
+    category: "gate",
+    title: "Gate 12",
+    description: "Domestic flights / 4 min from security",
+    status: "Boarding",
+    meta: "4 min",
+  },
+  {
+    id: "gate-13",
+    category: "gate",
+    title: "Gate 13",
+    description: "Domestic flights / 5 min from security",
+    status: "Boarding",
+    meta: "5 min",
+  },
+];
+
+export function DisabledCategoryChips() {
+  const [category, setCategory] = React.useState("gate");
+  const visible = category === "all"
+    ? facilities
+    : facilities.filter((facility) => facility.category === category);
+
+  return (
+    <div className="grid gap-4">
+      <FilterChips
+        items={categories}
+        value={category}
+        onValueChange={setCategory}
+        aria-label="Facility category"
+      />
+      <div className="grid gap-2">
+        {visible.map((facility) => (
+          <ListCard
+            key={facility.id}
+            title={facility.title}
+            description={facility.description}
+            status={<Badge variant="secondary">{facility.status}</Badge>}
+            meta={facility.meta}
+          />
+        ))}
+      </div>
     </div>
   );
 }`;
@@ -567,27 +880,7 @@ export function FacilityFinder() {
                 ? "選択中のカテゴリは塗りつぶしチップで示し、下の一覧も同じ value で絞り込みます。"
                 : "The selected category is filled and filters the list below with the same value.",
               preview: <FilterChipsPreview locale={locale} initialValue="gate" />,
-              code: locale === "ja"
-                ? `<FilterChips
-  items={[
-    { value: "all", label: "すべて", count: 24 },
-    { value: "gate", label: "搭乗口", count: 8 },
-    { value: "lounge", label: "ラウンジ", count: 3 },
-  ]}
-  value="gate"
-  onValueChange={setCategory}
-  aria-label="施設カテゴリ"
-/>`
-                : `<FilterChips
-  items={[
-    { value: "all", label: "All", count: 24 },
-    { value: "gate", label: "Gates", count: 8 },
-    { value: "lounge", label: "Lounges", count: 3 },
-  ]}
-  value="gate"
-  onValueChange={setCategory}
-  aria-label="Facility category"
-/>`,
+              code: selectedCode,
               previewBodyWidth: "lg",
             },
             {
@@ -597,95 +890,7 @@ export function FacilityFinder() {
                 ? "disabledReason を渡すと、選べない理由をホバーまたはフォーカスで説明します。"
                 : "Pass disabledReason so unavailable chips explain why on hover or focus.",
               preview: <FilterChipsPreview locale={locale} disabledExample />,
-              code: locale === "ja"
-                ? `const categories = [
-    { value: "all", label: "すべて", count: 3 },
-    { value: "gate", label: "搭乗口", count: 3 },
-    {
-      value: "lounge",
-      label: "ラウンジ",
-      count: 0,
-      disabled: true,
-      disabledReason: "ラウンジは満席のため、この時間帯は選択できません。",
-    },
-    {
-      value: "smoking",
-      label: "喫煙所",
-      count: 0,
-      disabled: true,
-      disabledReason: "喫煙所は改修中のため、このフロアでは選択できません。",
-    },
-  ];
-
-const facilities = [
-  { id: "gate-11", category: "gate", title: "11番搭乗口", description: "国内線・保安検査場から徒歩3分", status: "搭乗中", meta: "3分" },
-  { id: "gate-12", category: "gate", title: "12番搭乗口", description: "国内線・保安検査場から徒歩4分", status: "搭乗中", meta: "4分" },
-  { id: "gate-13", category: "gate", title: "13番搭乗口", description: "国内線・保安検査場から徒歩5分", status: "搭乗中", meta: "5分" },
-];
-
-<div className="grid gap-4">
-  <FilterChips
-    items={categories}
-    value={category}
-    onValueChange={setCategory}
-    aria-label="施設カテゴリ"
-  />
-  <div className="grid gap-2">
-    {facilities.map((facility) => (
-      <ListCard
-        key={facility.id}
-        title={facility.title}
-        description={facility.description}
-        status={<Badge variant="secondary">{facility.status}</Badge>}
-        meta={facility.meta}
-      />
-    ))}
-  </div>
-</div>`
-                : `const categories = [
-    { value: "all", label: "All", count: 3 },
-    { value: "gate", label: "Gates", count: 3 },
-    {
-      value: "lounge",
-      label: "Lounges",
-      count: 0,
-      disabled: true,
-      disabledReason: "Lounges are full for this time slot.",
-    },
-    {
-      value: "smoking",
-      label: "Smoking",
-      count: 0,
-      disabled: true,
-      disabledReason: "Smoking areas are under renovation on this floor.",
-    },
-  ];
-
-const facilities = [
-  { id: "gate-11", category: "gate", title: "Gate 11", description: "Domestic flights / 3 min from security", status: "Boarding", meta: "3 min" },
-  { id: "gate-12", category: "gate", title: "Gate 12", description: "Domestic flights / 4 min from security", status: "Boarding", meta: "4 min" },
-  { id: "gate-13", category: "gate", title: "Gate 13", description: "Domestic flights / 5 min from security", status: "Boarding", meta: "5 min" },
-];
-
-<div className="grid gap-4">
-  <FilterChips
-    items={categories}
-    value={category}
-    onValueChange={setCategory}
-    aria-label="Facility category"
-  />
-  <div className="grid gap-2">
-    {facilities.map((facility) => (
-      <ListCard
-        key={facility.id}
-        title={facility.title}
-        description={facility.description}
-        status={<Badge variant="secondary">{facility.status}</Badge>}
-        meta={facility.meta}
-      />
-    ))}
-  </div>
-</div>`,
+              code: disabledCode,
               previewBodyWidth: "lg",
             },
           ]}

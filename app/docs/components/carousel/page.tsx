@@ -417,7 +417,8 @@ export default function CarouselDocPage() {
     const isJa = locale === "ja";
     const statesTitle = isJa ? "状態とバリエーション" : "States and variants";
 
-    const code = `import {
+    const code = isJa
+        ? `import {
   Carousel,
   CarouselContent,
   CarouselItem,
@@ -434,10 +435,10 @@ export function CarouselDemo() {
         navigation: true,
         dots: true,
         labels: {
-          previous: "${isJa ? "前のスライド" : "Previous slide"}",
-          next: "${isJa ? "次のスライド" : "Next slide"}",
-          dots: "${isJa ? "スライド選択" : "Slide selector"}",
-          getDotLabel: (index) => ${isJa ? 'index + 1 + "枚目へ移動"' : '"Go to slide " + (index + 1)'},
+          previous: "前のスライド",
+          next: "次のスライド",
+          dots: "スライド選択",
+          getDotLabel: (index) => index + 1 + "枚目へ移動",
         },
         previousClassName: "left-2 bg-background/90 sm:-left-12",
         nextClassName: "right-2 bg-background/90 sm:-right-12",
@@ -449,7 +450,49 @@ export function CarouselDemo() {
             <div className="p-1">
               <div className="flex aspect-square items-center justify-center rounded-md border bg-muted">
                 <span className="text-3xl font-semibold">
-                  {${isJa ? 'item + "枚目"' : '"Slide " + item'}}
+                  {item + "枚目"}
+                </span>
+              </div>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+    </Carousel>
+  )
+}`
+        : `import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+} from "@gunjo/ui"
+
+const slides = [1, 2, 3, 4]
+
+export function CarouselDemo() {
+  return (
+    <Carousel
+      className="w-64"
+      opts={{ loop: true, duration: 28 }}
+      controls={{
+        navigation: true,
+        dots: true,
+        labels: {
+          previous: "Previous slide",
+          next: "Next slide",
+          dots: "Slide selector",
+          getDotLabel: (index) => "Go to slide " + (index + 1),
+        },
+        previousClassName: "left-2 bg-background/90 sm:-left-12",
+        nextClassName: "right-2 bg-background/90 sm:-right-12",
+      }}
+    >
+      <CarouselContent>
+        {slides.map((item) => (
+          <CarouselItem key={item}>
+            <div className="p-1">
+              <div className="flex aspect-square items-center justify-center rounded-md border bg-muted">
+                <span className="text-3xl font-semibold">
+                  {"Slide " + item}
                 </span>
               </div>
             </div>
@@ -460,12 +503,36 @@ export function CarouselDemo() {
   )
 }`;
 
-    const usageCode = `import { Carousel, CarouselContent, CarouselItem } from "@gunjo/ui"
+    const usageCode = isJa
+        ? `import { Carousel, CarouselContent, CarouselItem } from "@gunjo/ui"
 
 const items = [
-  { id: "plan", label: "${isJa ? "企画" : "Plan"}" },
-  { id: "build", label: "${isJa ? "制作" : "Build"}" },
-  { id: "review", label: "${isJa ? "確認" : "Review"}" },
+  { id: "plan", label: "企画" },
+  { id: "build", label: "制作" },
+  { id: "review", label: "確認" },
+]
+
+export function Gallery() {
+  return (
+    <Carousel opts={{ loop: true }}>
+      <CarouselContent>
+        {items.map((item) => (
+          <CarouselItem key={item.id}>
+            <div className="flex aspect-[4/3] items-center justify-center rounded-lg border bg-card p-4">
+              <span className="text-lg font-semibold">{item.label}</span>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+    </Carousel>
+  )
+}`
+        : `import { Carousel, CarouselContent, CarouselItem } from "@gunjo/ui"
+
+const items = [
+  { id: "plan", label: "Plan" },
+  { id: "build", label: "Build" },
+  { id: "review", label: "Review" },
 ]
 
 export function Gallery() {
@@ -484,7 +551,8 @@ export function Gallery() {
   )
 }`;
 
-    const cardCarouselCode = `import {
+    const cardCarouselCode = isJa
+        ? `import {
   Carousel,
   CarouselContent,
   CarouselDots,
@@ -494,17 +562,19 @@ export function Gallery() {
 } from "@gunjo/ui"
 
 const cardItems = [
-  { label: "${isJa ? "企画" : "Plan"}" },
-  { label: "${isJa ? "制作" : "Build"}" },
-  { label: "${isJa ? "確認" : "Review"}" },
-  { label: "${isJa ? "公開" : "Launch"}" },
-  { label: "${isJa ? "改善" : "Improve"}" },
+  { label: "企画" },
+  { label: "制作" },
+  { label: "確認" },
+  { label: "公開" },
+  { label: "改善" },
 ]
 
-function CarouselCard({ label, index }: { label: string; index: number }) {
+function CarouselCard({ label, index }) {
   return (
     <div className="flex aspect-[4/3] flex-col justify-between rounded-lg border bg-card p-4 text-card-foreground shadow-sm">
-      <span className="text-xs font-medium text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
+      <span className="text-xs font-medium text-muted-foreground">
+        {String(index + 1).padStart(2, "0")}
+      </span>
       <span className="text-lg font-semibold">{label}</span>
     </div>
   )
@@ -513,7 +583,10 @@ function CarouselCard({ label, index }: { label: string; index: number }) {
 export function PeekCarousel() {
   return (
     <div className="w-full max-w-lg overflow-visible px-12 py-4">
-      <Carousel opts={{ align: "start", containScroll: "trimSnaps", duration: 28 }} className="w-full">
+      <Carousel
+        opts={{ align: "start", containScroll: "trimSnaps", duration: 28 }}
+        className="w-full"
+      >
         <CarouselContent>
           {cardItems.map((item, index) => (
             <CarouselItem key={item.label} className="basis-[68%]">
@@ -521,33 +594,111 @@ export function PeekCarousel() {
             </CarouselItem>
           ))}
         </CarouselContent>
-        <CarouselPrevious label="${isJa ? "前へ送る" : "Previous"}" className="-left-10 bg-background/90" hideWhenDisabled />
-        <CarouselNext label="${isJa ? "次へ送る" : "Next"}" className="-right-10 bg-background/90" hideWhenDisabled />
+        <CarouselPrevious
+          label="前へ送る"
+          className="-left-10 bg-background/90"
+          hideWhenDisabled
+        />
+        <CarouselNext
+          label="次へ送る"
+          className="-right-10 bg-background/90"
+          hideWhenDisabled
+        />
         <CarouselDots
           className="mt-4"
-          label="${isJa ? "カード選択" : "Card selector"}"
-          getDotLabel={(index) => ${isJa ? 'index + 1 + "枚目へ移動"' : '"Go to card " + (index + 1)'}}
+          label="カード選択"
+          getDotLabel={(index) => index + 1 + "枚目へ移動"}
+        />
+      </Carousel>
+    </div>
+  )
+}`
+        : `import {
+  Carousel,
+  CarouselContent,
+  CarouselDots,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@gunjo/ui"
+
+const cardItems = [
+  { label: "Plan" },
+  { label: "Build" },
+  { label: "Review" },
+  { label: "Launch" },
+  { label: "Improve" },
+]
+
+function CarouselCard({ label, index }) {
+  return (
+    <div className="flex aspect-[4/3] flex-col justify-between rounded-lg border bg-card p-4 text-card-foreground shadow-sm">
+      <span className="text-xs font-medium text-muted-foreground">
+        {String(index + 1).padStart(2, "0")}
+      </span>
+      <span className="text-lg font-semibold">{label}</span>
+    </div>
+  )
+}
+
+export function PeekCarousel() {
+  return (
+    <div className="w-full max-w-lg overflow-visible px-12 py-4">
+      <Carousel
+        opts={{ align: "start", containScroll: "trimSnaps", duration: 28 }}
+        className="w-full"
+      >
+        <CarouselContent>
+          {cardItems.map((item, index) => (
+            <CarouselItem key={item.label} className="basis-[68%]">
+              <CarouselCard label={item.label} index={index} />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        <CarouselPrevious
+          label="Previous"
+          className="-left-10 bg-background/90"
+          hideWhenDisabled
+        />
+        <CarouselNext
+          label="Next"
+          className="-right-10 bg-background/90"
+          hideWhenDisabled
+        />
+        <CarouselDots
+          className="mt-4"
+          label="Card selector"
+          getDotLabel={(index) => "Go to card " + (index + 1)}
         />
       </Carousel>
     </div>
   )
 }`;
 
-    const multiVisibleCode = `import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@gunjo/ui"
+    const multiVisibleCode = isJa
+        ? `import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@gunjo/ui"
 
 const cardItems = [
-  { label: "${isJa ? "企画" : "Plan"}" },
-  { label: "${isJa ? "制作" : "Build"}" },
-  { label: "${isJa ? "確認" : "Review"}" },
-  { label: "${isJa ? "公開" : "Launch"}" },
-  { label: "${isJa ? "改善" : "Improve"}" },
-  { label: "${isJa ? "分析" : "Analyze"}" },
+  { label: "企画" },
+  { label: "制作" },
+  { label: "確認" },
+  { label: "公開" },
+  { label: "改善" },
+  { label: "分析" },
 ]
 
-function CarouselCard({ label, index }: { label: string; index: number }) {
+function CarouselCard({ label, index }) {
   return (
     <div className="flex aspect-[4/3] flex-col justify-between rounded-lg border bg-card p-4 text-card-foreground shadow-sm">
-      <span className="text-xs font-medium text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
+      <span className="text-xs font-medium text-muted-foreground">
+        {String(index + 1).padStart(2, "0")}
+      </span>
       <span className="text-lg font-semibold">{label}</span>
     </div>
   )
@@ -555,7 +706,15 @@ function CarouselCard({ label, index }: { label: string; index: number }) {
 
 export function MultiVisibleCarousel() {
   return (
-    <Carousel opts={{ align: "start", containScroll: "trimSnaps", slidesToScroll: 3, duration: 28 }} className="w-full">
+    <Carousel
+      opts={{
+        align: "start",
+        containScroll: "trimSnaps",
+        slidesToScroll: 3,
+        duration: 28,
+      }}
+      className="w-full"
+    >
       <CarouselContent>
         {cardItems.map((item, index) => (
           <CarouselItem key={item.label} className="basis-1/3">
@@ -563,13 +722,81 @@ export function MultiVisibleCarousel() {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious label="${isJa ? "3枚戻る" : "Previous 3"}" className="left-2 bg-background/90" hideWhenDisabled />
-      <CarouselNext label="${isJa ? "3枚送る" : "Next 3"}" className="right-2 bg-background/90" hideWhenDisabled />
+      <CarouselPrevious
+        label="3枚戻る"
+        className="left-2 bg-background/90"
+        hideWhenDisabled
+      />
+      <CarouselNext
+        label="3枚送る"
+        className="right-2 bg-background/90"
+        hideWhenDisabled
+      />
+    </Carousel>
+  )
+}`
+        : `import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@gunjo/ui"
+
+const cardItems = [
+  { label: "Plan" },
+  { label: "Build" },
+  { label: "Review" },
+  { label: "Launch" },
+  { label: "Improve" },
+  { label: "Analyze" },
+]
+
+function CarouselCard({ label, index }) {
+  return (
+    <div className="flex aspect-[4/3] flex-col justify-between rounded-lg border bg-card p-4 text-card-foreground shadow-sm">
+      <span className="text-xs font-medium text-muted-foreground">
+        {String(index + 1).padStart(2, "0")}
+      </span>
+      <span className="text-lg font-semibold">{label}</span>
+    </div>
+  )
+}
+
+export function MultiVisibleCarousel() {
+  return (
+    <Carousel
+      opts={{
+        align: "start",
+        containScroll: "trimSnaps",
+        slidesToScroll: 3,
+        duration: 28,
+      }}
+      className="w-full"
+    >
+      <CarouselContent>
+        {cardItems.map((item, index) => (
+          <CarouselItem key={item.label} className="basis-1/3">
+            <CarouselCard label={item.label} index={index} />
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious
+        label="Previous 3"
+        className="left-2 bg-background/90"
+        hideWhenDisabled
+      />
+      <CarouselNext
+        label="Next 3"
+        className="right-2 bg-background/90"
+        hideWhenDisabled
+      />
     </Carousel>
   )
 }`;
 
-    const imageCarouselCode = `import {
+    const imageCarouselCode = isJa
+        ? `import {
   Carousel,
   CarouselContent,
   CarouselDots,
@@ -582,15 +809,15 @@ export function MultiVisibleCarousel() {
 const galleryImages = [
   {
     src: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=960&q=80",
-    label: "${isJa ? "ワークステーション" : "Workstation"}",
+    label: "ワークステーション",
   },
   {
     src: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=960&q=80",
-    label: "${isJa ? "スタジオ" : "Studio"}",
+    label: "スタジオ",
   },
   {
     src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=960&q=80",
-    label: "${isJa ? "風景素材" : "Landscape"}",
+    label: "風景素材",
   },
 ]
 
@@ -601,7 +828,13 @@ export function ImageCarousel() {
         {galleryImages.map((item) => (
           <CarouselItem key={item.src} className="basis-[72%]">
             <div className="p-1">
-              <ImagePreview src={item.src} alt={item.label} aspectRatio="video" className="rounded-lg" previewLabel="${isJa ? "拡大表示" : "Open preview"}">
+              <ImagePreview
+                src={item.src}
+                alt={item.label}
+                aspectRatio="video"
+                className="rounded-lg"
+                previewLabel="拡大表示"
+              >
                 <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-foreground/70 p-4 text-background">
                   <p className="text-sm font-medium">{item.label}</p>
                 </div>
@@ -610,48 +843,349 @@ export function ImageCarousel() {
           </CarouselItem>
         ))}
       </CarouselContent>
-      <CarouselPrevious label="${isJa ? "前の画像" : "Previous image"}" className="left-3 bg-background/90" />
-      <CarouselNext label="${isJa ? "次の画像" : "Next image"}" className="right-3 bg-background/90" />
+      <CarouselPrevious label="前の画像" className="left-3 bg-background/90" />
+      <CarouselNext label="次の画像" className="right-3 bg-background/90" />
       <CarouselDots
         className="mt-4"
-        label="${isJa ? "画像選択" : "Image selector"}"
-        getDotLabel={(index) => ${isJa ? 'index + 1 + "枚目の画像へ移動"' : '"Go to image " + (index + 1)'}}
+        label="画像選択"
+        getDotLabel={(index) => index + 1 + "枚目の画像へ移動"}
+      />
+    </Carousel>
+  )
+}`
+        : `import {
+  Carousel,
+  CarouselContent,
+  CarouselDots,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  ImagePreview,
+} from "@gunjo/ui"
+
+const galleryImages = [
+  {
+    src: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=960&q=80",
+    label: "Workstation",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=960&q=80",
+    label: "Studio",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=960&q=80",
+    label: "Landscape",
+  },
+]
+
+export function ImageCarousel() {
+  return (
+    <Carousel opts={{ align: "center", loop: true, duration: 32 }} className="w-full">
+      <CarouselContent>
+        {galleryImages.map((item) => (
+          <CarouselItem key={item.src} className="basis-[72%]">
+            <div className="p-1">
+              <ImagePreview
+                src={item.src}
+                alt={item.label}
+                aspectRatio="video"
+                className="rounded-lg"
+                previewLabel="Open preview"
+              >
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-foreground/70 p-4 text-background">
+                  <p className="text-sm font-medium">{item.label}</p>
+                </div>
+              </ImagePreview>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious label="Previous image" className="left-3 bg-background/90" />
+      <CarouselNext label="Next image" className="right-3 bg-background/90" />
+      <CarouselDots
+        className="mt-4"
+        label="Image selector"
+        getDotLabel={(index) => "Go to image " + (index + 1)}
       />
     </Carousel>
   )
 }`;
 
-    const thumbnailCarouselCode = imageCarouselCode.replace(
-        "CarouselDots,\n  CarouselItem,",
-        "CarouselItem,\n  CarouselThumbnail,\n  CarouselThumbnails,\n  Img,"
-    ).replace(
-        /      <CarouselDots[\s\S]*?      \/>/,
-        `      <CarouselThumbnails className="mt-4" label="${isJa ? "画像サムネイル" : "Image thumbnails"}">
-        {galleryImages.map((item, index) => (
-          <CarouselThumbnail key={item.src} index={index} label={${isJa ? 'item.label + "へ移動"' : '"Go to " + item.label'}}>
-            <Img src={item.src} alt="" aspectRatio="video" className="h-full w-full rounded-none" showSkeleton={false} />
+    const thumbnailCarouselCode = isJa
+        ? `import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  CarouselThumbnail,
+  CarouselThumbnails,
+  ImagePreview,
+  Img,
+} from "@gunjo/ui"
+
+const galleryImages = [
+  {
+    src: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=960&q=80",
+    label: "ワークステーション",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=960&q=80",
+    label: "スタジオ",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=960&q=80",
+    label: "風景素材",
+  },
+]
+
+export function ThumbnailCarousel() {
+  return (
+    <Carousel opts={{ loop: true, duration: 32 }} className="w-full">
+      <CarouselContent>
+        {galleryImages.map((item) => (
+          <CarouselItem key={item.src}>
+            <div className="p-1">
+              <ImagePreview
+                src={item.src}
+                alt={item.label}
+                aspectRatio="video"
+                className="rounded-lg"
+                previewLabel="拡大表示"
+              >
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-foreground/70 p-4 text-background">
+                  <p className="text-sm font-medium">{item.label}</p>
+                </div>
+              </ImagePreview>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious label="前の画像" className="left-3 bg-background/90" />
+      <CarouselNext label="次の画像" className="right-3 bg-background/90" />
+      <CarouselThumbnails className="mt-4" label="画像サムネイル">
+        {galleryImages.map((item) => (
+          <CarouselThumbnail
+            key={item.src}
+            index={galleryImages.indexOf(item)}
+            label={item.label + "へ移動"}
+          >
+            <Img
+              src={item.src}
+              alt=""
+              aspectRatio="video"
+              className="h-full w-full rounded-none"
+              showSkeleton={false}
+            />
           </CarouselThumbnail>
         ))}
-      </CarouselThumbnails>`
-    );
+      </CarouselThumbnails>
+    </Carousel>
+  )
+}`
+        : `import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  CarouselThumbnail,
+  CarouselThumbnails,
+  ImagePreview,
+  Img,
+} from "@gunjo/ui"
 
-    const autoplayCarouselCode = imageCarouselCode.replace(
-        "Carousel,\n  CarouselContent,",
-        "Carousel,\n  CarouselAutoplayToggle,\n  CarouselContent,"
-    ).replace(
-        '<Carousel opts={{ align: "center", loop: true, duration: 32 }} className="w-full">',
-        '<Carousel autoPlay autoPlayInterval={3200} opts={{ align: "center", loop: true, duration: 32 }} className="w-full">'
-    ).replace(
-        "      <CarouselDots",
-        `      <div className="mt-4 flex items-center justify-center gap-3">
-        <CarouselDots`
-    ).replace(
-        "      />\n    </Carousel>",
-        `        />
-        <CarouselAutoplayToggle playLabel="${isJa ? "自動再生を開始" : "Play carousel"}" pauseLabel="${isJa ? "自動再生を停止" : "Pause carousel"}" />
+const galleryImages = [
+  {
+    src: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=960&q=80",
+    label: "Workstation",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=960&q=80",
+    label: "Studio",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=960&q=80",
+    label: "Landscape",
+  },
+]
+
+export function ThumbnailCarousel() {
+  return (
+    <Carousel opts={{ loop: true, duration: 32 }} className="w-full">
+      <CarouselContent>
+        {galleryImages.map((item) => (
+          <CarouselItem key={item.src}>
+            <div className="p-1">
+              <ImagePreview
+                src={item.src}
+                alt={item.label}
+                aspectRatio="video"
+                className="rounded-lg"
+                previewLabel="Open preview"
+              >
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-foreground/70 p-4 text-background">
+                  <p className="text-sm font-medium">{item.label}</p>
+                </div>
+              </ImagePreview>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious label="Previous image" className="left-3 bg-background/90" />
+      <CarouselNext label="Next image" className="right-3 bg-background/90" />
+      <CarouselThumbnails className="mt-4" label="Image thumbnails">
+        {galleryImages.map((item) => (
+          <CarouselThumbnail
+            key={item.src}
+            index={galleryImages.indexOf(item)}
+            label={"Go to " + item.label}
+          >
+            <Img
+              src={item.src}
+              alt=""
+              aspectRatio="video"
+              className="h-full w-full rounded-none"
+              showSkeleton={false}
+            />
+          </CarouselThumbnail>
+        ))}
+      </CarouselThumbnails>
+    </Carousel>
+  )
+}`;
+
+    const autoplayCarouselCode = isJa
+        ? `import {
+  Carousel,
+  CarouselAutoplayToggle,
+  CarouselContent,
+  CarouselDots,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  ImagePreview,
+} from "@gunjo/ui"
+
+const galleryImages = [
+  {
+    src: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=960&q=80",
+    label: "ワークステーション",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=960&q=80",
+    label: "スタジオ",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=960&q=80",
+    label: "風景素材",
+  },
+]
+
+export function AutoplayCarousel() {
+  return (
+    <Carousel
+      autoPlay
+      autoPlayInterval={3200}
+      opts={{ align: "center", loop: true, duration: 32 }}
+      className="w-full"
+    >
+      <CarouselContent>
+        {galleryImages.map((item) => (
+          <CarouselItem key={item.src} className="basis-[72%]">
+            <div className="p-1">
+              <ImagePreview
+                src={item.src}
+                alt={item.label}
+                aspectRatio="video"
+                className="rounded-lg"
+                previewLabel="拡大表示"
+              >
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-foreground/70 p-4 text-background">
+                  <p className="text-sm font-medium">{item.label}</p>
+                </div>
+              </ImagePreview>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious label="前の画像" className="left-3 bg-background/90" />
+      <CarouselNext label="次の画像" className="right-3 bg-background/90" />
+      <div className="mt-4 flex items-center justify-center gap-3">
+        <CarouselDots
+          label="画像選択"
+          getDotLabel={(index) => index + 1 + "枚目の画像へ移動"}
+        />
+        <CarouselAutoplayToggle playLabel="自動再生を開始" pauseLabel="自動再生を停止" />
       </div>
-    </Carousel>`
-    );
+    </Carousel>
+  )
+}`
+        : `import {
+  Carousel,
+  CarouselAutoplayToggle,
+  CarouselContent,
+  CarouselDots,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  ImagePreview,
+} from "@gunjo/ui"
+
+const galleryImages = [
+  {
+    src: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=960&q=80",
+    label: "Workstation",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=960&q=80",
+    label: "Studio",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=960&q=80",
+    label: "Landscape",
+  },
+]
+
+export function AutoplayCarousel() {
+  return (
+    <Carousel
+      autoPlay
+      autoPlayInterval={3200}
+      opts={{ align: "center", loop: true, duration: 32 }}
+      className="w-full"
+    >
+      <CarouselContent>
+        {galleryImages.map((item) => (
+          <CarouselItem key={item.src} className="basis-[72%]">
+            <div className="p-1">
+              <ImagePreview
+                src={item.src}
+                alt={item.label}
+                aspectRatio="video"
+                className="rounded-lg"
+                previewLabel="Open preview"
+              >
+                <div className="pointer-events-none absolute inset-x-0 bottom-0 bg-foreground/70 p-4 text-background">
+                  <p className="text-sm font-medium">{item.label}</p>
+                </div>
+              </ImagePreview>
+            </div>
+          </CarouselItem>
+        ))}
+      </CarouselContent>
+      <CarouselPrevious label="Previous image" className="left-3 bg-background/90" />
+      <CarouselNext label="Next image" className="right-3 bg-background/90" />
+      <div className="mt-4 flex items-center justify-center gap-3">
+        <CarouselDots
+          label="Image selector"
+          getDotLabel={(index) => "Go to image " + (index + 1)}
+        />
+        <CarouselAutoplayToggle playLabel="Play carousel" pauseLabel="Pause carousel" />
+      </div>
+    </Carousel>
+  )
+}`;
 
     const propsData = [
         {

@@ -286,7 +286,12 @@ const nodes: LineageNode[] = [
   { id: "rm-01", label: "Raw lot RM-01", sublabel: "Received 2026-06-01", tone: "info" },
   { id: "rm-02", label: "Raw lot RM-02", sublabel: "Received 2026-06-02", tone: "info" },
   { id: "mix-01", label: "Blend lot MX-01", sublabel: "Mixing step", tone: "warning" },
-  { id: "pl-2405", label: "Product lot PL-2405", sublabel: "Shipment target", tone: "primary" },
+  {
+    id: "pl-2405",
+    label: "Product lot PL-2405",
+    sublabel: "Shipment target",
+    tone: "primary",
+  },
 ];
 
 const edges: LineageEdge[] = [
@@ -360,6 +365,148 @@ export function LotLineage() {
   );
 }`;
 
+  const verticalCode = locale === "ja"
+    ? `import {
+  LineageGraph,
+  type LineageEdge,
+  type LineageNode,
+} from "@gunjo/ui";
+
+const nodes: LineageNode[] = [
+  { id: "rm-01", label: "原料ロット RM-01", sublabel: "仕入 2026/06/01", tone: "info" },
+  { id: "rm-02", label: "原料ロット RM-02", sublabel: "仕入 2026/06/02", tone: "info" },
+  { id: "mix-01", label: "混合ロット MX-01", sublabel: "配合工程", tone: "warning" },
+  { id: "pl-2405", label: "製品ロット PL-2405", sublabel: "出荷対象", tone: "primary" },
+];
+
+const edges: LineageEdge[] = [
+  { from: "rm-01", to: "mix-01" },
+  { from: "rm-02", to: "mix-01" },
+  { from: "mix-01", to: "pl-2405" },
+];
+
+export function VerticalLotLineage() {
+  return (
+    <LineageGraph
+      nodes={nodes}
+      edges={edges}
+      label="ロット系譜"
+      direction="vertical"
+    />
+  );
+}`
+    : `import {
+  LineageGraph,
+  type LineageEdge,
+  type LineageNode,
+} from "@gunjo/ui";
+
+const nodes: LineageNode[] = [
+  { id: "rm-01", label: "Raw lot RM-01", sublabel: "Received 2026-06-01", tone: "info" },
+  { id: "rm-02", label: "Raw lot RM-02", sublabel: "Received 2026-06-02", tone: "info" },
+  { id: "mix-01", label: "Blend lot MX-01", sublabel: "Mixing step", tone: "warning" },
+  {
+    id: "pl-2405",
+    label: "Product lot PL-2405",
+    sublabel: "Shipment target",
+    tone: "primary",
+  },
+];
+
+const edges: LineageEdge[] = [
+  { from: "rm-01", to: "mix-01" },
+  { from: "rm-02", to: "mix-01" },
+  { from: "mix-01", to: "pl-2405" },
+];
+
+export function VerticalLotLineage() {
+  return (
+    <LineageGraph
+      nodes={nodes}
+      edges={edges}
+      label="Lot lineage"
+      direction="vertical"
+    />
+  );
+}`;
+
+  const customNodeCode = locale === "ja"
+    ? `import {
+  Badge,
+  LineageGraph,
+  type LineageEdge,
+  type LineageNode,
+} from "@gunjo/ui";
+
+const nodes: LineageNode[] = [
+  { id: "rm-01", label: "原料ロット RM-01", sublabel: "仕入 2026/06/01", tone: "info" },
+  { id: "rm-02", label: "原料ロット RM-02", sublabel: "仕入 2026/06/02", tone: "info" },
+  { id: "mix-01", label: "混合ロット MX-01", sublabel: "配合工程", tone: "warning" },
+  { id: "pl-2405", label: "製品ロット PL-2405", sublabel: "出荷対象", tone: "primary" },
+];
+
+const edges: LineageEdge[] = [
+  { from: "rm-01", to: "mix-01" },
+  { from: "rm-02", to: "mix-01" },
+  { from: "mix-01", to: "pl-2405" },
+];
+
+export function CustomNodeLotLineage() {
+  return (
+    <LineageGraph
+      nodes={nodes}
+      edges={edges}
+      label="ロット系譜"
+      renderNode={({ label, sublabel }) => (
+        <div className="flex h-full flex-col justify-center">
+          <span className="truncate text-sm font-medium">{label}</span>
+          <Badge variant="secondary">{sublabel}</Badge>
+        </div>
+      )}
+    />
+  );
+}`
+    : `import {
+  Badge,
+  LineageGraph,
+  type LineageEdge,
+  type LineageNode,
+} from "@gunjo/ui";
+
+const nodes: LineageNode[] = [
+  { id: "rm-01", label: "Raw lot RM-01", sublabel: "Received 2026-06-01", tone: "info" },
+  { id: "rm-02", label: "Raw lot RM-02", sublabel: "Received 2026-06-02", tone: "info" },
+  { id: "mix-01", label: "Blend lot MX-01", sublabel: "Mixing step", tone: "warning" },
+  {
+    id: "pl-2405",
+    label: "Product lot PL-2405",
+    sublabel: "Shipment target",
+    tone: "primary",
+  },
+];
+
+const edges: LineageEdge[] = [
+  { from: "rm-01", to: "mix-01" },
+  { from: "rm-02", to: "mix-01" },
+  { from: "mix-01", to: "pl-2405" },
+];
+
+export function CustomNodeLotLineage() {
+  return (
+    <LineageGraph
+      nodes={nodes}
+      edges={edges}
+      label="Lot lineage"
+      renderNode={({ label, sublabel }) => (
+        <div className="flex h-full flex-col justify-center">
+          <span className="truncate text-sm font-medium">{label}</span>
+          <Badge variant="secondary">{sublabel}</Badge>
+        </div>
+      )}
+    />
+  );
+}`;
+
   const propsData = [
     { name: "nodes", type: "LineageNode[]", description: locale === "ja" ? "表示するノードです。id、label、sublabel、tone、ariaLabel を渡せます。" : "Nodes to render. Pass id, label, sublabel, tone, and ariaLabel." },
     { name: "edges", type: "LineageEdge[]", description: locale === "ja" ? "from から to への有向エッジです。複数親・複数子を扱えます。" : "Directed edges from upstream to downstream. Multi-parent and multi-child are supported." },
@@ -406,14 +553,7 @@ export function LotLineage() {
               title: locale === "ja" ? "縦方向" : "Vertical",
               description: locale === "ja" ? "direction=\"vertical\" で上から下へ流れる図にできます。" : "Use direction=\"vertical\" for top-to-bottom flow.",
               preview: <LineageGraphPreview locale={locale} direction="vertical" />,
-              code: `<LineageGraph
-  nodes={[
-    { id: "rm-01", label: "${locale === "ja" ? "原料ロット RM-01" : "Raw lot RM-01"}" },
-    { id: "mix-01", label: "${locale === "ja" ? "混合ロット MX-01" : "Blend lot MX-01"}" },
-  ]}
-  edges={[{ from: "rm-01", to: "mix-01" }]}
-  direction="vertical"
-/>`,
+              code: verticalCode,
               previewBodyWidth: "xl",
             },
             {
@@ -421,16 +561,7 @@ export function LotLineage() {
               title: locale === "ja" ? "ノード描画の差し替え" : "Custom node",
               description: locale === "ja" ? "renderNode でノード内に Badge や補足情報を配置できます。" : "Use renderNode to place badges or richer metadata inside nodes.",
               preview: <LineageGraphPreview locale={locale} custom />,
-              code: `<LineageGraph
-  nodes={nodes}
-  edges={edges}
-  renderNode={(node) => (
-    <div className="flex h-full flex-col justify-center">
-      <span className="truncate text-sm font-medium">{node.label}</span>
-      <Badge variant="secondary">{node.sublabel}</Badge>
-    </div>
-  )}
-/>`,
+              code: customNodeCode,
               previewBodyWidth: "xl",
             },
           ]}
