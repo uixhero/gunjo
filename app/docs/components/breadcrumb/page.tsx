@@ -139,12 +139,8 @@ function BreadcrumbMetadataPreview() {
     );
 }
 
-export default function BreadcrumbDocPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
-
-    const code = `import {
+const codeByLocale = {
+    ja: `import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
@@ -156,7 +152,7 @@ export default function BreadcrumbDocPage() {
 import type { MouseEvent } from "react"
 
 function buildNavigationMessage(label: string, href: string) {
-  return \`${isJa ? "${label}（${href}）への遷移をプレビュー内で確認しました。" : "Previewed navigation to ${label} (${href})."}\`
+  return label + "（" + href + "）への遷移をプレビュー内で確認しました。"
 }
 
 export function BreadcrumbExample() {
@@ -173,27 +169,77 @@ export function BreadcrumbExample() {
       <Breadcrumb>
         <BreadcrumbList>
           <BreadcrumbItem>
-            <BreadcrumbLink href="/" onClick={handleNavigation("${isJa ? "ホーム" : "Home"}", "/")}>
-              ${isJa ? "ホーム" : "Home"}
+            <BreadcrumbLink href="/" onClick={handleNavigation("ホーム", "/")}>
+              ホーム
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbLink href="/docs" onClick={handleNavigation("${isJa ? "ドキュメント" : "Docs"}", "/docs")}>
-              ${isJa ? "ドキュメント" : "Docs"}
+            <BreadcrumbLink href="/docs" onClick={handleNavigation("ドキュメント", "/docs")}>
+              ドキュメント
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>${isJa ? "パンくず" : "Breadcrumb"}</BreadcrumbPage>
+            <BreadcrumbPage>パンくず</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
     </div>
   )
-}`;
+}`,
+    en: `import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  useToast,
+} from "@gunjo/ui"
+import type { MouseEvent } from "react"
 
-    const iconCode = `import {
+function buildNavigationMessage(label: string, href: string) {
+  return "Previewed navigation to " + label + " (" + href + ")."
+}
+
+export function BreadcrumbExample() {
+  const { showToast } = useToast()
+  const handleNavigation =
+    (label: string, href: string) =>
+    (event: MouseEvent<HTMLAnchorElement>) => {
+      event.preventDefault()
+      showToast(buildNavigationMessage(label, href), "success", 1800)
+    }
+
+  return (
+    <div className="flex w-full max-w-xl justify-center">
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/" onClick={handleNavigation("Home", "/")}>
+              Home
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/docs" onClick={handleNavigation("Docs", "/docs")}>
+              Docs
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+    </div>
+  )
+}`,
+};
+
+const iconCodeByLocale = {
+    ja: `import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
@@ -210,7 +256,7 @@ export function IconBreadcrumb() {
         <BreadcrumbItem>
           <BreadcrumbLink
             href="/"
-            aria-label="${isJa ? "ホーム" : "Home"}"
+            aria-label="ホーム"
             onClick={(event) => event.preventDefault()}
           >
             <Home className="h-4 w-4" />
@@ -219,19 +265,58 @@ export function IconBreadcrumb() {
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbLink href="/docs" onClick={(event) => event.preventDefault()}>
-            ${isJa ? "ドキュメント" : "Docs"}
+            ドキュメント
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbPage>${isJa ? "パンくず" : "Breadcrumb"}</BreadcrumbPage>
+          <BreadcrumbPage>パンくず</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
   )
-}`;
+}`,
+    en: `import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@gunjo/ui"
+import { IconHome as Home } from "@tabler/icons-react"
 
-    const collapsedCode = `import {
+export function IconBreadcrumb() {
+  return (
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink
+            href="/"
+            aria-label="Home"
+            onClick={(event) => event.preventDefault()}
+          >
+            <Home className="h-4 w-4" />
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/docs" onClick={(event) => event.preventDefault()}>
+            Docs
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  )
+}`,
+};
+
+const collapsedCodeByLocale = {
+    ja: `import {
   Breadcrumb,
   BreadcrumbEllipsis,
   BreadcrumbItem,
@@ -247,29 +332,68 @@ export function CollapsedBreadcrumb() {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink href="/" onClick={(event) => event.preventDefault()}>
-            ${isJa ? "ホーム" : "Home"}
+            ホーム
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbEllipsis label="${isJa ? "省略された階層" : "Collapsed levels"}" />
+          <BreadcrumbEllipsis label="省略された階層" />
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
           <BreadcrumbLink href="/docs/components" onClick={(event) => event.preventDefault()}>
-            ${isJa ? "コンポーネント" : "Components"}
+            コンポーネント
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator />
         <BreadcrumbItem>
-          <BreadcrumbPage>${isJa ? "パンくず" : "Breadcrumb"}</BreadcrumbPage>
+          <BreadcrumbPage>パンくず</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
   )
-}`;
+}`,
+    en: `import {
+  Breadcrumb,
+  BreadcrumbEllipsis,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@gunjo/ui"
 
-    const slashCode = `import {
+export function CollapsedBreadcrumb() {
+  return (
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/" onClick={(event) => event.preventDefault()}>
+            Home
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbEllipsis label="Collapsed levels" />
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/docs/components" onClick={(event) => event.preventDefault()}>
+            Components
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator />
+        <BreadcrumbItem>
+          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  )
+}`,
+};
+
+const slashCodeByLocale = {
+    ja: `import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
@@ -285,7 +409,7 @@ export function SlashBreadcrumb() {
       <BreadcrumbList>
         <BreadcrumbItem>
           <BreadcrumbLink href="/" onClick={(event) => event.preventDefault()}>
-            ${isJa ? "ホーム" : "Home"}
+            ホーム
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
@@ -293,21 +417,60 @@ export function SlashBreadcrumb() {
         </BreadcrumbSeparator>
         <BreadcrumbItem>
           <BreadcrumbLink href="/docs" onClick={(event) => event.preventDefault()}>
-            ${isJa ? "ドキュメント" : "Docs"}
+            ドキュメント
           </BreadcrumbLink>
         </BreadcrumbItem>
         <BreadcrumbSeparator>
           <Slash className="h-3.5 w-3.5" />
         </BreadcrumbSeparator>
         <BreadcrumbItem>
-          <BreadcrumbPage>${isJa ? "パンくず" : "Breadcrumb"}</BreadcrumbPage>
+          <BreadcrumbPage>パンくず</BreadcrumbPage>
         </BreadcrumbItem>
       </BreadcrumbList>
     </Breadcrumb>
   )
-}`;
+}`,
+    en: `import {
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+} from "@gunjo/ui"
+import { IconSlash as Slash } from "@tabler/icons-react"
 
-    const hoverPreviewCode = `import {
+export function SlashBreadcrumb() {
+  return (
+    <Breadcrumb>
+      <BreadcrumbList>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/" onClick={(event) => event.preventDefault()}>
+            Home
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator>
+          <Slash className="h-3.5 w-3.5" />
+        </BreadcrumbSeparator>
+        <BreadcrumbItem>
+          <BreadcrumbLink href="/docs" onClick={(event) => event.preventDefault()}>
+            Docs
+          </BreadcrumbLink>
+        </BreadcrumbItem>
+        <BreadcrumbSeparator>
+          <Slash className="h-3.5 w-3.5" />
+        </BreadcrumbSeparator>
+        <BreadcrumbItem>
+          <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+        </BreadcrumbItem>
+      </BreadcrumbList>
+    </Breadcrumb>
+  )
+}`,
+};
+
+const hoverPreviewCodeByLocale = {
+    ja: `import {
   Button,
   Breadcrumb,
   BreadcrumbItem,
@@ -324,7 +487,7 @@ import type { KeyboardEvent, MouseEvent, PointerEvent } from "react"
 import { useState } from "react"
 
 function buildNavigationMessage(label: string, href: string) {
-  return \`${isJa ? "${label}（${href}）への遷移をプレビュー内で確認しました。" : "Previewed navigation to ${label} (${href})."}\`
+  return label + "（" + href + "）への遷移をプレビュー内で確認しました。"
 }
 
 export function BreadcrumbWithPreview() {
@@ -347,7 +510,7 @@ export function BreadcrumbWithPreview() {
     openPreview()
   }
   const handlePreviewNavigation = () => {
-    showToast(buildNavigationMessage("${isJa ? "ドキュメント" : "Docs"}", "/docs"), "success", 1800)
+    showToast(buildNavigationMessage("ドキュメント", "/docs"), "success", 1800)
     setOpen(false)
   }
 
@@ -357,7 +520,7 @@ export function BreadcrumbWithPreview() {
         <BreadcrumbList>
           <BreadcrumbItem>
             <BreadcrumbLink href="/" onClick={(event) => event.preventDefault()}>
-              ${isJa ? "ホーム" : "Home"}
+              ホーム
             </BreadcrumbLink>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
@@ -371,32 +534,148 @@ export function BreadcrumbWithPreview() {
                     onClick={handlePreviewOpen}
                     onKeyDown={handlePreviewKeyDown}
                   >
-                    ${isJa ? "ドキュメント" : "Docs"}
+                    ドキュメント
                   </BreadcrumbLink>
                 </span>
               </HoverCardTrigger>
               <HoverCardContent className="items-start text-left">
                 <div className="space-y-1">
-                  <p className="text-sm font-semibold">${isJa ? "ドキュメント" : "Docs"}</p>
+                  <p className="text-sm font-semibold">ドキュメント</p>
                   <p className="text-xs leading-5 text-muted-foreground">
-                    ${isJa ? "GunjoUI のコンポーネント、パターン、設計ガイドを確認できます。" : "Browse GunjoUI components, patterns, and design guidance."}
+                    GunjoUI のコンポーネント、パターン、設計ガイドを確認できます。
                   </p>
                 </div>
-                <Button type="button" size="sm" variant="secondary" onClick={handlePreviewNavigation}>
-                  ${isJa ? "ドキュメントへ移動" : "Go to Docs"}
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="secondary"
+                  onClick={handlePreviewNavigation}
+                >
+                  ドキュメントへ移動
                 </Button>
               </HoverCardContent>
             </HoverCard>
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>${isJa ? "パンくず" : "Breadcrumb"}</BreadcrumbPage>
+            <BreadcrumbPage>パンくず</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
     </div>
   )
-}`;
+}`,
+    en: `import {
+  Button,
+  Breadcrumb,
+  BreadcrumbItem,
+  BreadcrumbLink,
+  BreadcrumbList,
+  BreadcrumbPage,
+  BreadcrumbSeparator,
+  HoverCard,
+  HoverCardContent,
+  HoverCardTrigger,
+  useToast,
+} from "@gunjo/ui"
+import type { KeyboardEvent, MouseEvent, PointerEvent } from "react"
+import { useState } from "react"
+
+function buildNavigationMessage(label: string, href: string) {
+  return "Previewed navigation to " + label + " (" + href + ")."
+}
+
+export function BreadcrumbWithPreview() {
+  const { showToast } = useToast()
+  const [open, setOpen] = useState(false)
+  const openPreview = () => setOpen(true)
+  const handlePreviewPointerDown = (event: PointerEvent<HTMLAnchorElement>) => {
+    event.preventDefault()
+    openPreview()
+  }
+  const handlePreviewOpen = (event: MouseEvent<HTMLAnchorElement>) => {
+    event.preventDefault()
+    openPreview()
+  }
+  const handlePreviewKeyDown = (event: KeyboardEvent<HTMLAnchorElement>) => {
+    if (event.key !== "Enter" && event.key !== " ") {
+      return
+    }
+    event.preventDefault()
+    openPreview()
+  }
+  const handlePreviewNavigation = () => {
+    showToast(buildNavigationMessage("Docs", "/docs"), "success", 1800)
+    setOpen(false)
+  }
+
+  return (
+    <div className="flex w-full max-w-xl flex-col items-center gap-4">
+      <Breadcrumb>
+        <BreadcrumbList>
+          <BreadcrumbItem>
+            <BreadcrumbLink href="/" onClick={(event) => event.preventDefault()}>
+              Home
+            </BreadcrumbLink>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <HoverCard open={open} onOpenChange={setOpen} openDelay={150}>
+              <HoverCardTrigger asChild>
+                <span className="inline-flex">
+                  <BreadcrumbLink
+                    href="/docs"
+                    onPointerDown={handlePreviewPointerDown}
+                    onClick={handlePreviewOpen}
+                    onKeyDown={handlePreviewKeyDown}
+                  >
+                    Docs
+                  </BreadcrumbLink>
+                </span>
+              </HoverCardTrigger>
+              <HoverCardContent className="items-start text-left">
+                <div className="space-y-1">
+                  <p className="text-sm font-semibold">Docs</p>
+                  <p className="text-xs leading-5 text-muted-foreground">
+                    Browse GunjoUI components, patterns, and design guidance.
+                  </p>
+                </div>
+                <Button
+                  type="button"
+                  size="sm"
+                  variant="secondary"
+                  onClick={handlePreviewNavigation}
+                >
+                  Go to Docs
+                </Button>
+              </HoverCardContent>
+            </HoverCard>
+          </BreadcrumbItem>
+          <BreadcrumbSeparator />
+          <BreadcrumbItem>
+            <BreadcrumbPage>Breadcrumb</BreadcrumbPage>
+          </BreadcrumbItem>
+        </BreadcrumbList>
+      </Breadcrumb>
+    </div>
+  )
+}`,
+};
+
+export default function BreadcrumbDocPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
+
+    const code = codeByLocale[locale];
+
+    const iconCode = iconCodeByLocale[locale];
+
+    const collapsedCode = collapsedCodeByLocale[locale];
+
+    const slashCode = slashCodeByLocale[locale];
+
+    const hoverPreviewCode = hoverPreviewCodeByLocale[locale];
 
     return (
         <ComponentLayout

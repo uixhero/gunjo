@@ -101,61 +101,116 @@ function UnderlineTabsExample() {
     );
 }
 
-export default function TabsPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const code = `import { Tabs, TabsContent, TabsList, TabsTrigger } from "@gunjo/ui"
+const codeByLocale = {
+    ja: `import { Tabs, TabsContent, TabsList, TabsTrigger } from "@gunjo/ui"
 
 export function ProjectTabs() {
   return (
     <Tabs defaultValue="overview" className="w-full max-w-2xl">
       <TabsList className="w-full justify-start overflow-x-auto overflow-y-hidden">
-        <TabsTrigger value="overview">${isJa ? "概要" : "Overview"}</TabsTrigger>
-        <TabsTrigger value="activity">${isJa ? "アクティビティ" : "Activity"}</TabsTrigger>
-        <TabsTrigger value="settings">${isJa ? "設定" : "Settings"}</TabsTrigger>
+        <TabsTrigger value="overview">概要</TabsTrigger>
+        <TabsTrigger value="activity">アクティビティ</TabsTrigger>
+        <TabsTrigger value="settings">設定</TabsTrigger>
       </TabsList>
       <TabsContent value="overview" className="space-y-1 text-sm text-muted-foreground">
-        <p className="font-medium text-foreground">${isJa ? "プロジェクト概要" : "Project overview"}</p>
-        <p>${isJa ? "タブで関連する内容を切り替えます。" : "Switch between related sections without leaving the page."}</p>
+        <p className="font-medium text-foreground">プロジェクト概要</p>
+        <p>タブで関連する内容を切り替えます。</p>
       </TabsContent>
       <TabsContent value="activity" className="text-sm text-muted-foreground">
-        ${isJa ? "最新の変更履歴を表示します。" : "Recent activity appears here."}
+        最新の変更履歴を表示します。
       </TabsContent>
       <TabsContent value="settings" className="text-sm text-muted-foreground">
-        ${isJa ? "プロジェクト設定を表示します。" : "Project settings appear here."}
+        プロジェクト設定を表示します。
       </TabsContent>
     </Tabs>
   )
-}`;
-    const countsCode = `import { Badge, Tabs, TabsContent, TabsList, TabsTrigger } from "@gunjo/ui"
+}`,
+    en: `import { Tabs, TabsContent, TabsList, TabsTrigger } from "@gunjo/ui"
+
+export function ProjectTabs() {
+  return (
+    <Tabs defaultValue="overview" className="w-full max-w-2xl">
+      <TabsList className="w-full justify-start overflow-x-auto overflow-y-hidden">
+        <TabsTrigger value="overview">Overview</TabsTrigger>
+        <TabsTrigger value="activity">Activity</TabsTrigger>
+        <TabsTrigger value="settings">Settings</TabsTrigger>
+      </TabsList>
+      <TabsContent value="overview" className="space-y-1 text-sm text-muted-foreground">
+        <p className="font-medium text-foreground">Project overview</p>
+        <p>Switch between related sections without leaving the page.</p>
+      </TabsContent>
+      <TabsContent value="activity" className="text-sm text-muted-foreground">
+        Recent activity appears here.
+      </TabsContent>
+      <TabsContent value="settings" className="text-sm text-muted-foreground">
+        Project settings appear here.
+      </TabsContent>
+    </Tabs>
+  )
+}`,
+};
+
+const countsCodeByLocale = {
+    ja: `import { Badge, Tabs, TabsContent, TabsList, TabsTrigger } from "@gunjo/ui"
 
 export function TabsWithCounts() {
   return (
     <Tabs defaultValue="overview" className="w-full max-w-2xl">
       <TabsList className="w-full justify-start overflow-x-auto overflow-y-hidden">
-        <TabsTrigger value="overview">${isJa ? "概要" : "Overview"}</TabsTrigger>
+        <TabsTrigger value="overview">概要</TabsTrigger>
         <TabsTrigger value="activity" className="gap-2">
-          ${isJa ? "アクティビティ" : "Activity"}
+          アクティビティ
           <Badge variant="secondary">12</Badge>
         </TabsTrigger>
         <TabsTrigger value="settings" className="gap-2">
-          ${isJa ? "設定" : "Settings"}
+          設定
           <Badge variant="secondary">3</Badge>
         </TabsTrigger>
       </TabsList>
       <TabsContent value="overview" className="text-sm text-muted-foreground">
-        ${isJa ? "タブで関連する内容を切り替えます。" : "Switch between related sections without leaving the page."}
+        タブで関連する内容を切り替えます。
       </TabsContent>
       <TabsContent value="activity" className="text-sm text-muted-foreground">
-        ${isJa ? "最新の変更履歴を表示します。" : "Recent activity appears here."}
+        最新の変更履歴を表示します。
       </TabsContent>
       <TabsContent value="settings" className="text-sm text-muted-foreground">
-        ${isJa ? "プロジェクト設定を表示します。" : "Project settings appear here."}
+        プロジェクト設定を表示します。
       </TabsContent>
     </Tabs>
   )
-}`;
-    const controlledCode = `import * as React from "react"
+}`,
+    en: `import { Badge, Tabs, TabsContent, TabsList, TabsTrigger } from "@gunjo/ui"
+
+export function TabsWithCounts() {
+  return (
+    <Tabs defaultValue="overview" className="w-full max-w-2xl">
+      <TabsList className="w-full justify-start overflow-x-auto overflow-y-hidden">
+        <TabsTrigger value="overview">Overview</TabsTrigger>
+        <TabsTrigger value="activity" className="gap-2">
+          Activity
+          <Badge variant="secondary">12</Badge>
+        </TabsTrigger>
+        <TabsTrigger value="settings" className="gap-2">
+          Settings
+          <Badge variant="secondary">3</Badge>
+        </TabsTrigger>
+      </TabsList>
+      <TabsContent value="overview" className="text-sm text-muted-foreground">
+        Switch between related sections without leaving the page.
+      </TabsContent>
+      <TabsContent value="activity" className="text-sm text-muted-foreground">
+        Recent activity appears here.
+      </TabsContent>
+      <TabsContent value="settings" className="text-sm text-muted-foreground">
+        Project settings appear here.
+      </TabsContent>
+    </Tabs>
+  )
+}`,
+};
+
+const controlledCodeByLocale = {
+    ja: `import * as React from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@gunjo/ui"
 
 export function ControlledTabs() {
@@ -164,23 +219,51 @@ export function ControlledTabs() {
   return (
     <Tabs value={value} onValueChange={setValue} className="w-full max-w-2xl">
       <TabsList className="w-full justify-start overflow-x-auto overflow-y-hidden">
-        <TabsTrigger value="overview">${isJa ? "概要" : "Overview"}</TabsTrigger>
-        <TabsTrigger value="activity">${isJa ? "アクティビティ" : "Activity"}</TabsTrigger>
-        <TabsTrigger value="settings">${isJa ? "設定" : "Settings"}</TabsTrigger>
+        <TabsTrigger value="overview">概要</TabsTrigger>
+        <TabsTrigger value="activity">アクティビティ</TabsTrigger>
+        <TabsTrigger value="settings">設定</TabsTrigger>
       </TabsList>
       <TabsContent value="overview" className="text-sm text-muted-foreground">
-        ${isJa ? "現在選択中のタブは「概要」です。" : "The selected tab is Overview."}
+        現在選択中のタブは「概要」です。
       </TabsContent>
       <TabsContent value="activity" className="text-sm text-muted-foreground">
-        ${isJa ? "最近の更新やコメントを確認します。" : "Review recent updates and comments."}
+        最近の更新やコメントを確認します。
       </TabsContent>
       <TabsContent value="settings" className="text-sm text-muted-foreground">
-        ${isJa ? "通知や権限の設定を変更します。" : "Change notification and permission settings."}
+        通知や権限の設定を変更します。
       </TabsContent>
     </Tabs>
   )
-}`;
-    const underlineCode = `import { Tabs, TabsContent, TabsList, TabsTrigger } from "@gunjo/ui"
+}`,
+    en: `import * as React from "react"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@gunjo/ui"
+
+export function ControlledTabs() {
+  const [value, setValue] = React.useState("overview")
+
+  return (
+    <Tabs value={value} onValueChange={setValue} className="w-full max-w-2xl">
+      <TabsList className="w-full justify-start overflow-x-auto overflow-y-hidden">
+        <TabsTrigger value="overview">Overview</TabsTrigger>
+        <TabsTrigger value="activity">Activity</TabsTrigger>
+        <TabsTrigger value="settings">Settings</TabsTrigger>
+      </TabsList>
+      <TabsContent value="overview" className="text-sm text-muted-foreground">
+        The selected tab is Overview.
+      </TabsContent>
+      <TabsContent value="activity" className="text-sm text-muted-foreground">
+        Review recent updates and comments.
+      </TabsContent>
+      <TabsContent value="settings" className="text-sm text-muted-foreground">
+        Change notification and permission settings.
+      </TabsContent>
+    </Tabs>
+  )
+}`,
+};
+
+const underlineCodeByLocale = {
+    ja: `import { Tabs, TabsContent, TabsList, TabsTrigger } from "@gunjo/ui"
 
 const underlineTriggerClass =
   "relative h-10 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-colors data-[state=active]:border-b-primary data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=active]:shadow-none"
@@ -190,27 +273,67 @@ export function UnderlineTabs() {
     <Tabs defaultValue="preview" className="w-full max-w-2xl border-0">
       <TabsList className="min-h-0 w-full justify-start overflow-x-auto overflow-y-hidden rounded-none border-b bg-transparent p-0">
         <TabsTrigger value="preview" className={underlineTriggerClass}>
-          ${isJa ? "プレビュー" : "Preview"}
+          プレビュー
         </TabsTrigger>
         <TabsTrigger value="code" className={underlineTriggerClass}>
-          ${isJa ? "コード" : "Code"}
+          コード
         </TabsTrigger>
         <TabsTrigger value="history" className={underlineTriggerClass}>
-          ${isJa ? "履歴" : "History"}
+          履歴
         </TabsTrigger>
       </TabsList>
       <TabsContent value="preview" className="px-0 text-sm text-muted-foreground">
-        ${isJa ? "サイト内のプレビュー切り替えと同じ下線タイプです。" : "Underline tabs match the preview switcher used across the site."}
+        サイト内のプレビュー切り替えと同じ下線タイプです。
       </TabsContent>
       <TabsContent value="code" className="px-0 text-sm text-muted-foreground">
-        ${isJa ? "コードや設定など、隣接する作業面を切り替えます。" : "Switch adjacent working surfaces such as code or settings."}
+        コードや設定など、隣接する作業面を切り替えます。
       </TabsContent>
       <TabsContent value="history" className="px-0 text-sm text-muted-foreground">
-        ${isJa ? "履歴や変更差分を同じ領域で確認します。" : "Review history and changes in the same area."}
+        履歴や変更差分を同じ領域で確認します。
       </TabsContent>
     </Tabs>
   )
-}`;
+}`,
+    en: `import { Tabs, TabsContent, TabsList, TabsTrigger } from "@gunjo/ui"
+
+const underlineTriggerClass =
+  "relative h-10 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-colors data-[state=active]:border-b-primary data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=active]:shadow-none"
+
+export function UnderlineTabs() {
+  return (
+    <Tabs defaultValue="preview" className="w-full max-w-2xl border-0">
+      <TabsList className="min-h-0 w-full justify-start overflow-x-auto overflow-y-hidden rounded-none border-b bg-transparent p-0">
+        <TabsTrigger value="preview" className={underlineTriggerClass}>
+          Preview
+        </TabsTrigger>
+        <TabsTrigger value="code" className={underlineTriggerClass}>
+          Code
+        </TabsTrigger>
+        <TabsTrigger value="history" className={underlineTriggerClass}>
+          History
+        </TabsTrigger>
+      </TabsList>
+      <TabsContent value="preview" className="px-0 text-sm text-muted-foreground">
+        Underline tabs match the preview switcher used across the site.
+      </TabsContent>
+      <TabsContent value="code" className="px-0 text-sm text-muted-foreground">
+        Switch adjacent working surfaces such as code or settings.
+      </TabsContent>
+      <TabsContent value="history" className="px-0 text-sm text-muted-foreground">
+        Review history and changes in the same area.
+      </TabsContent>
+    </Tabs>
+  )
+}`,
+};
+
+export default function TabsPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const code = codeByLocale[locale];
+    const countsCode = countsCodeByLocale[locale];
+    const controlledCode = controlledCodeByLocale[locale];
+    const underlineCode = underlineCodeByLocale[locale];
 
     return (
         <ComponentLayout

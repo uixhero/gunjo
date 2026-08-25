@@ -60,15 +60,13 @@ function NavigationMenuExample({ directOnly = false }: { directOnly?: boolean })
     );
 }
 
-export default function NavigationMenuPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const code = `import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@gunjo/ui"
+const codeByLocale = {
+    ja: `import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@gunjo/ui"
 
 const products = [
-  { title: "${isJa ? "コンポーネント" : "Components"}", href: "/docs/components", desc: "${isJa ? "再利用できる UI 部品" : "Reusable UI parts"}" },
-  { title: "${isJa ? "トークン" : "Tokens"}", href: "/docs/tokens", desc: "${isJa ? "色、余白、角丸の設計値" : "Color, spacing, and radius values"}" },
-  { title: "${isJa ? "テンプレート" : "Templates"}", href: "/patterns", desc: "${isJa ? "画面単位の組み合わせ例" : "Page-level compositions"}" },
+  { title: "コンポーネント", href: "/docs/components", desc: "再利用できる UI 部品" },
+  { title: "トークン", href: "/docs/tokens", desc: "色、余白、角丸の設計値" },
+  { title: "テンプレート", href: "/patterns", desc: "画面単位の組み合わせ例" },
 ]
 
 export function ProductNavigation() {
@@ -76,12 +74,15 @@ export function ProductNavigation() {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>${isJa ? "プロダクト" : "Product"}</NavigationMenuTrigger>
+          <NavigationMenuTrigger>プロダクト</NavigationMenuTrigger>
           <NavigationMenuContent>
             <ul className="grid w-[min(400px,calc(100vw-3rem))] gap-2 p-3">
               {products.map((item) => (
                 <li key={item.title}>
-                  <NavigationMenuLink href={item.href} className="block rounded-md p-2 hover:bg-muted">
+                  <NavigationMenuLink
+                    href={item.href}
+                    className="block rounded-md p-2 hover:bg-muted"
+                  >
                     <div className="text-sm font-medium">{item.title}</div>
                     <p className="text-xs text-muted-foreground">{item.desc}</p>
                   </NavigationMenuLink>
@@ -92,19 +93,66 @@ export function ProductNavigation() {
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink href="/pricing" className={navigationMenuTriggerStyle()}>
-            ${isJa ? "料金" : "Pricing"}
+            料金
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink href="/docs" className={navigationMenuTriggerStyle()}>
-            ${isJa ? "ドキュメント" : "Docs"}
+            ドキュメント
           </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   )
-}`;
-    const directCode = `import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "@gunjo/ui"
+}`,
+    en: `import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@gunjo/ui"
+
+const products = [
+  { title: "Components", href: "/docs/components", desc: "Reusable UI parts" },
+  { title: "Tokens", href: "/docs/tokens", desc: "Color, spacing, and radius values" },
+  { title: "Templates", href: "/patterns", desc: "Page-level compositions" },
+]
+
+export function ProductNavigation() {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Product</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            <ul className="grid w-[min(400px,calc(100vw-3rem))] gap-2 p-3">
+              {products.map((item) => (
+                <li key={item.title}>
+                  <NavigationMenuLink
+                    href={item.href}
+                    className="block rounded-md p-2 hover:bg-muted"
+                  >
+                    <div className="text-sm font-medium">{item.title}</div>
+                    <p className="text-xs text-muted-foreground">{item.desc}</p>
+                  </NavigationMenuLink>
+                </li>
+              ))}
+            </ul>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink href="/pricing" className={navigationMenuTriggerStyle()}>
+            Pricing
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink href="/docs" className={navigationMenuTriggerStyle()}>
+            Docs
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  )
+}`,
+};
+
+const directCodeByLocale = {
+    ja: `import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "@gunjo/ui"
 
 export function DirectNavigation() {
   return (
@@ -112,18 +160,45 @@ export function DirectNavigation() {
       <NavigationMenuList>
         <NavigationMenuItem>
           <NavigationMenuLink href="/pricing" className={navigationMenuTriggerStyle()}>
-            ${isJa ? "料金" : "Pricing"}
+            料金
           </NavigationMenuLink>
         </NavigationMenuItem>
         <NavigationMenuItem>
           <NavigationMenuLink href="/docs" className={navigationMenuTriggerStyle()}>
-            ${isJa ? "ドキュメント" : "Docs"}
+            ドキュメント
           </NavigationMenuLink>
         </NavigationMenuItem>
       </NavigationMenuList>
     </NavigationMenu>
   )
-}`;
+}`,
+    en: `import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "@gunjo/ui"
+
+export function DirectNavigation() {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuLink href="/pricing" className={navigationMenuTriggerStyle()}>
+            Pricing
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+        <NavigationMenuItem>
+          <NavigationMenuLink href="/docs" className={navigationMenuTriggerStyle()}>
+            Docs
+          </NavigationMenuLink>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  )
+}`,
+};
+
+export default function NavigationMenuPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const code = codeByLocale[locale];
+    const directCode = directCodeByLocale[locale];
 
     return (
         <ComponentLayout

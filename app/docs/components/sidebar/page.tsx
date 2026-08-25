@@ -81,18 +81,32 @@ function SidebarExample({ defaultCollapsed = false }: { defaultCollapsed?: boole
     );
 }
 
-export default function SidebarPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-const code = `import * as React from "react"
-import { Avatar, AvatarFallback, Sidebar, SidebarBody, SidebarFooter, SidebarHeader, SidebarItem, SidebarProvider, SidebarToggle, useSidebar } from "@gunjo/ui"
-import { IconChartBar as BarChart3, IconHome as Home, IconLayoutKanban as FolderKanban, IconSettings as Settings } from "@tabler/icons-react"
+const codeByLocale = {
+    ja: `import * as React from "react"
+import {
+  Avatar,
+  AvatarFallback,
+  Sidebar,
+  SidebarBody,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarItem,
+  SidebarProvider,
+  SidebarToggle,
+  useSidebar,
+} from "@gunjo/ui"
+import {
+  IconChartBar as BarChart3,
+  IconHome as Home,
+  IconLayoutKanban as FolderKanban,
+  IconSettings as Settings,
+} from "@tabler/icons-react"
 
 const navItems = [
-  { id: "home", label: "${isJa ? "ホーム" : "Home"}", icon: Home },
-  { id: "projects", label: "${isJa ? "プロジェクト" : "Projects"}", icon: FolderKanban },
-  { id: "reports", label: "${isJa ? "レポート" : "Reports"}", icon: BarChart3 },
-  { id: "settings", label: "${isJa ? "設定" : "Settings"}", icon: Settings },
+  { id: "home", label: "ホーム", icon: Home },
+  { id: "projects", label: "プロジェクト", icon: FolderKanban },
+  { id: "reports", label: "レポート", icon: BarChart3 },
+  { id: "settings", label: "設定", icon: Settings },
 ]
 
 function SidebarContent() {
@@ -125,11 +139,11 @@ function SidebarContent() {
       </SidebarBody>
       <SidebarFooter>
         <Avatar className="h-7 w-7 shrink-0"><AvatarFallback>UI</AvatarFallback></Avatar>
-        {!collapsed ? <span className="min-w-0 flex-1 truncate text-sm">${isJa ? "デザインチーム" : "Design team"}</span> : null}
+        {!collapsed ? <span className="min-w-0 flex-1 truncate text-sm">デザインチーム</span> : null}
       </SidebarFooter>
       <SidebarToggle
-        expandLabel="${isJa ? "サイドバーを展開" : "Expand sidebar"}"
-        collapseLabel="${isJa ? "サイドバーを折りたたむ" : "Collapse sidebar"}"
+        expandLabel="サイドバーを展開"
+        collapseLabel="サイドバーを折りたたむ"
       />
     </Sidebar>
   )
@@ -142,11 +156,96 @@ export function SidebarLayout() {
         <SidebarContent />
       </SidebarProvider>
       <main className="flex min-w-0 flex-1 items-center justify-center bg-muted/30 p-6 text-sm text-muted-foreground">
-        ${isJa ? "メインコンテンツ" : "Main content"}
+        メインコンテンツ
       </main>
     </div>
   )
-}`;
+}`,
+    en: `import * as React from "react"
+import {
+  Avatar,
+  AvatarFallback,
+  Sidebar,
+  SidebarBody,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarItem,
+  SidebarProvider,
+  SidebarToggle,
+  useSidebar,
+} from "@gunjo/ui"
+import {
+  IconChartBar as BarChart3,
+  IconHome as Home,
+  IconLayoutKanban as FolderKanban,
+  IconSettings as Settings,
+} from "@tabler/icons-react"
+
+const navItems = [
+  { id: "home", label: "Home", icon: Home },
+  { id: "projects", label: "Projects", icon: FolderKanban },
+  { id: "reports", label: "Reports", icon: BarChart3 },
+  { id: "settings", label: "Settings", icon: Settings },
+]
+
+function SidebarContent() {
+  const { collapsed } = useSidebar()
+  const [activeId, setActiveId] = React.useState("projects")
+
+  return (
+    <Sidebar className="min-h-[360px]">
+      <SidebarHeader>
+        <div className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-primary text-xs font-semibold text-primary-foreground">G</div>
+        {!collapsed ? <span className="truncate text-sm font-semibold">Gunjo UI</span> : null}
+      </SidebarHeader>
+      <SidebarBody>
+        {/* SidebarItem reads the collapse from the provider: the row goes
+            icon-only and its label moves into a tooltip on its own. */}
+        {navItems.map((item) => {
+          const Icon = item.icon
+          return (
+            <SidebarItem
+              key={item.id}
+              id={item.id}
+              icon={<Icon className="h-4 w-4 shrink-0" />}
+              label={item.label}
+              isActive={activeId === item.id}
+              onClick={() => setActiveId(item.id)}
+              reserveChevronSpace={false}
+            />
+          )
+        })}
+      </SidebarBody>
+      <SidebarFooter>
+        <Avatar className="h-7 w-7 shrink-0"><AvatarFallback>UI</AvatarFallback></Avatar>
+        {!collapsed ? <span className="min-w-0 flex-1 truncate text-sm">Design team</span> : null}
+      </SidebarFooter>
+      <SidebarToggle
+        expandLabel="Expand sidebar"
+        collapseLabel="Collapse sidebar"
+      />
+    </Sidebar>
+  )
+}
+
+export function SidebarLayout() {
+  return (
+    <div className="flex overflow-hidden rounded-md border bg-background">
+      <SidebarProvider>
+        <SidebarContent />
+      </SidebarProvider>
+      <main className="flex min-w-0 flex-1 items-center justify-center bg-muted/30 p-6 text-sm text-muted-foreground">
+        Main content
+      </main>
+    </div>
+  )
+}`,
+};
+
+export default function SidebarPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const code = codeByLocale[locale];
     const collapsedCode = code.replace("<SidebarProvider>", "<SidebarProvider defaultCollapsed>");
 
     return (

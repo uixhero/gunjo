@@ -96,15 +96,20 @@ function CommandPaletteExample({ minimal = false, defaultOpen = false }: { minim
     );
 }
 
-export default function CommandPalettePage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
-
-    const code = `"use client"
+const codeByLocale = {
+    ja: `"use client"
 
 import { Button, CommandPalette, Kbd } from "@gunjo/ui"
-import { IconCalculator as Calculator, IconCalendar as Calendar, IconCreditCard as CreditCard, IconFileText as FileText, IconMoodSmile as Smile, IconSearch as Search, IconSettings as Settings, IconUserCircle as UserRound } from "@tabler/icons-react"
+import {
+  IconCalculator as Calculator,
+  IconCalendar as Calendar,
+  IconCreditCard as CreditCard,
+  IconFileText as FileText,
+  IconMoodSmile as Smile,
+  IconSearch as Search,
+  IconSettings as Settings,
+  IconUserCircle as UserRound,
+} from "@tabler/icons-react"
 import { useEffect, useMemo, useState } from "react"
 
 export function CommandPaletteExample() {
@@ -124,26 +129,65 @@ export function CommandPaletteExample() {
   const groups = useMemo(
     () => [
       {
-        heading: "${isJa ? "移動" : "Navigation"}",
+        heading: "移動",
         items: [
-          { id: "search", label: "${isJa ? "ドキュメントを検索" : "Search docs"}", icon: <Search />, shortcut: "⌘K", action: () => setOpen(false) },
-          { id: "files", label: "${isJa ? "最近のファイル" : "Recent files"}", icon: <FileText />, action: () => setOpen(false) },
+          {
+            id: "search",
+            label: "ドキュメントを検索",
+            icon: <Search />,
+            shortcut: "⌘K",
+            action: () => setOpen(false),
+          },
+          {
+            id: "files",
+            label: "最近のファイル",
+            icon: <FileText />,
+            action: () => setOpen(false),
+          },
         ],
       },
       {
-        heading: "${isJa ? "ツール" : "Tools"}",
+        heading: "ツール",
         items: [
-          { id: "calendar", label: "${isJa ? "カレンダー" : "Calendar"}", icon: <Calendar />, action: () => setOpen(false) },
-          { id: "emoji", label: "${isJa ? "絵文字を検索" : "Search emoji"}", icon: <Smile />, action: () => setOpen(false) },
-          { id: "calculator", label: "${isJa ? "計算機" : "Calculator"}", icon: <Calculator />, action: () => setOpen(false) },
+          {
+            id: "calendar",
+            label: "カレンダー",
+            icon: <Calendar />,
+            action: () => setOpen(false),
+          },
+          { id: "emoji", label: "絵文字を検索", icon: <Smile />, action: () => setOpen(false) },
+          {
+            id: "calculator",
+            label: "計算機",
+            icon: <Calculator />,
+            action: () => setOpen(false),
+          },
         ],
       },
       {
-        heading: "${isJa ? "設定" : "Settings"}",
+        heading: "設定",
         items: [
-          { id: "profile", label: "${isJa ? "プロフィール" : "Profile"}", icon: <UserRound />, shortcut: "⌘P", action: () => setOpen(false) },
-          { id: "billing", label: "${isJa ? "請求" : "Billing"}", icon: <CreditCard />, shortcut: "⌘B", action: () => setOpen(false) },
-          { id: "settings", label: "${isJa ? "環境設定" : "Settings"}", icon: <Settings />, shortcut: "⌘S", action: () => setOpen(false) },
+          {
+            id: "profile",
+            label: "プロフィール",
+            icon: <UserRound />,
+            shortcut: "⌘P",
+            action: () => setOpen(false),
+          },
+          {
+            id: "billing",
+            label: "請求",
+            icon: <CreditCard />,
+            shortcut: "⌘B",
+            action: () => setOpen(false),
+          },
+          {
+            id: "settings",
+            label: "環境設定",
+            icon: <Settings />,
+            shortcut: "⌘S",
+            action: () => setOpen(false),
+          },
         ],
       },
     ],
@@ -153,25 +197,149 @@ export function CommandPaletteExample() {
   return (
     <div className="flex flex-col items-center gap-3">
       <p className="text-sm text-muted-foreground">
-        ${isJa ? "キーボードから開く場合は" : "Open from the keyboard with"} <Kbd>⌘K</Kbd>
+        キーボードから開く場合は <Kbd>⌘K</Kbd>
       </p>
       <Button type="button" variant="outline" onClick={() => setOpen(true)}>
-        ${isJa ? "コマンドパレットを開く" : "Open command palette"}
+        コマンドパレットを開く
       </Button>
       <CommandPalette
         open={open}
         onOpenChange={setOpen}
-        dialogTitle="${isJa ? "コマンドパレット" : "Command palette"}"
-        placeholder="${isJa ? "コマンドまたはページを検索..." : "Search commands or pages..."}"
-        emptyMessage="${isJa ? "一致するコマンドがありません。" : "No commands found."}"
-        clearLabel="${isJa ? "検索をクリア" : "Clear search"}"
+        dialogTitle="コマンドパレット"
+        placeholder="コマンドまたはページを検索..."
+        emptyMessage="一致するコマンドがありません。"
+        clearLabel="検索をクリア"
         groups={groups}
       />
     </div>
   )
-}`;
+}`,
+    en: `"use client"
 
-    const minimalCode = `"use client"
+import { Button, CommandPalette, Kbd } from "@gunjo/ui"
+import {
+  IconCalculator as Calculator,
+  IconCalendar as Calendar,
+  IconCreditCard as CreditCard,
+  IconFileText as FileText,
+  IconMoodSmile as Smile,
+  IconSearch as Search,
+  IconSettings as Settings,
+  IconUserCircle as UserRound,
+} from "@tabler/icons-react"
+import { useEffect, useMemo, useState } from "react"
+
+export function CommandPaletteExample() {
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    const down = (event: KeyboardEvent) => {
+      if (event.key === "k" && (event.metaKey || event.ctrlKey)) {
+        event.preventDefault()
+        setOpen((current) => !current)
+      }
+    }
+    document.addEventListener("keydown", down)
+    return () => document.removeEventListener("keydown", down)
+  }, [])
+
+  const groups = useMemo(
+    () => [
+      {
+        heading: "Navigation",
+        items: [
+          {
+            id: "search",
+            label: "Search docs",
+            icon: <Search />,
+            shortcut: "⌘K",
+            action: () => setOpen(false),
+          },
+          {
+            id: "files",
+            label: "Recent files",
+            icon: <FileText />,
+            action: () => setOpen(false),
+          },
+        ],
+      },
+      {
+        heading: "Tools",
+        items: [
+          {
+            id: "calendar",
+            label: "Calendar",
+            icon: <Calendar />,
+            action: () => setOpen(false),
+          },
+          {
+            id: "emoji",
+            label: "Search emoji",
+            icon: <Smile />,
+            action: () => setOpen(false),
+          },
+          {
+            id: "calculator",
+            label: "Calculator",
+            icon: <Calculator />,
+            action: () => setOpen(false),
+          },
+        ],
+      },
+      {
+        heading: "Settings",
+        items: [
+          {
+            id: "profile",
+            label: "Profile",
+            icon: <UserRound />,
+            shortcut: "⌘P",
+            action: () => setOpen(false),
+          },
+          {
+            id: "billing",
+            label: "Billing",
+            icon: <CreditCard />,
+            shortcut: "⌘B",
+            action: () => setOpen(false),
+          },
+          {
+            id: "settings",
+            label: "Settings",
+            icon: <Settings />,
+            shortcut: "⌘S",
+            action: () => setOpen(false),
+          },
+        ],
+      },
+    ],
+    []
+  )
+
+  return (
+    <div className="flex flex-col items-center gap-3">
+      <p className="text-sm text-muted-foreground">
+        Open from the keyboard with <Kbd>⌘K</Kbd>
+      </p>
+      <Button type="button" variant="outline" onClick={() => setOpen(true)}>
+        Open command palette
+      </Button>
+      <CommandPalette
+        open={open}
+        onOpenChange={setOpen}
+        dialogTitle="Command palette"
+        placeholder="Search commands or pages..."
+        emptyMessage="No commands found."
+        clearLabel="Clear search"
+        groups={groups}
+      />
+    </div>
+  )
+}`,
+};
+
+const minimalCodeByLocale = {
+    ja: `"use client"
 
 import { Button, CommandPalette, Kbd } from "@gunjo/ui"
 import { IconFileText as FileText, IconSearch as Search } from "@tabler/icons-react"
@@ -194,10 +362,21 @@ export function SmallCommandPalette() {
   const groups = useMemo(
     () => [
       {
-        heading: "${isJa ? "移動" : "Navigation"}",
+        heading: "移動",
         items: [
-          { id: "search", label: "${isJa ? "ドキュメントを検索" : "Search docs"}", icon: <Search />, shortcut: "⌘K", action: () => setOpen(false) },
-          { id: "files", label: "${isJa ? "最近のファイル" : "Recent files"}", icon: <FileText />, action: () => setOpen(false) },
+          {
+            id: "search",
+            label: "ドキュメントを検索",
+            icon: <Search />,
+            shortcut: "⌘K",
+            action: () => setOpen(false),
+          },
+          {
+            id: "files",
+            label: "最近のファイル",
+            icon: <FileText />,
+            action: () => setOpen(false),
+          },
         ],
       },
     ],
@@ -207,23 +386,97 @@ export function SmallCommandPalette() {
   return (
     <div className="flex flex-col items-center gap-3">
       <p className="text-sm text-muted-foreground">
-        ${isJa ? "キーボードから開く場合は" : "Open from the keyboard with"} <Kbd>⌘K</Kbd>
+        キーボードから開く場合は <Kbd>⌘K</Kbd>
       </p>
       <Button type="button" variant="outline" onClick={() => setOpen(true)}>
-        ${isJa ? "コマンドパレットを開く" : "Open command palette"}
+        コマンドパレットを開く
       </Button>
       <CommandPalette
         open={open}
         onOpenChange={setOpen}
-        dialogTitle="${isJa ? "コマンドパレット" : "Command palette"}"
-        placeholder="${isJa ? "コマンドまたはページを検索..." : "Search commands or pages..."}"
-        emptyMessage="${isJa ? "一致するコマンドがありません。" : "No commands found."}"
-        clearLabel="${isJa ? "検索をクリア" : "Clear search"}"
+        dialogTitle="コマンドパレット"
+        placeholder="コマンドまたはページを検索..."
+        emptyMessage="一致するコマンドがありません。"
+        clearLabel="検索をクリア"
         groups={groups}
       />
     </div>
   )
-}`;
+}`,
+    en: `"use client"
+
+import { Button, CommandPalette, Kbd } from "@gunjo/ui"
+import { IconFileText as FileText, IconSearch as Search } from "@tabler/icons-react"
+import { useEffect, useMemo, useState } from "react"
+
+export function SmallCommandPalette() {
+  const [open, setOpen] = useState(false)
+
+  useEffect(() => {
+    const down = (event: KeyboardEvent) => {
+      if (event.key === "k" && (event.metaKey || event.ctrlKey)) {
+        event.preventDefault()
+        setOpen((current) => !current)
+      }
+    }
+    document.addEventListener("keydown", down)
+    return () => document.removeEventListener("keydown", down)
+  }, [])
+
+  const groups = useMemo(
+    () => [
+      {
+        heading: "Navigation",
+        items: [
+          {
+            id: "search",
+            label: "Search docs",
+            icon: <Search />,
+            shortcut: "⌘K",
+            action: () => setOpen(false),
+          },
+          {
+            id: "files",
+            label: "Recent files",
+            icon: <FileText />,
+            action: () => setOpen(false),
+          },
+        ],
+      },
+    ],
+    []
+  )
+
+  return (
+    <div className="flex flex-col items-center gap-3">
+      <p className="text-sm text-muted-foreground">
+        Open from the keyboard with <Kbd>⌘K</Kbd>
+      </p>
+      <Button type="button" variant="outline" onClick={() => setOpen(true)}>
+        Open command palette
+      </Button>
+      <CommandPalette
+        open={open}
+        onOpenChange={setOpen}
+        dialogTitle="Command palette"
+        placeholder="Search commands or pages..."
+        emptyMessage="No commands found."
+        clearLabel="Clear search"
+        groups={groups}
+      />
+    </div>
+  )
+}`,
+};
+
+export default function CommandPalettePage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
+
+    const code = codeByLocale[locale];
+
+    const minimalCode = minimalCodeByLocale[locale];
 
     return (
         <ComponentLayout
