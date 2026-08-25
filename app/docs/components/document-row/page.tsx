@@ -901,6 +901,42 @@ export function PayrollDocuments() {
   );
 }`;
 
+  const disabledDownloadCode = locale === "ja"
+    ? `import { Button, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+import { IconDownload } from "@tabler/icons-react";
+
+export function DisabledDownloadAction() {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <span tabIndex={0} className="inline-flex">
+          <Button size="icon" variant="ghost" disabled aria-label="ダウンロード: 経費精算 添付書類">
+            <IconDownload className="h-4 w-4" />
+          </Button>
+        </span>
+      </TooltipTrigger>
+      <TooltipContent>確定処理中のため、ダウンロードはまだ利用できません。</TooltipContent>
+    </Tooltip>
+  );
+}`
+    : `import { Button, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+import { IconDownload } from "@tabler/icons-react";
+
+export function DisabledDownloadAction() {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <span tabIndex={0} className="inline-flex">
+          <Button size="icon" variant="ghost" disabled aria-label="Download: Expense report attachments">
+            <IconDownload className="h-4 w-4" />
+          </Button>
+        </span>
+      </TooltipTrigger>
+      <TooltipContent>The file is still being finalized, so download is unavailable.</TooltipContent>
+    </Tooltip>
+  );
+}`;
+
   const propsData = [
     {
       name: "title",
@@ -990,27 +1026,7 @@ export function PayrollDocuments() {
                 ? "無効なダウンロード操作は、ホバーまたはフォーカスで理由を説明します。"
                 : "A disabled download explains why on hover or focus.",
               preview: <DocumentRowPreview locale={locale} lockedOnly />,
-              code: locale === "ja"
-                ? `<Tooltip>
-  <TooltipTrigger asChild>
-    <span tabIndex={0} className="inline-flex">
-      <Button size="icon" variant="ghost" disabled aria-label="ダウンロード: 経費精算 添付書類">
-        <IconDownload className="h-4 w-4" />
-      </Button>
-    </span>
-  </TooltipTrigger>
-  <TooltipContent>確定処理中のため、ダウンロードはまだ利用できません。</TooltipContent>
-</Tooltip>`
-                : `<Tooltip>
-  <TooltipTrigger asChild>
-    <span tabIndex={0} className="inline-flex">
-      <Button size="icon" variant="ghost" disabled aria-label="Download: Expense report attachments">
-        <IconDownload className="h-4 w-4" />
-      </Button>
-    </span>
-  </TooltipTrigger>
-  <TooltipContent>The file is still being finalized, so download is unavailable.</TooltipContent>
-</Tooltip>`,
+              code: disabledDownloadCode,
               previewBodyWidth: "lg",
             },
           ]}

@@ -7,20 +7,49 @@ import { CodeBlock } from "@/components/doc/CodeBlock";
 export default function DocsTemplatePage() {
     const code = `import { DocsTemplate } from "@gunjo/ui";
 
-export function DocsLayout({ children }) {
+const navItems = [
+    { href: "/docs/getting-started", label: "Getting started" },
+    { href: "/docs/components/button", label: "Button" },
+];
+
+const tocItems = [
+    { href: "#overview", label: "Overview" },
+    { href: "#props", label: "Props" },
+];
+
+export function DocsLayoutExample() {
     return (
         <DocsTemplate
-            sidebar={<NavLinks />}
-            toc={<OnThisPage />}
+            sidebar={
+                <nav className="grid gap-1 text-sm">
+                    {navItems.map((item) => (
+                        <a key={item.href} href={item.href}>
+                            {item.label}
+                        </a>
+                    ))}
+                </nav>
+            }
+            toc={
+                <nav className="grid gap-1 text-sm">
+                    {tocItems.map((item) => (
+                        <a key={item.href} href={item.href}>
+                            {item.label}
+                        </a>
+                    ))}
+                </nav>
+            }
         >
-            {children}
+            <article className="space-y-4">
+                <h1 className="text-3xl font-semibold tracking-tight">Button</h1>
+                <p className="text-muted-foreground">
+                    Buttons trigger an action in the current view.
+                </p>
+            </article>
         </DocsTemplate>
     );
 }`;
 
-    const usageCode = `import { DocsTemplate } from "@gunjo/ui"
-
-<DocsTemplate sidebar={...} toc={...}>{children}</DocsTemplate>`;
+    const usageCode = code;
 
     const propsData = [
         { name: "sidebar", type: "ReactNode", description: "Left navigation sidebar content (required)." },

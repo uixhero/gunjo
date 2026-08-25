@@ -10,32 +10,127 @@ import { EditableDataTableDemo } from "@/components/demos/EditableDataTableDemo"
 
 const meta = displayMetadata as Record<string, { title?: string; description?: string }>;
 
-const usageCode = `import { EditableDataTable, type EditableColumn, Input, NumberInput, formatCurrency } from "@gunjo/ui"
+const usageCode = `import * as React from "react";
+import {
+  EditableDataTable,
+  type EditableColumn,
+  Input,
+  NumberInput,
+  formatCurrency,
+} from "@gunjo/ui";
 
-type LineItem = { id: string; name: string; qty: number; price: number }
+type LineItem = { id: string; name: string; qty: number; price: number };
 
-export function Example() {
-  const [rows, setRows] = React.useState<LineItem[]>([/* ... */])
-  const update = (i: number, patch: Partial<LineItem>) =>
-    setRows((rs) => rs.map((r, idx) => (idx === i ? { ...r, ...patch } : r)))
+const initialRows: LineItem[] = [
+  { id: "1", name: "デザイン制作", qty: 10, price: 12000 },
+  { id: "2", name: "ホスティング", qty: 1, price: 5000 },
+];
+
+export function InvoiceLineItems() {
+  const [rows, setRows] = React.useState<LineItem[]>(initialRows);
+  const idRef = React.useRef(initialRows.length);
+
+  const update = (index: number, patch: Partial<LineItem>) =>
+    setRows((rs) => rs.map((r, i) => (i === index ? { ...r, ...patch } : r)));
 
   const columns: EditableColumn<LineItem>[] = [
-    { id: "name", header: "品目",
-      cell: (row, ctx) => <Input value={row.name} aria-label={ctx.ariaLabel}
-        onChange={(e) => update(ctx.rowIndex, { name: e.target.value })} /> },
-    { id: "qty", header: "数量", align: "right",
-      cell: (row, ctx) => <NumberInput value={row.qty} aria-label={ctx.ariaLabel}
-        onValueChange={(v) => update(ctx.rowIndex, { qty: v })} /> },
-    { id: "amount", header: "金額", align: "right",
-      cell: (row) => formatCurrency(row.qty * row.price) },
-  ]
+    {
+      id: "name",
+      header: "品目",
+      minWidth: "12rem",
+      cell: (row, ctx) => {
+        const { ariaLabel, rowIndex } = ctx;
+        const { name } = row;
+        return (
+          <Input
+            value={name}
+            aria-label={ariaLabel}
+            onChange={(e) => update(rowIndex, { name: e.target.value })}
+          />
+        );
+      },
+    },
+    {
+      id: "qty",
+      header: "数量",
+      align: "right",
+      width: "6.5rem",
+      cell: (row, ctx) => {
+        const { ariaLabel, rowIndex } = ctx;
+        const { qty } = row;
+        return (
+          <NumberInput
+            value={qty}
+            min={0}
+            aria-label={ariaLabel}
+            onValueChange={(v) => update(rowIndex, { qty: v })}
+          />
+        );
+      },
+    },
+    {
+      id: "price",
+      header: "単価",
+      align: "right",
+      width: "8rem",
+      cell: (row, ctx) => {
+        const { ariaLabel, rowIndex } = ctx;
+        const { price } = row;
+        return (
+          <NumberInput
+            value={price}
+            min={0}
+            step={100}
+            aria-label={ariaLabel}
+            onValueChange={(v) => update(rowIndex, { price: v })}
+          />
+        );
+      },
+    },
+    {
+      id: "amount",
+      header: "金額",
+      align: "right",
+      width: "8rem",
+      cell: (row) => (
+        <span className="tabular-nums">{formatCurrency(row.qty * row.price)}</span>
+      ),
+    },
+  ];
+
+  const total = rows.reduce((sum, r) => sum + r.qty * r.price, 0);
 
   return (
-    <EditableDataTable columns={columns} rows={rows} getRowId={(r) => r.id} minRows={1}
-      onAddRow={() => setRows((rs) => [...rs, makeRow()])}
-      onRemoveRow={(i) => setRows((rs) => rs.filter((_, idx) => idx !== i))}
-      footer={<Totals rows={rows} />} />
-  )
+    <EditableDataTable
+      columns={columns}
+      rows={rows}
+      getRowId={(r) => r.id}
+      minRows={1}
+      onAddRow={() => {
+        idRef.current += 1;
+        setRows((rs) => [
+          ...rs,
+          { id: String(idRef.current), name: "", qty: 1, price: 0 },
+        ]);
+      }}
+      onRemoveRow={(index) => setRows((rs) => rs.filter((_, i) => i !== index))}
+      getRowError={(row) =>
+        row.name.trim() === "" ? "品目を入力してください" : undefined
+      }
+      labels={{
+        addRow: "明細を追加",
+        removeRow: (i) => i + 1 + "行目を削除",
+      }}
+      rowLabel={(i) => i + 1 + "行目"}
+      renderFooterCell={(column) =>
+        column.id === "name" ? (
+          <span>合計</span>
+        ) : column.id === "amount" ? (
+          <span className="tabular-nums">{formatCurrency(total)}</span>
+        ) : null
+      }
+    />
+  );
 }`;
 
 const propsData = [

@@ -231,7 +231,8 @@ export default function DataTablePage() {
     const columns = React.useMemo(() => getColumns(isJa), [isJa]);
     const labels = React.useMemo(() => getTableLabels(isJa), [isJa]);
 
-    const code = `import type { ColumnDef } from "@tanstack/react-table"
+    const code = isJa
+        ? `import type { ColumnDef } from "@tanstack/react-table"
 import { Badge, DataTable, type DataTableLabels } from "@gunjo/ui"
 
 type Member = {
@@ -243,36 +244,36 @@ type Member = {
 }
 
 const members: Member[] = [
-  { id: "1", name: "${isJa ? "青井 花" : "Hana Aoi"}", role: "owner", status: "active", joinedAt: "2024-01-15" },
-  { id: "2", name: "${isJa ? "田中 空" : "Sora Tanaka"}", role: "admin", status: "active", joinedAt: "2024-03-08" },
-  { id: "3", name: "${isJa ? "山本 優" : "Yu Yamamoto"}", role: "member", status: "invited", joinedAt: "2025-04-22" },
-  { id: "4", name: "${isJa ? "小林 真央" : "Mao Kobayashi"}", role: "member", status: "active", joinedAt: "2024-06-30" },
-  { id: "5", name: "${isJa ? "中村 蓮" : "Ren Nakamura"}", role: "admin", status: "suspended", joinedAt: "2024-11-04" },
-  { id: "6", name: "${isJa ? "佐藤 葵" : "Aoi Sato"}", role: "member", status: "active", joinedAt: "2025-02-12" },
-  { id: "7", name: "${isJa ? "鈴木 凛" : "Rin Suzuki"}", role: "member", status: "active", joinedAt: "2025-06-18" },
-  { id: "8", name: "${isJa ? "高橋 海" : "Kai Takahashi"}", role: "member", status: "invited", joinedAt: "2025-08-01" },
-  { id: "9", name: "${isJa ? "伊藤 碧" : "Aoi Ito"}", role: "admin", status: "active", joinedAt: "2025-09-20" },
-  { id: "10", name: "${isJa ? "渡辺 陽" : "Haru Watanabe"}", role: "member", status: "suspended", joinedAt: "2025-10-11" },
-  { id: "11", name: "${isJa ? "加藤 澪" : "Mio Kato"}", role: "member", status: "active", joinedAt: "2025-12-03" },
-  { id: "12", name: "${isJa ? "森 七海" : "Nanami Mori"}", role: "member", status: "active", joinedAt: "2026-01-09" },
-  { id: "13", name: "${isJa ? "石井 悠" : "Yu Ishii"}", role: "admin", status: "active", joinedAt: "2026-02-14" },
-  { id: "14", name: "${isJa ? "清水 旭" : "Asahi Shimizu"}", role: "member", status: "invited", joinedAt: "2026-03-07" },
-  { id: "15", name: "${isJa ? "林 彩" : "Aya Hayashi"}", role: "member", status: "active", joinedAt: "2026-04-16" },
-  { id: "16", name: "${isJa ? "井上 湊" : "Minato Inoue"}", role: "member", status: "suspended", joinedAt: "2026-05-02" },
-  { id: "17", name: "${isJa ? "木村 詩" : "Uta Kimura"}", role: "member", status: "active", joinedAt: "2026-05-10" },
-  { id: "18", name: "${isJa ? "斎藤 光" : "Hikaru Saito"}", role: "member", status: "active", joinedAt: "2026-05-21" },
+  { id: "1", name: "青井 花", role: "owner", status: "active", joinedAt: "2024-01-15" },
+  { id: "2", name: "田中 空", role: "admin", status: "active", joinedAt: "2024-03-08" },
+  { id: "3", name: "山本 優", role: "member", status: "invited", joinedAt: "2025-04-22" },
+  { id: "4", name: "小林 真央", role: "member", status: "active", joinedAt: "2024-06-30" },
+  { id: "5", name: "中村 蓮", role: "admin", status: "suspended", joinedAt: "2024-11-04" },
+  { id: "6", name: "佐藤 葵", role: "member", status: "active", joinedAt: "2025-02-12" },
+  { id: "7", name: "鈴木 凛", role: "member", status: "active", joinedAt: "2025-06-18" },
+  { id: "8", name: "高橋 海", role: "member", status: "invited", joinedAt: "2025-08-01" },
+  { id: "9", name: "伊藤 碧", role: "admin", status: "active", joinedAt: "2025-09-20" },
+  { id: "10", name: "渡辺 陽", role: "member", status: "suspended", joinedAt: "2025-10-11" },
+  { id: "11", name: "加藤 澪", role: "member", status: "active", joinedAt: "2025-12-03" },
+  { id: "12", name: "森 七海", role: "member", status: "active", joinedAt: "2026-01-09" },
+  { id: "13", name: "石井 悠", role: "admin", status: "active", joinedAt: "2026-02-14" },
+  { id: "14", name: "清水 旭", role: "member", status: "invited", joinedAt: "2026-03-07" },
+  { id: "15", name: "林 彩", role: "member", status: "active", joinedAt: "2026-04-16" },
+  { id: "16", name: "井上 湊", role: "member", status: "suspended", joinedAt: "2026-05-02" },
+  { id: "17", name: "木村 詩", role: "member", status: "active", joinedAt: "2026-05-10" },
+  { id: "18", name: "斎藤 光", role: "member", status: "active", joinedAt: "2026-05-21" },
 ]
 
 const roleLabels: Record<Member["role"], string> = {
-  owner: "${isJa ? "所有者" : "Owner"}",
-  admin: "${isJa ? "管理者" : "Admin"}",
-  member: "${isJa ? "メンバー" : "Member"}",
+  owner: "所有者",
+  admin: "管理者",
+  member: "メンバー",
 }
 
 const statusLabels: Record<Member["status"], string> = {
-  active: "${isJa ? "有効" : "Active"}",
-  invited: "${isJa ? "招待中" : "Invited"}",
-  suspended: "${isJa ? "停止中" : "Suspended"}",
+  active: "有効",
+  invited: "招待中",
+  suspended: "停止中",
 }
 
 const statusVariants: Record<Member["status"], "default" | "secondary" | "destructive"> = {
@@ -284,32 +285,125 @@ const statusVariants: Record<Member["status"], "default" | "secondary" | "destru
 const columns: ColumnDef<Member>[] = [
   {
     accessorKey: "name",
-    header: "${isJa ? "名前" : "Name"}",
+    header: "名前",
     cell: ({ row }) => <span className="font-medium">{row.original.name}</span>,
   },
   {
     accessorKey: "role",
-    header: "${isJa ? "権限" : "Role"}",
+    header: "権限",
     cell: ({ row }) => roleLabels[row.original.role],
   },
   {
     accessorKey: "status",
-    header: "${isJa ? "状態" : "Status"}",
+    header: "状態",
     cell: ({ row }) => {
       const status = row.original.status
       return <Badge variant={statusVariants[status]}>{statusLabels[status]}</Badge>
     },
   },
-  { accessorKey: "joinedAt", header: "${isJa ? "参加日" : "Joined"}" },
+  { accessorKey: "joinedAt", header: "参加日" },
 ]
 
 const labels: DataTableLabels = {
-  filterPlaceholder: "${isJa ? "名前で絞り込み..." : "Filter by name..."}",
-  noResults: "${isJa ? "該当する結果がありません。" : "No results."}",
-  previous: "${isJa ? "前へ" : "Previous"}",
-  next: "${isJa ? "次へ" : "Next"}",
-  rowsPerPage: "${isJa ? "表示件数" : "Rows"}",
-  pageSizeOption: (size) => ${isJa ? 'size + "件"' : 'size + " rows"'},
+  filterPlaceholder: "名前で絞り込み...",
+  noResults: "該当する結果がありません。",
+  previous: "前へ",
+  next: "次へ",
+  rowsPerPage: "表示件数",
+  pageSizeOption: (size) => size + "件",
+}
+
+export function MembersTable() {
+  return (
+    <DataTable
+      columns={columns}
+      data={members}
+      filter={{ columnId: "name", placeholder: labels.filterPlaceholder }}
+      labels={labels}
+      pageSize={10}
+      pageSizeOptions={[10, 25, 50, 100, 200]}
+    />
+  )
+}`
+        : `import type { ColumnDef } from "@tanstack/react-table"
+import { Badge, DataTable, type DataTableLabels } from "@gunjo/ui"
+
+type Member = {
+  id: string
+  name: string
+  role: "owner" | "admin" | "member"
+  status: "active" | "invited" | "suspended"
+  joinedAt: string
+}
+
+const members: Member[] = [
+  { id: "1", name: "Hana Aoi", role: "owner", status: "active", joinedAt: "2024-01-15" },
+  { id: "2", name: "Sora Tanaka", role: "admin", status: "active", joinedAt: "2024-03-08" },
+  { id: "3", name: "Yu Yamamoto", role: "member", status: "invited", joinedAt: "2025-04-22" },
+  { id: "4", name: "Mao Kobayashi", role: "member", status: "active", joinedAt: "2024-06-30" },
+  { id: "5", name: "Ren Nakamura", role: "admin", status: "suspended", joinedAt: "2024-11-04" },
+  { id: "6", name: "Aoi Sato", role: "member", status: "active", joinedAt: "2025-02-12" },
+  { id: "7", name: "Rin Suzuki", role: "member", status: "active", joinedAt: "2025-06-18" },
+  { id: "8", name: "Kai Takahashi", role: "member", status: "invited", joinedAt: "2025-08-01" },
+  { id: "9", name: "Aoi Ito", role: "admin", status: "active", joinedAt: "2025-09-20" },
+  { id: "10", name: "Haru Watanabe", role: "member", status: "suspended", joinedAt: "2025-10-11" },
+  { id: "11", name: "Mio Kato", role: "member", status: "active", joinedAt: "2025-12-03" },
+  { id: "12", name: "Nanami Mori", role: "member", status: "active", joinedAt: "2026-01-09" },
+  { id: "13", name: "Yu Ishii", role: "admin", status: "active", joinedAt: "2026-02-14" },
+  { id: "14", name: "Asahi Shimizu", role: "member", status: "invited", joinedAt: "2026-03-07" },
+  { id: "15", name: "Aya Hayashi", role: "member", status: "active", joinedAt: "2026-04-16" },
+  { id: "16", name: "Minato Inoue", role: "member", status: "suspended", joinedAt: "2026-05-02" },
+  { id: "17", name: "Uta Kimura", role: "member", status: "active", joinedAt: "2026-05-10" },
+  { id: "18", name: "Hikaru Saito", role: "member", status: "active", joinedAt: "2026-05-21" },
+]
+
+const roleLabels: Record<Member["role"], string> = {
+  owner: "Owner",
+  admin: "Admin",
+  member: "Member",
+}
+
+const statusLabels: Record<Member["status"], string> = {
+  active: "Active",
+  invited: "Invited",
+  suspended: "Suspended",
+}
+
+const statusVariants: Record<Member["status"], "default" | "secondary" | "destructive"> = {
+  active: "default",
+  invited: "secondary",
+  suspended: "destructive",
+}
+
+const columns: ColumnDef<Member>[] = [
+  {
+    accessorKey: "name",
+    header: "Name",
+    cell: ({ row }) => <span className="font-medium">{row.original.name}</span>,
+  },
+  {
+    accessorKey: "role",
+    header: "Role",
+    cell: ({ row }) => roleLabels[row.original.role],
+  },
+  {
+    accessorKey: "status",
+    header: "Status",
+    cell: ({ row }) => {
+      const status = row.original.status
+      return <Badge variant={statusVariants[status]}>{statusLabels[status]}</Badge>
+    },
+  },
+  { accessorKey: "joinedAt", header: "Joined" },
+]
+
+const labels: DataTableLabels = {
+  filterPlaceholder: "Filter by name...",
+  noResults: "No results.",
+  previous: "Previous",
+  next: "Next",
+  rowsPerPage: "Rows",
+  pageSizeOption: (size) => size + " rows",
 }
 
 export function MembersTable() {
@@ -330,6 +424,86 @@ export function MembersTable() {
         /const members: Member\[] = \[[\s\S]*?\]\n\nconst roleLabels/,
         "const members: Member[] = []\n\nconst roleLabels"
     );
+
+    const footerTotalsCode = isJa
+        ? `import type { ColumnDef, Table } from "@tanstack/react-table";
+import { DataTable } from "@gunjo/ui";
+
+type Invoice = { id: string; item: string; qty: number; amount: number };
+
+const invoices: Invoice[] = [
+  { id: "1", item: "初期設定サポート", qty: 1, amount: 40000 },
+  { id: "2", item: "月額プラン", qty: 3, amount: 12000 },
+  { id: "3", item: "追加ストレージ", qty: 2, amount: 3000 },
+];
+
+const yen = (n: number) => "¥" + n.toLocaleString("ja-JP");
+
+// 合計はフィルタ後の全行で計算します（表示中のページだけではありません）。
+const sumColumn = (table: Table<Invoice>, get: (row: Invoice) => number) =>
+  table.getFilteredRowModel().rows.reduce((sum, r) => sum + get(r.original), 0);
+
+const columns: ColumnDef<Invoice>[] = [
+  {
+    accessorKey: "item",
+    header: "品目",
+    footer: () => "合計",
+  },
+  {
+    accessorKey: "qty",
+    header: "数量",
+    footer: ({ table }) => sumColumn(table, (r) => r.qty),
+  },
+  {
+    accessorKey: "amount",
+    header: "金額",
+    cell: ({ row }) => yen(row.original.amount),
+    footer: ({ table }) => yen(sumColumn(table, (r) => r.amount)),
+  },
+];
+
+export function InvoiceTotalsTable() {
+  return <DataTable columns={columns} data={invoices} filter={null} />;
+}`
+        : `import type { ColumnDef, Table } from "@tanstack/react-table";
+import { DataTable } from "@gunjo/ui";
+
+type Invoice = { id: string; item: string; qty: number; amount: number };
+
+const invoices: Invoice[] = [
+  { id: "1", item: "Onboarding", qty: 1, amount: 40000 },
+  { id: "2", item: "Monthly plan", qty: 3, amount: 12000 },
+  { id: "3", item: "Extra storage", qty: 2, amount: 3000 },
+];
+
+const yen = (n: number) => "¥" + n.toLocaleString("ja-JP");
+
+// Total a numeric field over the *filtered* rows (not just the page).
+const sumColumn = (table: Table<Invoice>, get: (row: Invoice) => number) =>
+  table.getFilteredRowModel().rows.reduce((sum, r) => sum + get(r.original), 0);
+
+const columns: ColumnDef<Invoice>[] = [
+  {
+    accessorKey: "item",
+    header: "Item",
+    footer: () => "Total",
+  },
+  {
+    accessorKey: "qty",
+    header: "Qty",
+    footer: ({ table }) => sumColumn(table, (r) => r.qty),
+  },
+  {
+    accessorKey: "amount",
+    header: "Amount",
+    cell: ({ row }) => yen(row.original.amount),
+    footer: ({ table }) => yen(sumColumn(table, (r) => r.amount)),
+  },
+];
+
+export function InvoiceTotalsTable() {
+  return <DataTable columns={columns} data={invoices} filter={null} />;
+}`;
 
     const propsData = [
         {
@@ -521,27 +695,7 @@ export function MembersTable() {
                             preview: <FooterTotalsDemo isJa={isJa} />,
                             previewHeight: "auto",
                             previewClassName: "max-w-none",
-                            code: `import type { ColumnDef, Table } from "@tanstack/react-table"
-import { DataTable } from "@gunjo/ui"
-
-type Invoice = { id: string; item: string; qty: number; amount: number }
-
-// Total a numeric field over the *filtered* rows (not just the page).
-const sumColumn = (table: Table<Invoice>, get: (row: Invoice) => number) =>
-  table.getFilteredRowModel().rows.reduce((sum, r) => sum + get(r.original), 0)
-
-const columns: ColumnDef<Invoice>[] = [
-  { accessorKey: "item", header: "${isJa ? "品目" : "Item"}", footer: () => "${isJa ? "合計" : "Total"}" },
-  { accessorKey: "qty", header: "${isJa ? "数量" : "Qty"}", footer: ({ table }) => sumColumn(table, (r) => r.qty) },
-  {
-    accessorKey: "amount",
-    header: "${isJa ? "金額" : "Amount"}",
-    cell: ({ row }) => yen(row.original.amount),
-    footer: ({ table }) => yen(sumColumn(table, (r) => r.amount)),
-  },
-]
-
-<DataTable columns={columns} data={invoices} filter={null} />`,
+                            code: footerTotalsCode,
                         },
                     ]}
                 />

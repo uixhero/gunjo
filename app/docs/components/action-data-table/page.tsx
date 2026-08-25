@@ -392,7 +392,8 @@ export default function ActionDataTablePage() {
     const statesTitle = isJa ? "状態とバリエーション" : "States and variants";
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
 
-    const code = `"use client"
+    const code = isJa
+        ? `"use client"
 
 import * as React from "react"
 import type { ColumnDef } from "@tanstack/react-table"
@@ -408,17 +409,17 @@ type Campaign = {
 }
 
 const campaigns: Campaign[] = [
-  { id: "c-001", name: "${isJa ? "春の新生活バナー" : "Spring campaign"}", owner: "${isJa ? "青井 花" : "Hana Aoi"}", status: "active", updatedAt: "2026-05-12" },
-  { id: "c-002", name: "${isJa ? "アプリ訴求 LP" : "App landing page"}", owner: "${isJa ? "田中 空" : "Sora Tanaka"}", status: "draft", updatedAt: "2026-05-10" },
-  { id: "c-003", name: "${isJa ? "法人向け資料広告" : "B2B document ad"}", owner: "${isJa ? "山本 優" : "Yu Yamamoto"}", status: "active", updatedAt: "2026-05-08" },
-  { id: "c-004", name: "${isJa ? "旧キャンペーン素材" : "Archived campaign assets"}", owner: "${isJa ? "小林 真央" : "Mao Kobayashi"}", status: "archived", updatedAt: "2026-04-28" },
-  { id: "c-005", name: "${isJa ? "展示会フォロー" : "Event follow-up"}", owner: "${isJa ? "中村 蓮" : "Ren Nakamura"}", status: "draft", updatedAt: "2026-04-25" },
+  { id: "c-001", name: "春の新生活バナー", owner: "青井 花", status: "active", updatedAt: "2026-05-12" },
+  { id: "c-002", name: "アプリ訴求 LP", owner: "田中 空", status: "draft", updatedAt: "2026-05-10" },
+  { id: "c-003", name: "法人向け資料広告", owner: "山本 優", status: "active", updatedAt: "2026-05-08" },
+  { id: "c-004", name: "旧キャンペーン素材", owner: "小林 真央", status: "archived", updatedAt: "2026-04-28" },
+  { id: "c-005", name: "展示会フォロー", owner: "中村 蓮", status: "draft", updatedAt: "2026-04-25" },
 ]
 
 const statusLabels: Record<Campaign["status"], string> = {
-  active: "${isJa ? "公開中" : "Active"}",
-  draft: "${isJa ? "下書き" : "Draft"}",
-  archived: "${isJa ? "保管済み" : "Archived"}",
+  active: "公開中",
+  draft: "下書き",
+  archived: "保管済み",
 }
 
 const statusVariants: Record<Campaign["status"], "default" | "secondary" | "outline"> = {
@@ -430,40 +431,40 @@ const statusVariants: Record<Campaign["status"], "default" | "secondary" | "outl
 const columns: ColumnDef<Campaign>[] = [
   {
     accessorKey: "name",
-    header: "${isJa ? "キャンペーン" : "Campaign"}",
+    header: "キャンペーン",
     size: 280,
     cell: ({ row }) => <span className="font-medium">{row.original.name}</span>,
   },
-  { accessorKey: "owner", header: "${isJa ? "担当者" : "Owner"}", size: 128 },
+  { accessorKey: "owner", header: "担当者", size: 128 },
   {
     accessorKey: "status",
-    header: "${isJa ? "状態" : "Status"}",
+    header: "状態",
     size: 112,
     cell: ({ row }) => {
       const status = row.original.status
       return <Badge variant={statusVariants[status]}>{statusLabels[status]}</Badge>
     },
   },
-  { accessorKey: "updatedAt", header: "${isJa ? "更新日" : "Updated"}", size: 120 },
+  { accessorKey: "updatedAt", header: "更新日", size: 120 },
 ]
 
 const labels: ActionDataTableLabels = {
-  filterPlaceholder: "${isJa ? "キャンペーン名で絞り込み..." : "Filter campaigns..."}",
-  noResults: "${isJa ? "該当するキャンペーンがありません。" : "No campaigns found."}",
-  previous: "${isJa ? "前へ" : "Previous"}",
-  next: "${isJa ? "次へ" : "Next"}",
-  rowsPerPage: "${isJa ? "表示件数" : "Rows"}",
-  selectedRows: (count) => ${isJa ? 'count + "件を選択中"' : 'count + " selected"'},
-  selectedRowsLabel: "${isJa ? "選択中" : "selected"}",
-  selectAllRows: "${isJa ? "すべての行を選択します" : "Select all rows"}",
-  selectRow: (label) => ${isJa ? 'label + "を選択します"' : '"Select " + label'},
-  selectAllRowsSelected: "${isJa ? "すべての選択を外します" : "Deselect all rows"}",
-  selectRowSelected: (label) => ${isJa ? 'label + "の選択を外します"' : '"Deselect " + label'},
-  clearSelection: "${isJa ? "選択を解除" : "Clear selection"}",
-  actions: "${isJa ? "行操作" : "Row actions"}",
-  bulkActions: "${isJa ? "一括操作" : "Bulk actions"}",
-  bulkActionPlaceholder: "${isJa ? "一括操作" : "Bulk actions"}",
-  disabledAction: "${isJa ? "行を選択すると操作できます" : "Select rows first"}",
+  filterPlaceholder: "キャンペーン名で絞り込み...",
+  noResults: "該当するキャンペーンがありません。",
+  previous: "前へ",
+  next: "次へ",
+  rowsPerPage: "表示件数",
+  selectedRows: (count) => count + "件を選択中",
+  selectedRowsLabel: "選択中",
+  selectAllRows: "すべての行を選択します",
+  selectRow: (label) => label + "を選択します",
+  selectAllRowsSelected: "すべての選択を外します",
+  selectRowSelected: (label) => label + "の選択を外します",
+  clearSelection: "選択を解除",
+  actions: "行操作",
+  bulkActions: "一括操作",
+  bulkActionPlaceholder: "一括操作",
+  disabledAction: "行を選択すると操作できます",
 }
 
 export function CampaignTable() {
@@ -496,42 +497,188 @@ export function CampaignTable() {
       rowActions={[
         {
           id: "edit",
-          label: "${isJa ? "編集" : "Edit"}",
+          label: "編集",
           icon: IconPencil,
-          onSelect: (row) => window.alert(row.name + "${isJa ? "を編集します" : " will be edited"}"),
+          onSelect: (row) => window.alert(row.name + "を編集します"),
         },
         {
           id: "archive",
-          label: "${isJa ? "保管" : "Archive"}",
+          label: "保管",
           icon: IconArchive,
           disabled: (row) => row.status === "archived",
-          disabledReason: "${isJa ? "すでに保管済みです" : "Already archived"}",
+          disabledReason: "すでに保管済みです",
           onSelect: (row) => archiveRows([row]),
         },
         {
           id: "delete",
-          label: "${isJa ? "削除" : "Delete"}",
+          label: "削除",
           icon: IconTrash,
           variant: "destructive",
           disabled: (row) => row.status === "archived",
-          disabledReason: "${isJa ? "保管済みの行はこの画面から削除できません" : "Archived rows cannot be deleted here"}",
+          disabledReason: "保管済みの行はこの画面から削除できません",
           onSelect: (row) => deleteRows([row]),
         },
       ]}
       bulkActions={[
         {
           id: "archive",
-          label: "${isJa ? "保管" : "Archive"}",
+          label: "保管",
           icon: IconArchive,
-          disabledReason: "${isJa ? "行を選択すると保管できます" : "Select rows to archive"}",
+          disabledReason: "行を選択すると保管できます",
           onSelect: archiveRows,
         },
         {
           id: "delete",
-          label: "${isJa ? "削除" : "Delete"}",
+          label: "削除",
           icon: IconTrash,
           variant: "destructive",
-          disabledReason: "${isJa ? "行を選択すると削除できます" : "Select rows to delete"}",
+          disabledReason: "行を選択すると削除できます",
+          onSelect: deleteRows,
+        },
+      ]}
+    />
+  )
+}`
+        : `"use client"
+
+import * as React from "react"
+import type { ColumnDef } from "@tanstack/react-table"
+import { IconArchive, IconPencil, IconTrash } from "@tabler/icons-react"
+import { ActionDataTable, Badge, type ActionDataTableLabels } from "@gunjo/ui"
+
+type Campaign = {
+  id: string
+  name: string
+  owner: string
+  status: "active" | "draft" | "archived"
+  updatedAt: string
+}
+
+const campaigns: Campaign[] = [
+  { id: "c-001", name: "Spring campaign", owner: "Hana Aoi", status: "active", updatedAt: "2026-05-12" },
+  { id: "c-002", name: "App landing page", owner: "Sora Tanaka", status: "draft", updatedAt: "2026-05-10" },
+  { id: "c-003", name: "B2B document ad", owner: "Yu Yamamoto", status: "active", updatedAt: "2026-05-08" },
+  { id: "c-004", name: "Archived campaign assets", owner: "Mao Kobayashi", status: "archived", updatedAt: "2026-04-28" },
+  { id: "c-005", name: "Event follow-up", owner: "Ren Nakamura", status: "draft", updatedAt: "2026-04-25" },
+]
+
+const statusLabels: Record<Campaign["status"], string> = {
+  active: "Active",
+  draft: "Draft",
+  archived: "Archived",
+}
+
+const statusVariants: Record<Campaign["status"], "default" | "secondary" | "outline"> = {
+  active: "default",
+  draft: "secondary",
+  archived: "outline",
+}
+
+const columns: ColumnDef<Campaign>[] = [
+  {
+    accessorKey: "name",
+    header: "Campaign",
+    size: 280,
+    cell: ({ row }) => <span className="font-medium">{row.original.name}</span>,
+  },
+  { accessorKey: "owner", header: "Owner", size: 128 },
+  {
+    accessorKey: "status",
+    header: "Status",
+    size: 112,
+    cell: ({ row }) => {
+      const status = row.original.status
+      return <Badge variant={statusVariants[status]}>{statusLabels[status]}</Badge>
+    },
+  },
+  { accessorKey: "updatedAt", header: "Updated", size: 120 },
+]
+
+const labels: ActionDataTableLabels = {
+  filterPlaceholder: "Filter campaigns...",
+  noResults: "No campaigns found.",
+  previous: "Previous",
+  next: "Next",
+  rowsPerPage: "Rows",
+  selectedRows: (count) => count + " selected",
+  selectedRowsLabel: "selected",
+  selectAllRows: "Select all rows",
+  selectRow: (label) => "Select " + label,
+  selectAllRowsSelected: "Deselect all rows",
+  selectRowSelected: (label) => "Deselect " + label,
+  clearSelection: "Clear selection",
+  actions: "Row actions",
+  bulkActions: "Bulk actions",
+  bulkActionPlaceholder: "Bulk actions",
+  disabledAction: "Select rows first",
+}
+
+export function CampaignTable() {
+  const [rows, setRows] = React.useState(campaigns)
+
+  const archiveRows = (selectedRows: Campaign[]) => {
+    const selectedIds = new Set(selectedRows.map((row) => row.id))
+    setRows((current) =>
+      current.map((row) =>
+        selectedIds.has(row.id)
+          ? { ...row, status: "archived", updatedAt: "2026-05-22" }
+          : row
+      )
+    )
+  }
+
+  const deleteRows = (selectedRows: Campaign[]) => {
+    const selectedIds = new Set(selectedRows.map((row) => row.id))
+    setRows((current) => current.filter((row) => !selectedIds.has(row.id)))
+  }
+
+  return (
+    <ActionDataTable
+      columns={columns}
+      data={rows}
+      filter={{ columnId: "name", placeholder: labels.filterPlaceholder }}
+      labels={labels}
+      getRowId={(row) => row.id}
+      getRowLabel={(row) => row.name}
+      rowActions={[
+        {
+          id: "edit",
+          label: "Edit",
+          icon: IconPencil,
+          onSelect: (row) => window.alert(row.name + " will be edited"),
+        },
+        {
+          id: "archive",
+          label: "Archive",
+          icon: IconArchive,
+          disabled: (row) => row.status === "archived",
+          disabledReason: "Already archived",
+          onSelect: (row) => archiveRows([row]),
+        },
+        {
+          id: "delete",
+          label: "Delete",
+          icon: IconTrash,
+          variant: "destructive",
+          disabled: (row) => row.status === "archived",
+          disabledReason: "Archived rows cannot be deleted here",
+          onSelect: (row) => deleteRows([row]),
+        },
+      ]}
+      bulkActions={[
+        {
+          id: "archive",
+          label: "Archive",
+          icon: IconArchive,
+          disabledReason: "Select rows to archive",
+          onSelect: archiveRows,
+        },
+        {
+          id: "delete",
+          label: "Delete",
+          icon: IconTrash,
+          variant: "destructive",
+          disabledReason: "Select rows to delete",
           onSelect: deleteRows,
         },
       ]}

@@ -13,32 +13,106 @@ export default function CodePage() {
     const isJa = locale === "ja";
     const statesTitle = isJa ? "状態とバリエーション" : "States and variants";
 
-    const code = `import { Code } from "@gunjo/ui"
+    const code = isJa
+        ? `import { Code } from "@gunjo/ui";
 
-const command = "npm install @gunjo/ui"
-const publishFlag = "--access public"
+const command = "npm install @gunjo/ui";
+const publishFlag = "--access public";
 
-export function CodeDemo() {
+export function PackageInstallNote() {
   return (
     <div className="flex flex-col items-start gap-3 text-sm">
       <p>
-        ${isJa ? "インストールは" : "Run"} <Code>{command}</Code>
-        ${isJa ? "を実行します。" : " to add the package."}
+        インストールは <Code>{command}</Code> を実行します。
       </p>
       <p>
-        ${isJa ? "公開時は" : "Use the"} <Code variant="muted">{publishFlag}</Code>
-        ${isJa ? "フラグを指定します。" : " flag when publishing."}
+        公開時は <Code variant="muted">{publishFlag}</Code> フラグを指定します。
       </p>
     </div>
-  )
+  );
+}`
+        : `import { Code } from "@gunjo/ui";
+
+const command = "npm install @gunjo/ui";
+const publishFlag = "--access public";
+
+export function PackageInstallNote() {
+  return (
+    <div className="flex flex-col items-start gap-3 text-sm">
+      <p>
+        Run <Code>{command}</Code> to add the package.
+      </p>
+      <p>
+        Use the <Code variant="muted">{publishFlag}</Code> flag when publishing.
+      </p>
+    </div>
+  );
 }`;
 
-    const usageCode = `import { Code } from "@gunjo/ui"
+    const usageCode = `import { Code } from "@gunjo/ui";
 
-const example = "const value = 42"
+const example = "const value = 42";
 
-export function CodeUsage() {
-  return <Code>{example}</Code>
+export function InlineCodeUsage() {
+  return <Code>{example}</Code>;
+}`;
+
+    const variantsCode = isJa
+        ? `import { Code } from "@gunjo/ui";
+
+const commands = [
+  { value: "npm run dev" },
+  { value: "--watch", variant: "muted" as const },
+];
+
+export function DevCommandList() {
+  return (
+    <div className="flex flex-wrap items-center gap-3 text-sm">
+      {commands.map((command) => (
+        <Code key={command.value} variant={command.variant}>
+          {command.value}
+        </Code>
+      ))}
+    </div>
+  );
+}`
+        : `import { Code } from "@gunjo/ui";
+
+const commands = [
+  { value: "npm run dev" },
+  { value: "--watch", variant: "muted" as const },
+];
+
+export function DevCommandList() {
+  return (
+    <div className="flex flex-wrap items-center gap-3 text-sm">
+      {commands.map((command) => (
+        <Code key={command.value} variant={command.variant}>
+          {command.value}
+        </Code>
+      ))}
+    </div>
+  );
+}`;
+
+    const sizesCode = `import { Code } from "@gunjo/ui";
+
+const sizes = [
+  { label: 'size="sm"', size: "sm" as const },
+  { label: 'size="default"' },
+  { label: 'size="lg"', size: "lg" as const },
+];
+
+export function InlineCodeSizes() {
+  return (
+    <div className="flex flex-wrap items-baseline gap-3">
+      {sizes.map((item) => (
+        <Code key={item.label} size={item.size}>
+          {item.label}
+        </Code>
+      ))}
+    </div>
+  );
 }`;
 
     const propsData = [
@@ -103,7 +177,7 @@ export function CodeUsage() {
                                 </div>
                             ),
                             previewHeight: "auto",
-                            code: `import { Code } from "@gunjo/ui"\n\nconst commands = [\n  { value: "npm run dev" },\n  { value: "--watch", variant: "muted" as const },\n]\n\nexport function CodeVariants() {\n  return (\n    <div className="flex flex-wrap items-center gap-3 text-sm">\n      {commands.map((command) => (\n        <Code key={command.value} variant={command.variant}>{command.value}</Code>\n      ))}\n    </div>\n  )\n}`,
+                            code: variantsCode,
                         },
                         {
                             key: "sizes",
@@ -119,7 +193,7 @@ export function CodeUsage() {
                                 </div>
                             ),
                             previewHeight: "auto",
-                            code: `import { Code } from "@gunjo/ui"\n\nconst sizes = [\n  { label: "size=\\\"sm\\\"", size: "sm" as const },\n  { label: "size=\\\"default\\\"" },\n  { label: "size=\\\"lg\\\"", size: "lg" as const },\n]\n\nexport function CodeSizes() {\n  return (\n    <div className="flex flex-wrap items-baseline gap-3">\n      {sizes.map((item) => (\n        <Code key={item.label} size={item.size}>{item.label}</Code>\n      ))}\n    </div>\n  )\n}`,
+                            code: sizesCode,
                         },
                     ]}
                 />
