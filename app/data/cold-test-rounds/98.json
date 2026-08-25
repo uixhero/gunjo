@@ -5,7 +5,7 @@
   "score": "4.5/5",
   "category": "飲食・レストラン",
   "title": "AI に飲食の売上分析ダッシュボードを作らせてみた — SVGを1つも書かずに7チャート（やってみた #98）",
-  "summary": "運営オペ3枚（予約/フロア/シフト）とは別の分析系。観測：**チャート層が飲食でどれだけ効くか＋StatGroup の継続再利用。**",
+  "summary": "チャート手組みゼロ。「在る最高のコンポーネントを見つけさせる」が、最後の山。",
   "article": {
     "file": "zenn-yattemita-98-restaurant-sales.md",
     "slug": "98-restaurant-sales",

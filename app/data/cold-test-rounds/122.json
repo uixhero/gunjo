@@ -5,7 +5,7 @@
   "score": "3.5/5",
   "category": "運輸：航空",
   "title": "AI に空港ターミナル案内を作らせてみた — 駅と空港で同じ欠落、3回目で「カテゴリチップ」がコンポーネントになった（やってみた #122）",
-  "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "FilterChips の3回目が発火。同じパターンを別業種で回すと、欠落が確実に3回そろう。",
   "article": {
     "file": "zenn-yattemita-122-airport-guide.md",
     "slug": "122-airport-guide",

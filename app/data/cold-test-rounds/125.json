@@ -5,7 +5,7 @@
   "score": "4/5",
   "category": "運輸：航空",
   "title": "AI に欠航の振替画面を作らせてみた — 昨日作った2コンポーネントを翌日もう使い、アプリバーが3回目でコンポーネントになった（やってみた #125）",
-  "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "「別業界での自力発見 ×2」＋「PageHeader 3回目」。「別業界での自力発見」が複利で効き始めた。",
   "article": {
     "file": "zenn-yattemita-125-flight-rebooking.md",
     "slug": "125-flight-rebooking",

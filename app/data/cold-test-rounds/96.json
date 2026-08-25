@@ -5,7 +5,7 @@
   "score": "4/5",
   "category": "飲食・レストラン",
   "title": "AI にホール運営＋KDSを作らせてみた — KDSは KanbanBoard、でも卓タイルだけ手組み（やってみた #96）",
-  "summary": "#95予約台帳とは真逆の、営業中のリアルタイム運営ボード。観測：**KDS（調理ステージを流れる注文）に KanbanBoard が効くか＋StatGroup の継続再利用。**",
+  "summary": "次の「横に広がる階層」は運営の StatusTile かもしれない。KDSは KanbanBoard、サマリは StatGroup。",
   "article": {
     "file": "zenn-yattemita-96-restaurant-floor.md",
     "slug": "96-restaurant-floor",

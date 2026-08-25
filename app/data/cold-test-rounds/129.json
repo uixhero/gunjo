@@ -5,7 +5,7 @@
   "score": "4.5/5",
   "category": "運輸：鉄道",
   "title": "AI にきっぷの払戻し画面を作らせてみた — 昨日作ったコンポーネントが、今日の画面で自力発見された（やってみた #129）",
-  "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "連載最高スコア。「使い倒しは、コンポーネント化と検証と修繕を同時に進める」。",
   "article": {
     "file": "zenn-yattemita-129-ticket-refund.md",
     "slug": "129-ticket-refund",
