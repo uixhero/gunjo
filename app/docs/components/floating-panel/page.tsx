@@ -562,6 +562,56 @@ export default function FloatingPanelPage() {
                 </div>
                 <CodeBlock code={code} />
             </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {isJa ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {isJa ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>つかむところを題の行に限る。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dragEnabled</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">title</code> の両方があるとき、動かせるのは題の行だけになります。中身の上でドラッグしても動かないので、パネルの中の文字を選んだりボタンを押したりできます。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dragMomentum</code> は切ってあるので、離した場所で止まります。
+                        </li>
+                        <li>
+                            <strong>動かしているあいだ、影や角を遅らせない。</strong>遅れを付けているのは影・枠線・背景の3つだけです。位置の変化にも遅れを付けるとパネルがカーソルに付いてこないので、そこは外してあります。
+                        </li>
+                        <li>
+                            <strong>資料に対して足りていないところ。</strong>資料は「画面の外にはみ出さないよう境界を必ず入れる」「折りたたみを付けて <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-expanded</code> で伝える」「<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="dialog"'}</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> を付ける」を挙げていますが、いまの <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">FloatingPanel</code> はどれも持っていません。引っぱって画面の外に出すと戻せなくなります。#937 で追っています。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/floating-panel"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: フローティングパネル（Floating Panel）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Only the title bar is a handle.</strong> When both <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dragEnabled</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">title</code> are set, dragging starts from the title row alone. The body stays inert to dragging, so text inside can be selected and buttons inside can be pressed. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dragMomentum</code> is off, so the panel stops where you let go.
+                        </li>
+                        <li>
+                            <strong>Do not put a delay on the movement itself.</strong> Only the shadow, the border colour and the background are transitioned. Transitioning the transform as well would make the panel lag behind the pointer, so it is left out.
+                        </li>
+                        <li>
+                            <strong>Where this falls short of the article.</strong> The article asks for drag bounds so the panel cannot leave the screen, a collapse control reported through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-expanded</code>, and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="dialog"'}</code> with an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code>. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">FloatingPanel</code> has none of them today, and a panel dragged off-screen cannot be recovered. Tracked in #937.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/floating-panel"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Floating Panel (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

@@ -431,6 +431,56 @@ import { IconCircleCheck as CheckCircle2 } from "@tabler/icons-react";
                 </div>
                 <CodeBlock code={usageCode} />
             </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {isJa ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {isJa ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>バナーの題は既定で見出しにしない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AlertTitle</code> は既定で <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">p</code> を描きます。通知バナーの題は文書の見出しの並びに属さないので、そこに見出しを置くと階層が飛びます。節の見出しを本当に持つときだけ <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'as="h2"'}</code> のように渡します。見た目はどちらでも同じです（#251）。
+                        </li>
+                        <li>
+                            <strong>種類を色だけに乗せない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> を変えると、枠線・淡い背景・文字色・アイコンの色が同時に変わります。アイコンは飾りとして扱い、意味は題と説明の文が持ちます（#303）。
+                        </li>
+                        <li>
+                            <strong>資料と食い違っているところ。</strong>GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Alert</code> は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> によらず常に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="alert"'}</code> を付けます。資料は「<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="alert"'}</code> は読み上げに割り込むので誤りのときだけに使い、他は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-live="polite"'}</code> にする」としています。ここは実装のほうを直す向きで、#936 で追っています。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/alert"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: アラート（Alert）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>A banner title is not a heading by default.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AlertTitle</code> renders <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">p</code> by default. A status banner title does not belong to the document outline, so putting a heading there skips a level. Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'as="h2"'}</code> only when the alert genuinely owns a section heading. The visual style is the same either way (#251).
+                        </li>
+                        <li>
+                            <strong>Never let colour alone carry the kind.</strong> Changing <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> moves the border, the subtle background, the text colour and the icon colour together. The icon is decorative; the title and description carry the meaning (#303).
+                        </li>
+                        <li>
+                            <strong>Where this diverges from the article.</strong> GUNJO always sets <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="alert"'}</code>, whatever the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code>. The article asks for <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="alert"'}</code> on errors only, with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-live="polite"'}</code> elsewhere, because an assertive region interrupts a screen reader mid-sentence. The implementation is the side that should change; tracked in #936.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/alert"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Alert (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

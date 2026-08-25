@@ -601,6 +601,56 @@ export default function CommandPalettePage() {
                     <CodeBlock code={code} />
                 </div>
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {isJa ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {isJa ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>並びは呼ぶ側のデータで決める。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">groups</code> に見出しと項目を渡すと、群ごとに見出しが付き、群と群のあいだに区切りが入ります。資料が言う「最近使ったもの」「移動」「操作」の並べ分けは、この形でそのまま書けます。
+                        </li>
+                        <li>
+                            <strong>打った文字の当たり先を広げる。</strong>項目ごとの <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">keywords</code> に、表示名だけでなくショートカットの文字も入れています。入力欄は開いた時点で焦点が入り、消すボタンには <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">clearLabel</code> で名前を付けます。見つからないときの文言は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">LocaleProvider</code> から取るので、日本語の画面では日本語で出ます。
+                        </li>
+                        <li>
+                            <strong>画面の高さを超えない。</strong>中身の高さは画面の高さから余白を引いた値で頭打ちにしてあります。項目が増えても、パレットが画面の外にはみ出して下が押せなくなることがありません。上下キー・Enter・Esc と焦点の閉じ込めは土台の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">CommandDialog</code> が持ちます。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/command-palette"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: コマンドパレット（Command Palette）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>The grouping is data, not markup.</strong> Pass headings and items through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">groups</code> and each group gets its heading with a separator drawn between groups. The recent / navigate / act split the article recommends is expressible directly in that shape.
+                        </li>
+                        <li>
+                            <strong>Widen what the typed text can hit.</strong> Each item lists both its label and its shortcut in <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">keywords</code>. The input takes focus as the palette opens, the clear control is named through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">clearLabel</code>, and the empty message falls back to the wording on <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">LocaleProvider</code>.
+                        </li>
+                        <li>
+                            <strong>It never grows past the viewport.</strong> The body height is capped against the viewport minus a margin, so a long list cannot push the palette off the bottom of the screen. Arrow keys, Enter, Escape and the focus trap all come from the underlying <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">CommandDialog</code>.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/command-palette"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Command Palette (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

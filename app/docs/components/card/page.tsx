@@ -910,6 +910,56 @@ export function LoadingCard() {
                 <CodeCopyButton code={usageCode} />
                 <CodeBlock code={usageCode} />
             </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {isJa ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {isJa ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>題の見出しの深さを選べるようにする。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">CardTitle</code> の既定は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">h3</code> ですが、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">as</code> で変えられます。ページの見出しのすぐ下にカードが並ぶときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'as="h2"'}</code> にして、階層が飛ばないようにします。見出しにしたくない題なら <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">p</code> も選べます。見た目はどれでも同じです。
+                        </li>
+                        <li>
+                            <strong>カードは縦に伸びる箱として作る。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Card</code> は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">flex flex-col w-full</code> です。並べたときに高さが揃い、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">CardFooter</code> を下端に寄せられます。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">CardFooter</code> は既定で両端に寄せる並びなので、左に補足・右に操作、という置き方がそのまま書けます。
+                        </li>
+                        <li>
+                            <strong>組み方の決まりは部品では止めない。</strong>資料は「カードの中にカードを入れない」「画像の比率を固定する」「操作は2つまで」を挙げています。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Card</code> は入れ物なので、これらを機械では止めていません。組むときに守るところとして残しています。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/card"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: カード（Card）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>The title picks its own heading level.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">CardTitle</code> renders <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">h3</code> by default and takes an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">as</code> prop. When cards sit right under a page heading, pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'as="h2"'}</code> so the outline does not skip a level; pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">p</code> when the title is not a heading at all. The visual style is identical in every case.
+                        </li>
+                        <li>
+                            <strong>A card is a column that grows.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Card</code> is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">flex flex-col w-full</code>, so a row of cards lines up at equal height and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">CardFooter</code> can hold the bottom edge. The footer spreads its children apart by default, which is exactly the note-on-the-left, action-on-the-right shape.
+                        </li>
+                        <li>
+                            <strong>Composition rules are not enforced by the component.</strong> The article asks for no card inside a card, a fixed image ratio, and at most two actions. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Card</code> is a container, so none of that is enforced in code. It stays a rule to keep while composing.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/card"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Card (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

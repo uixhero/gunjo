@@ -273,6 +273,56 @@ export function PresenceAvatar() {
                 </div>
                 <CodeBlock code={usageCode} />
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>色は身元の目印であって、状態ではない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AvatarFallback</code> の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">colorSeed</code> に名前などを渡すと、決まった計算で同じ色に落ちます。同じ名前なら常に同じ色です。頭文字が並んだときに全部同じ灰色になるのを避けるためのもので、色は身元の手がかりであって良し悪しを意味しません（#331）。色は背景と文字の組でトークンから取るので、明るいテーマでも暗いテーマでも読めます。
+                        </li>
+                        <li>
+                            <strong>在席の点は、文言を渡したときだけ読み上げに乗る。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">presence</code> の点は色だけの表現です。そこで <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">presenceLabel</code> を渡したときは点に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> が付き、渡さないときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-hidden</code> になります。色が見えない人にも伝えたいなら文言を渡す、という分かれ道を明示にしてあります。見本では <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">tooltip</code> にも名前と在席を一緒に入れています。
+                        </li>
+                        <li>
+                            <strong>丸だけで誰か分からないときは、名前を添えられるようにする。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">tooltip</code> を渡すと、アバター全体がツールチップのトリガーになります。画像が読めなかったときに頭文字へ落とす切り替えは Radix の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Avatar</code> が持っているので、こちらでは書いていません。頭文字を何文字にするか、並べるときの上限をいくつにするかは資料に書いてあります。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/avatar"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: アバター（Avatar）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Colour is an identity cue, not a status.</strong> Pass a name to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">colorSeed</code> on <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AvatarFallback</code> and it hashes to one fixed tone; the same name always lands on the same colour. It exists so a dense column of initials is scannable instead of a wall of identical grey. The hue says who, not how good (#331). Each tone is a background and foreground pair from the token set, so it stays readable in both themes.
+                        </li>
+                        <li>
+                            <strong>The presence dot reaches a screen reader only when you label it.</strong> The <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">presence</code> dot is colour on its own. Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">presenceLabel</code> and the dot gets an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code>; leave it out and the dot becomes <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-hidden</code>. The fork is deliberate and explicit. The demo also folds the name and the presence into the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">tooltip</code>.
+                        </li>
+                        <li>
+                            <strong>A bare circle can carry a name.</strong> Passing <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">tooltip</code> turns the whole avatar into a tooltip trigger. Falling back from image to initials is handled by the Radix <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Avatar</code>, so it is not reimplemented here. How many initials to show, and the cap for a stacked group, are covered in the article.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/avatar"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Avatar (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

@@ -217,6 +217,56 @@ export function FailedLoad() {
                 </div>
                 <CodeBlock code={usageCode} />
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>題は見出しとして描く。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">headingLevel</code> の既定は2で、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">h2</code> から <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">h6</code> まで選べます。空の画面は見出しで飛ばす読み方と相性がよいので、題を素の文にせず見出しにしています。周りの見出しの深さに合わせて渡します。
+                        </li>
+                        <li>
+                            <strong>中身のある箱と見た目で分ける。</strong>枠は破線、背景は淡い灰色です。カードのような実線の箱にすると「何か入っている」と読めてしまうので、まだ何も無い場所だと分かる形にしました。
+                        </li>
+                        <li>
+                            <strong>次の一手を置く場所を最初から持つ。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">icon</code>・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">title</code>・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">description</code>・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">action</code> の4つの口があり、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">action</code> はボタンを置くための場所です。資料が言う「なぜ空なのか」と「次に何をするか」は、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">description</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">action</code> に書き分けます。初回の空と検索結果0件で見た目を変えるのは、渡すアイコンと文言で分けます。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/empty-state"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: 空状態（Empty State）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>The title is a real heading.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">headingLevel</code> defaults to 2 and accepts <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">h2</code> through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">h6</code>. An empty screen is exactly where people skim by heading, so the title is a heading rather than plain text. Set it to match the surrounding outline.
+                        </li>
+                        <li>
+                            <strong>It should not look like a filled box.</strong> The border is dashed and the ground is a faint grey. A solid card border reads as something with content in it; this reads as a place where nothing is yet.
+                        </li>
+                        <li>
+                            <strong>There is a slot for the next move from the start.</strong> The four slots are <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">icon</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">title</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">description</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">action</code>, with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">action</code> reserved for a button. Why it is empty and what to do next, which the article separates, map onto <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">description</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">action</code>. Telling a first-run empty apart from a no-results empty is done through the icon and the wording you pass.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/empty-state"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Empty State (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

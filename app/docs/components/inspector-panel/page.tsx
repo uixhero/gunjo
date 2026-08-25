@@ -412,6 +412,56 @@ export default function InspectorPanelPage() {
                     <CodeBlock code={codeByLocale[locale]} />
                 </div>
             </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>縦に流れるのは真ん中だけ。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorPanel</code> は題の行・中身・脚の3段で、流れるのは中身だけです。長い設定を下まで見ても、何を選んでいるかを示す題の行と、下の操作は動きません。横には流れないようにしてあります。
+                        </li>
+                        <li>
+                            <strong>ラベルは列で揃えず、上に積む。</strong>資料はラベルの列幅を64pxのように揃えることを勧めています。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorField</code> はラベルを入力欄の上に置く形にしました。日本語のラベルは長さの幅が大きく、固定の列にすると折り返すか切れるからです。上に積めば、ラベルの長さに関係なく入力欄の左端が揃います。
+                        </li>
+                        <li>
+                            <strong>3段に分けて、平らに並べない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorPanel</code>（枠）・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorSection</code>（群の見出し）・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorField</code>（1つの値）の3つに分かれています。設定を平らに並べず、意味のまとまりごとに <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorSection</code> で区切ります。選んだものが変わったら遅れなく差し替える、という判断は資料に書いてあります。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/inspector-panel"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: インスペクターパネル（Inspector Panel）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Only the middle scrolls.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorPanel</code> is three bands: title row, body, footer. Only the body scrolls, so the row that says what is selected and the controls at the bottom stay put however long the settings run. Horizontal scrolling is closed off.
+                        </li>
+                        <li>
+                            <strong>Labels stack above the field instead of sharing a column.</strong> The article recommends a shared label column of a fixed width such as 64px. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorField</code> puts the label above the control instead, because Japanese labels vary a lot in length and a fixed column either wraps them or clips them. Stacking keeps the left edge of every field aligned whatever the label length.
+                        </li>
+                        <li>
+                            <strong>Three levels, so nothing is a flat list.</strong> The parts are <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorPanel</code> for the frame, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorSection</code> for a group heading, and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorField</code> for a single value. Properties are grouped by meaning with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorSection</code> rather than listed flat. Swapping the contents the instant the selection changes is covered in the article.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/inspector-panel"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Inspector Panel (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

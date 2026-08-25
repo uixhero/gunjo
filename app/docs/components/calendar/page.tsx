@@ -264,6 +264,56 @@ export function CalendarUsage() {
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>日本の祝日は、渡したときだけ出す。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showHolidays</code> の既定は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">false</code> です。公開している部品なので、日本以外で使う人に日本の祝日が勝手に付かないようにしています。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">holidays</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">locale</code> を渡せば別の国の休みにも替えられます（#141）。
+                        </li>
+                        <li>
+                            <strong>月をまたいでも高さが変わらない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">fixedWeeks</code> を既定で入れてあるので、月ごとに行数が変わって下の内容が上下に動くことがありません。年と月の選び方は落とし込みの一覧（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'captionLayout="dropdown"'}</code>）で、既定の範囲は前後10年です。
+                        </li>
+                        <li>
+                            <strong>選べない日には、理由を出せるようにする。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> か <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">getDisabledReason</code> を渡すと、選べない日にツールチップで理由が出ます。焦点の当たる要素で包んで <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> も付けるので、キーボードでも理由に辿り着けます。押せないことだけを見せて理由を書かないと、何を直せば選べるのかが分かりません。矢印キーでの日送りと <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="grid"'}</code> は土台の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DayPicker</code> が持っています。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/calendar"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: カレンダー（Calendar）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Japanese public holidays are opt-in.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showHolidays</code> defaults to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">false</code>. This is a published package, so a consumer outside Japan should not inherit Japanese holidays. Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">holidays</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">locale</code> to swap in another country (#141).
+                        </li>
+                        <li>
+                            <strong>The grid height does not change between months.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">fixedWeeks</code> is on by default, so a month with an extra row does not push everything below it up and down. Year and month are chosen from dropdowns (<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'captionLayout="dropdown"'}</code>), spanning ten years either side by default.
+                        </li>
+                        <li>
+                            <strong>A disabled day can say why.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> or <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">getDisabledReason</code> and an unavailable day carries a tooltip. It is wrapped in a focusable element with an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code>, so the reason is reachable from the keyboard too. Greying a date out without saying why leaves nothing to act on. Arrow-key movement and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="grid"'}</code> come from the underlying <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DayPicker</code>.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/calendar"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Calendar (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

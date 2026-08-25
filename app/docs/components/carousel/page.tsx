@@ -1422,6 +1422,56 @@ export function AutoplayCarousel() {
                 <CodeCopyButton code={usageCode} />
                 <CodeBlock code={usageCode} />
             </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {isJa ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {isJa ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>自動送りは既定で止めてある。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">autoPlay</code> の既定は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">false</code> です。動いているものは見つけにくく、動きに弱い人の負担にもなるので、必要な画面で明示的に入れる形にしています。入れたときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">controls</code> が止めるボタンを出し、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-pressed</code> で入り切りを伝えます。
+                        </li>
+                        <li>
+                            <strong>止まるきっかけを、マウス以外にも用意する。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">pauseOnHover</code> は既定で入っていますが、止まるのはマウスを載せたときだけではありません。中の要素にキーボードで焦点が入ったとき（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">onFocusCapture</code>）も同じように止まります。読んでいる途中で勝手に送られないようにするためです。
+                        </li>
+                        <li>
+                            <strong>何枚目かを読み上げに乗せる。</strong>全体は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="region"'}</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-roledescription="carousel"'}</code>、1枚ごとに <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="group"'}</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-roledescription="slide"'}</code>、下の点は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="tablist"'}</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="tab"'}</code> に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-selected</code> と1枚ずつの名前が付きます。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/carousel"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: カルーセル（Carousel）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Autoplay is off until you ask for it.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">autoPlay</code> defaults to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">false</code>. Moving content is harder to find and it costs readers who are sensitive to motion, so it has to be switched on per screen. When it is on, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">controls</code> renders a pause button that reports its state through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-pressed</code>.
+                        </li>
+                        <li>
+                            <strong>Pausing is not only a mouse gesture.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">pauseOnHover</code> is on by default, but hovering is not the only trigger. Keyboard focus landing anywhere inside (<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">onFocusCapture</code>) pauses it the same way, so nothing slides away mid-read.
+                        </li>
+                        <li>
+                            <strong>Announce which slide this is.</strong> The frame carries <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="region"'}</code> with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-roledescription="carousel"'}</code>, each slide carries <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="group"'}</code> with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-roledescription="slide"'}</code>, and the dots are a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="tablist"'}</code> of <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="tab"'}</code> elements with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-selected</code> and a per-slide name.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/carousel"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Carousel (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }
