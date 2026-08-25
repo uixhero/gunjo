@@ -1953,6 +1953,19 @@ const commonOverlayProps = {
 const sheetScrollCode = {
     ja: `import { Button, Input, Label, Sheet, SheetBody, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@gunjo/ui";
 
+const fields = [
+  { id: "sheet-scroll-0", label: "項目 1", value: "値 1" },
+  { id: "sheet-scroll-1", label: "項目 2", value: "値 2" },
+  { id: "sheet-scroll-2", label: "項目 3", value: "値 3" },
+  { id: "sheet-scroll-3", label: "項目 4", value: "値 4" },
+  { id: "sheet-scroll-4", label: "項目 5", value: "値 5" },
+  { id: "sheet-scroll-5", label: "項目 6", value: "値 6" },
+  { id: "sheet-scroll-6", label: "項目 7", value: "値 7" },
+  { id: "sheet-scroll-7", label: "項目 8", value: "値 8" },
+  { id: "sheet-scroll-8", label: "項目 9", value: "値 9" },
+  { id: "sheet-scroll-9", label: "項目 10", value: "値 10" },
+];
+
 // SheetBody を直下に置くと SheetContent が flex 列になり、
 // ヘッダー/フッターは固定・中央だけがスクロールします。
 export function LongFormSheet() {
@@ -1983,6 +1996,19 @@ export function LongFormSheet() {
   );
 }`,
     en: `import { Button, Input, Label, Sheet, SheetBody, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger } from "@gunjo/ui";
+
+const fields = [
+  { id: "sheet-scroll-0", label: "Field 1", value: "Value 1" },
+  { id: "sheet-scroll-1", label: "Field 2", value: "Value 2" },
+  { id: "sheet-scroll-2", label: "Field 3", value: "Value 3" },
+  { id: "sheet-scroll-3", label: "Field 4", value: "Value 4" },
+  { id: "sheet-scroll-4", label: "Field 5", value: "Value 5" },
+  { id: "sheet-scroll-5", label: "Field 6", value: "Value 6" },
+  { id: "sheet-scroll-6", label: "Field 7", value: "Value 7" },
+  { id: "sheet-scroll-7", label: "Field 8", value: "Value 8" },
+  { id: "sheet-scroll-8", label: "Field 9", value: "Value 9" },
+  { id: "sheet-scroll-9", label: "Field 10", value: "Value 10" },
+];
 
 // A SheetBody as a direct child turns SheetContent into a flex column, so the
 // header and footer stay pinned while only the middle scrolls.
