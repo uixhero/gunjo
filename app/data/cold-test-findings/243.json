@@ -1,0 +1,95 @@
+{
+  "schemaVersion": 1,
+  "round": 243,
+  "lang": "ja",
+  "findings": [
+    {
+      "id": "243-conditional-reveal",
+      "kind": "requirement",
+      "group": "conditional-reveal",
+      "phenomenon": "「事故の相手がいる」を選んだら連絡先の欄が出て、「レッカーが要る」を選んだら手配のボタンが出ます。欄が増えたことが画面読み上げソフトにも伝わります。",
+      "where": {
+        "round": 243,
+        "screen": "事故受付センターの初期受付",
+        "spot": "事故の状況の聞き取り"
+      },
+      "status": "resolved",
+      "links": [
+        { "kind": "component", "slug": "reveal-section", "label": "RevealSection" }
+      ],
+      "selfCheck": "答えによって欄が増える画面を読み上げだけで進めて、欄が増えたことが分かるか確かめてください。"
+    },
+    {
+      "id": "243-not-yet-asked",
+      "kind": "pitfall",
+      "group": "not-yet-axis",
+      "phenomenon": "電話で聞き取る画面で、相手が「無い」と答えたのか、まだ聞いていないのかを見分ける仕組みが1つもありませんでした。どちらも空欄になります。",
+      "where": {
+        "round": 243,
+        "screen": "事故受付センターの初期受付",
+        "spot": "聞き取りの各項目"
+      },
+      "cause": "チェックの欄はチェック済みか未チェックかの2つだけ、入力欄も「必須かどうか」と「間違いがあるか」だけで、「まだ聞いていない」という状態がどこにも用意されていないためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 853 }
+      ],
+      "selfCheck": "聞き取りの画面を開いて、答えが「無い」だった項目と、まだ聞いていない項目が見分けられるか確かめてください。"
+    },
+    {
+      "id": "243-action-queue-auto-sort",
+      "kind": "pitfall",
+      "group": "action-queue-auto-sort",
+      "phenomenon": "受付の一覧に、対応が要る項目を並べるコンポーネントをそのまま使うと、深刻度の順に並べ替えて、色と言葉で急かします。動揺している相手を落ち着かせたい画面では、この急かし方が裏目に出ます。",
+      "where": {
+        "round": 243,
+        "screen": "事故受付センターの初期受付",
+        "spot": "受付中の一覧"
+      },
+      "cause": "深刻度の順に並べ替える設定が最初から入っていて、コンポーネントの説明にも、やりたいことからコンポーネントを引く対応表にも書かれていないためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 851 },
+        { "kind": "component", "slug": "action-queue", "label": "ActionQueue" },
+        { "kind": "component", "slug": "status-board", "label": "StatusBoard" }
+      ],
+      "selfCheck": "急がせたくない一覧を開いて、画面が並べ替えたり色で急かしたりしていないか確かめてください。"
+    },
+    {
+      "id": "243-banner-clipping",
+      "kind": "pitfall",
+      "group": "banner-clipping",
+      "phenomenon": "あらかじめ伝えておきたい注意書きを、画面の上に置く告知の帯に入れると、狭い画面で文が消えます。ただの段落に置き換えました。",
+      "where": {
+        "round": 243,
+        "screen": "事故受付センターの初期受付",
+        "spot": "画面上部の断り書き"
+      },
+      "cause": "帯の高さが1行に固定されていて、はみ出した分が、警告も出ないまま消されるためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 907 },
+        { "kind": "component", "slug": "banner", "label": "Banner" }
+      ],
+      "selfCheck": "告知の帯に入れた文をスマートフォンの幅（375px）で開いて、最後まで読めるか確かめてください。"
+    },
+    {
+      "id": "243-docs-dist-drift",
+      "kind": "pitfall",
+      "group": "docs-dist-drift",
+      "phenomenon": "やりたいことからコンポーネントを引く対応表に載っていて、専用のドキュメントのページまであるコンポーネントが、配られている版に入っていませんでした。名前を頼りに探して空振りします。",
+      "where": {
+        "round": 243,
+        "screen": "事故受付センターの初期受付",
+        "spot": "聞き取りの進み具合"
+      },
+      "cause": "ドキュメントのページが、まだ配られていない開発中の最新版をそのまま映していて、配られている版のどれから使えるのかが書かれていないためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 902 },
+        { "kind": "component", "slug": "status-level", "label": "StatusLevel" }
+      ],
+      "selfCheck": "ドキュメントで見つけたコンポーネントが、実際に配られている版に入っているか確かめてください。"
+    }
+  ]
+}

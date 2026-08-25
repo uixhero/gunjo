@@ -1,0 +1,110 @@
+{
+  "schemaVersion": 1,
+  "round": 242,
+  "lang": "ja",
+  "findings": [
+    {
+      "id": "242-underwriting-three-way",
+      "kind": "requirement",
+      "phenomenon": "そのまま引き受ける、条件を付けて引き受ける、引き受けない。この3択が、何も選ばれていない状態から始まります。画面が先に答えを決めません。",
+      "where": {
+        "round": 242,
+        "screen": "損害保険の引受査定",
+        "spot": "引受の判断"
+      },
+      "status": "resolved",
+      "links": [
+        { "kind": "component", "slug": "radio-group", "label": "RadioGroup" }
+      ],
+      "selfCheck": "判断を選ぶ画面を開いて、開いた直後は3つとも選ばれていない状態か確かめてください。"
+    },
+    {
+      "id": "242-weight-without-red",
+      "kind": "pitfall",
+      "phenomenon": "引き受けないという判断を、悪いことをしているように見せず、しかし軽くも見せない方法がありませんでした。重さを表す手段が赤しか無いので、赤くすると「やってはいけないこと」に見えます。",
+      "where": {
+        "round": 242,
+        "screen": "損害保険の引受査定",
+        "spot": "引受不可の見せ方"
+      },
+      "cause": "深刻度を色と言葉で表す仕組みが、軽い側から重い側への物差しを1本しか持たず、いちばん重い段階の色が「取り消せない操作」を表す赤と同じになっているためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 853 }
+      ],
+      "selfCheck": "重いけれど危険ではない判断を1つ置いて、赤を使わずに重さが伝わるか確かめてください。"
+    },
+    {
+      "id": "242-rule-row",
+      "kind": "pitfall",
+      "phenomenon": "社内の基準7項目それぞれに合格・要確認・不合格を付け、基準の値とこの案件の値を並べる表を、既製のコンポーネントを使わず一から組みました。",
+      "where": {
+        "round": 242,
+        "screen": "損害保険の引受査定",
+        "spot": "引受基準の判定表"
+      },
+      "cause": "値と基準を比べるコンポーネントは3つありますが、どれも数値専用で、「車の使い方」や「他社での契約歴」のように数値でない項目を同じ表に入れられないためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 852 },
+        { "kind": "component", "slug": "reference-value", "label": "ReferenceValue" },
+        { "kind": "component", "slug": "limit-monitor", "label": "LimitMonitor" }
+      ],
+      "selfCheck": "判定の表を開いて、数値でない項目と数値の項目が同じ書き方で並んでいるか確かめてください。"
+    },
+    {
+      "id": "242-gate-reason",
+      "kind": "pitfall",
+      "phenomenon": "どの判断でも理由を書かないと確定できない、という条件を一から組みました。理由の入力を必須にできるコンポーネントは2つありますが、どちらも電子署名とセットでしか使えません。",
+      "where": {
+        "round": 242,
+        "screen": "損害保険の引受査定",
+        "spot": "判断の確定"
+      },
+      "cause": "確定のボタンに「押せない理由」を表示させる仕組みが無く、理由を必須にする機能が電子署名の機能とセットでしか使えないためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 904 },
+        { "kind": "component", "slug": "signed-record", "label": "SignedRecord" },
+        { "kind": "component", "slug": "co-sign", "label": "CoSign" }
+      ],
+      "selfCheck": "条件がそろうまで押せないボタンがある画面を開いて、押せない理由が1つずつ読めるか確かめてください。"
+    },
+    {
+      "id": "242-selectable-list",
+      "kind": "pitfall",
+      "phenomenon": "一覧から1件を選んで詳細を出すという、業務画面でいちばん多い操作に当たるコンポーネントがありませんでした。カード型の一覧は、カードごとに「選んだ・選んでいない」を切り替えるだけです。",
+      "where": {
+        "round": 242,
+        "screen": "損害保険の引受査定",
+        "spot": "案件の一覧"
+      },
+      "cause": "1件だけを選べてキーボードの矢印で行を移せる一覧のコンポーネントが無く、公開されている説明書きにもいまだに「今後べつのコンポーネントとして作る予定」とだけ書かれているためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 135 },
+        { "kind": "component", "slug": "list-card", "label": "ListCard" },
+        { "kind": "component", "slug": "check-list", "label": "CheckList" }
+      ],
+      "selfCheck": "一覧と詳細を並べた画面で、矢印キーだけで選ぶ行を移せるか確かめてください。"
+    },
+    {
+      "id": "242-neutral-choice-defaults",
+      "kind": "pitfall",
+      "group": "neutral-choice-defaults",
+      "phenomenon": "3つの判断を選択カードで並べようとしましたが、使えませんでした。引き受けないという判断のカードに価格を表示する欄が並ぶと、断ることが商品を選ぶように見えます。",
+      "where": {
+        "round": 242,
+        "screen": "損害保険の引受査定",
+        "spot": "引受の判断"
+      },
+      "cause": "選択カードが価格を表示する欄や「人気」の札という勧誘の仕掛けを最初から持っていて、それを取り除いた使い方が用意されていないためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 830 },
+        { "kind": "component", "slug": "radio-card", "label": "RadioCard" }
+      ],
+      "selfCheck": "選択カードで業務の判断を並べて、勧誘に見える枠や札が残っていないか確かめてください。"
+    }
+  ]
+}

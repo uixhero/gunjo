@@ -1,0 +1,77 @@
+{
+  "schemaVersion": 1,
+  "round": 202,
+  "lang": "ja",
+  "findings": [
+    {
+      "id": "202-numberinput-clamp",
+      "kind": "pitfall",
+      "phenomenon": "年齢の欄（18から75まで）に「45」と打つと「75」になります。1文字目の「4」が下限の18に置き換わり、続けて「5」を打つと185になって、上限の75へ収まるからです。",
+      "where": {
+        "round": 202,
+        "screen": "医療保険の保険料試算",
+        "spot": "年齢と入院日額の直接入力"
+      },
+      "cause": "数値の入力欄が、1文字打たれるたびに、その時点の数を上限と下限の中へ強制的に収めて確定させるためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 790 },
+        { "kind": "component", "slug": "number-input", "label": "NumberInput" }
+      ],
+      "selfCheck": "下限が2桁以上の数値の欄に、下限より大きい数を2桁打ってみて、打った数がそのまま残るか確かめてください。"
+    },
+    {
+      "id": "202-slider-number-pair",
+      "kind": "pitfall",
+      "phenomenon": "横に滑らせて数を変えるつまみと、数字を直接打ち込む欄。どちらからも同じ値を動かせる組み合わせが無く、一から作ることになりました。住宅ローンの試算に続いて2回目です。",
+      "where": {
+        "round": 202,
+        "screen": "医療保険の保険料試算",
+        "spot": "試算の条件を動かすところ"
+      },
+      "cause": "1つの値をつまみと数値の欄の両方から変えられ、つまみ側と欄側で1回に動く量を別々に決められ、読み上げソフトには項目名を1度しか伝えない、という条件をまとめて満たすコンポーネントが無いためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 767 },
+        { "kind": "component", "slug": "slider", "label": "Slider" },
+        { "kind": "component", "slug": "number-input", "label": "NumberInput" }
+      ],
+      "selfCheck": "つまみと数値の欄を並べた箇所を開いて、同じ項目名が2回読み上げられていないか確かめてください。"
+    },
+    {
+      "id": "202-live-announce-delay",
+      "kind": "pitfall",
+      "phenomenon": "つまみを動かすたびに合計が変わる画面で、読み上げが重ならない待ち時間を、画面を作るたびに自前で決めることになりました。3つの回で別々に作ってみて、いずれも「操作の手が止まってから0.8秒後に読ませる」という同じ答えに行き着いています。",
+      "where": {
+        "round": 202,
+        "screen": "医療保険の保険料試算",
+        "spot": "毎月の保険料の読み上げ"
+      },
+      "cause": "値が続けて変わる表示を、動きが止まってから1度だけ読ませる仕組みが、コンポーネントの側に無いためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 753 },
+        { "kind": "component", "slug": "statistic", "label": "Statistic" }
+      ],
+      "selfCheck": "つまみを続けて動かして、動かした回数ぶん読み上げが次々と流れてしまわないか確かめてください。"
+    },
+    {
+      "id": "202-weekview-comparison-misroute",
+      "kind": "pitfall",
+      "group": "by-use-case-misroute",
+      "phenomenon": "並べて見比べる表を探すと、時間割のコンポーネントに案内されました。中身は予定を書き込むためのマス目で、読むだけの比較には機能が多すぎます。",
+      "where": {
+        "round": 202,
+        "screen": "医療保険の保険料試算",
+        "spot": "プランの比較"
+      },
+      "cause": "時間割のコンポーネントの説明に「比較」という用途が並んでいて、読むための比較と、書き込むためのマス目を分けていないためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 763 },
+        { "kind": "component", "slug": "week-view", "label": "WeekView" }
+      ],
+      "selfCheck": "やりたいことからコンポーネントを引く対応表で「比較」を引いて、読むための表と、書き込むためのマス目が別々に出てくるか確かめてください。"
+    }
+  ]
+}

@@ -1,0 +1,93 @@
+{
+  "schemaVersion": 1,
+  "round": 240,
+  "lang": "ja",
+  "findings": [
+    {
+      "id": "240-premium-breakdown-fits",
+      "kind": "requirement",
+      "phenomenon": "基本保険料に特約を足し、割引を引いて年間保険料になるまでの計算の一段ずつを、そのまま画面に出せます。コンポーネントの説明に、保険の式が例として書かれていました。",
+      "where": {
+        "round": 240,
+        "screen": "自動車保険の見積作成（代理店）",
+        "spot": "保険料の内訳"
+      },
+      "status": "resolved",
+      "links": [
+        { "kind": "component", "slug": "amount-breakdown", "label": "AmountBreakdown" }
+      ],
+      "selfCheck": "見積の保険料を開いて、合計だけでなく、そこに至る足し引きの一段ずつが出ているか確かめてください。"
+    },
+    {
+      "id": "240-neutral-choice-defaults",
+      "kind": "pitfall",
+      "group": "neutral-choice-defaults",
+      "phenomenon": "手厚い案・標準の案・費用を抑えた案を並べようとして、使えそうなコンポーネントを3種類試しましたが、どれも使えませんでした。どれも「人気」「おすすめ」の札や、大きな価格の欄を最初から持っています。",
+      "where": {
+        "round": 240,
+        "screen": "自動車保険の見積作成（代理店）",
+        "spot": "3案の並べ方"
+      },
+      "cause": "選択肢を並べるだけのコンポーネントと、商品を選ばせるコンポーネントが分かれておらず、やりたいことからコンポーネントを引く対応表も、どれか1つをすすめる作りのほうへ案内するためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 830 },
+        { "kind": "component", "slug": "radio-card", "label": "RadioCard" },
+        { "kind": "component", "slug": "pricing", "label": "PricingTemplate" }
+      ],
+      "selfCheck": "案を並べる画面を開いて、どれか1つが既定で目立つ作りになっていないか確かめてください。"
+    },
+    {
+      "id": "240-unranked-n-comparison",
+      "kind": "pitfall",
+      "phenomenon": "3つの案を項目ごとに並べ、案で違う行だけ淡い背景で浮かせる表を一から組みました。良し悪しを言わずに並べる比較を一から組むのは、これで3回目です。",
+      "where": {
+        "round": 240,
+        "screen": "自動車保険の見積作成（代理店）",
+        "spot": "3案の比較表"
+      },
+      "cause": "順位を付けずに何件でも並べられて、行ごとに「全部同じ」か「案で違う」かを示せる、という比較のコンポーネントが無いためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 132 },
+        { "kind": "component", "slug": "table", "label": "Table" }
+      ],
+      "selfCheck": "3案を並べた表を開いて、3案とも同じ行と、案で違う行が見分けられるか確かめてください。"
+    },
+    {
+      "id": "240-table-responsive-collapse",
+      "kind": "pitfall",
+      "phenomenon": "組んだ比較の表を、スマートフォンの幅（375px）で縦積みにするために、同じ内容をもう一度書くことになりました。",
+      "where": {
+        "round": 240,
+        "screen": "自動車保険の見積作成（代理店）",
+        "spot": "狭い画面での比較表"
+      },
+      "cause": "一覧のコンポーネントには狭い画面でカードに切り替える設定があるのに、行と列だけの表を組み合わせて一から作った表には、同じ設定が無いためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 903 },
+        { "kind": "component", "slug": "table", "label": "Table" },
+        { "kind": "component", "slug": "data-table", "label": "DataTable" }
+      ],
+      "selfCheck": "一から組んだ表をスマートフォンの幅で開いて、同じ内容を2通り書いていないか確かめてください。"
+    },
+    {
+      "id": "240-typography-heading-text",
+      "kind": "pitfall",
+      "group": "typography-heading-text",
+      "phenomenon": "画面の大見出しとカードの見出しは出せるのに、その間の節の見出しが無く、5箇所で自分で書きました。",
+      "where": {
+        "round": 240,
+        "screen": "自動車保険の見積作成（代理店）",
+        "spot": "節の見出し"
+      },
+      "cause": "見出しと本文のコンポーネントが無いためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 789 }
+      ],
+      "selfCheck": "画面の中の節の見出しを、カードの見出しで代用していないか確かめてください。"
+    }
+  ]
+}

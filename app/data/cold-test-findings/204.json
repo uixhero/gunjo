@@ -1,0 +1,92 @@
+{
+  "schemaVersion": 1,
+  "round": 204,
+  "lang": "ja",
+  "findings": [
+    {
+      "id": "204-change-not-by-colour",
+      "kind": "requirement",
+      "phenomenon": "更新で変わる項目と変わらない項目が、色ではなく「変わります」「変わりません」という言葉で読めます。保険料が増えることも「増えます」と書きます。",
+      "where": {
+        "round": 204,
+        "screen": "定期保険の満期・更新",
+        "spot": "いまの契約と更新後の比較"
+      },
+      "status": "resolved",
+      "links": [
+        { "kind": "component", "slug": "badge", "label": "Badge" },
+        { "kind": "component", "slug": "delta", "label": "Delta" }
+      ],
+      "selfCheck": "画面を白黒にして、更新で変わる項目がどれか読み取れるか確かめてください。"
+    },
+    {
+      "id": "204-two-column-comparison",
+      "kind": "pitfall",
+      "phenomenon": "いまの契約と更新後の条件を項目ごとに並べる表を、既製のコンポーネントを使わず一から組みました。並べて比べる表を一から組むのは、連載でこれが7回目です。",
+      "where": {
+        "round": 204,
+        "screen": "定期保険の満期・更新",
+        "spot": "いまの契約と更新後の比較"
+      },
+      "cause": "いまの契約を基準に更新後と2列で並べ、変わった項目に印を付け、増えた分と減った分を出す、という比較のコンポーネントが無いためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 132 },
+        { "kind": "component", "slug": "table", "label": "Table" }
+      ],
+      "selfCheck": "前と後を並べる画面を開いて、どの項目が変わったかの印を一から書いていないか確かめてください。"
+    },
+    {
+      "id": "204-typography-heading-text",
+      "kind": "pitfall",
+      "group": "typography-heading-text",
+      "phenomenon": "カードの見出しと画面の上部バー以外は、文字の大きさと太さと色を毎回自分で書くことになりました。この画面だけで20箇所を超えます。",
+      "where": {
+        "round": 204,
+        "screen": "定期保険の満期・更新",
+        "spot": "画面の中の見出しと本文"
+      },
+      "cause": "見出しと本文のコンポーネントが無く、文字の大きさや太さをまとめて決める仕組みがどこにも無いためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 789 }
+      ],
+      "selfCheck": "画面の中の小見出しを数えて、同じ役割の見出しが同じ文字の大きさと太さになっているか確かめてください。"
+    },
+    {
+      "id": "204-amountbreakdown-row-role",
+      "kind": "pitfall",
+      "phenomenon": "金額の内訳は、目で見る分には正しく出ますが、画面読み上げソフトでは項目名が読まれないことがあります。",
+      "where": {
+        "round": 204,
+        "screen": "定期保険の満期・更新",
+        "spot": "更新後の保険料の内訳"
+      },
+      "cause": "項目名の側が表のマスとして作られておらず、読み上げソフトからは、行はあるのに中身が片方しか無い表に見えるためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 786 },
+        { "kind": "component", "slug": "amount-breakdown", "label": "AmountBreakdown" }
+      ],
+      "selfCheck": "金額の内訳を読み上げソフトで通して、項目名と金額が対になって読まれるか確かめてください。"
+    },
+    {
+      "id": "204-weekview-comparison-misroute",
+      "kind": "pitfall",
+      "group": "by-use-case-misroute",
+      "phenomenon": "並べて比べる表を探して、時間割のコンポーネントで長く止まりました。この回でいちばん時間を使った遠回りです。",
+      "where": {
+        "round": 204,
+        "screen": "定期保険の満期・更新",
+        "spot": "いまの契約と更新後の比較"
+      },
+      "cause": "時間割のコンポーネントの説明に「比較」という用途が書かれているのに、中身は予定を書き込むためのマス目で、それが中身を読むまで分からないためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 763 },
+        { "kind": "component", "slug": "week-view", "label": "WeekView" }
+      ],
+      "selfCheck": "やりたいことからコンポーネントを引く対応表で「比較」を引いて、案内された先が見せるための表か、書き込むための表かを、中身を読む前に見分けられるか確かめてください。"
+    }
+  ]
+}
