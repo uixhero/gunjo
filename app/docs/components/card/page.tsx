@@ -28,7 +28,8 @@ export default function CardPage() {
     const isJa = locale === "ja";
     const statesTitle = isJa ? "状態とバリエーション" : "States and variants";
 
-    const code = `import {
+    const code = isJa
+        ? `import {
   Card,
   CardContent,
   CardDescription,
@@ -37,9 +38,38 @@ export default function CardPage() {
 } from "@gunjo/ui"
 
 const project = {
-  title: "${isJa ? "プロジェクト概要" : "Project overview"}",
-  description: "${isJa ? "状態、担当者、次の確認事項をまとめます。" : "Summarize status, owner, and next checks."}",
-  summary: "${isJa ? "カードはページ内で情報を区切るためのコンテナです。" : "Use Card to group related content inside a page."}",
+  title: "プロジェクト概要",
+  description: "状態、担当者、次の確認事項をまとめます。",
+  summary: "カードはページ内で情報を区切るためのコンテナです。",
+}
+
+export function CardDemo() {
+  return (
+    <Card className="w-[350px]">
+      <CardHeader>
+        <CardTitle>{project.title}</CardTitle>
+        <CardDescription>{project.description}</CardDescription>
+      </CardHeader>
+      <CardContent>
+        <p className="text-sm text-muted-foreground">
+          {project.summary}
+        </p>
+      </CardContent>
+    </Card>
+  )
+}`
+        : `import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@gunjo/ui"
+
+const project = {
+  title: "Project overview",
+  description: "Summarize status, owner, and next checks.",
+  summary: "Use Card to group related content inside a page.",
 }
 
 export function CardDemo() {
@@ -58,10 +88,26 @@ export function CardDemo() {
   )
 }`;
 
-    const usageCode = `import { Card, CardContent } from "@gunjo/ui"
+    const usageCode = isJa
+        ? `import { Card, CardContent } from "@gunjo/ui"
 
 const card = {
-  body: "${isJa ? "カード本文" : "Card content"}",
+  body: "カード本文",
+}
+
+export function CardUsage() {
+  return (
+    <Card>
+      <CardContent>
+        <p>{card.body}</p>
+      </CardContent>
+    </Card>
+  )
+}`
+        : `import { Card, CardContent } from "@gunjo/ui"
+
+const card = {
+  body: "Card content",
 }
 
 export function CardUsage() {
@@ -74,7 +120,8 @@ export function CardUsage() {
   )
 }`;
 
-    const articleCode = `import {
+    const articleCode = isJa
+        ? `import {
   Avatar,
   AvatarFallback,
   AvatarImage,
@@ -87,13 +134,61 @@ export function CardUsage() {
 } from "@gunjo/ui"
 
 const article = {
-  author: "${isJa ? "青井 花" : "Aoi Hana"}",
-  fallback: "${isJa ? "青" : "AH"}",
-  affiliation: "${isJa ? "デザイン編集部" : "Design editorial"}",
-  category: "${isJa ? "記事" : "Article"}",
-  title: "${isJa ? "レビューしやすい一覧画面の作り方" : "Designing review-friendly list screens"}",
-  description: "${isJa ? "大量の項目を比較しながら確認する画面で、視線を迷わせないための設計メモです。" : "A note on keeping comparison-heavy review screens easy to scan."}",
-  readTime: "${isJa ? "読了目安 6分" : "6 min read"}",
+  author: "青井 花",
+  fallback: "青",
+  affiliation: "デザイン編集部",
+  category: "記事",
+  title: "レビューしやすい一覧画面の作り方",
+  description: "大量の項目を比較しながら確認する画面で、視線を迷わせないための設計メモです。",
+  readTime: "読了目安 6分",
+}
+
+export function ArticleCard() {
+  return (
+    <Card className="w-[360px]">
+      <CardHeader className="gap-4">
+        <div className="flex items-center gap-3">
+          <Avatar aria-label={article.author}>
+            <AvatarImage src="/samples/avatar-aoi.svg" alt="" />
+            <AvatarFallback>{article.fallback}</AvatarFallback>
+          </Avatar>
+          <div className="min-w-0">
+            <p className="truncate text-sm font-medium">{article.author}</p>
+            <p className="text-xs text-muted-foreground">{article.affiliation}</p>
+          </div>
+          <Badge variant="secondary" className="ml-auto">{article.category}</Badge>
+        </div>
+        <div className="space-y-2">
+          <CardTitle>{article.title}</CardTitle>
+          <CardDescription>{article.description}</CardDescription>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <p className="text-sm text-muted-foreground">{article.readTime}</p>
+      </CardContent>
+    </Card>
+  )
+}`
+        : `import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  Badge,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@gunjo/ui"
+
+const article = {
+  author: "Aoi Hana",
+  fallback: "AH",
+  affiliation: "Design editorial",
+  category: "Article",
+  title: "Designing review-friendly list screens",
+  description: "A note on keeping comparison-heavy review screens easy to scan.",
+  readTime: "6 min read",
 }
 
 export function ArticleCard() {
@@ -123,7 +218,8 @@ export function ArticleCard() {
   )
 }`;
 
-    const timelineCode = `import {
+    const timelineCode = isJa
+        ? `import {
   Avatar,
   AvatarFallback,
   AvatarImage,
@@ -132,17 +228,74 @@ export function ArticleCard() {
   CardFooter,
   CardHeader,
 } from "@gunjo/ui"
-import { IconBookmark as Bookmark, IconMessageCircle as MessageCircle, IconRepeat as Repeat2 } from "@tabler/icons-react"
+import {
+  IconBookmark as Bookmark,
+  IconMessageCircle as MessageCircle,
+  IconRepeat as Repeat2,
+} from "@tabler/icons-react"
 
 const post = {
-  author: "${isJa ? "田中 空" : "Sora Tanaka"}",
-  fallback: "${isJa ? "田" : "ST"}",
+  author: "田中 空",
+  fallback: "田",
   handle: "@sora",
-  time: "${isJa ? "12分前" : "12 min ago"}",
-  body: "${isJa ? "テーブルのキャプションと見出し背景を揃えたら、本文行との役割の違いがかなり読み取りやすくなりました。" : "Matching the table caption and header backgrounds made the role separation much easier to scan."}",
-  replies: "${isJa ? "返信 4" : "4 replies"}",
-  reposts: "${isJa ? "共有 12" : "12 reposts"}",
-  saves: "${isJa ? "保存 28" : "28 saves"}",
+  time: "12分前",
+  body: "テーブルのキャプションと見出し背景を揃えたら、本文行との役割の違いがかなり読み取りやすくなりました。",
+  replies: "返信 4",
+  reposts: "共有 12",
+  saves: "保存 28",
+}
+
+export function TimelineCard() {
+  return (
+    <Card className="w-[360px]">
+      <CardHeader className="flex-row items-start gap-3 space-y-0">
+        <Avatar aria-label={post.author} presence="online">
+          <AvatarImage src="" alt="" />
+          <AvatarFallback>{post.fallback}</AvatarFallback>
+        </Avatar>
+        <div className="min-w-0 flex-1">
+          <div className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+            <p className="font-medium">{post.author}</p>
+            <p className="text-xs text-muted-foreground">{post.time}</p>
+          </div>
+          <p className="text-xs text-muted-foreground">{post.handle}</p>
+        </div>
+      </CardHeader>
+      <CardContent>
+        <p className="text-sm leading-6">{post.body}</p>
+      </CardContent>
+      <CardFooter className="justify-start gap-5 border-t px-6 py-3 text-xs text-muted-foreground">
+        <span className="inline-flex items-center gap-1.5"><MessageCircle className="h-3.5 w-3.5" />{post.replies}</span>
+        <span className="inline-flex items-center gap-1.5"><Repeat2 className="h-3.5 w-3.5" />{post.reposts}</span>
+        <span className="inline-flex items-center gap-1.5"><Bookmark className="h-3.5 w-3.5" />{post.saves}</span>
+      </CardFooter>
+    </Card>
+  )
+}`
+        : `import {
+  Avatar,
+  AvatarFallback,
+  AvatarImage,
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+} from "@gunjo/ui"
+import {
+  IconBookmark as Bookmark,
+  IconMessageCircle as MessageCircle,
+  IconRepeat as Repeat2,
+} from "@tabler/icons-react"
+
+const post = {
+  author: "Sora Tanaka",
+  fallback: "ST",
+  handle: "@sora",
+  time: "12 min ago",
+  body: "Matching the table caption and header backgrounds made the role separation much easier to scan.",
+  replies: "4 replies",
+  reposts: "12 reposts",
+  saves: "28 saves",
 }
 
 export function TimelineCard() {
@@ -173,7 +326,8 @@ export function TimelineCard() {
   )
 }`;
 
-    const actionCode = `import {
+    const actionCode = isJa
+        ? `import {
   Button,
   Card,
   CardContent,
@@ -183,10 +337,44 @@ export function TimelineCard() {
 } from "@gunjo/ui"
 
 const invitation = {
-  title: "${isJa ? "招待を送信" : "Send invitation"}",
-  description: "${isJa ? "権限と参加先ワークスペースを確認してください。" : "Confirm permissions and the target workspace."}",
-  cancelLabel: "${isJa ? "戻る" : "Back"}",
-  submitLabel: "${isJa ? "送信" : "Send"}",
+  title: "招待を送信",
+  description: "権限と参加先ワークスペースを確認してください。",
+  cancelLabel: "戻る",
+  submitLabel: "送信",
+}
+
+export function ActionCard() {
+  return (
+    <Card className="w-[350px]">
+      <CardHeader>
+        <CardTitle>{invitation.title}</CardTitle>
+      </CardHeader>
+      <CardContent>
+        <p className="text-sm text-muted-foreground">
+          {invitation.description}
+        </p>
+      </CardContent>
+      <CardFooter>
+        <Button variant="outline">{invitation.cancelLabel}</Button>
+        <Button>{invitation.submitLabel}</Button>
+      </CardFooter>
+    </Card>
+  )
+}`
+        : `import {
+  Button,
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@gunjo/ui"
+
+const invitation = {
+  title: "Send invitation",
+  description: "Confirm permissions and the target workspace.",
+  cancelLabel: "Back",
+  submitLabel: "Send",
 }
 
 export function ActionCard() {
@@ -208,13 +396,37 @@ export function ActionCard() {
   )
 }`;
 
-    const statCode = `import { Badge, Card, CardContent, CardDescription, CardHeader } from "@gunjo/ui"
+    const statCode = isJa
+        ? `import { Badge, Card, CardContent, CardDescription, CardHeader } from "@gunjo/ui"
 
 const metric = {
-  label: "${isJa ? "月間売上" : "Monthly revenue"}",
-  value: "${isJa ? "452万円" : "$45,231"}",
+  label: "月間売上",
+  value: "452万円",
   delta: "+12.4%",
-  description: "${isJa ? "前月比 +48万円" : "vs $40,234 last month"}",
+  description: "前月比 +48万円",
+}
+
+export function MetricCard() {
+  return (
+    <Card className="w-[260px]">
+      <CardHeader className="flex-row items-center justify-between space-y-0">
+        <CardDescription>{metric.label}</CardDescription>
+        <Badge variant="secondary">{metric.delta}</Badge>
+      </CardHeader>
+      <CardContent>
+        <div className="text-3xl font-semibold">{metric.value}</div>
+        <p className="mt-1 text-xs text-muted-foreground">{metric.description}</p>
+      </CardContent>
+    </Card>
+  )
+}`
+        : `import { Badge, Card, CardContent, CardDescription, CardHeader } from "@gunjo/ui"
+
+const metric = {
+  label: "Monthly revenue",
+  value: "$45,231",
+  delta: "+12.4%",
+  description: "vs $40,234 last month",
 }
 
 export function MetricCard() {
@@ -232,15 +444,47 @@ export function MetricCard() {
   )
 }`;
 
-    const mediaCode = `import { Badge, Card, CardDescription, CardHeader, CardTitle, ImagePreview } from "@gunjo/ui"
+    const mediaCode = isJa
+        ? `import { Badge, Card, CardDescription, CardHeader, CardTitle, ImagePreview } from "@gunjo/ui"
 
 const media = {
   src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=640&q=80",
-  alt: "${isJa ? "山と湖の風景写真" : "Landscape photo with mountains and lake"}",
-  previewLabel: "${isJa ? "拡大表示" : "Open preview"}",
-  title: "${isJa ? "メディアライブラリ" : "Media library"}",
-  badge: "${isJa ? "表示" : "Display"}",
-  description: "${isJa ? "キャンペーンで使うメインビジュアル候補です。" : "A hero visual candidate for the campaign."}",
+  alt: "山と湖の風景写真",
+  previewLabel: "拡大表示",
+  title: "メディアライブラリ",
+  badge: "表示",
+  description: "キャンペーンで使うメインビジュアル候補です。",
+}
+
+export function MediaCard() {
+  return (
+    <Card className="w-[340px] overflow-hidden">
+      <ImagePreview
+        src={media.src}
+        alt={media.alt}
+        aspectRatio="video"
+        className="rounded-none border-0 shadow-none"
+        previewLabel={media.previewLabel}
+      />
+      <CardHeader>
+        <div className="flex items-center justify-between gap-3">
+          <CardTitle>{media.title}</CardTitle>
+          <Badge variant="secondary">{media.badge}</Badge>
+        </div>
+        <CardDescription>{media.description}</CardDescription>
+      </CardHeader>
+    </Card>
+  )
+}`
+        : `import { Badge, Card, CardDescription, CardHeader, CardTitle, ImagePreview } from "@gunjo/ui"
+
+const media = {
+  src: "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=640&q=80",
+  alt: "Landscape photo with mountains and lake",
+  previewLabel: "Open preview",
+  title: "Media library",
+  badge: "Display",
+  description: "A hero visual candidate for the campaign.",
 }
 
 export function MediaCard() {
@@ -264,19 +508,63 @@ export function MediaCard() {
   )
 }`;
 
-    const contentCode = `import { Badge, Button, Card, CardDescription, CardFooter, CardHeader, CardTitle, ImagePreview } from "@gunjo/ui"
+    const contentCode = isJa
+        ? `import { Badge, Button, Card, CardDescription, CardFooter, CardHeader, CardTitle, ImagePreview } from "@gunjo/ui"
 
 const product = {
   src: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=640&q=80",
-  alt: "${isJa ? "ノートパソコンの商品写真" : "Laptop product photo"}",
-  previewLabel: "${isJa ? "拡大表示" : "Open preview"}",
-  category: "${isJa ? "商品" : "Product"}",
-  status: "${isJa ? "新着" : "New"}",
-  name: "${isJa ? "ワークステーション Pro" : "Workstation Pro"}",
-  description: "${isJa ? "制作、分析、レビュー作業向けの高性能モデルです。" : "A high-performance model for creative, analytics, and review work."}",
-  priceLabel: "${isJa ? "価格" : "Price"}",
-  price: "${isJa ? "248,000円" : "$1,699"}",
-  actionLabel: "${isJa ? "詳しく見る" : "View details"}",
+  alt: "ノートパソコンの商品写真",
+  previewLabel: "拡大表示",
+  category: "商品",
+  status: "新着",
+  name: "ワークステーション Pro",
+  description: "制作、分析、レビュー作業向けの高性能モデルです。",
+  priceLabel: "価格",
+  price: "248,000円",
+  actionLabel: "詳しく見る",
+}
+
+export function ProductCard() {
+  return (
+    <Card className="w-[320px] overflow-hidden">
+      <ImagePreview
+        src={product.src}
+        alt={product.alt}
+        aspectRatio="video"
+        className="rounded-none border-0 shadow-none"
+        previewLabel={product.previewLabel}
+      />
+      <CardHeader>
+        <div className="flex items-center gap-2">
+          <Badge variant="outline">{product.category}</Badge>
+          <Badge variant="secondary">{product.status}</Badge>
+        </div>
+        <CardTitle>{product.name}</CardTitle>
+        <CardDescription>{product.description}</CardDescription>
+      </CardHeader>
+      <CardFooter className="flex-col items-stretch gap-3">
+        <div className="flex items-baseline justify-between">
+          <span className="text-sm text-muted-foreground">{product.priceLabel}</span>
+          <span className="text-xl font-semibold">{product.price}</span>
+        </div>
+        <Button className="w-full">{product.actionLabel}</Button>
+      </CardFooter>
+    </Card>
+  )
+}`
+        : `import { Badge, Button, Card, CardDescription, CardFooter, CardHeader, CardTitle, ImagePreview } from "@gunjo/ui"
+
+const product = {
+  src: "https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=640&q=80",
+  alt: "Laptop product photo",
+  previewLabel: "Open preview",
+  category: "Product",
+  status: "New",
+  name: "Workstation Pro",
+  description: "A high-performance model for creative, analytics, and review work.",
+  priceLabel: "Price",
+  price: "$1,699",
+  actionLabel: "View details",
 }
 
 export function ProductCard() {

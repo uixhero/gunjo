@@ -210,19 +210,40 @@ type CalendarSelection =
 
 function eventDateIso(date: CalendarEvent["date"]) {
   if (date instanceof Date) {
-    return \`\${date.getFullYear()}-\${String(date.getMonth() + 1).padStart(2, "0")}-\${String(date.getDate()).padStart(2, "0")}\`;
+    const year = String(date.getFullYear());
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return year + "-" + month + "-" + day;
   }
   return date;
 }
 
 const events: CalendarEvent[] = [
   { id: "a1", date: "2026-06-03", label: "特集: 夏の旅", tone: "info", ariaLabel: "特集 夏の旅" },
-  { id: "a2", date: "2026-06-10", label: "撮影: 商品A", tone: "success", ariaLabel: "撮影 商品A" },
+  {
+    id: "a2",
+    date: "2026-06-10",
+    label: "撮影: 商品A",
+    tone: "success",
+    ariaLabel: "撮影 商品A",
+  },
   { id: "a3", date: "2026-06-15", label: "編集会議", tone: "muted", ariaLabel: "編集会議" },
-  { id: "a4", date: "2026-06-15", label: "入稿締切: 連載#12", tone: "destructive", ariaLabel: "入稿締切 連載12" },
+  {
+    id: "a4",
+    date: "2026-06-15",
+    label: "入稿締切: 連載#12",
+    tone: "destructive",
+    ariaLabel: "入稿締切 連載12",
+  },
   { id: "a5", date: "2026-06-15", label: "校了確認", tone: "warning", ariaLabel: "校了確認" },
   { id: "a6", date: "2026-06-15", label: "公開予約", tone: "primary", ariaLabel: "公開予約" },
-  { id: "a7", date: "2026-06-24", label: "公開: GunjoUI 解説", tone: "primary", ariaLabel: "公開 GunjoUI 解説" },
+  {
+    id: "a7",
+    date: "2026-06-24",
+    label: "公開: GunjoUI 解説",
+    tone: "primary",
+    ariaLabel: "公開 GunjoUI 解説",
+  },
 ];
 
 export function EditorialCalendar() {
@@ -249,7 +270,11 @@ export function EditorialCalendar() {
         onSelectEvent={(event) => setSelection({ type: "event", iso: eventDateIso(event.date), event })}
       />
       <Sheet open={selection != null} onOpenChange={(open) => !open && setSelection(null)}>
-        <SheetContent portalContainer={portalContainer} overlayClassName="rounded-md" closeLabel="閉じる">
+        <SheetContent
+          portalContainer={portalContainer}
+          overlayClassName="rounded-md"
+          closeLabel="閉じる"
+        >
           <SheetHeader>
             <SheetTitle asChild>
               <p>プレビュー</p>
@@ -260,7 +285,9 @@ export function EditorialCalendar() {
             <div className="mt-4 grid gap-4 text-sm">
               <div className="rounded-lg border bg-card p-3">
                 <p className="font-medium text-foreground">
-                  {selection.type === "date" ? \`\${selection.iso} の予定\` : \`予定「\${String(selection.event.label)}」\`}
+                  {selection.type === "date"
+                    ? selection.iso + " の予定"
+                    : "予定「" + String(selection.event.label) + "」"}
                 </p>
                 <p className="mt-1 text-xs text-muted-foreground">{selection.iso}</p>
               </div>
@@ -307,19 +334,64 @@ type CalendarSelection =
 
 function eventDateIso(date: CalendarEvent["date"]) {
   if (date instanceof Date) {
-    return \`\${date.getFullYear()}-\${String(date.getMonth() + 1).padStart(2, "0")}-\${String(date.getDate()).padStart(2, "0")}\`;
+    const year = String(date.getFullYear());
+    const month = String(date.getMonth() + 1).padStart(2, "0");
+    const day = String(date.getDate()).padStart(2, "0");
+    return year + "-" + month + "-" + day;
   }
   return date;
 }
 
 const events: CalendarEvent[] = [
-  { id: "a1", date: "2026-06-03", label: "Feature: summer travel", tone: "info", ariaLabel: "Feature summer travel" },
-  { id: "a2", date: "2026-06-10", label: "Shoot: Product A", tone: "success", ariaLabel: "Shoot Product A" },
-  { id: "a3", date: "2026-06-15", label: "Editorial sync", tone: "muted", ariaLabel: "Editorial sync" },
-  { id: "a4", date: "2026-06-15", label: "Deadline: series #12", tone: "destructive", ariaLabel: "Deadline series 12" },
-  { id: "a5", date: "2026-06-15", label: "Final proof", tone: "warning", ariaLabel: "Final proof" },
-  { id: "a6", date: "2026-06-15", label: "Schedule publish", tone: "primary", ariaLabel: "Schedule publish" },
-  { id: "a7", date: "2026-06-24", label: "Publish: GunjoUI guide", tone: "primary", ariaLabel: "Publish GunjoUI guide" },
+  {
+    id: "a1",
+    date: "2026-06-03",
+    label: "Feature: summer travel",
+    tone: "info",
+    ariaLabel: "Feature summer travel",
+  },
+  {
+    id: "a2",
+    date: "2026-06-10",
+    label: "Shoot: Product A",
+    tone: "success",
+    ariaLabel: "Shoot Product A",
+  },
+  {
+    id: "a3",
+    date: "2026-06-15",
+    label: "Editorial sync",
+    tone: "muted",
+    ariaLabel: "Editorial sync",
+  },
+  {
+    id: "a4",
+    date: "2026-06-15",
+    label: "Deadline: series #12",
+    tone: "destructive",
+    ariaLabel: "Deadline series 12",
+  },
+  {
+    id: "a5",
+    date: "2026-06-15",
+    label: "Final proof",
+    tone: "warning",
+    ariaLabel: "Final proof",
+  },
+  {
+    id: "a6",
+    date: "2026-06-15",
+    label: "Schedule publish",
+    tone: "primary",
+    ariaLabel: "Schedule publish",
+  },
+  {
+    id: "a7",
+    date: "2026-06-24",
+    label: "Publish: GunjoUI guide",
+    tone: "primary",
+    ariaLabel: "Publish GunjoUI guide",
+  },
 ];
 
 export function EditorialCalendar() {
@@ -346,7 +418,11 @@ export function EditorialCalendar() {
         onSelectEvent={(event) => setSelection({ type: "event", iso: eventDateIso(event.date), event })}
       />
       <Sheet open={selection != null} onOpenChange={(open) => !open && setSelection(null)}>
-        <SheetContent portalContainer={portalContainer} overlayClassName="rounded-md" closeLabel="Close">
+        <SheetContent
+          portalContainer={portalContainer}
+          overlayClassName="rounded-md"
+          closeLabel="Close"
+        >
           <SheetHeader>
             <SheetTitle asChild>
               <p>Preview</p>
@@ -357,7 +433,9 @@ export function EditorialCalendar() {
             <div className="mt-4 grid gap-4 text-sm">
               <div className="rounded-lg border bg-card p-3">
                 <p className="font-medium text-foreground">
-                  {selection.type === "date" ? \`Schedule for \${selection.iso}\` : \`Event: \${String(selection.event.label)}\`}
+                  {selection.type === "date"
+                    ? "Schedule for " + selection.iso
+                    : "Event: " + String(selection.event.label)}
                 </p>
                 <p className="mt-1 text-xs text-muted-foreground">{selection.iso}</p>
               </div>
@@ -389,6 +467,130 @@ export function EditorialCalendar() {
 }`;
 
   const overflowCode = usageCode.replace("maxPerDay={3}", "maxPerDay={2}");
+
+  const mondayStartCode = locale === "ja"
+    ? `import * as React from "react";
+import { EventCalendar, type CalendarEvent } from "@gunjo/ui";
+
+const events: CalendarEvent[] = [
+  { id: "a1", date: "2026-06-03", label: "特集: 夏の旅", tone: "info" },
+  { id: "a2", date: "2026-06-10", label: "撮影: 商品A", tone: "success" },
+  { id: "a3", date: "2026-06-15", label: "編集会議", tone: "muted" },
+  { id: "a4", date: "2026-06-15", label: "入稿締切: 連載#12", tone: "destructive" },
+  { id: "a5", date: "2026-06-24", label: "公開: GunjoUI 解説", tone: "primary" },
+];
+
+export function BusinessWeekCalendar() {
+  const [month, setMonth] = React.useState(new Date(2026, 5, 1));
+
+  return (
+    <EventCalendar
+      month={month}
+      events={events}
+      today="2026-06-24"
+      label="編集カレンダー"
+      weekStartsOn={1}
+      weekdayLabels={["日", "月", "火", "水", "木", "金", "土"]}
+      onMonthChange={setMonth}
+    />
+  );
+}`
+    : `import * as React from "react";
+import { EventCalendar, type CalendarEvent } from "@gunjo/ui";
+
+const events: CalendarEvent[] = [
+  { id: "a1", date: "2026-06-03", label: "Feature: summer travel", tone: "info" },
+  { id: "a2", date: "2026-06-10", label: "Shoot: Product A", tone: "success" },
+  { id: "a3", date: "2026-06-15", label: "Editorial sync", tone: "muted" },
+  { id: "a4", date: "2026-06-15", label: "Deadline: series #12", tone: "destructive" },
+  { id: "a5", date: "2026-06-24", label: "Publish: GunjoUI guide", tone: "primary" },
+];
+
+export function BusinessWeekCalendar() {
+  const [month, setMonth] = React.useState(new Date(2026, 5, 1));
+
+  return (
+    <EventCalendar
+      month={month}
+      events={events}
+      today="2026-06-24"
+      label="Editorial calendar"
+      weekStartsOn={1}
+      weekdayLabels={["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]}
+      onMonthChange={setMonth}
+    />
+  );
+}`;
+
+  const customEventCode = locale === "ja"
+    ? `import * as React from "react";
+import { EventCalendar, type CalendarEvent } from "@gunjo/ui";
+
+const events: CalendarEvent[] = [
+  { id: "a1", date: "2026-06-03", label: "特集: 夏の旅", tone: "info" },
+  { id: "a2", date: "2026-06-10", label: "撮影: 商品A", tone: "success" },
+  { id: "a3", date: "2026-06-15", label: "編集会議", tone: "muted" },
+  { id: "a4", date: "2026-06-15", label: "入稿締切: 連載#12", tone: "destructive" },
+  { id: "a5", date: "2026-06-24", label: "公開: GunjoUI 解説", tone: "primary" },
+];
+
+export function CustomChipCalendar() {
+  const [month, setMonth] = React.useState(new Date(2026, 5, 1));
+
+  return (
+    <EventCalendar
+      month={month}
+      events={events}
+      today="2026-06-24"
+      label="編集カレンダー"
+      weekdayLabels={["日", "月", "火", "水", "木", "金", "土"]}
+      onMonthChange={setMonth}
+      renderEvent={({ id, label }) => (
+        <button
+          key={id}
+          type="button"
+          className="w-full truncate rounded bg-accent px-1 py-0.5 text-left text-[11px] leading-tight text-accent-foreground"
+        >
+          {label}
+        </button>
+      )}
+    />
+  );
+}`
+    : `import * as React from "react";
+import { EventCalendar, type CalendarEvent } from "@gunjo/ui";
+
+const events: CalendarEvent[] = [
+  { id: "a1", date: "2026-06-03", label: "Feature: summer travel", tone: "info" },
+  { id: "a2", date: "2026-06-10", label: "Shoot: Product A", tone: "success" },
+  { id: "a3", date: "2026-06-15", label: "Editorial sync", tone: "muted" },
+  { id: "a4", date: "2026-06-15", label: "Deadline: series #12", tone: "destructive" },
+  { id: "a5", date: "2026-06-24", label: "Publish: GunjoUI guide", tone: "primary" },
+];
+
+export function CustomChipCalendar() {
+  const [month, setMonth] = React.useState(new Date(2026, 5, 1));
+
+  return (
+    <EventCalendar
+      month={month}
+      events={events}
+      today="2026-06-24"
+      label="Editorial calendar"
+      weekdayLabels={["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]}
+      onMonthChange={setMonth}
+      renderEvent={({ id, label }) => (
+        <button
+          key={id}
+          type="button"
+          className="w-full truncate rounded bg-accent px-1 py-0.5 text-left text-[11px] leading-tight text-accent-foreground"
+        >
+          {label}
+        </button>
+      )}
+    />
+  );
+}`;
 
   const propsData = [
     {
@@ -497,19 +699,7 @@ export function EditorialCalendar() {
                 ? "weekStartsOn={1} と曜日ラベルで業務カレンダーの並びに合わせます。"
                 : "Use weekStartsOn={1} with matching labels for business calendars.",
               preview: <EventCalendarPreview locale={locale} weekStartsOn={1} />,
-              code: locale === "ja"
-                ? `<EventCalendar
-  month={month}
-  events={events}
-  weekStartsOn={1}
-  weekdayLabels={["日", "月", "火", "水", "木", "金", "土"]}
-/>`
-                : `<EventCalendar
-  month={month}
-  events={events}
-  weekStartsOn={1}
-  weekdayLabels={["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"]}
-/>`,
+              code: mondayStartCode,
               previewBodyWidth: "lg",
             },
             {
@@ -524,14 +714,7 @@ export function EditorialCalendar() {
                   <EventCalendarPreview locale={locale} customEvent />
                 </div>
               ),
-              code: `<EventCalendar
-  events={events}
-  renderEvent={(event) => (
-    <button type="button" className="w-full truncate rounded bg-accent px-1 py-0.5 text-left text-[11px]">
-      {event.label}
-    </button>
-  )}
-/>`,
+              code: customEventCode,
               previewBodyWidth: "lg",
             },
           ]}
