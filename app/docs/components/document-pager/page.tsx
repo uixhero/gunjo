@@ -113,104 +113,209 @@ function DocumentPagerExample() {
     );
 }
 
-export default function DocumentPagerDocPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
-    const items = buildPagerItems(isJa);
-
-    const code = `import { DocumentPager } from "@gunjo/ui"
+const codeByLocale = {
+    ja: `import { DocumentPager } from "@gunjo/ui"
 
 export function ArticlePager() {
   return (
     <DocumentPager
-      aria-label="${isJa ? "前後のドキュメント" : "Previous and next documentation"}"
+      aria-label="前後のドキュメント"
       previous={{
         href: "/docs/components/command-palette",
-        directionLabel: "${isJa ? "前へ" : "Previous"}",
-        title: "${isJa ? "コマンドパレット" : "CommandPalette"}",
+        directionLabel: "前へ",
+        title: "コマンドパレット",
         subtitle: "CommandPalette",
-        description: "${isJa ? "ナビゲーションやアクション用のグローバルコマンドパレットです。" : "A global command palette for navigation and actions."}",
-        categoryLabel: "${isJa ? "ナビゲーション" : "Navigation"}",
+        description: "ナビゲーションやアクション用のグローバルコマンドパレットです。",
+        categoryLabel: "ナビゲーション",
         thumbnailSrc: "/showcase-thumbs/command-palette.light.png",
-        thumbnailAlt: "${isJa ? "コマンドパレットのプレビュー" : "CommandPalette preview"}",
-        thumbnailFallback: "${isJa ? "プレビュー" : "Preview"}",
+        thumbnailAlt: "コマンドパレットのプレビュー",
+        thumbnailFallback: "プレビュー",
       }}
       next={{
         href: "/docs/components/footer",
-        directionLabel: "${isJa ? "次へ" : "Next"}",
-        title: "${isJa ? "フッター" : "Footer"}",
+        directionLabel: "次へ",
+        title: "フッター",
         subtitle: "Footer",
-        description: "${isJa ? "ページ下部にリンク群や補足情報をまとめて表示します。" : "Groups supporting links and information at the bottom of a page."}",
-        categoryLabel: "${isJa ? "ナビゲーション" : "Navigation"}",
+        description: "ページ下部にリンク群や補足情報をまとめて表示します。",
+        categoryLabel: "ナビゲーション",
         thumbnailSrc: "/showcase-thumbs/footer.light.png",
-        thumbnailAlt: "${isJa ? "フッターのプレビュー" : "Footer preview"}",
-        thumbnailFallback: "${isJa ? "プレビュー" : "Preview"}",
+        thumbnailAlt: "フッターのプレビュー",
+        thumbnailFallback: "プレビュー",
       }}
     />
   )
-}`;
+}`,
+    en: `import { DocumentPager } from "@gunjo/ui"
 
-    const firstPageCode = `import { DocumentPager } from "@gunjo/ui"
+export function ArticlePager() {
+  return (
+    <DocumentPager
+      aria-label="Previous and next documentation"
+      previous={{
+        href: "/docs/components/command-palette",
+        directionLabel: "Previous",
+        title: "CommandPalette",
+        subtitle: "CommandPalette",
+        description: "A global command palette for navigation and actions.",
+        categoryLabel: "Navigation",
+        thumbnailSrc: "/showcase-thumbs/command-palette.light.png",
+        thumbnailAlt: "CommandPalette preview",
+        thumbnailFallback: "Preview",
+      }}
+      next={{
+        href: "/docs/components/footer",
+        directionLabel: "Next",
+        title: "Footer",
+        subtitle: "Footer",
+        description: "Groups supporting links and information at the bottom of a page.",
+        categoryLabel: "Navigation",
+        thumbnailSrc: "/showcase-thumbs/footer.light.png",
+        thumbnailAlt: "Footer preview",
+        thumbnailFallback: "Preview",
+      }}
+    />
+  )
+}`,
+};
+
+const firstPageCodeByLocale = {
+    ja: `import { DocumentPager } from "@gunjo/ui"
 
 export function FirstPagePager() {
   return (
     <DocumentPager
-      aria-label="${isJa ? "次のドキュメント" : "Next documentation"}"
+      aria-label="次のドキュメント"
       previous={null}
       next={{
         href: "/docs/components/footer",
-        directionLabel: "${isJa ? "次へ" : "Next"}",
-        title: "${isJa ? "フッター" : "Footer"}",
+        directionLabel: "次へ",
+        title: "フッター",
         subtitle: "Footer",
-        description: "${isJa ? "ページ下部にリンク群や補足情報をまとめて表示します。" : "Groups supporting links and information at the bottom of a page."}",
-        categoryLabel: "${isJa ? "ナビゲーション" : "Navigation"}",
+        description: "ページ下部にリンク群や補足情報をまとめて表示します。",
+        categoryLabel: "ナビゲーション",
       }}
     />
   )
-}`;
+}`,
+    en: `import { DocumentPager } from "@gunjo/ui"
 
-    const lastPageCode = `import { DocumentPager } from "@gunjo/ui"
+export function FirstPagePager() {
+  return (
+    <DocumentPager
+      aria-label="Next documentation"
+      previous={null}
+      next={{
+        href: "/docs/components/footer",
+        directionLabel: "Next",
+        title: "Footer",
+        subtitle: "Footer",
+        description: "Groups supporting links and information at the bottom of a page.",
+        categoryLabel: "Navigation",
+      }}
+    />
+  )
+}`,
+};
+
+const lastPageCodeByLocale = {
+    ja: `import { DocumentPager } from "@gunjo/ui"
 
 export function LastPagePager() {
   return (
     <DocumentPager
-      aria-label="${isJa ? "前のドキュメント" : "Previous documentation"}"
+      aria-label="前のドキュメント"
       previous={{
         href: "/docs/components/command-palette",
-        directionLabel: "${isJa ? "前へ" : "Previous"}",
-        title: "${isJa ? "コマンドパレット" : "CommandPalette"}",
+        directionLabel: "前へ",
+        title: "コマンドパレット",
         subtitle: "CommandPalette",
-        description: "${isJa ? "ナビゲーションやアクション用のグローバルコマンドパレットです。" : "A global command palette for navigation and actions."}",
-        categoryLabel: "${isJa ? "ナビゲーション" : "Navigation"}",
+        description: "ナビゲーションやアクション用のグローバルコマンドパレットです。",
+        categoryLabel: "ナビゲーション",
       }}
       next={null}
     />
   )
-}`;
+}`,
+    en: `import { DocumentPager } from "@gunjo/ui"
 
-    const noThumbCode = `import { DocumentPager } from "@gunjo/ui"
+export function LastPagePager() {
+  return (
+    <DocumentPager
+      aria-label="Previous documentation"
+      previous={{
+        href: "/docs/components/command-palette",
+        directionLabel: "Previous",
+        title: "CommandPalette",
+        subtitle: "CommandPalette",
+        description: "A global command palette for navigation and actions.",
+        categoryLabel: "Navigation",
+      }}
+      next={null}
+    />
+  )
+}`,
+};
+
+const noThumbCodeByLocale = {
+    ja: `import { DocumentPager } from "@gunjo/ui"
 
 export function TextOnlyPager() {
   return (
     <DocumentPager
       previous={{
         href: "/docs/components/command-palette",
-        directionLabel: "${isJa ? "前へ" : "Previous"}",
-        title: "${isJa ? "コマンドパレット" : "CommandPalette"}",
-        description: "${isJa ? "サムネイル画像を省略して、テキストだけで前後のページを示します。" : "Omit thumbnail images and show the neighboring pages with text only."}",
-        categoryLabel: "${isJa ? "ナビゲーション" : "Navigation"}",
+        directionLabel: "前へ",
+        title: "コマンドパレット",
+        description: "サムネイル画像を省略して、テキストだけで前後のページを示します。",
+        categoryLabel: "ナビゲーション",
       }}
       next={{
         href: "/docs/components/footer",
-        directionLabel: "${isJa ? "次へ" : "Next"}",
-        title: "${isJa ? "フッター" : "Footer"}",
-        description: "${isJa ? "必要な情報だけで軽量に表示することもできます。" : "You can keep the card lightweight with only the required text."}",
-        categoryLabel: "${isJa ? "ナビゲーション" : "Navigation"}",
+        directionLabel: "次へ",
+        title: "フッター",
+        description: "必要な情報だけで軽量に表示することもできます。",
+        categoryLabel: "ナビゲーション",
       }}
     />
   )
-}`;
+}`,
+    en: `import { DocumentPager } from "@gunjo/ui"
+
+export function TextOnlyPager() {
+  return (
+    <DocumentPager
+      previous={{
+        href: "/docs/components/command-palette",
+        directionLabel: "Previous",
+        title: "CommandPalette",
+        description: "Omit thumbnail images and show the neighboring pages with text only.",
+        categoryLabel: "Navigation",
+      }}
+      next={{
+        href: "/docs/components/footer",
+        directionLabel: "Next",
+        title: "Footer",
+        description: "You can keep the card lightweight with only the required text.",
+        categoryLabel: "Navigation",
+      }}
+    />
+  )
+}`,
+};
+
+export default function DocumentPagerDocPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
+    const items = buildPagerItems(isJa);
+
+    const code = codeByLocale[locale];
+
+    const firstPageCode = firstPageCodeByLocale[locale];
+
+    const lastPageCode = lastPageCodeByLocale[locale];
+
+    const noThumbCode = noThumbCodeByLocale[locale];
 
     return (
         <ComponentLayout

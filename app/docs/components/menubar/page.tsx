@@ -145,116 +145,235 @@ function AppWindowMenubarExample() {
     );
 }
 
-export default function MenubarPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const code = `import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarSub, MenubarSubContent, MenubarSubTrigger, MenubarTrigger } from "@gunjo/ui"
+const codeByLocale = {
+    ja: `import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarSub, MenubarSubContent, MenubarSubTrigger, MenubarTrigger } from "@gunjo/ui"
 
 export function FileMenubar() {
   return (
     <Menubar>
       <MenubarMenu>
-        <MenubarTrigger>${isJa ? "ファイル" : "File"}</MenubarTrigger>
+        <MenubarTrigger>ファイル</MenubarTrigger>
         <MenubarContent>
-          <MenubarItem>${isJa ? "新しいタブ" : "New tab"} <MenubarShortcut>⌘T</MenubarShortcut></MenubarItem>
-          <MenubarItem>${isJa ? "新しいウィンドウ" : "New window"} <MenubarShortcut>⌘N</MenubarShortcut></MenubarItem>
-          <MenubarItem>${isJa ? "書き出し設定を開く" : "Open export settings"}</MenubarItem>
+          <MenubarItem>新しいタブ <MenubarShortcut>⌘T</MenubarShortcut></MenubarItem>
+          <MenubarItem>新しいウィンドウ <MenubarShortcut>⌘N</MenubarShortcut></MenubarItem>
+          <MenubarItem>書き出し設定を開く</MenubarItem>
           <MenubarSeparator />
           <MenubarSub>
-            <MenubarSubTrigger>${isJa ? "共有" : "Share"}</MenubarSubTrigger>
+            <MenubarSubTrigger>共有</MenubarSubTrigger>
             <MenubarSubContent>
-              <MenubarItem>${isJa ? "リンクをコピー" : "Copy link"}</MenubarItem>
-              <MenubarItem>${isJa ? "メールで送信" : "Send email"}</MenubarItem>
+              <MenubarItem>リンクをコピー</MenubarItem>
+              <MenubarItem>メールで送信</MenubarItem>
             </MenubarSubContent>
           </MenubarSub>
         </MenubarContent>
       </MenubarMenu>
       <MenubarMenu>
-        <MenubarTrigger>${isJa ? "編集" : "Edit"}</MenubarTrigger>
+        <MenubarTrigger>編集</MenubarTrigger>
         <MenubarContent>
-          <MenubarItem>${isJa ? "取り消し" : "Undo"} <MenubarShortcut>⌘Z</MenubarShortcut></MenubarItem>
-          <MenubarItem>${isJa ? "やり直し" : "Redo"} <MenubarShortcut>⇧⌘Z</MenubarShortcut></MenubarItem>
+          <MenubarItem>取り消し <MenubarShortcut>⌘Z</MenubarShortcut></MenubarItem>
+          <MenubarItem>やり直し <MenubarShortcut>⇧⌘Z</MenubarShortcut></MenubarItem>
           <MenubarSeparator />
-          <MenubarItem>${isJa ? "切り取り" : "Cut"} <MenubarShortcut>⌘X</MenubarShortcut></MenubarItem>
-          <MenubarItem>${isJa ? "コピー" : "Copy"} <MenubarShortcut>⌘C</MenubarShortcut></MenubarItem>
-          <MenubarItem>${isJa ? "貼り付け" : "Paste"} <MenubarShortcut>⌘V</MenubarShortcut></MenubarItem>
+          <MenubarItem>切り取り <MenubarShortcut>⌘X</MenubarShortcut></MenubarItem>
+          <MenubarItem>コピー <MenubarShortcut>⌘C</MenubarShortcut></MenubarItem>
+          <MenubarItem>貼り付け <MenubarShortcut>⌘V</MenubarShortcut></MenubarItem>
           <MenubarSeparator />
           <MenubarSub>
-            <MenubarSubTrigger>${isJa ? "検索" : "Find"}</MenubarSubTrigger>
+            <MenubarSubTrigger>検索</MenubarSubTrigger>
             <MenubarSubContent>
-              <MenubarItem>${isJa ? "このページを検索" : "Find in page"} <MenubarShortcut>⌘F</MenubarShortcut></MenubarItem>
-              <MenubarItem>${isJa ? "次を検索" : "Find next"} <MenubarShortcut>⌘G</MenubarShortcut></MenubarItem>
-              <MenubarItem>${isJa ? "前を検索" : "Find previous"} <MenubarShortcut>⇧⌘G</MenubarShortcut></MenubarItem>
+              <MenubarItem>このページを検索 <MenubarShortcut>⌘F</MenubarShortcut></MenubarItem>
+              <MenubarItem>次を検索 <MenubarShortcut>⌘G</MenubarShortcut></MenubarItem>
+              <MenubarItem>前を検索 <MenubarShortcut>⇧⌘G</MenubarShortcut></MenubarItem>
             </MenubarSubContent>
           </MenubarSub>
         </MenubarContent>
       </MenubarMenu>
       <MenubarMenu>
-        <MenubarTrigger>${isJa ? "表示" : "View"}</MenubarTrigger>
+        <MenubarTrigger>表示</MenubarTrigger>
         <MenubarContent>
-          <MenubarItem>${isJa ? "再読み込み" : "Reload"} <MenubarShortcut>⌘R</MenubarShortcut></MenubarItem>
-          <MenubarItem>${isJa ? "全画面表示" : "Fullscreen"}</MenubarItem>
+          <MenubarItem>再読み込み <MenubarShortcut>⌘R</MenubarShortcut></MenubarItem>
+          <MenubarItem>全画面表示</MenubarItem>
         </MenubarContent>
       </MenubarMenu>
     </Menubar>
   )
-}`;
-    const checksCode = `import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarMenu, MenubarRadioGroup, MenubarRadioItem, MenubarSeparator, MenubarTrigger } from "@gunjo/ui"
+}`,
+    en: `import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarSub, MenubarSubContent, MenubarSubTrigger, MenubarTrigger } from "@gunjo/ui"
+
+export function FileMenubar() {
+  return (
+    <Menubar>
+      <MenubarMenu>
+        <MenubarTrigger>File</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>New tab <MenubarShortcut>⌘T</MenubarShortcut></MenubarItem>
+          <MenubarItem>New window <MenubarShortcut>⌘N</MenubarShortcut></MenubarItem>
+          <MenubarItem>Open export settings</MenubarItem>
+          <MenubarSeparator />
+          <MenubarSub>
+            <MenubarSubTrigger>Share</MenubarSubTrigger>
+            <MenubarSubContent>
+              <MenubarItem>Copy link</MenubarItem>
+              <MenubarItem>Send email</MenubarItem>
+            </MenubarSubContent>
+          </MenubarSub>
+        </MenubarContent>
+      </MenubarMenu>
+      <MenubarMenu>
+        <MenubarTrigger>Edit</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>Undo <MenubarShortcut>⌘Z</MenubarShortcut></MenubarItem>
+          <MenubarItem>Redo <MenubarShortcut>⇧⌘Z</MenubarShortcut></MenubarItem>
+          <MenubarSeparator />
+          <MenubarItem>Cut <MenubarShortcut>⌘X</MenubarShortcut></MenubarItem>
+          <MenubarItem>Copy <MenubarShortcut>⌘C</MenubarShortcut></MenubarItem>
+          <MenubarItem>Paste <MenubarShortcut>⌘V</MenubarShortcut></MenubarItem>
+          <MenubarSeparator />
+          <MenubarSub>
+            <MenubarSubTrigger>Find</MenubarSubTrigger>
+            <MenubarSubContent>
+              <MenubarItem>Find in page <MenubarShortcut>⌘F</MenubarShortcut></MenubarItem>
+              <MenubarItem>Find next <MenubarShortcut>⌘G</MenubarShortcut></MenubarItem>
+              <MenubarItem>Find previous <MenubarShortcut>⇧⌘G</MenubarShortcut></MenubarItem>
+            </MenubarSubContent>
+          </MenubarSub>
+        </MenubarContent>
+      </MenubarMenu>
+      <MenubarMenu>
+        <MenubarTrigger>View</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem>Reload <MenubarShortcut>⌘R</MenubarShortcut></MenubarItem>
+          <MenubarItem>Fullscreen</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  )
+}`,
+};
+
+const checksCodeByLocale = {
+    ja: `import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarMenu, MenubarRadioGroup, MenubarRadioItem, MenubarSeparator, MenubarTrigger } from "@gunjo/ui"
 
 export function ViewMenubar() {
   return (
     <Menubar>
       <MenubarMenu>
-        <MenubarTrigger>${isJa ? "表示" : "View"}</MenubarTrigger>
+        <MenubarTrigger>表示</MenubarTrigger>
         <MenubarContent>
-          <MenubarCheckboxItem checked>${isJa ? "サイドバーを表示" : "Show sidebar"}</MenubarCheckboxItem>
-          <MenubarCheckboxItem>${isJa ? "ステータスバーを表示" : "Show status bar"}</MenubarCheckboxItem>
+          <MenubarCheckboxItem checked>サイドバーを表示</MenubarCheckboxItem>
+          <MenubarCheckboxItem>ステータスバーを表示</MenubarCheckboxItem>
           <MenubarSeparator />
           <MenubarRadioGroup value="comfortable">
-            <MenubarRadioItem value="compact">${isJa ? "コンパクト" : "Compact"}</MenubarRadioItem>
-            <MenubarRadioItem value="comfortable">${isJa ? "標準" : "Comfortable"}</MenubarRadioItem>
+            <MenubarRadioItem value="compact">コンパクト</MenubarRadioItem>
+            <MenubarRadioItem value="comfortable">標準</MenubarRadioItem>
           </MenubarRadioGroup>
         </MenubarContent>
       </MenubarMenu>
     </Menubar>
   )
-}`;
-    const appWindowCode = `import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarTrigger } from "@gunjo/ui"
+}`,
+    en: `import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarMenu, MenubarRadioGroup, MenubarRadioItem, MenubarSeparator, MenubarTrigger } from "@gunjo/ui"
+
+export function ViewMenubar() {
+  return (
+    <Menubar>
+      <MenubarMenu>
+        <MenubarTrigger>View</MenubarTrigger>
+        <MenubarContent>
+          <MenubarCheckboxItem checked>Show sidebar</MenubarCheckboxItem>
+          <MenubarCheckboxItem>Show status bar</MenubarCheckboxItem>
+          <MenubarSeparator />
+          <MenubarRadioGroup value="comfortable">
+            <MenubarRadioItem value="compact">Compact</MenubarRadioItem>
+            <MenubarRadioItem value="comfortable">Comfortable</MenubarRadioItem>
+          </MenubarRadioGroup>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  )
+}`,
+};
+
+const appWindowCodeByLocale = {
+    ja: `import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarTrigger } from "@gunjo/ui"
 
 export function EditorWindowMenubar() {
   return (
     <div className="overflow-hidden rounded-md border bg-background">
       <div className="flex h-10 items-center justify-center border-b bg-muted/40 text-xs font-medium text-muted-foreground">
-        ${isJa ? "キャンバス編集" : "Canvas editor"}
+        キャンバス編集
       </div>
       <Menubar className="h-9 rounded-none border-x-0 border-t-0 bg-background">
         <MenubarMenu>
-          <MenubarTrigger>${isJa ? "ファイル" : "File"}</MenubarTrigger>
+          <MenubarTrigger>ファイル</MenubarTrigger>
           <MenubarContent>
-            <MenubarItem>${isJa ? "保存" : "Save"} <MenubarShortcut>⌘S</MenubarShortcut></MenubarItem>
-            <MenubarItem>${isJa ? "別名で保存" : "Save as"} <MenubarShortcut>⇧⌘S</MenubarShortcut></MenubarItem>
+            <MenubarItem>保存 <MenubarShortcut>⌘S</MenubarShortcut></MenubarItem>
+            <MenubarItem>別名で保存 <MenubarShortcut>⇧⌘S</MenubarShortcut></MenubarItem>
           </MenubarContent>
         </MenubarMenu>
         <MenubarMenu>
-          <MenubarTrigger>${isJa ? "編集" : "Edit"}</MenubarTrigger>
+          <MenubarTrigger>編集</MenubarTrigger>
           <MenubarContent>
-            <MenubarItem>${isJa ? "取り消し" : "Undo"} <MenubarShortcut>⌘Z</MenubarShortcut></MenubarItem>
-            <MenubarItem>${isJa ? "やり直し" : "Redo"} <MenubarShortcut>⇧⌘Z</MenubarShortcut></MenubarItem>
+            <MenubarItem>取り消し <MenubarShortcut>⌘Z</MenubarShortcut></MenubarItem>
+            <MenubarItem>やり直し <MenubarShortcut>⇧⌘Z</MenubarShortcut></MenubarItem>
             <MenubarSeparator />
-            <MenubarItem>${isJa ? "複製" : "Duplicate"} <MenubarShortcut>⌘D</MenubarShortcut></MenubarItem>
+            <MenubarItem>複製 <MenubarShortcut>⌘D</MenubarShortcut></MenubarItem>
           </MenubarContent>
         </MenubarMenu>
         <MenubarMenu>
-          <MenubarTrigger>${isJa ? "表示" : "View"}</MenubarTrigger>
+          <MenubarTrigger>表示</MenubarTrigger>
           <MenubarContent>
-            <MenubarCheckboxItem checked>${isJa ? "グリッドを表示" : "Show grid"}</MenubarCheckboxItem>
-            <MenubarCheckboxItem>${isJa ? "ガイドを表示" : "Show guides"}</MenubarCheckboxItem>
+            <MenubarCheckboxItem checked>グリッドを表示</MenubarCheckboxItem>
+            <MenubarCheckboxItem>ガイドを表示</MenubarCheckboxItem>
           </MenubarContent>
         </MenubarMenu>
       </Menubar>
     </div>
   )
-}`;
+}`,
+    en: `import { Menubar, MenubarCheckboxItem, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarTrigger } from "@gunjo/ui"
+
+export function EditorWindowMenubar() {
+  return (
+    <div className="overflow-hidden rounded-md border bg-background">
+      <div className="flex h-10 items-center justify-center border-b bg-muted/40 text-xs font-medium text-muted-foreground">
+        Canvas editor
+      </div>
+      <Menubar className="h-9 rounded-none border-x-0 border-t-0 bg-background">
+        <MenubarMenu>
+          <MenubarTrigger>File</MenubarTrigger>
+          <MenubarContent>
+            <MenubarItem>Save <MenubarShortcut>⌘S</MenubarShortcut></MenubarItem>
+            <MenubarItem>Save as <MenubarShortcut>⇧⌘S</MenubarShortcut></MenubarItem>
+          </MenubarContent>
+        </MenubarMenu>
+        <MenubarMenu>
+          <MenubarTrigger>Edit</MenubarTrigger>
+          <MenubarContent>
+            <MenubarItem>Undo <MenubarShortcut>⌘Z</MenubarShortcut></MenubarItem>
+            <MenubarItem>Redo <MenubarShortcut>⇧⌘Z</MenubarShortcut></MenubarItem>
+            <MenubarSeparator />
+            <MenubarItem>Duplicate <MenubarShortcut>⌘D</MenubarShortcut></MenubarItem>
+          </MenubarContent>
+        </MenubarMenu>
+        <MenubarMenu>
+          <MenubarTrigger>View</MenubarTrigger>
+          <MenubarContent>
+            <MenubarCheckboxItem checked>Show grid</MenubarCheckboxItem>
+            <MenubarCheckboxItem>Show guides</MenubarCheckboxItem>
+          </MenubarContent>
+        </MenubarMenu>
+      </Menubar>
+    </div>
+  )
+}`,
+};
+
+export default function MenubarPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const code = codeByLocale[locale];
+    const checksCode = checksCodeByLocale[locale];
+    const appWindowCode = appWindowCodeByLocale[locale];
 
     return (
         <ComponentLayout

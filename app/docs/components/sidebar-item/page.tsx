@@ -207,24 +207,44 @@ function SidebarContentExample({ actions = false, nested = true }: { actions?: b
     );
 }
 
-export default function SidebarItemPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-const code = `import * as React from "react"
+const codeByLocale = {
+    ja: `import * as React from "react"
 import { SidebarItem, TooltipButton } from "@gunjo/ui"
-import { IconChevronRight as ChevronRight, IconFileText as FileText, IconFolder as Folder, IconGridDots as Grid, IconPlus as Plus, IconStar as Star, IconTrash as Trash2 } from "@tabler/icons-react"
+import {
+  IconChevronRight as ChevronRight,
+  IconFileText as FileText,
+  IconFolder as Folder,
+  IconGridDots as Grid,
+  IconPlus as Plus,
+  IconStar as Star,
+  IconTrash as Trash2,
+} from "@tabler/icons-react"
 
 const libraryItems = [
-  { id: "all", label: "${isJa ? "すべての素材" : "All assets"}", icon: Grid, count: 128 },
-  { id: "favorite", label: "${isJa ? "お気に入り" : "Favorites"}", icon: Star, count: 24 },
-  { id: "uncategorized", label: "${isJa ? "未分類" : "Uncategorized"}", icon: Folder, count: 8 },
-  { id: "trash", label: "${isJa ? "ごみ箱" : "Trash"}", icon: Trash2, count: 3 },
+  { id: "all", label: "すべての素材", icon: Grid, count: 128 },
+  { id: "favorite", label: "お気に入り", icon: Star, count: 24 },
+  { id: "uncategorized", label: "未分類", icon: Folder, count: 8 },
+  { id: "trash", label: "ごみ箱", icon: Trash2, count: 3 },
 ]
 
 const folderItems = [
-  { id: "campaign", label: "${isJa ? "キャンペーン" : "Campaigns"}", icon: Folder, count: 18, level: 0, hasChildren: true },
-  { id: "spring", label: "${isJa ? "春の公開素材" : "Spring launch"}", icon: FileText, count: 6, level: 1, hasChildren: false },
-  { id: "product", label: "${isJa ? "商品写真" : "Product photos"}", icon: Folder, count: 42, level: 0, hasChildren: false },
+  {
+    id: "campaign",
+    label: "キャンペーン",
+    icon: Folder,
+    count: 18,
+    level: 0,
+    hasChildren: true,
+  },
+  {
+    id: "spring",
+    label: "春の公開素材",
+    icon: FileText,
+    count: 6,
+    level: 1,
+    hasChildren: false,
+  },
+  { id: "product", label: "商品写真", icon: Folder, count: 42, level: 0, hasChildren: false },
 ]
 
 export function MediaLibrarySidebarContent() {
@@ -235,7 +255,7 @@ export function MediaLibrarySidebarContent() {
   return (
     <div className="w-full max-w-sm rounded-md border bg-muted/30 p-3">
       <section className="space-y-1">
-        <p className="px-2 text-xs font-bold uppercase tracking-wide text-muted-foreground">${isJa ? "ライブラリ" : "Libraries"}</p>
+        <p className="px-2 text-xs font-bold uppercase tracking-wide text-muted-foreground">ライブラリ</p>
         {libraryItems.map((item) => {
           const Icon = item.icon
 
@@ -256,9 +276,9 @@ export function MediaLibrarySidebarContent() {
 
       <section className="mt-4 space-y-1">
         <div className="flex items-center justify-between pl-2">
-          <p className="text-xs font-bold uppercase tracking-wide text-muted-foreground">${isJa ? "フォルダ" : "Folders"}</p>
+          <p className="text-xs font-bold uppercase tracking-wide text-muted-foreground">フォルダ</p>
           <div className="grid w-14 grid-cols-[1.5rem_1.5rem] items-center justify-end">
-            <TooltipButton type="button" variant="ghost" size="icon" className="h-6 w-6 text-muted-foreground" tooltip="${isJa ? "フォルダを追加" : "Add folder"}" aria-label="${isJa ? "フォルダを追加" : "Add folder"}">
+            <TooltipButton type="button" variant="ghost" size="icon" className="h-6 w-6 text-muted-foreground" tooltip="フォルダを追加" aria-label="フォルダを追加">
               <Plus size={14} />
             </TooltipButton>
             <TooltipButton
@@ -266,11 +286,14 @@ export function MediaLibrarySidebarContent() {
               variant="ghost"
               size="icon"
               className="h-6 w-6 text-muted-foreground"
-              tooltip={foldersExpanded ? "${isJa ? "フォルダを閉じる" : "Collapse folders"}" : "${isJa ? "フォルダを開く" : "Expand folders"}"}
-              aria-label={foldersExpanded ? "${isJa ? "フォルダを閉じる" : "Collapse folders"}" : "${isJa ? "フォルダを開く" : "Expand folders"}"}
+              tooltip={foldersExpanded ? "フォルダを閉じる" : "フォルダを開く"}
+              aria-label={foldersExpanded ? "フォルダを閉じる" : "フォルダを開く"}
               onClick={() => setFoldersExpanded((open) => !open)}
             >
-              <ChevronRight size={14} className={foldersExpanded ? "rotate-90 transition-transform" : "transition-transform"} />
+              <ChevronRight
+                size={14}
+                className={foldersExpanded ? "rotate-90 transition-transform" : "transition-transform"}
+              />
             </TooltipButton>
           </div>
         </div>
@@ -305,11 +328,201 @@ export function MediaLibrarySidebarContent() {
       </section>
     </div>
   )
-}`;
-    const actionsCode = code
-        .replace(
-            `import { SidebarItem, TooltipButton } from "@gunjo/ui"`,
-            `import {
+}`,
+    en: `import * as React from "react"
+import { SidebarItem, TooltipButton } from "@gunjo/ui"
+import {
+  IconChevronRight as ChevronRight,
+  IconFileText as FileText,
+  IconFolder as Folder,
+  IconGridDots as Grid,
+  IconPlus as Plus,
+  IconStar as Star,
+  IconTrash as Trash2,
+} from "@tabler/icons-react"
+
+const libraryItems = [
+  { id: "all", label: "All assets", icon: Grid, count: 128 },
+  { id: "favorite", label: "Favorites", icon: Star, count: 24 },
+  { id: "uncategorized", label: "Uncategorized", icon: Folder, count: 8 },
+  { id: "trash", label: "Trash", icon: Trash2, count: 3 },
+]
+
+const folderItems = [
+  {
+    id: "campaign",
+    label: "Campaigns",
+    icon: Folder,
+    count: 18,
+    level: 0,
+    hasChildren: true,
+  },
+  {
+    id: "spring",
+    label: "Spring launch",
+    icon: FileText,
+    count: 6,
+    level: 1,
+    hasChildren: false,
+  },
+  {
+    id: "product",
+    label: "Product photos",
+    icon: Folder,
+    count: 42,
+    level: 0,
+    hasChildren: false,
+  },
+]
+
+export function MediaLibrarySidebarContent() {
+  const [activeId, setActiveId] = React.useState("favorite")
+  const [foldersExpanded, setFoldersExpanded] = React.useState(true)
+  const [campaignExpanded, setCampaignExpanded] = React.useState(true)
+
+  return (
+    <div className="w-full max-w-sm rounded-md border bg-muted/30 p-3">
+      <section className="space-y-1">
+        <p className="px-2 text-xs font-bold uppercase tracking-wide text-muted-foreground">Libraries</p>
+        {libraryItems.map((item) => {
+          const Icon = item.icon
+
+          return (
+            <SidebarItem
+              key={item.id}
+              id={item.id}
+              icon={<Icon size={18} />}
+              label={item.label}
+              count={item.count}
+              isActive={activeId === item.id}
+              onClick={() => setActiveId(item.id)}
+              reserveChevronSpace={false}
+            />
+          )
+        })}
+      </section>
+
+      <section className="mt-4 space-y-1">
+        <div className="flex items-center justify-between pl-2">
+          <p className="text-xs font-bold uppercase tracking-wide text-muted-foreground">Folders</p>
+          <div className="grid w-14 grid-cols-[1.5rem_1.5rem] items-center justify-end">
+            <TooltipButton type="button" variant="ghost" size="icon" className="h-6 w-6 text-muted-foreground" tooltip="Add folder" aria-label="Add folder">
+              <Plus size={14} />
+            </TooltipButton>
+            <TooltipButton
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="h-6 w-6 text-muted-foreground"
+              tooltip={foldersExpanded ? "Collapse folders" : "Expand folders"}
+              aria-label={foldersExpanded ? "Collapse folders" : "Expand folders"}
+              onClick={() => setFoldersExpanded((open) => !open)}
+            >
+              <ChevronRight
+                size={14}
+                className={foldersExpanded ? "rotate-90 transition-transform" : "transition-transform"}
+              />
+            </TooltipButton>
+          </div>
+        </div>
+
+        {foldersExpanded ? (
+          <div className="space-y-1">
+            {folderItems.map((item) => {
+              if (item.id === "spring" && !campaignExpanded) return null
+              const Icon = item.icon
+
+              return (
+                <SidebarItem
+                  key={item.id}
+                  id={item.id}
+                  icon={<Icon size={18} />}
+                  label={item.label}
+                  count={item.count}
+                  level={item.level ?? 0}
+                  hasChildren={item.hasChildren}
+                  isExpanded={campaignExpanded}
+                  isActive={activeId === item.id}
+                  onClick={() => setActiveId(item.id)}
+                  onToggleExpand={(event) => {
+                    event.stopPropagation()
+                    setCampaignExpanded((open) => !open)
+                  }}
+                />
+              )
+            })}
+          </div>
+        ) : null}
+      </section>
+    </div>
+  )
+}`,
+};
+
+const flatCodeByLocale = {
+    ja: `import * as React from "react"
+import { SidebarItem } from "@gunjo/ui"
+import { IconFileText as FileText, IconGridDots as Grid } from "@tabler/icons-react"
+
+export function FlatNavigationItems() {
+  const [activeId, setActiveId] = React.useState("home")
+
+  return (
+    <div className="w-full max-w-sm space-y-1 rounded-md border bg-background p-2">
+      <SidebarItem
+        id="home"
+        icon={<Grid size={16} />}
+        label="ホーム"
+        isActive={activeId === "home"}
+        onClick={() => setActiveId("home")}
+        reserveChevronSpace={false}
+      />
+      <SidebarItem
+        id="notes"
+        icon={<FileText size={16} />}
+        label="リリースノート"
+        count={3}
+        isActive={activeId === "notes"}
+        onClick={() => setActiveId("notes")}
+        reserveChevronSpace={false}
+      />
+    </div>
+  )
+}`,
+    en: `import * as React from "react"
+import { SidebarItem } from "@gunjo/ui"
+import { IconFileText as FileText, IconGridDots as Grid } from "@tabler/icons-react"
+
+export function FlatNavigationItems() {
+  const [activeId, setActiveId] = React.useState("home")
+
+  return (
+    <div className="w-full max-w-sm space-y-1 rounded-md border bg-background p-2">
+      <SidebarItem
+        id="home"
+        icon={<Grid size={16} />}
+        label="Home"
+        isActive={activeId === "home"}
+        onClick={() => setActiveId("home")}
+        reserveChevronSpace={false}
+      />
+      <SidebarItem
+        id="notes"
+        icon={<FileText size={16} />}
+        label="Release notes"
+        count={3}
+        isActive={activeId === "notes"}
+        onClick={() => setActiveId("notes")}
+        reserveChevronSpace={false}
+      />
+    </div>
+  )
+}`,
+};
+
+const actionsCodeByLocale = {
+    ja: `import * as React from "react"
+import {
   AlertDialog,
   AlertDialogAction,
   AlertDialogCancel,
@@ -322,33 +535,69 @@ export function MediaLibrarySidebarContent() {
   cn,
   SidebarItem,
   TooltipButton,
-} from "@gunjo/ui"`
-        )
-        .replace(
-            `  const [campaignExpanded, setCampaignExpanded] = React.useState(true)`,
-            `  const [campaignExpanded, setCampaignExpanded] = React.useState(true)
+} from "@gunjo/ui"
+import {
+  IconChevronRight as ChevronRight,
+  IconFileText as FileText,
+  IconFolder as Folder,
+  IconGridDots as Grid,
+  IconPlus as Plus,
+  IconStar as Star,
+  IconTrash as Trash2,
+} from "@tabler/icons-react"
+
+const libraryItems = [
+  { id: "all", label: "すべての素材", icon: Grid, count: 128 },
+  { id: "favorite", label: "お気に入り", icon: Star, count: 24 },
+  { id: "uncategorized", label: "未分類", icon: Folder, count: 8 },
+  { id: "trash", label: "ごみ箱", icon: Trash2, count: 3 },
+]
+
+const folderItems = [
+  {
+    id: "campaign",
+    label: "キャンペーン",
+    icon: Folder,
+    count: 18,
+    level: 0,
+    hasChildren: true,
+  },
+  {
+    id: "spring",
+    label: "春の公開素材",
+    icon: FileText,
+    count: 6,
+    level: 1,
+    hasChildren: false,
+  },
+  { id: "product", label: "商品写真", icon: Folder, count: 42, level: 0, hasChildren: false },
+]
+
+export function MediaLibrarySidebarContent() {
+  const [activeId, setActiveId] = React.useState("favorite")
+  const [foldersExpanded, setFoldersExpanded] = React.useState(true)
+  const [campaignExpanded, setCampaignExpanded] = React.useState(true)
   const [deletedId, setDeletedId] = React.useState(null)
   const [pendingDelete, setPendingDelete] = React.useState(null)
   const [portalContainer, setPortalContainer] = React.useState(null)
-  const visibleFolderItems = folderItems.filter((item) => item.id !== deletedId)`
-        )
-        .replace(
-            `    <div className="w-full max-w-sm rounded-md border bg-muted/30 p-3">`,
-            `    <div ref={setPortalContainer} className="relative flex min-h-[340px] w-full items-start justify-center overflow-hidden rounded-md">
+  const visibleFolderItems = folderItems.filter((item) => item.id !== deletedId)
+
+  return (
+    <div ref={setPortalContainer} className="relative flex min-h-[340px] w-full items-start justify-center overflow-hidden rounded-md">
       {pendingDelete ? (
         <AlertDialog open onOpenChange={(open) => !open && setPendingDelete(null)}>
           <AlertDialogContent portalContainer={portalContainer}>
             <AlertDialogHeader>
-              <AlertDialogTitle>${isJa ? "フォルダを削除しますか" : "Delete this folder?"}</AlertDialogTitle>
+              <AlertDialogTitle>フォルダを削除しますか</AlertDialogTitle>
               <AlertDialogDescription>
-                {pendingDelete.label} ${isJa ? "をサイドバーから削除します。この操作は取り消せません。" : "will be removed from the sidebar. This action cannot be undone."}
+                {pendingDelete.label} をサイドバーから削除します。この操作は取り消せません。
               </AlertDialogDescription>
             </AlertDialogHeader>
             <div className="rounded-md border bg-muted/40 px-3 py-2 text-sm font-medium">
               {pendingDelete.label}
             </div>
             <AlertDialogFooter>
-              <AlertDialogCancel>${isJa ? "キャンセル" : "Cancel"}</AlertDialogCancel>
+              <AlertDialogCancel>キャンセル</AlertDialogCancel>
               <AlertDialogAction
                 className={cn(buttonVariants({ variant: "destructive" }))}
                 onClick={() => {
@@ -356,25 +605,76 @@ export function MediaLibrarySidebarContent() {
                   setPendingDelete(null)
                 }}
               >
-                ${isJa ? "削除" : "Delete"}
+                削除
               </AlertDialogAction>
             </AlertDialogFooter>
           </AlertDialogContent>
         </AlertDialog>
       ) : null}
-      <div className="w-full max-w-sm rounded-md border bg-muted/30 p-3">`
-        )
-        .replace(
-            `{folderItems.map((item) => {`,
-            `{visibleFolderItems.map((item) => {`
-        )
-        .replace(
-        `onToggleExpand={(event) => {
-                    event.stopPropagation()
-                    setCampaignExpanded((open) => !open)
-                  }}
-                />`,
-        `onToggleExpand={(event) => {
+      <div className="w-full max-w-sm rounded-md border bg-muted/30 p-3">
+      <section className="space-y-1">
+        <p className="px-2 text-xs font-bold uppercase tracking-wide text-muted-foreground">ライブラリ</p>
+        {libraryItems.map((item) => {
+          const Icon = item.icon
+
+          return (
+            <SidebarItem
+              key={item.id}
+              id={item.id}
+              icon={<Icon size={18} />}
+              label={item.label}
+              count={item.count}
+              isActive={activeId === item.id}
+              onClick={() => setActiveId(item.id)}
+              reserveChevronSpace={false}
+            />
+          )
+        })}
+      </section>
+
+      <section className="mt-4 space-y-1">
+        <div className="flex items-center justify-between pl-2">
+          <p className="text-xs font-bold uppercase tracking-wide text-muted-foreground">フォルダ</p>
+          <div className="grid w-14 grid-cols-[1.5rem_1.5rem] items-center justify-end">
+            <TooltipButton type="button" variant="ghost" size="icon" className="h-6 w-6 text-muted-foreground" tooltip="フォルダを追加" aria-label="フォルダを追加">
+              <Plus size={14} />
+            </TooltipButton>
+            <TooltipButton
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="h-6 w-6 text-muted-foreground"
+              tooltip={foldersExpanded ? "フォルダを閉じる" : "フォルダを開く"}
+              aria-label={foldersExpanded ? "フォルダを閉じる" : "フォルダを開く"}
+              onClick={() => setFoldersExpanded((open) => !open)}
+            >
+              <ChevronRight
+                size={14}
+                className={foldersExpanded ? "rotate-90 transition-transform" : "transition-transform"}
+              />
+            </TooltipButton>
+          </div>
+        </div>
+
+        {foldersExpanded ? (
+          <div className="space-y-1">
+            {visibleFolderItems.map((item) => {
+              if (item.id === "spring" && !campaignExpanded) return null
+              const Icon = item.icon
+
+              return (
+                <SidebarItem
+                  key={item.id}
+                  id={item.id}
+                  icon={<Icon size={18} />}
+                  label={item.label}
+                  count={item.count}
+                  level={item.level ?? 0}
+                  hasChildren={item.hasChildren}
+                  isExpanded={campaignExpanded}
+                  isActive={activeId === item.id}
+                  onClick={() => setActiveId(item.id)}
+                  onToggleExpand={(event) => {
                     event.stopPropagation()
                     setCampaignExpanded((open) => !open)
                   }}
@@ -382,49 +682,204 @@ export function MediaLibrarySidebarContent() {
                     event.stopPropagation()
                     setPendingDelete({ id: item.id, label: item.label })
                   } : undefined}
-                  deleteLabel="${isJa ? "フォルダを削除" : "Delete folder"}"
-                />`
-    );
-    const actionsCodeWithWrapper = actionsCode.replace(
-        `      </section>
-    </div>
-  )
-}`,
-        `      </section>
+                  deleteLabel="フォルダを削除"
+                />
+              )
+            })}
+          </div>
+        ) : null}
+      </section>
       </div>
     </div>
   )
-}`
-    );
-const flatCode = `import * as React from "react"
-import { SidebarItem } from "@gunjo/ui"
-import { IconFileText as FileText, IconGridDots as Grid } from "@tabler/icons-react"
+}`,
+    en: `import * as React from "react"
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  buttonVariants,
+  cn,
+  SidebarItem,
+  TooltipButton,
+} from "@gunjo/ui"
+import {
+  IconChevronRight as ChevronRight,
+  IconFileText as FileText,
+  IconFolder as Folder,
+  IconGridDots as Grid,
+  IconPlus as Plus,
+  IconStar as Star,
+  IconTrash as Trash2,
+} from "@tabler/icons-react"
 
-export function FlatNavigationItems() {
-  const [activeId, setActiveId] = React.useState("home")
+const libraryItems = [
+  { id: "all", label: "All assets", icon: Grid, count: 128 },
+  { id: "favorite", label: "Favorites", icon: Star, count: 24 },
+  { id: "uncategorized", label: "Uncategorized", icon: Folder, count: 8 },
+  { id: "trash", label: "Trash", icon: Trash2, count: 3 },
+]
+
+const folderItems = [
+  {
+    id: "campaign",
+    label: "Campaigns",
+    icon: Folder,
+    count: 18,
+    level: 0,
+    hasChildren: true,
+  },
+  {
+    id: "spring",
+    label: "Spring launch",
+    icon: FileText,
+    count: 6,
+    level: 1,
+    hasChildren: false,
+  },
+  {
+    id: "product",
+    label: "Product photos",
+    icon: Folder,
+    count: 42,
+    level: 0,
+    hasChildren: false,
+  },
+]
+
+export function MediaLibrarySidebarContent() {
+  const [activeId, setActiveId] = React.useState("favorite")
+  const [foldersExpanded, setFoldersExpanded] = React.useState(true)
+  const [campaignExpanded, setCampaignExpanded] = React.useState(true)
+  const [deletedId, setDeletedId] = React.useState(null)
+  const [pendingDelete, setPendingDelete] = React.useState(null)
+  const [portalContainer, setPortalContainer] = React.useState(null)
+  const visibleFolderItems = folderItems.filter((item) => item.id !== deletedId)
 
   return (
-    <div className="w-full max-w-sm space-y-1 rounded-md border bg-background p-2">
-      <SidebarItem
-        id="home"
-        icon={<Grid size={16} />}
-        label="${isJa ? "ホーム" : "Home"}"
-        isActive={activeId === "home"}
-        onClick={() => setActiveId("home")}
-        reserveChevronSpace={false}
-      />
-      <SidebarItem
-        id="notes"
-        icon={<FileText size={16} />}
-        label="${isJa ? "リリースノート" : "Release notes"}"
-        count={3}
-        isActive={activeId === "notes"}
-        onClick={() => setActiveId("notes")}
-        reserveChevronSpace={false}
-      />
+    <div ref={setPortalContainer} className="relative flex min-h-[340px] w-full items-start justify-center overflow-hidden rounded-md">
+      {pendingDelete ? (
+        <AlertDialog open onOpenChange={(open) => !open && setPendingDelete(null)}>
+          <AlertDialogContent portalContainer={portalContainer}>
+            <AlertDialogHeader>
+              <AlertDialogTitle>Delete this folder?</AlertDialogTitle>
+              <AlertDialogDescription>
+                {pendingDelete.label} will be removed from the sidebar. This action cannot be undone.
+              </AlertDialogDescription>
+            </AlertDialogHeader>
+            <div className="rounded-md border bg-muted/40 px-3 py-2 text-sm font-medium">
+              {pendingDelete.label}
+            </div>
+            <AlertDialogFooter>
+              <AlertDialogCancel>Cancel</AlertDialogCancel>
+              <AlertDialogAction
+                className={cn(buttonVariants({ variant: "destructive" }))}
+                onClick={() => {
+                  setDeletedId(pendingDelete.id)
+                  setPendingDelete(null)
+                }}
+              >
+                Delete
+              </AlertDialogAction>
+            </AlertDialogFooter>
+          </AlertDialogContent>
+        </AlertDialog>
+      ) : null}
+      <div className="w-full max-w-sm rounded-md border bg-muted/30 p-3">
+      <section className="space-y-1">
+        <p className="px-2 text-xs font-bold uppercase tracking-wide text-muted-foreground">Libraries</p>
+        {libraryItems.map((item) => {
+          const Icon = item.icon
+
+          return (
+            <SidebarItem
+              key={item.id}
+              id={item.id}
+              icon={<Icon size={18} />}
+              label={item.label}
+              count={item.count}
+              isActive={activeId === item.id}
+              onClick={() => setActiveId(item.id)}
+              reserveChevronSpace={false}
+            />
+          )
+        })}
+      </section>
+
+      <section className="mt-4 space-y-1">
+        <div className="flex items-center justify-between pl-2">
+          <p className="text-xs font-bold uppercase tracking-wide text-muted-foreground">Folders</p>
+          <div className="grid w-14 grid-cols-[1.5rem_1.5rem] items-center justify-end">
+            <TooltipButton type="button" variant="ghost" size="icon" className="h-6 w-6 text-muted-foreground" tooltip="Add folder" aria-label="Add folder">
+              <Plus size={14} />
+            </TooltipButton>
+            <TooltipButton
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="h-6 w-6 text-muted-foreground"
+              tooltip={foldersExpanded ? "Collapse folders" : "Expand folders"}
+              aria-label={foldersExpanded ? "Collapse folders" : "Expand folders"}
+              onClick={() => setFoldersExpanded((open) => !open)}
+            >
+              <ChevronRight
+                size={14}
+                className={foldersExpanded ? "rotate-90 transition-transform" : "transition-transform"}
+              />
+            </TooltipButton>
+          </div>
+        </div>
+
+        {foldersExpanded ? (
+          <div className="space-y-1">
+            {visibleFolderItems.map((item) => {
+              if (item.id === "spring" && !campaignExpanded) return null
+              const Icon = item.icon
+
+              return (
+                <SidebarItem
+                  key={item.id}
+                  id={item.id}
+                  icon={<Icon size={18} />}
+                  label={item.label}
+                  count={item.count}
+                  level={item.level ?? 0}
+                  hasChildren={item.hasChildren}
+                  isExpanded={campaignExpanded}
+                  isActive={activeId === item.id}
+                  onClick={() => setActiveId(item.id)}
+                  onToggleExpand={(event) => {
+                    event.stopPropagation()
+                    setCampaignExpanded((open) => !open)
+                  }}
+                  onDelete={item.id !== "campaign" ? (event) => {
+                    event.stopPropagation()
+                    setPendingDelete({ id: item.id, label: item.label })
+                  } : undefined}
+                  deleteLabel="Delete folder"
+                />
+              )
+            })}
+          </div>
+        ) : null}
+      </section>
+      </div>
     </div>
   )
-}`;
+}`,
+};
+
+export default function SidebarItemPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const code = codeByLocale[locale];
+    const actionsCodeWithWrapper = actionsCodeByLocale[locale];
+    const flatCode = flatCodeByLocale[locale];
 
     return (
         <ComponentLayout

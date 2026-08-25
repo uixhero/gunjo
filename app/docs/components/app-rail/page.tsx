@@ -131,27 +131,26 @@ function AppRailExample({ compact = false }: { compact?: boolean }) {
     );
 }
 
-export default function AppRailDocPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
-
-    const code = `import { AppRail, TooltipButton } from "@gunjo/ui"
-import { IconBell as Bell, IconHome as Home, IconSearch as Search, IconSettings as Settings, IconUserCircle as UserRound } from "@tabler/icons-react"
+const codeByLocale = {
+    ja: `import { AppRail, TooltipButton } from "@gunjo/ui"
+import {
+  IconBell as Bell,
+  IconHome as Home,
+  IconSearch as Search,
+  IconSettings as Settings,
+  IconUserCircle as UserRound,
+} from "@tabler/icons-react"
 import type { ReactNode } from "react"
 import { useState } from "react"
 
-function RailAction({
-  label,
-  children,
-  active,
-  onSelect,
-}: {
+function RailAction(props: {
   label: string
   children: ReactNode
   active?: boolean
   onSelect: () => void
 }) {
+  const { label, children, active, onSelect } = props
+
   return (
     <TooltipButton
       type="button"
@@ -177,39 +176,39 @@ export function AppRailExample() {
   const items = [
     {
       key: "home",
-      label: "${isJa ? "ホーム" : "Home"}",
+      label: "ホーム",
       icon: <Home className="h-5 w-5" />,
-      title: "${isJa ? "ホーム" : "Home"}",
-      description: "${isJa ? "最近の更新、タスク、概要を確認します。" : "Review recent updates, tasks, and overview metrics."}",
+      title: "ホーム",
+      description: "最近の更新、タスク、概要を確認します。",
     },
     {
       key: "search",
-      label: "${isJa ? "検索" : "Search"}",
+      label: "検索",
       icon: <Search className="h-5 w-5" />,
-      title: "${isJa ? "検索" : "Search"}",
-      description: "${isJa ? "ワークスペース全体からドキュメントや操作を探します。" : "Find documents and actions across the workspace."}",
+      title: "検索",
+      description: "ワークスペース全体からドキュメントや操作を探します。",
     },
     {
       key: "notifications",
-      label: "${isJa ? "通知" : "Notifications"}",
+      label: "通知",
       icon: <Bell className="h-5 w-5" />,
-      title: "${isJa ? "通知" : "Notifications"}",
-      description: "${isJa ? "未読通知と重要な更新を確認します。" : "Check unread notifications and important updates."}",
+      title: "通知",
+      description: "未読通知と重要な更新を確認します。",
     },
     {
       key: "account",
-      label: "${isJa ? "アカウント" : "Account"}",
+      label: "アカウント",
       icon: <UserRound className="h-5 w-5" />,
-      title: "${isJa ? "アカウント" : "Account"}",
-      description: "${isJa ? "プロフィール、チーム、請求情報を管理します。" : "Manage profile, team, and billing settings."}",
+      title: "アカウント",
+      description: "プロフィール、チーム、請求情報を管理します。",
     },
   ]
   const settingsItem = {
     key: "settings",
-    label: "${isJa ? "設定" : "Settings"}",
+    label: "設定",
     icon: <Settings className="h-5 w-5" />,
-    title: "${isJa ? "設定" : "Settings"}",
-    description: "${isJa ? "表示、通知、権限などの環境設定を変更します。" : "Adjust display, notifications, permissions, and preferences."}",
+    title: "設定",
+    description: "表示、通知、権限などの環境設定を変更します。",
   }
   const allItems = [...items, settingsItem]
   const [activeKey, setActiveKey] = useState(allItems[0].key)
@@ -241,7 +240,7 @@ export function AppRailExample() {
       <main className="flex min-w-0 flex-1 items-center justify-center bg-secondary/50 p-6">
         <div className="max-w-sm space-y-2 text-center">
           <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-            ${isJa ? "選択中" : "Selected"}
+            選択中
           </p>
           <h3 className="text-2xl font-semibold tracking-tight">{activeItem.title}</h3>
           <p className="text-sm leading-6 text-muted-foreground">
@@ -251,24 +250,146 @@ export function AppRailExample() {
       </main>
     </div>
     )
-}`;
-
-    const compactCode = `import { AppRail, TooltipButton } from "@gunjo/ui"
-import { IconHome as Home, IconSearch as Search, IconSettings as Settings } from "@tabler/icons-react"
+}`,
+    en: `import { AppRail, TooltipButton } from "@gunjo/ui"
+import {
+  IconBell as Bell,
+  IconHome as Home,
+  IconSearch as Search,
+  IconSettings as Settings,
+  IconUserCircle as UserRound,
+} from "@tabler/icons-react"
 import type { ReactNode } from "react"
 import { useState } from "react"
 
-function RailAction({
-  label,
-  children,
-  active,
-  onSelect,
-}: {
+function RailAction(props: {
   label: string
   children: ReactNode
   active?: boolean
   onSelect: () => void
 }) {
+  const { label, children, active, onSelect } = props
+
+  return (
+    <TooltipButton
+      type="button"
+      variant="ghost"
+      size="icon"
+      tooltip={label}
+      tooltipSide="right"
+      tooltipOpenOnClick
+      aria-label={label}
+      aria-pressed={active}
+      onClick={onSelect}
+      className={[
+        "h-10 w-10 text-muted hover:bg-background/10 hover:text-background",
+        active ? "bg-background/20 text-background ring-1 ring-background/25" : "",
+      ].join(" ")}
+    >
+      {children}
+    </TooltipButton>
+  )
+}
+
+export function AppRailExample() {
+  const items = [
+    {
+      key: "home",
+      label: "Home",
+      icon: <Home className="h-5 w-5" />,
+      title: "Home",
+      description: "Review recent updates, tasks, and overview metrics.",
+    },
+    {
+      key: "search",
+      label: "Search",
+      icon: <Search className="h-5 w-5" />,
+      title: "Search",
+      description: "Find documents and actions across the workspace.",
+    },
+    {
+      key: "notifications",
+      label: "Notifications",
+      icon: <Bell className="h-5 w-5" />,
+      title: "Notifications",
+      description: "Check unread notifications and important updates.",
+    },
+    {
+      key: "account",
+      label: "Account",
+      icon: <UserRound className="h-5 w-5" />,
+      title: "Account",
+      description: "Manage profile, team, and billing settings.",
+    },
+  ]
+  const settingsItem = {
+    key: "settings",
+    label: "Settings",
+    icon: <Settings className="h-5 w-5" />,
+    title: "Settings",
+    description: "Adjust display, notifications, permissions, and preferences.",
+  }
+  const allItems = [...items, settingsItem]
+  const [activeKey, setActiveKey] = useState(allItems[0].key)
+  const activeItem = allItems.find((item) => item.key === activeKey) ?? allItems[0]
+
+  return (
+    <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border bg-background">
+      <AppRail>
+        {items.map((item) => (
+          <RailAction
+            key={item.key}
+            label={item.label}
+            active={activeItem.key === item.key}
+            onSelect={() => setActiveKey(item.key)}
+          >
+            {item.icon}
+          </RailAction>
+        ))}
+        <div className="mt-auto">
+          <RailAction
+            label={settingsItem.label}
+            active={activeItem.key === settingsItem.key}
+            onSelect={() => setActiveKey(settingsItem.key)}
+          >
+            {settingsItem.icon}
+          </RailAction>
+        </div>
+      </AppRail>
+      <main className="flex min-w-0 flex-1 items-center justify-center bg-secondary/50 p-6">
+        <div className="max-w-sm space-y-2 text-center">
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            Selected
+          </p>
+          <h3 className="text-2xl font-semibold tracking-tight">{activeItem.title}</h3>
+          <p className="text-sm leading-6 text-muted-foreground">
+            {activeItem.description}
+          </p>
+        </div>
+      </main>
+    </div>
+    )
+}`,
+};
+
+const compactCodeByLocale = {
+    ja: `import { AppRail, TooltipButton } from "@gunjo/ui"
+import {
+  IconHome as Home,
+  IconSearch as Search,
+  IconSettings as Settings,
+} from "@tabler/icons-react"
+import type { ReactNode } from "react"
+import { useState } from "react"
+
+function RailAction(props: {
+  label: string
+  children: ReactNode
+  active?: boolean
+  onSelect: () => void
+}) {
+  const { label, children, active, onSelect } = props
+
   return (
     <TooltipButton
       type="button"
@@ -294,25 +415,25 @@ export function CompactAppRailExample() {
   const items = [
     {
       key: "home",
-      label: "${isJa ? "ホーム" : "Home"}",
+      label: "ホーム",
       icon: <Home className="h-5 w-5" />,
-      title: "${isJa ? "ホーム" : "Home"}",
-      description: "${isJa ? "最近の更新、タスク、概要を確認します。" : "Review recent updates, tasks, and overview metrics."}",
+      title: "ホーム",
+      description: "最近の更新、タスク、概要を確認します。",
     },
     {
       key: "search",
-      label: "${isJa ? "検索" : "Search"}",
+      label: "検索",
       icon: <Search className="h-5 w-5" />,
-      title: "${isJa ? "検索" : "Search"}",
-      description: "${isJa ? "ワークスペース全体からドキュメントや操作を探します。" : "Find documents and actions across the workspace."}",
+      title: "検索",
+      description: "ワークスペース全体からドキュメントや操作を探します。",
     },
   ]
   const settingsItem = {
     key: "settings",
-    label: "${isJa ? "設定" : "Settings"}",
+    label: "設定",
     icon: <Settings className="h-5 w-5" />,
-    title: "${isJa ? "設定" : "Settings"}",
-    description: "${isJa ? "表示、通知、権限などの環境設定を変更します。" : "Adjust display, notifications, permissions, and preferences."}",
+    title: "設定",
+    description: "表示、通知、権限などの環境設定を変更します。",
   }
   const allItems = [...items, settingsItem]
   const [activeKey, setActiveKey] = useState(allItems[0].key)
@@ -344,7 +465,7 @@ export function CompactAppRailExample() {
       <main className="flex min-w-0 flex-1 items-center justify-center bg-secondary/50 p-6">
         <div className="max-w-sm space-y-2 text-center">
           <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
-            ${isJa ? "選択中" : "Selected"}
+            選択中
           </p>
           <h3 className="text-2xl font-semibold tracking-tight">{activeItem.title}</h3>
           <p className="text-sm leading-6 text-muted-foreground">
@@ -354,7 +475,120 @@ export function CompactAppRailExample() {
       </main>
     </div>
   )
-}`;
+}`,
+    en: `import { AppRail, TooltipButton } from "@gunjo/ui"
+import {
+  IconHome as Home,
+  IconSearch as Search,
+  IconSettings as Settings,
+} from "@tabler/icons-react"
+import type { ReactNode } from "react"
+import { useState } from "react"
+
+function RailAction(props: {
+  label: string
+  children: ReactNode
+  active?: boolean
+  onSelect: () => void
+}) {
+  const { label, children, active, onSelect } = props
+
+  return (
+    <TooltipButton
+      type="button"
+      variant="ghost"
+      size="icon"
+      tooltip={label}
+      tooltipSide="right"
+      tooltipOpenOnClick
+      aria-label={label}
+      aria-pressed={active}
+      onClick={onSelect}
+      className={[
+        "h-10 w-10 text-muted hover:bg-background/10 hover:text-background",
+        active ? "bg-background/20 text-background ring-1 ring-background/25" : "",
+      ].join(" ")}
+    >
+      {children}
+    </TooltipButton>
+  )
+}
+
+export function CompactAppRailExample() {
+  const items = [
+    {
+      key: "home",
+      label: "Home",
+      icon: <Home className="h-5 w-5" />,
+      title: "Home",
+      description: "Review recent updates, tasks, and overview metrics.",
+    },
+    {
+      key: "search",
+      label: "Search",
+      icon: <Search className="h-5 w-5" />,
+      title: "Search",
+      description: "Find documents and actions across the workspace.",
+    },
+  ]
+  const settingsItem = {
+    key: "settings",
+    label: "Settings",
+    icon: <Settings className="h-5 w-5" />,
+    title: "Settings",
+    description: "Adjust display, notifications, permissions, and preferences.",
+  }
+  const allItems = [...items, settingsItem]
+  const [activeKey, setActiveKey] = useState(allItems[0].key)
+  const activeItem = allItems.find((item) => item.key === activeKey) ?? allItems[0]
+
+  return (
+    <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border bg-background">
+      <AppRail>
+        {items.map((item) => (
+          <RailAction
+            key={item.key}
+            label={item.label}
+            active={activeItem.key === item.key}
+            onSelect={() => setActiveKey(item.key)}
+          >
+            {item.icon}
+          </RailAction>
+        ))}
+        <div className="mt-auto">
+          <RailAction
+            label={settingsItem.label}
+            active={activeItem.key === settingsItem.key}
+            onSelect={() => setActiveKey(settingsItem.key)}
+          >
+            {settingsItem.icon}
+          </RailAction>
+        </div>
+      </AppRail>
+      <main className="flex min-w-0 flex-1 items-center justify-center bg-secondary/50 p-6">
+        <div className="max-w-sm space-y-2 text-center">
+          <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+            Selected
+          </p>
+          <h3 className="text-2xl font-semibold tracking-tight">{activeItem.title}</h3>
+          <p className="text-sm leading-6 text-muted-foreground">
+            {activeItem.description}
+          </p>
+        </div>
+      </main>
+    </div>
+  )
+}`,
+};
+
+export default function AppRailDocPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
+
+    const code = codeByLocale[locale];
+
+    const compactCode = compactCodeByLocale[locale];
 
     return (
         <ComponentLayout
