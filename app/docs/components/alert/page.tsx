@@ -15,99 +15,204 @@ import {
     IconTerminal2 as Terminal,
 } from "@tabler/icons-react";
 
-export default function AlertPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
-
-const code = `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
+const codeByLocale = {
+    ja: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
 import { IconTerminal2 as Terminal } from "@tabler/icons-react"
 
 export function InstallAlert() {
   return (
     <Alert>
       <Terminal className="h-4 w-4" />
-      <AlertTitle>${isJa ? "CLIで追加できます" : "Install with the CLI"}</AlertTitle>
+      <AlertTitle>CLIで追加できます</AlertTitle>
       <AlertDescription>
-        ${isJa ? "必要なコンポーネントを選んで、プロジェクトへ追加できます。" : "Choose the component you need and add it to your project."}
+        必要なコンポーネントを選んで、プロジェクトへ追加できます。
       </AlertDescription>
     </Alert>
   )
-}`;
+}`,
+    en: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
+import { IconTerminal2 as Terminal } from "@tabler/icons-react"
 
-    const usageCode = code;
+export function InstallAlert() {
+  return (
+    <Alert>
+      <Terminal className="h-4 w-4" />
+      <AlertTitle>Install with the CLI</AlertTitle>
+      <AlertDescription>
+        Choose the component you need and add it to your project.
+      </AlertDescription>
+    </Alert>
+  )
+}`,
+};
 
-const destructiveCode = `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
+const destructiveCodeByLocale = {
+    ja: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
 import { IconAlertCircle as AlertCircle } from "@tabler/icons-react"
 
 export function SessionAlert() {
   return (
     <Alert variant="destructive">
       <AlertCircle className="h-4 w-4" />
-      <AlertTitle>${isJa ? "セッションが切れました" : "Session expired"}</AlertTitle>
+      <AlertTitle>セッションが切れました</AlertTitle>
       <AlertDescription>
-        ${isJa ? "続行するには、もう一度ログインしてください。" : "Sign in again before continuing."}
+        続行するには、もう一度ログインしてください。
       </AlertDescription>
     </Alert>
   )
-}`;
+}`,
+    en: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
+import { IconAlertCircle as AlertCircle } from "@tabler/icons-react"
 
-const successCode = `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
+export function SessionAlert() {
+  return (
+    <Alert variant="destructive">
+      <AlertCircle className="h-4 w-4" />
+      <AlertTitle>Session expired</AlertTitle>
+      <AlertDescription>
+        Sign in again before continuing.
+      </AlertDescription>
+    </Alert>
+  )
+}`,
+};
+
+const successCodeByLocale = {
+    ja: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
 import { IconCircleCheck as CheckCircle2 } from "@tabler/icons-react"
 
 export function SavedAlert() {
   return (
     <Alert variant="success">
       <CheckCircle2 className="h-4 w-4" />
-      <AlertTitle>${isJa ? "保存しました" : "Saved"}</AlertTitle>
+      <AlertTitle>保存しました</AlertTitle>
       <AlertDescription>
-        ${isJa ? "設定は次回のプレビューから反映されます。" : "The settings apply to the next preview."}
+        設定は次回のプレビューから反映されます。
       </AlertDescription>
     </Alert>
   )
-}`;
+}`,
+    en: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
+import { IconCircleCheck as CheckCircle2 } from "@tabler/icons-react"
 
-const infoCode = `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
+export function SavedAlert() {
+  return (
+    <Alert variant="success">
+      <CheckCircle2 className="h-4 w-4" />
+      <AlertTitle>Saved</AlertTitle>
+      <AlertDescription>
+        The settings apply to the next preview.
+      </AlertDescription>
+    </Alert>
+  )
+}`,
+};
+
+const infoCodeByLocale = {
+    ja: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
 import { IconInfoCircle as Info } from "@tabler/icons-react"
 
 export function InfoAlert() {
   return (
     <Alert variant="info">
       <Info className="h-4 w-4" />
-      <AlertTitle>${isJa ? "仕様を確認できます" : "Spec available"}</AlertTitle>
+      <AlertTitle>仕様を確認できます</AlertTitle>
       <AlertDescription>
-        ${isJa ? "詳細な仕様は、このページのプロパティ表にまとめています。" : "The full specification is available in the props table on this page."}
+        詳細な仕様は、このページのプロパティ表にまとめています。
       </AlertDescription>
     </Alert>
   )
-}`;
+}`,
+    en: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
+import { IconInfoCircle as Info } from "@tabler/icons-react"
 
-const warningCode = `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
+export function InfoAlert() {
+  return (
+    <Alert variant="info">
+      <Info className="h-4 w-4" />
+      <AlertTitle>Spec available</AlertTitle>
+      <AlertDescription>
+        The full specification is available in the props table on this page.
+      </AlertDescription>
+    </Alert>
+  )
+}`,
+};
+
+const warningCodeByLocale = {
+    ja: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
 import { IconAlertTriangle as TriangleAlert } from "@tabler/icons-react"
 
 export function WarningAlert() {
   return (
     <Alert variant="warning">
       <TriangleAlert className="h-4 w-4" />
-      <AlertTitle>${isJa ? "公開前に確認してください" : "Review before publishing"}</AlertTitle>
+      <AlertTitle>公開前に確認してください</AlertTitle>
       <AlertDescription>
-        ${isJa ? "外部に公開される項目が含まれています。" : "This includes items that will be visible externally."}
+        外部に公開される項目が含まれています。
       </AlertDescription>
     </Alert>
   )
-}`;
+}`,
+    en: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
+import { IconAlertTriangle as TriangleAlert } from "@tabler/icons-react"
 
-const titleOnlyCode = `import { Alert, AlertTitle } from "@gunjo/ui"
+export function WarningAlert() {
+  return (
+    <Alert variant="warning">
+      <TriangleAlert className="h-4 w-4" />
+      <AlertTitle>Review before publishing</AlertTitle>
+      <AlertDescription>
+        This includes items that will be visible externally.
+      </AlertDescription>
+    </Alert>
+  )
+}`,
+};
+
+const titleOnlyCodeByLocale = {
+    ja: `import { Alert, AlertTitle } from "@gunjo/ui"
 import { IconTerminal2 as Terminal } from "@tabler/icons-react"
 
 export function TitleOnlyAlert() {
   return (
     <Alert>
       <Terminal className="h-4 w-4" />
-      <AlertTitle>${isJa ? "下書きを保存しました" : "Draft saved"}</AlertTitle>
+      <AlertTitle>下書きを保存しました</AlertTitle>
     </Alert>
   )
-}`;
+}`,
+    en: `import { Alert, AlertTitle } from "@gunjo/ui"
+import { IconTerminal2 as Terminal } from "@tabler/icons-react"
+
+export function TitleOnlyAlert() {
+  return (
+    <Alert>
+      <Terminal className="h-4 w-4" />
+      <AlertTitle>Draft saved</AlertTitle>
+    </Alert>
+  )
+}`,
+};
+
+export default function AlertPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
+
+    const code = codeByLocale[locale];
+
+    const usageCode = code;
+
+    const destructiveCode = destructiveCodeByLocale[locale];
+
+    const successCode = successCodeByLocale[locale];
+
+    const infoCode = infoCodeByLocale[locale];
+
+    const warningCode = warningCodeByLocale[locale];
+
+    const titleOnlyCode = titleOnlyCodeByLocale[locale];
 
     const propsData = [
         {
