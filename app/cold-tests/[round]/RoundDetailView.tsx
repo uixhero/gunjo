@@ -138,6 +138,11 @@ function docSlugFor(componentName: string): string {
         .toLowerCase();
 }
 
+// Stable empty defaults. A `= {}` in the destructuring would mint a new object
+// on every render and bust the memo that builds the article's link renderers.
+const NO_ROUND_CARDS: Record<number, RoundRefCardData> = {};
+const NO_ISSUE_CARDS: Record<number, IssueRefCardData> = {};
+
 // The findings JSON is Japanese for now, so only the Japanese page passes any.
 // See app/data/cold-test-findings/README.md.
 function toFindingCard(finding: Finding): FindingCardModel {
@@ -164,8 +169,8 @@ export function RoundDetailView({
     translationHref,
     roundIndex,
     findings = [],
-    roundCards = {},
-    issueCards = {},
+    roundCards = NO_ROUND_CARDS,
+    issueCards = NO_ISSUE_CARDS,
 }: {
     detail: RoundDetail;
     previous: PagerNeighbour | null;

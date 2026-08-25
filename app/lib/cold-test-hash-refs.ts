@@ -22,7 +22,7 @@
 //
 // ## How a bare `#N` is judged to be a round
 //
-// Three filters, in order. The numbers below are the measured result over all
+// Five filters, in order. The numbers below are the measured result over all
 // 185 Japanese round articles (`npm run coldtest:hash-refs:audit`).
 //
 //   raw `#N` anywhere ........................................... 3,425
