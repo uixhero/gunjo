@@ -44,6 +44,17 @@ import {
     coldTestRoundHref,
     roundRefFromLinkText,
 } from "@/lib/cold-test-article-links";
+import {
+    issueNumberFromHref,
+    linkifyRoundRefs,
+    roundRefFromHref,
+} from "@/lib/cold-test-hash-refs";
+import {
+    IssueRef,
+    RoundRef,
+    type IssueRefCardData,
+    type RoundRefCardData,
+} from "@/components/cold-test/HashRefCard";
 import type { Finding } from "@/lib/cold-test-findings";
 import { FindingList, type FindingCardModel } from "../FindingList";
 import categoriesData from "@/data/cold-test-categories.json";
@@ -153,6 +164,8 @@ export function RoundDetailView({
     translationHref,
     roundIndex,
     findings = [],
+    roundCards = {},
+    issueCards = {},
 }: {
     detail: RoundDetail;
     previous: PagerNeighbour | null;
@@ -175,6 +188,14 @@ export function RoundDetailView({
      * on the English tree, which has no translated findings yet.
      */
     findings?: Finding[];
+    /**
+     * Preview data for the rounds this article cites, keyed by round number.
+     * Only the cited ones are passed, not all 185. A missing entry costs the
+     * citation its preview card, nothing else.
+     */
+    roundCards?: Record<number, RoundRefCardData>;
+    /** Preview data for the GitHub issues this article links to. */
+    issueCards?: Record<number, IssueRefCardData>;
 }) {
     const { pages } = useLocale();
     const t = pages.coldTests;
@@ -198,42 +219,87 @@ export function RoundDetailView({
         [roundIndex.ja, roundIndex.en]
     );
 
+    // The article body as rendered: bare `#101` citations become links so a
+    // reader can tell a round from a GitHub issue without knowing the series.
+    // The stored markdown is untouched — see app/lib/cold-test-hash-refs.ts
+    // for why, and for how a round is told apart from an issue.
+    const articleMarkdown = React.useMemo(() => {
+        const source = detail.article?.markdown ?? "";
+        if (!source) return "";
+        return linkifyRoundRefs(source, {
+            currentRound: detail.round,
+            rounds: new Set([...roundIndex.ja, ...roundIndex.en]),
+        });
+    }, [detail.article?.markdown, detail.round, roundIndex.ja, roundIndex.en]);
+
     // Article links whose href is a bare `#` are unresolved round citations
     // left in the source markdown (issue #726). Resolve them against the
     // rounds that exist; anything else keeps the renderer's default anchor.
-    const articleComponents = React.useMemo(
-        () => ({
+    const articleComponents = React.useMemo(() => {
+        const renderRoundRef = (round: number, children: React.ReactNode) => {
+            const resolved = coldTestRoundHref(round, base, roundLookup);
+            if (!resolved) {
+                // No page to point at — a round that was never published
+                // (94 / 99 / 100), or a label that is not a round reference at
+                // all (the "まとめ記事" placeholders from the first 27 rounds,
+                // whose destination is still undecided). Render the label as
+                // text rather than a dead anchor.
+                return <>{children}</>;
+            }
+            const crossesToJapanese =
+                isEnglish && resolved.startsWith(`${JA_COLD_TEST_BASE}/`);
+            const hrefLang = crossesToJapanese ? "ja" : undefined;
+            const card = roundCards[round];
+            if (!card) {
+                return (
+                    <TextLink href={resolved} hrefLang={hrefLang}>
+                        {children}
+                    </TextLink>
+                );
+            }
+            return (
+                <RoundRef data={card} href={resolved} hrefLang={hrefLang}>
+                    {children}
+                </RoundRef>
+            );
+        };
+
+        return {
             // Only the attributes a markdown link can carry are forwarded.
             // react-markdown also hands every component the mdast `node`
             // (passNode), which is not a DOM attribute — spreading the rest
             // would put it on the anchor.
             a: ({ href, title, children }: React.ComponentPropsWithoutRef<"a">) => {
-                if (href !== UNRESOLVED_ARTICLE_HREF) {
-                    return (
-                        <TextLink href={href} title={title}>
-                            {children}
-                        </TextLink>
-                    );
+                // A bare `#101` this renderer turned into a link a moment ago.
+                const linkified = roundRefFromHref(href);
+                if (linkified !== null) return renderRoundRef(linkified, children);
+
+                if (href === UNRESOLVED_ARTICLE_HREF) {
+                    const round = roundRefFromLinkText(linkLabelText(children));
+                    if (round === null) return <>{children}</>;
+                    return renderRoundRef(round, children);
                 }
-                const round = roundRefFromLinkText(linkLabelText(children));
-                const resolved =
-                    round === null ? null : coldTestRoundHref(round, base, roundLookup);
-                if (!resolved) {
-                    // No page to point at — a round that was never published
-                    // (94 / 99 / 100), or a label that is not a round
-                    // reference at all (the "まとめ記事" placeholders from the
-                    // first 27 rounds, whose destination is still undecided).
-                    // Render the label as text rather than a dead anchor.
-                    return <>{children}</>;
+
+                const issue = issueNumberFromHref(href);
+                // 97% of the corpus's issue links are labelled with the bare
+                // number, which is precisely the shape a reader cannot tell
+                // from a round citation. Only that shape is relabelled;
+                // `PR#421` and `` `Meter`(#230) `` already say what they are.
+                if (issue !== null && linkLabelText(children) === `#${issue}`) {
+                    const label = td.hashRef.issueText(issue);
+                    const card = issueCards[issue];
+                    if (!card) {
+                        return (
+                            <TextLink href={href} title={title}>
+                                {label}
+                            </TextLink>
+                        );
+                    }
+                    return <IssueRef data={card}>{label}</IssueRef>;
                 }
-                const crossesToJapanese =
-                    isEnglish && resolved.startsWith(`${JA_COLD_TEST_BASE}/`);
+
                 return (
-                    <TextLink
-                        href={resolved}
-                        title={title}
-                        hrefLang={crossesToJapanese ? "ja" : undefined}
-                    >
+                    <TextLink href={href} title={title}>
                         {children}
                     </TextLink>
                 );
@@ -255,9 +321,8 @@ export function RoundDetailView({
                     />
                 );
             },
-        }),
-        [base, roundLookup, isEnglish, detail.slug]
-    );
+        };
+    }, [base, roundLookup, isEnglish, detail.slug, roundCards, issueCards, td]);
 
     // Inline preview uses the .lg tier (retina-sharp at the detail page's
     // display width); the lightbox opens .full (cwebp of the original
@@ -523,7 +588,7 @@ export function RoundDetailView({
                                 word-joiners) have no break opportunity and push
                                 375px viewports sideways otherwise. */}
                             <MarkdownRenderer
-                                content={detail.article.markdown}
+                                content={articleMarkdown}
                                 components={articleComponents}
                                 className="break-words"
                             />

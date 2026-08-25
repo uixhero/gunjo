@@ -7,6 +7,9 @@ import { RoundDetailView } from "@/cold-tests/[round]/RoundDetailView";
 import type { SidebarRound } from "@/cold-tests/[round]/RoundsSidebar";
 import { listEnRounds, readEnRound, readMergedEnRound } from "@/lib/cold-test-en";
 import { EN_COLD_TEST_BASE, JA_COLD_TEST_BASE } from "@/lib/cold-test-paths";
+import { citedRounds } from "@/lib/cold-test-article-links";
+import { readCitedIssues } from "@/lib/github-issues";
+import type { RoundRefCardData } from "@/components/cold-test/HashRefCard";
 
 const SITE_URL = (
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.gunjo.jp"
@@ -18,6 +21,8 @@ interface GalleryShape {
         slug: string;
         score: string;
         category: string;
+        /** Japanese, and the fallback when a cited round has no translation. */
+        title: string;
         shots: { desktop: boolean };
     }[];
     categories: string[];
@@ -109,6 +114,31 @@ export default async function EnColdTestRoundPage({
         sidebarRounds.some((r) => r.category === c)
     );
 
+    // Preview data for the `#NNN` citations in the article body. English
+    // articles cite the same round numbers as the Japanese originals, so a
+    // cited round is previewed with its English title when it has one and its
+    // Japanese title otherwise — the same fallback the citation's href takes.
+    const articleMarkdown = detail.article?.markdown ?? "";
+    const roundCards: Record<number, RoundRefCardData> = {};
+    for (const cited of citedRounds(articleMarkdown, {
+        currentRound: round,
+        rounds: new Set(galleryData.entries.map((e) => e.round)),
+    })) {
+        const entry = galleryByRound.get(cited);
+        if (!entry) continue;
+        roundCards[cited] = {
+            round: cited,
+            // `enTitles` fills untranslated rounds with the bare number, so the
+            // translation is read directly rather than through that map.
+            title: readEnRound(cited)?.title ?? entry.title,
+            score: entry.score,
+            category: entry.category,
+            thumbnailSrc: entry.shots.desktop
+                ? `/cold-test-shots/${entry.slug}.desktop.webp`
+                : undefined,
+        };
+    }
+
     const idx = enRounds.indexOf(round);
     const prev = idx > 0 ? enRounds[idx - 1] : null;
     const next = idx >= 0 && idx < enRounds.length - 1 ? enRounds[idx + 1] : null;
@@ -147,6 +177,8 @@ export default async function EnColdTestRoundPage({
                     ja: galleryData.entries.map((e) => e.round),
                     en: enRounds,
                 }}
+                roundCards={roundCards}
+                issueCards={readCitedIssues(articleMarkdown)}
             />
         </ColdTestShell>
     );
