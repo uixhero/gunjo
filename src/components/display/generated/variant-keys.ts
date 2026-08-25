@@ -91,6 +91,9 @@ export type MetadataListVariantKey = (typeof metadataListVariantKeys)[number];
 export const miniDistributionBarCardVariantKeys = ["compact", "default"] as const;
 export type MiniDistributionBarCardVariantKey = (typeof miniDistributionBarCardVariantKeys)[number];
 
+export const pendingValueVariantKeys = ["pending", "provisional", "settled"] as const;
+export type PendingValueVariantKey = (typeof pendingValueVariantKeys)[number];
+
 export const pieChartVariantKeys = ["compact", "default"] as const;
 export type PieChartVariantKey = (typeof pieChartVariantKeys)[number];
 
@@ -170,6 +173,7 @@ export const displayVariantKeys = {
   list: listVariantKeys,
   metadataList: metadataListVariantKeys,
   miniDistributionBarCard: miniDistributionBarCardVariantKeys,
+  pendingValue: pendingValueVariantKeys,
   pieChart: pieChartVariantKeys,
   quadrantMatrix: quadrantMatrixVariantKeys,
   radarChart: radarChartVariantKeys,

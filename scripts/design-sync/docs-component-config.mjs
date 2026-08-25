@@ -214,6 +214,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "line-chip": "Display",
   "status-board": "Display",
   "status-level": "Display",
+  "pending-value": "Display",
   "expiry-badge": "Display",
   "limit-monitor": "Display",
   "reference-value": "Display",

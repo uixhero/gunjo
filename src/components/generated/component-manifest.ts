@@ -1614,6 +1614,19 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "pendingValue": {
+      "title": "PendingValue",
+      "description": "The NOT-YET-SETTLED axis: marks what is on screen as pending / provisional / settled and says WHY it is not settled. This is orthogonal to SemanticTone — tone answers 「どれくらいまずいか」, this answers 「確定しているか」. For the case where a value is MISSING and the reason matters: まだ聞いていない vs 無いと答えられた, まだ照合していない vs 照合済み, 過失割合はまだ案 vs 確定した, 概算 vs 確定額, 未承認の下書き. A blank field collapses those into one look and says nothing, so nobody notices the distinction was lost. State is carried by border style (dashed while unsettled, solid once settled) plus an icon-and-text pill, never by colour, so it survives greyscale; pending and provisional are NEUTRAL by default because unfinished is not the same as wrong. frame=\"always\" keeps one outline down a column of fields, frame=\"unsettled\" decorates a chart or a number in place, and PendingValueBadge is the pill alone for a table cell or list row. Function children hand out statusId / noteId / describedBy so a wrapped control can point at them. NOT for how bad something is — that is SemanticTone on Badge / Alert. NOT for a position in a process (受付 → 審査 → 完了) — that is Stepper / ApprovalSteps / ApprovalWorkflow. NOT for a ranked scale (空いています < やや混雑 < 混雑) — that is StatusLevel. NOT for an empty list — that is EmptyState. Pairs with the pure pendingValueLabel / isPendingValueSettled helpers, mirroring how ExpiryBadge pairs with classifyExpiry(). RSC-safe.",
+      "variantKeys": [
+        "pending",
+        "provisional",
+        "settled"
+      ],
+      "defaultVariantKey": "pending",
+      "sourceFile": "src/components/display/PendingValue.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "personCell": {
       "title": "PersonCell",
       "description": "The atomic identity cell: an avatar paired with a name plus secondary/tertiary lines (role / department / email), an optional presence dot and a trailing slot (status badge, chevron, count, actions). Fallback initials are derived from the name (Japanese family-name aware) when no image is given; sm/md/lg sizes; everything truncates so it fits a table cell. The 'who is this person' unit repeated across directories, table rows, assignee pickers, comment attributions, approver/reviewer rows and detail panels. Presentational by default — let an interactive row (DataTable onRowClick, a wrapping link) own activation rather than nesting a button.",

@@ -151,6 +151,7 @@ export const navigation = [
             { title: "Meter", href: "/docs/components/meter" },
             { title: "OccupancyMeter", href: "/docs/components/occupancy-meter" },
             { title: "OriginDestination", href: "/docs/components/origin-destination" },
+            { title: "PendingValue", href: "/docs/components/pending-value" },
             { title: "PersonCell", href: "/docs/components/person-cell" },
             { title: "RadioCard", href: "/docs/components/radio-card" },
             { title: "Rating", href: "/docs/components/rating" },

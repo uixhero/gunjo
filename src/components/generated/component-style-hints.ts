@@ -2198,6 +2198,23 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "pendingValue": {
+      "variantKeys": [
+        "pending",
+        "provisional",
+        "settled"
+      ],
+      "defaultVariantKey": "pending",
+      "baseClasses": "",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "pending": "",
+        "provisional": "",
+        "settled": ""
+      },
+      "variantColorHints": {}
+    },
     "personCell": {
       "variantKeys": [
         "default"

@@ -13,6 +13,7 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ### Added
 
+- **`PendingValue`**（影響: **none**）— 「値がまだ確定していない」ことと、**確定していない理由**を持たせる Display 部品。`state` は `pending`（中身がまだ無い＝まだ聞いていない・まだ照合していない）／`provisional`（中身はあるが確定していない＝案・暫定・協議中）／`settled`（確定した）の3つで、`SemanticTone`（＝どれくらいまずいか）とは別の軸として持つ。空欄はこの区別を畳んでしまい、しかも黙っているので区別が失われたことに誰も気づけない。状態は**破線か実線かとアイコンつきの文字**が運ぶので色を落としても読め、`pending` / `provisional` の既定トーンは中立（未完了は間違いではない）。`frame="always"` は列に並べても外形がそろい、`frame="unsettled"` は確定したら枠を残さず図や数字をその場で飾れる。行や升目では `PendingValueBadge`（バッジ単体）。`children` に関数を渡すと `{ statusId, noteId, describedBy }` を受け取れるので、包んだ入力欄に `aria-describedby` をつなげられる。純関数 `pendingValueLabel` / `isPendingValueSettled` と `PENDING_VALUE_STATES` を同梱。既存部品の挙動と公開 API は不変。(#853)
 - **`StatusLevel`**（影響: **none**）— 順序のある段（平常運転＜遅延＜迂回＜運休、空いています＜やや混雑＜混雑、低＜中＜高＜緊急、good＜watch＜bad）を表す Display 部品。段は `levels[]` に軽い順で1回だけ書き、同じ配列がピルと並べ替え（`compareStatusLevel`）と全体の導出（`highestStatusLevel`）を動かすので、順序の書き写しが1か所に減る。段バーは意味トーンではなく前景色と枠線色の濃淡で描くため色を落としても段を数えられ（明色 13 対 230・実測）、読み上げには「4段階中 3段目」が乗る。順序のない状態は従来どおり `Badge`、工程の位置は `Stepper` / `ApprovalSteps` / `RouteStops`。純関数 `statusLevelIndex` / `statusLevelStep` / `compareStatusLevel` / `highestStatusLevel` を同梱。`Badge` の挙動と公開 API は不変。(#376)
 - **`StickyNoticeBar`**（影響: **none**）— サイト告知を body portal + `fixed` で上端または下端へ追従表示する Feedback 部品。`edge` は必須で既定値なし。同一 document の単一スロットに限定し、複数 mount 時は先着1件だけを表示して開発エラーを記録する。長文折り返し、アクション、44px の閉じるボタン、上下セーフエリア、ライト／ダークに対応。(#810)
 

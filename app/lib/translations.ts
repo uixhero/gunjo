@@ -2113,6 +2113,7 @@ export const translations: Record<
       LineChip: "路線チップ",
       StatusBoard: "状態ボード",
       StatusLevel: "レベル表示",
+      PendingValue: "未確定の値",
       ExpiryBadge: "有効期限",
       LimitMonitor: "上限監視",
       RevealSection: "条件付きセクション",
