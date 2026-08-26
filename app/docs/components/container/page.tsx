@@ -141,6 +141,7 @@ export function FullWidthContainer() {
 
 export default function ContainerPage() {
     const { locale } = useLocale();
+    const usageCode = codeByLocale[locale];
     const meta = layoutMetadata as Record<string, { title: string; description: string }>;
     const propsData = locale === "ja"
         ? [
@@ -166,7 +167,7 @@ export default function ContainerPage() {
                 { name: "VStack", href: "/docs/components/v-stack" },
             ]}
         >
-            <ComponentPreview embedSrc="/embed/container" code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="full">
+            <ComponentPreview embedSrc="/embed/container" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="full">
                 <div className="w-full space-y-3">
                     {sizes.map((size) => (
                         <Container key={size} size={size} className="rounded-md border border-dashed bg-muted/50 py-3 text-center text-sm text-muted-foreground">
@@ -190,7 +191,7 @@ export default function ContainerPage() {
                                 {locale === "ja" ? "sm から full / prose まで、Container が持つ最大幅の違いを確認します。" : "Compare every Container max-width option from sm through full and prose."}
                             </p>
                         </div>
-                        <ComponentPreview code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="full" previewHeight="auto">
+                        <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="full" previewHeight="auto">
                             <div className="w-full space-y-3">
                                 {sizes.map((size) => (
                                     <Container key={size} size={size} className="rounded-md border border-dashed bg-muted/50 py-3 text-center text-sm text-muted-foreground">
@@ -259,10 +260,10 @@ export default function ContainerPage() {
             <section className="space-y-4">
                 <div className="flex items-start justify-between gap-3 border-b pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </section>
         </ComponentLayout>

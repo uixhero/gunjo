@@ -97,7 +97,7 @@ export function ${t.name}() {
 export default function DrawerPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
-    const code = createDrawerCode(locale);
+    const usageCode = createDrawerCode(locale);
     const rightCode = createDrawerCode(locale, "right");
     const leftCode = createDrawerCode(locale, "left");
     const topCode = createDrawerCode(locale, "top");
@@ -118,8 +118,8 @@ export default function DrawerPage() {
         >
             <ComponentPreview
                 embedSrc="/embed/drawer"
-                code={code}
-                codeBlock={<CodeBlock code={code} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewHeight={420}
                 fitEmbedHeightContent={false}
@@ -141,7 +141,7 @@ export default function DrawerPage() {
                                 : "Default mobile-friendly shape for supporting actions and short forms.",
                             preview: <DrawerAuditDemo />,
                             embedSrc: "/embed/drawer?side=bottom",
-                            code,
+                            code: usageCode,
                             previewHeight: 420,
                             fitEmbedHeightContent: false,
                         },
@@ -234,12 +234,14 @@ export default function DrawerPage() {
 
             <section className="space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
-                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </section>
         </ComponentLayout>
     );
