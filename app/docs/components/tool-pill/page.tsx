@@ -162,7 +162,7 @@ export default function ToolPillPage() {
     const content = getDocContent("components/tool-pill", locale);
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
     const variantType = getCategoryVariantUnionType("display", "toolPill");
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
 
     return (
         <ComponentLayout
@@ -180,7 +180,7 @@ export default function ToolPillPage() {
                 { name: "Tag", href: "/docs/components/tag" },
             ]}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewBodyWidth="md" previewHeight="auto">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md" previewHeight="auto">
                 <ToolPillToolbar locale={locale} />
             </ComponentPreview>
 
@@ -197,7 +197,7 @@ export default function ToolPillPage() {
                                 ? "横並びでは、隣のアイコンに重ならないようツールチップを上に出します。"
                                 : "In horizontal toolbars, tooltips appear above the row so they do not cover neighboring icons.",
                             preview: <ToolPillToolbar locale={locale} />,
-                            code,
+                            code: usageCode,
                         },
                         {
                             key: "vertical-toolbar",
@@ -299,9 +299,11 @@ export function ActiveToolPill() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </div>
         </ComponentLayout>
     );

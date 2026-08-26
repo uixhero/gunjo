@@ -153,6 +153,7 @@ export function InlineStack() {
 
 export default function VStackPage() {
     const { locale } = useLocale();
+    const usageCode = codeByLocale[locale];
     const meta = layoutMetadata as Record<string, { title: string; description: string }>;
     const propsData = locale === "ja"
         ? [
@@ -179,7 +180,7 @@ export default function VStackPage() {
                 { name: "Container", href: "/docs/components/container" },
             ]}
         >
-            <ComponentPreview embedSrc="/embed/v-stack" code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="md">
+            <ComponentPreview embedSrc="/embed/v-stack" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md">
                 <VStack gap={4} className="w-full max-w-sm rounded-md border bg-background p-4">
                     <VStack gap={2}>
                         <Label htmlFor="vstack-name">{locale === "ja" ? "名前" : "Name"}</Label>
@@ -301,10 +302,10 @@ export default function VStackPage() {
             <section className="space-y-4">
                 <div className="flex items-start justify-between gap-3 border-b pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </section>
         </ComponentLayout>

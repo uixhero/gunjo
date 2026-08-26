@@ -331,7 +331,7 @@ export default function ToastPage() {
     const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
     const closeLabel = isJa ? "通知を閉じる" : "Close notification";
 
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
 
     const successCode = successCodeByLocale[locale];
 
@@ -415,7 +415,7 @@ export default function ToastPage() {
             ]}
             sectionLabels={sectionLabels}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewHeight="auto" previewBodyWidth="md" sectionLabels={sectionLabels}>
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewHeight="auto" previewBodyWidth="md" sectionLabels={sectionLabels}>
                 <Toast
                     message={isJa ? "プロジェクトを保存しました。" : "Project saved."}
                     type="success"
@@ -527,10 +527,10 @@ export default function ToastPage() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={successCode} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="rounded-md border bg-muted font-mono text-sm max-h-[350px] overflow-auto">
-                    <CodeBlock code={successCode} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </section>
         </ComponentLayout>

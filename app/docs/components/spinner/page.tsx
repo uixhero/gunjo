@@ -146,7 +146,7 @@ export default function SpinnerPage() {
     const isJa = locale === "ja";
     const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
 
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
 
     const sizesCode = sizesCodeByLocale[locale];
 
@@ -182,7 +182,7 @@ export default function SpinnerPage() {
             ]}
             sectionLabels={sectionLabels}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewHeight="auto" previewBodyWidth="md" sectionLabels={sectionLabels}>
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewHeight="auto" previewBodyWidth="md" sectionLabels={sectionLabels}>
                 <Spinner size="lg" aria-label={isJa ? "読み込み中" : "Loading"} />
             </ComponentPreview>
 
@@ -267,10 +267,10 @@ export default function SpinnerPage() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="rounded-md border bg-muted font-mono text-sm max-h-[350px] overflow-auto">
-                    <CodeBlock code={code} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </section>
         </ComponentLayout>

@@ -215,11 +215,11 @@ export default function StatusBarDocPage() {
     const isJa = locale === "ja";
     const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
 
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
 
     const workspaceCode = workspaceCodeByLocale[locale];
 
-    const editorCode = code;
+    const editorCode = usageCode;
 
     const issueCode = issueCodeByLocale[locale];
 
@@ -266,7 +266,7 @@ export default function StatusBarDocPage() {
             ]}
             sectionLabels={sectionLabels}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewHeight="auto" previewBodyWidth="xl" sectionLabels={sectionLabels}>
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewHeight="auto" previewBodyWidth="xl" sectionLabels={sectionLabels}>
                 <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
                     <div className="border-b bg-muted/40 px-4 py-2 text-sm font-medium">
                         {isJa ? "記事エディタ" : "Article editor"}
@@ -416,10 +416,10 @@ export default function StatusBarDocPage() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="rounded-md border bg-muted font-mono text-sm max-h-[350px] overflow-auto">
-                    <CodeBlock code={code} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </section>
         </ComponentLayout>

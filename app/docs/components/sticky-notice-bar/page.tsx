@@ -153,7 +153,7 @@ export default function StickyNoticeBarPage() {
     const isJa = locale === "ja";
     const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
 
-    const topCode = topCodeByLocale[locale];
+    const usageCode = topCodeByLocale[locale];
 
     const bottomCode = bottomCodeByLocale[locale];
 
@@ -236,8 +236,8 @@ export default function StickyNoticeBarPage() {
         >
             <ComponentPreview
                 embedSrc="/embed/sticky-notice-bar"
-                code={topCode}
-                codeBlock={<CodeBlock code={topCode} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 previewHeight={420}
                 fitEmbedHeightContent={false}
                 previewBodyWidth="xl"
@@ -298,9 +298,11 @@ export default function StickyNoticeBarPage() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage ?? "Usage"}
                     </h2>
-                    <CodeCopyButton code={topCode} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={topCode} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </section>
         </ComponentLayout>
     );
