@@ -205,7 +205,7 @@ export function CompactHeader() {
 export default function HeaderPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
-const code = `import * as React from "react"
+const usageCode = `import * as React from "react"
 import {
   IconLanguage as Languages,
   IconMoon as Moon,
@@ -509,7 +509,7 @@ export function DrawerMenuHeader() {
                 { name: "Button", href: "/docs/components/button" },
             ]}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewBodyWidth="full" previewHeight="auto" embedSrc="/embed/header">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewBodyWidth="full" previewHeight="auto" embedSrc="/embed/header">
                 <HeaderExample />
             </ComponentPreview>
 
@@ -562,9 +562,11 @@ export function DrawerMenuHeader() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </div>
         </ComponentLayout>
     );

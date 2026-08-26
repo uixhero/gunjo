@@ -69,7 +69,7 @@ export default function ListDocPage() {
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
     const title = content?.title ?? meta.list.title;
     const description = content?.description ?? meta.list.description;
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
 
     return (
         <ComponentLayout
@@ -88,7 +88,7 @@ export default function ListDocPage() {
                 { name: "Checkbox", href: "/docs/components/checkbox" },
             ]}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewBodyWidth="sm" previewHeight="auto">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="sm" previewHeight="auto">
                 <List spacing="loose" className="w-full">
                     <ListItem>{locale === "ja" ? "要件を確認する" : "Review the requirements"}</ListItem>
                     <ListItem>{locale === "ja" ? "必要な入力を揃える" : "Collect the required inputs"}</ListItem>
@@ -308,9 +308,11 @@ export function CustomIconList() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </div>
             <section className="space-y-4">
                 <div className="border-b pb-2">

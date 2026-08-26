@@ -466,7 +466,7 @@ export function LinksRightRail() {
 export default function RightRailDocPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
     const statusCode = statusCodeByLocale[locale];
     const linksCode = linksCodeByLocale[locale];
 
@@ -487,7 +487,7 @@ export default function RightRailDocPage() {
                 { name: "DocumentPager", href: "/docs/components/document-pager" },
             ]}
         >
-            <ComponentPreview embedSrc="/embed/right-rail" code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewBodyWidth="full" previewHeight="auto">
+            <ComponentPreview embedSrc="/embed/right-rail" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewBodyWidth="full" previewHeight="auto">
                 <RightRailDemo />
             </ComponentPreview>
 
@@ -533,9 +533,11 @@ export default function RightRailDocPage() {
             <div className="space-y-4">
                 <div className="flex items-start justify-between gap-3 border-b pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{sectionLabels.usage}</h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </div>
         </ComponentLayout>
     );

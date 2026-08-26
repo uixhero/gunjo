@@ -241,6 +241,7 @@ function DemoCell({ children }: { children: ReactNode }) {
 
 export default function GridPage() {
     const { locale } = useLocale();
+    const usageCode = codeByLocale[locale];
     const meta = layoutMetadata as Record<string, { title: string; description: string }>;
     const propsData = locale === "ja"
         ? [
@@ -268,7 +269,7 @@ export default function GridPage() {
                 { name: "AssetGrid", href: "/docs/components/asset-grid" },
             ]}
         >
-            <ComponentPreview embedSrc="/embed/grid" code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="lg">
+            <ComponentPreview embedSrc="/embed/grid" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="lg">
                 <Grid minItemWidth={180} gap={3} className="w-full">
                     {dashboardCardsByLocale[locale].map((card) => (
                         <section key={card.title} className="rounded-md border bg-card p-4">
@@ -381,10 +382,10 @@ export default function GridPage() {
             <section className="space-y-4">
                 <div className="flex items-start justify-between gap-3 border-b pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </section>
         </ComponentLayout>

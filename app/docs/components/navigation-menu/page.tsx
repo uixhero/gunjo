@@ -197,7 +197,7 @@ export function DirectNavigation() {
 export default function NavigationMenuPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
     const directCode = directCodeByLocale[locale];
 
     return (
@@ -211,7 +211,7 @@ export default function NavigationMenuPage() {
                 { name: "Menubar", href: "/docs/components/menubar" },
             ]}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewBodyWidth="lg" previewHeight="auto">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewBodyWidth="lg" previewHeight="auto">
                 <NavigationMenuExample />
             </ComponentPreview>
 
@@ -253,9 +253,11 @@ export default function NavigationMenuPage() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </div>
         </ComponentLayout>
     );

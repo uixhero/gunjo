@@ -291,7 +291,7 @@ export function ReleaseHoverCard() {
 export default function HoverCardPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
     const notificationCode = notificationCodeByLocale[locale];
     const actionCode = actionCodeByLocale[locale];
     const tabbedCode = tabbedCodeByLocale[locale];
@@ -310,8 +310,8 @@ export default function HoverCardPage() {
             ]}
         >
             <ComponentPreview
-                code={code}
-                codeBlock={<CodeBlock code={code} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewHeight="auto"
                 className="overflow-visible"
@@ -338,7 +338,7 @@ export default function HoverCardPage() {
                                     {(portalContainer) => <HoverCardAuditDemo portalContainer={portalContainer} />}
                                 </HoverCardPreviewSurface>
                             ),
-                            code,
+                            code: usageCode,
                             previewHeight: "auto",
                             previewClassName: "overflow-visible",
                         },
@@ -425,12 +425,14 @@ export default function HoverCardPage() {
 
             <section className="space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
-                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </section>
             <section className="space-y-4">
                 <div className="border-b pb-2">
