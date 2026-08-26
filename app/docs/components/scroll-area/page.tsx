@@ -263,6 +263,7 @@ export function AlwaysVisibleScrollbar() {
 
 export default function ScrollAreaPage() {
     const { locale } = useLocale();
+    const usageCode = codeByLocale[locale];
     const meta = layoutMetadata as Record<string, { title: string; description: string }>;
     const propsData = locale === "ja"
         ? [
@@ -296,7 +297,7 @@ export default function ScrollAreaPage() {
                 { name: "DataTable", href: "/docs/components/data-table" },
             ]}
         >
-            <ComponentPreview embedSrc="/embed/scroll-area" code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="md" previewHeight={340}>
+            <ComponentPreview embedSrc="/embed/scroll-area" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md" previewHeight={340}>
                 <ScrollArea className="h-56 w-full max-w-sm rounded-md border bg-background p-4">
                     <div className="mb-3 text-sm font-medium">{locale === "ja" ? "リリース" : "Releases"}</div>
                     {releaseItems.map((release) => (
@@ -427,10 +428,10 @@ export default function ScrollAreaPage() {
             <section className="space-y-4">
                 <div className="flex items-start justify-between gap-3 border-b pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </section>
         </ComponentLayout>

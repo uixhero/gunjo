@@ -287,6 +287,7 @@ function ShapeInspectorPreview() {
 
 export default function InspectorPanelPage() {
     const { locale } = useLocale();
+    const usageCode = codeByLocale[locale];
     const meta = layoutMetadata as Record<string, { title: string; description: string }>;
     const propsData = locale === "ja"
         ? [
@@ -319,7 +320,7 @@ export default function InspectorPanelPage() {
                 { name: "Input", href: "/docs/components/inputs" },
             ]}
         >
-            <ComponentPreview embedSrc="/embed/inspector-panel" code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="md" previewHeight="auto">
+            <ComponentPreview embedSrc="/embed/inspector-panel" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md" previewHeight="auto">
                 <ShapeInspectorPreview />
             </ComponentPreview>
 
@@ -335,7 +336,7 @@ export default function InspectorPanelPage() {
                             <h3 className="text-lg font-semibold">{locale === "ja" ? "標準表示" : "Default panel"}</h3>
                             <p className="text-sm text-muted-foreground">{locale === "ja" ? "ヘッダー、本文、フッター操作を持つプロパティ編集パネルです。" : "A property editing panel with header, body, and footer actions."}</p>
                         </div>
-                        <ComponentPreview code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="md" previewHeight="auto">
+                        <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md" previewHeight="auto">
                             <ShapeInspectorPreview />
                         </ComponentPreview>
                     </section>
@@ -406,10 +407,10 @@ export default function InspectorPanelPage() {
             <section className="space-y-4">
                 <div className="flex items-start justify-between gap-3 border-b pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </section>
             <section className="space-y-4">

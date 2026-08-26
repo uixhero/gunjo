@@ -153,7 +153,7 @@ export default function SearchableAccordionPage() {
     const { locale, sectionLabels } = useLocale();
     const metadata = displayMetadata as Record<string, { title: string; description: string }>;
     const items = locale === "ja" ? baseItemsJa : baseItemsEn;
-    const code = buildCode(locale, true);
+    const usageCode = buildCode(locale, true);
     const noCategoriesCode = buildCode(locale, false);
     const emptyCode = buildCode(locale, true, locale === "ja" ? "契約更新" : "renewal");
 
@@ -178,8 +178,8 @@ export default function SearchableAccordionPage() {
         >
             <ComponentPreview
                 embedSrc="/embed/searchable-accordion"
-                code={code}
-                codeBlock={<CodeBlock code={code} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewBodyWidth="lg"
             >
@@ -198,7 +198,7 @@ export default function SearchableAccordionPage() {
                             description: locale === "ja" ? "検索語とカテゴリタブで FAQ やヘルプ項目を絞り込みます。" : "Filter FAQ or help items by search term and category tabs.",
                             preview: <SearchableAccordionDemo locale={locale} />,
                             previewBodyWidth: "lg",
-                            code,
+                            code: usageCode,
                         },
                         {
                             key: "without-categories",
@@ -293,10 +293,10 @@ export default function SearchableAccordionPage() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[420px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={code} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </section>
         </ComponentLayout>
