@@ -323,6 +323,56 @@ export function LockedNoteTextarea() {
                     <CodeBlock code={usageCode} />
                 </div>
             </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>高さはクラスで決まっていて、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">rows</code> では変わりません。</strong>資料は「<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">rows</code> でだいたいこれくらい書いてほしいという期待量を示す」を挙げています。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Textarea</code> は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">h-20</code>（80px）を持つので、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">rows</code> を渡しても見た目の高さは変わりません。高さを変えるときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">className</code> で <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">h-32</code> のように上書きすることになります。ここは資料の勧めをそのまま受け取れない場所です。
+                        </li>
+                        <li>
+                            <strong>縦に伸ばす操作は塞いでいない。</strong>資料は「<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">resize</code> を CSS で殺す」を禁止に挙げています。GUNJO は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">resize</code> に一切触れていないので、ブラウザの既定どおり利用者が自分で広げられます。一方で、入力に合わせて自動で伸びる仕組みも持っていません。
+                        </li>
+                        <li>
+                            <strong>文字数は数えるが、色は変えない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showCount</code> を渡すと右下に数が出て、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">maxLength</code> があれば「いまの数と上限」の形になります。この数は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-describedby</code> で入力欄に結んであるので、読み上げでも一緒に伝わります。資料が挙げる「残り20から30文字で警告色に変える」は入れていません。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">maxLength</code> を付ければブラウザ側で入力が止まるので、まず止まることを優先しました。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/textarea"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: テキストエリア（Textarea）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>The height comes from a class, so <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">rows</code> does nothing.</strong> The article suggests using <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">rows</code> to signal roughly how much text is expected. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Textarea</code> carries <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">h-20</code> (80px), so passing <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">rows</code> does not change the rendered height; changing it means overriding with something like <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">h-32</code> in <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">className</code>. This is one place where the article advice cannot be taken as written.
+                        </li>
+                        <li>
+                            <strong>Dragging the corner is not blocked.</strong> The article forbids killing <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">resize</code> in CSS. GUNJO never touches <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">resize</code>, so the browser default stands and the reader can enlarge the box. Auto-growing with the content is not implemented either.
+                        </li>
+                        <li>
+                            <strong>The characters are counted, but the colour never changes.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showCount</code> and a readout appears at the bottom right, becoming current-over-limit when <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">maxLength</code> is set. It is tied to the field with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-describedby</code>, so it reaches screen readers too. The warning colour the article asks for at twenty to thirty characters remaining is not implemented: with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">maxLength</code> the browser stops the input anyway, and stopping was treated as the more important half.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/textarea"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Textarea (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }
