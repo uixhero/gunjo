@@ -275,6 +275,56 @@ export function LockedNotificationCheckbox() {
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {isJa ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {isJa ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>土台は入力欄ではなくボタン。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="checkbox"'}</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-checked</code> を自分で持つ <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> で作っています。素の入力欄の描画に見た目を縛られないための選択で、その代わり読み上げ用の属性は部品の側で全部埋めています。
+                        </li>
+                        <li>
+                            <strong>名前と補足を部品に渡せる。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">label</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">description</code> を渡すと、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">useId</code> で作った id を使って <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-labelledby</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-describedby</code> に繋がります。呼ぶ側が毎回 <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> を思い出さなくて済みます。ラベルを押しても切り替わるので、当たり判定は四角の中だけではありません。
+                        </li>
+                        <li>
+                            <strong>見た目の段は生成された定義から引く。</strong>チェック済み・未チェック・使えない、の3つの見た目は設計の元から生成した名前で引いています。ソースの側だけで段を足すことはできません。四角は複数選べる・丸は1つだけ、という使い分けは資料に書いてあります。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/checkbox"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: チェックボックス（Checkbox）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>A button underneath, not an input.</strong> It is a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> that carries <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="checkbox"'}</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-checked</code> itself. That keeps the visual out of the native control renderer, and in exchange every attribute a screen reader needs is filled in by the component.
+                        </li>
+                        <li>
+                            <strong>The name and the hint are props.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">label</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">description</code> and they are wired through ids from <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">useId</code> into <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-labelledby</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-describedby</code>, so callers do not have to remember a per-instance <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code>. Clicking the label toggles it too, so the hit area is more than the box.
+                        </li>
+                        <li>
+                            <strong>The states come from generated keys.</strong> Checked, unchecked and disabled are looked up by names generated from the design source, so a state cannot be added from the React side alone. Square means many, round means one is covered in the article.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/checkbox"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Checkbox (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

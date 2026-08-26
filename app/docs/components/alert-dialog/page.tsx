@@ -455,6 +455,56 @@ export default function AlertDialogPage() {
                     <CodeBlock code={usageCode} />
                 </div>
             </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {isJa ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {isJa ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>取り消しのほうを押しやすい場所に置く。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AlertDialogCancel</code> は輪郭だけのボタン、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AlertDialogAction</code> は塗りつぶしのボタンです。狭い画面では脚部が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">flex-col-reverse</code> になるので、実行が上、取り消しが下に縦に並びます。片手で持ったときに指が届きやすいのは下側なので、取り消しがそこに来ます。
+                        </li>
+                        <li>
+                            <strong>外側を押しても閉じない。</strong>土台は Radix の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AlertDialog</code> です。ふつうのダイアログと違って背景を押しても閉じないので、取り消すか実行するかを必ず選ぶことになります。だからこそ、押すだけで済む儀式のような確認には使わない、という資料の指摘がそのまま効きます。
+                        </li>
+                        <li>
+                            <strong>説明が無いときだけ読み上げの紐づけを外す。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AlertDialogDescription</code> を置いたときは Radix の紐づけをそのまま残し、題だけのダイアログでは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-describedby</code> を明示で空にします。開発時の警告だけを消して、説明があるときの読み上げは壊さないための作りです（#322）。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/alert-dialog"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: 確認ダイアログ（Alert Dialog）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Put cancel where the thumb lands.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AlertDialogCancel</code> is an outline button and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AlertDialogAction</code> is a filled one. On a narrow screen the footer becomes <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">flex-col-reverse</code>, so the action stacks on top and cancel sits at the bottom, which is the easier half of a phone to reach.
+                        </li>
+                        <li>
+                            <strong>Clicking outside does not dismiss it.</strong> The base is the Radix <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AlertDialog</code>. Unlike a plain dialog, pressing the backdrop does nothing, so the reader has to choose cancel or confirm. That is exactly why the article warns against using it for confirmations that are only a ritual.
+                        </li>
+                        <li>
+                            <strong>Drop the description wiring only when there is no description.</strong> When an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AlertDialogDescription</code> is present, Radix keeps its own <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-describedby</code> wiring. For a title-only dialog the attribute is explicitly cleared instead, which silences the dev warning without breaking the association for screen readers (#322).
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/alert-dialog"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Alert Dialog (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }
