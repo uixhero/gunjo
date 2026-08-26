@@ -340,7 +340,7 @@ export default function ToastProviderPage() {
         info: isJa ? "同期をバックグラウンドで続行しています。" : "Sync continues in the background.",
     };
 
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
 
     const successOnlyCode = successOnlyCodeByLocale[locale];
 
@@ -386,7 +386,7 @@ export default function ToastProviderPage() {
             ]}
             sectionLabels={sectionLabels}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewHeight="auto" previewBodyWidth="lg" sectionLabels={sectionLabels}>
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewHeight="auto" previewBodyWidth="lg" sectionLabels={sectionLabels}>
                 <ToastProvider labels={{ close: closeLabel }}>
                     <div className="rounded-lg border bg-muted/40 p-6">
                         <ProviderTrigger
@@ -491,10 +491,10 @@ export default function ToastProviderPage() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="rounded-md border bg-muted font-mono text-sm max-h-[350px] overflow-auto">
-                    <CodeBlock code={code} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </section>
         </ComponentLayout>

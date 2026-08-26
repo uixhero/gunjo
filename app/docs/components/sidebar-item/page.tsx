@@ -877,7 +877,7 @@ export function MediaLibrarySidebarContent() {
 export default function SidebarItemPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
     const actionsCodeWithWrapper = actionsCodeByLocale[locale];
     const flatCode = flatCodeByLocale[locale];
 
@@ -897,7 +897,7 @@ export default function SidebarItemPage() {
                 { name: "TreeView", href: "/docs/components/tree-view" },
             ]}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewBodyWidth="md" previewHeight="auto">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewBodyWidth="md" previewHeight="auto">
                 <SidebarContentExample />
             </ComponentPreview>
 
@@ -959,9 +959,11 @@ export default function SidebarItemPage() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </div>
         </ComponentLayout>
     );

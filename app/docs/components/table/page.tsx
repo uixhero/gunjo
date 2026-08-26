@@ -464,7 +464,7 @@ export default function TablePage() {
     const { locale, sectionLabels } = useLocale();
     const content = getDocContent("components/table", locale);
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
 
     return (
         <ComponentLayout
@@ -485,7 +485,7 @@ export default function TablePage() {
                 { name: "MarkdownRenderer", href: "/docs/components/markdown-renderer" },
             ]}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewBodyWidth="lg" previewHeight="auto">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="lg" previewHeight="auto">
                 <AmountTable locale={locale} />
             </ComponentPreview>
 
@@ -568,9 +568,11 @@ export default function TablePage() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </div>
         </ComponentLayout>
     );
