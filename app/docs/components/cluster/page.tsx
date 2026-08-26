@@ -97,6 +97,7 @@ export function CenteredStatusCluster() {
 
 export default function ClusterPage() {
     const { locale } = useLocale();
+    const usageCode = codeByLocale[locale];
     const meta = layoutMetadata as Record<string, { title: string; description: string }>;
     const propsData = locale === "ja"
         ? [
@@ -128,7 +129,7 @@ export default function ClusterPage() {
                 { name: "Tag", href: "/docs/components/tag" },
             ]}
         >
-            <ComponentPreview embedSrc="/embed/cluster" code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="md">
+            <ComponentPreview embedSrc="/embed/cluster" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md">
                 <div className="w-full rounded-lg border bg-background p-4">
                     <Cluster gap={2}>
                         {tagsByLocale[locale].map((tag) => (
@@ -154,7 +155,7 @@ export default function ClusterPage() {
                                     : "Let tags and short badges wrap naturally when the list grows."}
                             </p>
                         </div>
-                        <ComponentPreview code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="md" previewHeight="auto">
+                        <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md" previewHeight="auto">
                             <div className="w-full rounded-lg border bg-background p-4">
                                 <Cluster gap={2}>
                                     {tagsByLocale[locale].map((tag) => (
@@ -218,10 +219,10 @@ export default function ClusterPage() {
             <section className="space-y-4">
                 <div className="flex items-start justify-between gap-3 border-b pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </section>
         </ComponentLayout>
