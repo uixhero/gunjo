@@ -1,0 +1,128 @@
+{
+  "_comment": [
+    "日本語の分量の数え方（japanese-length）の照合用データ。",
+    "正 = ~/dev/new-4px/skills/japanese-length/reference/japanese-length.parity.json",
+    "このファイルと japanese-length.mjs は、UIXHERO（src/lib/）と GUNJO（scripts/）に",
+    "バイト単位で同じものを置く。⛔ 片方だけ書き換えない。",
+    "implSha256 は正の japanese-length.mjs の SHA-256。各リポの検査が写しのハッシュと突き合わせる。",
+    "⚠️ words / characters は Intl.Segmenter（ICU）の結果。ICU の版が大きく変わると動きうる。",
+    "ICU 76.1（Node 22.14）と 78.3（Node 26）では全件一致を実測済み（2026-08-25）。",
+    "振る舞いを変えたら specVersion を上げ、両リポの写しを同時に差し替え、check-parity を通すこと。"
+  ],
+  "specVersion": "1",
+  "implSha256": "9daa7c4c043bfa4fb774215db771150a082e3e0c014f89a0beb71f657374e76d",
+  "cases": [
+    {
+      "id": "empty",
+      "note": "空文字は0。undefined / null / 非文字列も0（コードで別途検査する）",
+      "source": "",
+      "words": 0,
+      "characters": 0
+    },
+    {
+      "id": "ascii-english",
+      "note": "半角スペース区切りが効く唯一の場合。旧実装と一致する",
+      "source": "Hello world.",
+      "words": 2,
+      "characters": 11
+    },
+    {
+      "id": "plain-ja",
+      "note": "素の日本語。旧実装は1を返した",
+      "source": "これは日本語のテスト文です。",
+      "words": 7,
+      "characters": 14
+    },
+    {
+      "id": "segmenter-limit",
+      "note": "⚠️ 「安心して」が「安 / 心して」に割れる。分かち書きの限界を固定する",
+      "source": "安心してお使いいただけます。",
+      "words": 8,
+      "characters": 14
+    },
+    {
+      "id": "html-tags",
+      "note": "タグは空白1つへ。詰めると隣の語がつながる",
+      "source": "<p>これは<strong>テスト</strong>です。</p>",
+      "words": 4,
+      "characters": 9
+    },
+    {
+      "id": "html-adjacent",
+      "note": "タグだけで区切られた2文が1語に融合していないこと",
+      "source": "<p>設計</p><p>実装</p>",
+      "words": 2,
+      "characters": 4
+    },
+    {
+      "id": "html-entities",
+      "note": "実体参照を文字へ戻す。&amp;lt; を二重復号しない",
+      "source": "<p>A &amp; B &lt;tag&gt; &nbsp; &#12354;</p>",
+      "words": 4,
+      "characters": 9
+    },
+    {
+      "id": "html-script-style",
+      "note": "script / style / コメントは中身ごと落とす",
+      "source": "<style>.a{color:red}</style><!-- メモ --><script>var a=1</script><p>本文だけ数える。</p>",
+      "words": 3,
+      "characters": 8
+    },
+    {
+      "id": "html-code",
+      "note": "コードの中身は数える（技術記事では読む対象）",
+      "source": "<p>次のように書く。</p><pre><code>const total = items.length;</code></pre>",
+      "words": 8,
+      "characters": 32
+    },
+    {
+      "id": "md-heading-list-link",
+      "note": "見出し・箇条書き・リンク・画像の記法だけを落とす",
+      "source": "# 見出し\n\n本文です。[リンク](https://example.com)と ![図の説明](/a.png) を含みます。\n\n- 箇条書き\n- もう一つ\n",
+      "words": 15,
+      "characters": 30
+    },
+    {
+      "id": "md-table",
+      "note": "表の縦棒と区切り行を落とし、セルの語は残す",
+      "source": "| 項目 | 値 |\n| --- | --- |\n| 語数 | 桁が合えば足りる |\n",
+      "words": 9,
+      "characters": 13
+    },
+    {
+      "id": "md-fence",
+      "note": "コードフェンスの行だけ落とし、中身は数える",
+      "source": "説明。\n\n```ts\nconst a: number = 1\n```\n\nまとめ。\n",
+      "words": 6,
+      "characters": 22
+    },
+    {
+      "id": "md-quote-emphasis",
+      "note": "引用記号と強調記号を落とす",
+      "source": "> **強調した引用**と `インラインコード` を含む行。\n",
+      "words": 9,
+      "characters": 20
+    },
+    {
+      "id": "mixed-ja-en-num",
+      "note": "日英数の混在。ばらつきの主因",
+      "source": "アクセシビリティ（accessibility）とWCAG 2.1のAA適合について、2026年の実測値を示します。",
+      "words": 17,
+      "characters": 56
+    },
+    {
+      "id": "emoji-surrogate",
+      "note": "絵文字・異体字を1文字と数える（コードポイント単位）",
+      "source": "絵文字🙂や異体字𠮷も1文字として数えます。",
+      "words": 12,
+      "characters": 21
+    },
+    {
+      "id": "paragraph",
+      "note": "実記事に近い長さの段落",
+      "source": "デザインシステムは、部品を配る仕組みではなく判断を配る仕組みです。ボタンの色を1つに決めることよりも、どんなときにボタンを使い、どんなときにリンクを使うのかを決めるほうが、実務では効きます。UIXHERO では、この判断の部分を用語集と記事の両方で扱っています。",
+      "words": 65,
+      "characters": 130
+    }
+  ]
+}
