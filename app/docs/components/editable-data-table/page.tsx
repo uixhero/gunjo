@@ -152,7 +152,19 @@ export default function EditableDataTableDocPage() {
     const description = meta.editableDataTable.description ?? "";
 
     return (
-        <ComponentLayout title={title} description={description}>
+        <ComponentLayout
+            title={title}
+            description={description}
+            usedComponents={[
+                { name: "Button", href: "/docs/components/button" },
+            ]}
+            relatedComponents={[
+                { name: "DataTable", href: "/docs/components/data-table" },
+                { name: "ActionDataTable", href: "/docs/components/action-data-table" },
+                { name: "EditableField", href: "/docs/components/editable-field" },
+                { name: "AmountBreakdown", href: "/docs/components/amount-breakdown" },
+            ]}
+        >
             <ComponentPreview codeBlock={<CodeBlock code={usageCode} />}>
                 <div className="w-full">
                     <EditableDataTableDemo />

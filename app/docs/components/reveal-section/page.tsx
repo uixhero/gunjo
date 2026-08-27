@@ -36,7 +36,17 @@ export default function RevealSectionDocPage() {
     const description = meta.revealSection.description ?? "";
 
     return (
-        <ComponentLayout title={title} description={description}>
+        <ComponentLayout
+            title={title}
+            description={description}
+            usedComponents={[]}
+            relatedComponents={[
+                { name: "Accordion", href: "/docs/components/accordion" },
+                { name: "Form", href: "/docs/components/form" },
+                { name: "Alert", href: "/docs/components/alert" },
+                { name: "CollapsiblePanelToggle", href: "/docs/components/collapsible-panel-toggle" },
+            ]}
+        >
             <ComponentPreview codeBlock={<CodeBlock code={usageCode} />}>
                 <RevealSectionDemo />
             </ComponentPreview>

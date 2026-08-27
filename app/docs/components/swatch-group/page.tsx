@@ -46,7 +46,17 @@ export default function SwatchGroupDocPage() {
   const description = meta.swatchGroup.description ?? "";
 
   return (
-    <ComponentLayout title={title} description={description}>
+    <ComponentLayout
+      title={title}
+      description={description}
+      usedComponents={[]}
+      relatedComponents={[
+        { name: "ColorSwatch", href: "/docs/components/color-swatch" },
+        { name: "RadioGroup", href: "/docs/components/radio-group" },
+        { name: "RadioCard", href: "/docs/components/radio-card" },
+        { name: "SegmentedControl", href: "/docs/components/segmented-control" },
+      ]}
+    >
       <ComponentPreview codeBlock={<CodeBlock code={usageCode} />}>
         <SwatchGroup options={swatchOptions} value="primary" />
       </ComponentPreview>

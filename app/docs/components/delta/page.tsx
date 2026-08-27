@@ -75,7 +75,16 @@ export default function DeltaDocPage() {
   const description = meta.delta.description ?? "";
 
   return (
-    <ComponentLayout title={title} description={description}>
+    <ComponentLayout
+      title={title}
+      description={description}
+      usedComponents={[]}
+      relatedComponents={[
+        { name: "Statistic", href: "/docs/components/statistic" },
+        { name: "ReferenceValue", href: "/docs/components/reference-value" },
+        { name: "SparklineChart", href: "/docs/components/sparkline-chart" },
+      ]}
+    >
       <ComponentPreview codeBlock={<CodeBlock code={usageCode} />}>
         <DeltaDemo />
       </ComponentPreview>
