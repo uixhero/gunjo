@@ -498,6 +498,56 @@ export default function GaugeChartPage() {
                 </div>
                 <CodeBlock code={usageCode} />
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>範囲を、読み上げ名に必ず畳み込みます。</strong>ゲージは目盛りを描かないので、弧の長さだけでは「73 が何に対する 73 か」が分かりません。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> は「ラベル: 値（Range: 下端 - 上端）」の形で組み立てられ、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">min</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> が必ず入ります。資料は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="meter"'}</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-valuetext</code> を薦めていますが、GUNJO は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="img"'}</code> を選び、範囲を名前の中に入れる形にしました。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">rangeLabel</code> の既定は英語の「Range」なので、日本語の画面では渡し直します。
+                        </li>
+                        <li>
+                            <strong>判定の語は、部品が持ちません。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">color</code> に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">warning</code> や <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">destructive</code> を渡しても、変わるのは弧の色だけです。「正常・注意・危険」は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">label</code> か周りの文字で書いてください。値そのものは常に中央に文字で出るので（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueLabel</code> で上書きできます）、数字が色だけになることはありません。
+                        </li>
+                        <li>
+                            <strong>範囲の外の値は、端で止めます。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">value</code> は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">min</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> に丸められるので、上限を超えた値も弧からはみ出しません。ただし丸めたことは図からは分からないので、超過そのものを見せたい画面では、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> を超えた事実を文字で添えてください。表示だけの図でもフォーカスできるのは、範囲を出すツールチップをキーボードからも開けるようにするためです。数値の整形は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> のほかに、サーバーコンポーネントからも渡せる <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code> を持っています（#338）。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/gauge-chart"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: ゲージチャート（Gauge Chart）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>The range is always folded into the accessible name.</strong> A gauge draws no tick marks, so the length of the arc alone never says what the 73 is out of. The <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> is assembled as “label: value (Range: min - max)”, and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">min</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> are always in it. The article recommends <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="meter"'}</code> with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-valuetext</code>; GUNJO chose <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="img"'}</code> and put the range inside the name instead. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">rangeLabel</code> defaults to the English “Range” and should be replaced on a Japanese screen.
+                        </li>
+                        <li>
+                            <strong>The verdict word is not the component&rsquo;s to give.</strong> Passing <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">warning</code> or <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">destructive</code> to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">color</code> changes the colour of the arc and nothing else. Words like normal, warning and critical belong in <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">label</code> or in the copy around it. The value itself is always printed as text in the middle (override it with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueLabel</code>), so the number is never carried by colour alone.
+                        </li>
+                        <li>
+                            <strong>Values outside the range stop at the end of the arc.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">value</code> is clamped between <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">min</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code>, so an over-range reading never overflows the drawing. The clamping is invisible in the figure, so when the overshoot is the point, say so in text next to it. The gauge is focusable even when it is read-only, so that the tooltip carrying the range can be opened from the keyboard. Alongside <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> it takes the serializable <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code>, which a Server Component can pass (#338).
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/gauge-chart"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Gauge Chart (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

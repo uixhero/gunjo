@@ -1127,11 +1127,59 @@ export function NormalizedAcquisitionMix() {
     ],
 } as const;
 
+const designDecisions = {
+    ja: (
+        <>
+            <li>
+                <strong>上限の超過を、系列の色を変えずに示します。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">threshold</code> は各グループの合計に対する線です。超えたグループは全周のリングと、合計値の色と太さで示し、帯の色は1つも変えません。系列の色にはそれぞれ意味があるからです（#285）。文字の側にも出ていて、各帯の読み上げ名の末尾に「(over Limit)」が付きます。
+            </li>
+            <li>
+                <strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">normalize</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">threshold</code> は同時に効きません。黙って無視せず、警告します。</strong>すべてのグループが 100% になると、実数の上限には置き場所がありません。両方を渡した場合は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">threshold</code> を無視し、開発中はその理由をコンソールに出します。両方が要る画面になったら、図を2つに分けてください。
+            </li>
+            <li>
+                <strong>帯の読み上げ名には、いつも取り分が入ります。</strong>「グループ名 系列名: 値（Total: 合計 / NN%）」の形です。帯が細くて数字を書けないときでも、割合はキーボードと読み上げには届きます。積む順は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">segments</code> の並び順そのままで、配列の先頭が下段になります。資料が最も効く判断に挙げる「比べさせたい系列を最下段に置く」は、配列を並べ替えて行います。数値の整形は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> のほかに、サーバーコンポーネントからも渡せる <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code> を持っています（#338）。
+                <br />
+                <a
+                    className="underline underline-offset-4"
+                    href="https://www.uixhero.com/resources/ui-components/stacked-bar-chart"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    UIXHERO: 積み上げ棒グラフ（Stacked Bar Chart）
+                </a>
+            </li>
+        </>
+    ),
+    en: (
+        <>
+            <li>
+                <strong>Crossing the limit is marked without touching the segment colours.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">threshold</code> is a line against each group&rsquo;s total. An over-limit group is marked with a ring around the whole stack and by the weight and colour of its total readout; not one band changes colour, because each segment&rsquo;s colour already means something (#285). The state is in text as well: every band appends “(over Limit)” to its accessible name.
+            </li>
+            <li>
+                <strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">normalize</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">threshold</code> cannot both apply, and the conflict is not swallowed.</strong> Once every group renders at 100%, an absolute limit has nowhere to sit on the track. Passing both ignores <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">threshold</code> and logs why in development. When a screen genuinely needs both, split it into two charts.
+            </li>
+            <li>
+                <strong>Every band announces its share.</strong> The accessible name reads “group, segment: value (Total: total / NN%)”, so the share reaches keyboard and screen-reader users even when a band is too thin to hold a number. Stacking order follows <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">segments</code> exactly, first item at the bottom, which is how you apply the article&rsquo;s sharpest rule: put the series you want compared at the base. Alongside <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> this chart takes the serializable <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code>, which a Server Component can pass (#338).
+                <br />
+                <a
+                    className="underline underline-offset-4"
+                    href="https://www.uixhero.com/resources/ui-components/stacked-bar-chart"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    UIXHERO: Stacked Bar Chart (in Japanese)
+                </a>
+            </li>
+        </>
+    ),
+};
+
 export default function StackedBarChartPage() {
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
 
     return (
         <ChartDocPage
+            designDecisions={designDecisions}
             title={{ en: meta.stackedBarChart.title, ja: "積み上げ棒チャート" }}
             description={{
                 en: meta.stackedBarChart.description,
