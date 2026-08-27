@@ -37,6 +37,11 @@ type InputCompositionDocPageProps = {
     usedComponents: UsedComponent[];
     relatedComponents: UsedComponent[];
     previewBodyWidth?: "sm" | "md" | "lg" | "xl" | "full";
+    /**
+     * "Design decisions" list items per locale, supplied by each page so the
+     * UIXHERO reference it cites lives next to the component it is about.
+     */
+    designDecisions?: Record<"ja" | "en", React.ReactNode>;
 };
 
 export function InputCompositionDocPage({
@@ -52,6 +57,7 @@ export function InputCompositionDocPage({
     usedComponents,
     relatedComponents,
     previewBodyWidth = "md",
+    designDecisions,
 }: InputCompositionDocPageProps) {
     const { locale, sectionLabels } = useLocale();
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
@@ -100,6 +106,19 @@ export function InputCompositionDocPage({
                     <CodeBlock code={usageCode} />
                 </div>
             </section>
+
+            {designDecisions ? (
+                <section className="space-y-4">
+                    <div className="border-b pb-2">
+                        <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                            {locale === "ja" ? "設計の判断" : "Design decisions"}
+                        </h2>
+                    </div>
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        {designDecisions[locale]}
+                    </ul>
+                </section>
+            ) : null}
         </ComponentLayout>
     );
 }

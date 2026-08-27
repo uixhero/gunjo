@@ -422,6 +422,58 @@ export function LockedPriceRangeSlider() {
                     <CodeBlock code={usageCode} />
                 </div>
             </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>本物の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">input[type=range]</code> を2本重ねた。</strong>自前のドラッグ処理は書かず、ネイティブの range を2本、同じ場所に重ねています。つまみだけがポインタを受け取り、帯と塗りは背後の飾りです。矢印キー・Home と End・読み上げが最初から効くのは、この作りのためです。
+                        </li>
+                        <li>
+                            <strong>つまみが交差したら、止めずに入れ替える。</strong>資料は「2つのハンドルが交差しないロジックを実装する」を挙げています。GUNJO は交差の手前で止めるのではなく、確定のときに小さいほうを最小・大きいほうを最大として並べ替えます。引っかかって動かないより、追い越せるほうが操作しやすいからです。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">step</code> の丸めも同じ場所でやります。
+                        </li>
+                        <li>
+                            <strong>数値の表示は、まだ書いていません。</strong>資料は「常に現在値を数値で表示する」を核に挙げていますが、この部品は帯とつまみだけで、数字を出しません。単位つきの表示も、数値入力との横並びも持たないので、いまは呼ぶ側が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">value</code> を受け取って自分で書く形です。
+                            <br />
+                            一般のスライダーの設計は UIXHERO の「スライダー」にあります。{" "}
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/slider"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: スライダー（Slider）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Two real <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">input[type=range]</code> elements, stacked.</strong> No hand-rolled drag handling: two native range inputs sit on top of each other, with pointer events reaching only the thumbs while the track and the filled span are decoration behind them. Arrow keys, Home and End and screen-reader support all come for free from that.
+                        </li>
+                        <li>
+                            <strong>Crossing thumbs swap instead of stopping.</strong> The article asks for logic that keeps the two handles from crossing. Rather than blocking at the boundary, GUNJO sorts the pair on commit so the lower value becomes the minimum and the higher one the maximum. Overtaking is easier to operate than jamming. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">step</code> rounding happens in the same place.
+                        </li>
+                        <li>
+                            <strong>The numeric readout is not written yet.</strong> The article&rsquo;s first principle is to always show the current value as a number, and this component shows only the track and the thumbs. There is no unit-aware readout and no paired number input, so today the caller reads <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">value</code> and prints it.
+                            <br />
+                            The general design of sliders is covered by UIXHERO&rsquo;s slider article.{" "}
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/slider"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Slider (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

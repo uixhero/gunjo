@@ -572,6 +572,58 @@ export default function AssetInspectorPanelDocPage() {
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>選んだものが無いときの姿を先に決めた。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">asset</code> が空のときは、アイコンと1行の案内だけを出します。資料は核を「選択状態との連動」に置いています。空のパネルを畳んで消すのではなく、場所を残して理由を書くことで、右側の幅が選択のたびに動かないようにしました。
+                        </li>
+                        <li>
+                            <strong>プロパティを意味でまとめた。</strong>題名と説明・評価・タグ・メタデータ・操作、の5つの <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorSection</code> に分けています。資料も「全プロパティをフラットに並べると視認性が下がる」と書いています。メタデータの中は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MetadataList</code> の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">compact</code> を使うので、名前と値の位置が節をまたいでそろいます。
+                        </li>
+                        <li>
+                            <strong>評価は星とスライダーの両方から動かせる。</strong>星は0.5刻みのボタン、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Slider</code> は同じ値をキーボードの矢印キーで動かす入口です。資料は「数値は上下キーで動かせるようにする」を挙げています。星だけだと細かい値をキーボードで合わせられないので、両方を置き、現在値を「3.5 / 5」の形で数字でも出しました。
+                            <br />
+                            一般のインスペクターパネルの設計は UIXHERO の「インスペクターパネル」にあります。{" "}
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/inspector-panel"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: インスペクターパネル（Inspector Panel）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>The empty state was designed first.</strong> With no <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">asset</code>, the panel shows an icon and one line of guidance. The article&rsquo;s core is the link to the selection; collapsing the panel away would make the right-hand column jump every time the selection changes, so the space is kept and the reason is written in it.
+                        </li>
+                        <li>
+                            <strong>Properties are grouped by meaning.</strong> Five <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorSection</code>s: title and note, rating, tags, metadata, actions. The article warns that a flat list of every property hurts legibility. Inside metadata, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MetadataList</code> in <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">compact</code> keeps labels and values aligned across sections.
+                        </li>
+                        <li>
+                            <strong>The rating can be driven from the stars or the slider.</strong> The stars are half-step buttons; the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Slider</code> is the same value reachable with arrow keys. The article asks for numeric fields that respond to the arrow keys, and stars alone cannot be fine-tuned from the keyboard, so both are present, with the current value also printed as a number out of five.
+                            <br />
+                            The general design of inspector panels is covered by UIXHERO&rsquo;s inspector-panel article.{" "}
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/inspector-panel"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Inspector Panel (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

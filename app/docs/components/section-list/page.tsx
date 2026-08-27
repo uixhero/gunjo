@@ -220,6 +220,58 @@ export function InvoiceSectionList() {
           <CodeBlock code={usageCode} />
         </div>
       </section>
+      <section className="space-y-4">
+        <div className="border-b pb-2">
+          <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+            {locale === "ja" ? "設計の判断" : "Design decisions"}
+          </h2>
+        </div>
+        {locale === "ja" ? (
+          <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+            <li>
+              <strong>まとめ方と小計の計算を部品に持たせない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">sections</code> は既にまとまった形で渡します。何でまとめるか（取引先か、月か）も、小計の出し方も画面ごとに違うので、部品が持つのは見出しの帯・本文の置き場・小計の帯という共通の枠だけです。
+            </li>
+            <li>
+              <strong>中身の形を決めない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">content</code> には <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ListCard</code> の並びでも、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Table</code> でも、台帳の行でも入ります。資料は「7項目以上ならセパレータや見出しでまとまりを作る」を挙げていますが、そのまとまりの中身までは決めていません。GUNJO もそこを開けたままにしました。
+            </li>
+            <li>
+              <strong>見出しを貼り付けるかどうかは宣言で選ぶ。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">stickyHeaders</code> を渡したときだけ、見出しの帯がスクロール中に上へ残ります。既定で貼り付けにしていないのは、短いまとまりが多数並ぶ画面では、帯が次々に積み替わって読みにくくなるためです。
+              <br />
+              一般のリストの設計は UIXHERO の「リスト」にあります。{" "}
+              <a
+                className="underline underline-offset-4"
+                href="https://www.uixhero.com/resources/ui-components/list"
+                target="_blank"
+                rel="noreferrer"
+              >
+                UIXHERO: リスト（List）
+              </a>
+            </li>
+          </ul>
+        ) : (
+          <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+            <li>
+              <strong>Grouping and subtotal maths stay with the caller.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">sections</code> arrives already grouped. What to group by (customer, month) and how to total it differ per screen, so the component owns only the shared chrome: the heading band, the body slot and the subtotal band.
+            </li>
+            <li>
+              <strong>The body shape is left open.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">content</code> accepts a stack of <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ListCard</code>s, a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Table</code>, or ledger rows. The article asks for separators or group headings once a list passes seven items but says nothing about what goes inside a group, and GUNJO leaves that open too.
+            </li>
+            <li>
+              <strong>Sticky headings are opt-in.</strong> Only with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">stickyHeaders</code> does the heading band stay pinned while its section scrolls. It is off by default because on a screen of many short groups the band swaps constantly and becomes harder to read than a plain heading.
+              <br />
+              The general design of lists is covered by UIXHERO&rsquo;s list article.{" "}
+              <a
+                className="underline underline-offset-4"
+                href="https://www.uixhero.com/resources/ui-components/list"
+                target="_blank"
+                rel="noreferrer"
+              >
+                UIXHERO: List (in Japanese)
+              </a>
+            </li>
+          </ul>
+        )}
+      </section>
     </ComponentLayout>
   );
 }

@@ -290,6 +290,58 @@ export function ReadOnlySubsidyMatch() {
           <CodeBlock code={usageCode} />
         </div>
       </section>
+      <section className="space-y-4">
+        <div className="border-b pb-2">
+          <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+            {locale === "ja" ? "設計の判断" : "Design decisions"}
+          </h2>
+        </div>
+        {locale === "ja" ? (
+          <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+            <li>
+              <strong>左右のどちらも「人」だと決めていない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">left</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">right</code> は任意のノードで、会社と制度、荷物と空車のように、種類の違う2つを並べられます。人どうしに固定した <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">RelationshipRow</code> とは、ここが分かれ目です。
+            </li>
+            <li>
+              <strong>適合度の出し方をカードが決めない。</strong>真ん中の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">score</code> は数値でもメーターでもバッジでもよく、渡さなければ左右をつなぐ記号が出るだけです。「何点なら良いか」は制度ごとに変わるので、部品は判定を持ちません。
+            </li>
+            <li>
+              <strong>内訳は文字つきの印で出す。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">factors</code> の各行は、丸や三角のような文字を色つきの小さな枠に入れて出します。色（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">tone</code>）は補助で、意味は文字が持ちます。色だけで「適合」と「不適合」を分けないためです。
+              <br />
+              一般のカードの設計は UIXHERO の「カード」にあります。{" "}
+              <a
+                className="underline underline-offset-4"
+                href="https://www.uixhero.com/resources/ui-components/card"
+                target="_blank"
+                rel="noreferrer"
+              >
+                UIXHERO: カード（Card）
+              </a>
+            </li>
+          </ul>
+        ) : (
+          <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+            <li>
+              <strong>Neither side is assumed to be a person.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">left</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">right</code> take arbitrary nodes, so the pairing can be a company against a subsidy programme, or a shipment against an empty truck. That is what separates this from <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">RelationshipRow</code>, which is fixed at person-to-person.
+            </li>
+            <li>
+              <strong>The card does not decide how a match score is expressed.</strong> The centre <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">score</code> can be a number, a meter or a badge, and without it the card just draws the connector glyph. What counts as a good score differs per programme, so the component holds no judgement of its own.
+            </li>
+            <li>
+              <strong>The breakdown is marked with characters, not colour.</strong> Each <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">factors</code> row puts a symbol in a small tinted chip; <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">tone</code> is support and the symbol carries the meaning, so a match and a mismatch are never separated by colour alone.
+              <br />
+              The general design of cards is covered by UIXHERO&rsquo;s card article.{" "}
+              <a
+                className="underline underline-offset-4"
+                href="https://www.uixhero.com/resources/ui-components/card"
+                target="_blank"
+                rel="noreferrer"
+              >
+                UIXHERO: Card (in Japanese)
+              </a>
+            </li>
+          </ul>
+        )}
+      </section>
     </ComponentLayout>
   );
 }

@@ -294,6 +294,58 @@ export function MemberSummary() {
           <CodeBlock code={usageCode} />
         </div>
       </section>
+      <section className="space-y-4">
+        <div className="border-b pb-2">
+          <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+            {locale === "ja" ? "設計の判断" : "Design decisions"}
+          </h2>
+        </div>
+        {locale === "ja" ? (
+          <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+            <li>
+              <strong>残高の桁を最優先に置いた。</strong>資料は「情報の優先順位を決める」を判断の核に挙げています。この部品は残高を最上段の大きな等幅数字として置き、ランク・二次的な値・次のランクまでの進捗・失効の注意・行動ボタン、の順に並べます。この順は差し替えられません。
+            </li>
+            <li>
+              <strong>進捗は「多いほど良い」側だけを持つ。</strong>満杯に近づくと赤くなる <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Meter</code> とは違い、ここでは色が変わりません。ポイントが貯まることは警告ではないからです。「あと 13,800円」のような残りの表示は、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">progress.label</code> として呼ぶ側が書きます。
+            </li>
+            <li>
+              <strong>華やかな面は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">brand</code> の1つだけ用意した。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'tone="brand"'}</code> は塗りつぶしの面で、ブランド色のクラスをその場で書かずに見栄えを出すための逃げ道です。落ち着かせたいときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'tone="default"'}</code> で普通のカードに戻ります。任意の色を渡す口は開けていません。
+              <br />
+              一般のカードの設計は UIXHERO の「カード」にあります。{" "}
+              <a
+                className="underline underline-offset-4"
+                href="https://www.uixhero.com/resources/ui-components/card"
+                target="_blank"
+                rel="noreferrer"
+              >
+                UIXHERO: カード（Card）
+              </a>
+            </li>
+          </ul>
+        ) : (
+          <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+            <li>
+              <strong>The balance owns the top of the card.</strong> The article makes information priority a decision principle. The balance sits first as a large tabular number, followed in fixed order by tier, secondary values, progress to the next tier, the expiry notice and the action. That order cannot be rearranged.
+            </li>
+            <li>
+              <strong>Progress here is higher-is-better only.</strong> Unlike a capacity <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Meter</code>, this bar never turns red as it fills, because earning points is not a warning. The remaining-to-goal line is written by the caller through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">progress.label</code>.
+            </li>
+            <li>
+              <strong>There is exactly one showy surface, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">brand</code>.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'tone="brand"'}</code> is a filled surface that gives the hero some shine without reaching for ad-hoc brand-colour classes. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'tone="default"'}</code> returns it to a plain card. There is deliberately no prop for passing an arbitrary colour.
+              <br />
+              The general design of cards is covered by UIXHERO&rsquo;s card article.{" "}
+              <a
+                className="underline underline-offset-4"
+                href="https://www.uixhero.com/resources/ui-components/card"
+                target="_blank"
+                rel="noreferrer"
+              >
+                UIXHERO: Card (in Japanese)
+              </a>
+            </li>
+          </ul>
+        )}
+      </section>
     </ComponentLayout>
   );
 }

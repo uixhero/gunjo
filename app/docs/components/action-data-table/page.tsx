@@ -805,6 +805,58 @@ export function CampaignTable() {
                 <CodeCopyButton code={usageCode} />
                 <CodeBlock code={usageCode} />
             </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>選択の列と操作の列を <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DataTable</code> の外側で足した。</strong>この部品は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DataTable</code> を包んで、先頭にチェックボックスの列を、末尾に行ごとの操作の列を差し込みます。線を減らすこと・揃え・横スクロールの閉じ込めといった表そのものの決まりは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DataTable</code> のままで、ここでは変えていません。
+                        </li>
+                        <li>
+                            <strong>全選択のチェックは「途中」の状態を持つ。</strong>一部の行だけが選ばれているとき、見出しのチェックは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-checked="mixed"'}</code> になります。入っているか空かの2つしか無いと、「一部選択」が「全部選択」に見えてしまうためです。
+                        </li>
+                        <li>
+                            <strong>行の操作は数が増えたら畳める。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">rowActionsVariant</code> に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">menu</code> を渡すと、並べたアイコンをドロップダウンに畳みます。資料は「線を減らしてデータを主役にする」を核に挙げていますが、行ごとに5個のアイコンが並ぶのも同じ種類のノイズだからです。使えない操作は消さず、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> で理由を読めるようにしています。
+                            <br />
+                            一般の表の設計は UIXHERO の「テーブル」にあります。{" "}
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/table"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: テーブル（Table）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Selection and row actions are added around <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DataTable</code>, not inside it.</strong> This component wraps <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DataTable</code>, injecting a checkbox column at the front and a row-action column at the end. Everything the table itself decides (dropping rules, alignment, containing horizontal scroll) stays with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DataTable</code> and is not re-litigated here.
+                        </li>
+                        <li>
+                            <strong>The select-all checkbox has a third state.</strong> When only some rows are selected the header checkbox reports <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-checked="mixed"'}</code>. With only checked and unchecked available, a partial selection would read as a full one.
+                        </li>
+                        <li>
+                            <strong>Row actions collapse once there are too many.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">menu</code> to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">rowActionsVariant</code> and the icon row folds into a dropdown. The article&rsquo;s core principle is to remove lines so the data leads; five icons repeated on every row are the same kind of noise. Unavailable actions are kept rather than hidden, with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> explaining why.
+                            <br />
+                            The general design of tables is covered by UIXHERO&rsquo;s table article.{" "}
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/table"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Table (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }
