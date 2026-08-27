@@ -539,6 +539,56 @@ export default function RightRailDocPage() {
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>幅を props で1つだけ持たせた。</strong>資料は「Right Rail の幅はメインの3分の1以下」を挙げています。GUNJO は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">width</code> を Tailwind のクラス文字列として受け取り、既定を <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">w-64</code>（256px）にしました。比率ではなく固定幅にしたのは、レールに載せるもの（目次・関連情報・補足）が横に広がってもほとんど得をしないからです。
+                        </li>
+                        <li>
+                            <strong>貼り付き（sticky）は部品に入れていない。</strong>資料は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">sticky</code> での固定を挙げていますが、貼り付く相手はレールそのものではなく外側のレイアウトです。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">RightRail</code> は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">h-full</code> の縦並びの箱で、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">min-h-0</code> を持つのでこの中だけをスクロールさせられます。貼り付かせるかどうかは、置く側が決めます。
+                        </li>
+                        <li>
+                            <strong>狭い画面での並べ替えは持っていません。</strong>資料は「モバイルでは Right Rail を本文の下に移す」を挙げています。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">RightRail</code> にその切り替えは入っていないので、いまは親側で <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">flex-col lg:flex-row</code> のように組み替えることになります。ここは部品に上げる余地が残っている場所です。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/right-rail"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: ライトレール（Right Rail）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>One prop for the width, and that is all.</strong> The article asks that a right rail stay under a third of the main column. GUNJO takes <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">width</code> as a Tailwind class string and defaults to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">w-64</code> (256px). A fixed width rather than a ratio, because what goes in a rail (a table of contents, related links, small notes) gains almost nothing from extra horizontal space.
+                        </li>
+                        <li>
+                            <strong>Stickiness is not in the component.</strong> The article recommends <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">sticky</code> positioning, but the thing that sticks is the surrounding layout, not the rail itself. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">RightRail</code> is an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">h-full</code> column with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">min-h-0</code>, so it can scroll on its own; whether it sticks is decided by whoever places it.
+                        </li>
+                        <li>
+                            <strong>Reflowing on narrow screens is not handled.</strong> The article asks that the rail move below the main content on mobile. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">RightRail</code> has no such switch, so for now the parent does it with something like <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">flex-col lg:flex-row</code>. This is a gap that could reasonably move into the component later.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/right-rail"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Right Rail (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

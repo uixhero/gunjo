@@ -2289,6 +2289,56 @@ export default function PaginationDocPage() {
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>ページ番号の計算は部品に持たせない。</strong>GUNJO の Pagination は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Pagination</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PaginationContent</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PaginationItem</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PaginationLink</code> などの集まりで、「いま何ページ目だから、どの番号と省略記号を並べるか」を持ちません。総件数も1ページの件数も画面ごとに違うためです。そのかわり、資料が挙げる「先頭と末尾を省略しない」を書けるように <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PaginationFirst</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PaginationLast</code> は最初から用意してあります。
+                        </li>
+                        <li>
+                            <strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">href</code> を渡すかどうかで、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">a</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> が入れ替わる。</strong>資料は「URL と現在ページを同期する」を必須に挙げています。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">href</code> を渡した場合だけ本物のリンクを描き、渡さない場合は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> を描きます。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">href</code> の無い <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">a</code> にはキーボードのフォーカスが当たらないので、URL を持たない画面内のページ送りが操作できなくなるからです。
+                        </li>
+                        <li>
+                            <strong>現在地は属性と見た目の両方で出す。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">isActive</code> を渡した項目は枠線のあるボタンの見た目になり、同時に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-current</code> が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">page</code> になります。省略記号（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PaginationEllipsis</code>）は逆に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-hidden</code> にして、読み上げには「さらにページがある」の一文だけを残しました。点が3つ読み上げられても意味にならないためです。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/pagination"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: ページネーション（Pagination）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>The page arithmetic is not in the component.</strong> GUNJO ships Pagination as a set of parts (<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Pagination</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PaginationContent</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PaginationItem</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PaginationLink</code> and friends) and none of them work out which numbers and ellipses to show for the current page. Total count and page size differ on every screen. What the component does provide, so the article rule about never hiding the first and last page can be followed, is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PaginationFirst</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PaginationLast</code>.
+                        </li>
+                        <li>
+                            <strong>Passing <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">href</code> swaps an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">a</code> for a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code>.</strong> The article treats keeping the URL in sync with the current page as a must. A real link is rendered only when <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">href</code> is present; without it the control becomes a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code>, because an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">a</code> with no <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">href</code> cannot take keyboard focus and client-driven paging would be unusable.
+                        </li>
+                        <li>
+                            <strong>The current page is marked twice: in the attribute and in the style.</strong> An item with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">isActive</code> gets the outlined button look and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-current</code> set to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">page</code> at the same time. The ellipsis (<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PaginationEllipsis</code>) goes the other way: it is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-hidden</code>, leaving only a short more-pages phrase for screen readers, since three dots read aloud mean nothing.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/pagination"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Pagination (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

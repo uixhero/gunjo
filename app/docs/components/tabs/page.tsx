@@ -418,6 +418,56 @@ export default function TabsPage() {
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>入りきらないときは、折り返さずに横へ流す。</strong>資料は「2行以上の多段タブ」を禁止に挙げ、同時に「横スクロールが必須になるほどの本数」も崩れた形に挙げています。GUNJO は前者を避けるほうを選び、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">TabsList</code> を横スクロールにしました。日本語のラベルは英語より横に長くなりやすく、折り返すか削るかしかない作りだと、どちらを選んでも読めなくなるからです。ラベルは決して省略しません。
+                        </li>
+                        <li>
+                            <strong>流せるが、つまみは見せない。</strong>横スクロールのつまみは Firefox と WebKit の両方で隠してあります。タブの帯の中に細い横棒が増えると、選ばれているタブの下線と見分けが付かなくなるためです。左端のタブに戻れるように左寄せから始め、収まる幅のときだけ中央に寄せます。
+                        </li>
+                        <li>
+                            <strong>縦向きは見た目ごと入れ替える。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">orientation</code> に縦を渡すと、土台の Radix が付ける印を手がかりに、枠線とカードの見た目を捨てて左の柱と本文の2列になります（#165）。呼ぶ側が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">className</code> で作り直さずに済ませるためで、資料の「タブの中にタブを作らない」を守ったまま、項目の多い画面を柱で表せます。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/tabs"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: タブ（Tabs）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>When they do not fit, they scroll sideways rather than wrap.</strong> The article forbids tab bars that wrap onto a second row, and also lists needing horizontal scroll as a sign of too many tabs. GUNJO chose to avoid the first: <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">TabsList</code> scrolls horizontally. Japanese labels run wider than English ones, and a bar that can only wrap or truncate becomes unreadable either way. Labels are never truncated.
+                        </li>
+                        <li>
+                            <strong>It scrolls, but the scrollbar is hidden.</strong> The horizontal thumb is suppressed in both Firefox and WebKit, because another thin bar inside the tab strip is easily confused with the underline of the selected tab. The list starts left aligned so the first tab stays reachable, and only centres when everything fits.
+                        </li>
+                        <li>
+                            <strong>Vertical orientation swaps the whole look.</strong> Pass a vertical <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">orientation</code> and the component reads the marker Radix sets, drops the bordered card treatment, and becomes a left rail plus content (#165). That saves callers from rebuilding it in <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">className</code>, and lets a screen with many sections use a rail while still honouring the article rule against tabs inside tabs.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/tabs"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Tabs (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

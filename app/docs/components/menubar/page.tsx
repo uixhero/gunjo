@@ -448,6 +448,56 @@ export default function MenubarPage() {
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>ショートカットは置き場所だけ用意した。</strong>資料は「メニュー項目の右端にショートカットを必ず表示する」を挙げています。GUNJO は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarShortcut</code> という薄い部品を用意し、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ml-auto</code> で右端に寄せて小さな字で出すところまでを持ちます。何のキーを書くかは持ちません。同じ操作でも OS で表記が変わるからです。
+                        </li>
+                        <li>
+                            <strong>使えない項目は消さずに、理由を出せるようにした。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarItem</code> に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> を渡すと、その項目は並びに残したまま、hover と focus と指での長押しで理由が出ます。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabled</code> だけを渡すと「なぜ押せないのか」が画面のどこにも無い状態になるので、理由を書く口を部品の側に用意しました。読み上げ向けの名前は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReasonLabel</code> で別に渡せます。
+                        </li>
+                        <li>
+                            <strong>チェック項目とラジオ項目を別の部品に分けた。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarCheckboxItem</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarRadioItem</code> を用意し、資料が求める <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">menuitemcheckbox</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">menuitemradio</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-checked</code> は土台の Radix が付けます。サブメニュー（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarSub</code>）の見た目は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">min-w-[8rem]</code> と控えめにしてあり、資料の「サブメニューは最大1段まで」に沿って、深く入れ子にする使い方は想定していません。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/menubar"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: メニューバー（Menubar）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Only the slot for the shortcut, not the shortcut itself.</strong> The article asks that a keyboard shortcut always be shown at the right edge of a menu item. GUNJO ships <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarShortcut</code>, a thin element that pushes itself right with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ml-auto</code> and renders in a small muted type. It does not decide what the keys are: the same command is written differently on each OS.
+                        </li>
+                        <li>
+                            <strong>An unavailable item stays visible and can explain itself.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> to a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarItem</code> and the item keeps its place in the list while hover, focus and a touch press reveal the reason. With <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabled</code> alone, the answer to why it cannot be pressed exists nowhere on screen, so the slot for that answer lives in the component. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReasonLabel</code> supplies a separate name for screen readers.
+                        </li>
+                        <li>
+                            <strong>Checkbox and radio items are separate components.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarCheckboxItem</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarRadioItem</code> exist so the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">menuitemcheckbox</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">menuitemradio</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-checked</code> the article requires come from Radix underneath. The submenu (<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarSub</code>) is styled small on purpose (<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">min-w-[8rem]</code>), matching the article rule of at most one level of nesting.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/menubar"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Menubar (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

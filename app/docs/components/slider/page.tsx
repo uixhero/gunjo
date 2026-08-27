@@ -415,6 +415,56 @@ export function DisabledSlider() {
                     <CodeBlock code={usageCode} />
                 </div>
             </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>現在値の表示は、既定では出さない。</strong>資料は「Slider を使うなら常に現在値を数値で出す」を挙げています。GUNJO は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showValue</code> を渡したときだけ出します。ラベルと値を上の行に並べる形が、置く場所によっては入らないからです。出さない選択をした画面でも、値そのものは近くのどこかに要ります。
+                        </li>
+                        <li>
+                            <strong>読み上げの文言を差し替えられるようにした。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> を渡すと、その結果が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-valuetext</code> に入ります。35000000ではなく通貨の形で読ませるためです（#193）。同じ関数が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showValue</code> の表示にも使われるので、目で見る値と読み上げの値がずれません。
+                        </li>
+                        <li>
+                            <strong>通った部分の塗りは、クラスではなく style で作る。</strong>つまみまでの塗りつぶしは、インラインの <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">linear-gradient</code> で描いています。クラス名の一覧を変えずに済ませるためで、設計の元データとの差分検査がクラス名を見ているからです（#193）。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">value</code> を渡さない使い方でも塗りが追いつくように、部品の中で最後の値を覚えています。2つのつまみで範囲を選ぶ形は、この部品ではなく <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">RangeSlider</code> が持ちます。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/slider"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: スライダー（Slider）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>The numeric readout is off by default.</strong> The article asks that a slider always show its current value as a number. GUNJO shows it only when <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showValue</code> is passed, because the label-and-value row does not always fit where the slider is placed. A screen that turns it off still owes the reader that number somewhere nearby.
+                        </li>
+                        <li>
+                            <strong>The announced value can be rewritten.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> and its result becomes <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-valuetext</code>, so a screen reader says a formatted amount rather than 35000000 (#193). The same function feeds <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showValue</code>, so what is read and what is seen cannot drift apart.
+                        </li>
+                        <li>
+                            <strong>The filled part of the track is inline style, not a class.</strong> The fill up to the thumb is drawn with an inline <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">linear-gradient</code>, which keeps the class list, and therefore the drift check against the design source, unchanged (#193). The component remembers the last value internally so the fill still follows the thumb when no <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">value</code> is passed. A two-handle range lives in <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">RangeSlider</code>, not here.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/slider"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Slider (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

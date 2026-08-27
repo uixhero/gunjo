@@ -265,6 +265,56 @@ export function ManagedAutoSaveSwitch() {
                     <CodeBlock code={usageCode} />
                 </div>
             </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>役割を素の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> に自分で付けた。</strong>資料は「見た目がスイッチでも役割が無ければ、読み上げは単なるボタンとしか言わない」を崩れた形に挙げています。GUNJO は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">role</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-checked</code> を付けています。チェックボックスの入力欄を使わなかったのは、つまみの動きを <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">justify-start</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">justify-end</code> の入れ替えで作っているためで、チェックと入り切りの意味の違いもここではっきりします。
+                        </li>
+                        <li>
+                            <strong>ラベルを部品の中に入れて、名前を必ず持たせた。</strong>資料は「ラベルの無いスイッチ単体」を禁止に挙げています。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">label</code> を渡すと <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-labelledby</code> で結んだ文字が横に出て、その文字を押しても切り替わります。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">description</code> は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-describedby</code> で結びます。何も渡さなければ素のスイッチだけを返すので、その場合は呼ぶ側で名前を付けることになります。
+                        </li>
+                        <li>
+                            <strong>待っている間の状態は持っていません。</strong>資料は「通信が終わるまでは待機の見た目にして、連打を防ぐ」を挙げています。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Switch</code> に待機はなく、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabled</code> で止めるところまでです。入りと切りの2つは設計の元データから生成された <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">SwitchVariantKey</code> なので、3つ目の状態を足すには元データの側から変えることになります。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/switch"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: スイッチ（Switch）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>The role is applied by hand to a plain <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code>.</strong> The article lists a missing role as a classic failure: it looks like a switch but a screen reader only says button. GUNJO puts the switch role and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-checked</code> on a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code>. A checkbox input was not used because the knob is animated by swapping <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">justify-start</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">justify-end</code>, and the button also keeps the meaning distinct from a checkbox.
+                        </li>
+                        <li>
+                            <strong>The label is inside the component, so a name always exists.</strong> The article forbids a bare switch with no label. Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">label</code> and the text renders beside the control, tied with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-labelledby</code>, and clicking that text toggles too; <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">description</code> is tied with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-describedby</code>. Pass neither and you get the bare control, and naming it becomes the responsibility of the caller.
+                        </li>
+                        <li>
+                            <strong>There is no pending state.</strong> The article asks for a loading state while an asynchronous change is in flight, to stop repeated presses. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Switch</code> has none; <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabled</code> is as far as it goes. Checked and unchecked are the two keys of <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">SwitchVariantKey</code>, generated from the design source, so a third state would have to start there.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/switch"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Switch (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }
