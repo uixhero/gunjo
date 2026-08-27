@@ -263,6 +263,7 @@ export function AlwaysVisibleScrollbar() {
 
 export default function ScrollAreaPage() {
     const { locale } = useLocale();
+    const usageCode = codeByLocale[locale];
     const meta = layoutMetadata as Record<string, { title: string; description: string }>;
     const propsData = locale === "ja"
         ? [
@@ -296,7 +297,7 @@ export default function ScrollAreaPage() {
                 { name: "DataTable", href: "/docs/components/data-table" },
             ]}
         >
-            <ComponentPreview embedSrc="/embed/scroll-area" code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="md" previewHeight={340}>
+            <ComponentPreview embedSrc="/embed/scroll-area" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md" previewHeight={340}>
                 <ScrollArea className="h-56 w-full max-w-sm rounded-md border bg-background p-4">
                     <div className="mb-3 text-sm font-medium">{locale === "ja" ? "リリース" : "Releases"}</div>
                     {releaseItems.map((release) => (
@@ -427,11 +428,61 @@ export default function ScrollAreaPage() {
             <section className="space-y-4">
                 <div className="flex items-start justify-between gap-3 border-b pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                    <CodeBlock code={usageCode} />
                 </div>
+            </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>中身が縮められるように、土台の表組み表示を打ち消した。</strong>Radix の Viewport は、中の入れ物を表（table）として表示します。この形だと横幅が中身の最大幅で決まり、折り返せない長い1行があるだけで親からはみ出します。GUNJO は中の入れ物に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">block</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">min-w-0</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">w-full</code> を上書きして、縮められる箱にしました。
+                        </li>
+                        <li>
+                            <strong>横のつまみは、頼まれたときだけ作る。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">scrollbarOrientation</code> の既定は縦だけです。資料は「常時表示ではなく、溢れたときだけ出す指定を基本にする」と書いていますが、GUNJO ではもう一段強く、横向きのつまみは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">horizontal</code> か <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">both</code> を渡したときにしか作りません。使わない軸のつまみが場所を取らないためです。
+                        </li>
+                        <li>
+                            <strong>「右にまだ続く」ことを示す表現は入れていません。</strong>資料は、横スクロールは縦と違って気づかれにくいので、右端にぼかしや影を置いて続きがあると示すことを挙げています。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ScrollArea</code> にその表現はなく、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">scrollbarClassName</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">thumbClassName</code> でつまみを目立たせるところまでです。ぼかしが要る画面は、いまは呼ぶ側で重ねます。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/scroll-area"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: スクロールエリア（Scroll Area）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>The table display of the underlying viewport is overridden.</strong> The Radix viewport lays its inner wrapper out as a table, which makes the width follow the widest child; one long unbreakable line is then enough to push past the parent. GUNJO overrides that wrapper with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">block</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">min-w-0</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">w-full</code> so the content can shrink.
+                        </li>
+                        <li>
+                            <strong>A horizontal scrollbar is opt-in.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">scrollbarOrientation</code> defaults to vertical only. The article asks that scrollbars appear on overflow rather than always; GUNJO goes one step further and does not even create the horizontal thumb unless <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">horizontal</code> or <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">both</code> is passed, so an unused axis takes no space.
+                        </li>
+                        <li>
+                            <strong>There is no hint that content continues to the right.</strong> The article notes that horizontal overflow is much easier to miss than vertical, and suggests a fade or shadow at the edge. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ScrollArea</code> has no such affordance; it goes as far as letting you style the thumb through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">scrollbarClassName</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">thumbClassName</code>. A screen that needs the fade has to layer it on itself for now.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/scroll-area"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Scroll Area (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
             </section>
         </ComponentLayout>
     );

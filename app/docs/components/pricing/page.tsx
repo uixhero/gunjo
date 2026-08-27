@@ -8,17 +8,51 @@ export default function PricingTemplatePage() {
     const code = `import { Button, PricingTemplate, type PricingPlan } from "@gunjo/ui";
 
 const plans: PricingPlan[] = [
-    { id: "free", name: "Free", price: "$0", period: "/mo", features: [...], cta: <Button variant="outline">Get started</Button> },
-    { id: "pro", name: "Pro", price: "$29", period: "/mo", features: [...], cta: <Button>Start trial</Button>, featured: true },
+    {
+        id: "free",
+        name: "Free",
+        price: "$0",
+        period: "/mo",
+        description: "For personal projects.",
+        features: ["Up to 5 users", "Community support", "Open-source components"],
+        cta: <Button variant="outline" className="w-full">Get started</Button>,
+    },
+    {
+        id: "pro",
+        name: "Pro",
+        price: "$29",
+        period: "/mo",
+        description: "For growing teams.",
+        features: [
+            "Unlimited users",
+            "Priority support",
+            "Advanced templates",
+            "SSO & SAML",
+        ],
+        cta: <Button variant="secondary" className="w-full">Start trial</Button>,
+        featured: true,
+    },
+    {
+        id: "enterprise",
+        name: "Enterprise",
+        price: "Custom",
+        description: "For larger organizations.",
+        features: ["SLA + audit logs", "Dedicated success manager", "Custom integrations"],
+        cta: <Button variant="outline" className="w-full">Contact sales</Button>,
+    },
 ];
 
-export function Pricing() {
-    return <PricingTemplate plans={plans} />;
+export function PricingPage() {
+    return (
+        <PricingTemplate
+            plans={plans}
+            title="Pricing"
+            subtitle="Start free, upgrade when your team grows."
+        />
+    );
 }`;
 
-    const usageCode = `import { PricingTemplate } from "@gunjo/ui"
-
-<PricingTemplate plans={plans} title="Pricing" subtitle="..." />`;
+    const usageCode = code;
 
     const propsData = [
         { name: "title", type: "ReactNode", default: "'Pricing'", description: "Page heading." },

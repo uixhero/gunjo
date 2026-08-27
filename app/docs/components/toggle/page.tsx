@@ -326,6 +326,56 @@ export function DisabledBoldToggle() {
                     <CodeBlock code={usageCode} />
                 </div>
             </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>入りは色だけでなく、地と字の両方を入れ替える。</strong>資料は「押されている状態の見分けが色の変化だけでは伝わらない」を崩れた形に挙げています。GUNJO は入りのとき、背景を <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">primary</code>、文字を <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">primary-foreground</code> にします。地と字がまとめて反転するので、薄い色の差ではなく面として分かります。資料が求める <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-pressed</code> は土台の Radix が付けます。
+                        </li>
+                        <li>
+                            <strong>押せない状態でも、入りか切りかは残す。</strong>ふつう使えない状態は全体を薄くしますが、それだと入りのトグルが「押せない」と「切り」の見分けが付かなくなります。GUNJO は使えないときの透明度を戻したうえで、入りのままなら <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">primary-subtle</code> の淡い塗りを残し、切りのときは枠線と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">muted</code> の地にします。
+                        </li>
+                        <li>
+                            <strong>見た目は2つだけにした。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> は地の無いものと枠線のあるものの2つ、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">size</code> は3つです。1つだけ置くトグルは周りに馴染ませ、並べて使うときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ToggleGroup</code> に移る、という切り分けにしてあるので、単体のトグルに区切りや連結の見た目を増やしていません。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/toggle"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: トグル（Toggle）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>On flips both the surface and the text, not just a colour.</strong> The article lists a weak pressed state as a broken pattern, since a colour shift alone does not reach every reader. When on, GUNJO sets the background to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">primary</code> and the text to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">primary-foreground</code>, so the change reads as a filled area rather than a tint. The <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-pressed</code> the article requires comes from Radix.
+                        </li>
+                        <li>
+                            <strong>Even when it cannot be pressed, on and off stay distinguishable.</strong> The usual disabled treatment fades everything, which makes a disabled-on toggle look the same as an off one. GUNJO restores the opacity and keeps a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">primary-subtle</code> fill when the toggle is on, while an off one falls back to a border over a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">muted</code> surface.
+                        </li>
+                        <li>
+                            <strong>Two looks and no more.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> is either bare or outlined, with three sizes. A lone toggle is meant to blend into its surroundings, and a row of them is meant to become a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ToggleGroup</code>, so no joined or segmented styling was added to the single control.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/toggle"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Toggle (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

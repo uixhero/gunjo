@@ -69,7 +69,7 @@ export default function ListDocPage() {
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
     const title = content?.title ?? meta.list.title;
     const description = content?.description ?? meta.list.description;
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
 
     return (
         <ComponentLayout
@@ -88,7 +88,7 @@ export default function ListDocPage() {
                 { name: "Checkbox", href: "/docs/components/checkbox" },
             ]}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewBodyWidth="sm" previewHeight="auto">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="sm" previewHeight="auto">
                 <List spacing="loose" className="w-full">
                     <ListItem>{locale === "ja" ? "要件を確認する" : "Review the requirements"}</ListItem>
                     <ListItem>{locale === "ja" ? "必要な入力を揃える" : "Collect the required inputs"}</ListItem>
@@ -308,10 +308,62 @@ export function CustomIconList() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>順序があるかどうかで要素を変える。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'variant="ordered"'}</code> なら <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ol</code>、それ以外は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ul</code> を描きます。資料の1問目（順序に意味があるか）が、そのまま <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> に対応しています。番号は自分で描かず、ブラウザの番号付けに任せています。
+                        </li>
+                        <li>
+                            <strong>しるしは1か所で決める。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">List</code> に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">marker</code> を渡すと、中の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ListItem</code> に配られます。項目ごとに書き直す必要はありません。しるしは点・丸・チェックの3つで、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">icon</code> を渡せば別のものにも替えられます。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">divided</code> を渡すと項目のあいだに線が入り、上端と下端の余白だけが落ちます。
+                        </li>
+                        <li>
+                            <strong>押せる一覧・選べる一覧は、この部品ではない。</strong>資料は「押して操作するか」「複数選ぶか」で <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> や <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">checkbox</code> に分かれると書いています。GUNJO では押せる一覧は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ListCard</code>、選べる一覧は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Checkbox</code> を組んだ形で、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">List</code> は読むための一覧に絞っています。空になったときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">EmptyState</code> を置きます。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/list"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: リスト（List）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Order decides the element.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'variant="ordered"'}</code> renders <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ol</code>; anything else renders <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ul</code>. The first question in the article, whether the order carries meaning, maps straight onto <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code>. Numbers are left to the browser rather than drawn by hand.
+                        </li>
+                        <li>
+                            <strong>The marker is set once.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">marker</code> to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">List</code> and it is handed down to every <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ListItem</code>, so nothing is repeated per row. The markers are dot, circle and check, and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">icon</code> replaces them with anything else. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">divided</code> draws a rule between rows and trims the padding at the top and bottom edges.
+                        </li>
+                        <li>
+                            <strong>Actionable and selectable lists are other components.</strong> The article splits lists by whether a row is pressed and whether several are selected, landing on <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> or <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">checkbox</code>. In GUNJO an actionable list is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ListCard</code> and a selectable one is composed with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Checkbox</code>, which leaves <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">List</code> for lists that are read. When it runs empty, put an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">EmptyState</code> there.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/list"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: List (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

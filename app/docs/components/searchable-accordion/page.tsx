@@ -60,33 +60,89 @@ const baseItemsEn: SearchableAccordionItem[] = [
 
 function buildCode(locale: "ja" | "en", withCategories = true, defaultSearchValue = "") {
     const items = locale === "ja" ? baseItemsJa : baseItemsEn;
-    return `import * as React from "react";
+    const copy = locale === "ja"
+        ? {
+            account: "アカウント",
+            team: "チーム",
+            security: "セキュリティ",
+            searchPlaceholder: "項目を検索...",
+            clearSearchLabel: "検索語を消去",
+            allCategoryLabel: "すべて",
+            clearFiltersLabel: "条件をクリア",
+            emptyTitle: "一致する項目がありません",
+            emptyDescription: "検索語やカテゴリを変更してください。",
+        }
+        : {
+            account: "Account",
+            team: "Team",
+            security: "Security",
+            searchPlaceholder: "Search topics...",
+            clearSearchLabel: "Clear search",
+            allCategoryLabel: "All",
+            clearFiltersLabel: "Clear filters",
+            emptyTitle: "No matching topics",
+            emptyDescription: "Change the search term or category.",
+        };
+    // ⭐ 見本の中にそのまま書き出す式。定数なので大文字で置く。
+    const RESULT_COUNT_EXPR = locale === "ja"
+        ? 'visible + " / " + total + " 件を表示"'
+        : '"Showing " + visible + " of " + total';
+
+    return withCategories
+        ? `import * as React from "react";
 import { SearchableAccordion, type SearchableAccordionItem } from "@gunjo/ui";
 
 const items: SearchableAccordionItem[] = ${JSON.stringify(items, null, 2)};
 
+const categories = [
+  { id: "account", label: ${JSON.stringify(copy.account)} },
+  { id: "team", label: ${JSON.stringify(copy.team)} },
+  { id: "security", label: ${JSON.stringify(copy.security)} },
+];
+
 export function HelpAccordion() {
-  const [searchValue, setSearchValue] = React.useState("${defaultSearchValue}");
+  const [searchValue, setSearchValue] = React.useState(${JSON.stringify(defaultSearchValue)});
 
   return (
     <SearchableAccordion
       items={items}
       searchValue={searchValue}
       onSearchValueChange={setSearchValue}
-      ${withCategories ? `categories={[
-        { id: "account", label: "${locale === "ja" ? "アカウント" : "Account"}" },
-        { id: "team", label: "${locale === "ja" ? "チーム" : "Team"}" },
-        { id: "security", label: "${locale === "ja" ? "セキュリティ" : "Security"}" },
-      ]}` : "showCategoryTabs={false}"}
+      categories={categories}
       labels={{
-        searchPlaceholder: "${locale === "ja" ? "項目を検索..." : "Search topics..."}",
-        clearSearchLabel: "${locale === "ja" ? "検索語を消去" : "Clear search"}",
-        allCategoryLabel: "${locale === "ja" ? "すべて" : "All"}",
-        resultCountLabel: (visible, total) =>
-          ${locale === "ja" ? "`" + "${visible} / ${total} 件を表示" + "`" : "`Showing ${visible} of ${total}`"},
-        clearFiltersLabel: "${locale === "ja" ? "条件をクリア" : "Clear filters"}",
-        emptyTitle: "${locale === "ja" ? "一致する項目がありません" : "No matching topics"}",
-        emptyDescription: "${locale === "ja" ? "検索語やカテゴリを変更してください。" : "Change the search term or category."}",
+        searchPlaceholder: ${JSON.stringify(copy.searchPlaceholder)},
+        clearSearchLabel: ${JSON.stringify(copy.clearSearchLabel)},
+        allCategoryLabel: ${JSON.stringify(copy.allCategoryLabel)},
+        resultCountLabel: (visible, total) => ${RESULT_COUNT_EXPR},
+        clearFiltersLabel: ${JSON.stringify(copy.clearFiltersLabel)},
+        emptyTitle: ${JSON.stringify(copy.emptyTitle)},
+        emptyDescription: ${JSON.stringify(copy.emptyDescription)},
+      }}
+    />
+  );
+}`
+        : `import * as React from "react";
+import { SearchableAccordion, type SearchableAccordionItem } from "@gunjo/ui";
+
+const items: SearchableAccordionItem[] = ${JSON.stringify(items, null, 2)};
+
+export function HelpAccordion() {
+  const [searchValue, setSearchValue] = React.useState(${JSON.stringify(defaultSearchValue)});
+
+  return (
+    <SearchableAccordion
+      items={items}
+      searchValue={searchValue}
+      onSearchValueChange={setSearchValue}
+      showCategoryTabs={false}
+      labels={{
+        searchPlaceholder: ${JSON.stringify(copy.searchPlaceholder)},
+        clearSearchLabel: ${JSON.stringify(copy.clearSearchLabel)},
+        allCategoryLabel: ${JSON.stringify(copy.allCategoryLabel)},
+        resultCountLabel: (visible, total) => ${RESULT_COUNT_EXPR},
+        clearFiltersLabel: ${JSON.stringify(copy.clearFiltersLabel)},
+        emptyTitle: ${JSON.stringify(copy.emptyTitle)},
+        emptyDescription: ${JSON.stringify(copy.emptyDescription)},
       }}
     />
   );
@@ -97,7 +153,7 @@ export default function SearchableAccordionPage() {
     const { locale, sectionLabels } = useLocale();
     const metadata = displayMetadata as Record<string, { title: string; description: string }>;
     const items = locale === "ja" ? baseItemsJa : baseItemsEn;
-    const code = buildCode(locale, true);
+    const usageCode = buildCode(locale, true);
     const noCategoriesCode = buildCode(locale, false);
     const emptyCode = buildCode(locale, true, locale === "ja" ? "契約更新" : "renewal");
 
@@ -122,8 +178,8 @@ export default function SearchableAccordionPage() {
         >
             <ComponentPreview
                 embedSrc="/embed/searchable-accordion"
-                code={code}
-                codeBlock={<CodeBlock code={code} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewBodyWidth="lg"
             >
@@ -142,7 +198,7 @@ export default function SearchableAccordionPage() {
                             description: locale === "ja" ? "検索語とカテゴリタブで FAQ やヘルプ項目を絞り込みます。" : "Filter FAQ or help items by search term and category tabs.",
                             preview: <SearchableAccordionDemo locale={locale} />,
                             previewBodyWidth: "lg",
-                            code,
+                            code: usageCode,
                         },
                         {
                             key: "without-categories",
@@ -237,10 +293,10 @@ export default function SearchableAccordionPage() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[420px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={code} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </section>
         </ComponentLayout>

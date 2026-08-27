@@ -412,6 +412,7 @@ function SelectionCanvasPreview({ locale }: { locale: keyof typeof codeByLocale 
 
 export default function SpatialCanvasPage() {
     const { locale } = useLocale();
+    const usageCode = codeByLocale[locale];
     const meta = layoutMetadata as Record<string, { title: string; description: string }>;
     const propsData = locale === "ja"
         ? [
@@ -436,7 +437,7 @@ export default function SpatialCanvasPage() {
                 { name: "Resizable", href: "/docs/components/resizable" },
             ]}
         >
-            <ComponentPreview embedSrc="/embed/spatial-canvas" code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="lg" previewHeight="auto">
+            <ComponentPreview embedSrc="/embed/spatial-canvas" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="lg" previewHeight="auto">
                 <div className="h-[420px] w-full overflow-hidden rounded-lg border">
                     <SpatialCanvas gridSize={40}>
                         <FloatingPanel title={locale === "ja" ? "ツール" : "Tools"} className="absolute left-4 top-4 w-48">
@@ -535,11 +536,61 @@ export default function SpatialCanvasPage() {
             <section className="space-y-4">
                 <div className="flex items-start justify-between gap-3 border-b pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                    <CodeBlock code={usageCode} />
                 </div>
+            </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>土台の紙だけを部品にした。</strong>資料の核は座標の変換です（移動と拡大を2つの値で持ち、画面の座標をキャンバスの座標に直してから扱う）。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">SpatialCanvas</code> はそこを持ちません。方眼の背景と、はみ出しの切り取りと、ドラッグ中に文字が選ばれない指定（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">select-none</code>）だけを持つ箱です。ノードをどう置いて動かすかは、この上に載せる画面が決めます。
+                        </li>
+                        <li>
+                            <strong>方眼は2枚重ねで、明るい配色と暗い配色で濃さを変える。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">gridSize</code>（既定20px）の点の方眼と、その5倍の間隔の線の方眼を重ねています。線のほうは明るい配色で <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">opacity-5</code>、暗い配色で <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">opacity-20</code> と別の濃さにしてあり、どちらでも「言われれば見える」くらいに合わせました。
+                        </li>
+                        <li>
+                            <strong>移動・拡大・ミニマップ・表示範囲外の間引きは入っていません。</strong>資料が挙げる4点（マウスの位置を中心にした拡大、ポインターの捕捉、大量のノードの間引き、キーボードでの操作）はどれも未実装で、載せる画面ごとに書くことになります。ここは部品に上げる余地がはっきり残っている場所です。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/spatial-canvas"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: スペーシャルキャンバス（Spatial Canvas）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Only the paper is the component.</strong> The core of the article is coordinate transformation: pan and zoom held as two values, with every pointer position converted from screen space to canvas space before use. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">SpatialCanvas</code> does none of that. It is a box with a grid background, clipping, and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">select-none</code> so text is not selected mid-drag. How nodes are placed and moved is decided by whatever is built on top.
+                        </li>
+                        <li>
+                            <strong>The grid is two layers, weighted differently in light and dark.</strong> A dot grid at <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">gridSize</code> (20px by default) sits under a line grid at five times that spacing. The line layer is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">opacity-5</code> in light and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">opacity-20</code> in dark, so in either theme it stays at the level of visible-once-you-look.
+                        </li>
+                        <li>
+                            <strong>Pan, zoom, minimap and viewport culling are absent.</strong> All four points the article raises (zooming around the pointer, pointer capture during a drag, culling nodes outside the viewport, keyboard control) are unimplemented and have to be written per screen. This is the clearest place where work could move into the component.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/spatial-canvas"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Spatial Canvas (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
             </section>
         </ComponentLayout>
     );

@@ -258,6 +258,7 @@ const propsDataByLocale = {
 
 export default function MarqueeFrameDocPage() {
     const { locale } = useLocale();
+    const usageCode = codeByLocale[locale];
     const [docsPath, setDocsPath] = React.useState<(typeof pathOptions)[number]["path"]>("/media");
     const [navigationPath, setNavigationPath] = React.useState<(typeof pathOptions)[number]["path"]>("/media");
     const meta = layoutMetadata as Record<string, { title: string; description: string }>;
@@ -278,7 +279,7 @@ export default function MarqueeFrameDocPage() {
                 { name: "MediaLibraryTemplate", href: "/patterns/media-library" },
             ]}
         >
-            <ComponentPreview code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="full" previewHeight={900} className="transition-none">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="full" previewHeight={900} className="transition-none">
                 <div className="w-full space-y-4">
                     <div className="flex flex-wrap items-center gap-2">
                         {pathOptions.map((item) => (
@@ -431,10 +432,10 @@ export default function MarqueeFrameDocPage() {
             <section className="space-y-4">
                 <div className="flex items-start justify-between gap-3 border-b pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </section>
         </ComponentLayout>

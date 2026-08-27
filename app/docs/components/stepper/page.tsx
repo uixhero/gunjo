@@ -10,73 +10,148 @@ import { Stepper } from "@gunjo/ui";
 
 const metadata = feedbackMetadata as Record<string, { title: string; description: string }>;
 
-export default function StepperPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
-
-    const code = `import { Stepper } from "@gunjo/ui"
+const codeByLocale = {
+    ja: `import { Stepper } from "@gunjo/ui"
 
 export function CheckoutStepper() {
   return (
     <Stepper
-      aria-label="${isJa ? "購入手続きの進行状況" : "Checkout progress"}"
+      aria-label="購入手続きの進行状況"
       steps={[
-        { label: "${isJa ? "カート" : "Cart"}", state: "completed" },
-        { label: "${isJa ? "配送先" : "Shipping"}", state: "current" },
-        { label: "${isJa ? "確認" : "Review"}", state: "upcoming" },
+        { label: "カート", state: "completed" },
+        { label: "配送先", state: "current" },
+        { label: "確認", state: "upcoming" },
       ]}
     />
   )
-}`;
+}`,
+    en: `import { Stepper } from "@gunjo/ui"
 
-    const verticalCode = `import { Stepper } from "@gunjo/ui"
+export function CheckoutStepper() {
+  return (
+    <Stepper
+      aria-label="Checkout progress"
+      steps={[
+        { label: "Cart", state: "completed" },
+        { label: "Shipping", state: "current" },
+        { label: "Review", state: "upcoming" },
+      ]}
+    />
+  )
+}`,
+};
+
+const verticalCodeByLocale = {
+    ja: `import { Stepper } from "@gunjo/ui"
 
 export function ImportStepper() {
   return (
     <Stepper
       orientation="vertical"
-      aria-label="${isJa ? "インポート処理の進行状況" : "Import progress"}"
+      aria-label="インポート処理の進行状況"
       steps={[
-        { label: "${isJa ? "アップロード" : "Upload"}", state: "completed" },
-        { label: "${isJa ? "検証" : "Validate"}", state: "current" },
-        { label: "${isJa ? "反映" : "Apply"}", state: "upcoming" },
+        { label: "アップロード", state: "completed" },
+        { label: "検証", state: "current" },
+        { label: "反映", state: "upcoming" },
       ]}
     />
   )
-}`;
+}`,
+    en: `import { Stepper } from "@gunjo/ui"
 
-    const completeCode = `import { Stepper } from "@gunjo/ui"
+export function ImportStepper() {
+  return (
+    <Stepper
+      orientation="vertical"
+      aria-label="Import progress"
+      steps={[
+        { label: "Upload", state: "completed" },
+        { label: "Validate", state: "current" },
+        { label: "Apply", state: "upcoming" },
+      ]}
+    />
+  )
+}`,
+};
+
+const completeCodeByLocale = {
+    ja: `import { Stepper } from "@gunjo/ui"
 
 export function CompleteStepper() {
   return (
     <Stepper
-      aria-label="${isJa ? "セットアップ完了" : "Setup complete"}"
+      aria-label="セットアップ完了"
       steps={[
-        { label: "${isJa ? "作成" : "Create"}", state: "completed" },
-        { label: "${isJa ? "確認" : "Confirm"}", state: "completed" },
-        { label: "${isJa ? "公開" : "Publish"}", state: "completed" },
+        { label: "作成", state: "completed" },
+        { label: "確認", state: "completed" },
+        { label: "公開", state: "completed" },
       ]}
     />
   )
-}`;
+}`,
+    en: `import { Stepper } from "@gunjo/ui"
 
-    const longCode = `import { Stepper } from "@gunjo/ui"
+export function CompleteStepper() {
+  return (
+    <Stepper
+      aria-label="Setup complete"
+      steps={[
+        { label: "Create", state: "completed" },
+        { label: "Confirm", state: "completed" },
+        { label: "Publish", state: "completed" },
+      ]}
+    />
+  )
+}`,
+};
+
+const longCodeByLocale = {
+    ja: `import { Stepper } from "@gunjo/ui"
 
 export function ReviewStepper() {
   return (
     <Stepper
-      aria-label="${isJa ? "レビュー依頼の進行状況" : "Review request progress"}"
+      aria-label="レビュー依頼の進行状況"
       orientation="vertical"
       steps={[
-        { label: "${isJa ? "受付" : "Received"}", state: "completed" },
-        { label: "${isJa ? "担当者確認" : "Owner review"}", state: "current" },
-        { label: "${isJa ? "公開前チェック" : "Pre-publish check"}", state: "upcoming" },
-        { label: "${isJa ? "公開" : "Publish"}", state: "upcoming" },
+        { label: "受付", state: "completed" },
+        { label: "担当者確認", state: "current" },
+        { label: "公開前チェック", state: "upcoming" },
+        { label: "公開", state: "upcoming" },
       ]}
     />
   )
-}`;
+}`,
+    en: `import { Stepper } from "@gunjo/ui"
+
+export function ReviewStepper() {
+  return (
+    <Stepper
+      aria-label="Review request progress"
+      orientation="vertical"
+      steps={[
+        { label: "Received", state: "completed" },
+        { label: "Owner review", state: "current" },
+        { label: "Pre-publish check", state: "upcoming" },
+        { label: "Publish", state: "upcoming" },
+      ]}
+    />
+  )
+}`,
+};
+
+export default function StepperPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
+
+    const usageCode = codeByLocale[locale];
+
+    const verticalCode = verticalCodeByLocale[locale];
+
+    const completeCode = completeCodeByLocale[locale];
+
+    const longCode = longCodeByLocale[locale];
 
     const propsData = [
         {
@@ -117,7 +192,7 @@ export function ReviewStepper() {
             ]}
             sectionLabels={sectionLabels}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewHeight="auto" previewBodyWidth="lg" sectionLabels={sectionLabels}>
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewHeight="auto" previewBodyWidth="lg" sectionLabels={sectionLabels}>
                 <Stepper
                     aria-label={isJa ? "購入手続きの進行状況" : "Checkout progress"}
                     steps={[
@@ -149,7 +224,7 @@ export function ReviewStepper() {
                                 />
                             ),
                             previewBodyWidth: "lg",
-                            code,
+                            code: usageCode,
                         },
                         {
                             key: "vertical",
@@ -220,10 +295,10 @@ export function ReviewStepper() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="rounded-md border bg-muted font-mono text-sm max-h-[350px] overflow-auto">
-                    <CodeBlock code={code} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </section>
         </ComponentLayout>

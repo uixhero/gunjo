@@ -37,7 +37,7 @@ const asset = {
   rating: 4.5,
 };
 
-export function Example() {
+export function CampaignAssetCard() {
   return (
     <AssetCard
       asset={asset}
@@ -61,7 +61,7 @@ const asset = {
   rating: 4.5,
 };
 
-export function Example() {
+export function CampaignAssetCard() {
   return (
     <AssetCard
       asset={asset}
@@ -105,6 +105,7 @@ const propsDataByLocale = {
 export default function AssetCardDocPage() {
     const [selected, setSelected] = React.useState(true);
     const { locale, sectionLabels } = useLocale();
+    const usageCode = codeByLocale[locale];
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
 
     return (
@@ -125,8 +126,8 @@ export default function AssetCardDocPage() {
             ]}
         >
             <ComponentPreview
-                code={codeByLocale[locale]}
-                codeBlock={<CodeBlock code={codeByLocale[locale]} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 previewBodyWidth="sm"
                 previewHeight="auto"
             >
@@ -166,7 +167,7 @@ export default function AssetCardDocPage() {
                                 />
                             ),
                             previewHeight: "auto",
-                            code: codeByLocale[locale],
+                            code: usageCode,
                         },
                         {
                             key: "compact",
@@ -186,12 +187,36 @@ export default function AssetCardDocPage() {
                             code: locale === "ja"
                                 ? `import { AssetCard } from "@gunjo/ui";
 
-export function CompactAssetCard({ asset }) {
+const asset = {
+  id: "hero",
+  title: "Instagram_Story_v2.png",
+  src: "/assets/campaign-hero.jpg",
+  width: 1920,
+  height: 1080,
+  type: "JPG",
+  size: "1.4MB",
+  isFavorite: true,
+  rating: 4.5,
+};
+
+export function CompactAssetCard() {
   return <AssetCard asset={asset} variant="compact" onSelect={() => {}} />;
 }`
                                 : `import { AssetCard } from "@gunjo/ui";
 
-export function CompactAssetCard({ asset }) {
+const asset = {
+  id: "hero",
+  title: "Instagram_Story_v2.png",
+  src: "/assets/campaign-hero.jpg",
+  width: 1920,
+  height: 1080,
+  type: "JPG",
+  size: "1.4MB",
+  isFavorite: true,
+  rating: 4.5,
+};
+
+export function CompactAssetCard() {
   return <AssetCard asset={asset} variant="compact" onSelect={() => {}} />;
 }`,
                         },
@@ -213,12 +238,36 @@ export function CompactAssetCard({ asset }) {
                             code: locale === "ja"
                                 ? `import { AssetCard } from "@gunjo/ui";
 
-export function FullAssetCard({ asset }) {
+const asset = {
+  id: "hero",
+  title: "Instagram_Story_v2.png",
+  src: "/assets/campaign-hero.jpg",
+  width: 1920,
+  height: 1080,
+  type: "JPG",
+  size: "1.4MB",
+  isFavorite: true,
+  rating: 4.5,
+};
+
+export function FullAssetCard() {
   return <AssetCard asset={asset} imageFit="contain" onSelect={() => {}} />;
 }`
                                 : `import { AssetCard } from "@gunjo/ui";
 
-export function FullAssetCard({ asset }) {
+const asset = {
+  id: "hero",
+  title: "Instagram_Story_v2.png",
+  src: "/assets/campaign-hero.jpg",
+  width: 1920,
+  height: 1080,
+  type: "JPG",
+  size: "1.4MB",
+  isFavorite: true,
+  rating: 4.5,
+};
+
+export function FullAssetCard() {
   return <AssetCard asset={asset} imageFit="contain" onSelect={() => {}} />;
 }`,
                         },
@@ -277,10 +326,10 @@ export function FileAssetCard() {
             <div className="space-y-4">
                 <div className="flex items-center justify-between gap-3 border-b pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{locale === "ja" ? "使い方" : "Usage"}</h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </div>
         </ComponentLayout>

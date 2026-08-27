@@ -297,6 +297,7 @@ function PanelContent({ children }: { children: string }) {
 
 export default function ResizablePage() {
     const { locale } = useLocale();
+    const usageCode = codeByLocale[locale];
     const meta = layoutMetadata as Record<string, { title: string; description: string }>;
     const propsData = locale === "ja"
         ? [
@@ -335,7 +336,7 @@ export default function ResizablePage() {
                 { name: "SpatialCanvas", href: "/docs/components/spatial-canvas" },
             ]}
         >
-            <ComponentPreview embedSrc="/embed/resizable" code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="lg" previewHeight={360}>
+            <ComponentPreview embedSrc="/embed/resizable" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="lg" previewHeight={360}>
                 <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border">
                     <ResizablePanelGroup direction="horizontal" defaultLayout={{ sidebar: 32, canvas: 68 }} className="h-full w-full">
                         <ResizablePanel id="sidebar" defaultSize="32%" minSize="20%"><PanelContent>{locale === "ja" ? "サイドバー" : "Sidebar"}</PanelContent></ResizablePanel>
@@ -456,11 +457,61 @@ export default function ResizablePage() {
             <section className="space-y-4">
                 <div className="flex items-start justify-between gap-3 border-b pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                    <CodeBlock code={usageCode} />
                 </div>
+            </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>数字はピクセルではなく割合として読む。</strong>資料は「最小と最大の制約を必ず設ける」を核に挙げています。GUNJO は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">defaultSize</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">minSize</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">maxSize</code> に素の数字を渡したとき、それを割合として扱います。土台の react-resizable-panels は素の数字をピクセルとして読むので、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">maxSize</code> に55を渡すと「55px」になり、分割が黙って壊れていました（#133）。ピクセルで指定したいときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">200px</code> のように文字列で渡します。
+                        </li>
+                        <li>
+                            <strong>元に戻す手段を、保存より先に用意した。</strong>資料は「リサイズの結果を localStorage に保存する」を挙げています。GUNJO はまず戻せることを入れました。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ResizablePanelGroup</code> に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">defaultLayout</code> を渡しておくと、仕切りをダブルクリックで初期の配分に戻ります。保存そのものは部品に入れていません。どのキーで保存し、いつ捨てるかは画面ごとに違うためです。
+                        </li>
+                        <li>
+                            <strong>線は1pxだが、掴める幅はもっと広い。</strong>見た目は1pxですが、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">after:</code> の疑似要素で前後に当たり判定を足してあるので、細い線を狙わなくても掴めます。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">withHandle</code> を渡すと、掴む場所が分かるグリップも出ます。資料が求めるキーボード操作と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">role</code> の付与は、土台のライブラリが持ちます。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/resizable"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: リサイズ可能パネル（Resizable）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>A bare number means percent, not pixels.</strong> The article treats minimum and maximum constraints as the core of a resizable layout. In GUNJO, a bare number passed to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">defaultSize</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">minSize</code> or <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">maxSize</code> is read as a percentage. The underlying react-resizable-panels reads a bare number as pixels, so <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">maxSize</code> of 55 quietly capped a pane at 55px and broke the split (#133). For pixel sizing, pass a string such as <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">200px</code>.
+                        </li>
+                        <li>
+                            <strong>Undo came before persistence.</strong> The article recommends storing the resized layout in localStorage. GUNJO added the way back first: give <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ResizablePanelGroup</code> a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">defaultLayout</code> and double-clicking the handle restores it. Persistence itself is deliberately absent, because the storage key and the moment to discard it differ per screen.
+                        </li>
+                        <li>
+                            <strong>The divider is 1px wide but much wider to grab.</strong> An <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">after:</code> pseudo-element extends the hit area on both sides, so the thin line does not have to be aimed at. Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">withHandle</code> for a visible grip. The keyboard support and the separator role the article requires come from the library underneath.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/resizable"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Resizable (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
             </section>
         </ComponentLayout>
     );

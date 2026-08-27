@@ -104,46 +104,39 @@ function NotificationCenterPreview({
     );
 }
 
-export default function NotificationCenterDocPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const labels = isJa ? jaLabels : enLabels;
-    const notifications = isJa ? jaNotifications : enNotifications;
-    const allReadNotifications = notifications.map((notification) => ({ ...notification, read: true }));
-    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
-
-    const code = `import { NotificationCenter, type Notification, type NotificationCenterLabels } from "@gunjo/ui"
+const codeByLocale = {
+    ja: `import { NotificationCenter, type Notification, type NotificationCenterLabels } from "@gunjo/ui"
 import { useState } from "react"
 
 const labels: NotificationCenterLabels = {
-  toggle: "${isJa ? "通知を開く" : "Open notifications"}",
-  title: "${isJa ? "通知" : "Notifications"}",
-  clearAll: "${isJa ? "すべて既読" : "Clear all"}",
-  emptyTitle: "${isJa ? "通知はありません" : "No notifications"}",
-  markAsRead: "${isJa ? "既読にする" : "Mark as read"}",
-  viewHistory: "${isJa ? "通知履歴をすべて見る" : "View all notification history"}",
+  toggle: "通知を開く",
+  title: "通知",
+  clearAll: "すべて既読",
+  emptyTitle: "通知はありません",
+  markAsRead: "既読にする",
+  viewHistory: "通知履歴をすべて見る",
 }
 
 const initialNotifications: Notification[] = [
   {
     id: "project-approved",
-    title: "${isJa ? "レビューが承認されました" : "Review approved"}",
-    description: "${isJa ? "デザインシステムの更新レビューが承認されました。" : "The design-system update review was approved."}",
-    timestamp: "${isJa ? "5分前" : "5 mins ago"}",
+    title: "レビューが承認されました",
+    description: "デザインシステムの更新レビューが承認されました。",
+    timestamp: "5分前",
     read: false,
   },
   {
     id: "comment",
-    title: "${isJa ? "新しいコメント" : "New comment"}",
-    description: "${isJa ? "Hikaby がプルリクエストにコメントしました。" : "Hikaby commented on your pull request."}",
-    timestamp: "${isJa ? "1時間前" : "1 hour ago"}",
+    title: "新しいコメント",
+    description: "Hikaby がプルリクエストにコメントしました。",
+    timestamp: "1時間前",
     read: false,
   },
   {
     id: "deploy",
-    title: "${isJa ? "デプロイ完了" : "Deployment complete"}",
-    description: "${isJa ? "本番デプロイ #1234 が完了しました。" : "Production deployment #1234 completed successfully."}",
-    timestamp: "${isJa ? "昨日" : "Yesterday"}",
+    title: "デプロイ完了",
+    description: "本番デプロイ #1234 が完了しました。",
+    timestamp: "昨日",
     read: true,
   },
 ]
@@ -169,7 +162,76 @@ export function Notifications() {
       }
     />
   )
-}`;
+}`,
+    en: `import { NotificationCenter, type Notification, type NotificationCenterLabels } from "@gunjo/ui"
+import { useState } from "react"
+
+const labels: NotificationCenterLabels = {
+  toggle: "Open notifications",
+  title: "Notifications",
+  clearAll: "Clear all",
+  emptyTitle: "No notifications",
+  markAsRead: "Mark as read",
+  viewHistory: "View all notification history",
+}
+
+const initialNotifications: Notification[] = [
+  {
+    id: "project-approved",
+    title: "Review approved",
+    description: "The design-system update review was approved.",
+    timestamp: "5 mins ago",
+    read: false,
+  },
+  {
+    id: "comment",
+    title: "New comment",
+    description: "Hikaby commented on your pull request.",
+    timestamp: "1 hour ago",
+    read: false,
+  },
+  {
+    id: "deploy",
+    title: "Deployment complete",
+    description: "Production deployment #1234 completed successfully.",
+    timestamp: "Yesterday",
+    read: true,
+  },
+]
+
+export function Notifications() {
+  const [notifications, setNotifications] = useState(initialNotifications)
+
+  return (
+    <NotificationCenter
+      notifications={notifications}
+      labels={labels}
+      onMarkAsRead={(id) =>
+        setNotifications((current) =>
+          current.map((notification) =>
+            notification.id === id ? { ...notification, read: true } : notification
+          )
+        )
+      }
+      onClearAll={() =>
+        setNotifications((current) =>
+          current.map((notification) => ({ ...notification, read: true }))
+        )
+      }
+    />
+  )
+}`,
+};
+
+export default function NotificationCenterDocPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const labels = isJa ? jaLabels : enLabels;
+    const notifications = isJa ? jaNotifications : enNotifications;
+    const allReadNotifications = notifications.map((notification) => ({ ...notification, read: true }));
+    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
+
+    const code = codeByLocale[locale];
 
     const emptyCode = code.replace(/const initialNotifications: Notification\[] = \[[\s\S]*?\]\n\nexport function Notifications/, "const initialNotifications: Notification[] = []\n\nexport function Notifications");
     const allReadCode = code.replace(/read: false/g, "read: true");
@@ -274,6 +336,56 @@ export function Notifications() {
                     <CodeCopyButton code={usageCode} />
                 </div>
                 <CodeBlock code={usageCode} />
+            </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>未読は数ではなく点で出す。</strong>資料は「未読バッジは 9+ や 99+ で上限を設ける」を挙げています。GUNJO は数を出すのをやめ、ベルの右上に小さな点を1つ置くだけにしました。上限をいくつにするかを部品が決めずに済み、1件でも100件でも「まだ見ていないものがある」という同じ意味だけを伝えます。件数を見せたい画面は、渡した <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">notifications</code> を呼ぶ側で数えます。
+                        </li>
+                        <li>
+                            <strong>通知が無いときの画面を部品が持つ。</strong>0件のとき、薄いベルのアイコンと <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">emptyTitle</code> の一文が出ます。空のときの表示を呼ぶ側が書き忘れて、開いたら真っ白、が起きません。
+                        </li>
+                        <li>
+                            <strong>一括既読と設定への導線は、口だけ用意した。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">onClearAll</code> を渡したときだけ、しかも未読があるときだけ「すべて既読」が出ます。押した先で何が起きるかは呼ぶ側が決めます。資料が挙げる時系列のグループ化（今日・今週・それ以前）は、GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">NotificationCenter</code> にはまだありません。並び順は渡した配列のままです。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/notification-center"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: 通知センター（Notification Center）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Unread is a dot, not a number.</strong> The article asks for an unread badge capped at 9+ or 99+. GUNJO drops the number entirely and places a single small dot on the bell. No cap has to be chosen by the component, and one unread item and a hundred unread items say the same thing: there is something you have not seen. A screen that wants the count can derive it from the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">notifications</code> it already passes in.
+                        </li>
+                        <li>
+                            <strong>The empty screen belongs to the component.</strong> With zero notifications it renders a faded bell and the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">emptyTitle</code> line, so a caller cannot forget the empty case and leave the panel blank.
+                        </li>
+                        <li>
+                            <strong>Mark-all-read and the settings link are slots, not behaviour.</strong> Clear all appears only when <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">onClearAll</code> is supplied and only while something is unread. What it does is decided by the caller. Note that the time grouping the article recommends (today, this week, earlier) is not in <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">NotificationCenter</code> yet: the order is exactly the array you pass.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/notification-center"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Notification Center (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
             </section>
         </ComponentLayout>
     );

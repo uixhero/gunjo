@@ -43,14 +43,22 @@ const tableMarkdownByLocale = {
 - [ ] Pre-release review`,
 } as const;
 
-function markdownRendererCode(content: string, propSuffix = "") {
-    return `import { MarkdownRenderer } from "@gunjo/ui";
+function markdownRendererCode(content: string, disableGfm = false) {
+    return disableGfm
+        ? `import { MarkdownRenderer } from "@gunjo/ui";
 
 const content = \`${content}\`;
 
-export function Example() {
-  return <MarkdownRenderer content={content}${propSuffix} />;
+export function ReleaseNotes() {
+  return <MarkdownRenderer content={content} disableGfm />;
 }`
+        : `import { MarkdownRenderer } from "@gunjo/ui";
+
+const content = \`${content}\`;
+
+export function ReleaseNotes() {
+  return <MarkdownRenderer content={content} />;
+}`;
 }
 
 const codeByLocale = {
@@ -64,8 +72,8 @@ const gfmCodeByLocale = {
 } as const;
 
 const plainCodeByLocale = {
-    ja: markdownRendererCode(tableMarkdownByLocale.ja, " disableGfm"),
-    en: markdownRendererCode(tableMarkdownByLocale.en, " disableGfm"),
+    ja: markdownRendererCode(tableMarkdownByLocale.ja, true),
+    en: markdownRendererCode(tableMarkdownByLocale.en, true),
 } as const;
 
 const propsByLocale = {
@@ -89,7 +97,7 @@ export default function MarkdownRendererPage() {
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
     const title = content?.title ?? meta.markdownRenderer.title;
     const description = content?.description ?? meta.markdownRenderer.description;
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
     const gfmCode = gfmCodeByLocale[locale];
     const plainCode = plainCodeByLocale[locale];
 
@@ -108,7 +116,7 @@ export default function MarkdownRendererPage() {
                 { name: "Table", href: "/docs/components/table" },
             ]}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewBodyWidth="md" previewHeight="auto">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md" previewHeight="auto">
                 <div className="w-full rounded-lg border bg-background p-5">
                     <MarkdownRenderer content={markdownByLocale[locale]} />
                 </div>
@@ -173,9 +181,11 @@ export default function MarkdownRendererPage() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </div>
         </ComponentLayout>
     );

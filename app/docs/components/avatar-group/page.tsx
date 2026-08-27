@@ -153,17 +153,43 @@ export default function AvatarGroupPage() {
     const code = locale === "ja"
         ? `import { Avatar, AvatarFallback, AvatarGroup } from "@gunjo/ui";
 
-export function Example() {
-  const hiddenMembers = team.slice(5);
+const TEAM = [
+  { id: "1", initials: "青", name: "青井 花" },
+  { id: "2", initials: "田", name: "田中 空" },
+  { id: "3", initials: "山", name: "山本 優" },
+  { id: "4", initials: "小", name: "小林 真央" },
+  { id: "5", initials: "中", name: "中村 蓮" },
+  { id: "6", initials: "佐", name: "佐藤 芽衣" },
+  { id: "7", initials: "鈴", name: "鈴木 悠真" },
+  { id: "8", initials: "高", name: "高橋 結衣" },
+];
+
+export function TeamAvatarGroup() {
+  const hiddenMembers = TEAM.slice(5);
 
   return (
     <AvatarGroup
       max={5}
-      overflowTooltip={formatHiddenMembers(hiddenMembers, { maxNames: 5 })}
+      overflowTooltip={"ほか " + hiddenMembers.length + " 名"}
       overflowAriaLabel="メンバー一覧を表示"
-      overflowContent={<MemberList members={team} />}
+      overflowContentAlign="center"
+      overflowContent={
+        <div className="p-2">
+          {TEAM.map((member) => (
+            <div
+              key={member.id}
+              className="flex items-center gap-3 rounded-md px-2 py-2 text-sm"
+            >
+              <Avatar className="h-8 w-8" aria-hidden="true">
+                <AvatarFallback className="text-xs">{member.initials}</AvatarFallback>
+              </Avatar>
+              <span className="font-medium">{member.name}</span>
+            </div>
+          ))}
+        </div>
+      }
     >
-      {team.map((member) => (
+      {TEAM.map((member) => (
         <Avatar key={member.id} aria-label={member.name} tooltip={member.name}>
           <AvatarFallback>{member.initials}</AvatarFallback>
         </Avatar>
@@ -173,17 +199,43 @@ export function Example() {
 }`
         : `import { Avatar, AvatarFallback, AvatarGroup } from "@gunjo/ui";
 
-export function Example() {
-  const hiddenMembers = team.slice(5);
+const TEAM = [
+  { id: "1", initials: "AH", name: "Aoi Hana" },
+  { id: "2", initials: "ST", name: "Sora Tanaka" },
+  { id: "3", initials: "YY", name: "Yu Yamamoto" },
+  { id: "4", initials: "MK", name: "Mao Kobayashi" },
+  { id: "5", initials: "RN", name: "Ren Nakamura" },
+  { id: "6", initials: "MS", name: "Mei Sato" },
+  { id: "7", initials: "YS", name: "Yuma Suzuki" },
+  { id: "8", initials: "YT", name: "Yui Takahashi" },
+];
+
+export function TeamAvatarGroup() {
+  const hiddenMembers = TEAM.slice(5);
 
   return (
     <AvatarGroup
       max={5}
-      overflowTooltip={formatHiddenMembers(hiddenMembers, { maxNames: 5 })}
+      overflowTooltip={"and " + hiddenMembers.length + " more"}
       overflowAriaLabel="Show member list"
-      overflowContent={<MemberList members={team} />}
+      overflowContentAlign="center"
+      overflowContent={
+        <div className="p-2">
+          {TEAM.map((member) => (
+            <div
+              key={member.id}
+              className="flex items-center gap-3 rounded-md px-2 py-2 text-sm"
+            >
+              <Avatar className="h-8 w-8" aria-hidden="true">
+                <AvatarFallback className="text-xs">{member.initials}</AvatarFallback>
+              </Avatar>
+              <span className="font-medium">{member.name}</span>
+            </div>
+          ))}
+        </div>
+      }
     >
-      {team.map((member) => (
+      {TEAM.map((member) => (
         <Avatar key={member.id} aria-label={member.name} tooltip={member.name}>
           <AvatarFallback>{member.initials}</AvatarFallback>
         </Avatar>
@@ -195,10 +247,18 @@ export function Example() {
     const usageCode = locale === "ja"
         ? `import { Avatar, AvatarFallback, AvatarGroup } from "@gunjo/ui";
 
-export function TeamAvatars({ team }) {
+const TEAM = [
+  { id: "1", initials: "青", name: "青井 花" },
+  { id: "2", initials: "田", name: "田中 空" },
+  { id: "3", initials: "山", name: "山本 優" },
+  { id: "4", initials: "小", name: "小林 真央" },
+  { id: "5", initials: "中", name: "中村 蓮" },
+];
+
+export function TeamAvatars() {
   return (
     <AvatarGroup max={4}>
-      {team.map((member) => (
+      {TEAM.map((member) => (
         <Avatar key={member.id} aria-label={member.name} tooltip={member.name}>
           <AvatarFallback>{member.initials}</AvatarFallback>
         </Avatar>
@@ -208,10 +268,18 @@ export function TeamAvatars({ team }) {
 }`
         : `import { Avatar, AvatarFallback, AvatarGroup } from "@gunjo/ui";
 
-export function TeamAvatars({ team }) {
+const TEAM = [
+  { id: "1", initials: "AH", name: "Aoi Hana" },
+  { id: "2", initials: "ST", name: "Sora Tanaka" },
+  { id: "3", initials: "YY", name: "Yu Yamamoto" },
+  { id: "4", initials: "MK", name: "Mao Kobayashi" },
+  { id: "5", initials: "RN", name: "Ren Nakamura" },
+];
+
+export function TeamAvatars() {
   return (
     <AvatarGroup max={4}>
-      {team.map((member) => (
+      {TEAM.map((member) => (
         <Avatar key={member.id} aria-label={member.name} tooltip={member.name}>
           <AvatarFallback>{member.initials}</AvatarFallback>
         </Avatar>
@@ -388,10 +456,18 @@ export function TeamAvatars({ team }) {
                             code: locale === "ja"
                                 ? `import { Avatar, AvatarFallback, AvatarGroup } from "@gunjo/ui";
 
-export function NamedAvatars({ team }) {
+const TEAM = [
+  { id: "1", initials: "青", name: "青井 花" },
+  { id: "2", initials: "田", name: "田中 空" },
+  { id: "3", initials: "山", name: "山本 優" },
+  { id: "4", initials: "小", name: "小林 真央" },
+  { id: "5", initials: "中", name: "中村 蓮" },
+];
+
+export function NamedAvatarGroup() {
   return (
     <AvatarGroup max={4}>
-      {team.map((member) => (
+      {TEAM.map((member) => (
         <Avatar key={member.id} aria-label={member.name} tooltip={member.name}>
           <AvatarFallback>{member.initials}</AvatarFallback>
         </Avatar>
@@ -401,10 +477,18 @@ export function NamedAvatars({ team }) {
 }`
                                 : `import { Avatar, AvatarFallback, AvatarGroup } from "@gunjo/ui";
 
-export function NamedAvatars({ team }) {
+const TEAM = [
+  { id: "1", initials: "AH", name: "Aoi Hana" },
+  { id: "2", initials: "ST", name: "Sora Tanaka" },
+  { id: "3", initials: "YY", name: "Yu Yamamoto" },
+  { id: "4", initials: "MK", name: "Mao Kobayashi" },
+  { id: "5", initials: "RN", name: "Ren Nakamura" },
+];
+
+export function NamedAvatarGroup() {
   return (
     <AvatarGroup max={4}>
-      {team.map((member) => (
+      {TEAM.map((member) => (
         <Avatar key={member.id} aria-label={member.name} tooltip={member.name}>
           <AvatarFallback>{member.initials}</AvatarFallback>
         </Avatar>
@@ -444,16 +528,24 @@ export function NamedAvatars({ team }) {
                             code: locale === "ja"
                                 ? `import { Avatar, AvatarFallback, AvatarGroup } from "@gunjo/ui";
 
-export function PresenceAvatars({ team }) {
+const TEAM = [
+  { id: "1", initials: "青", name: "青井 花", presence: "online", status: "オンライン" },
+  { id: "2", initials: "田", name: "田中 空", presence: "away", status: "離席中" },
+  { id: "3", initials: "山", name: "山本 優", presence: "busy", status: "取り込み中" },
+  { id: "4", initials: "小", name: "小林 真央", presence: "offline", status: "オフライン" },
+  { id: "5", initials: "中", name: "中村 蓮", presence: "online", status: "オンライン" },
+];
+
+export function PresenceAvatarGroup() {
   return (
     <AvatarGroup max={4}>
-      {team.map((member) => (
+      {TEAM.map((member) => (
         <Avatar
           key={member.id}
           aria-label={member.name}
-          tooltip={member.nameWithStatus}
+          tooltip={member.name + "（" + member.status + "）"}
           presence={member.presence}
-          presenceLabel={member.statusLabel}
+          presenceLabel={member.status}
         >
           <AvatarFallback>{member.initials}</AvatarFallback>
         </Avatar>
@@ -463,16 +555,30 @@ export function PresenceAvatars({ team }) {
 }`
                                 : `import { Avatar, AvatarFallback, AvatarGroup } from "@gunjo/ui";
 
-export function PresenceAvatars({ team }) {
+const TEAM = [
+  { id: "1", initials: "AH", name: "Aoi Hana", presence: "online", status: "Online" },
+  { id: "2", initials: "ST", name: "Sora Tanaka", presence: "away", status: "Away" },
+  { id: "3", initials: "YY", name: "Yu Yamamoto", presence: "busy", status: "Busy" },
+  {
+    id: "4",
+    initials: "MK",
+    name: "Mao Kobayashi",
+    presence: "offline",
+    status: "Offline",
+  },
+  { id: "5", initials: "RN", name: "Ren Nakamura", presence: "online", status: "Online" },
+];
+
+export function PresenceAvatarGroup() {
   return (
     <AvatarGroup max={4}>
-      {team.map((member) => (
+      {TEAM.map((member) => (
         <Avatar
           key={member.id}
           aria-label={member.name}
-          tooltip={member.nameWithStatus}
+          tooltip={member.name + " (" + member.status + ")"}
           presence={member.presence}
-          presenceLabel={member.statusLabel}
+          presenceLabel={member.status}
         >
           <AvatarFallback>{member.initials}</AvatarFallback>
         </Avatar>
@@ -511,10 +617,18 @@ export function PresenceAvatars({ team }) {
                             code: locale === "ja"
                                 ? `import { Avatar, AvatarFallback, AvatarGroup } from "@gunjo/ui";
 
-export function CompactAvatars({ team }) {
+const TEAM = [
+  { id: "1", initials: "青", name: "青井 花" },
+  { id: "2", initials: "田", name: "田中 空" },
+  { id: "3", initials: "山", name: "山本 優" },
+  { id: "4", initials: "小", name: "小林 真央" },
+  { id: "5", initials: "中", name: "中村 蓮" },
+];
+
+export function CompactAvatarGroup() {
   return (
     <AvatarGroup max={4} overlap={14}>
-      {team.map((member) => (
+      {TEAM.map((member) => (
         <Avatar key={member.id} aria-label={member.name} tooltip={member.name}>
           <AvatarFallback>{member.initials}</AvatarFallback>
         </Avatar>
@@ -524,10 +638,18 @@ export function CompactAvatars({ team }) {
 }`
                                 : `import { Avatar, AvatarFallback, AvatarGroup } from "@gunjo/ui";
 
-export function CompactAvatars({ team }) {
+const TEAM = [
+  { id: "1", initials: "AH", name: "Aoi Hana" },
+  { id: "2", initials: "ST", name: "Sora Tanaka" },
+  { id: "3", initials: "YY", name: "Yu Yamamoto" },
+  { id: "4", initials: "MK", name: "Mao Kobayashi" },
+  { id: "5", initials: "RN", name: "Ren Nakamura" },
+];
+
+export function CompactAvatarGroup() {
   return (
     <AvatarGroup max={4} overlap={14}>
-      {team.map((member) => (
+      {TEAM.map((member) => (
         <Avatar key={member.id} aria-label={member.name} tooltip={member.name}>
           <AvatarFallback>{member.initials}</AvatarFallback>
         </Avatar>

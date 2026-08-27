@@ -176,6 +176,44 @@ export function SubsidyMatch() {
   );
 }`;
 
+  const readOnlyCode = locale === "ja"
+    ? `import { Badge, CompanyCell, MatchCard, type MatchFactor } from "@gunjo/ui";
+
+const factors: MatchFactor[] = [
+  { label: "対象事業者", value: "◎", tone: "success", detail: "製造業・中小企業" },
+  { label: "設備投資要件", value: "△", tone: "warning", detail: "見積追加が必要" },
+  { label: "補助率", value: "2/3", tone: "success", detail: "上限 1,250万円" },
+];
+
+export function ReadOnlySubsidyMatch() {
+  return (
+    <MatchCard
+      left={<CompanyCell name="協栄精密工業" />}
+      right={<CompanyCell name="ものづくり補助金" />}
+      score={<Badge variant="secondary">92%</Badge>}
+      factors={factors}
+    />
+  );
+}`
+    : `import { Badge, CompanyCell, MatchCard, type MatchFactor } from "@gunjo/ui";
+
+const factors: MatchFactor[] = [
+  { label: "Eligible business", value: "A", tone: "success", detail: "Manufacturing / SMB" },
+  { label: "Capital investment", value: "C", tone: "warning", detail: "Additional quote required" },
+  { label: "Subsidy rate", value: "2/3", tone: "success", detail: "Up to JPY 12.5M" },
+];
+
+export function ReadOnlySubsidyMatch() {
+  return (
+    <MatchCard
+      left={<CompanyCell name="Kyoei Precision" />}
+      right={<CompanyCell name="Manufacturing subsidy" />}
+      score={<Badge variant="secondary">92%</Badge>}
+      factors={factors}
+    />
+  );
+}`;
+
   const propsData = [
     { name: "left / right", type: "ReactNode", description: locale === "ja" ? "左右に置く対象です。CompanyCell や PersonCell など任意の identity node を渡せます。" : "Left and right entities. Pass CompanyCell, PersonCell, or any identity node." },
     { name: "score", type: "ReactNode", description: locale === "ja" ? "中央に置く適合度やスコアです。省略時は交換アイコンです。" : "Center score or connector. Defaults to an exchange icon." },
@@ -227,12 +265,7 @@ export function SubsidyMatch() {
               title: locale === "ja" ? "表示専用" : "Read-only",
               description: locale === "ja" ? "actions を省略すると、比較結果だけを表示するカードになります。" : "Omit actions for a read-only comparison card.",
               preview: <MatchCardPreview locale={locale} actions={false} />,
-              code: `<MatchCard
-  left={<CompanyCell name="${locale === "ja" ? "協栄精密工業" : "Kyoei Precision"}" />}
-  right={<CompanyCell name="${locale === "ja" ? "ものづくり補助金" : "Manufacturing subsidy"}" />}
-  score={<Badge variant="secondary">92%</Badge>}
-  factors={factors}
-/>`,
+              code: readOnlyCode,
               previewBodyWidth: "lg",
             },
           ]}

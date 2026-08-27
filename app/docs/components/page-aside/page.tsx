@@ -8,28 +8,26 @@ import { PageAsideDemo } from "@/components/demos/PageAsideDemo";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import navigationMetadata from "@design/navigation-metadata.json";
 
-export default function PageAsideDocPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const sharedCode = `import { Badge, PageAside } from "@gunjo/ui"
+const codeByLocale = {
+    ja: `import { Badge, PageAside } from "@gunjo/ui"
 
 const pageLinks = [
-  { id: "overview", label: "${isJa ? "概要" : "Overview"}" },
-  { id: "quality", label: "${isJa ? "品質指標" : "Quality metrics"}" },
-  { id: "release", label: "${isJa ? "公開前確認" : "Release checks"}" },
+  { id: "overview", label: "概要" },
+  { id: "quality", label: "品質指標" },
+  { id: "release", label: "公開前確認" },
 ]
 
 const pageStatuses = [
-  { label: "${isJa ? "状態" : "Status"}", value: "${isJa ? "公開前確認" : "Pre-release"}", tone: "default" },
-  { label: "${isJa ? "最終更新" : "Updated"}", value: "${isJa ? "5分前" : "5 min ago"}", tone: "secondary" },
-  { label: "${isJa ? "レビュー" : "Review"}", value: "${isJa ? "2件対応待ち" : "2 pending"}", tone: "secondary" },
+  { label: "状態", value: "公開前確認", tone: "default" },
+  { label: "最終更新", value: "5分前", tone: "secondary" },
+  { label: "レビュー", value: "2件対応待ち", tone: "secondary" },
 ]
 
 function PageLinks() {
   return (
     <section className="space-y-2">
-      <h3 className="text-sm font-semibold">${isJa ? "ページ内" : "On this page"}</h3>
-      <nav aria-label="${isJa ? "ページ内リンク" : "Page sections"}">
+      <h3 className="text-sm font-semibold">ページ内</h3>
+      <nav aria-label="ページ内リンク">
         <ul className="space-y-1">
           {pageLinks.map((item) => (
             <li key={item.id}>
@@ -47,7 +45,7 @@ function PageLinks() {
 function PageStatus() {
   return (
     <section className="space-y-2">
-      <h3 className="text-sm font-semibold">${isJa ? "ページステータス" : "Page status"}</h3>
+      <h3 className="text-sm font-semibold">ページステータス</h3>
       <dl className="space-y-2">
         {pageStatuses.map((item) => (
           <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border bg-muted/20 px-3 py-2">
@@ -69,60 +67,338 @@ function AsideContent() {
       <PageStatus />
     </div>
   )
-}`;
-    const code = `${sharedCode}
+}
 
 export function DocsPageWithAside() {
   return (
     <PageAside
-      title="${isJa ? "補助情報" : "Supporting information"}"
-      asideLabel="${isJa ? "ページの補助情報" : "Page supporting information"}"
-      contentLabel="${isJa ? "主コンテンツ" : "Main content"}"
-      mobileDescription="${isJa ? "狭い画面では、右レールの内容を本文内で開閉します。" : "On narrow screens, the right-rail content collapses inside the content area."}"
-      openLabel="${isJa ? "補助情報を開く" : "Open supporting information"}"
-      closeLabel="${isJa ? "補助情報を閉じる" : "Close supporting information"}"
+      title="補助情報"
+      asideLabel="ページの補助情報"
+      contentLabel="主コンテンツ"
+      mobileDescription="狭い画面では、右レールの内容を本文内で開閉します。"
+      openLabel="補助情報を開く"
+      closeLabel="補助情報を閉じる"
       contentClassName="space-y-4 bg-muted/30 p-4"
       renderAside={() => <AsideContent />}
     >
-      <h3 className="text-base font-semibold">${isJa ? "分析レポート" : "Analytics report"}</h3>
+      <h3 className="text-base font-semibold">分析レポート</h3>
       <p className="max-w-xl text-sm text-muted-foreground">
-        ${isJa ? "広い画面では補助情報を右側へ、狭い画面では本文内の折りたたみ領域へ配置します。" : "Place supporting information on the right on wide screens and in a collapsible content block on narrow screens."}
+        広い画面では補助情報を右側へ、狭い画面では本文内の折りたたみ領域へ配置します。
       </p>
       <section id="overview" className="rounded-md border bg-background p-3">
-        <h4 className="text-sm font-semibold">${isJa ? "概要" : "Overview"}</h4>
+        <h4 className="text-sm font-semibold">概要</h4>
       </section>
     </PageAside>
   )
-}`;
-    const statusCode = `${sharedCode}
+}`,
+    en: `import { Badge, PageAside } from "@gunjo/ui"
+
+const pageLinks = [
+  { id: "overview", label: "Overview" },
+  { id: "quality", label: "Quality metrics" },
+  { id: "release", label: "Release checks" },
+]
+
+const pageStatuses = [
+  { label: "Status", value: "Pre-release", tone: "default" },
+  { label: "Updated", value: "5 min ago", tone: "secondary" },
+  { label: "Review", value: "2 pending", tone: "secondary" },
+]
+
+function PageLinks() {
+  return (
+    <section className="space-y-2">
+      <h3 className="text-sm font-semibold">On this page</h3>
+      <nav aria-label="Page sections">
+        <ul className="space-y-1">
+          {pageLinks.map((item) => (
+            <li key={item.id}>
+              <a className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </section>
+  )
+}
+
+function PageStatus() {
+  return (
+    <section className="space-y-2">
+      <h3 className="text-sm font-semibold">Page status</h3>
+      <dl className="space-y-2">
+        {pageStatuses.map((item) => (
+          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border bg-muted/20 px-3 py-2">
+            <dt className="text-xs text-muted-foreground">{item.label}</dt>
+            <dd className="shrink-0 text-xs font-medium">
+              {item.tone === "default" ? <Badge>{item.value}</Badge> : item.value}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  )
+}
+
+function AsideContent() {
+  return (
+    <div className="space-y-5">
+      <PageLinks />
+      <PageStatus />
+    </div>
+  )
+}
+
+export function DocsPageWithAside() {
+  return (
+    <PageAside
+      title="Supporting information"
+      asideLabel="Page supporting information"
+      contentLabel="Main content"
+      mobileDescription="On narrow screens, the right-rail content collapses inside the content area."
+      openLabel="Open supporting information"
+      closeLabel="Close supporting information"
+      contentClassName="space-y-4 bg-muted/30 p-4"
+      renderAside={() => <AsideContent />}
+    >
+      <h3 className="text-base font-semibold">Analytics report</h3>
+      <p className="max-w-xl text-sm text-muted-foreground">
+        Place supporting information on the right on wide screens and in a collapsible content block on narrow screens.
+      </p>
+      <section id="overview" className="rounded-md border bg-background p-3">
+        <h4 className="text-sm font-semibold">Overview</h4>
+      </section>
+    </PageAside>
+  )
+}`,
+};
+
+const statusCodeByLocale = {
+    ja: `import { Badge, PageAside } from "@gunjo/ui"
+
+const pageLinks = [
+  { id: "overview", label: "概要" },
+  { id: "quality", label: "品質指標" },
+  { id: "release", label: "公開前確認" },
+]
+
+const pageStatuses = [
+  { label: "状態", value: "公開前確認", tone: "default" },
+  { label: "最終更新", value: "5分前", tone: "secondary" },
+  { label: "レビュー", value: "2件対応待ち", tone: "secondary" },
+]
+
+function PageLinks() {
+  return (
+    <section className="space-y-2">
+      <h3 className="text-sm font-semibold">ページ内</h3>
+      <nav aria-label="ページ内リンク">
+        <ul className="space-y-1">
+          {pageLinks.map((item) => (
+            <li key={item.id}>
+              <a className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </section>
+  )
+}
+
+function PageStatus() {
+  return (
+    <section className="space-y-2">
+      <h3 className="text-sm font-semibold">ページステータス</h3>
+      <dl className="space-y-2">
+        {pageStatuses.map((item) => (
+          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border bg-muted/20 px-3 py-2">
+            <dt className="text-xs text-muted-foreground">{item.label}</dt>
+            <dd className="shrink-0 text-xs font-medium">
+              {item.tone === "default" ? <Badge>{item.value}</Badge> : item.value}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  )
+}
+
+function AsideContent() {
+  return (
+    <div className="space-y-5">
+      <PageLinks />
+      <PageStatus />
+    </div>
+  )
+}
 
 export function PageStatusAside() {
   return (
     <PageAside
-      title="${isJa ? "補助情報" : "Supporting information"}"
-      asideLabel="${isJa ? "ページの補助情報" : "Page supporting information"}"
+      title="補助情報"
+      asideLabel="ページの補助情報"
       contentClassName="space-y-4 bg-muted/30 p-4"
       renderAside={() => <PageStatus />}
     >
-      <h3 className="text-base font-semibold">${isJa ? "公開前確認" : "Release review"}</h3>
+      <h3 className="text-base font-semibold">公開前確認</h3>
       <p className="text-sm text-muted-foreground">
-        ${isJa ? "ページ状態だけを補助領域にまとめます。" : "Keep page status in the supporting region."}
+        ページ状態だけを補助領域にまとめます。
       </p>
     </PageAside>
   )
-}`;
-    const linksCode = `${sharedCode}
+}`,
+    en: `import { Badge, PageAside } from "@gunjo/ui"
+
+const pageLinks = [
+  { id: "overview", label: "Overview" },
+  { id: "quality", label: "Quality metrics" },
+  { id: "release", label: "Release checks" },
+]
+
+const pageStatuses = [
+  { label: "Status", value: "Pre-release", tone: "default" },
+  { label: "Updated", value: "5 min ago", tone: "secondary" },
+  { label: "Review", value: "2 pending", tone: "secondary" },
+]
+
+function PageLinks() {
+  return (
+    <section className="space-y-2">
+      <h3 className="text-sm font-semibold">On this page</h3>
+      <nav aria-label="Page sections">
+        <ul className="space-y-1">
+          {pageLinks.map((item) => (
+            <li key={item.id}>
+              <a className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </section>
+  )
+}
+
+function PageStatus() {
+  return (
+    <section className="space-y-2">
+      <h3 className="text-sm font-semibold">Page status</h3>
+      <dl className="space-y-2">
+        {pageStatuses.map((item) => (
+          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border bg-muted/20 px-3 py-2">
+            <dt className="text-xs text-muted-foreground">{item.label}</dt>
+            <dd className="shrink-0 text-xs font-medium">
+              {item.tone === "default" ? <Badge>{item.value}</Badge> : item.value}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  )
+}
+
+function AsideContent() {
+  return (
+    <div className="space-y-5">
+      <PageLinks />
+      <PageStatus />
+    </div>
+  )
+}
+
+export function PageStatusAside() {
+  return (
+    <PageAside
+      title="Supporting information"
+      asideLabel="Page supporting information"
+      contentClassName="space-y-4 bg-muted/30 p-4"
+      renderAside={() => <PageStatus />}
+    >
+      <h3 className="text-base font-semibold">Release review</h3>
+      <p className="text-sm text-muted-foreground">
+        Keep page status in the supporting region.
+      </p>
+    </PageAside>
+  )
+}`,
+};
+
+const linksCodeByLocale = {
+    ja: `import { Badge, PageAside } from "@gunjo/ui"
+
+const pageLinks = [
+  { id: "overview", label: "概要" },
+  { id: "quality", label: "品質指標" },
+  { id: "release", label: "公開前確認" },
+]
+
+const pageStatuses = [
+  { label: "状態", value: "公開前確認", tone: "default" },
+  { label: "最終更新", value: "5分前", tone: "secondary" },
+  { label: "レビュー", value: "2件対応待ち", tone: "secondary" },
+]
+
+function PageLinks() {
+  return (
+    <section className="space-y-2">
+      <h3 className="text-sm font-semibold">ページ内</h3>
+      <nav aria-label="ページ内リンク">
+        <ul className="space-y-1">
+          {pageLinks.map((item) => (
+            <li key={item.id}>
+              <a className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </section>
+  )
+}
+
+function PageStatus() {
+  return (
+    <section className="space-y-2">
+      <h3 className="text-sm font-semibold">ページステータス</h3>
+      <dl className="space-y-2">
+        {pageStatuses.map((item) => (
+          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border bg-muted/20 px-3 py-2">
+            <dt className="text-xs text-muted-foreground">{item.label}</dt>
+            <dd className="shrink-0 text-xs font-medium">
+              {item.tone === "default" ? <Badge>{item.value}</Badge> : item.value}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  )
+}
+
+function AsideContent() {
+  return (
+    <div className="space-y-5">
+      <PageLinks />
+      <PageStatus />
+    </div>
+  )
+}
 
 const relatedLinks = [
-  { label: "${isJa ? "公開チェックリスト" : "Release checklist"}", href: "#" },
-  { label: "${isJa ? "変更履歴" : "Changelog"}", href: "#" },
-  { label: "${isJa ? "担当チーム" : "Owner team"}", href: "#" },
+  { label: "公開チェックリスト", href: "#" },
+  { label: "変更履歴", href: "#" },
+  { label: "担当チーム", href: "#" },
 ]
 
 function RelatedLinks() {
   return (
     <section className="space-y-2">
-      <h3 className="text-sm font-semibold">${isJa ? "関連リンク" : "Related links"}</h3>
+      <h3 className="text-sm font-semibold">関連リンク</h3>
       <ul className="space-y-1">
         {relatedLinks.map((item) => (
           <li key={item.label}>
@@ -139,8 +415,8 @@ function RelatedLinks() {
 export function RelatedLinksAside() {
   return (
     <PageAside
-      title="${isJa ? "補助情報" : "Supporting information"}"
-      asideLabel="${isJa ? "ページの補助情報" : "Page supporting information"}"
+      title="補助情報"
+      asideLabel="ページの補助情報"
       contentClassName="space-y-4 bg-muted/30 p-4"
       renderAside={() => (
         <div className="space-y-5">
@@ -149,13 +425,124 @@ export function RelatedLinksAside() {
         </div>
       )}
     >
-      <h3 className="text-base font-semibold">${isJa ? "仕様ページ" : "Spec page"}</h3>
+      <h3 className="text-base font-semibold">仕様ページ</h3>
       <p className="text-sm text-muted-foreground">
-        ${isJa ? "関連資料やページ内リンクを補助領域にまとめます。" : "Collect related references and page links in the supporting region."}
+        関連資料やページ内リンクを補助領域にまとめます。
       </p>
     </PageAside>
   )
-}`;
+}`,
+    en: `import { Badge, PageAside } from "@gunjo/ui"
+
+const pageLinks = [
+  { id: "overview", label: "Overview" },
+  { id: "quality", label: "Quality metrics" },
+  { id: "release", label: "Release checks" },
+]
+
+const pageStatuses = [
+  { label: "Status", value: "Pre-release", tone: "default" },
+  { label: "Updated", value: "5 min ago", tone: "secondary" },
+  { label: "Review", value: "2 pending", tone: "secondary" },
+]
+
+function PageLinks() {
+  return (
+    <section className="space-y-2">
+      <h3 className="text-sm font-semibold">On this page</h3>
+      <nav aria-label="Page sections">
+        <ul className="space-y-1">
+          {pageLinks.map((item) => (
+            <li key={item.id}>
+              <a className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground" href={\`#\${item.id}\`}>
+                {item.label}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </nav>
+    </section>
+  )
+}
+
+function PageStatus() {
+  return (
+    <section className="space-y-2">
+      <h3 className="text-sm font-semibold">Page status</h3>
+      <dl className="space-y-2">
+        {pageStatuses.map((item) => (
+          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border bg-muted/20 px-3 py-2">
+            <dt className="text-xs text-muted-foreground">{item.label}</dt>
+            <dd className="shrink-0 text-xs font-medium">
+              {item.tone === "default" ? <Badge>{item.value}</Badge> : item.value}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  )
+}
+
+function AsideContent() {
+  return (
+    <div className="space-y-5">
+      <PageLinks />
+      <PageStatus />
+    </div>
+  )
+}
+
+const relatedLinks = [
+  { label: "Release checklist", href: "#" },
+  { label: "Changelog", href: "#" },
+  { label: "Owner team", href: "#" },
+]
+
+function RelatedLinks() {
+  return (
+    <section className="space-y-2">
+      <h3 className="text-sm font-semibold">Related links</h3>
+      <ul className="space-y-1">
+        {relatedLinks.map((item) => (
+          <li key={item.label}>
+            <a href={item.href} onClick={(event) => event.preventDefault()} className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground hover:bg-muted hover:text-foreground">
+              {item.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )
+}
+
+export function RelatedLinksAside() {
+  return (
+    <PageAside
+      title="Supporting information"
+      asideLabel="Page supporting information"
+      contentClassName="space-y-4 bg-muted/30 p-4"
+      renderAside={() => (
+        <div className="space-y-5">
+          <RelatedLinks />
+          <PageLinks />
+        </div>
+      )}
+    >
+      <h3 className="text-base font-semibold">Spec page</h3>
+      <p className="text-sm text-muted-foreground">
+        Collect related references and page links in the supporting region.
+      </p>
+    </PageAside>
+  )
+}`,
+};
+
+export default function PageAsideDocPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const usageCode = codeByLocale[locale];
+    const statusCode = statusCodeByLocale[locale];
+    const linksCode = linksCodeByLocale[locale];
 
     return (
         <ComponentLayout
@@ -176,7 +563,7 @@ export function RelatedLinksAside() {
                 { name: "TextLink", href: "/docs/components/text-link" },
             ]}
         >
-            <ComponentPreview embedSrc="/embed/page-aside" code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewBodyWidth="full" previewHeight="auto">
+            <ComponentPreview embedSrc="/embed/page-aside" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewBodyWidth="full" previewHeight="auto">
                 <PageAsideDemo />
             </ComponentPreview>
 
@@ -227,9 +614,11 @@ export function RelatedLinksAside() {
             <div className="space-y-4">
                 <div className="flex items-start justify-between gap-3 border-b pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{sectionLabels.usage}</h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </div>
         </ComponentLayout>
     );

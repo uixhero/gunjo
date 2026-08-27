@@ -535,7 +535,7 @@ export function AddableTags() {
               type="button"
               variant="outline"
               className="h-6 rounded-full border-dashed px-2.5 text-xs font-semibold"
-              onClick={() => setTags((current) => [...current, \`テスト\${current.length + 1}\`])}
+              onClick={() => setTags((current) => [...current, "テスト" + (current.length + 1)])}
             >
               <IconPlus className="h-3 w-3" />
               タグを追加
@@ -565,7 +565,7 @@ export function AddableTags() {
               type="button"
               variant="outline"
               className="h-6 rounded-full border-dashed px-2.5 text-xs font-semibold"
-              onClick={() => setTags((current) => [...current, \`Test \${current.length + 1}\`])}
+              onClick={() => setTags((current) => [...current, "Test " + (current.length + 1)])}
             >
               <IconPlus className="h-3 w-3" />
               Add tag
@@ -704,6 +704,56 @@ export function SelectableBadge() {
                 </div>
                 <CodeBlock code={usageCode} />
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>色だけに意味を乗せない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">icon</code> の差し込み口があるのは、状態を表すバッジを色とアイコンと文字の3つで出せるようにするためです。アイコンは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-hidden</code> の飾りで、意味は文字が持ちます。アイコンだけで使うときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> を渡します（#276）。
+                        </li>
+                        <li>
+                            <strong>既定の要素は span。</strong>バッジは文の中に置ける部品なので、既定は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">span</code> です。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">p</code> の中に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">div</code> を入れると描画のときに壊れます。塊として置きたいときだけ <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'as="div"'}</code> を渡します。
+                        </li>
+                        <li>
+                            <strong>数の丸めは部品に持たせない。</strong>資料は「0件のときは出さない」「99件を超えたら99+にする」を挙げています。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Badge</code> はこの計算を持たず、呼ぶ側の判断に残しました。0を出すかどうかは画面の意味で変わるからです。大きさの刻み（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">sm</code>・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">default</code>・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">lg</code>）は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Tag</code> と同じ名前にしてあるので、並べて使うときに指定を読み替えずに済みます（#300）。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/badge"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: バッジ（Badge）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Never let colour alone carry the meaning.</strong> The <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">icon</code> slot exists so a status pill can speak through colour, glyph and text at once. The icon is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-hidden</code> decoration; the text carries the meaning. For an icon-only badge, pass an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> (#276).
+                        </li>
+                        <li>
+                            <strong>The default element is a span.</strong> A badge is phrasing content, so it renders <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">span</code> by default. A <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">div</code> inside a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">p</code> throws a hydration error. Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'as="div"'}</code> only when you really need a block.
+                        </li>
+                        <li>
+                            <strong>Count rules stay with the caller.</strong> The article asks for hiding a count badge at zero and collapsing anything past 99 into 99+. GUNJO deliberately keeps that arithmetic out of <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Badge</code>, because whether a zero is noise or news depends on the screen. The size scale (<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">sm</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">default</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">lg</code>) uses the same names as <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Tag</code> so the two can be mixed without translating sizes (#300).
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/badge"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Badge (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

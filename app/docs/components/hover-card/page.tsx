@@ -291,7 +291,7 @@ export function ReleaseHoverCard() {
 export default function HoverCardPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
     const notificationCode = notificationCodeByLocale[locale];
     const actionCode = actionCodeByLocale[locale];
     const tabbedCode = tabbedCodeByLocale[locale];
@@ -310,8 +310,8 @@ export default function HoverCardPage() {
             ]}
         >
             <ComponentPreview
-                code={code}
-                codeBlock={<CodeBlock code={code} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewHeight="auto"
                 className="overflow-visible"
@@ -338,7 +338,7 @@ export default function HoverCardPage() {
                                     {(portalContainer) => <HoverCardAuditDemo portalContainer={portalContainer} />}
                                 </HoverCardPreviewSurface>
                             ),
-                            code,
+                            code: usageCode,
                             previewHeight: "auto",
                             previewClassName: "overflow-visible",
                         },
@@ -425,12 +425,64 @@ export default function HoverCardPage() {
 
             <section className="space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
-                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
+            </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {isJa ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {isJa ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>遅れの既定は Radix のまま、画面ごとに決める。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">HoverCard</code> は Radix の同名の部品の薄い包みです。開くまで700ms・閉じるまで300msという既定は Radix のもので、こちらでは変えていません。資料は開くまで300から500msを勧めています。このページの見本は確かめやすいように <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">openDelay</code> を150msにしているので、実際の画面では資料の値を目安に渡してください。
+                        </li>
+                        <li>
+                            <strong>カードの上に移っても閉じない、は土台が持つ。</strong>カードに向けてカーソルを動かしているあいだに閉じてしまうと、中のボタンが押せません。この待ち時間と、焦点が当たったときにも開くこと（キーボードで使えること）は Radix の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">HoverCard</code> が持っています。
+                        </li>
+                        <li>
+                            <strong>枠の中に閉じ込められるようにする。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">portalContainer</code> を渡すと、カードを指定した箱の中に描きます。プレビューの枠や、画面の中に画面を描いている場面で、カードだけが外に出るのを防ぎます。中身の幅は256pxで固定しています。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/hover-card"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: ホバーカード（Hover Card）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>The delays keep the Radix defaults; each screen decides its own.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">HoverCard</code> is a thin wrapper over the Radix component of the same name. The 700ms open and 300ms close defaults are the Radix ones and are not overridden here. The article recommends 300 to 500ms to open. The demos on this page set <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">openDelay</code> to 150ms so the behaviour is quick to inspect, so use the value from the article on a real screen.
+                        </li>
+                        <li>
+                            <strong>Staying open while the pointer moves onto the card comes from the base.</strong> If the card closed the moment the pointer left the trigger, a button inside it could never be reached. That grace period, and opening on focus so the card is reachable by keyboard, are both handled by the Radix <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">HoverCard</code>.
+                        </li>
+                        <li>
+                            <strong>It can be kept inside a frame.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">portalContainer</code> and the card renders inside the element you name, so it cannot escape a preview frame or a simulated browser surface. The content is a fixed 256px wide.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/hover-card"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Hover Card (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
             </section>
         </ComponentLayout>
     );

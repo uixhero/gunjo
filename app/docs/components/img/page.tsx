@@ -15,11 +15,14 @@ const wideImage = "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?
 const usageCodeByLocale = {
     ja: `import { Img } from "@gunjo/ui";
 
-export function ImgExample() {
+const sampleImage =
+  "${sampleImage}";
+
+export function OfficeDeskThumbnail() {
   return (
     <div className="w-64 h-64">
       <Img
-        src="${sampleImage}"
+        src={sampleImage}
         alt="オフィスデスクの写真"
         aspectRatio="square"
         errorLabel="画像が見つかりません"
@@ -30,13 +33,17 @@ export function ImgExample() {
 }`,
     en: `import { Img } from "@gunjo/ui";
 
-export function ImgExample() {
+const sampleImage =
+  "${sampleImage}";
+
+export function OfficeDeskThumbnail() {
   return (
     <div className="w-64 h-64">
-      <Img 
-        src="${sampleImage}" 
+      <Img
+        src={sampleImage}
         alt="Office desk"
         aspectRatio="square"
+        errorLabel="Image not found"
         loading="lazy"
       />
     </div>

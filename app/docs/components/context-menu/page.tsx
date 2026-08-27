@@ -290,7 +290,7 @@ export function NestedContextMenu() {
 export default function ContextMenuPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
     const textOnlyCode = textOnlyCodeByLocale[locale];
     const nestedCode = nestedCodeByLocale[locale];
 
@@ -308,8 +308,8 @@ export default function ContextMenuPage() {
         >
             <ComponentPreview
                 embedSrc="/embed/context-menu"
-                code={code}
-                codeBlock={<CodeBlock code={code} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewHeight={360}
                 previewBodyWidth="lg"
@@ -330,7 +330,7 @@ export default function ContextMenuPage() {
                                 ? "右クリック、キーボード操作、チェック項目、単一選択を同じメニュー内で扱う例です。"
                                 : "A context menu with right-click access, keyboard support, checkboxes, and radio selection.",
                             preview: <ContextMenuAuditDemo />,
-                            code,
+                            code: usageCode,
                             embedSrc: "/embed/context-menu?variant=file-actions",
                             previewHeight: 360,
                             previewBodyWidth: "lg",
@@ -405,12 +405,64 @@ export default function ContextMenuPage() {
 
             <section className="space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
-                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
+            </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {isJa ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {isJa ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>使えない項目に、理由を出せるようにする。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> を渡すと、灰色になっている項目にツールチップで理由が出ます。焦点の当たる要素で包むので、キーボードからも読めます。理由を書かずに灰色にするだけ、を避けるための口です。
+                        </li>
+                        <li>
+                            <strong>右クリックにしか無い操作を作らない、は組み方の決まり。</strong>資料の芯は「Context Menu にしか存在しない操作を作らない」です。GUNJO の部品はこれを機械では止められないので、同じ操作をボタンやドロップダウンにも置く、という組み方の決まりとして守ります。
+                        </li>
+                        <li>
+                            <strong>危ないものは区切って下に置く。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ContextMenuSeparator</code> で区切り、削除のような取り消せない操作は下端に寄せます。項目は左揃えで、幅は192pxを基準にしています。右クリックと長押しの受け取り、焦点の移動は Radix の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ContextMenu</code> に任せています。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/context-menu"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: コンテキストメニュー（Context Menu）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>A disabled item can say why.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> and the greyed-out item carries a tooltip with the reason, wrapped in a focusable element so the keyboard reaches it too. It exists so nothing is greyed out in silence.
+                        </li>
+                        <li>
+                            <strong>Nothing may live only behind a right click.</strong> The core of the article is that no action should exist only in the context menu. A component cannot enforce that, so it stays a composition rule: put the same action on a button or a dropdown as well.
+                        </li>
+                        <li>
+                            <strong>Separate the dangerous items and put them last.</strong> Use <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ContextMenuSeparator</code> and keep irreversible actions such as delete at the bottom. Items are left-aligned and the content is 192px wide by default. Right click, long press and focus movement all come from the Radix <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ContextMenu</code>.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/context-menu"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Context Menu (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
             </section>
         </ComponentLayout>
     );

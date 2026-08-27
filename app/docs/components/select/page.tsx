@@ -387,6 +387,56 @@ export function DisabledOfficeSelect() {
                     <CodeBlock code={usageCode} />
                 </div>
             </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>素の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">select</code> のまま出す。</strong>資料は「選択肢が4以下なら Radio、5から15なら Select、15を超えるなら Combobox」を挙げています。GUNJO の Select はその真ん中だけを引き受け、ブラウザの <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">select</code> をそのまま使います。開いた一覧は OS のものになるので、スマホでは端末の選択画面が出ます。検索や複数選択が要る画面は、この部品ではなく Combobox の仕事です。
+                        </li>
+                        <li>
+                            <strong>ラベルを部品の中に入れた。</strong>資料は「ラベルは必ず枠外に常時表示する」を挙げています。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">label</code> を渡すと <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">htmlFor</code> で結んだ文字が上に出て、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">description</code> を渡すと下に補足が出て <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-describedby</code> で結ばれます。どちらも渡さなければ包む箱ごと作らないので、表のセルのような狭い場所にもそのまま置けます。
+                        </li>
+                        <li>
+                            <strong>矢印は飾りとして重ねてある。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">appearance-none</code> で OS の矢印を消し、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">pointer-events-none</code> を付けた山形のアイコンを右に重ねています。クリックはすべて下の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">select</code> に届くので、アイコンの上を押しても開きます。誤りを示す赤い枠も、専用のクラスではなく <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-invalid</code> の属性で切り替わります。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/select"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: セレクト（Select）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>It stays a native <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">select</code>.</strong> The article splits the space by option count: four or fewer for radios, five to fifteen for a select, more than fifteen for a combobox. GUNJO takes only the middle band and renders the browser control, so on a phone the native picker opens. Search and multi-select belong to a combobox, not here.
+                        </li>
+                        <li>
+                            <strong>The label lives inside the component.</strong> The article treats an always-visible label outside the box as a must. Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">label</code> and it renders above, tied with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">htmlFor</code>; pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">description</code> and it renders below, tied with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-describedby</code>. Pass neither and no wrapper is created at all, so the bare control still fits inside a narrow table cell.
+                        </li>
+                        <li>
+                            <strong>The chevron is decoration layered on top.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">appearance-none</code> removes the native arrow and a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">pointer-events-none</code> chevron sits over the right edge, so every click still reaches the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">select</code> underneath. The invalid state is driven by the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-invalid</code> attribute rather than a separate class.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/select"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Select (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

@@ -316,7 +316,7 @@ export function AccountMenu() {
 export default function DropdownMenuPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
     const userMenuCode = userMenuCodeByLocale[locale];
     const splitButtonCode = splitButtonCodeByLocale[locale];
 
@@ -334,8 +334,8 @@ export default function DropdownMenuPage() {
         >
             <ComponentPreview
                 embedSrc="/embed/dropdown-menu"
-                code={code}
-                codeBlock={<CodeBlock code={code} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewHeight={360}
                 fitEmbedHeightContent={false}
@@ -357,7 +357,7 @@ export default function DropdownMenuPage() {
                                 : "Use menu items to toggle settings and choose one value from a group.",
                             preview: <DropdownMenuAuditDemo />,
                             embedSrc: "/embed/dropdown-menu",
-                            code,
+                            code: usageCode,
                             previewHeight: 360,
                             fitEmbedHeightContent: false,
                         },
@@ -431,12 +431,64 @@ export default function DropdownMenuPage() {
 
             <section className="space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
-                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
+            </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {isJa ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {isJa ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>開く先を指定できるようにする。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">portalContainer</code> を渡すと、メニューを指定した箱の中に描きます。プレビューの枠や、画面の中に画面を描いている場面で、メニューだけが外に飛び出すのを防ぎます。あらかじめ高さを空けておく代わりに、重ねて出して解いています。
+                        </li>
+                        <li>
+                            <strong>使えない項目に、理由を出せるようにする。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> を渡すと、灰色の項目にツールチップで理由が出ます。焦点の当たる要素で包むので、キーボードからも読めます。
+                        </li>
+                        <li>
+                            <strong>焦点の出入りは Radix に任せる。</strong>開いたときに最初の項目へ焦点が移ること、Esc で閉じてトリガーに焦点が戻ることは、土台の Radix <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DropdownMenu</code> が持っています。GUNJO が足しているのは見た目と、上の2つの口です。三点のボタンに <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> を付けるのは呼ぶ側の仕事です。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/dropdown-menu"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: ドロップダウンメニュー（Dropdown Menu）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Choose where the menu opens.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">portalContainer</code> and the menu renders inside the element you name, so it cannot escape a preview frame or a simulated browser surface. Overlaying is the answer here, rather than reserving height in advance.
+                        </li>
+                        <li>
+                            <strong>A disabled item can say why.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> and the greyed-out item carries a tooltip with the reason, wrapped in a focusable element so the keyboard reaches it too.
+                        </li>
+                        <li>
+                            <strong>Focus in and out belongs to Radix.</strong> Moving focus to the first item on open, and returning it to the trigger on Escape, come from the underlying Radix <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DropdownMenu</code>. What GUNJO adds is the visual and the two props above. Giving an ellipsis trigger an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> is left to the caller.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/dropdown-menu"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Dropdown Menu (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
             </section>
         </ComponentLayout>
     );

@@ -387,6 +387,7 @@ export function CompactInspector() {
 
 export default function AssetInspectorPanelDocPage() {
     const { locale } = useLocale();
+    const usageCode = codeByLocale[locale];
     const { showToast } = useToast();
     const [previewAsset, setPreviewAsset] = React.useState<AssetCardAsset>(() => getLocalizedAsset(locale));
     const [compactAsset, setCompactAsset] = React.useState<AssetCardAsset>(() => getLocalizedAltAsset(locale));
@@ -427,7 +428,7 @@ export default function AssetInspectorPanelDocPage() {
                 { name: "Media Library", href: "/docs/components/media-library" },
             ]}
         >
-            <ComponentPreview code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="sm" previewHeight={760}>
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="sm" previewHeight={760}>
                 <div className="h-[680px] overflow-hidden rounded-lg border bg-background">
                     <AssetInspectorPanel
                         asset={previewAsset}
@@ -565,10 +566,10 @@ export default function AssetInspectorPanelDocPage() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {locale === "ja" ? "使い方" : "Usage"}
                     </h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </div>
         </ComponentLayout>

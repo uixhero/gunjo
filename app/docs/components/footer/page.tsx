@@ -109,10 +109,8 @@ function FooterExample({ compact = false, legalSocial = false }: { compact?: boo
     );
 }
 
-export default function FooterPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const code = `import { Footer, FooterBrand, FooterColumns, FooterCopyright, FooterLink, FooterSection } from "@gunjo/ui"
+const codeByLocale = {
+    ja: `import { Footer, FooterBrand, FooterColumns, FooterCopyright, FooterLink, FooterSection } from "@gunjo/ui"
 
 export function SiteFooter() {
   return (
@@ -121,27 +119,59 @@ export function SiteFooter() {
         <FooterBrand>
           <p className="text-base font-semibold">Gunjo UI</p>
           <p className="text-xs text-muted-foreground">
-            ${isJa ? "プロダクト UI のためのデザインシステム" : "Design system for product UI"}
+            プロダクト UI のためのデザインシステム
           </p>
         </FooterBrand>
-        <FooterSection title="${isJa ? "プロダクト" : "Product"}">
-          <FooterLink href="/docs/components">${isJa ? "コンポーネント" : "Components"}</FooterLink>
-          <FooterLink href="/patterns">${isJa ? "テンプレート" : "Templates"}</FooterLink>
+        <FooterSection title="プロダクト">
+          <FooterLink href="/docs/components">コンポーネント</FooterLink>
+          <FooterLink href="/patterns">テンプレート</FooterLink>
         </FooterSection>
-        <FooterSection title="${isJa ? "リソース" : "Resources"}">
-          <FooterLink href="/docs">${isJa ? "ドキュメント" : "Docs"}</FooterLink>
+        <FooterSection title="リソース">
+          <FooterLink href="/docs">ドキュメント</FooterLink>
           <FooterLink href="https://github.com/uixhero/gunjo">GitHub</FooterLink>
         </FooterSection>
-        <FooterSection title="${isJa ? "会社情報" : "Company"}">
-          <FooterLink href="/about">${isJa ? "会社概要" : "About"}</FooterLink>
-          <FooterLink href="/contact">${isJa ? "お問い合わせ" : "Contact"}</FooterLink>
+        <FooterSection title="会社情報">
+          <FooterLink href="/about">会社概要</FooterLink>
+          <FooterLink href="/contact">お問い合わせ</FooterLink>
         </FooterSection>
       </FooterColumns>
       <FooterCopyright>© 2026 Gunjo UI. All rights reserved.</FooterCopyright>
     </Footer>
   )
-}`;
-    const compactCode = `import { Footer, FooterBrand, FooterColumns, FooterCopyright, FooterLink, FooterSection } from "@gunjo/ui"
+}`,
+    en: `import { Footer, FooterBrand, FooterColumns, FooterCopyright, FooterLink, FooterSection } from "@gunjo/ui"
+
+export function SiteFooter() {
+  return (
+    <Footer>
+      <FooterColumns>
+        <FooterBrand>
+          <p className="text-base font-semibold">Gunjo UI</p>
+          <p className="text-xs text-muted-foreground">
+            Design system for product UI
+          </p>
+        </FooterBrand>
+        <FooterSection title="Product">
+          <FooterLink href="/docs/components">Components</FooterLink>
+          <FooterLink href="/patterns">Templates</FooterLink>
+        </FooterSection>
+        <FooterSection title="Resources">
+          <FooterLink href="/docs">Docs</FooterLink>
+          <FooterLink href="https://github.com/uixhero/gunjo">GitHub</FooterLink>
+        </FooterSection>
+        <FooterSection title="Company">
+          <FooterLink href="/about">About</FooterLink>
+          <FooterLink href="/contact">Contact</FooterLink>
+        </FooterSection>
+      </FooterColumns>
+      <FooterCopyright>© 2026 Gunjo UI. All rights reserved.</FooterCopyright>
+    </Footer>
+  )
+}`,
+};
+
+const compactCodeByLocale = {
+    ja: `import { Footer, FooterBrand, FooterColumns, FooterCopyright, FooterLink, FooterSection } from "@gunjo/ui"
 
 export function CompactFooter() {
   return (
@@ -150,30 +180,62 @@ export function CompactFooter() {
         <FooterBrand>
           <p className="text-base font-semibold">Gunjo UI</p>
           <p className="text-xs text-muted-foreground">
-            ${isJa ? "プロダクト UI のためのデザインシステム" : "Design system for product UI"}
+            プロダクト UI のためのデザインシステム
           </p>
         </FooterBrand>
-        <FooterSection title="${isJa ? "プロダクト" : "Product"}">
-          <FooterLink href="/docs/components">${isJa ? "コンポーネント" : "Components"}</FooterLink>
-          <FooterLink href="/patterns">${isJa ? "テンプレート" : "Templates"}</FooterLink>
+        <FooterSection title="プロダクト">
+          <FooterLink href="/docs/components">コンポーネント</FooterLink>
+          <FooterLink href="/patterns">テンプレート</FooterLink>
         </FooterSection>
-        <FooterSection title="${isJa ? "リソース" : "Resources"}">
-          <FooterLink href="/docs">${isJa ? "ドキュメント" : "Docs"}</FooterLink>
+        <FooterSection title="リソース">
+          <FooterLink href="/docs">ドキュメント</FooterLink>
           <FooterLink href="https://github.com/uixhero/gunjo">GitHub</FooterLink>
         </FooterSection>
       </FooterColumns>
       <FooterCopyright>© 2026 Gunjo UI. All rights reserved.</FooterCopyright>
     </Footer>
   )
-}`;
-const legalSocialCode = `import { Footer, FooterBrand, FooterColumns, FooterCopyright, FooterLink, FooterSection, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui"
-import { IconBrandGithub as Github, IconBrandLinkedin as Linkedin, IconBrandYoutube as Youtube } from "@tabler/icons-react"
+}`,
+    en: `import { Footer, FooterBrand, FooterColumns, FooterCopyright, FooterLink, FooterSection } from "@gunjo/ui"
+
+export function CompactFooter() {
+  return (
+    <Footer className="gap-4 px-5 py-6">
+      <FooterColumns className="grid-cols-1 gap-5 md:grid-cols-3">
+        <FooterBrand>
+          <p className="text-base font-semibold">Gunjo UI</p>
+          <p className="text-xs text-muted-foreground">
+            Design system for product UI
+          </p>
+        </FooterBrand>
+        <FooterSection title="Product">
+          <FooterLink href="/docs/components">Components</FooterLink>
+          <FooterLink href="/patterns">Templates</FooterLink>
+        </FooterSection>
+        <FooterSection title="Resources">
+          <FooterLink href="/docs">Docs</FooterLink>
+          <FooterLink href="https://github.com/uixhero/gunjo">GitHub</FooterLink>
+        </FooterSection>
+      </FooterColumns>
+      <FooterCopyright>© 2026 Gunjo UI. All rights reserved.</FooterCopyright>
+    </Footer>
+  )
+}`,
+};
+
+const legalSocialCodeByLocale = {
+    ja: `import { Footer, FooterBrand, FooterColumns, FooterCopyright, FooterLink, FooterSection, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui"
+import {
+  IconBrandGithub as Github,
+  IconBrandLinkedin as Linkedin,
+  IconBrandYoutube as Youtube,
+} from "@tabler/icons-react"
 
 const legalLinks = [
-  { label: "${isJa ? "運営会社" : "Company"}", href: "/company" },
-  { label: "${isJa ? "プライバシーポリシー" : "Privacy Policy"}", href: "/privacy" },
-  { label: "${isJa ? "利用規約" : "Terms"}", href: "/terms" },
-  { label: "${isJa ? "特定商取引法に基づく表記" : "Legal notice"}", href: "/legal" },
+  { label: "運営会社", href: "/company" },
+  { label: "プライバシーポリシー", href: "/privacy" },
+  { label: "利用規約", href: "/terms" },
+  { label: "特定商取引法に基づく表記", href: "/legal" },
 ]
 
 const socialLinks = [
@@ -189,20 +251,20 @@ export function FooterWithLegalAndSocial() {
         <FooterBrand>
           <p className="text-base font-semibold">Gunjo UI</p>
           <p className="text-xs text-muted-foreground">
-            ${isJa ? "プロダクト UI のためのデザインシステム" : "Design system for product UI"}
+            プロダクト UI のためのデザインシステム
           </p>
         </FooterBrand>
-        <FooterSection title="${isJa ? "プロダクト" : "Product"}">
-          <FooterLink href="/docs/components">${isJa ? "コンポーネント" : "Components"}</FooterLink>
-          <FooterLink href="/patterns">${isJa ? "テンプレート" : "Templates"}</FooterLink>
+        <FooterSection title="プロダクト">
+          <FooterLink href="/docs/components">コンポーネント</FooterLink>
+          <FooterLink href="/patterns">テンプレート</FooterLink>
         </FooterSection>
-        <FooterSection title="${isJa ? "リソース" : "Resources"}">
-          <FooterLink href="/docs">${isJa ? "ドキュメント" : "Docs"}</FooterLink>
+        <FooterSection title="リソース">
+          <FooterLink href="/docs">ドキュメント</FooterLink>
           <FooterLink href="https://github.com/uixhero/gunjo">GitHub</FooterLink>
         </FooterSection>
       </FooterColumns>
       <div className="grid gap-4 border-t border-border pt-4 text-xs text-muted-foreground lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-center">
-        <nav className="flex flex-wrap gap-x-4 gap-y-2" aria-label="${isJa ? "法務リンク" : "Legal links"}">
+        <nav className="flex flex-wrap gap-x-4 gap-y-2" aria-label="法務リンク">
           {legalLinks.map((link) => (
             <FooterLink key={link.label} href={link.href} className="text-xs">
               {link.label}
@@ -210,7 +272,7 @@ export function FooterWithLegalAndSocial() {
           ))}
         </nav>
         <FooterCopyright className="border-0 p-0">© 2026 Gunjo UI. All rights reserved.</FooterCopyright>
-        <nav className="flex items-center gap-1 lg:justify-end" aria-label="${isJa ? "SNSリンク" : "Social links"}">
+        <nav className="flex items-center gap-1 lg:justify-end" aria-label="SNSリンク">
           {socialLinks.map((link) => {
             const Icon = link.icon
 
@@ -233,7 +295,87 @@ export function FooterWithLegalAndSocial() {
       </div>
     </Footer>
   )
-}`;
+}`,
+    en: `import { Footer, FooterBrand, FooterColumns, FooterCopyright, FooterLink, FooterSection, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui"
+import {
+  IconBrandGithub as Github,
+  IconBrandLinkedin as Linkedin,
+  IconBrandYoutube as Youtube,
+} from "@tabler/icons-react"
+
+const legalLinks = [
+  { label: "Company", href: "/company" },
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
+  { label: "Legal notice", href: "/legal" },
+]
+
+const socialLinks = [
+  { label: "GitHub", href: "https://github.com/uixhero/gunjo", icon: Github },
+  { label: "LinkedIn", href: "https://www.linkedin.com/", icon: Linkedin },
+  { label: "YouTube", href: "https://www.youtube.com/", icon: Youtube },
+]
+
+export function FooterWithLegalAndSocial() {
+  return (
+    <Footer>
+      <FooterColumns>
+        <FooterBrand>
+          <p className="text-base font-semibold">Gunjo UI</p>
+          <p className="text-xs text-muted-foreground">
+            Design system for product UI
+          </p>
+        </FooterBrand>
+        <FooterSection title="Product">
+          <FooterLink href="/docs/components">Components</FooterLink>
+          <FooterLink href="/patterns">Templates</FooterLink>
+        </FooterSection>
+        <FooterSection title="Resources">
+          <FooterLink href="/docs">Docs</FooterLink>
+          <FooterLink href="https://github.com/uixhero/gunjo">GitHub</FooterLink>
+        </FooterSection>
+      </FooterColumns>
+      <div className="grid gap-4 border-t border-border pt-4 text-xs text-muted-foreground lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-center">
+        <nav className="flex flex-wrap gap-x-4 gap-y-2" aria-label="Legal links">
+          {legalLinks.map((link) => (
+            <FooterLink key={link.label} href={link.href} className="text-xs">
+              {link.label}
+            </FooterLink>
+          ))}
+        </nav>
+        <FooterCopyright className="border-0 p-0">© 2026 Gunjo UI. All rights reserved.</FooterCopyright>
+        <nav className="flex items-center gap-1 lg:justify-end" aria-label="Social links">
+          {socialLinks.map((link) => {
+            const Icon = link.icon
+
+            return (
+              <Tooltip key={link.label}>
+                <TooltipTrigger asChild>
+                  <a
+                    href={link.href}
+                    className="inline-flex h-8 w-8 items-center justify-center rounded-md text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                    aria-label={link.label}
+                  >
+                    <Icon className="h-4 w-4" />
+                  </a>
+                </TooltipTrigger>
+                <TooltipContent>{link.label}</TooltipContent>
+              </Tooltip>
+            )
+          })}
+        </nav>
+      </div>
+    </Footer>
+  )
+}`,
+};
+
+export default function FooterPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const usageCode = codeByLocale[locale];
+    const compactCode = compactCodeByLocale[locale];
+    const legalSocialCode = legalSocialCodeByLocale[locale];
 
     return (
         <ComponentLayout
@@ -249,7 +391,7 @@ export function FooterWithLegalAndSocial() {
                 { name: "TextLink", href: "/docs/components/text-link" },
             ]}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewBodyWidth="full" previewHeight="auto" embedSrc="/embed/footer">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewBodyWidth="full" previewHeight="auto" embedSrc="/embed/footer">
                 <FooterExample />
             </ComponentPreview>
 
@@ -300,9 +442,11 @@ export function FooterWithLegalAndSocial() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </div>
         </ComponentLayout>
     );

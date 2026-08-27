@@ -15,99 +15,204 @@ import {
     IconTerminal2 as Terminal,
 } from "@tabler/icons-react";
 
-export default function AlertPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
-
-const code = `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
+const codeByLocale = {
+    ja: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
 import { IconTerminal2 as Terminal } from "@tabler/icons-react"
 
 export function InstallAlert() {
   return (
     <Alert>
       <Terminal className="h-4 w-4" />
-      <AlertTitle>${isJa ? "CLIで追加できます" : "Install with the CLI"}</AlertTitle>
+      <AlertTitle>CLIで追加できます</AlertTitle>
       <AlertDescription>
-        ${isJa ? "必要なコンポーネントを選んで、プロジェクトへ追加できます。" : "Choose the component you need and add it to your project."}
+        必要なコンポーネントを選んで、プロジェクトへ追加できます。
       </AlertDescription>
     </Alert>
   )
-}`;
+}`,
+    en: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
+import { IconTerminal2 as Terminal } from "@tabler/icons-react"
 
-    const usageCode = code;
+export function InstallAlert() {
+  return (
+    <Alert>
+      <Terminal className="h-4 w-4" />
+      <AlertTitle>Install with the CLI</AlertTitle>
+      <AlertDescription>
+        Choose the component you need and add it to your project.
+      </AlertDescription>
+    </Alert>
+  )
+}`,
+};
 
-const destructiveCode = `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
+const destructiveCodeByLocale = {
+    ja: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
 import { IconAlertCircle as AlertCircle } from "@tabler/icons-react"
 
 export function SessionAlert() {
   return (
     <Alert variant="destructive">
       <AlertCircle className="h-4 w-4" />
-      <AlertTitle>${isJa ? "セッションが切れました" : "Session expired"}</AlertTitle>
+      <AlertTitle>セッションが切れました</AlertTitle>
       <AlertDescription>
-        ${isJa ? "続行するには、もう一度ログインしてください。" : "Sign in again before continuing."}
+        続行するには、もう一度ログインしてください。
       </AlertDescription>
     </Alert>
   )
-}`;
+}`,
+    en: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
+import { IconAlertCircle as AlertCircle } from "@tabler/icons-react"
 
-const successCode = `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
+export function SessionAlert() {
+  return (
+    <Alert variant="destructive">
+      <AlertCircle className="h-4 w-4" />
+      <AlertTitle>Session expired</AlertTitle>
+      <AlertDescription>
+        Sign in again before continuing.
+      </AlertDescription>
+    </Alert>
+  )
+}`,
+};
+
+const successCodeByLocale = {
+    ja: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
 import { IconCircleCheck as CheckCircle2 } from "@tabler/icons-react"
 
 export function SavedAlert() {
   return (
     <Alert variant="success">
       <CheckCircle2 className="h-4 w-4" />
-      <AlertTitle>${isJa ? "保存しました" : "Saved"}</AlertTitle>
+      <AlertTitle>保存しました</AlertTitle>
       <AlertDescription>
-        ${isJa ? "設定は次回のプレビューから反映されます。" : "The settings apply to the next preview."}
+        設定は次回のプレビューから反映されます。
       </AlertDescription>
     </Alert>
   )
-}`;
+}`,
+    en: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
+import { IconCircleCheck as CheckCircle2 } from "@tabler/icons-react"
 
-const infoCode = `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
+export function SavedAlert() {
+  return (
+    <Alert variant="success">
+      <CheckCircle2 className="h-4 w-4" />
+      <AlertTitle>Saved</AlertTitle>
+      <AlertDescription>
+        The settings apply to the next preview.
+      </AlertDescription>
+    </Alert>
+  )
+}`,
+};
+
+const infoCodeByLocale = {
+    ja: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
 import { IconInfoCircle as Info } from "@tabler/icons-react"
 
 export function InfoAlert() {
   return (
     <Alert variant="info">
       <Info className="h-4 w-4" />
-      <AlertTitle>${isJa ? "仕様を確認できます" : "Spec available"}</AlertTitle>
+      <AlertTitle>仕様を確認できます</AlertTitle>
       <AlertDescription>
-        ${isJa ? "詳細な仕様は、このページのプロパティ表にまとめています。" : "The full specification is available in the props table on this page."}
+        詳細な仕様は、このページのプロパティ表にまとめています。
       </AlertDescription>
     </Alert>
   )
-}`;
+}`,
+    en: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
+import { IconInfoCircle as Info } from "@tabler/icons-react"
 
-const warningCode = `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
+export function InfoAlert() {
+  return (
+    <Alert variant="info">
+      <Info className="h-4 w-4" />
+      <AlertTitle>Spec available</AlertTitle>
+      <AlertDescription>
+        The full specification is available in the props table on this page.
+      </AlertDescription>
+    </Alert>
+  )
+}`,
+};
+
+const warningCodeByLocale = {
+    ja: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
 import { IconAlertTriangle as TriangleAlert } from "@tabler/icons-react"
 
 export function WarningAlert() {
   return (
     <Alert variant="warning">
       <TriangleAlert className="h-4 w-4" />
-      <AlertTitle>${isJa ? "公開前に確認してください" : "Review before publishing"}</AlertTitle>
+      <AlertTitle>公開前に確認してください</AlertTitle>
       <AlertDescription>
-        ${isJa ? "外部に公開される項目が含まれています。" : "This includes items that will be visible externally."}
+        外部に公開される項目が含まれています。
       </AlertDescription>
     </Alert>
   )
-}`;
+}`,
+    en: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
+import { IconAlertTriangle as TriangleAlert } from "@tabler/icons-react"
 
-const titleOnlyCode = `import { Alert, AlertTitle } from "@gunjo/ui"
+export function WarningAlert() {
+  return (
+    <Alert variant="warning">
+      <TriangleAlert className="h-4 w-4" />
+      <AlertTitle>Review before publishing</AlertTitle>
+      <AlertDescription>
+        This includes items that will be visible externally.
+      </AlertDescription>
+    </Alert>
+  )
+}`,
+};
+
+const titleOnlyCodeByLocale = {
+    ja: `import { Alert, AlertTitle } from "@gunjo/ui"
 import { IconTerminal2 as Terminal } from "@tabler/icons-react"
 
 export function TitleOnlyAlert() {
   return (
     <Alert>
       <Terminal className="h-4 w-4" />
-      <AlertTitle>${isJa ? "下書きを保存しました" : "Draft saved"}</AlertTitle>
+      <AlertTitle>下書きを保存しました</AlertTitle>
     </Alert>
   )
-}`;
+}`,
+    en: `import { Alert, AlertTitle } from "@gunjo/ui"
+import { IconTerminal2 as Terminal } from "@tabler/icons-react"
+
+export function TitleOnlyAlert() {
+  return (
+    <Alert>
+      <Terminal className="h-4 w-4" />
+      <AlertTitle>Draft saved</AlertTitle>
+    </Alert>
+  )
+}`,
+};
+
+export default function AlertPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
+
+    const code = codeByLocale[locale];
+
+    const usageCode = code;
+
+    const destructiveCode = destructiveCodeByLocale[locale];
+
+    const successCode = successCodeByLocale[locale];
+
+    const infoCode = infoCodeByLocale[locale];
+
+    const warningCode = warningCodeByLocale[locale];
+
+    const titleOnlyCode = titleOnlyCodeByLocale[locale];
 
     const propsData = [
         {
@@ -325,6 +430,56 @@ import { IconCircleCheck as CheckCircle2 } from "@tabler/icons-react";
                     <CodeCopyButton code={usageCode} />
                 </div>
                 <CodeBlock code={usageCode} />
+            </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {isJa ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {isJa ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>バナーの題は既定で見出しにしない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AlertTitle</code> は既定で <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">p</code> を描きます。通知バナーの題は文書の見出しの並びに属さないので、そこに見出しを置くと階層が飛びます。節の見出しを本当に持つときだけ <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'as="h2"'}</code> のように渡します。見た目はどちらでも同じです（#251）。
+                        </li>
+                        <li>
+                            <strong>種類を色だけに乗せない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> を変えると、枠線・淡い背景・文字色・アイコンの色が同時に変わります。アイコンは飾りとして扱い、意味は題と説明の文が持ちます（#303）。
+                        </li>
+                        <li>
+                            <strong>資料と食い違っているところ。</strong>GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Alert</code> は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> によらず常に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="alert"'}</code> を付けます。資料は「<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="alert"'}</code> は読み上げに割り込むので誤りのときだけに使い、他は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-live="polite"'}</code> にする」としています。ここは実装のほうを直す向きで、#936 で追っています。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/alert"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: アラート（Alert）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>A banner title is not a heading by default.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AlertTitle</code> renders <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">p</code> by default. A status banner title does not belong to the document outline, so putting a heading there skips a level. Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'as="h2"'}</code> only when the alert genuinely owns a section heading. The visual style is the same either way (#251).
+                        </li>
+                        <li>
+                            <strong>Never let colour alone carry the kind.</strong> Changing <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> moves the border, the subtle background, the text colour and the icon colour together. The icon is decorative; the title and description carry the meaning (#303).
+                        </li>
+                        <li>
+                            <strong>Where this diverges from the article.</strong> GUNJO always sets <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="alert"'}</code>, whatever the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code>. The article asks for <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="alert"'}</code> on errors only, with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-live="polite"'}</code> elsewhere, because an assertive region interrupts a screen reader mid-sentence. The implementation is the side that should change; tracked in #936.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/alert"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Alert (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
             </section>
         </ComponentLayout>
     );

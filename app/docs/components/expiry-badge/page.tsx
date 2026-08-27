@@ -131,10 +131,17 @@ import { ExpiryBadge, MetadataList, Slider, classifyExpiry } from "@gunjo/ui";
 const today = "2026-06-28";
 const expiryBadgeAlignClass = "w-[244px] justify-end";
 const expiryBadgeStateClass = "w-20 shrink-0 justify-start";
-const expiryLabels = { valid: "有効", expiring: "期限間近", expired: "失効", missing: "未登録" } as const;
+const expiryLabels = {
+  valid: "有効",
+  expiring: "期限間近",
+  expired: "失効",
+  missing: "未登録",
+} as const;
 
 function formatExpiryRemaining(days: number) {
-  return days < 0 ? \`\${Math.abs(days)}日超過\` : days === 0 ? "本日まで" : \`残\${days}日\`;
+  if (days < 0) return Math.abs(days) + "日超過";
+  if (days === 0) return "本日まで";
+  return "残" + days + "日";
 }
 
 export function ComplianceExpiryList() {
@@ -186,12 +193,17 @@ import { ExpiryBadge, MetadataList, Slider, classifyExpiry } from "@gunjo/ui";
 const today = "2026-06-28";
 const expiryBadgeAlignClass = "w-[244px] justify-end";
 const expiryBadgeStateClass = "w-20 shrink-0 justify-start";
-const expiryLabels = { valid: "Valid", expiring: "Expiring", expired: "Expired", missing: "Missing" } as const;
+const expiryLabels = {
+  valid: "Valid",
+  expiring: "Expiring",
+  expired: "Expired",
+  missing: "Missing",
+} as const;
 
 function formatExpiryRemaining(days: number) {
-  if (days < 0) return \`\${Math.abs(days)} days overdue\`;
+  if (days < 0) return Math.abs(days) + " days overdue";
   if (days === 0) return "Due today";
-  return \`\${days} days left\`;
+  return days + " days left";
 }
 
 export function ComplianceExpiryList() {
@@ -335,46 +347,88 @@ export function ComplianceExpiryList() {
                 : "Valid, expiring, expired, and missing are shown with both icon and label.",
               preview: <ExpiryBadgePreview locale={locale} compact />,
               code: locale === "ja"
-                ? `<ExpiryBadge value="2029-03-15" today="${today}" className="w-[244px] justify-end" stateClassName="w-20 shrink-0 justify-start" statePosition="end" />
-<ExpiryBadge value="2026-07-20" today="${today}" className="w-[244px] justify-end" stateClassName="w-20 shrink-0 justify-start" statePosition="end" />
-<ExpiryBadge value="2026-06-10" today="${today}" className="w-[244px] justify-end" stateClassName="w-20 shrink-0 justify-start" statePosition="end" />
-<ExpiryBadge value={null} today="${today}" className="w-[244px] justify-end" stateClassName="w-20 shrink-0 justify-start" statePosition="end" />`
-                : `<ExpiryBadge
-  value="2029-03-15"
-  today="${today}"
-  labels={{ valid: "Valid", expiring: "Expiring", expired: "Expired", missing: "Missing" }}
-  formatRemaining={(days) => days < 0 ? \`\${Math.abs(days)} days overdue\` : days === 0 ? "Due today" : \`\${days} days left\`}
-  className="w-[244px] justify-end"
-  stateClassName="w-20 shrink-0 justify-start"
-  statePosition="end"
-/>
-<ExpiryBadge
-  value="2026-07-20"
-  today="${today}"
-  labels={{ valid: "Valid", expiring: "Expiring", expired: "Expired", missing: "Missing" }}
-  formatRemaining={(days) => days < 0 ? \`\${Math.abs(days)} days overdue\` : days === 0 ? "Due today" : \`\${days} days left\`}
-  className="w-[244px] justify-end"
-  stateClassName="w-20 shrink-0 justify-start"
-  statePosition="end"
-/>
-<ExpiryBadge
-  value="2026-06-10"
-  today="${today}"
-  labels={{ valid: "Valid", expiring: "Expiring", expired: "Expired", missing: "Missing" }}
-  formatRemaining={(days) => days < 0 ? \`\${Math.abs(days)} days overdue\` : days === 0 ? "Due today" : \`\${days} days left\`}
-  className="w-[244px] justify-end"
-  stateClassName="w-20 shrink-0 justify-start"
-  statePosition="end"
-/>
-<ExpiryBadge
-  value={null}
-  today="${today}"
-  labels={{ valid: "Valid", expiring: "Expiring", expired: "Expired", missing: "Missing" }}
-  formatRemaining={(days) => days < 0 ? \`\${Math.abs(days)} days overdue\` : days === 0 ? "Due today" : \`\${days} days left\`}
-  className="w-[244px] justify-end"
-  stateClassName="w-20 shrink-0 justify-start"
-  statePosition="end"
-/>`,
+                ? `import { ExpiryBadge } from "@gunjo/ui";
+
+const TODAY = "2026-06-28";
+const EXPIRY_LABELS = {
+  valid: "有効",
+  expiring: "期限間近",
+  expired: "失効",
+  missing: "未登録",
+};
+
+function formatRemaining(days) {
+  if (days < 0) return Math.abs(days) + "日超過";
+  if (days === 0) return "本日まで";
+  return "残" + days + "日";
+}
+
+const ROWS = [
+  { label: "普通二種免許", value: "2029-03-15" },
+  { label: "適性診断（適齢）", value: "2026-07-20" },
+  { label: "健康診断", value: "2026-06-10" },
+  { label: "地理試験合格証", value: null },
+];
+
+export function ExpiryStateList() {
+  return (
+    <div className="flex flex-col gap-2">
+      {ROWS.map((row) => (
+        <ExpiryBadge
+          key={row.label}
+          value={row.value}
+          today={TODAY}
+          labels={EXPIRY_LABELS}
+          formatRemaining={formatRemaining}
+          className="w-[244px] justify-end"
+          stateClassName="w-20 shrink-0 justify-start"
+          statePosition="end"
+        />
+      ))}
+    </div>
+  );
+}`
+                : `import { ExpiryBadge } from "@gunjo/ui";
+
+const TODAY = "2026-06-28";
+const EXPIRY_LABELS = {
+  valid: "Valid",
+  expiring: "Expiring",
+  expired: "Expired",
+  missing: "Missing",
+};
+
+function formatRemaining(days) {
+  if (days < 0) return Math.abs(days) + " days overdue";
+  if (days === 0) return "Due today";
+  return days + " days left";
+}
+
+const ROWS = [
+  { label: "Professional driver license", value: "2029-03-15" },
+  { label: "Aptitude assessment", value: "2026-07-20" },
+  { label: "Health check", value: "2026-06-10" },
+  { label: "Geography certificate", value: null },
+];
+
+export function ExpiryStateList() {
+  return (
+    <div className="flex flex-col gap-2">
+      {ROWS.map((row) => (
+        <ExpiryBadge
+          key={row.label}
+          value={row.value}
+          today={TODAY}
+          labels={EXPIRY_LABELS}
+          formatRemaining={formatRemaining}
+          className="w-[244px] justify-end"
+          stateClassName="w-20 shrink-0 justify-start"
+          statePosition="end"
+        />
+      ))}
+    </div>
+  );
+}`,
               previewBodyWidth: "md",
             },
             {
@@ -390,21 +444,78 @@ export function ComplianceExpiryList() {
                 </div>
               ),
               code: locale === "ja"
-                ? `<ExpiryBadge value="2026-07-20" today="${today}" showDate={false} />
-<ExpiryBadge value="2026-07-20" today="${today}" hideRemaining />`
-                : `<ExpiryBadge
-  value="2026-07-20"
-  today="${today}"
-  showDate={false}
-  labels={{ expiring: "Expiring" }}
-  formatRemaining={(days) => \`\${days} days left\`}
-/>
-<ExpiryBadge
-  value="2026-07-20"
-  today="${today}"
-  hideRemaining
-  labels={{ expiring: "Expiring" }}
-/>`,
+                ? `import { ExpiryBadge } from "@gunjo/ui";
+
+const TODAY = "2026-06-28";
+const EXPIRY_LABELS = {
+  valid: "有効",
+  expiring: "期限間近",
+  expired: "失効",
+  missing: "未登録",
+};
+
+function formatRemaining(days) {
+  if (days < 0) return Math.abs(days) + "日超過";
+  if (days === 0) return "本日まで";
+  return "残" + days + "日";
+}
+
+export function ExpiryDensityBadges() {
+  return (
+    <div className="flex flex-wrap items-center gap-3">
+      <ExpiryBadge
+        value="2026-07-20"
+        today={TODAY}
+        showDate={false}
+        labels={EXPIRY_LABELS}
+        formatRemaining={formatRemaining}
+      />
+      <ExpiryBadge
+        value="2026-07-20"
+        today={TODAY}
+        hideRemaining
+        labels={EXPIRY_LABELS}
+        formatRemaining={formatRemaining}
+      />
+    </div>
+  );
+}`
+                : `import { ExpiryBadge } from "@gunjo/ui";
+
+const TODAY = "2026-06-28";
+const EXPIRY_LABELS = {
+  valid: "Valid",
+  expiring: "Expiring",
+  expired: "Expired",
+  missing: "Missing",
+};
+
+function formatRemaining(days) {
+  if (days < 0) return Math.abs(days) + " days overdue";
+  if (days === 0) return "Due today";
+  return days + " days left";
+}
+
+export function ExpiryDensityBadges() {
+  return (
+    <div className="flex flex-wrap items-center gap-3">
+      <ExpiryBadge
+        value="2026-07-20"
+        today={TODAY}
+        showDate={false}
+        labels={EXPIRY_LABELS}
+        formatRemaining={formatRemaining}
+      />
+      <ExpiryBadge
+        value="2026-07-20"
+        today={TODAY}
+        hideRemaining
+        labels={EXPIRY_LABELS}
+        formatRemaining={formatRemaining}
+      />
+    </div>
+  );
+}`,
             },
           ]}
         />

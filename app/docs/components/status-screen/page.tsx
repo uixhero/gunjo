@@ -26,41 +26,64 @@ function ScreenFrame({ children }: { children: React.ReactNode }) {
     );
 }
 
-export default function StatusScreenPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
-
-    const code = `import { Button, StatusScreen } from "@gunjo/ui"
+const codeByLocale = {
+    ja: `import { Button, StatusScreen } from "@gunjo/ui"
 
 export function NotFound() {
   return (
     <StatusScreen
       variant="not-found"
-      title="${isJa ? "ページが見つかりません" : "Page not found"}"
-      description="${isJa ? "URLが変更されたか、ページが削除された可能性があります。" : "The page may have moved or been deleted."}"
-      action={<Button>${isJa ? "トップへ戻る" : "Back to home"}</Button>}
+      title="ページが見つかりません"
+      description="URLが変更されたか、ページが削除された可能性があります。"
+      action={<Button>トップへ戻る</Button>}
     />
   )
-}`;
+}`,
+    en: `import { Button, StatusScreen } from "@gunjo/ui"
 
-    const notFoundCode = code;
+export function NotFound() {
+  return (
+    <StatusScreen
+      variant="not-found"
+      title="Page not found"
+      description="The page may have moved or been deleted."
+      action={<Button>Back to home</Button>}
+    />
+  )
+}`,
+};
 
-    const errorCode = `import { Button, StatusScreen } from "@gunjo/ui"
+const errorCodeByLocale = {
+    ja: `import { Button, StatusScreen } from "@gunjo/ui"
 
 export function ErrorFallback() {
   return (
     <StatusScreen
       variant="error"
-      title="${isJa ? "問題が発生しました" : "Something went wrong"}"
-      description="${isJa ? "再読み込みしても解消しない場合は、サポートへ連絡してください。" : "Refresh the page or contact support if the problem continues."}"
+      title="問題が発生しました"
+      description="再読み込みしても解消しない場合は、サポートへ連絡してください。"
       details="req-id 7f3c9a"
-      action={<Button>${isJa ? "再試行" : "Try again"}</Button>}
+      action={<Button>再試行</Button>}
     />
   )
-}`;
+}`,
+    en: `import { Button, StatusScreen } from "@gunjo/ui"
 
-const offlineCode = `import { Button, StatusScreen } from "@gunjo/ui"
+export function ErrorFallback() {
+  return (
+    <StatusScreen
+      variant="error"
+      title="Something went wrong"
+      description="Refresh the page or contact support if the problem continues."
+      details="req-id 7f3c9a"
+      action={<Button>Try again</Button>}
+    />
+  )
+}`,
+};
+
+const offlineCodeByLocale = {
+    ja: `import { Button, StatusScreen } from "@gunjo/ui"
 import { IconWifiOff as WifiOff } from "@tabler/icons-react"
 
 export function OfflineFallback() {
@@ -68,14 +91,30 @@ export function OfflineFallback() {
     <StatusScreen
       variant="offline"
       icon={<WifiOff />}
-      title="${isJa ? "オフラインです" : "You're offline"}"
-      description="${isJa ? "接続を確認してから、もう一度試してください。" : "Check your connection and try again."}"
-      action={<Button variant="outline">${isJa ? "再接続する" : "Retry connection"}</Button>}
+      title="オフラインです"
+      description="接続を確認してから、もう一度試してください。"
+      action={<Button variant="outline">再接続する</Button>}
     />
   )
-}`;
+}`,
+    en: `import { Button, StatusScreen } from "@gunjo/ui"
+import { IconWifiOff as WifiOff } from "@tabler/icons-react"
 
-const forbiddenCode = `import { StatusScreen } from "@gunjo/ui"
+export function OfflineFallback() {
+  return (
+    <StatusScreen
+      variant="offline"
+      icon={<WifiOff />}
+      title="You're offline"
+      description="Check your connection and try again."
+      action={<Button variant="outline">Retry connection</Button>}
+    />
+  )
+}`,
+};
+
+const forbiddenCodeByLocale = {
+    ja: `import { StatusScreen } from "@gunjo/ui"
 import { IconLock as Lock } from "@tabler/icons-react"
 
 export function ForbiddenFallback() {
@@ -83,13 +122,28 @@ export function ForbiddenFallback() {
     <StatusScreen
       variant="forbidden"
       icon={<Lock />}
-      title="${isJa ? "アクセスできません" : "Access denied"}"
-      description="${isJa ? "このページを見る権限がありません。管理者に確認してください。" : "You do not have permission to view this page."}"
+      title="アクセスできません"
+      description="このページを見る権限がありません。管理者に確認してください。"
     />
   )
-}`;
+}`,
+    en: `import { StatusScreen } from "@gunjo/ui"
+import { IconLock as Lock } from "@tabler/icons-react"
 
-const maintenanceCode = `import { StatusScreen } from "@gunjo/ui"
+export function ForbiddenFallback() {
+  return (
+    <StatusScreen
+      variant="forbidden"
+      icon={<Lock />}
+      title="Access denied"
+      description="You do not have permission to view this page."
+    />
+  )
+}`,
+};
+
+const maintenanceCodeByLocale = {
+    ja: `import { StatusScreen } from "@gunjo/ui"
 import { IconTool as Wrench } from "@tabler/icons-react"
 
 export function MaintenanceFallback() {
@@ -97,13 +151,28 @@ export function MaintenanceFallback() {
     <StatusScreen
       variant="maintenance"
       icon={<Wrench />}
-      title="${isJa ? "メンテナンス中です" : "Under maintenance"}"
-      description="${isJa ? "作業が完了するまでしばらくお待ちください。" : "We'll be back shortly. Thanks for your patience."}"
+      title="メンテナンス中です"
+      description="作業が完了するまでしばらくお待ちください。"
     />
   )
-}`;
+}`,
+    en: `import { StatusScreen } from "@gunjo/ui"
+import { IconTool as Wrench } from "@tabler/icons-react"
 
-const comingSoonCode = `import { StatusScreen } from "@gunjo/ui"
+export function MaintenanceFallback() {
+  return (
+    <StatusScreen
+      variant="maintenance"
+      icon={<Wrench />}
+      title="Under maintenance"
+      description="We'll be back shortly. Thanks for your patience."
+    />
+  )
+}`,
+};
+
+const comingSoonCodeByLocale = {
+    ja: `import { StatusScreen } from "@gunjo/ui"
 import { IconClock as Clock } from "@tabler/icons-react"
 
 export function ComingSoonFallback() {
@@ -111,14 +180,52 @@ export function ComingSoonFallback() {
     <StatusScreen
       variant="coming-soon"
       icon={<Clock />}
-      title="${isJa ? "準備中です" : "Coming soon"}"
-      description="${isJa ? "このページはまだ公開前です。準備が整い次第表示されます。" : "This page is not available yet. Check back soon."}"
+      title="準備中です"
+      description="このページはまだ公開前です。準備が整い次第表示されます。"
     />
   )
-}`;
+}`,
+    en: `import { StatusScreen } from "@gunjo/ui"
+import { IconClock as Clock } from "@tabler/icons-react"
+
+export function ComingSoonFallback() {
+  return (
+    <StatusScreen
+      variant="coming-soon"
+      icon={<Clock />}
+      title="Coming soon"
+      description="This page is not available yet. Check back soon."
+    />
+  )
+}`,
+};
+
+export default function StatusScreenPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
+
+    const code = codeByLocale[locale];
+
+    const notFoundCode = code;
+
+    const errorCode = errorCodeByLocale[locale];
+
+    const offlineCode = offlineCodeByLocale[locale];
+
+    const forbiddenCode = forbiddenCodeByLocale[locale];
+
+    const maintenanceCode = maintenanceCodeByLocale[locale];
+
+    const comingSoonCode = comingSoonCodeByLocale[locale];
 
 const usageCode = `import { Button, StatusScreen } from "@gunjo/ui"
-import { IconClock as Clock, IconLock as Lock, IconTool as Wrench, IconWifiOff as WifiOff } from "@tabler/icons-react"
+import {
+  IconClock as Clock,
+  IconLock as Lock,
+  IconTool as Wrench,
+  IconWifiOff as WifiOff,
+} from "@tabler/icons-react"
 
 <StatusScreen variant="not-found" action={<Button>Back to home</Button>} />
 <StatusScreen variant="error" details="req-id 7f3c" action={<Button>Try again</Button>} />
