@@ -118,7 +118,21 @@ export default function ScanInputDocPage() {
   const description = meta.scanInput.description ?? "";
 
   return (
-    <ComponentLayout title={title} description={description}>
+    <ComponentLayout
+      title={title}
+      description={description}
+      usedComponents={[
+        { name: "Tooltip", href: "/docs/components/tooltip" },
+        { name: "TooltipContent", href: "/docs/components/tooltip" },
+        { name: "TooltipTrigger", href: "/docs/components/tooltip" },
+      ]}
+      relatedComponents={[
+        { name: "ScanGate", href: "/docs/components/scan-gate" },
+        { name: "Input", href: "/docs/components/input" },
+        { name: "SearchInput", href: "/docs/components/search-input" },
+        { name: "ActionQueue", href: "/docs/components/action-queue" },
+      ]}
+    >
       <ComponentPreview codeBlock={<CodeBlock code={usageCode} />}>
         <ScanInputDemo />
       </ComponentPreview>

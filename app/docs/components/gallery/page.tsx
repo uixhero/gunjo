@@ -49,7 +49,19 @@ export default function GalleryDocPage() {
   const description = meta.gallery.description ?? "";
 
   return (
-    <ComponentLayout title={title} description={description}>
+    <ComponentLayout
+      title={title}
+      description={description}
+      usedComponents={[
+        { name: "Img", href: "/docs/components/img" },
+      ]}
+      relatedComponents={[
+        { name: "Carousel", href: "/docs/components/carousel" },
+        { name: "ImagePreview", href: "/docs/components/image-preview" },
+        { name: "MediaLightbox", href: "/docs/components/media-lightbox" },
+        { name: "AssetGrid", href: "/docs/components/asset-grid" },
+      ]}
+    >
       <ComponentPreview codeBlock={<CodeBlock code={usageCode} />}>
         <div className="w-full max-w-sm">
           <Gallery images={galleryImages} aspectRatio="square" />

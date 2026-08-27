@@ -40,7 +40,23 @@ export default function ApprovalStepsDocPage() {
     const description = meta.approvalSteps.description ?? "";
 
     return (
-        <ComponentLayout title={title} description={description}>
+        <ComponentLayout
+            title={title}
+            description={description}
+            usedComponents={[
+                { name: "Timeline", href: "/docs/components/timeline" },
+                { name: "TimelineItem", href: "/docs/components/timeline" },
+                { name: "TimelineTitle", href: "/docs/components/timeline" },
+                { name: "TimelineTime", href: "/docs/components/timeline" },
+                { name: "TimelineDescription", href: "/docs/components/timeline" },
+            ]}
+            relatedComponents={[
+                { name: "ApprovalWorkflow", href: "/docs/components/approval-workflow" },
+                { name: "Timeline", href: "/docs/components/timeline" },
+                { name: "Stepper", href: "/docs/components/stepper" },
+                { name: "SignedRecord", href: "/docs/components/signed-record" },
+            ]}
+        >
             <ComponentPreview codeBlock={<CodeBlock code={usageCode} />}>
                 <ApprovalStepsDemo />
             </ComponentPreview>

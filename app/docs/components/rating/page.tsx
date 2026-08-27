@@ -31,7 +31,16 @@ export default function RatingDocPage() {
   const description = meta.rating.description ?? "";
 
   return (
-    <ComponentLayout title={title} description={description}>
+    <ComponentLayout
+      title={title}
+      description={description}
+      usedComponents={[]}
+      relatedComponents={[
+        { name: "DistributionBar", href: "/docs/components/distribution-bar" },
+        { name: "Statistic", href: "/docs/components/statistic" },
+        { name: "Meter", href: "/docs/components/meter" },
+      ]}
+    >
       <ComponentPreview codeBlock={<CodeBlock code={usageCode} />}>
         <div className="flex flex-col items-center gap-3">
           <Rating value={4.5} reviewCount={128} showValue />
