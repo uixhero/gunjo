@@ -281,8 +281,57 @@ export function CompactSpendBreakdownGauge() {
     );
 }` }] } as const;
 
+const designDecisions = {
+    ja: (
+        <>
+            <li>
+                <strong>半円のメーターも <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">conic-gradient</code> で描いた。</strong>SVG は使わず、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">from 270deg</code> の円錐グラデーションを「1%＝1.8度」で回して半円を作ります。区分ごとに色を指定でき、太さは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">thickness</code> で変えられます。
+            </li>
+            <li>
+                <strong>目標値は針ではなく、独立した目印として置いた。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">targetValue</code> を渡すと、現在値とは別の印が同じ弧の上に出ます。針を1本にして「いまの値か目標値か」を色だけで分けると、色を見分けられない人に届かなくなるためです。
+            </li>
+            <li>
+                <strong>弧は1枚の絵で、選ぶのは凡例の行。</strong>弧には <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="img"'}</code> と読み上げ用の名前が付き、押せるのは下の凡例（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code>）です。弧の一片は端に行くほど細くなり、タップの的として使えないためです。
+                <br />
+                一般のカードの設計は UIXHERO の「カード」にあります。{" "}
+                <a
+                    className="underline underline-offset-4"
+                    href="https://www.uixhero.com/resources/ui-components/card"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    UIXHERO: カード（Card）
+                </a>
+            </li>
+        </>
+    ),
+    en: (
+        <>
+            <li>
+                <strong>The half-circle gauge is a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">conic-gradient</code> too.</strong> No SVG: a conic gradient starting <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">from 270deg</code> is stepped at 1.8 degrees per percent to sweep a half circle. Each band can carry its own colour and the arc width is set with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">thickness</code>.
+            </li>
+            <li>
+                <strong>The target is a separate mark, not a second needle.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">targetValue</code> and it appears on the same arc, distinct from the current value. Using one needle and separating current from target by colour alone would fail anyone who cannot tell those colours apart.
+            </li>
+            <li>
+                <strong>The arc is one image; picking happens in the legend.</strong> The arc carries <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="img"'}</code> and a spoken name, and the pressable elements are the legend rows (<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code>) below it. Arc bands narrow toward the ends, so they make poor tap targets.
+                <br />
+                The general design of cards is covered by UIXHERO&rsquo;s card article.{" "}
+                <a
+                    className="underline underline-offset-4"
+                    href="https://www.uixhero.com/resources/ui-components/card"
+                    target="_blank"
+                    rel="noreferrer"
+                >
+                    UIXHERO: Card (in Japanese)
+                </a>
+            </li>
+        </>
+    ),
+};
+
 export default function SegmentedGaugeCardPage() {
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
 
-    return <ChartDocPage title={{ en: meta.segmentedGaugeCard.title, ja: "セグメントゲージカード" }} description={{ en: meta.segmentedGaugeCard.description, ja: "現在値、目標値、範囲セグメントを半円ゲージで示すカードです。" }} code={code} usageCode={usageCode} propsData={propsData} demo="segmented-gauge-card" embedBase="/embed/segmented-gauge-card" previewHeight={460} states={states} usedComponents={{ en: [{ name: "SegmentedGaugeCard", href: "/docs/components/segmented-gauge-card" }, { name: "ChartLegend", href: "/docs/components/chart-legend" }, { name: "Tooltip", href: "/docs/components/tooltip" }], ja: [{ name: "セグメントゲージカード", href: "/docs/components/segmented-gauge-card" }, { name: "チャート凡例", href: "/docs/components/chart-legend" }, { name: "ツールチップ", href: "/docs/components/tooltip" }] }} relatedComponents={{ en: [{"name":"GaugeChart","href":"/docs/components/gauge-chart"},{"name":"RadialBarChart","href":"/docs/components/radial-bar-chart"}], ja: [{"name":"ゲージチャート","href":"/docs/components/gauge-chart"},{"name":"ラジアルバーチャート","href":"/docs/components/radial-bar-chart"}] }} />;
+    return <ChartDocPage designDecisions={designDecisions} title={{ en: meta.segmentedGaugeCard.title, ja: "セグメントゲージカード" }} description={{ en: meta.segmentedGaugeCard.description, ja: "現在値、目標値、範囲セグメントを半円ゲージで示すカードです。" }} code={code} usageCode={usageCode} propsData={propsData} demo="segmented-gauge-card" embedBase="/embed/segmented-gauge-card" previewHeight={460} states={states} usedComponents={{ en: [{ name: "SegmentedGaugeCard", href: "/docs/components/segmented-gauge-card" }, { name: "ChartLegend", href: "/docs/components/chart-legend" }, { name: "Tooltip", href: "/docs/components/tooltip" }], ja: [{ name: "セグメントゲージカード", href: "/docs/components/segmented-gauge-card" }, { name: "チャート凡例", href: "/docs/components/chart-legend" }, { name: "ツールチップ", href: "/docs/components/tooltip" }] }} relatedComponents={{ en: [{"name":"GaugeChart","href":"/docs/components/gauge-chart"},{"name":"RadialBarChart","href":"/docs/components/radial-bar-chart"}], ja: [{"name":"ゲージチャート","href":"/docs/components/gauge-chart"},{"name":"ラジアルバーチャート","href":"/docs/components/radial-bar-chart"}] }} />;
 }

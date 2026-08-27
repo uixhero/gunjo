@@ -539,6 +539,58 @@ export function ExpiryDensityBadges() {
           <CodeBlock code={usageCode} />
         </div>
       </section>
+      <section className="space-y-4">
+        <div className="border-b pb-2">
+          <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+            {locale === "ja" ? "設計の判断" : "Design decisions"}
+          </h2>
+        </div>
+        {locale === "ja" ? (
+          <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+            <li>
+              <strong>判定を部品から外に出した。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">classifyExpiry()</code> は表示を持たない関数で、日付を渡すと「有効・期限間近・失効・未登録」と残り日数を返します。表の並べ替えや件数の集計は、バッジを描かずにこの関数だけで済みます。
+            </li>
+            <li>
+              <strong>色だけに意味を乗せない。</strong>4つの状態それぞれに別のアイコンと文字（有効／期限間近／失効／未登録）が付きます。資料も「色だけでステータスを表現しない」を核に挙げています。文字は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">labels</code> で差し替えられます。
+            </li>
+            <li>
+              <strong>「期限間近」の線は呼ぶ側が引く。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">warnWithinDays</code> の既定は30日です。車検と資格と保険では警告を出したい時期が違うので、部品の中に固定しませんでした。数のバッジではないので、資料の「0件で非表示」「99件を超えたら99+」の丸めは持ちません。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">today</code> も props で、サーバーとブラウザで結果がずれないようにしています。
+              <br />
+              一般のバッジの設計は UIXHERO の「バッジ」にあります。{" "}
+              <a
+                className="underline underline-offset-4"
+                href="https://www.uixhero.com/resources/ui-components/badge"
+                target="_blank"
+                rel="noreferrer"
+              >
+                UIXHERO: バッジ（Badge）
+              </a>
+            </li>
+          </ul>
+        ) : (
+          <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+            <li>
+              <strong>The classification lives outside the component.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">classifyExpiry()</code> renders nothing: give it a date and it returns one of valid, expiring, expired or missing, plus the number of days. Sorting a table or counting a fleet needs only that function, not the badge.
+            </li>
+            <li>
+              <strong>Colour never carries the meaning alone.</strong> Each of the four states has its own icon and its own words. The article makes exactly this its core principle. The wording is replaceable through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">labels</code>.
+            </li>
+            <li>
+              <strong>The caller draws the line for &ldquo;expiring&rdquo;.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">warnWithinDays</code> defaults to 30, because an inspection, a licence and an insurance policy each want a different warning window. This is not a count badge, so the article&rsquo;s zero-hides and 99-plus rounding do not apply. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">today</code> is likewise a prop, so server and client agree.
+              <br />
+              The general design of badges is covered by UIXHERO&rsquo;s badge article.{" "}
+              <a
+                className="underline underline-offset-4"
+                href="https://www.uixhero.com/resources/ui-components/badge"
+                target="_blank"
+                rel="noreferrer"
+              >
+                UIXHERO: Badge (in Japanese)
+              </a>
+            </li>
+          </ul>
+        )}
+      </section>
     </ComponentLayout>
   );
 }

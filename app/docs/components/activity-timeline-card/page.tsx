@@ -712,6 +712,58 @@ export default function ActivityTimelineCardPage() {
                 </div>
                 <CodeBlock code={usageCodeByLocale[locale]} />
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>1枚に3つの領域を重ねた。</strong>資料はカードの責務を「1つのエンティティを伝えて次の行動へ導く」と定めています。この部品は上から <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">metrics</code>（数値3つ）・時間帯の棒・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">segments</code> の凡例を1枚に載せていますが、これは3件のエンティティではなく、同じ1つの活動を粗さの違う3段で見せたものです。だから3枚に割らず、カードの中にカードを入れることもしていません。
+                        </li>
+                        <li>
+                            <strong>押せるのは中の印だけで、外枠は押せない。</strong>資料は「カード全体を押せるようにするなら、中にボタンを入れない」を挙げています。GUNJO はこの部品でカードの外枠に何も付けず、時間帯の棒と凡例の行だけを本物の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> にしました。1枚から選べる対象が複数あるので、外枠まで押せるようにすると入れ子になります。
+                        </li>
+                        <li>
+                            <strong>棒の高さの基準を呼ぶ側に開けた。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> を渡さなければ、いちばん高い棒はそのデータの最大値です。カードを2枚並べて比べるときは、同じ <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> を渡して基準をそろえます。値の書式は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code>（関数）と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code>（文字列で渡せる形）の2本立てで、サーバーコンポーネントから渡せるのは後者だけです（#338）。
+                            <br />
+                            一般のカードの設計は UIXHERO の「カード」にあります。{" "}
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/card"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: カード（Card）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Three regions stacked into one card.</strong> The article defines a card&rsquo;s job as carrying one entity and pointing at the next action. This component puts <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">metrics</code>, an hour-by-hour bar row and the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">segments</code> legend into a single card, but those are not three entities: they are one activity at three grains. So it is never split into three cards, and no card is nested inside another.
+                        </li>
+                        <li>
+                            <strong>Only the marks inside are clickable; the shell is not.</strong> The article warns against putting a button inside a card that is itself clickable. GUNJO leaves the card shell inert and makes only the slot bars and the legend rows real <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> elements. One card offers several things to pick, so making the shell clickable too would nest interactive roles.
+                        </li>
+                        <li>
+                            <strong>The bar scale stays open to the caller.</strong> Without <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code>, the tallest bar is the largest value in that data set. Pass the same <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> to two cards to put them on one scale. Values format through either <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> (a function) or <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code> (a serializable spec); only the latter can be passed from a Server Component (#338).
+                            <br />
+                            The general design of cards is covered by UIXHERO&rsquo;s card article.{" "}
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/card"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Card (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

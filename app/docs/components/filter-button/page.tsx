@@ -496,6 +496,58 @@ export function StatusFilterButton() {
                     <CodeBlock code={localizedUsageCode} />
                 </div>
             </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>絞り込みの有無をボタン自身が示す。</strong>何も選ばれていないときは破線の枠、開いているあいだは淡い色、選ばれているときは実線の枠と淡い色、と3つの見た目を持ちます。資料の「重要度と視覚的重みを一致させる」を、優先度ではなく状態に当てて使った形です。
+                        </li>
+                        <li>
+                            <strong>件数の場所を先に空けておく。</strong>選択が0件のときも件数のバッジは場所を取ったまま隠れ（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">invisible</code>）、読み上げからは外れます。0件で消してしまうと、1つ選んだ瞬間にボタンの幅が変わって、隣のボタンが動くためです。
+                        </li>
+                        <li>
+                            <strong>中身を丸ごと差し替えられる。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">children</code> を渡すと、既定の選択一覧の代わりに任意の中身を出せます（日付の範囲・数値の幅など）。絞り込みの形は画面ごとに違うので、部品にしたのはボタンと吹き出しの枠だけです。
+                            <br />
+                            一般のボタンの設計は UIXHERO の「ボタン」にあります。{" "}
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/button"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: ボタン（Button）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>The button itself reports whether a filter is on.</strong> Three surfaces: a dashed border when nothing is selected, a tinted one while the popover is open, and a solid tinted one once something is selected. That is the article&rsquo;s weight-matches-importance principle applied to state rather than to priority.
+                        </li>
+                        <li>
+                            <strong>The count badge keeps its space at zero.</strong> With nothing selected the badge is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">invisible</code> rather than removed, and is hidden from screen readers. Removing it would change the button&rsquo;s width the moment the first option is picked, shoving its neighbours sideways.
+                        </li>
+                        <li>
+                            <strong>The panel contents can be replaced wholesale.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">children</code> and the default option list gives way to anything: a date range, a numeric span. Filters differ per screen, so only the button and the popover frame are componentised.
+                            <br />
+                            The general design of buttons is covered by UIXHERO&rsquo;s button article.{" "}
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/button"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Button (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

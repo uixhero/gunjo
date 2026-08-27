@@ -715,6 +715,58 @@ export function InvoiceTotalsTable() {
                 <CodeCopyButton code={usageCode} />
                 <CodeBlock code={usageCode} />
             </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>横スクロールをこの箱の中に閉じ込めた。</strong>表は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">overflow-x-auto</code> の入れ物に入れ、さらに <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">[contain:paint]</code> を付けています。これが無いと、幅の広い表がスマホ（375px）でページ全体の横スクロールを引き起こしていました（#289）。表そのものは最低 720px を確保します。
+                        </li>
+                        <li>
+                            <strong>スマホでは「横に流す」か「積み直す」かを選べる。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">renderCard</code> を渡すと、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">md</code> 未満では同じ行をカードの縦積みで出します（#195）。渡さなければどの幅でも表のまま横に流れます。資料は「行を読むのではなく列をスキャンする」を核に挙げていますが、スマホには列を並べる幅が無いので、そこだけ形を変える口を開けました。
+                        </li>
+                        <li>
+                            <strong>並べ替えの状態は見出しのセルが持つ。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-sort</code> は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">th</code> に付けてあり、中の並べ替えボタンには付けていません。二重に読み上げられるのを避けるためです。表の名前は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">caption</code> か <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-labelledby</code> で必ず付けられるようにしました（#298）。1つの画面に表が複数あるとき、読み上げで区別が付かなくなるからです。
+                            <br />
+                            一般の表の設計は UIXHERO の「テーブル」にあります。{" "}
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/table"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: テーブル（Table）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Horizontal scrolling is contained in this box.</strong> The table sits in an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">overflow-x-auto</code> container marked <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">[contain:paint]</code>. Without that, a wide table leaked page-level horizontal scroll on a 375px phone (#289). The table itself holds a 720px floor.
+                        </li>
+                        <li>
+                            <strong>On a phone you choose between scrolling and restacking.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">renderCard</code> and rows below <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">md</code> render as a stacked card list instead (#195); omit it and the table stays a table at every width and scrolls sideways. The article&rsquo;s core is scanning columns rather than reading rows, but a phone has no room for columns, so that is the one place the shape is allowed to change.
+                        </li>
+                        <li>
+                            <strong>Sort state lives on the header cell.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-sort</code> is set on the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">th</code>, not on the button inside it, so the state is not announced twice. Every table can be named through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">caption</code> or <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-labelledby</code> (#298), because several tables on one screen are otherwise indistinguishable to a screen reader.
+                            <br />
+                            The general design of tables is covered by UIXHERO&rsquo;s table article.{" "}
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/table"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Table (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

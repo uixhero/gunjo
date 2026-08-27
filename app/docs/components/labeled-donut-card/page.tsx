@@ -889,6 +889,58 @@ export default function LabeledDonutCardPage() {
                 </div>
                 <CodeBlock code={usageCodeByLocale[locale]} />
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>ドーナツも引き出しラベルも SVG を使わずに置いた。</strong>円は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">conic-gradient</code>、真ん中の抜きは重ねた丸で作ります。区分の位置は角度から座標を出して、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">calloutLabel</code> を円のまわりに置きます。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showCallouts</code> を <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">false</code> にすると引き出しを畳んで、右の一覧だけの姿になります（狭い枠に入れるとき用）。
+                        </li>
+                        <li>
+                            <strong>図の役割が props で変わる。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">onSegmentSelect</code> を渡すと図の塊は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="button"'}</code> になり、Enter と Space で選べます。渡さなければ <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="img"'}</code> の読み物です。押せそうな見た目なのに押せない、という状態を作らないためです。
+                        </li>
+                        <li>
+                            <strong>真ん中の値はカードが決めない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">centerValue</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">centerLabel</code> は呼ぶ側が渡します。合計を出すのか、いちばん大きい区分を出すのかは画面の意味で変わるからです。指で触ったときのツールチップは触れた位置に出し、離しても少しの間そこに残します。
+                            <br />
+                            一般のカードの設計は UIXHERO の「カード」にあります。{" "}
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/card"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: カード（Card）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Neither the donut nor its callout labels use SVG.</strong> The ring is a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">conic-gradient</code> with a plain circle stacked over the middle. Segment positions are derived from angles so that <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">calloutLabel</code> can be placed around the ring. Set <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showCallouts</code> to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">false</code> to drop the callouts and keep only the list on the right, for narrow hosts.
+                        </li>
+                        <li>
+                            <strong>The figure&rsquo;s role changes with the props.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">onSegmentSelect</code> and the ring becomes <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="button"'}</code>, selectable with Enter and Space; omit it and the ring is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="img"'}</code>. Nothing should look pressable without being pressable.
+                        </li>
+                        <li>
+                            <strong>The centre value is not the card&rsquo;s decision.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">centerValue</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">centerLabel</code> come from the caller, because whether the middle shows a total or the biggest segment depends on the screen. On touch the tooltip appears where the finger landed and lingers briefly after release.
+                            <br />
+                            The general design of cards is covered by UIXHERO&rsquo;s card article.{" "}
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/card"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Card (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

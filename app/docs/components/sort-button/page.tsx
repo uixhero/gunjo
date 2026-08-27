@@ -248,6 +248,58 @@ export function LockedSortButton() {
                     <CodeBlock code={usageCode} />
                 </div>
             </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>押すたびに3つの状態を回す。</strong>昇順・降順・並べ替えなし、を1つのボタンで回します。資料は「1つのボタンに1つの動詞」を求めていますが、並べ替えは切り替えなので、ボタンを3つ並べるより1つを回すほうが場所を取りません。いまの状態は3種類のアイコンで出しています。
+                        </li>
+                        <li>
+                            <strong>いまの状態を読み上げに伝えるところは、まだ書いていません。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-pressed</code> も <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-sort</code> も付いていないので、画面を見ていない人にはラベルの「並べ替え」までしか届きません。表の見出しで使うときは、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-sort</code> を持つ <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DataTable</code> の見出しを使ってください。この部品を単体で直すか、表の見出し専用にするかは、まだ決めていません。
+                        </li>
+                        <li>
+                            <strong>既定は控えめな見た目にした。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> の既定は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ghost</code>、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">size</code> は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">sm</code> です。資料は「Primary は1画面に1つまで」を挙げています。並べ替えは画面の主役ではないので、ツールバーの中で目立たない側に置きました。ラベルは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">label</code> で差し替えられます。
+                            <br />
+                            一般のボタンの設計は UIXHERO の「ボタン」にあります。{" "}
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/button"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: ボタン（Button）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>One button cycles three states.</strong> Ascending, descending and unsorted rotate through a single button. The article asks for one verb per button, but sorting is a toggle, and one rotating control takes less room than three side by side. The current state is shown by three distinct icons.
+                        </li>
+                        <li>
+                            <strong>Announcing the current state to assistive technology is not written yet.</strong> There is no <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-pressed</code> and no <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-sort</code>, so someone not looking at the screen only hears the label. For table headers, use <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DataTable</code>&rsquo;s header, which does set <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-sort</code>. Whether this component should gain that itself or be scoped to table headers is still undecided.
+                        </li>
+                        <li>
+                            <strong>The default surface is deliberately quiet.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> defaults to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ghost</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">size</code> to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">sm</code>. The article allows one primary per screen, and sorting is not the star of any of them, so it sits on the quiet side of a toolbar. The label is replaceable through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">label</code>.
+                            <br />
+                            The general design of buttons is covered by UIXHERO&rsquo;s button article.{" "}
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/button"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Button (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

@@ -739,6 +739,58 @@ export function CustomChipCalendar() {
           <CodeBlock code={usageCode} />
         </div>
       </section>
+      <section className="space-y-4">
+        <div className="border-b pb-2">
+          <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+            {locale === "ja" ? "設計の判断" : "Design decisions"}
+          </h2>
+        </div>
+        {locale === "ja" ? (
+          <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+            <li>
+              <strong>矢印キーで日を移せるようにした。</strong>資料はカレンダーの核を「キーボードで日付を移動できること」に置いています。左右で1日ずつ（週をまたぐ）、上下で1週ずつ、Home と End でその週の端まで動き、Enter と Space で選びます。フォーカスを持つ升目は常に1つだけ（roving tabindex）なので、Tab を31回押させません。
+            </li>
+            <li>
+              <strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="grid"'}</code> の骨組みを持たせた。</strong>全体が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="grid"'}</code>、曜日が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="columnheader"'}</code>、日が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="gridcell"'}</code> で、升目の読み上げ名は「5月12日、今日、2件: ○○、△△」のように日付・今日かどうか・その日の予定を1つの文にまとめてあります。月の見出しには <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-live="polite"'}</code> を付け、月を送ったことが読み上げられるようにしました。
+            </li>
+            <li>
+              <strong>「今日」は外から渡す。一方で、選べない日はまだ持っていません。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">today</code> は props で、渡さなければどの日にも印を付けません。サーバーで描いた HTML とブラウザで描き直した HTML がずれないようにするためです。資料が挙げている「選べない日を <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-disabled</code> にする」は<strong>まだ書いていません</strong>。前後の月の日は薄く出しますが選べるままで、休業日や過去日を止める口はありません。
+              <br />
+              一般のカレンダーの設計は UIXHERO の「カレンダー」にあります。{" "}
+              <a
+                className="underline underline-offset-4"
+                href="https://www.uixhero.com/resources/ui-components/calendar"
+                target="_blank"
+                rel="noreferrer"
+              >
+                UIXHERO: カレンダー（Calendar）
+              </a>
+            </li>
+          </ul>
+        ) : (
+          <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+            <li>
+              <strong>Days move under the arrow keys.</strong> The article puts keyboard navigation at the core of a calendar. Left and right move a day at a time across week boundaries, up and down move a week, Home and End jump to the ends of the week, and Enter or Space selects. Exactly one cell is ever in the tab order (roving tabindex), so nobody tabs 31 times.
+            </li>
+            <li>
+              <strong>The grid semantics are real.</strong> The whole month is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="grid"'}</code>, weekday headers are <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="columnheader"'}</code> and each day is a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="gridcell"'}</code> whose accessible name folds the date, whether it is today and that day&rsquo;s events into one sentence. The month heading is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-live="polite"'}</code> so paging the month is announced.
+            </li>
+            <li>
+              <strong>&ldquo;Today&rdquo; is injected; disabled days are not written yet.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">today</code> is a prop, and without it no day is marked, which keeps the server-rendered HTML and the client-rendered HTML identical. The article&rsquo;s fourth principle, marking unselectable days <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-disabled</code>, is <strong>not written yet</strong>: days from the neighbouring months are dimmed but still selectable, and there is no prop for blocking past dates or closed days.
+              <br />
+              The general design of calendars is covered by UIXHERO&rsquo;s calendar article.{" "}
+              <a
+                className="underline underline-offset-4"
+                href="https://www.uixhero.com/resources/ui-components/calendar"
+                target="_blank"
+                rel="noreferrer"
+              >
+                UIXHERO: Calendar (in Japanese)
+              </a>
+            </li>
+          </ul>
+        )}
+      </section>
     </ComponentLayout>
   );
 }

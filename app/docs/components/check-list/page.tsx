@@ -384,6 +384,58 @@ export function DisabledReasonCheckList() {
           <CodeBlock code={usageCode} />
         </div>
       </section>
+      <section className="space-y-4">
+        <div className="border-b pb-2">
+          <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+            {locale === "ja" ? "設計の判断" : "Design decisions"}
+          </h2>
+        </div>
+        {locale === "ja" ? (
+          <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+            <li>
+              <strong>チェックの付く行と、付かない行を同じ表に混ぜられる。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">checked</code> を渡さない項目は、チェックボックスの無いただの行として出ます。資料は「複数選択するか」でリストの種類を決めよと書いていますが、実務の確認リストには「確認させる行」と「見せるだけの行」が混ざるので、1つのリストで両方を出せるようにしました。
+            </li>
+            <li>
+              <strong>チェックボックスの名前は必ず行の文字にした。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">label</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">description</code> を <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Checkbox</code> に渡しているので、名前の無いチェックボックスが生まれません。行の文字を別に置いて <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">label</code> をつなぎ忘れる、という壊れ方を型で塞いでいます。
+            </li>
+            <li>
+              <strong>右端の要素はチェックの外に置いた。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">trailing</code>（バッジ・ボタン・金額）はチェックボックスの外側にあるので、押してもチェックが動きません。行全体を押せるようにしていないのは、この切り分けを守るためです。
+              <br />
+              一般のリストの設計は UIXHERO の「リスト」にあります。{" "}
+              <a
+                className="underline underline-offset-4"
+                href="https://www.uixhero.com/resources/ui-components/list"
+                target="_blank"
+                rel="noreferrer"
+              >
+                UIXHERO: リスト（List）
+              </a>
+            </li>
+          </ul>
+        ) : (
+          <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+            <li>
+              <strong>Checkable and non-checkable rows live in the same list.</strong> An item with no <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">checked</code> renders as a plain row with no checkbox. The article decides list type by asking whether the user multi-selects; real confirmation lists mix rows to tick with rows that are only there to be read, so both are allowed in one list.
+            </li>
+            <li>
+              <strong>A checkbox is always named by its own row.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">label</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">description</code> are passed into <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Checkbox</code>, so an unlabelled checkbox cannot be produced. The classic failure, row text placed separately and never wired to the control, is closed off by the type.
+            </li>
+            <li>
+              <strong>The trailing slot sits outside the toggle.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">trailing</code> (a badge, a button, an amount) is rendered outside the checkbox, so clicking it never flips the tick. That separation is why the whole row is not made pressable.
+              <br />
+              The general design of lists is covered by UIXHERO&rsquo;s list article.{" "}
+              <a
+                className="underline underline-offset-4"
+                href="https://www.uixhero.com/resources/ui-components/list"
+                target="_blank"
+                rel="noreferrer"
+              >
+                UIXHERO: List (in Japanese)
+              </a>
+            </li>
+          </ul>
+        )}
+      </section>
     </ComponentLayout>
   );
 }

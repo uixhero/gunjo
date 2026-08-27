@@ -418,6 +418,58 @@ export function ServiceStatusListCards() {
           <CodeBlock code={usageCode} />
         </div>
       </section>
+      <section className="space-y-4">
+        <div className="border-b pb-2">
+          <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+            {locale === "ja" ? "設計の判断" : "Design decisions"}
+          </h2>
+        </div>
+        {locale === "ja" ? (
+          <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+            <li>
+              <strong>押せるようにするかどうかを、既定では決めない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">onSelect</code> を渡したときだけ 44px 以上の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> になり、渡さなければただの <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">div</code> です。資料は「カード全体をリンクにするか、部分だけにするか」を2番目の判断に挙げています。GUNJO はこれを既定で決めず、呼ぶ側の宣言にしました。
+            </li>
+            <li>
+              <strong>状態は色だけに乗せない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">severity</code> が変えるのは全周の境界線と淡い背景だけで、状態そのものは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">status</code> に渡す Badge の文字が持ちます。色を見分けられない人にも同じ情報が届くようにするためです。
+            </li>
+            <li>
+              <strong>右側は「状態」と「補足」の2段に固定した。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">status</code>（Badge）と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">meta</code>（価格・時刻・件数）は右上と右下に縦に積み、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">meta</code> は折り返しません。行を何十も並べたときに、値の位置が行ごとにずれないようにするためです。
+              <br />
+              一般のカードの設計は UIXHERO の「カード」にあります。{" "}
+              <a
+                className="underline underline-offset-4"
+                href="https://www.uixhero.com/resources/ui-components/card"
+                target="_blank"
+                rel="noreferrer"
+              >
+                UIXHERO: カード（Card）
+              </a>
+            </li>
+          </ul>
+        ) : (
+          <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+            <li>
+              <strong>Whether the row is pressable is not decided by default.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">onSelect</code> and the card becomes a 44px-minimum <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code>; omit it and it stays a plain <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">div</code>. The article makes whole-card versus partial linking its second decision point, and GUNJO leaves that decision to the caller instead of baking one in.
+            </li>
+            <li>
+              <strong>Status never rides on colour alone.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">severity</code> only changes the full border and a faint background; the status itself lives in the text of the Badge passed to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">status</code>. Anyone who cannot separate those colours still gets the same information.
+            </li>
+            <li>
+              <strong>The right-hand side is fixed at two stacked lines.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">status</code> (a Badge) and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">meta</code> (price, time, count) stack top and bottom on the right, and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">meta</code> never wraps. Across dozens of rows the values stay on the same vertical line.
+              <br />
+              The general design of cards is covered by UIXHERO&rsquo;s card article.{" "}
+              <a
+                className="underline underline-offset-4"
+                href="https://www.uixhero.com/resources/ui-components/card"
+                target="_blank"
+                rel="noreferrer"
+              >
+                UIXHERO: Card (in Japanese)
+              </a>
+            </li>
+          </ul>
+        )}
+      </section>
     </ComponentLayout>
   );
 }
