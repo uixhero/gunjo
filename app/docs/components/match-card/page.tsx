@@ -8,7 +8,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
-import { Badge, Button, CompanyCell, MatchCard, Toast, type MatchFactor } from "@gunjo/ui";
+import { Badge, Button, CompanyCell, MatchCard, PersonCell, Toast, type MatchFactor } from "@gunjo/ui";
 
 type Locale = "ja" | "en";
 
@@ -72,6 +72,44 @@ function MatchCardPreview({ locale, actions = true }: { locale: Locale; actions?
             {locale === "ja" ? "申請を準備する" : "Prepare application"}
           </Button>
         ) : undefined}
+      />
+    </div>
+  );
+}
+
+/** 左右は同じ種類でなくてよい＝候補者（人）と求人（枠）を突き合わせる形。 */
+function CandidateMatchPreview({ locale }: { locale: Locale }) {
+  const isJa = locale === "ja";
+  const factors: MatchFactor[] = isJa
+    ? [
+        { label: "経験年数", value: "◎", tone: "success", detail: "希望5年 / 実績7年" },
+        { label: "勤務地", value: "×", tone: "destructive", detail: "本人は名古屋・勤務地は東京" },
+        { label: "希望年収", value: "○", tone: "success", detail: "620万円 / 提示 650万円" },
+      ]
+    : [
+        { label: "Years of experience", value: "A", tone: "success", detail: "Wanted 5 / has 7" },
+        { label: "Location", value: "F", tone: "destructive", detail: "Lives in Nagoya, role is in Tokyo" },
+        { label: "Salary", value: "B", tone: "success", detail: "Asking 6.2M / offered 6.5M" },
+      ];
+
+  return (
+    <div className="w-full max-w-2xl">
+      <MatchCard
+        label={isJa ? "候補者と求人の適合" : "Candidate and role match"}
+        left={
+          <PersonCell
+            name={isJa ? "中村 涼" : "Ryo Nakamura"}
+            secondary={isJa ? "組込みソフト・7年" : "Embedded software, 7 years"}
+          />
+        }
+        right={
+          <CompanyCell
+            name={isJa ? "制御ソフト開発（東京）" : "Control software (Tokyo)"}
+            secondary={isJa ? "正社員・650万円" : "Full time / 6.5M"}
+          />
+        }
+        factorsLabel={isJa ? "突き合わせた項目" : "Compared criteria"}
+        factors={factors}
       />
     </div>
   );
@@ -176,6 +214,64 @@ export function SubsidyMatch() {
   );
 }`;
 
+  const candidateCode = locale === "ja"
+    ? `import { CompanyCell, MatchCard, PersonCell, type MatchFactor } from "@gunjo/ui";
+
+const factors: MatchFactor[] = [
+  { label: "経験年数", value: "◎", tone: "success", detail: "希望5年 / 実績7年" },
+  { label: "勤務地", value: "×", tone: "destructive", detail: "本人は名古屋・勤務地は東京" },
+  { label: "希望年収", value: "○", tone: "success", detail: "620万円 / 提示 650万円" },
+];
+
+export function CandidateMatch() {
+  return (
+    <MatchCard
+      label="候補者と求人の適合"
+      // 左は人、右は求人。左右が同じ種類である必要はありません。
+      left={<PersonCell name="中村 涼" secondary="組込みソフト・7年" />}
+      right={<CompanyCell name="制御ソフト開発（東京）" secondary="正社員・650万円" />}
+      // score を渡さないと、中央は既定の連結記号になります。
+      factorsLabel="突き合わせた項目"
+      factors={factors}
+    />
+  );
+}`
+    : `import { CompanyCell, MatchCard, PersonCell, type MatchFactor } from "@gunjo/ui";
+
+const factors: MatchFactor[] = [
+  {
+    label: "Years of experience",
+    value: "A",
+    tone: "success",
+    detail: "Wanted 5 / has 7",
+  },
+  {
+    label: "Location",
+    value: "F",
+    tone: "destructive",
+    detail: "Lives in Nagoya, role is in Tokyo",
+  },
+  { label: "Salary", value: "B", tone: "success", detail: "Asking 6.2M / offered 6.5M" },
+];
+
+export function CandidateMatch() {
+  return (
+    <MatchCard
+      label="Candidate and role match"
+      // Left is a person, right is a role — the two sides need not be alike.
+      left={
+        <PersonCell name="Ryo Nakamura" secondary="Embedded software, 7 years" />
+      }
+      right={
+        <CompanyCell name="Control software (Tokyo)" secondary="Full time / 6.5M" />
+      }
+      // With no score, the centre falls back to the default connector glyph.
+      factorsLabel="Compared criteria"
+      factors={factors}
+    />
+  );
+}`;
+
   const readOnlyCode = locale === "ja"
     ? `import { Badge, CompanyCell, MatchCard, type MatchFactor } from "@gunjo/ui";
 
@@ -266,6 +362,16 @@ export function ReadOnlySubsidyMatch() {
               description: locale === "ja" ? "actions を省略すると、比較結果だけを表示するカードになります。" : "Omit actions for a read-only comparison card.",
               preview: <MatchCardPreview locale={locale} actions={false} />,
               code: readOnlyCode,
+              previewBodyWidth: "lg",
+            },
+            {
+              key: "different-kinds",
+              title: locale === "ja" ? "左右の種類が違うとき" : "When the two sides differ in kind",
+              description: locale === "ja"
+                ? "left と right はどちらも任意の識別の一片です。人と求人、荷物と空車のように種類が違っても成り立ちます。score を渡さないと中央は既定の連結記号になり、合わない項目は destructive の色で残します。"
+                : "left and right are arbitrary identity nodes, so a person can face a job posting or a load can face a truck. Omit score and the centre falls back to the connector glyph; a criterion that does not fit stays visible in the destructive tone.",
+              preview: <CandidateMatchPreview locale={locale} />,
+              code: candidateCode,
               previewBodyWidth: "lg",
             },
           ]}

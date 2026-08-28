@@ -76,6 +76,69 @@ export function InlineKey() {
 }`,
 } as const;
 
+const longKeyCodeByLocale = {
+    ja: `import { Kbd } from "@gunjo/ui";
+
+const SAVE_KEYS = ["Ctrl", "Shift", "S"];
+const CANCEL_KEYS = ["Esc"];
+const DELETE_KEYS = ["Backspace"];
+
+export function KeyLegend() {
+  return (
+    <dl className="grid grid-cols-[auto_1fr] items-center gap-x-3 gap-y-2 text-sm">
+      <dt className="inline-flex items-center gap-1">
+        {SAVE_KEYS.map((key) => (
+          <Kbd key={key}>{key}</Kbd>
+        ))}
+      </dt>
+      <dd className="text-muted-foreground">下書きを保存する</dd>
+      <dt className="inline-flex items-center gap-1">
+        {CANCEL_KEYS.map((key) => (
+          <Kbd key={key}>{key}</Kbd>
+        ))}
+      </dt>
+      <dd className="text-muted-foreground">編集をやめる</dd>
+      <dt className="inline-flex items-center gap-1">
+        {DELETE_KEYS.map((key) => (
+          <Kbd key={key}>{key}</Kbd>
+        ))}
+      </dt>
+      <dd className="text-muted-foreground">直前の1文字を消す</dd>
+    </dl>
+  );
+}`,
+    en: `import { Kbd } from "@gunjo/ui";
+
+const SAVE_KEYS = ["Ctrl", "Shift", "S"];
+const CANCEL_KEYS = ["Esc"];
+const DELETE_KEYS = ["Backspace"];
+
+export function KeyLegend() {
+  return (
+    <dl className="grid grid-cols-[auto_1fr] items-center gap-x-3 gap-y-2 text-sm">
+      <dt className="inline-flex items-center gap-1">
+        {SAVE_KEYS.map((key) => (
+          <Kbd key={key}>{key}</Kbd>
+        ))}
+      </dt>
+      <dd className="text-muted-foreground">Save the draft</dd>
+      <dt className="inline-flex items-center gap-1">
+        {CANCEL_KEYS.map((key) => (
+          <Kbd key={key}>{key}</Kbd>
+        ))}
+      </dt>
+      <dd className="text-muted-foreground">Stop editing</dd>
+      <dt className="inline-flex items-center gap-1">
+        {DELETE_KEYS.map((key) => (
+          <Kbd key={key}>{key}</Kbd>
+        ))}
+      </dt>
+      <dd className="text-muted-foreground">Delete one character back</dd>
+    </dl>
+  );
+}`,
+} as const;
+
 const propsByLocale = {
     ja: [
         { name: "children", type: "ReactNode", required: true, description: "キー名や記号を表示する内容です。" },
@@ -151,6 +214,34 @@ export default function KbdPage() {
                                 </p>
                             ),
                             code: inlineCodeByLocale[locale],
+                        },
+                        {
+                            key: "long-key-names",
+                            title: locale === "ja" ? "綴りのキー名と記号が混ざる一覧" : "Spelled-out keys next to symbols",
+                            description: locale === "ja"
+                                ? "枠は中身の幅に合わせて伸び、高さは変わりません。Backspace のような長い名前と ⌘ のような1文字を同じ行に並べても、行の高さがそろいます。"
+                                : "The box grows to fit its label but keeps its height, so Backspace and ⌘ line up on the same row.",
+                            preview: (
+                                <dl className="grid grid-cols-[auto_1fr] items-center gap-x-3 gap-y-2 text-sm">
+                                    <dt className="inline-flex items-center gap-1">
+                                        <Kbd>Ctrl</Kbd>
+                                        <Kbd>Shift</Kbd>
+                                        <Kbd>S</Kbd>
+                                    </dt>
+                                    <dd className="text-muted-foreground">{locale === "ja" ? "下書きを保存する" : "Save the draft"}</dd>
+                                    <dt className="inline-flex items-center gap-1">
+                                        <Kbd>Esc</Kbd>
+                                    </dt>
+                                    <dd className="text-muted-foreground">{locale === "ja" ? "編集をやめる" : "Stop editing"}</dd>
+                                    <dt className="inline-flex items-center gap-1">
+                                        <Kbd>Backspace</Kbd>
+                                    </dt>
+                                    <dd className="text-muted-foreground">
+                                        {locale === "ja" ? "直前の1文字を消す" : "Delete one character back"}
+                                    </dd>
+                                </dl>
+                            ),
+                            code: longKeyCodeByLocale[locale],
                         },
                     ]}
                 />

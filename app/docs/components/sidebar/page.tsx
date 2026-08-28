@@ -7,7 +7,7 @@ import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import navigationMetadata from "@design/navigation-metadata.json";
-import { Avatar, AvatarFallback, Sidebar, SidebarBody, SidebarFooter, SidebarHeader, SidebarItem, SidebarProvider, SidebarToggle, useSidebar } from "@gunjo/ui";
+import { Avatar, AvatarFallback, Button, Sidebar, SidebarBody, SidebarFooter, SidebarHeader, SidebarItem, SidebarProvider, SidebarToggle, useSidebar } from "@gunjo/ui";
 import {
     IconChartBar as BarChart3,
     IconHome as Home,
@@ -22,7 +22,13 @@ const NAV_ITEMS = [
     { id: "settings", label: { ja: "設定", en: "Settings" }, icon: Settings },
 ] as const;
 
-function SidebarContent({ initialActive = "projects" }: { initialActive?: string }) {
+function SidebarContent({
+    initialActive = "projects",
+    togglePlacement,
+}: {
+    initialActive?: string;
+    togglePlacement?: "center" | "header" | "footer";
+}) {
     const { locale } = useLocale();
     const { collapsed } = useSidebar();
     const [activeId, setActiveId] = React.useState(initialActive);
@@ -59,6 +65,7 @@ function SidebarContent({ initialActive = "projects" }: { initialActive?: string
                 {!collapsed ? <span className="min-w-0 flex-1 truncate text-sm">{isJa ? "デザインチーム" : "Design team"}</span> : null}
             </SidebarFooter>
             <SidebarToggle
+                placement={togglePlacement}
                 expandLabel={isJa ? "サイドバーを展開" : "Expand sidebar"}
                 collapseLabel={isJa ? "サイドバーを折りたたむ" : "Collapse sidebar"}
             />
@@ -66,17 +73,62 @@ function SidebarContent({ initialActive = "projects" }: { initialActive?: string
     );
 }
 
-function SidebarExample({ defaultCollapsed = false }: { defaultCollapsed?: boolean }) {
+function SidebarExample({
+    defaultCollapsed = false,
+    togglePlacement,
+}: {
+    defaultCollapsed?: boolean;
+    togglePlacement?: "center" | "header" | "footer";
+}) {
     const { locale } = useLocale();
 
     return (
         <div className="flex w-full overflow-hidden rounded-md border bg-background">
             <SidebarProvider defaultCollapsed={defaultCollapsed}>
-                <SidebarContent initialActive={defaultCollapsed ? "home" : "projects"} />
+                <SidebarContent
+                    initialActive={defaultCollapsed ? "home" : "projects"}
+                    togglePlacement={togglePlacement}
+                />
             </SidebarProvider>
             <main className="flex min-w-0 flex-1 items-center justify-center bg-muted/30 p-6 text-center text-sm text-muted-foreground">
                 {locale === "ja" ? "メインコンテンツ" : "Main content"}
             </main>
+        </div>
+    );
+}
+
+/** 開閉をアプリ側の state で持つ形。サイドバーの外にも開閉の入口が置けます。 */
+function ControlledSidebarExample() {
+    const { locale } = useLocale();
+    const isJa = locale === "ja";
+    const [collapsed, setCollapsed] = React.useState(false);
+
+    return (
+        <div className="flex w-full flex-col gap-3">
+            <div className="flex items-center gap-3">
+                <Button variant="outline" size="sm" onClick={() => setCollapsed((value) => !value)}>
+                    {collapsed
+                        ? isJa
+                            ? "サイドバーを開く"
+                            : "Open the sidebar"
+                        : isJa
+                          ? "サイドバーを畳む"
+                          : "Collapse the sidebar"}
+                </Button>
+                <span className="text-sm text-muted-foreground">
+                    {isJa
+                        ? `いまの状態: ${collapsed ? "畳んでいる" : "開いている"}`
+                        : `State: ${collapsed ? "collapsed" : "expanded"}`}
+                </span>
+            </div>
+            <div className="flex w-full overflow-hidden rounded-md border bg-background">
+                <SidebarProvider collapsed={collapsed} onCollapsedChange={setCollapsed}>
+                    <SidebarContent />
+                </SidebarProvider>
+                <main className="flex min-w-0 flex-1 items-center justify-center bg-muted/30 p-6 text-center text-sm text-muted-foreground">
+                    {isJa ? "メインコンテンツ" : "Main content"}
+                </main>
+            </div>
         </div>
     );
 }
@@ -242,6 +294,184 @@ export function SidebarLayout() {
 }`,
 };
 
+const togglePlacementCodeByLocale = {
+    ja: `import {
+  Sidebar,
+  SidebarBody,
+  SidebarHeader,
+  SidebarItem,
+  SidebarProvider,
+  SidebarToggle,
+} from "@gunjo/ui"
+import { IconHome as Home } from "@tabler/icons-react"
+
+export function SidebarWithHeaderToggle() {
+  return (
+    <div className="flex overflow-hidden rounded-md border bg-background">
+      <SidebarProvider>
+        <Sidebar className="min-h-[360px]">
+          <SidebarHeader>
+            <span className="truncate text-sm font-semibold">Gunjo UI</span>
+          </SidebarHeader>
+          <SidebarBody>
+            <SidebarItem
+              id="home"
+              icon={<Home className="h-4 w-4 shrink-0" />}
+              label="ホーム"
+              isActive
+              reserveChevronSpace={false}
+            />
+          </SidebarBody>
+          {/* 既定は footer。フッターを置かない画面では header か center に寄せます。 */}
+          <SidebarToggle
+            placement="header"
+            expandLabel="サイドバーを展開"
+            collapseLabel="サイドバーを折りたたむ"
+          />
+        </Sidebar>
+      </SidebarProvider>
+      <main className="flex min-w-0 flex-1 items-center justify-center bg-muted/30 p-6 text-sm text-muted-foreground">
+        メインコンテンツ
+      </main>
+    </div>
+  )
+}`,
+    en: `import {
+  Sidebar,
+  SidebarBody,
+  SidebarHeader,
+  SidebarItem,
+  SidebarProvider,
+  SidebarToggle,
+} from "@gunjo/ui"
+import { IconHome as Home } from "@tabler/icons-react"
+
+export function SidebarWithHeaderToggle() {
+  return (
+    <div className="flex overflow-hidden rounded-md border bg-background">
+      <SidebarProvider>
+        <Sidebar className="min-h-[360px]">
+          <SidebarHeader>
+            <span className="truncate text-sm font-semibold">Gunjo UI</span>
+          </SidebarHeader>
+          <SidebarBody>
+            <SidebarItem
+              id="home"
+              icon={<Home className="h-4 w-4 shrink-0" />}
+              label="Home"
+              isActive
+              reserveChevronSpace={false}
+            />
+          </SidebarBody>
+          {/* Defaults to footer; move it to header or center when there is no footer. */}
+          <SidebarToggle
+            placement="header"
+            expandLabel="Expand sidebar"
+            collapseLabel="Collapse sidebar"
+          />
+        </Sidebar>
+      </SidebarProvider>
+      <main className="flex min-w-0 flex-1 items-center justify-center bg-muted/30 p-6 text-sm text-muted-foreground">
+        Main content
+      </main>
+    </div>
+  )
+}`,
+};
+
+const controlledCodeByLocale = {
+    ja: `import * as React from "react"
+import {
+  Button,
+  Sidebar,
+  SidebarBody,
+  SidebarHeader,
+  SidebarItem,
+  SidebarProvider,
+} from "@gunjo/ui"
+import { IconHome as Home } from "@tabler/icons-react"
+
+export function ControlledSidebarLayout() {
+  // 開閉をアプリ側で持つと、サイドバーの外にも入口が置け、
+  // 保存した値や画面幅から初期値を決められます。
+  const [collapsed, setCollapsed] = React.useState(false)
+
+  return (
+    <div className="flex flex-col gap-3">
+      <Button variant="outline" size="sm" onClick={() => setCollapsed((v) => !v)}>
+        {collapsed ? "サイドバーを開く" : "サイドバーを畳む"}
+      </Button>
+      <div className="flex overflow-hidden rounded-md border bg-background">
+        <SidebarProvider collapsed={collapsed} onCollapsedChange={setCollapsed}>
+          <Sidebar className="min-h-[360px]">
+            <SidebarHeader>
+              <span className="truncate text-sm font-semibold">Gunjo UI</span>
+            </SidebarHeader>
+            <SidebarBody>
+              <SidebarItem
+                id="home"
+                icon={<Home className="h-4 w-4 shrink-0" />}
+                label="ホーム"
+                isActive
+                reserveChevronSpace={false}
+              />
+            </SidebarBody>
+          </Sidebar>
+        </SidebarProvider>
+        <main className="flex min-w-0 flex-1 items-center justify-center bg-muted/30 p-6 text-sm text-muted-foreground">
+          メインコンテンツ
+        </main>
+      </div>
+    </div>
+  )
+}`,
+    en: `import * as React from "react"
+import {
+  Button,
+  Sidebar,
+  SidebarBody,
+  SidebarHeader,
+  SidebarItem,
+  SidebarProvider,
+} from "@gunjo/ui"
+import { IconHome as Home } from "@tabler/icons-react"
+
+export function ControlledSidebarLayout() {
+  // Owning the state lets you put a second control outside the rail and
+  // seed it from a saved preference or the current viewport width.
+  const [collapsed, setCollapsed] = React.useState(false)
+
+  return (
+    <div className="flex flex-col gap-3">
+      <Button variant="outline" size="sm" onClick={() => setCollapsed((v) => !v)}>
+        {collapsed ? "Open the sidebar" : "Collapse the sidebar"}
+      </Button>
+      <div className="flex overflow-hidden rounded-md border bg-background">
+        <SidebarProvider collapsed={collapsed} onCollapsedChange={setCollapsed}>
+          <Sidebar className="min-h-[360px]">
+            <SidebarHeader>
+              <span className="truncate text-sm font-semibold">Gunjo UI</span>
+            </SidebarHeader>
+            <SidebarBody>
+              <SidebarItem
+                id="home"
+                icon={<Home className="h-4 w-4 shrink-0" />}
+                label="Home"
+                isActive
+                reserveChevronSpace={false}
+              />
+            </SidebarBody>
+          </Sidebar>
+        </SidebarProvider>
+        <main className="flex min-w-0 flex-1 items-center justify-center bg-muted/30 p-6 text-sm text-muted-foreground">
+          Main content
+        </main>
+      </div>
+    </div>
+  )
+}`,
+};
+
 export default function SidebarPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
@@ -282,6 +512,28 @@ export default function SidebarPage() {
                             previewBodyWidth: "full",
                             previewHeight: "auto",
                             code: collapsedCode,
+                        },
+                        {
+                            key: "toggle-placement",
+                            title: isJa ? "トグルを置く高さを変える" : "Moving the toggle",
+                            description: isJa
+                                ? "トグルは境界線の上に浮かせてあり、本文やフッターの幅を取りません。既定はフッターの上端ですが、フッターを置かない画面では header か center に寄せます。"
+                                : "The toggle floats on the boundary and takes no layout width. It sits above the footer by default; move it to header or center when the rail has no footer.",
+                            preview: <SidebarExample togglePlacement="header" />,
+                            previewBodyWidth: "full",
+                            previewHeight: "auto",
+                            code: togglePlacementCodeByLocale[locale],
+                        },
+                        {
+                            key: "controlled",
+                            title: isJa ? "開閉をアプリ側で持つ" : "Owning the collapse in app state",
+                            description: isJa
+                                ? "collapsed と onCollapsedChange を渡すと、開閉の持ち主がアプリになります。保存した値から復元したい、サイドバーの外にも開閉の入口を置きたい、というときはこちらです。"
+                                : "Passing collapsed and onCollapsedChange hands ownership to the app — for restoring a saved preference, or putting a second control outside the rail.",
+                            preview: <ControlledSidebarExample />,
+                            previewBodyWidth: "full",
+                            previewHeight: "auto",
+                            code: controlledCodeByLocale[locale],
                         },
                     ]}
                 />

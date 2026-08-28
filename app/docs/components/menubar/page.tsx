@@ -145,6 +145,39 @@ function AppWindowMenubarExample() {
     );
 }
 
+/** 押せない項目に理由を添える。GUNJO が Radix の項目に足した disabledReason。 */
+function UnavailableMenubarExample() {
+    const { locale } = useLocale();
+    const isJa = locale === "ja";
+
+    return (
+        <Menubar>
+            <MenubarMenu>
+                <MenubarTrigger>{isJa ? "編集" : "Edit"}</MenubarTrigger>
+                <MenubarContent>
+                    <MenubarItem
+                        disabled
+                        disabledReason={isJa ? "取り消せる操作がまだありません。" : "Nothing has been done yet to undo."}
+                    >
+                        {isJa ? "取り消し" : "Undo"} <MenubarShortcut>⌘Z</MenubarShortcut>
+                    </MenubarItem>
+                    <MenubarItem>
+                        {isJa ? "コピー" : "Copy"} <MenubarShortcut>⌘C</MenubarShortcut>
+                    </MenubarItem>
+                    <MenubarItem
+                        disabled
+                        disabledReason={isJa ? "クリップボードに貼り付けられるものがありません。" : "The clipboard has nothing to paste."}
+                    >
+                        {isJa ? "貼り付け" : "Paste"} <MenubarShortcut>⌘V</MenubarShortcut>
+                    </MenubarItem>
+                    <MenubarSeparator />
+                    <MenubarItem disabled>{isJa ? "書き出し" : "Export"}</MenubarItem>
+                </MenubarContent>
+            </MenubarMenu>
+        </Menubar>
+    );
+}
+
 const codeByLocale = {
     ja: `import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarSub, MenubarSubContent, MenubarSubTrigger, MenubarTrigger } from "@gunjo/ui"
 
@@ -243,6 +276,81 @@ export function FileMenubar() {
         <MenubarContent>
           <MenubarItem>Reload <MenubarShortcut>⌘R</MenubarShortcut></MenubarItem>
           <MenubarItem>Fullscreen</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  )
+}`,
+};
+
+const unavailableCodeByLocale = {
+    ja: `import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+} from "@gunjo/ui"
+
+export function EditMenubar() {
+  return (
+    <Menubar>
+      <MenubarMenu>
+        <MenubarTrigger>編集</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem disabled disabledReason="取り消せる操作がまだありません。">
+            取り消し <MenubarShortcut>⌘Z</MenubarShortcut>
+          </MenubarItem>
+          <MenubarItem>
+            コピー <MenubarShortcut>⌘C</MenubarShortcut>
+          </MenubarItem>
+          <MenubarItem
+            disabled
+            disabledReason="クリップボードに貼り付けられるものがありません。"
+          >
+            貼り付け <MenubarShortcut>⌘V</MenubarShortcut>
+          </MenubarItem>
+          <MenubarSeparator />
+          {/* 理由を渡さないと、薄い項目だけが残ります。 */}
+          <MenubarItem disabled>書き出し</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  )
+}`,
+    en: `import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+} from "@gunjo/ui"
+
+export function EditMenubar() {
+  return (
+    <Menubar>
+      <MenubarMenu>
+        <MenubarTrigger>Edit</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem disabled disabledReason="Nothing has been done yet to undo.">
+            Undo <MenubarShortcut>⌘Z</MenubarShortcut>
+          </MenubarItem>
+          <MenubarItem>
+            Copy <MenubarShortcut>⌘C</MenubarShortcut>
+          </MenubarItem>
+          <MenubarItem
+            disabled
+            disabledReason="The clipboard has nothing to paste."
+          >
+            Paste <MenubarShortcut>⌘V</MenubarShortcut>
+          </MenubarItem>
+          <MenubarSeparator />
+          {/* With no reason, all that is left is a dimmed row. */}
+          <MenubarItem disabled>Export</MenubarItem>
         </MenubarContent>
       </MenubarMenu>
     </Menubar>
@@ -374,6 +482,7 @@ export default function MenubarPage() {
     const usageCode = codeByLocale[locale];
     const checksCode = checksCodeByLocale[locale];
     const appWindowCode = appWindowCodeByLocale[locale];
+    const unavailableCode = unavailableCodeByLocale[locale];
 
     return (
         <ComponentLayout
@@ -416,6 +525,17 @@ export default function MenubarPage() {
                             previewBodyWidth: "md",
                             previewHeight: "auto",
                             code: checksCode,
+                        },
+                        {
+                            key: "unavailable",
+                            title: isJa ? "いま押せない操作" : "Commands that are unavailable right now",
+                            description: isJa
+                                ? "薄くするだけでは「なぜ押せないのか」が画面に残りません。disabledReason を渡すと理由が吹き出しで読め、キーボードでも辿れます。理由が言えないときだけ disabled のままにします。"
+                                : "Dimming alone leaves the reason off the screen. disabledReason puts it in a tooltip that is reachable by keyboard too; leave a bare disabled only when there is no reason to give.",
+                            preview: <UnavailableMenubarExample />,
+                            previewBodyWidth: "md",
+                            previewHeight: "auto",
+                            code: unavailableCode,
                         },
                     ]}
                 />

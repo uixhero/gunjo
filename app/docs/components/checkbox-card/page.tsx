@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { IconDeviceTv, IconParking, IconSmokingNo, IconWifi } from "@tabler/icons-react";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
 import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
@@ -50,6 +51,66 @@ function CheckboxCardPreview({ locale }: { locale: Locale }) {
   );
 }
 
+function ConditionsPreview({ locale }: { locale: Locale }) {
+  const [selected, setSelected] = React.useState<string[]>(["breakfast"]);
+  const conditions =
+    locale === "ja"
+      ? [
+          { value: "breakfast", title: "朝食つき" },
+          { value: "cancel", title: "直前まで取り消せる" },
+          { value: "late", title: "18時以降に着く" },
+        ]
+      : [
+          { value: "breakfast", title: "Breakfast included" },
+          { value: "cancel", title: "Free cancellation" },
+          { value: "late", title: "Late arrival" },
+        ];
+  return (
+    <div className="w-full max-w-md">
+      <CheckboxCardGroup
+        value={selected}
+        onValueChange={setSelected}
+        aria-label={locale === "ja" ? "絞り込みの条件" : "Filters"}
+      >
+        {conditions.map((c) => (
+          <CheckboxCard key={c.value} value={c.value} title={c.title} />
+        ))}
+      </CheckboxCardGroup>
+    </div>
+  );
+}
+
+function AmenitiesPreview({ locale }: { locale: Locale }) {
+  const [selected, setSelected] = React.useState<string[]>(["wifi", "parking"]);
+  const amenities =
+    locale === "ja"
+      ? [
+          { value: "wifi", title: "Wi-Fi", description: "全室で使えます", icon: <IconWifi className="size-5 text-muted-foreground" /> },
+          { value: "parking", title: "駐車場", description: "1台まで無料", icon: <IconParking className="size-5 text-muted-foreground" /> },
+          { value: "tv", title: "テレビ", description: "地上波と BS", icon: <IconDeviceTv className="size-5 text-muted-foreground" /> },
+          { value: "nonsmoking", title: "禁煙", description: "喫煙所は1階です", icon: <IconSmokingNo className="size-5 text-muted-foreground" /> },
+        ]
+      : [
+          { value: "wifi", title: "Wi-Fi", description: "In every room", icon: <IconWifi className="size-5 text-muted-foreground" /> },
+          { value: "parking", title: "Parking", description: "One car, no charge", icon: <IconParking className="size-5 text-muted-foreground" /> },
+          { value: "tv", title: "Television", description: "Terrestrial and satellite", icon: <IconDeviceTv className="size-5 text-muted-foreground" /> },
+          { value: "nonsmoking", title: "Non-smoking", description: "Smoking area on floor 1", icon: <IconSmokingNo className="size-5 text-muted-foreground" /> },
+        ];
+  return (
+    <div className="w-full max-w-md">
+      <CheckboxCardGroup
+        value={selected}
+        onValueChange={setSelected}
+        aria-label={locale === "ja" ? "設備" : "Amenities"}
+      >
+        {amenities.map((a) => (
+          <CheckboxCard key={a.value} value={a.value} title={a.title} description={a.description} leading={a.icon} />
+        ))}
+      </CheckboxCardGroup>
+    </div>
+  );
+}
+
 const usageCode = `import * as React from "react";
 import { Badge, CheckboxCard, CheckboxCardGroup } from "@gunjo/ui";
 
@@ -75,6 +136,132 @@ export function AddonPicker() {
           highlight={a.highlight}
           disabled={a.disabled}
           disabledReason={a.disabledReason}
+        />
+      ))}
+    </CheckboxCardGroup>
+  );
+}`;
+
+const conditionsCodeJa = `import * as React from "react";
+import { CheckboxCard, CheckboxCardGroup } from "@gunjo/ui";
+
+const CONDITIONS = [
+  { value: "breakfast", title: "朝食つき" },
+  { value: "cancel", title: "直前まで取り消せる" },
+  { value: "late", title: "18時以降に着く" },
+];
+
+export function ConditionFilters() {
+  const [selected, setSelected] = React.useState<string[]>(["breakfast"]);
+  return (
+    <CheckboxCardGroup value={selected} onValueChange={setSelected} aria-label="絞り込みの条件">
+      {CONDITIONS.map((c) => (
+        <CheckboxCard key={c.value} value={c.value} title={c.title} />
+      ))}
+    </CheckboxCardGroup>
+  );
+}`;
+
+const conditionsCodeEn = `import * as React from "react";
+import { CheckboxCard, CheckboxCardGroup } from "@gunjo/ui";
+
+const CONDITIONS = [
+  { value: "breakfast", title: "Breakfast included" },
+  { value: "cancel", title: "Free cancellation" },
+  { value: "late", title: "Late arrival" },
+];
+
+export function ConditionFilters() {
+  const [selected, setSelected] = React.useState<string[]>(["breakfast"]);
+  return (
+    <CheckboxCardGroup value={selected} onValueChange={setSelected} aria-label="Filters">
+      {CONDITIONS.map((c) => (
+        <CheckboxCard key={c.value} value={c.value} title={c.title} />
+      ))}
+    </CheckboxCardGroup>
+  );
+}`;
+
+const amenitiesCodeJa = `import * as React from "react";
+import {
+  IconDeviceTv,
+  IconParking,
+  IconSmokingNo,
+  IconWifi,
+} from "@tabler/icons-react";
+import { CheckboxCard, CheckboxCardGroup } from "@gunjo/ui";
+
+const AMENITIES = [
+  { value: "wifi", title: "Wi-Fi", description: "全室で使えます", Icon: IconWifi },
+  { value: "parking", title: "駐車場", description: "1台まで無料", Icon: IconParking },
+  { value: "tv", title: "テレビ", description: "地上波と BS", Icon: IconDeviceTv },
+  {
+    value: "nonsmoking",
+    title: "禁煙",
+    description: "喫煙所は1階です",
+    Icon: IconSmokingNo,
+  },
+];
+
+export function AmenityPicker() {
+  const [selected, setSelected] = React.useState<string[]>(["wifi", "parking"]);
+  return (
+    <CheckboxCardGroup value={selected} onValueChange={setSelected} aria-label="設備">
+      {AMENITIES.map(({ Icon, ...a }) => (
+        <CheckboxCard
+          key={a.value}
+          value={a.value}
+          title={a.title}
+          description={a.description}
+          leading={<Icon className="size-5 text-muted-foreground" />}
+        />
+      ))}
+    </CheckboxCardGroup>
+  );
+}`;
+
+const amenitiesCodeEn = `import * as React from "react";
+import {
+  IconDeviceTv,
+  IconParking,
+  IconSmokingNo,
+  IconWifi,
+} from "@tabler/icons-react";
+import { CheckboxCard, CheckboxCardGroup } from "@gunjo/ui";
+
+const AMENITIES = [
+  { value: "wifi", title: "Wi-Fi", description: "In every room", Icon: IconWifi },
+  {
+    value: "parking",
+    title: "Parking",
+    description: "One car, no charge",
+    Icon: IconParking,
+  },
+  {
+    value: "tv",
+    title: "Television",
+    description: "Terrestrial and satellite",
+    Icon: IconDeviceTv,
+  },
+  {
+    value: "nonsmoking",
+    title: "Non-smoking",
+    description: "Smoking area on floor 1",
+    Icon: IconSmokingNo,
+  },
+];
+
+export function AmenityPicker() {
+  const [selected, setSelected] = React.useState<string[]>(["wifi", "parking"]);
+  return (
+    <CheckboxCardGroup value={selected} onValueChange={setSelected} aria-label="Amenities">
+      {AMENITIES.map(({ Icon, ...a }) => (
+        <CheckboxCard
+          key={a.value}
+          value={a.value}
+          title={a.title}
+          description={a.description}
+          leading={<Icon className="size-5 text-muted-foreground" />}
         />
       ))}
     </CheckboxCardGroup>
@@ -131,6 +318,26 @@ export default function CheckboxCardDocPage() {
               description: locale === "ja" ? "RadioCard と違い、複数を同時に選べます。選択はスクエアのチェックで示します。" : "Unlike RadioCard, several can be selected at once; the selection is marked by a square check.",
               preview: <CheckboxCardPreview locale={locale} />,
               code: usageCode,
+              previewBodyWidth: "md",
+            },
+            {
+              key: "title-only",
+              title: locale === "ja" ? "見出しだけの一片" : "Title only",
+              description: locale === "ja"
+                ? "説明・価格・チップはどれも省けます。絞り込みの条件のように読む言葉が短いときは title だけにして、44px の下限で一片の高さを保ちます。"
+                : "Description, price and chips are all optional. For short filter labels, pass only title — the 44px minimum keeps the card a comfortable target.",
+              preview: <ConditionsPreview locale={locale} />,
+              code: locale === "ja" ? conditionsCodeJa : conditionsCodeEn,
+              previewBodyWidth: "md",
+            },
+            {
+              key: "leading",
+              title: locale === "ja" ? "先頭に印を置く" : "A leading mark",
+              description: locale === "ja"
+                ? "leading はチェックの右、見出しの左に入ります。設備のように「言葉より印のほうが早く見分けられる」一覧で使います。チェックの位置は動きません。"
+                : "leading sits between the check and the title. Use it where a mark reads faster than a word — amenities, file types — without moving the check.",
+              preview: <AmenitiesPreview locale={locale} />,
+              code: locale === "ja" ? amenitiesCodeJa : amenitiesCodeEn,
               previewBodyWidth: "md",
             },
           ]}

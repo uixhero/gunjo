@@ -537,6 +537,103 @@ export function RelatedLinksAside() {
 }`,
 };
 
+const narrowCodeByLocale = {
+    ja: `import { Badge, PageAside } from "@gunjo/ui"
+
+const pageStatuses = [
+  { label: "状態", value: "公開前確認", tone: "default" },
+  { label: "最終更新", value: "5分前", tone: "secondary" },
+  { label: "レビュー", value: "2件対応待ち", tone: "secondary" },
+]
+
+function PageStatus() {
+  return (
+    <section className="space-y-2">
+      <h3 className="text-sm font-semibold">ページステータス</h3>
+      <dl className="space-y-1">
+        {pageStatuses.map((item) => (
+          <div key={item.label} className="flex items-center justify-between gap-2">
+            <dt className="text-xs text-muted-foreground">{item.label}</dt>
+            <dd className="shrink-0 text-xs font-medium">
+              {item.tone === "default" ? <Badge>{item.value}</Badge> : item.value}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  )
+}
+
+export function NarrowPageAside() {
+  return (
+    <PageAside
+      title="補助情報"
+      asideLabel="ページの補助情報"
+      contentLabel="主コンテンツ"
+      mobileDescription="狭い画面では、右レールの内容を本文内で開閉します。"
+      openLabel="補助情報を開く"
+      closeLabel="補助情報を閉じる"
+      // 既定は開いた状態。長い補助情報は defaultOpen={false} で畳んで始めます。
+      defaultOpen
+      contentClassName="space-y-4 bg-muted/30 p-4"
+      renderAside={() => <PageStatus />}
+    >
+      <h3 className="text-base font-semibold">分析レポート</h3>
+      <p className="max-w-xl text-sm text-muted-foreground">
+        広い画面では右側のレール、狭い画面では本文の中の開閉になります。
+      </p>
+    </PageAside>
+  )
+}`,
+    en: `import { Badge, PageAside } from "@gunjo/ui"
+
+const pageStatuses = [
+  { label: "Status", value: "Pre-release", tone: "default" },
+  { label: "Updated", value: "5 min ago", tone: "secondary" },
+  { label: "Review", value: "2 pending", tone: "secondary" },
+]
+
+function PageStatus() {
+  return (
+    <section className="space-y-2">
+      <h3 className="text-sm font-semibold">Page status</h3>
+      <dl className="space-y-1">
+        {pageStatuses.map((item) => (
+          <div key={item.label} className="flex items-center justify-between gap-2">
+            <dt className="text-xs text-muted-foreground">{item.label}</dt>
+            <dd className="shrink-0 text-xs font-medium">
+              {item.tone === "default" ? <Badge>{item.value}</Badge> : item.value}
+            </dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  )
+}
+
+export function NarrowPageAside() {
+  return (
+    <PageAside
+      title="Supporting information"
+      asideLabel="Page supporting information"
+      contentLabel="Main content"
+      mobileDescription="On narrow screens the rail content collapses inside the content area."
+      openLabel="Open supporting information"
+      closeLabel="Close supporting information"
+      // Open by default; pass defaultOpen={false} to start a long aside collapsed.
+      defaultOpen
+      contentClassName="space-y-4 bg-muted/30 p-4"
+      renderAside={() => <PageStatus />}
+    >
+      <h3 className="text-base font-semibold">Analytics report</h3>
+      <p className="max-w-xl text-sm text-muted-foreground">
+        A rail on wide screens, a disclosure inside the content on narrow ones.
+      </p>
+    </PageAside>
+  )
+}`,
+};
+
 export default function PageAsideDocPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
@@ -592,6 +689,19 @@ export default function PageAsideDocPage() {
                             previewBodyWidth: "full",
                             previewHeight: "auto",
                             code: linksCode,
+                        },
+                        {
+                            key: "narrow",
+                            title: isJa ? "狭い画面のとき" : "On a narrow screen",
+                            description: isJa
+                                ? "lg 未満では右のレールが消え、本文の先頭の開閉領域になります。開閉は details と summary そのままなので、見出しの順番を乱さず、開いているかどうかも読み上げに伝わります。長い補助情報は defaultOpen={false} で畳んで始められます。"
+                                : "Below lg the rail disappears and the aside becomes a disclosure at the top of the content. It is a native details/summary, so it adds no out-of-order heading and its open state is announced. Start a long aside collapsed with defaultOpen={false}.",
+                            preview: <PageAsideDemo />,
+                            embedSrc: "/embed/page-aside",
+                            previewBodyWidth: "sm",
+                            fitViewport: "mobile",
+                            previewHeight: "auto",
+                            code: narrowCodeByLocale[locale],
                         },
                     ]}
                 />

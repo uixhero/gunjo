@@ -76,6 +76,66 @@ const plainCodeByLocale = {
     en: markdownRendererCode(tableMarkdownByLocale.en, true),
 } as const;
 
+const calloutMarkdownByLocale = {
+    ja: `## 移行の手順
+
+> 旧 API は 2026-09-30 に停止します。
+
+1. \`@gunjo/ui\` を更新する
+2. import を差し替える`,
+    en: `## Migration steps
+
+> The old API stops on 2026-09-30.
+
+1. Update \`@gunjo/ui\`
+2. Swap the imports`,
+} as const;
+
+const calloutCodeByLocale = {
+    ja: `import { DocNote, MarkdownRenderer } from "@gunjo/ui";
+
+const content = \`## 移行の手順
+
+> 旧 API は 2026-09-30 に停止します。
+
+1. \\\`@gunjo/ui\\\` を更新する
+2. import を差し替える\`;
+
+export function MigrationNotes() {
+  return (
+    <MarkdownRenderer
+      content={content}
+      components={{
+        blockquote: ({ children }) => (
+          <DocNote variant="warning">{children}</DocNote>
+        ),
+      }}
+    />
+  );
+}`,
+    en: `import { DocNote, MarkdownRenderer } from "@gunjo/ui";
+
+const content = \`## Migration steps
+
+> The old API stops on 2026-09-30.
+
+1. Update \\\`@gunjo/ui\\\`
+2. Swap the imports\`;
+
+export function MigrationNotes() {
+  return (
+    <MarkdownRenderer
+      content={content}
+      components={{
+        blockquote: ({ children }) => (
+          <DocNote variant="warning">{children}</DocNote>
+        ),
+      }}
+    />
+  );
+}`,
+} as const;
+
 const propsByLocale = {
     ja: [
         { name: "content", type: "string", required: true, description: "描画する Markdown 文字列です。" },
@@ -164,6 +224,24 @@ export default function MarkdownRendererPage() {
                                 </div>
                             ),
                             code: plainCode,
+                        },
+                        {
+                            key: "component-override",
+                            title: locale === "ja" ? "要素の描画を差し替える" : "Swapping a renderer",
+                            description: locale === "ja"
+                                ? "components に渡した要素だけが差し替わり、残りは既定のまま描かれます。引用を DocNote にすると、原稿は Markdown のままで見た目だけがアプリの注意書きになります。"
+                                : "Only the elements named in components are replaced; the rest keep the defaults. Mapping blockquote to DocNote turns quotes into the app's own callout while the source stays plain Markdown.",
+                            preview: (
+                                <div className="w-full max-w-xl rounded-lg border bg-background p-5">
+                                    <MarkdownRenderer
+                                        content={calloutMarkdownByLocale[locale]}
+                                        components={{
+                                            blockquote: ({ children }) => <DocNote variant="warning">{children}</DocNote>,
+                                        }}
+                                    />
+                                </div>
+                            ),
+                            code: calloutCodeByLocale[locale],
                         },
                     ]}
                 />
