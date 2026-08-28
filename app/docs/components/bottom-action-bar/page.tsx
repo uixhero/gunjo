@@ -92,6 +92,47 @@ function BottomActionBarPreview({ locale, initialStack = false }: { locale: Loca
   );
 }
 
+function BottomActionBarWidthPreview({ locale }: { locale: Locale }) {
+  const copy = bottomBarCopy(locale);
+  const isJa = locale === "ja";
+  const summary = (
+    <div className="flex flex-col">
+      <span className="text-xs text-muted-foreground">{copy.priceLabel}</span>
+      <span className="text-base font-semibold tabular-nums text-foreground">
+        {copy.price}{" "}
+        <Badge variant="info" className="ml-1 align-middle">
+          {copy.eta}
+        </Badge>
+      </span>
+    </div>
+  );
+
+  return (
+    <div className="flex w-full max-w-2xl flex-col gap-4">
+      <div className="flex flex-col gap-1">
+        <div className="overflow-hidden rounded-xl border bg-muted/30">
+          <BottomActionBar sticky={false} actions={<Button size="lg">{copy.call}</Button>}>
+            {summary}
+          </BottomActionBar>
+        </div>
+        <span className="font-mono text-xs text-muted-foreground">
+          {isJa ? "maxWidth なし＝画面いっぱい" : "no maxWidth — edge to edge"}
+        </span>
+      </div>
+      <div className="flex flex-col gap-1">
+        <div className="overflow-hidden rounded-xl border bg-muted/30">
+          <BottomActionBar sticky={false} maxWidth="md" actions={<Button size="lg">{copy.call}</Button>}>
+            {summary}
+          </BottomActionBar>
+        </div>
+        <span className="font-mono text-xs text-muted-foreground">
+          {isJa ? 'maxWidth="md"＝中央に寄せて幅を止める' : 'maxWidth="md" — centred and capped'}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export default function BottomActionBarDocPage() {
   const { locale, sectionLabels } = useLocale();
   const content = getDocContent("components/bottom-action-bar", locale);
@@ -189,6 +230,58 @@ export function RideBottomActionBar() {
       </div>
 
       <p className="text-xs text-muted-foreground">The bar is pinned to the bottom of the preview frame.</p>
+    </div>
+  );
+}`;
+
+  const maxWidthCode = locale === "ja"
+    ? `import { Badge, BottomActionBar, Button } from "@gunjo/ui";
+
+const FARE = { label: "見積もり料金", price: "¥1,200〜", eta: "到着 4分" };
+
+export function CappedBottomActionBar() {
+  return (
+    <div className="overflow-hidden rounded-xl border bg-muted/30">
+      <BottomActionBar
+        sticky={false}
+        maxWidth="md"
+        actions={<Button size="lg">この内容で呼ぶ</Button>}
+      >
+        <div className="flex flex-col">
+          <span className="text-xs text-muted-foreground">{FARE.label}</span>
+          <span className="text-base font-semibold tabular-nums text-foreground">
+            {FARE.price}{" "}
+            <Badge variant="info" className="ml-1 align-middle">
+              {FARE.eta}
+            </Badge>
+          </span>
+        </div>
+      </BottomActionBar>
+    </div>
+  );
+}`
+    : `import { Badge, BottomActionBar, Button } from "@gunjo/ui";
+
+const FARE = { label: "Estimated fare", price: "¥1,200+", eta: "4 min" };
+
+export function CappedBottomActionBar() {
+  return (
+    <div className="overflow-hidden rounded-xl border bg-muted/30">
+      <BottomActionBar
+        sticky={false}
+        maxWidth="md"
+        actions={<Button size="lg">Request ride</Button>}
+      >
+        <div className="flex flex-col">
+          <span className="text-xs text-muted-foreground">{FARE.label}</span>
+          <span className="text-base font-semibold tabular-nums text-foreground">
+            {FARE.price}{" "}
+            <Badge variant="info" className="ml-1 align-middle">
+              {FARE.eta}
+            </Badge>
+          </span>
+        </div>
+      </BottomActionBar>
     </div>
   );
 }`;
@@ -331,6 +424,16 @@ export function StackedRideBottomActionBar() {
   );
 }`,
               previewBodyWidth: "md",
+            },
+            {
+              key: "capped-width",
+              title: locale === "ja" ? "広い画面で幅を止める" : "Capping the width on wide screens",
+              description: locale === "ja"
+                ? "maxWidth を渡すと、バーの背景は画面いっぱいのまま、中身だけが中央で止まります。タブレットや横向きで料金とCTAが左右に離れすぎるのを防ぎます。"
+                : "With maxWidth the bar keeps its full-bleed background while the content centres and stops. It keeps fare and CTA from drifting apart on tablets and landscape phones.",
+              preview: <BottomActionBarWidthPreview locale={locale} />,
+              code: maxWidthCode,
+              previewBodyWidth: "lg",
             },
           ]}
         />

@@ -112,6 +112,54 @@ export function SnippetCopyIconButton() {
   );
 }`;
 
+    const surfaceCode = isJa
+        ? `import { CopyButton } from "@gunjo/ui";
+
+const SURFACES = ["ghost", "outline", "secondary"] as const;
+
+export function CopyButtonSurfaces() {
+  return (
+    <div className="flex flex-wrap items-center gap-4">
+      {SURFACES.map((surface) => (
+        <div key={surface} className="flex flex-col items-start gap-1">
+          <CopyButton
+            value="const total = items.length"
+            buttonVariant={surface}
+            copyLabel="コードをコピー"
+            copiedLabel="コピーしました"
+            copyFailedLabel="コピーに失敗しました"
+            variant="label"
+          />
+          <span className="font-mono text-xs text-muted-foreground">{surface}</span>
+        </div>
+      ))}
+    </div>
+  );
+}`
+        : `import { CopyButton } from "@gunjo/ui";
+
+const SURFACES = ["ghost", "outline", "secondary"] as const;
+
+export function CopyButtonSurfaces() {
+  return (
+    <div className="flex flex-wrap items-center gap-4">
+      {SURFACES.map((surface) => (
+        <div key={surface} className="flex flex-col items-start gap-1">
+          <CopyButton
+            value="const total = items.length"
+            buttonVariant={surface}
+            copyLabel="Copy code"
+            copiedLabel="Copied"
+            copyFailedLabel="Copy failed"
+            variant="label"
+          />
+          <span className="font-mono text-xs text-muted-foreground">{surface}</span>
+        </div>
+      ))}
+    </div>
+  );
+}`;
+
     const propsData = [
         {
             name: "value",
@@ -247,6 +295,32 @@ export function CompactCommandCopyButton() {
     />
   );
 }`,
+                        },
+                        {
+                            key: "button-surface",
+                            title: isJa ? "ボタンの面" : "The button surface",
+                            description: isJa
+                                ? "buttonVariant で面だけを変えます。既定の ghost はツールバーやコードブロックの隅に、outline や secondary は単体で置くときに使います。"
+                                : "buttonVariant changes only the surface. The default ghost suits toolbars and code-block corners; outline and secondary suit a button standing on its own.",
+                            preview: (
+                                <div className="flex flex-wrap items-center gap-4">
+                                    {(["ghost", "outline", "secondary"] as const).map((surface) => (
+                                        <div key={surface} className="flex flex-col items-start gap-1">
+                                            <CopyButton
+                                                value={copyValue}
+                                                buttonVariant={surface}
+                                                copyLabel={copyLabel}
+                                                copiedLabel={copiedLabel}
+                                                copyFailedLabel={failedLabel}
+                                                variant="label"
+                                            />
+                                            <span className="font-mono text-xs text-muted-foreground">{surface}</span>
+                                        </div>
+                                    ))}
+                                </div>
+                            ),
+                            previewHeight: "auto",
+                            code: surfaceCode,
                         },
                     ]}
                 />

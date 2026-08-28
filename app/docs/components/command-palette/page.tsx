@@ -19,7 +19,7 @@ import {
 } from "@tabler/icons-react";
 import { useEffect, useMemo, useState } from "react";
 
-function CommandPaletteExample({ minimal = false, defaultOpen = false }: { minimal?: boolean; defaultOpen?: boolean }) {
+function CommandPaletteExample({ minimal = false, empty = false, defaultOpen = false }: { minimal?: boolean; empty?: boolean; defaultOpen?: boolean }) {
     const { locale } = useLocale();
     const isJa = locale === "ja";
     const [open, setOpen] = useState(defaultOpen);
@@ -37,7 +37,7 @@ function CommandPaletteExample({ minimal = false, defaultOpen = false }: { minim
     }, []);
 
     const groups = useMemo(
-        () => [
+        () => (empty ? [] : [
             {
                 heading: isJa ? "移動" : "Navigation",
                 items: [
@@ -65,8 +65,8 @@ function CommandPaletteExample({ minimal = false, defaultOpen = false }: { minim
                           ],
                       },
                   ]),
-        ],
-        [isJa, minimal]
+        ]),
+        [empty, isJa, minimal]
     );
 
     return (
@@ -86,7 +86,15 @@ function CommandPaletteExample({ minimal = false, defaultOpen = false }: { minim
                     onOpenChange={setOpen}
                     dialogTitle={isJa ? "コマンドパレット" : "Command palette"}
                     placeholder={isJa ? "コマンドまたはページを検索..." : "Search commands or pages..."}
-                    emptyMessage={isJa ? "一致するコマンドがありません。" : "No commands found."}
+                    emptyMessage={
+                        empty
+                            ? isJa
+                                ? "使えるコマンドがまだありません。権限が付くとここに並びます。"
+                                : "No commands are available yet. They appear here once you have access."
+                            : isJa
+                              ? "一致するコマンドがありません。"
+                              : "No commands found."
+                    }
                     clearLabel={isJa ? "検索をクリア" : "Clear search"}
                     portalContainer={portalContainer}
                     groups={groups}
@@ -469,6 +477,59 @@ export function SmallCommandPalette() {
 }`,
 };
 
+const emptyCodeByLocale = {
+    ja: `"use client"
+
+import { Button, CommandPalette } from "@gunjo/ui"
+import { useState } from "react"
+
+export function EmptyCommandPalette() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <Button type="button" variant="outline" onClick={() => setOpen(true)}>
+        コマンドパレットを開く
+      </Button>
+      <CommandPalette
+        open={open}
+        onOpenChange={setOpen}
+        dialogTitle="コマンドパレット"
+        placeholder="コマンドまたはページを検索..."
+        emptyMessage="使えるコマンドがまだありません。権限が付くとここに並びます。"
+        clearLabel="検索をクリア"
+        groups={[]}
+      />
+    </>
+  )
+}`,
+    en: `"use client"
+
+import { Button, CommandPalette } from "@gunjo/ui"
+import { useState } from "react"
+
+export function EmptyCommandPalette() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <Button type="button" variant="outline" onClick={() => setOpen(true)}>
+        Open command palette
+      </Button>
+      <CommandPalette
+        open={open}
+        onOpenChange={setOpen}
+        dialogTitle="Command palette"
+        placeholder="Search commands or pages..."
+        emptyMessage="No commands are available yet. They appear here once you have access."
+        clearLabel="Clear search"
+        groups={[]}
+      />
+    </>
+  )
+}`,
+} as const;
+
 export default function CommandPalettePage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
@@ -530,6 +591,16 @@ export default function CommandPalettePage() {
                             preview: <CommandPaletteExample minimal />,
                             previewBodyWidth: "xl",
                             code: minimalCode,
+                        },
+                        {
+                            key: "no-commands",
+                            title: isJa ? "コマンドが無いとき" : "When there are no commands",
+                            description: isJa
+                                ? "権限がまだ無い、あるいは絞り込みで全部消えたときに出る面です。開いて何も無いのが分かるよう、emptyMessage は「無い理由」まで書きます。"
+                                : "What the palette shows when nothing is available yet, or the filter removed everything. Write emptyMessage so it says why, not just that the list is empty.",
+                            preview: <CommandPaletteExample empty />,
+                            previewBodyWidth: "xl",
+                            code: emptyCodeByLocale[locale],
                         },
                     ]}
                 />

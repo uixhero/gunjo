@@ -197,7 +197,13 @@ function getColumns(isJa: boolean): ColumnDef<Campaign>[] {
     ];
 }
 
-function ActionDataTableDemo({ compact = false }: { compact?: boolean }) {
+function ActionDataTableDemo({
+    compact = false,
+    rowActionsVariant,
+}: {
+    compact?: boolean;
+    rowActionsVariant?: "inline" | "menu";
+}) {
     const { locale } = useLocale();
     const isJa = locale === "ja";
     const labels = React.useMemo(() => getLabels(isJa), [isJa]);
@@ -264,6 +270,7 @@ function ActionDataTableDemo({ compact = false }: { compact?: boolean }) {
                 labels={labels}
                 getRowId={(row) => row.id}
                 getRowLabel={(row) => row.name}
+                rowActionsVariant={rowActionsVariant}
                 bulkActions={[
                     {
                         id: "archive",
@@ -688,6 +695,97 @@ export function CampaignTable() {
 
     const usageCode = code;
 
+    const menuCode = isJa
+        ? `"use client"
+
+import type { ColumnDef } from "@tanstack/react-table"
+import { IconArchive, IconPencil, IconTrash } from "@tabler/icons-react"
+import { ActionDataTable } from "@gunjo/ui"
+
+type Campaign = { id: string; name: string; owner: string; updatedAt: string }
+
+const campaigns: Campaign[] = [
+  { id: "c-001", name: "春の新生活バナー", owner: "青井 花", updatedAt: "2026-05-12" },
+  { id: "c-002", name: "アプリ訴求 LP", owner: "田中 空", updatedAt: "2026-05-10" },
+  { id: "c-003", name: "法人向け資料広告", owner: "山本 優", updatedAt: "2026-05-08" },
+]
+
+const columns: ColumnDef<Campaign>[] = [
+  { accessorKey: "name", header: "キャンペーン", size: 280 },
+  { accessorKey: "owner", header: "担当者", size: 128 },
+  { accessorKey: "updatedAt", header: "更新日", size: 120 },
+]
+
+export function CampaignTableWithMenu() {
+  return (
+    <ActionDataTable
+      columns={columns}
+      data={campaigns}
+      getRowId={(row) => row.id}
+      getRowLabel={(row) => row.name}
+      rowActionsVariant="menu"
+      labels={{ actions: "行操作" }}
+      rowActions={[
+        { id: "edit", label: "編集", icon: IconPencil },
+        { id: "archive", label: "保管", icon: IconArchive },
+        { id: "delete", label: "削除", icon: IconTrash, variant: "destructive" },
+      ]}
+    />
+  )
+}`
+        : `"use client"
+
+import type { ColumnDef } from "@tanstack/react-table"
+import { IconArchive, IconPencil, IconTrash } from "@tabler/icons-react"
+import { ActionDataTable } from "@gunjo/ui"
+
+type Campaign = { id: string; name: string; owner: string; updatedAt: string }
+
+const campaigns: Campaign[] = [
+  {
+    id: "c-001",
+    name: "Spring launch banner",
+    owner: "Hana Aoi",
+    updatedAt: "2026-05-12",
+  },
+  {
+    id: "c-002",
+    name: "App install landing page",
+    owner: "Sora Tanaka",
+    updatedAt: "2026-05-10",
+  },
+  {
+    id: "c-003",
+    name: "Enterprise whitepaper ad",
+    owner: "Yu Yamamoto",
+    updatedAt: "2026-05-08",
+  },
+]
+
+const columns: ColumnDef<Campaign>[] = [
+  { accessorKey: "name", header: "Campaign", size: 280 },
+  { accessorKey: "owner", header: "Owner", size: 128 },
+  { accessorKey: "updatedAt", header: "Updated", size: 120 },
+]
+
+export function CampaignTableWithMenu() {
+  return (
+    <ActionDataTable
+      columns={columns}
+      data={campaigns}
+      getRowId={(row) => row.id}
+      getRowLabel={(row) => row.name}
+      rowActionsVariant="menu"
+      labels={{ actions: "Row actions" }}
+      rowActions={[
+        { id: "edit", label: "Edit", icon: IconPencil },
+        { id: "archive", label: "Archive", icon: IconArchive },
+        { id: "delete", label: "Delete", icon: IconTrash, variant: "destructive" },
+      ]}
+    />
+  )
+}`;
+
     const propsData = [
         {
             name: "columns",
@@ -786,6 +884,17 @@ export function CampaignTable() {
                             previewHeight: "auto",
                             previewClassName: "max-w-none",
                             code,
+                        },
+                        {
+                            key: "row-actions-menu",
+                            title: isJa ? "行操作をひとつにまとめる" : "Row actions in one menu",
+                            description: isJa
+                                ? "rowActionsVariant=\"menu\" にすると、行の操作が「⋯」のメニューに畳まれます。操作が3つを超える表や、列が詰まっている表で使います。"
+                                : 'With rowActionsVariant="menu" the per-row actions collapse into a “⋯” overflow menu — the call for tables with more than three actions, or with no room left at the end of the row.',
+                            preview: <ActionDataTableDemo compact rowActionsVariant="menu" />,
+                            previewHeight: "auto",
+                            previewClassName: "max-w-none",
+                            code: menuCode,
                         },
                     ]}
                 />

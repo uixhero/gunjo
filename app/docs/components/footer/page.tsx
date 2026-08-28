@@ -109,6 +109,39 @@ function FooterExample({ compact = false, legalSocial = false }: { compact?: boo
     );
 }
 
+function FooterMinimalExample() {
+    const { locale } = useLocale();
+    const isJa = locale === "ja";
+    const links = [
+        { label: isJa ? "プライバシーポリシー" : "Privacy Policy", href: "#" },
+        { label: isJa ? "利用規約" : "Terms", href: "#" },
+        { label: isJa ? "お問い合わせ" : "Contact", href: "#" },
+    ];
+
+    return (
+        <div className="w-full overflow-hidden rounded-md border bg-background">
+            <Footer className="gap-3 px-5 py-5">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                    <p className="text-sm font-semibold">Gunjo UI</p>
+                    <nav className="flex flex-wrap gap-x-4 gap-y-2" aria-label={isJa ? "法務リンク" : "Legal links"}>
+                        {links.map((link) => (
+                            <FooterLink
+                                key={link.label}
+                                href={link.href}
+                                onClick={(event) => event.preventDefault()}
+                                className="text-xs"
+                            >
+                                {link.label}
+                            </FooterLink>
+                        ))}
+                    </nav>
+                </div>
+                <FooterCopyright className="border-0 pt-0">© 2026 Gunjo UI</FooterCopyright>
+            </Footer>
+        </div>
+    );
+}
+
 const codeByLocale = {
     ja: `import { Footer, FooterBrand, FooterColumns, FooterCopyright, FooterLink, FooterSection } from "@gunjo/ui"
 
@@ -370,6 +403,59 @@ export function FooterWithLegalAndSocial() {
 }`,
 };
 
+const minimalCodeByLocale = {
+    ja: `import { Footer, FooterCopyright, FooterLink } from "@gunjo/ui";
+
+const LINKS = [
+  { label: "プライバシーポリシー", href: "/privacy" },
+  { label: "利用規約", href: "/terms" },
+  { label: "お問い合わせ", href: "/contact" },
+];
+
+export function MinimalFooter() {
+  return (
+    <Footer className="gap-3 px-5 py-5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <p className="text-sm font-semibold">Gunjo UI</p>
+        <nav className="flex flex-wrap gap-x-4 gap-y-2" aria-label="法務リンク">
+          {LINKS.map((link) => (
+            <FooterLink key={link.label} href={link.href} className="text-xs">
+              {link.label}
+            </FooterLink>
+          ))}
+        </nav>
+      </div>
+      <FooterCopyright className="border-0 pt-0">© 2026 Gunjo UI</FooterCopyright>
+    </Footer>
+  );
+}`,
+    en: `import { Footer, FooterCopyright, FooterLink } from "@gunjo/ui";
+
+const LINKS = [
+  { label: "Privacy Policy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
+  { label: "Contact", href: "/contact" },
+];
+
+export function MinimalFooter() {
+  return (
+    <Footer className="gap-3 px-5 py-5">
+      <div className="flex flex-wrap items-center justify-between gap-3">
+        <p className="text-sm font-semibold">Gunjo UI</p>
+        <nav className="flex flex-wrap gap-x-4 gap-y-2" aria-label="Legal links">
+          {LINKS.map((link) => (
+            <FooterLink key={link.label} href={link.href} className="text-xs">
+              {link.label}
+            </FooterLink>
+          ))}
+        </nav>
+      </div>
+      <FooterCopyright className="border-0 pt-0">© 2026 Gunjo UI</FooterCopyright>
+    </Footer>
+  );
+}`,
+} as const;
+
 export default function FooterPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
@@ -418,6 +504,16 @@ export default function FooterPage() {
                             previewBodyWidth: "full",
                             embedSrc: "/embed/footer?variant=legal-social",
                             code: legalSocialCode,
+                        },
+                        {
+                            key: "minimal",
+                            title: isJa ? "1行だけのフッター" : "A single-row footer",
+                            description: isJa
+                                ? "業務画面のように置くリンクが数本しかないときは、列を組まずに1行で終わらせます。FooterColumns を使わなくてもフッターの余白と罫線はそろいます。"
+                                : "When only a few links belong at the bottom — an internal console, say — skip the columns entirely. The padding and top rule stay consistent without FooterColumns.",
+                            preview: <FooterMinimalExample />,
+                            previewBodyWidth: "full",
+                            code: minimalCodeByLocale[locale],
                         },
                     ]}
                 />

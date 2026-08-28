@@ -166,6 +166,95 @@ export function PendingPasswordRequirements() {
   );
 }`,
                 },
+                {
+                    key: "with-description",
+                    title: locale === "ja" ? "要件に説明を添える" : "Requirements with an explanation",
+                    description: locale === "ja"
+                        ? "description を渡すと、要件の下に小さな補足が付きます。「記号」のように受け取り方が分かれる言葉は、ここで具体例まで書きます。"
+                        : "A description adds a small second line under the rule. Use it wherever the wording alone leaves room for guessing — “a symbol” means little without examples.",
+                    preview: (
+                        <PasswordRequirementList
+                            className="w-full max-w-sm"
+                            requirements={[
+                                {
+                                    id: "length",
+                                    label: locale === "ja" ? "12文字以上" : "At least 12 characters",
+                                    description: locale === "ja" ? "空白も1文字として数えます。" : "Spaces count as characters.",
+                                    met: true,
+                                },
+                                {
+                                    id: "symbol",
+                                    label: locale === "ja" ? "記号を含む" : "Includes a symbol",
+                                    description: locale === "ja" ? "! @ # $ % & ? が使えます。" : "Any of ! @ # $ % & ?",
+                                    met: false,
+                                },
+                                {
+                                    id: "reuse",
+                                    label: locale === "ja" ? "前回と同じにしない" : "Different from the last one",
+                                    description: locale === "ja" ? "保存したあとに照合します。" : "Checked after you submit.",
+                                },
+                            ]}
+                        />
+                    ),
+                    previewHeight: 180,
+                    code: isJa
+                        ? `import { PasswordRequirementList } from "@gunjo/ui";
+
+export function ExplainedPasswordRequirements() {
+  return (
+    <PasswordRequirementList
+      className="w-full max-w-sm"
+      requirements={[
+        {
+          id: "length",
+          label: "12文字以上",
+          description: "空白も1文字として数えます。",
+          met: true,
+        },
+        {
+          id: "symbol",
+          label: "記号を含む",
+          description: "! @ # $ % & ? が使えます。",
+          met: false,
+        },
+        {
+          id: "reuse",
+          label: "前回と同じにしない",
+          description: "保存したあとに照合します。",
+        },
+      ]}
+    />
+  );
+}`
+                        : `import { PasswordRequirementList } from "@gunjo/ui";
+
+export function ExplainedPasswordRequirements() {
+  return (
+    <PasswordRequirementList
+      className="w-full max-w-sm"
+      requirements={[
+        {
+          id: "length",
+          label: "At least 12 characters",
+          description: "Spaces count as characters.",
+          met: true,
+        },
+        {
+          id: "symbol",
+          label: "Includes a symbol",
+          description: "Any of ! @ # $ % & ?",
+          met: false,
+        },
+        {
+          id: "reuse",
+          label: "Different from the last one",
+          description: "Checked after you submit.",
+        },
+      ]}
+    />
+  );
+}`,
+                },
             ]}
         />
     );
