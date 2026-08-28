@@ -115,6 +115,31 @@ export function InlineCodeSizes() {
   );
 }`;
 
+    const inProseCode = isJa
+        ? `import { Code } from "@gunjo/ui";
+
+const command = "npx @gunjo/ui-cli generate --config ./design/tokens.config.json";
+
+export function RegenerateNote() {
+  return (
+    <p className="max-w-sm text-sm leading-7">
+      生成物を作り直すときは <Code>{command}</Code> を実行します。折り返しても本文の行送りは変わりません。
+    </p>
+  );
+}`
+        : `import { Code } from "@gunjo/ui";
+
+const command = "npx @gunjo/ui-cli generate --config ./design/tokens.config.json";
+
+export function RegenerateNote() {
+  return (
+    <p className="max-w-sm text-sm leading-7">
+      To rebuild the generated files, run <Code>{command}</Code>. Wrapping does not change the
+      leading of the paragraph.
+    </p>
+  );
+}`;
+
     const propsData = [
         {
             name: "variant",
@@ -194,6 +219,24 @@ export function InlineCodeSizes() {
                             ),
                             previewHeight: "auto",
                             code: sizesCode,
+                        },
+                        {
+                            key: "in-prose",
+                            title: isJa ? "本文にまぎれたとき" : "Sitting inside prose",
+                            description: isJa
+                                ? "長いコマンドは行の途中で折り返します。背景は行ごとに分かれ、行の高さは本文のままです。"
+                                : "A long command wraps mid-sentence: the background splits per line and the line height stays that of the prose.",
+                            preview: (
+                                <p className="max-w-sm text-sm leading-7">
+                                    {isJa ? "生成物を作り直すときは " : "To rebuild the generated files, run "}
+                                    <Code>npx @gunjo/ui-cli generate --config ./design/tokens.config.json</Code>
+                                    {isJa
+                                        ? " を実行します。折り返しても本文の行送りは変わりません。"
+                                        : ". Wrapping does not change the leading of the paragraph."}
+                                </p>
+                            ),
+                            previewHeight: "auto",
+                            code: inProseCode,
                         },
                     ]}
                 />

@@ -55,16 +55,81 @@ export function References() {
 }`,
 } as const;
 
+const calloutCodeByLocale = {
+    ja: `import { DocNote } from "@gunjo/ui";
+
+const CALLOUTS = [
+  {
+    variant: "note",
+    heading: "補足",
+    body: "表の中では改行が使えません。長い説明は表の外に出します。",
+  },
+  {
+    variant: "warning",
+    heading: "注意",
+    body: "生の HTML は既定で無効です。有効にすると入力がそのまま描画されます。",
+  },
+  {
+    variant: "tip",
+    heading: "コツ",
+    body: "見出しは1段ずつ下げます。h2 の次に h4 を置くと読み上げの目次が飛びます。",
+  },
+] as const;
+
+export function Callouts() {
+  return (
+    <div className="flex flex-col gap-3">
+      {CALLOUTS.map((callout) => (
+        <DocNote key={callout.variant} heading={callout.heading} variant={callout.variant}>
+          {callout.body}
+        </DocNote>
+      ))}
+    </div>
+  );
+}`,
+    en: `import { DocNote } from "@gunjo/ui";
+
+const CALLOUTS = [
+  {
+    variant: "note",
+    heading: "Note",
+    body: "Line breaks are not available inside tables. Move long explanations outside the table.",
+  },
+  {
+    variant: "warning",
+    heading: "Warning",
+    body: "Raw HTML is disabled by default. Enabling it renders whatever the input contains.",
+  },
+  {
+    variant: "tip",
+    heading: "Tip",
+    body: "Step headings down one level at a time; jumping h2 to h4 breaks the outline.",
+  },
+] as const;
+
+export function Callouts() {
+  return (
+    <div className="flex flex-col gap-3">
+      {CALLOUTS.map((callout) => (
+        <DocNote key={callout.variant} heading={callout.heading} variant={callout.variant}>
+          {callout.body}
+        </DocNote>
+      ))}
+    </div>
+  );
+}`,
+} as const;
+
 const propsByLocale = {
     ja: [
         { name: "heading", type: "ReactNode", description: "注釈の短い見出しです。" },
-        { name: "variant", type: "\"default\" | \"reference\"", default: "\"default\"", description: "補足説明か参考リンクかに合わせた見た目です。" },
+        { name: "variant", type: "\"default\" | \"reference\" | \"note\" | \"warning\" | \"tip\"", default: "\"default\"", description: "補足説明・参考リンク・注意喚起（note / warning / tip）に合わせた見た目です。note 以降はアイコンと role=\"note\" が付きます。" },
         { name: "children", type: "ReactNode", required: true, description: "注釈本文です。" },
         { name: "className", type: "string", description: "必要に応じて外側に追加するクラスです。" },
     ],
     en: [
         { name: "heading", type: "ReactNode", description: "Short heading for the note." },
-        { name: "variant", type: "\"default\" | \"reference\"", default: "\"default\"", description: "Visual style for explanation notes or reference links." },
+        { name: "variant", type: "\"default\" | \"reference\" | \"note\" | \"warning\" | \"tip\"", default: "\"default\"", description: "Visual style for explanation notes, reference links, or callouts. note, warning, and tip also add an icon and role=\"note\"." },
         { name: "children", type: "ReactNode", required: true, description: "Note body content." },
         { name: "className", type: "string", description: "Optional class added to the root element." },
     ],
@@ -140,6 +205,33 @@ export default function DocNotePage() {
                                 </DocNote>
                             ),
                             code: referenceCode,
+                        },
+                        {
+                            key: "callouts",
+                            title: locale === "ja" ? "注意喚起の3種" : "The three callouts",
+                            description: locale === "ja"
+                                ? "note・warning・tip はアイコンと role=\"note\" が付きます。種類が色だけに乗らないので、色が読めなくても区別できます。"
+                                : "note, warning, and tip add an icon and role=\"note\", so the kind never rides on colour alone.",
+                            preview: (
+                                <div className="flex w-full max-w-xl flex-col gap-3">
+                                    <DocNote heading={locale === "ja" ? "補足" : "Note"} variant="note">
+                                        {locale === "ja"
+                                            ? "表の中では改行が使えません。長い説明は表の外に出します。"
+                                            : "Line breaks are not available inside tables. Move long explanations outside the table."}
+                                    </DocNote>
+                                    <DocNote heading={locale === "ja" ? "注意" : "Warning"} variant="warning">
+                                        {locale === "ja"
+                                            ? "生の HTML は既定で無効です。有効にすると入力がそのまま描画されます。"
+                                            : "Raw HTML is disabled by default. Enabling it renders whatever the input contains."}
+                                    </DocNote>
+                                    <DocNote heading={locale === "ja" ? "コツ" : "Tip"} variant="tip">
+                                        {locale === "ja"
+                                            ? "見出しは1段ずつ下げます。h2 の次に h4 を置くと読み上げの目次が飛びます。"
+                                            : "Step headings down one level at a time; jumping h2 to h4 breaks the screen-reader outline."}
+                                    </DocNote>
+                                </div>
+                            ),
+                            code: calloutCodeByLocale[locale],
                         },
                     ]}
                 />

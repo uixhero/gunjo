@@ -6,7 +6,7 @@ import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import navigationMetadata from "@design/navigation-metadata.json";
-import { AppRail, DocNote, TooltipButton } from "@gunjo/ui";
+import { AppRail, Badge, DocNote, TooltipButton } from "@gunjo/ui";
 import {
     IconBell as Bell,
     IconHome as Home,
@@ -126,6 +126,56 @@ function AppRailExample({ compact = false }: { compact?: boolean }) {
                     <h3 className="text-2xl font-semibold tracking-tight">{activeItem.title}</h3>
                     <p className="text-sm leading-6 text-muted-foreground">{activeItem.description}</p>
                 </div>
+            </div>
+        </div>
+    );
+}
+
+function AppRailUnreadExample() {
+    const { locale } = useLocale();
+    const isJa = locale === "ja";
+    const [activeKey, setActiveKey] = useState("notifications");
+    const unread = 3;
+    const items = [
+        { key: "home", label: isJa ? "ホーム" : "Home", icon: <Home className="h-5 w-5" /> },
+        { key: "search", label: isJa ? "検索" : "Search", icon: <Search className="h-5 w-5" /> },
+        { key: "account", label: isJa ? "アカウント" : "Account", icon: <UserRound className="h-5 w-5" /> },
+    ];
+
+    return (
+        <div className="flex w-full max-w-md overflow-hidden rounded-md border bg-background">
+            <AppRail>
+                <span className="relative inline-flex">
+                    <RailAction
+                        label={isJa ? `通知（未読 ${unread} 件）` : `Notifications (${unread} unread)`}
+                        icon={<Bell className="h-5 w-5" />}
+                        active={activeKey === "notifications"}
+                        onSelect={() => setActiveKey("notifications")}
+                    />
+                    <Badge
+                        aria-hidden
+                        variant="destructive"
+                        className="pointer-events-none absolute -right-1 -top-1 min-w-[1.25rem] justify-center px-1 py-0 text-[10px] leading-4"
+                    >
+                        {unread}
+                    </Badge>
+                </span>
+                {items.map((item) => (
+                    <RailAction
+                        key={item.key}
+                        label={item.label}
+                        icon={item.icon}
+                        active={activeKey === item.key}
+                        onSelect={() => setActiveKey(item.key)}
+                    />
+                ))}
+            </AppRail>
+            <div className="flex min-w-0 flex-1 items-center bg-secondary/50 p-6">
+                <p className="text-sm leading-6 text-muted-foreground">
+                    {isJa
+                        ? "件数は aria-label にも入れています。数字が見えない人にも「未読 3 件」が届きます。"
+                        : "The count is also in the aria-label, so “3 unread” reaches people who never see the number."}
+                </p>
             </div>
         </div>
     );
@@ -581,6 +631,111 @@ export function CompactAppRailExample() {
 }`,
 };
 
+const unreadCodeByLocale = {
+    ja: `import { useState } from "react";
+import { AppRail, Badge, TooltipButton } from "@gunjo/ui";
+import { IconBell as Bell, IconHome as Home } from "@tabler/icons-react";
+
+const UNREAD = 3;
+
+export function AppRailWithUnread() {
+  const [activeKey, setActiveKey] = useState("notifications");
+
+  return (
+    <AppRail>
+      <span className="relative inline-flex">
+        <TooltipButton
+          type="button"
+          variant="ghost"
+          size="icon"
+          tooltip="通知"
+          tooltipSide="right"
+          tooltipOpenOnClick
+          aria-label={\`通知（未読 \${UNREAD} 件）\`}
+          aria-pressed={activeKey === "notifications"}
+          onClick={() => setActiveKey("notifications")}
+          className="h-10 w-10 text-muted hover:bg-background/10 hover:text-background"
+        >
+          <Bell className="h-5 w-5" />
+        </TooltipButton>
+        <Badge
+          aria-hidden
+          variant="destructive"
+          className="pointer-events-none absolute -right-1 -top-1 px-1 py-0 text-[10px] leading-4"
+        >
+          {UNREAD}
+        </Badge>
+      </span>
+      <TooltipButton
+        type="button"
+        variant="ghost"
+        size="icon"
+        tooltip="ホーム"
+        tooltipSide="right"
+        tooltipOpenOnClick
+        aria-label="ホーム"
+        aria-pressed={activeKey === "home"}
+        onClick={() => setActiveKey("home")}
+        className="h-10 w-10 text-muted hover:bg-background/10 hover:text-background"
+      >
+        <Home className="h-5 w-5" />
+      </TooltipButton>
+    </AppRail>
+  );
+}`,
+    en: `import { useState } from "react";
+import { AppRail, Badge, TooltipButton } from "@gunjo/ui";
+import { IconBell as Bell, IconHome as Home } from "@tabler/icons-react";
+
+const UNREAD = 3;
+
+export function AppRailWithUnread() {
+  const [activeKey, setActiveKey] = useState("notifications");
+
+  return (
+    <AppRail>
+      <span className="relative inline-flex">
+        <TooltipButton
+          type="button"
+          variant="ghost"
+          size="icon"
+          tooltip="Notifications"
+          tooltipSide="right"
+          tooltipOpenOnClick
+          aria-label={\`Notifications (\${UNREAD} unread)\`}
+          aria-pressed={activeKey === "notifications"}
+          onClick={() => setActiveKey("notifications")}
+          className="h-10 w-10 text-muted hover:bg-background/10 hover:text-background"
+        >
+          <Bell className="h-5 w-5" />
+        </TooltipButton>
+        <Badge
+          aria-hidden
+          variant="destructive"
+          className="pointer-events-none absolute -right-1 -top-1 px-1 py-0 text-[10px] leading-4"
+        >
+          {UNREAD}
+        </Badge>
+      </span>
+      <TooltipButton
+        type="button"
+        variant="ghost"
+        size="icon"
+        tooltip="Home"
+        tooltipSide="right"
+        tooltipOpenOnClick
+        aria-label="Home"
+        aria-pressed={activeKey === "home"}
+        onClick={() => setActiveKey("home")}
+        className="h-10 w-10 text-muted hover:bg-background/10 hover:text-background"
+      >
+        <Home className="h-5 w-5" />
+      </TooltipButton>
+    </AppRail>
+  );
+}`,
+} as const;
+
 export default function AppRailDocPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
@@ -651,6 +806,16 @@ export default function AppRailDocPage() {
                             preview: <AppRailExample compact />,
                             previewBodyWidth: "lg",
                             code: compactCode,
+                        },
+                        {
+                            key: "unread-count",
+                            title: isJa ? "未読の数を載せる" : "Carrying an unread count",
+                            description: isJa
+                                ? "器は中身を決めないので、項目に数を重ねられます。数字は飾りなので aria-hidden にし、件数は aria-label の文に入れます。"
+                                : "The shell does not dictate item shape, so a count can sit on top of one. The number is decorative (aria-hidden); the count itself lives in the aria-label.",
+                            preview: <AppRailUnreadExample />,
+                            previewBodyWidth: "md",
+                            code: unreadCodeByLocale[locale],
                         },
                     ]}
                 />

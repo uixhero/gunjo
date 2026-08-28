@@ -250,6 +250,90 @@ export function ComplianceExpiryList() {
   );
 }`;
 
+  const warnCode = locale === "ja"
+    ? `import { ExpiryBadge } from "@gunjo/ui";
+
+const TODAY = "2026-06-28";
+const EXPIRY_LABELS = {
+  valid: "有効",
+  expiring: "期限間近",
+  expired: "失効",
+  missing: "未登録",
+};
+
+function formatRemaining(days) {
+  if (days < 0) return Math.abs(days) + "日超過";
+  if (days === 0) return "本日まで";
+  return "残" + days + "日";
+}
+
+// 同じ期限日でも、何日前から知らせるかは書類ごとに違います。
+const POLICIES = [
+  { label: "既定（30日前から）", warnWithinDays: 30 },
+  { label: "健診の運用（14日前から）", warnWithinDays: 14 },
+  { label: "車検の運用（60日前から）", warnWithinDays: 60 },
+];
+
+export function ExpiryWarnWindows() {
+  return (
+    <div className="flex flex-col gap-2">
+      {POLICIES.map((policy) => (
+        <div key={policy.label} className="flex items-center gap-3">
+          <ExpiryBadge
+            value="2026-08-05"
+            today={TODAY}
+            warnWithinDays={policy.warnWithinDays}
+            labels={EXPIRY_LABELS}
+            formatRemaining={formatRemaining}
+          />
+          <span className="text-xs text-muted-foreground">{policy.label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}`
+    : `import { ExpiryBadge } from "@gunjo/ui";
+
+const TODAY = "2026-06-28";
+const EXPIRY_LABELS = {
+  valid: "Valid",
+  expiring: "Expiring",
+  expired: "Expired",
+  missing: "Missing",
+};
+
+function formatRemaining(days) {
+  if (days < 0) return Math.abs(days) + " days overdue";
+  if (days === 0) return "Due today";
+  return days + " days left";
+}
+
+// The same expiry date, but each document gets its own warning window.
+const POLICIES = [
+  { label: "Default (30 days ahead)", warnWithinDays: 30 },
+  { label: "Health check (14 days ahead)", warnWithinDays: 14 },
+  { label: "Vehicle inspection (60 days ahead)", warnWithinDays: 60 },
+];
+
+export function ExpiryWarnWindows() {
+  return (
+    <div className="flex flex-col gap-2">
+      {POLICIES.map((policy) => (
+        <div key={policy.label} className="flex items-center gap-3">
+          <ExpiryBadge
+            value="2026-08-05"
+            today={TODAY}
+            warnWithinDays={policy.warnWithinDays}
+            labels={EXPIRY_LABELS}
+            formatRemaining={formatRemaining}
+          />
+          <span className="text-xs text-muted-foreground">{policy.label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}`;
+
   const propsData = [
     {
       name: "value",
@@ -516,6 +600,35 @@ export function ExpiryDensityBadges() {
     </div>
   );
 }`,
+            },
+            {
+              key: "warn-window",
+              title: locale === "ja" ? "いつから知らせるか" : "How early it warns",
+              description: locale === "ja"
+                ? "warnWithinDays は「期限間近」に入る日数です。同じ期限日でも、書類ごとに知らせ始める時期は違います。"
+                : "warnWithinDays is how many days ahead the badge turns to expiring. The same date warrants a different lead time per document.",
+              preview: (
+                <div className="flex flex-col gap-2">
+                  {[
+                    { days: 30, label: locale === "ja" ? "既定（30日前から）" : "Default (30 days ahead)" },
+                    { days: 14, label: locale === "ja" ? "健診の運用（14日前から）" : "Health check (14 days ahead)" },
+                    { days: 60, label: locale === "ja" ? "車検の運用（60日前から）" : "Vehicle inspection (60 days ahead)" },
+                  ].map((policy) => (
+                    <div key={policy.days} className="flex items-center gap-3">
+                      <ExpiryBadge
+                        value="2026-08-05"
+                        today={today}
+                        warnWithinDays={policy.days}
+                        labels={expiryLabels(locale)}
+                        formatRemaining={formatExpiryRemaining(locale)}
+                      />
+                      <span className="text-xs text-muted-foreground">{policy.label}</span>
+                    </div>
+                  ))}
+                </div>
+              ),
+              code: warnCode,
+              previewBodyWidth: "md",
             },
           ]}
         />
