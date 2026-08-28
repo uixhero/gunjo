@@ -785,6 +785,56 @@ export default function HeatmapChartPage() {
                 </div>
                 <CodeBlock code={usageCode} />
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>濃淡は連続で、値は必ず文字でも持たせます。</strong>セルは1色の不透明度を 0.1 から 1.0 まで動かして塗ります。段には切っていません。資料は5段から7段に切ることを薦めているので、そのぶん GUNJO は、すべてのセルに「列 行: 値」という読み上げ名を持たせました。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showValues</code> を on にすると値が画面にも出ます。濃いセルでも読めるように、背景色の下地を敷いた上に載せています。
+                        </li>
+                        <li>
+                            <strong>押せるセルだけが button になります。ただし、すべてのセルにフォーカスできます。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">onCellSelect</code> を渡したときだけ <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">&lt;button&gt;</code> になり、渡さないときも <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">tabIndex</code> を持つ要素として、値がキーボードで読めるようにしてあります。意味のほとんどが色に載る図なので、止まる場所を増やしてでも値に届くほうを選びました。資料が言うとおり、列の多い格子ではタブの回数が増えます。狭い画面では、行ごとの一覧に組み替えてください。
+                        </li>
+                        <li>
+                            <strong>選択中のセルは、色ではなく輪郭で示します。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">selectedCell</code> に当たるセルには前景色のリングが付き、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-current</code> も立ちます。塗りの濃さは値のままなので、選択の合図と値がぶつかりません。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> を渡すと正規化の基準がそろうので、ヒートマップを並べて比べるときは同じ値を渡します。なお <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">xLabels</code>・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">yLabels</code> の組み合わせのうち <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">data</code> に無いマスは 0 として塗られます。「値が無い」と「0」は、いまの <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">HeatmapChart</code> では区別できません。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/heatmap-chart"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: ヒートマップ（Heatmap Chart）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>The shading is continuous, and the value is always available as text.</strong> A cell is one hue whose opacity runs from 0.1 to 1.0; it is not cut into steps. The article recommends five to seven steps, so in exchange every cell here carries an accessible name of “column row: value”. Turn <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showValues</code> on and the number appears on screen as well, set on a background-coloured chip so it stays readable on the darkest cells.
+                        </li>
+                        <li>
+                            <strong>Only clickable cells become buttons, but every cell is focusable.</strong> A cell renders as a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">&lt;button&gt;</code> only when <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">onCellSelect</code> is supplied; without it, the cell still takes <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">tabIndex</code> so its value can be read from the keyboard. Almost all the meaning of a heatmap rides on colour, so reaching the values won over keeping the tab order short. As the article warns, a wide grid then costs many tab stops; on a narrow screen, rebuild it as a list of rows.
+                        </li>
+                        <li>
+                            <strong>The selected cell is marked by an outline, not a colour.</strong> The cell matching <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">selectedCell</code> gets a foreground-coloured ring and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-current</code>, while its fill keeps showing the value, so selection and magnitude never compete. Passing <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> fixes the scale, so give several heatmaps the same value when they are meant to be compared. Note that any <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">xLabels</code>/<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">yLabels</code> pair missing from <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">data</code> is painted as zero: today&rsquo;s <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">HeatmapChart</code> cannot tell “no data” apart from “zero”.
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/heatmap-chart"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Heatmap Chart (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

@@ -450,6 +450,56 @@ export default function BarChartPage() {
                 </div>
                 <CodeBlock code={usageCode} />
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>基線を動かす指定を、作りませんでした。</strong>資料は「縦軸はゼロから始める」を最優先の判断に挙げています。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">BarChart</code> には下端を決める prop がありません。棒の長さは常に「値 ÷ 上端 × 100」で、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> は上端を上げるだけです。差が小さくて読み取れないときに軸を切る、という逃げ道を部品の側で塞いでいます。
+                        </li>
+                        <li>
+                            <strong>上限の超過は、色と同時に読み上げ名にも入ります。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">threshold</code> を渡すと上限の線が引かれ、超えた棒が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">thresholdTone</code>（既定は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">destructive</code>）で塗られます。それだけでは色だけの合図になるので、超えた棒の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> の末尾に「(over Limit)」が付きます（#285）。画面の上でも文字にしたいときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showValues</code> を足してください。上端は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code>・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">averageValue</code>・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">threshold</code>・データの最大値のうち最も大きいものになるので、線が枠の外に出ることはありません。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">thresholdLabel</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">averageLabel</code> の既定は英語なので、日本語の画面では渡し直します。
+                        </li>
+                        <li>
+                            <strong>数値の整形は、呼ぶ側に残しました。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> は関数を渡す prop なので、サーバーコンポーネントからは渡せません。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PieChart</code> などにはシリアライズできる <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code> を足しましたが（#338）、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">BarChart</code> にはまだありません。桁区切りを変えたいときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'"use client"'}</code> の境界を挟みます。棒は div の幅と高さで描いていて SVG ではないので、色は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ChartTone</code> の名前で渡します。綴りを間違えた色は開発中に一度だけ警告が出ます（#296）。
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/bar-chart"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: 棒グラフ（Bar Chart）
+                            </a>
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>There is no way to move the baseline.</strong> The article makes “start the value axis at zero” its first principle. GUNJO&rsquo;s <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">BarChart</code> has no prop for the lower bound. A bar&rsquo;s length is always value divided by the top of the scale, and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> only raises that top. The escape hatch of truncating the axis when differences look too small is closed inside the component.
+                        </li>
+                        <li>
+                            <strong>Crossing the limit is announced in text, not only in colour.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">threshold</code> and the chart draws a limit line and paints bars above it in <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">thresholdTone</code> (default <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">destructive</code>). Colour alone would not reach every reader, so each over-limit bar appends “(over Limit)” to its <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> (#285). Add <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showValues</code> when the same signal has to be readable on screen. The top of the scale is the largest of <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">averageValue</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">threshold</code> and the data, so a reference line never lands outside the track. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">thresholdLabel</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">averageLabel</code> default to English and should be replaced on a Japanese screen.
+                        </li>
+                        <li>
+                            <strong>Number formatting stays with the caller.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> is a function prop, so it cannot be passed from a Server Component. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PieChart</code> and its siblings gained the serializable <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code> (#338); <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">BarChart</code> has not yet. Until it does, put a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'"use client"'}</code> boundary in between. Bars are plain divs sized by width and height rather than SVG, so colours arrive as <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ChartTone</code> names; a misspelled tone warns once in development (#296).
+                            <br />
+                            <a
+                                className="underline underline-offset-4"
+                                href="https://www.uixhero.com/resources/ui-components/bar-chart"
+                                target="_blank"
+                                rel="noreferrer"
+                            >
+                                UIXHERO: Bar Chart (in Japanese)
+                            </a>
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }
