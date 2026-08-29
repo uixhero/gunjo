@@ -10,6 +10,7 @@ import {
     CardDescription,
     CardHeader,
     CardTitle,
+    TextLink,
 } from "@gunjo/ui";
 
 import { ChartPreviewWithControls } from "@/components/doc/ChartPreviewWithControls";
@@ -795,6 +796,28 @@ export default function ChartsPage() {
                         </Link>
                     ))}
                 </div>
+            </section>
+
+            <section className="space-y-3" id="design-decisions">
+                <div className="border-b pb-2">
+                    <h2 className="text-2xl font-semibold tracking-tight">
+                        {isJa ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                    {isJa
+                        ? "この分類のコンポーネントをいつ使い、いつ使わないかは、UIXHERO の「UIコンポーネント完全ガイド」にある「カテゴリ 04｜データ可視化」の節にまとめています。比較、推移、構成比のどれを先に読ませたいかで、選ぶチャートの形が変わります。"
+                        : "When to reach for each chart in this category, and when to leave it alone, is covered in the category 04 section, data visualisation, of the UI component guide on UIXHERO. The form follows what you want read first: comparison, change over time, or composition."}
+                </p>
+                <TextLink
+                    href="https://www.uixhero.com/blog/ui-components-complete-guide#カテゴリ-04データ可視化"
+                    target="_blank"
+                    newTabLabel={isJa ? "新しいタブで開きます" : "opens in a new tab"}
+                >
+                    {isJa
+                        ? "UIXHERO: UIコンポーネント完全ガイド（カテゴリ 04｜データ可視化）"
+                        : "UIXHERO: UI component guide, category 04 data visualisation (in Japanese)"}
+                </TextLink>
             </section>
         </div>
     );

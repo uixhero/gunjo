@@ -10,6 +10,7 @@ import {
     CardHeader,
     CardTitle,
     Separator,
+    TextLink,
 } from "@gunjo/ui";
 import {
     IconAlertTriangle as TriangleAlert,
@@ -59,6 +60,9 @@ type CategoryCopy = {
     avoids: LocalizedText[];
     patternTitle: LocalizedText;
     patternDescription: LocalizedText;
+    designDecision: LocalizedText;
+    designDecisionLinkLabel: LocalizedText;
+    designDecisionUrl: string;
     icon: typeof Bell;
 };
 
@@ -153,6 +157,16 @@ const categoryCopy: Record<CategoryName, CategoryCopy> = {
             ja: "フォーム送信、メディア操作、チャット、管理画面など、複数コンポーネントを組み合わせた場面で通知の強さと位置を確認します。",
             en: "Patterns validate feedback strength and placement across forms, media operations, chat, and admin workflows.",
         },
+        designDecision: {
+            ja: "通知や状態表示のコンポーネントをいつ使い、いつ使わないかは、UIXHERO の「UIコンポーネント完全ガイド」にある「カテゴリ 07｜フィードバック・状態」の節にまとめています。画面に残して読ませるのか、短い時間だけ出して消すのかで、選ぶコンポーネントが変わります。",
+            en: "When to reach for each feedback component, and when to leave it alone, is covered in the category 07 section, feedback and state, of the UI component guide on UIXHERO. The choice turns on whether the message stays on screen or disappears after a moment.",
+        },
+        designDecisionLinkLabel: {
+            ja: "UIXHERO: UIコンポーネント完全ガイド（カテゴリ 07｜フィードバック・状態）",
+            en: "UIXHERO: UI component guide, category 07 feedback and state (in Japanese)",
+        },
+        designDecisionUrl:
+            "https://www.uixhero.com/blog/ui-components-complete-guide#カテゴリ-07フィードバック状態",
         icon: Bell,
     },
     Navigation: {
@@ -245,6 +259,16 @@ const categoryCopy: Record<CategoryName, CategoryCopy> = {
             ja: "ドキュメントサイト、メディアライブラリ、ダッシュボードのような複数領域を持つ画面で、現在地と移動導線を確認します。",
             en: "Patterns validate orientation and movement across documentation, media library, and dashboard surfaces.",
         },
+        designDecision: {
+            ja: "ナビゲーションのコンポーネントをいつ使い、いつ使わないかは、UIXHERO の「UIコンポーネント完全ガイド」にある「カテゴリ 02｜ナビゲーション」の節にまとめています。今どこにいるかを示すのか、別の場所へ移動させるのかで、選ぶコンポーネントが変わります。",
+            en: "When to reach for each navigation component, and when to leave it alone, is covered in the category 02 section, navigation, of the UI component guide on UIXHERO. The choice turns on whether you are showing people where they are or moving them somewhere else.",
+        },
+        designDecisionLinkLabel: {
+            ja: "UIXHERO: UIコンポーネント完全ガイド（カテゴリ 02｜ナビゲーション）",
+            en: "UIXHERO: UI component guide, category 02 navigation (in Japanese)",
+        },
+        designDecisionUrl:
+            "https://www.uixhero.com/blog/ui-components-complete-guide#カテゴリ-02ナビゲーション",
         icon: Compass,
     },
     Overlay: {
@@ -337,6 +361,16 @@ const categoryCopy: Record<CategoryName, CategoryCopy> = {
             ja: "実画面に近いフレームの中で、モーダル、シート、メニュー、ツールチップがページ全体へ漏れずに動くか確認します。",
             en: "Patterns validate whether modals, sheets, menus, and tooltips stay scoped inside realistic application frames.",
         },
+        designDecision: {
+            ja: "重ねて表示するコンポーネントをいつ使い、いつ使わないかは、UIXHERO の「UIコンポーネント完全ガイド」にある「カテゴリ 06｜開示・オーバーレイ」の節にまとめています。今の画面を保ったまま情報を足すのか、作業を止めて確認させるのかで、選ぶコンポーネントが変わります。",
+            en: "When to reach for each overlay component, and when to leave it alone, is covered in the category 06 section, disclosure and overlays, of the UI component guide on UIXHERO. The choice turns on whether you add information to the current screen or stop the work to ask for a decision.",
+        },
+        designDecisionLinkLabel: {
+            ja: "UIXHERO: UIコンポーネント完全ガイド（カテゴリ 06｜開示・オーバーレイ）",
+            en: "UIXHERO: UI component guide, category 06 disclosure and overlays (in Japanese)",
+        },
+        designDecisionUrl:
+            "https://www.uixhero.com/blog/ui-components-complete-guide#カテゴリ-06開示オーバーレイ",
         icon: Layers3,
     },
     Layout: {
@@ -429,6 +463,16 @@ const categoryCopy: Record<CategoryName, CategoryCopy> = {
             ja: "デバイス幅、作業面、パネル、サイドバー、フォームなどを組み合わせた時に、固定値に頼らず破綻しないか確認します。",
             en: "Patterns validate device widths, work surfaces, panels, sidebars, and forms without relying on brittle fixed dimensions.",
         },
+        designDecision: {
+            ja: "レイアウトのコンポーネントをいつ使い、いつ使わないかは、UIXHERO の「UIコンポーネント完全ガイド」にある「カテゴリ 08｜レイアウト・可変」の節にまとめています。要素の並べ方を決めるのか、間隔と区切りを決めるのかで、選ぶコンポーネントが変わります。",
+            en: "When to reach for each layout component, and when to leave it alone, is covered in the category 08 section, layout and responsiveness, of the UI component guide on UIXHERO. The choice turns on whether you are arranging elements or setting the spacing and dividers between them.",
+        },
+        designDecisionLinkLabel: {
+            ja: "UIXHERO: UIコンポーネント完全ガイド（カテゴリ 08｜レイアウト・可変）",
+            en: "UIXHERO: UI component guide, category 08 layout and responsiveness (in Japanese)",
+        },
+        designDecisionUrl:
+            "https://www.uixhero.com/blog/ui-components-complete-guide#カテゴリ-08レイアウト可変",
         icon: LayoutPanelTop,
     },
 };
@@ -644,6 +688,24 @@ export function CategoryOverviewPage({ category }: { category: CategoryName }) {
             </section>
 
             <Separator />
+
+            <section className="space-y-3" id="design-decisions">
+                <div className="border-b pb-2">
+                    <h2 className="text-2xl font-semibold tracking-tight">
+                        {isJa ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                    {copy.designDecision[locale]}
+                </p>
+                <TextLink
+                    href={copy.designDecisionUrl}
+                    target="_blank"
+                    newTabLabel={isJa ? "新しいタブで開きます" : "opens in a new tab"}
+                >
+                    {copy.designDecisionLinkLabel[locale]}
+                </TextLink>
+            </section>
         </div>
     );
 }
