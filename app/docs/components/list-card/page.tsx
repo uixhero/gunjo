@@ -122,6 +122,40 @@ function ListCardPreview({ locale, readonly = false }: { locale: Locale; readonl
   );
 }
 
+/** severity は面（境界線と淡い背景）だけを変える。状態そのものは status の文字が持つ。 */
+function ListCardSeverityPreview({ locale }: { locale: Locale }) {
+  const isJa = locale === "ja";
+  const rows = isJa
+    ? [
+        { key: "critical", title: "配送ラインA", description: "停止から18分", status: "停止中", severity: "critical" as const, badge: "destructive" as const },
+        { key: "warning", title: "配送ラインB", description: "処理待ちが積み上がっています", status: "遅れ", severity: "warning" as const, badge: "outline" as const },
+        { key: "info", title: "配送ラインC", description: "10:00 から保守の予定", status: "予定あり", severity: "info" as const, badge: "outline" as const },
+        { key: "success", title: "配送ラインD", description: "所要時間は平常どおり", status: "正常", severity: "success" as const, badge: "outline" as const },
+        { key: "neutral", title: "配送ラインE", description: "本日の稼働はありません", status: "停止（予定）", severity: "neutral" as const, badge: "secondary" as const },
+      ]
+    : [
+        { key: "critical", title: "Line A", description: "Down for 18 minutes", status: "Down", severity: "critical" as const, badge: "destructive" as const },
+        { key: "warning", title: "Line B", description: "Queue is building up", status: "Behind", severity: "warning" as const, badge: "outline" as const },
+        { key: "info", title: "Line C", description: "Maintenance from 10:00", status: "Scheduled", severity: "info" as const, badge: "outline" as const },
+        { key: "success", title: "Line D", description: "Cycle time is normal", status: "Healthy", severity: "success" as const, badge: "outline" as const },
+        { key: "neutral", title: "Line E", description: "Not running today", status: "Off (planned)", severity: "neutral" as const, badge: "secondary" as const },
+      ];
+
+  return (
+    <div className="grid w-full max-w-2xl content-start gap-3">
+      {rows.map((row) => (
+        <ListCard
+          key={row.key}
+          title={row.title}
+          description={row.description}
+          status={<Badge variant={row.badge}>{row.status}</Badge>}
+          severity={row.severity}
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function ListCardDocPage() {
   const { locale, sectionLabels } = useLocale();
   const content = getDocContent("components/list-card", locale);
@@ -281,6 +315,130 @@ export function RouteResults() {
   );
 }`;
 
+  const severityCode = locale === "ja"
+    ? `import { Badge, ListCard } from "@gunjo/ui";
+
+const LINES = [
+  {
+    key: "critical",
+    title: "配送ラインA",
+    description: "停止から18分",
+    status: "停止中",
+    severity: "critical",
+    badge: "destructive",
+  },
+  {
+    key: "warning",
+    title: "配送ラインB",
+    description: "処理待ちが積み上がっています",
+    status: "遅れ",
+    severity: "warning",
+    badge: "outline",
+  },
+  {
+    key: "info",
+    title: "配送ラインC",
+    description: "10:00 から保守の予定",
+    status: "予定あり",
+    severity: "info",
+    badge: "outline",
+  },
+  {
+    key: "success",
+    title: "配送ラインD",
+    description: "所要時間は平常どおり",
+    status: "正常",
+    severity: "success",
+    badge: "outline",
+  },
+  {
+    key: "neutral",
+    title: "配送ラインE",
+    description: "本日の稼働はありません",
+    status: "停止（予定）",
+    severity: "neutral",
+    badge: "secondary",
+  },
+];
+
+export function LineStatusList() {
+  return (
+    <div className="grid w-full max-w-2xl content-start gap-3">
+      {LINES.map((line) => (
+        <ListCard
+          key={line.key}
+          title={line.title}
+          description={line.description}
+          // 状態そのものは文字で言う。severity は面を変えるだけ。
+          status={<Badge variant={line.badge}>{line.status}</Badge>}
+          severity={line.severity}
+        />
+      ))}
+    </div>
+  );
+}`
+    : `import { Badge, ListCard } from "@gunjo/ui";
+
+const LINES = [
+  {
+    key: "critical",
+    title: "Line A",
+    description: "Down for 18 minutes",
+    status: "Down",
+    severity: "critical",
+    badge: "destructive",
+  },
+  {
+    key: "warning",
+    title: "Line B",
+    description: "Queue is building up",
+    status: "Behind",
+    severity: "warning",
+    badge: "outline",
+  },
+  {
+    key: "info",
+    title: "Line C",
+    description: "Maintenance from 10:00",
+    status: "Scheduled",
+    severity: "info",
+    badge: "outline",
+  },
+  {
+    key: "success",
+    title: "Line D",
+    description: "Cycle time is normal",
+    status: "Healthy",
+    severity: "success",
+    badge: "outline",
+  },
+  {
+    key: "neutral",
+    title: "Line E",
+    description: "Not running today",
+    status: "Off (planned)",
+    severity: "neutral",
+    badge: "secondary",
+  },
+];
+
+export function LineStatusList() {
+  return (
+    <div className="grid w-full max-w-2xl content-start gap-3">
+      {LINES.map((line) => (
+        <ListCard
+          key={line.key}
+          title={line.title}
+          description={line.description}
+          // The state itself is written out; severity only changes the surface.
+          status={<Badge variant={line.badge}>{line.status}</Badge>}
+          severity={line.severity}
+        />
+      ))}
+    </div>
+  );
+}`;
+
   const presentationalCode = locale === "ja"
     ? `import { Badge, LineChip, ListCard } from "@gunjo/ui";
 
@@ -394,6 +552,16 @@ export function ServiceStatusListCards() {
               description: locale === "ja" ? "onSelect を省略すると button ではなく表示用 div になります。" : "Omit onSelect to render a presentational div instead of a button.",
               preview: <ListCardPreview locale={locale} readonly />,
               code: presentationalCode,
+              previewBodyWidth: "md",
+            },
+            {
+              key: "severity",
+              title: locale === "ja" ? "重さで面を変える" : "Weighting the surface",
+              description: locale === "ja"
+                ? "severity が変えるのは境界線と淡い背景だけで、行の意味そのものは status の文字が持ちます。色が見えなくても「停止中」と読めるので、重さは色に載せません。neutral は面を変えません。"
+                : "severity changes only the border and the subtle background; the row's meaning stays in the status text, so it still reads as Down without colour. neutral leaves the surface alone.",
+              preview: <ListCardSeverityPreview locale={locale} />,
+              code: severityCode,
               previewBodyWidth: "md",
             },
           ]}

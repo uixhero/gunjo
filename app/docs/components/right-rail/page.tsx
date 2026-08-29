@@ -7,6 +7,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { RightRailDemo } from "@/components/demos/RightRailDemo";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import navigationMetadata from "@design/navigation-metadata.json";
+import { RightRail } from "@gunjo/ui";
 
 const codeByLocale = {
     ja: `import { Badge, RightRail } from "@gunjo/ui"
@@ -463,12 +464,134 @@ export function LinksRightRail() {
 }`,
 };
 
+const REVISIONS = [
+    { id: "r12", ja: "10:42 白石が公開前確認を通した", en: "10:42 Shiraishi passed the release check" },
+    { id: "r11", ja: "10:20 中村が図版を差し替えた", en: "10:20 Nakamura swapped the diagram" },
+    { id: "r10", ja: "09:58 白石が見出しを直した", en: "09:58 Shiraishi rewrote the heading" },
+    { id: "r09", ja: "09:31 中村が本文を足した", en: "09:31 Nakamura added body copy" },
+    { id: "r08", ja: "09:04 白石が下書きを作った", en: "09:04 Shiraishi created the draft" },
+    { id: "r07", ja: "前日 18:22 中村が構成を決めた", en: "Yesterday 18:22 Nakamura set the outline" },
+    { id: "r06", ja: "前日 17:40 白石が担当を割り当てた", en: "Yesterday 17:40 Shiraishi assigned owners" },
+    { id: "r05", ja: "前日 16:05 中村が題材を提案した", en: "Yesterday 16:05 Nakamura proposed the topic" },
+];
+
+/** レールの中だけをスクロールさせる形。min-h-0 があるので中身が伸びても本文は押されない。 */
+function ScrollingRightRailDemo() {
+    const { locale } = useLocale();
+    const isJa = locale === "ja";
+
+    return (
+        <div className="w-full overflow-x-auto rounded-md border bg-background">
+            <div className="flex min-w-[680px]">
+                <main className="min-w-0 flex-1 space-y-3 bg-muted/30 p-4">
+                    <h3 className="text-base font-semibold">{isJa ? "仕様ページ" : "Spec page"}</h3>
+                    <p className="max-w-xl text-sm text-muted-foreground">
+                        {isJa
+                            ? "更新の記録が何十件あっても、本文の側は動きません。伸びるのはレールの中だけです。"
+                            : "However long the revision list grows, the main column does not move — only the rail scrolls."}
+                    </p>
+                </main>
+                <RightRail width="w-56" aria-label={isJa ? "更新の記録" : "Revision history"}>
+                    <div className="border-b border-border p-3">
+                        <h4 className="text-sm font-semibold">{isJa ? "更新の記録" : "Revision history"}</h4>
+                    </div>
+                    <ul className="max-h-48 min-h-0 flex-1 space-y-1 overflow-y-auto p-3">
+                        {REVISIONS.map((item) => (
+                            <li key={item.id} className="rounded-sm px-2 py-1.5 text-xs text-muted-foreground">
+                                {isJa ? item.ja : item.en}
+                            </li>
+                        ))}
+                    </ul>
+                </RightRail>
+            </div>
+        </div>
+    );
+}
+
+const scrollingCodeByLocale = {
+    ja: `import { RightRail } from "@gunjo/ui"
+
+const revisions = [
+  { id: "r12", label: "10:42 白石が公開前確認を通した" },
+  { id: "r11", label: "10:20 中村が図版を差し替えた" },
+  { id: "r10", label: "09:58 白石が見出しを直した" },
+  { id: "r09", label: "09:31 中村が本文を足した" },
+  { id: "r08", label: "09:04 白石が下書きを作った" },
+  { id: "r07", label: "前日 18:22 中村が構成を決めた" },
+  { id: "r06", label: "前日 17:40 白石が担当を割り当てた" },
+  { id: "r05", label: "前日 16:05 中村が題材を提案した" },
+]
+
+export function RevisionRail() {
+  return (
+    <div className="flex overflow-x-auto rounded-md border bg-background">
+      <main className="min-w-0 flex-1 bg-muted/30 p-4">
+        <h3 className="text-base font-semibold">仕様ページ</h3>
+      </main>
+      <RightRail width="w-56" aria-label="更新の記録">
+        <div className="border-b border-border p-3">
+          <h4 className="text-sm font-semibold">更新の記録</h4>
+        </div>
+        {/* 上限と overflow-y-auto を渡した欄だけが伸び縮みします。
+            RightRail 自体が min-h-0 を持つので、外側で高さを決めている
+            画面では max-h-* を外し、flex-1 だけで同じ形になります。 */}
+        <ul className="max-h-48 min-h-0 flex-1 space-y-1 overflow-y-auto p-3">
+          {revisions.map((item) => (
+            <li key={item.id} className="rounded-sm px-2 py-1.5 text-xs text-muted-foreground">
+              {item.label}
+            </li>
+          ))}
+        </ul>
+      </RightRail>
+    </div>
+  )
+}`,
+    en: `import { RightRail } from "@gunjo/ui"
+
+const revisions = [
+  { id: "r12", label: "10:42 Shiraishi passed the release check" },
+  { id: "r11", label: "10:20 Nakamura swapped the diagram" },
+  { id: "r10", label: "09:58 Shiraishi rewrote the heading" },
+  { id: "r09", label: "09:31 Nakamura added body copy" },
+  { id: "r08", label: "09:04 Shiraishi created the draft" },
+  { id: "r07", label: "Yesterday 18:22 Nakamura set the outline" },
+  { id: "r06", label: "Yesterday 17:40 Shiraishi assigned owners" },
+  { id: "r05", label: "Yesterday 16:05 Nakamura proposed the topic" },
+]
+
+export function RevisionRail() {
+  return (
+    <div className="flex overflow-x-auto rounded-md border bg-background">
+      <main className="min-w-0 flex-1 bg-muted/30 p-4">
+        <h3 className="text-base font-semibold">Spec page</h3>
+      </main>
+      <RightRail width="w-56" aria-label="Revision history">
+        <div className="border-b border-border p-3">
+          <h4 className="text-sm font-semibold">Revision history</h4>
+        </div>
+        {/* Only the region given a cap and overflow-y-auto scrolls. RightRail
+            carries min-h-0, so on a screen whose layout already has a definite
+            height you can drop max-h-* and keep flex-1 alone. */}
+        <ul className="max-h-48 min-h-0 flex-1 space-y-1 overflow-y-auto p-3">
+          {revisions.map((item) => (
+            <li key={item.id} className="rounded-sm px-2 py-1.5 text-xs text-muted-foreground">
+              {item.label}
+            </li>
+          ))}
+        </ul>
+      </RightRail>
+    </div>
+  )
+}`,
+};
+
 export default function RightRailDocPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
     const usageCode = codeByLocale[locale];
     const statusCode = statusCodeByLocale[locale];
     const linksCode = linksCodeByLocale[locale];
+    const scrollingCode = scrollingCodeByLocale[locale];
 
     return (
         <ComponentLayout
@@ -516,6 +639,17 @@ export default function RightRailDocPage() {
                             previewBodyWidth: "full",
                             previewHeight: "auto",
                             code: linksCode,
+                        },
+                        {
+                            key: "scrolling",
+                            title: isJa ? "レールの中だけをスクロールさせる" : "Scrolling inside the rail",
+                            description: isJa
+                                ? "RightRail は h-full と min-h-0 を持つ縦並びの箱なので、中の欄に上限と overflow-y-auto を渡すと、そこだけがスクロールします。更新の記録が何十件になっても本文の高さは変わりません。幅は width で狭められます（ここでは w-56）。"
+                                : "RightRail is an h-full column carrying min-h-0, so a region given a cap and overflow-y-auto is the only thing that scrolls — the main column keeps its height however long the list gets. width narrows the rail; w-56 here.",
+                            preview: <ScrollingRightRailDemo />,
+                            previewBodyWidth: "full",
+                            previewHeight: "auto",
+                            code: scrollingCode,
                         },
                     ]}
                 />

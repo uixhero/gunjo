@@ -59,6 +59,82 @@ export function ToolbarMeta() {
 }`,
 } as const;
 
+const semanticCodeByLocale = {
+    ja: `import { Separator } from "@gunjo/ui";
+
+export function SettingsSections() {
+  return (
+    <div className="w-full space-y-3">
+      <p className="text-sm font-medium">アカウント</p>
+      {/* 章が変わる区切り＝読み上げにも出す。 */}
+      <Separator role="separator" aria-orientation="horizontal" />
+      <p className="text-sm font-medium">通知</p>
+    </div>
+  );
+}`,
+    en: `import { Separator } from "@gunjo/ui";
+
+export function SettingsSections() {
+  return (
+    <div className="w-full space-y-3">
+      <p className="text-sm font-medium">Account</p>
+      {/* A real section break — announce it too. */}
+      <Separator role="separator" aria-orientation="horizontal" />
+      <p className="text-sm font-medium">Notifications</p>
+    </div>
+  );
+}`,
+} as const;
+
+const betweenRowsCodeByLocale = {
+    ja: `import { Separator } from "@gunjo/ui";
+
+const MEMBERS = [
+  { id: "a", name: "受付", count: 3 },
+  { id: "b", name: "調理", count: 5 },
+  { id: "c", name: "配達", count: 2 },
+];
+
+export function MemberList() {
+  return (
+    <div className="w-full rounded-lg border">
+      {MEMBERS.map((member, index) => (
+        <div key={member.id}>
+          {index > 0 ? <Separator /> : null}
+          <div className="flex items-center justify-between px-4 py-2 text-sm">
+            <span>{member.name}</span>
+            <span className="text-muted-foreground">{member.count}人</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}`,
+    en: `import { Separator } from "@gunjo/ui";
+
+const MEMBERS = [
+  { id: "a", name: "Front desk", count: 3 },
+  { id: "b", name: "Kitchen", count: 5 },
+  { id: "c", name: "Delivery", count: 2 },
+];
+
+export function MemberList() {
+  return (
+    <div className="w-full rounded-lg border">
+      {MEMBERS.map((member, index) => (
+        <div key={member.id}>
+          {index > 0 ? <Separator /> : null}
+          <div className="flex items-center justify-between px-4 py-2 text-sm">
+            <span>{member.name}</span>
+            <span className="text-muted-foreground">{member.count}</span>
+          </div>
+        </div>
+      ))}
+    </div>
+  );
+}`,
+} as const;
+
 const propsByLocale = {
     ja: [
         { name: "orientation", type: "\"horizontal\" | \"vertical\"", default: "\"horizontal\"", description: "区切り線の向きです。" },
@@ -118,6 +194,50 @@ export default function SeparatorPage() {
                                 </div>
                             ),
                             code: verticalCodeByLocale[locale],
+                        },
+                        {
+                            key: "semantic",
+                            title: locale === "ja" ? "意味のある区切りとして読ませる" : "Announcing a real section break",
+                            description: locale === "ja"
+                                ? "既定では役割を持たないので読み上げに出ません。飾りではなく章の切れ目なら、呼ぶ側で role=\"separator\" を足します。見た目は変わりません。"
+                                : "With no role of its own the rule is skipped by screen readers. When it marks a real section break rather than decoration, the caller adds role=\"separator\" — the look is unchanged.",
+                            preview: (
+                                <div className="w-full space-y-3">
+                                    <p className="text-sm font-medium">{locale === "ja" ? "アカウント" : "Account"}</p>
+                                    <Separator role="separator" aria-orientation="horizontal" className="w-full" />
+                                    <p className="text-sm font-medium">{locale === "ja" ? "通知" : "Notifications"}</p>
+                                </div>
+                            ),
+                            code: semanticCodeByLocale[locale],
+                            previewBodyWidth: "sm",
+                        },
+                        {
+                            key: "between-rows",
+                            title: locale === "ja" ? "行と行のあいだだけに入れる" : "Only between rows",
+                            description: locale === "ja"
+                                ? "一覧で使うときは、行の数だけ引くのではなく先頭の行を飛ばします。末尾に線が余ると、続きがあるように見えます。"
+                                : "In a list, skip the first row instead of drawing one rule per row — a trailing rule reads as if more rows follow.",
+                            preview: (
+                                <div className="w-full rounded-lg border">
+                                    {[
+                                        { id: "a", name: locale === "ja" ? "受付" : "Front desk", count: 3 },
+                                        { id: "b", name: locale === "ja" ? "調理" : "Kitchen", count: 5 },
+                                        { id: "c", name: locale === "ja" ? "配達" : "Delivery", count: 2 },
+                                    ].map((member, index) => (
+                                        <div key={member.id}>
+                                            {index > 0 ? <Separator className="w-full" /> : null}
+                                            <div className="flex items-center justify-between px-4 py-2 text-sm">
+                                                <span>{member.name}</span>
+                                                <span className="text-muted-foreground">
+                                                    {locale === "ja" ? `${member.count}人` : member.count}
+                                                </span>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
+                            ),
+                            code: betweenRowsCodeByLocale[locale],
+                            previewBodyWidth: "sm",
                         },
                     ]}
                 />

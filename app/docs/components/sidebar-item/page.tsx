@@ -72,6 +72,35 @@ function FlatItemsExample() {
     );
 }
 
+/** 畳んだ行。SidebarProvider の外なので collapsed を直接渡す（#692）。 */
+function CollapsedItemsExample() {
+    const { locale } = useLocale();
+    const isJa = locale === "ja";
+    const [activeId, setActiveId] = React.useState("favorite");
+
+    return (
+        <div className="w-[60px] space-y-1 rounded-md border bg-background p-2">
+            {libraryItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                    <SidebarItem
+                        key={item.id}
+                        id={item.id}
+                        icon={<Icon size={18} />}
+                        label={item.label[locale]}
+                        count={item.count}
+                        countLabel={(n) => (isJa ? `${n}件` : `${n} items`)}
+                        isActive={activeId === item.id}
+                        onClick={() => setActiveId(item.id)}
+                        collapsed
+                        reserveChevronSpace={false}
+                    />
+                );
+            })}
+        </div>
+    );
+}
+
 function SidebarContentExample({ actions = false, nested = true }: { actions?: boolean; nested?: boolean }) {
     const { locale } = useLocale();
     const isJa = locale === "ja";
@@ -520,6 +549,95 @@ export function FlatNavigationItems() {
 }`,
 };
 
+const collapsedCodeByLocale = {
+    ja: `import * as React from "react";
+import { SidebarItem } from "@gunjo/ui";
+import {
+  IconFolder as Folder,
+  IconGridDots as Grid,
+  IconStar as Star,
+  IconTrash as Trash2,
+} from "@tabler/icons-react";
+
+const libraryItems = [
+  { id: "all", label: "すべての素材", Icon: Grid, count: 128 },
+  { id: "favorite", label: "お気に入り", Icon: Star, count: 24 },
+  { id: "uncategorized", label: "未分類", Icon: Folder, count: 8 },
+  { id: "trash", label: "ごみ箱", Icon: Trash2, count: 3 },
+];
+
+export function CollapsedLibraryRail() {
+  const [activeId, setActiveId] = React.useState("favorite");
+
+  return (
+    // 60px＝アイコン1つと左右の余白でちょうど埋まる幅。
+    <div className="w-[60px] space-y-1 rounded-md border bg-background p-2">
+      {libraryItems.map((item) => {
+        const Icon = item.Icon;
+        return (
+          <SidebarItem
+            key={item.id}
+            id={item.id}
+            icon={<Icon size={18} />}
+            label={item.label}
+            count={item.count}
+            countLabel={(n) => n + "件"}
+            isActive={activeId === item.id}
+            onClick={() => setActiveId(item.id)}
+            // SidebarProvider の中なら書かなくて済みます（畳みに自動で追従）。
+            collapsed
+            reserveChevronSpace={false}
+          />
+        );
+      })}
+    </div>
+  );
+}`,
+    en: `import * as React from "react";
+import { SidebarItem } from "@gunjo/ui";
+import {
+  IconFolder as Folder,
+  IconGridDots as Grid,
+  IconStar as Star,
+  IconTrash as Trash2,
+} from "@tabler/icons-react";
+
+const libraryItems = [
+  { id: "all", label: "All assets", Icon: Grid, count: 128 },
+  { id: "favorite", label: "Favorites", Icon: Star, count: 24 },
+  { id: "uncategorized", label: "Uncategorized", Icon: Folder, count: 8 },
+  { id: "trash", label: "Trash", Icon: Trash2, count: 3 },
+];
+
+export function CollapsedLibraryRail() {
+  const [activeId, setActiveId] = React.useState("favorite");
+
+  return (
+    // 60px is exactly one icon plus its padding.
+    <div className="w-[60px] space-y-1 rounded-md border bg-background p-2">
+      {libraryItems.map((item) => {
+        const Icon = item.Icon;
+        return (
+          <SidebarItem
+            key={item.id}
+            id={item.id}
+            icon={<Icon size={18} />}
+            label={item.label}
+            count={item.count}
+            countLabel={(n) => n + " items"}
+            isActive={activeId === item.id}
+            onClick={() => setActiveId(item.id)}
+            // Inside a SidebarProvider you can drop this — the row follows it.
+            collapsed
+            reserveChevronSpace={false}
+          />
+        );
+      })}
+    </div>
+  );
+}`,
+};
+
 const actionsCodeByLocale = {
     ja: `import * as React from "react"
 import {
@@ -924,6 +1042,17 @@ export default function SidebarItemPage() {
                             previewBodyWidth: "md",
                             previewHeight: "auto",
                             code: actionsCodeWithWrapper,
+                        },
+                        {
+                            key: "collapsed",
+                            title: isJa ? "畳んだ行（アイコンだけ）" : "Collapsed rows (icon only)",
+                            description: isJa
+                                ? "collapsed を渡すと、ラベル・件数・開閉・行アクションが消えてアイコン1つになり、ラベルは吹き出しに移ります。名前が消えても読み上げには残るよう、件数は countLabel で意味のある言い方にします。SidebarProvider の中なら書かなくても畳みに追従します。"
+                                : "collapsed hides the label, count, chevron and row actions, leaving one icon with the label in a tooltip. Give countLabel a meaningful phrasing so the number is still announced with its item. Inside a SidebarProvider the row follows the collapse on its own.",
+                            preview: <CollapsedItemsExample />,
+                            previewBodyWidth: "sm",
+                            previewHeight: "auto",
+                            code: collapsedCodeByLocale[locale],
                         },
                     ]}
                 />

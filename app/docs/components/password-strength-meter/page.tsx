@@ -109,6 +109,63 @@ export function WeakPasswordStrengthMeter() {
   );
 }`,
                 },
+                {
+                    key: "max-score",
+                    title: locale === "ja" ? "段の数を評価器に合わせる" : "Match the segment count to your scorer",
+                    description: locale === "ja"
+                        ? "maxScore が段の数になります。0〜3 の3段で返す評価器なら maxScore={3} にして、満点が満タンで揃うようにします。"
+                        : "maxScore is the segment count. A scorer that returns 0–3 sets maxScore={3} so a top score fills the bar exactly.",
+                    preview: (
+                        <PasswordStrengthMeter
+                            className="w-full max-w-sm"
+                            score={2}
+                            maxScore={3}
+                            label={locale === "ja" ? "パスワード強度" : "Password strength"}
+                            valueLabel={locale === "ja" ? "ふつう" : "Fair"}
+                            description={locale === "ja" ? "3段で返す評価器に合わせています。" : "Matched to a three-step scorer."}
+                        />
+                    ),
+                    previewHeight: 130,
+                    code: isJa
+                        ? `import { PasswordStrengthMeter } from "@gunjo/ui";
+
+// 0〜3 の3段で返す評価器の例。
+const SCORE = 2;
+const MAX_SCORE = 3;
+const RATINGS = ["使えません", "弱い", "ふつう", "強い"];
+
+export function ThreeStepPasswordStrengthMeter() {
+  return (
+    <PasswordStrengthMeter
+      className="w-full max-w-sm"
+      score={SCORE}
+      maxScore={MAX_SCORE}
+      label="パスワード強度"
+      valueLabel={RATINGS[SCORE]}
+      description="3段で返す評価器に合わせています。"
+    />
+  );
+}`
+                        : `import { PasswordStrengthMeter } from "@gunjo/ui";
+
+// A scorer that returns 0–3.
+const SCORE = 2;
+const MAX_SCORE = 3;
+const RATINGS = ["Unusable", "Weak", "Fair", "Strong"];
+
+export function ThreeStepPasswordStrengthMeter() {
+  return (
+    <PasswordStrengthMeter
+      className="w-full max-w-sm"
+      score={SCORE}
+      maxScore={MAX_SCORE}
+      label="Password strength"
+      valueLabel={RATINGS[SCORE]}
+      description="Matched to a three-step scorer."
+    />
+  );
+}`,
+                },
             ]}
         />
     );

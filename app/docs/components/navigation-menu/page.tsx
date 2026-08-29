@@ -60,6 +60,116 @@ function NavigationMenuExample({ directOnly = false }: { directOnly?: boolean })
     );
 }
 
+function CurrentPageExample() {
+    const { locale } = useLocale();
+    const isJa = locale === "ja";
+    const links = [
+        { href: "/pricing", label: isJa ? "料金" : "Pricing", current: false },
+        { href: "/docs", label: isJa ? "ドキュメント" : "Docs", current: true },
+        { href: "/support", label: isJa ? "サポート" : "Support", current: false },
+    ];
+
+    return (
+        <NavigationMenu>
+            <NavigationMenuList>
+                {links.map((link) => (
+                    <NavigationMenuItem key={link.href}>
+                        <NavigationMenuLink
+                            href={link.href}
+                            active={link.current}
+                            aria-current={link.current ? "page" : undefined}
+                            onClick={(event) => event.preventDefault()}
+                            className={navigationMenuTriggerStyle()}
+                        >
+                            {link.label}
+                        </NavigationMenuLink>
+                    </NavigationMenuItem>
+                ))}
+            </NavigationMenuList>
+        </NavigationMenu>
+    );
+}
+
+function WideMenuExample() {
+    const { locale } = useLocale();
+    const isJa = locale === "ja";
+    const groups = isJa
+        ? [
+              {
+                  heading: "作る",
+                  items: [
+                      { title: "コンポーネント", href: "/docs/components", desc: "再利用できる UI 部品" },
+                      { title: "トークン", href: "/docs/tokens", desc: "色、余白、角丸の設計値" },
+                      { title: "テンプレート", href: "/patterns", desc: "画面単位の組み合わせ例" },
+                  ],
+              },
+              {
+                  heading: "調べる",
+                  items: [
+                      { title: "はじめかた", href: "/docs", desc: "導入の手順" },
+                      { title: "更新の記録", href: "/docs/changelog", desc: "版ごとの変更点" },
+                      { title: "よくある質問", href: "/docs/faq", desc: "導入前の確認事項" },
+                  ],
+              },
+          ]
+        : [
+              {
+                  heading: "Build",
+                  items: [
+                      { title: "Components", href: "/docs/components", desc: "Reusable UI parts" },
+                      { title: "Tokens", href: "/docs/tokens", desc: "Color, spacing, radius" },
+                      { title: "Templates", href: "/patterns", desc: "Page-level compositions" },
+                  ],
+              },
+              {
+                  heading: "Learn",
+                  items: [
+                      { title: "Getting started", href: "/docs", desc: "Install and set up" },
+                      { title: "Changelog", href: "/docs/changelog", desc: "What changed per release" },
+                      { title: "FAQ", href: "/docs/faq", desc: "Before you adopt" },
+                  ],
+              },
+          ];
+
+    return (
+        <NavigationMenu>
+            <NavigationMenuList>
+                <NavigationMenuItem>
+                    <NavigationMenuTrigger>{isJa ? "プロダクト" : "Product"}</NavigationMenuTrigger>
+                    <NavigationMenuContent>
+                        <div className="grid w-[min(560px,calc(100vw-3rem))] grid-cols-1 gap-4 p-4 sm:grid-cols-2">
+                            {groups.map((group) => (
+                                <div key={group.heading}>
+                                    <p className="mb-1 px-2 text-xs font-semibold text-muted-foreground">{group.heading}</p>
+                                    <ul className="grid gap-1">
+                                        {group.items.map((item) => (
+                                            <li key={item.title}>
+                                                <NavigationMenuLink
+                                                    href={item.href}
+                                                    onClick={(event) => event.preventDefault()}
+                                                    className="block rounded-md p-2 hover:bg-muted"
+                                                >
+                                                    <div className="text-sm font-medium">{item.title}</div>
+                                                    <p className="text-xs text-muted-foreground">{item.desc}</p>
+                                                </NavigationMenuLink>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            ))}
+                        </div>
+                    </NavigationMenuContent>
+                </NavigationMenuItem>
+                <NavigationMenuItem>
+                    <NavigationMenuLink href="/pricing" onClick={(event) => event.preventDefault()} className={navigationMenuTriggerStyle()}>
+                        {isJa ? "料金" : "Pricing"}
+                    </NavigationMenuLink>
+                </NavigationMenuItem>
+            </NavigationMenuList>
+        </NavigationMenu>
+    );
+}
+
 const codeByLocale = {
     ja: `import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@gunjo/ui"
 
@@ -194,6 +304,218 @@ export function DirectNavigation() {
 }`,
 };
 
+const currentCodeByLocale = {
+    ja: `import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from "@gunjo/ui"
+
+const LINKS = [
+  { href: "/pricing", label: "料金" },
+  { href: "/docs", label: "ドキュメント" },
+  { href: "/support", label: "サポート" },
+]
+
+const CURRENT = "/docs"
+
+export function SiteNavigation() {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        {LINKS.map((link) => {
+          const current = link.href === CURRENT
+          return (
+            <NavigationMenuItem key={link.href}>
+              <NavigationMenuLink
+                href={link.href}
+                active={current}
+                aria-current={current ? "page" : undefined}
+                className={navigationMenuTriggerStyle()}
+              >
+                {link.label}
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          )
+        })}
+      </NavigationMenuList>
+    </NavigationMenu>
+  )
+}`,
+    en: `import {
+  NavigationMenu,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  navigationMenuTriggerStyle,
+} from "@gunjo/ui"
+
+const LINKS = [
+  { href: "/pricing", label: "Pricing" },
+  { href: "/docs", label: "Docs" },
+  { href: "/support", label: "Support" },
+]
+
+const CURRENT = "/docs"
+
+export function SiteNavigation() {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        {LINKS.map((link) => {
+          const current = link.href === CURRENT
+          return (
+            <NavigationMenuItem key={link.href}>
+              <NavigationMenuLink
+                href={link.href}
+                active={current}
+                aria-current={current ? "page" : undefined}
+                className={navigationMenuTriggerStyle()}
+              >
+                {link.label}
+              </NavigationMenuLink>
+            </NavigationMenuItem>
+          )
+        })}
+      </NavigationMenuList>
+    </NavigationMenu>
+  )
+}`,
+};
+
+const wideCodeByLocale = {
+    ja: `import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@gunjo/ui"
+
+const GROUPS = [
+  {
+    heading: "作る",
+    items: [
+      { title: "コンポーネント", href: "/docs/components", desc: "再利用できる UI 部品" },
+      { title: "トークン", href: "/docs/tokens", desc: "色、余白、角丸の設計値" },
+      { title: "テンプレート", href: "/patterns", desc: "画面単位の組み合わせ例" },
+    ],
+  },
+  {
+    heading: "調べる",
+    items: [
+      { title: "はじめかた", href: "/docs", desc: "導入の手順" },
+      { title: "更新の記録", href: "/docs/changelog", desc: "版ごとの変更点" },
+      { title: "よくある質問", href: "/docs/faq", desc: "導入前の確認事項" },
+    ],
+  },
+]
+
+export function WideProductMenu() {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>プロダクト</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            {/* 幅は中身が決める。囲いは中身の寸法に合わせて開きます。 */}
+            <div className="grid w-[min(560px,calc(100vw-3rem))] grid-cols-1 gap-4 p-4 sm:grid-cols-2">
+              {GROUPS.map((group) => (
+                <div key={group.heading}>
+                  <p className="mb-1 px-2 text-xs font-semibold text-muted-foreground">
+                    {group.heading}
+                  </p>
+                  <ul className="grid gap-1">
+                    {group.items.map((item) => (
+                      <li key={item.title}>
+                        <NavigationMenuLink
+                          href={item.href}
+                          className="block rounded-md p-2 hover:bg-muted"
+                        >
+                          <div className="text-sm font-medium">{item.title}</div>
+                          <p className="text-xs text-muted-foreground">{item.desc}</p>
+                        </NavigationMenuLink>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  )
+}`,
+    en: `import {
+  NavigationMenu,
+  NavigationMenuContent,
+  NavigationMenuItem,
+  NavigationMenuLink,
+  NavigationMenuList,
+  NavigationMenuTrigger,
+} from "@gunjo/ui"
+
+const GROUPS = [
+  {
+    heading: "Build",
+    items: [
+      { title: "Components", href: "/docs/components", desc: "Reusable UI parts" },
+      { title: "Tokens", href: "/docs/tokens", desc: "Color, spacing, radius" },
+      { title: "Templates", href: "/patterns", desc: "Page-level compositions" },
+    ],
+  },
+  {
+    heading: "Learn",
+    items: [
+      { title: "Getting started", href: "/docs", desc: "Install and set up" },
+      { title: "Changelog", href: "/docs/changelog", desc: "What changed per release" },
+      { title: "FAQ", href: "/docs/faq", desc: "Before you adopt" },
+    ],
+  },
+]
+
+export function WideProductMenu() {
+  return (
+    <NavigationMenu>
+      <NavigationMenuList>
+        <NavigationMenuItem>
+          <NavigationMenuTrigger>Product</NavigationMenuTrigger>
+          <NavigationMenuContent>
+            {/* The content sets the width; the panel opens to fit it. */}
+            <div className="grid w-[min(560px,calc(100vw-3rem))] grid-cols-1 gap-4 p-4 sm:grid-cols-2">
+              {GROUPS.map((group) => (
+                <div key={group.heading}>
+                  <p className="mb-1 px-2 text-xs font-semibold text-muted-foreground">
+                    {group.heading}
+                  </p>
+                  <ul className="grid gap-1">
+                    {group.items.map((item) => (
+                      <li key={item.title}>
+                        <NavigationMenuLink
+                          href={item.href}
+                          className="block rounded-md p-2 hover:bg-muted"
+                        >
+                          <div className="text-sm font-medium">{item.title}</div>
+                          <p className="text-xs text-muted-foreground">{item.desc}</p>
+                        </NavigationMenuLink>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </NavigationMenuContent>
+        </NavigationMenuItem>
+      </NavigationMenuList>
+    </NavigationMenu>
+  )
+}`,
+};
+
 export default function NavigationMenuPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
@@ -229,6 +551,28 @@ export default function NavigationMenuPage() {
                             previewBodyWidth: "md",
                             previewHeight: "auto",
                             code: directCode,
+                        },
+                        {
+                            key: "current-page",
+                            title: isJa ? "いま居るページを示す" : "Marking the current page",
+                            description: isJa
+                                ? "active を渡した項目だけ面が薄く残ります。読み上げにも伝えるため aria-current=\"page\" を同時に付けます。色だけでは、色が見えない人に現在地が伝わりません。"
+                                : "The link given active keeps a faint surface. Pair it with aria-current=\"page\" so the position is announced too — colour alone does not carry it.",
+                            preview: <CurrentPageExample />,
+                            previewBodyWidth: "md",
+                            previewHeight: "auto",
+                            code: currentCodeByLocale[locale],
+                        },
+                        {
+                            key: "wide-menu",
+                            title: isJa ? "中身が増えたとき" : "When the panel grows",
+                            description: isJa
+                                ? "ドロップダウンの寸法は中身が決めます。項目が6つに増えたら中で2列に組み、囲いはその幅と高さに合わせて開きます。狭い画面では1列に戻ります。"
+                                : "The panel is sized by its content. At six links, lay them out in two columns and the panel opens to that width and height — falling back to one column on a narrow screen.",
+                            preview: <WideMenuExample />,
+                            previewBodyWidth: "lg",
+                            previewHeight: "auto",
+                            code: wideCodeByLocale[locale],
                         },
                     ]}
                 />
