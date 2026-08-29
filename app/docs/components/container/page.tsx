@@ -2,6 +2,7 @@
 
 import { Container } from "@gunjo/ui";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
+import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
@@ -183,73 +184,68 @@ export default function ContainerPage() {
                         {locale === "ja" ? "状態とバリエーション" : "States and Variants"}
                     </h2>
                 </div>
-                <div className="space-y-8">
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "サイズ展開" : "Size scale"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja" ? "sm から full / prose まで、Container が持つ最大幅の違いを確認します。" : "Compare every Container max-width option from sm through full and prose."}
-                            </p>
-                        </div>
-                        <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="full" previewHeight="auto">
-                            <div className="w-full space-y-3">
-                                {sizes.map((size) => (
-                                    <Container key={size} size={size} className="rounded-md border border-dashed bg-muted/50 py-3 text-center text-sm text-muted-foreground">
-                                        size=&quot;{size}&quot;
-                                    </Container>
-                                ))}
-                            </div>
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "本文幅" : "Prose width"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja" ? "長文は広げすぎず、本文として読みやすい横幅に保ちます。" : "Keep long-form content narrow enough to read comfortably."}
-                            </p>
-                        </div>
-                        <ComponentPreview code={proseCodeByLocale[locale]} codeBlock={<CodeBlock code={proseCodeByLocale[locale]} />} previewBodyWidth="lg" previewHeight="auto">
-                            <Container size="prose" className="space-y-2 rounded-md border bg-background p-4">
-                                <h3 className="font-semibold">{locale === "ja" ? "読みやすい本文" : "Readable article content"}</h3>
-                                <p className="text-sm text-muted-foreground">
-                                    {locale === "ja" ? "長文は広げすぎず、本文として読みやすい横幅に保ちます。" : "Long-form text stays narrower than dashboard surfaces."}
-                                </p>
-                            </Container>
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "セクション幅" : "Section width"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja" ? "ドキュメントや通常ページの主要セクションに使う標準幅です。" : "Use this width for primary sections in docs or standard pages."}
-                            </p>
-                        </div>
-                        <ComponentPreview code={sectionCodeByLocale[locale]} codeBlock={<CodeBlock code={sectionCodeByLocale[locale]} />} previewBodyWidth="lg" previewHeight="auto">
-                            <Container as="section" size="lg" className="space-y-2 rounded-md border bg-background p-4">
-                                <h3 className="font-semibold">{locale === "ja" ? "リリースノート" : "Release notes"}</h3>
-                                <p className="text-sm text-muted-foreground">
-                                    {locale === "ja" ? "標準的なドキュメントブロックには、セクション幅のコンテナを使います。" : "Use a section-width container for standard documentation blocks."}
-                                </p>
-                            </Container>
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "全幅" : "Full width"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja" ? "アプリ面や横方向の情報量が多い領域では、親幅いっぱいに広げます。" : "Let app surfaces and horizontally rich areas fill the parent width."}
-                            </p>
-                        </div>
-                        <ComponentPreview code={fullCodeByLocale[locale]} codeBlock={<CodeBlock code={fullCodeByLocale[locale]} />} previewBodyWidth="lg" previewHeight="auto">
-                            <Container size="full" className="rounded-md border bg-muted/40 py-5 text-center text-sm text-muted-foreground">
-                                {locale === "ja" ? "アプリ面や横スクロール可能な領域" : "App surface or horizontally rich area"}
-                            </Container>
-                        </ComponentPreview>
-                    </section>
-                </div>
+                <ComponentDemoStates
+                    states={[
+                        {
+                            key: "size-scale",
+                            title: locale === "ja" ? "サイズ展開" : "Size scale",
+                            description: locale === "ja" ? "sm から full / prose まで、Container が持つ最大幅の違いを確認します。" : "Compare every Container max-width option from sm through full and prose.",
+                            code: usageCode,
+                            previewBodyWidth: "full",
+                            preview: (
+                                <div className="w-full space-y-3">
+                                    {sizes.map((size) => (
+                                        <Container key={size} size={size} className="rounded-md border border-dashed bg-muted/50 py-3 text-center text-sm text-muted-foreground">
+                                            size=&quot;{size}&quot;
+                                        </Container>
+                                    ))}
+                                </div>
+                            ),
+                        },
+                        {
+                            key: "prose-width",
+                            title: locale === "ja" ? "本文幅" : "Prose width",
+                            description: locale === "ja" ? "長文は広げすぎず、本文として読みやすい横幅に保ちます。" : "Keep long-form content narrow enough to read comfortably.",
+                            code: proseCodeByLocale[locale],
+                            previewBodyWidth: "lg",
+                            preview: (
+                                <Container size="prose" className="space-y-2 rounded-md border bg-background p-4">
+                                    <h3 className="font-semibold">{locale === "ja" ? "読みやすい本文" : "Readable article content"}</h3>
+                                    <p className="text-sm text-muted-foreground">
+                                        {locale === "ja" ? "長文は広げすぎず、本文として読みやすい横幅に保ちます。" : "Long-form text stays narrower than dashboard surfaces."}
+                                    </p>
+                                </Container>
+                            ),
+                        },
+                        {
+                            key: "section-width",
+                            title: locale === "ja" ? "セクション幅" : "Section width",
+                            description: locale === "ja" ? "ドキュメントや通常ページの主要セクションに使う標準幅です。" : "Use this width for primary sections in docs or standard pages.",
+                            code: sectionCodeByLocale[locale],
+                            previewBodyWidth: "lg",
+                            preview: (
+                                <Container as="section" size="lg" className="space-y-2 rounded-md border bg-background p-4">
+                                    <h3 className="font-semibold">{locale === "ja" ? "リリースノート" : "Release notes"}</h3>
+                                    <p className="text-sm text-muted-foreground">
+                                        {locale === "ja" ? "標準的なドキュメントブロックには、セクション幅のコンテナを使います。" : "Use a section-width container for standard documentation blocks."}
+                                    </p>
+                                </Container>
+                            ),
+                        },
+                        {
+                            key: "full-width",
+                            title: locale === "ja" ? "全幅" : "Full width",
+                            description: locale === "ja" ? "アプリ面や横方向の情報量が多い領域では、親幅いっぱいに広げます。" : "Let app surfaces and horizontally rich areas fill the parent width.",
+                            code: fullCodeByLocale[locale],
+                            previewBodyWidth: "lg",
+                            preview: (
+                                <Container size="full" className="rounded-md border bg-muted/40 py-5 text-center text-sm text-muted-foreground">
+                                    {locale === "ja" ? "アプリ面や横スクロール可能な領域" : "App surface or horizontally rich area"}
+                                </Container>
+                            ),
+                        },
+                    ]}
+                />
             </section>
 
             <section className="space-y-4">

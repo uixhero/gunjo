@@ -2,6 +2,7 @@
 
 import { Button, Input, Label, VStack } from "@gunjo/ui";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
+import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
@@ -200,12 +201,13 @@ export default function VStackPage() {
                         {locale === "ja" ? "状態とバリエーション" : "States and Variants"}
                     </h2>
                 </div>
-                <div className="space-y-8">
-                    {[
+                <ComponentDemoStates
+                    states={[
                         {
                             key: "form",
                             title: locale === "ja" ? "フォーム項目" : "Form fields",
                             description: locale === "ja" ? "ラベル、入力、操作を縦方向に積みます。" : "Stack labels, inputs, and actions vertically.",
+                            previewBodyWidth: "md",
                             code: stateCodeByLocale[locale].form,
                             preview: (
                                 <VStack gap={4} className="w-full max-w-sm rounded-md border bg-background p-4">
@@ -225,6 +227,7 @@ export default function VStackPage() {
                             key: "center",
                             title: locale === "ja" ? "中央揃え" : "Centered",
                             description: locale === "ja" ? "短い説明や空状態を中央にまとめます。" : "Center compact descriptions or empty states.",
+                            previewBodyWidth: "md",
                             code: stateCodeByLocale[locale].center,
                             preview: (
                                 <VStack align="center" gap={3} className="rounded-md border bg-background p-4 text-center">
@@ -240,6 +243,7 @@ export default function VStackPage() {
                             key: "between",
                             title: locale === "ja" ? "上下に分離" : "Space between",
                             description: locale === "ja" ? "カード内で内容と操作を上下に分けます。" : "Separate content and action in a fixed-height card.",
+                            previewBodyWidth: "md",
                             code: stateCodeByLocale[locale].between,
                             preview: (
                                 <VStack justify="between" className="h-44 rounded-md border bg-background p-4">
@@ -255,6 +259,7 @@ export default function VStackPage() {
                             key: "end",
                             title: locale === "ja" ? "右揃え" : "End aligned",
                             description: locale === "ja" ? "短い説明と操作を右端に揃えます。" : "Align short copy and actions to the right edge.",
+                            previewBodyWidth: "md",
                             code: stateCodeByLocale[locale].end,
                             preview: (
                                 <VStack align="end" gap={3} className="w-full max-w-sm rounded-md border bg-background p-4 text-right">
@@ -272,6 +277,7 @@ export default function VStackPage() {
                             key: "inline",
                             title: locale === "ja" ? "インライン" : "Inline",
                             description: locale === "ja" ? "小さな説明ブロックを inline-flex として扱います。" : "Use inline-flex for compact explanatory blocks.",
+                            previewBodyWidth: "md",
                             code: stateCodeByLocale[locale].inline,
                             preview: (
                                 <VStack inline gap={1} align="start" className="rounded-md border bg-muted/40 p-3">
@@ -280,18 +286,8 @@ export default function VStackPage() {
                                 </VStack>
                             ),
                         },
-                    ].map((item) => (
-                        <section key={item.key} className="space-y-3">
-                            <div className="space-y-1">
-                                <h3 className="text-lg font-semibold">{item.title}</h3>
-                                <p className="text-sm text-muted-foreground">{item.description}</p>
-                            </div>
-                            <ComponentPreview code={item.code} codeBlock={<CodeBlock code={item.code} />} previewBodyWidth="md" previewHeight="auto">
-                                {item.preview}
-                            </ComponentPreview>
-                        </section>
-                    ))}
-                </div>
+                    ]}
+                />
             </section>
 
             <section className="space-y-4">

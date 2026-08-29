@@ -2,6 +2,7 @@
 
 import { ScrollArea, Separator } from "@gunjo/ui";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
+import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
@@ -313,12 +314,14 @@ export default function ScrollAreaPage() {
                 <div className="space-y-1">
                     <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "状態とバリエーション" : "States and Variants"}</h2>
                 </div>
-                <div className="space-y-8">
-                    {[
+                <ComponentDemoStates
+                    states={[
                         {
                             key: "list",
                             title: locale === "ja" ? "リスト" : "List",
                             description: locale === "ja" ? "高さが決まったパネル内に長いリストを収めます。" : "Contain a long list inside a fixed-height panel.",
+                            previewBodyWidth: "lg",
+                            previewHeight: 340,
                             code: stateCodeByLocale[locale].list,
                             preview: (
                                 <ScrollArea className="h-56 w-full max-w-sm rounded-md border bg-background p-4">
@@ -336,6 +339,8 @@ export default function ScrollAreaPage() {
                             key: "article",
                             title: locale === "ja" ? "本文" : "Article text",
                             description: locale === "ja" ? "補足文や説明文をパネル内でスクロールさせます。" : "Scroll supporting notes or explanatory text inside a panel.",
+                            previewBodyWidth: "lg",
+                            previewHeight: 340,
                             code: stateCodeByLocale[locale].article,
                             preview: (
                                 <ScrollArea className="h-52 w-full max-w-lg rounded-md border bg-background p-4">
@@ -354,6 +359,8 @@ export default function ScrollAreaPage() {
                             key: "horizontal",
                             title: locale === "ja" ? "横スクロール" : "Horizontal scroll",
                             description: locale === "ja" ? "幅の広い項目列を、横方向のスクロールとして扱います。" : "Use horizontal scrolling for wide item rows.",
+                            previewBodyWidth: "lg",
+                            previewHeight: 340,
                             code: stateCodeByLocale[locale].horizontal,
                             preview: (
                                 <ScrollArea className="w-full max-w-lg rounded-md border bg-background p-3" scrollbarOrientation="horizontal">
@@ -369,6 +376,8 @@ export default function ScrollAreaPage() {
                             key: "both",
                             title: locale === "ja" ? "縦横スクロール" : "Both directions",
                             description: locale === "ja" ? "横幅も高さも制限した表やワークスペースを、縦横両方にスクロールできます。" : "Constrain both width and height for tables or workspaces that overflow in two directions.",
+                            previewBodyWidth: "lg",
+                            previewHeight: 340,
                             code: stateCodeByLocale[locale].both,
                             preview: (
                                 <ScrollArea className="h-44 w-full max-w-xl rounded-md border bg-background" scrollbarOrientation="both">
@@ -397,6 +406,8 @@ export default function ScrollAreaPage() {
                             key: "always",
                             title: locale === "ja" ? "常時表示" : "Always visible",
                             description: locale === "ja" ? "スクロール可能であることを常に示したい場合に使います。" : "Keep the scrollbar visible when scrollability must be obvious.",
+                            previewBodyWidth: "lg",
+                            previewHeight: 340,
                             code: stateCodeByLocale[locale].always,
                             preview: (
                                 <ScrollArea type="always" className="h-48 w-full max-w-sm rounded-md border bg-background p-4">
@@ -406,18 +417,8 @@ export default function ScrollAreaPage() {
                                 </ScrollArea>
                             ),
                         },
-                    ].map((item) => (
-                        <section key={item.key} className="space-y-3">
-                            <div className="space-y-1">
-                                <h3 className="text-lg font-semibold">{item.title}</h3>
-                                <p className="text-sm text-muted-foreground">{item.description}</p>
-                            </div>
-                            <ComponentPreview code={item.code} codeBlock={<CodeBlock code={item.code} />} previewBodyWidth="lg" previewHeight={340}>
-                                {item.preview}
-                            </ComponentPreview>
-                        </section>
-                    ))}
-                </div>
+                    ]}
+                />
             </section>
 
             <section className="space-y-4">

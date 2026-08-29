@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Button, DeviceFrame, cn, type MarqueeViewport } from "@gunjo/ui";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
+import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { useLocale } from "@/components/providers/LocaleProvider";
@@ -663,93 +664,66 @@ export default function DeviceFrameDocPage() {
                         {locale === "ja" ? "状態とバリエーション" : "States and Variants"}
                     </h2>
                 </div>
-                <div className="space-y-8">
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "macOS 風 chrome" : "macOS chrome"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja" ? "ドキュメントやWebページの確認に使う、標準のブラウザ風フレームです。" : "Use the default browser-style frame for docs and web page previews."}
-                            </p>
-                        </div>
-                        <ComponentPreview
-                            code={stateCodeByLocale[locale].macos}
-                            codeBlock={<CodeBlock code={stateCodeByLocale[locale].macos} />}
-                            previewBodyWidth="lg"
-                            previewHeight="auto"
-                        >
-                            <DeviceFrameScenarioPreview
-                                locale={locale}
-                                path="/docs"
-                                tabTitle={locale === "ja" ? "ドキュメント" : "Docs"}
-                                content={locale === "ja" ? "ドキュメントのプレビュー" : "Documentation preview"}
-                            />
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "Windows 11 風 chrome" : "Windows 11 chrome"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja" ? "デスクトップアプリや業務画面の検証に合う、Windows 11 風の chrome です。" : "Use the Windows 11 chrome for desktop app or operations-style previews."}
-                            </p>
-                        </div>
-                        <ComponentPreview
-                            code={stateCodeByLocale[locale].windows}
-                            codeBlock={<CodeBlock code={stateCodeByLocale[locale].windows} />}
-                            previewBodyWidth="lg"
-                            previewHeight="auto"
-                        >
-                            <DeviceFrameScenarioPreview
-                                locale={locale}
-                                path="/dashboard"
-                                variant="windows11"
-                                content={locale === "ja" ? "ダッシュボードのプレビュー" : "Dashboard preview"}
-                                contentClassName="bg-muted/30"
-                            />
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "モバイル幅" : "Mobile viewport"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja" ? "スマートフォン幅で、同じフレーム内のコンテンツが収まるか確認します。" : "Check whether the same framed content holds up at a phone viewport."}
-                            </p>
-                        </div>
-                        <ComponentPreview
-                            code={stateCodeByLocale[locale].mobile}
-                            codeBlock={<CodeBlock code={stateCodeByLocale[locale].mobile} />}
-                            previewBodyWidth="lg"
-                            previewHeight="auto"
-                        >
-                            <DeviceFrameScenarioPreview
-                                locale={locale}
-                                path="/mobile"
-                                initialViewport="mobile"
-                                content={locale === "ja" ? "モバイルのプレビュー" : "Mobile preview"}
-                            />
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "URL 入力" : "URL navigation"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja"
-                                    ? "URL バーに許可されたパスを入力した時に、フレーム内の表示を切り替えます。"
-                                    : "Update the framed content when the URL bar receives an allowed path."}
-                            </p>
-                        </div>
-                        <ComponentPreview
-                            code={stateCodeByLocale[locale].navigation}
-                            codeBlock={<CodeBlock code={stateCodeByLocale[locale].navigation} />}
-                            previewBodyWidth="lg"
-                            previewHeight="auto"
-                        >
-                            <NavigableDeviceFramePreview locale={locale} />
-                        </ComponentPreview>
-                    </section>
-                </div>
+                <ComponentDemoStates
+                    states={[
+                        {
+                            key: "macos-chrome",
+                            title: locale === "ja" ? "macOS 風 chrome" : "macOS chrome",
+                            description: locale === "ja" ? "ドキュメントやWebページの確認に使う、標準のブラウザ風フレームです。" : "Use the default browser-style frame for docs and web page previews.",
+                            code: stateCodeByLocale[locale].macos,
+                            previewBodyWidth: "lg",
+                            preview: (
+                                <DeviceFrameScenarioPreview
+                                    locale={locale}
+                                    path="/docs"
+                                    tabTitle={locale === "ja" ? "ドキュメント" : "Docs"}
+                                    content={locale === "ja" ? "ドキュメントのプレビュー" : "Documentation preview"}
+                                />
+                            ),
+                        },
+                        {
+                            key: "windows-11-chrome",
+                            title: locale === "ja" ? "Windows 11 風 chrome" : "Windows 11 chrome",
+                            description: locale === "ja" ? "デスクトップアプリや業務画面の検証に合う、Windows 11 風の chrome です。" : "Use the Windows 11 chrome for desktop app or operations-style previews.",
+                            code: stateCodeByLocale[locale].windows,
+                            previewBodyWidth: "lg",
+                            preview: (
+                                <DeviceFrameScenarioPreview
+                                    locale={locale}
+                                    path="/dashboard"
+                                    variant="windows11"
+                                    content={locale === "ja" ? "ダッシュボードのプレビュー" : "Dashboard preview"}
+                                    contentClassName="bg-muted/30"
+                                />
+                            ),
+                        },
+                        {
+                            key: "mobile-viewport",
+                            title: locale === "ja" ? "モバイル幅" : "Mobile viewport",
+                            description: locale === "ja" ? "スマートフォン幅で、同じフレーム内のコンテンツが収まるか確認します。" : "Check whether the same framed content holds up at a phone viewport.",
+                            code: stateCodeByLocale[locale].mobile,
+                            previewBodyWidth: "lg",
+                            preview: (
+                                <DeviceFrameScenarioPreview
+                                    locale={locale}
+                                    path="/mobile"
+                                    initialViewport="mobile"
+                                    content={locale === "ja" ? "モバイルのプレビュー" : "Mobile preview"}
+                                />
+                            ),
+                        },
+                        {
+                            key: "url-navigation",
+                            title: locale === "ja" ? "URL 入力" : "URL navigation",
+                            description: locale === "ja" ? "URL バーに許可されたパスを入力した時に、フレーム内の表示を切り替えます。" : "Update the framed content when the URL bar receives an allowed path.",
+                            code: stateCodeByLocale[locale].navigation,
+                            previewBodyWidth: "lg",
+                            preview: (
+                                <NavigableDeviceFramePreview locale={locale} />
+                            ),
+                        },
+                    ]}
+                />
             </section>
 
             <div className="space-y-4">

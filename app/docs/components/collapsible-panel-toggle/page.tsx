@@ -3,6 +3,7 @@
 import * as React from "react";
 import { CollapsiblePanelToggle, cn } from "@gunjo/ui";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
+import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
@@ -465,64 +466,40 @@ export default function CollapsiblePanelToggleDocPage() {
                         {locale === "ja" ? "状態とバリエーション" : "States and Variants"}
                     </h2>
                 </div>
-                <div className="space-y-8">
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "左境界" : "Left edge"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja"
-                                    ? "左側のナビゲーションやサイドバーを開閉する標準的な境界トグルです。"
-                                    : "Use this standard edge toggle to collapse a left navigation or sidebar."}
-                            </p>
-                        </div>
-                        <ComponentPreview
-                            code={stateCodeByLocale[locale].left}
-                            codeBlock={<CodeBlock code={stateCodeByLocale[locale].left} />}
-                            previewBodyWidth="md"
-                            previewHeight="auto"
-                        >
-                            <LeftPanelPreview locale={locale} />
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "右境界" : "Right edge"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja"
-                                    ? "右側の補助パネルやインスペクターを開閉する境界トグルです。"
-                                    : "Use this toggle on the right edge for aside panels or inspectors."}
-                            </p>
-                        </div>
-                        <ComponentPreview
-                            code={stateCodeByLocale[locale].right}
-                            codeBlock={<CodeBlock code={stateCodeByLocale[locale].right} />}
-                            previewBodyWidth="md"
-                            previewHeight="auto"
-                        >
-                            <RightPanelPreview locale={locale} />
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "上境界" : "Top edge"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja"
-                                    ? "上部のフィルターや補助ツールバーを開閉する境界トグルです。"
-                                    : "Use this toggle on the top edge for filter bars or auxiliary toolbars."}
-                            </p>
-                        </div>
-                        <ComponentPreview
-                            code={stateCodeByLocale[locale].top}
-                            codeBlock={<CodeBlock code={stateCodeByLocale[locale].top} />}
-                            previewBodyWidth="md"
-                            previewHeight="auto"
-                        >
-                            <TopPanelPreview locale={locale} />
-                        </ComponentPreview>
-                    </section>
-                </div>
+                <ComponentDemoStates
+                    states={[
+                        {
+                            key: "left-edge",
+                            title: locale === "ja" ? "左境界" : "Left edge",
+                            description: locale === "ja" ? "左側のナビゲーションやサイドバーを開閉する標準的な境界トグルです。" : "Use this standard edge toggle to collapse a left navigation or sidebar.",
+                            code: stateCodeByLocale[locale].left,
+                            previewBodyWidth: "md",
+                            preview: (
+                                <LeftPanelPreview locale={locale} />
+                            ),
+                        },
+                        {
+                            key: "right-edge",
+                            title: locale === "ja" ? "右境界" : "Right edge",
+                            description: locale === "ja" ? "右側の補助パネルやインスペクターを開閉する境界トグルです。" : "Use this toggle on the right edge for aside panels or inspectors.",
+                            code: stateCodeByLocale[locale].right,
+                            previewBodyWidth: "md",
+                            preview: (
+                                <RightPanelPreview locale={locale} />
+                            ),
+                        },
+                        {
+                            key: "top-edge",
+                            title: locale === "ja" ? "上境界" : "Top edge",
+                            description: locale === "ja" ? "上部のフィルターや補助ツールバーを開閉する境界トグルです。" : "Use this toggle on the top edge for filter bars or auxiliary toolbars.",
+                            code: stateCodeByLocale[locale].top,
+                            previewBodyWidth: "md",
+                            preview: (
+                                <TopPanelPreview locale={locale} />
+                            ),
+                        },
+                    ]}
+                />
             </section>
 
             <div className="space-y-4">

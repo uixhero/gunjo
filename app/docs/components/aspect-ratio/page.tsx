@@ -2,6 +2,7 @@
 
 import { AspectRatio } from "@gunjo/ui";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
+import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
@@ -257,83 +258,58 @@ export default function AspectRatioPage() {
                         {locale === "ja" ? "状態とバリエーション" : "States and Variants"}
                     </h2>
                 </div>
-                <div className="space-y-8">
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "ヒーロー動画" : "Hero video"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja" ? "動画、ヒーロー、横長のメディアに使う 16:9 の比率です。" : "Use 16:9 for videos, heroes, and wide media."}
-                            </p>
-                        </div>
-                        <ComponentPreview
-                            code={variantCodeByLocale[locale].video}
-                            codeBlock={<CodeBlock code={variantCodeByLocale[locale].video} />}
-                            previewBodyWidth="md"
-                            previewHeight="auto"
-                        >
-                            <div className="w-full max-w-md">
-                                <RatioBlock label={locale === "ja" ? "16:9 ヒーロー動画" : "16:9 hero video"} ratio={16 / 9} className="bg-primary-subtle" />
-                            </div>
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "記事画像" : "Article image"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja" ? "記事サムネイルや標準的な写真枠に使う 4:3 の比率です。" : "Use 4:3 for article thumbnails and classic image frames."}
-                            </p>
-                        </div>
-                        <ComponentPreview
-                            code={variantCodeByLocale[locale].photo}
-                            codeBlock={<CodeBlock code={variantCodeByLocale[locale].photo} />}
-                            previewBodyWidth="md"
-                            previewHeight="auto"
-                        >
-                            <div className="w-full max-w-sm">
-                                <RatioBlock label={locale === "ja" ? "4:3 記事画像" : "4:3 article image"} ratio={4 / 3} className="bg-success-subtle" />
-                            </div>
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "正方形" : "Square"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja" ? "アバター、ロゴ、正方形カードに使う 1:1 の比率です。" : "Use 1:1 for avatars, logos, and square cards."}
-                            </p>
-                        </div>
-                        <ComponentPreview
-                            code={variantCodeByLocale[locale].square}
-                            codeBlock={<CodeBlock code={variantCodeByLocale[locale].square} />}
-                            previewBodyWidth="sm"
-                            previewHeight="auto"
-                        >
-                            <div className="w-full max-w-56">
-                                <RatioBlock label={locale === "ja" ? "1:1 アバター切り抜き" : "1:1 avatar crop"} ratio={1} className="bg-warning-subtle" />
-                            </div>
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "縦長" : "Portrait"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja" ? "ポスター、縦長カード、人物写真に使う 3:4 の比率です。" : "Use 3:4 for posters, portrait cards, and people photography."}
-                            </p>
-                        </div>
-                        <ComponentPreview
-                            code={variantCodeByLocale[locale].portrait}
-                            codeBlock={<CodeBlock code={variantCodeByLocale[locale].portrait} />}
-                            previewBodyWidth="sm"
-                            previewHeight="auto"
-                        >
-                            <div className="w-full max-w-48">
-                                <RatioBlock label={locale === "ja" ? "3:4 縦長カード" : "3:4 portrait card"} ratio={3 / 4} className="bg-muted/70" />
-                            </div>
-                        </ComponentPreview>
-                    </section>
-                </div>
+                <ComponentDemoStates
+                    states={[
+                        {
+                            key: "hero-video",
+                            title: locale === "ja" ? "ヒーロー動画" : "Hero video",
+                            description: locale === "ja" ? "動画、ヒーロー、横長のメディアに使う 16:9 の比率です。" : "Use 16:9 for videos, heroes, and wide media.",
+                            code: variantCodeByLocale[locale].video,
+                            previewBodyWidth: "md",
+                            preview: (
+                                <div className="w-full max-w-md">
+                                    <RatioBlock label={locale === "ja" ? "16:9 ヒーロー動画" : "16:9 hero video"} ratio={16 / 9} className="bg-primary-subtle" />
+                                </div>
+                            ),
+                        },
+                        {
+                            key: "article-image",
+                            title: locale === "ja" ? "記事画像" : "Article image",
+                            description: locale === "ja" ? "記事サムネイルや標準的な写真枠に使う 4:3 の比率です。" : "Use 4:3 for article thumbnails and classic image frames.",
+                            code: variantCodeByLocale[locale].photo,
+                            previewBodyWidth: "md",
+                            preview: (
+                                <div className="w-full max-w-sm">
+                                    <RatioBlock label={locale === "ja" ? "4:3 記事画像" : "4:3 article image"} ratio={4 / 3} className="bg-success-subtle" />
+                                </div>
+                            ),
+                        },
+                        {
+                            key: "square",
+                            title: locale === "ja" ? "正方形" : "Square",
+                            description: locale === "ja" ? "アバター、ロゴ、正方形カードに使う 1:1 の比率です。" : "Use 1:1 for avatars, logos, and square cards.",
+                            code: variantCodeByLocale[locale].square,
+                            previewBodyWidth: "sm",
+                            preview: (
+                                <div className="w-full max-w-56">
+                                    <RatioBlock label={locale === "ja" ? "1:1 アバター切り抜き" : "1:1 avatar crop"} ratio={1} className="bg-warning-subtle" />
+                                </div>
+                            ),
+                        },
+                        {
+                            key: "portrait",
+                            title: locale === "ja" ? "縦長" : "Portrait",
+                            description: locale === "ja" ? "ポスター、縦長カード、人物写真に使う 3:4 の比率です。" : "Use 3:4 for posters, portrait cards, and people photography.",
+                            code: variantCodeByLocale[locale].portrait,
+                            previewBodyWidth: "sm",
+                            preview: (
+                                <div className="w-full max-w-48">
+                                    <RatioBlock label={locale === "ja" ? "3:4 縦長カード" : "3:4 portrait card"} ratio={3 / 4} className="bg-muted/70" />
+                                </div>
+                            ),
+                        },
+                    ]}
+                />
             </section>
 
             <section className="space-y-4">

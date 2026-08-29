@@ -3,6 +3,7 @@
 import { useMemo, useRef, useState, type PointerEvent } from "react";
 import { FloatingPanel, SpatialCanvas } from "@gunjo/ui";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
+import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
@@ -454,12 +455,13 @@ export default function SpatialCanvasPage() {
                 <div className="space-y-1">
                     <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "状態とバリエーション" : "States and Variants"}</h2>
                 </div>
-                <div className="space-y-8">
-                    {[
+                <ComponentDemoStates
+                    states={[
                         {
                             key: "panels",
                             title: locale === "ja" ? "パネル配置" : "Floating panels",
                             description: locale === "ja" ? "作業面の上にツールやプロパティパネルを配置します。" : "Place tools and property panels on top of a workspace surface.",
+                            previewBodyWidth: "lg",
                             code: stateCodeByLocale[locale].panels,
                             preview: (
                                 <div className="h-[420px] w-full overflow-hidden rounded-lg border">
@@ -474,6 +476,7 @@ export default function SpatialCanvasPage() {
                             key: "nodes",
                             title: locale === "ja" ? "ノード配置" : "Positioned nodes",
                             description: locale === "ja" ? "絶対配置のノードをキャンバス上に並べます。" : "Place absolute-positioned nodes on the canvas.",
+                            previewBodyWidth: "lg",
                             code: stateCodeByLocale[locale].nodes,
                             preview: (
                                 <div className="h-[360px] w-full overflow-hidden rounded-lg border">
@@ -489,6 +492,7 @@ export default function SpatialCanvasPage() {
                             key: "selection",
                             title: locale === "ja" ? "選択範囲" : "Selection range",
                             description: locale === "ja" ? "キャンバス上をドラッグして矩形で囲い、範囲内のノードを選択します。" : "Drag on the canvas to draw a rectangle and select nodes inside the range.",
+                            previewBodyWidth: "lg",
                             code: stateCodeByLocale[locale].selection,
                             preview: <SelectionCanvasPreview locale={locale} />,
                         },
@@ -496,6 +500,7 @@ export default function SpatialCanvasPage() {
                             key: "dense",
                             title: locale === "ja" ? "細かいグリッド" : "Dense grid",
                             description: locale === "ja" ? "細かい配置や位置合わせを見せる時に gridSize を小さくします。" : "Use a smaller grid size for precise placement.",
+                            previewBodyWidth: "lg",
                             code: stateCodeByLocale[locale].dense,
                             preview: (
                                 <div className="h-[320px] w-full overflow-hidden rounded-lg border">
@@ -507,6 +512,7 @@ export default function SpatialCanvasPage() {
                             key: "coarse",
                             title: locale === "ja" ? "大きいグリッド" : "Coarse grid",
                             description: locale === "ja" ? "大きな構成確認では gridSize を広げます。" : "Use a larger grid size for broad layout work.",
+                            previewBodyWidth: "lg",
                             code: stateCodeByLocale[locale].coarse,
                             preview: (
                                 <div className="h-[320px] w-full overflow-hidden rounded-lg border">
@@ -514,18 +520,8 @@ export default function SpatialCanvasPage() {
                                 </div>
                             ),
                         },
-                    ].map((item) => (
-                        <section key={item.key} className="space-y-3">
-                            <div className="space-y-1">
-                                <h3 className="text-lg font-semibold">{item.title}</h3>
-                                <p className="text-sm text-muted-foreground">{item.description}</p>
-                            </div>
-                            <ComponentPreview code={item.code} codeBlock={<CodeBlock code={item.code} />} previewBodyWidth="lg" previewHeight="auto">
-                                {item.preview}
-                            </ComponentPreview>
-                        </section>
-                    ))}
-                </div>
+                    ]}
+                />
             </section>
 
             <section className="space-y-4">

@@ -2,6 +2,7 @@
 
 import { ResizableHandle, ResizablePanel, ResizablePanelGroup } from "@gunjo/ui";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
+import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
@@ -350,12 +351,14 @@ export default function ResizablePage() {
                 <div className="space-y-1">
                     <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "状態とバリエーション" : "States and Variants"}</h2>
                 </div>
-                <div className="space-y-8">
-                    {[
+                <ComponentDemoStates
+                    states={[
                         {
                             key: "horizontal",
                             title: locale === "ja" ? "水平分割" : "Horizontal split",
                             description: locale === "ja" ? "サイドバーとメイン領域のような左右分割に使います。" : "Use for side-by-side layouts such as sidebar and main canvas.",
+                            previewBodyWidth: "lg",
+                            previewHeight: 380,
                             code: stateCodeByLocale[locale].horizontal,
                             preview: (
                                 <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border">
@@ -371,6 +374,8 @@ export default function ResizablePage() {
                             key: "vertical",
                             title: locale === "ja" ? "垂直分割" : "Vertical split",
                             description: locale === "ja" ? "プレビューとログ、エディタとコンソールなど上下分割に使います。" : "Use for preview/log or editor/console vertical layouts.",
+                            previewBodyWidth: "lg",
+                            previewHeight: 380,
                             code: stateCodeByLocale[locale].vertical,
                             preview: (
                                 <div className="h-72 w-full max-w-2xl overflow-hidden rounded-lg border">
@@ -386,6 +391,8 @@ export default function ResizablePage() {
                             key: "nested",
                             title: locale === "ja" ? "入れ子" : "Nested panels",
                             description: locale === "ja" ? "ファイル、エディタ、ターミナルのような複合ワークスペースを作ります。" : "Compose complex workspaces such as files, editor, and terminal.",
+                            previewBodyWidth: "lg",
+                            previewHeight: 380,
                             code: stateCodeByLocale[locale].nested,
                             preview: (
                                 <div className="h-72 w-full max-w-2xl overflow-hidden rounded-lg border">
@@ -407,6 +414,8 @@ export default function ResizablePage() {
                             key: "threeColumn",
                             title: locale === "ja" ? "3 カラム" : "Three columns",
                             description: locale === "ja" ? "ナビゲーション、本文、インスペクターのような横 3 分割を構成します。" : "Use for three-pane layouts such as navigation, content, and inspector.",
+                            previewBodyWidth: "lg",
+                            previewHeight: 380,
                             code: stateCodeByLocale[locale].threeColumn,
                             preview: (
                                 <div className="h-72 w-full max-w-3xl overflow-hidden rounded-lg border">
@@ -424,6 +433,8 @@ export default function ResizablePage() {
                             key: "collapsible",
                             title: locale === "ja" ? "折りたたみ可能" : "Collapsible panel",
                             description: locale === "ja" ? "補助パネルを最小化できるレイアウトにします。" : "Allow a supporting panel to collapse down when not needed.",
+                            previewBodyWidth: "lg",
+                            previewHeight: 380,
                             code: stateCodeByLocale[locale].collapsible,
                             preview: (
                                 <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border">
@@ -435,18 +446,8 @@ export default function ResizablePage() {
                                 </div>
                             ),
                         },
-                    ].map((item) => (
-                        <section key={item.key} className="space-y-3">
-                            <div className="space-y-1">
-                                <h3 className="text-lg font-semibold">{item.title}</h3>
-                                <p className="text-sm text-muted-foreground">{item.description}</p>
-                            </div>
-                            <ComponentPreview code={item.code} codeBlock={<CodeBlock code={item.code} />} previewBodyWidth="lg" previewHeight={380}>
-                                {item.preview}
-                            </ComponentPreview>
-                        </section>
-                    ))}
-                </div>
+                    ]}
+                />
             </section>
 
             <section className="space-y-4">
