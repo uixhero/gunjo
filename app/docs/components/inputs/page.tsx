@@ -19,6 +19,7 @@ import {
     Slider,
     Switch,
     Textarea,
+    TextLink,
     Toggle,
     ToggleGroup,
     ToggleGroupItem,
@@ -1010,6 +1011,28 @@ export default function InputsOverviewPage() {
                         </CardContent>
                     </Card>
                 </section>
+            </section>
+
+            <section className="space-y-3" id="design-decisions">
+                <div className="border-b pb-2">
+                    <h2 className="text-2xl font-semibold tracking-tight">
+                        {isJa ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                    {isJa
+                        ? "この分類のコンポーネントをいつ使い、いつ使わないかは、UIXHERO の「UIコンポーネント完全ガイド」にある「カテゴリ 01｜アクションと入力」の節にまとめています。選択肢が何個あるか、そして選ばせるのか打ち込ませるのかで、選ぶコンポーネントが変わります。"
+                        : "When to reach for each input component, and when to leave it alone, is covered in the category 01 section, actions and input, of the UI component guide on UIXHERO. The choice turns on how many options there are, and whether people pick one or type their own."}
+                </p>
+                <TextLink
+                    href="https://www.uixhero.com/blog/ui-components-complete-guide#カテゴリ-01アクションと入力"
+                    target="_blank"
+                    newTabLabel={isJa ? "新しいタブで開きます" : "opens in a new tab"}
+                >
+                    {isJa
+                        ? "UIXHERO: UIコンポーネント完全ガイド（カテゴリ 01｜アクションと入力）"
+                        : "UIXHERO: UI component guide, category 01 actions and input (in Japanese)"}
+                </TextLink>
             </section>
         </div>
     );
