@@ -2,6 +2,7 @@
 
 import { Button, HStack, Input, InspectorField, InspectorPanel, InspectorSection, Switch } from "@gunjo/ui";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
+import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
@@ -330,73 +331,76 @@ export default function InspectorPanelPage() {
                         {locale === "ja" ? "状態とバリエーション" : "States and Variants"}
                     </h2>
                 </div>
-                <div className="space-y-8">
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "標準表示" : "Default panel"}</h3>
-                            <p className="text-sm text-muted-foreground">{locale === "ja" ? "ヘッダー、本文、フッター操作を持つプロパティ編集パネルです。" : "A property editing panel with header, body, and footer actions."}</p>
-                        </div>
-                        <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md" previewHeight="auto">
-                            <ShapeInspectorPreview />
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "コンパクト" : "Compact"}</h3>
-                            <p className="text-sm text-muted-foreground">{locale === "ja" ? "小さなサイドパネルで少数の設定を扱います。" : "Use a smaller side panel for a short set of settings."}</p>
-                        </div>
-                        <ComponentPreview code={stateCodeByLocale[locale].compact} codeBlock={<CodeBlock code={stateCodeByLocale[locale].compact} />} previewBodyWidth="md" previewHeight="auto">
-                            <InspectorPanel title={locale === "ja" ? "テキストレイヤー" : "Text layer"} className="h-[320px] w-[280px] rounded-lg border">
-                                <InspectorSection title={locale === "ja" ? "タイポグラフィ" : "Typography"}>
-                                    <InspectorField label={locale === "ja" ? "文字サイズ" : "Font size"}><Input defaultValue="16" className="h-8 w-full min-w-0" /></InspectorField>
-                                    <InspectorField label={locale === "ja" ? "太さ" : "Weight"}><Input defaultValue="Medium" className="h-8 w-full min-w-0" /></InspectorField>
-                                </InspectorSection>
-                            </InspectorPanel>
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "カスタムヘッダー" : "Custom header"}</h3>
-                            <p className="text-sm text-muted-foreground">{locale === "ja" ? "ヘッダー内に補助操作を置きたい場合は header を差し替えます。" : "Replace the header when it needs supporting actions."}</p>
-                        </div>
-                        <ComponentPreview code={stateCodeByLocale[locale].customHeader} codeBlock={<CodeBlock code={stateCodeByLocale[locale].customHeader} />} previewBodyWidth="md" previewHeight="auto">
-                            <InspectorPanel
-                                className="h-[360px] w-[320px] rounded-lg border"
-                                header={
-                                    <HStack justify="between" className="border-b bg-muted/30 px-4 py-3">
-                                        <span className="text-sm font-semibold">{locale === "ja" ? "画像設定" : "Image settings"}</span>
-                                        <Button size="sm" variant="outline">{locale === "ja" ? "差し替え" : "Replace"}</Button>
-                                    </HStack>
-                                }
-                            >
-                                <InspectorSection title={locale === "ja" ? "アセット" : "Asset"}>
-                                    <InspectorField label={locale === "ja" ? "ファイル名" : "File name"}>
-                                        <Input defaultValue="hero-cover.jpg" className="h-8 w-full min-w-0" />
-                                    </InspectorField>
-                                </InspectorSection>
-                            </InspectorPanel>
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "フッターなし" : "Without footer"}</h3>
-                            <p className="text-sm text-muted-foreground">{locale === "ja" ? "読み取り専用の補助情報では、フッター操作を省略できます。" : "Omit footer actions for read-only supporting information."}</p>
-                        </div>
-                        <ComponentPreview code={stateCodeByLocale[locale].footerless} codeBlock={<CodeBlock code={stateCodeByLocale[locale].footerless} />} previewBodyWidth="md" previewHeight="auto">
-                            <InspectorPanel title={locale === "ja" ? "読み取り専用メタデータ" : "Read-only metadata"} className="h-[280px] w-[320px] rounded-lg border">
-                                <InspectorSection title={locale === "ja" ? "詳細" : "Details"}>
-                                    <dl className="grid gap-2 text-sm">
-                                        <div className="flex justify-between gap-4"><dt className="text-muted-foreground">{locale === "ja" ? "形式" : "Type"}</dt><dd>PNG</dd></div>
-                                        <div className="flex justify-between gap-4"><dt className="text-muted-foreground">{locale === "ja" ? "サイズ" : "Size"}</dt><dd>2.4 MB</dd></div>
-                                    </dl>
-                                </InspectorSection>
-                            </InspectorPanel>
-                        </ComponentPreview>
-                    </section>
-                </div>
+                <ComponentDemoStates
+                    states={[
+                        {
+                            key: "default-panel",
+                            title: locale === "ja" ? "標準表示" : "Default panel",
+                            description: locale === "ja" ? "ヘッダー、本文、フッター操作を持つプロパティ編集パネルです。" : "A property editing panel with header, body, and footer actions.",
+                            code: usageCode,
+                            previewBodyWidth: "md",
+                            preview: (
+                                <ShapeInspectorPreview />
+                            ),
+                        },
+                        {
+                            key: "compact",
+                            title: locale === "ja" ? "コンパクト" : "Compact",
+                            description: locale === "ja" ? "小さなサイドパネルで少数の設定を扱います。" : "Use a smaller side panel for a short set of settings.",
+                            code: stateCodeByLocale[locale].compact,
+                            previewBodyWidth: "md",
+                            preview: (
+                                <InspectorPanel title={locale === "ja" ? "テキストレイヤー" : "Text layer"} className="h-[320px] w-[280px] rounded-lg border">
+                                    <InspectorSection title={locale === "ja" ? "タイポグラフィ" : "Typography"}>
+                                        <InspectorField label={locale === "ja" ? "文字サイズ" : "Font size"}><Input defaultValue="16" className="h-8 w-full min-w-0" /></InspectorField>
+                                        <InspectorField label={locale === "ja" ? "太さ" : "Weight"}><Input defaultValue="Medium" className="h-8 w-full min-w-0" /></InspectorField>
+                                    </InspectorSection>
+                                </InspectorPanel>
+                            ),
+                        },
+                        {
+                            key: "custom-header",
+                            title: locale === "ja" ? "カスタムヘッダー" : "Custom header",
+                            description: locale === "ja" ? "ヘッダー内に補助操作を置きたい場合は header を差し替えます。" : "Replace the header when it needs supporting actions.",
+                            code: stateCodeByLocale[locale].customHeader,
+                            previewBodyWidth: "md",
+                            preview: (
+                                <InspectorPanel
+                                    className="h-[360px] w-[320px] rounded-lg border"
+                                    header={
+                                        <HStack justify="between" className="border-b bg-muted/30 px-4 py-3">
+                                            <span className="text-sm font-semibold">{locale === "ja" ? "画像設定" : "Image settings"}</span>
+                                            <Button size="sm" variant="outline">{locale === "ja" ? "差し替え" : "Replace"}</Button>
+                                        </HStack>
+                                    }
+                                >
+                                    <InspectorSection title={locale === "ja" ? "アセット" : "Asset"}>
+                                        <InspectorField label={locale === "ja" ? "ファイル名" : "File name"}>
+                                            <Input defaultValue="hero-cover.jpg" className="h-8 w-full min-w-0" />
+                                        </InspectorField>
+                                    </InspectorSection>
+                                </InspectorPanel>
+                            ),
+                        },
+                        {
+                            key: "without-footer",
+                            title: locale === "ja" ? "フッターなし" : "Without footer",
+                            description: locale === "ja" ? "読み取り専用の補助情報では、フッター操作を省略できます。" : "Omit footer actions for read-only supporting information.",
+                            code: stateCodeByLocale[locale].footerless,
+                            previewBodyWidth: "md",
+                            preview: (
+                                <InspectorPanel title={locale === "ja" ? "読み取り専用メタデータ" : "Read-only metadata"} className="h-[280px] w-[320px] rounded-lg border">
+                                    <InspectorSection title={locale === "ja" ? "詳細" : "Details"}>
+                                        <dl className="grid gap-2 text-sm">
+                                            <div className="flex justify-between gap-4"><dt className="text-muted-foreground">{locale === "ja" ? "形式" : "Type"}</dt><dd>PNG</dd></div>
+                                            <div className="flex justify-between gap-4"><dt className="text-muted-foreground">{locale === "ja" ? "サイズ" : "Size"}</dt><dd>2.4 MB</dd></div>
+                                        </dl>
+                                    </InspectorSection>
+                                </InspectorPanel>
+                            ),
+                        },
+                    ]}
+                />
             </section>
 
             <section className="space-y-4">

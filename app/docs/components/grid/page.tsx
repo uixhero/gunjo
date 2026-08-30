@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { Grid } from "@gunjo/ui";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
+import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
@@ -286,92 +287,87 @@ export default function GridPage() {
                         {locale === "ja" ? "状態とバリエーション" : "States and Variants"}
                     </h2>
                 </div>
-                <div className="space-y-8">
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "固定列" : "Fixed columns"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja" ? "カード数や表示幅が決まっている領域では、列数を明示します。" : "Set an explicit column count when the layout has a fixed structure."}
-                            </p>
-                        </div>
-                        <ComponentPreview code={stateCodeByLocale[locale].fixed} codeBlock={<CodeBlock code={stateCodeByLocale[locale].fixed} />} previewBodyWidth="md" previewHeight="auto">
-                            <Grid cols={3} gap={3} className="w-full">
-                                {Array.from({ length: 6 }, (_, index) => <DemoCell key={index}>{index + 1}</DemoCell>)}
-                            </Grid>
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "幅に応じて列数を変える" : "Responsive auto-fit"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja" ? "親幅に合わせて列数を変えるカード一覧では、最小セル幅を指定します。" : "Set a minimum item width when card lists should adapt to the parent width."}
-                            </p>
-                        </div>
-                        <ComponentPreview code={stateCodeByLocale[locale].autoFit} codeBlock={<CodeBlock code={stateCodeByLocale[locale].autoFit} />} previewBodyWidth="md" previewHeight="auto">
-                            <Grid minItemWidth={160} gap={3} className="w-full">
-                                {(locale === "ja" ? ["監査", "デザイン", "確認", "公開", "レポート"] : ["Audit", "Design", "Review", "Deploy", "Report"]).map((item) => <DemoCell key={item}>{item}</DemoCell>)}
-                            </Grid>
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "12列レイアウト" : "12-column layout"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja" ? "子要素側の col-span と組み合わせて、メイン領域と補助領域の比率を調整します。" : "Combine Grid with child col-span classes to size main and supporting regions."}
-                            </p>
-                        </div>
-                        <ComponentPreview code={stateCodeByLocale[locale].span} codeBlock={<CodeBlock code={stateCodeByLocale[locale].span} />} previewBodyWidth="lg" previewHeight="auto">
-                            <Grid cols={12} gap={3} className="w-full">
-                                <section className="col-span-12 rounded-md border bg-card p-4 sm:col-span-6 lg:col-span-8">
-                                    <h3 className="font-medium">{locale === "ja" ? "メインパネル" : "Main panel"}</h3>
-                                    <p className="mt-1 text-sm text-muted-foreground">
-                                        {locale === "ja" ? "デスクトップでは8列分を使います。" : "Spans 8 columns on desktop."}
-                                    </p>
-                                </section>
-                                <aside className="col-span-12 rounded-md border bg-card p-4 sm:col-span-6 lg:col-span-4">
-                                    <h3 className="font-medium">{locale === "ja" ? "補助パネル" : "Side panel"}</h3>
-                                    <p className="mt-1 text-sm text-muted-foreground">
-                                        {locale === "ja" ? "デスクトップでは4列分を使います。" : "Spans 4 columns on desktop."}
-                                    </p>
-                                </aside>
-                                {(locale === "ja" ? ["指標A", "指標B", "指標C", "指標D"] : ["Metric A", "Metric B", "Metric C", "Metric D"]).map((item) => (
-                                    <div key={item} className="col-span-6 rounded-md border bg-muted/50 p-3 text-sm text-muted-foreground lg:col-span-3">
-                                        {item}
-                                    </div>
-                                ))}
-                            </Grid>
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "余白の密度" : "Gap density"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja" ? "同じセル幅でも、gap の違いで一覧の密度を変えられます。" : "Adjust list density by changing gap while keeping the same item width."}
-                            </p>
-                        </div>
-                        <ComponentPreview code={stateCodeByLocale[locale].gap} codeBlock={<CodeBlock code={stateCodeByLocale[locale].gap} />} previewBodyWidth="lg" previewHeight="auto">
-                            <div className="grid w-full gap-5 md:grid-cols-2">
-                                <Grid minItemWidth={96} gap={1}>
-                                    {Array.from({ length: 4 }, (_, index) => (
-                                        <div key={index} className="grid min-h-14 place-items-center rounded-md border bg-muted/50 text-sm text-muted-foreground">
-                                            {locale === "ja" ? `密 ${index + 1}` : `Tight ${index + 1}`}
+                <ComponentDemoStates
+                    states={[
+                        {
+                            key: "fixed-columns",
+                            title: locale === "ja" ? "固定列" : "Fixed columns",
+                            description: locale === "ja" ? "カード数や表示幅が決まっている領域では、列数を明示します。" : "Set an explicit column count when the layout has a fixed structure.",
+                            code: stateCodeByLocale[locale].fixed,
+                            previewBodyWidth: "md",
+                            preview: (
+                                <Grid cols={3} gap={3} className="w-full">
+                                    {Array.from({ length: 6 }, (_, index) => <DemoCell key={index}>{index + 1}</DemoCell>)}
+                                </Grid>
+                            ),
+                        },
+                        {
+                            key: "responsive-auto-fit",
+                            title: locale === "ja" ? "幅に応じて列数を変える" : "Responsive auto-fit",
+                            description: locale === "ja" ? "親幅に合わせて列数を変えるカード一覧では、最小セル幅を指定します。" : "Set a minimum item width when card lists should adapt to the parent width.",
+                            code: stateCodeByLocale[locale].autoFit,
+                            previewBodyWidth: "md",
+                            preview: (
+                                <Grid minItemWidth={160} gap={3} className="w-full">
+                                    {(locale === "ja" ? ["監査", "デザイン", "確認", "公開", "レポート"] : ["Audit", "Design", "Review", "Deploy", "Report"]).map((item) => <DemoCell key={item}>{item}</DemoCell>)}
+                                </Grid>
+                            ),
+                        },
+                        {
+                            key: "12-column-layout",
+                            title: locale === "ja" ? "12列レイアウト" : "12-column layout",
+                            description: locale === "ja" ? "子要素側の col-span と組み合わせて、メイン領域と補助領域の比率を調整します。" : "Combine Grid with child col-span classes to size main and supporting regions.",
+                            code: stateCodeByLocale[locale].span,
+                            previewBodyWidth: "lg",
+                            preview: (
+                                <Grid cols={12} gap={3} className="w-full">
+                                    <section className="col-span-12 rounded-md border bg-card p-4 sm:col-span-6 lg:col-span-8">
+                                        <h3 className="font-medium">{locale === "ja" ? "メインパネル" : "Main panel"}</h3>
+                                        <p className="mt-1 text-sm text-muted-foreground">
+                                            {locale === "ja" ? "デスクトップでは8列分を使います。" : "Spans 8 columns on desktop."}
+                                        </p>
+                                    </section>
+                                    <aside className="col-span-12 rounded-md border bg-card p-4 sm:col-span-6 lg:col-span-4">
+                                        <h3 className="font-medium">{locale === "ja" ? "補助パネル" : "Side panel"}</h3>
+                                        <p className="mt-1 text-sm text-muted-foreground">
+                                            {locale === "ja" ? "デスクトップでは4列分を使います。" : "Spans 4 columns on desktop."}
+                                        </p>
+                                    </aside>
+                                    {(locale === "ja" ? ["指標A", "指標B", "指標C", "指標D"] : ["Metric A", "Metric B", "Metric C", "Metric D"]).map((item) => (
+                                        <div key={item} className="col-span-6 rounded-md border bg-muted/50 p-3 text-sm text-muted-foreground lg:col-span-3">
+                                            {item}
                                         </div>
                                     ))}
                                 </Grid>
-                                <Grid minItemWidth={96} gap={6}>
-                                    {Array.from({ length: 4 }, (_, index) => (
-                                        <div key={index} className="grid min-h-14 place-items-center rounded-md border bg-muted/50 text-sm text-muted-foreground">
-                                            {locale === "ja" ? `広 ${index + 1}` : `Loose ${index + 1}`}
-                                        </div>
-                                    ))}
-                                </Grid>
-                            </div>
-                        </ComponentPreview>
-                    </section>
-                </div>
+                            ),
+                        },
+                        {
+                            key: "gap-density",
+                            title: locale === "ja" ? "余白の密度" : "Gap density",
+                            description: locale === "ja" ? "同じセル幅でも、gap の違いで一覧の密度を変えられます。" : "Adjust list density by changing gap while keeping the same item width.",
+                            code: stateCodeByLocale[locale].gap,
+                            previewBodyWidth: "lg",
+                            preview: (
+                                <div className="grid w-full gap-5 md:grid-cols-2">
+                                    <Grid minItemWidth={96} gap={1}>
+                                        {Array.from({ length: 4 }, (_, index) => (
+                                            <div key={index} className="grid min-h-14 place-items-center rounded-md border bg-muted/50 text-sm text-muted-foreground">
+                                                {locale === "ja" ? `密 ${index + 1}` : `Tight ${index + 1}`}
+                                            </div>
+                                        ))}
+                                    </Grid>
+                                    <Grid minItemWidth={96} gap={6}>
+                                        {Array.from({ length: 4 }, (_, index) => (
+                                            <div key={index} className="grid min-h-14 place-items-center rounded-md border bg-muted/50 text-sm text-muted-foreground">
+                                                {locale === "ja" ? `広 ${index + 1}` : `Loose ${index + 1}`}
+                                            </div>
+                                        ))}
+                                    </Grid>
+                                </div>
+                            ),
+                        },
+                    ]}
+                />
             </section>
 
             <section className="space-y-4">
