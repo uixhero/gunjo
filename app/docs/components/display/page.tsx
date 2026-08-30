@@ -23,6 +23,7 @@ import {
     Icon as GunjoIcon,
     Separator,
     SearchableAccordion,
+    TextLink,
 } from "@gunjo/ui";
 import {
     IconArrowRight,
@@ -400,6 +401,28 @@ export default function DisplayOverviewPage() {
                         </div>
                     </CardContent>
                 </Card>
+            </section>
+
+            <section className="space-y-3" id="design-decisions">
+                <div className="border-b pb-2">
+                    <h2 className="text-2xl font-semibold tracking-tight">
+                        {isJa ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                    {isJa
+                        ? "この分類のコンポーネントをいつ使い、いつ使わないかは、UIXHERO の「UIコンポーネント完全ガイド」にある「カテゴリ 03｜リスト・データ表示」の節にまとめています。まとめて見せる情報の単位と、その場で操作させるかどうかで、選ぶコンポーネントが変わります。"
+                        : "When to reach for each display component, and when to leave it alone, is covered in the category 03 section, lists and data display, of the UI component guide on UIXHERO. The choice turns on the unit of information you show together, and whether people act on it in place."}
+                </p>
+                <TextLink
+                    href="https://www.uixhero.com/blog/ui-components-complete-guide#カテゴリ-03リストデータ表示"
+                    target="_blank"
+                    newTabLabel={isJa ? "新しいタブで開きます" : "opens in a new tab"}
+                >
+                    {isJa
+                        ? "UIXHERO: UIコンポーネント完全ガイド（カテゴリ 03｜リスト・データ表示）"
+                        : "UIXHERO: UI component guide, category 03 lists and data display (in Japanese)"}
+                </TextLink>
             </section>
         </div>
     );
