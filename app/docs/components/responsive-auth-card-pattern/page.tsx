@@ -151,6 +151,7 @@ export default function ResponsiveAuthCardPatternDocPage() {
       title={patternsMetadata.responsiveAuthCardPattern.title}
       description={patternsMetadata.responsiveAuthCardPattern.description}
       usedComponents={[
+        { name: "ResponsiveAuthCardPattern", href: "/docs/components/responsive-auth-card-pattern" },
         { name: "Card", href: "/docs/components/card" },
         { name: "Tabs", href: "/docs/components/tabs" },
         { name: "Form", href: "/docs/components/form" },
