@@ -38,16 +38,19 @@ const SERIES_PATHS: Record<string, string> = {
     accessibility: "/resources/accessibility",
 };
 
-export interface UixheroLawLink {
+export interface UixheroLink {
     label: string;
     href: string;
 }
+
+/** 旧称。法則記事だけでなくページ自前のリンクも同じ形なので UixheroLink に統一した。 */
+export type UixheroLawLink = UixheroLink;
 
 export interface UixheroLinks {
     /** UIコンポーネント解説の対応記事（対応がなければ null） */
     zukanHref: string | null;
     /** この部品を実装例として参照している法則・原則記事 */
-    laws: UixheroLawLink[];
+    laws: UixheroLink[];
 }
 
 function lawHref(uixhero: string): string | null {
@@ -80,4 +83,34 @@ export function getUixheroLinks(componentSlug: string | null): UixheroLinks {
         });
 
     return { zukanHref, laws };
+}
+
+/**
+ * 地図（uixhero-mapping.json）から導いた自動のリンクと、ページが自分で持つ
+ * リンクを1本の並びに合流させる。
+ *
+ * 合流の規則:
+ * - 並び順は 自動（図鑑 → 法則）が先、ページ自前が後。
+ * - href が同じものは、先に現れたほう（＝自動側）を残して後を落とす。
+ *   ページが地図と同じ記事を指していても二重に出ない。
+ * - ページ自前どうしの重複も、先に書いたほうを残す。
+ * - 比較は href の文字列そのもの。末尾スラッシュや大文字小文字は正規化しない。
+ */
+export function mergeUixheroLinks(
+    auto: UixheroLinks,
+    zukanLabel: string,
+    pageLinks: UixheroLink[] = []
+): UixheroLink[] {
+    const ordered: UixheroLink[] = [
+        ...(auto.zukanHref ? [{ label: zukanLabel, href: auto.zukanHref }] : []),
+        ...auto.laws,
+        ...pageLinks,
+    ];
+
+    const seen = new Set<string>();
+    return ordered.filter((link) => {
+        if (seen.has(link.href)) return false;
+        seen.add(link.href);
+        return true;
+    });
 }

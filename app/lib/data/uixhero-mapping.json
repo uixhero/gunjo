@@ -1,10 +1,10 @@
 {
-  "generatedAt": "2026-07-02",
+  "generatedAt": "2026-07-02（初版） / 2026-08-30 追記: uixhero.com の 2026-08-27 公開ぶん（チャート9本）を Claude が反映。記事の実在は simple-blog-sec content/posts/ui-components/<slug>.md で確認済み。",
   "sources": {
     "uixhero": "simple-blog-sec content/posts/ui-components (60章)",
     "gunjo": "gunjo app/lib/navigation.ts カタログ7カテゴリ (205部品, 2026-07-02時点)"
   },
-  "ruling": "KeEem 2026-07-02 承認（GUNJO-UIXHERO-MAPPING.md §2 の推奨どおり）。両サイトの URL/slug は不変更・対応差はこの表が吸収する。",
+  "ruling": "KeEem 2026-07-02 承認（GUNJO-UIXHERO-MAPPING.md §2 の推奨どおり）。両サイトの URL/slug は不変更・対応差はこの表が吸収する。 / 2026-08-30 KeEem 指示（GUNJO docs の UIXHERO 節を1か所に集める作業）により、bar-chart・donut-chart・gauge-chart・heatmap-chart・line-chart・pie-chart・radar-chart・sparkline-chart・stacked-bar-chart の9件を gunjo-only から exact へ変更（表が 2026-07-02 生成で、8月公開のチャート記事9本を取りこぼしていたため）。残る gunjo-only は 142件から 133件になった（この9件以外は未変更）。",
   "entries": [
     {
       "uixhero": "accordion",
@@ -599,12 +599,12 @@
       "note": "Feedback"
     },
     {
-      "uixhero": null,
+      "uixhero": "bar-chart",
       "gunjo": [
         "bar-chart"
       ],
-      "relation": "gunjo-only",
-      "note": "Charts"
+      "relation": "exact",
+      "note": ""
     },
     {
       "uixhero": null,
@@ -815,12 +815,12 @@
       "note": "Display"
     },
     {
-      "uixhero": null,
+      "uixhero": "donut-chart",
       "gunjo": [
         "donut-chart"
       ],
-      "relation": "gunjo-only",
-      "note": "Charts"
+      "relation": "exact",
+      "note": ""
     },
     {
       "uixhero": null,
@@ -903,12 +903,12 @@
       "note": "Display"
     },
     {
-      "uixhero": null,
+      "uixhero": "gauge-chart",
       "gunjo": [
         "gauge-chart"
       ],
-      "relation": "gunjo-only",
-      "note": "Charts"
+      "relation": "exact",
+      "note": ""
     },
     {
       "uixhero": null,
@@ -935,12 +935,12 @@
       "note": "Navigation"
     },
     {
-      "uixhero": null,
+      "uixhero": "heatmap-chart",
       "gunjo": [
         "heatmap-chart"
       ],
-      "relation": "gunjo-only",
-      "note": "Charts"
+      "relation": "exact",
+      "note": ""
     },
     {
       "uixhero": null,
@@ -1023,12 +1023,12 @@
       "note": "Display"
     },
     {
-      "uixhero": null,
+      "uixhero": "line-chart",
       "gunjo": [
         "line-chart"
       ],
-      "relation": "gunjo-only",
-      "note": "Charts"
+      "relation": "exact",
+      "note": ""
     },
     {
       "uixhero": null,
@@ -1231,12 +1231,12 @@
       "note": "Inputs"
     },
     {
-      "uixhero": null,
+      "uixhero": "pie-chart",
       "gunjo": [
         "pie-chart"
       ],
-      "relation": "gunjo-only",
-      "note": "Charts"
+      "relation": "exact",
+      "note": ""
     },
     {
       "uixhero": null,
@@ -1263,12 +1263,12 @@
       "note": "Charts"
     },
     {
-      "uixhero": null,
+      "uixhero": "radar-chart",
       "gunjo": [
         "radar-chart"
       ],
-      "relation": "gunjo-only",
-      "note": "Charts"
+      "relation": "exact",
+      "note": ""
     },
     {
       "uixhero": null,
@@ -1447,20 +1447,20 @@
       "note": "Display"
     },
     {
-      "uixhero": null,
+      "uixhero": "sparkline-chart",
       "gunjo": [
         "sparkline-chart"
       ],
-      "relation": "gunjo-only",
-      "note": "Charts"
+      "relation": "exact",
+      "note": ""
     },
     {
-      "uixhero": null,
+      "uixhero": "stacked-bar-chart",
       "gunjo": [
         "stacked-bar-chart"
       ],
-      "relation": "gunjo-only",
-      "note": "Charts"
+      "relation": "exact",
+      "note": ""
     },
     {
       "uixhero": null,
