@@ -8,6 +8,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
 import { Separator } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
     ja: `import { Separator } from "@gunjo/ui";
@@ -165,6 +166,12 @@ export default function SeparatorPage() {
                 { name: "Card", href: "/docs/components/card" },
                 { name: "Table", href: "/docs/components/table" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: 区切り線（Separator）" : "UIXHERO: Separator (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/separator`,
+                },
+            ]}
         >
             <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="sm" previewHeight="auto">
                 <div className="w-full space-y-3">
@@ -277,15 +284,6 @@ export default function SeparatorPage() {
                         </li>
                         <li>
                             <strong>縦線は高さを 1.5rem に決め打ちしてある。</strong>資料は「垂直の区切りはほぼ常に飾り」と書いています。GUNJO の縦線は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">h-6</code> 固定で、親の高さいっぱいには伸びません。パンくずやメタ情報の並びで、文字の高さに添えて置くのが想定の使い方で、画面を左右に仕切る線としては作っていません。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/separator"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: 区切り線（Separator）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -298,15 +296,6 @@ export default function SeparatorPage() {
                         </li>
                         <li>
                             <strong>The vertical rule is fixed at 1.5rem.</strong> The article says a vertical separator is nearly always decorative. GUNJO pins it to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">h-6</code> rather than stretching to the parent, because it is meant to sit beside text in a breadcrumb or a metadata row, not to divide a layout into columns.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/separator"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Separator (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

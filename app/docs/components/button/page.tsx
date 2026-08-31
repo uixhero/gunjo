@@ -10,6 +10,7 @@ import { IconDeviceFloppy as Save, IconTrash as Trash2 } from "@tabler/icons-rea
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import { getCategoryVariantUnionType } from "@/lib/docs-spec";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type ButtonVariant =
     | "default"
@@ -199,6 +200,12 @@ export function Example() {
                 { name: "FilterButton", href: "/docs/components/filter-button" },
                 { name: "Command", href: "/docs/components/command" },
                 { name: "Dialog", href: "/docs/components/dialog" },
+            ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: ボタン（Button）" : "UIXHERO: Button (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/button`,
+                },
             ]}
         >
             <ComponentPreview
@@ -566,15 +573,6 @@ export function SubmitButton() {
                         </li>
                         <li>
                             <strong>待っているあいだも幅を変えない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">loading</code> を渡すと、先頭に回るしるしが出て、押せなくなり、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-busy</code> が付きます。文字は消さないので、押した瞬間に幅が変わって隣が動くことがありません。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">asChild</code> のときは中身を差し替えられないので、意味だけを渡します（#305）。1画面に主役のボタンは1つ、ラベルは動詞で書く、という判断は資料に書いてあります。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/button"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: ボタン（Button）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -587,15 +585,6 @@ export function SubmitButton() {
                         </li>
                         <li>
                             <strong>The width does not move while it waits.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">loading</code> and the button shows a leading spinner, stops accepting clicks, and sets <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-busy</code>. The label stays, so nothing next to it shifts the moment it is pressed. With <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">asChild</code> the child owns its content, so only the pending semantics are forwarded (#305). One primary per screen, and labels written as verbs, are covered in the article.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/button"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Button (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

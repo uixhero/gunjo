@@ -11,6 +11,7 @@ import { getDocContent } from "@/lib/docs-content";
 import { getCategoryVariantUnionType } from "@/lib/docs-spec";
 import inputsMetadata from "@design/inputs-metadata.json";
 import { SortButton, type SortButtonVariantKey } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function SortButtonStatePreview({ initial = "none", disabled }: { initial?: SortButtonVariantKey; disabled?: boolean }) {
     const { locale } = useLocale();
@@ -91,6 +92,12 @@ export function DateJoinedSortButton() {
                 { name: "FilterButton", href: "/docs/components/filter-button" },
                 { name: "Table", href: "/docs/components/table" },
                 { name: "Command", href: "/docs/components/command" },
+            ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: ボタン（Button）" : "UIXHERO: Button (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/button`,
+                },
             ]}
         >
             <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewHeight="auto">
@@ -265,15 +272,7 @@ export function LockedSortButton() {
                         <li>
                             <strong>既定は控えめな見た目にした。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> の既定は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ghost</code>、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">size</code> は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">sm</code> です。資料は「Primary は1画面に1つまで」を挙げています。並べ替えは画面の主役ではないので、ツールバーの中で目立たない側に置きました。ラベルは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">label</code> で差し替えられます。
                             <br />
-                            一般のボタンの設計は UIXHERO の「ボタン」にあります。{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/button"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: ボタン（Button）
-                            </a>
+                            一般のボタンの設計は UIXHERO の「ボタン」にあります。
                         </li>
                     </ul>
                 ) : (
@@ -287,15 +286,7 @@ export function LockedSortButton() {
                         <li>
                             <strong>The default surface is deliberately quiet.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> defaults to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ghost</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">size</code> to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">sm</code>. The article allows one primary per screen, and sorting is not the star of any of them, so it sits on the quiet side of a toolbar. The label is replaceable through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">label</code>.
                             <br />
-                            The general design of buttons is covered by UIXHERO&rsquo;s button article.{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/button"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Button (in Japanese)
-                            </a>
+                            The general design of buttons is covered by UIXHERO&rsquo;s button article.
                         </li>
                     </ul>
                 )}

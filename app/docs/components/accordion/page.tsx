@@ -16,6 +16,7 @@ import {
     TooltipContent,
     TooltipTrigger,
 } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 export default function AccordionPage() {
     const { locale, sectionLabels } = useLocale();
@@ -172,6 +173,12 @@ export function SettingsAccordion() {
                 { name: "CollapsiblePanelToggle", href: "/docs/components/collapsible-panel-toggle" },
                 { name: "Tabs", href: "/docs/components/tabs" },
                 { name: "TreeView", href: "/docs/components/tree-view" },
+            ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: アコーディオン（Accordion）" : "UIXHERO: Accordion (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/accordion`,
+                },
             ]}
         >
             <ComponentPreview
@@ -454,15 +461,6 @@ export function DisabledAccordion() {
                         </li>
                         <li>
                             <strong>見出しの構造は Radix に任せる。</strong>トリガーは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AccordionPrimitive.Header</code> の中の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> なので、開閉と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-expanded</code> の対応付けを自分では書きません。そもそも何を折りたたんでよいか、1つずつ開くか複数開くか、という判断は資料に書いてあります。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/accordion"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: アコーディオン（Accordion）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -475,15 +473,6 @@ export function DisabledAccordion() {
                         </li>
                         <li>
                             <strong>Leave the heading structure to Radix.</strong> The trigger is a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> inside <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AccordionPrimitive.Header</code>, so the open state and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-expanded</code> are not wired by hand. What is safe to collapse, and whether one or many items open at once, is covered in the article.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/accordion"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Accordion (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

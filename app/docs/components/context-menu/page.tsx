@@ -7,6 +7,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { ContextMenuAuditDemo } from "@/components/demos/OverlayComponentDemos";
 import overlayMetadata from "@design/overlay-metadata.json";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
     ja: `import {
@@ -305,6 +306,12 @@ export default function ContextMenuPage() {
                 { name: "DropdownMenu", href: "/docs/components/dropdown-menu" },
                 { name: "Menubar", href: "/docs/components/menubar" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: コンテキストメニュー（Context Menu）" : "UIXHERO: Context Menu (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/context-menu`,
+                },
+            ]}
         >
             <ComponentPreview
                 embedSrc="/embed/context-menu"
@@ -430,15 +437,6 @@ export default function ContextMenuPage() {
                         </li>
                         <li>
                             <strong>危ないものは区切って下に置く。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ContextMenuSeparator</code> で区切り、削除のような取り消せない操作は下端に寄せます。項目は左揃えで、幅は192pxを基準にしています。右クリックと長押しの受け取り、焦点の移動は Radix の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ContextMenu</code> に任せています。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/context-menu"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: コンテキストメニュー（Context Menu）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -451,15 +449,6 @@ export default function ContextMenuPage() {
                         </li>
                         <li>
                             <strong>Separate the dangerous items and put them last.</strong> Use <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ContextMenuSeparator</code> and keep irreversible actions such as delete at the bottom. Items are left-aligned and the content is 192px wide by default. Right click, long press and focus movement all come from the Radix <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ContextMenu</code>.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/context-menu"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Context Menu (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

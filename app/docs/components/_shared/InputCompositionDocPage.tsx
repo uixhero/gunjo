@@ -6,6 +6,7 @@ import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import inputsMetadata from "@design/inputs-metadata.json";
+import type { UixheroLink } from "@/lib/uixhero-links";
 import type * as React from "react";
 
 type ComponentState = {
@@ -42,6 +43,11 @@ type InputCompositionDocPageProps = {
      * UIXHERO reference it cites lives next to the component it is about.
      */
     designDecisions?: Record<"ja" | "en", React.ReactNode>;
+    /**
+     * このページが自分で持つ UIXHERO の記事リンク。ラベルが言語で変わるので
+     * locale ごとに受け、「いつ・なぜ使うか（UIXHERO）」の節へ渡す。
+     */
+    uixheroLinks?: Record<"ja" | "en", UixheroLink[]>;
 };
 
 export function InputCompositionDocPage({
@@ -58,6 +64,7 @@ export function InputCompositionDocPage({
     relatedComponents,
     previewBodyWidth = "md",
     designDecisions,
+    uixheroLinks,
 }: InputCompositionDocPageProps) {
     const { locale, sectionLabels } = useLocale();
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
@@ -70,6 +77,7 @@ export function InputCompositionDocPage({
             sectionLabels={sectionLabels}
             usedComponents={usedComponents}
             relatedComponents={relatedComponents}
+            uixheroLinks={uixheroLinks?.[locale]}
         >
             <ComponentPreview
                 embedSrc={embedSrc}

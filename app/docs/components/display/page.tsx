@@ -23,7 +23,6 @@ import {
     Icon as GunjoIcon,
     Separator,
     SearchableAccordion,
-    TextLink,
 } from "@gunjo/ui";
 import {
     IconArrowRight,
@@ -37,6 +36,8 @@ import {
 } from "@tabler/icons-react";
 
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { UixheroRationaleLinks } from "@/components/doc/ComponentHelpers";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const asset = {
     id: "display-overview-asset",
@@ -414,16 +415,19 @@ export default function DisplayOverviewPage() {
                         ? "この分類のコンポーネントをいつ使い、いつ使わないかは、UIXHERO の「UIコンポーネント完全ガイド」にある「カテゴリ 03｜リスト・データ表示」の節にまとめています。まとめて見せる情報の単位と、その場で操作させるかどうかで、選ぶコンポーネントが変わります。"
                         : "When to reach for each display component, and when to leave it alone, is covered in the category 03 section, lists and data display, of the UI component guide on UIXHERO. The choice turns on the unit of information you show together, and whether people act on it in place."}
                 </p>
-                <TextLink
-                    href="https://www.uixhero.com/blog/ui-components-complete-guide#カテゴリ-03リストデータ表示"
-                    target="_blank"
-                    newTabLabel={isJa ? "新しいタブで開きます" : "opens in a new tab"}
-                >
-                    {isJa
-                        ? "UIXHERO: UIコンポーネント完全ガイド（カテゴリ 03｜リスト・データ表示）"
-                        : "UIXHERO: UI component guide, category 03 lists and data display (in Japanese)"}
-                </TextLink>
             </section>
+
+            <UixheroRationaleLinks
+                locale={locale}
+                uixheroLinks={[
+                    {
+                        label: isJa
+                            ? "UIXHERO: UIコンポーネント完全ガイド（カテゴリ 03｜リスト・データ表示）"
+                            : "UIXHERO: UI component guide, category 03 lists and data display (in Japanese)",
+                        href: `${UIXHERO_BASE_URL}/blog/ui-components-complete-guide#カテゴリ-03リストデータ表示`,
+                    },
+                ]}
+            />
         </div>
     );
 }

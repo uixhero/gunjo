@@ -8,6 +8,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import navigationMetadata from "@design/navigation-metadata.json";
 import { Badge, Tabs, TabsContent, TabsList, TabsTrigger } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function TabsExample({ withCounts = false, controlled = false }: { withCounts?: boolean; controlled?: boolean }) {
     const { locale } = useLocale();
@@ -348,6 +349,12 @@ export default function TabsPage() {
                 { name: "NavigationMenu", href: "/docs/components/navigation-menu" },
                 { name: "Command", href: "/docs/components/command" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: タブ（Tabs）" : "UIXHERO: Tabs (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/tabs`,
+                },
+            ]}
         >
             <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewBodyWidth="lg" previewHeight="auto">
                 <TabsExample />
@@ -434,15 +441,6 @@ export default function TabsPage() {
                         </li>
                         <li>
                             <strong>縦向きは見た目ごと入れ替える。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">orientation</code> に縦を渡すと、土台の Radix が付ける印を手がかりに、枠線とカードの見た目を捨てて左の柱と本文の2列になります（#165）。呼ぶ側が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">className</code> で作り直さずに済ませるためで、資料の「タブの中にタブを作らない」を守ったまま、項目の多い画面を柱で表せます。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/tabs"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: タブ（Tabs）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -455,15 +453,6 @@ export default function TabsPage() {
                         </li>
                         <li>
                             <strong>Vertical orientation swaps the whole look.</strong> Pass a vertical <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">orientation</code> and the component reads the marker Radix sets, drops the bordered card treatment, and becomes a left rail plus content (#165). That saves callers from rebuilding it in <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">className</code>, and lets a screen with many sections use a rail while still honouring the article rule against tabs inside tabs.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/tabs"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Tabs (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

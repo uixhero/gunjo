@@ -17,6 +17,7 @@ import {
     TableHeader,
     TableRow,
 } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
     ja: `import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@gunjo/ui";
@@ -484,6 +485,12 @@ export default function TablePage() {
                 { name: "MetadataList", href: "/docs/components/metadata-list" },
                 { name: "MarkdownRenderer", href: "/docs/components/markdown-renderer" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: テーブル（Table）" : "UIXHERO: Table (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/table`,
+                },
+            ]}
         >
             <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="lg" previewHeight="auto">
                 <AmountTable locale={locale} />
@@ -590,15 +597,6 @@ export default function TablePage() {
                         </li>
                         <li>
                             <strong>揃えは部品が決めません。</strong>資料は「文字の種類でセルの揃えを変え、見出しの揃えはデータの揃えと必ず一致させる」を最優先に挙げています。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">TableHead</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">TableCell</code> はどちらも左揃えで始まり、数値の列を右に寄せるのは呼ぶ側の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">className</code> の仕事です。行の縞（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">striped</code>）も既定では入れず、密な表で頼まれたときだけ足します。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/table"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: テーブル（Table）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -611,15 +609,6 @@ export default function TablePage() {
                         </li>
                         <li>
                             <strong>Alignment is not decided by the component.</strong> The article makes alignment its first principle: align by the kind of value, and always match the header alignment to the data. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">TableHead</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">TableCell</code> both start left aligned, and pushing a numeric column right is the job of the caller through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">className</code>. Zebra striping (<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">striped</code>) is likewise off by default and added only where a dense table asks for it.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/table"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Table (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

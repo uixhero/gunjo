@@ -9,6 +9,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import feedbackMetadata from "@design/feedback-metadata.json";
 import { getCategoryVariantUnionType } from "@/lib/docs-spec";
 import { Button, Toast, type ToastAction, type ToastType } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function ToastTriggerPreview({
     type,
@@ -414,6 +415,12 @@ export default function ToastPage() {
                 { name: "Alert", href: "/docs/components/alert" },
             ]}
             sectionLabels={sectionLabels}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: トースト（Toast）" : "UIXHERO: Toast (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/toast`,
+                },
+            ]}
         >
             <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewHeight="auto" previewBodyWidth="md" sectionLabels={sectionLabels}>
                 <Toast
@@ -549,15 +556,6 @@ export default function ToastPage() {
                         </li>
                         <li>
                             <strong>積み上がる場所は Provider が持つ。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ToastProvider</code> が縦並びの箱を作り、間を空けて重ねます。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">placement</code> に容器を指定すると、画面全体ではなく渡した枠の中に出ます。docs の埋め込みプレビューのように、ページ全体を覆っては困る場所のためです。消えるときは表示を止めてから300ms後に取り除くので、出ていく動きが最後まで見えます。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/toast"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: トースト（Toast）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -570,15 +568,6 @@ export default function ToastPage() {
                         </li>
                         <li>
                             <strong>The stack belongs to the provider.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ToastProvider</code> owns the column and spaces the toasts apart. Set <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">placement</code> to the container form and they render inside the element you pass rather than over the whole viewport, which is what the embedded previews in these docs need. On dismissal the toast is hidden first and removed 300ms later, so the exit animation is seen through to the end.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/toast"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Toast (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

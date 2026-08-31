@@ -9,6 +9,7 @@ import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle, Icon, List, ListItem } from "@gunjo/ui";
 import { IconArrowRight, IconCheck } from "@tabler/icons-react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
     ja: `import { List, ListItem } from "@gunjo/ui";
@@ -86,6 +87,12 @@ export default function ListDocPage() {
                 { name: "MarkdownRenderer", href: "/docs/components/markdown-renderer" },
                 { name: "DataTable", href: "/docs/components/data-table" },
                 { name: "Checkbox", href: "/docs/components/checkbox" },
+            ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: リスト（List）" : "UIXHERO: List (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/list`,
+                },
             ]}
         >
             <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="sm" previewHeight="auto">
@@ -330,15 +337,6 @@ export function CustomIconList() {
                         </li>
                         <li>
                             <strong>押せる一覧・選べる一覧は、この部品ではない。</strong>資料は「押して操作するか」「複数選ぶか」で <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> や <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">checkbox</code> に分かれると書いています。GUNJO では押せる一覧は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ListCard</code>、選べる一覧は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Checkbox</code> を組んだ形で、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">List</code> は読むための一覧に絞っています。空になったときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">EmptyState</code> を置きます。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/list"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: リスト（List）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -351,15 +349,6 @@ export function CustomIconList() {
                         </li>
                         <li>
                             <strong>Actionable and selectable lists are other components.</strong> The article splits lists by whether a row is pressed and whether several are selected, landing on <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> or <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">checkbox</code>. In GUNJO an actionable list is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ListCard</code> and a selectable one is composed with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Checkbox</code>, which leaves <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">List</code> for lists that are read. When it runs empty, put an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">EmptyState</code> there.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/list"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: List (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

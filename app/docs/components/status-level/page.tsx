@@ -29,6 +29,7 @@ import {
   statusLevelStep,
   type StatusLevelStep,
 } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Locale = "ja" | "en";
 
@@ -367,6 +368,16 @@ export function ServiceStatusList() {
         { name: "ExpiryBadge", href: "/docs/components/expiry-badge" },
         { name: "Meter", href: "/docs/components/meter" },
       ]}
+      uixheroLinks={[
+        {
+          label: locale === "ja" ? "AIが作った画面で、実際に起きた29の失敗 — 28. 状態の違いが、色だけに乗る" : "29 failures we found in AI-generated screens — no. 28, state carried by colour alone",
+          href: `${UIXHERO_BASE_URL}/blog/ai-generated-ui-29-failures#28-状態の違いが色だけに乗る`,
+        },
+        {
+          label: locale === "ja" ? "色だけに頼らない" : "Not relying on colour alone",
+          href: `${UIXHERO_BASE_URL}/resources/ui-design/color-independence`,
+        },
+      ]}
     >
       <ComponentPreview
         code={usageCode}
@@ -695,15 +706,6 @@ export function SizesAndLayout() {
               <strong>色だけで段を伝えない。</strong>段バーを常に出しているのは、彩度をゼロにしても
               「何段目か」を数えられるようにするためです。コールドテストで繰り返し出た粗さで、
               UIXHERO の記事にも実例が載っています。
-              <br />
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/blog/ai-generated-ui-29-failures#28-状態の違いが色だけに乗る"
-                target="_blank"
-                rel="noreferrer"
-              >
-                AIが作った画面で、実際に起きた29の失敗 — 28. 状態の違いが、色だけに乗る
-              </a>
             </li>
             <li>
               <strong>段の定義は1か所だけに書く。</strong>並べ替えも「いちばん重い段」の導出も同じ
@@ -711,15 +713,6 @@ export function SizesAndLayout() {
             </li>
             <li>
               <strong>色に頼らない伝え方の考え方</strong>は資料にまとめてあります。
-              <br />
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/resources/ui-design/color-independence"
-                target="_blank"
-                rel="noreferrer"
-              >
-                色だけに頼らない
-              </a>
             </li>
           </ul>
         ) : (
@@ -729,15 +722,6 @@ export function SizesAndLayout() {
               that the reading of &ldquo;which step is this?&rdquo; survives with saturation at zero.
               This is a recurring finding in our cold tests, with worked examples written up on
               UIXHERO.
-              <br />
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/blog/ai-generated-ui-29-failures#28-状態の違いが色だけに乗る"
-                target="_blank"
-                rel="noreferrer"
-              >
-                29 failures we found in AI-generated screens — no. 28, state carried by colour alone
-              </a>
             </li>
             <li>
               <strong>Declare the scale in exactly one place.</strong> Sorting and the roll-up both read
@@ -745,15 +729,6 @@ export function SizesAndLayout() {
             </li>
             <li>
               <strong>The wider reasoning</strong> on communicating without relying on colour:
-              <br />
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/resources/ui-design/color-independence"
-                target="_blank"
-                rel="noreferrer"
-              >
-                Not relying on colour alone
-              </a>
             </li>
           </ul>
         )}

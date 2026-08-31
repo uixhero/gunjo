@@ -8,6 +8,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
 import { AssetCard } from "@gunjo/ui";
 import * as React from "react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const asset = {
     id: "hero",
@@ -123,6 +124,13 @@ export default function AssetCardDocPage() {
                 { name: "AssetGrid", href: "/docs/components/asset-grid" },
                 { name: "MediaLightbox", href: "/docs/components/media-lightbox" },
                 { name: "AssetInspectorPanel", href: "/docs/components/asset-inspector-panel" },
+            ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: カード（Card）" : "UIXHERO: Card (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+                    relation: "nearest",
+                },
             ]}
         >
             <ComponentPreview
@@ -349,15 +357,7 @@ export function FileAssetCard() {
                         <li>
                             <strong>選択の印は色ではなく形で出す。</strong>選ばれたカードは枠の色だけでなく、右上に丸のチェックが出ます。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">selectionMode</code> が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">multiple</code> のときは、選ばれていなくても空の丸を先に出して「ここは複数選べる」を見せます。
                             <br />
-                            一般のカードの設計は UIXHERO の「カード」にあります。{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/card"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: カード（Card）
-                            </a>
+                            一般のカードの設計は UIXHERO の「カード」にあります。
                         </li>
                     </ul>
                 ) : (
@@ -371,15 +371,7 @@ export function FileAssetCard() {
                         <li>
                             <strong>Selection is shown by shape, not only by colour.</strong> A selected card gets a circular check in the top-right corner as well as the coloured frame. When <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">selectionMode</code> is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">multiple</code>, an empty circle appears even before anything is selected, so the multi-select affordance is visible up front.
                             <br />
-                            The general design of cards is covered by UIXHERO&rsquo;s card article.{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/card"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Card (in Japanese)
-                            </a>
+                            The general design of cards is covered by UIXHERO&rsquo;s card article.
                         </li>
                     </ul>
                 )}

@@ -8,6 +8,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
 import { Avatar, AvatarFallback, AvatarImage } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 export default function AvatarPage() {
     const { locale, sectionLabels } = useLocale();
@@ -131,6 +132,12 @@ export function UserAvatar() {
                 { name: "AvatarGroup", href: "/docs/components/avatar-group" },
                 { name: "HoverCard", href: "/docs/components/hover-card" },
                 { name: "Tooltip", href: "/docs/components/tooltip" },
+            ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: アバター（Avatar）" : "UIXHERO: Avatar (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/avatar`,
+                },
             ]}
         >
             <ComponentPreview embedSrc="/embed/avatar" code={code} codeBlock={<CodeBlock code={code} />}>
@@ -289,15 +296,6 @@ export function PresenceAvatar() {
                         </li>
                         <li>
                             <strong>丸だけで誰か分からないときは、名前を添えられるようにする。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">tooltip</code> を渡すと、アバター全体がツールチップのトリガーになります。画像が読めなかったときに頭文字へ落とす切り替えは Radix の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Avatar</code> が持っているので、こちらでは書いていません。頭文字を何文字にするか、並べるときの上限をいくつにするかは資料に書いてあります。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/avatar"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: アバター（Avatar）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -310,15 +308,6 @@ export function PresenceAvatar() {
                         </li>
                         <li>
                             <strong>A bare circle can carry a name.</strong> Passing <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">tooltip</code> turns the whole avatar into a tooltip trigger. Falling back from image to initials is handled by the Radix <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Avatar</code>, so it is not reimplemented here. How many initials to show, and the cap for a stacked group, are covered in the article.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/avatar"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Avatar (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

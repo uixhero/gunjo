@@ -6,6 +6,7 @@ import { AnalyticsCard, StackedBarChart } from "@gunjo/ui";
 
 import { ChartDocPage } from "@/components/doc/ChartDocPage";
 import displayMetadata from "@design/display-metadata.json";
+import { UIXHERO_BASE_URL, type UixheroLink } from "@/lib/uixhero-links";
 
 type Locale = "en" | "ja";
 type DataItem = ComponentProps<typeof StackedBarChart>["data"][number];
@@ -1138,15 +1139,6 @@ const designDecisions = {
             </li>
             <li>
                 <strong>帯の読み上げ名には、いつも取り分が入ります。</strong>「グループ名 系列名: 値（Total: 合計 / NN%）」の形です。帯が細くて数字を書けないときでも、割合はキーボードと読み上げには届きます。積む順は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">segments</code> の並び順そのままで、配列の先頭が下段になります。資料が最も効く判断に挙げる「比べさせたい系列を最下段に置く」は、配列を並べ替えて行います。数値の整形は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> のほかに、サーバーコンポーネントからも渡せる <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code> を持っています（#338）。
-                <br />
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/stacked-bar-chart"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: 積み上げ棒グラフ（Stacked Bar Chart）
-                </a>
             </li>
         </>
     ),
@@ -1160,18 +1152,25 @@ const designDecisions = {
             </li>
             <li>
                 <strong>Every band announces its share.</strong> The accessible name reads “group, segment: value (Total: total / NN%)”, so the share reaches keyboard and screen-reader users even when a band is too thin to hold a number. Stacking order follows <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">segments</code> exactly, first item at the bottom, which is how you apply the article&rsquo;s sharpest rule: put the series you want compared at the base. Alongside <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> this chart takes the serializable <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code>, which a Server Component can pass (#338).
-                <br />
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/stacked-bar-chart"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: Stacked Bar Chart (in Japanese)
-                </a>
             </li>
         </>
     ),
+};
+
+// 本文からこの節へ移した UIXHERO の記事リンク（gunjo #955 の受け口）。
+const uixheroLinks: Record<"ja" | "en", UixheroLink[]> = {
+    ja: [
+        {
+            label: "UIXHERO: 積み上げ棒グラフ（Stacked Bar Chart）",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/stacked-bar-chart`,
+        },
+    ],
+    en: [
+        {
+            label: "UIXHERO: Stacked Bar Chart (in Japanese)",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/stacked-bar-chart`,
+        },
+    ],
 };
 
 export default function StackedBarChartPage() {
@@ -1214,6 +1213,7 @@ export default function StackedBarChartPage() {
                     { name: "分布バー", href: "/docs/components/distribution-bar" },
                 ],
             }}
+            uixheroLinks={uixheroLinks}
         />
     );
 }

@@ -1,5 +1,6 @@
 import { OverlayAuditDocPage } from "../_overlayAuditDocPage";
 import overlayMetadata from "@design/overlay-metadata.json";
+import { UIXHERO_BASE_URL, type UixheroLink } from "@/lib/uixhero-links";
 
 const designDecisions = {
     ja: (
@@ -12,15 +13,6 @@ const designDecisions = {
             </li>
             <li>
                 <strong>幅を <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max-w-xs</code> で頭打ちにした。</strong>資料は「テキストは短く、最大2行」と書いています。行数では止められないので、GUNJO は幅を20remで止めて中央寄せにしました。長い文を入れると縦に伸びて目に見えて不格好になるので、書いた時点で気づけます。出るまでの間は土台の Radix の既定のままで、必要なら <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">delayDuration</code> を渡して変えられます。
-                <br />
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/tooltip"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: ツールチップ（Tooltip）
-                </a>
             </li>
         </>
     ),
@@ -34,18 +26,25 @@ const designDecisions = {
             </li>
             <li>
                 <strong>The width is capped at <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max-w-xs</code>.</strong> The article asks for short text, at most two lines. Lines cannot be capped directly, so GUNJO caps the width at 20rem and centres the text. Long copy then grows visibly tall and awkward, which shows up while it is being written. The open delay is left at the Radix default and can be changed with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">delayDuration</code>.
-                <br />
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/tooltip"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: Tooltip (in Japanese)
-                </a>
             </li>
         </>
     ),
+};
+
+// 本文からこの節へ移した UIXHERO の記事リンク（gunjo #955 の受け口）。
+const uixheroLinks: Record<"ja" | "en", UixheroLink[]> = {
+    ja: [
+        {
+            label: "UIXHERO: ツールチップ（Tooltip）",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/tooltip`,
+        },
+    ],
+    en: [
+        {
+            label: "UIXHERO: Tooltip (in Japanese)",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/tooltip`,
+        },
+    ],
 };
 
 export default function TooltipDocPage() {
@@ -55,6 +54,7 @@ export default function TooltipDocPage() {
             title={overlayMetadata.tooltip.title}
             description={overlayMetadata.tooltip.description}
             designDecisions={designDecisions}
+            uixheroLinks={uixheroLinks}
         />
     );
 }

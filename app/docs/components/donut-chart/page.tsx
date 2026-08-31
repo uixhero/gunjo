@@ -9,6 +9,7 @@ import { ChartPreviewWithControls } from "@/components/doc/ChartPreviewWithContr
 import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
 import { DonutChart } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type DonutSegment = ComponentProps<typeof DonutChart>["segments"][number];
 
@@ -495,6 +496,12 @@ export default function DonutChartPage() {
                 { name: locale === "ja" ? "分布バー" : "DistributionBar", href: "/docs/components/distribution-bar" },
                 { name: locale === "ja" ? "分析カード" : "AnalyticsCard", href: "/docs/components/analytics-card" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: ドーナツチャート（Donut Chart）" : "UIXHERO: Donut Chart (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/donut-chart`,
+                },
+            ]}
         >
             <ChartPreviewWithControls
                 code={code}
@@ -652,15 +659,6 @@ export default function DonutChartPage() {
                         </li>
                         <li>
                             <strong>くり抜きは、カードの色で塗っています。</strong>中央の穴は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">thickness</code> ピクセルぶん内側に置いた円で、色は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">bg-card</code> です。カードの上に置く前提の作りなので、違う色の面に置くときは重なりを確かめてください。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">thickness</code> の既定は 24（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">compact</code> は 18）です。数値の整形は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> だけで、シリアライズできる <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code> は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DonutChart</code> にはまだありません。サーバーコンポーネントからは渡せないので、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'"use client"'}</code> の境界を挟みます（#338）。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/donut-chart"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: ドーナツチャート（Donut Chart）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -673,15 +671,6 @@ export default function DonutChartPage() {
                         </li>
                         <li>
                             <strong>The hole is painted in the card colour.</strong> It is a circle inset by <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">thickness</code> pixels filled with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">bg-card</code>, which assumes the chart sits on a card; check the overlap when you place it on a differently coloured surface. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">thickness</code> defaults to 24 (18 for <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">compact</code>). Formatting goes through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> only: the serializable <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code> is not on <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DonutChart</code> yet, so a Server Component needs a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'"use client"'}</code> boundary in between (#338).
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/donut-chart"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Donut Chart (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

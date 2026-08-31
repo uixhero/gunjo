@@ -14,6 +14,7 @@ import {
     IconLayoutKanban as FolderKanban,
     IconSettings as Settings,
 } from "@tabler/icons-react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const NAV_ITEMS = [
     { id: "home", label: { ja: "ホーム", en: "Home" }, icon: Home },
@@ -493,6 +494,12 @@ export default function SidebarPage() {
                 { name: "SidebarItem", href: "/docs/components/sidebar-item" },
                 { name: "RightRail", href: "/docs/components/right-rail" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: サイドバー（Sidebar）" : "UIXHERO: Sidebar (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/sidebar`,
+                },
+            ]}
         >
             <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewBodyWidth="full" previewHeight="auto">
                 <SidebarExample />
@@ -586,15 +593,6 @@ export default function SidebarPage() {
                         </li>
                         <li>
                             <strong>現在地の印は項目の側が持つ。</strong>資料が求める <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-current</code> は、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">isActive</code> を渡した <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">SidebarItem</code> が付けます。開いている親の行は、子の塗りと二重にならないように別の見た目（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">isCurrentAncestor</code>）にしてあります。資料が挙げる「モバイルではサイドバーを Sheet に置き換える」は部品に入っていないので、いまは画面の側で出し分けます。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/sidebar"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: サイドバー（Sidebar）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -607,15 +605,6 @@ export default function SidebarPage() {
                         </li>
                         <li>
                             <strong>The current-page marker belongs to the item.</strong> The <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-current</code> the article requires is applied by a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">SidebarItem</code> given <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">isActive</code>. An expanded parent on the active path uses a different treatment (<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">isCurrentAncestor</code>) so two solid fills do not stack. Replacing the sidebar with a Sheet on mobile, which the article recommends, is not built in and is still decided by the screen.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/sidebar"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Sidebar (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

@@ -22,6 +22,7 @@ import {
     MenubarTrigger,
     DocNote,
 } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function MenubarExample() {
     const { locale } = useLocale();
@@ -491,6 +492,12 @@ export default function MenubarPage() {
             sectionLabels={sectionLabels}
             usedComponents={[{ name: "Menubar", href: "/docs/components/menubar" }]}
             relatedComponents={[{ name: "ContextMenu", href: "/docs/components/context-menu" }]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: メニューバー（Menubar）" : "UIXHERO: Menubar (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/menubar`,
+                },
+            ]}
         >
             <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewBodyWidth="md" previewHeight="auto">
                 <MenubarExample />
@@ -584,15 +591,6 @@ export default function MenubarPage() {
                         </li>
                         <li>
                             <strong>チェック項目とラジオ項目を別の部品に分けた。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarCheckboxItem</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarRadioItem</code> を用意し、資料が求める <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">menuitemcheckbox</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">menuitemradio</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-checked</code> は土台の Radix が付けます。サブメニュー（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarSub</code>）の見た目は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">min-w-[8rem]</code> と控えめにしてあり、資料の「サブメニューは最大1段まで」に沿って、深く入れ子にする使い方は想定していません。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/menubar"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: メニューバー（Menubar）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -605,15 +603,6 @@ export default function MenubarPage() {
                         </li>
                         <li>
                             <strong>Checkbox and radio items are separate components.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarCheckboxItem</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarRadioItem</code> exist so the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">menuitemcheckbox</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">menuitemradio</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-checked</code> the article requires come from Radix underneath. The submenu (<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarSub</code>) is styled small on purpose (<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">min-w-[8rem]</code>), matching the article rule of at most one level of nesting.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/menubar"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Menubar (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

@@ -9,6 +9,7 @@ import displayMetadata from "@design/display-metadata.json";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { ConcentricProgressCard } from "@gunjo/ui";
 import type { ConcentricProgressMetric, ConcentricProgressRing } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const ringsByLocale: Record<"en" | "ja", ConcentricProgressRing[]> = {
     en: [
@@ -585,6 +586,13 @@ export default function ConcentricProgressCardPage() {
                 { name: locale === "ja" ? "分析カード" : "AnalyticsCard", href: "/docs/components/analytics-card" },
                 { name: locale === "ja" ? "統計" : "Statistic", href: "/docs/components/statistic" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: カード（Card）" : "UIXHERO: Card (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+                    relation: "nearest",
+                },
+            ]}
         >
             <ChartPreviewWithControls
                 code={codeByLocale[locale]}
@@ -750,15 +758,7 @@ export default function ConcentricProgressCardPage() {
                         <li>
                             <strong>真ん中の数字はカードが計算しない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">value</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">centerLabel</code> は呼ぶ側が渡します。輪の合計なのか、いちばん外の輪の値なのか、達成率なのかは画面の意味で変わるからです。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> も同じで、渡さなければ輪の最大値がそのまま基準になります。
                             <br />
-                            一般のカードの設計は UIXHERO の「カード」にあります。{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/card"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: カード（Card）
-                            </a>
+                            一般のカードの設計は UIXHERO の「カード」にあります。
                         </li>
                     </ul>
                 ) : (
@@ -772,15 +772,7 @@ export default function ConcentricProgressCardPage() {
                         <li>
                             <strong>The number in the middle is not computed by the card.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">value</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">centerLabel</code> come from the caller, because whether the centre shows a total, the outermost ring or a completion rate depends on the screen. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> works the same way: omit it and the largest ring sets the scale.
                             <br />
-                            The general design of cards is covered by UIXHERO&rsquo;s card article.{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/card"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Card (in Japanese)
-                            </a>
+                            The general design of cards is covered by UIXHERO&rsquo;s card article.
                         </li>
                     </ul>
                 )}

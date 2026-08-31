@@ -4,6 +4,7 @@ import type { ComponentProps } from "react";
 import { ChartDocPage } from "@/components/doc/ChartDocPage";
 import displayMetadata from "@design/display-metadata.json";
 import { ChartLegend, RadarChart } from "@gunjo/ui";
+import { UIXHERO_BASE_URL, type UixheroLink } from "@/lib/uixhero-links";
 
 type Locale = "en" | "ja";
 type DataItem = ComponentProps<typeof RadarChart>["data"][number];
@@ -539,15 +540,6 @@ const designDecisions = {
             </li>
             <li>
                 <strong>系列の区別は、いまは色と塗りの濃さだけです。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">series</code> で複数の面を重ねられ、塗りは既定で <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">fillOpacity</code> が 0.16 なので後ろの面が透けます。ただし線はすべて実線で、点もすべて同じ丸です。資料が挙げる「現在は実線、目標は破線」「系列ごとに点の形を変える」は、GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">RadarChart</code> にはまだありません。重ねるのは2つまでにして、軸ごとの数字を図のそばに置いてください。
-                <br />
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/radar-chart"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: レーダーチャート（Radar Chart）
-                </a>
             </li>
         </>
     ),
@@ -561,22 +553,29 @@ const designDecisions = {
             </li>
             <li>
                 <strong>Series are separated by colour and fill weight alone, for now.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">series</code> layers several polygons, and the default <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">fillOpacity</code> of 0.16 keeps the one behind visible. Every stroke is solid, though, and every dot is the same circle. The article&rsquo;s advice — solid for current, dashed for target, a different dot shape per series — is not in GUNJO&rsquo;s <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">RadarChart</code> yet. Keep it to two overlaid shapes and put the per-axis numbers next to the figure.
-                <br />
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/radar-chart"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: Radar Chart (in Japanese)
-                </a>
             </li>
         </>
     ),
 };
 
+// 本文からこの節へ移した UIXHERO の記事リンク（gunjo #955 の受け口）。
+const uixheroLinks: Record<"ja" | "en", UixheroLink[]> = {
+    ja: [
+        {
+            label: "UIXHERO: レーダーチャート（Radar Chart）",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/radar-chart`,
+        },
+    ],
+    en: [
+        {
+            label: "UIXHERO: Radar Chart (in Japanese)",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/radar-chart`,
+        },
+    ],
+};
+
 export default function RadarChartPage() {
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
 
-    return <ChartDocPage designDecisions={designDecisions} title={{ en: meta.radarChart.title, ja: "レーダーチャート" }} description={{ en: meta.radarChart.description, ja: "複数軸の正規化スコアを多角形で比較するレーダーチャートです。" }} code={code} usageCode={usageCode} propsData={propsData} demo="radar-chart" embedBase="/embed/radar-chart" previewHeight={460} states={states} usedComponents={{ en: [{ name: "RadarChart", href: "/docs/components/radar-chart" }, { name: "ChartLegend", href: "/docs/components/chart-legend" }, { name: "Tooltip", href: "/docs/components/tooltip" }], ja: [{ name: "レーダーチャート", href: "/docs/components/radar-chart" }, { name: "チャート凡例", href: "/docs/components/chart-legend" }, { name: "ツールチップ", href: "/docs/components/tooltip" }] }} relatedComponents={{ en: [{"name":"RadialBarChart","href":"/docs/components/radial-bar-chart"},{"name":"QuadrantMatrix","href":"/docs/components/quadrant-matrix"}], ja: [{"name":"ラジアルバーチャート","href":"/docs/components/radial-bar-chart"},{"name":"4象限マトリクス","href":"/docs/components/quadrant-matrix"}] }} />;
+    return <ChartDocPage designDecisions={designDecisions} title={{ en: meta.radarChart.title, ja: "レーダーチャート" }} description={{ en: meta.radarChart.description, ja: "複数軸の正規化スコアを多角形で比較するレーダーチャートです。" }} code={code} usageCode={usageCode} propsData={propsData} demo="radar-chart" embedBase="/embed/radar-chart" previewHeight={460} states={states} usedComponents={{ en: [{ name: "RadarChart", href: "/docs/components/radar-chart" }, { name: "ChartLegend", href: "/docs/components/chart-legend" }, { name: "Tooltip", href: "/docs/components/tooltip" }], ja: [{ name: "レーダーチャート", href: "/docs/components/radar-chart" }, { name: "チャート凡例", href: "/docs/components/chart-legend" }, { name: "ツールチップ", href: "/docs/components/tooltip" }] }} relatedComponents={{ en: [{"name":"RadialBarChart","href":"/docs/components/radial-bar-chart"},{"name":"QuadrantMatrix","href":"/docs/components/quadrant-matrix"}], ja: [{"name":"ラジアルバーチャート","href":"/docs/components/radial-bar-chart"},{"name":"4象限マトリクス","href":"/docs/components/quadrant-matrix"}] }} uixheroLinks={uixheroLinks} />;
 }

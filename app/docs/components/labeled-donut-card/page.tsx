@@ -9,6 +9,7 @@ import { ChartPreviewWithControls } from "@/components/doc/ChartPreviewWithContr
 import displayMetadata from "@design/display-metadata.json";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { LabeledDonutCard } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type LabeledDonutSegment = ComponentProps<typeof LabeledDonutCard>["segments"][number];
 
@@ -733,6 +734,13 @@ export default function LabeledDonutCardPage() {
                 { name: locale === "ja" ? "分析カード" : "AnalyticsCard", href: "/docs/components/analytics-card" },
                 { name: locale === "ja" ? "チャート凡例" : "ChartLegend", href: "/docs/components/chart-legend" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: カード（Card）" : "UIXHERO: Card (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+                    relation: "nearest",
+                },
+            ]}
         >
             <ChartPreviewWithControls
                 code={codeByLocale[locale]}
@@ -906,15 +914,7 @@ export default function LabeledDonutCardPage() {
                         <li>
                             <strong>真ん中の値はカードが決めない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">centerValue</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">centerLabel</code> は呼ぶ側が渡します。合計を出すのか、いちばん大きい区分を出すのかは画面の意味で変わるからです。指で触ったときのツールチップは触れた位置に出し、離しても少しの間そこに残します。
                             <br />
-                            一般のカードの設計は UIXHERO の「カード」にあります。{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/card"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: カード（Card）
-                            </a>
+                            一般のカードの設計は UIXHERO の「カード」にあります。
                         </li>
                     </ul>
                 ) : (
@@ -928,15 +928,7 @@ export default function LabeledDonutCardPage() {
                         <li>
                             <strong>The centre value is not the card&rsquo;s decision.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">centerValue</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">centerLabel</code> come from the caller, because whether the middle shows a total or the biggest segment depends on the screen. On touch the tooltip appears where the finger landed and lingers briefly after release.
                             <br />
-                            The general design of cards is covered by UIXHERO&rsquo;s card article.{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/card"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Card (in Japanese)
-                            </a>
+                            The general design of cards is covered by UIXHERO&rsquo;s card article.
                         </li>
                     </ul>
                 )}

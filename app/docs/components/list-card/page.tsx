@@ -9,6 +9,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
 import { Badge, LineChip, ListCard, Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Locale = "ja" | "en";
 type ListCardSelection = "incident" | "route-1";
@@ -527,6 +528,13 @@ export function ServiceStatusListCards() {
         { name: "StatGroup", href: "/docs/components/stat-group" },
         { name: "DocumentRow", href: "/docs/components/document-row" },
       ]}
+      uixheroLinks={[
+        {
+          label: locale === "ja" ? "UIXHERO: カード（Card）" : "UIXHERO: Card (in Japanese)",
+          href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+          relation: "nearest",
+        },
+      ]}
     >
       <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewHeight="auto" previewBodyWidth="md">
         <ListCardPreview locale={locale} />
@@ -603,15 +611,7 @@ export function ServiceStatusListCards() {
             <li>
               <strong>右側は「状態」と「補足」の2段に固定した。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">status</code>（Badge）と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">meta</code>（価格・時刻・件数）は右上と右下に縦に積み、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">meta</code> は折り返しません。行を何十も並べたときに、値の位置が行ごとにずれないようにするためです。
               <br />
-              一般のカードの設計は UIXHERO の「カード」にあります。{" "}
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/resources/ui-components/card"
-                target="_blank"
-                rel="noreferrer"
-              >
-                UIXHERO: カード（Card）
-              </a>
+              一般のカードの設計は UIXHERO の「カード」にあります。
             </li>
           </ul>
         ) : (
@@ -625,15 +625,7 @@ export function ServiceStatusListCards() {
             <li>
               <strong>The right-hand side is fixed at two stacked lines.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">status</code> (a Badge) and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">meta</code> (price, time, count) stack top and bottom on the right, and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">meta</code> never wraps. Across dozens of rows the values stay on the same vertical line.
               <br />
-              The general design of cards is covered by UIXHERO&rsquo;s card article.{" "}
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/resources/ui-components/card"
-                target="_blank"
-                rel="noreferrer"
-              >
-                UIXHERO: Card (in Japanese)
-              </a>
+              The general design of cards is covered by UIXHERO&rsquo;s card article.
             </li>
           </ul>
         )}

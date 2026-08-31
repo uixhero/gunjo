@@ -1,5 +1,6 @@
 import { OverlayAuditDocPage } from "../_overlayAuditDocPage";
 import overlayMetadata from "@design/overlay-metadata.json";
+import { UIXHERO_BASE_URL, type UixheroLink } from "@/lib/uixhero-links";
 
 const designDecisions = {
     ja: (
@@ -12,15 +13,6 @@ const designDecisions = {
             </li>
             <li>
                 <strong>フォーカスの囲い込みと Escape は入っていません。</strong>閉じる手段は背景のクリックと右上のボタンの2つで、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">role</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-modal</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-labelledby</code> は付けてあります。ただし資料が求める Tab の囲い込みと Escape キーはこの部品には無く、ここは記事に対して足りていない箇所です。囲い込みが要る使い方をするなら、いまは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Sheet</code> や <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Dialog</code> に載せ替えるのが確実です。
-                <br />
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/share-modal"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: 共有モーダル（Share Modal）
-                </a>
             </li>
         </>
     ),
@@ -34,18 +26,25 @@ const designDecisions = {
             </li>
             <li>
                 <strong>Focus trapping and Escape are missing.</strong> The modal closes on a backdrop click or the close button, and it carries the dialog role, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-modal</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-labelledby</code>. The Tab cage and the Escape key that the article treats as required are absent, and this is a real gap against the article. For an interaction that needs the cage, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Sheet</code> or <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Dialog</code> is the safer choice today.
-                <br />
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/share-modal"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: Share Modal (in Japanese)
-                </a>
             </li>
         </>
     ),
+};
+
+// 本文からこの節へ移した UIXHERO の記事リンク（gunjo #955 の受け口）。
+const uixheroLinks: Record<"ja" | "en", UixheroLink[]> = {
+    ja: [
+        {
+            label: "UIXHERO: 共有モーダル（Share Modal）",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/share-modal`,
+        },
+    ],
+    en: [
+        {
+            label: "UIXHERO: Share Modal (in Japanese)",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/share-modal`,
+        },
+    ],
 };
 
 export default function ShareModalDocPage() {
@@ -55,6 +54,7 @@ export default function ShareModalDocPage() {
             title={overlayMetadata.shareModal.title}
             description={overlayMetadata.shareModal.description}
             designDecisions={designDecisions}
+            uixheroLinks={uixheroLinks}
         />
     );
 }

@@ -3,6 +3,7 @@
 import { ChartDocPage } from "@/components/doc/ChartDocPage";
 import displayMetadata from "@design/display-metadata.json";
 import { AnalyticsCard, SparklineChart } from "@gunjo/ui";
+import { UIXHERO_BASE_URL, type UixheroLink } from "@/lib/uixhero-links";
 
 type Locale = "en" | "ja";
 const dataByLocale = {
@@ -383,15 +384,6 @@ const designDecisions = {
             </li>
             <li>
                 <strong>点は、既定では出しません。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showDots</code> の既定は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">false</code> です（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">LineChart</code> は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">true</code>）。スパークラインが伝えるのは向きだけなので、点を出すと小さな折れ線に近づいてしまいます。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'variant="step"'}</code> は在庫や料金プランのように段階的に変わる値のためのもので、連続した値に使うと実際より急な変化に見えます。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">referenceLabel</code> の既定は英語の「Reference」です。何の線かは、図の外の文字でも書いてください。
-                <br />
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/sparkline-chart"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: スパークライン（Sparkline Chart）
-                </a>
             </li>
         </>
     ),
@@ -405,22 +397,29 @@ const designDecisions = {
             </li>
             <li>
                 <strong>Dots are off by default.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showDots</code> defaults to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">false</code> here, where <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">LineChart</code> defaults to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">true</code>: a sparkline conveys direction, and adding dots pushes it towards being a small line chart. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'variant="step"'}</code> is for values that change in steps, such as stock levels or pricing tiers; used on a continuous series it makes the change look sharper than it was. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">referenceLabel</code> defaults to the English “Reference”, so say what the line means in the copy as well.
-                <br />
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/sparkline-chart"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: Sparkline Chart (in Japanese)
-                </a>
             </li>
         </>
     ),
 };
 
+// 本文からこの節へ移した UIXHERO の記事リンク（gunjo #955 の受け口）。
+const uixheroLinks: Record<"ja" | "en", UixheroLink[]> = {
+    ja: [
+        {
+            label: "UIXHERO: スパークライン（Sparkline Chart）",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/sparkline-chart`,
+        },
+    ],
+    en: [
+        {
+            label: "UIXHERO: Sparkline Chart (in Japanese)",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/sparkline-chart`,
+        },
+    ],
+};
+
 export default function SparklineChartPage() {
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
 
-    return <ChartDocPage designDecisions={designDecisions} title={{ en: meta.sparklineChart.title, ja: "スパークライン" }} description={{ en: meta.sparklineChart.description, ja: "カード内の小さな領域で傾向を示す線・面・ステップチャートです。" }} code={code} usageCode={usageCode} propsData={propsData} demo="sparkline-chart" embedBase="/embed/sparkline-chart" previewHeight={360} states={states} usedComponents={{ en: [{ name: "SparklineChart", href: "/docs/components/sparkline-chart" }, { name: "ChartLegend", href: "/docs/components/chart-legend" }, { name: "Tooltip", href: "/docs/components/tooltip" }], ja: [{ name: "スパークライン", href: "/docs/components/sparkline-chart" }, { name: "チャート凡例", href: "/docs/components/chart-legend" }, { name: "ツールチップ", href: "/docs/components/tooltip" }] }} relatedComponents={{ en: [{ name: "LineChart", href: "/docs/components/line-chart" }, { name: "AnalyticsCard", href: "/docs/components/analytics-card" }], ja: [{ name: "折れ線チャート", href: "/docs/components/line-chart" }, { name: "分析カード", href: "/docs/components/analytics-card" }] }} />;
+    return <ChartDocPage designDecisions={designDecisions} title={{ en: meta.sparklineChart.title, ja: "スパークライン" }} description={{ en: meta.sparklineChart.description, ja: "カード内の小さな領域で傾向を示す線・面・ステップチャートです。" }} code={code} usageCode={usageCode} propsData={propsData} demo="sparkline-chart" embedBase="/embed/sparkline-chart" previewHeight={360} states={states} usedComponents={{ en: [{ name: "SparklineChart", href: "/docs/components/sparkline-chart" }, { name: "ChartLegend", href: "/docs/components/chart-legend" }, { name: "Tooltip", href: "/docs/components/tooltip" }], ja: [{ name: "スパークライン", href: "/docs/components/sparkline-chart" }, { name: "チャート凡例", href: "/docs/components/chart-legend" }, { name: "ツールチップ", href: "/docs/components/tooltip" }] }} relatedComponents={{ en: [{ name: "LineChart", href: "/docs/components/line-chart" }, { name: "AnalyticsCard", href: "/docs/components/analytics-card" }], ja: [{ name: "折れ線チャート", href: "/docs/components/line-chart" }, { name: "分析カード", href: "/docs/components/analytics-card" }] }} uixheroLinks={uixheroLinks} />;
 }

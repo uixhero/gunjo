@@ -7,6 +7,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import feedbackMetadata from "@design/feedback-metadata.json";
 import { Button, Spinner, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
     ja: `import { Spinner } from "@gunjo/ui"
@@ -181,6 +182,12 @@ export default function SpinnerPage() {
                 { name: "Skeleton", href: "/docs/components/skeleton" },
             ]}
             sectionLabels={sectionLabels}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: スピナー（Spinner）" : "UIXHERO: Spinner (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/spinner`,
+                },
+            ]}
         >
             <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewHeight="auto" previewBodyWidth="md" sectionLabels={sectionLabels}>
                 <Spinner size="lg" aria-label={isJa ? "読み込み中" : "Loading"} />
@@ -289,15 +296,6 @@ export default function SpinnerPage() {
                         </li>
                         <li>
                             <strong>色を決めずに、周りの薄い色を継ぐ。</strong>既定は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">text-muted-foreground</code> です。資料は「文脈の主色を使う」と書いていますが、GUNJO は主色を持たせず、置いた場所に馴染む薄い色から始めます。回っている絵は動きだけで十分に目を引くので、色でさらに引く必要がないためです。目立たせたい場面だけ <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">className</code> で上書きします。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/spinner"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: スピナー（Spinner）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -310,15 +308,6 @@ export default function SpinnerPage() {
                         </li>
                         <li>
                             <strong>No colour of its own: it inherits the muted tone around it.</strong> The default is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">text-muted-foreground</code>. The article suggests using the brand colour of the context; GUNJO starts from a muted tone that blends in, because a spinning shape already draws the eye through motion and does not need colour to draw more. Override with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">className</code> when it should stand out.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/spinner"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Spinner (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

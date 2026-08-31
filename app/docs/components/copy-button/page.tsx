@@ -7,6 +7,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import inputsMetadata from "@design/inputs-metadata.json";
 import { CopyButton } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 export default function CopyButtonPage() {
     const { locale, sectionLabels } = useLocale();
@@ -218,6 +219,13 @@ export function CopyButtonSurfaces() {
                 { name: "ColorSwatch", href: "/docs/components/color-swatch" },
                 { name: "CodeBlock", href: "/docs/components/code-block" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: ボタン（Button）" : "UIXHERO: Button (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/button`,
+                    relation: "nearest",
+                },
+            ]}
         >
             <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewHeight="auto" previewBodyWidth="sm">
                 <CopyButton value={copyValue} copyLabel={copyLabel} copiedLabel={copiedLabel} copyFailedLabel={failedLabel} variant="label" />
@@ -357,15 +365,7 @@ export function CompactCommandCopyButton() {
                         <li>
                             <strong>結果はツールチップではなく <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="status"'}</code> で知らせる。</strong>押した後の吹き出しは読み上げ対象の要素で、そのあいだツールチップは出しません。ツールチップはポインタを乗せている人にしか届かないので、押した結果の知らせには使えないからです。
                             <br />
-                            一般のボタンの設計は UIXHERO の「ボタン」にあります。{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/button"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: ボタン（Button）
-                            </a>
+                            一般のボタンの設計は UIXHERO の「ボタン」にあります。
                         </li>
                     </ul>
                 ) : (
@@ -379,15 +379,7 @@ export function CompactCommandCopyButton() {
                         <li>
                             <strong>The result is announced through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="status"'}</code>, not a tooltip.</strong> The post-copy bubble is a live region, and the tooltip is suppressed while it is showing. A tooltip only reaches someone hovering with a pointer, so it cannot carry the result of a press.
                             <br />
-                            The general design of buttons is covered by UIXHERO&rsquo;s button article.{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/button"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Button (in Japanese)
-                            </a>
+                            The general design of buttons is covered by UIXHERO&rsquo;s button article.
                         </li>
                     </ul>
                 )}

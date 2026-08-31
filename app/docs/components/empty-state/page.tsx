@@ -9,6 +9,7 @@ import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
 import { Button, EmptyState, Icon } from "@gunjo/ui";
 import { IconAlertTriangle, IconFolderOpen, IconSearch } from "@tabler/icons-react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
     ja: `import { Button, EmptyState, Icon } from "@gunjo/ui";
@@ -102,6 +103,12 @@ export default function EmptyStatePage() {
                 { name: "AssetGrid", href: "/docs/components/asset-grid" },
                 { name: "DataTable", href: "/docs/components/data-table" },
                 { name: "SearchInput", href: "/docs/components/search-input" },
+            ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: 空状態（Empty State）" : "UIXHERO: Empty State (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/empty-state`,
+                },
             ]}
         >
             <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewBodyWidth="md" previewHeight="auto">
@@ -233,15 +240,6 @@ export function FailedLoad() {
                         </li>
                         <li>
                             <strong>次の一手を置く場所を最初から持つ。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">icon</code>・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">title</code>・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">description</code>・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">action</code> の4つの口があり、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">action</code> はボタンを置くための場所です。資料が言う「なぜ空なのか」と「次に何をするか」は、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">description</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">action</code> に書き分けます。初回の空と検索結果0件で見た目を変えるのは、渡すアイコンと文言で分けます。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/empty-state"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: 空状態（Empty State）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -254,15 +252,6 @@ export function FailedLoad() {
                         </li>
                         <li>
                             <strong>There is a slot for the next move from the start.</strong> The four slots are <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">icon</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">title</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">description</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">action</code>, with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">action</code> reserved for a button. Why it is empty and what to do next, which the article separates, map onto <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">description</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">action</code>. Telling a first-run empty apart from a no-results empty is done through the icon and the wording you pass.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/empty-state"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Empty State (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

@@ -8,6 +8,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import feedbackMetadata from "@design/feedback-metadata.json";
 import { NotificationCenter, type Notification, type NotificationCenterLabels } from "@gunjo/ui";
 import { useState } from "react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const jaLabels: NotificationCenterLabels = {
     toggle: "通知を開く",
@@ -282,6 +283,12 @@ export default function NotificationCenterDocPage() {
                 { name: "Badge", href: "/docs/components/badge" },
             ]}
             sectionLabels={sectionLabels}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: 通知センター（Notification Center）" : "UIXHERO: Notification Center (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/notification-center`,
+                },
+            ]}
         >
             <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewHeight="auto" previewBodyWidth="md" sectionLabels={sectionLabels}>
                 <NotificationCenterPreview initialNotifications={notifications} labels={labels} />
@@ -353,15 +360,6 @@ export default function NotificationCenterDocPage() {
                         </li>
                         <li>
                             <strong>一括既読と設定への導線は、口だけ用意した。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">onClearAll</code> を渡したときだけ、しかも未読があるときだけ「すべて既読」が出ます。押した先で何が起きるかは呼ぶ側が決めます。資料が挙げる時系列のグループ化（今日・今週・それ以前）は、GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">NotificationCenter</code> にはまだありません。並び順は渡した配列のままです。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/notification-center"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: 通知センター（Notification Center）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -374,15 +372,6 @@ export default function NotificationCenterDocPage() {
                         </li>
                         <li>
                             <strong>Mark-all-read and the settings link are slots, not behaviour.</strong> Clear all appears only when <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">onClearAll</code> is supplied and only while something is unread. What it does is decided by the caller. Note that the time grouping the article recommends (today, this week, earlier) is not in <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">NotificationCenter</code> yet: the order is exactly the array you pass.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/notification-center"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Notification Center (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

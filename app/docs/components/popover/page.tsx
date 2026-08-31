@@ -1,5 +1,6 @@
 import { OverlayAuditDocPage } from "../_overlayAuditDocPage";
 import overlayMetadata from "@design/overlay-metadata.json";
+import { UIXHERO_BASE_URL, type UixheroLink } from "@/lib/uixhero-links";
 
 const designDecisions = {
     ja: (
@@ -12,15 +13,6 @@ const designDecisions = {
             </li>
             <li>
                 <strong>画面端の逃げ方だけ既定を変えた。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">collisionPadding</code> の既定を16にしてあります。0のままだと画面の端にぴったり貼り付いて読みにくいためです。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">portalContainer</code> を渡すと、画面全体ではなくその要素の中に描きます。docs の埋め込みプレビューのように、画面いっぱいに出しては困る枠の中で使うために要ります。
-                <br />
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/popover"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: ポップオーバー（Popover）
-                </a>
             </li>
         </>
     ),
@@ -34,18 +26,25 @@ const designDecisions = {
             </li>
             <li>
                 <strong>Only the edge behaviour was changed from the default.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">collisionPadding</code> defaults to 16, because at 0 the panel sticks flush to the viewport edge and becomes hard to read. Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">portalContainer</code> to render inside a given element rather than the whole page, which is what the embedded previews in these docs need.
-                <br />
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/popover"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: Popover (in Japanese)
-                </a>
             </li>
         </>
     ),
+};
+
+// 本文からこの節へ移した UIXHERO の記事リンク（gunjo #955 の受け口）。
+const uixheroLinks: Record<"ja" | "en", UixheroLink[]> = {
+    ja: [
+        {
+            label: "UIXHERO: ポップオーバー（Popover）",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/popover`,
+        },
+    ],
+    en: [
+        {
+            label: "UIXHERO: Popover (in Japanese)",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/popover`,
+        },
+    ],
 };
 
 export default function PopoverDocPage() {
@@ -55,6 +54,7 @@ export default function PopoverDocPage() {
             title={overlayMetadata.popover.title}
             description={overlayMetadata.popover.description}
             designDecisions={designDecisions}
+            uixheroLinks={uixheroLinks}
         />
     );
 }

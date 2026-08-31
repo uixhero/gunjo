@@ -10,6 +10,7 @@ import { CodeBlock } from "@/components/doc/CodeBlock";
 import displayMetadata from "@design/display-metadata.json";
 
 import { EditableDataTableDemo } from "@/components/demos/EditableDataTableDemo";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const meta = displayMetadata as Record<string, { title?: string; description?: string }>;
 
@@ -168,6 +169,13 @@ export default function EditableDataTableDocPage() {
                 { name: "EditableField", href: "/docs/components/editable-field" },
                 { name: "AmountBreakdown", href: "/docs/components/amount-breakdown" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: テーブル（Table）" : "UIXHERO: Table (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/table`,
+                    relation: "nearest",
+                },
+            ]}
         >
             <ComponentPreview codeBlock={<CodeBlock code={usageCode} />}>
                 <div className="w-full">
@@ -203,15 +211,7 @@ export default function EditableDataTableDocPage() {
                         <li>
                             <strong>スマホでは表をやめてカードに積み直す。</strong>デスクトップは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">table</code>、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">md</code> 未満は1行が1枚のカードになり、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">renderFooterCell</code> の合計もそれぞれの形で出ます（#210）。入力欄が並ぶ表は横に流すと打ち込めなくなるので、資料の「スクロール耐性」をここでは「形を変える」で解きました。
                             <br />
-                            一般の表の設計は UIXHERO の「テーブル」にあります。{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/table"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: テーブル（Table）
-                            </a>
+                            一般の表の設計は UIXHERO の「テーブル」にあります。
                         </li>
                     </ul>
                 ) : (
@@ -225,15 +225,7 @@ export default function EditableDataTableDocPage() {
                         <li>
                             <strong>Below <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">md</code> the table becomes cards.</strong> Desktop renders a real <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">table</code>; on narrow screens each row becomes a card, and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">renderFooterCell</code> totals render in both shapes (#210). A grid of inputs is unusable when it scrolls sideways, so the article&rsquo;s scroll-resilience principle is answered here by changing shape instead.
                             <br />
-                            The general design of tables is covered by UIXHERO&rsquo;s table article.{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/table"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Table (in Japanese)
-                            </a>
+                            The general design of tables is covered by UIXHERO&rsquo;s table article.
                         </li>
                     </ul>
                 )}

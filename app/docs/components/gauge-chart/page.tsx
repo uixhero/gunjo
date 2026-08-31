@@ -8,6 +8,7 @@ import { ChartPreviewWithControls } from "@/components/doc/ChartPreviewWithContr
 import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
 import { GaugeChart } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
     en: `import { GaugeChart } from "@gunjo/ui";
@@ -352,6 +353,12 @@ export default function GaugeChartPage() {
                 { name: locale === "ja" ? "ラジアルバーチャート" : "RadialBarChart", href: "/docs/components/radial-bar-chart" },
                 { name: locale === "ja" ? "統計" : "Statistic", href: "/docs/components/statistic" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: ゲージチャート（Gauge Chart）" : "UIXHERO: Gauge Chart (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/gauge-chart`,
+                },
+            ]}
         >
             <ChartPreviewWithControls
                 code={code}
@@ -514,15 +521,6 @@ export default function GaugeChartPage() {
                         </li>
                         <li>
                             <strong>範囲の外の値は、端で止めます。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">value</code> は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">min</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> に丸められるので、上限を超えた値も弧からはみ出しません。ただし丸めたことは図からは分からないので、超過そのものを見せたい画面では、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> を超えた事実を文字で添えてください。表示だけの図でもフォーカスできるのは、範囲を出すツールチップをキーボードからも開けるようにするためです。数値の整形は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> のほかに、サーバーコンポーネントからも渡せる <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code> を持っています（#338）。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/gauge-chart"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: ゲージチャート（Gauge Chart）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -535,15 +533,6 @@ export default function GaugeChartPage() {
                         </li>
                         <li>
                             <strong>Values outside the range stop at the end of the arc.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">value</code> is clamped between <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">min</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code>, so an over-range reading never overflows the drawing. The clamping is invisible in the figure, so when the overshoot is the point, say so in text next to it. The gauge is focusable even when it is read-only, so that the tooltip carrying the range can be opened from the keyboard. Alongside <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> it takes the serializable <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code>, which a Server Component can pass (#338).
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/gauge-chart"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Gauge Chart (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

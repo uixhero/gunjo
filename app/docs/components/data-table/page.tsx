@@ -9,6 +9,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
 import { Badge, Button, DataTable, type DataTableLabels, Input } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Member = {
     id: string;
@@ -603,6 +604,13 @@ export function InvoiceTotalsTable() {
                 { name: "Pagination", href: "/docs/components/pagination" },
                 { name: "SortButton", href: "/docs/components/sort-button" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: テーブル（Table）" : "UIXHERO: Table (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/table`,
+                    relation: "nearest",
+                },
+            ]}
         >
             <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewHeight="auto" previewBodyWidth="xl">
                 <DataTable
@@ -732,15 +740,7 @@ export function InvoiceTotalsTable() {
                         <li>
                             <strong>並べ替えの状態は見出しのセルが持つ。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-sort</code> は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">th</code> に付けてあり、中の並べ替えボタンには付けていません。二重に読み上げられるのを避けるためです。表の名前は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">caption</code> か <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-labelledby</code> で必ず付けられるようにしました（#298）。1つの画面に表が複数あるとき、読み上げで区別が付かなくなるからです。
                             <br />
-                            一般の表の設計は UIXHERO の「テーブル」にあります。{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/table"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: テーブル（Table）
-                            </a>
+                            一般の表の設計は UIXHERO の「テーブル」にあります。
                         </li>
                     </ul>
                 ) : (
@@ -754,15 +754,7 @@ export function InvoiceTotalsTable() {
                         <li>
                             <strong>Sort state lives on the header cell.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-sort</code> is set on the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">th</code>, not on the button inside it, so the state is not announced twice. Every table can be named through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">caption</code> or <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-labelledby</code> (#298), because several tables on one screen are otherwise indistinguishable to a screen reader.
                             <br />
-                            The general design of tables is covered by UIXHERO&rsquo;s table article.{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/table"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Table (in Japanese)
-                            </a>
+                            The general design of tables is covered by UIXHERO&rsquo;s table article.
                         </li>
                     </ul>
                 )}

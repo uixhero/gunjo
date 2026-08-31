@@ -10,6 +10,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import inputsMetadata from "@design/inputs-metadata.json";
 import { FormControl, FormDescription, FormGroup, FormLabel, HStack, NumberInput, RangeSlider } from "@gunjo/ui";
 import * as React from "react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function RangeStatePreview({
     disabled,
@@ -222,6 +223,13 @@ export function PriceRangeFilter() {
                 { name: "Slider", href: "/docs/components/slider" },
                 { name: "NumberInput", href: "/docs/components/number-input" },
                 { name: "FilterButton", href: "/docs/components/filter-button" },
+            ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: スライダー（Slider）" : "UIXHERO: Slider (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/slider`,
+                    relation: "nearest",
+                },
             ]}
         >
             <ComponentPreview embedSrc="/embed/range-slider" code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewBodyWidth="md">
@@ -439,15 +447,7 @@ export function LockedPriceRangeSlider() {
                         <li>
                             <strong>数値の表示は、まだ書いていません。</strong>資料は「常に現在値を数値で表示する」を核に挙げていますが、この部品は帯とつまみだけで、数字を出しません。単位つきの表示も、数値入力との横並びも持たないので、いまは呼ぶ側が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">value</code> を受け取って自分で書く形です。
                             <br />
-                            一般のスライダーの設計は UIXHERO の「スライダー」にあります。{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/slider"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: スライダー（Slider）
-                            </a>
+                            一般のスライダーの設計は UIXHERO の「スライダー」にあります。
                         </li>
                     </ul>
                 ) : (
@@ -461,15 +461,7 @@ export function LockedPriceRangeSlider() {
                         <li>
                             <strong>The numeric readout is not written yet.</strong> The article&rsquo;s first principle is to always show the current value as a number, and this component shows only the track and the thumbs. There is no unit-aware readout and no paired number input, so today the caller reads <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">value</code> and prints it.
                             <br />
-                            The general design of sliders is covered by UIXHERO&rsquo;s slider article.{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/slider"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Slider (in Japanese)
-                            </a>
+                            The general design of sliders is covered by UIXHERO&rsquo;s slider article.
                         </li>
                     </ul>
                 )}

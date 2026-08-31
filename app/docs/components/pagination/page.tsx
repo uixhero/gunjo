@@ -22,6 +22,7 @@ import {
     TooltipContent,
     TooltipTrigger,
 } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const TOTAL = 50;
 
@@ -2214,6 +2215,12 @@ export default function PaginationDocPage() {
                 { name: "DataTable", href: "/docs/components/data-table" },
                 { name: "Table", href: "/docs/components/table" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: ページネーション（Pagination）" : "UIXHERO: Pagination (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/pagination`,
+                },
+            ]}
         >
             <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewBodyWidth="lg" previewHeight="auto">
                 <PaginationExample />
@@ -2305,15 +2312,6 @@ export default function PaginationDocPage() {
                         </li>
                         <li>
                             <strong>現在地は属性と見た目の両方で出す。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">isActive</code> を渡した項目は枠線のあるボタンの見た目になり、同時に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-current</code> が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">page</code> になります。省略記号（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PaginationEllipsis</code>）は逆に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-hidden</code> にして、読み上げには「さらにページがある」の一文だけを残しました。点が3つ読み上げられても意味にならないためです。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/pagination"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: ページネーション（Pagination）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -2326,15 +2324,6 @@ export default function PaginationDocPage() {
                         </li>
                         <li>
                             <strong>The current page is marked twice: in the attribute and in the style.</strong> An item with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">isActive</code> gets the outlined button look and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-current</code> set to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">page</code> at the same time. The ellipsis (<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PaginationEllipsis</code>) goes the other way: it is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-hidden</code>, leaving only a short more-pages phrase for screen readers, since three dots read aloud mean nothing.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/pagination"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Pagination (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

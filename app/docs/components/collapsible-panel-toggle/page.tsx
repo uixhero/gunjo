@@ -8,6 +8,7 @@ import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import layoutMetadata from "@design/layout-metadata.json";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const usageCodeByLocale = {
     en: `import { CollapsiblePanelToggle } from "@gunjo/ui";
@@ -455,6 +456,13 @@ export default function CollapsiblePanelToggleDocPage() {
                 { name: "Resizable", href: "/docs/components/resizable" },
                 { name: "Sheet", href: "/docs/components/sheet" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: トグルボタン（Toggle）" : "UIXHERO: Toggle (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/toggle`,
+                    relation: "nearest",
+                },
+            ]}
         >
             <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="lg" previewHeight="auto">
                 <LeftPanelPreview locale={locale} />
@@ -537,15 +545,7 @@ export default function CollapsiblePanelToggleDocPage() {
                         <li>
                             <strong>押した瞬間にツールチップを畳む。一方、パネルとの結び付きはまだ書いていません。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">tooltipCloseOnPress</code> を渡してあるので、押したあとに吹き出しが残りません。ただし <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-expanded</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-controls</code> で「どのパネルを開くのか」を伝えるところは<strong>まだ書いていません</strong>。読み上げでは、ラベルの「パネルを開く」までしか分かりません。
                             <br />
-                            一般のトグルの設計は UIXHERO の「トグルボタン」にあります。{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/toggle"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: トグルボタン（Toggle）
-                            </a>
+                            一般のトグルの設計は UIXHERO の「トグルボタン」にあります。
                         </li>
                     </ul>
                 ) : (
@@ -559,15 +559,7 @@ export default function CollapsiblePanelToggleDocPage() {
                         <li>
                             <strong>The tooltip closes on press; the link to the panel is not written yet.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">tooltipCloseOnPress</code> is set, so no bubble is left hanging after the press. But <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-expanded</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-controls</code> are <strong>not written yet</strong>, so a screen reader hears only the label and never learns which panel this button governs.
                             <br />
-                            The general design of toggles is covered by UIXHERO&rsquo;s toggle article.{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/toggle"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Toggle (in Japanese)
-                            </a>
+                            The general design of toggles is covered by UIXHERO&rsquo;s toggle article.
                         </li>
                     </ul>
                 )}

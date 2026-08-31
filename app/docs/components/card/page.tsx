@@ -22,6 +22,7 @@ import {
     ImagePreview,
     Skeleton,
 } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 export default function CardPage() {
     const { locale, sectionLabels } = useLocale();
@@ -657,6 +658,12 @@ export function LoadingCard() {
                 { name: "Dialog", href: "/docs/components/dialog" },
                 { name: "HoverCard", href: "/docs/components/hover-card" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: カード（Card）" : "UIXHERO: Card (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+                },
+            ]}
         >
             <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewHeight="auto">
                 <Card className="w-[350px] max-w-full">
@@ -926,15 +933,6 @@ export function LoadingCard() {
                         </li>
                         <li>
                             <strong>組み方の決まりは部品では止めない。</strong>資料は「カードの中にカードを入れない」「画像の比率を固定する」「操作は2つまで」を挙げています。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Card</code> は入れ物なので、これらを機械では止めていません。組むときに守るところとして残しています。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/card"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: カード（Card）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -947,15 +945,6 @@ export function LoadingCard() {
                         </li>
                         <li>
                             <strong>Composition rules are not enforced by the component.</strong> The article asks for no card inside a card, a fixed image ratio, and at most two actions. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Card</code> is a container, so none of that is enforced in code. It stays a rule to keep while composing.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/card"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Card (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

@@ -18,6 +18,7 @@ import {
   SheetTitle,
   type CalendarEvent,
 } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Locale = "ja" | "en";
 
@@ -671,6 +672,13 @@ export function CustomChipCalendar() {
         { name: "ScheduleGrid", href: "/docs/components/schedule-grid" },
         { name: "WeekView", href: "/docs/components/week-view" },
       ]}
+      uixheroLinks={[
+        {
+          label: locale === "ja" ? "UIXHERO: カレンダー（Calendar）" : "UIXHERO: Calendar (in Japanese)",
+          href: `${UIXHERO_BASE_URL}/resources/ui-components/calendar`,
+          relation: "nearest",
+        },
+      ]}
     >
       <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewHeight="auto" previewBodyWidth="lg">
         <EventCalendarPreview locale={locale} />
@@ -756,15 +764,7 @@ export function CustomChipCalendar() {
             <li>
               <strong>「今日」は外から渡す。一方で、選べない日はまだ持っていません。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">today</code> は props で、渡さなければどの日にも印を付けません。サーバーで描いた HTML とブラウザで描き直した HTML がずれないようにするためです。資料が挙げている「選べない日を <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-disabled</code> にする」は<strong>まだ書いていません</strong>。前後の月の日は薄く出しますが選べるままで、休業日や過去日を止める口はありません。
               <br />
-              一般のカレンダーの設計は UIXHERO の「カレンダー」にあります。{" "}
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/resources/ui-components/calendar"
-                target="_blank"
-                rel="noreferrer"
-              >
-                UIXHERO: カレンダー（Calendar）
-              </a>
+              一般のカレンダーの設計は UIXHERO の「カレンダー」にあります。
             </li>
           </ul>
         ) : (
@@ -778,15 +778,7 @@ export function CustomChipCalendar() {
             <li>
               <strong>&ldquo;Today&rdquo; is injected; disabled days are not written yet.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">today</code> is a prop, and without it no day is marked, which keeps the server-rendered HTML and the client-rendered HTML identical. The article&rsquo;s fourth principle, marking unselectable days <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-disabled</code>, is <strong>not written yet</strong>: days from the neighbouring months are dimmed but still selectable, and there is no prop for blocking past dates or closed days.
               <br />
-              The general design of calendars is covered by UIXHERO&rsquo;s calendar article.{" "}
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/resources/ui-components/calendar"
-                target="_blank"
-                rel="noreferrer"
-              >
-                UIXHERO: Calendar (in Japanese)
-              </a>
+              The general design of calendars is covered by UIXHERO&rsquo;s calendar article.
             </li>
           </ul>
         )}
