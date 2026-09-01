@@ -49,16 +49,31 @@ const propsData = [
   { name: "className", type: "string", description: "Additional CSS class names." },
 ];
 
+// The main preview keeps its own English alt text; the state demos need alt
+// text in the reader's language because they print it back on screen.
+const stateImageAlts = {
+  ja: ["正面", "側面", "背面", "生地の拡大"],
+  en: ["Front view", "Side view", "Back view", "Fabric close-up"],
+};
+
+function stateImages(locale: "en" | "ja") {
+  return galleryImages.map((image, index) => ({
+    src: image.src,
+    alt: stateImageAlts[locale][index],
+  }));
+}
+
 function ControlledGalleryPreview({ locale }: { locale: "en" | "ja" }) {
   const [index, setIndex] = React.useState(0);
+  const images = stateImages(locale);
 
   return (
     <div className="flex w-full max-w-sm flex-col gap-2">
-      <Gallery images={galleryImages} value={index} onValueChange={setIndex} />
+      <Gallery images={images} value={index} onValueChange={setIndex} />
       <p className="text-sm text-muted-foreground">
         {locale === "ja"
-          ? `${index + 1} / ${galleryImages.length} 枚目：${galleryImages[index].alt}`
-          : `Image ${index + 1} of ${galleryImages.length}: ${galleryImages[index].alt}`}
+          ? `${index + 1} / ${images.length} 枚目：${images[index].alt}`
+          : `Image ${index + 1} of ${images.length}: ${images[index].alt}`}
       </p>
     </div>
   );
@@ -108,7 +123,7 @@ export default function GalleryDocPage() {
                 : "With thumbnailPosition=\"start\", the strip becomes a vertical column to the left on wide screens and falls back to a row on narrow ones, so it never stretches a phone layout downward.",
               preview: (
                 <div className="w-full max-w-md">
-                  <Gallery images={galleryImages} thumbnailPosition="start" />
+                  <Gallery images={stateImages(locale)} thumbnailPosition="start" />
                 </div>
               ),
               code: locale === "ja"
@@ -145,7 +160,7 @@ export function SideThumbnailGallery() {
                 : "aspectRatio governs the main image frame only. Interiors and vehicle exteriors read better at \"wide\"; a full-height person or fixture wants \"portrait\". The frame is reserved before the image lands, so the page does not jump while loading.",
               preview: (
                 <div className="w-full max-w-md">
-                  <Gallery images={galleryImages} aspectRatio="wide" />
+                  <Gallery images={stateImages(locale)} aspectRatio="wide" />
                 </div>
               ),
               code: locale === "ja"
