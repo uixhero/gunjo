@@ -19,7 +19,7 @@ function HoverCardPreviewSurface({ children }: { children: (portalContainer: HTM
     const [portalContainer, setPortalContainer] = useState<HTMLDivElement | null>(null);
 
     return (
-        <div ref={setPortalContainer} className="relative flex min-h-[320px] items-center justify-center overflow-visible p-8">
+        <div ref={setPortalContainer} className="relative flex items-center justify-center overflow-visible">
             {children(portalContainer)}
         </div>
     );

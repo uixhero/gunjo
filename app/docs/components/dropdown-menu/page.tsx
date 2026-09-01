@@ -340,12 +340,11 @@ export default function DropdownMenuPage() {
             ]}
         >
             <ComponentPreview
-                embedSrc="/embed/dropdown-menu"
                 code={usageCode}
                 codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
-                previewHeight={360}
-                fitEmbedHeightContent={false}
+                previewHeight="auto"
+                className="overflow-visible"
             >
                 <DropdownMenuAuditDemo />
             </ComponentPreview>
@@ -363,10 +362,9 @@ export default function DropdownMenuPage() {
                                 ? "表示設定や密度など、メニュー内で状態を切り替える例です。"
                                 : "Use menu items to toggle settings and choose one value from a group.",
                             preview: <DropdownMenuAuditDemo />,
-                            embedSrc: "/embed/dropdown-menu",
                             code: usageCode,
-                            previewHeight: 360,
-                            fitEmbedHeightContent: false,
+                            previewHeight: "auto",
+                            previewClassName: "overflow-visible",
                         },
                         {
                             key: "account",
@@ -375,10 +373,9 @@ export default function DropdownMenuPage() {
                                 ? "ショートカット、区切り、破壊的操作を含むよくあるユーザーメニューです。"
                                 : "A common user menu with shortcuts, separators, and a destructive item.",
                             preview: <UserMenuAuditDemo />,
-                            embedSrc: "/embed/dropdown-menu?variant=account",
                             code: userMenuCode,
-                            previewHeight: 360,
-                            fitEmbedHeightContent: false,
+                            previewHeight: "auto",
+                            previewClassName: "overflow-visible",
                         },
                         {
                             key: "split-button",
@@ -387,10 +384,9 @@ export default function DropdownMenuPage() {
                                 ? "主操作は左側のボタンに残し、追加操作だけを下向きシェブロンから開きます。"
                                 : "Keep the primary action on the main button and expose related actions from the chevron.",
                             preview: <SplitDropdownMenuAuditDemo />,
-                            embedSrc: "/embed/dropdown-menu?variant=split-button",
                             code: splitButtonCode,
-                            previewHeight: 360,
-                            fitEmbedHeightContent: false,
+                            previewHeight: "auto",
+                            previewClassName: "overflow-visible",
                         },
                     ]}
                 />
