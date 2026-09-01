@@ -47,7 +47,289 @@ import {
 
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { UixheroRationaleLinks } from "@/components/doc/ComponentHelpers";
+import { CodeBlock } from "@/components/doc/CodeBlock";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
+
+const SAMPLE_CODE = {
+    ja: `import { useState } from "react";
+import {
+    Button,
+    Checkbox,
+    Form,
+    FormControl,
+    FormField,
+    FormLabel,
+    FormMessage,
+    Input,
+    NumberInput,
+    RadioGroup,
+    RadioGroupItem,
+    Select,
+    Slider,
+    Switch,
+    Textarea,
+} from "@gunjo/ui";
+
+const PLANS = [
+    { value: "starter", label: "スターター", description: "1案件・レビュー担当1人。" },
+    { value: "team", label: "チーム", description: "レビュー一覧と権限を共有。" },
+    { value: "scale", label: "スケール", description: "操作の記録と社内アカウント連携。" },
+];
+
+const REGIONS = [
+    { value: "tokyo", label: "東京" },
+    { value: "osaka", label: "大阪" },
+    { value: "fukuoka", label: "福岡" },
+];
+
+export function WorkspaceSettingsForm() {
+    const [name, setName] = useState("ブランド制作");
+    const [plan, setPlan] = useState("team");
+    const [region, setRegion] = useState("tokyo");
+    const [seats, setSeats] = useState(8);
+    const [threshold, setThreshold] = useState(60);
+    const [digest, setDigest] = useState(true);
+    const [agreed, setAgreed] = useState(false);
+    const [note, setNote] = useState("");
+
+    const nameError = name.trim() === "" ? "ワークスペース名を入力してください。" : undefined;
+
+    return (
+        <Form
+            className="max-w-2xl"
+            onSubmit={(event) => {
+                event.preventDefault();
+            }}
+        >
+            <FormField error={nameError} required>
+                <FormLabel>ワークスペース名</FormLabel>
+                <FormControl>
+                    <Input
+                        value={name}
+                        onChange={(event) => setName(event.target.value)}
+                        placeholder="ブランド制作"
+                    />
+                </FormControl>
+                <FormMessage />
+            </FormField>
+
+            <Select
+                label="データの保存先"
+                description="レビューの記録を置く場所です。"
+                value={region}
+                onChange={(event) => setRegion(event.target.value)}
+            >
+                {REGIONS.map((option) => (
+                    <option key={option.value} value={option.value}>
+                        {option.label}
+                    </option>
+                ))}
+            </Select>
+
+            <fieldset className="space-y-3">
+                <legend className="text-sm font-medium">契約プラン</legend>
+                <RadioGroup value={plan} onValueChange={setPlan}>
+                    {PLANS.map((option) => (
+                        <RadioGroupItem
+                            key={option.value}
+                            value={option.value}
+                            label={option.label}
+                            description={option.description}
+                        />
+                    ))}
+                </RadioGroup>
+            </fieldset>
+
+            <NumberInput
+                value={seats}
+                onValueChange={setSeats}
+                min={1}
+                max={200}
+                aria-label="席数"
+            />
+
+            <Slider
+                label="この点数を下回れば自動で承認する"
+                value={threshold}
+                onValueChange={setThreshold}
+                min={0}
+                max={100}
+                showValue
+            />
+
+            <Switch
+                checked={digest}
+                onCheckedChange={setDigest}
+                label="週次のまとめ"
+                description="毎週月曜に1通だけ送ります。"
+            />
+
+            <Textarea
+                label="レビュー担当へのメモ"
+                description="一覧を開いた人に見えます。"
+                value={note}
+                onChange={(event) => setNote(event.target.value)}
+                maxLength={200}
+                showCount
+            />
+
+            <Checkbox
+                checked={agreed}
+                onCheckedChange={setAgreed}
+                label="この設定はすべての案件に適用されます。"
+            />
+
+            <div className="flex gap-3">
+                <Button type="submit" disabled={!agreed || Boolean(nameError)}>
+                    設定を保存
+                </Button>
+                <Button type="button" variant="outline">
+                    やめる
+                </Button>
+            </div>
+        </Form>
+    );
+}`,
+    en: `import { useState } from "react";
+import {
+    Button,
+    Checkbox,
+    Form,
+    FormControl,
+    FormField,
+    FormLabel,
+    FormMessage,
+    Input,
+    NumberInput,
+    RadioGroup,
+    RadioGroupItem,
+    Select,
+    Slider,
+    Switch,
+    Textarea,
+} from "@gunjo/ui";
+
+const PLANS = [
+    { value: "starter", label: "Starter", description: "One project, one reviewer." },
+    { value: "team", label: "Team", description: "Shared review queue and roles." },
+    { value: "scale", label: "Scale", description: "Audit log and single sign-on." },
+];
+
+const REGIONS = [
+    { value: "tokyo", label: "Tokyo" },
+    { value: "osaka", label: "Osaka" },
+    { value: "fukuoka", label: "Fukuoka" },
+];
+
+export function WorkspaceSettingsForm() {
+    const [name, setName] = useState("Brand studio");
+    const [plan, setPlan] = useState("team");
+    const [region, setRegion] = useState("tokyo");
+    const [seats, setSeats] = useState(8);
+    const [threshold, setThreshold] = useState(60);
+    const [digest, setDigest] = useState(true);
+    const [agreed, setAgreed] = useState(false);
+    const [note, setNote] = useState("");
+
+    const nameError = name.trim() === "" ? "Enter a workspace name." : undefined;
+
+    return (
+        <Form
+            className="max-w-2xl"
+            onSubmit={(event) => {
+                event.preventDefault();
+            }}
+        >
+            <FormField error={nameError} required>
+                <FormLabel>Workspace name</FormLabel>
+                <FormControl>
+                    <Input
+                        value={name}
+                        onChange={(event) => setName(event.target.value)}
+                        placeholder="Brand studio"
+                    />
+                </FormControl>
+                <FormMessage />
+            </FormField>
+
+            <Select
+                label="Primary region"
+                description="Where review data is stored."
+                value={region}
+                onChange={(event) => setRegion(event.target.value)}
+            >
+                {REGIONS.map((option) => (
+                    <option key={option.value} value={option.value}>
+                        {option.label}
+                    </option>
+                ))}
+            </Select>
+
+            <fieldset className="space-y-3">
+                <legend className="text-sm font-medium">Plan</legend>
+                <RadioGroup value={plan} onValueChange={setPlan}>
+                    {PLANS.map((option) => (
+                        <RadioGroupItem
+                            key={option.value}
+                            value={option.value}
+                            label={option.label}
+                            description={option.description}
+                        />
+                    ))}
+                </RadioGroup>
+            </fieldset>
+
+            <NumberInput
+                value={seats}
+                onValueChange={setSeats}
+                min={1}
+                max={200}
+                aria-label="Seats"
+            />
+
+            <Slider
+                label="Auto-approve below risk score"
+                value={threshold}
+                onValueChange={setThreshold}
+                min={0}
+                max={100}
+                showValue
+            />
+
+            <Switch
+                checked={digest}
+                onCheckedChange={setDigest}
+                label="Weekly digest"
+                description="One summary email every Monday."
+            />
+
+            <Textarea
+                label="Reviewer note"
+                description="Shown to anyone opening the queue."
+                value={note}
+                onChange={(event) => setNote(event.target.value)}
+                maxLength={200}
+                showCount
+            />
+
+            <Checkbox
+                checked={agreed}
+                onCheckedChange={setAgreed}
+                label="I understand these settings apply to every project."
+            />
+
+            <div className="flex gap-3">
+                <Button type="submit" disabled={!agreed || Boolean(nameError)}>
+                    Save settings
+                </Button>
+                <Button type="button" variant="outline">
+                    Cancel
+                </Button>
+            </div>
+        </Form>
+    );
+}`,
+};
 
 type Localized = {
     ja: string;
@@ -1012,6 +1294,20 @@ export default function InputsOverviewPage() {
                         </CardContent>
                     </Card>
                 </section>
+            </section>
+
+            <section className="space-y-4" id="sample">
+                <div className="space-y-1 border-b pb-3">
+                    <h2 className="text-2xl font-semibold tracking-tight">
+                        {isJa ? "まとめて使う見本" : "Using them together"}
+                    </h2>
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                        {isJa
+                            ? "この分類のコンポーネントをまとめて、設定を入力して保存する1画面を組んだ例です。そのまま貼り付けて動きます。"
+                            : "One settings form assembled from this category. Paste it as-is and it runs."}
+                    </p>
+                </div>
+                <CodeBlock code={SAMPLE_CODE[locale]} />
             </section>
 
             <section className="space-y-3" id="design-decisions">
