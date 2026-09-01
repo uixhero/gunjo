@@ -154,12 +154,9 @@ export default function LandingPage() {
             title={patternsMetadata.landingTemplate.title}
             description={patternsMetadata.landingTemplate.description}
             usedComponents={[
+                { name: "LandingTemplate", href: "/docs/components/landing" },
+                { name: "Container", href: "/docs/components/container" },
                 { name: "Button", href: "/docs/components/button" },
-                { name: "Input", href: "/docs/components/input" },
-                { name: "StickyHeader", href: "/docs/components/sticky-header" },
-                { name: "HeroSection", href: "/docs/components/hero-section" },
-                { name: "FeatureGrid", href: "/docs/components/feature-grid" },
-                { name: "Footer", href: "/docs/components/footer" },
             ]}
             relatedComponents={[
                 { name: "PricingTemplate", href: "/docs/components/pricing" },
