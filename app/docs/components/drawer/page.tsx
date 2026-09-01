@@ -122,7 +122,6 @@ export default function DrawerPage() {
                 codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewHeight={420}
-                fitEmbedHeightContent={false}
             >
                 <DrawerAuditDemo />
             </ComponentPreview>
@@ -143,7 +142,6 @@ export default function DrawerPage() {
                             embedSrc: "/embed/drawer?side=bottom",
                             code: usageCode,
                             previewHeight: 420,
-                            fitEmbedHeightContent: false,
                         },
                         {
                             key: "right",
@@ -155,7 +153,6 @@ export default function DrawerPage() {
                             embedSrc: "/embed/drawer?side=right",
                             code: rightCode,
                             previewHeight: 420,
-                            fitEmbedHeightContent: false,
                         },
                         {
                             key: "left",
@@ -167,7 +164,6 @@ export default function DrawerPage() {
                             embedSrc: "/embed/drawer?side=left",
                             code: leftCode,
                             previewHeight: 420,
-                            fitEmbedHeightContent: false,
                         },
                         {
                             key: "top",
@@ -179,7 +175,6 @@ export default function DrawerPage() {
                             embedSrc: "/embed/drawer?side=top",
                             code: topCode,
                             previewHeight: 420,
-                            fitEmbedHeightContent: false,
                         },
                     ]}
                 />
