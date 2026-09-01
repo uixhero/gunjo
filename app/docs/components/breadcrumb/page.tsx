@@ -23,6 +23,7 @@ import {
 import { IconHome as Home, IconSlash as Slash } from "@tabler/icons-react";
 import type { KeyboardEvent, MouseEvent, PointerEvent } from "react";
 import { useState } from "react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function buildNavigationMessage(isJa: boolean, label: string, href: string) {
     return isJa
@@ -695,6 +696,12 @@ export default function BreadcrumbDocPage() {
                 { name: "Pagination", href: "/docs/components/pagination" },
                 { name: "NavigationMenu", href: "/docs/components/navigation-menu" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: パンくずリスト（Breadcrumb）" : "UIXHERO: Breadcrumb (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/breadcrumb`,
+                },
+            ]}
         >
             <ComponentPreview
                 embedSrc="/embed/breadcrumb"
@@ -894,15 +901,6 @@ export default function BreadcrumbDocPage() {
                         </li>
                         <li>
                             <strong>深いときは真ん中を畳む。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">items</code> にデータを渡して <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">maxItems</code> を決めると、真ん中が三点のボタンに畳まれ、隠れた階層はドロップダウンで開きます。畳まないときも <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">BreadcrumbList</code> が折り返すので、狭い画面で横にはみ出しません。階層を URL ではなく人の辿り方に合わせる、という判断は資料に書いてあります。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/breadcrumb"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: パンくずリスト（Breadcrumb）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -915,15 +913,6 @@ export default function BreadcrumbDocPage() {
                         </li>
                         <li>
                             <strong>Collapse the middle when the path is deep.</strong> Pass crumbs through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">items</code> and set <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">maxItems</code>: the middle folds into an ellipsis button and the hidden levels open in a dropdown. Even uncollapsed, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">BreadcrumbList</code> wraps, so a long path never pushes the page sideways. Matching the trail to how people actually navigate, rather than to the URL, is covered in the article.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/breadcrumb"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Breadcrumb (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

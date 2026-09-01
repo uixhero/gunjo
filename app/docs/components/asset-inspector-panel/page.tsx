@@ -8,6 +8,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import layoutMetadata from "@design/layout-metadata.json";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const asset: AssetCardAsset = {
     id: "hero",
@@ -428,6 +429,13 @@ export default function AssetInspectorPanelDocPage() {
                 { name: "MediaPickerDialog", href: "/docs/components/media-picker-dialog" },
                 { name: "Media Library", href: "/docs/components/media-library" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: インスペクターパネル（Inspector Panel）" : "UIXHERO: Inspector Panel (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/inspector-panel`,
+                    relation: "nearest",
+                },
+            ]}
         >
             <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="sm" previewHeight={760}>
                 <div className="h-[680px] overflow-hidden rounded-lg border bg-background">
@@ -573,15 +581,7 @@ export default function AssetInspectorPanelDocPage() {
                         <li>
                             <strong>評価は星とスライダーの両方から動かせる。</strong>星は0.5刻みのボタン、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Slider</code> は同じ値をキーボードの矢印キーで動かす入口です。資料は「数値は上下キーで動かせるようにする」を挙げています。星だけだと細かい値をキーボードで合わせられないので、両方を置き、現在値を「3.5 / 5」の形で数字でも出しました。
                             <br />
-                            一般のインスペクターパネルの設計は UIXHERO の「インスペクターパネル」にあります。{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/inspector-panel"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: インスペクターパネル（Inspector Panel）
-                            </a>
+                            一般のインスペクターパネルの設計は UIXHERO の「インスペクターパネル」にあります。
                         </li>
                     </ul>
                 ) : (
@@ -595,15 +595,7 @@ export default function AssetInspectorPanelDocPage() {
                         <li>
                             <strong>The rating can be driven from the stars or the slider.</strong> The stars are half-step buttons; the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Slider</code> is the same value reachable with arrow keys. The article asks for numeric fields that respond to the arrow keys, and stars alone cannot be fine-tuned from the keyboard, so both are present, with the current value also printed as a number out of five.
                             <br />
-                            The general design of inspector panels is covered by UIXHERO&rsquo;s inspector-panel article.{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/inspector-panel"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Inspector Panel (in Japanese)
-                            </a>
+                            The general design of inspector panels is covered by UIXHERO&rsquo;s inspector-panel article.
                         </li>
                     </ul>
                 )}

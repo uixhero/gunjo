@@ -8,6 +8,7 @@ import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import layoutMetadata from "@design/layout-metadata.json";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
     en: `import { FloatingPanel, SpatialCanvas } from "@gunjo/ui";
@@ -437,6 +438,12 @@ export default function SpatialCanvasPage() {
                 { name: "MarqueeFrame", href: "/docs/components/marquee-frame" },
                 { name: "Resizable", href: "/docs/components/resizable" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: スペーシャルキャンバス（Spatial Canvas）" : "UIXHERO: Spatial Canvas (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/spatial-canvas`,
+                },
+            ]}
         >
             <ComponentPreview embedSrc="/embed/spatial-canvas" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="lg" previewHeight="auto">
                 <div className="h-[420px] w-full overflow-hidden rounded-lg border">
@@ -554,15 +561,6 @@ export default function SpatialCanvasPage() {
                         </li>
                         <li>
                             <strong>移動・拡大・ミニマップ・表示範囲外の間引きは入っていません。</strong>資料が挙げる4点（マウスの位置を中心にした拡大、ポインターの捕捉、大量のノードの間引き、キーボードでの操作）はどれも未実装で、載せる画面ごとに書くことになります。ここは部品に上げる余地がはっきり残っている場所です。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/spatial-canvas"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: スペーシャルキャンバス（Spatial Canvas）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -575,15 +573,6 @@ export default function SpatialCanvasPage() {
                         </li>
                         <li>
                             <strong>Pan, zoom, minimap and viewport culling are absent.</strong> All four points the article raises (zooming around the pointer, pointer capture during a drag, culling nodes outside the viewport, keyboard control) are unimplemented and have to be written per screen. This is the clearest place where work could move into the component.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/spatial-canvas"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Spatial Canvas (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

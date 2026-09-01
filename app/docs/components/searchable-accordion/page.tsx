@@ -9,6 +9,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
 import { SearchableAccordion, type SearchableAccordionItem } from "@gunjo/ui";
 import * as React from "react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const baseItemsJa: SearchableAccordionItem[] = [
     {
@@ -175,6 +176,13 @@ export default function SearchableAccordionPage() {
                 { name: "SearchInput", href: "/docs/components/search-input" },
                 { name: "FilterButton", href: "/docs/components/filter-button" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: アコーディオン（Accordion）" : "UIXHERO: Accordion (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/accordion`,
+                    relation: "nearest",
+                },
+            ]}
         >
             <ComponentPreview
                 embedSrc="/embed/searchable-accordion"
@@ -316,15 +324,7 @@ export default function SearchableAccordionPage() {
                         <li>
                             <strong>0件のときに手当てを出す。一方、既定で開く項目はまだ決めていません。</strong>一致が無いときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">EmptyState</code> を出し、絞り込みが効いているときだけ「条件を消す」ボタンを添えます。資料が挙げている「最もよく参照される1〜2項目を既定で開いておく」は<strong>まだ書いていません</strong>。いまは全部閉じた状態から始まり、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">defaultOpenValue</code> を呼ぶ側が渡さなければ何も開きません。
                             <br />
-                            一般のアコーディオンの設計は UIXHERO の「アコーディオン」にあります。{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/accordion"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: アコーディオン（Accordion）
-                            </a>
+                            一般のアコーディオンの設計は UIXHERO の「アコーディオン」にあります。
                         </li>
                     </ul>
                 ) : (
@@ -338,15 +338,7 @@ export default function SearchableAccordionPage() {
                         <li>
                             <strong>The empty state is handled; a default-open item is not decided yet.</strong> With no matches it renders an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">EmptyState</code>, offering a clear-filters button only when a filter is actually active. The article&rsquo;s advice to leave the one or two most-consulted items open by default is <strong>not written yet</strong>: everything starts closed unless the caller passes <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">defaultOpenValue</code>.
                             <br />
-                            The general design of accordions is covered by UIXHERO&rsquo;s accordion article.{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/accordion"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Accordion (in Japanese)
-                            </a>
+                            The general design of accordions is covered by UIXHERO&rsquo;s accordion article.
                         </li>
                     </ul>
                 )}

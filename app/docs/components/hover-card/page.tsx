@@ -13,6 +13,7 @@ import {
 } from "@/components/demos/OverlayComponentDemos";
 import overlayMetadata from "@design/overlay-metadata.json";
 import { useState, type ReactNode } from "react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function HoverCardPreviewSurface({ children }: { children: (portalContainer: HTMLElement | null) => ReactNode }) {
     const [portalContainer, setPortalContainer] = useState<HTMLDivElement | null>(null);
@@ -308,6 +309,12 @@ export default function HoverCardPage() {
                 { name: "Tooltip", href: "/docs/components/tooltip" },
                 { name: "Popover", href: "/docs/components/popover" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: ホバーカード（Hover Card）" : "UIXHERO: Hover Card (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/hover-card`,
+                },
+            ]}
         >
             <ComponentPreview
                 code={usageCode}
@@ -450,15 +457,6 @@ export default function HoverCardPage() {
                         </li>
                         <li>
                             <strong>枠の中に閉じ込められるようにする。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">portalContainer</code> を渡すと、カードを指定した箱の中に描きます。プレビューの枠や、画面の中に画面を描いている場面で、カードだけが外に出るのを防ぎます。中身の幅は256pxで固定しています。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/hover-card"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: ホバーカード（Hover Card）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -471,15 +469,6 @@ export default function HoverCardPage() {
                         </li>
                         <li>
                             <strong>It can be kept inside a frame.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">portalContainer</code> and the card renders inside the element you name, so it cannot escape a preview frame or a simulated browser surface. The content is a fixed 256px wide.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/hover-card"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Hover Card (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

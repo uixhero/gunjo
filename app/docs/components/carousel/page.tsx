@@ -19,6 +19,7 @@ import {
     Img,
     ImagePreview,
 } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function CarouselSample({ vertical = false, isJa }: { vertical?: boolean; isJa: boolean }) {
     return (
@@ -1278,6 +1279,12 @@ export function AutoplayCarousel() {
                 { name: "Img", href: "/docs/components/img" },
                 { name: "ImagePreview", href: "/docs/components/image-preview" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: カルーセル（Carousel）" : "UIXHERO: Carousel (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/carousel`,
+                },
+            ]}
         >
             <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewHeight="auto">
                 <CarouselSample isJa={isJa} />
@@ -1438,15 +1445,6 @@ export function AutoplayCarousel() {
                         </li>
                         <li>
                             <strong>何枚目かを読み上げに乗せる。</strong>全体は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="region"'}</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-roledescription="carousel"'}</code>、1枚ごとに <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="group"'}</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-roledescription="slide"'}</code>、下の点は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="tablist"'}</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="tab"'}</code> に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-selected</code> と1枚ずつの名前が付きます。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/carousel"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: カルーセル（Carousel）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -1459,15 +1457,6 @@ export function AutoplayCarousel() {
                         </li>
                         <li>
                             <strong>Announce which slide this is.</strong> The frame carries <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="region"'}</code> with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-roledescription="carousel"'}</code>, each slide carries <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="group"'}</code> with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-roledescription="slide"'}</code>, and the dots are a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="tablist"'}</code> of <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="tab"'}</code> elements with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-selected</code> and a per-slide name.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/carousel"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Carousel (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

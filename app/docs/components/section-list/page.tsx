@@ -12,6 +12,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
 import { Badge, ListCard, SectionList, type SectionListSection } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Locale = "ja" | "en";
 
@@ -188,6 +189,13 @@ export function InvoiceSectionList() {
       sectionLabels={sectionLabels}
       usedComponents={[{ name: "SectionList", href: "/docs/components/section-list" }, { name: "ListCard", href: "/docs/components/list-card" }]}
       relatedComponents={[{ name: "Table", href: "/docs/components/table" }, { name: "AmountBreakdown", href: "/docs/components/amount-breakdown" }]}
+      uixheroLinks={[
+        {
+          label: locale === "ja" ? "UIXHERO: リスト（List）" : "UIXHERO: List (in Japanese)",
+          href: `${UIXHERO_BASE_URL}/resources/ui-components/list`,
+          relation: "nearest",
+        },
+      ]}
     >
       <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewHeight="auto" previewBodyWidth="lg">
         <SectionListPreview locale={locale} />
@@ -237,15 +245,7 @@ export function InvoiceSectionList() {
             <li>
               <strong>見出しを貼り付けるかどうかは宣言で選ぶ。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">stickyHeaders</code> を渡したときだけ、見出しの帯がスクロール中に上へ残ります。既定で貼り付けにしていないのは、短いまとまりが多数並ぶ画面では、帯が次々に積み替わって読みにくくなるためです。
               <br />
-              一般のリストの設計は UIXHERO の「リスト」にあります。{" "}
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/resources/ui-components/list"
-                target="_blank"
-                rel="noreferrer"
-              >
-                UIXHERO: リスト（List）
-              </a>
+              一般のリストの設計は UIXHERO の「リスト」にあります。
             </li>
           </ul>
         ) : (
@@ -259,15 +259,7 @@ export function InvoiceSectionList() {
             <li>
               <strong>Sticky headings are opt-in.</strong> Only with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">stickyHeaders</code> does the heading band stay pinned while its section scrolls. It is off by default because on a screen of many short groups the band swaps constantly and becomes harder to read than a plain heading.
               <br />
-              The general design of lists is covered by UIXHERO&rsquo;s list article.{" "}
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/resources/ui-components/list"
-                target="_blank"
-                rel="noreferrer"
-              >
-                UIXHERO: List (in Japanese)
-              </a>
+              The general design of lists is covered by UIXHERO&rsquo;s list article.
             </li>
           </ul>
         )}

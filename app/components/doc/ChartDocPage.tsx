@@ -7,6 +7,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { ChartPreviewWithControls } from "@/components/doc/ChartPreviewWithControls";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import type { UixheroLink } from "@/lib/uixhero-links";
 
 type Locale = "en" | "ja";
 
@@ -39,6 +40,11 @@ interface ChartDocPageProps {
      * UIXHERO reference it cites lives next to the component it is about.
      */
     designDecisions?: Record<Locale, React.ReactNode>;
+    /**
+     * このページが自分で持つ UIXHERO の記事リンク。ラベルが言語で変わるので
+     * locale ごとに受け、「いつ・なぜ使うか（UIXHERO）」の節へ渡す。
+     */
+    uixheroLinks?: Record<Locale, UixheroLink[]>;
 }
 
 export function ChartDocPage({
@@ -54,6 +60,7 @@ export function ChartDocPage({
     usedComponents,
     relatedComponents,
     designDecisions,
+    uixheroLinks,
 }: ChartDocPageProps) {
     const { locale, sectionLabels } = useLocale();
     const currentCode = code[locale];
@@ -66,6 +73,7 @@ export function ChartDocPage({
             sectionLabels={sectionLabels}
             usedComponents={usedComponents[locale]}
             relatedComponents={relatedComponents[locale]}
+            uixheroLinks={uixheroLinks?.[locale]}
         >
             <ChartPreviewWithControls
                 code={currentCode}

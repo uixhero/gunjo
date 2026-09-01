@@ -9,6 +9,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import inputsMetadata from "@design/inputs-metadata.json";
 import { FormControl, FormDescription, FormGroup, FormLabel, Select } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function SelectField({
     disabled,
@@ -200,6 +201,12 @@ export function OfficePicker() {
                 { name: "DropdownMenu", href: "/docs/components/dropdown-menu" },
                 { name: "DatePicker", href: "/docs/components/date-picker" },
                 { name: "Form", href: "/docs/components/form" },
+            ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: セレクト（Select）" : "UIXHERO: Select (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/select`,
+                },
             ]}
         >
             <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewHeight="auto" previewBodyWidth="md">
@@ -403,15 +410,6 @@ export function DisabledOfficeSelect() {
                         </li>
                         <li>
                             <strong>矢印は飾りとして重ねてある。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">appearance-none</code> で OS の矢印を消し、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">pointer-events-none</code> を付けた山形のアイコンを右に重ねています。クリックはすべて下の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">select</code> に届くので、アイコンの上を押しても開きます。誤りを示す赤い枠も、専用のクラスではなく <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-invalid</code> の属性で切り替わります。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/select"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: セレクト（Select）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -424,15 +422,6 @@ export function DisabledOfficeSelect() {
                         </li>
                         <li>
                             <strong>The chevron is decoration layered on top.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">appearance-none</code> removes the native arrow and a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">pointer-events-none</code> chevron sits over the right edge, so every click still reaches the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">select</code> underneath. The invalid state is driven by the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-invalid</code> attribute rather than a separate class.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/select"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Select (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

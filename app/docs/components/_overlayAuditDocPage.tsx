@@ -6,6 +6,7 @@ import { ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHel
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import type { UixheroLink } from "@/lib/uixhero-links";
 import overlayMetadata from "@design/overlay-metadata.json";
 
 type Locale = "ja" | "en";
@@ -2372,6 +2373,7 @@ export function OverlayAuditDocPage({
     title,
     description,
     designDecisions,
+    uixheroLinks,
 }: {
     kind: OverlayAuditKind;
     title?: string;
@@ -2381,6 +2383,11 @@ export function OverlayAuditDocPage({
      * UIXHERO reference it cites lives next to the component it is about.
      */
     designDecisions?: Record<Locale, React.ReactNode>;
+    /**
+     * このページが自分で持つ UIXHERO の記事リンク。ラベルが言語で変わるので
+     * locale ごとに受け、「いつ・なぜ使うか（UIXHERO）」の節へ渡す。
+     */
+    uixheroLinks?: Record<Locale, UixheroLink[]>;
 }) {
     const { locale, sectionLabels } = useLocale();
     const config = configs[kind];
@@ -2393,6 +2400,7 @@ export function OverlayAuditDocPage({
             description={description ?? meta.description}
             usedComponents={config.usedComponents}
             relatedComponents={config.relatedComponents}
+            uixheroLinks={uixheroLinks?.[locale]}
         >
             <ComponentPreview
                 embedSrc={config.embed}

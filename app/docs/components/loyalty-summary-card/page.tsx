@@ -9,6 +9,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
 import { Badge, Button, Dialog, DialogContent, DialogDescription, DialogFooter, DialogHeader, DialogTitle, LoyaltySummaryCard } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Locale = "ja" | "en";
 
@@ -237,6 +238,13 @@ export function MemberSummary() {
         { name: "AmountBreakdown", href: "/docs/components/amount-breakdown" },
         { name: "ListCard", href: "/docs/components/list-card" },
       ]}
+      uixheroLinks={[
+        {
+          label: locale === "ja" ? "UIXHERO: カード（Card）" : "UIXHERO: Card (in Japanese)",
+          href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+          relation: "nearest",
+        },
+      ]}
     >
       <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewHeight="auto" previewBodyWidth="md">
         <LoyaltyPreview locale={locale} />
@@ -311,15 +319,7 @@ export function MemberSummary() {
             <li>
               <strong>華やかな面は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">brand</code> の1つだけ用意した。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'tone="brand"'}</code> は塗りつぶしの面で、ブランド色のクラスをその場で書かずに見栄えを出すための逃げ道です。落ち着かせたいときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'tone="default"'}</code> で普通のカードに戻ります。任意の色を渡す口は開けていません。
               <br />
-              一般のカードの設計は UIXHERO の「カード」にあります。{" "}
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/resources/ui-components/card"
-                target="_blank"
-                rel="noreferrer"
-              >
-                UIXHERO: カード（Card）
-              </a>
+              一般のカードの設計は UIXHERO の「カード」にあります。
             </li>
           </ul>
         ) : (
@@ -333,15 +333,7 @@ export function MemberSummary() {
             <li>
               <strong>There is exactly one showy surface, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">brand</code>.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'tone="brand"'}</code> is a filled surface that gives the hero some shine without reaching for ad-hoc brand-colour classes. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'tone="default"'}</code> returns it to a plain card. There is deliberately no prop for passing an arbitrary colour.
               <br />
-              The general design of cards is covered by UIXHERO&rsquo;s card article.{" "}
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/resources/ui-components/card"
-                target="_blank"
-                rel="noreferrer"
-              >
-                UIXHERO: Card (in Japanese)
-              </a>
+              The general design of cards is covered by UIXHERO&rsquo;s card article.
             </li>
           </ul>
         )}

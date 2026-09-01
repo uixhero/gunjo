@@ -4,6 +4,7 @@ import type { ComponentProps } from "react";
 import { ChartDocPage } from "@/components/doc/ChartDocPage";
 import displayMetadata from "@design/display-metadata.json";
 import { RetentionCohortCard } from "@gunjo/ui";
+import { UIXHERO_BASE_URL, type UixheroLink } from "@/lib/uixhero-links";
 
 type Locale = "en" | "ja";
 type DataItem = ComponentProps<typeof RetentionCohortCard>["cohorts"][number];
@@ -929,15 +930,7 @@ const designDecisions = {
             <li>
                 <strong>升目の無いところは押せない空欄にした。</strong>まだ来ていない期間は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-hidden</code> の空欄で、ボタンにしていません。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">onCellSelect</code> を渡したときだけ升目が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> になり、渡さなければ読むだけの表のままです。
                 <br />
-                一般のカードの設計は UIXHERO の「カード」にあります。{" "}
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/card"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: カード（Card）
-                </a>
+                一般のカードの設計は UIXHERO の「カード」にあります。
             </li>
         </>
     ),
@@ -952,22 +945,32 @@ const designDecisions = {
             <li>
                 <strong>Missing cells are inert blanks.</strong> Periods that have not happened yet render as <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-hidden</code> blanks rather than buttons. Cells become <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> elements only when <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">onCellSelect</code> is supplied; otherwise the grid is something you read, not something you operate.
                 <br />
-                The general design of cards is covered by UIXHERO&rsquo;s card article.{" "}
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/card"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: Card (in Japanese)
-                </a>
+                The general design of cards is covered by UIXHERO&rsquo;s card article.
             </li>
         </>
     ),
 };
 
+// 本文からこの節へ移した UIXHERO の記事リンク（gunjo #955 の受け口）。
+const uixheroLinks: Record<"ja" | "en", UixheroLink[]> = {
+    ja: [
+        {
+            label: "UIXHERO: カード（Card）",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+            relation: "nearest",
+        },
+    ],
+    en: [
+        {
+            label: "UIXHERO: Card (in Japanese)",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+            relation: "nearest",
+        },
+    ],
+};
+
 export default function RetentionCohortCardPage() {
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
 
-    return <ChartDocPage designDecisions={designDecisions} title={{ en: meta.retentionCohortCard.title, ja: "継続率コホートカード" }} description={{ en: meta.retentionCohortCard.description, ja: "獲得月や開始時期ごとの継続率を、期間別のセルで比較するコホートカードです。" }} code={code} usageCode={usageCode} propsData={propsData} demo="retention-cohort-card" embedBase="/embed/retention-cohort-card" previewHeight={460} states={states} usedComponents={{ en: [{ name: "RetentionCohortCard", href: "/docs/components/retention-cohort-card" }, { name: "ChartLegend", href: "/docs/components/chart-legend" }, { name: "Tooltip", href: "/docs/components/tooltip" }], ja: [{ name: "継続率コホートカード", href: "/docs/components/retention-cohort-card" }, { name: "チャート凡例", href: "/docs/components/chart-legend" }, { name: "ツールチップ", href: "/docs/components/tooltip" }] }} relatedComponents={{ en: [{"name":"HeatmapChart","href":"/docs/components/heatmap-chart"},{"name":"Table","href":"/docs/components/table"}], ja: [{"name":"ヒートマップ","href":"/docs/components/heatmap-chart"},{"name":"テーブル","href":"/docs/components/table"}] }} />;
+    return <ChartDocPage designDecisions={designDecisions} title={{ en: meta.retentionCohortCard.title, ja: "継続率コホートカード" }} description={{ en: meta.retentionCohortCard.description, ja: "獲得月や開始時期ごとの継続率を、期間別のセルで比較するコホートカードです。" }} code={code} usageCode={usageCode} propsData={propsData} demo="retention-cohort-card" embedBase="/embed/retention-cohort-card" previewHeight={460} states={states} usedComponents={{ en: [{ name: "RetentionCohortCard", href: "/docs/components/retention-cohort-card" }, { name: "ChartLegend", href: "/docs/components/chart-legend" }, { name: "Tooltip", href: "/docs/components/tooltip" }], ja: [{ name: "継続率コホートカード", href: "/docs/components/retention-cohort-card" }, { name: "チャート凡例", href: "/docs/components/chart-legend" }, { name: "ツールチップ", href: "/docs/components/tooltip" }] }} relatedComponents={{ en: [{"name":"HeatmapChart","href":"/docs/components/heatmap-chart"},{"name":"Table","href":"/docs/components/table"}], ja: [{"name":"ヒートマップ","href":"/docs/components/heatmap-chart"},{"name":"テーブル","href":"/docs/components/table"}] }} uixheroLinks={uixheroLinks} />;
 }

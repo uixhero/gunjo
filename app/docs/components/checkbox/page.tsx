@@ -8,6 +8,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { Checkbox, Label } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 export default function CheckboxPage() {
     const { locale, sectionLabels } = useLocale();
@@ -103,6 +104,12 @@ export function TermsCheckboxWithText() {
                 { name: "RadioGroup", href: "/docs/components/radio-group" },
                 { name: "Toggle", href: "/docs/components/toggle" },
                 { name: "Form", href: "/docs/components/form" },
+            ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: チェックボックス（Checkbox）" : "UIXHERO: Checkbox (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/checkbox`,
+                },
             ]}
         >
             <ComponentPreview embedSrc="/embed/checkbox" code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels}>
@@ -291,15 +298,6 @@ export function LockedNotificationCheckbox() {
                         </li>
                         <li>
                             <strong>見た目の段は生成された定義から引く。</strong>チェック済み・未チェック・使えない、の3つの見た目は設計の元から生成した名前で引いています。ソースの側だけで段を足すことはできません。四角は複数選べる・丸は1つだけ、という使い分けは資料に書いてあります。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/checkbox"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: チェックボックス（Checkbox）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -312,15 +310,6 @@ export function LockedNotificationCheckbox() {
                         </li>
                         <li>
                             <strong>The states come from generated keys.</strong> Checked, unchecked and disabled are looked up by names generated from the design source, so a state cannot be added from the React side alone. Square means many, round means one is covered in the article.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/checkbox"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Checkbox (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

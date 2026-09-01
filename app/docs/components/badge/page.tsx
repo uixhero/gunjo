@@ -21,6 +21,7 @@ import {
 } from "@gunjo/ui";
 import { IconCheck, IconChevronDown, IconPlus, IconSparkles, IconX } from "@tabler/icons-react";
 import { useState } from "react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type BadgeVariant = "default" | "secondary" | "destructive" | "outline";
 
@@ -337,6 +338,12 @@ export function StatusBadges() {
                 { name: "Tag", href: "/docs/components/tag" },
                 { name: "TagInput", href: "/docs/components/tag-input" },
                 { name: "FilterButton", href: "/docs/components/filter-button" },
+            ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: バッジ（Badge）" : "UIXHERO: Badge (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/badge`,
+                },
             ]}
         >
             <ComponentPreview embedSrc="/embed/badge" code={code} codeBlock={<CodeBlock code={code} />}>
@@ -720,15 +727,6 @@ export function SelectableBadge() {
                         </li>
                         <li>
                             <strong>数の丸めは部品に持たせない。</strong>資料は「0件のときは出さない」「99件を超えたら99+にする」を挙げています。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Badge</code> はこの計算を持たず、呼ぶ側の判断に残しました。0を出すかどうかは画面の意味で変わるからです。大きさの刻み（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">sm</code>・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">default</code>・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">lg</code>）は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Tag</code> と同じ名前にしてあるので、並べて使うときに指定を読み替えずに済みます（#300）。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/badge"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: バッジ（Badge）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -741,15 +739,6 @@ export function SelectableBadge() {
                         </li>
                         <li>
                             <strong>Count rules stay with the caller.</strong> The article asks for hiding a count badge at zero and collapsing anything past 99 into 99+. GUNJO deliberately keeps that arithmetic out of <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Badge</code>, because whether a zero is noise or news depends on the screen. The size scale (<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">sm</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">default</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">lg</code>) uses the same names as <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Tag</code> so the two can be mixed without translating sizes (#300).
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/badge"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Badge (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

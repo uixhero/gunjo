@@ -8,6 +8,7 @@ import { RightRailDemo } from "@/components/demos/RightRailDemo";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import navigationMetadata from "@design/navigation-metadata.json";
 import { RightRail } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
     ja: `import { Badge, RightRail } from "@gunjo/ui"
@@ -609,6 +610,12 @@ export default function RightRailDocPage() {
                 { name: "Sidebar", href: "/docs/components/sidebar" },
                 { name: "DocumentPager", href: "/docs/components/document-pager" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: ライトレール（Right Rail）" : "UIXHERO: Right Rail (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/right-rail`,
+                },
+            ]}
         >
             <ComponentPreview embedSrc="/embed/right-rail" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewBodyWidth="full" previewHeight="auto">
                 <RightRailDemo />
@@ -689,15 +696,6 @@ export default function RightRailDocPage() {
                         </li>
                         <li>
                             <strong>狭い画面での並べ替えは持っていません。</strong>資料は「モバイルでは Right Rail を本文の下に移す」を挙げています。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">RightRail</code> にその切り替えは入っていないので、いまは親側で <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">flex-col lg:flex-row</code> のように組み替えることになります。ここは部品に上げる余地が残っている場所です。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/right-rail"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: ライトレール（Right Rail）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -710,15 +708,6 @@ export default function RightRailDocPage() {
                         </li>
                         <li>
                             <strong>Reflowing on narrow screens is not handled.</strong> The article asks that the rail move below the main content on mobile. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">RightRail</code> has no such switch, so for now the parent does it with something like <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">flex-col lg:flex-row</code>. This is a gap that could reasonably move into the component later.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/right-rail"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Right Rail (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

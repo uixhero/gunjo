@@ -9,6 +9,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
 import { Badge, Button, CompanyCell, MatchCard, PersonCell, Toast, type MatchFactor } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Locale = "ja" | "en";
 
@@ -337,6 +338,13 @@ export function ReadOnlySubsidyMatch() {
         { name: "Meter", href: "/docs/components/meter" },
         { name: "RelationshipRow", href: "/docs/components/relationship-row" },
       ]}
+      uixheroLinks={[
+        {
+          label: locale === "ja" ? "UIXHERO: カード（Card）" : "UIXHERO: Card (in Japanese)",
+          href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+          relation: "nearest",
+        },
+      ]}
     >
       <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewHeight="auto" previewBodyWidth="lg">
         <MatchCardPreview locale={locale} />
@@ -413,15 +421,7 @@ export function ReadOnlySubsidyMatch() {
             <li>
               <strong>内訳は文字つきの印で出す。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">factors</code> の各行は、丸や三角のような文字を色つきの小さな枠に入れて出します。色（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">tone</code>）は補助で、意味は文字が持ちます。色だけで「適合」と「不適合」を分けないためです。
               <br />
-              一般のカードの設計は UIXHERO の「カード」にあります。{" "}
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/resources/ui-components/card"
-                target="_blank"
-                rel="noreferrer"
-              >
-                UIXHERO: カード（Card）
-              </a>
+              一般のカードの設計は UIXHERO の「カード」にあります。
             </li>
           </ul>
         ) : (
@@ -435,15 +435,7 @@ export function ReadOnlySubsidyMatch() {
             <li>
               <strong>The breakdown is marked with characters, not colour.</strong> Each <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">factors</code> row puts a symbol in a small tinted chip; <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">tone</code> is support and the symbol carries the meaning, so a match and a mismatch are never separated by colour alone.
               <br />
-              The general design of cards is covered by UIXHERO&rsquo;s card article.{" "}
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/resources/ui-components/card"
-                target="_blank"
-                rel="noreferrer"
-              >
-                UIXHERO: Card (in Japanese)
-              </a>
+              The general design of cards is covered by UIXHERO&rsquo;s card article.
             </li>
           </ul>
         )}

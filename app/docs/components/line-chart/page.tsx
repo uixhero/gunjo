@@ -4,6 +4,7 @@ import type { ComponentProps } from "react";
 import { ChartDocPage } from "@/components/doc/ChartDocPage";
 import displayMetadata from "@design/display-metadata.json";
 import { LineChart } from "@gunjo/ui";
+import { UIXHERO_BASE_URL, type UixheroLink } from "@/lib/uixhero-links";
 
 type Locale = "en" | "ja";
 type LineSeries = ComponentProps<typeof LineChart>["series"][number];
@@ -436,15 +437,6 @@ const designDecisions = {
             </li>
             <li>
                 <strong>図の名前は、呼ぶ側が付けます。</strong>部品は外枠に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="img"'}</code> を付けますが、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> の既定は持ちません。何の、いつの数字かという図の題は、部品には分からないからです。系列の区別も色だけで、点はすべて同じ丸です。資料が挙げる「実線と破線を使い分ける」「線の終わりに系列名を置く」は、いまは呼ぶ側の仕事として残っています。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showLegend</code> は既定で off で、on にすると各系列の最後の値が凡例に並びます。
-                <br />
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/line-chart"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: 折れ線グラフ（Line Chart）
-                </a>
             </li>
         </>
     ),
@@ -458,22 +450,29 @@ const designDecisions = {
             </li>
             <li>
                 <strong>Naming the chart is the caller&rsquo;s job.</strong> The component sets <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="img"'}</code> on the wrapper but ships no default <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code>, because it cannot know what the figure is of, or when. Series are separated by colour alone as well: every dot is the same circle. The article&rsquo;s advice to mix solid with dashed strokes, or to label each line at its end, is still work for the caller. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showLegend</code> is off by default; turning it on lists each series with its last value.
-                <br />
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/line-chart"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: Line Chart (in Japanese)
-                </a>
             </li>
         </>
     ),
 };
 
+// 本文からこの節へ移した UIXHERO の記事リンク（gunjo #955 の受け口）。
+const uixheroLinks: Record<"ja" | "en", UixheroLink[]> = {
+    ja: [
+        {
+            label: "UIXHERO: 折れ線グラフ（Line Chart）",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/line-chart`,
+        },
+    ],
+    en: [
+        {
+            label: "UIXHERO: Line Chart (in Japanese)",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/line-chart`,
+        },
+    ],
+};
+
 export default function LineChartPage() {
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
 
-    return <ChartDocPage designDecisions={designDecisions} title={{ en: meta.lineChart.title, ja: "折れ線チャート" }} description={{ en: meta.lineChart.description, ja: "複数系列の時系列を、線・面表示、基準線、凡例付きで比較するチャートです。" }} code={code} usageCode={usageCode} propsData={propsData} demo="line-chart" embedBase="/embed/line-chart" previewHeight={520} states={states} usedComponents={{ en: [{ name: "LineChart", href: "/docs/components/line-chart" }, { name: "ChartLegend", href: "/docs/components/chart-legend" }, { name: "Tooltip", href: "/docs/components/tooltip" }], ja: [{ name: "折れ線チャート", href: "/docs/components/line-chart" }, { name: "チャート凡例", href: "/docs/components/chart-legend" }, { name: "ツールチップ", href: "/docs/components/tooltip" }] }} relatedComponents={{ en: [{ name: "SparklineChart", href: "/docs/components/sparkline-chart" }, { name: "RibbonChart", href: "/docs/components/ribbon-chart" }, { name: "BarChart", href: "/docs/components/bar-chart" }], ja: [{ name: "スパークライン", href: "/docs/components/sparkline-chart" }, { name: "リボンチャート", href: "/docs/components/ribbon-chart" }, { name: "棒グラフ", href: "/docs/components/bar-chart" }] }} />;
+    return <ChartDocPage designDecisions={designDecisions} title={{ en: meta.lineChart.title, ja: "折れ線チャート" }} description={{ en: meta.lineChart.description, ja: "複数系列の時系列を、線・面表示、基準線、凡例付きで比較するチャートです。" }} code={code} usageCode={usageCode} propsData={propsData} demo="line-chart" embedBase="/embed/line-chart" previewHeight={520} states={states} usedComponents={{ en: [{ name: "LineChart", href: "/docs/components/line-chart" }, { name: "ChartLegend", href: "/docs/components/chart-legend" }, { name: "Tooltip", href: "/docs/components/tooltip" }], ja: [{ name: "折れ線チャート", href: "/docs/components/line-chart" }, { name: "チャート凡例", href: "/docs/components/chart-legend" }, { name: "ツールチップ", href: "/docs/components/tooltip" }] }} relatedComponents={{ en: [{ name: "SparklineChart", href: "/docs/components/sparkline-chart" }, { name: "RibbonChart", href: "/docs/components/ribbon-chart" }, { name: "BarChart", href: "/docs/components/bar-chart" }], ja: [{ name: "スパークライン", href: "/docs/components/sparkline-chart" }, { name: "リボンチャート", href: "/docs/components/ribbon-chart" }, { name: "棒グラフ", href: "/docs/components/bar-chart" }] }} uixheroLinks={uixheroLinks} />;
 }

@@ -1,5 +1,6 @@
 import { OverlayAuditDocPage } from "../_overlayAuditDocPage";
 import overlayMetadata from "@design/overlay-metadata.json";
+import { UIXHERO_BASE_URL, type UixheroLink } from "@/lib/uixhero-links";
 
 const designDecisions = {
     ja: (
@@ -12,15 +13,6 @@ const designDecisions = {
             </li>
             <li>
                 <strong>閉じる手段と読み上げは土台に任せた。</strong>Escape と外側のクリックとフォーカスの囲い込みは Radix の Dialog が持ちます。右上の閉じるボタンの名前は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">closeLabel</code> で渡せて、渡さなければ表示中の言語の既定語になります。資料が挙げるスマホでの下方向のスワイプで閉じる操作は入っていません。
-                <br />
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/sheet"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: シート（Sheet）
-                </a>
             </li>
         </>
     ),
@@ -34,18 +26,25 @@ const designDecisions = {
             </li>
             <li>
                 <strong>Dismissal and announcement come from the primitive.</strong> Escape, outside click and the focus cage are handled by the Radix Dialog. The close button name is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">closeLabel</code>, falling back to the default word for the current language. Swipe-down-to-close on mobile, which the article mentions, is not implemented.
-                <br />
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/sheet"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: Sheet (in Japanese)
-                </a>
             </li>
         </>
     ),
+};
+
+// 本文からこの節へ移した UIXHERO の記事リンク（gunjo #955 の受け口）。
+const uixheroLinks: Record<"ja" | "en", UixheroLink[]> = {
+    ja: [
+        {
+            label: "UIXHERO: シート（Sheet）",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/sheet`,
+        },
+    ],
+    en: [
+        {
+            label: "UIXHERO: Sheet (in Japanese)",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/sheet`,
+        },
+    ],
 };
 
 export default function SheetDocPage() {
@@ -55,6 +54,7 @@ export default function SheetDocPage() {
             title={overlayMetadata.sheet.title}
             description={overlayMetadata.sheet.description}
             designDecisions={designDecisions}
+            uixheroLinks={uixheroLinks}
         />
     );
 }

@@ -9,6 +9,7 @@ import { ChartPreviewWithControls } from "@/components/doc/ChartPreviewWithContr
 import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
 import { BarChart } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const weeklyData = [
     { label: "月", value: 42, color: "primary" },
@@ -367,6 +368,12 @@ export default function BarChartPage() {
                 { name: "AnalyticsCard", href: "/docs/components/analytics-card" },
                 { name: "ChartLegend", href: "/docs/components/chart-legend" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: 棒グラフ（Bar Chart）" : "UIXHERO: Bar Chart (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/bar-chart`,
+                },
+            ]}
         >
             <ChartPreviewWithControls
                 code={code}
@@ -466,15 +473,6 @@ export default function BarChartPage() {
                         </li>
                         <li>
                             <strong>数値の整形は、呼ぶ側に残しました。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> は関数を渡す prop なので、サーバーコンポーネントからは渡せません。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PieChart</code> などにはシリアライズできる <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code> を足しましたが（#338）、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">BarChart</code> にはまだありません。桁区切りを変えたいときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'"use client"'}</code> の境界を挟みます。棒は div の幅と高さで描いていて SVG ではないので、色は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ChartTone</code> の名前で渡します。綴りを間違えた色は開発中に一度だけ警告が出ます（#296）。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/bar-chart"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: 棒グラフ（Bar Chart）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -487,15 +485,6 @@ export default function BarChartPage() {
                         </li>
                         <li>
                             <strong>Number formatting stays with the caller.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> is a function prop, so it cannot be passed from a Server Component. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PieChart</code> and its siblings gained the serializable <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code> (#338); <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">BarChart</code> has not yet. Until it does, put a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'"use client"'}</code> boundary in between. Bars are plain divs sized by width and height rather than SVG, so colours arrive as <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ChartTone</code> names; a misspelled tone warns once in development (#296).
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/bar-chart"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Bar Chart (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

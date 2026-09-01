@@ -9,6 +9,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
 import { ExpiryBadge, Label, MetadataList, Slider, classifyExpiry } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Locale = "ja" | "en";
 
@@ -412,6 +413,13 @@ export function ExpiryWarnWindows() {
         { name: "Meter", href: "/docs/components/meter" },
         { name: "Badge", href: "/docs/components/badge" },
       ]}
+      uixheroLinks={[
+        {
+          label: locale === "ja" ? "UIXHERO: バッジ（Badge）" : "UIXHERO: Badge (in Japanese)",
+          href: `${UIXHERO_BASE_URL}/resources/ui-components/badge`,
+          relation: "nearest",
+        },
+      ]}
     >
       <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewHeight="auto" previewBodyWidth="md">
         <ExpiryBadgePreview locale={locale} />
@@ -669,15 +677,7 @@ export function ExpiryDensityBadges() {
             <li>
               <strong>「期限間近」の線は呼ぶ側が引く。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">warnWithinDays</code> の既定は30日です。車検と資格と保険では警告を出したい時期が違うので、部品の中に固定しませんでした。数のバッジではないので、資料の「0件で非表示」「99件を超えたら99+」の丸めは持ちません。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">today</code> も props で、サーバーとブラウザで結果がずれないようにしています。
               <br />
-              一般のバッジの設計は UIXHERO の「バッジ」にあります。{" "}
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/resources/ui-components/badge"
-                target="_blank"
-                rel="noreferrer"
-              >
-                UIXHERO: バッジ（Badge）
-              </a>
+              一般のバッジの設計は UIXHERO の「バッジ」にあります。
             </li>
           </ul>
         ) : (
@@ -691,15 +691,7 @@ export function ExpiryDensityBadges() {
             <li>
               <strong>The caller draws the line for &ldquo;expiring&rdquo;.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">warnWithinDays</code> defaults to 30, because an inspection, a licence and an insurance policy each want a different warning window. This is not a count badge, so the article&rsquo;s zero-hides and 99-plus rounding do not apply. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">today</code> is likewise a prop, so server and client agree.
               <br />
-              The general design of badges is covered by UIXHERO&rsquo;s badge article.{" "}
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/resources/ui-components/badge"
-                target="_blank"
-                rel="noreferrer"
-              >
-                UIXHERO: Badge (in Japanese)
-              </a>
+              The general design of badges is covered by UIXHERO&rsquo;s badge article.
             </li>
           </ul>
         )}

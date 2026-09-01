@@ -10,6 +10,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import inputsMetadata from "@design/inputs-metadata.json";
 import { Toggle, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 import { IconBold, IconItalic, IconUnderline } from "@tabler/icons-react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function TooltippedToggle({
     label,
@@ -174,6 +175,12 @@ export function BoldToggle() {
                 { name: "ToggleGroup", href: "/docs/components/toggle-group" },
                 { name: "TooltipButton", href: "/docs/components/tooltip-button" },
                 { name: "Button", href: "/docs/components/button" },
+            ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: トグル（Toggle）" : "UIXHERO: Toggle (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/toggle`,
+                },
             ]}
         >
             <ComponentPreview embedSrc="/embed/toggle" code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels}>
@@ -342,15 +349,6 @@ export function DisabledBoldToggle() {
                         </li>
                         <li>
                             <strong>見た目は2つだけにした。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> は地の無いものと枠線のあるものの2つ、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">size</code> は3つです。1つだけ置くトグルは周りに馴染ませ、並べて使うときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ToggleGroup</code> に移る、という切り分けにしてあるので、単体のトグルに区切りや連結の見た目を増やしていません。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/toggle"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: トグル（Toggle）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -363,15 +361,6 @@ export function DisabledBoldToggle() {
                         </li>
                         <li>
                             <strong>Two looks and no more.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> is either bare or outlined, with three sizes. A lone toggle is meant to blend into its surroundings, and a row of them is meant to become a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ToggleGroup</code>, so no joined or segmented styling was added to the single control.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/toggle"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Toggle (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

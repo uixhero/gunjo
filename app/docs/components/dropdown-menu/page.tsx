@@ -11,6 +11,7 @@ import {
     UserMenuAuditDemo,
 } from "@/components/demos/OverlayComponentDemos";
 import overlayMetadata from "@design/overlay-metadata.json";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
     ja: `import * as React from "react";
@@ -331,6 +332,12 @@ export default function DropdownMenuPage() {
                 { name: "ContextMenu", href: "/docs/components/context-menu" },
                 { name: "Menubar", href: "/docs/components/menubar" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: ドロップダウンメニュー（Dropdown Menu）" : "UIXHERO: Dropdown Menu (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/dropdown-menu`,
+                },
+            ]}
         >
             <ComponentPreview
                 embedSrc="/embed/dropdown-menu"
@@ -456,15 +463,6 @@ export default function DropdownMenuPage() {
                         </li>
                         <li>
                             <strong>焦点の出入りは Radix に任せる。</strong>開いたときに最初の項目へ焦点が移ること、Esc で閉じてトリガーに焦点が戻ることは、土台の Radix <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DropdownMenu</code> が持っています。GUNJO が足しているのは見た目と、上の2つの口です。三点のボタンに <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> を付けるのは呼ぶ側の仕事です。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/dropdown-menu"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: ドロップダウンメニュー（Dropdown Menu）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -477,15 +475,6 @@ export default function DropdownMenuPage() {
                         </li>
                         <li>
                             <strong>Focus in and out belongs to Radix.</strong> Moving focus to the first item on open, and returning it to the trigger on Escape, come from the underlying Radix <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DropdownMenu</code>. What GUNJO adds is the visual and the two props above. Giving an ellipsis trigger an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> is left to the caller.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/dropdown-menu"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Dropdown Menu (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

@@ -9,6 +9,7 @@ import { ChartPreviewWithControls } from "@/components/doc/ChartPreviewWithContr
 import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
 import { HeatmapChart } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type HeatmapCell = ComponentProps<typeof HeatmapChart>["data"][number];
 type HeatmapSummary = NonNullable<ComponentProps<typeof HeatmapChart>["summary"]>[number];
@@ -640,6 +641,12 @@ export default function HeatmapChartPage() {
                 { name: locale === "ja" ? "分析カード" : "AnalyticsCard", href: "/docs/components/analytics-card" },
                 { name: locale === "ja" ? "統計" : "Statistic", href: "/docs/components/statistic" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: ヒートマップ（Heatmap Chart）" : "UIXHERO: Heatmap Chart (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/heatmap-chart`,
+                },
+            ]}
         >
             <ChartPreviewWithControls
                 code={code}
@@ -801,15 +808,6 @@ export default function HeatmapChartPage() {
                         </li>
                         <li>
                             <strong>選択中のセルは、色ではなく輪郭で示します。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">selectedCell</code> に当たるセルには前景色のリングが付き、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-current</code> も立ちます。塗りの濃さは値のままなので、選択の合図と値がぶつかりません。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> を渡すと正規化の基準がそろうので、ヒートマップを並べて比べるときは同じ値を渡します。なお <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">xLabels</code>・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">yLabels</code> の組み合わせのうち <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">data</code> に無いマスは 0 として塗られます。「値が無い」と「0」は、いまの <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">HeatmapChart</code> では区別できません。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/heatmap-chart"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: ヒートマップ（Heatmap Chart）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -822,15 +820,6 @@ export default function HeatmapChartPage() {
                         </li>
                         <li>
                             <strong>The selected cell is marked by an outline, not a colour.</strong> The cell matching <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">selectedCell</code> gets a foreground-coloured ring and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-current</code>, while its fill keeps showing the value, so selection and magnitude never compete. Passing <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> fixes the scale, so give several heatmaps the same value when they are meant to be compared. Note that any <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">xLabels</code>/<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">yLabels</code> pair missing from <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">data</code> is painted as zero: today&rsquo;s <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">HeatmapChart</code> cannot tell “no data” apart from “zero”.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/heatmap-chart"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Heatmap Chart (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

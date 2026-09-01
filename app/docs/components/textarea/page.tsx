@@ -10,6 +10,7 @@ import { TextareaDemo } from "@/components/demos/FormDemo";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import inputsMetadata from "@design/inputs-metadata.json";
 import { FormControl, FormDescription, FormGroup, FormLabel, Textarea } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const CHAR_LIMIT = 120;
 
@@ -183,6 +184,12 @@ export function MemoField() {
                 { name: "Mention", href: "/docs/components/mention" },
                 { name: "Form", href: "/docs/components/form" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: テキストエリア（Textarea）" : "UIXHERO: Textarea (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/textarea`,
+                },
+            ]}
         >
             <ComponentPreview embedSrc="/embed/textarea" code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewBodyWidth="md">
                 <TextareaDemo />
@@ -339,15 +346,6 @@ export function LockedNoteTextarea() {
                         </li>
                         <li>
                             <strong>文字数は数えるが、色は変えない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showCount</code> を渡すと右下に数が出て、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">maxLength</code> があれば「いまの数と上限」の形になります。この数は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-describedby</code> で入力欄に結んであるので、読み上げでも一緒に伝わります。資料が挙げる「残り20から30文字で警告色に変える」は入れていません。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">maxLength</code> を付ければブラウザ側で入力が止まるので、まず止まることを優先しました。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/textarea"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: テキストエリア（Textarea）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -360,15 +358,6 @@ export function LockedNoteTextarea() {
                         </li>
                         <li>
                             <strong>The characters are counted, but the colour never changes.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showCount</code> and a readout appears at the bottom right, becoming current-over-limit when <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">maxLength</code> is set. It is tied to the field with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-describedby</code>, so it reaches screen readers too. The warning colour the article asks for at twenty to thirty characters remaining is not implemented: with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">maxLength</code> the browser stops the input anyway, and stopping was treated as the more important half.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/textarea"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Textarea (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

@@ -7,6 +7,7 @@ import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import layoutMetadata from "@design/layout-metadata.json";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
     en: `import {
@@ -320,6 +321,12 @@ export default function InspectorPanelPage() {
                 { name: "FloatingPanel", href: "/docs/components/floating-panel" },
                 { name: "Input", href: "/docs/components/inputs" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: インスペクターパネル（Inspector Panel）" : "UIXHERO: Inspector Panel (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/inspector-panel`,
+                },
+            ]}
         >
             <ComponentPreview embedSrc="/embed/inspector-panel" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md" previewHeight="auto">
                 <ShapeInspectorPreview />
@@ -433,15 +440,6 @@ export default function InspectorPanelPage() {
                         </li>
                         <li>
                             <strong>3段に分けて、平らに並べない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorPanel</code>（枠）・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorSection</code>（群の見出し）・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorField</code>（1つの値）の3つに分かれています。設定を平らに並べず、意味のまとまりごとに <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorSection</code> で区切ります。選んだものが変わったら遅れなく差し替える、という判断は資料に書いてあります。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/inspector-panel"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: インスペクターパネル（Inspector Panel）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -454,15 +452,6 @@ export default function InspectorPanelPage() {
                         </li>
                         <li>
                             <strong>Three levels, so nothing is a flat list.</strong> The parts are <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorPanel</code> for the frame, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorSection</code> for a group heading, and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorField</code> for a single value. Properties are grouped by meaning with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorSection</code> rather than listed flat. Swapping the contents the instant the selection changes is covered in the article.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/inspector-panel"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Inspector Panel (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

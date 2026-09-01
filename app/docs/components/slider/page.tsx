@@ -10,6 +10,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import inputsMetadata from "@design/inputs-metadata.json";
 import { FormControl, FormDescription, FormGroup, FormLabel, HStack, Slider } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function ValueSlider({ disabled, steps }: { disabled?: boolean; steps?: boolean }) {
     const { locale } = useLocale();
@@ -221,6 +222,12 @@ export function VolumeField() {
                 { name: "NumberInput", href: "/docs/components/number-input" },
                 { name: "Form", href: "/docs/components/form" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: スライダー（Slider）" : "UIXHERO: Slider (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/slider`,
+                },
+            ]}
         >
             <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewHeight="auto" previewBodyWidth="md">
                 <ValueSlider />
@@ -431,15 +438,6 @@ export function DisabledSlider() {
                         </li>
                         <li>
                             <strong>通った部分の塗りは、クラスではなく style で作る。</strong>つまみまでの塗りつぶしは、インラインの <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">linear-gradient</code> で描いています。クラス名の一覧を変えずに済ませるためで、設計の元データとの差分検査がクラス名を見ているからです（#193）。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">value</code> を渡さない使い方でも塗りが追いつくように、部品の中で最後の値を覚えています。2つのつまみで範囲を選ぶ形は、この部品ではなく <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">RangeSlider</code> が持ちます。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/slider"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: スライダー（Slider）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -452,15 +450,6 @@ export function DisabledSlider() {
                         </li>
                         <li>
                             <strong>The filled part of the track is inline style, not a class.</strong> The fill up to the thumb is drawn with an inline <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">linear-gradient</code>, which keeps the class list, and therefore the drift check against the design source, unchanged (#193). The component remembers the last value internally so the fill still follows the thumb when no <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">value</code> is passed. A two-handle range lives in <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">RangeSlider</code>, not here.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/slider"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Slider (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

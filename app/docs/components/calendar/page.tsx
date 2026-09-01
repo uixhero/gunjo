@@ -12,6 +12,7 @@ import { CalendarDemo } from "@/components/demos/NavigationDemos";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { Calendar } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function CalendarStatesContent({ locale }: { locale: "ja" | "en" }) {
     const [single, setSingle] = React.useState<Date | undefined>(new Date());
@@ -214,6 +215,12 @@ export function CalendarUsage() {
                 { name: "Popover", href: "/docs/components/popover" },
                 { name: "Form", href: "/docs/components/form" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: カレンダー（Calendar）" : "UIXHERO: Calendar (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/calendar`,
+                },
+            ]}
         >
             <ComponentPreview embedSrc="/embed/calendar" code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels}>
                 <div className="flex items-center justify-center p-10">
@@ -280,15 +287,6 @@ export function CalendarUsage() {
                         </li>
                         <li>
                             <strong>選べない日には、理由を出せるようにする。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> か <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">getDisabledReason</code> を渡すと、選べない日にツールチップで理由が出ます。焦点の当たる要素で包んで <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> も付けるので、キーボードでも理由に辿り着けます。押せないことだけを見せて理由を書かないと、何を直せば選べるのかが分かりません。矢印キーでの日送りと <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="grid"'}</code> は土台の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DayPicker</code> が持っています。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/calendar"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: カレンダー（Calendar）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -301,15 +299,6 @@ export function CalendarUsage() {
                         </li>
                         <li>
                             <strong>A disabled day can say why.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> or <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">getDisabledReason</code> and an unavailable day carries a tooltip. It is wrapped in a focusable element with an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code>, so the reason is reachable from the keyboard too. Greying a date out without saying why leaves nothing to act on. Arrow-key movement and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="grid"'}</code> come from the underlying <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DayPicker</code>.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/calendar"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Calendar (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

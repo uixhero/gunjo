@@ -4,6 +4,7 @@ import type { ComponentProps } from "react";
 import { ChartDocPage } from "@/components/doc/ChartDocPage";
 import displayMetadata from "@design/display-metadata.json";
 import { PieChart } from "@gunjo/ui";
+import { UIXHERO_BASE_URL, type UixheroLink } from "@/lib/uixhero-links";
 
 type Locale = "en" | "ja";
 type DataItem = ComponentProps<typeof PieChart>["segments"][number];
@@ -327,15 +328,6 @@ const designDecisions = {
             </li>
             <li>
                 <strong>凡例は既定で出しません。区切り線はまだ持っていません。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showLegend</code> を on にすると、区分の名前と割合、そして「Total:」に続けてその区分の実数が並びます。資料は割合を必ず文字で出すことを求めているので、凡例を切るなら図の周りに割合を書いてください。資料が挙げるもう1つの手当て「扇形どうしの境目に背景色の細い線を入れる」は、GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PieChart</code> にはまだありません。色が近い区分が隣り合うときは、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">color</code> で明度の離れた色を指定します。数値の整形は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> のほかに、サーバーコンポーネントからも渡せる <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code> を持っています（#338）。
-                <br />
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/pie-chart"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: 円グラフ（Pie Chart）
-                </a>
             </li>
         </>
     ),
@@ -349,18 +341,25 @@ const designDecisions = {
             </li>
             <li>
                 <strong>The legend is off by default, and there are no separator lines yet.</strong> Turning <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showLegend</code> on lists each name with its share and, under a “Total:” label, that segment&rsquo;s own raw value. The article insists the share always be written out, so if you drop the legend, put the percentages in the copy around the chart. Its other remedy — a hairline in the background colour between slices — is not in GUNJO&rsquo;s <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PieChart</code> yet; when similar hues end up adjacent, pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">color</code> values that differ in lightness. Alongside <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> this chart also takes the serializable <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code>, which a Server Component can pass (#338).
-                <br />
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/pie-chart"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: Pie Chart (in Japanese)
-                </a>
             </li>
         </>
     ),
+};
+
+// 本文からこの節へ移した UIXHERO の記事リンク（gunjo #955 の受け口）。
+const uixheroLinks: Record<"ja" | "en", UixheroLink[]> = {
+    ja: [
+        {
+            label: "UIXHERO: 円グラフ（Pie Chart）",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/pie-chart`,
+        },
+    ],
+    en: [
+        {
+            label: "UIXHERO: Pie Chart (in Japanese)",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/pie-chart`,
+        },
+    ],
 };
 
 export default function PieChartPage() {
@@ -400,6 +399,7 @@ export default function PieChartPage() {
                     { name: "分布バー", href: "/docs/components/distribution-bar" },
                 ],
             }}
+            uixheroLinks={uixheroLinks}
         />
     );
 }

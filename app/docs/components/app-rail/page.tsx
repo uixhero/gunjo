@@ -16,6 +16,7 @@ import {
 } from "@tabler/icons-react";
 import type { ReactNode } from "react";
 import { useState } from "react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function RailAction({
     label,
@@ -764,6 +765,12 @@ export default function AppRailDocPage() {
                 { name: "RightRail", href: "/docs/components/right-rail" },
                 { name: "Tabs", href: "/docs/components/tabs" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: アプリレール（App Rail）" : "UIXHERO: App Rail (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/app-rail`,
+                },
+            ]}
         >
             <ComponentPreview
                 code={usageCode}
@@ -868,15 +875,6 @@ export default function AppRailDocPage() {
                         </li>
                         <li>
                             <strong>いまいる場所を、色以外でも出す。</strong>選択中の項目には <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-pressed</code> を付け、見た目は背景の明るさと細い輪郭の2つで示します。地色が暗いので、明るさの差だけに頼らない形にしています。幅で切り替える3段の考え方（狭い画面は下の並び、広い画面は横の並び）は資料に書いてあります。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/app-rail"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: アプリレール（App Rail）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -889,15 +887,6 @@ export default function AppRailDocPage() {
                         </li>
                         <li>
                             <strong>Show the current place with more than colour.</strong> The selected item gets <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-pressed</code>, and visually it is marked by both a lighter background and a thin ring. The ground is dark, so brightness alone is not enough. The three-step responsive strategy (bottom bar, rail, sidebar) is covered in the article.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/app-rail"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: App Rail (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

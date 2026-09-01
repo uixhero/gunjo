@@ -10,6 +10,7 @@ import { getDocContent } from "@/lib/docs-content";
 import { IconTrain } from "@tabler/icons-react";
 import displayMetadata from "@design/display-metadata.json";
 import { Badge, RadioCard, RadioCardGroup } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Locale = "ja" | "en";
 
@@ -296,6 +297,12 @@ export function MetroTicketCard() {
       sectionLabels={sectionLabels}
       usedComponents={[{ name: "RadioCard", href: "/docs/components/radio-card" }, { name: "RadioCardGroup", href: "/docs/components/radio-card" }, { name: "Badge", href: "/docs/components/badge" }]}
       relatedComponents={[{ name: "RadioGroup", href: "/docs/components/radio-group" }, { name: "ListCard", href: "/docs/components/list-card" }]}
+      uixheroLinks={[
+        {
+          label: locale === "ja" ? "UIXHERO: カード（Card）" : "UIXHERO: Card (in Japanese)",
+          href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+        },
+      ]}
     >
       <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewHeight="auto" previewBodyWidth="md">
         <RadioCardPreview locale={locale} />
@@ -370,15 +377,7 @@ export function MetroTicketCard() {
             <li>
               <strong>値段の置き場所を先に決めておいた。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">price</code> は右上の太い等幅数字、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">highlight</code>（おトクの一言）はその下の小さな行、と場所が固定です。プランを縦に並べたときに、値段の位置が行ごとにずれないようにするためです。
               <br />
-              一般のカードの設計は UIXHERO の「カード」にあります。{" "}
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/resources/ui-components/card"
-                target="_blank"
-                rel="noreferrer"
-              >
-                UIXHERO: カード（Card）
-              </a>
+              一般のカードの設計は UIXHERO の「カード」にあります。
             </li>
           </ul>
         ) : (
@@ -392,15 +391,7 @@ export function MetroTicketCard() {
             <li>
               <strong>The price has a reserved slot.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">price</code> is the bold tabular number at the top right and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">highlight</code> (the savings line) sits just under it. Stacking plans vertically then keeps every price on the same line.
               <br />
-              The general design of cards is covered by UIXHERO&rsquo;s card article.{" "}
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/resources/ui-components/card"
-                target="_blank"
-                rel="noreferrer"
-              >
-                UIXHERO: Card (in Japanese)
-              </a>
+              The general design of cards is covered by UIXHERO&rsquo;s card article.
             </li>
           </ul>
         )}

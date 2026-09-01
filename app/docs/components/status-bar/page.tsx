@@ -7,6 +7,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import feedbackMetadata from "@design/feedback-metadata.json";
 import { StatusBar } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
     ja: `import { StatusBar } from "@gunjo/ui"
@@ -265,6 +266,12 @@ export default function StatusBarDocPage() {
                 { name: "Toast", href: "/docs/components/toast" },
             ]}
             sectionLabels={sectionLabels}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: ステータスバー（Status Bar）" : "UIXHERO: Status Bar (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/status-bar`,
+                },
+            ]}
         >
             <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewHeight="auto" previewBodyWidth="xl" sectionLabels={sectionLabels}>
                 <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
@@ -438,15 +445,6 @@ export default function StatusBarDocPage() {
                         </li>
                         <li>
                             <strong>変化の読み上げは入っていません。</strong>資料は「バー全体を <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-live</code> の領域にして、接続や保存の変化を読み上げる」を挙げています。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">StatusBar</code> は素の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">div</code> で、その指定を持ちません。知らせたい画面は、いまは属性を渡して足します。なお <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">fixed</code> の既定は入りで画面の下に貼り付くので、文書の中に埋めたいときは切ります。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/status-bar"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: ステータスバー（Status Bar）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -459,15 +457,6 @@ export default function StatusBarDocPage() {
                         </li>
                         <li>
                             <strong>Changes are not announced.</strong> The article asks that the whole bar be a live region so that connection or save changes are read out. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">StatusBar</code> is a plain <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">div</code> with no such marking, so a screen that needs it passes the attribute itself. Note also that <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">fixed</code> defaults to on and pins the bar to the bottom of the viewport; turn it off to embed the bar in a document.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/status-bar"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Status Bar (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

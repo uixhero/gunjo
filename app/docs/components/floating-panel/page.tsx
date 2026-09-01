@@ -7,6 +7,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { FloatingPanelAuditDemo } from "@/components/demos/OverlayComponentDemos";
 import overlayMetadata from "@design/overlay-metadata.json";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const floatingPanelCodes = {
     canvas: {
@@ -428,6 +429,12 @@ export default function FloatingPanelPage() {
                 { name: "Dialog", href: "/docs/components/dialog" },
                 { name: "Popover", href: "/docs/components/popover" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: フローティングパネル（Floating Panel）" : "UIXHERO: Floating Panel (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/floating-panel`,
+                },
+            ]}
         >
             <ComponentPreview
                 embedSrc="/embed/floating-panel"
@@ -580,15 +587,6 @@ export default function FloatingPanelPage() {
                         </li>
                         <li>
                             <strong>資料に対して足りていないところ。</strong>資料は「画面の外にはみ出さないよう境界を必ず入れる」「折りたたみを付けて <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-expanded</code> で伝える」「<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="dialog"'}</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> を付ける」を挙げていますが、いまの <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">FloatingPanel</code> はどれも持っていません。引っぱって画面の外に出すと戻せなくなります。#937 で追っています。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/floating-panel"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: フローティングパネル（Floating Panel）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -601,15 +599,6 @@ export default function FloatingPanelPage() {
                         </li>
                         <li>
                             <strong>Where this falls short of the article.</strong> The article asks for drag bounds so the panel cannot leave the screen, a collapse control reported through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-expanded</code>, and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="dialog"'}</code> with an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code>. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">FloatingPanel</code> has none of them today, and a panel dragged off-screen cannot be recovered. Tracked in #937.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/floating-panel"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Floating Panel (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

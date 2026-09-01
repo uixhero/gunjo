@@ -19,7 +19,6 @@ import {
     Slider,
     Switch,
     Textarea,
-    TextLink,
     Toggle,
     ToggleGroup,
     ToggleGroupItem,
@@ -47,6 +46,8 @@ import {
 } from "@tabler/icons-react";
 
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { UixheroRationaleLinks } from "@/components/doc/ComponentHelpers";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Localized = {
     ja: string;
@@ -1024,16 +1025,19 @@ export default function InputsOverviewPage() {
                         ? "この分類のコンポーネントをいつ使い、いつ使わないかは、UIXHERO の「UIコンポーネント完全ガイド」にある「カテゴリ 01｜アクションと入力」の節にまとめています。選択肢が何個あるか、そして選ばせるのか打ち込ませるのかで、選ぶコンポーネントが変わります。"
                         : "When to reach for each input component, and when to leave it alone, is covered in the category 01 section, actions and input, of the UI component guide on UIXHERO. The choice turns on how many options there are, and whether people pick one or type their own."}
                 </p>
-                <TextLink
-                    href="https://www.uixhero.com/blog/ui-components-complete-guide#カテゴリ-01アクションと入力"
-                    target="_blank"
-                    newTabLabel={isJa ? "新しいタブで開きます" : "opens in a new tab"}
-                >
-                    {isJa
-                        ? "UIXHERO: UIコンポーネント完全ガイド（カテゴリ 01｜アクションと入力）"
-                        : "UIXHERO: UI component guide, category 01 actions and input (in Japanese)"}
-                </TextLink>
             </section>
+
+            <UixheroRationaleLinks
+                locale={locale}
+                uixheroLinks={[
+                    {
+                        label: isJa
+                            ? "UIXHERO: UIコンポーネント完全ガイド（カテゴリ 01｜アクションと入力）"
+                            : "UIXHERO: UI component guide, category 01 actions and input (in Japanese)",
+                        href: `${UIXHERO_BASE_URL}/blog/ui-components-complete-guide#カテゴリ-01アクションと入力`,
+                    },
+                ]}
+            />
         </div>
     );
 }

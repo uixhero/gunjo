@@ -9,6 +9,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
 import { Badge, CheckboxCard, CheckboxCardGroup } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Locale = "ja" | "en";
 
@@ -301,6 +302,13 @@ export default function CheckboxCardDocPage() {
       sectionLabels={sectionLabels}
       usedComponents={[{ name: "CheckboxCard", href: "/docs/components/checkbox-card" }, { name: "CheckboxCardGroup", href: "/docs/components/checkbox-card" }, { name: "Badge", href: "/docs/components/badge" }]}
       relatedComponents={[{ name: "RadioCard", href: "/docs/components/radio-card" }, { name: "Checkbox", href: "/docs/components/checkbox" }, { name: "ListCard", href: "/docs/components/list-card" }]}
+      uixheroLinks={[
+        {
+          label: locale === "ja" ? "UIXHERO: カード（Card）" : "UIXHERO: Card (in Japanese)",
+          href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+          relation: "nearest",
+        },
+      ]}
     >
       <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewHeight="auto" previewBodyWidth="md">
         <CheckboxCardPreview locale={locale} />
@@ -379,15 +387,7 @@ export default function CheckboxCardDocPage() {
             <li>
               <strong>選択の印は四角いチェックで、色に頼らない。</strong>選ばれた状態は、枠の色・輪郭・四角いチェックの3つで同時に出ます。選べないカードには <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> を渡すと、理由がツールチップで読めます。押せない理由を画面に出さずに済ませないためです。
               <br />
-              一般のカードの設計は UIXHERO の「カード」にあります。{" "}
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/resources/ui-components/card"
-                target="_blank"
-                rel="noreferrer"
-              >
-                UIXHERO: カード（Card）
-              </a>
+              一般のカードの設計は UIXHERO の「カード」にあります。
             </li>
           </ul>
         ) : (
@@ -401,15 +401,7 @@ export default function CheckboxCardDocPage() {
             <li>
               <strong>Selection is marked with a square check, never colour alone.</strong> A selected card shows the coloured border, the ring and the square check together. Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> on a card that cannot be chosen and the reason is readable in a tooltip, so an unavailable option never sits there unexplained.
               <br />
-              The general design of cards is covered by UIXHERO&rsquo;s card article.{" "}
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/resources/ui-components/card"
-                target="_blank"
-                rel="noreferrer"
-              >
-                UIXHERO: Card (in Japanese)
-              </a>
+              The general design of cards is covered by UIXHERO&rsquo;s card article.
             </li>
           </ul>
         )}

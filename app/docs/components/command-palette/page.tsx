@@ -18,6 +18,7 @@ import {
     IconUserCircle as UserRound,
 } from "@tabler/icons-react";
 import { useEffect, useMemo, useState } from "react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function CommandPaletteExample({ minimal = false, empty = false, defaultOpen = false }: { minimal?: boolean; empty?: boolean; defaultOpen?: boolean }) {
     const { locale } = useLocale();
@@ -555,6 +556,12 @@ export default function CommandPalettePage() {
                 { name: "Combobox", href: "/docs/components/combobox" },
                 { name: "SearchInput", href: "/docs/components/search-input" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: コマンドパレット（Command Palette）" : "UIXHERO: Command Palette (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/command-palette`,
+                },
+            ]}
         >
             <ComponentPreview
                 embedSrc="/embed/command-palette"
@@ -688,15 +695,6 @@ export default function CommandPalettePage() {
                         </li>
                         <li>
                             <strong>画面の高さを超えない。</strong>中身の高さは画面の高さから余白を引いた値で頭打ちにしてあります。項目が増えても、パレットが画面の外にはみ出して下が押せなくなることがありません。上下キー・Enter・Esc と焦点の閉じ込めは土台の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">CommandDialog</code> が持ちます。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/command-palette"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: コマンドパレット（Command Palette）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -709,15 +707,6 @@ export default function CommandPalettePage() {
                         </li>
                         <li>
                             <strong>It never grows past the viewport.</strong> The body height is capped against the viewport minus a margin, so a long list cannot push the palette off the bottom of the screen. Arrow keys, Enter, Escape and the focus trap all come from the underlying <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">CommandDialog</code>.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/command-palette"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Command Palette (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

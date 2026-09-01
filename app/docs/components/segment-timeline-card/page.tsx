@@ -4,6 +4,7 @@ import type { ComponentProps } from "react";
 import { ChartDocPage } from "@/components/doc/ChartDocPage";
 import displayMetadata from "@design/display-metadata.json";
 import { SegmentTimelineCard } from "@gunjo/ui";
+import { UIXHERO_BASE_URL, type UixheroLink } from "@/lib/uixhero-links";
 
 type Locale = "en" | "ja";
 type DataItem = ComponentProps<typeof SegmentTimelineCard>["segments"][number];
@@ -575,15 +576,7 @@ const designDecisions = {
             <li>
                 <strong>時間の左端と右端は呼ぶ側が書く。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">startLabel</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">endLabel</code>、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">min</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> は渡された値をそのまま使い、部品は時刻の書式を持ちません。24時間の1日なのか、8時間の1シフトなのかで、書き方も刻みも変わるからです。
                 <br />
-                一般のカードの設計は UIXHERO の「カード」にあります。{" "}
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/card"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: カード（Card）
-                </a>
+                一般のカードの設計は UIXHERO の「カード」にあります。
             </li>
         </>
     ),
@@ -598,22 +591,32 @@ const designDecisions = {
             <li>
                 <strong>The two ends of the axis are written by the caller.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">startLabel</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">endLabel</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">min</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> are used verbatim; the component owns no time formatting. A 24-hour day and an 8-hour shift want different labels and different ticks.
                 <br />
-                The general design of cards is covered by UIXHERO&rsquo;s card article.{" "}
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/card"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: Card (in Japanese)
-                </a>
+                The general design of cards is covered by UIXHERO&rsquo;s card article.
             </li>
         </>
     ),
 };
 
+// 本文からこの節へ移した UIXHERO の記事リンク（gunjo #955 の受け口）。
+const uixheroLinks: Record<"ja" | "en", UixheroLink[]> = {
+    ja: [
+        {
+            label: "UIXHERO: カード（Card）",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+            relation: "nearest",
+        },
+    ],
+    en: [
+        {
+            label: "UIXHERO: Card (in Japanese)",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+            relation: "nearest",
+        },
+    ],
+};
+
 export default function SegmentTimelineCardPage() {
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
 
-    return <ChartDocPage designDecisions={designDecisions} title={{ en: meta.segmentTimelineCard.title, ja: "セグメントタイムラインカード" }} description={{ en: meta.segmentTimelineCard.description, ja: "睡眠ステージや稼働状態などの時間範囲を、指標とマーカー付きで示すカードです。" }} code={code} usageCode={usageCode} propsData={propsData} demo="segment-timeline-card" embedBase="/embed/segment-timeline-card" previewHeight={540} states={states} usedComponents={{ en: [{ name: "SegmentTimelineCard", href: "/docs/components/segment-timeline-card" }, { name: "ChartLegend", href: "/docs/components/chart-legend" }, { name: "Tooltip", href: "/docs/components/tooltip" }], ja: [{ name: "セグメントタイムラインカード", href: "/docs/components/segment-timeline-card" }, { name: "チャート凡例", href: "/docs/components/chart-legend" }, { name: "ツールチップ", href: "/docs/components/tooltip" }] }} relatedComponents={{ en: [{"name":"Timeline","href":"/docs/components/timeline"},{"name":"ActivityTimelineCard","href":"/docs/components/activity-timeline-card"}], ja: [{"name":"タイムライン","href":"/docs/components/timeline"},{"name":"活動タイムラインカード","href":"/docs/components/activity-timeline-card"}] }} />;
+    return <ChartDocPage designDecisions={designDecisions} title={{ en: meta.segmentTimelineCard.title, ja: "セグメントタイムラインカード" }} description={{ en: meta.segmentTimelineCard.description, ja: "睡眠ステージや稼働状態などの時間範囲を、指標とマーカー付きで示すカードです。" }} code={code} usageCode={usageCode} propsData={propsData} demo="segment-timeline-card" embedBase="/embed/segment-timeline-card" previewHeight={540} states={states} usedComponents={{ en: [{ name: "SegmentTimelineCard", href: "/docs/components/segment-timeline-card" }, { name: "ChartLegend", href: "/docs/components/chart-legend" }, { name: "Tooltip", href: "/docs/components/tooltip" }], ja: [{ name: "セグメントタイムラインカード", href: "/docs/components/segment-timeline-card" }, { name: "チャート凡例", href: "/docs/components/chart-legend" }, { name: "ツールチップ", href: "/docs/components/tooltip" }] }} relatedComponents={{ en: [{"name":"Timeline","href":"/docs/components/timeline"},{"name":"ActivityTimelineCard","href":"/docs/components/activity-timeline-card"}], ja: [{"name":"タイムライン","href":"/docs/components/timeline"},{"name":"活動タイムラインカード","href":"/docs/components/activity-timeline-card"}] }} uixheroLinks={uixheroLinks} />;
 }

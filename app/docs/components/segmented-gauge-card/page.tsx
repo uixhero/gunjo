@@ -4,6 +4,7 @@ import type { ComponentProps } from "react";
 import { ChartDocPage } from "@/components/doc/ChartDocPage";
 import displayMetadata from "@design/display-metadata.json";
 import { SegmentedGaugeCard } from "@gunjo/ui";
+import { UIXHERO_BASE_URL, type UixheroLink } from "@/lib/uixhero-links";
 
 type Locale = "en" | "ja";
 type DataItem = ComponentProps<typeof SegmentedGaugeCard>["segments"][number];
@@ -293,15 +294,7 @@ const designDecisions = {
             <li>
                 <strong>弧は1枚の絵で、選ぶのは凡例の行。</strong>弧には <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="img"'}</code> と読み上げ用の名前が付き、押せるのは下の凡例（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code>）です。弧の一片は端に行くほど細くなり、タップの的として使えないためです。
                 <br />
-                一般のカードの設計は UIXHERO の「カード」にあります。{" "}
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/card"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: カード（Card）
-                </a>
+                一般のカードの設計は UIXHERO の「カード」にあります。
             </li>
         </>
     ),
@@ -316,22 +309,32 @@ const designDecisions = {
             <li>
                 <strong>The arc is one image; picking happens in the legend.</strong> The arc carries <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="img"'}</code> and a spoken name, and the pressable elements are the legend rows (<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code>) below it. Arc bands narrow toward the ends, so they make poor tap targets.
                 <br />
-                The general design of cards is covered by UIXHERO&rsquo;s card article.{" "}
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/card"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: Card (in Japanese)
-                </a>
+                The general design of cards is covered by UIXHERO&rsquo;s card article.
             </li>
         </>
     ),
 };
 
+// 本文からこの節へ移した UIXHERO の記事リンク（gunjo #955 の受け口）。
+const uixheroLinks: Record<"ja" | "en", UixheroLink[]> = {
+    ja: [
+        {
+            label: "UIXHERO: カード（Card）",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+            relation: "nearest",
+        },
+    ],
+    en: [
+        {
+            label: "UIXHERO: Card (in Japanese)",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+            relation: "nearest",
+        },
+    ],
+};
+
 export default function SegmentedGaugeCardPage() {
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
 
-    return <ChartDocPage designDecisions={designDecisions} title={{ en: meta.segmentedGaugeCard.title, ja: "セグメントゲージカード" }} description={{ en: meta.segmentedGaugeCard.description, ja: "現在値、目標値、範囲セグメントを半円ゲージで示すカードです。" }} code={code} usageCode={usageCode} propsData={propsData} demo="segmented-gauge-card" embedBase="/embed/segmented-gauge-card" previewHeight={460} states={states} usedComponents={{ en: [{ name: "SegmentedGaugeCard", href: "/docs/components/segmented-gauge-card" }, { name: "ChartLegend", href: "/docs/components/chart-legend" }, { name: "Tooltip", href: "/docs/components/tooltip" }], ja: [{ name: "セグメントゲージカード", href: "/docs/components/segmented-gauge-card" }, { name: "チャート凡例", href: "/docs/components/chart-legend" }, { name: "ツールチップ", href: "/docs/components/tooltip" }] }} relatedComponents={{ en: [{"name":"GaugeChart","href":"/docs/components/gauge-chart"},{"name":"RadialBarChart","href":"/docs/components/radial-bar-chart"}], ja: [{"name":"ゲージチャート","href":"/docs/components/gauge-chart"},{"name":"ラジアルバーチャート","href":"/docs/components/radial-bar-chart"}] }} />;
+    return <ChartDocPage designDecisions={designDecisions} title={{ en: meta.segmentedGaugeCard.title, ja: "セグメントゲージカード" }} description={{ en: meta.segmentedGaugeCard.description, ja: "現在値、目標値、範囲セグメントを半円ゲージで示すカードです。" }} code={code} usageCode={usageCode} propsData={propsData} demo="segmented-gauge-card" embedBase="/embed/segmented-gauge-card" previewHeight={460} states={states} usedComponents={{ en: [{ name: "SegmentedGaugeCard", href: "/docs/components/segmented-gauge-card" }, { name: "ChartLegend", href: "/docs/components/chart-legend" }, { name: "Tooltip", href: "/docs/components/tooltip" }], ja: [{ name: "セグメントゲージカード", href: "/docs/components/segmented-gauge-card" }, { name: "チャート凡例", href: "/docs/components/chart-legend" }, { name: "ツールチップ", href: "/docs/components/tooltip" }] }} relatedComponents={{ en: [{"name":"GaugeChart","href":"/docs/components/gauge-chart"},{"name":"RadialBarChart","href":"/docs/components/radial-bar-chart"}], ja: [{"name":"ゲージチャート","href":"/docs/components/gauge-chart"},{"name":"ラジアルバーチャート","href":"/docs/components/radial-bar-chart"}] }} uixheroLinks={uixheroLinks} />;
 }

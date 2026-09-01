@@ -7,6 +7,7 @@ import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import layoutMetadata from "@design/layout-metadata.json";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
     en: `import {
@@ -336,6 +337,12 @@ export default function ResizablePage() {
                 { name: "Sidebar", href: "/docs/components/sidebar" },
                 { name: "SpatialCanvas", href: "/docs/components/spatial-canvas" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: リサイズ可能パネル（Resizable）" : "UIXHERO: Resizable (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/resizable`,
+                },
+            ]}
         >
             <ComponentPreview embedSrc="/embed/resizable" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="lg" previewHeight={360}>
                 <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border">
@@ -480,15 +487,6 @@ export default function ResizablePage() {
                         </li>
                         <li>
                             <strong>線は1pxだが、掴める幅はもっと広い。</strong>見た目は1pxですが、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">after:</code> の疑似要素で前後に当たり判定を足してあるので、細い線を狙わなくても掴めます。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">withHandle</code> を渡すと、掴む場所が分かるグリップも出ます。資料が求めるキーボード操作と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">role</code> の付与は、土台のライブラリが持ちます。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/resizable"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: リサイズ可能パネル（Resizable）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -501,15 +499,6 @@ export default function ResizablePage() {
                         </li>
                         <li>
                             <strong>The divider is 1px wide but much wider to grab.</strong> An <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">after:</code> pseudo-element extends the hit area on both sides, so the thin line does not have to be aimed at. Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">withHandle</code> for a visible grip. The keyboard support and the separator role the article requires come from the library underneath.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/resizable"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Resizable (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

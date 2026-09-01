@@ -9,6 +9,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import inputsMetadata from "@design/inputs-metadata.json";
 import { Label, Switch } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function SwitchRow({ checked, disabled }: { checked?: boolean; disabled?: boolean }) {
     const { locale } = useLocale();
@@ -113,6 +114,12 @@ export function NotificationSettingSwitch() {
                 { name: "Toggle", href: "/docs/components/toggle" },
                 { name: "ToggleGroup", href: "/docs/components/toggle-group" },
                 { name: "Form", href: "/docs/components/form" },
+            ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: スイッチ（Switch）" : "UIXHERO: Switch (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/switch`,
+                },
             ]}
         >
             <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewHeight="auto">
@@ -281,15 +288,6 @@ export function ManagedAutoSaveSwitch() {
                         </li>
                         <li>
                             <strong>待っている間の状態は持っていません。</strong>資料は「通信が終わるまでは待機の見た目にして、連打を防ぐ」を挙げています。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Switch</code> に待機はなく、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabled</code> で止めるところまでです。入りと切りの2つは設計の元データから生成された <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">SwitchVariantKey</code> なので、3つ目の状態を足すには元データの側から変えることになります。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/switch"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: スイッチ（Switch）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -302,15 +300,6 @@ export function ManagedAutoSaveSwitch() {
                         </li>
                         <li>
                             <strong>There is no pending state.</strong> The article asks for a loading state while an asynchronous change is in flight, to stop repeated presses. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Switch</code> has none; <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabled</code> is as far as it goes. Checked and unchecked are the two keys of <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">SwitchVariantKey</code>, generated from the design source, so a third state would have to start there.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/switch"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Switch (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

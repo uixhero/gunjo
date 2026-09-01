@@ -9,6 +9,7 @@ import {
     AlertDialogAuditDemo,
 } from "@/components/demos/OverlayComponentDemos";
 import overlayMetadata from "@design/overlay-metadata.json";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
     ja: `import {
@@ -352,6 +353,12 @@ export default function AlertDialogPage() {
                 { name: "Dialog", href: "/docs/components/dialog" },
                 { name: "Toast", href: "/docs/components/toast" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: 確認ダイアログ（Alert Dialog）" : "UIXHERO: Alert Dialog (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/alert-dialog`,
+                },
+            ]}
         >
             <ComponentPreview
                 embedSrc="/embed/alert-dialog"
@@ -471,15 +478,6 @@ export default function AlertDialogPage() {
                         </li>
                         <li>
                             <strong>説明が無いときだけ読み上げの紐づけを外す。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AlertDialogDescription</code> を置いたときは Radix の紐づけをそのまま残し、題だけのダイアログでは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-describedby</code> を明示で空にします。開発時の警告だけを消して、説明があるときの読み上げは壊さないための作りです（#322）。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/alert-dialog"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: 確認ダイアログ（Alert Dialog）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -492,15 +490,6 @@ export default function AlertDialogPage() {
                         </li>
                         <li>
                             <strong>Drop the description wiring only when there is no description.</strong> When an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AlertDialogDescription</code> is present, Radix keeps its own <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-describedby</code> wiring. For a title-only dialog the attribute is explicitly cleared instead, which silences the dev warning without breaking the association for screen readers (#322).
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/alert-dialog"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Alert Dialog (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

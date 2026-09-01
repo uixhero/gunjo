@@ -2,9 +2,10 @@
 
 import Link from "next/link"
 import { IconArrowRight as ArrowRight } from "@tabler/icons-react"
-import { TextLink } from "@gunjo/ui"
 
 import { useLocale } from "@/components/providers/LocaleProvider"
+import { UixheroRationaleLinks } from "@/components/doc/ComponentHelpers";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 export default function TokensIndexPage() {
     const { locale } = useLocale();
@@ -70,16 +71,21 @@ export default function TokensIndexPage() {
                         ? "トークンは1つの画面のために選ぶ値ではなく、繰り返し使うために先に決めておく値です。何をトークンにして、何を画面ごとの判断に残すかの考え方は、UIXHERO の「ルール化して再利用する (Design System Thinking)」にまとめています。"
                         : "A token is a value settled up front for repeated use, not one tuned for a single screen. How to decide what becomes a token and what stays a per-screen judgement is covered in the Design System Thinking article on UIXHERO."}
                 </p>
-                <TextLink
-                    href="https://www.uixhero.com/resources/ui-design/design-system-thinking"
-                    target="_blank"
-                    newTabLabel={isJa ? "新しいタブで開きます" : "opens in a new tab"}
-                >
-                    {isJa
-                        ? "UIXHERO: ルール化して再利用する (Design System Thinking)"
-                        : "UIXHERO: Design System Thinking (in Japanese)"}
-                </TextLink>
             </section>
+
+            <div className="mt-10">
+                <UixheroRationaleLinks
+                    locale={locale}
+                    uixheroLinks={[
+                        {
+                            label: isJa
+                                ? "UIXHERO: ルール化して再利用する (Design System Thinking)"
+                                : "UIXHERO: Design System Thinking (in Japanese)",
+                            href: `${UIXHERO_BASE_URL}/resources/ui-design/design-system-thinking`,
+                        },
+                    ]}
+                />
+            </div>
         </div>
     )
 }

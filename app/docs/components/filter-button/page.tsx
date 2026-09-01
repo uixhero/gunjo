@@ -9,6 +9,7 @@ import { FilterButton, Button, Badge, cn } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import inputsMetadata from "@design/inputs-metadata.json";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function getFilterOptions(locale: "ja" | "en") {
     return locale === "ja"
@@ -420,6 +421,12 @@ export function StatusFilterButton() {
                 { name: "RangeSlider", href: "/docs/components/range-slider" },
                 { name: "TagInput", href: "/docs/components/tag-input" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: ボタン（Button）" : "UIXHERO: Button (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/button`,
+                },
+            ]}
         >
             <ComponentPreview
                 code={localizedUsageCode}
@@ -513,15 +520,7 @@ export function StatusFilterButton() {
                         <li>
                             <strong>中身を丸ごと差し替えられる。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">children</code> を渡すと、既定の選択一覧の代わりに任意の中身を出せます（日付の範囲・数値の幅など）。絞り込みの形は画面ごとに違うので、部品にしたのはボタンと吹き出しの枠だけです。
                             <br />
-                            一般のボタンの設計は UIXHERO の「ボタン」にあります。{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/button"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: ボタン（Button）
-                            </a>
+                            一般のボタンの設計は UIXHERO の「ボタン」にあります。
                         </li>
                     </ul>
                 ) : (
@@ -535,15 +534,7 @@ export function StatusFilterButton() {
                         <li>
                             <strong>The panel contents can be replaced wholesale.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">children</code> and the default option list gives way to anything: a date range, a numeric span. Filters differ per screen, so only the button and the popover frame are componentised.
                             <br />
-                            The general design of buttons is covered by UIXHERO&rsquo;s button article.{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/button"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Button (in Japanese)
-                            </a>
+                            The general design of buttons is covered by UIXHERO&rsquo;s button article.
                         </li>
                     </ul>
                 )}

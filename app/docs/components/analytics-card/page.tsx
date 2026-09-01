@@ -8,6 +8,7 @@ import { ChartPreviewWithControls } from "@/components/doc/ChartPreviewWithContr
 import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
 import { AnalyticsCard, SparklineChart } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
     en: `import { AnalyticsCard, SparklineChart } from "@gunjo/ui";
@@ -278,6 +279,13 @@ export default function AnalyticsCardPage() {
                 { name: "DonutChart", href: "/docs/components/donut-chart" },
                 { name: "GaugeChart", href: "/docs/components/gauge-chart" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: カード（Card）" : "UIXHERO: Card (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+                    relation: "nearest",
+                },
+            ]}
         >
             <ChartPreviewWithControls
                 code={code}
@@ -392,15 +400,7 @@ export default function AnalyticsCardPage() {
                         <li>
                             <strong>理由があるときだけ増減が押せるようになる。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">deltaDescription</code> を渡すと、増減の表示が本物の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> になってツールチップで内訳を出します。渡さなければただの文字のままです。資料の「カードのアクションは最大2つ」を守るため、増減を常にボタンにはしていません。
                             <br />
-                            一般のカードの設計は UIXHERO の「カード」にあります。{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/card"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: カード（Card）
-                            </a>
+                            一般のカードの設計は UIXHERO の「カード」にあります。
                         </li>
                     </ul>
                 ) : (
@@ -414,15 +414,7 @@ export default function AnalyticsCardPage() {
                         <li>
                             <strong>The delta becomes clickable only when there is a reason to explain.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">deltaDescription</code> and the delta turns into a real <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> with a tooltip carrying the breakdown; omit it and the delta is plain text. Keeping it plain by default is how the card honours the article&rsquo;s two-actions-maximum rule.
                             <br />
-                            The general design of cards is covered by UIXHERO&rsquo;s card article.{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/card"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Card (in Japanese)
-                            </a>
+                            The general design of cards is covered by UIXHERO&rsquo;s card article.
                         </li>
                     </ul>
                 )}

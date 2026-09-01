@@ -9,6 +9,7 @@ import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
 import { MetadataList } from "@gunjo/ui";
 import { IconCalendarEvent as CalendarDays, IconDatabase as HardDrive, IconFileTypeJpg as FileImage, IconRuler as Ruler } from "@tabler/icons-react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const itemsByLocale = {
     ja: [
@@ -167,6 +168,13 @@ export default function MetadataListDocPage() {
                 { name: "AssetInspectorPanel", href: "/docs/components/asset-inspector-panel" },
                 { name: "Card", href: "/docs/components/card" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: リスト（List）" : "UIXHERO: List (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/list`,
+                    relation: "nearest",
+                },
+            ]}
         >
             <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="sm" previewHeight="auto">
                 <MetadataList items={[...itemsByLocale[locale]]} />
@@ -244,15 +252,7 @@ export default function MetadataListDocPage() {
                         <li>
                             <strong>空のときは何も描かずに済ませない。</strong>項目が0件のときは破線の枠に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">emptyMessage</code> を出します。資料も「空状態を必ず設計する」を挙げています。何も描かないと、読み込み中なのか本当に無いのかが分かりません。
                             <br />
-                            一般のリストの設計は UIXHERO の「リスト」にあります。{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/list"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: リスト（List）
-                            </a>
+                            一般のリストの設計は UIXHERO の「リスト」にあります。
                         </li>
                     </ul>
                 ) : (
@@ -266,15 +266,7 @@ export default function MetadataListDocPage() {
                         <li>
                             <strong>Empty is drawn, not skipped.</strong> With no items the list renders <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">emptyMessage</code> inside a dashed frame. The article calls for designing the empty state explicitly; drawing nothing leaves &ldquo;still loading&rdquo; and &ldquo;genuinely empty&rdquo; indistinguishable.
                             <br />
-                            The general design of lists is covered by UIXHERO&rsquo;s list article.{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/list"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: List (in Japanese)
-                            </a>
+                            The general design of lists is covered by UIXHERO&rsquo;s list article.
                         </li>
                     </ul>
                 )}

@@ -8,6 +8,7 @@ import { ChartPreviewWithControls } from "@/components/doc/ChartPreviewWithContr
 import displayMetadata from "@design/display-metadata.json";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { ActivityTimelineCard } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
     en: `import { useState } from "react";
@@ -621,6 +622,13 @@ export default function ActivityTimelineCardPage() {
                 { name: "AnalyticsCard", href: "/docs/components/analytics-card" },
                 { name: "BarChart", href: "/docs/components/bar-chart" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: カード（Card）" : "UIXHERO: Card (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+                    relation: "nearest",
+                },
+            ]}
         >
             <ChartPreviewWithControls
                 code={codeByLocale[locale]}
@@ -729,15 +737,7 @@ export default function ActivityTimelineCardPage() {
                         <li>
                             <strong>棒の高さの基準を呼ぶ側に開けた。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> を渡さなければ、いちばん高い棒はそのデータの最大値です。カードを2枚並べて比べるときは、同じ <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> を渡して基準をそろえます。値の書式は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code>（関数）と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code>（文字列で渡せる形）の2本立てで、サーバーコンポーネントから渡せるのは後者だけです（#338）。
                             <br />
-                            一般のカードの設計は UIXHERO の「カード」にあります。{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/card"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: カード（Card）
-                            </a>
+                            一般のカードの設計は UIXHERO の「カード」にあります。
                         </li>
                     </ul>
                 ) : (
@@ -751,15 +751,7 @@ export default function ActivityTimelineCardPage() {
                         <li>
                             <strong>The bar scale stays open to the caller.</strong> Without <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code>, the tallest bar is the largest value in that data set. Pass the same <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> to two cards to put them on one scale. Values format through either <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> (a function) or <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code> (a serializable spec); only the latter can be passed from a Server Component (#338).
                             <br />
-                            The general design of cards is covered by UIXHERO&rsquo;s card article.{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/card"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Card (in Japanese)
-                            </a>
+                            The general design of cards is covered by UIXHERO&rsquo;s card article.
                         </li>
                     </ul>
                 )}

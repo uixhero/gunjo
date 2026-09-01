@@ -38,6 +38,7 @@ import {
     Select,
     type ActionDataTableLabels,
 } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Campaign = {
     id: string;
@@ -852,6 +853,13 @@ export function CampaignTableWithMenu() {
                 { name: "Table", href: "/docs/components/table" },
                 { name: "FilterButton", href: "/docs/components/filter-button" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: テーブル（Table）" : "UIXHERO: Table (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/table`,
+                    relation: "nearest",
+                },
+            ]}
         >
             <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewHeight="auto" previewBodyWidth="xl">
                 <ActionDataTableDemo />
@@ -931,15 +939,7 @@ export function CampaignTableWithMenu() {
                         <li>
                             <strong>行の操作は数が増えたら畳める。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">rowActionsVariant</code> に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">menu</code> を渡すと、並べたアイコンをドロップダウンに畳みます。資料は「線を減らしてデータを主役にする」を核に挙げていますが、行ごとに5個のアイコンが並ぶのも同じ種類のノイズだからです。使えない操作は消さず、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> で理由を読めるようにしています。
                             <br />
-                            一般の表の設計は UIXHERO の「テーブル」にあります。{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/table"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: テーブル（Table）
-                            </a>
+                            一般の表の設計は UIXHERO の「テーブル」にあります。
                         </li>
                     </ul>
                 ) : (
@@ -953,15 +953,7 @@ export function CampaignTableWithMenu() {
                         <li>
                             <strong>Row actions collapse once there are too many.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">menu</code> to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">rowActionsVariant</code> and the icon row folds into a dropdown. The article&rsquo;s core principle is to remove lines so the data leads; five icons repeated on every row are the same kind of noise. Unavailable actions are kept rather than hidden, with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> explaining why.
                             <br />
-                            The general design of tables is covered by UIXHERO&rsquo;s table article.{" "}
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/table"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Table (in Japanese)
-                            </a>
+                            The general design of tables is covered by UIXHERO&rsquo;s table article.
                         </li>
                     </ul>
                 )}

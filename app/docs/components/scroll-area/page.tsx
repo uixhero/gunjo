@@ -7,6 +7,7 @@ import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import layoutMetadata from "@design/layout-metadata.json";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const releaseItems = Array.from({ length: 18 }, (_, index) => `v2.${Math.floor((18 - index) / 3)}.${18 - index}`);
 const wideTableColumns = {
@@ -297,6 +298,12 @@ export default function ScrollAreaPage() {
                 { name: "InspectorPanel", href: "/docs/components/inspector-panel" },
                 { name: "DataTable", href: "/docs/components/data-table" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: スクロールエリア（Scroll Area）" : "UIXHERO: Scroll Area (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/scroll-area`,
+                },
+            ]}
         >
             <ComponentPreview embedSrc="/embed/scroll-area" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md" previewHeight={340}>
                 <ScrollArea className="h-56 w-full max-w-sm rounded-md border bg-background p-4">
@@ -451,15 +458,6 @@ export default function ScrollAreaPage() {
                         </li>
                         <li>
                             <strong>「右にまだ続く」ことを示す表現は入れていません。</strong>資料は、横スクロールは縦と違って気づかれにくいので、右端にぼかしや影を置いて続きがあると示すことを挙げています。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ScrollArea</code> にその表現はなく、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">scrollbarClassName</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">thumbClassName</code> でつまみを目立たせるところまでです。ぼかしが要る画面は、いまは呼ぶ側で重ねます。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/scroll-area"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: スクロールエリア（Scroll Area）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -472,15 +470,6 @@ export default function ScrollAreaPage() {
                         </li>
                         <li>
                             <strong>There is no hint that content continues to the right.</strong> The article notes that horizontal overflow is much easier to miss than vertical, and suggests a fade or shadow at the edge. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ScrollArea</code> has no such affordance; it goes as far as letting you style the thumb through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">scrollbarClassName</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">thumbClassName</code>. A screen that needs the fade has to layer it on itself for now.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/scroll-area"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Scroll Area (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

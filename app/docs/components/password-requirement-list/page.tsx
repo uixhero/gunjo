@@ -5,6 +5,7 @@ import { PasswordRequirementListDemo } from "@/components/demos/PasswordRequirem
 import { useLocale } from "@/components/providers/LocaleProvider";
 import inputsMetadata from "@design/inputs-metadata.json";
 import { PasswordRequirementList } from "@gunjo/ui";
+import { UIXHERO_BASE_URL, type UixheroLink } from "@/lib/uixhero-links";
 
 const designDecisions = {
     ja: (
@@ -18,15 +19,7 @@ const designDecisions = {
             <li>
                 <strong>判定そのものは部品が持たない。</strong>何文字以上か、記号が要るかは呼ぶ側が決めて <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">met</code> に入れます。要件は国やサービスの規定で変わるので、部品には埋め込みませんでした。並びは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ul</code> のままで、順序の意味は持たせていません。
                 <br />
-                一般のリストの設計は UIXHERO の「リスト」にあります。{" "}
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/list"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: リスト（List）
-                </a>
+                一般のリストの設計は UIXHERO の「リスト」にあります。
             </li>
         </>
     ),
@@ -41,18 +34,28 @@ const designDecisions = {
             <li>
                 <strong>The rules themselves are not the component&rsquo;s.</strong> Minimum length, required symbols and the rest are evaluated by the caller and passed in through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">met</code>, because requirements change by country and by service. The markup stays a plain <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ul</code>: the order carries no meaning.
                 <br />
-                The general design of lists is covered by UIXHERO&rsquo;s list article.{" "}
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/list"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: List (in Japanese)
-                </a>
+                The general design of lists is covered by UIXHERO&rsquo;s list article.
             </li>
         </>
     ),
+};
+
+// 本文からこの節へ移した UIXHERO の記事リンク（gunjo #955 の受け口）。
+const uixheroLinks: Record<"ja" | "en", UixheroLink[]> = {
+    ja: [
+        {
+            label: "UIXHERO: リスト（List）",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/list`,
+            relation: "nearest",
+        },
+    ],
+    en: [
+        {
+            label: "UIXHERO: List (in Japanese)",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/list`,
+            relation: "nearest",
+        },
+    ],
 };
 
 export default function PasswordRequirementListPage() {
@@ -256,6 +259,7 @@ export function ExplainedPasswordRequirements() {
 }`,
                 },
             ]}
+            uixheroLinks={uixheroLinks}
         />
     );
 }

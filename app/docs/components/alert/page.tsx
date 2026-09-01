@@ -14,6 +14,7 @@ import {
     IconInfoCircle as Info,
     IconTerminal2 as Terminal,
 } from "@tabler/icons-react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
     ja: `import { Alert, AlertDescription, AlertTitle } from "@gunjo/ui"
@@ -266,6 +267,12 @@ export default function AlertPage() {
                 { name: "Toast", href: "/docs/components/toast" },
             ]}
             sectionLabels={sectionLabels}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: アラート（Alert）" : "UIXHERO: Alert (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/alert`,
+                },
+            ]}
         >
             <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewHeight="auto" previewBodyWidth="md" sectionLabels={sectionLabels}>
                 <Alert>
@@ -447,15 +454,6 @@ import { IconCircleCheck as CheckCircle2 } from "@tabler/icons-react";
                         </li>
                         <li>
                             <strong>資料と食い違っているところ。</strong>GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Alert</code> は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> によらず常に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="alert"'}</code> を付けます。資料は「<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="alert"'}</code> は読み上げに割り込むので誤りのときだけに使い、他は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-live="polite"'}</code> にする」としています。ここは実装のほうを直す向きで、#936 で追っています。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/alert"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: アラート（Alert）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -468,15 +466,6 @@ import { IconCircleCheck as CheckCircle2 } from "@tabler/icons-react";
                         </li>
                         <li>
                             <strong>Where this diverges from the article.</strong> GUNJO always sets <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="alert"'}</code>, whatever the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code>. The article asks for <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="alert"'}</code> on errors only, with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-live="polite"'}</code> elsewhere, because an assertive region interrupts a screen reader mid-sentence. The implementation is the side that should change; tracked in #936.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/alert"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Alert (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

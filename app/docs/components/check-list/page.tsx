@@ -10,6 +10,7 @@ import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
 import { IconAlertTriangle, IconCheck } from "@tabler/icons-react";
 import { Badge, CheckList, type CheckListItem } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Locale = "ja" | "en";
 
@@ -324,6 +325,13 @@ export function DisabledReasonCheckList() {
         { name: "ActionQueue", href: "/docs/components/action-queue" },
         { name: "Form", href: "/docs/components/form" },
       ]}
+      uixheroLinks={[
+        {
+          label: locale === "ja" ? "UIXHERO: リスト（List）" : "UIXHERO: List (in Japanese)",
+          href: `${UIXHERO_BASE_URL}/resources/ui-components/list`,
+          relation: "nearest",
+        },
+      ]}
     >
       <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewHeight="auto">
         <CheckListPreview locale={locale} />
@@ -401,15 +409,7 @@ export function DisabledReasonCheckList() {
             <li>
               <strong>右端の要素はチェックの外に置いた。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">trailing</code>（バッジ・ボタン・金額）はチェックボックスの外側にあるので、押してもチェックが動きません。行全体を押せるようにしていないのは、この切り分けを守るためです。
               <br />
-              一般のリストの設計は UIXHERO の「リスト」にあります。{" "}
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/resources/ui-components/list"
-                target="_blank"
-                rel="noreferrer"
-              >
-                UIXHERO: リスト（List）
-              </a>
+              一般のリストの設計は UIXHERO の「リスト」にあります。
             </li>
           </ul>
         ) : (
@@ -423,15 +423,7 @@ export function DisabledReasonCheckList() {
             <li>
               <strong>The trailing slot sits outside the toggle.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">trailing</code> (a badge, a button, an amount) is rendered outside the checkbox, so clicking it never flips the tick. That separation is why the whole row is not made pressable.
               <br />
-              The general design of lists is covered by UIXHERO&rsquo;s list article.{" "}
-              <a
-                className="underline underline-offset-4"
-                href="https://www.uixhero.com/resources/ui-components/list"
-                target="_blank"
-                rel="noreferrer"
-              >
-                UIXHERO: List (in Japanese)
-              </a>
+              The general design of lists is covered by UIXHERO&rsquo;s list article.
             </li>
           </ul>
         )}

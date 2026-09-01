@@ -10,6 +10,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import inputsMetadata from "@design/inputs-metadata.json";
 import { ToggleGroup, ToggleGroupItem, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 import { IconAlignCenter, IconAlignLeft, IconAlignRight, IconBold, IconItalic, IconUnderline } from "@tabler/icons-react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function GroupItem({
     value,
@@ -189,6 +190,12 @@ export function AlignControl() {
                 { name: "TooltipButton", href: "/docs/components/tooltip-button" },
                 { name: "Button", href: "/docs/components/button" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: トグルグループ（Toggle Group）" : "UIXHERO: Toggle Group (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/toggle-group`,
+                },
+            ]}
         >
             <ComponentPreview embedSrc="/embed/toggle-group" code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels}>
                 <ToggleGroupDemo />
@@ -341,15 +348,6 @@ export function DisabledToggleGroupItem() {
                         </li>
                         <li>
                             <strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">size</code> は親に1回書けば足りる。</strong>文脈で子に配り、項目ごとの上書きもできます。資料が求める <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">role</code> の付与と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-pressed</code> は土台の Radix が持つので、こちらは目的を伝える <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> を親に渡すだけで済みます。
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/toggle-group"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: トグルグループ（Toggle Group）
-                            </a>
                         </li>
                     </ul>
                 ) : (
@@ -362,15 +360,6 @@ export function DisabledToggleGroupItem() {
                         </li>
                         <li>
                             <strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">size</code> are written once on the parent.</strong> They travel to the items through context and each item can still override. The group role and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-pressed</code> the article requires come from Radix, which leaves only the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> naming the purpose of the group to pass in.
-                            <br />
-                            <a
-                                className="underline underline-offset-4"
-                                href="https://www.uixhero.com/resources/ui-components/toggle-group"
-                                target="_blank"
-                                rel="noreferrer"
-                            >
-                                UIXHERO: Toggle Group (in Japanese)
-                            </a>
                         </li>
                     </ul>
                 )}

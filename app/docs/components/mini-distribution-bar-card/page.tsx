@@ -4,6 +4,7 @@ import type { ComponentProps } from "react";
 import { ChartDocPage } from "@/components/doc/ChartDocPage";
 import displayMetadata from "@design/display-metadata.json";
 import { MiniDistributionBarCard } from "@gunjo/ui";
+import { UIXHERO_BASE_URL, type UixheroLink } from "@/lib/uixhero-links";
 
 type Locale = "en" | "ja";
 type DataItem = ComponentProps<typeof MiniDistributionBarCard>["segments"][number];
@@ -195,15 +196,7 @@ const designDecisions = {
             <li>
                 <strong>分母はデータから作り、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> で上書きできる。</strong>既定の分母は区分の合計です。分母を固定したい（未回答のぶんを空けておきたい）ときだけ <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> を渡します。負の値と数値でない値は0として扱い、帯が壊れないようにしています。
                 <br />
-                一般のカードの設計は UIXHERO の「カード」にあります。{" "}
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/card"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: カード（Card）
-                </a>
+                一般のカードの設計は UIXHERO の「カード」にあります。
             </li>
         </>
     ),
@@ -218,22 +211,32 @@ const designDecisions = {
             <li>
                 <strong>The denominator comes from the data and can be overridden with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code>.</strong> By default it is the sum of the segments. Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> only when the denominator must stay fixed (for example to leave the un-answered share empty). Negative and non-finite values are treated as zero so the bar cannot break.
                 <br />
-                The general design of cards is covered by UIXHERO&rsquo;s card article.{" "}
-                <a
-                    className="underline underline-offset-4"
-                    href="https://www.uixhero.com/resources/ui-components/card"
-                    target="_blank"
-                    rel="noreferrer"
-                >
-                    UIXHERO: Card (in Japanese)
-                </a>
+                The general design of cards is covered by UIXHERO&rsquo;s card article.
             </li>
         </>
     ),
 };
 
+// 本文からこの節へ移した UIXHERO の記事リンク（gunjo #955 の受け口）。
+const uixheroLinks: Record<"ja" | "en", UixheroLink[]> = {
+    ja: [
+        {
+            label: "UIXHERO: カード（Card）",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+            relation: "nearest",
+        },
+    ],
+    en: [
+        {
+            label: "UIXHERO: Card (in Japanese)",
+            href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+            relation: "nearest",
+        },
+    ],
+};
+
 export default function MiniDistributionBarCardPage() {
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
 
-    return <ChartDocPage designDecisions={designDecisions} title={{ en: meta.miniDistributionBarCard.title, ja: "ミニ分布バーカード" }} description={{ en: meta.miniDistributionBarCard.description, ja: "カテゴリ構成や利用率を、密集したティックと概要行で示すカードです。" }} code={code} usageCode={usageCode} propsData={propsData} demo="mini-distribution-bar-card" embedBase="/embed/mini-distribution-bar-card" previewHeight={420} states={states} usedComponents={{ en: [{ name: "MiniDistributionBarCard", href: "/docs/components/mini-distribution-bar-card" }, { name: "ChartLegend", href: "/docs/components/chart-legend" }, { name: "Tooltip", href: "/docs/components/tooltip" }], ja: [{ name: "ミニ分布バーカード", href: "/docs/components/mini-distribution-bar-card" }, { name: "チャート凡例", href: "/docs/components/chart-legend" }, { name: "ツールチップ", href: "/docs/components/tooltip" }] }} relatedComponents={{ en: [{"name":"DistributionBar","href":"/docs/components/distribution-bar"},{"name":"Statistic","href":"/docs/components/statistic"}], ja: [{"name":"分布バー","href":"/docs/components/distribution-bar"},{"name":"統計","href":"/docs/components/statistic"}] }} />;
+    return <ChartDocPage designDecisions={designDecisions} title={{ en: meta.miniDistributionBarCard.title, ja: "ミニ分布バーカード" }} description={{ en: meta.miniDistributionBarCard.description, ja: "カテゴリ構成や利用率を、密集したティックと概要行で示すカードです。" }} code={code} usageCode={usageCode} propsData={propsData} demo="mini-distribution-bar-card" embedBase="/embed/mini-distribution-bar-card" previewHeight={420} states={states} usedComponents={{ en: [{ name: "MiniDistributionBarCard", href: "/docs/components/mini-distribution-bar-card" }, { name: "ChartLegend", href: "/docs/components/chart-legend" }, { name: "Tooltip", href: "/docs/components/tooltip" }], ja: [{ name: "ミニ分布バーカード", href: "/docs/components/mini-distribution-bar-card" }, { name: "チャート凡例", href: "/docs/components/chart-legend" }, { name: "ツールチップ", href: "/docs/components/tooltip" }] }} relatedComponents={{ en: [{"name":"DistributionBar","href":"/docs/components/distribution-bar"},{"name":"Statistic","href":"/docs/components/statistic"}], ja: [{"name":"分布バー","href":"/docs/components/distribution-bar"},{"name":"統計","href":"/docs/components/statistic"}] }} uixheroLinks={uixheroLinks} />;
 }
