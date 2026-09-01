@@ -27,6 +27,7 @@ import {
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import { navigation } from "@/lib/navigation";
+import { CodeBlock } from "@/components/doc/CodeBlock";
 
 type CategoryName = "Feedback" | "Navigation" | "Overlay" | "Layout";
 
@@ -63,6 +64,8 @@ type CategoryCopy = {
     designDecision: LocalizedText;
     designDecisionLinkLabel: LocalizedText;
     designDecisionUrl: string;
+    sampleLead: LocalizedText;
+    sample: LocalizedText;
     icon: typeof Bell;
 };
 
@@ -167,6 +170,204 @@ const categoryCopy: Record<CategoryName, CategoryCopy> = {
         },
         designDecisionUrl:
             "https://www.uixhero.com/blog/ui-components-complete-guide#カテゴリ-07フィードバック状態",
+        sampleLead: {
+            ja: "この分類のコンポーネントをまとめて、取り込みの進み具合と結果を伝える1画面を組んだ例です。そのまま貼り付けて動きます。",
+            en: "One import-status screen assembled from this category. Paste it as-is and it runs.",
+        },
+        sample: {
+            ja: `import { useState } from "react";
+import {
+    Alert,
+    Banner,
+    Button,
+    Card,
+    CardContent,
+    CardHeader,
+    CardTitle,
+    Progress,
+    Spinner,
+    Stepper,
+} from "@gunjo/ui";
+
+const STEP_LABELS = ["読み込み", "検証", "取り込み"];
+
+const STEP_MESSAGE = [
+    "ファイルを読んでいます。このタブは閉じないでください。",
+    "1行ずつ、決めた形式に合っているか確かめています。",
+    "通った行をワークスペースに書き込んでいます。",
+];
+
+export function ImportJobStatus() {
+    const [step, setStep] = useState(1);
+    const [dismissed, setDismissed] = useState(false);
+
+    const running = step < STEP_LABELS.length;
+    const percent = Math.round(((step + 1) / (STEP_LABELS.length + 1)) * 100);
+
+    return (
+        <Card className="max-w-2xl">
+            {dismissed ? null : (
+                <Banner
+                    variant="info"
+                    onDismiss={() => setDismissed(true)}
+                    dismissLabel="閉じる"
+                >
+                    取り込みは裏で進みます。このページを離れても大丈夫です。
+                </Banner>
+            )}
+            <CardHeader>
+                <CardTitle>顧客データの取り込み</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+                <Stepper
+                    steps={STEP_LABELS.map((label, index) => ({
+                        label,
+                        state:
+                            index < step ? "completed" : index === step ? "current" : "upcoming",
+                    }))}
+                />
+
+                <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        {running ? <Spinner size="sm" /> : null}
+                        <span>{running ? STEP_MESSAGE[step] : "取り込みが終わりました。"}</span>
+                    </div>
+                    <Progress
+                        value={percent}
+                        label="取り込みの進み具合"
+                        valueText={percent + "% 完了"}
+                        tone={running ? "primary" : "success"}
+                    />
+                </div>
+
+                {step === 1 ? (
+                    <Alert
+                        variant="warning"
+                        title="12行に確認が必要です"
+                        description="メールアドレスが無い行は取り込みません。"
+                    />
+                ) : null}
+
+                {running ? null : (
+                    <Alert
+                        variant="success"
+                        title="1,204件を取り込みました"
+                        description="残る12行は取り込まず、一覧として書き出せます。"
+                    />
+                )}
+
+                <div className="flex gap-3">
+                    <Button
+                        onClick={() => setStep(Math.min(step + 1, STEP_LABELS.length))}
+                        disabled={!running}
+                    >
+                        次へ進む
+                    </Button>
+                    <Button variant="outline" onClick={() => setStep(0)}>
+                        最初からやり直す
+                    </Button>
+                </div>
+            </CardContent>
+        </Card>
+    );
+}`,
+            en: `import { useState } from "react";
+import {
+    Alert,
+    Banner,
+    Button,
+    Card,
+    CardContent,
+    CardHeader,
+    CardTitle,
+    Progress,
+    Spinner,
+    Stepper,
+} from "@gunjo/ui";
+
+const STEP_LABELS = ["Upload", "Validate", "Import"];
+
+const STEP_MESSAGE = [
+    "Reading the file. Do not close this tab.",
+    "Checking every row against the schema.",
+    "Writing the accepted rows into the workspace.",
+];
+
+export function ImportJobStatus() {
+    const [step, setStep] = useState(1);
+    const [dismissed, setDismissed] = useState(false);
+
+    const running = step < STEP_LABELS.length;
+    const percent = Math.round(((step + 1) / (STEP_LABELS.length + 1)) * 100);
+
+    return (
+        <Card className="max-w-2xl">
+            {dismissed ? null : (
+                <Banner
+                    variant="info"
+                    onDismiss={() => setDismissed(true)}
+                    dismissLabel="Dismiss"
+                >
+                    Imports run in the background. You can leave this page.
+                </Banner>
+            )}
+            <CardHeader>
+                <CardTitle>Customer import</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+                <Stepper
+                    steps={STEP_LABELS.map((label, index) => ({
+                        label,
+                        state:
+                            index < step ? "completed" : index === step ? "current" : "upcoming",
+                    }))}
+                />
+
+                <div className="space-y-2">
+                    <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                        {running ? <Spinner size="sm" /> : null}
+                        <span>{running ? STEP_MESSAGE[step] : "Import finished."}</span>
+                    </div>
+                    <Progress
+                        value={percent}
+                        label="Import progress"
+                        valueText={percent + "% complete"}
+                        tone={running ? "primary" : "success"}
+                    />
+                </div>
+
+                {step === 1 ? (
+                    <Alert
+                        variant="warning"
+                        title="12 rows need attention"
+                        description="Rows without an email address will be skipped."
+                    />
+                ) : null}
+
+                {running ? null : (
+                    <Alert
+                        variant="success"
+                        title="1,204 customers imported"
+                        description="12 rows were skipped and can be downloaded as a report."
+                    />
+                )}
+
+                <div className="flex gap-3">
+                    <Button
+                        onClick={() => setStep(Math.min(step + 1, STEP_LABELS.length))}
+                        disabled={!running}
+                    >
+                        Continue
+                    </Button>
+                    <Button variant="outline" onClick={() => setStep(0)}>
+                        Start over
+                    </Button>
+                </div>
+            </CardContent>
+        </Card>
+    );
+}`,
+        },
         icon: Bell,
     },
     Navigation: {
@@ -269,6 +470,268 @@ const categoryCopy: Record<CategoryName, CategoryCopy> = {
         },
         designDecisionUrl:
             "https://www.uixhero.com/blog/ui-components-complete-guide#カテゴリ-02ナビゲーション",
+        sampleLead: {
+            ja: "この分類のコンポーネントをまとめて、いまどこにいて次にどこへ行けるかを示す1画面を組んだ例です。そのまま貼り付けて動きます。",
+            en: "One screen assembled from this category, showing where you are and where you can go next. Paste it as-is and it runs.",
+        },
+        sample: {
+            ja: `import { useState } from "react";
+import {
+    IconArchive,
+    IconInbox,
+    IconSettings,
+    IconUsers,
+} from "@tabler/icons-react";
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbPage,
+    BreadcrumbSeparator,
+    Pagination,
+    PaginationContent,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+    SidebarItem,
+    Tabs,
+    TabsContent,
+    TabsList,
+    TabsTrigger,
+    TextLink,
+} from "@gunjo/ui";
+
+const SECTIONS = [
+    { id: "inbox", label: "受信箱", icon: <IconInbox className="h-4 w-4" />, count: 4 },
+    { id: "people", label: "メンバー", icon: <IconUsers className="h-4 w-4" /> },
+    { id: "archive", label: "保管庫", icon: <IconArchive className="h-4 w-4" /> },
+    { id: "settings", label: "設定", icon: <IconSettings className="h-4 w-4" /> },
+];
+
+const TABS = [
+    { value: "open", label: "未対応", body: "レビュー担当が決まっていない依頼です。" },
+    { value: "mine", label: "自分の担当", body: "自分が引き受けた依頼です。" },
+    { value: "done", label: "対応済み", body: "この30日で片付いた依頼です。" },
+];
+
+const PAGES = [1, 2, 3];
+
+export function ReviewNavigation() {
+    const [section, setSection] = useState("inbox");
+    const [page, setPage] = useState(1);
+
+    return (
+        <div className="grid gap-6 md:grid-cols-[13rem_minmax(0,1fr)]">
+            <nav aria-label="区分" className="space-y-1">
+                {SECTIONS.map((item) => (
+                    <SidebarItem
+                        key={item.id}
+                        id={item.id}
+                        icon={item.icon}
+                        label={item.label}
+                        count={item.count}
+                        countLabel={(count) => count + " 件の未読"}
+                        isActive={section === item.id}
+                        onClick={() => setSection(item.id)}
+                    />
+                ))}
+            </nav>
+
+            <div className="space-y-5">
+                <Breadcrumb>
+                    <BreadcrumbList>
+                        <BreadcrumbItem>
+                            <BreadcrumbLink href="#">ワークスペース</BreadcrumbLink>
+                        </BreadcrumbItem>
+                        <BreadcrumbSeparator />
+                        <BreadcrumbItem>
+                            <BreadcrumbLink href="#">レビュー</BreadcrumbLink>
+                        </BreadcrumbItem>
+                        <BreadcrumbSeparator />
+                        <BreadcrumbItem>
+                            <BreadcrumbPage>受信箱</BreadcrumbPage>
+                        </BreadcrumbItem>
+                    </BreadcrumbList>
+                </Breadcrumb>
+
+                <Tabs defaultValue="open">
+                    <TabsList>
+                        {TABS.map((tab) => (
+                            <TabsTrigger key={tab.value} value={tab.value}>
+                                {tab.label}
+                            </TabsTrigger>
+                        ))}
+                    </TabsList>
+                    {TABS.map((tab) => (
+                        <TabsContent key={tab.value} value={tab.value}>
+                            <p className="text-sm text-muted-foreground">{tab.body}</p>
+                        </TabsContent>
+                    ))}
+                </Tabs>
+
+                <Pagination>
+                    <PaginationContent>
+                        <PaginationItem>
+                            <PaginationPrevious
+                                onClick={() => setPage(Math.max(1, page - 1))}
+                            />
+                        </PaginationItem>
+                        {PAGES.map((number) => (
+                            <PaginationItem key={number}>
+                                <PaginationLink
+                                    isActive={page === number}
+                                    onClick={() => setPage(number)}
+                                >
+                                    {number}
+                                </PaginationLink>
+                            </PaginationItem>
+                        ))}
+                        <PaginationItem>
+                            <PaginationNext
+                                onClick={() => setPage(Math.min(PAGES.length, page + 1))}
+                            />
+                        </PaginationItem>
+                    </PaginationContent>
+                </Pagination>
+
+                <p className="text-sm text-muted-foreground">
+                    見つからないときは <TextLink href="#">一覧をすべて開く</TextLink>
+                </p>
+            </div>
+        </div>
+    );
+}`,
+            en: `import { useState } from "react";
+import {
+    IconArchive,
+    IconInbox,
+    IconSettings,
+    IconUsers,
+} from "@tabler/icons-react";
+import {
+    Breadcrumb,
+    BreadcrumbItem,
+    BreadcrumbLink,
+    BreadcrumbList,
+    BreadcrumbPage,
+    BreadcrumbSeparator,
+    Pagination,
+    PaginationContent,
+    PaginationItem,
+    PaginationLink,
+    PaginationNext,
+    PaginationPrevious,
+    SidebarItem,
+    Tabs,
+    TabsContent,
+    TabsList,
+    TabsTrigger,
+    TextLink,
+} from "@gunjo/ui";
+
+const SECTIONS = [
+    { id: "inbox", label: "Inbox", icon: <IconInbox className="h-4 w-4" />, count: 4 },
+    { id: "people", label: "People", icon: <IconUsers className="h-4 w-4" /> },
+    { id: "archive", label: "Archive", icon: <IconArchive className="h-4 w-4" /> },
+    { id: "settings", label: "Settings", icon: <IconSettings className="h-4 w-4" /> },
+];
+
+const TABS = [
+    { value: "open", label: "Open", body: "Requests still waiting on a reviewer." },
+    { value: "mine", label: "Assigned to me", body: "Requests you accepted." },
+    { value: "done", label: "Closed", body: "Requests resolved in the last 30 days." },
+];
+
+const PAGES = [1, 2, 3];
+
+export function ReviewNavigation() {
+    const [section, setSection] = useState("inbox");
+    const [page, setPage] = useState(1);
+
+    return (
+        <div className="grid gap-6 md:grid-cols-[13rem_minmax(0,1fr)]">
+            <nav aria-label="Sections" className="space-y-1">
+                {SECTIONS.map((item) => (
+                    <SidebarItem
+                        key={item.id}
+                        id={item.id}
+                        icon={item.icon}
+                        label={item.label}
+                        count={item.count}
+                        countLabel={(count) => count + " unread"}
+                        isActive={section === item.id}
+                        onClick={() => setSection(item.id)}
+                    />
+                ))}
+            </nav>
+
+            <div className="space-y-5">
+                <Breadcrumb>
+                    <BreadcrumbList>
+                        <BreadcrumbItem>
+                            <BreadcrumbLink href="#">Workspace</BreadcrumbLink>
+                        </BreadcrumbItem>
+                        <BreadcrumbSeparator />
+                        <BreadcrumbItem>
+                            <BreadcrumbLink href="#">Reviews</BreadcrumbLink>
+                        </BreadcrumbItem>
+                        <BreadcrumbSeparator />
+                        <BreadcrumbItem>
+                            <BreadcrumbPage>Inbox</BreadcrumbPage>
+                        </BreadcrumbItem>
+                    </BreadcrumbList>
+                </Breadcrumb>
+
+                <Tabs defaultValue="open">
+                    <TabsList>
+                        {TABS.map((tab) => (
+                            <TabsTrigger key={tab.value} value={tab.value}>
+                                {tab.label}
+                            </TabsTrigger>
+                        ))}
+                    </TabsList>
+                    {TABS.map((tab) => (
+                        <TabsContent key={tab.value} value={tab.value}>
+                            <p className="text-sm text-muted-foreground">{tab.body}</p>
+                        </TabsContent>
+                    ))}
+                </Tabs>
+
+                <Pagination>
+                    <PaginationContent>
+                        <PaginationItem>
+                            <PaginationPrevious
+                                onClick={() => setPage(Math.max(1, page - 1))}
+                            />
+                        </PaginationItem>
+                        {PAGES.map((number) => (
+                            <PaginationItem key={number}>
+                                <PaginationLink
+                                    isActive={page === number}
+                                    onClick={() => setPage(number)}
+                                >
+                                    {number}
+                                </PaginationLink>
+                            </PaginationItem>
+                        ))}
+                        <PaginationItem>
+                            <PaginationNext
+                                onClick={() => setPage(Math.min(PAGES.length, page + 1))}
+                            />
+                        </PaginationItem>
+                    </PaginationContent>
+                </Pagination>
+
+                <p className="text-sm text-muted-foreground">
+                    Need something else? <TextLink href="#">Open the full directory</TextLink>
+                </p>
+            </div>
+        </div>
+    );
+}`,
+        },
         icon: Compass,
     },
     Overlay: {
@@ -371,6 +834,372 @@ const categoryCopy: Record<CategoryName, CategoryCopy> = {
         },
         designDecisionUrl:
             "https://www.uixhero.com/blog/ui-components-complete-guide#カテゴリ-06開示オーバーレイ",
+        sampleLead: {
+            ja: "この分類のコンポーネントをまとめて、1本の操作列からすべてを重ねて開く1画面を組んだ例です。そのまま貼り付けて動きます。",
+            en: "One action bar assembled from this category, with every overlay opening from it. Paste it as-is and it runs.",
+        },
+        sample: {
+            ja: `import { useState } from "react";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+    Button,
+    ContextMenu,
+    ContextMenuContent,
+    ContextMenuItem,
+    ContextMenuTrigger,
+    Dialog,
+    DialogBody,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+    Input,
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+    Sheet,
+    SheetBody,
+    SheetContent,
+    SheetDescription,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@gunjo/ui";
+
+const EXPORT_FORMATS = ["CSV", "JSON", "印刷用のPDF"];
+
+const FIELDS = [
+    { id: "owner", label: "担当", value: "ブランド制作" },
+    { id: "due", label: "期日", value: "2026-06-12" },
+];
+
+export function AssetActionsBar() {
+    const [title, setTitle] = useState("春キャンペーン");
+
+    return (
+        <TooltipProvider>
+            <div className="flex flex-wrap items-center gap-2 rounded-lg border p-3">
+                <ContextMenu>
+                    <ContextMenuTrigger asChild>
+                        <span className="mr-auto text-sm font-medium">{title}</span>
+                    </ContextMenuTrigger>
+                    <ContextMenuContent>
+                        <ContextMenuItem>複製する</ContextMenuItem>
+                        <ContextMenuItem>お気に入りに入れる</ContextMenuItem>
+                    </ContextMenuContent>
+                </ContextMenu>
+
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button variant="ghost" size="sm">
+                            共有
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>リンクを知っている人は見られます</TooltipContent>
+                </Tooltip>
+
+                <Popover>
+                    <PopoverTrigger asChild>
+                        <Button variant="ghost" size="sm">
+                            詳細
+                        </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-64 space-y-2">
+                        {FIELDS.map((field) => (
+                            <div key={field.id} className="flex justify-between text-sm">
+                                <span className="text-muted-foreground">{field.label}</span>
+                                <span>{field.value}</span>
+                            </div>
+                        ))}
+                    </PopoverContent>
+                </Popover>
+
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="sm">
+                            書き出し
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuLabel>この形式で保存</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        {EXPORT_FORMATS.map((format) => (
+                            <DropdownMenuItem key={format}>{format}</DropdownMenuItem>
+                        ))}
+                    </DropdownMenuContent>
+                </DropdownMenu>
+
+                <Sheet>
+                    <SheetTrigger asChild>
+                        <Button variant="ghost" size="sm">
+                            履歴
+                        </Button>
+                    </SheetTrigger>
+                    <SheetContent side="right">
+                        <SheetHeader>
+                            <SheetTitle>変更の記録</SheetTitle>
+                            <SheetDescription>
+                                このコレクションへの変更を、新しい順に並べます。
+                            </SheetDescription>
+                        </SheetHeader>
+                        <SheetBody className="space-y-3 text-sm text-muted-foreground">
+                            <p>14:40 メインビジュアルを承認</p>
+                            <p>11:05 法務からの指摘</p>
+                            <p>09:20 下書きを提出</p>
+                        </SheetBody>
+                    </SheetContent>
+                </Sheet>
+
+                <Dialog>
+                    <DialogTrigger asChild>
+                        <Button variant="outline" size="sm">
+                            名前を変える
+                        </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle>コレクションの名前を変える</DialogTitle>
+                            <DialogDescription>
+                                この名前は、閲覧できる全員に見えます。
+                            </DialogDescription>
+                        </DialogHeader>
+                        <DialogBody>
+                            <Input
+                                label="コレクション名"
+                                value={title}
+                                onChange={(event) => setTitle(event.target.value)}
+                            />
+                        </DialogBody>
+                        <DialogFooter>
+                            <Button>保存</Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
+
+                <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                        <Button variant="destructive" size="sm">
+                            削除
+                        </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                        <AlertDialogHeader>
+                            <AlertDialogTitle>このコレクションを削除しますか</AlertDialogTitle>
+                            <AlertDialogDescription>
+                                素材24点が消えます。取り消せません。
+                            </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                            <AlertDialogCancel>やめる</AlertDialogCancel>
+                            <AlertDialogAction>削除する</AlertDialogAction>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </AlertDialog>
+            </div>
+        </TooltipProvider>
+    );
+}`,
+            en: `import { useState } from "react";
+import {
+    AlertDialog,
+    AlertDialogAction,
+    AlertDialogCancel,
+    AlertDialogContent,
+    AlertDialogDescription,
+    AlertDialogFooter,
+    AlertDialogHeader,
+    AlertDialogTitle,
+    AlertDialogTrigger,
+    Button,
+    ContextMenu,
+    ContextMenuContent,
+    ContextMenuItem,
+    ContextMenuTrigger,
+    Dialog,
+    DialogBody,
+    DialogContent,
+    DialogDescription,
+    DialogFooter,
+    DialogHeader,
+    DialogTitle,
+    DialogTrigger,
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuTrigger,
+    Input,
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+    Sheet,
+    SheetBody,
+    SheetContent,
+    SheetDescription,
+    SheetHeader,
+    SheetTitle,
+    SheetTrigger,
+    Tooltip,
+    TooltipContent,
+    TooltipProvider,
+    TooltipTrigger,
+} from "@gunjo/ui";
+
+const EXPORT_FORMATS = ["CSV", "JSON", "Printable PDF"];
+
+const FIELDS = [
+    { id: "owner", label: "Owner", value: "Brand studio" },
+    { id: "due", label: "Due date", value: "2026-06-12" },
+];
+
+export function AssetActionsBar() {
+    const [title, setTitle] = useState("Spring campaign");
+
+    return (
+        <TooltipProvider>
+            <div className="flex flex-wrap items-center gap-2 rounded-lg border p-3">
+                <ContextMenu>
+                    <ContextMenuTrigger asChild>
+                        <span className="mr-auto text-sm font-medium">{title}</span>
+                    </ContextMenuTrigger>
+                    <ContextMenuContent>
+                        <ContextMenuItem>Duplicate</ContextMenuItem>
+                        <ContextMenuItem>Add to favourites</ContextMenuItem>
+                    </ContextMenuContent>
+                </ContextMenu>
+
+                <Tooltip>
+                    <TooltipTrigger asChild>
+                        <Button variant="ghost" size="sm">
+                            Share
+                        </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>Anyone with the link can view</TooltipContent>
+                </Tooltip>
+
+                <Popover>
+                    <PopoverTrigger asChild>
+                        <Button variant="ghost" size="sm">
+                            Details
+                        </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-64 space-y-2">
+                        {FIELDS.map((field) => (
+                            <div key={field.id} className="flex justify-between text-sm">
+                                <span className="text-muted-foreground">{field.label}</span>
+                                <span>{field.value}</span>
+                            </div>
+                        ))}
+                    </PopoverContent>
+                </Popover>
+
+                <DropdownMenu>
+                    <DropdownMenuTrigger asChild>
+                        <Button variant="ghost" size="sm">
+                            Export
+                        </Button>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent align="end">
+                        <DropdownMenuLabel>Download as</DropdownMenuLabel>
+                        <DropdownMenuSeparator />
+                        {EXPORT_FORMATS.map((format) => (
+                            <DropdownMenuItem key={format}>{format}</DropdownMenuItem>
+                        ))}
+                    </DropdownMenuContent>
+                </DropdownMenu>
+
+                <Sheet>
+                    <SheetTrigger asChild>
+                        <Button variant="ghost" size="sm">
+                            History
+                        </Button>
+                    </SheetTrigger>
+                    <SheetContent side="right">
+                        <SheetHeader>
+                            <SheetTitle>Change history</SheetTitle>
+                            <SheetDescription>
+                                Every edit to this collection, newest first.
+                            </SheetDescription>
+                        </SheetHeader>
+                        <SheetBody className="space-y-3 text-sm text-muted-foreground">
+                            <p>14:40 Key visual approved</p>
+                            <p>11:05 Legal comment added</p>
+                            <p>09:20 Draft submitted</p>
+                        </SheetBody>
+                    </SheetContent>
+                </Sheet>
+
+                <Dialog>
+                    <DialogTrigger asChild>
+                        <Button variant="outline" size="sm">
+                            Rename
+                        </Button>
+                    </DialogTrigger>
+                    <DialogContent>
+                        <DialogHeader>
+                            <DialogTitle>Rename collection</DialogTitle>
+                            <DialogDescription>
+                                The name is visible to everyone with access.
+                            </DialogDescription>
+                        </DialogHeader>
+                        <DialogBody>
+                            <Input
+                                label="Collection name"
+                                value={title}
+                                onChange={(event) => setTitle(event.target.value)}
+                            />
+                        </DialogBody>
+                        <DialogFooter>
+                            <Button>Save</Button>
+                        </DialogFooter>
+                    </DialogContent>
+                </Dialog>
+
+                <AlertDialog>
+                    <AlertDialogTrigger asChild>
+                        <Button variant="destructive" size="sm">
+                            Delete
+                        </Button>
+                    </AlertDialogTrigger>
+                    <AlertDialogContent>
+                        <AlertDialogHeader>
+                            <AlertDialogTitle>Delete this collection?</AlertDialogTitle>
+                            <AlertDialogDescription>
+                                24 assets will be removed. This cannot be undone.
+                            </AlertDialogDescription>
+                        </AlertDialogHeader>
+                        <AlertDialogFooter>
+                            <AlertDialogCancel>Keep it</AlertDialogCancel>
+                            <AlertDialogAction>Delete</AlertDialogAction>
+                        </AlertDialogFooter>
+                    </AlertDialogContent>
+                </AlertDialog>
+            </div>
+        </TooltipProvider>
+    );
+}`,
+        },
         icon: Layers3,
     },
     Layout: {
@@ -473,6 +1302,222 @@ const categoryCopy: Record<CategoryName, CategoryCopy> = {
         },
         designDecisionUrl:
             "https://www.uixhero.com/blog/ui-components-complete-guide#カテゴリ-08レイアウト可変",
+        sampleLead: {
+            ja: "この分類のコンポーネントをまとめて、画面の骨格だけを組んだ例です。そのまま貼り付けて動きます。",
+            en: "One screen skeleton assembled from this category. Paste it as-is and it runs.",
+        },
+        sample: {
+            ja: `import {
+    AspectRatio,
+    Badge,
+    Button,
+    Card,
+    CardContent,
+    Cluster,
+    Container,
+    Grid,
+    HStack,
+    ResizableHandle,
+    ResizablePanel,
+    ResizablePanelGroup,
+    ScrollArea,
+    VStack,
+} from "@gunjo/ui";
+
+const FILTERS = ["すべて", "要レビュー", "承認済み", "保管済み", "自分と共有"];
+
+const TILES = [
+    { id: "t1", title: "春キャンペーン", meta: "素材24点" },
+    { id: "t2", title: "製品ツアー", meta: "素材8点" },
+    { id: "t3", title: "料金の見直し", meta: "素材12点" },
+    { id: "t4", title: "パートナー資料", meta: "素材5点" },
+];
+
+const ACTIVITY = [
+    "彩が「春キャンペーン」の名前を変えました",
+    "健が3点を承認しました",
+    "芽衣が「パートナー資料」を追加しました",
+    "翔が「第1四半期のバナー」を保管しました",
+    "梨奈が「製品ツアー」を共有しました",
+    "由紀が6点をアップロードしました",
+    "太郎がコメントを残しました",
+    "直が「第1四半期のバナー」を戻しました",
+];
+
+export function WorkspaceShell() {
+    return (
+        <Container size="lg">
+            <VStack gap={6}>
+                <HStack justify="between" wrap>
+                    <VStack gap={1}>
+                        <h2 className="text-xl font-semibold tracking-tight">ワークスペース</h2>
+                        <p className="text-sm text-muted-foreground">
+                            道具の並び、絞り込み、内容の格子、更新の記録。この4つに分けています。
+                        </p>
+                    </VStack>
+                    <HStack gap={2}>
+                        <Button variant="outline">取り込み</Button>
+                        <Button>コレクションを作る</Button>
+                    </HStack>
+                </HStack>
+
+                <Cluster gap={2}>
+                    {FILTERS.map((filter) => (
+                        <Badge key={filter} variant="secondary">
+                            {filter}
+                        </Badge>
+                    ))}
+                </Cluster>
+
+                <ResizablePanelGroup direction="horizontal" className="rounded-lg border">
+                    <ResizablePanel defaultSize={68} minSize={40}>
+                        <div className="p-4">
+                            <Grid cols={{ base: 1, sm: 2 }} gap={4}>
+                                {TILES.map((tile) => (
+                                    <Card key={tile.id}>
+                                        <CardContent className="space-y-3 p-3">
+                                            <AspectRatio
+                                                ratio={16 / 9}
+                                                className="overflow-hidden rounded-md bg-muted"
+                                            />
+                                            <VStack gap={1}>
+                                                <span className="font-medium">{tile.title}</span>
+                                                <span className="text-xs text-muted-foreground">
+                                                    {tile.meta}
+                                                </span>
+                                            </VStack>
+                                        </CardContent>
+                                    </Card>
+                                ))}
+                            </Grid>
+                        </div>
+                    </ResizablePanel>
+                    <ResizableHandle withHandle />
+                    <ResizablePanel defaultSize={32} minSize={22}>
+                        <VStack gap={2} className="p-4">
+                            <span className="text-sm font-medium">更新の記録</span>
+                            <ScrollArea className="max-h-[220px] pr-3">
+                                <VStack gap={2}>
+                                    {ACTIVITY.map((entry) => (
+                                        <p key={entry} className="text-sm text-muted-foreground">
+                                            {entry}
+                                        </p>
+                                    ))}
+                                </VStack>
+                            </ScrollArea>
+                        </VStack>
+                    </ResizablePanel>
+                </ResizablePanelGroup>
+            </VStack>
+        </Container>
+    );
+}`,
+            en: `import {
+    AspectRatio,
+    Badge,
+    Button,
+    Card,
+    CardContent,
+    Cluster,
+    Container,
+    Grid,
+    HStack,
+    ResizableHandle,
+    ResizablePanel,
+    ResizablePanelGroup,
+    ScrollArea,
+    VStack,
+} from "@gunjo/ui";
+
+const FILTERS = ["All", "Needs review", "Approved", "Archived", "Shared with me"];
+
+const TILES = [
+    { id: "t1", title: "Spring campaign", meta: "24 assets" },
+    { id: "t2", title: "Product tour", meta: "8 assets" },
+    { id: "t3", title: "Pricing refresh", meta: "12 assets" },
+    { id: "t4", title: "Partner kit", meta: "5 assets" },
+];
+
+const ACTIVITY = [
+    "Aya renamed Spring campaign",
+    "Ken approved 3 assets",
+    "Mei added Partner kit",
+    "Sho archived Q1 banners",
+    "Rina shared Product tour",
+    "Yuki uploaded 6 assets",
+    "Taro left a comment",
+    "Nao restored Q1 banners",
+];
+
+export function WorkspaceShell() {
+    return (
+        <Container size="lg">
+            <VStack gap={6}>
+                <HStack justify="between" wrap>
+                    <VStack gap={1}>
+                        <h2 className="text-xl font-semibold tracking-tight">Workspace</h2>
+                        <p className="text-sm text-muted-foreground">
+                            Four regions: toolbar, filters, content grid, and activity.
+                        </p>
+                    </VStack>
+                    <HStack gap={2}>
+                        <Button variant="outline">Import</Button>
+                        <Button>New collection</Button>
+                    </HStack>
+                </HStack>
+
+                <Cluster gap={2}>
+                    {FILTERS.map((filter) => (
+                        <Badge key={filter} variant="secondary">
+                            {filter}
+                        </Badge>
+                    ))}
+                </Cluster>
+
+                <ResizablePanelGroup direction="horizontal" className="rounded-lg border">
+                    <ResizablePanel defaultSize={68} minSize={40}>
+                        <div className="p-4">
+                            <Grid cols={{ base: 1, sm: 2 }} gap={4}>
+                                {TILES.map((tile) => (
+                                    <Card key={tile.id}>
+                                        <CardContent className="space-y-3 p-3">
+                                            <AspectRatio
+                                                ratio={16 / 9}
+                                                className="overflow-hidden rounded-md bg-muted"
+                                            />
+                                            <VStack gap={1}>
+                                                <span className="font-medium">{tile.title}</span>
+                                                <span className="text-xs text-muted-foreground">
+                                                    {tile.meta}
+                                                </span>
+                                            </VStack>
+                                        </CardContent>
+                                    </Card>
+                                ))}
+                            </Grid>
+                        </div>
+                    </ResizablePanel>
+                    <ResizableHandle withHandle />
+                    <ResizablePanel defaultSize={32} minSize={22}>
+                        <VStack gap={2} className="p-4">
+                            <span className="text-sm font-medium">Activity</span>
+                            <ScrollArea className="max-h-[220px] pr-3">
+                                <VStack gap={2}>
+                                    {ACTIVITY.map((entry) => (
+                                        <p key={entry} className="text-sm text-muted-foreground">
+                                            {entry}
+                                        </p>
+                                    ))}
+                                </VStack>
+                            </ScrollArea>
+                        </VStack>
+                    </ResizablePanel>
+                </ResizablePanelGroup>
+            </VStack>
+        </Container>
+    );
+}`,
+        },
         icon: LayoutPanelTop,
     },
 };
@@ -685,6 +1730,18 @@ export function CategoryOverviewPage({ category }: { category: CategoryName }) {
                         ))}
                     </CardContent>
                 </Card>
+            </section>
+
+            <section className="space-y-4" id="sample">
+                <div className="space-y-1 border-b pb-3">
+                    <h2 className="text-2xl font-semibold tracking-tight">
+                        {isJa ? "まとめて使う見本" : "Using them together"}
+                    </h2>
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                        {copy.sampleLead[locale]}
+                    </p>
+                </div>
+                <CodeBlock code={copy.sample[locale]} />
             </section>
 
             <Separator />
