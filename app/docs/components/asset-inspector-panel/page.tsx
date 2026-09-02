@@ -437,8 +437,8 @@ export default function AssetInspectorPanelDocPage() {
                 },
             ]}
         >
-            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="sm" previewHeight={760}>
-                <div className="h-[680px] overflow-hidden rounded-lg border bg-background">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="sm" previewHeight="auto">
+                <div className="overflow-hidden rounded-lg border bg-background">
                     <AssetInspectorPanel
                         asset={previewAsset}
                         note={note}
@@ -457,7 +457,7 @@ export default function AssetInspectorPanelDocPage() {
                         onAnalyze={() => showActionToast(locale === "ja" ? "画像解析を開始しました" : "Analysis started")}
                         onCompress={() => showActionToast(locale === "ja" ? "圧縮を開始しました" : "Compression started")}
                         labels={labels}
-                        className="border-l-0"
+                        className="h-auto border-l-0"
                     />
                 </div>
             </ComponentPreview>
@@ -477,14 +477,13 @@ export default function AssetInspectorPanelDocPage() {
                             description: locale === "ja" ? "アセットが未選択の時に、詳細が表示されない理由を示します。" : "Show why details are unavailable when no asset is selected.",
                             code: stateCodeByLocale[locale].empty,
                             previewBodyWidth: "sm",
-                            previewHeight: 360,
                             preview: (
-                                <div className="h-[280px] overflow-hidden rounded-lg border bg-background">
+                                <div className="overflow-hidden rounded-lg border bg-background">
                                     <AssetInspectorPanel
                                         title={locale === "ja" ? "詳細" : "Details"}
                                         asset={null}
                                         labels={labels}
-                                        className="border-l-0"
+                                        className="h-auto border-l-0"
                                     />
                                 </div>
                             ),
@@ -495,9 +494,8 @@ export default function AssetInspectorPanelDocPage() {
                             description: locale === "ja" ? "狭い詳細ペイン向けに、余白を抑えながらお気に入りとタグ編集を確認します。" : "Use reduced spacing for narrow detail panes while keeping favorite and tag editing interactive.",
                             code: stateCodeByLocale[locale].compact,
                             previewBodyWidth: "sm",
-                            previewHeight: 560,
                             preview: (
-                                <div className="h-[480px] overflow-hidden rounded-lg border bg-background">
+                                <div className="overflow-hidden rounded-lg border bg-background">
                                     <AssetInspectorPanel
                                         asset={compactAsset}
                                         variant="compact"
@@ -507,7 +505,7 @@ export default function AssetInspectorPanelDocPage() {
                                         onFavorite={() => setCompactAsset((current) => ({ ...current, isFavorite: !current.isFavorite }))}
                                         metadata={getMetadata(compactAsset, locale)}
                                         labels={labels}
-                                        className="border-l-0"
+                                        className="h-auto border-l-0"
                                     />
                                 </div>
                             ),
@@ -518,9 +516,8 @@ export default function AssetInspectorPanelDocPage() {
                             description: locale === "ja" ? "プレビュー、メタデータ、タグ、評価、主要アクションをまとめて表示する標準の詳細ペインです。" : "Show the standard detail pane with preview, metadata, tags, rating, and primary actions.",
                             code: stateCodeByLocale[locale].default,
                             previewBodyWidth: "sm",
-                            previewHeight: 760,
                             preview: (
-                                <div className="h-[680px] overflow-hidden rounded-lg border bg-background">
+                                <div className="overflow-hidden rounded-lg border bg-background">
                                     <AssetInspectorPanel
                                         asset={previewAsset}
                                         note={note}
@@ -539,7 +536,7 @@ export default function AssetInspectorPanelDocPage() {
                                         onAnalyze={() => showActionToast(locale === "ja" ? "画像解析を開始しました" : "Analysis started")}
                                         onCompress={() => showActionToast(locale === "ja" ? "圧縮を開始しました" : "Compression started")}
                                         labels={labels}
-                                        className="border-l-0"
+                                        className="h-auto border-l-0"
                                     />
                                 </div>
                             ),
