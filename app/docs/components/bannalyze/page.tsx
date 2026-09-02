@@ -101,7 +101,7 @@ export default function BannalyzePage() {
         >
             <ComponentPreview embedSrc="/embed/bannalyze" code={usageCode} fullPagePreview codeBlock={<CodeBlock code={usageCode} />}>
                 <div className="w-full overflow-hidden rounded-lg border shadow-sm">
-                    <BannalyzeTemplateDemo className="min-h-[800px]" />
+                    <BannalyzeTemplateDemo />
                 </div>
             </ComponentPreview>
 

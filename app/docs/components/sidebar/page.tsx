@@ -36,7 +36,7 @@ function SidebarContent({
     const isJa = locale === "ja";
 
     return (
-        <Sidebar className="min-h-[360px]">
+        <Sidebar>
             <SidebarHeader>
                 <div className="grid h-7 w-7 shrink-0 place-items-center rounded-md bg-primary text-xs font-semibold text-primary-foreground">
                     G
