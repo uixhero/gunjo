@@ -1,6 +1,6 @@
 {
   "round": 62,
-  "status": "draft",
+  "status": "reviewed",
   "title": "The back-office calendar landed on a consumer listing page as-is",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. A consumer-facing listing page reused the B2B `Calendar` and `Gallery` for property photos and viewing bookings, and six photos overflowed the gallery on mobile.",
   "article": {

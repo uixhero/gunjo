@@ -1,6 +1,6 @@
 {
   "round": 166,
-  "status": "draft",
+  "status": "reviewed",
   "title": "RouteStops gained multiday timestamps after the third agent abandoned it",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. International freight became the third screen blocked by same-day `HH:MM` tracking, and the agent's retreat to `ApprovalSteps` pinpointed the one-field `RouteStops` extension.",
   "article": {

@@ -1,6 +1,6 @@
 {
   "round": 44,
-  "status": "draft",
+  "status": "reviewed",
   "title": "Three reconciliation screens later, the over/short display became Delta",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. A register-close screen produced the third over/short sighting, so I built `Delta`, the inline signed-difference component.",
   "article": {

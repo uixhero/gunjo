@@ -1,6 +1,6 @@
 {
   "round": 60,
-  "status": "draft",
+  "status": "reviewed",
   "title": "A medical safety banner turned out to be a rent-arrears component",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Real estate opened at 4.5/5 because `SafetyBanner`, `Meter`, and `formatCurrency`, grown in medical, logistics, and finance, fit a rent roll almost as-is.",
   "article": {

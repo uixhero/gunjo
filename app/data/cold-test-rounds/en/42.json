@@ -1,6 +1,6 @@
 {
   "round": 42,
-  "status": "draft",
+  "status": "reviewed",
   "title": "A POS register ran on money components that grew up in banking",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. The money components grown on banking, accounting, and payroll screens ran a POS register with no friction at all.",
   "article": {

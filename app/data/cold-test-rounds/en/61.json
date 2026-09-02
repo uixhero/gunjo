@@ -1,6 +1,6 @@
 {
   "round": 61,
-  "status": "draft",
+  "status": "reviewed",
   "title": "The medical signed-record locked a lease, then hit its one-signer ceiling",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. `SignedRecord`, built for nursing records, mapped one-to-one onto lease execution, and the four-party contract exposed its single-signer ceiling.",
   "article": {

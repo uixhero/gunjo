@@ -1,6 +1,6 @@
 {
   "round": 113,
-  "status": "draft",
+  "status": "reviewed",
   "title": "The bar that three agents kept splitting by hand is now part of Gantt",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Aircraft rotation was the third screen to hand-roll a bar divided into phases, which triggered the rule of three and a `segments` API on `Gantt`.",
   "article": {

@@ -1,6 +1,6 @@
 {
   "round": 43,
-  "status": "draft",
+  "status": "reviewed",
   "title": "Flipping retail from selling to counting surfaced a different set of gaps",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. A stocktake, the mirror opposite of #42's register, reused the same grid and reveal components while exposing scan-input and variance-display gaps.",
   "article": {

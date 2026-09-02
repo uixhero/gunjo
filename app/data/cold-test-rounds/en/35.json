@@ -1,6 +1,6 @@
 {
   "round": 35,
-  "status": "draft",
+  "status": "reviewed",
   "title": "A later agent independently verified a fix it had no way to know about",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. A mortgage pre-screening calculator led the agent to independently verify that the ARIA bug fixed in #32 left no dangling references.",
   "article": {

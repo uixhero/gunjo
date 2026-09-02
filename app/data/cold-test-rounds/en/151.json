@@ -1,6 +1,6 @@
 {
   "round": 151,
-  "status": "draft",
+  "status": "reviewed",
   "title": "A taxi membership screen brought seven passenger components home",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Loyalty, selection, ticket, expiry, list, action, and header components covered about 95 percent of the screen, showing what deep coverage looks like near maturity.",
   "article": {

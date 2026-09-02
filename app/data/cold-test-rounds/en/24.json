@@ -1,6 +1,6 @@
 {
   "round": 24,
-  "status": "draft",
+  "status": "reviewed",
   "title": "DataTable was strong, but its admin workflows were incomplete",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. `DataTable` handled the data layer without a hand-rolled table, but its admin interactions and accessibility were incomplete, so I built controlled selection, row clicks, and an overflow menu.",
   "article": {

@@ -1,6 +1,6 @@
 {
   "round": 168,
-  "status": "draft",
+  "status": "reviewed",
   "title": "NavRow fixed the semantic gap as I finished all five transport modes",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Shipper billing supplied the third navigation-row case, so I built `NavRow` without toggle semantics and completed trucking at five staff and five customer-facing screens.",
   "article": {

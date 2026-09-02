@@ -1,6 +1,6 @@
 {
   "round": 155,
-  "status": "draft",
+  "status": "reviewed",
   "title": "The third hand-built ranking became Leaderboard on a safety screen",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Bus safety supplied the third ranking case, triggering `Leaderboard` and correcting guidance that had mistaken unordered KPIs for a ranked list.",
   "article": {

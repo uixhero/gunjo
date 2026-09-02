@@ -1,6 +1,6 @@
 {
   "round": 121,
-  "status": "draft",
+  "status": "reviewed",
   "title": "Three agents agreed on what a selectable product card should be",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Ticket products became the third screen to hand-roll a priced single-choice card, triggering the rule of three and producing `RadioCard`.",
   "article": {

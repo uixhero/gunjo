@@ -1,6 +1,6 @@
 {
   "round": 150,
-  "status": "draft",
+  "status": "reviewed",
   "title": "The catalog sent a review form to a rating component that cannot move",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Taxi support fit the mobile frame and FAQ toolkit, but the catalog actively misdirected rating input to a display-only `Rating`.",
   "article": {

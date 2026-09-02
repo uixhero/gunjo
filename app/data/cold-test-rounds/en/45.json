@@ -1,6 +1,6 @@
 {
   "round": 45,
-  "status": "draft",
+  "status": "reviewed",
   "title": "The next cold agent dug up last round's Delta and used it everywhere",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. The next cold agent discovered `Delta` entirely on its own, one round after I built it, and ran it across the whole refund screen.",
   "article": {
