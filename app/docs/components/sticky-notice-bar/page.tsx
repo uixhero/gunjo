@@ -343,7 +343,6 @@ export default function StickyNoticeBarPage() {
                 code={usageCode}
                 codeBlock={<CodeBlock code={usageCode} />}
                 previewHeight={420}
-                fitEmbedHeightContent={false}
                 previewBodyWidth="xl"
                 sectionLabels={sectionLabels}
             >
@@ -395,7 +394,6 @@ export default function StickyNoticeBarPage() {
                             preview: <StickyNoticeBarViewportDemo locale={locale} />,
                             embedSrc: "/embed/sticky-notice-bar",
                             previewHeight: 420,
-                            fitEmbedHeightContent: false,
                             previewBodyWidth: "xl",
                             code: viewportCodeByLocale[locale],
                         },
@@ -408,7 +406,6 @@ export default function StickyNoticeBarPage() {
                             preview: <StickyNoticeBarViewportDemo locale={locale} />,
                             embedSrc: "/embed/sticky-notice-bar",
                             previewHeight: 420,
-                            fitEmbedHeightContent: false,
                             previewBodyWidth: "sm",
                             fitViewport: "mobile",
                             code: longCopyCodeByLocale[locale],
