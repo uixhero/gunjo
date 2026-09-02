@@ -141,12 +141,12 @@ export function EmbedPreviewFrame({ children }: { children: React.ReactNode }) {
                 "mx-auto w-full",
                 fitHeightContent
                     ? cn(
-                        "flex min-h-[120px] justify-center [&>div]:min-h-[120px] [&>div]:w-full [&>div]:justify-center",
+                        "flex min-h-[120px] justify-center [&>*]:min-h-[120px] [&>*]:w-full [&>*]:justify-center",
                         hasFloatingOverlay
-                            ? "items-start [&>div]:items-start"
-                            : "items-center [&>div]:items-center"
+                            ? "items-start [&>*]:items-start"
+                            : "items-center [&>*]:items-center"
                     )
-                    : "min-h-screen max-sm:[&>div]:min-h-0 max-sm:[&>div]:items-start max-sm:[&>div]:justify-center",
+                    : "min-h-screen max-sm:[&>*]:min-h-0 max-sm:[&>*]:items-start max-sm:[&>*]:justify-center",
                 WRAP_WIDTH_CLASSES[previewWrap]
             )}
             data-embed-preview-wrap={previewWrap}
