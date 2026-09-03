@@ -1,6 +1,6 @@
 {
   "round": 14,
-  "status": "draft",
+  "status": "reviewed",
   "title": "PricingTemplate overpromised and brought an unused dependency",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. `PricingTemplate` failed its core use case and the package carried unused analytics, so I moved that dependency and rebuilt `Accordion` to fill its parent.",
   "article": {

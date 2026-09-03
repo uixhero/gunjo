@@ -1,6 +1,6 @@
 {
   "round": 110,
-  "status": "draft",
+  "status": "reviewed",
   "title": "The RouteStops entry I added became a trap three rounds later",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs; it built a responsive screen that passed `tsc`. A journey planner showed that my new `RouteStops` entry described the wrong kind of route.",
   "article": {

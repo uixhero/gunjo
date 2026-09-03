@@ -1,6 +1,6 @@
 {
   "round": 12,
-  "status": "draft",
+  "status": "reviewed",
   "title": "A third fixed frame exposed one defect across seven templates",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Chat worked beautifully, but a third fixed-frame template revealed seven instances of the same defect, so I consolidated them into issue #66.",
   "article": {

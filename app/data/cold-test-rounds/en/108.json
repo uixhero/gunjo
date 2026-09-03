@@ -1,6 +1,6 @@
 {
   "round": 108,
-  "status": "draft",
+  "status": "reviewed",
   "title": "The use-case table returned seven answers with no false leads",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs; it built a responsive screen that passed `tsc`. On the third rail operations screen, the by-use-case table found all seven needs without one wrong turn.",
   "article": {

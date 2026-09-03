@@ -1,6 +1,6 @@
 {
   "round": 167,
-  "status": "draft",
+  "status": "reviewed",
   "title": "The catalog replaced navigation with a toggle that meant the wrong thing",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Delivery settings reused about 90 percent of the mobile foundation, but catalog guidance sent navigational rows to `ListCard` and its incorrect `aria-pressed` toggle semantics.",
   "article": {

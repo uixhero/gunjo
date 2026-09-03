@@ -1,6 +1,6 @@
 {
   "round": 6,
-  "status": "draft",
+  "status": "reviewed",
   "title": "DataTable proved one fix and exposed another missing public type",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. `DataTable` confirmed the tooltip fix but exposed a second public-prop type missing from `@gunjo/ui`, so I expanded the fix into an export audit.",
   "article": {

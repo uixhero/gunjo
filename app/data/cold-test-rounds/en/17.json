@@ -1,6 +1,6 @@
 {
   "round": 17,
-  "status": "draft",
+  "status": "reviewed",
   "title": "Pagination looked finished but was only inert markup",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Search filters composed cleanly, but pagination and the clear button were unusable from the keyboard, and Badge had no removal API, so I rebuilt all three as real controls.",
   "article": {

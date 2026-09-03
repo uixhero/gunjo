@@ -1,6 +1,6 @@
 {
   "round": 11,
-  "status": "draft",
+  "status": "reviewed",
   "title": "A booking screen showed where date UI gets genuinely hard",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. The calendar's Japanese defaults and accessibility held up, but `DatePicker` could not disable specific dates, so I logged the missing control in issue #64.",
   "article": {

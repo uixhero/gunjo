@@ -1,6 +1,6 @@
 {
   "round": 106,
-  "status": "draft",
+  "status": "reviewed",
   "title": "A third hand-built queue became a catalog component",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs; it built a responsive screen that passed `tsc`. A rail control room supplied the third independent case for building `ActionQueue` for real.",
   "article": {

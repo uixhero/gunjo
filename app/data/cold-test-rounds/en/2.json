@@ -1,6 +1,6 @@
 {
   "round": 2,
-  "status": "draft",
+  "status": "reviewed",
   "title": "A modal announcement exposed a provider bug and machine-thin docs",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. It built a modal announcement but found an SSR-crashing provider defect and docs it could barely read, so I logged both problems at their source.",
   "article": {

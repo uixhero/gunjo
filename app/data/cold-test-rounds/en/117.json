@@ -1,6 +1,6 @@
 {
   "round": 117,
-  "status": "draft",
+  "status": "reviewed",
   "title": "A hunch about rail points gave LoyaltySummaryCard its second case",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs; it built a responsive screen that passed `tsc`. My hunch that rail also needed a points screen produced the second case for `LoyaltySummaryCard`.",
   "article": {

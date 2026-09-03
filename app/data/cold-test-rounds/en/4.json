@@ -1,6 +1,6 @@
 {
   "round": 4,
-  "status": "draft",
+  "status": "reviewed",
   "title": "Ugly data could not break the charts, but one missing type broke the build",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Its dashboard survived zeros, outliers, and mismatched scales, but a missing public type stopped the build, so I logged the export gap.",
   "article": {

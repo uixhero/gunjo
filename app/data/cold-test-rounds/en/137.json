@@ -1,6 +1,6 @@
 {
   "round": 137,
-  "status": "draft",
+  "status": "reviewed",
   "title": "Crew tools held across three modes, while expiry emerged as a missing axis",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Bus dispatch reused the full crew-management foundation, while qualification expiry became the second case for the missing date-against-deadline axis.",
   "article": {

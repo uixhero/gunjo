@@ -1,6 +1,6 @@
 {
   "round": 10,
-  "status": "draft",
+  "status": "reviewed",
   "title": "FileUploader promised progress it did not implement",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. `FileUploader` exposed unrendered progress, no controlled state, and more fixed widths, so I scoped issue #62 to finish the component and correct its docs.",
   "article": {

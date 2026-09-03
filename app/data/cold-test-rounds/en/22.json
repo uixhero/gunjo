@@ -1,6 +1,6 @@
 {
   "round": 22,
-  "status": "draft",
+  "status": "reviewed",
   "title": "A landing page disproved my claim that the component bugs were behind me",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. The app-oriented foundations held up, but the marketing template misaligned every section and `Img` forced a square, so I rebuilt `LandingTemplate` around the real `Container`.",
   "article": {

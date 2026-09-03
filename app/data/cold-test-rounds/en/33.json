@@ -1,6 +1,6 @@
 {
   "round": 33,
-  "status": "draft",
+  "status": "reviewed",
   "title": "The charts held, but the money-formatting layer around them was empty",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. A second banking screen moved from forms to charts, and the gaps moved with it: number formatting, heading levels, and an overflowing legend.",
   "article": {

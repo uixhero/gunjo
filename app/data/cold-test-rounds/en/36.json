@@ -1,6 +1,6 @@
 {
   "round": 36,
-  "status": "draft",
+  "status": "reviewed",
   "title": "Three screens in a row hand-rolled mobile cards, so DataTable got renderCard",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. A credit-card statement was the third straight screen to hand-roll a mobile card view, so `DataTable` gained `renderCard`.",
   "article": {

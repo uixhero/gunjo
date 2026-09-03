@@ -1,6 +1,6 @@
 {
   "round": 133,
-  "status": "draft",
+  "status": "reviewed",
   "title": "A missing stringline chart returned 27 rounds after its first report",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Rail timetable planning hand-rolled the same time-against-distance chart first seen in #106, taking `Stringline` to two of three.",
   "article": {

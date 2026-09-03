@@ -1,6 +1,6 @@
 {
   "round": 16,
-  "status": "draft",
+  "status": "reviewed",
   "title": "An IDE shell drew the line between mature basics and shaky compositions",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. The base components held up, but the IDE shell exposed failures in tree navigation, packaging, and generated layout classes, so I fixed all three at their source.",
   "article": {

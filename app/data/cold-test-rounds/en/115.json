@@ -1,6 +1,6 @@
 {
   "round": 115,
-  "status": "draft",
+  "status": "reviewed",
   "title": "A flight status board was the rare passenger screen that needed nothing new",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Departures and arrivals fit `ListCard` and `RouteStops` so precisely that this scored highest of the three passenger-facing air rounds.",
   "article": {

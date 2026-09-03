@@ -1,6 +1,6 @@
 {
   "round": 63,
-  "status": "draft",
+  "status": "reviewed",
   "title": "An expense-approval flow and a lab-range check screened a tenant",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Tenant screening reused `ApprovalSteps` and `ReferenceValue` across industry lines, and the current step gained `aria-current=\"step\"`.",
   "article": {
