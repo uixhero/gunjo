@@ -6,7 +6,7 @@
   "category": "保険",
   "audience": "toC",
   "title": "AI に保険料の試算画面を作らせてみた：年齢欄に「45」と打つと、75になった（やってみた #202）",
-  "summary": "予備知識ゼロの AI に、公開されている npm パッケージと gunjo.jp の docs だけを渡して組ませました。`tsc` は緑、実行してもエラーはありません。それでも、いちばん大きい発見は不具合でした。",
+  "summary": "型は緑、目で見ても動く。数字を打つと壊れた。型が緑でも、数字を打つまで出てこない不具合がある。",
   "article": {
     "file": "zenn-yattemita-202-premium-quote.md",
     "slug": "202-premium-quote",

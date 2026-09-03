@@ -5,7 +5,7 @@
   "score": "4/5",
   "category": "メディア・出版",
   "title": "AI に編集部の記事管理を作らせてみた — 事務方の三種の神器がメディアにも丸ごと効いた（やってみた #80）",
-  "summary": "公共を5枚で締めて、**メディア/出版**へ移る（8業界目）。1枚目はオンラインメディア編集部の記事管理——執筆→編集→校正→編集長承認→公開 と記事を進め、校正チェックで公開をゲートする画面。**事務方の三種の神器（ApprovalWorkflow・CheckList・SignedRecord）が、編集 CMS にも丸ごと効いた。**",
+  "summary": "「振る舞いのコンポーネント」は業界を越え続ける。事務方の三種の神器が、想定していない編集の領域に全部効いた。",
   "article": {
     "file": "zenn-yattemita-80-editorial-workflow.md",
     "slug": "80-editorial-workflow",

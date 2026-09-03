@@ -5,7 +5,7 @@
   "score": "3.5/5",
   "category": "運輸：鉄道",
   "title": "AI に定期券の購入フローを作らせてみた — 利用者向けの購入の「最小単位」がまだ無かった（やってみた #119）",
-  "summary": "「鉄道・航空の利用者向けをきちんと潰してから他モードへ」と決めて、[利用者向けバックログ](https://github.com/uixhero/gunjo)を作って上から回す。これはその1枚目。",
+  "summary": "深掘りは「同じ欠落の別の証拠」を確実に集める。利用者向けの購入の「最小単位」が無い（RadioCard）。",
   "article": {
     "file": "zenn-yattemita-119-commuter-pass.md",
     "slug": "119-commuter-pass",

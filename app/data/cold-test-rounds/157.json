@@ -5,7 +5,7 @@
   "score": "4.5/5",
   "category": "運輸：バス",
   "title": "AI にバスの運行情報画面を作らせてみた — 作ったものの検証・否定確認・3回確認 が1画面に揃った回（やってみた #157）",
-  "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "このテストの3つの結果が1画面に揃った。このテストの出力は3種類あり、1画面で全部出ることがある。",
   "article": {
     "file": "zenn-yattemita-157-bus-service-status.md",
     "slug": "157-bus-service-status",

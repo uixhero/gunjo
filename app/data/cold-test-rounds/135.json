@@ -5,7 +5,7 @@
   "score": "4/5",
   "category": "運輸：航空",
   "title": "AI に航空の就航計画・スロット管理を作らせてみた — 「出なかった欠落」が予想を裏取りした（やってみた #135）",
-  "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "背骨はほぼ完成。「出ない場所」を確定するのも、地図作りの一部。",
   "article": {
     "file": "zenn-yattemita-135-network-planning.md",
     "slug": "135-network-planning",
