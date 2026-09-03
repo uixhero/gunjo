@@ -9,6 +9,9 @@ import { hasEnRound, listEnRounds, readJaRound } from "@/lib/cold-test-en";
 import { isJaRoundPublishable, publishableJaEntries } from "@/lib/cold-test-drafts";
 import { readRoundFindings } from "@/lib/cold-test-findings-server";
 import { EN_COLD_TEST_BASE, JA_COLD_TEST_BASE } from "@/lib/cold-test-paths";
+import { citedRounds } from "@/lib/cold-test-article-links";
+import { readCitedIssues } from "@/lib/github-issues";
+import type { RoundRefCardData } from "@/components/cold-test/HashRefCard";
 
 const SITE_URL = (
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.gunjo.jp"
@@ -112,6 +115,33 @@ export default async function ColdTestRoundPage({
         publishedEntries.some((e) => e.category === c)
     );
 
+    // Preview data for the `#NNN` citations in the article body — only the
+    // rounds this article actually mentions, so the page payload stays a
+    // handful of entries rather than all 185.
+    const articleMarkdown = detail.article?.markdown ?? "";
+    const roundNumbers = new Set([
+        ...publishedEntries.map((e) => e.round),
+        ...listEnRounds(),
+    ]);
+    const entryByRound = new Map(publishedEntries.map((e) => [e.round, e]));
+    const roundCards: Record<number, RoundRefCardData> = {};
+    for (const cited of citedRounds(articleMarkdown, {
+        currentRound: round,
+        rounds: roundNumbers,
+    })) {
+        const entry = entryByRound.get(cited);
+        if (!entry) continue;
+        roundCards[cited] = {
+            round: cited,
+            title: entry.title,
+            score: entry.score,
+            category: entry.category,
+            thumbnailSrc: entry.shots.desktop
+                ? `/cold-test-shots/${entry.slug}.desktop.webp`
+                : undefined,
+        };
+    }
+
     // Prev / next neighbours, ordered by round number.
     const ordered = [...publishedEntries].sort((a, b) => a.round - b.round);
     const idx = ordered.findIndex((e) => e.round === round);
@@ -155,6 +185,10 @@ export default async function ColdTestRoundPage({
                 // The findings data layer is Japanese-only for now, so it is
                 // passed from the Japanese tree only.
                 findings={readRoundFindings(round)?.findings ?? []}
+                roundCards={roundCards}
+                // Refreshed from the tracker on every build, so "直した" in the
+                // prose is checked against what GitHub says today.
+                issueCards={readCitedIssues(articleMarkdown)}
             />
         </ColdTestShell>
     );

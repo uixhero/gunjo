@@ -15,6 +15,7 @@
 // See issue #726.
 
 import { EN_COLD_TEST_BASE, JA_COLD_TEST_BASE } from "./cold-test-paths";
+import { collectRoundRefs, type RoundRefOptions } from "./cold-test-hash-refs";
 
 /** The href an unresolved article link carries. */
 export const UNRESOLVED_ARTICLE_HREF = "#";
@@ -72,4 +73,25 @@ export function coldTestRoundHref(
         return null;
     }
     return index.ja.has(round) ? `${JA_COLD_TEST_BASE}/${round}` : null;
+}
+
+/**
+ * Every round an article points at: the bare `#N` citations that
+ * `cold-test-hash-refs.ts` linkifies, plus the rounds behind the `[#12](#)`
+ * links resolved above. Pages use it to ship preview data for the handful of
+ * rounds one article mentions instead of all 185.
+ *
+ * A round missing from this list only loses its preview card — the citation is
+ * still rendered, and still links.
+ */
+export function citedRounds(markdown: string, options: RoundRefOptions): number[] {
+    const cited = new Set(collectRoundRefs(markdown, options).map((ref) => ref.round));
+
+    const unresolved = /\[([^\]\n]*)\]\(#\)/g;
+    let match: RegExpExecArray | null;
+    while ((match = unresolved.exec(markdown)) !== null) {
+        const round = roundRefFromLinkText(match[1]);
+        if (round !== null && options.rounds.has(round)) cited.add(round);
+    }
+    return [...cited].sort((a, b) => a - b);
 }

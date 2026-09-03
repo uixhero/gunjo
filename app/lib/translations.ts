@@ -338,6 +338,22 @@ export type ColdTestsPageStrings = {
     summaryFooter: string;
     aiDisclosure: string;
     notFound: string;
+    // Chrome for the `#NNN` previews in the article body. The series numbers
+    // its rounds and its GitHub issues in the same `#N` shape, so the reader
+    // is told which is which twice: `issueText` puts the word "issue" into
+    // the link label, and the preview card shows what is behind it.
+    hashRef: {
+      /** Card badge that spells out what a round number is. */
+      roundBadge: (round: number) => string;
+      /** Accessible name of the touch trigger, which previews rather than opens. */
+      roundPreview: (round: number) => string;
+      /** Visible label of a link to a GitHub issue, replacing a bare `#N`. */
+      issueText: (issue: number) => string;
+      issuePreview: (issue: number) => string;
+      issueLink: (issue: number) => string;
+      openRound: string;
+      openIssue: string;
+    };
   };
   sidebar: {
     categoryCountLabel: (count: number) => string;
@@ -745,6 +761,17 @@ export const translations: Record<
           aiDisclosure:
             "This series is co-created with AI (Claude and Codex). A human designs the experiments, makes the calls, and fact-checks before publishing; the AI does the hands-on work and drafting.",
           notFound: "Round not found.",
+          hashRef: {
+            roundBadge: (round) => `Build log #${round}`,
+            roundPreview: (round) => `Preview build log #${round}`,
+            // The English write-ups already say "issue #N" in prose, so the
+            // link label matches that spacing rather than the Japanese form.
+            issueText: (issue) => `issue #${issue}`,
+            issuePreview: (issue) => `Preview issue #${issue}`,
+            issueLink: (issue) => `Open issue #${issue} on GitHub`,
+            openRound: "Read this build log",
+            openIssue: "Open on GitHub",
+          },
         },
         sidebar: {
           categoryCountLabel: (count) => `${count} rounds`,
@@ -1461,6 +1488,15 @@ export const translations: Record<
           aiDisclosure:
             "この連載は、作者が AI（Claude と Codex）と協働で制作しています。実験・検証の設計、判断、公開前の事実確認は人間が行い、実作業と下書き執筆は AI が担っています。",
           notFound: "該当するラウンドが見つかりません。",
+          hashRef: {
+            roundBadge: (round) => `やってみた #${round}`,
+            roundPreview: (round) => `#${round} の概要を見る`,
+            issueText: (issue) => `issue#${issue}`,
+            issuePreview: (issue) => `issue#${issue} の概要を見る`,
+            issueLink: (issue) => `GitHub の issue#${issue} を開く`,
+            openRound: "この回を読む",
+            openIssue: "GitHub で開く",
+          },
         },
         sidebar: {
           categoryCountLabel: (count) => `${count}画面`,
