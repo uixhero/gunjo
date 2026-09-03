@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "round": 201,
+  "lang": "ja",
+  "findings": [
+    {
+      "id": "201-claim-progress-with-dates",
+      "kind": "requirement",
+      "phenomenon": "請求が受付・書類の確認・査定・支払のどこまで来たかが、段階ごとの日付つきで出ます。いまどの段階かは画面読み上げソフトにも伝わります。",
+      "where": {
+        "round": 201,
+        "screen": "給付金の請求（入院給付金）",
+        "spot": "出したあとの進み具合"
+      },
+      "status": "resolved",
+      "links": [
+        { "kind": "component", "slug": "route-stops", "label": "RouteStops" }
+      ],
+      "selfCheck": "請求を出したあとの進み具合を見る画面を開いて、いまの段階と、それぞれの段階の日付の両方が読めるか確かめてください。"
+    },
+    {
+      "id": "201-file-uploader-keyboard-missed",
+      "kind": "pitfall",
+      "phenomenon": "診断書の写真を添えるところが、キーボードだけでは操作できません。前に同じ画面を作ったときは、写真を添えるこのコンポーネントの中身を調べたうえで、使わないと決めていました。今回は、最後まで気づかないままでした。",
+      "where": {
+        "round": 201,
+        "screen": "給付金の請求（入院給付金）",
+        "spot": "書類の提出"
+      },
+      "cause": "写真を選ぶための入力欄が見えないように隠され、写真をドラッグして置くための枠にもタブキーでたどり着けないためで、目で見る分には動くので気づけません。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 764 },
+        { "kind": "component", "slug": "file-uploader", "label": "FileUploader" }
+      ],
+      "selfCheck": "マウスを使わずにタブ移動だけで、写真を添える操作が最後まで通るか確かめてください。"
+    },
+    {
+      "id": "201-approval-for-claimant",
+      "kind": "pitfall",
+      "group": "by-use-case-misroute",
+      "phenomenon": "やりたいことからコンポーネントを引く対応表で査定の進み具合を探すと、査定する側が操作するパネルに案内されました。そのまま使うと、契約者が自分の請求を承認できる画面になります。",
+      "where": {
+        "round": 201,
+        "screen": "給付金の請求（入院給付金）",
+        "spot": "査定の進み具合"
+      },
+      "cause": "対応表とコンポーネントの説明に「給付・申請の審査」という業務名が書かれていて、進み具合を見るだけの画面と、判断を操作する画面を分けていないためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 763 },
+        { "kind": "docs", "href": "/docs/by-use-case", "label": "ユースケース別（逆引き）" },
+        { "kind": "component", "slug": "approval-workflow", "label": "ApprovalWorkflow" }
+      ],
+      "selfCheck": "利用者に見せる進み具合の画面を開いて、進める・差し戻すの操作が混ざっていないか確かめてください。"
+    },
+    {
+      "id": "201-form-docs-role-reversed",
+      "kind": "pitfall",
+      "phenomenon": "入力フォームの解説ページのとおりに組むと、どのエラーの文がどの入力欄のものかが画面読み上げソフトに伝わらなくなります。しかも何の警告も出ないので、作った側は気づけません。別の業種を扱った回に続いて2回目で、前の回のいきさつを知らないまま作ると、やはり同じところでつまずきます。",
+      "where": {
+        "round": 201,
+        "screen": "給付金の請求（入院給付金）",
+        "spot": "請求内容の入力"
+      },
+      "cause": "解説ページが主役として扱うのは入力欄をまとめて囲む側のコンポーネントで、読み上げへの結び付きを持つのは入力欄を1つずつ包む別のコンポーネントだからです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 771 },
+        { "kind": "component", "slug": "form", "label": "Form" }
+      ],
+      "selfCheck": "説明書どおりに組んだフォームでエラーを出して、入力欄とエラーの文が読み上げで結び付いているか確かめてください。"
+    }
+  ]
+}
