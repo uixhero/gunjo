@@ -766,7 +766,7 @@ export const translations: Record<
         findings: {
           roundHeading: "What this round found",
           roundIntro:
-            "Pulled from the write-up below. Status badges show where the component library stands today, not at the time of the round.",
+            "Pulled from the write-up above. Status badges show where the component library stands today, not at the time of the round.",
           roundRequirementHeading: "What this round showed the industry needs",
           roundPitfallHeading: "Where this round stumbled",
           categoryRequirementHeading: "What this industry needs",
@@ -1482,7 +1482,7 @@ export const translations: Record<
         findings: {
           roundHeading: "この回の発見",
           roundIntro:
-            "この下の記事から抜き出した、この回で分かったことです。状態は記事の時点ではなく、コンポーネント側のいまの実測です。",
+            "上の記事から抜き出した、この回で分かったことです。状態は記事の時点ではなく、コンポーネント側のいまの実測です。",
           roundRequirementHeading: "この回で要ると分かったもの",
           roundPitfallHeading: "この回でつまずいたところ",
           categoryRequirementHeading: "この業界で要るもの",

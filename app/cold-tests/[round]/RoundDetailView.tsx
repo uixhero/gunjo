@@ -394,7 +394,8 @@ export function RoundDetailView({
                     </div>
                 )}
                 {/* In-page section nav. Auto-discovers h2/h3 in the main column
-                    (previews / 解説記事 / 使用部品 / cold AI が組み上げた実コード
+                    (previews / 解説記事 / この回の発見 / 使用部品 /
+                    cold AI が組み上げた実コード
                     + every h2/h3 inside the article markdown) and renders the
                     same "ページ内" surface the docs pages use. */}
                 <LocalNav />
@@ -482,34 +483,6 @@ export function RoundDetailView({
                 onNext={() => hasNext && setLightboxIndex((i) => i + 1)}
             />
 
-            {/* What this round found. A summary of the article below, pulled
-                out as data so the industry door page can aggregate the same
-                items. Only rendered for rounds that have a findings file. */}
-            {findings.length > 0 && (
-                <section className="space-y-4">
-                    <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
-                        {tf.roundHeading}
-                    </h2>
-                    <p className="text-sm text-muted-foreground">{tf.roundIntro}</p>
-                    {requirementCards.length > 0 && (
-                        <div className="space-y-3" data-toc-skip>
-                            <h3 className="text-sm font-semibold tracking-tight">
-                                {tf.roundRequirementHeading}
-                            </h3>
-                            <FindingList items={requirementCards} />
-                        </div>
-                    )}
-                    {pitfallCards.length > 0 && (
-                        <div className="space-y-3" data-toc-skip>
-                            <h3 className="text-sm font-semibold tracking-tight">
-                                {tf.roundPitfallHeading}
-                            </h3>
-                            <FindingList items={pitfallCards} />
-                        </div>
-                    )}
-                </section>
-            )}
-
             {/* Article */}
             {detail.article?.markdown ? (
                 <section className="space-y-3">
@@ -538,6 +511,34 @@ export function RoundDetailView({
                     </p>
                 </section>
             ) : null}
+
+            {/* What this round found. A summary of the article above, pulled
+                out as data so the industry door page can aggregate the same
+                items. Only rendered for rounds that have a findings file. */}
+            {findings.length > 0 && (
+                <section className="space-y-4">
+                    <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                        {tf.roundHeading}
+                    </h2>
+                    <p className="text-sm text-muted-foreground">{tf.roundIntro}</p>
+                    {requirementCards.length > 0 && (
+                        <div className="space-y-3" data-toc-skip>
+                            <h3 className="text-sm font-semibold tracking-tight">
+                                {tf.roundRequirementHeading}
+                            </h3>
+                            <FindingList items={requirementCards} />
+                        </div>
+                    )}
+                    {pitfallCards.length > 0 && (
+                        <div className="space-y-3" data-toc-skip>
+                            <h3 className="text-sm font-semibold tracking-tight">
+                                {tf.roundPitfallHeading}
+                            </h3>
+                            <FindingList items={pitfallCards} />
+                        </div>
+                    )}
+                </section>
+            )}
 
             {/* Components used */}
             {detail.components.length > 0 && (
