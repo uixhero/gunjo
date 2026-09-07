@@ -244,6 +244,56 @@ function FilterChipsPreview({
   );
 }
 
+function FilterChipsOverflowPreview({ locale }: { locale: Locale }) {
+  const isJa = locale === "ja";
+  const [value, setValue] = React.useState("all");
+  const chips: FilterChip[] = isJa
+    ? [
+        { value: "all", label: "すべて", count: 62 },
+        { value: "gate", label: "搭乗口", count: 8 },
+        { value: "lounge", label: "ラウンジ", count: 3 },
+        { value: "food", label: "飲食", count: 6 },
+        { value: "cafe", label: "カフェ", count: 4 },
+        { value: "wifi", label: "Wi-Fi", count: 2 },
+        { value: "shop", label: "土産物", count: 11 },
+        { value: "duty-free", label: "免税店", count: 5 },
+        { value: "atm", label: "ATM・両替", count: 4 },
+        { value: "nursery", label: "授乳室", count: 3 },
+        { value: "rest", label: "休憩スペース", count: 7 },
+        { value: "clinic", label: "診療所", count: 1 },
+      ]
+    : [
+        { value: "all", label: "All", count: 62 },
+        { value: "gate", label: "Gates", count: 8 },
+        { value: "lounge", label: "Lounges", count: 3 },
+        { value: "food", label: "Food", count: 6 },
+        { value: "cafe", label: "Cafe", count: 4 },
+        { value: "wifi", label: "Wi-Fi", count: 2 },
+        { value: "shop", label: "Souvenirs", count: 11 },
+        { value: "duty-free", label: "Duty free", count: 5 },
+        { value: "atm", label: "ATM and currency", count: 4 },
+        { value: "nursery", label: "Nursing rooms", count: 3 },
+        { value: "rest", label: "Rest areas", count: 7 },
+        { value: "clinic", label: "Clinic", count: 1 },
+      ];
+
+  return (
+    <div className="flex w-full max-w-sm flex-col gap-2 rounded-lg border bg-card p-4">
+      <FilterChips
+        items={chips}
+        value={value}
+        onValueChange={setValue}
+        aria-label={isJa ? "施設カテゴリ" : "Facility category"}
+      />
+      <p className="text-xs text-muted-foreground">
+        {isJa
+          ? "折り返さずに横へ流れます。矢印キーで隣のチップへ移り、選んだチップまで自動で寄ります。"
+          : "The row scrolls sideways instead of wrapping. Arrow keys move to the next chip and scroll it into view."}
+      </p>
+    </div>
+  );
+}
+
 export default function FilterChipsDocPage() {
   const { locale, sectionLabels } = useLocale();
   const content = getDocContent("components/filter-chips", locale);
@@ -822,6 +872,76 @@ export function DisabledCategoryChips() {
   );
 }`;
 
+  const overflowCode = locale === "ja"
+    ? `"use client";
+
+import * as React from "react";
+import { FilterChips, type FilterChip } from "@gunjo/ui";
+
+const CHIPS: FilterChip[] = [
+  { value: "all", label: "すべて", count: 62 },
+  { value: "gate", label: "搭乗口", count: 8 },
+  { value: "lounge", label: "ラウンジ", count: 3 },
+  { value: "food", label: "飲食", count: 6 },
+  { value: "cafe", label: "カフェ", count: 4 },
+  { value: "wifi", label: "Wi-Fi", count: 2 },
+  { value: "shop", label: "土産物", count: 11 },
+  { value: "duty-free", label: "免税店", count: 5 },
+  { value: "atm", label: "ATM・両替", count: 4 },
+  { value: "nursery", label: "授乳室", count: 3 },
+  { value: "rest", label: "休憩スペース", count: 7 },
+  { value: "clinic", label: "診療所", count: 1 },
+];
+
+export function ManyCategoryChips() {
+  const [value, setValue] = React.useState("all");
+
+  return (
+    <div className="w-full max-w-sm rounded-lg border bg-card p-4">
+      <FilterChips
+        items={CHIPS}
+        value={value}
+        onValueChange={setValue}
+        aria-label="施設カテゴリ"
+      />
+    </div>
+  );
+}`
+    : `"use client";
+
+import * as React from "react";
+import { FilterChips, type FilterChip } from "@gunjo/ui";
+
+const CHIPS: FilterChip[] = [
+  { value: "all", label: "All", count: 62 },
+  { value: "gate", label: "Gates", count: 8 },
+  { value: "lounge", label: "Lounges", count: 3 },
+  { value: "food", label: "Food", count: 6 },
+  { value: "cafe", label: "Cafe", count: 4 },
+  { value: "wifi", label: "Wi-Fi", count: 2 },
+  { value: "shop", label: "Souvenirs", count: 11 },
+  { value: "duty-free", label: "Duty free", count: 5 },
+  { value: "atm", label: "ATM and currency", count: 4 },
+  { value: "nursery", label: "Nursing rooms", count: 3 },
+  { value: "rest", label: "Rest areas", count: 7 },
+  { value: "clinic", label: "Clinic", count: 1 },
+];
+
+export function ManyCategoryChips() {
+  const [value, setValue] = React.useState("all");
+
+  return (
+    <div className="w-full max-w-sm rounded-lg border bg-card p-4">
+      <FilterChips
+        items={CHIPS}
+        value={value}
+        onValueChange={setValue}
+        aria-label="Facility category"
+      />
+    </div>
+  );
+}`;
+
   const propsData = [
     {
       name: "items",
@@ -892,6 +1012,16 @@ export function DisabledCategoryChips() {
               preview: <FilterChipsPreview locale={locale} disabledExample />,
               code: disabledCode,
               previewBodyWidth: "lg",
+            },
+            {
+              key: "many-categories",
+              title: locale === "ja" ? "カテゴリが多いとき" : "When there are many categories",
+              description: locale === "ja"
+                ? "入り切らない分は折り返さず、横へ流します。スクロールバーは隠してあるので、矢印キーで隣へ移れることがそのまま操作の担保になります。"
+                : "The overflow scrolls sideways rather than wrapping. The scrollbar is hidden, so the arrow-key roving focus is what keeps the rail operable.",
+              preview: <FilterChipsOverflowPreview locale={locale} />,
+              code: overflowCode,
+              previewBodyWidth: "md",
             },
           ]}
         />

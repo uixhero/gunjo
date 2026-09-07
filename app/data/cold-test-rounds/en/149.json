@@ -1,6 +1,6 @@
 {
   "round": 149,
-  "status": "draft",
+  "status": "reviewed",
   "title": "A taxi receipt showed that mature components must also be left unused",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. The passenger account foundation covered ride history and receipts, while `TicketStub` proved its documented boundary by being correctly rejected for a tax receipt.",
   "article": {

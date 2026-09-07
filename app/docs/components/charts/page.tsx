@@ -14,6 +14,8 @@ import {
 
 import { ChartPreviewWithControls } from "@/components/doc/ChartPreviewWithControls";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { UixheroRationaleLinks } from "@/components/doc/ComponentHelpers";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const code = `import { useState } from "react";
 import {
@@ -796,6 +798,31 @@ export default function ChartsPage() {
                     ))}
                 </div>
             </section>
+
+            <section className="space-y-3" id="design-decisions">
+                <div className="border-b pb-2">
+                    <h2 className="text-2xl font-semibold tracking-tight">
+                        {isJa ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                    {isJa
+                        ? "この分類のコンポーネントをいつ使い、いつ使わないかは、UIXHERO の「UIコンポーネント完全ガイド」にある「カテゴリ 04｜データ可視化」の節にまとめています。比較、推移、構成比のどれを先に読ませたいかで、選ぶチャートの形が変わります。"
+                        : "When to reach for each chart in this category, and when to leave it alone, is covered in the category 04 section, data visualisation, of the UI component guide on UIXHERO. The form follows what you want read first: comparison, change over time, or composition."}
+                </p>
+            </section>
+
+            <UixheroRationaleLinks
+                locale={locale}
+                uixheroLinks={[
+                    {
+                        label: isJa
+                            ? "UIXHERO: UIコンポーネント完全ガイド（カテゴリ 04｜データ可視化）"
+                            : "UIXHERO: UI component guide, category 04 data visualisation (in Japanese)",
+                        href: `${UIXHERO_BASE_URL}/blog/ui-components-complete-guide#カテゴリ-04データ可視化`,
+                    },
+                ]}
+            />
         </div>
     );
 }

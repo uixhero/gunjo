@@ -1,6 +1,6 @@
 {
   "round": 3,
-  "status": "draft",
+  "status": "reviewed",
   "title": "A carousel revealed 28 copies of the same provider bug",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. A carousel exposed the same SSR crash behind 28 components, so I scoped one fix in the shared `Tooltip` layer instead of 28 patches.",
   "article": {

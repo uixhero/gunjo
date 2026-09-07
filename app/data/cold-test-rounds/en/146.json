@@ -1,6 +1,6 @@
 {
   "round": 146,
-  "status": "draft",
+  "status": "reviewed",
   "title": "HeatmapChart finally landed in the job it was actually built for",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Taxi demand forecasting gave `HeatmapChart` its proper area-by-time intensity matrix after two earlier false leads had clarified where it did not belong.",
   "article": {

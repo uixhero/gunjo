@@ -1,6 +1,6 @@
 {
   "round": 178,
-  "status": "draft",
+  "status": "reviewed",
   "title": "I had an AI build a homeowner portal: the components that were ready for business users felt stiff on a warm, consumer-facing screen (build log #178)",
   "summary": "I gave an AI that had never seen Gunjo nothing but the public npm package and the gunjo.jp docs, and asked it to build the screen. `tsc` passed clean, and it led with the phone layout.",
   "article": {

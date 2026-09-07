@@ -3,10 +3,12 @@
 import * as React from "react";
 import { AssetInspectorPanel, type AssetCardAsset, useToast } from "@gunjo/ui";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
+import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import layoutMetadata from "@design/layout-metadata.json";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const asset: AssetCardAsset = {
     id: "hero",
@@ -387,6 +389,7 @@ export function CompactInspector() {
 
 export default function AssetInspectorPanelDocPage() {
     const { locale } = useLocale();
+    const usageCode = codeByLocale[locale];
     const { showToast } = useToast();
     const [previewAsset, setPreviewAsset] = React.useState<AssetCardAsset>(() => getLocalizedAsset(locale));
     const [compactAsset, setCompactAsset] = React.useState<AssetCardAsset>(() => getLocalizedAltAsset(locale));
@@ -426,9 +429,16 @@ export default function AssetInspectorPanelDocPage() {
                 { name: "MediaPickerDialog", href: "/docs/components/media-picker-dialog" },
                 { name: "Media Library", href: "/docs/components/media-library" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: インスペクターパネル（Inspector Panel）" : "UIXHERO: Inspector Panel (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/inspector-panel`,
+                    relation: "nearest",
+                },
+            ]}
         >
-            <ComponentPreview code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="sm" previewHeight={760}>
-                <div className="h-[680px] overflow-hidden rounded-lg border bg-background">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="sm" previewHeight="auto">
+                <div className="overflow-hidden rounded-lg border bg-background">
                     <AssetInspectorPanel
                         asset={previewAsset}
                         note={note}
@@ -447,7 +457,7 @@ export default function AssetInspectorPanelDocPage() {
                         onAnalyze={() => showActionToast(locale === "ja" ? "画像解析を開始しました" : "Analysis started")}
                         onCompress={() => showActionToast(locale === "ja" ? "圧縮を開始しました" : "Compression started")}
                         labels={labels}
-                        className="border-l-0"
+                        className="h-auto border-l-0"
                     />
                 </div>
             </ComponentPreview>
@@ -459,100 +469,80 @@ export default function AssetInspectorPanelDocPage() {
                     </h2>
                 </div>
 
-                <div className="space-y-8">
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "未選択" : "Empty"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja" ? "アセットが未選択の時に、詳細が表示されない理由を示します。" : "Show why details are unavailable when no asset is selected."}
-                            </p>
-                        </div>
-                        <ComponentPreview
-                            code={stateCodeByLocale[locale].empty}
-                            codeBlock={<CodeBlock code={stateCodeByLocale[locale].empty} />}
-                            previewBodyWidth="sm"
-                            previewHeight={360}
-                        >
-                            <div className="h-[280px] overflow-hidden rounded-lg border bg-background">
-                                <AssetInspectorPanel
-                                    title={locale === "ja" ? "詳細" : "Details"}
-                                    asset={null}
-                                    labels={labels}
-                                    className="border-l-0"
-                                />
-                            </div>
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "コンパクト" : "Compact"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja" ? "狭い詳細ペイン向けに、余白を抑えながらお気に入りとタグ編集を確認します。" : "Use reduced spacing for narrow detail panes while keeping favorite and tag editing interactive."}
-                            </p>
-                        </div>
-                        <ComponentPreview
-                            code={stateCodeByLocale[locale].compact}
-                            codeBlock={<CodeBlock code={stateCodeByLocale[locale].compact} />}
-                            previewBodyWidth="sm"
-                            previewHeight={560}
-                        >
-                            <div className="h-[480px] overflow-hidden rounded-lg border bg-background">
-                                <AssetInspectorPanel
-                                    asset={compactAsset}
-                                    variant="compact"
-                                    tags={compactTags}
-                                    onTagsChange={setCompactTags}
-                                    tagSuggestions={locale === "ja" ? ["キャンペーン", "SNS", "商品"] : ["Campaign", "SNS", "Product"]}
-                                    onFavorite={() => setCompactAsset((current) => ({ ...current, isFavorite: !current.isFavorite }))}
-                                    metadata={getMetadata(compactAsset, locale)}
-                                    labels={labels}
-                                    className="border-l-0"
-                                />
-                            </div>
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "通常表示" : "Default"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja"
-                                    ? "プレビュー、メタデータ、タグ、評価、主要アクションをまとめて表示する標準の詳細ペインです。"
-                                    : "Show the standard detail pane with preview, metadata, tags, rating, and primary actions."}
-                            </p>
-                        </div>
-                        <ComponentPreview
-                            code={stateCodeByLocale[locale].default}
-                            codeBlock={<CodeBlock code={stateCodeByLocale[locale].default} />}
-                            previewBodyWidth="sm"
-                            previewHeight={760}
-                        >
-                            <div className="h-[680px] overflow-hidden rounded-lg border bg-background">
-                                <AssetInspectorPanel
-                                    asset={previewAsset}
-                                    note={note}
-                                    metadata={getMetadata(previewAsset, locale)}
-                                    onTitleChange={(title) => setPreviewAsset((current) => ({ ...current, title }))}
-                                    onNoteChange={setNote}
-                                    tags={tags}
-                                    onTagsChange={setTags}
-                                    onRatingChange={(rating) => setPreviewAsset((current) => ({ ...current, rating }))}
-                                    onFavorite={() => setPreviewAsset((current) => ({ ...current, isFavorite: !current.isFavorite }))}
-                                    onShare={() => showActionToast(locale === "ja" ? "共有設定を開きました" : "Share settings opened")}
-                                    onDownload={() => showActionToast(locale === "ja" ? "ダウンロードを開始しました" : "Download started")}
-                                    onDelete={() => showActionToast(locale === "ja" ? "削除確認を表示しました" : "Delete confirmation opened")}
-                                    onClose={() => showActionToast(locale === "ja" ? "パネルを閉じました" : "Panel closed")}
-                                    tagSuggestions={locale === "ja" ? ["キャンペーン", "SNS", "商品"] : ["Campaign", "SNS", "Product"]}
-                                    onAnalyze={() => showActionToast(locale === "ja" ? "画像解析を開始しました" : "Analysis started")}
-                                    onCompress={() => showActionToast(locale === "ja" ? "圧縮を開始しました" : "Compression started")}
-                                    labels={labels}
-                                    className="border-l-0"
-                                />
-                            </div>
-                        </ComponentPreview>
-                    </section>
-                </div>
+                <ComponentDemoStates
+                    states={[
+                        {
+                            key: "empty",
+                            title: locale === "ja" ? "未選択" : "Empty",
+                            description: locale === "ja" ? "アセットが未選択の時に、詳細が表示されない理由を示します。" : "Show why details are unavailable when no asset is selected.",
+                            code: stateCodeByLocale[locale].empty,
+                            previewBodyWidth: "sm",
+                            preview: (
+                                <div className="overflow-hidden rounded-lg border bg-background">
+                                    <AssetInspectorPanel
+                                        title={locale === "ja" ? "詳細" : "Details"}
+                                        asset={null}
+                                        labels={labels}
+                                        className="h-auto border-l-0"
+                                    />
+                                </div>
+                            ),
+                        },
+                        {
+                            key: "compact",
+                            title: locale === "ja" ? "コンパクト" : "Compact",
+                            description: locale === "ja" ? "狭い詳細ペイン向けに、余白を抑えながらお気に入りとタグ編集を確認します。" : "Use reduced spacing for narrow detail panes while keeping favorite and tag editing interactive.",
+                            code: stateCodeByLocale[locale].compact,
+                            previewBodyWidth: "sm",
+                            preview: (
+                                <div className="overflow-hidden rounded-lg border bg-background">
+                                    <AssetInspectorPanel
+                                        asset={compactAsset}
+                                        variant="compact"
+                                        tags={compactTags}
+                                        onTagsChange={setCompactTags}
+                                        tagSuggestions={locale === "ja" ? ["キャンペーン", "SNS", "商品"] : ["Campaign", "SNS", "Product"]}
+                                        onFavorite={() => setCompactAsset((current) => ({ ...current, isFavorite: !current.isFavorite }))}
+                                        metadata={getMetadata(compactAsset, locale)}
+                                        labels={labels}
+                                        className="h-auto border-l-0"
+                                    />
+                                </div>
+                            ),
+                        },
+                        {
+                            key: "default",
+                            title: locale === "ja" ? "通常表示" : "Default",
+                            description: locale === "ja" ? "プレビュー、メタデータ、タグ、評価、主要アクションをまとめて表示する標準の詳細ペインです。" : "Show the standard detail pane with preview, metadata, tags, rating, and primary actions.",
+                            code: stateCodeByLocale[locale].default,
+                            previewBodyWidth: "sm",
+                            preview: (
+                                <div className="overflow-hidden rounded-lg border bg-background">
+                                    <AssetInspectorPanel
+                                        asset={previewAsset}
+                                        note={note}
+                                        metadata={getMetadata(previewAsset, locale)}
+                                        onTitleChange={(title) => setPreviewAsset((current) => ({ ...current, title }))}
+                                        onNoteChange={setNote}
+                                        tags={tags}
+                                        onTagsChange={setTags}
+                                        onRatingChange={(rating) => setPreviewAsset((current) => ({ ...current, rating }))}
+                                        onFavorite={() => setPreviewAsset((current) => ({ ...current, isFavorite: !current.isFavorite }))}
+                                        onShare={() => showActionToast(locale === "ja" ? "共有設定を開きました" : "Share settings opened")}
+                                        onDownload={() => showActionToast(locale === "ja" ? "ダウンロードを開始しました" : "Download started")}
+                                        onDelete={() => showActionToast(locale === "ja" ? "削除確認を表示しました" : "Delete confirmation opened")}
+                                        onClose={() => showActionToast(locale === "ja" ? "パネルを閉じました" : "Panel closed")}
+                                        tagSuggestions={locale === "ja" ? ["キャンペーン", "SNS", "商品"] : ["Campaign", "SNS", "Product"]}
+                                        onAnalyze={() => showActionToast(locale === "ja" ? "画像解析を開始しました" : "Analysis started")}
+                                        onCompress={() => showActionToast(locale === "ja" ? "圧縮を開始しました" : "Compression started")}
+                                        labels={labels}
+                                        className="h-auto border-l-0"
+                                    />
+                                </div>
+                            ),
+                        },
+                    ]}
+                />
             </div>
 
             <div className="space-y-4">
@@ -565,12 +555,48 @@ export default function AssetInspectorPanelDocPage() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {locale === "ja" ? "使い方" : "Usage"}
                     </h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>選んだものが無いときの姿を先に決めた。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">asset</code> が空のときは、アイコンと1行の案内だけを出します。資料は核を「選択状態との連動」に置いています。空のパネルを畳んで消すのではなく、場所を残して理由を書くことで、右側の幅が選択のたびに動かないようにしました。
+                        </li>
+                        <li>
+                            <strong>プロパティを意味でまとめた。</strong>題名と説明・評価・タグ・メタデータ・操作、の5つの <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorSection</code> に分けています。資料も「全プロパティをフラットに並べると視認性が下がる」と書いています。メタデータの中は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MetadataList</code> の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">compact</code> を使うので、名前と値の位置が節をまたいでそろいます。
+                        </li>
+                        <li>
+                            <strong>評価は星とスライダーの両方から動かせる。</strong>星は0.5刻みのボタン、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Slider</code> は同じ値をキーボードの矢印キーで動かす入口です。資料は「数値は上下キーで動かせるようにする」を挙げています。星だけだと細かい値をキーボードで合わせられないので、両方を置き、現在値を「3.5 / 5」の形で数字でも出しました。
+                            <br />
+                            一般のインスペクターパネルの設計は UIXHERO の「インスペクターパネル」にあります。
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>The empty state was designed first.</strong> With no <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">asset</code>, the panel shows an icon and one line of guidance. The article&rsquo;s core is the link to the selection; collapsing the panel away would make the right-hand column jump every time the selection changes, so the space is kept and the reason is written in it.
+                        </li>
+                        <li>
+                            <strong>Properties are grouped by meaning.</strong> Five <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">InspectorSection</code>s: title and note, rating, tags, metadata, actions. The article warns that a flat list of every property hurts legibility. Inside metadata, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MetadataList</code> in <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">compact</code> keeps labels and values aligned across sections.
+                        </li>
+                        <li>
+                            <strong>The rating can be driven from the stars or the slider.</strong> The stars are half-step buttons; the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Slider</code> is the same value reachable with arrow keys. The article asks for numeric fields that respond to the arrow keys, and stars alone cannot be fine-tuned from the keyboard, so both are present, with the current value also printed as a number out of five.
+                            <br />
+                            The general design of inspector panels is covered by UIXHERO&rsquo;s inspector-panel article.
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

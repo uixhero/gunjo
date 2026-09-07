@@ -148,6 +148,50 @@ export function PlainPostalCodeField() {
   );
 }`,
                 },
+                {
+                    key: "disabled",
+                    title: locale === "ja" ? "触れないときは理由を出す" : "Disabled, with the reason attached",
+                    description: locale === "ja"
+                        ? "disabled だけだと「なぜ触れないのか」が画面に残りません。disabledReason を渡すと、カーソルを重ねたときに理由がツールチップで出ます。"
+                        : "disabled alone leaves the reason off the screen. disabledReason surfaces it in a tooltip on hover.",
+                    preview: (
+                        <PostalCodeInput
+                            className="w-full max-w-sm"
+                            value="150-0001"
+                            disabled
+                            disabledReason={locale === "ja" ? "配送先が確定したため変更できません。" : "Locked once the delivery address is confirmed."}
+                            aria-label={locale === "ja" ? "郵便番号" : "Postal code"}
+                        />
+                    ),
+                    previewHeight: 100,
+                    code: isJa
+                        ? `import { PostalCodeInput } from "@gunjo/ui";
+
+export function LockedPostalCodeField() {
+  return (
+    <PostalCodeInput
+      className="w-full max-w-sm"
+      value="150-0001"
+      disabled
+      disabledReason="配送先が確定したため変更できません。"
+      aria-label="郵便番号"
+    />
+  );
+}`
+                        : `import { PostalCodeInput } from "@gunjo/ui";
+
+export function LockedPostalCodeField() {
+  return (
+    <PostalCodeInput
+      className="w-full max-w-sm"
+      value="150-0001"
+      disabled
+      disabledReason="Locked once the delivery address is confirmed."
+      aria-label="Postal code"
+    />
+  );
+}`,
+                },
             ]}
         />
     );

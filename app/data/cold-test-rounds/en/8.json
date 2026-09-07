@@ -1,6 +1,6 @@
 {
   "round": 8,
-  "status": "draft",
+  "status": "reviewed",
   "title": "The states nobody wants to build closed out Gunjo's first pass",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. The eighth screen found no new class of defect, only another fixed-width default, so I logged a full-width `Skeleton` fix and a broader audit.",
   "article": {

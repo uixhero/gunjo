@@ -1,6 +1,6 @@
 {
   "round": 1,
-  "status": "draft",
+  "status": "reviewed",
   "title": "A cold AI built a settings screen and exposed two rough edges",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. It built a working settings screen but exposed fixed-width controls and broken docs links, so I fixed the design, implementation, and documentation together.",
   "article": {

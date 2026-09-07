@@ -6,6 +6,7 @@ import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import inputsMetadata from "@design/inputs-metadata.json";
+import type { UixheroLink } from "@/lib/uixhero-links";
 import type * as React from "react";
 
 type ComponentState = {
@@ -37,6 +38,16 @@ type InputCompositionDocPageProps = {
     usedComponents: UsedComponent[];
     relatedComponents: UsedComponent[];
     previewBodyWidth?: "sm" | "md" | "lg" | "xl" | "full";
+    /**
+     * "Design decisions" list items per locale, supplied by each page so the
+     * UIXHERO reference it cites lives next to the component it is about.
+     */
+    designDecisions?: Record<"ja" | "en", React.ReactNode>;
+    /**
+     * このページが自分で持つ UIXHERO の記事リンク。ラベルが言語で変わるので
+     * locale ごとに受け、「いつ・なぜ使うか（UIXHERO）」の節へ渡す。
+     */
+    uixheroLinks?: Record<"ja" | "en", UixheroLink[]>;
 };
 
 export function InputCompositionDocPage({
@@ -52,6 +63,8 @@ export function InputCompositionDocPage({
     usedComponents,
     relatedComponents,
     previewBodyWidth = "md",
+    designDecisions,
+    uixheroLinks,
 }: InputCompositionDocPageProps) {
     const { locale, sectionLabels } = useLocale();
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
@@ -64,6 +77,7 @@ export function InputCompositionDocPage({
             sectionLabels={sectionLabels}
             usedComponents={usedComponents}
             relatedComponents={relatedComponents}
+            uixheroLinks={uixheroLinks?.[locale]}
         >
             <ComponentPreview
                 embedSrc={embedSrc}
@@ -100,6 +114,19 @@ export function InputCompositionDocPage({
                     <CodeBlock code={usageCode} />
                 </div>
             </section>
+
+            {designDecisions ? (
+                <section className="space-y-4">
+                    <div className="border-b pb-2">
+                        <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                            {locale === "ja" ? "設計の判断" : "Design decisions"}
+                        </h2>
+                    </div>
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        {designDecisions[locale]}
+                    </ul>
+                </section>
+            ) : null}
         </ComponentLayout>
     );
 }

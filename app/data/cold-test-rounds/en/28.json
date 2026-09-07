@@ -1,6 +1,6 @@
 {
   "round": 28,
-  "status": "draft",
+  "status": "reviewed",
   "title": "A file browser turned earlier fixes into the library's strengths",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Earlier fixes carried the file-browser shell, but the agent still hand-rolled selection for both grid and list views, so I added independent tree expansion, collapsed breadcrumbs, and labeled checkboxes.",
   "article": {
