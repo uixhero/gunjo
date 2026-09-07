@@ -1,6 +1,6 @@
 {
   "round": 161,
-  "status": "draft",
+  "status": "reviewed",
   "title": "The fourth value-against-X component settled in trucking compliance",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Driver-hour compliance supplied the third real-unit limit case, so I built `LimitMonitor` beside the existing capacity, range, and deadline components.",
   "article": {

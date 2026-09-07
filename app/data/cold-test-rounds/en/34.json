@@ -1,6 +1,6 @@
 {
   "round": 34,
-  "status": "draft",
+  "status": "reviewed",
   "title": "The yen formatter I shipped one round earlier became this round's biggest win",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. The next agent found the yen formatters shipped after #33 right at the entrance and called them the biggest win on a transaction-history screen.",
   "article": {

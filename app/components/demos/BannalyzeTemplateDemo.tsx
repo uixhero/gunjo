@@ -26,25 +26,93 @@ import {
 } from "@tabler/icons-react";
 import React, { useState } from "react";
 import { cn } from "@gunjo/ui";
+import { useLocale } from "@/components/providers/LocaleProvider";
 
 // --- Mock Data ---
+// 位置（x / y）とスコアは言語に依らないので1か所に置き、読み手に見える文だけを
+// 日本語版と英語版で分ける。日本語のページと英語のページで言葉が混ざらないこと。
+const ANNOTATION_SPOTS = [
+    { id: 1, x: 20, y: 20 },
+    { id: 2, x: 50, y: 50 },
+    { id: 3, x: 20, y: 80 },
+    { id: 4, x: 80, y: 80 },
+] as const;
+
+type DemoLocale = "ja" | "en";
+
+const COPY = {
+    ja: {
+        productName: "Bannalyze",
+        saved: "保存済み",
+        tabResult: "分析結果",
+        tabChat: "AIチャット",
+        version: "バージョン 2",
+        overallTitle: "総合スコア",
+        overallSummary:
+            "全体的に高品質なデザインですが、タイポグラフィとコントラストを調整することで、さらに視認性と訴求力を高めることができます。",
+        suitabilityTitle: "ターゲット適合度",
+        scoreLabel: "スコア",
+        suitabilityReason:
+            "教育・保育現場向けに明るく親しみやすいデザインですが、アクセントカラーの調整で更なる適性向上が可能です。",
+        audience: ["教育関係者", "保護者", "20-40代女性"],
+        improvementsTitle: "改善アクション",
+        annotationsTitle: "指摘箇所",
+        priorityHigh: "高",
+        priorityMedium: "中",
+        bannerAlt: "解析するバナー",
+        thumbnailAlt: "過去の版",
+        addNew: "追加",
+        versionLabel: (n: number) => `バージョン ${n}`,
+        annotations: [
+            { title: "ロゴ配置", description: "視認性は良いですが、余白をもう少し取るとより引き立ちます。" },
+            { title: "メインコピー", description: "コントラスト比が4.5:1未満です。背景色を少し暗くするか文字色を調整してください。" },
+            { title: "CTAボタン", description: "配置は適切ですが、サイズを1.2倍にするとクリック率向上が見込めます。" },
+            { title: "イラスト", description: "ターゲット層にマッチした親しみやすい画風です。" },
+        ],
+        improvements: [
+            { title: "コントラスト比の改善", description: "メインコピーの背景色とのコントラスト比を高め、可読性を向上させてください。" },
+            { title: "CTAの強調", description: "ボタンにドロップシャドウを追加し、立体感を出してクリックを促しましょう。" },
+        ],
+    },
+    en: {
+        productName: "Bannalyze",
+        saved: "Saved",
+        tabResult: "Results",
+        tabChat: "AI chat",
+        version: "Version 2",
+        overallTitle: "Overall score",
+        overallSummary:
+            "A high-quality design overall. Adjusting the typography and the contrast will make it easier to read and more persuasive.",
+        suitabilityTitle: "Audience fit",
+        scoreLabel: "SCORE",
+        suitabilityReason:
+            "Bright and approachable for schools and nurseries. Tuning the accent colour would lift the fit further.",
+        audience: ["Teachers", "Parents", "Women 20-40"],
+        improvementsTitle: "Suggested fixes",
+        annotationsTitle: "Marked spots",
+        priorityHigh: "High",
+        priorityMedium: "Medium",
+        bannerAlt: "Banner under analysis",
+        thumbnailAlt: "Earlier version",
+        addNew: "Add new",
+        versionLabel: (n: number) => `Version ${n}`,
+        annotations: [
+            { title: "Logo placement", description: "Legible as it stands, though a little more clear space would make it read better." },
+            { title: "Headline", description: "Contrast is under 4.5:1. Darken the background or lighten the text." },
+            { title: "Call to action", description: "Well placed. Scaling it up by 1.2x should lift the click rate." },
+            { title: "Illustration", description: "An approachable style that matches the audience." },
+        ],
+        improvements: [
+            { title: "Raise the contrast", description: "Increase the contrast between the headline and its background so it stays readable." },
+            { title: "Make the CTA stand out", description: "Add a drop shadow so the button lifts off the page and invites the click." },
+        ],
+    },
+} satisfies Record<DemoLocale, unknown>;
+
 const MOCK_RESULT = {
     overallScore: 7.9,
-    targetSuitability: {
-        score: 8,
-        reason: "教育・保育現場向けに明るく親しみやすいデザインですが、アクセントカラーの調整で更なる適性向上が可能です。"
-    },
-    targetAudience: ["教育関係者", "保護者", "20-40代女性"],
-    annotations: [
-        { id: 1, x: 20, y: 20, title: "ロゴ配置", description: "視認性は良いですが、余白をもう少し取るとより引き立ちます。" },
-        { id: 2, x: 50, y: 50, title: "メインコピー", description: "コントラスト比が4.5:1未満です。背景色を少し暗くするか文字色を調整してください。" },
-        { id: 3, x: 20, y: 80, title: "CTAボタン", description: "配置は適切ですが、サイズを1.2倍にするとクリック率向上が見込めます。" },
-        { id: 4, x: 80, y: 80, title: "イラスト", description: "ターゲット層にマッチした親しみやすい画風です。" }
-    ],
-    improvements: [
-        { title: "コントラスト比の改善", description: "メインコピーの背景色とのコントラスト比を高め、可読性を向上させてください。", priority: "high" },
-        { title: "CTAの強調", description: "ボタンにドロップシャドウを追加し、立体感を出してクリックを促しましょう。", priority: "medium" }
-    ]
+    targetSuitabilityScore: 8,
+    improvementPriorities: ["high", "medium"] as const,
 };
 
 // --- Helper Components (Ported from app/src/components/review-result.tsx) ---
@@ -84,7 +152,7 @@ function CircularProgress({ value, size = 120, strokeWidth = 10, color = "text-p
     );
 }
 
-function AnnotationMarker({ id, x, y, isHovered, onHover }: { id: number; x: number; y: number; isHovered: boolean; onHover: (hover: boolean) => void }) {
+function AnnotationMarker({ id, x, y, title, description, isHovered, onHover }: { id: number; x: number; y: number; title: string; description: string; isHovered: boolean; onHover: (hover: boolean) => void }) {
     return (
         <div
             className="absolute -translate-x-1/2 -translate-y-1/2 cursor-pointer z-10"
@@ -102,8 +170,8 @@ function AnnotationMarker({ id, x, y, isHovered, onHover }: { id: number; x: num
             </div>
             {isHovered && (
                 <div className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-max max-w-[200px] bg-background text-xs p-2 rounded shadow-xl z-20 pointer-events-none text-left border border-border">
-                    <div className="font-bold mb-1 text-foreground">{MOCK_RESULT.annotations.find(a => a.id === id)?.title}</div>
-                    <div className="text-muted-foreground">{MOCK_RESULT.annotations.find(a => a.id === id)?.description}</div>
+                    <div className="font-bold mb-1 text-foreground">{title}</div>
+                    <div className="text-muted-foreground">{description}</div>
                 </div>
             )}
         </div>
@@ -111,9 +179,15 @@ function AnnotationMarker({ id, x, y, isHovered, onHover }: { id: number; x: num
 }
 
 export function BannalyzeTemplateDemo({ className }: { className?: string }) {
+    const { locale } = useLocale();
+    const copy = COPY[locale === "en" ? "en" : "ja"];
     const [hoveredAnnotation, setHoveredAnnotation] = useState<number | null>(null);
-    const [activeView, setActiveView] = useState<'original' | 'heatmap' | 'saliency'>('original');
     const [zoom, setZoom] = useState(100);
+
+    const annotations = ANNOTATION_SPOTS.map((spot, index) => ({
+        ...spot,
+        ...copy.annotations[index],
+    }));
 
     return (
         <div className={cn("h-full w-full bg-background text-foreground flex overflow-hidden font-sans", className)}>
@@ -123,7 +197,7 @@ export function BannalyzeTemplateDemo({ className }: { className?: string }) {
                         <div className="flex items-center gap-4">
                             <div className="flex items-center gap-2 bg-primary text-primary-foreground px-3 py-1.5 rounded-lg">
                                 <span className="font-bold text-lg tracking-tight">B</span>
-                                <span className="font-medium">Bannalyze</span>
+                                <span className="font-medium">{copy.productName}</span>
                             </div>
                             <div className="h-6 w-px bg-border mx-2" />
                             <div className="flex items-center gap-2">
@@ -167,7 +241,7 @@ export function BannalyzeTemplateDemo({ className }: { className?: string }) {
                         <div className="flex items-center gap-2">
                             <div className="flex items-center gap-1 bg-primary-subtle text-primary-subtle-foreground px-3 py-1.5 rounded-full border border-primary-border">
                                 <CheckCircle2 className="h-4 w-4" />
-                                <span className="text-xs font-bold">保存済み</span>
+                                <span className="text-xs font-bold">{copy.saved}</span>
                             </div>
                             <Button variant="ghost" size="icon" className="text-muted-foreground hover:text-foreground">
                                 <Share2 className="h-4 w-4" />
@@ -177,12 +251,12 @@ export function BannalyzeTemplateDemo({ className }: { className?: string }) {
                 }
                 sidebar={null}
                 inspector={
-                    <div className="h-full flex flex-col bg-muted/30 border-l border-border w-[400px]">
+                    <div className="h-full flex flex-col bg-muted/30 border-l border-border w-full">
                         <div className="p-4 border-b bg-background border-border flex items-center justify-between shadow-sm z-10">
                             <div className="flex gap-4">
-                                <button className="text-sm font-bold text-primary border-b-2 border-primary pb-4 -mb-4 px-1">分析結果</button>
+                                <button className="text-sm font-bold text-primary border-b-2 border-primary pb-4 -mb-4 px-1">{copy.tabResult}</button>
                                 <button className="text-sm font-medium text-muted-foreground hover:text-foreground pb-4 -mb-4 px-1 flex items-center gap-1">
-                                    <MessageSquare className="w-3 h-3" /> AIチャット
+                                    <MessageSquare className="w-3 h-3" /> {copy.tabChat}
                                 </button>
                             </div>
                             <Button variant="ghost" size="icon" className="h-6 w-6"><ChevronRight className="h-4 w-4" /></Button>
@@ -192,14 +266,14 @@ export function BannalyzeTemplateDemo({ className }: { className?: string }) {
                             {/* Overall Score Card */}
                             <div className="bg-background rounded-2xl p-6 shadow-sm border border-border text-center">
                                 <div className="mb-4 inline-block px-3 py-1 bg-primary-subtle text-primary-subtle-foreground rounded-full text-xs font-bold">
-                                    Version 2
+                                    {copy.version}
                                 </div>
-                                <h3 className="text-lg font-bold text-foreground mb-4">総合スコア</h3>
+                                <h3 className="text-lg font-bold text-foreground mb-4">{copy.overallTitle}</h3>
                                 <div className="mb-6 flex justify-center">
                                     <CircularProgress value={MOCK_RESULT.overallScore} />
                                 </div>
                                 <p className="text-sm text-muted-foreground leading-relaxed text-left">
-                                    全体的に高品質なデザインですが、タイポグラフィとコントラストを調整することで、さらに視認性と訴求力を高めることができます。
+                                    {copy.overallSummary}
                                 </p>
                             </div>
 
@@ -207,21 +281,21 @@ export function BannalyzeTemplateDemo({ className }: { className?: string }) {
                             <div className="bg-background rounded-2xl p-6 shadow-sm border border-border">
                                 <div className="flex items-center gap-2 mb-4">
                                     <Target className="w-5 h-5 text-destructive" />
-                                    <h3 className="text-lg font-bold text-foreground">ターゲット適合度</h3>
+                                    <h3 className="text-lg font-bold text-foreground">{copy.suitabilityTitle}</h3>
                                 </div>
                                 <div className="flex gap-4 items-start">
                                     <div className="flex flex-col items-center">
                                         <div className="w-16 h-16 rounded-full border-4 border-destructive-border bg-destructive-subtle flex items-center justify-center">
-                                            <span className="text-xl font-bold text-destructive">{MOCK_RESULT.targetSuitability.score}</span>
+                                            <span className="text-xl font-bold text-destructive">{MOCK_RESULT.targetSuitabilityScore}</span>
                                         </div>
-                                        <span className="text-[10px] font-bold text-muted-foreground mt-1">SCORE</span>
+                                        <span className="text-[10px] font-bold text-muted-foreground mt-1">{copy.scoreLabel}</span>
                                     </div>
                                     <div className="flex-1">
                                         <p className="text-sm text-foreground leading-relaxed mb-3">
-                                            {MOCK_RESULT.targetSuitability.reason}
+                                            {copy.suitabilityReason}
                                         </p>
                                         <div className="flex flex-wrap gap-1.5">
-                                            {MOCK_RESULT.targetAudience.map(tag => (
+                                            {copy.audience.map(tag => (
                                                 <span key={tag} className="px-2 py-0.5 bg-muted text-muted-foreground text-[10px] rounded-full border border-border font-medium">
                                                     #{tag}
                                                 </span>
@@ -235,18 +309,18 @@ export function BannalyzeTemplateDemo({ className }: { className?: string }) {
                             <div>
                                 <h3 className="text-md font-bold text-foreground mb-3 flex items-center gap-2">
                                     <Lightbulb className="w-4 h-4 text-primary" />
-                                    改善アクション
+                                    {copy.improvementsTitle}
                                 </h3>
                                 <div className="space-y-3">
-                                    {MOCK_RESULT.improvements.map((item, i) => (
+                                    {copy.improvements.map((item, i) => (
                                         <div key={i} className="bg-background p-4 rounded-xl border border-border shadow-sm hover:border-primary-border hover:shadow-md transition-all cursor-pointer group">
                                             <div className="flex justify-between items-start mb-1">
                                                 <div className="flex items-center gap-2 mb-1">
                                                     <span className={cn(
                                                         "w-2 h-2 rounded-full",
-                                                        item.priority === "high" ? "bg-destructive" : "bg-primary"
+                                                        MOCK_RESULT.improvementPriorities[i] === "high" ? "bg-destructive" : "bg-primary"
                                                     )} />
-                                                    <span className="text-xs font-bold text-muted-foreground uppercase">{item.priority === "high" ? "High" : "Medium"}</span>
+                                                    <span className="text-xs font-bold text-muted-foreground">{MOCK_RESULT.improvementPriorities[i] === "high" ? copy.priorityHigh : copy.priorityMedium}</span>
                                                 </div>
                                             </div>
                                             <h4 className="font-bold text-foreground text-sm mb-1 group-hover:text-primary">{item.title}</h4>
@@ -260,10 +334,10 @@ export function BannalyzeTemplateDemo({ className }: { className?: string }) {
                             <div>
                                 <h3 className="text-md font-bold text-foreground mb-3 flex items-center gap-2">
                                     <MapPin className="w-4 h-4 text-primary" />
-                                    指摘箇所
+                                    {copy.annotationsTitle}
                                 </h3>
                                 <div className="space-y-2">
-                                    {MOCK_RESULT.annotations.map((ann) => (
+                                    {annotations.map((ann) => (
                                         <div
                                             key={ann.id}
                                             onMouseEnter={() => setHoveredAnnotation(ann.id)}
@@ -303,17 +377,19 @@ export function BannalyzeTemplateDemo({ className }: { className?: string }) {
                             {/* eslint-disable-next-line @next/next/no-img-element */}
                             <img
                                 src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=800&q=80"
-                                alt="Banner Analysis Target"
+                                alt={copy.bannerAlt}
                                 className="w-full h-full object-cover"
                             />
 
                             {/* Annotation Overlay */}
-                            {MOCK_RESULT.annotations.map(ann => (
+                            {annotations.map(ann => (
                                 <AnnotationMarker
                                     key={ann.id}
                                     id={ann.id}
                                     x={ann.x}
                                     y={ann.y}
+                                    title={ann.title}
+                                    description={ann.description}
                                     isHovered={hoveredAnnotation === ann.id}
                                     onHover={(hover) => setHoveredAnnotation(hover ? ann.id : null)}
                                 />
@@ -327,14 +403,14 @@ export function BannalyzeTemplateDemo({ className }: { className?: string }) {
                         <div className="flex items-center gap-2">
                             <div className="relative group cursor-pointer border-2 border-transparent hover:border-primary rounded-md overflow-hidden opacity-50 hover:opacity-100 transition-all">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=100&q=80" className="w-20 h-14 object-cover" />
-                                <div className="absolute inset-x-0 bottom-0 bg-foreground/60 text-[10px] text-background p-0.5 text-center">Version 1</div>
+                                <img src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=100&q=80" alt={copy.thumbnailAlt} className="w-20 h-14 object-cover" />
+                                <div className="absolute inset-x-0 bottom-0 bg-foreground/60 text-[10px] text-background p-0.5 text-center">{copy.versionLabel(1)}</div>
                             </div>
                             <div className="relative group cursor-pointer border-2 border-primary rounded-md overflow-hidden ring-2 ring-primary-border">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=100&q=80" className="w-20 h-14 object-cover" />
+                                <img src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=100&q=80" alt={copy.thumbnailAlt} className="w-20 h-14 object-cover" />
                                 <div className="absolute top-1 right-1 w-2 h-2 rounded-full bg-primary"></div>
-                                <div className="absolute inset-x-0 bottom-0 bg-primary text-[10px] text-primary-foreground p-0.5 text-center font-bold">Version 2</div>
+                                <div className="absolute inset-x-0 bottom-0 bg-primary text-[10px] text-primary-foreground p-0.5 text-center font-bold">{copy.versionLabel(2)}</div>
                             </div>
                         </div>
 
@@ -342,7 +418,7 @@ export function BannalyzeTemplateDemo({ className }: { className?: string }) {
 
                         <button className="w-20 h-14 border-2 border-dashed border-border rounded-md flex flex-col items-center justify-center text-muted-foreground hover:text-foreground hover:border-primary-border hover:bg-muted transition-colors">
                             <Plus className="w-5 h-5 mb-1" />
-                            <span className="text-[10px]">Add New</span>
+                            <span className="text-[10px]">{copy.addNew}</span>
                         </button>
                     </div>
                 </div>

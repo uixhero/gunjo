@@ -1,6 +1,6 @@
 {
   "round": 164,
-  "status": "draft",
+  "status": "reviewed",
   "title": "SectionList was independently found on the next shipper screen",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. A mobile shipper portal found the new `SectionList` almost immediately, while exact-time guidance incorrectly substituted `TimePicker` for delivery windows.",
   "article": {

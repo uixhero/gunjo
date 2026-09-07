@@ -320,6 +320,33 @@ function ItineraryPreview({
   );
 }
 
+function ItineraryTonePreview({ locale }: { locale: Locale }) {
+  const isJa = locale === "ja";
+  const items: ItineraryItem[] = isJa
+    ? [
+        { id: "meet", time: "09:00", tone: "default", icon: <IconMapPin className="size-4" />, title: "集合", description: "第2ターミナル 3階 Fカウンター前" },
+        { id: "flight", time: "10:20", tone: "primary", icon: <IconPlane className="size-4" />, title: "NH852 便", description: "羽田 → 那覇" },
+        { id: "ferry", time: "13:40", tone: "info", icon: <IconShip className="size-4" />, title: "離島フェリー", description: "泊港 3番桟橋" },
+        { id: "hotel", time: "15:00", tone: "success", icon: <IconBuildingPavilion className="size-4" />, title: "チェックイン", description: "予約は確定済み" },
+        { id: "transfer", time: "18:05", tone: "warning", icon: <IconTrain className="size-4" />, title: "乗り継ぎ 25分", description: "遅延すると次の便に間に合いません" },
+        { id: "free", time: "終日", tone: "muted", icon: <IconMapPin className="size-4" />, title: "自由行動", description: "予定は入れていません" },
+      ]
+    : [
+        { id: "meet", time: "09:00", tone: "default", icon: <IconMapPin className="size-4" />, title: "Meeting point", description: "Terminal 2, level 3, counter F" },
+        { id: "flight", time: "10:20", tone: "primary", icon: <IconPlane className="size-4" />, title: "Flight NH852", description: "Haneda to Naha" },
+        { id: "ferry", time: "13:40", tone: "info", icon: <IconShip className="size-4" />, title: "Island ferry", description: "Tomari Port, pier 3" },
+        { id: "hotel", time: "15:00", tone: "success", icon: <IconBuildingPavilion className="size-4" />, title: "Check-in", description: "Booking confirmed" },
+        { id: "transfer", time: "18:05", tone: "warning", icon: <IconTrain className="size-4" />, title: "25-minute transfer", description: "A delay here misses the next leg" },
+        { id: "free", time: "All day", tone: "muted", icon: <IconMapPin className="size-4" />, title: "Free time", description: "Nothing booked" },
+      ];
+
+  return (
+    <div className="w-full max-w-md rounded-lg border bg-card p-4">
+      <Itinerary items={items} />
+    </div>
+  );
+}
+
 export default function ItineraryDocPage() {
   const { locale, sectionLabels } = useLocale();
   const content = getDocContent("components/itinerary", locale);
@@ -533,6 +560,142 @@ export function TripItinerary() {
   );
 }`;
 
+  const toneCode = locale === "ja"
+    ? `import { Itinerary, type ItineraryItem } from "@gunjo/ui";
+import {
+  IconBuildingPavilion,
+  IconMapPin,
+  IconPlane,
+  IconShip,
+  IconTrain,
+} from "@tabler/icons-react";
+
+const ITEMS: ItineraryItem[] = [
+  {
+    id: "meet",
+    time: "09:00",
+    tone: "default",
+    icon: <IconMapPin className="size-4" />,
+    title: "集合",
+    description: "第2ターミナル 3階 Fカウンター前",
+  },
+  {
+    id: "flight",
+    time: "10:20",
+    tone: "primary",
+    icon: <IconPlane className="size-4" />,
+    title: "NH852 便",
+    description: "羽田 → 那覇",
+  },
+  {
+    id: "ferry",
+    time: "13:40",
+    tone: "info",
+    icon: <IconShip className="size-4" />,
+    title: "離島フェリー",
+    description: "泊港 3番桟橋",
+  },
+  {
+    id: "hotel",
+    time: "15:00",
+    tone: "success",
+    icon: <IconBuildingPavilion className="size-4" />,
+    title: "チェックイン",
+    description: "予約は確定済み",
+  },
+  {
+    id: "transfer",
+    time: "18:05",
+    tone: "warning",
+    icon: <IconTrain className="size-4" />,
+    title: "乗り継ぎ 25分",
+    description: "遅延すると次の便に間に合いません",
+  },
+  {
+    id: "free",
+    time: "終日",
+    tone: "muted",
+    icon: <IconMapPin className="size-4" />,
+    title: "自由行動",
+    description: "予定は入れていません",
+  },
+];
+
+export function ItineraryTones() {
+  return (
+    <div className="w-full max-w-md rounded-lg border bg-card p-4">
+      <Itinerary items={ITEMS} />
+    </div>
+  );
+}`
+    : `import { Itinerary, type ItineraryItem } from "@gunjo/ui";
+import {
+  IconBuildingPavilion,
+  IconMapPin,
+  IconPlane,
+  IconShip,
+  IconTrain,
+} from "@tabler/icons-react";
+
+const ITEMS: ItineraryItem[] = [
+  {
+    id: "meet",
+    time: "09:00",
+    tone: "default",
+    icon: <IconMapPin className="size-4" />,
+    title: "Meeting point",
+    description: "Terminal 2, level 3, counter F",
+  },
+  {
+    id: "flight",
+    time: "10:20",
+    tone: "primary",
+    icon: <IconPlane className="size-4" />,
+    title: "Flight NH852",
+    description: "Haneda to Naha",
+  },
+  {
+    id: "ferry",
+    time: "13:40",
+    tone: "info",
+    icon: <IconShip className="size-4" />,
+    title: "Island ferry",
+    description: "Tomari Port, pier 3",
+  },
+  {
+    id: "hotel",
+    time: "15:00",
+    tone: "success",
+    icon: <IconBuildingPavilion className="size-4" />,
+    title: "Check-in",
+    description: "Booking confirmed",
+  },
+  {
+    id: "transfer",
+    time: "18:05",
+    tone: "warning",
+    icon: <IconTrain className="size-4" />,
+    title: "25-minute transfer",
+    description: "A delay here misses the next leg",
+  },
+  {
+    id: "free",
+    time: "All day",
+    tone: "muted",
+    icon: <IconMapPin className="size-4" />,
+    title: "Free time",
+    description: "Nothing booked",
+  },
+];
+
+export function ItineraryTones() {
+  return (
+    <div className="w-full max-w-md rounded-lg border bg-card p-4">
+      <Itinerary items={ITEMS} />
+    </div>
+  );
+}`;
+
   const propsData = [
     { name: "days", type: "ItineraryDay[]", description: locale === "ja" ? "日別グループです。各日が見出しと timeline を持ちます。" : "Day groups. Each day owns a heading and timeline." },
     { name: "items", type: "ItineraryItem[]", description: locale === "ja" ? "日別グループなしのフラットな項目です。days がある場合は無視します。" : "Flat items without day grouping. Ignored when days is provided." },
@@ -667,6 +830,16 @@ const selectedDetail = selectedId ? details[selectedId as keyof typeof details] 
     </SheetContent>
   </Sheet>
 </div>`,
+              previewBodyWidth: "md",
+            },
+            {
+              key: "marker-tones",
+              title: locale === "ja" ? "印の色みのすべて" : "Every marker tone",
+              description: locale === "ja"
+                ? "tone は6種類。色みは種類の目印にすぎないので、印の中には必ずアイコンを置き、時刻は「終日」のような文字も受け取ります。"
+                : "There are six tones. The colour is only a hint at the kind, so every marker also carries an icon — and time accepts words such as “All day”, not just clock values.",
+              preview: <ItineraryTonePreview locale={locale} />,
+              code: toneCode,
               previewBodyWidth: "md",
             },
           ]}

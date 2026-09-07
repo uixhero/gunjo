@@ -1,6 +1,6 @@
 {
   "round": 111,
-  "status": "draft",
+  "status": "reviewed",
   "title": "ListCard emerged after one pattern recurred across consumer screens",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs; it built a responsive screen that passed `tsc`. A third tap-friendly result row triggered Gunjo's first shared consumer-facing list component.",
   "article": {

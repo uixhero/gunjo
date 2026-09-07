@@ -3,6 +3,7 @@
 import * as React from "react";
 import { Button, MarqueeFrame } from "@gunjo/ui";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
+import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { useLocale } from "@/components/providers/LocaleProvider";
@@ -258,6 +259,7 @@ const propsDataByLocale = {
 
 export default function MarqueeFrameDocPage() {
     const { locale } = useLocale();
+    const usageCode = codeByLocale[locale];
     const [docsPath, setDocsPath] = React.useState<(typeof pathOptions)[number]["path"]>("/media");
     const [navigationPath, setNavigationPath] = React.useState<(typeof pathOptions)[number]["path"]>("/media");
     const meta = layoutMetadata as Record<string, { title: string; description: string }>;
@@ -278,7 +280,7 @@ export default function MarqueeFrameDocPage() {
                 { name: "MediaLibraryTemplate", href: "/patterns/media-library" },
             ]}
         >
-            <ComponentPreview code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="full" previewHeight={900} className="transition-none">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="full" previewHeight={900} className="transition-none">
                 <div className="w-full space-y-4">
                     <div className="flex flex-wrap items-center gap-2">
                         {pathOptions.map((item) => (
@@ -326,101 +328,104 @@ export default function MarqueeFrameDocPage() {
                         {locale === "ja" ? "状態とバリエーション" : "States and Variants"}
                     </h2>
                 </div>
-                <div className="space-y-8">
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "URL 連動" : "URL navigation"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja" ? "URL バーと外部ボタンのどちらからでも、擬似ブラウザ内の表示を切り替えます。" : "Change the fake browser content from the URL bar or external buttons."}
-                            </p>
-                        </div>
-                        <ComponentPreview code={stateCodeByLocale[locale].default} codeBlock={<CodeBlock code={stateCodeByLocale[locale].default} />} previewBodyWidth="full" previewHeight={900} className="transition-none">
-                            <div className="w-full space-y-4">
-                                <div className="flex flex-wrap items-center gap-2">
-                                    {pathOptions.map((item) => (
-                                        <Button
-                                            key={item.path}
-                                            type="button"
-                                            size="sm"
-                                            variant={navigationPath === item.path ? "default" : "outline"}
-                                            onClick={() => setNavigationPath(item.path)}
-                                        >
-                                            {item.label[locale]}
-                                        </Button>
-                                    ))}
-                                </div>
-                                <MarqueeFrame
-                                    host="gunjo.example"
-                                    path={navigationPath}
-                                    defaultPath="/media"
-                                    navigablePaths={pathOptions.map((item) => item.path)}
-                                    onPathChange={(nextPath) => {
-                                        if (pathOptions.some((item) => item.path === nextPath)) {
-                                            setNavigationPath(nextPath as (typeof pathOptions)[number]["path"]);
-                                        }
-                                    }}
-                                >
-                                    {(viewport) => (
-                                        <div className="flex h-full items-center justify-center bg-muted/30 p-6">
-                                            <div className="w-full max-w-sm rounded-lg border bg-background p-5 shadow-sm">
-                                                <p className="text-xs font-medium uppercase text-muted-foreground">{navigationPath}</p>
-                                                <h3 className="mt-2 text-xl font-semibold text-foreground">{navigationCopy.title}</h3>
-                                                <p className="mt-2 text-sm text-muted-foreground">{navigationCopy.description}</p>
-                                                <p className="mt-4 text-xs text-muted-foreground">
-                                                    {locale === "ja" ? `現在の表示サイズ: ${viewport}` : `Active viewport: ${viewport}`}
-                                                </p>
+                <ComponentDemoStates
+                    states={[
+                        {
+                            key: "url-navigation",
+                            title: locale === "ja" ? "URL 連動" : "URL navigation",
+                            description: locale === "ja" ? "URL バーと外部ボタンのどちらからでも、擬似ブラウザ内の表示を切り替えます。" : "Change the fake browser content from the URL bar or external buttons.",
+                            code: stateCodeByLocale[locale].default,
+                            previewBodyWidth: "full",
+                            previewHeight: 900,
+                            previewClassName: "transition-none",
+                            preview: (
+                                <div className="w-full space-y-4">
+                                    <div className="flex flex-wrap items-center gap-2">
+                                        {pathOptions.map((item) => (
+                                            <Button
+                                                key={item.path}
+                                                type="button"
+                                                size="sm"
+                                                variant={navigationPath === item.path ? "default" : "outline"}
+                                                onClick={() => setNavigationPath(item.path)}
+                                            >
+                                                {item.label[locale]}
+                                            </Button>
+                                        ))}
+                                    </div>
+                                    <MarqueeFrame
+                                        host="gunjo.example"
+                                        path={navigationPath}
+                                        defaultPath="/media"
+                                        navigablePaths={pathOptions.map((item) => item.path)}
+                                        onPathChange={(nextPath) => {
+                                            if (pathOptions.some((item) => item.path === nextPath)) {
+                                                setNavigationPath(nextPath as (typeof pathOptions)[number]["path"]);
+                                            }
+                                        }}
+                                    >
+                                        {(viewport) => (
+                                            <div className="flex h-full items-center justify-center bg-muted/30 p-6">
+                                                <div className="w-full max-w-sm rounded-lg border bg-background p-5 shadow-sm">
+                                                    <p className="text-xs font-medium uppercase text-muted-foreground">{navigationPath}</p>
+                                                    <h3 className="mt-2 text-xl font-semibold text-foreground">{navigationCopy.title}</h3>
+                                                    <p className="mt-2 text-sm text-muted-foreground">{navigationCopy.description}</p>
+                                                    <p className="mt-4 text-xs text-muted-foreground">
+                                                        {locale === "ja" ? `現在の表示サイズ: ${viewport}` : `Active viewport: ${viewport}`}
+                                                    </p>
+                                                </div>
                                             </div>
+                                        )}
+                                    </MarqueeFrame>
+                                </div>
+                            ),
+                        },
+                        {
+                            key: "mobile-first",
+                            title: locale === "ja" ? "モバイル初期表示" : "Mobile first",
+                            description: locale === "ja" ? "スマホ画面の確認を主目的にする場合は、初期表示サイズをモバイルにします。" : "Set the initial viewport to mobile when phone review is the primary task.",
+                            code: stateCodeByLocale[locale].mobile,
+                            previewBodyWidth: "full",
+                            previewHeight: 840,
+                            previewClassName: "transition-none",
+                            preview: (
+                                <MarqueeFrame path="/preview" initialViewport="mobile" maxCanvasHeight={620}>
+                                    {(viewport) => (
+                                        <div className="flex h-full items-center justify-center bg-background p-6">
+                                            {locale === "ja" ? "モバイル優先プレビュー" : "Mobile-first preview"} / {viewport}
                                         </div>
                                     )}
                                 </MarqueeFrame>
-                            </div>
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "モバイル初期表示" : "Mobile first"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja" ? "スマホ画面の確認を主目的にする場合は、初期表示サイズをモバイルにします。" : "Set the initial viewport to mobile when phone review is the primary task."}
-                            </p>
-                        </div>
-                        <ComponentPreview code={stateCodeByLocale[locale].mobile} codeBlock={<CodeBlock code={stateCodeByLocale[locale].mobile} />} previewBodyWidth="full" previewHeight={840} className="transition-none">
-                            <MarqueeFrame path="/preview" initialViewport="mobile" maxCanvasHeight={620}>
-                                {(viewport) => (
-                                    <div className="flex h-full items-center justify-center bg-background p-6">
-                                        {locale === "ja" ? "モバイル優先プレビュー" : "Mobile-first preview"} / {viewport}
-                                    </div>
-                                )}
-                            </MarqueeFrame>
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "カスタム表示サイズ" : "Custom viewport sizes"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja" ? "パターン固有の画面比率に合わせて、デスクトップ / タブレット / モバイルのサイズを差し替えます。" : "Override desktop, tablet, and mobile dimensions for a pattern-specific aspect ratio."}
-                            </p>
-                        </div>
-                        <ComponentPreview code={stateCodeByLocale[locale].customSizes} codeBlock={<CodeBlock code={stateCodeByLocale[locale].customSizes} />} previewBodyWidth="full" previewHeight={760} className="transition-none">
-                            <MarqueeFrame
-                                path="/custom"
-                                maxCanvasHeight={540}
-                                viewportSizes={{
-                                    desktop: { width: 960, height: 540 },
-                                    tablet: { width: 720, height: 720 },
-                                    mobile: { width: 360, height: 640 },
-                                }}
-                            >
-                                {(viewport) => (
-                                    <div className="flex h-full items-center justify-center bg-background p-6">
-                                        {locale === "ja" ? "カスタム表示サイズ" : "Custom viewport"} / {viewport}
-                                    </div>
-                                )}
-                            </MarqueeFrame>
-                        </ComponentPreview>
-                    </section>
-                </div>
+                            ),
+                        },
+                        {
+                            key: "custom-viewport-sizes",
+                            title: locale === "ja" ? "カスタム表示サイズ" : "Custom viewport sizes",
+                            description: locale === "ja" ? "パターン固有の画面比率に合わせて、デスクトップ / タブレット / モバイルのサイズを差し替えます。" : "Override desktop, tablet, and mobile dimensions for a pattern-specific aspect ratio.",
+                            code: stateCodeByLocale[locale].customSizes,
+                            previewBodyWidth: "full",
+                            previewHeight: 760,
+                            previewClassName: "transition-none",
+                            preview: (
+                                <MarqueeFrame
+                                    path="/custom"
+                                    maxCanvasHeight={540}
+                                    viewportSizes={{
+                                        desktop: { width: 960, height: 540 },
+                                        tablet: { width: 720, height: 720 },
+                                        mobile: { width: 360, height: 640 },
+                                    }}
+                                >
+                                    {(viewport) => (
+                                        <div className="flex h-full items-center justify-center bg-background p-6">
+                                            {locale === "ja" ? "カスタム表示サイズ" : "Custom viewport"} / {viewport}
+                                        </div>
+                                    )}
+                                </MarqueeFrame>
+                            ),
+                        },
+                    ]}
+                />
             </section>
 
             <section className="space-y-4">
@@ -431,10 +436,10 @@ export default function MarqueeFrameDocPage() {
             <section className="space-y-4">
                 <div className="flex items-start justify-between gap-3 border-b pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </section>
         </ComponentLayout>
