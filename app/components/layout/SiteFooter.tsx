@@ -20,8 +20,23 @@ const SUPPORT_URL =
 
 export function SiteFooter({
     placement = "global",
+    bookBanner,
 }: {
     placement?: SiteFooterPlacement;
+    /**
+     * The paid-book banner, rendered just above the footer.
+     *
+     * It arrives as a prop instead of being imported here because the decision
+     * to render it is made on the server (app/components/book/BookBanner.tsx)
+     * while this component is a client component.
+     *
+     * Threading it through here — rather than placing it next to <SiteFooter />
+     * in the layout — makes it inherit every "no footer here" rule below for
+     * free: /embed routes and iframed pages get no banner either. The docs and
+     * /tokens shells render <SiteFooter placement="content" /> without this
+     * prop, so the banner stays off reference pages people return to often.
+     */
+    bookBanner?: React.ReactNode;
 }) {
     const pathname = usePathname();
     const { header, t, locale } = useLocale();
@@ -44,50 +59,53 @@ export function SiteFooter({
     if (isInIframe) return null;
 
     return (
-        <Footer
-            data-site-footer
-            className={
-                isContentFooter
-                    ? "mt-10 border-border/40 px-0 py-8"
-                    : "border-border/40 px-0 py-8"
-            }
-        >
-            <div
+        <>
+            {bookBanner}
+            <Footer
+                data-site-footer
                 className={
                     isContentFooter
-                        ? "flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between"
-                        : "container flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between"
+                        ? "mt-10 border-border/40 px-0 py-8"
+                        : "border-border/40 px-0 py-8"
                 }
             >
-                <FooterBrand className="gap-2">
-                    <GunjoLogo className="h-7 w-[3.3rem]" label={header("siteName")} />
-                    <FooterCopyright className="border-0 p-0">
-                        © 2026 4px LLC. Becoming blue.
-                    </FooterCopyright>
-                </FooterBrand>
-
-                <nav
-                    className="flex flex-wrap gap-x-5 gap-y-2 text-sm"
-                    aria-label="Footer"
+                <div
+                    className={
+                        isContentFooter
+                            ? "flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between"
+                            : "container flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between"
+                    }
                 >
-                    <FooterLink href="/showcase">{header("showcase")}</FooterLink>
-                    <FooterLink href="/patterns">{header("patterns")}</FooterLink>
-                    <FooterLink href="/docs/introduction">{header("docs")}</FooterLink>
-                    <FooterLink href="/docs/comparison">{t("Comparison")}</FooterLink>
-                    <FooterLink href="/docs/tokens">{t("Tokens")}</FooterLink>
-                    <FooterLink href="/docs/no-npm">{t("Without npm")}</FooterLink>
-                    <FooterLink href="/docs/ai-handoff">{t("AI handoff")}</FooterLink>
-                    {SUPPORT_URL ? (
-                        <FooterLink
-                            href={SUPPORT_URL}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                        >
-                            {locale === "ja" ? "サポート" : "Support"}
-                        </FooterLink>
-                    ) : null}
-                </nav>
-            </div>
-        </Footer>
+                    <FooterBrand className="gap-2">
+                        <GunjoLogo className="h-7 w-[3.3rem]" label={header("siteName")} />
+                        <FooterCopyright className="border-0 p-0">
+                            © 2026 4px LLC. Becoming blue.
+                        </FooterCopyright>
+                    </FooterBrand>
+
+                    <nav
+                        className="flex flex-wrap gap-x-5 gap-y-2 text-sm"
+                        aria-label="Footer"
+                    >
+                        <FooterLink href="/showcase">{header("showcase")}</FooterLink>
+                        <FooterLink href="/patterns">{header("patterns")}</FooterLink>
+                        <FooterLink href="/docs/introduction">{header("docs")}</FooterLink>
+                        <FooterLink href="/docs/comparison">{t("Comparison")}</FooterLink>
+                        <FooterLink href="/docs/tokens">{t("Tokens")}</FooterLink>
+                        <FooterLink href="/docs/no-npm">{t("Without npm")}</FooterLink>
+                        <FooterLink href="/docs/ai-handoff">{t("AI handoff")}</FooterLink>
+                        {SUPPORT_URL ? (
+                            <FooterLink
+                                href={SUPPORT_URL}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                            >
+                                {locale === "ja" ? "サポート" : "Support"}
+                            </FooterLink>
+                        ) : null}
+                    </nav>
+                </div>
+            </Footer>
+        </>
     );
 }

@@ -3,6 +3,7 @@ import { Inter, Shippori_Mincho } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { BookBanner } from "@/components/book/BookBanner";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ThemeOverridesProvider } from "@/components/providers/ThemeOverridesProvider";
 import { LocaleProvider } from "@/components/providers/LocaleProvider";
@@ -73,7 +74,9 @@ export default function RootLayout({
                     <TooltipProvider delayDuration={300}>
                       <SiteHeader />
                       <div className="flex-1">{children}</div>
-                      <SiteFooter />
+                      {/* The banner is built here, on the server, and handed to
+                          SiteFooter — see app/components/book/BookBanner.tsx. */}
+                      <SiteFooter bookBanner={<BookBanner />} />
                     </TooltipProvider>
                   </ToastProvider>
                 </ThemeOverridesProvider>
