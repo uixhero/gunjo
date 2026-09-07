@@ -22,6 +22,7 @@ import {
     MenubarTrigger,
     DocNote,
 } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function MenubarExample() {
     const { locale } = useLocale();
@@ -145,6 +146,39 @@ function AppWindowMenubarExample() {
     );
 }
 
+/** 押せない項目に理由を添える。GUNJO が Radix の項目に足した disabledReason。 */
+function UnavailableMenubarExample() {
+    const { locale } = useLocale();
+    const isJa = locale === "ja";
+
+    return (
+        <Menubar>
+            <MenubarMenu>
+                <MenubarTrigger>{isJa ? "編集" : "Edit"}</MenubarTrigger>
+                <MenubarContent>
+                    <MenubarItem
+                        disabled
+                        disabledReason={isJa ? "取り消せる操作がまだありません。" : "Nothing has been done yet to undo."}
+                    >
+                        {isJa ? "取り消し" : "Undo"} <MenubarShortcut>⌘Z</MenubarShortcut>
+                    </MenubarItem>
+                    <MenubarItem>
+                        {isJa ? "コピー" : "Copy"} <MenubarShortcut>⌘C</MenubarShortcut>
+                    </MenubarItem>
+                    <MenubarItem
+                        disabled
+                        disabledReason={isJa ? "クリップボードに貼り付けられるものがありません。" : "The clipboard has nothing to paste."}
+                    >
+                        {isJa ? "貼り付け" : "Paste"} <MenubarShortcut>⌘V</MenubarShortcut>
+                    </MenubarItem>
+                    <MenubarSeparator />
+                    <MenubarItem disabled>{isJa ? "書き出し" : "Export"}</MenubarItem>
+                </MenubarContent>
+            </MenubarMenu>
+        </Menubar>
+    );
+}
+
 const codeByLocale = {
     ja: `import { Menubar, MenubarContent, MenubarItem, MenubarMenu, MenubarSeparator, MenubarShortcut, MenubarSub, MenubarSubContent, MenubarSubTrigger, MenubarTrigger } from "@gunjo/ui"
 
@@ -243,6 +277,81 @@ export function FileMenubar() {
         <MenubarContent>
           <MenubarItem>Reload <MenubarShortcut>⌘R</MenubarShortcut></MenubarItem>
           <MenubarItem>Fullscreen</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  )
+}`,
+};
+
+const unavailableCodeByLocale = {
+    ja: `import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+} from "@gunjo/ui"
+
+export function EditMenubar() {
+  return (
+    <Menubar>
+      <MenubarMenu>
+        <MenubarTrigger>編集</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem disabled disabledReason="取り消せる操作がまだありません。">
+            取り消し <MenubarShortcut>⌘Z</MenubarShortcut>
+          </MenubarItem>
+          <MenubarItem>
+            コピー <MenubarShortcut>⌘C</MenubarShortcut>
+          </MenubarItem>
+          <MenubarItem
+            disabled
+            disabledReason="クリップボードに貼り付けられるものがありません。"
+          >
+            貼り付け <MenubarShortcut>⌘V</MenubarShortcut>
+          </MenubarItem>
+          <MenubarSeparator />
+          {/* 理由を渡さないと、薄い項目だけが残ります。 */}
+          <MenubarItem disabled>書き出し</MenubarItem>
+        </MenubarContent>
+      </MenubarMenu>
+    </Menubar>
+  )
+}`,
+    en: `import {
+  Menubar,
+  MenubarContent,
+  MenubarItem,
+  MenubarMenu,
+  MenubarSeparator,
+  MenubarShortcut,
+  MenubarTrigger,
+} from "@gunjo/ui"
+
+export function EditMenubar() {
+  return (
+    <Menubar>
+      <MenubarMenu>
+        <MenubarTrigger>Edit</MenubarTrigger>
+        <MenubarContent>
+          <MenubarItem disabled disabledReason="Nothing has been done yet to undo.">
+            Undo <MenubarShortcut>⌘Z</MenubarShortcut>
+          </MenubarItem>
+          <MenubarItem>
+            Copy <MenubarShortcut>⌘C</MenubarShortcut>
+          </MenubarItem>
+          <MenubarItem
+            disabled
+            disabledReason="The clipboard has nothing to paste."
+          >
+            Paste <MenubarShortcut>⌘V</MenubarShortcut>
+          </MenubarItem>
+          <MenubarSeparator />
+          {/* With no reason, all that is left is a dimmed row. */}
+          <MenubarItem disabled>Export</MenubarItem>
         </MenubarContent>
       </MenubarMenu>
     </Menubar>
@@ -371,9 +480,10 @@ export function EditorWindowMenubar() {
 export default function MenubarPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
     const checksCode = checksCodeByLocale[locale];
     const appWindowCode = appWindowCodeByLocale[locale];
+    const unavailableCode = unavailableCodeByLocale[locale];
 
     return (
         <ComponentLayout
@@ -382,8 +492,14 @@ export default function MenubarPage() {
             sectionLabels={sectionLabels}
             usedComponents={[{ name: "Menubar", href: "/docs/components/menubar" }]}
             relatedComponents={[{ name: "ContextMenu", href: "/docs/components/context-menu" }]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: メニューバー（Menubar）" : "UIXHERO: Menubar (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/menubar`,
+                },
+            ]}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewBodyWidth="md" previewHeight="auto">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewBodyWidth="md" previewHeight="auto">
                 <MenubarExample />
             </ComponentPreview>
 
@@ -417,6 +533,17 @@ export default function MenubarPage() {
                             previewHeight: "auto",
                             code: checksCode,
                         },
+                        {
+                            key: "unavailable",
+                            title: isJa ? "いま押せない操作" : "Commands that are unavailable right now",
+                            description: isJa
+                                ? "薄くするだけでは「なぜ押せないのか」が画面に残りません。disabledReason を渡すと理由が吹き出しで読め、キーボードでも辿れます。理由が言えないときだけ disabled のままにします。"
+                                : "Dimming alone leaves the reason off the screen. disabledReason puts it in a tooltip that is reachable by keyboard too; leave a bare disabled only when there is no reason to give.",
+                            preview: <UnavailableMenubarExample />,
+                            previewBodyWidth: "md",
+                            previewHeight: "auto",
+                            code: unavailableCode,
+                        },
                     ]}
                 />
             </div>
@@ -442,10 +569,44 @@ export default function MenubarPage() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>ショートカットは置き場所だけ用意した。</strong>資料は「メニュー項目の右端にショートカットを必ず表示する」を挙げています。GUNJO は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarShortcut</code> という薄い部品を用意し、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ml-auto</code> で右端に寄せて小さな字で出すところまでを持ちます。何のキーを書くかは持ちません。同じ操作でも OS で表記が変わるからです。
+                        </li>
+                        <li>
+                            <strong>使えない項目は消さずに、理由を出せるようにした。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarItem</code> に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> を渡すと、その項目は並びに残したまま、hover と focus と指での長押しで理由が出ます。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabled</code> だけを渡すと「なぜ押せないのか」が画面のどこにも無い状態になるので、理由を書く口を部品の側に用意しました。読み上げ向けの名前は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReasonLabel</code> で別に渡せます。
+                        </li>
+                        <li>
+                            <strong>チェック項目とラジオ項目を別の部品に分けた。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarCheckboxItem</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarRadioItem</code> を用意し、資料が求める <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">menuitemcheckbox</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">menuitemradio</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-checked</code> は土台の Radix が付けます。サブメニュー（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarSub</code>）の見た目は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">min-w-[8rem]</code> と控えめにしてあり、資料の「サブメニューは最大1段まで」に沿って、深く入れ子にする使い方は想定していません。
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Only the slot for the shortcut, not the shortcut itself.</strong> The article asks that a keyboard shortcut always be shown at the right edge of a menu item. GUNJO ships <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarShortcut</code>, a thin element that pushes itself right with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ml-auto</code> and renders in a small muted type. It does not decide what the keys are: the same command is written differently on each OS.
+                        </li>
+                        <li>
+                            <strong>An unavailable item stays visible and can explain itself.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> to a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarItem</code> and the item keeps its place in the list while hover, focus and a touch press reveal the reason. With <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabled</code> alone, the answer to why it cannot be pressed exists nowhere on screen, so the slot for that answer lives in the component. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReasonLabel</code> supplies a separate name for screen readers.
+                        </li>
+                        <li>
+                            <strong>Checkbox and radio items are separate components.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarCheckboxItem</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarRadioItem</code> exist so the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">menuitemcheckbox</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">menuitemradio</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-checked</code> the article requires come from Radix underneath. The submenu (<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">MenubarSub</code>) is styled small on purpose (<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">min-w-[8rem]</code>), matching the article rule of at most one level of nesting.
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

@@ -1,6 +1,6 @@
 {
   "round": 13,
-  "status": "draft",
+  "status": "reviewed",
   "title": "OnboardingFlow missed the one job its name promised",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. `OnboardingFlow` could not block invalid steps and `RadioGroup` failed from the keyboard, so I added validation gates and repaired its radio behavior.",
   "article": {

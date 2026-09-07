@@ -1,6 +1,6 @@
 {
   "round": 27,
-  "status": "draft",
+  "status": "reviewed",
   "title": "Generic components worked, but the calendar layer did not exist",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. The generic controls framed a solid week view, but the agent hand-rolled the entire scheduler and overlap algorithm, so I made Japanese holidays opt-in and scoped the calendar layer for beta.",
   "article": {

@@ -1,6 +1,6 @@
 {
   "round": 9,
-  "status": "draft",
+  "status": "reviewed",
   "title": "A Kanban board showed Gunjo was not battle-tested yet",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. A drag-and-drop board exposed a Kanban template that was little more than a broken frame with no docs, so I logged it for a real rebuild.",
   "article": {

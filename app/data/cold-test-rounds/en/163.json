@@ -1,6 +1,6 @@
 {
   "round": 163,
-  "status": "draft",
+  "status": "reviewed",
   "title": "Recent components found new uses as staff-facing trucking reached five screens",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Trucking profitability independently found `Leaderboard` and repurposed `LimitMonitor` for freight-rate comparison, while inverted KPI semantics reached two of three.",
   "article": {

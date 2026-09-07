@@ -38,6 +38,7 @@ import {
     Select,
     type ActionDataTableLabels,
 } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Campaign = {
     id: string;
@@ -197,7 +198,13 @@ function getColumns(isJa: boolean): ColumnDef<Campaign>[] {
     ];
 }
 
-function ActionDataTableDemo({ compact = false }: { compact?: boolean }) {
+function ActionDataTableDemo({
+    compact = false,
+    rowActionsVariant,
+}: {
+    compact?: boolean;
+    rowActionsVariant?: "inline" | "menu";
+}) {
     const { locale } = useLocale();
     const isJa = locale === "ja";
     const labels = React.useMemo(() => getLabels(isJa), [isJa]);
@@ -264,6 +271,7 @@ function ActionDataTableDemo({ compact = false }: { compact?: boolean }) {
                 labels={labels}
                 getRowId={(row) => row.id}
                 getRowLabel={(row) => row.name}
+                rowActionsVariant={rowActionsVariant}
                 bulkActions={[
                     {
                         id: "archive",
@@ -688,6 +696,97 @@ export function CampaignTable() {
 
     const usageCode = code;
 
+    const menuCode = isJa
+        ? `"use client"
+
+import type { ColumnDef } from "@tanstack/react-table"
+import { IconArchive, IconPencil, IconTrash } from "@tabler/icons-react"
+import { ActionDataTable } from "@gunjo/ui"
+
+type Campaign = { id: string; name: string; owner: string; updatedAt: string }
+
+const campaigns: Campaign[] = [
+  { id: "c-001", name: "春の新生活バナー", owner: "青井 花", updatedAt: "2026-05-12" },
+  { id: "c-002", name: "アプリ訴求 LP", owner: "田中 空", updatedAt: "2026-05-10" },
+  { id: "c-003", name: "法人向け資料広告", owner: "山本 優", updatedAt: "2026-05-08" },
+]
+
+const columns: ColumnDef<Campaign>[] = [
+  { accessorKey: "name", header: "キャンペーン", size: 280 },
+  { accessorKey: "owner", header: "担当者", size: 128 },
+  { accessorKey: "updatedAt", header: "更新日", size: 120 },
+]
+
+export function CampaignTableWithMenu() {
+  return (
+    <ActionDataTable
+      columns={columns}
+      data={campaigns}
+      getRowId={(row) => row.id}
+      getRowLabel={(row) => row.name}
+      rowActionsVariant="menu"
+      labels={{ actions: "行操作" }}
+      rowActions={[
+        { id: "edit", label: "編集", icon: IconPencil },
+        { id: "archive", label: "保管", icon: IconArchive },
+        { id: "delete", label: "削除", icon: IconTrash, variant: "destructive" },
+      ]}
+    />
+  )
+}`
+        : `"use client"
+
+import type { ColumnDef } from "@tanstack/react-table"
+import { IconArchive, IconPencil, IconTrash } from "@tabler/icons-react"
+import { ActionDataTable } from "@gunjo/ui"
+
+type Campaign = { id: string; name: string; owner: string; updatedAt: string }
+
+const campaigns: Campaign[] = [
+  {
+    id: "c-001",
+    name: "Spring launch banner",
+    owner: "Hana Aoi",
+    updatedAt: "2026-05-12",
+  },
+  {
+    id: "c-002",
+    name: "App install landing page",
+    owner: "Sora Tanaka",
+    updatedAt: "2026-05-10",
+  },
+  {
+    id: "c-003",
+    name: "Enterprise whitepaper ad",
+    owner: "Yu Yamamoto",
+    updatedAt: "2026-05-08",
+  },
+]
+
+const columns: ColumnDef<Campaign>[] = [
+  { accessorKey: "name", header: "Campaign", size: 280 },
+  { accessorKey: "owner", header: "Owner", size: 128 },
+  { accessorKey: "updatedAt", header: "Updated", size: 120 },
+]
+
+export function CampaignTableWithMenu() {
+  return (
+    <ActionDataTable
+      columns={columns}
+      data={campaigns}
+      getRowId={(row) => row.id}
+      getRowLabel={(row) => row.name}
+      rowActionsVariant="menu"
+      labels={{ actions: "Row actions" }}
+      rowActions={[
+        { id: "edit", label: "Edit", icon: IconPencil },
+        { id: "archive", label: "Archive", icon: IconArchive },
+        { id: "delete", label: "Delete", icon: IconTrash, variant: "destructive" },
+      ]}
+    />
+  )
+}`;
+
     const propsData = [
         {
             name: "columns",
@@ -754,6 +853,13 @@ export function CampaignTable() {
                 { name: "Table", href: "/docs/components/table" },
                 { name: "FilterButton", href: "/docs/components/filter-button" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: テーブル（Table）" : "UIXHERO: Table (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/table`,
+                    relation: "nearest",
+                },
+            ]}
         >
             <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewHeight="auto" previewBodyWidth="xl">
                 <ActionDataTableDemo />
@@ -787,6 +893,17 @@ export function CampaignTable() {
                             previewClassName: "max-w-none",
                             code,
                         },
+                        {
+                            key: "row-actions-menu",
+                            title: isJa ? "行操作をひとつにまとめる" : "Row actions in one menu",
+                            description: isJa
+                                ? "rowActionsVariant=\"menu\" にすると、行の操作が「⋯」のメニューに畳まれます。操作が3つを超える表や、列が詰まっている表で使います。"
+                                : 'With rowActionsVariant="menu" the per-row actions collapse into a “⋯” overflow menu — the call for tables with more than three actions, or with no room left at the end of the row.',
+                            preview: <ActionDataTableDemo compact rowActionsVariant="menu" />,
+                            previewHeight: "auto",
+                            previewClassName: "max-w-none",
+                            code: menuCode,
+                        },
                     ]}
                 />
             </section>
@@ -804,6 +921,42 @@ export function CampaignTable() {
                 </h2>
                 <CodeCopyButton code={usageCode} />
                 <CodeBlock code={usageCode} />
+            </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>選択の列と操作の列を <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DataTable</code> の外側で足した。</strong>この部品は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DataTable</code> を包んで、先頭にチェックボックスの列を、末尾に行ごとの操作の列を差し込みます。線を減らすこと・揃え・横スクロールの閉じ込めといった表そのものの決まりは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DataTable</code> のままで、ここでは変えていません。
+                        </li>
+                        <li>
+                            <strong>全選択のチェックは「途中」の状態を持つ。</strong>一部の行だけが選ばれているとき、見出しのチェックは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-checked="mixed"'}</code> になります。入っているか空かの2つしか無いと、「一部選択」が「全部選択」に見えてしまうためです。
+                        </li>
+                        <li>
+                            <strong>行の操作は数が増えたら畳める。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">rowActionsVariant</code> に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">menu</code> を渡すと、並べたアイコンをドロップダウンに畳みます。資料は「線を減らしてデータを主役にする」を核に挙げていますが、行ごとに5個のアイコンが並ぶのも同じ種類のノイズだからです。使えない操作は消さず、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> で理由を読めるようにしています。
+                            <br />
+                            一般の表の設計は UIXHERO の「テーブル」にあります。
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Selection and row actions are added around <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DataTable</code>, not inside it.</strong> This component wraps <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DataTable</code>, injecting a checkbox column at the front and a row-action column at the end. Everything the table itself decides (dropping rules, alignment, containing horizontal scroll) stays with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DataTable</code> and is not re-litigated here.
+                        </li>
+                        <li>
+                            <strong>The select-all checkbox has a third state.</strong> When only some rows are selected the header checkbox reports <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-checked="mixed"'}</code>. With only checked and unchecked available, a partial selection would read as a full one.
+                        </li>
+                        <li>
+                            <strong>Row actions collapse once there are too many.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">menu</code> to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">rowActionsVariant</code> and the icon row folds into a dropdown. The article&rsquo;s core principle is to remove lines so the data leads; five icons repeated on every row are the same kind of noise. Unavailable actions are kept rather than hidden, with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> explaining why.
+                            <br />
+                            The general design of tables is covered by UIXHERO&rsquo;s table article.
+                        </li>
+                    </ul>
+                )}
             </section>
         </ComponentLayout>
     );

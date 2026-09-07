@@ -9,6 +9,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
 import { Badge, LineChip, ListCard, Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Locale = "ja" | "en";
 type ListCardSelection = "incident" | "route-1";
@@ -118,6 +119,40 @@ function ListCardPreview({ locale, readonly = false }: { locale: Locale; readonl
           {selectedId ? <ListCardDetail locale={locale} selection={selectedId} /> : null}
         </SheetContent>
       </Sheet>
+    </div>
+  );
+}
+
+/** severity は面（境界線と淡い背景）だけを変える。状態そのものは status の文字が持つ。 */
+function ListCardSeverityPreview({ locale }: { locale: Locale }) {
+  const isJa = locale === "ja";
+  const rows = isJa
+    ? [
+        { key: "critical", title: "配送ラインA", description: "停止から18分", status: "停止中", severity: "critical" as const, badge: "destructive" as const },
+        { key: "warning", title: "配送ラインB", description: "処理待ちが積み上がっています", status: "遅れ", severity: "warning" as const, badge: "outline" as const },
+        { key: "info", title: "配送ラインC", description: "10:00 から保守の予定", status: "予定あり", severity: "info" as const, badge: "outline" as const },
+        { key: "success", title: "配送ラインD", description: "所要時間は平常どおり", status: "正常", severity: "success" as const, badge: "outline" as const },
+        { key: "neutral", title: "配送ラインE", description: "本日の稼働はありません", status: "停止（予定）", severity: "neutral" as const, badge: "secondary" as const },
+      ]
+    : [
+        { key: "critical", title: "Line A", description: "Down for 18 minutes", status: "Down", severity: "critical" as const, badge: "destructive" as const },
+        { key: "warning", title: "Line B", description: "Queue is building up", status: "Behind", severity: "warning" as const, badge: "outline" as const },
+        { key: "info", title: "Line C", description: "Maintenance from 10:00", status: "Scheduled", severity: "info" as const, badge: "outline" as const },
+        { key: "success", title: "Line D", description: "Cycle time is normal", status: "Healthy", severity: "success" as const, badge: "outline" as const },
+        { key: "neutral", title: "Line E", description: "Not running today", status: "Off (planned)", severity: "neutral" as const, badge: "secondary" as const },
+      ];
+
+  return (
+    <div className="grid w-full max-w-2xl content-start gap-3">
+      {rows.map((row) => (
+        <ListCard
+          key={row.key}
+          title={row.title}
+          description={row.description}
+          status={<Badge variant={row.badge}>{row.status}</Badge>}
+          severity={row.severity}
+        />
+      ))}
     </div>
   );
 }
@@ -281,6 +316,130 @@ export function RouteResults() {
   );
 }`;
 
+  const severityCode = locale === "ja"
+    ? `import { Badge, ListCard } from "@gunjo/ui";
+
+const LINES = [
+  {
+    key: "critical",
+    title: "配送ラインA",
+    description: "停止から18分",
+    status: "停止中",
+    severity: "critical",
+    badge: "destructive",
+  },
+  {
+    key: "warning",
+    title: "配送ラインB",
+    description: "処理待ちが積み上がっています",
+    status: "遅れ",
+    severity: "warning",
+    badge: "outline",
+  },
+  {
+    key: "info",
+    title: "配送ラインC",
+    description: "10:00 から保守の予定",
+    status: "予定あり",
+    severity: "info",
+    badge: "outline",
+  },
+  {
+    key: "success",
+    title: "配送ラインD",
+    description: "所要時間は平常どおり",
+    status: "正常",
+    severity: "success",
+    badge: "outline",
+  },
+  {
+    key: "neutral",
+    title: "配送ラインE",
+    description: "本日の稼働はありません",
+    status: "停止（予定）",
+    severity: "neutral",
+    badge: "secondary",
+  },
+];
+
+export function LineStatusList() {
+  return (
+    <div className="grid w-full max-w-2xl content-start gap-3">
+      {LINES.map((line) => (
+        <ListCard
+          key={line.key}
+          title={line.title}
+          description={line.description}
+          // 状態そのものは文字で言う。severity は面を変えるだけ。
+          status={<Badge variant={line.badge}>{line.status}</Badge>}
+          severity={line.severity}
+        />
+      ))}
+    </div>
+  );
+}`
+    : `import { Badge, ListCard } from "@gunjo/ui";
+
+const LINES = [
+  {
+    key: "critical",
+    title: "Line A",
+    description: "Down for 18 minutes",
+    status: "Down",
+    severity: "critical",
+    badge: "destructive",
+  },
+  {
+    key: "warning",
+    title: "Line B",
+    description: "Queue is building up",
+    status: "Behind",
+    severity: "warning",
+    badge: "outline",
+  },
+  {
+    key: "info",
+    title: "Line C",
+    description: "Maintenance from 10:00",
+    status: "Scheduled",
+    severity: "info",
+    badge: "outline",
+  },
+  {
+    key: "success",
+    title: "Line D",
+    description: "Cycle time is normal",
+    status: "Healthy",
+    severity: "success",
+    badge: "outline",
+  },
+  {
+    key: "neutral",
+    title: "Line E",
+    description: "Not running today",
+    status: "Off (planned)",
+    severity: "neutral",
+    badge: "secondary",
+  },
+];
+
+export function LineStatusList() {
+  return (
+    <div className="grid w-full max-w-2xl content-start gap-3">
+      {LINES.map((line) => (
+        <ListCard
+          key={line.key}
+          title={line.title}
+          description={line.description}
+          // The state itself is written out; severity only changes the surface.
+          status={<Badge variant={line.badge}>{line.status}</Badge>}
+          severity={line.severity}
+        />
+      ))}
+    </div>
+  );
+}`;
+
   const presentationalCode = locale === "ja"
     ? `import { Badge, LineChip, ListCard } from "@gunjo/ui";
 
@@ -369,6 +528,13 @@ export function ServiceStatusListCards() {
         { name: "StatGroup", href: "/docs/components/stat-group" },
         { name: "DocumentRow", href: "/docs/components/document-row" },
       ]}
+      uixheroLinks={[
+        {
+          label: locale === "ja" ? "UIXHERO: カード（Card）" : "UIXHERO: Card (in Japanese)",
+          href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+          relation: "nearest",
+        },
+      ]}
     >
       <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewHeight="auto" previewBodyWidth="md">
         <ListCardPreview locale={locale} />
@@ -396,6 +562,16 @@ export function ServiceStatusListCards() {
               code: presentationalCode,
               previewBodyWidth: "md",
             },
+            {
+              key: "severity",
+              title: locale === "ja" ? "重さで面を変える" : "Weighting the surface",
+              description: locale === "ja"
+                ? "severity が変えるのは境界線と淡い背景だけで、行の意味そのものは status の文字が持ちます。色が見えなくても「停止中」と読めるので、重さは色に載せません。neutral は面を変えません。"
+                : "severity changes only the border and the subtle background; the row's meaning stays in the status text, so it still reads as Down without colour. neutral leaves the surface alone.",
+              preview: <ListCardSeverityPreview locale={locale} />,
+              code: severityCode,
+              previewBodyWidth: "md",
+            },
           ]}
         />
       </section>
@@ -417,6 +593,42 @@ export function ServiceStatusListCards() {
         <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
+      </section>
+      <section className="space-y-4">
+        <div className="border-b pb-2">
+          <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+            {locale === "ja" ? "設計の判断" : "Design decisions"}
+          </h2>
+        </div>
+        {locale === "ja" ? (
+          <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+            <li>
+              <strong>押せるようにするかどうかを、既定では決めない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">onSelect</code> を渡したときだけ 44px 以上の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> になり、渡さなければただの <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">div</code> です。資料は「カード全体をリンクにするか、部分だけにするか」を2番目の判断に挙げています。GUNJO はこれを既定で決めず、呼ぶ側の宣言にしました。
+            </li>
+            <li>
+              <strong>状態は色だけに乗せない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">severity</code> が変えるのは全周の境界線と淡い背景だけで、状態そのものは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">status</code> に渡す Badge の文字が持ちます。色を見分けられない人にも同じ情報が届くようにするためです。
+            </li>
+            <li>
+              <strong>右側は「状態」と「補足」の2段に固定した。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">status</code>（Badge）と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">meta</code>（価格・時刻・件数）は右上と右下に縦に積み、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">meta</code> は折り返しません。行を何十も並べたときに、値の位置が行ごとにずれないようにするためです。
+              <br />
+              一般のカードの設計は UIXHERO の「カード」にあります。
+            </li>
+          </ul>
+        ) : (
+          <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+            <li>
+              <strong>Whether the row is pressable is not decided by default.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">onSelect</code> and the card becomes a 44px-minimum <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code>; omit it and it stays a plain <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">div</code>. The article makes whole-card versus partial linking its second decision point, and GUNJO leaves that decision to the caller instead of baking one in.
+            </li>
+            <li>
+              <strong>Status never rides on colour alone.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">severity</code> only changes the full border and a faint background; the status itself lives in the text of the Badge passed to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">status</code>. Anyone who cannot separate those colours still gets the same information.
+            </li>
+            <li>
+              <strong>The right-hand side is fixed at two stacked lines.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">status</code> (a Badge) and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">meta</code> (price, time, count) stack top and bottom on the right, and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">meta</code> never wraps. Across dozens of rows the values stay on the same vertical line.
+              <br />
+              The general design of cards is covered by UIXHERO&rsquo;s card article.
+            </li>
+          </ul>
+        )}
       </section>
     </ComponentLayout>
   );

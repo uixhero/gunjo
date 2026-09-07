@@ -1,6 +1,6 @@
 {
   "round": 26,
-  "status": "draft",
+  "status": "reviewed",
   "title": "An inbox had the split-pane shell but no selectable list",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. The split-pane shell held up, but the agent hand-rolled the inbox's selectable list and a numeric panel size collapsed to 55px, so I fixed percentage sizing and unread labels.",
   "article": {

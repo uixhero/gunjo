@@ -1,6 +1,6 @@
 {
   "round": 32,
-  "status": "draft",
+  "status": "reviewed",
   "title": "A bank form exposed an ARIA bug that every generic demo had hidden",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. A Japanese bank-transfer flow, full of fields without descriptions, exposed a hidden ARIA bug in the form system built two rounds earlier.",
   "article": {

@@ -1,6 +1,6 @@
 {
   "round": 128,
-  "status": "draft",
+  "status": "reviewed",
   "title": "Three screens kept rebuilding the ticket face until it became TicketStub",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. A station coupon and membership pass became the third screen to hand-roll a code for the customer to present, so `TicketStub` was built.",
   "article": {

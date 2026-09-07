@@ -1,6 +1,6 @@
 {
   "round": 136,
-  "status": "draft",
+  "status": "reviewed",
   "title": "The oldest missing component finally shipped after 30 rounds",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Bus operations supplied the third independently hand-rolled stringline chart, so the oldest open gap in the series became a real component.",
   "article": {

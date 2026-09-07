@@ -1,6 +1,6 @@
 {
   "round": 114,
-  "status": "draft",
+  "status": "reviewed",
   "title": "The third hand-rolled seat map is the one that became a component",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. A check-in flow hand-rolled a seat map for the third time, which triggered the rule of three and produced `SeatMap`.",
   "article": {

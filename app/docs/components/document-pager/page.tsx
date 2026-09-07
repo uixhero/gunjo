@@ -309,7 +309,7 @@ export default function DocumentPagerDocPage() {
     const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
     const items = buildPagerItems(isJa);
 
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
 
     const firstPageCode = firstPageCodeByLocale[locale];
 
@@ -332,8 +332,8 @@ export default function DocumentPagerDocPage() {
             ]}
         >
             <ComponentPreview
-                code={code}
-                codeBlock={<CodeBlock code={code} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewBodyWidth="full"
                 previewHeight="auto"
@@ -361,7 +361,7 @@ export default function DocumentPagerDocPage() {
                                 />
                             ),
                             previewBodyWidth: "full",
-                            code,
+                            code: usageCode,
                         },
                         {
                             key: "first-page",
@@ -459,10 +459,10 @@ export default function DocumentPagerDocPage() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={code} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </div>
         </ComponentLayout>

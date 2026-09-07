@@ -1,6 +1,6 @@
 {
   "round": 116,
-  "status": "draft",
+  "status": "reviewed",
   "title": "ListCard worked three ways on one screen while loyalty stayed hand-rolled",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. A mileage screen reused `ListCard` for bookings, history, and rewards, while the membership summary at its center was hand-rolled in full.",
   "article": {

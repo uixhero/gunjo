@@ -1,6 +1,6 @@
 {
   "round": 18,
-  "status": "draft",
+  "status": "reviewed",
   "title": "A profile page found polish issues, not structural failures",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Every middle-layer component behaved like a finished control, leaving only mobile polish and documentation drift, so I fixed the two component defects.",
   "article": {

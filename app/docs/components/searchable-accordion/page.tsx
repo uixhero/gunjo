@@ -9,6 +9,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
 import { SearchableAccordion, type SearchableAccordionItem } from "@gunjo/ui";
 import * as React from "react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const baseItemsJa: SearchableAccordionItem[] = [
     {
@@ -153,7 +154,7 @@ export default function SearchableAccordionPage() {
     const { locale, sectionLabels } = useLocale();
     const metadata = displayMetadata as Record<string, { title: string; description: string }>;
     const items = locale === "ja" ? baseItemsJa : baseItemsEn;
-    const code = buildCode(locale, true);
+    const usageCode = buildCode(locale, true);
     const noCategoriesCode = buildCode(locale, false);
     const emptyCode = buildCode(locale, true, locale === "ja" ? "契約更新" : "renewal");
 
@@ -175,11 +176,18 @@ export default function SearchableAccordionPage() {
                 { name: "SearchInput", href: "/docs/components/search-input" },
                 { name: "FilterButton", href: "/docs/components/filter-button" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: アコーディオン（Accordion）" : "UIXHERO: Accordion (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/accordion`,
+                    relation: "nearest",
+                },
+            ]}
         >
             <ComponentPreview
                 embedSrc="/embed/searchable-accordion"
-                code={code}
-                codeBlock={<CodeBlock code={code} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewBodyWidth="lg"
             >
@@ -198,7 +206,7 @@ export default function SearchableAccordionPage() {
                             description: locale === "ja" ? "検索語とカテゴリタブで FAQ やヘルプ項目を絞り込みます。" : "Filter FAQ or help items by search term and category tabs.",
                             preview: <SearchableAccordionDemo locale={locale} />,
                             previewBodyWidth: "lg",
-                            code,
+                            code: usageCode,
                         },
                         {
                             key: "without-categories",
@@ -293,11 +301,47 @@ export default function SearchableAccordionPage() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[420px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={code} />
+                    <CodeBlock code={usageCode} />
                 </div>
+            </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>探す手段を2つ重ねた。</strong>検索の文字と分類のタブを両方持ち、両方を満たす項目だけを出します。資料はアコーディオンの核を「何を隠すか」に置いていますが、項目が数十件になると「隠した中から探す」が要るので、そこを部品に足しました。件数は「12 / 48」の形で常に出します。
+                        </li>
+                        <li>
+                            <strong>開閉は複数同時にできる形にした。</strong>資料は「FAQ は複数展開が向く」と書いています。この部品は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AccordionGroup</code> を使い、いま見えている項目だけをまとめて開く・閉じるボタンを持ちます。絞り込んだ結果に対してだけ効くので、隠れている項目が勝手に開くことはありません。
+                        </li>
+                        <li>
+                            <strong>0件のときに手当てを出す。一方、既定で開く項目はまだ決めていません。</strong>一致が無いときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">EmptyState</code> を出し、絞り込みが効いているときだけ「条件を消す」ボタンを添えます。資料が挙げている「最もよく参照される1〜2項目を既定で開いておく」は<strong>まだ書いていません</strong>。いまは全部閉じた状態から始まり、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">defaultOpenValue</code> を呼ぶ側が渡さなければ何も開きません。
+                            <br />
+                            一般のアコーディオンの設計は UIXHERO の「アコーディオン」にあります。
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Two ways to narrow, stacked.</strong> A search box and category tabs both apply, and only items matching both are shown. The article&rsquo;s core question is what to hide; once a list runs to dozens of items, finding things inside the hidden part becomes its own problem, so that was built in. The count is always visible as a ratio.
+                        </li>
+                        <li>
+                            <strong>Multiple panels may be open at once.</strong> The article notes that FAQs suit multi-expand. This uses <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AccordionGroup</code> and adds buttons that open or close only the items currently visible, so filtered-out items are never expanded behind your back.
+                        </li>
+                        <li>
+                            <strong>The empty state is handled; a default-open item is not decided yet.</strong> With no matches it renders an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">EmptyState</code>, offering a clear-filters button only when a filter is actually active. The article&rsquo;s advice to leave the one or two most-consulted items open by default is <strong>not written yet</strong>: everything starts closed unless the caller passes <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">defaultOpenValue</code>.
+                            <br />
+                            The general design of accordions is covered by UIXHERO&rsquo;s accordion article.
+                        </li>
+                    </ul>
+                )}
             </section>
         </ComponentLayout>
     );

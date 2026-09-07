@@ -1,6 +1,6 @@
 {
   "round": 139,
-  "status": "draft",
+  "status": "reviewed",
   "title": "SeatMap crossed into bus, but its attributes still spoke airline",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Five booking components carried into intercity bus, while `SeatMap` proved that a reusable grid can still retain industry-specific semantics.",
   "article": {

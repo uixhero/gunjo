@@ -1,6 +1,6 @@
 {
   "round": 157,
-  "status": "draft",
+  "status": "reviewed",
   "title": "One service-status screen validated, ruled out, and created components",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Bus service status independently found the day-old `SegmentedControl`, showed that `Badge` already covered graduated levels, and supplied the third `LineChip` case.",
   "article": {

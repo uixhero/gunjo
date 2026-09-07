@@ -1,6 +1,6 @@
 {
   "round": 46,
-  "status": "draft",
+  "status": "reviewed",
   "title": "ScanInput shipped on its third sighting while two earlier bets paid off",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Receiving inspection put barcode scanning at three sightings, so I built `ScanInput`, and the agent independently dug up both `Delta` and the `CardTitle` docs fix.",
   "article": {

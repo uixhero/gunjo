@@ -1,6 +1,6 @@
 {
   "round": 176,
-  "status": "draft",
+  "status": "reviewed",
   "title": "Medical consent components ran a construction safety briefing",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs; it built a responsive screen that passed `tsc`. Health care and accounting components covered the safety workflow, while hazard sheet rows, multi-check rosters, and drawn signatures remained gaps.",
   "article": {
