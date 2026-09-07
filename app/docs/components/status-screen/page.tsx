@@ -306,7 +306,6 @@ import {
                 embedSrc="/embed/status-screen"
                 code={code}
                 codeBlock={<CodeBlock code={code} />}
-                fullPagePreview
                 previewBodyWidth="full"
                 sectionLabels={sectionLabels}
             >
@@ -320,7 +319,7 @@ import {
                                 : "The page may have moved or been deleted."
                         }
                         action={<Button>{isJa ? "トップへ戻る" : "Back to home"}</Button>}
-                        className="min-h-[320px]"
+                        className="min-h-0"
                     />
                 </ScreenFrame>
             </ComponentPreview>
@@ -344,7 +343,7 @@ import {
                                         title={isJa ? "ページが見つかりません" : "Page not found"}
                                         description={isJa ? "URLを確認するか、トップへ戻ってください。" : "Check the URL or return to the home page."}
                                         action={<Button>{isJa ? "トップへ戻る" : "Back to home"}</Button>}
-                                        className="min-h-[300px]"
+                                        className="min-h-0"
                                     />
                                 </ScreenFrame>
                             ),
@@ -365,7 +364,7 @@ import {
                                         description={isJa ? "再読み込みしても解消しない場合は、サポートへ連絡してください。" : "Refresh the page or contact support if the problem continues."}
                                         details="req-id 7f3c9a"
                                         action={<Button>{isJa ? "再試行" : "Try again"}</Button>}
-                                        className="min-h-[320px]"
+                                        className="min-h-0"
                                     />
                                 </ScreenFrame>
                             ),
@@ -386,7 +385,7 @@ import {
                                         title={isJa ? "オフラインです" : "You're offline"}
                                         description={isJa ? "接続を確認してから、もう一度試してください。" : "Check your connection and try again."}
                                         action={<Button variant="outline">{isJa ? "再接続する" : "Retry connection"}</Button>}
-                                        className="min-h-[300px]"
+                                        className="min-h-0"
                                     />
                                 </ScreenFrame>
                             ),
@@ -406,7 +405,7 @@ import {
                                         icon={<Lock />}
                                         title={isJa ? "アクセスできません" : "Access denied"}
                                         description={isJa ? "このページを見る権限がありません。管理者に確認してください。" : "You do not have permission to view this page."}
-                                        className="min-h-[300px]"
+                                        className="min-h-0"
                                     />
                                 </ScreenFrame>
                             ),
@@ -426,7 +425,7 @@ import {
                                         icon={<Wrench />}
                                         title={isJa ? "メンテナンス中です" : "Under maintenance"}
                                         description={isJa ? "作業が完了するまでしばらくお待ちください。" : "We'll be back shortly. Thanks for your patience."}
-                                        className="min-h-[300px]"
+                                        className="min-h-0"
                                     />
                                 </ScreenFrame>
                             ),
@@ -446,7 +445,7 @@ import {
                                         icon={<Clock />}
                                         title={isJa ? "準備中です" : "Coming soon"}
                                         description={isJa ? "このページはまだ公開前です。準備が整い次第表示されます。" : "This page is not available yet. Check back soon."}
-                                        className="min-h-[300px]"
+                                        className="min-h-0"
                                     />
                                 </ScreenFrame>
                             ),

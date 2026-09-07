@@ -1,6 +1,6 @@
 {
   "round": 25,
-  "status": "draft",
+  "status": "reviewed",
   "title": "Pricing components earned 4/5; the flagship template did not",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. The components produced an accessible pricing comparison, but `PricingTemplate` missed its core job and `Badge` broke inline markup, so I fixed `Badge`, `ToggleGroup`, and `Switch`.",
   "article": {

@@ -1,6 +1,6 @@
 {
   "round": 138,
-  "status": "draft",
+  "status": "reviewed",
   "title": "The mobile passenger foundation carried intact into a third mode",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. Six passenger-facing components covered a bus arrival screen, while crowding supplied the second case for `StatusLevel`.",
   "article": {

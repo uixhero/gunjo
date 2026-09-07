@@ -142,7 +142,13 @@ export default function ApprovalWorkflowDocPage() {
 
   const usageCode = locale === "ja"
     ? `import * as React from "react";
-import { ApprovalWorkflow, Button, Checkbox, type WorkflowStage, type WorkflowValue } from "@gunjo/ui";
+import {
+  ApprovalWorkflow,
+  Button,
+  Checkbox,
+  type WorkflowStage,
+  type WorkflowValue,
+} from "@gunjo/ui";
 
 const stages: WorkflowStage[] = [
   { id: "intake", label: "申請受付" },
@@ -198,7 +204,13 @@ export function ScreeningWorkflow() {
   );
 }`
     : `import * as React from "react";
-import { ApprovalWorkflow, Button, Checkbox, type WorkflowStage, type WorkflowValue } from "@gunjo/ui";
+import {
+  ApprovalWorkflow,
+  Button,
+  Checkbox,
+  type WorkflowStage,
+  type WorkflowValue,
+} from "@gunjo/ui";
 
 const stages: WorkflowStage[] = [
   { id: "intake", label: "Intake" },
@@ -264,6 +276,164 @@ export function ScreeningWorkflow() {
         </Button>
       ) : null}
     </div>
+  );
+}`;
+
+  const blockedCode = locale === "ja"
+    ? `import * as React from "react";
+import {
+  ApprovalWorkflow,
+  type WorkflowStage,
+  type WorkflowValue,
+} from "@gunjo/ui";
+
+const stages: WorkflowStage[] = [
+  { id: "intake", label: "申請受付" },
+  { id: "docs", label: "書類審査" },
+  { id: "eligibility", label: "資格判定" },
+  { id: "decision", label: "決定" },
+  { id: "pay", label: "支給" },
+];
+
+export function BlockedWorkflow() {
+  const [value, setValue] = React.useState<WorkflowValue>({
+    currentStageId: "docs",
+    status: "in-progress",
+    records: {
+      intake: { actor: "審査担当 田中", at: "2026/06/24 10:30" },
+    },
+  });
+
+  return (
+    <ApprovalWorkflow
+      stages={stages}
+      value={value}
+      onChange={setValue}
+      canAdvance={false}
+      advanceHint="必要書類のチェックが未完了です"
+    />
+  );
+}`
+    : `import * as React from "react";
+import {
+  ApprovalWorkflow,
+  type WorkflowStage,
+  type WorkflowValue,
+} from "@gunjo/ui";
+
+const stages: WorkflowStage[] = [
+  { id: "intake", label: "Intake" },
+  { id: "docs", label: "Document review" },
+  { id: "eligibility", label: "Eligibility" },
+  { id: "decision", label: "Decision" },
+  { id: "pay", label: "Payment" },
+];
+
+export function BlockedWorkflow() {
+  const [value, setValue] = React.useState<WorkflowValue>({
+    currentStageId: "docs",
+    status: "in-progress",
+    records: {
+      intake: { actor: "Reviewer Tanaka", at: "2026/06/24 10:30" },
+    },
+  });
+
+  return (
+    <ApprovalWorkflow
+      stages={stages}
+      value={value}
+      onChange={setValue}
+      canAdvance={false}
+      advanceHint="Required documents have not been checked."
+      labels={{
+        advance: "Advance",
+        finish: "Complete",
+        sendBack: "Send back",
+        reject: "Reject",
+        confirm: "Confirm",
+        cancel: "Cancel",
+        sendBackTarget: "Return to stage",
+        reason: "Reason",
+        reasonPlaceholder: "Enter a reason...",
+        completed: "Complete",
+        rejected: "Rejected",
+      }}
+    />
+  );
+}`;
+
+  const completedCode = locale === "ja"
+    ? `import * as React from "react";
+import {
+  ApprovalWorkflow,
+  type WorkflowStage,
+  type WorkflowValue,
+} from "@gunjo/ui";
+
+const stages: WorkflowStage[] = [
+  { id: "intake", label: "申請受付" },
+  { id: "docs", label: "書類審査" },
+  { id: "eligibility", label: "資格判定" },
+  { id: "decision", label: "決定" },
+  { id: "pay", label: "支給" },
+];
+
+export function CompletedWorkflow() {
+  const [value, setValue] = React.useState<WorkflowValue>({
+    currentStageId: "pay",
+    status: "approved",
+    records: {
+      intake: { actor: "審査担当 田中", at: "2026/06/24 10:30" },
+      docs: { actor: "審査担当 田中", at: "2026/06/24 10:35" },
+      eligibility: { actor: "審査担当 田中", at: "2026/06/24 10:40" },
+      decision: { actor: "審査担当 田中", at: "2026/06/24 10:45" },
+      pay: { actor: "審査担当 田中", at: "2026/06/24 10:50" },
+    },
+  });
+
+  return (
+    <ApprovalWorkflow
+      stages={stages}
+      value={value}
+      onChange={setValue}
+    />
+  );
+}`
+    : `import * as React from "react";
+import {
+  ApprovalWorkflow,
+  type WorkflowStage,
+  type WorkflowValue,
+} from "@gunjo/ui";
+
+const stages: WorkflowStage[] = [
+  { id: "intake", label: "Intake" },
+  { id: "docs", label: "Document review" },
+  { id: "eligibility", label: "Eligibility" },
+  { id: "decision", label: "Decision" },
+  { id: "pay", label: "Payment" },
+];
+
+export function CompletedWorkflow() {
+  const [value, setValue] = React.useState<WorkflowValue>({
+    currentStageId: "pay",
+    status: "approved",
+    records: {
+      intake: { actor: "Reviewer Tanaka", at: "2026/06/24 10:30" },
+      docs: { actor: "Reviewer Tanaka", at: "2026/06/24 10:35" },
+      eligibility: { actor: "Reviewer Tanaka", at: "2026/06/24 10:40" },
+      decision: { actor: "Reviewer Tanaka", at: "2026/06/24 10:45" },
+      pay: { actor: "Reviewer Tanaka", at: "2026/06/24 10:50" },
+    },
+  });
+
+  return (
+    <ApprovalWorkflow
+      stages={stages}
+      value={value}
+      onChange={setValue}
+      labels={{ completed: "Complete" }}
+    />
   );
 }`;
 
@@ -371,21 +541,7 @@ export function ScreeningWorkflow() {
                   initialValue={{ currentStageId: "docs", status: "in-progress", records: { intake: { actor: workflowLabels(locale).actor, at: "2026/06/24 10:30" } } }}
                 />
               ),
-              code: locale === "ja"
-                ? `<ApprovalWorkflow
-  stages={stages}
-  value={{ currentStageId: "docs", status: "in-progress", records: { intake: { actor: "審査担当 田中", at: "2026/06/24 10:30" } } }}
-  onChange={setValue}
-  canAdvance={false}
-  advanceHint="必要書類のチェックが未完了です"
-/>`
-                : `<ApprovalWorkflow
-  stages={stages}
-  value={{ currentStageId: "docs", status: "in-progress", records: { intake: { actor: "Reviewer Tanaka", at: "2026/06/24 10:30" } } }}
-  onChange={setValue}
-  canAdvance={false}
-  advanceHint="Required documents have not been checked."
-/>`,
+              code: blockedCode,
               previewBodyWidth: "lg",
             },
             {
@@ -395,38 +551,7 @@ export function ScreeningWorkflow() {
                 ? "status が approved になると、操作面ではなく完了ステータスとして表示します。"
                 : "When status is approved, the workflow renders the terminal completed state.",
               preview: <WorkflowPreview locale={locale} initialValue={completedValue(locale)} initialDocsChecked />,
-              code: locale === "ja"
-                ? `<ApprovalWorkflow
-  stages={stages}
-  value={{
-    currentStageId: "pay",
-    status: "approved",
-    records: {
-      intake: { actor: "審査担当 田中", at: "2026/06/24 10:30" },
-      docs: { actor: "審査担当 田中", at: "2026/06/24 10:35" },
-      eligibility: { actor: "審査担当 田中", at: "2026/06/24 10:40" },
-      decision: { actor: "審査担当 田中", at: "2026/06/24 10:45" },
-      pay: { actor: "審査担当 田中", at: "2026/06/24 10:50" },
-    },
-  }}
-  onChange={setValue}
-/>`
-                : `<ApprovalWorkflow
-  stages={stages}
-  value={{
-    currentStageId: "pay",
-    status: "approved",
-    records: {
-      intake: { actor: "Reviewer Tanaka", at: "2026/06/24 10:30" },
-      docs: { actor: "Reviewer Tanaka", at: "2026/06/24 10:35" },
-      eligibility: { actor: "Reviewer Tanaka", at: "2026/06/24 10:40" },
-      decision: { actor: "Reviewer Tanaka", at: "2026/06/24 10:45" },
-      pay: { actor: "Reviewer Tanaka", at: "2026/06/24 10:50" },
-    },
-  }}
-  onChange={setValue}
-  labels={{ completed: "Complete" }}
-/>`,
+              code: completedCode,
               previewBodyWidth: "lg",
             },
           ]}

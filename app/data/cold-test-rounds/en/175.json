@@ -1,6 +1,6 @@
 {
   "round": 175,
-  "status": "draft",
+  "status": "reviewed",
   "title": "A construction photo log exposed two gaps in the media toolkit",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs; it built a responsive screen that passed `tsc`. The construction photo log reused the media toolkit but exposed gaps in lightbox metadata and before-and-after comparison.",
   "article": {

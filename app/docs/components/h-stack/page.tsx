@@ -3,6 +3,7 @@
 import type { ReactNode } from "react";
 import { Button, HStack } from "@gunjo/ui";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
+import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
@@ -144,6 +145,7 @@ function Pill({ children }: { children: ReactNode }) {
 
 export default function HStackPage() {
     const { locale } = useLocale();
+    const usageCode = codeByLocale[locale];
     const meta = layoutMetadata as Record<string, { title: string; description: string }>;
     const propsData = locale === "ja"
         ? [
@@ -172,7 +174,7 @@ export default function HStackPage() {
                 { name: "Button", href: "/docs/components/button" },
             ]}
         >
-            <ComponentPreview embedSrc="/embed/h-stack" code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="md">
+            <ComponentPreview embedSrc="/embed/h-stack" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md">
                 <HStack gap={2} align="center" wrap>
                     <Button size="sm">{locale === "ja" ? "保存" : "Save"}</Button>
                     <Button size="sm" variant="outline">{locale === "ja" ? "プレビュー" : "Preview"}</Button>
@@ -186,12 +188,13 @@ export default function HStackPage() {
                         {locale === "ja" ? "状態とバリエーション" : "States and Variants"}
                     </h2>
                 </div>
-                <div className="space-y-8">
-                    {[
+                <ComponentDemoStates
+                    states={[
                         {
                             key: "toolbar",
                             title: locale === "ja" ? "ツールバー操作" : "Toolbar actions",
                             description: locale === "ja" ? "短い操作ボタンを横方向に並べます。" : "Line up short action buttons horizontally.",
+                            previewBodyWidth: "md",
                             code: stateCodeByLocale[locale].toolbar,
                             preview: (
                                 <HStack gap={2} align="center" wrap>
@@ -205,6 +208,7 @@ export default function HStackPage() {
                             key: "between",
                             title: locale === "ja" ? "両端揃え" : "Space between",
                             description: locale === "ja" ? "ラベルと操作のように、左右へ分けたい行で使います。" : "Use it for rows that separate label and action.",
+                            previewBodyWidth: "md",
                             code: stateCodeByLocale[locale].between,
                             preview: (
                                 <HStack justify="between" align="center" className="w-full rounded-md border bg-background p-3">
@@ -217,6 +221,7 @@ export default function HStackPage() {
                             key: "wrap",
                             title: locale === "ja" ? "折り返し" : "Wrapping",
                             description: locale === "ja" ? "タグや短い項目が横幅を超える時に折り返します。" : "Wrap tags or short items when they exceed the available width.",
+                            previewBodyWidth: "md",
                             code: stateCodeByLocale[locale].wrap,
                             preview: (
                                 <HStack gap={2} wrap className="w-56 rounded-md border bg-background p-3">
@@ -228,6 +233,7 @@ export default function HStackPage() {
                             key: "baseline",
                             title: locale === "ja" ? "ベースライン揃え" : "Baseline alignment",
                             description: locale === "ja" ? "サイズの違う数値と補足テキストを自然に揃えます。" : "Align metrics and helper text with different font sizes.",
+                            previewBodyWidth: "md",
                             code: stateCodeByLocale[locale].baseline,
                             preview: (
                                 <HStack align="baseline" gap={2}>
@@ -236,18 +242,8 @@ export default function HStackPage() {
                                 </HStack>
                             ),
                         },
-                    ].map((item) => (
-                        <section key={item.key} className="space-y-3">
-                            <div className="space-y-1">
-                                <h3 className="text-lg font-semibold">{item.title}</h3>
-                                <p className="text-sm text-muted-foreground">{item.description}</p>
-                            </div>
-                            <ComponentPreview code={item.code} codeBlock={<CodeBlock code={item.code} />} previewBodyWidth="md" previewHeight="auto">
-                                {item.preview}
-                            </ComponentPreview>
-                        </section>
-                    ))}
-                </div>
+                    ]}
+                />
             </section>
 
             <section className="space-y-4">
@@ -258,10 +254,10 @@ export default function HStackPage() {
             <section className="space-y-4">
                 <div className="flex items-start justify-between gap-3 border-b pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </section>
         </ComponentLayout>

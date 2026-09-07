@@ -1,6 +1,6 @@
 {
   "round": 30,
-  "status": "draft",
+  "status": "reviewed",
   "title": "The next cold agent recognized the new FormField system as real",
   "summary": "I gave the agent only the public npm package and the gunjo.jp docs. The next cold agent found and verified the `FormField` system built after #29, while four controls still lacked consistent labels or layout, so I fixed all four.",
   "article": {

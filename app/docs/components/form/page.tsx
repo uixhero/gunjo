@@ -122,6 +122,47 @@ function PendingSubmitForm({ locale }: { locale: "ja" | "en" }) {
     );
 }
 
+/** FormField に結線を任せる形。id と aria の対応を自分で書かない。 */
+function WiredFieldForm({ locale }: { locale: "ja" | "en" }) {
+    const isJa = locale === "ja";
+    const [company, setCompany] = React.useState("");
+    const [submitted, setSubmitted] = React.useState(false);
+    const error =
+        submitted && company.trim() === ""
+            ? isJa
+                ? "会社名を入力してください。"
+                : "Enter your company name."
+            : undefined;
+
+    return (
+        <Form
+            className="w-full max-w-sm"
+            onSubmit={(e) => {
+                e.preventDefault();
+                setSubmitted(true);
+            }}
+        >
+            <FormField required error={error} className="p-0">
+                <FormLabel>{isJa ? "会社名" : "Company"}</FormLabel>
+                <FormControl>
+                    <Input
+                        value={company}
+                        onChange={(e) => setCompany(e.currentTarget.value)}
+                        placeholder={isJa ? "協栄精密工業" : "Kyoei Precision"}
+                    />
+                </FormControl>
+                <FormDescription>
+                    {isJa ? "請求書に印字される名義です。" : "The name printed on the invoice."}
+                </FormDescription>
+                <FormMessage />
+            </FormField>
+            <Button type="submit" className="w-full">
+                {isJa ? "登録する" : "Register"}
+            </Button>
+        </Form>
+    );
+}
+
 export default function FormPage() {
     const { locale, sectionLabels } = useLocale();
     const content = getDocContent("components/form", locale);
@@ -554,6 +595,106 @@ export default function FeedbackForm() {
       ) : (
         <Button type="submit" className="w-full">Send feedback</Button>
       )}
+    </Form>
+  );
+}`,
+                        },
+                        {
+                            key: "form-field",
+                            title: locale === "ja" ? "結線を FormField に任せる" : "Letting FormField do the wiring",
+                            description:
+                                locale === "ja"
+                                    ? "FormGroup は入れ物だけで、id と aria の対応は自分で書きます。FormField に置き換えると、required と error を渡すだけで id・aria-describedby・aria-invalid・aria-required と、ラベルの * が揃います。説明を書かなかった欄は aria-describedby を持ちません。"
+                                    : "FormGroup is only a container — you wire the ids and aria yourself. FormField takes required and error instead and derives the id, aria-describedby, aria-invalid, aria-required and the label asterisk. A field with no description gets no aria-describedby at all.",
+                            preview: <WiredFieldForm locale={locale} />,
+                            code: locale === "ja"
+                                ? `import * as React from "react";
+import {
+  Button,
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormLabel,
+  FormMessage,
+  Input,
+} from "@gunjo/ui";
+
+export default function CompanyForm() {
+  const [company, setCompany] = React.useState("");
+  const [submitted, setSubmitted] = React.useState(false);
+
+  // error を渡すかどうかだけで、入力欄と説明とメッセージの結線が変わります。
+  const error =
+    submitted && company.trim() === "" ? "会社名を入力してください。" : undefined;
+
+  return (
+    <Form
+      onSubmit={(e) => {
+        e.preventDefault();
+        setSubmitted(true);
+      }}
+    >
+      <FormField required error={error}>
+        {/* htmlFor も id も書きません。FormField が配ります。 */}
+        <FormLabel>会社名</FormLabel>
+        <FormControl>
+          <Input
+            value={company}
+            onChange={(e) => setCompany(e.currentTarget.value)}
+            placeholder="協栄精密工業"
+          />
+        </FormControl>
+        <FormDescription>請求書に印字される名義です。</FormDescription>
+        {/* 本文は error から来ます。error が無ければ何も描きません。 */}
+        <FormMessage />
+      </FormField>
+      <Button type="submit" className="w-full">登録する</Button>
+    </Form>
+  );
+}`
+                                : `import * as React from "react";
+import {
+  Button,
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormLabel,
+  FormMessage,
+  Input,
+} from "@gunjo/ui";
+
+export default function CompanyForm() {
+  const [company, setCompany] = React.useState("");
+  const [submitted, setSubmitted] = React.useState(false);
+
+  // Passing error is the only switch: it rewires control, description and message.
+  const error =
+    submitted && company.trim() === "" ? "Enter your company name." : undefined;
+
+  return (
+    <Form
+      onSubmit={(e) => {
+        e.preventDefault();
+        setSubmitted(true);
+      }}
+    >
+      <FormField required error={error}>
+        {/* No htmlFor, no id — FormField hands them out. */}
+        <FormLabel>Company</FormLabel>
+        <FormControl>
+          <Input
+            value={company}
+            onChange={(e) => setCompany(e.currentTarget.value)}
+            placeholder="Kyoei Precision"
+          />
+        </FormControl>
+        <FormDescription>The name printed on the invoice.</FormDescription>
+        {/* The body comes from error; with no error nothing renders. */}
+        <FormMessage />
+      </FormField>
+      <Button type="submit" className="w-full">Register</Button>
     </Form>
   );
 }`,

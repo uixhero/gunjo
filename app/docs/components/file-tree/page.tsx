@@ -37,7 +37,7 @@ const nodes: FileTreeNode[] = [
   },
 ];
 
-export function Example() {
+export function AssetFileTree() {
   const [selectedIds, setSelectedIds] = React.useState(["campaign/hero.png"]);
 
   return (
@@ -65,7 +65,7 @@ const nodes: FileTreeNode[] = [
   },
 ];
 
-export function Example() {
+export function AssetFileTree() {
   const [selectedIds, setSelectedIds] = React.useState(["campaign/hero.png"]);
 
   return (
@@ -80,18 +80,76 @@ export function Example() {
 } as const;
 
 const multipleCodeByLocale = {
-    ja: `<FileTree
-  nodes={nodes}
-  selectionMode="multiple"
-  defaultExpanded={["campaign", "docs"]}
-  defaultSelectedIds={["campaign/hero.png", "docs/brief.md"]}
-/>`,
-    en: `<FileTree
-  nodes={nodes}
-  selectionMode="multiple"
-  defaultExpanded={["campaign", "docs"]}
-  defaultSelectedIds={["campaign/hero.png", "docs/brief.md"]}
-/>`,
+    ja: `import { FileTree, type FileTreeNode } from "@gunjo/ui";
+
+const nodes: FileTreeNode[] = [
+  {
+    id: "campaign",
+    label: "キャンペーン",
+    type: "folder",
+    count: "2件",
+    children: [
+      { id: "campaign/hero.png", label: "ヒーロー画像.png", type: "file", size: "2.4 MB" },
+      { id: "campaign/banner.jpg", label: "バナー.jpg", type: "file", size: "860 KB" },
+    ],
+  },
+  {
+    id: "docs",
+    label: "資料",
+    type: "folder",
+    count: "2件",
+    children: [
+      { id: "docs/brief.md", label: "要件メモ.md", type: "file", size: "18 KB" },
+      { id: "docs/checklist.md", label: "確認リスト.md", type: "file", size: "12 KB" },
+    ],
+  },
+];
+
+export function MultiSelectFileTree() {
+  return (
+    <FileTree
+      nodes={nodes}
+      selectionMode="multiple"
+      defaultExpanded={["campaign", "docs"]}
+      defaultSelectedIds={["campaign/hero.png", "docs/brief.md"]}
+    />
+  );
+}`,
+    en: `import { FileTree, type FileTreeNode } from "@gunjo/ui";
+
+const nodes: FileTreeNode[] = [
+  {
+    id: "campaign",
+    label: "campaign",
+    type: "folder",
+    count: "2 items",
+    children: [
+      { id: "campaign/hero.png", label: "hero.png", type: "file", size: "2.4 MB" },
+      { id: "campaign/banner.jpg", label: "banner.jpg", type: "file", size: "860 KB" },
+    ],
+  },
+  {
+    id: "docs",
+    label: "docs",
+    type: "folder",
+    count: "2 items",
+    children: [
+      { id: "docs/brief.md", label: "brief.md", type: "file", size: "18 KB" },
+      { id: "docs/checklist.md", label: "checklist.md", type: "file", size: "12 KB" },
+    ],
+  },
+];
+
+export function MultiSelectFileTree() {
+  return (
+    <FileTree
+      nodes={nodes}
+      selectionMode="multiple"
+      defaultExpanded={["campaign", "docs"]}
+      defaultSelectedIds={["campaign/hero.png", "docs/brief.md"]}
+    />
+  );
+}`,
 } as const;
 
 const actionsCodeByLocale = {
@@ -103,36 +161,64 @@ const actionsCodeByLocale = {
   DropdownMenuTrigger,
   FileTree,
   TooltipButton,
+  type FileTreeNode,
 } from "@gunjo/ui";
 import { IconDots as MoreHorizontal } from "@tabler/icons-react";
 
-<FileTree
-  nodes={nodes}
-  defaultExpanded={["campaign"]}
-  renderNodeActions={(node) => (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <TooltipButton
-          type="button"
-          variant="ghost"
-          size="icon"
-          className="h-7 w-7"
-          aria-label={\`\${node.label}の操作\`}
-          tooltip={\`\${node.label}の操作\`}
-          tooltipSide="right"
-        >
-          <MoreHorizontal className="h-4 w-4" />
-        </TooltipButton>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" side="right">
-        <DropdownMenuItem>詳細を表示</DropdownMenuItem>
-        <DropdownMenuItem>名前を変更</DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>パスをコピー</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  )}
-/>`,
+const nodes: FileTreeNode[] = [
+  {
+    id: "campaign",
+    label: "キャンペーン",
+    type: "folder",
+    count: "2件",
+    children: [
+      { id: "campaign/hero.png", label: "ヒーロー画像.png", type: "file", size: "2.4 MB" },
+      { id: "campaign/banner.jpg", label: "バナー.jpg", type: "file", size: "860 KB" },
+    ],
+  },
+  {
+    id: "docs",
+    label: "資料",
+    type: "folder",
+    count: "2件",
+    children: [
+      { id: "docs/brief.md", label: "要件メモ.md", type: "file", size: "18 KB" },
+      { id: "docs/checklist.md", label: "確認リスト.md", type: "file", size: "12 KB" },
+    ],
+  },
+];
+
+export function FileTreeWithActions() {
+  return (
+    <FileTree
+      nodes={nodes}
+      defaultExpanded={["campaign"]}
+      renderNodeActions={({ label }) => (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <TooltipButton
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="h-7 w-7"
+              aria-label={label + "の操作"}
+              tooltip={label + "の操作"}
+              tooltipSide="right"
+            >
+              <MoreHorizontal className="h-4 w-4" />
+            </TooltipButton>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" side="right">
+            <DropdownMenuItem>{"詳細を表示"}</DropdownMenuItem>
+            <DropdownMenuItem>{"名前を変更"}</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>{"パスをコピー"}</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      )}
+    />
+  );
+}`,
     en: `import {
   DropdownMenu,
   DropdownMenuContent,
@@ -141,36 +227,64 @@ import { IconDots as MoreHorizontal } from "@tabler/icons-react";
   DropdownMenuTrigger,
   FileTree,
   TooltipButton,
+  type FileTreeNode,
 } from "@gunjo/ui";
 import { IconDots as MoreHorizontal } from "@tabler/icons-react";
 
-<FileTree
-  nodes={nodes}
-  defaultExpanded={["campaign"]}
-  renderNodeActions={(node) => (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <TooltipButton
-          type="button"
-          variant="ghost"
-          size="icon"
-          className="h-7 w-7"
-          aria-label={\`Actions for \${node.label}\`}
-          tooltip={\`Actions for \${node.label}\`}
-          tooltipSide="right"
-        >
-          <MoreHorizontal className="h-4 w-4" />
-        </TooltipButton>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end" side="right">
-        <DropdownMenuItem>View details</DropdownMenuItem>
-        <DropdownMenuItem>Rename</DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>Copy path</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
-  )}
-/>`,
+const nodes: FileTreeNode[] = [
+  {
+    id: "campaign",
+    label: "campaign",
+    type: "folder",
+    count: "2 items",
+    children: [
+      { id: "campaign/hero.png", label: "hero.png", type: "file", size: "2.4 MB" },
+      { id: "campaign/banner.jpg", label: "banner.jpg", type: "file", size: "860 KB" },
+    ],
+  },
+  {
+    id: "docs",
+    label: "docs",
+    type: "folder",
+    count: "2 items",
+    children: [
+      { id: "docs/brief.md", label: "brief.md", type: "file", size: "18 KB" },
+      { id: "docs/checklist.md", label: "checklist.md", type: "file", size: "12 KB" },
+    ],
+  },
+];
+
+export function FileTreeWithActions() {
+  return (
+    <FileTree
+      nodes={nodes}
+      defaultExpanded={["campaign"]}
+      renderNodeActions={({ label }) => (
+        <DropdownMenu>
+          <DropdownMenuTrigger asChild>
+            <TooltipButton
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="h-7 w-7"
+              aria-label={"Actions for " + label}
+              tooltip={"Actions for " + label}
+              tooltipSide="right"
+            >
+              <MoreHorizontal className="h-4 w-4" />
+            </TooltipButton>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent align="end" side="right">
+            <DropdownMenuItem>{"View details"}</DropdownMenuItem>
+            <DropdownMenuItem>{"Rename"}</DropdownMenuItem>
+            <DropdownMenuSeparator />
+            <DropdownMenuItem>{"Copy path"}</DropdownMenuItem>
+          </DropdownMenuContent>
+        </DropdownMenu>
+      )}
+    />
+  );
+}`,
 } as const;
 
 const propsByLocale = {
@@ -292,7 +406,7 @@ export default function FileTreePage() {
     const content = getDocContent("components/file-tree", locale);
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
     const nodes = React.useMemo(() => buildNodes(locale), [locale]);
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
 
     return (
         <ComponentLayout
@@ -312,7 +426,7 @@ export default function FileTreePage() {
                 { name: "SidebarItem", href: "/docs/components/sidebar-item" },
             ]}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewBodyWidth="md" previewHeight="auto">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md" previewHeight="auto">
                 <ControlledFileTree locale={locale} />
             </ComponentPreview>
 
@@ -329,7 +443,7 @@ export default function FileTreePage() {
                                 ? "現在開いているフォルダやプレビュー対象のファイルを一つだけ選ぶ場合に使います。"
                                 : "Use single selection for the active folder or the one file being previewed.",
                             preview: <ControlledFileTree locale={locale} />,
-                            code,
+                            code: usageCode,
                         },
                         {
                             key: "multiple",
@@ -373,9 +487,11 @@ export default function FileTreePage() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </div>
         </ComponentLayout>
     );

@@ -416,22 +416,68 @@ export function MissingBodyDischargeRecord() {
   );
 }`;
 
-  const multiSignerCode = `import * as React from "react";
-import { SignedRecord, type SignedRecordValue } from "@gunjo/ui";
+  const multiSignerCode = locale === "ja"
+    ? `import * as React from "react";
+import { SignedRecord, Textarea, type SignedRecordValue } from "@gunjo/ui";
 
 const signers = [
-  { id: "doctor", label: "${locale === "ja" ? "医師 山田" : "Dr. Yamada"}" },
-  { id: "nurse", label: "${locale === "ja" ? "看護師 佐藤" : "Nurse Sato"}" },
+  { id: "doctor", label: "医師 山田" },
+  { id: "nurse", label: "看護師 佐藤" },
 ];
 
-export function MultiSignedNote({ currentUserId }: { currentUserId: string }) {
+const currentUserId = "doctor";
+
+export function MultiSignedNote() {
   const [record, setRecord] = React.useState<SignedRecordValue>({
     status: "draft",
     addenda: [],
     signatures: [],
   });
+  const [body, setBody] = React.useState("");
 
-  // requiredSigners → the record stays an editable draft until BOTH parties sign;
+  // requiredSigners を渡すと、両者が署名するまでは下書きのまま編集できます。
+  // 最後の署名で確定し、本文がロックされます。
+  return (
+    <SignedRecord
+      value={record}
+      onChange={setRecord}
+      signerId={currentUserId}
+      requiredSigners={signers}
+    >
+      {({ readOnly }) =>
+        readOnly ? (
+          <p>{body}</p>
+        ) : (
+          <Textarea
+            rows={3}
+            value={body}
+            onChange={(event) => setBody(event.target.value)}
+            aria-label="記録本文"
+          />
+        )
+      }
+    </SignedRecord>
+  );
+}`
+    : `import * as React from "react";
+import { SignedRecord, Textarea, type SignedRecordValue } from "@gunjo/ui";
+
+const signers = [
+  { id: "doctor", label: "Dr. Yamada" },
+  { id: "nurse", label: "Nurse Sato" },
+];
+
+const currentUserId = "doctor";
+
+export function MultiSignedNote() {
+  const [record, setRecord] = React.useState<SignedRecordValue>({
+    status: "draft",
+    addenda: [],
+    signatures: [],
+  });
+  const [body, setBody] = React.useState("");
+
+  // With requiredSigners the record stays an editable draft until both parties sign;
   // the last signature flips it to "signed" and locks the body.
   return (
     <SignedRecord
@@ -440,7 +486,18 @@ export function MultiSignedNote({ currentUserId }: { currentUserId: string }) {
       signerId={currentUserId}
       requiredSigners={signers}
     >
-      {({ readOnly }) => (readOnly ? <p>{body}</p> : <Textarea value={body} onChange={onBodyChange} />)}
+      {({ readOnly }) =>
+        readOnly ? (
+          <p>{body}</p>
+        ) : (
+          <Textarea
+            rows={3}
+            value={body}
+            onChange={(event) => setBody(event.target.value)}
+            aria-label="Record body"
+          />
+        )
+      }
     </SignedRecord>
   );
 }`;
