@@ -1,7 +1,8 @@
+import * as React from "react";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { IconArrowRight as ArrowRight } from "@tabler/icons-react";
-import { Badge } from "@gunjo/ui";
+import { Badge, Button } from "@gunjo/ui";
 import { LocalNav } from "@/components/layout/TableOfContents";
 import { COLD_TEST_ROUND_COUNT } from "@/lib/cold-test-count";
 import gallery from "@/data/cold-test-gallery.json";
@@ -79,7 +80,11 @@ const QUADRANTS = [
         row: "AI が使う",
         col: "見本",
         title: "実例を足場にする",
-        body: "組み上がった画面はどれも、公開されているコンポーネントだけで組んだ実例です。AI は「この業種の画面はこう組む」の出発点として、そのまま参照できます。",
+        // "公開されているコンポーネントだけで組んだ" contradicted the section
+        // below, which says the AI reports "何が足りなくて自前で組んだか"
+        // (writing-review, 2026-09-08): if it hand-rolled the missing pieces,
+        // the screens are not built from published components alone.
+        body: "組み上がった画面はどれも、公開されているコンポーネントを土台に組んだ実例です。足りずに自前で補った箇所も記録に残っています。AI は「この業種の画面はこう組む」の出発点として参照できます。",
         href: "/docs/ai-handoff",
         linkLabel: "AI 向けの入口へ",
         entry: null,
@@ -96,12 +101,33 @@ const QUADRANTS = [
     },
 ] as const;
 
+// Narrow-width map of the same 2×2. Below `sm` the card grid stacks into one
+// column, so the axis headers disappear and the prose below ("左上から入ります"
+// / "右下から入ります" / "入口の角") loses its referent — a context-zero reader
+// at 375px could not tell which card was which corner and had to rebuild the
+// square in their head (figure-review detection, 2026-09-08). This map is that
+// square: axis names, the four face names, and the two entry corners, nothing
+// else. It carries information, so it keeps a real description rather than
+// being hidden from screen readers. On sm+ the card grid already IS the square,
+// and the same review found nothing missing there, so the map stays hidden.
+const QUADRANT_MAP_ROWS = [
+    { axis: "人間", cells: [QUADRANTS[0], QUADRANTS[1]] },
+    { axis: "AI", cells: [QUADRANTS[2], QUADRANTS[3]] },
+] as const;
 const FLYWHEEL_STEPS = [
     "AI が画面を組む途中でつまずきます。足りないコンポーネントに当たるか、既存コンポーネントの欠陥に当たるかです。",
     "つまずいた箇所は、その場で記録されます。欠陥は誰でも見られる公開の課題票（GitHub の issue）になり、修正の対象になります。",
     "同じ「このコンポーネントが足りない」という記録が3回たまると、そのコンポーネントを正式に作って群青に加えます。",
     "次の AI は、同じ場所でつまずきません。",
     "コンポーネントが増えるほど、新しいつまずきが起きるのは、まだ試していない種類の画面だけになります。",
+] as const;
+
+// The age-field defect, one step per line: the reader has to carry the field's
+// current value from step to step, and it changes three times.
+const AGE_FIELD_STEPS = [
+    "「4」と打ちます。18 より小さいので、その場で下限の 18 に直されます。",
+    "続けて「5」と打ちます。18 の後ろに付いて 185 になります。",
+    "185 は 75 より大きいので、今度は上限の 75 に直されます。",
 ] as const;
 
 // The three states a found defect can be in. Deliberately NOT "全部対応済み"
@@ -131,6 +157,15 @@ const CANNOT_SAY = [
     "実データの量。試験の画面は現実的なサンプルデータで組んでいて、数万件の実データを流したときの挙動は測っていません。",
     "実運用。長期間の利用や、実際の利用者の操作でしか出ない問題は、この試験の外にあります。",
     "組織ごとの業務手順。その会社の運用の中でしか再現しない欠陥は、ここでは出ません。",
+] as const;
+
+// Footer doors, in reading order: the sample first (where most JA readers
+// go next), then the record, the argument behind it, and the AI entrance.
+const READ_NEXT = [
+    { href: "/showcase", label: "コンポーネントと見本の一覧" },
+    { href: "/cold-tests", label: "コールドテストの記録" },
+    { href: "/cold-tests/why", label: "なぜコールドテストするか" },
+    { href: "/docs/ai-handoff", label: "AI 向けの入口" },
 ] as const;
 
 function QuadrantCell({
@@ -166,26 +201,84 @@ function QuadrantCell({
                     {quadrant.entry}
                 </p>
             )}
-            <Link
-                href={quadrant.href}
-                className="inline-flex items-center gap-1 text-sm font-medium text-primary hover:underline"
+            {/* The face's own door. It was a plain text link and read as
+                body copy (KeEem review 2026-09-08), so each face now ends in
+                a real @gunjo/ui Button: filled on the two entry corners,
+                outlined on the other two. `w-full` overrides the variant's
+                `w-fit` so all four doors share one bottom edge. */}
+            <Button
+                asChild
+                variant={quadrant.entry ? "default" : "outline"}
+                className="mt-1 h-auto w-full whitespace-normal py-2 text-center"
             >
-                {quadrant.linkLabel}
-                <ArrowRight className="h-3.5 w-3.5" aria-hidden />
-            </Link>
+                <Link href={quadrant.href}>
+                    {quadrant.linkLabel}
+                    <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                </Link>
+            </Button>
         </div>
+    );
+}
+
+function QuadrantMap() {
+    return (
+        <figure
+            className="sm:hidden"
+            aria-label="4つの面の配置図。横に見本と試験、縦に人間と AI。左上が「完成した画面を見る」で日本語圏の入口、右上が「試験の記録を読む」、左下が「実例を足場にする」、右下が「AI に試験を受けさせる」で英語圏の入口。"
+        >
+            <div className="grid grid-cols-[1.75rem_1fr_1fr] gap-1 text-center">
+                <div aria-hidden />
+                <div className="pb-0.5 text-xs font-semibold text-foreground">
+                    見本
+                </div>
+                <div className="pb-0.5 text-xs font-semibold text-foreground">
+                    試験
+                </div>
+                {QUADRANT_MAP_ROWS.map((row) => (
+                    <React.Fragment key={row.axis}>
+                        {/* Horizontal, unlike the sm+ grid's vertical row
+                            labels: "AI" is Latin, and vertical-rl lays its two
+                            letters on their side. The names are short enough to
+                            fit the rail upright. */}
+                        <div className="flex items-center justify-center text-center text-xs font-semibold leading-4 text-foreground">
+                            {row.axis}
+                        </div>
+                        {row.cells.map((cell) => (
+                            <div
+                                key={cell.key}
+                                className={`flex min-h-16 flex-col items-center justify-center gap-1 rounded-md border p-2 text-[11px] leading-4 ${
+                                    cell.entry
+                                        ? "border-primary-border/60 bg-primary-subtle/40 font-medium text-foreground"
+                                        : "border-border/60 bg-muted/20 text-muted-foreground"
+                                }`}
+                            >
+                                <span>{cell.title}</span>
+                                {cell.entry && (
+                                    <span className="rounded-sm bg-primary-subtle px-1.5 py-0.5 text-[10px] font-semibold text-primary">
+                                        入口
+                                    </span>
+                                )}
+                            </div>
+                        ))}
+                    </React.Fragment>
+                ))}
+            </div>
+            <figcaption className="mt-2 text-xs leading-5 text-muted-foreground">
+                4つの面の配置。この画面の幅では上の4枚が縦に並ぶので、本文が言う「左上」「右下」はこの図で確かめてください。
+            </figcaption>
+        </figure>
     );
 }
 
 export default function HowToReadPage() {
     return (
         <div className="container py-10 md:py-12">
-            <article className="mx-auto w-full max-w-3xl space-y-10">
+            <article className="w-full space-y-10">
                 <header className="space-y-4">
                     <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
                         {TITLE}
                     </h1>
-                    <p className="max-w-2xl text-lg leading-8 text-muted-foreground">
+                    <p className="text-lg leading-8 text-muted-foreground">
                         gunjo.jp
                         は、役割の違う4つの面でできています。読み手が「人間」か「AI」か。見ているものが「見本（完成した画面）」か「試験（作る過程の記録）」か。この2つの分け方で、サイト全体は4つの面に分かれます。このページは、その案内図です。
                     </p>
@@ -241,6 +334,8 @@ export default function HowToReadPage() {
                             <QuadrantCell quadrant={QUADRANTS[3]} />
                         </div>
                     </figure>
+
+                    <QuadrantMap />
                 </section>
 
                 <section className="space-y-4">
@@ -248,9 +343,8 @@ export default function HowToReadPage() {
                         入口は逆でも、めぐる面は同じ
                     </h3>
                     <p className="leading-7 text-foreground">
-                        日本語圏の読者の多くは、左上から入ります。まず完成した画面を見て「自分の業種でも組めそうだ」と確かめ、それから試験の記録へ進みます。英語圏の読者の多くは、右下から入ります。右下の面は
-                        AI
-                        に受けさせる試験ですが、人間の読者はその結果を確かめに来ます。試験の結果を確かめてから、完成した画面を見に行きます。入口の角は逆ですが、最後には同じ4つの面をひと巡りします。
+                        日本語圏の読者の多くは、左上の「完成した画面を見る」から入ります。自分の業種でも組めそうだと確かめてから、試験の記録へ進みます。英語圏の読者の多くは、その対角にある右下の「AI
+                        に試験を受けさせる」から入ります。試験の結果を先に確かめて、それから完成した画面を見に行きます。入る角は逆で、通る順も逆です。それでも、行き着く先は同じ4つの面です。
                     </p>
                 </section>
 
@@ -264,8 +358,14 @@ export default function HowToReadPage() {
                         に、実在の業種の業務画面を組ませる試験です。AI
                         に渡すのは、公開されている npm パッケージと gunjo.jp
                         のドキュメントだけです。組み終えた AI
-                        は「どのコンポーネントをそのまま使えたか」「何が足りなくて自前で組んだか」を報告します。これまでに{" "}
-                        {COLD_TEST_ROUND_COUNT}{" "}
+                        は「どのコンポーネントをそのまま使えたか」「何が足りなくて自前で組んだか」を報告します。
+                    </p>
+                    {/* Split out of the paragraph above: definition and scale
+                        ran together as one ~250-character block, and a
+                        context-zero reader stopped reading before the list of
+                        industries (visual-rhythm detection, 2026-09-08). */}
+                    <p className="leading-7 text-foreground">
+                        これまでに {COLD_TEST_ROUND_COUNT}{" "}
                         回繰り返してきました。対象は、金融・医療・建設などの{" "}
                         {INDUSTRY_COUNT} 業種と、
                         {TRANSPORT_MODES.join("・")}の
@@ -302,12 +402,24 @@ export default function HowToReadPage() {
                     <p className="leading-7 text-foreground">
                         つまずきの記録には、コンポーネントが足りない話だけでなく、実際に触らないと気づけない類の欠陥も入ります。たとえば数値入力のコンポーネントには「年齢欄に
                         45 と打ったら 75
-                        になる」という欠陥がありました。年齢欄の範囲は 18
-                        歳から 75
-                        歳。1文字打つたびに入力値を範囲内へ丸める作りだったため、4
-                        と打った瞬間に下限の 18 に直され、続けて打った 5
-                        がその後ろに付いて 185 になり、今度は上限の 75
-                        に直されるのです。画面を目で見るだけでは見つからず、実際に打ち込んで初めて出ます。これもコールドテストが実際に画面を操作して見つけ、課題票（
+                        になる」という欠陥がありました。年齢欄に入れられるのは
+                        18 歳から 75
+                        歳。1文字打つたびに、入力値をその範囲内へ丸める作りでした。
+                    </p>
+                    {/* These three steps used to be one 92-character sentence
+                        in which five numbers changed in turn. A context-zero
+                        reader read it twice, gave up, and scrolled past the
+                        whole section (visual-rhythm detection, 2026-09-08), so
+                        the value now changes once per line. */}
+                    <ol className="ml-5 list-decimal space-y-2 text-foreground">
+                        {AGE_FIELD_STEPS.map((step) => (
+                            <li key={step} className="leading-7">
+                                {step}
+                            </li>
+                        ))}
+                    </ol>
+                    <p className="leading-7 text-foreground">
+                        画面を目で見るだけでは見つからず、実際に打ち込んで初めて出ます。この欠陥も、コールドテストが実際に画面を操作して見つけたものです。いまも課題票（
                         <a
                             href="https://github.com/uixhero/gunjo/issues/790"
                             target="_blank"
@@ -316,7 +428,7 @@ export default function HowToReadPage() {
                         >
                             GitHub の issue #790
                         </a>
-                        ）として、誰でも見られるまま残っています。
+                        ）として公開されていて、誰でも見られます。
                     </p>
                 </section>
 
@@ -389,31 +501,19 @@ export default function HowToReadPage() {
                     <h2 className="text-2xl font-bold tracking-tight">
                         ここから読む
                     </h2>
+                    {/* These were four hand-rolled button lookalikes. The
+                        docs site dogfoods Gunjo UI (CLAUDE.md), so they are
+                        @gunjo/ui Buttons now — same shape as the 2×2 doors. */}
                     <div className="flex flex-wrap gap-3">
-                        <Link
-                            href="/showcase"
-                            className="inline-flex items-center gap-2 rounded-md border border-primary-border bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
-                        >
-                            コンポーネントと見本の一覧
-                        </Link>
-                        <Link
-                            href="/cold-tests"
-                            className="inline-flex items-center gap-2 rounded-md border border-border/70 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary-border hover:text-primary"
-                        >
-                            コールドテストの記録
-                        </Link>
-                        <Link
-                            href="/cold-tests/why"
-                            className="inline-flex items-center gap-2 rounded-md border border-border/70 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary-border hover:text-primary"
-                        >
-                            なぜコールドテストするか
-                        </Link>
-                        <Link
-                            href="/docs/ai-handoff"
-                            className="inline-flex items-center gap-2 rounded-md border border-border/70 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary-border hover:text-primary"
-                        >
-                            AI 向けの入口
-                        </Link>
+                        {READ_NEXT.map((item, index) => (
+                            <Button
+                                key={item.href}
+                                asChild
+                                variant={index === 0 ? "default" : "outline"}
+                            >
+                                <Link href={item.href}>{item.label}</Link>
+                            </Button>
+                        ))}
                     </div>
                 </section>
             </article>
