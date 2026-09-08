@@ -1,0 +1,1301 @@
+{
+  "repo": "uixhero/gunjo",
+  "fetchedAt": "2026-08-25",
+  "issues": {
+    "47": {
+      "title": "fix(adoption): smoother cold-adoption — fluid primitive widths + package docs",
+      "state": "closed",
+      "excerpt": "Context 公開済み @gunjo/ui パッケージ＋ gunjo.jp の docs だけを頼りに、文脈ゼロの AI エージェントに新規 Next.js アプリ（Next16 / React19 / Tailwind v4）で /settings ページ（Tabs・フォーム・Select・Switch・Avatar）を adoption から build まで作らせるコールドテストを実施。結果は 4/5（ビルド成功・実機動作）。t…"
+    },
+    "49": {
+      "title": "fix(Banner): dismiss Tooltip needs self-wrapped TooltipProvider (SSR crash, inconsistent with Toast)",
+      "state": "closed",
+      "excerpt": "概要 標準的な使い方の単体 <Banner onDismiss={...} が SSR/prerender でクラッシュする。 原因（SSOT 不整合） - src/components/feedback/Banner.tsx: dismiss（×）ボタンを <Tooltip<TooltipTrigger…</TooltipTrigger<TooltipContent{dismissLabel}</TooltipContent</Too…"
+    },
+    "50": {
+      "title": "docs: コード例が client-only（useEffect+shiki）で AI エージェントのfetchに映らない",
+      "state": "closed",
+      "excerpt": "概要（AI-consumable の主張に関わる） gunjo.jp のコンポーネント docs を AI エージェントが HTTP fetch（JS非実行）すると、コード例が一切返らない。「AI から使える」を掲げているのに docs サイト自体が機械可読として弱い。 「やってみた」コールドテスト #2 で、cont文脈ゼロの AI 採用者が「docs の例が読めず、結局 npm 同梱の TS 型を頼った」と報告。typed barr…"
+    },
+    "52": {
+      "title": "fix(tooltip): ~28 components render Tooltip without a TooltipProvider (systemic SSR crash; #49 was one instance)",
+      "state": "closed",
+      "excerpt": "概要（systemic・#49 の一般化） 「やってみた」コールドテスト #3（カルーセル） で、文脈ゼロの AI が <Carousel 単体で SSR クラッシュ: 調べると #49（Banner）は氷山の一角で、overlay/Tooltip を使うのに TooltipProvider を self-wrap していないコンポーネントが多数ある。 棚卸し（src/components で overlay/Tooltip を imp…"
+    },
+    "53": {
+      "title": "feat(charts): export ChartDataPoint/ChartTone/ChartColor from the public barrel",
+      "state": "closed",
+      "excerpt": "概要（型付き採用者には build ブロッカー） 全チャート（LineChart/BarChart/DonutChart/PieChart…）は公開 prop として ChartDataPoint を要求するのに、その型が @gunjo/ui の barrel から export されていない。 → 型付きの採用者は、チャートに渡すデータの形を名前で書けない。コールドテスト #4（ダッシュボード）で実際に踏み、ローカルにミラー型を宣言し…"
+    },
+    "55": {
+      "title": "patterns: AuthTemplate is fixed-width (1280×720); add a responsive auth pattern (cold-test #5)",
+      "state": "closed",
+      "excerpt": "概要（keystone＝パターン再設計の初弾） 「やってみた」コールドテスト #5（ログイン/サインアップ） で、cold AI は AuthTemplate を使えず手でレスポンシブな中央寄せカードを組んだ。理由＝AuthTemplate が固定ピクセル枠だから。 確定事実（ソース裏取り済み） - src/components/patterns/AuthTemplate.tsx:20: w-[1280px] 固定幅＋h-[720px]…"
+    },
+    "56": {
+      "title": "feat(datatable): re-export ColumnDef from the barrel (typed consumers reach a transitive dep)",
+      "state": "closed",
+      "excerpt": "概要（#53 の一般化：公開 prop の型が barrel から出ていない） DataTable の公開 prop columns は ColumnDef<TData[] を要求するが、ColumnDef が @gunjo/ui の barrel から export されていない。型付き採用者は @tanstack/react-table から直接 import するしかなく、それは採用者アプリにとって transitive 依存（p…"
+    },
+    "57": {
+      "title": "a11y(command): CommandDialog missing Description/aria-describedby on DialogContent",
+      "state": "closed",
+      "excerpt": "概要（a11y を謳うのに a11y 警告） CommandPalette（/command ⌘Kパレット）を開くと、開発時にブラウザ警告: コールドテスト #7（コマンドパレット） でライブ再現。dev-only・非ブロッキングだが、a11y 内蔵を売りにするライブラリの実 a11y ギャップ。スクリーンリーダーがダイアログの説明を読めない。 確定事実（ソース裏取り済み） - src/components/navigation/Com…"
+    },
+    "58": {
+      "title": "fix(skeleton): fluid-width defaults (rectangle/text ship w-[200px]/w-[160px]) — fluid round 2",
+      "state": "closed",
+      "excerpt": "概要（#47 と同じ \"固定幅 class\" の続き） Skeleton の非 circle variant が固定幅で出荷されるため、全幅のスケルトン行にするには毎回 override が要る。 - src/components/display/Skeleton.tsx: - 結果: コンテナ幅に関係なく 200px / 160px のスタブになる。コールドテスト #8（states） で、w-full/w-1/3/w-2/3 の o…"
+    },
+    "60": {
+      "title": "patterns: KanbanTemplate is a broken fixed-size frame; no DnD primitive + Kanban 404 on docs (cold-test #9)",
+      "state": "closed",
+      "excerpt": "概要（#55 と同系統＝固定枠パターン ＋ \"Kanban\" surface の over-promise） 「やってみた」コールドテスト #9（Kanban ボード DnD） で、cold AI は KanbanTemplate を使えず、gunjo の Card/Badge/Avatar ＋ 自前の dnd-kit でボードを組んだ。 確定事実（ソース裏取り済み） 1. KanbanTemplate が壊れた固定サイズ frame:…"
+    },
+    "62": {
+      "title": "fix(file-uploader): progress stubbed (dead comment) + uncontrolled + no showFileList; Progress/ProgressWidget fixed-width (cold-test #10)",
+      "state": "closed",
+      "excerpt": "コールドテスト #10（ファイルアップロード） で FileUploader が alpha 半完成と判明（シリーズ最低 3/5）。 ① FileUploader が半完成（主） src/components/inputs/FileUploader.tsx（ソース裏取り済み）: - 進捗が未実装: 内部 FileState に progress/status フィールドはある（L26-27, 66-67, 84-85）のに描画せず、L1…"
+    },
+    "64": {
+      "title": "fix(datepicker): cannot disable individual dates — disabled is whole-component boolean only (cold-test #11)",
+      "state": "closed",
+      "excerpt": "コールドテスト #11（カレンダー予約） で、DatePicker が予約系の最頻ユースケース「過去日を無効＋一部の日を満席で無効」を表現できないと判明。cold AI は DatePicker を諦めて raw Calendar に降りた。 確定事実（ソース裏取り済み） - src/components/inputs/DatePicker.tsx:23 disabled?: boolean — コンポーネント全体（トリガー）の無効化の…"
+    },
+    "66": {
+      "title": "patterns: fixed-demo-frame is systemic — 7 templates still ship w-[1280px] h-[720px] (cold-test #12)",
+      "state": "closed",
+      "excerpt": "概要（#55/#60 は instance・root は systemic class） コールドテスト #12（Chat） で ChatTemplate がまた固定枠（w-[1280px] h-[720px] h-screen w-full overflow-hidden）と判明。AuthTemplate(#55)・KanbanTemplate(#60) を1個ずつ直してきたが、全パターンテンプレ棚卸しで 7個に残存＝root は s…"
+    },
+    "70": {
+      "title": "fix(OnboardingFlow): Next を validation で止める手段が無い (cold-test #13)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #13(Onboarding wizard)で判明。onboarding 専用の OnboardingFlow が、wizard の核である「現ステップが妥当になるまで Next を止める」を実現できない。 問題 src/components/overlay/OnboardingFlow.tsx:158-159 — Next/primary ボタンは無条件で setIndex(index+1)(最終なら onCom…"
+    },
+    "71": {
+      "title": "fix(RadioGroup): キーボード矢印/roving tabindex/role=radiogroup が無い a11y 不備 (cold-test #13)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #13 で判明。RadioGroup が WAI-ARIA radiogroup パターンを満たさず、「a11y 内蔵」の主張が破れている（#57 CommandDialog と同系）。 問題 src/components/inputs/RadioGroup.tsx — item は role=\"radio\"+aria-checked(L64-65)だが: - onKeyDown 無し → 矢印キーで選択移動できな…"
+    },
+    "72": {
+      "title": "fix(Alert): 固定幅 w-[320px] でコンテナを埋めない (cold-test #13・固定幅ファミリー)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #13 で判明。#47/#58/#66 と同じ固定幅ファミリー。 問題 src/components/feedback/Alert.tsx:21 — inline-flex h-fit w-[320px] max-w-full。feedback-core.json の alert default width:320(=.pen 由来)。462px のカードに入れても 320px の狭い箱になり、コンテナを埋めない。…"
+    },
+    "73": {
+      "title": "fix(Stepper): item 固定幅でナロー幅コンテナで横溢れ (cold-test #13・follow-up)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #13 の follow-up(Minor)。 問題 src/components/feedback/Stepper.tsx:78,99 — w-16 sm:w-20 per item＋w-[60px] connector、shrink/scroll 無し。390px viewport で5ステップが 656px 必要→308px のコンテンツ域で横スクロール誘発。 やること - ナロー幅で溢れない respons…"
+    },
+    "74": {
+      "title": "docs: OnboardingTemplate 非公開・doc に import 行/実例/型形が無い (cold-test #13・follow-up)",
+      "state": "open",
+      "excerpt": "背景 コールドテスト #13 の docs 系 follow-up。 問題 - OnboardingTemplate が gunjo.jp の showcase/patterns に載っていない（onboarding に最適な部品なのに非公開、src/index.ts を読むまで発見不能）。 - Stepper/OnboardingFlow の doc ページに import { … } from '@gunjo/ui' 行・コピペ可能…"
+    },
+    "78": {
+      "title": "fix(Accordion): 固定幅 w-[400px] でコンテナを埋めない (cold-test #14・固定幅ファミリー)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #14(Pricing) で判明。#47/#58/#66/#72 と同じ固定幅ファミリー。 問題 src/components/display/Accordion.tsx:41 — flex flex-col w-[400px] border。display-core.json の accordion variant が width:400(=.pen 由来)。375px モバイルの FAQ で 400px がはみ…"
+    },
+    "79": {
+      "title": "fix(deps): @vercel/analytics を dependencies → devDependencies へ (cold-test #14)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #14 で判明。DS が consumer に不要なベンダー analytics 依存を強制。 問題 package.json の dependencies に @vercel/analytics: ^2.0.1。だが shipped src/ では一切 import していない——使っているのは app/layout.tsx（docs サイト＝出荷物に含まれない app/）だけ。よって npm install @…"
+    },
+    "80": {
+      "title": "feat(PricingTemplate): データ駆動化 or スコープ明文化（スタブで実用に耐えない・cold-test #14）",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #14(Pricing) で判明。PricingTemplate は public export だが、実際の pricing ページに使えないスタブ。#13 の OnboardingFlow と同テーマ（名前が仕事を約束するが核を欠く）。 問題（src/components/patterns/PricingTemplate.tsx） - billing トグル無し（完全静的） - features が React…"
+    },
+    "83": {
+      "title": "fix(NotificationCenter): 行が clickable <div> でキーボード不可 + 重複 w-[320px] w-80 (cold-test #15)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #15(通知フィード) で判明。「a11y 内蔵」が #57/#71 に続き3度目の破れ。 問題（src/components/feedback/NotificationCenter.tsx） - :103 通知行が <div onClick={() = onLinkClick?.(id)} — <button/<a でなく role/tabIndex/onKeyDown 無し → キーボード/SR で通知を起動で…"
+    },
+    "84": {
+      "title": "fix(adoption/packaging): @import \"@gunjo/ui/styles\" が Turbopack dev で 500 (cold-test #15)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #15 で判明。インストール story の新 class。新規採用者の初回 npm run dev が全ページ 500 になる。 問題 - package.json exports: \"./styles\": \"./src/globals.css\"。 - 同梱 docs/adoption.md:84,95 が CSS の @import \"@gunjo/ui/styles\"; を無警告で推奨。 - Next 16…"
+    },
+    "85": {
+      "title": "feat(NotificationCenter): Notification 型がスタブで activity feed を表現不能・docs 非掲載 (cold-test #15)",
+      "state": "open",
+      "excerpt": "背景 コールドテスト #15 で判明。#13 OnboardingFlow・#14 PricingTemplate に続く「名前負け」——名前は activity center だが実体は header の bell dropdown。 問題（src/components/feedback/NotificationCenter.tsx） - :11 interface Notification = { id, title, descri…"
+    },
+    "87": {
+      "title": "fix(FileTree/TreeView): role=tree なのにキーボードナビ皆無 (cold-test #16・a11y 4度目)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #16(Editor/IDE) で判明。「a11y 内蔵」が #57/#71/#83 に続き4度目の破れ。 問題 src/components/display/TreeView.tsx — role=\"tree\"/treeitem/group と aria は正しいが onKeyDown が一切無く、roving tabindex も無い。treeitem が個別 tab stop（11個全部 Tab で踏む）、↑…"
+    },
+    "88": {
+      "title": "fix(packaging): files が存在しない design/*-metadata.json を参照・design/ が tarball に入らない (cold-test #16)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #16 で判明。インストール/パッケージング衛生（#79/#84 と同系）。 問題 package.json の files: だがこれらは存在しない（実体は category 別: design/patterns-metadata.json/feedback-metadata.json… ＝atomic 名ではない）。結果 tarball に design/ ディレクトリが入らない（インストール先に design…"
+    },
+    "89": {
+      "title": "fix(classes): 矛盾 Tailwind クラス flex-col flex-row が複数コンポーネントに (cold-test #16)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #16 で判明。出荷 src に矛盾した方向クラス（generated-drift 疑い）。 問題 flex-col＋flex-row 併記（後者が勝つので描画はするが flex-col は死にクラス）: - src/components/navigation/Breadcrumb.tsx - src/components/navigation/Menubar.tsx - src/components/feedba…"
+    },
+    "90": {
+      "title": "feat(EditorTemplate/StatusBar): テンプレ非公開・status slot 無し・mobile fallback 無し / StatusBar default 不適 (cold-test #16)",
+      "state": "open",
+      "excerpt": "背景 コールドテスト #16 で判明。#13/#14/#15 に続く上位 'named' 部品の名前負け（template/organism 層）。 問題 EditorTemplate（src/components/patterns/EditorTemplate.tsx）: - /docs/components/editor-template 404・patterns 一覧で非公開（PUBLICPATTERNSLUGS 外）＝docs-…"
+    },
+    "93": {
+      "title": "fix(Pagination): href無し<a>でキーボード操作不可・page-state API 無し (cold-test #17・a11y 5度目)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #17(検索結果) で判明。a11y が #57/#71/#83/#87 に続き5度目の破れ。「primitive がコンポジションのフリして出荷」系。 問題 src/components/navigation/Pagination.tsx:59 — PaginationLink は <a aria-current={...} を返すが href が無い。href 無しの bare <a はフォーカス不可・キーボー…"
+    },
+    "94": {
+      "title": "fix(SearchInput): clear ボタンが tabIndex=-1 でキーボード到達不可 (cold-test #17)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #17 で判明。minor a11y。 問題 src/components/inputs/SearchInput.tsx:59 — clear(×) ボタンが tabIndex={-1} でキーボードフォーカス不可。マウスでは消せるがキーボードユーザーは × に到達できない（select-all+delete で代替は可なので minor）。 やること - clear ボタンを keyboard-reachable…"
+    },
+    "95": {
+      "title": "feat(Badge): dismiss 不可・フィルタチップ(removable badge)が DIY (cold-test #17)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #17 で判明。Badge の本命用途（検索のフィルタチップ）が DIY。 問題 src/components/display/Badge.tsx — <div＋4 variant で dismiss/close affordance 無し。フィルタチップに必要な「個別 × で削除」を consumer が自前 <button aria-label をネストして実装する羽目。docs も「Badge＋小さい But…"
+    },
+    "97": {
+      "title": "fix(Dialog): モバイルで画面端まで(gutter無し)＋角丸無し / 矛盾 w-[512px] w-full (cold-test #18)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #18(プロフィール) で判明。minor mobile-polish。 問題（src/components/overlay/Dialog.tsx:46-47） - base: grid w-[512px] w-full max-w-lg ... sm:rounded-lg — w-full が勝つので 375px で幅 375・left 0・right 375（画面端まで）＋sm:rounded-lg でsm 未…"
+    },
+    "98": {
+      "title": "fix(MetadataList): 値を無条件 truncate・長い値が title 無しで切れる (cold-test #18)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #18 で判明。minor footgun。 問題 src/components/display/MetadataList.tsx:63,66,68 — label/value/description が無条件 truncate。プロフィールの Website/email/長い bio 等が title 属性も折返しも無く silently clip。 やること - truncate される text に titl…"
+    },
+    "100": {
+      "title": "fix(Slider): 固定幅 w-[200px] でフォームを埋めない (cold-test #19・固定幅ファミリー)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #19(通知設定) で判明。#47/#58/#66/#72/#78 と同じ固定幅ファミリー。 問題 src/components/inputs/Slider.tsx:16 — relative flex w-[200px] ...。inputs-core.json slider variant width=200(=.pen 由来)。full-width フォームで 200px の寸詰まりに（className=\"…"
+    },
+    "101": {
+      "title": "fix(TimePicker): 未設定(value=\"\")が 00:00 と表示される (cold-test #19)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #19 で判明。minor ergonomic。 問題 src/components/inputs/TimePicker.tsx:52-54 — value=\"\"→parse が null→displayHour = hour ?? 0/displayMinute = minute ?? 0 で 未設定が 00:00（真夜中）と区別つかず表示。placeholder/空 affordance 無し。group の…"
+    },
+    "102": {
+      "title": "chore(RadioGroupItem): checked/unchecked 両方に bg-transparent 併記（冗長クラス） (cold-test #19)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #19 で判明。cosmetic（dead/重複クラス系・#83/#89 と同じ「生成/手書きの冗長クラス」系統）。 問題 src/components/inputs/RadioGroup.tsx:19-20 — radioGroupItemStateClasses の checked/unchecked 両方が bg-transparent。状態で変わらないので state class に置く意味が無く、base…"
+    },
+    "104": {
+      "title": "fix(EmptyState,StatusScreen): title が <p> で heading でない・full-page に h1 が無い (cold-test #20・a11y 6度目)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #20(空ダッシュボード) で判明。a11y が #57/#71/#83/#87/#93 に続き6度目。空状態系は first-run 画面の主役なのに見出し意味論が欠落。 問題 - src/components/display/EmptyState.tsx:32 — title が <p className=\"text-sm font-semibold\"{title}</p。 - src/components/f…"
+    },
+    "105": {
+      "title": "fix(Progress): max=0 で割り算ガードが無く NaN (cold-test #20)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #20 で判明。minor robustness（ProgressWidget はガード有り、bare Progress は無し）。 問題 src/components/feedback/Progress.tsx:13 — ((value || 0) / max) 100。max={0} で value=0→NaN、value0→Infinity(→clamp 100)。不正入力だがガード無し。 やること - co…"
+    },
+    "106": {
+      "title": "feat(Badge): success/positive tone が無い（Statistic には tone=positive 在り） (cold-test #20/#12)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #20(再掲・#12 でも観測)。Badge の tone に success/positive が無く、「完了」系チップで緑が出せない。Statistic には tone=\"positive\"(→text-success)が在るのに Badge に無いのは不整合。 問題 src/components/display/Badge.tsx — BadgeVariantKey = default | destructi…"
+    },
+    "109": {
+      "title": "feat(DocNote/Callout): note/warning/tip を表現できない・見出しが div・role/icon 無し (cold-test #21)",
+      "state": "closed",
+      "excerpt": "背景 コールドテスト #21(ブログ記事) で判明。DocNote は docs の callout 部品として案内されているが、実際の admonition(note/warning/tip)を表現できず、cold AI は自前 Callout を作る羽目に。 問題 src/components/display/DocNote.tsx — variant が default | reference のみ。heading が plain…"
+    },
+    "110": {
+      "title": "feat(typography): Prose/Heading/TableOfContents primitive が無い＝a11y 見出し再発の根 (cold-test #21)",
+      "state": "open",
+      "excerpt": "背景 コールドテスト #21 で判明。これまでの a11y 見出し問題(#104 EmptyState/StatusScreen 等)は \"症状\" で、根はこれ。 問題 src/index.ts に Prose / Heading / Typography / TableOfContents の primitive が無い（TextLink/Separator/MarkdownRenderer のみ）。長文/記事/docs ページの c…"
+    },
+    "111": {
+      "title": "fix(LandingTemplate): use Container instead of bare .container — sections are left-pinned, no gutters",
+      "state": "closed",
+      "excerpt": "Cold-test #22 (landing page), Finding 1 — Major, in-component bug. LandingTemplate wraps header / features / pricing / footer in <div className=\"container\". That is Tailwind's .container utility = a max-width per breakpo…"
+    },
+    "113": {
+      "title": "fix(Img): wrapper hardcodes h-[256px] w-[256px] — ignores aspectRatio, can't go fluid",
+      "state": "closed",
+      "excerpt": "Cold-test #22 (landing page), Finding 5 — Minor, in-component bug (fixed-dimension family). Img's wrapper always gets h-[256px] w-[256px] (imgVariantClasses for loading/loaded/error all carry it; it overrides the base w-…"
+    },
+    "114": {
+      "title": "fix(Grid): cols={n} emits bare grid-cols-N with no responsive stacking — overflow at 375px",
+      "state": "closed",
+      "excerpt": "Cold-test #22 (landing page), Finding 6 — Minor, footgun. <Grid cols={3} emits a bare grid-cols-3 with no responsive breakpoints, so it stays 3-up at 375px (horizontal-overflow risk). Only the minItemWidth (auto-fit) mod…"
+    },
+    "116": {
+      "title": "fix(CardTitle): hard-coded <h3> with no as/level prop causes heading-order skips",
+      "state": "closed",
+      "excerpt": "Cold-test #23 (docs home), Finding 7 — Major, a11y / missing prop. CardTitle renders a hard <h3 with no as/level escape hatch (src/components/display/Card.tsx). Putting a Card right after a page <h1 (e.g. a \"Get Started…"
+    },
+    "117": {
+      "title": "fix(PageAside): mobile accordion injects a stray <h3> before the page <h1> (a11y)",
+      "state": "closed",
+      "excerpt": "Cold-test #23 (docs home), Finding 6 — Major, a11y / component bug. PageAside renders its mobile aside (lg:hidden) by wrapping title in an AccordionTrigger, which Radix renders inside an <h3 (src/components/navigation/Pa…"
+    },
+    "118": {
+      "title": "fix(DocsTemplate): 200px sidebar column at base breakpoint never collapses — mobile-broken",
+      "state": "closed",
+      "excerpt": "Cold-test #23 (docs home), Finding 3 — Major, in-component bug. DocsTemplate uses grid-cols-[200pxminmax(0,1fr)] md:grid-cols-[220pxminmax(0,1fr)180px] (src/components/patterns/DocsTemplate.tsx:25). The 200px left sideba…"
+    },
+    "120": {
+      "title": "feat: no TableOfContents / On-this-page primitive (docs sites hand-roll heading extraction + scroll-spy)",
+      "state": "open",
+      "excerpt": "Cold-test #23 (docs home), Finding 2 — Major, missing component. There is no table-of-contents / \"On this page\" primitive. PageAside / RightRail are generic containers; nothing extracts headings or scroll-spies. The cold…"
+    },
+    "123": {
+      "title": "fix(DataTable): table a11y — <th> missing scope=\"col\" + sortable headers missing aria-sort",
+      "state": "closed",
+      "excerpt": "Cold-test #24 (admin/CRUD dashboard) — Major, a11y (browser-verified). DataTable renders a real <table (good), but: - <th have no scope=\"col\" (src/components/display/DataTable.tsx:320 — className only). Audited live: 8 h…"
+    },
+    "124": {
+      "title": "fix(DataTable): undefined `filter` calls getColumn(\"\") and logs a console warning",
+      "state": "closed",
+      "excerpt": "Cold-test #24 (admin/CRUD dashboard) — Minor, component bug. DataTable's filter wiring (src/components/display/DataTable.tsx:179-180): When filter is undefined (the default — prop is optional), filter !== null is true, s…"
+    },
+    "125": {
+      "title": "feat(ActionDataTable): controlled selection + onRowClick + rowActions overflow menu",
+      "state": "closed",
+      "excerpt": "Cold-test #24 (admin/CRUD dashboard) — Major, missing API (interaction/control gaps). Building an admin table, ActionDataTable carried selection + bulk + sorting + pagination + custom cells well, but its interaction mode…"
+    },
+    "126": {
+      "title": "feat(DataTable): faceted / multi-column filtering (only a single-column text filter exists)",
+      "state": "open",
+      "excerpt": "Cold-test #24 (admin/CRUD dashboard) — Major, missing API. DataTable.filter is a single-column text box ({ columnId, placeholder }). A real admin screen needs faceted filtering — a status Select, a date range, plus searc…"
+    },
+    "128": {
+      "title": "fix(Badge): block <div> with no as/asChild breaks when nested in <p> (hydration error)",
+      "state": "closed",
+      "excerpt": "Cold-test #25 (pricing comparison), F6 — Minor, component bug / a11y. Badge renders a block <div and has no as/asChild. Nesting it in a <p (a very common case — a price line, an inline \"Most popular\" label, a paragraph w…"
+    },
+    "129": {
+      "title": "feat(ToggleGroup): accept variant/size on the root (currently per-item only)",
+      "state": "closed",
+      "excerpt": "Cold-test #25 (pricing comparison), F5 — Minor, API/DX friction. <ToggleGroup variant=\"outline\" is a natural first guess for a segmented control, but it's a TS error — variant/size live only on <ToggleGroupItem. tsc caug…"
+    },
+    "130": {
+      "title": "fix(Switch): no built-in label affordance / state perceivable only via caller",
+      "state": "closed",
+      "excerpt": "Cold-test #25 (pricing comparison), F4 — Minor, a11y ergonomics. Switch has role=\"switch\" + aria-checked (good) but ships no label affordance, so every consumer must remember to wire an external <label/aria-label and (fo…"
+    },
+    "132": {
+      "title": "feat(ComparisonTable): a feature-comparison matrix component (rows=features, cols=plans, ✓/✗/value)",
+      "state": "open",
+      "excerpt": "Split out of #80 (cold-test #25 pricing) per design decision (A): the comparison matrix is its own component, not part of PricingTemplate. A pricing/feature comparison page needs a matrix: rows = features (groupable into…"
+    },
+    "133": {
+      "title": "fix(Resizable): bare-number size props are pixels, not percent — silent layout break (undocumented)",
+      "state": "closed",
+      "excerpt": "Cold-test #26 (inbox), F2 — Major (near-blocking), component/docs. Resizable wraps react-resizable-panels@4, where a bare number size is treated as pixels. The cold build passed defaultSize={38} maxSize={55} (expecting p…"
+    },
+    "134": {
+      "title": "fix(SidebarItem): unread count has no accessible context (reads \"Inbox 4\", not \"Inbox, 4 unread\")",
+      "state": "closed",
+      "excerpt": "Cold-test #26 (inbox), F4 — Minor, a11y. SidebarItem.count renders as a bare number span, so a screen reader hears \"Inbox 4\" — ambiguous (4 what?). For an unread/notification count it should convey \"Inbox, 4 unread\". The…"
+    },
+    "135": {
+      "title": "feat: no selectable / keyboard-navigable list primitive (List is presentational only)",
+      "state": "closed",
+      "excerpt": "Cold-test #26 (inbox), F1 — Major, missing component. The single biggest gap for a list-detail screen. List/ListItem (display/List.tsx) are presentational markers only (dot/check/circle/number): no selected/active/onSele…"
+    },
+    "136": {
+      "title": "feat: no master-detail / responsive list-swap composition (desktop split, mobile swap+back)",
+      "state": "open",
+      "excerpt": "Cold-test #26 (inbox), F3 — Minor, missing composition. Nothing expresses the master-detail pattern: list + detail side-by-side on desktop, swapping to a detail view with a back button on mobile. The cold build hand-roll…"
+    },
+    "140": {
+      "title": "fix(Popover): redundant duplicate classes in PopoverContent (w-72 w-[288px], rounded-md rounded-lg)",
+      "state": "closed",
+      "excerpt": "Cold-test #27 (week scheduler), F3 — Minor, cleanup/bug. PopoverContent's base className (src/components/overlay/Popover.tsx:27) carries two redundant duplicate pairs: - w-72 w-[288px] — both are 288px. - rounded-md roun…"
+    },
+    "141": {
+      "title": "feat(Calendar): ja locale + Japanese holidays are ON by default; locale={undefined} doesn't reset",
+      "state": "closed",
+      "excerpt": "Cold-test #27 (week scheduler), F5 — Minor, default/DX. Calendar (src/components/inputs/Calendar.tsx) defaults to locale = ja and showHolidays = true (Japanese holidays). For an EN/international consumer of @gunjo/ui (pu…"
+    },
+    "142": {
+      "title": "feat: no calendar-view / scheduler / time-grid / event primitive (Calendar is a date picker)",
+      "state": "closed",
+      "excerpt": "Cold-test #27 (week scheduler), F1+F2 — Major, missing component. The headline gap. @gunjo/ui has no scheduling view layer: no time-grid, no positioned event-block, no overlap/column-packing utility, no all-day lane, no…"
+    },
+    "147": {
+      "title": "fix(TreeView): single click conflates expand + select (no separate disclosure hit-target)",
+      "state": "closed",
+      "excerpt": "Cold-test #28 (file browser), F2 — Minor, component limitation. TreeView fires both expand-toggle AND onSelect on a single click of a folder row (src/components/display/TreeView.tsx ~L278-281), and there's no separate di…"
+    },
+    "148": {
+      "title": "feat(Breadcrumb): auto-collapse long paths (maxItems / itemsBeforeCollapse)",
+      "state": "closed",
+      "excerpt": "Cold-test #28 (file browser), F3 — Minor, missing prop. Breadcrumb is composable primitives only; BreadcrumbEllipsis exists but the consumer must decide when to insert it — there's no maxItems / itemsBeforeCollapse / ite…"
+    },
+    "149": {
+      "title": "feat(Checkbox): no built-in label affordance (caller must remember aria-label)",
+      "state": "closed",
+      "excerpt": "Cold-test #28 (file browser), F5 — Nit, a11y ergonomics (recurring). Checkbox has role=\"checkbox\" + aria-checked but ships no label affordance, so every instance needs a hand-wired aria-label (the cold build used Select…"
+    },
+    "152": {
+      "title": "feat(Form): presentational only — no validation/error/a11y-association system (FormField context)",
+      "state": "closed",
+      "excerpt": "Cold-test #29 (setup wizard), F1 — Major, missing capability. The headline gap for forms. Form / FormField / FormLabel / FormControl / FormDescription / FormMessage are styled structural wrappers with no behavior — no co…"
+    },
+    "153": {
+      "title": "fix(PasswordInput/Select/Textarea): no error-state styling; PasswordInput className hits wrapper not input",
+      "state": "closed",
+      "excerpt": "Cold-test #29 (setup wizard), F2 — Major, component bug + missing error state. Only Input has a baked-in error visual (aria-invalid:border-destructive-border — sets aria-invalid and the red border appears for free). The…"
+    },
+    "155": {
+      "title": "fix(Combobox): cannot receive aria-invalid / aria-describedby (no HTMLAttributes passthrough)",
+      "state": "closed",
+      "excerpt": "Cold-test #29 (setup wizard), F5 — Minor, a11y. ComboboxProps does not extend HTMLAttributes and forwards only a fixed prop list (id, disabled, clearable, …), so there's no way to set aria-invalid or aria-describedby — a…"
+    },
+    "156": {
+      "title": "fix(Textarea): fixed w-[280px] + inline-flex items-center — won't fill a form column",
+      "state": "closed",
+      "excerpt": "Cold-test #29 (setup wizard), F7 — Nit→Minor, fixed-dimension family. Textarea ships a fixed w-[280px] and inline-flex items-center — it won't fill a flex/form column, and inline-flex items-center is wrong for a multi-li…"
+    },
+    "157": {
+      "title": "feat(Stepper): non-interactive — no onStepClick (can't power Edit/jump-to-step)",
+      "state": "closed",
+      "excerpt": "Cold-test #29 (setup wizard), F4 — Minor, missing prop. Stepper exposes state well (role=list/listitem, aria-current=\"step\", completed checkmarks — verified) but is non-interactive (docs confirm \"non-interactive by desig…"
+    },
+    "162": {
+      "title": "feat(RadioGroupItem): no label prop — inconsistent with Switch/Checkbox (a11y)",
+      "state": "closed",
+      "excerpt": "Cold-test #30 (settings page), F3 — Minor, a11y / consistency. RadioGroupItem renders only the dot — it has no label prop, unlike Switch and Checkbox which gained label/description (#130/#149) that self-wire aria-labelle…"
+    },
+    "163": {
+      "title": "fix(AlertTitle): hardcoded <h5> with no as/level — breaks heading order",
+      "state": "closed",
+      "excerpt": "Cold-test #30 (settings page), F5 — Nit→Minor, a11y. AlertTitle always renders <h5 with no as/headingLevel prop, so an Alert mid-page (e.g. under an <h2 card) injects an out-of-order <h5. The cold build avoided AlertTitl…"
+    },
+    "164": {
+      "title": "feat(Select): no label prop; doesn't participate in FormControl id cloning (wrapper div)",
+      "state": "closed",
+      "excerpt": "Cold-test #30 (settings page), F4 — Minor, a11y. Select (native <select wrapper) has no label prop, and inside a FormControl the cloned id/aria- land on the outer wrapper <div, not the <select — so it doesn't auto-partic…"
+    },
+    "165": {
+      "title": "feat(Tabs): vertical orientation forces a bordered card + horizontal list — no real left-rail layout",
+      "state": "closed",
+      "excerpt": "Cold-test #30 (settings page), F1+F2 — Minor, component-design gap. Tabs supports orientation=\"vertical\" (Radix), but the styling fights a section rail: the root hardcodes flex flex-col rounded-lg border and TabsList har…"
+    },
+    "166": {
+      "title": "feat(Form): ship (or document) a validation/state layer to feed FormField error",
+      "state": "open",
+      "excerpt": "Cold-test #30 (settings page), biggest gap — enhancement (follows #152). The FormField a11y wiring (#152) was praised as \"a real form/validation/a11y system\" and verified live — but the library ships zero validation/stat…"
+    },
+    "168": {
+      "title": "feat(display): Rating/Stars component — every commerce/review screen needs it",
+      "state": "closed",
+      "excerpt": "Cold-test #31 (product detail) — biggest gap The context-zero cold AI building an e-commerce product detail page found no Rating/Stars component exported from @gunjo/ui (confirmed: 0 hits for rating/star in component sou…"
+    },
+    "169": {
+      "title": "feat(NumberInput): horizontal stepper layout (− [n] +) for commerce quantity",
+      "state": "closed",
+      "excerpt": "Cold-test #31 (product detail) Cold AI needed a conventional − [value] + quantity stepper. NumberInput exists but ships only a vertical spinbox (stacked up/down chevrons on the right edge), so the AI hand-rolled a Quanti…"
+    },
+    "170": {
+      "title": "feat(ToggleGroup): disallowEmpty prop — keep a selection for segmented controls",
+      "state": "closed",
+      "excerpt": "Cold-test #31 (product detail) Using ToggleGroup type=\"single\" as a color/size segmented control, clicking the active item deselects it (Radix emits \"\"), leaving no variant selected. Cold AI had to guard onValueChange (i…"
+    },
+    "171": {
+      "title": "feat: ThemeProvider + useTheme — OS dark-mode following (higher-order primitive)",
+      "state": "closed",
+      "excerpt": "Cold-test #31 (product detail) — higher-order coordination primitive gunjo ships correct, complete .dark-class tokens but no ThemeProvider/useTheme and no prefers-color-scheme bridge. A consumer relying on the OS dark se…"
+    },
+    "172": {
+      "title": "feat(display): SwatchGroup — selectable color swatches (ColorSwatch is display-only)",
+      "state": "closed",
+      "excerpt": "Cold-test #31 (product detail) ColorSwatch is exported but is a display chip, not a selectable swatch group. Cold AI drove color selection through ToggleGroup + inline style={{backgroundColor}} round swatches. Works, but…"
+    },
+    "173": {
+      "title": "feat(display): Gallery/ImageViewer — main image + thumbnail strip (Carousel is sliding-only)",
+      "state": "closed",
+      "excerpt": "Cold-test #31 (product detail) Carousel is a sliding carousel, not a product gallery (main image + thumbnail strip with click-to-swap). Cold AI hand-rolled the gallery (thumbnails as a roving radiogroup with arrow-key su…"
+    },
+    "175": {
+      "title": "fix(Form): FormControl injects dangling aria-describedby when no FormDescription (a11y bug)",
+      "state": "closed",
+      "excerpt": "Cold-test #32 (bank transfer) — 🔴 real a11y bug in the #152 Form system FormControl always injects <base-description into the control's aria-describedby (Form.tsx ~L112-119), but FormDescription only renders that id whe…"
+    },
+    "176": {
+      "title": "feat(inputs): CurrencyInput / amount input — NumberInput can't render grouped money (¥1,000,000)",
+      "state": "closed",
+      "excerpt": "Cold-test #32 (bank transfer) — biggest gap The marquee field of every banking/checkout/invoicing screen — a money amount — has no primitive. NumberInput is a native <input type=number spinner and cannot render 1,000,000…"
+    },
+    "177": {
+      "title": "feat: masked-value / sensitive-display helper (普通 ****1234, masked recap)",
+      "state": "open",
+      "excerpt": "Cold-test #32 (bank transfer) Banking/PII screens constantly show masked account numbers (普通 1234) and masked review recaps. No primitive/util exists; the cold AI hand-rolled maskTail(). A small MaskedValue display compo…"
+    },
+    "178": {
+      "title": "feat(display): DescriptionList / SummaryList — review/confirm summary primitive",
+      "state": "open",
+      "excerpt": "Cold-test #32 (bank transfer) The 確認 (review) step needs a read-only key/value summary (from/to/amount/fee/total). No DescriptionList/SummaryList primitive; the cold AI hand-rolled a <dl row component. This recurs in che…"
+    },
+    "180": {
+      "title": "feat: ship currency/number/percent formatters (JPY-first) — hand-rolled on every fintech screen",
+      "state": "closed",
+      "excerpt": "Cold-test #33 (asset dashboard) — biggest gap (seen twice) @gunjo/ui ships only defaultChartValueFormatter (Intl.NumberFormat(\"en-US\") — no ¥, no sign, no compact, locale hard-coded). Every total / KPI / table cell / cha…"
+    },
+    "181": {
+      "title": "feat(AnalyticsCard): titleAs — title is a hard-coded <h3>, breaks heading order in a KPI row",
+      "state": "closed",
+      "excerpt": "Cold-test #33 (asset dashboard) AnalyticsCard renders its title via <CardTitle with no level control → always <h3. A KPI-card row under a page <h1 then skips <h2. Same heading-level family as CardTitle as (#116), AlertTi…"
+    },
+    "182": {
+      "title": "fix(ChartLegend): vertical variant overflows on long values → page-wide horizontal scroll",
+      "state": "closed",
+      "excerpt": "Cold-test #33 (asset dashboard) — layout bug ChartLegend variant=\"vertical\" lays each row justify-between with a flex-shrink-0 value. A long value (¥4,100,000・33.5%) can't shrink → it pushes the row past 100% width → pag…"
+    },
+    "188": {
+      "title": "fix(Statistic): value breaks mid-number (−¥1,055,9 / 60) — overflow-wrap:anywhere",
+      "state": "closed",
+      "excerpt": "Cold-test #34 (transaction history) Statistic renders its value with [overflow-wrap:anywhere] (Statistic.tsx:52), which lets a figure break between digits (−￥1,055,9 / 60) in a narrow 2-col mobile grid — unacceptable for…"
+    },
+    "189": {
+      "title": "feat: CSV export util (toCsv / downloadCsv) — every data/admin/statement screen hand-rolls it",
+      "state": "closed",
+      "excerpt": "Cold-test #34 (transaction history) No CSV export anywhere in the package. A bank statement / any data table needs \"明細をCSVで保存\"; the cold AI hand-rolled toCsv (UTF-8 BOM for Excel, quote-escaping, signed columns). Fix (th…"
+    },
+    "190": {
+      "title": "feat(DataTable): responsive table→card mode (min-w-[720px] forces mobile h-scroll)",
+      "state": "closed",
+      "excerpt": "Cold-test #34 (transaction history) — biggest gap DataTable is desktop-only: <table className=\"w-full min-w-[720px] ...\" forces horizontal scroll on mobile with no renderCard/mobileColumns/breakpoint prop. Every consumer…"
+    },
+    "193": {
+      "title": "feat(Slider): value label + formatValue + aria-valuetext + filled track",
+      "state": "closed",
+      "excerpt": "Cold-test #35 (loan application) — biggest gap Slider is a thin <input type=range that forwards onValueChange(number) but renders no visible current value, no unit, and no aria-valuetext. For any calculator (loan amount/…"
+    },
+    "195": {
+      "title": "feat(DataTable): renderCard — responsive table→card on mobile (3× confirmed gap)",
+      "state": "closed",
+      "excerpt": "Cold-test #36 (card statement) — biggest gap, confirmed 3× DataTable renders <table class=\"w-full min-w-[720px] table-fixed\" inside overflow-x-auto, so at 375px it horizontally scrolls a 720px table instead of stacking i…"
+    },
+    "197": {
+      "title": "feat(charts): make defaultChartValueFormatter locale/currency-aware (#180 follow-up)",
+      "state": "open",
+      "excerpt": "Cold-test #36 (card statement) defaultChartValueFormatter is Intl.NumberFormat(\"en-US\"), and the DonutChart legend %/value uses it internally — so chart value digits default to en-US grouping unless the consumer passes f…"
+    },
+    "198": {
+      "title": "fix(NumberInput): can't clear a cell to retype — empty input snaps back to old value",
+      "state": "closed",
+      "excerpt": "Cold-test #37 (invoice editor) NumberInput.handleChange early-returns on \"\"/\"-\" and the input is value={value ?? \"\"} (controlled by the numeric prop). So clearing the field emits nothing → the parent value stays → React…"
+    },
+    "199": {
+      "title": "feat: editable line-item table / data-grid primitive (rows of editable cells + add/remove row)",
+      "state": "closed",
+      "excerpt": "Cold-test #37 (invoice editor) — biggest gap The central artifact of an invoice/estimate/journal/timesheet screen — an editable line-item grid (rows of editable cells + a derived column + add/remove row + per-row validat…"
+    },
+    "200": {
+      "title": "feat(Combobox): creatable / allow custom value (add a new 取引先 free-text)",
+      "state": "closed",
+      "excerpt": "Cold-test #37 (invoice editor) Combobox is selection-only over a fixed options list — no creatable/allowCustomValue/onCreate, so you can't add a free-text \"new 取引先\" (customer) inline. The cold AI added a \"新規取引先を入力\" toggl…"
+    },
+    "202": {
+      "title": "fix(Combobox): searchable by label + option grouping (name-keyed pickers are unsearchable)",
+      "state": "closed",
+      "excerpt": "Cold-test #38 (journal entry) — name-search trap Combobox renders <CommandItem value={option.value}, and cmdk filters on the item value. So a name-keyed picker (account code as value, 科目名 as label) is unsearchable by nam…"
+    },
+    "205": {
+      "title": "feat(Timeline): semantic marker tones (success/warning/destructive/info)",
+      "state": "closed",
+      "excerpt": "Cold-test #39 (expense report, 5/5) TimelineItem marker variant is only default | muted | active | outline — no semantic tones, unlike Badge/Alert/Button which all have success/warning/destructive/info. Building an appro…"
+    },
+    "206": {
+      "title": "feat(EditableDataTable): EditableColumn minWidth — stop content-heavy columns crushing inputs",
+      "state": "closed",
+      "excerpt": "Cold-test #39 (expense report, 5/5) EditableColumn exposes width (a hard CSS width) but no minWidth. In the auto-layout w-full table, a content-heavy column (a receipt filename) crushed an unsized input column to ~42px o…"
+    },
+    "207": {
+      "title": "feat: approval-workflow / status-machine primitive (申請→承認→差戻し)",
+      "state": "closed",
+      "excerpt": "Cold-test #39 (expense report) — biggest gap No opinionated approval-route / status-machine primitive: a multi-step approval path (申請者→上長→経理) with per-step state (待ち/承認/差戻し) + actor + timestamp + comment, a role-aware ac…"
+    },
+    "210": {
+      "title": "feat(EditableDataTable): renderFooterCell — column-aligned footer totals",
+      "state": "closed",
+      "excerpt": "Cold-test #40 (payroll, 4.5/5) EditableDataTable.footer is one full-width <td colSpan=all, so a total can't column-align under the 金額 column — the cold AI put a justify-between flex row inside footer (reads fine, but won…"
+    },
+    "213": {
+      "title": "feat: conditional / announced-reveal section primitive (declaration forms)",
+      "state": "closed",
+      "excerpt": "Cold-test #41 (year-end tax adjustment, 4.5/5) Declaration-style forms repeatedly show/hide a fieldset on state (配偶者控除 block, 人事確認 action panel, read-only/差戻し alerts) and must announce the reveal. The cold AI hand-rolled…"
+    },
+    "214": {
+      "title": "feat: settlement/result banner (signed amount + tone + caption)",
+      "state": "open",
+      "excerpt": "Cold-test #41 (year-end tax adjustment) The headline 還付/追徴 (and #40 net pay, balances, transfer results) is built from Alert variant=success|destructive + a manual large tabular-nums value. A dedicated result/settlement…"
+    },
+    "216": {
+      "title": "feat: numeric keypad / cash-tender pad primitive (POS)",
+      "state": "open",
+      "excerpt": "Cold-test #42 (POS register, 4.5/5) Every register needs the cash-tender interaction: 預り金 input → quick-cash buttons (¥1,000/¥5,000/¥10,000/ちょうど) → live おつり (= 預り金 − 合計) → block checkout when 預り金 < 合計, with the shortfall…"
+    },
+    "217": {
+      "title": "feat: receipt / print-layout primitive (POS, invoices)",
+      "state": "open",
+      "excerpt": "Cold-test #42 (POS register) The receipt (店舗/明細/税率別内訳/合計/預り/おつり/支払方法) is bespoke monospace markup in a Dialog, and 印刷 is a raw window.print() with no print-stylesheet support from the DS. A receipt/thermal-print layout p…"
+    },
+    "218": {
+      "title": "feat: MoneyOrPercent discount field (¥/% toggle + amount)",
+      "state": "open",
+      "excerpt": "Cold-test #42 (POS register) — cross-domain (2nd sighting) Discount entered as either ¥ or % recurs: invoice (#37) and POS (#42) both composed ToggleGroup (¥/%) + CurrencyInput/NumberInput by hand. A MoneyOrPercent field…"
+    },
+    "219": {
+      "title": "fix(Progress): no accessible name — add label + valueText",
+      "state": "closed",
+      "excerpt": "Cold-test #43 (stocktake, 4.5/5) Progress renders role=\"progressbar\" + aria-valuemin/max/now but no accessible name — a bare percentage to a screen reader (axe flags \"progressbar must have an accessible name\"). The cold…"
+    },
+    "220": {
+      "title": "feat: barcode/SKU scan-input primitive (retail, warehouse)",
+      "state": "closed",
+      "excerpt": "Cold-test #43 (stocktake) — biggest gap The \"scan a JAN/SKU → match an item → +1 → announce match/no-match\" loop is the heartbeat of inventory/POS handheld screens, and there is no ScanInput/CodeEntry with onScan(code) +…"
+    },
+    "221": {
+      "title": "feat: inline variance/delta atom (signed value + arrow + tone, fits a table cell)",
+      "state": "closed",
+      "excerpt": "Cold-test #43 (stocktake) — cross-domain (2nd sighting) An inline signed delta — ±N + up/down/equal arrow + tone + sr-only direction — that fits inside a grid cell recurs: portfolio gain/loss (#33) and stocktake 差異 (#43)…"
+    },
+    "227": {
+      "title": "feat: staged / two-step ScanGate composition (location-then-item)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #47 (warehouse picking). ScanInput (#220) is a single-shot scanner (scan → onScan → announce). But many warehouse/POS 作法 are staged: e.g. picking is location-then-item — you must scan the bin loc…"
+    },
+    "228": {
+      "title": "feat: walk-path / route display for location-by-location WMS flows",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #47 (warehouse picking). The picking walk is location-by-location (ordered by 棚番). Stepper only takes {label, state} — too thin for a per-location walk row (ロケーション + 数量 + 状態 + 'next' pointer). Th…"
+    },
+    "229": {
+      "title": "feat(Progress): tone prop for meaningful fill (capacity/budget/health)",
+      "state": "closed",
+      "excerpt": "Cold-test #48 (put-away) hand-rolled a location-capacity meter by overlaying a tone-coloured bar on Progress with -mt-2.5, because Progress's indicator is hard-coded bg-foreground — no way to colour the fill by meaning.…"
+    },
+    "230": {
+      "title": "feat: location-capacity / fill Meter primitive (value/max + threshold tones + overlay segment)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #48 (put-away). The most-repeated put-away question — 'does this 棚 fit?' — has no fit-for-purpose component. Progress is a single bar (now gets tone via #229 but no multi-segment), GaugeChart is…"
+    },
+    "233": {
+      "title": "fix(Badge): default to <span> — block <div> default crashes hydration inside <p>",
+      "state": "closed",
+      "excerpt": "Cold-test #51 (delivery dispatch) put <Badge到着 08:30</Badge inside a <p and hit a runtime hydration crash: \"div cannot be a descendant of p / Hydration failed\". tsc and next build both passed — only the browser caught it…"
+    },
+    "237": {
+      "title": "fix(ScanGate,ScanInput): terminal 'done' advance + assertive live for safety/verify gates",
+      "state": "closed",
+      "excerpt": "Cold-test #53 (medication 3点認証) used ScanGate (built for warehouse picking/packing) for a clinical patient→drug→verify safety gate — it crossed domains and fit, but two things bit the consumer: 1. ScanGate last stage aut…"
+    },
+    "238": {
+      "title": "feat: SafetyBanner / acknowledgeable critical alert (persistent + assertive + ack)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #53 (medication administration). A clinical patient banner / allergy + high-alert warning needs a persistent, assertive, acknowledgeable alert that none of the current components provide: Banner…"
+    },
+    "239": {
+      "title": "feat: CoSignField / two-person verification (double-check)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #53 (medication administration). High-alert drugs require a second nurse to co-sign (ダブルチェック) before administration. No primitive models a two-person verification: a second-actor id + attestation…"
+    },
+    "241": {
+      "title": "feat: ReferenceValue / reference-range abnormal-flag indicator (value vs normal range → H/L/critical)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #54 (vitals / 温度板). No component expresses 'a value flagged H/L/critical against a normal range' — the centerpiece of a vitals (and lab) screen. The cold AI hand-rolled flagValue() + a <VitalFlag…"
+    },
+    "242": {
+      "title": "feat(LineChart): referenceBand (shaded normal range) + per-series axis / normalize",
+      "state": "open",
+      "excerpt": "1st sighting — cold-test #54 (温度板). Two LineChart gaps for a 温度板 (vital-sign trend): 1. No referenceBand — referenceValue draws a single line, but a normal range is a shaded band (e.g. 体温 36.0–37.5). Hand-rolled as a CSS…"
+    },
+    "245": {
+      "title": "fix(Textarea): add label / description props (parity with Select / Checkbox / Switch)",
+      "state": "closed",
+      "excerpt": "Cold-test #57 (nursing record) noted Textarea is the only major text input with no label / description props — Select, Checkbox, Switch, RadioGroup all ship label+description+aria wiring, but Textarea is a bare <textarea…"
+    },
+    "246": {
+      "title": "feat: append-only signed clinical/legal record (sign → lock → addendum)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #57 (nursing record). No primitive models an append-only signed record: draft → sign (who + when) → sealed read-only (the original text can never change) → addendum (追記) chain with independent ti…"
+    },
+    "249": {
+      "title": "fix(Input): add label / description props (parity with Select / Textarea)",
+      "state": "closed",
+      "excerpt": "Follow-up to #245 (Textarea). Cold-test #58 (operative record) found Input is also extends InputHTMLAttributes {} only — no label/description, unlike Select/Textarea/Checkbox/Switch/RadioGroup. Every bare <Input (e.g. th…"
+    },
+    "251": {
+      "title": "fix(Alert): AlertTitle default as=\"h5\" injects out-of-order headings (h1→h5)",
+      "state": "closed",
+      "excerpt": "Cold-test #59 (discharge summary) found AlertTitle defaults to as=\"h5\", so a status banner silently injects a deep, out-of-order heading (e.g. h1 → h5 jump) — caught only via an a11y snapshot (tsc/build pass). The cold A…"
+    },
+    "253": {
+      "title": "fix(TimelineDescription): add as prop — <p> default crashes hydration with block children",
+      "state": "closed",
+      "excerpt": "Cold-test #60 (property management) put an action button group inside TimelineDescription (a renewal/move-out timeline item) and hit a runtime hydration error — <div in <p — because TimelineDescription renders a hardcode…"
+    },
+    "254": {
+      "title": "feat: arrears / receivables aging buckets (1ヶ月 / 2ヶ月 / 3ヶ月+ count + amount)",
+      "state": "open",
+      "excerpt": "1st sighting — cold-test #60 (property management). Rent arrears (and any 売掛金/AR collections) want an aging bucket display: labelled buckets (1ヶ月 / 2ヶ月 / 3ヶ月以上) each with a count + amount, flagged by severity (older = wo…"
+    },
+    "255": {
+      "title": "feat(DataTable): totals / footer row (columnTotals or footer render prop)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #60 (rent roll). A rent roll's defining feature is 'per-unit rows reconcile to a building total in a footer'. DataTable (tanstack) gives sort/filter/pagination/renderCard but no totals/footer-row…"
+    },
+    "256": {
+      "title": "feat(Meter): higher-is-better direction (occupancy / score / uptime)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #60 (occupancy). Meter thresholds are one-directional: warning ≥ 0.8, destructive ≥ 1 (high = bad, for capacity/load). But occupancy / health score / SLA uptime / utilization-target are higher-is…"
+    },
+    "258": {
+      "title": "fix(CurrencyInput): add label / description props (parity with Input / Textarea / Select)",
+      "state": "closed",
+      "excerpt": "Follow-up to #245 (Textarea) / #249 (Input). Cold-test #61 (lease contract) found CurrencyInput also has no label/description — every money field needed a hand-rolled labeled wrapper. Add label/description mirroring Inpu…"
+    },
+    "259": {
+      "title": "feat(SignedRecord): multi-signatory support (signers[] + addendum parties)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #61 (lease contract). SignedRecord (built for clinical notes / discharge summaries, #246) crossed cleanly into a real-estate contract — its draft→signed→locked→addendum maps 1:1 onto 契約締結→ロック→覚書,…"
+    },
+    "260": {
+      "title": "feat: ordered editable list (add / remove / reorder text rows) — 特約 / clauses / steps",
+      "state": "open",
+      "excerpt": "1st sighting — cold-test #61 (lease 特約 clauses). No primitive for an ordered, editable list of text rows with add / remove / reorder (↑/↓). TagInput/TagEditor are unordered short tags; List is display-only; EditableDataT…"
+    },
+    "262": {
+      "title": "fix(Gallery): thumbnail strip overflows on mobile with many photos",
+      "state": "closed",
+      "excerpt": "Cold-test #62 (property listing) — the Gallery thumbnail strip is a non-wrapping flex-row of fixed h-14 w-14 shrink-0 thumbnails with no wrap/scroll, so 6+ photos (property listings routinely have 6–20) overflow a 360px…"
+    },
+    "263": {
+      "title": "feat: TimeSlotPicker / booking time-slot picker (date + available slots)",
+      "state": "open",
+      "excerpt": "1st sighting — cold-test #62 (内見予約 viewing booking). Calendar handles the date half (disabled-date matchers + reasons), but the 'available time slots for the selected date, some 満枠/disabled, single-select, radiogroup a11…"
+    },
+    "264": {
+      "title": "feat: FeatureList — present/absent feature grid (amenities / spec / plan comparison)",
+      "state": "open",
+      "excerpt": "1st sighting — cold-test #62 (設備・条件 amenities). A present-vs-absent feature list (エアコン あり / ペット なし …) needs icon + text + あり/なし — Badge/Tag are colour-only chips that fail 'not colour alone' for present-vs-absent. The #6…"
+    },
+    "266": {
+      "title": "fix(ApprovalSteps): mark the current step with aria-current=\"step\"",
+      "state": "closed",
+      "excerpt": "Cold-test #63 (rental screening) found the current step in ApprovalSteps is only conveyed via its per-item aria-label ('書類確認: 進行中') — there's no aria-current=\"step\", so the current stage isn't programmatically discoverab…"
+    },
+    "267": {
+      "title": "feat(ApprovalSteps): interactive / controlled workflow (onAdvance / onSendBack + returned state)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #63 (rental screening). ApprovalSteps (built for expense/payroll/ringi #207) fit the 入居審査 workflow well (申込受付→書類確認→保証会社審査→オーナー承認→完了, each stage a real actor) — but it's display-only. The actual w…"
+    },
+    "269": {
+      "title": "fix(NumberInput): add label / description props (parity with Input / CurrencyInput)",
+      "state": "closed",
+      "excerpt": "Completes the label/description parity (#245 Textarea, #249 Input, #258 CurrencyInput). Cold-test #64 (MES 実績入力) found NumberInput is the last major numeric input with no label/description — needed an external <Label htm…"
+    },
+    "270": {
+      "title": "feat: ParetoChart — count bars + cumulative % line + 80% threshold (defect / cause analysis)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #64 (不良集計 defect tally). A pareto (counts sorted desc + cumulative-% line + the 80% reference line) is the canonical QC/manufacturing cause-analysis chart, and BarChart has no cumulative-% overla…"
+    },
+    "273": {
+      "title": "fix(RadioGroup): RadioGroupItem ignores inherited <fieldset disabled> (no aria-disabled, stays in tab order)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #65 (検査成績書 sign-off lock). After signing, the inspector judgment was locked by wrapping the RadioGroup in <fieldset disabled. - ✅ Clicks are correctly blocked (a forced click does not change sele…"
+    },
+    "274": {
+      "title": "feat: capability gauge — value-needle + target line + signed axis (Cp/Cpk, can be negative)",
+      "state": "open",
+      "excerpt": "1st clear sighting — cold-test #65 (工程能力 Cp/Cpk). Distinct from #256 (which adds higher-is-better + target to the linear Meter). Process-capability needs an arc/dial gauge with three things no current gauge has together:…"
+    },
+    "276": {
+      "title": "fix(Badge): status badges are color-only — no icon affordance (color-blind safety / inconsistent with ReferenceValue, Delta)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #66 (設備保全 / OEE). Badge variants are purely color (success/warning/destructive/…). To satisfy \"status must not rely on color alone\" the cold AI had to compose <Badge<Icon …/{label}</Badge by hand…"
+    },
+    "277": {
+      "title": "fix(Meter): redundant readout for percentage metrics (value% / 100%（pct%）)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #66 (OEE), and a papercut in the #256 work. For a metric that is already a percentage (value=78.4, max=100, unit=\"%\"), Meter's default readout renders 78.4% / 100%（78%） — i.e. \"value% out of 100%…"
+    },
+    "281": {
+      "title": "feat(display): traceability graph / DAG / node-link — multi-parent genealogy (TreeView is single-parent only)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #67 (ロット追跡 / トレーサビリティ). The single biggest gap of the screen, and the core visualization a traceability product needs. Lot genealogy is fundamentally a DAG: one material lot feeds many product lo…"
+    },
+    "282": {
+      "title": "feat(RouteStops): generalize beyond delivery — custom statuses + optional time/delay (genealogy / process chains)",
+      "state": "closed",
+      "excerpt": "2nd sighting — cold-test #64 (製造工程ルート) + #67 (トレーサビリティ). RouteStops (sequenced stops, status markers, planned-vs-actual, aria-current) is structurally ideal for any \"follow the chain\" flow, but it's hard-wired to last-mi…"
+    },
+    "283": {
+      "title": "fix(TreeView): label click both toggles AND selects — no onNodeActivate for 'open this node'",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #67 (genealogy tree). A TreeView row's primary button both toggles and selects (if (hasChildren) onToggle(node.id); onSelect?.(node.id)). So \"click the node label to open its detail\" can't coexis…"
+    },
+    "284": {
+      "title": "fix(MetadataList): values are hard-truncated — add a wrap option for long values",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #67 (lot header). MetadataList wraps every value in truncate with a title, so longer values (e.g. a full 製造ライン name) clip on narrow widths instead of wrapping. The cold AI kept values artificiall…"
+    },
+    "285": {
+      "title": "feat(BarChart/StackedBarChart): per-bar threshold tone (bar over a capacity/limit line = bad)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #68 (負荷 vs 能力 / 山積みグラフ). For the classic load-leveling chart (stacked load per day with a capacity line, over-capacity bars highlighted), the charting layer can't express \"over the limit is bad\":…"
+    },
+    "286": {
+      "title": "feat(Meter): coverage mode — direction='fill-is-good' (no target) + optional shortfall segment",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #69 (出荷 / 在庫引当). Two related gaps surfaced building allocation coverage bars: (a) No \"fill-is-good, no target\" tone direction. For an order-line coverage bar (value=allocated, max=ordered), a ful…"
+    },
+    "288": {
+      "title": "feat(ToggleGroup): per-item variant/tone — mutually-exclusive status pills (休講 red / 補講 blue)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #70 (時間割の区分 通常/休講/補講). Wanted a single-select segmented control where each option carries its own tone (休講 → destructive, 補講 → info, 通常 → neutral). ToggleGroup is single-select but its items don'…"
+    },
+    "289": {
+      "title": "docs/feat: wide tables/grids leak horizontal scroll to the page at 375px — document contain:paint (or a ScrollArea horizontal mode)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #70. A wide inner element inside overflow-x-auto keeps body.scrollWidth at the viewport but lets html.scrollWidth blow out (370px of page-level horizontal scroll at 375px). Neither min-w-0 on anc…"
+    },
+    "291": {
+      "title": "feat(ReferenceValue): optional positive/affirmative flag for 'good' values (currently only neutral or abnormal)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #71 (成績 score vs 合格基準/平均). ReferenceValue flags abnormal values (H/HH/L/LL with warning/destructive tone) and renders plain for in-range/good values. In a gradebook a passing/above-average score…"
+    },
+    "293": {
+      "title": "feat(Sheet/Dialog): add SheetBody/DialogBody with managed scroll for forms",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #72 (出欠入力 Sheet form). Sheet ships Header/Footer/Title/Description but no body/scroll region. For a longer form (status toggles + conditional reason + memo) the cold AI had to add overflow-y-auto…"
+    },
+    "294": {
+      "title": "refactor(tokens): one canonical semantic-status tone type (ScheduleCellTone / ChartTone / MeterTone / BadgeVariant overlap)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #72 (status shown across a grid cell, a badge, a chart segment, a meter). The kit has at least four overlapping tone vocabularies — ScheduleCellTone, ChartTone (has accent), MeterTone, BadgeVaria…"
+    },
+    "296": {
+      "title": "fix(charts): ChartColor accepts any string — invalid tone (e.g. \"danger\") silently renders no color",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #73. ChartColor = ChartTone | (string & {}), so color: \"danger\" (a plausible typo for the valid \"destructive\") type-checks fine and would render the literal string as a CSS color (i.e. effectivel…"
+    },
+    "297": {
+      "title": "fix(Meter): label as ReactNode silently drops the role=meter accessible name",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #73. Meter sets aria-label={typeof label === \"string\" ? label : undefined}, but label?: React.ReactNode allows a node. Pass a ReactNode label and the role=\"meter\" element silently loses its acces…"
+    },
+    "298": {
+      "title": "fix(DataTable): no caption / accessible-name prop for the table",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #73. DataTableProps exposes filter, pageSize, labels, headerActions, onRowClick, renderCard — but nothing to give the underlying <table an accessible name / <caption. On a screen with several tab…"
+    },
+    "299": {
+      "title": "feat(ScheduleGrid): per-cell selected state + cellClassName hook (highlight the active/open cell)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #74 (面談予約グリッド). When a slot's editor Sheet is open, there's no way to show the currently-open cell as selected/highlighted: a ScheduleCell has tone (a fixed 7-value enum) and onSelect, but no sel…"
+    },
+    "300": {
+      "title": "fix(Badge/Tag): API inconsistency — Badge has icon but no size; Tag has size but no icon",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #74. Two near-identical pill components have divergent APIs: Badge has icon + variant (incl. info/success/warning) but is fixed h-5 with no size; Tag has size: sm | default | lg but only 4 varian…"
+    },
+    "301": {
+      "title": "feat(Toast): richer toast — title/description, action button, and export ToastType",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #74. useToast().showToast(msg, type, duration?) is string-only — no title/description split, no action button, no JSX. The cold AI wanted an \"元に戻す (undo)\" action on the \"リマインダ送信\" toast and couldn…"
+    },
+    "303": {
+      "title": "fix(Alert): no icon/title/description props — icon-as-first-child contract is undiscoverable",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #75. Building a 要確認/交付完了 banner, the cold AI expected <Alert title=… description=… icon=…. Instead Alert takes a bare <svg as the first child, which it positions absolutely via [&svg]:absolute CV…"
+    },
+    "305": {
+      "title": "feat(Button): loading / isLoading prop (Spinner exists but isn't wired in)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #76. For async actions (「支給処理を実行」「署名・確定」) there's no built-in pending/spinner state on Button, despite a Spinner component existing — you compose them + manage disabled yourself. Ask: a loading/i…"
+    },
+    "306": {
+      "title": "fix(ReferenceValue): showLabel duplicates the label for screen readers (visible + sr-only)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #76. With showLabel, a normal-state value renders the visible label AND an always-on sr-only copy of the same label, so a screen reader hears it twice (e.g. \"基準内 基準内\"). Minor, but a real a11y nit…"
+    },
+    "307": {
+      "title": "fix(DataTable): sort-button aria default is verbose English + concatenates into the row name (JP-first papercut)",
+      "state": "closed",
+      "excerpt": "3 mentions — cold-tests #73, #75, #77. Out of the box, sort buttons announce \"Current: unsorted. Click to sort ascending\" (English) in otherwise all-Japanese screens, and the row's accessible name concatenates all column…"
+    },
+    "308": {
+      "title": "fix(Meter): visible readout ignores locale formatting (valueText only overrides aria, not the on-screen text)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #78 (税額/延滞額メーター). Building a 延滞額/年税額 meter, the visible readout rendered 117600円 / 235300円（50%） — raw digits, no thousands separators — while formatCurrency/CurrencyInput group JPY everywhere els…"
+    },
+    "309": {
+      "title": "docs: tell consumers to install @tabler/icons-react (icon examples rely on it; breaks under pnpm/strict hoisting)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #78. gunjo components take icons as ReactNode and every docs example uses @tabler/icons-react, but a consuming app that writes import { IconX } from \"@tabler/icons-react\" only resolves it because…"
+    },
+    "311": {
+      "title": "fix(DataTable): header summary/pagination doesn't degrade in a narrow (<480px) desktop container",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #79. In a ~420–460px-wide queue column (desktop master-detail), DataTable's \"4件中 1–4件\" summary collapsed to ~14–46px and wrapped one char per line: the pagination cluster is shrink-0 and the summ…"
+    },
+    "312": {
+      "title": "docs(ApprovalWorkflow): pattern for a stage that requires an external signed artifact (compose with SignedRecord)",
+      "state": "open",
+      "excerpt": "1st sighting — cold-test #79. A common back-office shape: the final stage (e.g. 住民票更新 → 完了, or 決定 → 支給) must require a signed SignedRecord before advancing. ApprovalWorkflow only gates via the canAdvance boolean and Sign…"
+    },
+    "313": {
+      "title": "feat(Kanban): board/column/card primitives — KanbanTemplate is a layout shell only",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #80 (編集ボード). A kanban board is the signature UI of an editorial CMS (and CRM pipelines, support queues, task boards). KanbanTemplate exists but its own docs say \"It does not own card state, colum…"
+    },
+    "314": {
+      "title": "feat(Textarea/Input): character count / maxLength readout (showCount) for SEO meta etc.",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #80 (SEO meta フィールド). Neither Textarea nor Input has a maxLength readout / counter / length affordance, so SEO title/description length guidance had to be composed from a Meter + a manual count s…"
+    },
+    "315": {
+      "title": "fix(DatePicker): no label/description wiring (inconsistent with Input/Select/Textarea)",
+      "state": "closed",
+      "excerpt": "1st sighting — cold-test #81. Input/Select/Textarea all accept label + description and wire htmlFor/aria-describedby; DatePicker has none, so the cold AI hand-wrote <label elements next to it that aren't programmatically…"
+    },
+    "322": {
+      "title": "a11y(Sheet/Dialog/Modal): missing aria-describedby emits Radix warning; auto-silence or auto-provide",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #82 (メディア3枚目・コンテンツ二次利用/配信系譜デスク). A context-zero adopter opened a Sheet with only SheetTitle (no SheetDescription) and hit a runtime a11y warning on every open. Repro Console: Warning: Missing Descripti…"
+    },
+    "323": {
+      "title": "docs: add a 'by use case' / family index (scheduling, lineage, …) so present components aren't re-implemented",
+      "state": "open",
+      "excerpt": "Found in Cold-test #82 (メディア3枚目). The strongest systemic signal of the round. What happened The adopter almost re-implemented EventCalendar — and a prior cold-test build (#81, content-calendar) actually did hand-roll a M…"
+    },
+    "324": {
+      "title": "fix/docs(Banner): single-line only (h-10 + truncate) — clarify Banner-vs-Alert intent, multiline content clips",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #82 (メディア3枚目). 2nd sighting — same single-line constraint was noted in #81 (content-calendar round). The gap bannerVariants pins h-10 and renders children inside a truncate span. A two-line embargo not…"
+    },
+    "325": {
+      "title": "feat(AssetInspectorPanel): non-image / document variant (or renderPreview + free metadata)",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #82 (メディア3枚目). Building an asset detail panel for non-image content (英語翻訳版 / 3分解説動画 / Podcast / Xスレッド / ニュースレター要約), the adopter could not use AssetInspectorPanel and dropped down to compose InspectorPa…"
+    },
+    "326": {
+      "title": "feat(i18n): LocaleProvider + ja locale bundle — kit ships English defaults for built-in UI strings, no global locale mechanism",
+      "state": "closed",
+      "excerpt": "Found in Cold-test audit (post-#82). 群青 (gunjo) is a Japanese-brand design system, but its built-in user-visible strings default to English, and there is no global locale mechanism — every consumer must override labels/p…"
+    },
+    "327": {
+      "title": "feat/docs(Legend): expose ChartLegend (or a tone Legend) for standalone use — calendars/kanban need a tone→label legend",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #83. The cold AI hand-rolled two coloured span swatches for the WeekView online/onsite legend. Gap (present-but-unfindable) WeekView (and KanbanBoard) carry a tone per event/column but ship no legend,…"
+    },
+    "328": {
+      "title": "fix(Sheet): right variant has dead conflicting width (w-[384px] w-3/4); add size prop for wider drawers",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #83 (ATS candidate detail drill-in via Sheet). Bug (confirmed in src/components/overlay/Sheet.tsx) The right side variant carries two conflicting width utilities: Tailwind keeps the later w-3/4, so w-[…"
+    },
+    "329": {
+      "title": "feat(PersonCell): identity-summary primitive (avatar + name + secondary + tags/rating) — the atomic HR/CRM cell",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #83 (人材・採用 / ATS パイプライン). The cold AI's single most-requested addition, and its largest block of hand-rolled markup — assembled twice (candidate Kanban card body + candidate detail header). The gap The…"
+    },
+    "330": {
+      "title": "dx(consistency): export KanbanColumnTone; reconcile prop vocab (onValueChange vs onChange, numeric VStack gap vs string size)",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #83. Context-zero adopter hit these as type errors / casts. Issues 1. KanbanColumn.tone is a closed union but KanbanColumnTone isn't ergonomic to type against — stage config stored tones as string, for…"
+    },
+    "331": {
+      "title": "feat(Avatar): deterministic color-from-name for fallback initials (directory scannability)",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #84 (従業員名簿). Minor but concrete. Gap AvatarFallback renders the same muted gray for everyone, so \"a directory of 22 gray initials is less scannable than colored ones.\" There's no built-in deterministic…"
+    },
+    "333": {
+      "title": "dx(DataTable): renderCard already wraps an activatable role=button — document it / expose non-interactive slot to avoid nested buttons",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #85 (人事評価). A context-zero adopter put a <button inside renderCard (for the mobile tap target) and ended up with a button nested in DataTable's own tabIndex=0 role=\"button\" card — Playwright flagged th…"
+    },
+    "335": {
+      "title": "fix(Drawer): side=\"right\" swallows pointer events — vaul direction stays \"bottom\"; thread direction or steer to Sheet",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #87 (オンボーディング). High severity — a context-zero adopter reached for Drawer side=\"right\" for a drill-in panel and shipped a silently broken UI. Bug Drawer puts side on DrawerContent (for styling via draw…"
+    },
+    "336": {
+      "title": "feat(RelationshipRow / PersonCellPair): two PersonCells + connector + signal slot — the manager↔report / pair row",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #88 (1on1 / フィードバック管理). The pair-row (manager ↔ report, side by side, with a trailing signal cluster) was hand-composed from two PersonCells + a <button grid. Gap With PersonCell shipped, the next-most…"
+    },
+    "337": {
+      "title": "dx/docs(Icon): icon={Glyph} (component) not name=\"...\"; size is a variant key — surprises every newcomer",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #89 (and a recurring shape). A context-zero adopter reached for <Icon name=\"ChevronRight\" / (the convention in most kits) and almost shipped it; gunjo's Icon takes icon={GlyphComponent} (a Tabler/Lucid…"
+    },
+    "338": {
+      "title": "dx(RSC): function props (formatValue/formatTime/renderEmpty/format) break next build when passed from a Server Component; tsc+dev+CI don't catch it",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #89 (訪問介護). The one thing that broke a next build. Bug / footgun Several components take function props: DistributionBar.formatValue, ScheduleGrid.renderEmpty, SignedRecord.formatTime, RouteStops forma…"
+    },
+    "340": {
+      "title": "feat(StatGroup): summary metric-strip composing Card+Statistic — the KPI row every back-office screen rebuilds",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #92 (国保連請求), explicitly named as the single most valuable addition; and #91. But really observed across ~all 90+ cold-test screens — every one opens with a 4–8 metric summary strip hand-composed as Car…"
+    },
+    "341": {
+      "title": "feat(PersonCell): interactive variant (onActivate/href + chevron) — every people-list row re-wraps it in a button",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #93 (通所介護) — explicitly the \"single most valuable thing to add\"; and recurring since PersonCell shipped (the #329 click-affordance note). Gap PersonCell is intentionally presentational (\"don't nest a b…"
+    },
+    "343": {
+      "title": "dx(Meter): direction modes encode a judgment — 'higher-is-better + target' paints red at low fill (occupancy false alarm); add neutral/labeled occupancy mode",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #95 (レストラン予約・満席率). A context-zero adopter reached for Meter direction=\"higher-is-better\" + target for 満席率 and got a solid red bar at 29% occupancy — a false alarm early in service (anything under ~90%…"
+    },
+    "344": {
+      "title": "feat(StatusTile): interactive status card (title + state badge + metric rows + attention tags) — every ops board re-rolls it",
+      "state": "open",
+      "excerpt": "Found in Cold-test #96 (ホール/KDS) — the \"single most valuable thing to add.\" The floor/table tiles were the only hand-assembled piece (Card + Badge + Icon + Tag + a <ul grid + manual role=\"button\"/tabIndex/onKeyDown). Gap…"
+    },
+    "347": {
+      "title": "feat(CalculationLedger / AmountBreakdown): labeled line items → signed subtractions → emphasized derived total + formula caption",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #101 (保険金査定) — the \"single most valuable thing to add.\" The 査定額 derivation (請求額 − 過失相殺 − 免責 = 査定額) was hand-assembled from MetadataList + DistributionBar + Separator + custom arithmetic and a hand-roll…"
+    },
+    "349": {
+      "title": "Timeline: compound API (not data-prop) is undiscoverable — add a data-prop overload or an 'API shape' tag in the use-case index",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #104 (生保 引受査定) — \"the single thing that broke my first write and needed source-reading.\" Gap Timeline is a compound API: <Timeline<TimelineItem<TimelineTime/<TimelineTitle/<TimelineDescription/</Timeli…"
+    },
+    "350": {
+      "title": "feat(ActionQueue / AlertList): severity-sorted 'action-needed' worklist (the morning-dashboard alert queue)",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #105 (生保営業ポータル) — the \"single most valuable thing to add.\" The 要対応アラート surface (失効防止 / 更新 / 満期 / 誕生日) was hand-rolled from Alert + a CSS grid + a manual kind→icon/severity map. Gap There's no dedicated…"
+    },
+    "352": {
+      "title": "feat(Stringline / MareyChart): time × distance train-graph (列車運行図表) — crossing diagonal paths Gantt can't express",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #106 (鉄道 運転指令) — the 運行図表 (列車運行図表 / ダイヤグラム / stringline / Marey chart) was fully hand-rolled in SVG; the by-use-case index mis-routed it to Gantt. Gap A stringline is time × distance(駅): continuous dia…"
+    },
+    "354": {
+      "title": "feat(Gantt): rich segmented selectable bars — close the gap between ScheduleGrid (rich cells) and Gantt (thin bars)",
+      "state": "open",
+      "excerpt": "Found in Cold-test #107 (鉄道 乗務員行路) — the \"single most valuable thing to add.\" The 交番 (crew duty timeline) wanted time-proportional 仕業 bars where each bar spans e.g. 05:40–14:10 and is segmented by leg (出区 / 列車 / 折返し / 休憩…"
+    },
+    "356": {
+      "title": "feat(SeatMap): 2-D selectable seat grid — the consumer-booking primitive (seats / cinema / stadium / flights)",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #109 (特急券・指定席予約, B2C) — \"the headline gap\" and the single most valuable thing to add. The 座席表 (car seat-map) was fully hand-rolled (~180 lines of bespoke role=\"grid\"/gridcell buttons) — there is no sea…"
+    },
+    "358": {
+      "title": "feat(TransitItinerary / Journey): leg-centric 乗換案内 route detail — the line BETWEEN stops carries the info",
+      "state": "open",
+      "excerpt": "Found in Cold-test #110 (乗換案内・経路検索, B2C) — the 経路詳細 leg-by-leg itinerary was hand-rolled. RouteStops was the named-but-wrong component: it's node-centric (delivery: the stop carries 未配/配送中/完了), but a transit itinerary is…"
+    },
+    "362": {
+      "title": "a11y: mobile touch targets — the 44px size (Button xl) is undiscoverable; Tabs/default sizes sit at 36–40px",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #114 / #115 / #116 (航空 toC, all mobile-first) — flagged independently in all three. Gap On a phone the interactive defaults sit below the 44px tap guideline: - Button default = h-9 (36px), lg = h-10 (4…"
+    },
+    "363": {
+      "title": "feat(TicketStub / PassCard): boarding-pass / ticket-stub card (perforation + barcode region)",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #114 (オンラインチェックイン) — the 搭乗券 (boarding pass) was fully hand-rolled. \"No ticket/pass/stub component. SignedRecord is an audit-document record, not a travel pass.\" Gap A TicketStub / PassCard: an OD/time…"
+    },
+    "364": {
+      "title": "feat(LoyaltySummaryCard / TierCard): points/tier hero (big balance + tier badge + goal-framed progress + expiry)",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #116 (予約管理・マイレージ) — the #1 gap. The 会員ステータス hero (tier badge + balance + progress-to-next-tier + expiry warning) was fully hand-rolled; \"there is nothing for a points/tier/loyalty summary.\" Gap A Loyal…"
+    },
+    "365": {
+      "title": "feat(SegmentedControl): the 出発/到着・タブ風セグメント切替 (ToggleGroup reads too faint on mobile)",
+      "state": "open",
+      "excerpt": "Found in Cold-test #115 (運航状況案内) — the 出発便/到着便 switch. \"ToggleGroup works as the switch, but the default styling is subtle (looks like a faint toggle, not a clear segmented control). I had to add grid grid-cols-2 + data-…"
+    },
+    "366": {
+      "title": "StatusScreen has no success variant, but the by-use-case index routes confirmation screens to it",
+      "state": "open",
+      "excerpt": "Found in Cold-test #114 — \"the index pointed 'success/confirmation screen' at StatusScreen, which has no success variant (only 404/500/403/offline/maintenance/coming-soon, error tone + error icon by default). Following t…"
+    },
+    "367": {
+      "title": "B2C / consumer theme layer — the kit reads 'ops console' on traveller-facing screens",
+      "state": "open",
+      "excerpt": "Found in The toC arc (#109–#116) — every consumer cold AI says the same: strong primitives + a11y, but visual warmth is the weak spot (\"competent neutral system, not brand-expressive\"; \"ops console, not warm consumer app…"
+    },
+    "370": {
+      "title": "feat(RadioCard / SelectableCard): priced selectable choice card (the B2C purchase/plan-picker atom)",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #119 (定期券購入) — \"the biggest gap / single most valuable thing to add.\" The 種類・期間/経路 選択 (priced option cards: 路線 + ¥8,960/月 + おすすめ badge + 所要時間) was hand-rolled as a full role=\"radiogroup\"/role=\"radio\" c…"
+    },
+    "373": {
+      "title": "feat(PageHeader / mobile app-bar): sticky consumer page header (back + title/subtitle + action, ≥44px)",
+      "state": "open",
+      "excerpt": "Found in Cold-test #124 (手荷物追跡) — \"the single most valuable thing to add.\" The mobile app top-bar (back button + title + refresh action) was hand-rolled: \"There is no mobile app-bar / nav-header consumer component (the k…"
+    },
+    "376": {
+      "title": "feat(StatusLevel / LevelBadge): qualitative 2–4 level status indicator (crowding / stock / wait — not a Meter)",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #127 (空港ラウンジ) — \"the single most valuable thing to add.\" The 混雑状況 (空いています / やや混雑 / 混雑) was hand-rolled on Badge with a className override. Gap There's no qualitative status/level primitive — a small in…"
+    },
+    "378": {
+      "title": "feat(CheckboxCard / CheckboxCardGroup): multi-select selectable card — the twin of RadioCard",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #129 (きっぷ払戻し) — \"the single clearest missing piece / single most valuable thing to add.\" Gap RadioCard / RadioCardGroup (#121) nailed single-select priced cards. But multi-select selectable cards have…"
+    },
+    "379": {
+      "title": "feat(StatusScreen): success / receipt variant (受付完了 / 申込完了) — not just error pages",
+      "state": "open",
+      "excerpt": "Found in Cold-test #129 (きっぷ払戻し) — the 受付完了 (受付番号) confirmation was hand-rolled; reconfirmed from earlier rounds. Gap StatusScreen variants are hardcoded to error pages (404/500/403/offline/maintenance) and it's a min-60…"
+    },
+    "381": {
+      "title": "polish(toB console): asset status-row primitive + Meter announced-value sync + InspectorPanel fixed-size default",
+      "state": "open",
+      "excerpt": "Three small observations from cold-test #130 (機体整備管理/MRO console, 4.5/5 — the back-office floor crossed over to aviation with zero structural hand-rolling). None blocks; filing so they reach 3-confirm / don't get lost. 1…"
+    },
+    "383": {
+      "title": "feat(ExpiryBadge / CurrencyMatrix): date-based credential / inspection currency (valid / expiring / lapsed)",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #131 (乗員スケジュール) — \"the single most valuable thing to add.\" The 資格・審査 currency view (型式限定 / 路線資格 / 審査期限) was hand-rolled: a currencyOf() date classifier + a Badge + a ScheduleGrid matrix. Gap There's no…"
+    },
+    "385": {
+      "title": "feat(StatusBoard / DeviceGrid): spatial fault-first status board for physical-ops floors",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #132 (駅務管理/station ops, 4.5/5) — \"the single most valuable thing to add.\" The 設備・機器の状態盤 (改札機/券売機/精算機/EV/ホームドア with location + live status) was hand-rolled (EquipmentBoard.tsx — \"essentially a spec for…"
+    },
+    "386": {
+      "title": "feat(Gantt): intraday / hour-resolution time axis (same-day rosters), not day-only",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #133 (ダイヤ作成) — 車両運用/行路 (rolling-stock workings) for an intraday 7:00–9:00 window. Gap Gantt's time math is day-resolution (DAYMS, dayCount, headers rendered as M/D). For an intraday roster the adopter…"
+    },
+    "390": {
+      "title": "feat(SeatMap): coach-specific seats — multi-attribute + per-attribute legend/tone + vehicle orientation",
+      "state": "open",
+      "excerpt": "Found in Cold-test #139 (高速バス座席予約). SeatMap fit the grid perfectly — columns={[\"A\",null,\"C\",null,\"D\"]} expressed 3列独立 (1+aisle+1+aisle+1), [\"A\",\"B\",null,\"C\",\"D\"] expressed 4列 (2+aisle+2); state / maxSelectable / position…"
+    },
+    "391": {
+      "title": "feat(RadioRow + BottomActionBar): pick-one list row (radio semantics) + sticky mobile fare/CTA bar",
+      "state": "open",
+      "excerpt": "Two recurring booking/reservation-flow gaps, surfaced again in cold-test #139 (高速バス予約). 1. RadioRow / SelectableListItem (pick-one-from-a-list, radio semantics) The 乗車地/降車地 picker was hand-rolled (<fieldset + native radi…"
+    },
+    "392": {
+      "title": "feat(LineChip / RouteBadge): transit line / 系統 number chip (渋66 / 東98 …)",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #138 (バス接近案内) and #140 (バス経路検索) — hand-rolled both times. Gap There's no transit line / 系統 number chip. A route-bus screen tags everything by 系統 (渋66 / 東98) — in approach lists, route candidates, leg d…"
+    },
+    "395": {
+      "title": "feat(Leaderboard / RankingTable): ranked performers (rank + metric-bar + rank-change delta + row-highlight)",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #143 (タクシー営収ダッシュボード) — \"the real gap / the single most valuable thing to add.\" The 乗務員別ランキング (driver leaderboard) was assembled from DataTable + a hand-rolled rank-badge cell + PersonCell + Delta. Gap…"
+    },
+    "397": {
+      "title": "feat(DesktopPageHeader / ConsoleHeader): lightweight per-screen desktop title bar (PageHeader is mobile-only)",
+      "state": "closed",
+      "excerpt": "Found in Recurring across desktop ops consoles: #130 (MRO), #134 (ramp), #135 (network), #144 (taxi maintenance) — 4 sightings. Each hand-rolled a plain <header for the per-screen title bar. Gap There's no lightweight de…"
+    },
+    "399": {
+      "title": "feat(CaseTable / IncidentRow): case-list preset to pair with ApprovalWorkflow (type/status/priority/assignee + derived sort)",
+      "state": "open",
+      "excerpt": "Found in Cold-test #145 (タクシー苦情・事故・安全). The case-LIFECYCLE (ApprovalWorkflow) is first-class and zero-friction, but the case-LIST that feeds it is DIY: assembled from ActionDataTable + hand-rolled type/status/priority/as…"
+    },
+    "400": {
+      "title": "feat(LineChart band / AreaRangeChart + chart color-scale legend): forecast confidence band + shared sequential legend",
+      "state": "open",
+      "excerpt": "Found in Cold-test #146 (タクシー需要予測・配車最適化, 4/5) — the chart/analytics floor fit a forecast console well (HeatmapChart finally in its home = エリア×時間帯 intensity; ChoroplethMap = area supply-demand + ranking). Two gaps surface…"
+    },
+    "403": {
+      "title": "feat(DateTimePicker + PlaceField): future date+time(±window) reservation picker + pickup/dropoff location pair",
+      "state": "open",
+      "excerpt": "Found in Cold-test #148 (タクシー予約配車・空港定額). The booking skeleton (PageHeader / Stepper / RadioCard / AmountBreakdown / BottomActionBar — which self-discovered, built #147) was turnkey, but two reservation-specific primitive…"
+    },
+    "404": {
+      "title": "feat(SectionList / GroupedList): grouped rows with section headers + per-section subtotal",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #149 (タクシー乗車履歴・領収書). The month-grouped ride history was hand-rolled: groupByMonth() + a <section per month with a hand-built header (2026年6月 · 4回・¥18,410). ListCard fit the rows; the grouping is all be…"
+    },
+    "406": {
+      "title": "feat(RatingInput + InquiryStatus): interactive star-rating input + consumer-facing case/inquiry status",
+      "state": "open",
+      "excerpt": "Found in Cold-test #150 (タクシー乗車後評価・サポート, 3.5/5). Two gaps; the first is the screen's primary action. 1. RatingInput (the headline gap + an ACTIVE mis-route) Rating is role=\"img\", display-only — value/max/reviewCount/show…"
+    },
+    "408": {
+      "title": "feat(ReferralCard + PromoCodeField + LoyaltySummaryCard tierTone): B2C loyalty gaps",
+      "state": "open",
+      "excerpt": "Found in Cold-test #151 (タクシー会員・サブスク・クーポン, 4.5/5) — \"the strongest domain fit I've seen for a B2C membership screen\". LoyaltySummaryCard (home) / RadioCard / TicketStub (coupon present) / ExpiryBadge (coupon expiry — sel…"
+    },
+    "409": {
+      "title": "feat(SegmentedControl / AccountSwitcher + TicketStub stored-value + NavRow): B2B2C gaps",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #152 (タクシー法人配車・タクシーチケット, 3.5/5) — the final taxi screen. The generic mobile床 (PageHeader/BottomActionBar/RadioCard/ApprovalSteps/TicketStub/ExpiryBadge/ListCard/AmountBreakdown) carried ~70%, but the B…"
+    },
+    "411": {
+      "title": "feat(ComparisonTable) + fix(barrel): export *VariantKey types",
+      "state": "open",
+      "excerpt": "Found in Cold-test #153 (バス 運行計画・ダイヤ編成, 4.5/5). The back-office floor (Stringline/Gantt/DataTable/ActionQueue/Delta/StatGroup) carried this planning console; two papercuts remained. 1. ComparisonTable (現行 vs 改正案 / before…"
+    },
+    "412": {
+      "title": "feat(DataTable rowTone + Statistic/Meter inverted-metric): finance-console semantics",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #154 (バス 営収・路線収支, 4/5). The chart/analytics floor (StatGroup/LineChart/LabeledDonutCard/Delta/ActionQueue/DataTable) carried this finance dashboard zero-friction. Two semantic gaps remained — both recu…"
+    },
+    "415": {
+      "title": "feat(ValidityTimer): sub-day countdown to complement ExpiryBadge",
+      "state": "open",
+      "excerpt": "Found in Cold-test #156 (バス モバイル乗車券・一日乗車券, 4.5/5). TicketStub + ExpiryBadge fit the ticket face, but the live validity countdown on a short-window ticket had no home. \"The live '残り 47:32' countdown is hand-rolled (a setI…"
+    },
+    "417": {
+      "title": "feat(LimitMonitor): value-vs-soft/hard-limit gauge with named breach state",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #159 (トラック配車・運行管理, 4.5/5 — the truck-dispatch console, native home for the ops floor). The 拘束時間/改善基準告示 (hours-of-service) compliance display had to be composed from two components. \"拘束時間/改善基準 — combine…"
+    },
+    "419": {
+      "title": "feat(MatchCard / PairingPanel): two-sided A⟷B pairing, not people-shaped",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #160 (トラック求貨求車マッチング, 4/5 — a two-sided freight marketplace). The list/queue/KPI/ranking scaffolding composed cleanly (ActionDataTable + Leaderboard + ActionQueue + StatGroup ≈ 80%), but the pairing det…"
+    },
+    "422": {
+      "title": "feat(TimeBandPicker) + RouteStops multi-day stamp; fix(index): time-band → not TimePicker",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #164 (トラック 荷主ポータル, 4.5/5 — shipper portal: pickup request + freight tracking + history). SectionList (#421) self-discovered & used zero-friction for grouped history. Two gaps + one index SWAP-trap. 1.…"
+    },
+    "425": {
+      "title": "feat(OriginDestination / RouteHeader): A→B origin-destination header (ports/stations/legs)",
+      "state": "closed",
+      "excerpt": "Found in Cold-test #166 (国際輸送・通関追跡, 4/5). The 仕出地→仕向地 route headline was the one thing hand-rolled (the RouteStops multi-day gap was built in #424). \"The 仕出地→仕向地 route headline in the hero (上海港 →(arrow)→ 東京港 with port co…"
+    },
+    "753": {
+      "title": "a11y(Statistic/StatGroup): aria-live が無く、動的に変わる指標が読み上げられない — cold-test #189",
+      "state": "open",
+      "excerpt": "事象 Statistic / StatGroup に aria-live を渡す口が無く、値が動いても読み上げられない。 cold-test #189（ニュースレター配信管理）の「宛先の絞り込み」で発覚。条件を足し引きすると該当人数がその場で変わる、という画面の中心的な振る舞いが読み上げに乗らないため、cold AI は aria-live=\"polite\" aria-atomic=\"true\" の live region ブロックを別…"
+    },
+    "763": {
+      "title": "docs(by-use-case): 用途表が誤った部品を名指ししている（物件比較→MatchCard・listing→ListCard・予約→WeekView）— cold-test #190/#194",
+      "state": "open",
+      "excerpt": "事象（docs の「欠落」ではなく「誤り」） /docs/by-use-case の \"E-Commerce & Real-Estate Patterns\" に、物件比較の答えとして MatchCard が名指しで載っている（\"Property comparisons: MatchCard for side-by-side property analysis\"）。 しかし MatchCard は left / right の2者固定のマ…"
+    },
+    "764": {
+      "title": "a11y(FileUploader): キーボードから一切操作できない（input が display:none・ドロップ領域は tabIndex なしの div）— cold-test #192",
+      "state": "open",
+      "excerpt": "事象（WCAG 2.1.1 キーボード操作可能 違反） FileUploader はキーボードから一切操作できない。 - 実体の <input type=\"file\" は className=\"hidden\"（display: none）＝フォーカスを受け取れない（src/components/inputs/FileUploader.tsx L213-221） - ドロップ領域は素の <div onClick={...} で、tabIn…"
+    },
+    "767": {
+      "title": "feat(inputs): つまみ＋数値入力のペアが無い（1画面で5回手組み）＋ Form が「送信する器」に読めて a11y 配線を見落とす — cold-test #191 で 1/3",
+      "state": "open",
+      "excerpt": "欲しいもの つまみ（Slider）と数値入力（NumberInput / CurrencyInput）を1つのラベルに束ねた入力。「つまみでも直接入力でもできる」は試算・設定・絞り込みの定番だが、その合成が無い。 cold-test #191（住宅ローン試算）で cold AI が ValueField を 約100行手組みし、1画面で5回使った（物件価格・頭金・借入期間・金利・ボーナス割合）。cold AI の評価：「この画面で5回繰…"
+    },
+    "771": {
+      "title": "docs+a11y(Form): SSOT が FormGroup を主役に書いているが配線を持つのは FormField で、従うと aria が全部消える（黙って無効化）— cold-test #193",
+      "state": "open",
+      "excerpt": "事象 docs/inputs-form-composition-ssot.md は「canonical な FormGroup layout」「FormGroup owns the field column width」と書いていて、フォーム合成の主役が FormGroup に見える。しかし context を持つのは FormField の方（src/components/inputs/Form.tsx L41 FormFieldCo…"
+    },
+    "786": {
+      "title": "a11y(AmountBreakdown): role=row の中でラベル側にロールが無く、ARIA table の行構造が壊れている — cold-test #204",
+      "state": "open",
+      "excerpt": "事象（実装で確認） AmountBreakdown は role=\"table\"（L80）と role=\"row\"（L90・L102・L132）を付けているが、role=\"cell\" が金額側の div にしか付いていない（L115・L134）。ラベル側の div にはロールが無い。 ARIA の table では、role=\"row\" の子は cell / columnheader / rowheader のいずれかである必要がある。…"
+    },
+    "787": {
+      "title": "feat: 読み取り専用の入れ子ブロックが無い（TreeView は1行truncate＋role=tree のウィジェット・Accordion は畳む）— cold-test #200 で 1/3",
+      "state": "open",
+      "excerpt": "欲しいもの 読み取り専用の入れ子ブロック。「親の内容ブロックの下に、子の内容ブロックがインデントでぶら下がる」形。各ブロックは1行ではなく、金額・期限・バッジなど複数の要素を持つ。 cold-test #200（保険の契約者マイページ・主契約と特約）で cold AI が CoverageTree を 約95行手組み（インデント罫線＋入れ子の <ul/<li、中身は Badge / MetadataList / ExpiryBadge…"
+    },
+    "788": {
+      "title": "feat: 年単位・複数行の期間の帯が描けない（Gantt は日/時のみ・SegmentTimelineCard は単一レーン＋min-w-[36rem]）— cold-test #200 で 1/3",
+      "state": "open",
+      "excerpt": "欲しいもの 年単位・複数行の期間の帯。「主契約は終身、通院特約は70歳まで、先進医療は75歳まで、がんは80歳まで」を一目で比べる図。 cold-test #200（保険の保障期間）で cold AI が CoverageSpanChart を 約105行手組み（パーセント幅の div ＋ 現在年齢の縦線）。 引き返しの記録（実装で確認） - Gantt — resolution?: \"day\" | \"hour\"（src/compone…"
+    },
+    "789": {
+      "title": "feat(typography): Heading / Text が無く、CardTitle の外では毎回クラスを手書きになる（#204 で20箇所以上）— cold-test #204",
+      "state": "open",
+      "excerpt": "事象（実装で確認） Heading / Text / Typography に当たるコンポーネントが存在しない（src/index.ts に export 無し）。 そのため CardTitle と PageHeader の外では、text-base font-semibold / text-sm leading-6 text-muted-foreground のようなクラスを毎回手書きすることになる。 cold-test #204（満…"
+    },
+    "790": {
+      "title": "bug(NumberInput): 1文字ごとに clamp するため min が2桁以上だと直接入力が壊れる（45 と打つと 75 になる）— cold-test #202",
+      "state": "open",
+      "excerpt": "事象（実装で確認・実バグ） NumberInput は handleChange で1文字打つたびに clamp を適用して確定させる（src/components/inputs/NumberInput.tsx L105 onValueChange?.(clamp(parsed))）。 そのため min が2桁以上の欄では直接入力が事実上できない。 cold-test #202（保険料試算の年齢欄・min=18）の再現: 1. 「45」…"
+    },
+    "791": {
+      "title": "polish(RadioCard): highlight が success 固定で、不利な条件を書くと「良い知らせ」に見える — cold-test #201",
+      "state": "open",
+      "excerpt": "事象（実装で確認） RadioCard の highlight スロットは text-success-strong 固定（src/components/display/RadioCard.tsx L153）。トーンを選べない。 そのため不利な条件を書くと「良い知らせ」に見える。 cold-test #201（給付金請求の受取口座選択）で発生。cold AI が「別の口座を指定する」カードに 「本人確認書類の提出が必要になります」 を h…"
+    },
+    "793": {
+      "title": "feat(Form): エラーサマリー（件数＋各項目へジャンプ）が無い — cold-test #183/#193/#203 で 3/3・build 対象",
+      "state": "open",
+      "excerpt": "欲しいもの フォーム全体のエラーサマリー。送信時に「何件残っているか」を一覧で出し、各項目を押すと該当入力へフォーカスを移す。role=\"alert\" で自分にフォーカスを引き受ける。 3回に到達（build 対象）。 | ラウンド | 行数 | 記録 | |---|---|---| | #183（法務レビュー受付） | 約55行 | 「エラーサマリーパターン自体がキットに無い」 | | #193（売却査定） | 約30行 | 「フォー…"
+    },
+    "794": {
+      "title": "feat(Form): fieldset+legend の項目群（FieldSet）が無く、群コントロールに名前を付けられない — 同根の限界が5例目 — cold-test #203",
+      "state": "open",
+      "excerpt": "欲しいもの fieldset + legend の項目群。複数のコントロール（または群コントロール1つ）を「1つの問い」としてまとめ、legend・説明・エラーの id 配線を持つ器。 cold-test #203（告知の5問＋明細）で cold AI が FieldSet を 81行手組みし、画面全体で多用した。 なぜ FormField では足りないか（#203 の実測） FormField は label htmlFor で単一コ…"
+    },
+    "795": {
+      "title": "design: 部品は「トーン」を持たない（温かさ・やわらかさ・急がせなさ）— cold-test #178/#192/#203 で3回・守備範囲の判断が要る",
+      "state": "open",
+      "excerpt": "観測（3回・別業種・別トーン） コールドテストで、部品が「トーン」を持たないという同じ評価が3回出た。3回とも cold AI が自発的に書いたもので、質問していない。 | ラウンド | 求められたトーン | cold AI の評価 | |---|---|---| | #178（建設・施主ポータル） | 温かさ | 「コンポーネント自体は温かさを持っていない。中立で事業者向けにも消費者向けにも使えるが、裏を返すと淡々としている。温かさは…"
+    },
+    "816": {
+      "title": "docs(dependencies): @tabler/icons-react が採用側の未宣言依存になる — cold-test #20 が実際に壊れている（#179 の監査判定も訂正）",
+      "state": "open",
+      "excerpt": "事象 Icon はグリフを呼び出し側から受け取る設計なので、採用側は @tabler/icons-react を自分で import することになる。ところが: - @tabler/icons-react は @gunjo/ui の dependencies に入っている（採用側の package.json には無い） - npm のフラットインストールで hoist されるので import は解決してしまう - ⚠️ 公開ドキュメン…"
+    },
+    "826": {
+      "title": "feat: 証券バッチで出た未踏の4形（板の量バー／ルックアップ表／途中式の行／順位を付けない N件比較）— cold-test #216-221 で計550行が自作",
+      "state": "open",
+      "excerpt": "証券バッチで出た「これが無いと画面が組めない」4つ 証券・資産運用（#216〜#221）は数値の密度が連載で最も高く、この業種で初めて要求された形が4つ出た。どれも既存の部品では代替が効かず、合計で 約550行が自作になった。 --- 1. 板（値段の階段＋数量の棒＋中央で売買が分かれる）— #216・145行 証券の中核。⚠️ cold AI が6部品を順に開いて全部撤退している（記録として価値が高い）。 | 開いた部品 | 撤退の理…"
+    },
+    "829": {
+      "title": "design(LimitMonitor): 語彙とトーンが「規制の限度」に固定されていて容量の画面で毎回撤退される — 7画面で4採用4撤退・割れ方の規則が確定",
+      "state": "open",
+      "excerpt": "事象（7画面・4採用4撤退で、割れ方の理由が確定した） LimitMonitor は連載で最も評価が割れている部品。通信バッチ（#222〜#227）で同一バッチ内で採用と撤退が両方出たことで、原因が特定できた。 | ラウンド | 文脈 | 結果 | 理由 | |---|---|---|---| | #207 介護の利用料明細 | 単位の限度額（27,048単位） | ✅ 採用 | ⚠️ ただし docstring の例が全部トラック運送…"
+    },
+    "830": {
+      "title": "design: 「選択肢を並べる部品」と「商品を選ばせる部品」を区別していない（RadioCard/Leaderboard/PricingTemplate が既定で推す）— cold-test #221/#226/#227",
+      "state": "open",
+      "excerpt": "事象（3部品・3ラウンドで同じ理由の撤退） 「選択肢を並べる」ためだけの部品が無い。並べて見せる部品はすべて「どれかを推す」affordance を既定で持っている。 | 部品 | 既定で入っている「推す」仕掛け | 撤退したラウンド | |---|---|---| | RadioCard | tags（人気／期間限定／おすすめ）・price（dominant price slot）・highlight（○○円分おトク） | #227（…"
+    },
+    "849": {
+      "title": "bug(ListCard): onSelect を渡すと {...props} が黙って落ちる（非対話分岐には在る）＋aria-pressed の誤用＋children を描画しない — 独立7体",
+      "state": "open",
+      "excerpt": "ListCard は連載で最も繰り返し撤退されている部品です。防災バッチで実バグも見つかったので、まとめて起票します。 1. ★実バグ：onSelect を渡すと {...props} が黙って落ちる src/components/display/ListCard.tsx:88-104 ⚠️ 対話モードの <button にだけ {...props} が展開されていません。 ListCardProps は React.HTMLAttri…"
+    },
+    "850": {
+      "title": "design(SafetyBanner): 実体は臨床の同意ゲートなのに名前が「安全の帯」で、5回開かれて5回とも撤退（うち3回が防災）",
+      "state": "open",
+      "excerpt": "SafetyBanner は連載で5回開かれて5回とも撤退しました。防災バッチで理由が確定したので起票します。 docstring は医療用だと明言しています src/components/feedback/SafetyBanner.tsx:56-62 Persistent, assertive, acknowledgeable safety alert. A loud banner for a critical condition (…"
+    },
+    "852": {
+      "title": "feat: 単軸の判定器が3つあるのに「N個そろって初めて可・落ちたのはどれか」を合成する層が無い — cold-test #235/#237",
+      "state": "open",
+      "excerpt": "キットには単軸の判定器が3つあります。 | 関数 | 何と何を比べるか | |---|---| | classifyLimit | 値 vs 名前のついた基準（LimitMonitor） | | classifyExpiry | 日付 vs 期限（ExpiryBadge） | | flagValue | 値 vs 範囲（ReferenceValue） | ⚠️ ところが、それらを合成して1つの可否にする層がありません。 業務画面は「N個…"
+    },
+    "853": {
+      "title": "design: トーンの軸が「重さ」しか無く、確からしさ・出自・鮮度の軸が無い（値の出自の観測が9例目）— cold-test #236/#238/#239",
+      "state": "open",
+      "excerpt": "SemanticTone は7値で、⚠️ 全部が「どれくらいまずいか」の軸です。 src/lib/semantic-tone.ts:22-29 ⚠️ 「これは観測値か予測値か」「この情報はいつのものか」「どれくらい確からしいか」を表す軸がありません。 実際に困った回 #238（防災情報ポータル） — この画面で一番間違えてはいけない区別が、観測された水位と予測の見通しでした。 強さの段はあるのに確からしさの段が無い。 tone は「どれ…"
+    },
+    "902": {
+      "title": "docs/dist: 公開ドキュメントに載っている StatusLevel が npm の最新版に無い（独立3体が踏んだ）",
+      "state": "open",
+      "excerpt": "コールドテスト #240-244（保険バッチ・issue #901）の監査で出ました。 何が起きたか /docs/by-use-case は「順序のあるステータス・レベル（平常運転＜遅延＜迂回＜運休 など）」に StatusLevel を名指しし、/docs/components/status-level のページも実在して props（levels / value / showBar）とユーティリティ（statusLevelIndex…"
+    },
+    "903": {
+      "title": "feat(Table): 素の Table に狭い画面の畳み方が無く、同じ表を2回書くことになる（独立2体）",
+      "state": "open",
+      "excerpt": "コールドテスト #240-244（保険バッチ・issue #901）で出ました。 何が起きたか DataTable は renderCard を持っていて、狭い画面では行をカードに切り替えられます（src/components/display/DataTable.tsx に5箇所）。素の Table には同じ口がありません（0箇所）。 そのため「DataTable の枠組みには乗らないが表として読ませたいもの」を作ると、同じ内容をパソコ…"
+    },
+    "904": {
+      "title": "feat: 「未了の条件が残るうちは押せない」を持つボタンが無く、理由の必須化が署名部品に縛られている（独立2体）",
+      "state": "open",
+      "excerpt": "コールドテスト #240-244（保険バッチ・issue #901）で出ました。 何が起きたか 業務画面には「条件がそろうまで先へ進めない」ボタンが頻繁に出ます。しかも進めない理由は1つではなく、押せない間はその一覧を見せる必要があります。 配布物にこの口を持っているのは2つだけで、どちらも署名という別の契約に縛られています。 - SignedRecord.canSign ＋ requireAddendumReason - CoSign…"
+    },
+    "905": {
+      "title": "bug(RouteStops): hideTimes が dateLabel まで消す。予実の対が \"HH:MM\" の当日内専用",
+      "state": "open",
+      "excerpt": "コールドテスト #244（立件・損害調査・issue #901）で出ました。本体のソースで裏取り済みです。 1. hideTimes が dateLabel まで消す src/components/display/RouteStops.tsx:166 hideTimes は名前のとおり「時刻を隠す」ものに読めますが、実装は dateLabel（複数日にまたがる工程のための日付の表示）も同じ条件で落としています。 ⚠️ #244 の実装者…"
+    },
+    "906": {
+      "title": "feat: 基準日からの経過日数（止まってから何日）を表す部品が無い。ExpiryBadge は締切専用",
+      "state": "open",
+      "excerpt": "コールドテスト #244（立件・損害調査・issue #901）で出ました。 何が起きたか 業務の一覧には「いつから止まっているか」が頻繁に出ます。損害調査なら「工場の見積待ちで6日」、申込受付なら「差し戻してから3日」。 配布物でいちばん近いのは ExpiryBadge（＋classifyExpiry）ですが、これは 締切に対する残り日数（残N日 / N日超過）です。締切のない「止まっている日数」には意味が合いません。 #244 は…"
+    },
+    "907": {
+      "title": "bug(Banner): h-10 固定・1行・truncate で日本語の文が375pxで黙って切れる（独立2体）",
+      "state": "open",
+      "excerpt": "コールドテスト #241 / #243（保険バッチ・issue #901）で出ました。本体のソースで裏取り済みです。 何が起きたか src/components/feedback/Banner.tsx:11 :40 の docstring 自身が「single-line notice strip: fixed h-10, one row」と書いていて、設計として1行固定です。はみ出した文は黙って切れます。 日本語の告知文は「この画面は架…"
+    }
+  }
+}

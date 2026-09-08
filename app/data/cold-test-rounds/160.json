@@ -5,7 +5,7 @@
   "score": "4/5",
   "category": "運輸：トラック",
   "title": "AI にトラック求貨求車マッチングを作らせてみた — 索引是正が翌画面で効いた回（やってみた #160）",
-  "summary": "`tsc` 緑・デスクトップ情報密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "索引是正が「翌画面で」効いた。索引には「2種類の罠」がある。",
   "article": {
     "file": "zenn-yattemita-160-truck-matching.md",
     "slug": "160-truck-matching",

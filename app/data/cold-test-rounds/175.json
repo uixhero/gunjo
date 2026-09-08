@@ -5,7 +5,7 @@
   "score": "4/5",
   "category": "建設・建築",
   "title": "AI に施工写真台帳を作らせてみた：写真管理のために作ったコンポーネントが、工事写真の台帳にほぼそのまま効いた（やってみた #175）",
-  "summary": "予備知識ゼロの AI に、公開されている npm パッケージと gunjo.jp の docs だけを渡して組ませました。`tsc` は緑、モバイルとデスクトップの両対応です。",
+  "summary": "写真管理のコンポーネント一式が、工事写真の台帳にそのまま効いた。拡大表示の「黒板情報」と、是正の「前後比較」。",
   "article": {
     "file": "zenn-yattemita-175-construction-photos.md",
     "slug": "175-construction-photos",

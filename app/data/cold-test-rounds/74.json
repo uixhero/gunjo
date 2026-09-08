@@ -5,7 +5,7 @@
   "score": "4.25/5",
   "category": "教育",
   "title": "AI に面談予約を作らせてみた — ScheduleGrid が「予約グリッド」でも一発で見つかった（やってみた #74）",
-  "summary": "教育の5枚目で締め。保護者面談の時間枠を開き、家庭が予約する画面。そして **#71 で広げた ScheduleGrid の説明が、3回連続で別マトリクスに刺さった**——今回は「予約グリッド」。",
+  "summary": "「広げた説明」は1回の修正が配当を生み続ける。ScheduleGrid が「予約グリッド」でも一発で見つかった（3回連続）。",
   "article": {
     "file": "zenn-yattemita-74-conference-booking.md",
     "slug": "74-conference-booking",
