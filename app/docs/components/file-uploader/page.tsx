@@ -99,7 +99,8 @@ export default function FileUploaderPage() {
         ? "ストレージ容量を確認するまでアップロードを停止しています。"
         : "Uploads are paused until storage capacity is confirmed.";
 
-    const code = `import { FileUploader, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+    const code = locale === "ja"
+        ? `import { FileUploader, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
 import { useState } from "react";
 
 export function FileUploaderDemo() {
@@ -107,7 +108,7 @@ export function FileUploaderDemo() {
 
   return (
     <FormGroup className="w-full max-w-md">
-      <FormLabel>${locale === "ja" ? "添付ファイル" : "Attachments"}</FormLabel>
+      <FormLabel>添付ファイル</FormLabel>
       <FormControl>
         <FileUploader
           value={files}
@@ -115,23 +116,55 @@ export function FileUploaderDemo() {
           maxFiles={3}
           maxSize={5 * 1024 * 1024}
           labels={{
-            browse: "${labels.browse}",
-            drop: "${labels.drop}",
-            removeFile: "${labels.removeFile}",
-            fileTooLarge: "${labels.fileTooLarge}",
-            fileTypeNotAccepted: "${labels.fileTypeNotAccepted}",
-            maxSize: (sizeMb) => \`${locale === "ja" ? "最大 " : "Max size "}\${sizeMb}MB\`,
+            browse: "ファイルを選択",
+            drop: "またはドラッグ＆ドロップ",
+            removeFile: "ファイルを削除",
+            fileTooLarge: "ファイルサイズが上限を超えています",
+            fileTypeNotAccepted: "対応していないファイル形式です",
+            maxSize: (sizeMb) => "最大 " + sizeMb + "MB",
           }}
         />
       </FormControl>
       <FormDescription>
-        ${locale === "ja" ? "画像や資料を追加できます。" : "Drop files here or browse from your device."}
+        画像や資料を追加できます。
+      </FormDescription>
+    </FormGroup>
+  );
+}`
+        : `import { FileUploader, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+import { useState } from "react";
+
+export function FileUploaderDemo() {
+  const [files, setFiles] = useState<File[]>([]);
+
+  return (
+    <FormGroup className="w-full max-w-md">
+      <FormLabel>Attachments</FormLabel>
+      <FormControl>
+        <FileUploader
+          value={files}
+          onValueChange={setFiles}
+          maxFiles={3}
+          maxSize={5 * 1024 * 1024}
+          labels={{
+            browse: "Click to upload",
+            drop: "or drag and drop",
+            removeFile: "Remove file",
+            fileTooLarge: "File too large",
+            fileTypeNotAccepted: "File type not accepted",
+            maxSize: (sizeMb) => "Max size " + sizeMb + "MB",
+          }}
+        />
+      </FormControl>
+      <FormDescription>
+        Drop files here or browse from your device.
       </FormDescription>
     </FormGroup>
   );
 }`;
 
-    const usageCode = `import { FileUploader, FormControl, FormGroup, FormLabel, Progress } from "@gunjo/ui";
+    const usageCode = locale === "ja"
+        ? `import { FileUploader, FormControl, FormGroup, FormLabel, Progress } from "@gunjo/ui";
 import { useState } from "react";
 
 export function ImageUploader() {
@@ -140,7 +173,47 @@ export function ImageUploader() {
 
   return (
     <FormGroup className="w-full max-w-md">
-      <FormLabel>${locale === "ja" ? "画像" : "Images"}</FormLabel>
+      <FormLabel>画像</FormLabel>
+      <FormControl>
+        <FileUploader
+          value={files}
+          onValueChange={setFiles}
+          showFileList={false}
+          maxFiles={5}
+          maxSize={10 * 1024 * 1024}
+          accept={{
+            "image/*": [".png", ".jpg", ".jpeg", ".webp"],
+          }}
+        />
+      </FormControl>
+      {files.length > 0 && (
+        <div className="grid gap-2">
+          {files.map((file) => (
+            <div key={file.name} className="grid gap-1 rounded-md border p-2 text-xs">
+              <div className="flex justify-between gap-3">
+                <span className="truncate font-medium">{file.name}</span>
+                <span className="text-muted-foreground">
+                  {progressByName[file.name] ?? 0}%
+                </span>
+              </div>
+              <Progress value={progressByName[file.name] ?? 0} className="h-2" />
+            </div>
+          ))}
+        </div>
+      )}
+    </FormGroup>
+  );
+}`
+        : `import { FileUploader, FormControl, FormGroup, FormLabel, Progress } from "@gunjo/ui";
+import { useState } from "react";
+
+export function ImageUploader() {
+  const [files, setFiles] = useState<File[]>([]);
+  const progressByName: Record<string, number> = {};
+
+  return (
+    <FormGroup className="w-full max-w-md">
+      <FormLabel>Images</FormLabel>
       <FormControl>
         <FileUploader
           value={files}
@@ -295,19 +368,41 @@ export function ImageUploader() {
                                     ? "ドロップゾーン全体でクリック選択とドラッグ＆ドロップを受け付けます。"
                                     : "The whole dropzone accepts click-to-browse and drag-and-drop input.",
                             preview: <FileUploader labels={labels} maxFiles={3} />,
-                            code: `import { FileUploader } from "@gunjo/ui";
+                            code: locale === "ja"
+                                ? `import { FileUploader } from "@gunjo/ui";
 
-<FileUploader
-  maxFiles={3}
-  labels={{
-    browse: "${labels.browse}",
-    drop: "${labels.drop}",
-    removeFile: "${labels.removeFile}",
-    fileTooLarge: "${labels.fileTooLarge}",
-    fileTypeNotAccepted: "${labels.fileTypeNotAccepted}",
-    maxSize: (sizeMb) => \`${locale === "ja" ? "最大 " : "Max size "}\${sizeMb}MB\`,
-  }}
-/>`,
+export function AttachmentUploader() {
+  return (
+    <FileUploader
+      maxFiles={3}
+      labels={{
+        browse: "ファイルを選択",
+        drop: "またはドラッグ＆ドロップ",
+        removeFile: "ファイルを削除",
+        fileTooLarge: "ファイルサイズが上限を超えています",
+        fileTypeNotAccepted: "対応していないファイル形式です",
+        maxSize: (sizeMb) => "最大 " + sizeMb + "MB",
+      }}
+    />
+  );
+}`
+                                : `import { FileUploader } from "@gunjo/ui";
+
+export function AttachmentUploader() {
+  return (
+    <FileUploader
+      maxFiles={3}
+      labels={{
+        browse: "Click to upload",
+        drop: "or drag and drop",
+        removeFile: "Remove file",
+        fileTooLarge: "File too large",
+        fileTypeNotAccepted: "File type not accepted",
+        maxSize: (sizeMb) => "Max size " + sizeMb + "MB",
+      }}
+    />
+  );
+}`,
                         },
                         {
                             key: "image-only",
@@ -324,23 +419,49 @@ export function ImageUploader() {
                                     accept={{ "image/*": [".png", ".jpg", ".jpeg", ".webp"] }}
                                 />
                             ),
-                            code: `import { FileUploader } from "@gunjo/ui";
+                            code: locale === "ja"
+                                ? `import { FileUploader } from "@gunjo/ui";
 
-<FileUploader
-  maxFiles={5}
-  maxSize={10 * 1024 * 1024}
-  accept={{
-    "image/*": [".png", ".jpg", ".jpeg", ".webp"],
-  }}
-  labels={{
-    browse: "${labels.browse}",
-    drop: "${labels.drop}",
-    removeFile: "${labels.removeFile}",
-    fileTooLarge: "${labels.fileTooLarge}",
-    fileTypeNotAccepted: "${labels.fileTypeNotAccepted}",
-    maxSize: (sizeMb) => \`${locale === "ja" ? "最大 " : "Max size "}\${sizeMb}MB\`,
-  }}
-/>`,
+export function ImageUploader() {
+  return (
+    <FileUploader
+      maxFiles={5}
+      maxSize={10 * 1024 * 1024}
+      accept={{
+        "image/*": [".png", ".jpg", ".jpeg", ".webp"],
+      }}
+      labels={{
+        browse: "ファイルを選択",
+        drop: "またはドラッグ＆ドロップ",
+        removeFile: "ファイルを削除",
+        fileTooLarge: "ファイルサイズが上限を超えています",
+        fileTypeNotAccepted: "対応していないファイル形式です",
+        maxSize: (sizeMb) => "最大 " + sizeMb + "MB",
+      }}
+    />
+  );
+}`
+                                : `import { FileUploader } from "@gunjo/ui";
+
+export function ImageUploader() {
+  return (
+    <FileUploader
+      maxFiles={5}
+      maxSize={10 * 1024 * 1024}
+      accept={{
+        "image/*": [".png", ".jpg", ".jpeg", ".webp"],
+      }}
+      labels={{
+        browse: "Click to upload",
+        drop: "or drag and drop",
+        removeFile: "Remove file",
+        fileTooLarge: "File too large",
+        fileTypeNotAccepted: "File type not accepted",
+        maxSize: (sizeMb) => "Max size " + sizeMb + "MB",
+      }}
+    />
+  );
+}`,
                         },
                         {
                             key: "loading",
@@ -355,7 +476,8 @@ export function ImageUploader() {
                                     <UploadStatusCard locale={locale} status="loading" />
                                 </div>
                             ),
-                            code: `import { FileUploader, Progress, Spinner } from "@gunjo/ui";
+                            code: locale === "ja"
+                                ? `import { FileUploader, Progress, Spinner } from "@gunjo/ui";
 import { useState } from "react";
 
 export function UploadingState() {
@@ -369,18 +491,51 @@ export function UploadingState() {
         maxFiles={3}
         showFileList={false}
         labels={{
-          browse: "${labels.browse}",
-          drop: "${labels.drop}",
-          removeFile: "${labels.removeFile}",
-          fileTooLarge: "${labels.fileTooLarge}",
-          fileTypeNotAccepted: "${labels.fileTypeNotAccepted}",
-          maxSize: (sizeMb) => \`${locale === "ja" ? "最大 " : "Max size "}\${sizeMb}MB\`,
+          browse: "ファイルを選択",
+          drop: "またはドラッグ＆ドロップ",
+          removeFile: "ファイルを削除",
+          fileTooLarge: "ファイルサイズが上限を超えています",
+          fileTypeNotAccepted: "対応していないファイル形式です",
+          maxSize: (sizeMb) => "最大 " + sizeMb + "MB",
         }}
       />
       <div className="grid gap-3 rounded-md border p-3 text-sm">
         <div className="flex items-center gap-2">
           <Spinner size="sm" />
-          <span>${locale === "ja" ? "アップロード中" : "Uploading"}</span>
+          <span>アップロード中</span>
+          <span className="ml-auto">68%</span>
+        </div>
+        <Progress value={68} className="h-2 w-full" />
+      </div>
+    </div>
+  );
+}`
+                                : `import { FileUploader, Progress, Spinner } from "@gunjo/ui";
+import { useState } from "react";
+
+export function UploadingState() {
+  const [files, setFiles] = useState<File[]>([]);
+
+  return (
+    <div className="grid gap-3">
+      <FileUploader
+        value={files}
+        onValueChange={setFiles}
+        maxFiles={3}
+        showFileList={false}
+        labels={{
+          browse: "Click to upload",
+          drop: "or drag and drop",
+          removeFile: "Remove file",
+          fileTooLarge: "File too large",
+          fileTypeNotAccepted: "File type not accepted",
+          maxSize: (sizeMb) => "Max size " + sizeMb + "MB",
+        }}
+      />
+      <div className="grid gap-3 rounded-md border p-3 text-sm">
+        <div className="flex items-center gap-2">
+          <Spinner size="sm" />
+          <span>Uploading</span>
           <span className="ml-auto">68%</span>
         </div>
         <Progress value={68} className="h-2 w-full" />
@@ -402,7 +557,8 @@ export function UploadingState() {
                                     <UploadStatusCard locale={locale} status="success" />
                                 </div>
                             ),
-                            code: `import { Alert, AlertDescription, AlertTitle, FileUploader } from "@gunjo/ui";
+                            code: locale === "ja"
+                                ? `import { Alert, AlertDescription, AlertTitle, FileUploader } from "@gunjo/ui";
 import { useState } from "react";
 
 export function UploadSuccessState() {
@@ -415,17 +571,45 @@ export function UploadSuccessState() {
         onValueChange={setFiles}
         maxFiles={3}
         labels={{
-          browse: "${labels.browse}",
-          drop: "${labels.drop}",
-          removeFile: "${labels.removeFile}",
-          fileTooLarge: "${labels.fileTooLarge}",
-          fileTypeNotAccepted: "${labels.fileTypeNotAccepted}",
-          maxSize: (sizeMb) => \`${locale === "ja" ? "最大 " : "Max size "}\${sizeMb}MB\`,
+          browse: "ファイルを選択",
+          drop: "またはドラッグ＆ドロップ",
+          removeFile: "ファイルを削除",
+          fileTooLarge: "ファイルサイズが上限を超えています",
+          fileTypeNotAccepted: "対応していないファイル形式です",
+          maxSize: (sizeMb) => "最大 " + sizeMb + "MB",
         }}
       />
       <Alert>
-        <AlertTitle>${locale === "ja" ? "アップロード完了" : "Upload complete"}</AlertTitle>
-        <AlertDescription>${locale === "ja" ? "3件のファイルを追加しました。" : "3 files were added."}</AlertDescription>
+        <AlertTitle>アップロード完了</AlertTitle>
+        <AlertDescription>3件のファイルを追加しました。</AlertDescription>
+      </Alert>
+    </div>
+  );
+}`
+                                : `import { Alert, AlertDescription, AlertTitle, FileUploader } from "@gunjo/ui";
+import { useState } from "react";
+
+export function UploadSuccessState() {
+  const [files, setFiles] = useState<File[]>([]);
+
+  return (
+    <div className="grid gap-3">
+      <FileUploader
+        value={files}
+        onValueChange={setFiles}
+        maxFiles={3}
+        labels={{
+          browse: "Click to upload",
+          drop: "or drag and drop",
+          removeFile: "Remove file",
+          fileTooLarge: "File too large",
+          fileTypeNotAccepted: "File type not accepted",
+          maxSize: (sizeMb) => "Max size " + sizeMb + "MB",
+        }}
+      />
+      <Alert>
+        <AlertTitle>Upload complete</AlertTitle>
+        <AlertDescription>3 files were added.</AlertDescription>
       </Alert>
     </div>
   );
@@ -444,7 +628,8 @@ export function UploadSuccessState() {
                                     <UploadStatusCard locale={locale} status="error" />
                                 </div>
                             ),
-                            code: `import { Alert, AlertDescription, AlertTitle, FileUploader } from "@gunjo/ui";
+                            code: locale === "ja"
+                                ? `import { Alert, AlertDescription, AlertTitle, FileUploader } from "@gunjo/ui";
 import { useState } from "react";
 
 export function UploadFailureState() {
@@ -457,17 +642,45 @@ export function UploadFailureState() {
         onValueChange={setFiles}
         maxFiles={3}
         labels={{
-          browse: "${labels.browse}",
-          drop: "${labels.drop}",
-          removeFile: "${labels.removeFile}",
-          fileTooLarge: "${labels.fileTooLarge}",
-          fileTypeNotAccepted: "${labels.fileTypeNotAccepted}",
-          maxSize: (sizeMb) => \`${locale === "ja" ? "最大 " : "Max size "}\${sizeMb}MB\`,
+          browse: "ファイルを選択",
+          drop: "またはドラッグ＆ドロップ",
+          removeFile: "ファイルを削除",
+          fileTooLarge: "ファイルサイズが上限を超えています",
+          fileTypeNotAccepted: "対応していないファイル形式です",
+          maxSize: (sizeMb) => "最大 " + sizeMb + "MB",
         }}
       />
       <Alert variant="destructive">
-        <AlertTitle>${locale === "ja" ? "アップロード失敗" : "Upload failed"}</AlertTitle>
-        <AlertDescription>${locale === "ja" ? "ファイルサイズが上限を超えています。" : "The file exceeds the allowed size."}</AlertDescription>
+        <AlertTitle>アップロード失敗</AlertTitle>
+        <AlertDescription>ファイルサイズが上限を超えています。</AlertDescription>
+      </Alert>
+    </div>
+  );
+}`
+                                : `import { Alert, AlertDescription, AlertTitle, FileUploader } from "@gunjo/ui";
+import { useState } from "react";
+
+export function UploadFailureState() {
+  const [files, setFiles] = useState<File[]>([]);
+
+  return (
+    <div className="grid gap-3">
+      <FileUploader
+        value={files}
+        onValueChange={setFiles}
+        maxFiles={3}
+        labels={{
+          browse: "Click to upload",
+          drop: "or drag and drop",
+          removeFile: "Remove file",
+          fileTooLarge: "File too large",
+          fileTypeNotAccepted: "File type not accepted",
+          maxSize: (sizeMb) => "Max size " + sizeMb + "MB",
+        }}
+      />
+      <Alert variant="destructive">
+        <AlertTitle>Upload failed</AlertTitle>
+        <AlertDescription>The file exceeds the allowed size.</AlertDescription>
       </Alert>
     </div>
   );
@@ -485,7 +698,8 @@ export function UploadFailureState() {
                                         <FileUploader labels={labels} disabled />
                                     </DisabledReasonTooltip>
                                 ),
-                            code: `import { FileUploader, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                            code: locale === "ja"
+                                ? `import { FileUploader, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 
 export function DisabledUploader() {
   return (
@@ -495,17 +709,41 @@ export function DisabledUploader() {
           <FileUploader
             disabled
             labels={{
-              browse: "${labels.browse}",
-              drop: "${labels.drop}",
-              removeFile: "${labels.removeFile}",
-              fileTooLarge: "${labels.fileTooLarge}",
-              fileTypeNotAccepted: "${labels.fileTypeNotAccepted}",
-              maxSize: (sizeMb) => \`${locale === "ja" ? "最大 " : "Max size "}\${sizeMb}MB\`,
+              browse: "ファイルを選択",
+              drop: "またはドラッグ＆ドロップ",
+              removeFile: "ファイルを削除",
+              fileTooLarge: "ファイルサイズが上限を超えています",
+              fileTypeNotAccepted: "対応していないファイル形式です",
+              maxSize: (sizeMb) => "最大 " + sizeMb + "MB",
             }}
           />
         </div>
       </TooltipTrigger>
-      <TooltipContent>${disabledReason}</TooltipContent>
+      <TooltipContent>ストレージ容量を確認するまでアップロードを停止しています。</TooltipContent>
+    </Tooltip>
+  );
+}`
+                                : `import { FileUploader, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+
+export function DisabledUploader() {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <div tabIndex={0}>
+          <FileUploader
+            disabled
+            labels={{
+              browse: "Click to upload",
+              drop: "or drag and drop",
+              removeFile: "Remove file",
+              fileTooLarge: "File too large",
+              fileTypeNotAccepted: "File type not accepted",
+              maxSize: (sizeMb) => "Max size " + sizeMb + "MB",
+            }}
+          />
+        </div>
+      </TooltipTrigger>
+      <TooltipContent>Uploads are paused until storage capacity is confirmed.</TooltipContent>
     </Tooltip>
   );
 }`,

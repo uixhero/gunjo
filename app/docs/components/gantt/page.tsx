@@ -550,6 +550,274 @@ export function ProductionGantt() {
   );
 }`;
 
+  const segmentedCode = locale === "ja"
+    ? `import * as React from "react";
+import {
+  Badge,
+  Gantt,
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  type GanttItem,
+  type GanttRow,
+} from "@gunjo/ui";
+
+const rows: GanttRow[] = [
+  { id: "l1", label: "第1ライン", sublabel: "組立" },
+];
+
+const items: GanttItem[] = [
+  {
+    id: "rotation-1",
+    rowId: "l1",
+    start: "2026-06-22",
+    end: "2026-06-27",
+    label: "A-101 ローテーション",
+    segments: [
+      { start: "2026-06-22", end: "2026-06-23", label: "組立", tone: "info" },
+      { start: "2026-06-24", end: "2026-06-25", label: "塗装", tone: "success" },
+    ],
+  },
+];
+
+const detail = {
+  status: "進行中",
+  next: "塗装区間へ引き渡し",
+  tone: { panel: "border-border bg-muted/55" },
+};
+
+export function SegmentedProductionGantt() {
+  const [selectedId, setSelectedId] = React.useState<string | null>(null);
+  const [open, setOpen] = React.useState(false);
+  const selectedItem = items.find((item) => item.id === selectedId);
+
+  return (
+    <div className="relative grid gap-4 rounded-lg border bg-card p-4">
+      <Gantt
+        rows={rows}
+        items={items}
+        startDate="2026-06-21"
+        endDate="2026-06-29"
+        today="2026-06-24"
+        label="生産ライン計画"
+        dayWidth={52}
+        onSelectItem={(item) => {
+          setSelectedId(item.id);
+          setOpen(true);
+        }}
+      />
+      <Sheet open={open && Boolean(selectedItem)} onOpenChange={setOpen}>
+        <SheetContent
+          side="bottom"
+          className="max-h-[calc(100%-2rem)] overflow-y-auto rounded-t-lg p-4"
+        >
+          <SheetHeader className="pr-8 text-left">
+            <SheetTitle>工程詳細 / {selectedItem?.label}</SheetTitle>
+          </SheetHeader>
+	      <div className={["mt-4 rounded-lg border border-l-4 p-3 text-sm shadow-sm", detail.tone.panel].join(" ")}>
+            <div className="flex justify-end">
+              <Badge
+                variant="outline"
+                className="shrink-0 border-border bg-background text-foreground shadow-sm"
+              >
+                {detail.status}
+              </Badge>
+            </div>
+            <dl className="mt-3 grid gap-2 text-xs">
+              <div>
+                <dt className="text-muted-foreground">次の作業</dt>
+                <dd className="font-medium text-foreground">{detail.next}</dd>
+              </div>
+            </dl>
+          </div>
+        </SheetContent>
+      </Sheet>
+    </div>
+  );
+}`
+    : `import * as React from "react";
+import {
+  Badge,
+  Gantt,
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  type GanttItem,
+  type GanttRow,
+} from "@gunjo/ui";
+
+const rows: GanttRow[] = [
+  { id: "l1", label: "Line 1", sublabel: "Assembly" },
+];
+
+const items: GanttItem[] = [
+  {
+    id: "rotation-1",
+    rowId: "l1",
+    start: "2026-06-22",
+    end: "2026-06-27",
+    label: "A-101 rotation",
+    segments: [
+      { start: "2026-06-22", end: "2026-06-23", label: "Build", tone: "info" },
+      { start: "2026-06-24", end: "2026-06-25", label: "Paint", tone: "success" },
+    ],
+  },
+];
+
+const detail = {
+  status: "In progress",
+  next: "Hand off to paint segment",
+  tone: { panel: "border-border bg-muted/55" },
+};
+
+export function SegmentedProductionGantt() {
+  const [selectedId, setSelectedId] = React.useState<string | null>(null);
+  const [open, setOpen] = React.useState(false);
+  const selectedItem = items.find((item) => item.id === selectedId);
+
+  return (
+    <div className="relative grid gap-4 rounded-lg border bg-card p-4">
+      <Gantt
+        rows={rows}
+        items={items}
+        startDate="2026-06-21"
+        endDate="2026-06-29"
+        today="2026-06-24"
+        label="Production line plan"
+        dayWidth={52}
+        onSelectItem={(item) => {
+          setSelectedId(item.id);
+          setOpen(true);
+        }}
+      />
+      <Sheet open={open && Boolean(selectedItem)} onOpenChange={setOpen}>
+        <SheetContent
+          side="bottom"
+          className="max-h-[calc(100%-2rem)] overflow-y-auto rounded-t-lg p-4"
+        >
+          <SheetHeader className="pr-8 text-left">
+            <SheetTitle>Job details / {selectedItem?.label}</SheetTitle>
+          </SheetHeader>
+	      <div className={["mt-4 rounded-lg border border-l-4 p-3 text-sm shadow-sm", detail.tone.panel].join(" ")}>
+            <div className="flex justify-end">
+              <Badge
+                variant="outline"
+                className="shrink-0 border-border bg-background text-foreground shadow-sm"
+              >
+                {detail.status}
+              </Badge>
+            </div>
+            <dl className="mt-3 grid gap-2 text-xs">
+              <div>
+                <dt className="text-muted-foreground">Next step</dt>
+                <dd className="font-medium text-foreground">{detail.next}</dd>
+              </div>
+            </dl>
+          </div>
+        </SheetContent>
+      </Sheet>
+    </div>
+  );
+}`;
+
+  const hourCode = locale === "ja"
+    ? `import * as React from "react";
+import { Gantt, type GanttItem, type GanttRow } from "@gunjo/ui";
+
+const rows: GanttRow[] = [
+  { id: "bus-1", label: "車両 12" },
+];
+
+const items: GanttItem[] = [
+  {
+    id: "run-1",
+    rowId: "bus-1",
+    start: "2026-06-24T08:00",
+    end: "2026-06-24T12:30",
+    label: "朝便",
+  },
+  {
+    id: "run-2",
+    rowId: "bus-1",
+    start: "2026-06-24T13:30",
+    end: "2026-06-24T17:30",
+    label: "午後便",
+  },
+];
+
+export function VehicleRunGantt() {
+  const [selectedId, setSelectedId] = React.useState("run-1");
+  const selectedItem = items.find((item) => item.id === selectedId);
+
+  return (
+    <div className="relative grid gap-4 rounded-lg border bg-card p-4">
+      <Gantt
+        rows={rows}
+        items={items}
+        startDate="2026-06-24T08:00"
+        endDate="2026-06-24T18:00"
+        today="2026-06-24T12:00"
+        label="生産ライン計画"
+        resolution="hour"
+        hourStep={2}
+        onSelectItem={(item) => setSelectedId(item.id)}
+      />
+      <p className="text-xs text-muted-foreground">
+        選択中: {selectedItem?.label}
+      </p>
+    </div>
+  );
+}`
+    : `import * as React from "react";
+import { Gantt, type GanttItem, type GanttRow } from "@gunjo/ui";
+
+const rows: GanttRow[] = [
+  { id: "bus-1", label: "Vehicle 12" },
+];
+
+const items: GanttItem[] = [
+  {
+    id: "run-1",
+    rowId: "bus-1",
+    start: "2026-06-24T08:00",
+    end: "2026-06-24T12:30",
+    label: "Morning run",
+  },
+  {
+    id: "run-2",
+    rowId: "bus-1",
+    start: "2026-06-24T13:30",
+    end: "2026-06-24T17:30",
+    label: "Afternoon run",
+  },
+];
+
+export function VehicleRunGantt() {
+  const [selectedId, setSelectedId] = React.useState("run-1");
+  const selectedItem = items.find((item) => item.id === selectedId);
+
+  return (
+    <div className="relative grid gap-4 rounded-lg border bg-card p-4">
+      <Gantt
+        rows={rows}
+        items={items}
+        startDate="2026-06-24T08:00"
+        endDate="2026-06-24T18:00"
+        today="2026-06-24T12:00"
+        label="Production line plan"
+        resolution="hour"
+        hourStep={2}
+        onSelectItem={(item) => setSelectedId(item.id)}
+      />
+      <p className="text-xs text-muted-foreground">
+        Selected: {selectedItem?.label}
+      </p>
+    </div>
+  );
+}`;
+
   const propsData = [
     { name: "rows", type: "GanttRow[]", description: locale === "ja" ? "左軸のリソース行です。id、label、sublabel を渡します。" : "Resource lanes on the left axis. Pass id, label, and sublabel." },
     { name: "items", type: "GanttItem[]", description: locale === "ja" ? "時間軸に配置するバーです。rowId、start、end、label、tone、segments を持てます。" : "Bars placed on the time axis. Items can include rowId, start, end, label, tone, and segments." },
@@ -601,68 +869,7 @@ export function ProductionGantt() {
               title: locale === "ja" ? "区間分割" : "Segmented bar",
               description: locale === "ja" ? "segments を渡すと、1本のバー内に工程や折返し区間を表現できます。" : "Pass segments to show sub-spans inside a single bar.",
               preview: <GanttPreview locale={locale} variant="segmented" />,
-              code: `import * as React from "react";
-	import { Badge, Gantt, Sheet, SheetContent, SheetHeader, SheetTitle } from "@gunjo/ui";
-
-	const [selectedId, setSelectedId] = React.useState<string | null>(null);
-	const [open, setOpen] = React.useState(false);
-
-const rows = [{ id: "l1", label: "${locale === "ja" ? "第1ライン" : "Line 1"}", sublabel: "${locale === "ja" ? "組立" : "Assembly"}" }];
-const items = [
-  {
-    id: "rotation-1",
-    rowId: "l1",
-    start: "2026-06-22",
-    end: "2026-06-27",
-    label: "${locale === "ja" ? "A-101 ローテーション" : "A-101 rotation"}",
-    segments: [
-      { start: "2026-06-22", end: "2026-06-23", label: "${locale === "ja" ? "組立" : "Build"}", tone: "info" },
-      { start: "2026-06-24", end: "2026-06-25", label: "${locale === "ja" ? "塗装" : "Paint"}", tone: "success" },
-    ],
-  },
-];
-const detail = {
-  status: "${locale === "ja" ? "進行中" : "In progress"}",
-  next: "${locale === "ja" ? "塗装区間へ引き渡し" : "Hand off to paint segment"}",
-  tone: { panel: "border-border bg-muted/55" },
-};
-const selectedItem = selectedId ? items.find((item) => item.id === selectedId) : undefined;
-
-	<div className="relative grid gap-4 rounded-lg border bg-card p-4">
-	  <Gantt
-	    rows={rows}
-	    items={items}
-    startDate="2026-06-21"
-    endDate="2026-06-29"
-    today="2026-06-24"
-    label="${locale === "ja" ? "生産ライン計画" : "Production line plan"}"
-    dayWidth={52}
-	    onSelectItem={(item) => {
-	      setSelectedId(item.id);
-	      setOpen(true);
-	    }}
-	  />
-	  <Sheet open={open && Boolean(selectedItem)} onOpenChange={setOpen}>
-	    <SheetContent side="bottom" className="max-h-[calc(100%-2rem)] overflow-y-auto rounded-t-lg p-4">
-	      <SheetHeader className="pr-8 text-left">
-	        <SheetTitle>${locale === "ja" ? "工程詳細" : "Job details"} / {selectedItem?.label}</SheetTitle>
-	      </SheetHeader>
-	      <div className={["mt-4 rounded-lg border border-l-4 p-3 text-sm shadow-sm", detail.tone.panel].join(" ")}>
-	        <div className="flex justify-end">
-	          <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">
-	            {detail.status}
-	          </Badge>
-	        </div>
-	        <dl className="mt-3 grid gap-2 text-xs">
-	          <div>
-	            <dt className="text-muted-foreground">${locale === "ja" ? "次の作業" : "Next step"}</dt>
-	            <dd className="font-medium text-foreground">{detail.next}</dd>
-	          </div>
-	        </dl>
-	      </div>
-	    </SheetContent>
-	  </Sheet>
-	</div>`,
+              code: segmentedCode,
               previewBodyWidth: "xl",
             },
             {
@@ -670,61 +877,7 @@ const selectedItem = selectedId ? items.find((item) => item.id === selectedId) :
               title: locale === "ja" ? "時間単位" : "Hour resolution",
               description: locale === "ja" ? "resolution=\"hour\" は1日の配車や運行表に使います。" : "Use resolution=\"hour\" for intraday dispatch or operations plans.",
               preview: <GanttPreview locale={locale} variant="hour" />,
-              code: `import * as React from "react";
-	import { Badge, Gantt, Sheet, SheetContent, SheetHeader, SheetTitle } from "@gunjo/ui";
-
-	const [selectedId, setSelectedId] = React.useState("run-1");
-	const [open, setOpen] = React.useState(false);
-
-const rows = [{ id: "bus-1", label: "${locale === "ja" ? "車両 12" : "Vehicle 12"}" }];
-const items = [
-  { id: "run-1", rowId: "bus-1", start: "2026-06-24T08:00", end: "2026-06-24T12:30", label: "${locale === "ja" ? "朝便" : "Morning run"}" },
-  { id: "run-2", rowId: "bus-1", start: "2026-06-24T13:30", end: "2026-06-24T17:30", label: "${locale === "ja" ? "午後便" : "Afternoon run"}" },
-];
-const detail = {
-  status: "${locale === "ja" ? "運行中" : "In service"}",
-  next: "${locale === "ja" ? "12:30 帰着確認" : "Confirm return at 12:30"}",
-  tone: { panel: "border-primary bg-primary/10" },
-};
-
-	<div className="relative grid gap-4 rounded-lg border bg-card p-4">
-	  <Gantt
-	    rows={rows}
-	    items={items}
-    startDate="2026-06-24T08:00"
-    endDate="2026-06-24T18:00"
-    today="2026-06-24T12:00"
-    label="${locale === "ja" ? "生産ライン計画" : "Production line plan"}"
-    resolution="hour"
-    hourStep={2}
-	    onSelectItem={(item) => {
-	      setSelectedId(item.id);
-	      setOpen(true);
-	    }}
-	  />
-	  <Sheet open={open} onOpenChange={setOpen}>
-	    <SheetContent side="bottom" className="max-h-[calc(100%-2rem)] overflow-y-auto rounded-t-lg p-4">
-	      <SheetHeader className="pr-8 text-left">
-	        <SheetTitle>
-	          ${locale === "ja" ? "工程詳細" : "Job details"} / {items.find((item) => item.id === selectedId)?.label}
-	        </SheetTitle>
-	      </SheetHeader>
-	      <div className={["mt-4 rounded-lg border border-l-4 p-3 text-sm shadow-sm", detail.tone.panel].join(" ")}>
-	        <div className="flex justify-end">
-	          <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">
-	            {detail.status}
-	          </Badge>
-	        </div>
-	        <dl className="mt-3 grid gap-2 text-xs">
-	          <div>
-	            <dt className="text-muted-foreground">${locale === "ja" ? "次の作業" : "Next step"}</dt>
-	            <dd className="font-medium text-foreground">{detail.next}</dd>
-	          </div>
-	        </dl>
-	      </div>
-	    </SheetContent>
-	  </Sheet>
-	</div>`,
+              code: hourCode,
               previewBodyWidth: "xl",
             },
           ]}

@@ -9,11 +9,15 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
 import { CodeBlock } from "@gunjo/ui";
 
-const TYPESCRIPT_SAMPLE = `type Status = "draft" | "published";
+const TYPESCRIPT_SAMPLE_JA = `type Status = "draft" | "published";
 
-export function formatStatus(status: Status) {
-  return status === "published" ? "公開中" : "下書き";
-}`;
+export const formatStatus = (status: Status) =>
+  status === "published" ? "公開中" : "下書き";`;
+
+const TYPESCRIPT_SAMPLE_EN = `type Status = "draft" | "published";
+
+export const formatStatus = (status: Status) =>
+  status === "published" ? "Published" : "Draft";`;
 
 const HTML_SAMPLE = `<section class="product-card">
   <img src="/images/sample.jpg" alt="Gunjo UI preview" />
@@ -28,13 +32,15 @@ const JSON_SAMPLE = `{
 }`;
 
 function EditableCodeBlockDemo({
+    source,
     copyLabel,
     copiedLabel,
 }: {
+    source: string;
     copyLabel: string;
     copiedLabel: string;
 }) {
-    const [code, setCode] = React.useState(TYPESCRIPT_SAMPLE);
+    const [code, setCode] = React.useState(source);
 
     return (
         <CodeBlock
@@ -55,17 +61,18 @@ export default function CodeBlockPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
     const statesTitle = isJa ? "状態とバリエーション" : "States and variants";
+    const typescriptSample = isJa ? TYPESCRIPT_SAMPLE_JA : TYPESCRIPT_SAMPLE_EN;
     const copyLabel = isJa ? "コードをコピー" : "Copy code";
     const copiedLabel = isJa ? "コピーしました" : "Copied";
 
-    const code = `import { CodeBlock } from "@gunjo/ui"
+    const code = isJa
+        ? `import { CodeBlock } from "@gunjo/ui"
 
 const source = [
   'type Status = "draft" | "published";',
   "",
-  "export function formatStatus(status: Status) {",
-  '  return status === "published" ? "公開中" : "下書き";',
-  "}",
+  "export const formatStatus = (status: Status) =>",
+  '  status === "published" ? "公開中" : "下書き";',
 ].join("\\n")
 
 export function CodeBlockDemo() {
@@ -76,20 +83,62 @@ export function CodeBlockDemo() {
       language="ts"
       highlight
       showLineNumbers
-      copyLabel="${copyLabel}"
-      copiedLabel="${copiedLabel}"
+      copyLabel="コードをコピー"
+      copiedLabel="コピーしました"
     />
   )
-}`;
-
-    const usageCode = `import { CodeBlock } from "@gunjo/ui"
+}`
+        : `import { CodeBlock } from "@gunjo/ui"
 
 const source = [
   'type Status = "draft" | "published";',
   "",
-  "export function formatStatus(status: Status) {",
-  '  return status === "published" ? "公開中" : "下書き";',
-  "}",
+  "export const formatStatus = (status: Status) =>",
+  '  status === "published" ? "Published" : "Draft";',
+].join("\\n")
+
+export function CodeBlockDemo() {
+  return (
+    <CodeBlock
+      code={source}
+      filename="format-status.ts"
+      language="ts"
+      highlight
+      showLineNumbers
+      copyLabel="Copy code"
+      copiedLabel="Copied"
+    />
+  )
+}`;
+
+    const usageCode = isJa
+        ? `import { CodeBlock } from "@gunjo/ui"
+
+const source = [
+  'type Status = "draft" | "published";',
+  "",
+  "export const formatStatus = (status: Status) =>",
+  '  status === "published" ? "公開中" : "下書き";',
+].join("\\n")
+
+export function ExampleCodeBlock() {
+  return (
+    <CodeBlock
+      code={source}
+      filename="example.ts"
+      language="ts"
+      highlight
+      showLineNumbers
+    />
+  )
+}`
+        : `import { CodeBlock } from "@gunjo/ui"
+
+const source = [
+  'type Status = "draft" | "published";',
+  "",
+  "export const formatStatus = (status: Status) =>",
+  '  status === "published" ? "Published" : "Draft";',
 ].join("\\n")
 
 export function ExampleCodeBlock() {
@@ -198,7 +247,7 @@ export function ExampleCodeBlock() {
             <ComponentPreview code={code} codeBlock={<DocCodeBlock code={code} />} previewHeight="auto" previewBodyWidth="md">
                 <div className="w-full max-w-lg">
                     <CodeBlock
-                        code={TYPESCRIPT_SAMPLE}
+                        code={typescriptSample}
                         filename="format-status.ts"
                         language="ts"
                         highlight
@@ -234,7 +283,51 @@ export function ExampleCodeBlock() {
                                 </div>
                             ),
                             previewHeight: "auto",
-                            code: `import { CodeBlock } from "@gunjo/ui"\n\nconst html = [\n  '<section class="product-card">',\n  '  <img src="/images/sample.jpg" alt="Gunjo UI preview" />',\n  "  <h2>Gunjo UI</h2>",\n  "  <p>Build consistent interfaces with reusable components.</p>",\n  "</section>",\n].join("\\n")\n\nexport function CodeBlockWithHeader() {\n  return (\n    <CodeBlock\n      code={html}\n      filename="index.html"\n      language="html"\n      highlight\n      copyLabel="${copyLabel}"\n      copiedLabel="${copiedLabel}"\n    />\n  )\n}`,
+                            code: isJa
+                              ? `import { CodeBlock } from "@gunjo/ui"
+
+const html = [
+  '<section class="product-card">',
+  '  <img src="/images/sample.jpg" alt="Gunjo UI preview" />',
+  "  <h2>Gunjo UI</h2>",
+  "  <p>Build consistent interfaces with reusable components.</p>",
+  "</section>",
+].join("\\n")
+
+export function CodeBlockWithHeader() {
+  return (
+    <CodeBlock
+      code={html}
+      filename="index.html"
+      language="html"
+      highlight
+      copyLabel="コードをコピー"
+      copiedLabel="コピーしました"
+    />
+  )
+}`
+                              : `import { CodeBlock } from "@gunjo/ui"
+
+const html = [
+  '<section class="product-card">',
+  '  <img src="/images/sample.jpg" alt="Gunjo UI preview" />',
+  "  <h2>Gunjo UI</h2>",
+  "  <p>Build consistent interfaces with reusable components.</p>",
+  "</section>",
+].join("\\n")
+
+export function CodeBlockWithHeader() {
+  return (
+    <CodeBlock
+      code={html}
+      filename="index.html"
+      language="html"
+      highlight
+      copyLabel="Copy code"
+      copiedLabel="Copied"
+    />
+  )
+}`,
                         },
                         {
                             key: "highlighted",
@@ -245,7 +338,7 @@ export function ExampleCodeBlock() {
                             preview: (
                                 <div className="w-full max-w-lg">
                                     <CodeBlock
-                                        code={TYPESCRIPT_SAMPLE}
+                                        code={typescriptSample}
                                         filename="format-status.ts"
                                         language="ts"
                                         highlight
@@ -266,11 +359,69 @@ export function ExampleCodeBlock() {
                                 : "Use an editable source area when examples should be changed in place.",
                             preview: (
                                 <div className="w-full max-w-lg">
-                                    <EditableCodeBlockDemo copyLabel={copyLabel} copiedLabel={copiedLabel} />
+                                    <EditableCodeBlockDemo
+                                        source={typescriptSample}
+                                        copyLabel={copyLabel}
+                                        copiedLabel={copiedLabel}
+                                    />
                                 </div>
                             ),
                             previewHeight: "auto",
-                            code: `import * as React from "react"\nimport { CodeBlock } from "@gunjo/ui"\n\nconst initialSource = [\n  'type Status = "draft" | "published";',\n  "",\n  "export function formatStatus(status: Status) {",\n  '  return status === "published" ? "公開中" : "下書き";',\n  "}",\n].join("\\n")\n\nexport function EditableCodeBlock() {\n  const [source, setSource] = React.useState(initialSource)\n\n  return (\n    <CodeBlock\n      code={source}\n      filename="format-status.ts"\n      language="ts"\n      editable\n      highlight\n      showLineNumbers\n      onCodeChange={setSource}\n    />\n  )\n}`,
+                            code: isJa
+                              ? `import * as React from "react"
+import { CodeBlock } from "@gunjo/ui"
+
+const initialSource = [
+  'type Status = "draft" | "published";',
+  "",
+  "export const formatStatus = (status: Status) =>",
+  '  status === "published" ? "公開中" : "下書き";',
+].join("\\n")
+
+export function EditableCodeBlock() {
+  const [source, setSource] = React.useState(initialSource)
+
+  return (
+    <CodeBlock
+      code={source}
+      filename="format-status.ts"
+      language="ts"
+      editable
+      highlight
+      showLineNumbers
+      onCodeChange={setSource}
+      copyLabel="コードをコピー"
+      copiedLabel="コピーしました"
+    />
+  )
+}`
+                              : `import * as React from "react"
+import { CodeBlock } from "@gunjo/ui"
+
+const initialSource = [
+  'type Status = "draft" | "published";',
+  "",
+  "export const formatStatus = (status: Status) =>",
+  '  status === "published" ? "Published" : "Draft";',
+].join("\\n")
+
+export function EditableCodeBlock() {
+  const [source, setSource] = React.useState(initialSource)
+
+  return (
+    <CodeBlock
+      code={source}
+      filename="format-status.ts"
+      language="ts"
+      editable
+      highlight
+      showLineNumbers
+      onCodeChange={setSource}
+      copyLabel="Copy code"
+      copiedLabel="Copied"
+    />
+  )
+}`,
                         },
                         {
                             key: "theme",
@@ -281,12 +432,124 @@ export function ExampleCodeBlock() {
                             preview: (
                                 <div className="grid w-full max-w-lg gap-3">
                                     <CodeBlock code={HTML_SAMPLE} filename="index.html" language="html" theme="dark" highlight showLineNumbers copyable={false} />
-                                    <CodeBlock code={TYPESCRIPT_SAMPLE} filename="format-status.ts" language="ts" theme="light" highlight showLineNumbers copyable={false} />
+                                    <CodeBlock code={typescriptSample} filename="format-status.ts" language="ts" theme="light" highlight showLineNumbers copyable={false} />
                                     <CodeBlock code={JSON_SAMPLE} filename="component.json" language="json" theme="muted" highlight showLineNumbers copyable={false} />
                                 </div>
                             ),
                             previewHeight: "auto",
-                            code: `import { CodeBlock } from "@gunjo/ui"\n\nconst html = [\n  '<section class="product-card">',\n  '  <img src="/images/sample.jpg" alt="Gunjo UI preview" />',\n  "  <h2>Gunjo UI</h2>",\n  "  <p>Build consistent interfaces with reusable components.</p>",\n  "</section>",\n].join("\\n")\n\nconst typescript = [\n  'type Status = "draft" | "published";',\n  "",\n  "export function formatStatus(status: Status) {",\n  '  return status === "published" ? "公開中" : "下書き";',\n  "}",\n].join("\\n")\n\nconst json = JSON.stringify({ component: "CodeBlock", language: "json", copyable: false }, null, 2)\n\nexport function CodeBlockThemes() {\n  return (\n    <div className="grid gap-3">\n      <CodeBlock code={html} filename="index.html" language="html" theme="dark" highlight showLineNumbers copyable={false} />\n      <CodeBlock code={typescript} filename="format-status.ts" language="ts" theme="light" highlight showLineNumbers copyable={false} />\n      <CodeBlock code={json} filename="component.json" language="json" theme="muted" highlight showLineNumbers copyable={false} />\n    </div>\n  )\n}`,
+                            code: isJa
+                              ? `import { CodeBlock } from "@gunjo/ui"
+
+const html = [
+  '<section class="product-card">',
+  '  <img src="/images/sample.jpg" alt="Gunjo UI preview" />',
+  "  <h2>Gunjo UI</h2>",
+  "  <p>Build consistent interfaces with reusable components.</p>",
+  "</section>",
+].join("\\n")
+
+const typescript = [
+  'type Status = "draft" | "published";',
+  "",
+  "export const formatStatus = (status: Status) =>",
+  '  status === "published" ? "公開中" : "下書き";',
+].join("\\n")
+
+const json = JSON.stringify(
+  { component: "CodeBlock", language: "json", copyable: false },
+  null,
+  2
+)
+
+export function CodeBlockThemes() {
+  return (
+    <div className="grid gap-3">
+      <CodeBlock
+        code={html}
+        filename="index.html"
+        language="html"
+        theme="dark"
+        highlight
+        showLineNumbers
+        copyable={false}
+      />
+      <CodeBlock
+        code={typescript}
+        filename="format-status.ts"
+        language="ts"
+        theme="light"
+        highlight
+        showLineNumbers
+        copyable={false}
+      />
+      <CodeBlock
+        code={json}
+        filename="component.json"
+        language="json"
+        theme="muted"
+        highlight
+        showLineNumbers
+        copyable={false}
+      />
+    </div>
+  )
+}`
+                              : `import { CodeBlock } from "@gunjo/ui"
+
+const html = [
+  '<section class="product-card">',
+  '  <img src="/images/sample.jpg" alt="Gunjo UI preview" />',
+  "  <h2>Gunjo UI</h2>",
+  "  <p>Build consistent interfaces with reusable components.</p>",
+  "</section>",
+].join("\\n")
+
+const typescript = [
+  'type Status = "draft" | "published";',
+  "",
+  "export const formatStatus = (status: Status) =>",
+  '  status === "published" ? "Published" : "Draft";',
+].join("\\n")
+
+const json = JSON.stringify(
+  { component: "CodeBlock", language: "json", copyable: false },
+  null,
+  2
+)
+
+export function CodeBlockThemes() {
+  return (
+    <div className="grid gap-3">
+      <CodeBlock
+        code={html}
+        filename="index.html"
+        language="html"
+        theme="dark"
+        highlight
+        showLineNumbers
+        copyable={false}
+      />
+      <CodeBlock
+        code={typescript}
+        filename="format-status.ts"
+        language="ts"
+        theme="light"
+        highlight
+        showLineNumbers
+        copyable={false}
+      />
+      <CodeBlock
+        code={json}
+        filename="component.json"
+        language="json"
+        theme="muted"
+        highlight
+        showLineNumbers
+        copyable={false}
+      />
+    </div>
+  )
+}`,
                         },
                         {
                             key: "read-only",
@@ -300,7 +563,37 @@ export function ExampleCodeBlock() {
                                 </div>
                             ),
                             previewHeight: "auto",
-                            code: `import { CodeBlock } from "@gunjo/ui"\n\nconst json = JSON.stringify({\n  component: "CodeBlock",\n  language: "json",\n  copyable: false,\n}, null, 2)\n\nexport function ReadonlyCodeBlock() {\n  return <CodeBlock code={json} language="json" copyable={false} />\n}`,
+                            code: isJa
+                              ? `import { CodeBlock } from "@gunjo/ui"
+
+const json = JSON.stringify(
+  {
+    component: "CodeBlock",
+    language: "json",
+    copyable: false,
+  },
+  null,
+  2
+)
+
+export function ReadonlyCodeBlock() {
+  return <CodeBlock code={json} language="json" copyable={false} />
+}`
+                              : `import { CodeBlock } from "@gunjo/ui"
+
+const json = JSON.stringify(
+  {
+    component: "CodeBlock",
+    language: "json",
+    copyable: false,
+  },
+  null,
+  2
+)
+
+export function ReadonlyCodeBlock() {
+  return <CodeBlock code={json} language="json" copyable={false} />
+}`,
                         },
                     ]}
                 />

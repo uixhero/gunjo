@@ -1,8 +1,9 @@
 import type { Metadata } from "next";
 import gallery from "@/data/cold-test-gallery.json";
-import { ColdTestsClient } from "./ColdTestsClient";
+import { ColdTestsClient, type ColdTestEntry } from "./ColdTestsClient";
 import { EN_COLD_TEST_BASE } from "@/lib/cold-test-paths";
 import { listEnRounds } from "@/lib/cold-test-en";
+import { publishableJaEntries } from "@/lib/cold-test-drafts";
 
 const SITE_URL = (
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.gunjo.jp"
@@ -12,13 +13,20 @@ const URL = `${SITE_URL}/cold-tests`;
 interface GalleryShape {
     count: number;
     categories: string[];
+    entries: ColdTestEntry[];
 }
 
 const galleryData = gallery as GalleryShape;
+// Draft rounds render locally and on previews but never in production —
+// filter here on the server so neither the grid nor the copy counts them
+// (the client component can't see VERCEL_ENV). See lib/cold-test-drafts.ts.
+const publishedEntries = publishableJaEntries(galleryData.entries);
 // Counts come from the snapshot so the copy never goes stale as the series
 // grows — the cold-test run keeps adding rounds. Never hard-code these.
-const ROUND_COUNT = galleryData.count;
-const CATEGORY_COUNT = galleryData.categories.length;
+const ROUND_COUNT = publishedEntries.length;
+const CATEGORY_COUNT = galleryData.categories.filter((c) =>
+    publishedEntries.some((e) => e.category === c)
+).length;
 
 const TITLE = `コールドテストカタログ：予備知識ゼロの AI が組んだ ${ROUND_COUNT} 画面 | GunjoUI`;
 const DESCRIPTION = `予備知識ゼロの AI に gunjo/ui だけを渡して組ませた ${ROUND_COUNT} 画面の記録。${CATEGORY_COUNT} の業種カテゴリ（運輸は事業者向けの画面と利用者向けの画面の両方で完走）を通り、3回確認を経た新しいコンポーネントが群青に加わるまでを全公開。`;
@@ -76,7 +84,7 @@ export default function ColdTestsPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <ColdTestsClient />
+            <ColdTestsClient entries={publishedEntries} />
         </>
     );
 }

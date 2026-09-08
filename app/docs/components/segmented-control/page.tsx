@@ -66,8 +66,8 @@ function SegmentedControlPreview({ locale }: { locale: "ja" | "en" }) {
 
       <p className="text-xs text-muted-foreground" aria-live="polite">
         {locale === "ja"
-          ? `選択中: 旅客=${passenger} / 支払い=${payment}`
-          : `Selected: passenger=${passenger} / payment=${payment}`}
+            ? `選択中: 旅客=${passenger} / 支払い=${payment}`
+            : `Selected: passenger=${passenger} / payment=${payment}`}
       </p>
     </div>
   );
@@ -113,7 +113,7 @@ export default function SegmentedControlDocPage() {
   const description = content?.description ?? metadata.segmentedControl.description;
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+      ? `import * as React from "react";
 import { SegmentedControl } from "@gunjo/ui";
 
 export function SegmentedControlExample() {
@@ -156,7 +156,7 @@ export function SegmentedControlExample() {
     </div>
   );
 }`
-    : `import * as React from "react";
+      : `import * as React from "react";
 import { SegmentedControl } from "@gunjo/ui";
 
 export function SegmentedControlExample() {
@@ -316,28 +316,40 @@ export function SegmentedControlExample() {
                 />
               ),
               code: locale === "ja"
-                ? `<SegmentedControl
-  aria-label="表示密度"
-  size="sm"
-  fullWidth={false}
-  defaultValue="regular"
-  options={[
-    { value: "compact", label: "狭い" },
-    { value: "regular", label: "標準" },
-    { value: "wide", label: "広い" },
-  ]}
-/>`
-                : `<SegmentedControl
-  aria-label="Density"
-  size="sm"
-  fullWidth={false}
-  defaultValue="regular"
-  options={[
-    { value: "compact", label: "Compact" },
-    { value: "regular", label: "Regular" },
-    { value: "wide", label: "Wide" },
-  ]}
-/>`,
+                  ? `import { SegmentedControl } from "@gunjo/ui";
+
+export function DensityControl() {
+  return (
+    <SegmentedControl
+      aria-label="表示密度"
+      size="sm"
+      fullWidth={false}
+      defaultValue="regular"
+      options={[
+        { value: "compact", label: "狭い" },
+        { value: "regular", label: "標準" },
+        { value: "wide", label: "広い" },
+      ]}
+    />
+  );
+}`
+                  : `import { SegmentedControl } from "@gunjo/ui";
+
+export function DensityControl() {
+  return (
+    <SegmentedControl
+      aria-label="Density"
+      size="sm"
+      fullWidth={false}
+      defaultValue="regular"
+      options={[
+        { value: "compact", label: "Compact" },
+        { value: "regular", label: "Regular" },
+        { value: "wide", label: "Wide" },
+      ]}
+    />
+  );
+}`,
             },
             {
               key: "large",
@@ -366,26 +378,38 @@ export function SegmentedControlExample() {
                 />
               ),
               code: locale === "ja"
-                ? `<SegmentedControl
-  aria-label="期間"
-  size="lg"
-  defaultValue="week"
-  options={[
-    { value: "day", label: "日" },
-    { value: "week", label: "週" },
-    { value: "month", label: "月" },
-  ]}
-/>`
-                : `<SegmentedControl
-  aria-label="Period"
-  size="lg"
-  defaultValue="week"
-  options={[
-    { value: "day", label: "Day" },
-    { value: "week", label: "Week" },
-    { value: "month", label: "Month" },
-  ]}
-/>`,
+                  ? `import { SegmentedControl } from "@gunjo/ui";
+
+export function PeriodControl() {
+  return (
+    <SegmentedControl
+      aria-label="期間"
+      size="lg"
+      defaultValue="week"
+      options={[
+        { value: "day", label: "日" },
+        { value: "week", label: "週" },
+        { value: "month", label: "月" },
+      ]}
+    />
+  );
+}`
+                  : `import { SegmentedControl } from "@gunjo/ui";
+
+export function PeriodControl() {
+  return (
+    <SegmentedControl
+      aria-label="Period"
+      size="lg"
+      defaultValue="week"
+      options={[
+        { value: "day", label: "Day" },
+        { value: "week", label: "Week" },
+        { value: "month", label: "Month" },
+      ]}
+    />
+  );
+}`,
             },
             {
               key: "disabled",
@@ -394,22 +418,65 @@ export function SegmentedControlExample() {
                 ? "変更できない理由を、無効なコントロールを包むツールチップで説明します。"
                 : "Explain why the control is unavailable with a tooltip around the disabled control.",
               preview: <DisabledSegmentedControl locale={locale} />,
-              code: `<Tooltip>
-  <TooltipTrigger asChild>
-    <span className="inline-flex cursor-not-allowed">
-      <SegmentedControl
-        aria-label="${locale === "ja" ? "旅客区分" : "Passenger type"}"
-        disabled
-        value="adult"
-        options={[
-          { value: "adult", label: "${locale === "ja" ? "大人" : "Adult"}" },
-          { value: "child", label: "${locale === "ja" ? "小児" : "Child"}" },
-        ]}
-      />
-    </span>
-  </TooltipTrigger>
-  <TooltipContent>${locale === "ja" ? "公開済みの料金設定のため、この画面では変更できません。" : "Published fare settings cannot be changed from this screen."}</TooltipContent>
-</Tooltip>`,
+              code: locale === "ja"
+                  ? `import {
+  SegmentedControl,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@gunjo/ui";
+
+export function LockedPassengerTypeControl() {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <span className="inline-flex cursor-not-allowed">
+          <SegmentedControl
+            aria-label="旅客区分"
+            disabled
+            value="adult"
+            options={[
+              { value: "adult", label: "大人" },
+              { value: "child", label: "小児" },
+            ]}
+          />
+        </span>
+      </TooltipTrigger>
+      <TooltipContent>
+        公開済みの料金設定のため、この画面では変更できません。
+      </TooltipContent>
+    </Tooltip>
+  );
+}`
+                  : `import {
+  SegmentedControl,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@gunjo/ui";
+
+export function LockedPassengerTypeControl() {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <span className="inline-flex cursor-not-allowed">
+          <SegmentedControl
+            aria-label="Passenger type"
+            disabled
+            value="adult"
+            options={[
+              { value: "adult", label: "Adult" },
+              { value: "child", label: "Child" },
+            ]}
+          />
+        </span>
+      </TooltipTrigger>
+      <TooltipContent>
+        Published fare settings cannot be changed from this screen.
+      </TooltipContent>
+    </Tooltip>
+  );
+}`,
             },
           ]}
         />

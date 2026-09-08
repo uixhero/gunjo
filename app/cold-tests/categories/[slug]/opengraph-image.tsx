@@ -1,6 +1,7 @@
 import { ImageResponse } from "next/og";
 import categoriesData from "@/data/cold-test-categories.json";
 import gallery from "@/data/cold-test-gallery.json";
+import { publishableJaEntries } from "@/lib/cold-test-drafts";
 
 // Next.js Metadata Route conventions — Next uses `generateStaticParams` from
 // page.tsx to know which slugs to prerender, and this module ships a PNG per
@@ -31,7 +32,7 @@ interface CategoriesShape {
 }
 
 interface GalleryShape {
-    entries: { category: string }[];
+    entries: { round: number; category: string }[];
 }
 
 const catData = categoriesData as CategoriesShape;
@@ -114,7 +115,9 @@ export default async function Image({
         );
     }
 
-    const roundCount = galleryData.entries.filter(
+    // Draft rounds are hidden in production (cold-test-drafts.ts), so the
+    // share card must not count them either.
+    const roundCount = publishableJaEntries(galleryData.entries).filter(
         (e) => e.category === category.jaCategory
     ).length;
 

@@ -106,6 +106,10 @@ export function categoryOf(round) {
     if (round === 176) return "建設・建築";
     if (round === 177) return "建設・建築";
     if (round === 178) return "建設・建築";
+    // #179-239 は下書きのパイプライン側にだけあり、本線のこの表には無い
+    // （COLDTEST-PROCEDURE.md §6 の差異3）。#240-244 は本線に下書きとして
+    // 積むぶんなので、ここにも入れておく。
+    if (round >= 240 && round <= 244) return "保険";
     if (round <= 111) return "運輸：鉄道";
     return "運輸：航空";
 }

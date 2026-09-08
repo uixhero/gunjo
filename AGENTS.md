@@ -24,6 +24,18 @@ GunjoUI の docs / patterns サイトは GunjoUI 自体を説明・検証する�
 - 本体修正が重い、SSOT 更新が必要、または別 PR に分けるべき場合は GitHub issue を切り、暫定対応の範囲を明記する。
 - `src/components/**` を変更した場合は SSOT / design sync / docs registry の同期対象として扱う。
 
+## No left-edge colour rails in gunjo.jp UI (app/)
+
+KeEemルール（new-4px DECISIONS.md 2026-08-16）。gunjo.jp のUI（`app/` 配下）を書くときの禁止事項です。
+
+ルール:
+
+- 左端に縦の色帯を置いて強調する形そのものを使わない。実装手段を問わない — `border-left`（`border-l-*` / `border-s-*`）・inset `box-shadow`・`absolute left-0` の細い色帯、いずれも。強調だけでなく飾りも含めて全部。
+- 例外: `blockquote` の border-left は対象外（引用の慣習表現）。パネル仕切りの素の `border-l`（1px・強調でない構造線）も対象外。
+- 代替: 背景の淡い色・字の強さ（weight）・上罫（`border-top`）・余白。
+- 機械検査: `npm run design:verify:left-emphasis`（`design:verify` に含まれ、CI で走る）。既存分は `design/policy/left-emphasis-exceptions.json` に理由つきで基線化済み＝新規の追加はここで落ちる。許可リストへ追加する前に KeEem に確認する。
+- `@gunjo/ui` `ListCard` の `severity` は、PR #871（2026-08-22 マージ）で左罫から全周の境界線＋淡い背景に変わった＝左端強調ではなくなったので、この規則の対象外（かつての app 内使用禁止の条項は撤去済み）。
+
 ## Icon and toggle button tooltips
 
 Icon-only buttons, compact icon buttons, and buttons that toggle UI state must expose their action with GunjoUI tooltip behavior. Do not rely on the icon alone.

@@ -1816,6 +1816,22 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
       /\{\.\.\.rest\}/,
       'MarkdownRenderer must not spread a raw rest object onto an element (that emits node="[object Object]"); route it through withoutNode() first'
     );
+    // Long code splits two ways: a fenced block keeps its verbatim line breaks
+    // and scrolls inside the `pre`, while a backtick span wraps. Drop either
+    // half and a single unbreakable token — a path, a URL — widens the whole
+    // page on a narrow viewport (#893: /docs/adoption overflowed 58px at 375).
+    assertMatch(
+      errors,
+      markdownRendererSource,
+      /<pre className=\{cn\("[^"]*\boverflow-auto\b/,
+      'MarkdownRenderer code blocks should include "overflow-auto" so long lines scroll inside the block'
+    );
+    assertMatch(
+      errors,
+      markdownRendererSource,
+      /<code className=\{cn\("[^"]*\bbreak-words\b/,
+      'MarkdownRenderer inline code should include "break-words" so an unbreakable token wraps instead of widening the page'
+    );
     },
   });
 

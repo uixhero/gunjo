@@ -146,7 +146,10 @@ export function InvoiceAmountField() {
         locale="en-US"
       />
       <p className="text-sm text-muted-foreground">
-        Display: {amount !== undefined ? formatCurrency(amount, { locale: "en-US" }) : "Empty"}
+        Display:{" "}
+        {amount !== undefined
+          ? formatCurrency(amount, { locale: "en-US" })
+          : "Empty"}
       </p>
     </div>
   );
@@ -200,24 +203,42 @@ export function InvoiceAmountField() {
                                 : "Combine currency and locale to change the symbol and grouping for international invoices.",
                             preview: <CurrencyInputPreview locale={locale} variant="usd" />,
                             code: isJa
-                                ? `<CurrencyInput
-  label="海外請求額"
-  value={amount}
-  onValueChange={setAmount}
-  currency="USD"
-  locale="en-US"
-  min={0}
-  max={5000}
-/>`
-                                : `<CurrencyInput
-  label="International invoice"
-  value={amount}
-  onValueChange={setAmount}
-  currency="USD"
-  locale="en-US"
-  min={0}
-  max={5000}
-/>`,
+                                ? `import * as React from "react";
+import { CurrencyInput } from "@gunjo/ui";
+
+export function ForeignInvoiceAmountField() {
+  const [amount, setAmount] = React.useState<number | undefined>(1200);
+
+  return (
+    <CurrencyInput
+      label="海外請求額"
+      value={amount}
+      onValueChange={setAmount}
+      currency="USD"
+      locale="en-US"
+      min={0}
+      max={5000}
+    />
+  );
+}`
+                                : `import * as React from "react";
+import { CurrencyInput } from "@gunjo/ui";
+
+export function ForeignInvoiceAmountField() {
+  const [amount, setAmount] = React.useState<number | undefined>(1200);
+
+  return (
+    <CurrencyInput
+      label="International invoice"
+      value={amount}
+      onValueChange={setAmount}
+      currency="USD"
+      locale="en-US"
+      min={0}
+      max={5000}
+    />
+  );
+}`,
                         },
                         {
                             key: "no-symbol",
@@ -227,18 +248,36 @@ export function InvoiceAmountField() {
                                 : "Use showSymbol=false when a table or list already shows the currency unit.",
                             preview: <CurrencyInputPreview locale={locale} variant="no-symbol" />,
                             code: isJa
-                                ? `<CurrencyInput
-  label="請求金額"
-  value={amount}
-  onValueChange={setAmount}
-  showSymbol={false}
-/>`
-                                : `<CurrencyInput
-  label="Invoice amount"
-  value={amount}
-  onValueChange={setAmount}
-  showSymbol={false}
-/>`,
+                                ? `import * as React from "react";
+import { CurrencyInput } from "@gunjo/ui";
+
+export function PlainInvoiceAmountField() {
+  const [amount, setAmount] = React.useState<number | undefined>(1200000);
+
+  return (
+    <CurrencyInput
+      label="請求金額"
+      value={amount}
+      onValueChange={setAmount}
+      showSymbol={false}
+    />
+  );
+}`
+                                : `import * as React from "react";
+import { CurrencyInput } from "@gunjo/ui";
+
+export function PlainInvoiceAmountField() {
+  const [amount, setAmount] = React.useState<number | undefined>(1200000);
+
+  return (
+    <CurrencyInput
+      label="Invoice amount"
+      value={amount}
+      onValueChange={setAmount}
+      showSymbol={false}
+    />
+  );
+}`,
                         },
                         {
                             key: "disabled",
@@ -251,15 +290,26 @@ export function InvoiceAmountField() {
                                 ? `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
 import { CurrencyInput } from "@gunjo/ui";
 
-<DisabledReasonTooltip fullWidth reason="請求金額が確定済みのため変更できません。">
-  <CurrencyInput label="請求金額" value={1200000} disabled />
-</DisabledReasonTooltip>`
+export function LockedInvoiceAmountField() {
+  return (
+    <DisabledReasonTooltip fullWidth reason="請求金額が確定済みのため変更できません。">
+      <CurrencyInput label="請求金額" value={1200000} disabled />
+    </DisabledReasonTooltip>
+  );
+}`
                                 : `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
 import { CurrencyInput } from "@gunjo/ui";
 
-<DisabledReasonTooltip fullWidth reason="The invoice amount is final and cannot be changed.">
-  <CurrencyInput label="Invoice amount" value={1200000} disabled />
-</DisabledReasonTooltip>`,
+export function LockedInvoiceAmountField() {
+  return (
+    <DisabledReasonTooltip
+      fullWidth
+      reason="The invoice amount is final and cannot be changed."
+    >
+      <CurrencyInput label="Invoice amount" value={1200000} disabled />
+    </DisabledReasonTooltip>
+  );
+}`,
                         },
                     ]}
                 />

@@ -9,6 +9,7 @@ import { FilterButton, Button, Badge, cn } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import inputsMetadata from "@design/inputs-metadata.json";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function getFilterOptions(locale: "ja" | "en") {
     return locale === "ja"
@@ -49,7 +50,7 @@ const options = [
   { label: "Completed", value: "completed" },
 ];
 
-export function FilterExample() {
+export function StatusFilterButton() {
   const [selected, setSelected] = useState<Set<string>>(new Set());
 
   return (
@@ -72,13 +73,13 @@ const options = [
   { label: "Done", value: "done" },
 ];
 
-export function SelectedFilter() {
+export function PreselectedStatusFilter() {
   return (
     <FilterButton
       title="Status"
       options={options}
       selectedValues={new Set(["doing", "review"])}
-      selectedLabel={(count) => \`\${count} filters selected\`}
+      selectedLabel={(count) => count + " filters selected"}
     />
   );
 }`,
@@ -91,13 +92,13 @@ const options = [
   { label: "完了", value: "done" },
 ];
 
-export function SelectedFilter() {
+export function PreselectedStatusFilter() {
   return (
     <FilterButton
       title="ステータス"
       options={options}
       selectedValues={new Set(["doing", "review"])}
-      selectedLabel={(count) => \`\${count}件選択中\`}
+      selectedLabel={(count) => count + "件選択中"}
     />
   );
 }`,
@@ -165,7 +166,7 @@ export function TagFilter() {
       title="タグ"
       selectedValues={selected}
       onFilterChange={setSelected}
-      selectedLabel={(count) => \`\${count}件のタグを選択中\`}
+      selectedLabel={(count) => count + "件のタグを選択中"}
       contentClassName="w-64 p-3"
     >
       <div className="flex flex-wrap gap-2">
@@ -371,7 +372,7 @@ const options = [
   { label: "完了", value: "done" },
 ];
 
-export function FilterExample() {
+export function StatusFilterButton() {
   const [selected, setSelected] = useState<Set<string>>(new Set());
 
   return (
@@ -381,7 +382,7 @@ export function FilterExample() {
       selectedValues={selected}
       onFilterChange={setSelected}
       clearLabel="クリア"
-      selectedLabel={(count) => \`\${count}件選択中\`}
+      selectedLabel={(count) => count + "件選択中"}
     />
   );
 }`
@@ -419,6 +420,12 @@ export function FilterExample() {
                 { name: "Checkbox", href: "/docs/components/checkbox" },
                 { name: "RangeSlider", href: "/docs/components/range-slider" },
                 { name: "TagInput", href: "/docs/components/tag-input" },
+            ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: ボタン（Button）" : "UIXHERO: Button (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/button`,
+                },
             ]}
         >
             <ComponentPreview
@@ -495,6 +502,42 @@ export function FilterExample() {
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
                     <CodeBlock code={localizedUsageCode} />
                 </div>
+            </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>絞り込みの有無をボタン自身が示す。</strong>何も選ばれていないときは破線の枠、開いているあいだは淡い色、選ばれているときは実線の枠と淡い色、と3つの見た目を持ちます。資料の「重要度と視覚的重みを一致させる」を、優先度ではなく状態に当てて使った形です。
+                        </li>
+                        <li>
+                            <strong>件数の場所を先に空けておく。</strong>選択が0件のときも件数のバッジは場所を取ったまま隠れ（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">invisible</code>）、読み上げからは外れます。0件で消してしまうと、1つ選んだ瞬間にボタンの幅が変わって、隣のボタンが動くためです。
+                        </li>
+                        <li>
+                            <strong>中身を丸ごと差し替えられる。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">children</code> を渡すと、既定の選択一覧の代わりに任意の中身を出せます（日付の範囲・数値の幅など）。絞り込みの形は画面ごとに違うので、部品にしたのはボタンと吹き出しの枠だけです。
+                            <br />
+                            一般のボタンの設計は UIXHERO の「ボタン」にあります。
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>The button itself reports whether a filter is on.</strong> Three surfaces: a dashed border when nothing is selected, a tinted one while the popover is open, and a solid tinted one once something is selected. That is the article&rsquo;s weight-matches-importance principle applied to state rather than to priority.
+                        </li>
+                        <li>
+                            <strong>The count badge keeps its space at zero.</strong> With nothing selected the badge is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">invisible</code> rather than removed, and is hidden from screen readers. Removing it would change the button&rsquo;s width the moment the first option is picked, shoving its neighbours sideways.
+                        </li>
+                        <li>
+                            <strong>The panel contents can be replaced wholesale.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">children</code> and the default option list gives way to anything: a date range, a numeric span. Filters differ per screen, so only the button and the popover frame are componentised.
+                            <br />
+                            The general design of buttons is covered by UIXHERO&rsquo;s button article.
+                        </li>
+                    </ul>
+                )}
             </section>
         </ComponentLayout>
     );

@@ -1,0 +1,57 @@
+{
+  "schemaVersion": 1,
+  "round": 103,
+  "lang": "ja",
+  "findings": [
+    {
+      "id": "103-payable-derivation",
+      "kind": "requirement",
+      "phenomenon": "今回いくら払うのかが、認定損害額から過失相殺と免責と既払金を引いた道筋ごと読めます。",
+      "where": {
+        "round": 103,
+        "screen": "自動車保険 保険金支払・精算管理",
+        "spot": "支払明細"
+      },
+      "status": "resolved",
+      "links": [
+        { "kind": "component", "slug": "amount-breakdown", "label": "AmountBreakdown" },
+        { "kind": "pr", "id": 348 }
+      ],
+      "selfCheck": "支払明細を開いて、合計だけでなく、そこに至る引き算の一段ずつが出ているか確かめてください。"
+    },
+    {
+      "id": "103-deduction-not-colour-only",
+      "kind": "requirement",
+      "phenomenon": "控除の行が、マイナスの記号でも、画面を読み上げるソフト向けの言葉でも、控除だと分かります。色が見えない状態でも取り違えません。",
+      "where": {
+        "round": 103,
+        "screen": "自動車保険 保険金支払・精算管理",
+        "spot": "支払明細の控除行"
+      },
+      "status": "resolved",
+      "links": [
+        { "kind": "component", "slug": "amount-breakdown", "label": "AmountBreakdown" }
+      ],
+      "selfCheck": "画面を白黒にして、控除の行が控除だと分かるか確かめてください。"
+    },
+    {
+      "id": "103-amount-derivation-third-time",
+      "kind": "pitfall",
+      "group": "amount-derivation",
+      "phenomenon": "支払明細の導出をまた手で書くことになりました。査定額と保険料に続いて3回目で、別々のAIが独立に同じ欠落を名指ししました。",
+      "where": {
+        "round": 103,
+        "screen": "自動車保険 保険金支払・精算管理",
+        "spot": "支払明細の導出"
+      },
+      "cause": "読むための「明細と、足し引きの符号が見える調整と、小計と合計」を出すコンポーネントが、当時はカタログのどこにも無かったためです。",
+      "status": "resolved",
+      "links": [
+        { "kind": "issue", "id": 347 },
+        { "kind": "pr", "id": 348 },
+        { "kind": "component", "slug": "amount-breakdown", "label": "AmountBreakdown" }
+      ],
+      "selfCheck": "金額を引き算して出す画面を開いて、合計行と数式を自分で書いていないか確かめてください。"
+    }
+  ]
+}

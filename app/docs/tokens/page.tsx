@@ -74,7 +74,7 @@ export default function DocsTokensOverviewPage() {
                 <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
                     {t.heading}
                 </h1>
-                <p className="max-w-2xl text-lg text-muted-foreground">
+                <p className="text-lg text-muted-foreground">
                     {t.descriptionLead}{" "}
                     <Link
                         href="/docs/tokens/spec"

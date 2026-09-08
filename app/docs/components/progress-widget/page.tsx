@@ -50,80 +50,144 @@ function LiveProgressWidgetPreview({ locale }: { locale: "en" | "ja" }) {
     );
 }
 
-export default function ProgressWidgetDocPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
-
-const code = `import { ProgressWidget } from "@gunjo/ui"
+const codeByLocale = {
+    ja: `import { ProgressWidget } from "@gunjo/ui"
 import { IconTarget as Target } from "@tabler/icons-react"
 
 export function GoalProgressWidget() {
   return (
     <ProgressWidget
-      title="${isJa ? "四半期目標" : "Quarterly goal"}"
+      title="四半期目標"
       value={72}
       max={100}
-      subtext="${isJa ? "前週比 +8pt" : "+8pt from last week"}"
-      progressLabel="${isJa ? "四半期目標の進捗" : "Quarterly goal progress"}"
+      subtext="前週比 +8pt"
+      progressLabel="四半期目標の進捗"
       icon={<Target className="h-4 w-4" />}
     />
   )
-}`;
+}`,
+    en: `import { ProgressWidget } from "@gunjo/ui"
+import { IconTarget as Target } from "@tabler/icons-react"
 
-    const usageCode = code;
+export function GoalProgressWidget() {
+  return (
+    <ProgressWidget
+      title="Quarterly goal"
+      value={72}
+      max={100}
+      subtext="+8pt from last week"
+      progressLabel="Quarterly goal progress"
+      icon={<Target className="h-4 w-4" />}
+    />
+  )
+}`,
+};
 
-const customLabelCode = `import { ProgressWidget } from "@gunjo/ui"
+const customLabelCodeByLocale = {
+    ja: `import { ProgressWidget } from "@gunjo/ui"
 import { IconActivity as Activity } from "@tabler/icons-react"
 
 export function RevenueProgressWidget() {
   return (
     <ProgressWidget
-      title="${isJa ? "売上目標" : "Revenue target"}"
+      title="売上目標"
       value={25000}
       max={50000}
-      label="${isJa ? "25,000円" : "$25,000"}"
-      subtext="${isJa ? "年間目標の 50% に到達" : "50% of the annual goal reached"}"
-      progressLabel="${isJa ? "売上目標の進捗" : "Revenue target progress"}"
+      label="25,000円"
+      subtext="年間目標の 50% に到達"
+      progressLabel="売上目標の進捗"
       icon={<Activity className="h-4 w-4" />}
     />
   )
-}`;
+}`,
+    en: `import { ProgressWidget } from "@gunjo/ui"
+import { IconActivity as Activity } from "@tabler/icons-react"
 
-const storageCode = `import { ProgressWidget } from "@gunjo/ui"
+export function RevenueProgressWidget() {
+  return (
+    <ProgressWidget
+      title="Revenue target"
+      value={25000}
+      max={50000}
+      label="$25,000"
+      subtext="50% of the annual goal reached"
+      progressLabel="Revenue target progress"
+      icon={<Activity className="h-4 w-4" />}
+    />
+  )
+}`,
+};
+
+const storageCodeByLocale = {
+    ja: `import { ProgressWidget } from "@gunjo/ui"
 import { IconDatabase as HardDrive } from "@tabler/icons-react"
 
 export function StorageProgressWidget() {
   return (
     <ProgressWidget
-      title="${isJa ? "ストレージ使用量" : "Storage usage"}"
+      title="ストレージ使用量"
       value={42}
       max={64}
       label="42 / 64 GB"
-      subtext="${isJa ? "残り 22 GB を利用できます" : "22 GB available"}"
-      progressLabel="${isJa ? "ストレージ使用量" : "Storage usage"}"
+      subtext="残り 22 GB を利用できます"
+      progressLabel="ストレージ使用量"
       icon={<HardDrive className="h-4 w-4" />}
     />
   )
-}`;
+}`,
+    en: `import { ProgressWidget } from "@gunjo/ui"
+import { IconDatabase as HardDrive } from "@tabler/icons-react"
 
-const highCode = `import { ProgressWidget } from "@gunjo/ui"
+export function StorageProgressWidget() {
+  return (
+    <ProgressWidget
+      title="Storage usage"
+      value={42}
+      max={64}
+      label="42 / 64 GB"
+      subtext="22 GB available"
+      progressLabel="Storage usage"
+      icon={<HardDrive className="h-4 w-4" />}
+    />
+  )
+}`,
+};
+
+const highCodeByLocale = {
+    ja: `import { ProgressWidget } from "@gunjo/ui"
 import { IconGauge as Gauge } from "@tabler/icons-react"
 
 export function RiskProgressWidget() {
   return (
     <ProgressWidget
-      title="${isJa ? "対応率" : "Resolution rate"}"
+      title="対応率"
       value={92}
       max={100}
-      subtext="${isJa ? "SLA まで残り 3 件" : "3 items remain before SLA"}"
-      progressLabel="${isJa ? "対応率の進捗" : "Resolution rate progress"}"
+      subtext="SLA まで残り 3 件"
+      progressLabel="対応率の進捗"
       icon={<Gauge className="h-4 w-4" />}
     />
   )
-}`;
+}`,
+    en: `import { ProgressWidget } from "@gunjo/ui"
+import { IconGauge as Gauge } from "@tabler/icons-react"
 
-const liveCode = `import { ProgressWidget } from "@gunjo/ui"
+export function RiskProgressWidget() {
+  return (
+    <ProgressWidget
+      title="Resolution rate"
+      value={92}
+      max={100}
+      subtext="3 items remain before SLA"
+      progressLabel="Resolution rate progress"
+      icon={<Gauge className="h-4 w-4" />}
+    />
+  )
+}`,
+};
+
+const liveCodeByLocale = {
+    ja: `import { ProgressWidget } from "@gunjo/ui"
 import { IconActivity as Activity } from "@tabler/icons-react"
 import { useEffect, useState } from "react"
 
@@ -141,21 +205,72 @@ export function LiveSyncProgressWidget() {
   const remaining = Math.max(0, Math.ceil((100 - value) / 18))
   const subtext =
     remaining === 0
-      ? "${isJa ? "同期が完了しました。" : "Sync complete."}"
-      : ${isJa ? "`残り ${remaining} 件を同期しています。`" : "`Syncing ${remaining} remaining items.`"}
+      ? "同期が完了しました。"
+      : "残り " + remaining + " 件を同期しています。"
 
   return (
     <ProgressWidget
-      title="${isJa ? "同期の進捗" : "Sync progress"}"
+      title="同期の進捗"
       value={value}
       max={100}
       subtext={subtext}
-      progressLabel="${isJa ? "同期の進捗" : "Sync progress"}"
+      progressLabel="同期の進捗"
       subtextLive="polite"
       icon={<Activity className="h-4 w-4" />}
     />
   )
-}`;
+}`,
+    en: `import { ProgressWidget } from "@gunjo/ui"
+import { IconActivity as Activity } from "@tabler/icons-react"
+import { useEffect, useState } from "react"
+
+export function LiveSyncProgressWidget() {
+  const [value, setValue] = useState(36)
+
+  useEffect(() => {
+    const timer = window.setInterval(() => {
+      setValue((current) => (current >= 96 ? 24 : current + 6))
+    }, 900)
+
+    return () => window.clearInterval(timer)
+  }, [])
+
+  const remaining = Math.max(0, Math.ceil((100 - value) / 18))
+  const subtext =
+    remaining === 0
+      ? "Sync complete."
+      : "Syncing " + remaining + " remaining items."
+
+  return (
+    <ProgressWidget
+      title="Sync progress"
+      value={value}
+      max={100}
+      subtext={subtext}
+      progressLabel="Sync progress"
+      subtextLive="polite"
+      icon={<Activity className="h-4 w-4" />}
+    />
+  )
+}`,
+};
+
+export default function ProgressWidgetDocPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
+
+    const code = codeByLocale[locale];
+
+    const usageCode = code;
+
+    const customLabelCode = customLabelCodeByLocale[locale];
+
+    const storageCode = storageCodeByLocale[locale];
+
+    const highCode = highCodeByLocale[locale];
+
+    const liveCode = liveCodeByLocale[locale];
 
     const propsData = [
         {

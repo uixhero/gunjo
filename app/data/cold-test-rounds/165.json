@@ -5,7 +5,7 @@
   "score": "4/5",
   "category": "運輸：トラック",
   "title": "AI に宅配の追跡・再配達画面を作らせてみた — 前回の索引修正が「翌回」で検証された（やってみた #165）",
-  "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "「索引修正が翌回で検証された」。「索引修正の検証」も 作る→検証ループの一種。",
   "article": {
     "file": "zenn-yattemita-165-parcel-tracking.md",
     "slug": "165-parcel-tracking",

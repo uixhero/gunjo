@@ -5,7 +5,7 @@
   "score": "3.5/5",
   "category": "運輸：航空",
   "title": "AI に旅程管理を作らせてみた — 4回さまよった「経路のコンポーネント」が、やっと固まった（やってみた #126）",
-  "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "「経路のコンポーネント」がついに固まる。「守備範囲が割れて、両方がコンポーネントになる」。",
   "article": {
     "file": "zenn-yattemita-126-trip-itinerary.md",
     "slug": "126-trip-itinerary",

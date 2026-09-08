@@ -115,8 +115,13 @@ const defaultMarkdownComponents: NonNullable<ReactMarkdownOptions["components"]>
     pre: ({ className, ...props }) => (
         <pre className={cn("my-4 overflow-auto rounded-md border border-border/70 bg-muted p-4 text-sm text-foreground", className)} {...withoutNode(props)} />
     ),
+    // `break-words` only reaches backtick spans: code inside a fenced block
+    // inherits `white-space: pre` from the `pre` above, which disables wrapping
+    // outright, so those keep their verbatim line breaks and scroll inside the
+    // `pre` instead. Without it a span holding one long unbreakable token — a
+    // path, a URL — has no break opportunity and widens the whole page (#893).
     code: ({ className, ...props }) => (
-        <code className={cn("rounded bg-muted px-1 py-0.5 font-mono text-sm text-foreground", className)} {...withoutNode(props)} />
+        <code className={cn("rounded bg-muted px-1 py-0.5 font-mono text-sm text-foreground break-words", className)} {...withoutNode(props)} />
     ),
     table: ({ className, ...props }) => (
         <div className="my-4">

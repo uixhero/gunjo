@@ -1,0 +1,71 @@
+{
+  "schemaVersion": 1,
+  "round": 105,
+  "lang": "ja",
+  "findings": [
+    {
+      "id": "105-pipeline-board",
+      "kind": "requirement",
+      "phenomenon": "見込みから成約までの段階が、カードを並べた列として出ます。列の並びはボードの枠の内側だけで横にスクロールするので、スマートフォンでもページ全体は横にずれません。",
+      "where": {
+        "round": 105,
+        "screen": "生保営業（ライフプランナー）の活動ポータル",
+        "spot": "見込みパイプライン"
+      },
+      "status": "resolved",
+      "links": [
+        { "kind": "component", "slug": "kanban-board", "label": "KanbanBoard" }
+      ],
+      "selfCheck": "375pxの幅で開いて、パイプラインを横に送ってもページ自体が横にずれないか確かめてください。"
+    },
+    {
+      "id": "105-goal-progress",
+      "kind": "requirement",
+      "phenomenon": "今月の目標に対してどこまで来たかが出ます。入れ物がどれだけ埋まったかを示す表示の流用ではなく、目標への近づき方として読めます。",
+      "where": {
+        "round": 105,
+        "screen": "生保営業（ライフプランナー）の活動ポータル",
+        "spot": "目標の進捗"
+      },
+      "status": "resolved",
+      "links": [
+        { "kind": "component", "slug": "meter", "label": "Meter" },
+        { "kind": "component", "slug": "progress", "label": "Progress" }
+      ],
+      "selfCheck": "目標に対する進み方を出したいところに、入れ物の埋まり具合を示す表示を使っていないか確かめてください。"
+    },
+    {
+      "id": "105-commission-derivation",
+      "kind": "requirement",
+      "phenomenon": "今月の手数料の見込みが、募集手数料とインセンティブを足し、取消や戻入（あとから差し引かれる分）を引いた形で出ます。",
+      "where": {
+        "round": 105,
+        "screen": "生保営業（ライフプランナー）の活動ポータル",
+        "spot": "手数料内訳"
+      },
+      "status": "resolved",
+      "links": [
+        { "kind": "component", "slug": "amount-breakdown", "label": "AmountBreakdown" }
+      ],
+      "selfCheck": "取消や戻入がある月を開いて、引かれた分が控除だと分かる形で出ているか確かめてください。"
+    },
+    {
+      "id": "105-action-queue-handrolled",
+      "kind": "pitfall",
+      "phenomenon": "失効防止や更新や満期や誕生日といった、いま対応が要る項目を深刻度の順に並べるところを、手で書くことになりました。",
+      "where": {
+        "round": 105,
+        "alsoRounds": [102],
+        "screen": "生保営業（ライフプランナー）の活動ポータル",
+        "spot": "要対応アラート"
+      },
+      "cause": "深刻度で並んだ対応待ちの一覧を出すコンポーネントが当時は無く、深刻度と見た目の対応づけを毎回自分で書く必要があったためです。",
+      "status": "resolved",
+      "links": [
+        { "kind": "issue", "id": 350 },
+        { "kind": "component", "slug": "action-queue", "label": "ActionQueue" }
+      ],
+      "selfCheck": "朝いちばんに見る画面で、対応が要る項目が深刻度の順に並んでいるか確かめてください。"
+    }
+  ]
+}

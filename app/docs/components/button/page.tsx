@@ -10,6 +10,7 @@ import { IconDeviceFloppy as Save, IconTrash as Trash2 } from "@tabler/icons-rea
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import { getCategoryVariantUnionType } from "@/lib/docs-spec";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type ButtonVariant =
     | "default"
@@ -199,6 +200,12 @@ export function Example() {
                 { name: "FilterButton", href: "/docs/components/filter-button" },
                 { name: "Command", href: "/docs/components/command" },
                 { name: "Dialog", href: "/docs/components/dialog" },
+            ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: ボタン（Button）" : "UIXHERO: Button (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/button`,
+                },
             ]}
         >
             <ComponentPreview
@@ -473,9 +480,18 @@ export default function SaveIconButton() {
                                 </Tooltip>
                             ),
                             code: locale === "ja"
-                                ? `import { Button, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                                ? `import * as React from "react";
+import {
+  Button,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@gunjo/ui";
 
-export default function SubmitButton({ ready }: { ready: boolean }) {
+export function SubmitButton() {
+  // 実際のフォームでは、必須項目が埋まったかどうかを入れます。
+  const [ready] = React.useState(false);
+
   if (ready) {
     return <Button>送信</Button>;
   }
@@ -491,9 +507,18 @@ export default function SubmitButton({ ready }: { ready: boolean }) {
     </Tooltip>
   );
 }`
-                                : `import { Button, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                                : `import * as React from "react";
+import {
+  Button,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@gunjo/ui";
 
-export default function SubmitButton({ ready }: { ready: boolean }) {
+export function SubmitButton() {
+  // In a real form, this tracks whether the required fields are filled in.
+  const [ready] = React.useState(false);
+
   if (ready) {
     return <Button>Submit</Button>;
   }
@@ -532,6 +557,38 @@ export default function SubmitButton({ ready }: { ready: boolean }) {
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>重さは variant、大きさは size に分けて持つ。</strong>取り消せない操作は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">destructive</code> という別の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> で、色のトークンごと変わります。既定の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> は設計の元から生成した値を読んでいるので、このソースだけを書き換えて既定を変えることはできません。
+                        </li>
+                        <li>
+                            <strong>触る画面のための大きさを別に持つ。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">touch</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">icon-touch</code> は高さ44pxです。同じ44pxの <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">xl</code> は余白も文字も大きくなって「大きなボタン」に見えますが、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">touch</code> は見た目をふつうのボタンのままにして当たり判定だけを44pxにします（#362）。
+                        </li>
+                        <li>
+                            <strong>待っているあいだも幅を変えない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">loading</code> を渡すと、先頭に回るしるしが出て、押せなくなり、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-busy</code> が付きます。文字は消さないので、押した瞬間に幅が変わって隣が動くことがありません。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">asChild</code> のときは中身を差し替えられないので、意味だけを渡します（#305）。1画面に主役のボタンは1つ、ラベルは動詞で書く、という判断は資料に書いてあります。
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Weight lives in variant, size lives in size.</strong> An irreversible action gets its own <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">destructive</code> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code>, with its own colour tokens. The default <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> is read from a value generated out of the design source, so it cannot be changed by editing this file alone.
+                        </li>
+                        <li>
+                            <strong>Touch screens get their own size, not a bigger button.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">touch</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">icon-touch</code> are 44px tall. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">xl</code> is also 44px but scales the padding and type with it, so it reads as an oversized button; <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">touch</code> keeps the normal look and only grows the tap target (#362).
+                        </li>
+                        <li>
+                            <strong>The width does not move while it waits.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">loading</code> and the button shows a leading spinner, stops accepting clicks, and sets <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-busy</code>. The label stays, so nothing next to it shifts the moment it is pressed. With <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">asChild</code> the child owns its content, so only the pending semantics are forwarded (#305). One primary per screen, and labels written as verbs, are covered in the article.
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

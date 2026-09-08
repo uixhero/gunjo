@@ -2585,6 +2585,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "statusLevel": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": ""
+      },
+      "variantColorHints": {}
+    },
     "stringline": {
       "variantKeys": [
         "default"

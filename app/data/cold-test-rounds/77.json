@@ -5,7 +5,7 @@
   "score": "4.5/5",
   "category": "公共・行政",
   "title": "AI に公共施設予約を作らせてみた — 前ラウンドで作った2コンポーネントが、今日まとめて再利用された（やってみた #77）",
-  "summary": "公共の3枚目は公民館/体育館の貸館予約。予約グリッドを見て、申請を承認フローに通す画面。そして**直近で作った2つのコンポーネント（ScheduleGrid・ApprovalWorkflow）が、今日まとめて発見・再利用された**——複利の最高到達点。",
+  "summary": "「振る舞いのコンポーネント」も即座に複利が回る。直近で作った2本が、まとめてその場で効いた。",
   "article": {
     "file": "zenn-yattemita-77-facility-booking.md",
     "slug": "77-facility-booking",

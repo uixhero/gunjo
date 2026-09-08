@@ -166,6 +166,10 @@ export const componentContentJa: Record<string, DocContent> = {
     title: "StatusBoard",
     description: "車両、設備、作業台などの状態を、エリア別のタイル盤として問題優先で一覧します。",
   },
+  "components/status-level": {
+    title: "StatusLevel",
+    description: "軽い順に並べた段の定義から、いまが何段目かをチップと段バーで示す順序つきレベル表示です。",
+  },
   "components/stringline": {
     title: "Stringline",
     description: "停車地点と時刻を結ぶ運行図表を表示し、計画と実績、上下方向、現在時刻を重ねて確認できます。",

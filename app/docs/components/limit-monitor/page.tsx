@@ -90,7 +90,7 @@ export default function LimitMonitorDocPage() {
     ? `import { LimitMonitor, classifyLimit } from "@gunjo/ui";
 
 function formatHours(value: number) {
-  return \`\${value.toFixed(1)}h\`;
+  return value.toFixed(1) + "h";
 }
 
 export function DriverLimitPanel() {
@@ -131,7 +131,7 @@ export function DriverLimitPanel() {
     : `import { LimitMonitor, classifyLimit } from "@gunjo/ui";
 
 function formatHours(value: number) {
-  return \`\${value.toFixed(1)}h\`;
+  return value.toFixed(1) + "h";
 }
 
 function formatReadout({ over, direction, formatValue }) {
@@ -153,7 +153,12 @@ export function DriverLimitPanel() {
         warnWithin={1}
         formatValue={formatHours}
         formatReadout={formatReadout}
-        labels={{ ok: "Within limit", near: "Near limit", over: "Over limit", critical: "Critical" }}
+        labels={{
+          ok: "Within limit",
+          near: "Near limit",
+          over: "Over limit",
+          critical: "Critical",
+        }}
       />
       <LimitMonitor
         label="Continuous driving"
@@ -163,7 +168,12 @@ export function DriverLimitPanel() {
         warnWithin={0.25}
         formatValue={formatHours}
         formatReadout={formatReadout}
-        labels={{ ok: "Within limit", near: "Near limit", over: "Over limit", critical: "Critical" }}
+        labels={{
+          ok: "Within limit",
+          near: "Near limit",
+          over: "Over limit",
+          critical: "Critical",
+        }}
       />
       <LimitMonitor
         label="Rest period"
@@ -173,7 +183,12 @@ export function DriverLimitPanel() {
         warnWithin={1}
         formatValue={formatHours}
         formatReadout={formatReadout}
-        labels={{ ok: "Within limit", near: "Near limit", over: "Over limit", critical: "Critical" }}
+        labels={{
+          ok: "Within limit",
+          near: "Near limit",
+          over: "Over limit",
+          critical: "Critical",
+        }}
       />
       <p className="rounded-md border bg-muted/30 px-3 py-2 text-sm text-muted-foreground">
         Classification: {result.state} / {formatHours(result.over)}
@@ -186,7 +201,7 @@ export function DriverLimitPanel() {
     ? `import { LimitMonitor } from "@gunjo/ui";
 
 function formatHours(value: number) {
-  return \`\${value.toFixed(1)}h\`;
+  return value.toFixed(1) + "h";
 }
 
 export function RestPeriodLimit() {
@@ -206,7 +221,7 @@ export function RestPeriodLimit() {
     : `import { LimitMonitor } from "@gunjo/ui";
 
 function formatHours(value: number) {
-  return \`\${value.toFixed(1)}h\`;
+  return value.toFixed(1) + "h";
 }
 
 export function RestPeriodLimit() {
@@ -219,7 +234,12 @@ export function RestPeriodLimit() {
         direction="floor"
         warnWithin={1}
         formatValue={formatHours}
-        labels={{ ok: "Within limit", near: "Near limit", over: "Over limit", critical: "Critical" }}
+        labels={{
+          ok: "Within limit",
+          near: "Near limit",
+          over: "Over limit",
+          critical: "Critical",
+        }}
       />
     </div>
   );
@@ -229,7 +249,7 @@ export function RestPeriodLimit() {
     ? `import { LimitMonitor } from "@gunjo/ui";
 
 function formatHours(value: number) {
-  return \`\${value.toFixed(1)}h\`;
+  return value.toFixed(1) + "h";
 }
 
 export function CriticalLimit() {
@@ -249,7 +269,7 @@ export function CriticalLimit() {
     : `import { LimitMonitor } from "@gunjo/ui";
 
 function formatHours(value: number) {
-  return \`\${value.toFixed(1)}h\`;
+  return value.toFixed(1) + "h";
 }
 
 export function CriticalLimit() {
@@ -262,7 +282,12 @@ export function CriticalLimit() {
         hardLimit={16}
         warnWithin={1}
         formatValue={formatHours}
-        labels={{ ok: "Within limit", near: "Near limit", over: "Over limit", critical: "Critical" }}
+        labels={{
+          ok: "Within limit",
+          near: "Near limit",
+          over: "Over limit",
+          critical: "Critical",
+        }}
       />
     </div>
   );

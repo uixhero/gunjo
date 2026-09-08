@@ -2,6 +2,7 @@
 
 import { Badge, Button, Cluster } from "@gunjo/ui";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
+import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
@@ -68,8 +69,36 @@ export function ToolbarActions() {
 }`,
 } as const;
 
+const centeredCodeByLocale = {
+    en: `import { Badge, Cluster } from "@gunjo/ui";
+
+export function CenteredStatusCluster() {
+  return (
+    <div className="w-full rounded-lg border bg-background p-4">
+      <Cluster gap={3} justify="center">
+        <Badge>Selected</Badge>
+        <Badge variant="secondary">Reviewing</Badge>
+      </Cluster>
+    </div>
+  );
+}`,
+    ja: `import { Badge, Cluster } from "@gunjo/ui";
+
+export function CenteredStatusCluster() {
+  return (
+    <div className="w-full rounded-lg border bg-background p-4">
+      <Cluster gap={3} justify="center">
+        <Badge>選択中</Badge>
+        <Badge variant="secondary">レビュー中</Badge>
+      </Cluster>
+    </div>
+  );
+}`,
+} as const;
+
 export default function ClusterPage() {
     const { locale } = useLocale();
+    const usageCode = codeByLocale[locale];
     const meta = layoutMetadata as Record<string, { title: string; description: string }>;
     const propsData = locale === "ja"
         ? [
@@ -101,7 +130,7 @@ export default function ClusterPage() {
                 { name: "Tag", href: "/docs/components/tag" },
             ]}
         >
-            <ComponentPreview embedSrc="/embed/cluster" code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="md">
+            <ComponentPreview embedSrc="/embed/cluster" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md">
                 <div className="w-full rounded-lg border bg-background p-4">
                     <Cluster gap={2}>
                         {tagsByLocale[locale].map((tag) => (
@@ -117,65 +146,56 @@ export default function ClusterPage() {
                         {locale === "ja" ? "状態とバリエーション" : "States and Variants"}
                     </h2>
                 </div>
-                <div className="space-y-8">
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "折り返しタグ" : "Wrapping tags"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja"
-                                    ? "タグや短いバッジが増えた時に、行をまたいで自然に折り返します。"
-                                    : "Let tags and short badges wrap naturally when the list grows."}
-                            </p>
-                        </div>
-                        <ComponentPreview code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="md" previewHeight="auto">
-                            <div className="w-full rounded-lg border bg-background p-4">
-                                <Cluster gap={2}>
-                                    {tagsByLocale[locale].map((tag) => (
-                                        <Badge key={tag} variant="secondary">{tag}</Badge>
-                                    ))}
-                                </Cluster>
-                            </div>
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "右寄せ操作" : "Right-aligned actions"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja"
-                                    ? "フォームやフッターで、キャンセルと保存などの操作を右端にまとめます。"
-                                    : "Group cancel and save actions at the end of a form or footer."}
-                            </p>
-                        </div>
-                        <ComponentPreview code={actionCodeByLocale[locale]} codeBlock={<CodeBlock code={actionCodeByLocale[locale]} />} previewBodyWidth="md" previewHeight="auto">
-                            <div className="w-full rounded-lg border bg-background p-4">
-                                <Cluster gap={2} justify="end">
-                                    <Button variant="outline">{locale === "ja" ? "キャンセル" : "Cancel"}</Button>
-                                    <Button>{locale === "ja" ? "保存" : "Save"}</Button>
-                                </Cluster>
-                            </div>
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "中央揃え" : "Centered row"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja"
-                                    ? "短い状態ラベルや補助情報を中央に揃えて表示します。"
-                                    : "Center short status labels or supporting metadata."}
-                            </p>
-                        </div>
-                        <ComponentPreview code={`<Cluster justify="center" gap={3}>{/* items */}</Cluster>`} codeBlock={<CodeBlock code={`<Cluster justify="center" gap={3}>{/* items */}</Cluster>`} />} previewBodyWidth="md" previewHeight="auto">
-                            <div className="w-full rounded-lg border bg-background p-4">
-                                <Cluster gap={3} justify="center">
-                                    <Badge>{locale === "ja" ? "選択中" : "Selected"}</Badge>
-                                    <Badge variant="secondary">{locale === "ja" ? "レビュー中" : "Reviewing"}</Badge>
-                                </Cluster>
-                            </div>
-                        </ComponentPreview>
-                    </section>
-                </div>
+                <ComponentDemoStates
+                    states={[
+                        {
+                            key: "wrapping-tags",
+                            title: locale === "ja" ? "折り返しタグ" : "Wrapping tags",
+                            description: locale === "ja" ? "タグや短いバッジが増えた時に、行をまたいで自然に折り返します。" : "Let tags and short badges wrap naturally when the list grows.",
+                            code: usageCode,
+                            previewBodyWidth: "md",
+                            preview: (
+                                <div className="w-full rounded-lg border bg-background p-4">
+                                    <Cluster gap={2}>
+                                        {tagsByLocale[locale].map((tag) => (
+                                            <Badge key={tag} variant="secondary">{tag}</Badge>
+                                        ))}
+                                    </Cluster>
+                                </div>
+                            ),
+                        },
+                        {
+                            key: "right-aligned-actions",
+                            title: locale === "ja" ? "右寄せ操作" : "Right-aligned actions",
+                            description: locale === "ja" ? "フォームやフッターで、キャンセルと保存などの操作を右端にまとめます。" : "Group cancel and save actions at the end of a form or footer.",
+                            code: actionCodeByLocale[locale],
+                            previewBodyWidth: "md",
+                            preview: (
+                                <div className="w-full rounded-lg border bg-background p-4">
+                                    <Cluster gap={2} justify="end">
+                                        <Button variant="outline">{locale === "ja" ? "キャンセル" : "Cancel"}</Button>
+                                        <Button>{locale === "ja" ? "保存" : "Save"}</Button>
+                                    </Cluster>
+                                </div>
+                            ),
+                        },
+                        {
+                            key: "centered-row",
+                            title: locale === "ja" ? "中央揃え" : "Centered row",
+                            description: locale === "ja" ? "短い状態ラベルや補助情報を中央に揃えて表示します。" : "Center short status labels or supporting metadata.",
+                            code: centeredCodeByLocale[locale],
+                            previewBodyWidth: "md",
+                            preview: (
+                                <div className="w-full rounded-lg border bg-background p-4">
+                                    <Cluster gap={3} justify="center">
+                                        <Badge>{locale === "ja" ? "選択中" : "Selected"}</Badge>
+                                        <Badge variant="secondary">{locale === "ja" ? "レビュー中" : "Reviewing"}</Badge>
+                                    </Cluster>
+                                </div>
+                            ),
+                        },
+                    ]}
+                />
             </section>
 
             <section className="space-y-4">
@@ -186,10 +206,10 @@ export default function ClusterPage() {
             <section className="space-y-4">
                 <div className="flex items-start justify-between gap-3 border-b pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </section>
         </ComponentLayout>

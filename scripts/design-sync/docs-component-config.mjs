@@ -213,6 +213,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "origin-destination": "Display",
   "line-chip": "Display",
   "status-board": "Display",
+  "status-level": "Display",
   "expiry-badge": "Display",
   "limit-monitor": "Display",
   "reference-value": "Display",

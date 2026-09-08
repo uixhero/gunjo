@@ -1932,6 +1932,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "statusLevel": {
+      "title": "StatusLevel",
+      "description": "The ORDERED qualitative level indicator: a scale written once (levels[], low end → high end) plus the current value, rendered as a colour-safe chip and a filled-step bar that reads 「4段階中 3段目」 to screen readers. For states that have a rank — 空いています < やや混雑 < 混雑, 平常運転 < 遅延 < 迂回 < 運休, 低 < 中 < 高 < 緊急, good < watch < bad, 在庫 多/少, 鮮度, 難易度. The order lives in ONE array, so the sort key (compareStatusLevel), the roll-up (highestStatusLevel) and the pill cannot drift apart — the papercut behind the hand-rolled LEVEL_META + LEVEL_BADGE + LEVEL_SEVERITY + rank quartet. Tone is the WEIGHT of a step, never the order: the bar is drawn in foreground-vs-border shades, not semantic tones, so the step count survives greyscale. NOT for unordered states (支払済 / 請求中, 下書き / 公開) — that is Badge. NOT for a position in a process (受付 → 審査 → 完了, 空席 → 着席 → 会計) — that is Stepper / ApprovalSteps / RouteStops, which advance without getting heavier. Pairs with the pure statusLevelIndex / statusLevelStep / compareStatusLevel / highestStatusLevel helpers, mirroring how ExpiryBadge pairs with classifyExpiry(). RSC-safe.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/StatusLevel.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "stringline": {
       "title": "Stringline",
       "description": "The time × distance run diagram (運行図表 / ダイヤグラム / Marey / string-line chart): the route's stops on the distance (y) axis, time on the x axis, each run a DIAGONAL polyline across the stops over time. Slope = speed, a horizontal kink = a dwell, two lines converging = a meet / overtake / bunching (続行・だんご). Bidirectional runs (up/down), an optional now-line, planned-vs-actual pairs (planned dashed + actual solid), and focusable runs (onSelect). The transport-ops view a Gantt structurally cannot draw — Gantt is resource rows × horizontal bars (y = identity); this transposes the same time engine onto a continuous distance axis (y = distance) so runs can cross. For rail/bus/tram/ferry dispatch & timetable diagrams. SSR-safe: pass now in rather than reading the clock. SVG line geometry like LineChart.",

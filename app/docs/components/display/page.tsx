@@ -36,6 +36,256 @@ import {
 } from "@tabler/icons-react";
 
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { UixheroRationaleLinks } from "@/components/doc/ComponentHelpers";
+import { CodeBlock } from "@/components/doc/CodeBlock";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
+
+const SAMPLE_CODE = {
+    ja: `import {
+    Badge,
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+    MetadataList,
+    PersonCell,
+    Separator,
+    StatGroup,
+    StatusLevel,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+    Tag,
+    Timeline,
+} from "@gunjo/ui";
+
+const REVIEW_LEVELS = [
+    { value: "draft", label: "下書き" },
+    { value: "review", label: "レビュー中" },
+    { value: "approved", label: "承認済み" },
+];
+
+const METRICS = [
+    { label: "未処理の素材", value: "12" },
+    { label: "今週の承認", value: "5" },
+    { label: "法務の確認待ち", value: "2" },
+];
+
+const ASSETS = [
+    {
+        id: "AS-1042",
+        title: "春キャンペーンのメインビジュアル",
+        tag: "デザイン",
+        level: "review",
+    },
+    { id: "AS-1043", title: "製品ツアーのナレーション", tag: "コピー", level: "draft" },
+    { id: "AS-1044", title: "料金ページのヒーロー", tag: "デザイン", level: "approved" },
+];
+
+const FACTS = [
+    { label: "担当", value: "ブランド制作" },
+    { label: "期日", value: "2026-06-12" },
+    { label: "配信先", value: "サイトとメール" },
+];
+
+const HISTORY = [
+    {
+        time: "09:20",
+        title: "下書きを提出",
+        description: "3点がレビューに入りました。",
+    },
+    {
+        time: "11:05",
+        title: "法務からの指摘",
+        description: "料金の書き方を1箇所直します。",
+    },
+    { time: "14:40", title: "メインビジュアルを承認", description: "配信の予約に進めます。" },
+];
+
+export function AssetReviewBoard() {
+    return (
+        <Card>
+            <CardHeader className="gap-4">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div className="space-y-1">
+                        <CardTitle>春キャンペーンのレビュー</CardTitle>
+                        <CardDescription>
+                            承認する前にレビュー担当が見るものを1画面にまとめています。
+                        </CardDescription>
+                    </div>
+                    <Badge variant="secondary">レビュー中</Badge>
+                </div>
+                <PersonCell
+                    name="近藤 彩"
+                    secondary="ブランド制作"
+                    tertiary="この一括レビューの担当"
+                />
+            </CardHeader>
+            <CardContent className="space-y-6">
+                <StatGroup items={METRICS} cols={{ base: 1, sm: 3 }} />
+                <Separator />
+                <Table>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead>素材</TableHead>
+                            <TableHead>種別</TableHead>
+                            <TableHead>状態</TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {ASSETS.map((asset) => (
+                            <TableRow key={asset.id}>
+                                <TableCell>
+                                    <span className="font-medium">{asset.title}</span>
+                                    <span className="block text-xs text-muted-foreground">
+                                        {asset.id}
+                                    </span>
+                                </TableCell>
+                                <TableCell>
+                                    <Tag>{asset.tag}</Tag>
+                                </TableCell>
+                                <TableCell>
+                                    <StatusLevel levels={REVIEW_LEVELS} value={asset.level} />
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+                <div className="grid gap-6 md:grid-cols-2">
+                    <MetadataList items={FACTS} />
+                    <Timeline items={HISTORY} />
+                </div>
+            </CardContent>
+        </Card>
+    );
+}`,
+    en: `import {
+    Badge,
+    Card,
+    CardContent,
+    CardDescription,
+    CardHeader,
+    CardTitle,
+    MetadataList,
+    PersonCell,
+    Separator,
+    StatGroup,
+    StatusLevel,
+    Table,
+    TableBody,
+    TableCell,
+    TableHead,
+    TableHeader,
+    TableRow,
+    Tag,
+    Timeline,
+} from "@gunjo/ui";
+
+const REVIEW_LEVELS = [
+    { value: "draft", label: "Draft" },
+    { value: "review", label: "In review" },
+    { value: "approved", label: "Approved" },
+];
+
+const METRICS = [
+    { label: "Open assets", value: "12" },
+    { label: "Approved this week", value: "5" },
+    { label: "Waiting on legal", value: "2" },
+];
+
+const ASSETS = [
+    {
+        id: "AS-1042",
+        title: "Spring campaign key visual",
+        tag: "Design",
+        level: "review",
+    },
+    { id: "AS-1043", title: "Product tour narration", tag: "Copy", level: "draft" },
+    { id: "AS-1044", title: "Pricing page hero", tag: "Design", level: "approved" },
+];
+
+const FACTS = [
+    { label: "Owner", value: "Brand studio" },
+    { label: "Due", value: "2026-06-12" },
+    { label: "Channel", value: "Web and email" },
+];
+
+const HISTORY = [
+    {
+        time: "09:20",
+        title: "Draft submitted",
+        description: "Three assets entered review.",
+    },
+    {
+        time: "11:05",
+        title: "Legal comment",
+        description: "Pricing wording needs one change.",
+    },
+    { time: "14:40", title: "Key visual approved", description: "Ready for scheduling." },
+];
+
+export function AssetReviewBoard() {
+    return (
+        <Card>
+            <CardHeader className="gap-4">
+                <div className="flex flex-wrap items-center justify-between gap-3">
+                    <div className="space-y-1">
+                        <CardTitle>Spring campaign review</CardTitle>
+                        <CardDescription>
+                            Everything the reviewer needs before approving the batch.
+                        </CardDescription>
+                    </div>
+                    <Badge variant="secondary">In review</Badge>
+                </div>
+                <PersonCell
+                    name="Aya Kondo"
+                    secondary="Brand studio"
+                    tertiary="Reviewer for this batch"
+                />
+            </CardHeader>
+            <CardContent className="space-y-6">
+                <StatGroup items={METRICS} cols={{ base: 1, sm: 3 }} />
+                <Separator />
+                <Table>
+                    <TableHeader>
+                        <TableRow>
+                            <TableHead>Asset</TableHead>
+                            <TableHead>Type</TableHead>
+                            <TableHead>Status</TableHead>
+                        </TableRow>
+                    </TableHeader>
+                    <TableBody>
+                        {ASSETS.map((asset) => (
+                            <TableRow key={asset.id}>
+                                <TableCell>
+                                    <span className="font-medium">{asset.title}</span>
+                                    <span className="block text-xs text-muted-foreground">
+                                        {asset.id}
+                                    </span>
+                                </TableCell>
+                                <TableCell>
+                                    <Tag>{asset.tag}</Tag>
+                                </TableCell>
+                                <TableCell>
+                                    <StatusLevel levels={REVIEW_LEVELS} value={asset.level} />
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+                <div className="grid gap-6 md:grid-cols-2">
+                    <MetadataList items={FACTS} />
+                    <Timeline items={HISTORY} />
+                </div>
+            </CardContent>
+        </Card>
+    );
+}`,
+};
 
 const asset = {
     id: "display-overview-asset",
@@ -299,7 +549,7 @@ export default function DisplayOverviewPage() {
                     <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
                         {isJa ? "表示の概要" : "Display Overview"}
                     </h1>
-                    <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground">
+                    <p className="text-lg leading-relaxed text-muted-foreground">
                         {isJa
                             ? "表示系コンポーネントは、情報の構造、人物、状態、メディアを読み取りやすく整理するための部品です。まず用途を俯瞰し、必要な個別コンポーネントへ移動できます。"
                             : "Display components organize structure, people, status, and media so information remains easy to scan. Start here to choose the component that fits the job."}
@@ -401,6 +651,45 @@ export default function DisplayOverviewPage() {
                     </CardContent>
                 </Card>
             </section>
+
+            <section className="space-y-4" id="sample">
+                <div className="space-y-1 border-b pb-3">
+                    <h2 className="text-2xl font-semibold tracking-tight">
+                        {isJa ? "まとめて使う見本" : "Using them together"}
+                    </h2>
+                    <p className="text-sm leading-relaxed text-muted-foreground">
+                        {isJa
+                            ? "この分類のコンポーネントをまとめて、素材レビューの1画面を組んだ例です。そのまま貼り付けて動きます。"
+                            : "One asset review screen assembled from this category. Paste it as-is and it runs."}
+                    </p>
+                </div>
+                <CodeBlock code={SAMPLE_CODE[locale]} />
+            </section>
+
+            <section className="space-y-3" id="design-decisions">
+                <div className="border-b pb-2">
+                    <h2 className="text-2xl font-semibold tracking-tight">
+                        {isJa ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                <p className="text-sm leading-relaxed text-muted-foreground">
+                    {isJa
+                        ? "この分類のコンポーネントをいつ使い、いつ使わないかは、UIXHERO の「UIコンポーネント完全ガイド」にある「カテゴリ 03｜リスト・データ表示」の節にまとめています。まとめて見せる情報の単位と、その場で操作させるかどうかで、選ぶコンポーネントが変わります。"
+                        : "When to reach for each display component, and when to leave it alone, is covered in the category 03 section, lists and data display, of the UI component guide on UIXHERO. The choice turns on the unit of information you show together, and whether people act on it in place."}
+                </p>
+            </section>
+
+            <UixheroRationaleLinks
+                locale={locale}
+                uixheroLinks={[
+                    {
+                        label: isJa
+                            ? "UIXHERO: UIコンポーネント完全ガイド（カテゴリ 03｜リスト・データ表示）"
+                            : "UIXHERO: UI component guide, category 03 lists and data display (in Japanese)",
+                        href: `${UIXHERO_BASE_URL}/blog/ui-components-complete-guide#カテゴリ-03リストデータ表示`,
+                    },
+                ]}
+            />
         </div>
     );
 }

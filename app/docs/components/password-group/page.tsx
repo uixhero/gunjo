@@ -10,24 +10,72 @@ import * as React from "react";
 export default function PasswordGroupPage() {
     const { locale } = useLocale();
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
-    const code = `import * as React from "react";
+    const isJa = locale === "ja";
+    const code = isJa
+        ? `import * as React from "react";
 import { PasswordGroup } from "@gunjo/ui";
 
-export function PasswordGroupDemo() {
+export function NewPasswordGroupField() {
   const [value, setValue] = React.useState("GunjoUI2026");
 
   return (
     <PasswordGroup
       value={value}
       onValueChange={setValue}
-      label="${locale === "ja" ? "新しいパスワード" : "New password"}"
+      label="新しいパスワード"
       strengthScore={3}
-      strengthLabel="${locale === "ja" ? "パスワード強度" : "Password strength"}"
-      strengthValueLabel="${locale === "ja" ? "強い" : "Strong"}"
+      strengthLabel="パスワード強度"
+      strengthValueLabel="強い"
       requirements={[
-        { id: "length", label: "${locale === "ja" ? "12文字以上" : "At least 12 characters"}", met: value.length >= 12 },
-        { id: "uppercase", label: "${locale === "ja" ? "大文字を含む" : "Includes an uppercase letter"}", met: /[A-Z]/.test(value) },
-        { id: "number", label: "${locale === "ja" ? "数字を含む" : "Includes a number"}", met: /\\d/.test(value) },
+        {
+          id: "length",
+          label: "12文字以上",
+          met: value.length >= 12,
+        },
+        {
+          id: "uppercase",
+          label: "大文字を含む",
+          met: /[A-Z]/.test(value),
+        },
+        {
+          id: "number",
+          label: "数字を含む",
+          met: /\\d/.test(value),
+        },
+      ]}
+    />
+  );
+}`
+        : `import * as React from "react";
+import { PasswordGroup } from "@gunjo/ui";
+
+export function NewPasswordGroupField() {
+  const [value, setValue] = React.useState("GunjoUI2026");
+
+  return (
+    <PasswordGroup
+      value={value}
+      onValueChange={setValue}
+      label="New password"
+      strengthScore={3}
+      strengthLabel="Password strength"
+      strengthValueLabel="Strong"
+      requirements={[
+        {
+          id: "length",
+          label: "At least 12 characters",
+          met: value.length >= 12,
+        },
+        {
+          id: "uppercase",
+          label: "Includes an uppercase letter",
+          met: /[A-Z]/.test(value),
+        },
+        {
+          id: "number",
+          label: "Includes a number",
+          met: /\\d/.test(value),
+        },
       ]}
     />
   );
@@ -42,6 +90,25 @@ export function PasswordGroupDemo() {
                 disabled
                 disabledReason={locale === "ja" ? "SSO 管理のため直接変更できません。" : "Managed by SSO and cannot be changed here."}
                 description={locale === "ja" ? "無効化理由は入力欄の hover / focus で確認できます。" : "Hover or focus the field to see why it is disabled."}
+            />
+        );
+    }
+
+    function RejectedPreview() {
+        return (
+            <PasswordGroup
+                className="w-full max-w-sm"
+                value="gunjo"
+                label={locale === "ja" ? "新しいパスワード" : "New password"}
+                strengthScore={1}
+                strengthLabel={locale === "ja" ? "パスワード強度" : "Password strength"}
+                strengthValueLabel={locale === "ja" ? "弱い" : "Weak"}
+                requirements={[
+                    { id: "length", label: locale === "ja" ? "12文字以上" : "At least 12 characters", met: false },
+                    { id: "uppercase", label: locale === "ja" ? "大文字を含む" : "Includes an uppercase letter", met: false },
+                    { id: "number", label: locale === "ja" ? "数字を含む" : "Includes a number", met: false },
+                ]}
+                error={locale === "ja" ? "この組み合わせでは登録できません。" : "This password cannot be saved."}
             />
         );
     }
@@ -104,7 +171,93 @@ export function PasswordGroupDemo() {
                     description: locale === "ja" ? "変更できない理由をツールチップで伝えます。" : "Explain why the field is unavailable with a Tooltip.",
                     preview: <DisabledPreview />,
                     previewHeight: 180,
-                    code: `<PasswordGroup disabled disabledReason="${locale === "ja" ? "SSO 管理のため直接変更できません。" : "Managed by SSO and cannot be changed here."}" />`,
+                    code: isJa
+                        ? `import { PasswordGroup } from "@gunjo/ui";
+
+export function ManagedPasswordGroupField() {
+  return (
+    <PasswordGroup
+      className="w-full max-w-sm"
+      value="managed-password"
+      label="管理済みパスワード"
+      disabled
+      disabledReason="SSO 管理のため直接変更できません。"
+      description="無効化理由は入力欄の hover / focus で確認できます。"
+    />
+  );
+}`
+                        : `import { PasswordGroup } from "@gunjo/ui";
+
+export function ManagedPasswordGroupField() {
+  return (
+    <PasswordGroup
+      className="w-full max-w-sm"
+      value="managed-password"
+      label="Managed password"
+      disabled
+      disabledReason="Managed by SSO and cannot be changed here."
+      description="Hover or focus the field to see why it is disabled."
+    />
+  );
+}`,
+                },
+                {
+                    key: "rejected",
+                    title: locale === "ja" ? "サーバーに弾かれたとき" : "Rejected by the server",
+                    description: locale === "ja"
+                        ? "requirements は「何が足りないか」、error は「送った結果どうだったか」です。役割が違うので同時に出ます。error は入力欄の下、要件リストのさらに下に置かれます。"
+                        : "requirements says what is missing; error says what happened when you submitted. They are different jobs, so both can show at once — error sits below the requirement list.",
+                    preview: <RejectedPreview />,
+                    previewHeight: 280,
+                    code: isJa
+                        ? `import { PasswordGroup } from "@gunjo/ui";
+
+const VALUE = "gunjo";
+
+const REQUIREMENTS = [
+  { id: "length", label: "12文字以上", met: false },
+  { id: "uppercase", label: "大文字を含む", met: false },
+  { id: "number", label: "数字を含む", met: false },
+];
+
+export function RejectedPasswordGroupField() {
+  return (
+    <PasswordGroup
+      className="w-full max-w-sm"
+      value={VALUE}
+      label="新しいパスワード"
+      strengthScore={1}
+      strengthLabel="パスワード強度"
+      strengthValueLabel="弱い"
+      requirements={REQUIREMENTS}
+      error="この組み合わせでは登録できません。"
+    />
+  );
+}`
+                        : `import { PasswordGroup } from "@gunjo/ui";
+
+const VALUE = "gunjo";
+
+const REQUIREMENTS = [
+  { id: "length", label: "At least 12 characters", met: false },
+  { id: "uppercase", label: "Includes an uppercase letter", met: false },
+  { id: "number", label: "Includes a number", met: false },
+];
+
+export function RejectedPasswordGroupField() {
+  return (
+    <PasswordGroup
+      className="w-full max-w-sm"
+      value={VALUE}
+      label="New password"
+      strengthScore={1}
+      strengthLabel="Password strength"
+      strengthValueLabel="Weak"
+      requirements={REQUIREMENTS}
+      error="This password cannot be saved."
+    />
+  );
+}`,
                 },
             ]}
         />

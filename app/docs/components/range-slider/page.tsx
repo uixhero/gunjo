@@ -10,6 +10,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import inputsMetadata from "@design/inputs-metadata.json";
 import { FormControl, FormDescription, FormGroup, FormLabel, HStack, NumberInput, RangeSlider } from "@gunjo/ui";
 import * as React from "react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function RangeStatePreview({
     disabled,
@@ -66,15 +67,17 @@ function RangeStatePreview({
 export default function RangeSliderPage() {
     const { locale, sectionLabels } = useLocale();
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
-    const code = `import * as React from "react";
+    const isJa = locale === "ja";
+    const code = isJa
+        ? `import * as React from "react";
 import { FormControl, FormGroup, FormLabel, RangeSlider } from "@gunjo/ui";
 
-export function RangeSliderDemo() {
+export function PriceRangeSlider() {
   const [range, setRange] = React.useState<[number, number]>([24, 72]);
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="price-range">${locale === "ja" ? "価格帯" : "Price range"}</FormLabel>
+      <FormLabel htmlFor="price-range">価格帯</FormLabel>
       <FormControl>
         <RangeSlider
           id="price-range"
@@ -84,28 +87,78 @@ export function RangeSliderDemo() {
           min={0}
           max={100}
           step={1}
-          minLabel="${locale === "ja" ? "最小値" : "Minimum"}"
-          maxLabel="${locale === "ja" ? "最大値" : "Maximum"}"
+          minLabel="最小値"
+          maxLabel="最大値"
+        />
+      </FormControl>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import { FormControl, FormGroup, FormLabel, RangeSlider } from "@gunjo/ui";
+
+export function PriceRangeSlider() {
+  const [range, setRange] = React.useState<[number, number]>([24, 72]);
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="price-range">Price range</FormLabel>
+      <FormControl>
+        <RangeSlider
+          id="price-range"
+          className="w-full"
+          value={range}
+          onValueChange={setRange}
+          min={0}
+          max={100}
+          step={1}
+          minLabel="Minimum"
+          maxLabel="Maximum"
         />
       </FormControl>
     </FormGroup>
   );
 }`;
 
-    const usageCode = `import { RangeSlider } from "@gunjo/ui";
+    const usageCode = isJa
+        ? `import * as React from "react";
+import { RangeSlider } from "@gunjo/ui";
 
-<RangeSlider
-  value={[min, max]}
-  onValueChange={([nextMin, nextMax]) => {
-    setMin(nextMin);
-    setMax(nextMax);
-  }}
-  min={0}
-  max={100}
-  step={1}
-  minLabel="${locale === "ja" ? "最小値" : "Minimum value"}"
-  maxLabel="${locale === "ja" ? "最大値" : "Maximum value"}"
-/>`;
+export function PriceRangeFilter() {
+  const [range, setRange] = React.useState<[number, number]>([24, 72]);
+
+  return (
+    <RangeSlider
+      className="w-full max-w-sm"
+      value={range}
+      onValueChange={setRange}
+      min={0}
+      max={100}
+      step={1}
+      minLabel="最小値"
+      maxLabel="最大値"
+    />
+  );
+}`
+        : `import * as React from "react";
+import { RangeSlider } from "@gunjo/ui";
+
+export function PriceRangeFilter() {
+  const [range, setRange] = React.useState<[number, number]>([24, 72]);
+
+  return (
+    <RangeSlider
+      className="w-full max-w-sm"
+      value={range}
+      onValueChange={setRange}
+      min={0}
+      max={100}
+      step={1}
+      minLabel="Minimum value"
+      maxLabel="Maximum value"
+    />
+  );
+}`;
 
     const propsData = [
         {
@@ -171,6 +224,13 @@ export function RangeSliderDemo() {
                 { name: "NumberInput", href: "/docs/components/number-input" },
                 { name: "FilterButton", href: "/docs/components/filter-button" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: スライダー（Slider）" : "UIXHERO: Slider (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/slider`,
+                    relation: "nearest",
+                },
+            ]}
         >
             <ComponentPreview embedSrc="/embed/range-slider" code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewBodyWidth="md">
                 <RangeSliderDemo />
@@ -202,9 +262,45 @@ export function RangeSliderDemo() {
                                     : "Use a larger step for values that should move in fixed increments.",
                             preview: <RangeStatePreview step={10} initialValue={[20, 80]} />,
                             previewHeight: 190,
-                            code: `import { RangeSlider } from "@gunjo/ui";
+                            code: isJa
+                                ? `import * as React from "react";
+import { RangeSlider } from "@gunjo/ui";
 
-<RangeSlider value={range} onValueChange={setRange} min={0} max={100} step={10} />`,
+export function SteppedPriceRangeSlider() {
+  const [range, setRange] = React.useState<[number, number]>([20, 80]);
+
+  return (
+    <RangeSlider
+      className="w-full max-w-sm"
+      value={range}
+      onValueChange={setRange}
+      min={0}
+      max={100}
+      step={10}
+      minLabel="最小値"
+      maxLabel="最大値"
+    />
+  );
+}`
+                                : `import * as React from "react";
+import { RangeSlider } from "@gunjo/ui";
+
+export function SteppedPriceRangeSlider() {
+  const [range, setRange] = React.useState<[number, number]>([20, 80]);
+
+  return (
+    <RangeSlider
+      className="w-full max-w-sm"
+      value={range}
+      onValueChange={setRange}
+      min={0}
+      max={100}
+      step={10}
+      minLabel="Minimum value"
+      maxLabel="Maximum value"
+    />
+  );
+}`,
                         },
                         {
                             key: "with-inputs",
@@ -215,11 +311,65 @@ export function RangeSliderDemo() {
                                     : "Pair with NumberInput when users need exact values.",
                             preview: <RangeSliderDemo />,
                             previewHeight: 250,
-                            code: `import { NumberInput, RangeSlider } from "@gunjo/ui";
+                            code: isJa
+                                ? `import * as React from "react";
+import { NumberInput, RangeSlider } from "@gunjo/ui";
 
-<RangeSlider value={range} onValueChange={setRange} />
-<NumberInput value={range[0]} onValueChange={(value) => setRange([value, range[1]])} />
-<NumberInput value={range[1]} onValueChange={(value) => setRange([range[0], value])} />`,
+export function PriceRangeWithInputs() {
+  const [range, setRange] = React.useState<[number, number]>([24, 72]);
+
+  return (
+    <div className="flex w-full max-w-sm flex-col gap-3">
+      <RangeSlider
+        value={range}
+        onValueChange={setRange}
+        minLabel="最小値"
+        maxLabel="最大値"
+      />
+      <div className="flex items-center gap-2">
+        <NumberInput
+          label="最小値"
+          value={range[0]}
+          onValueChange={(next) => setRange([next ?? 0, range[1]])}
+        />
+        <NumberInput
+          label="最大値"
+          value={range[1]}
+          onValueChange={(next) => setRange([range[0], next ?? 100])}
+        />
+      </div>
+    </div>
+  );
+}`
+                                : `import * as React from "react";
+import { NumberInput, RangeSlider } from "@gunjo/ui";
+
+export function PriceRangeWithInputs() {
+  const [range, setRange] = React.useState<[number, number]>([24, 72]);
+
+  return (
+    <div className="flex w-full max-w-sm flex-col gap-3">
+      <RangeSlider
+        value={range}
+        onValueChange={setRange}
+        minLabel="Minimum value"
+        maxLabel="Maximum value"
+      />
+      <div className="flex items-center gap-2">
+        <NumberInput
+          label="Minimum"
+          value={range[0]}
+          onValueChange={(next) => setRange([next ?? 0, range[1]])}
+        />
+        <NumberInput
+          label="Maximum"
+          value={range[1]}
+          onValueChange={(next) => setRange([range[0], next ?? 100])}
+        />
+      </div>
+    </div>
+  );
+}`,
                         },
                         {
                             key: "disabled",
@@ -230,12 +380,33 @@ export function RangeSliderDemo() {
                                     : "Explain why the range cannot be changed with a Tooltip.",
                             preview: <RangeStatePreview disabled initialValue={[32, 68]} />,
                             previewHeight: 190,
-                            code: `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
+                            code: isJa
+                                ? `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
 import { RangeSlider } from "@gunjo/ui";
 
-<DisabledReasonTooltip fullWidth reason="${locale === "ja" ? "契約プランで範囲が固定されています。" : "The range is fixed by the current plan."}">
-  <RangeSlider disabled value={[32, 68]} />
-</DisabledReasonTooltip>`,
+export function LockedPriceRangeSlider() {
+  return (
+    <DisabledReasonTooltip
+      fullWidth
+      reason="契約プランで範囲が固定されています。"
+    >
+      <RangeSlider disabled value={[32, 68]} />
+    </DisabledReasonTooltip>
+  );
+}`
+                                : `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
+import { RangeSlider } from "@gunjo/ui";
+
+export function LockedPriceRangeSlider() {
+  return (
+    <DisabledReasonTooltip
+      fullWidth
+      reason="The range is fixed by the current plan."
+    >
+      <RangeSlider disabled value={[32, 68]} />
+    </DisabledReasonTooltip>
+  );
+}`,
                         },
                     ]}
                 />
@@ -258,6 +429,42 @@ import { RangeSlider } from "@gunjo/ui";
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
+            </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>本物の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">input[type=range]</code> を2本重ねた。</strong>自前のドラッグ処理は書かず、ネイティブの range を2本、同じ場所に重ねています。つまみだけがポインタを受け取り、帯と塗りは背後の飾りです。矢印キー・Home と End・読み上げが最初から効くのは、この作りのためです。
+                        </li>
+                        <li>
+                            <strong>つまみが交差したら、止めずに入れ替える。</strong>資料は「2つのハンドルが交差しないロジックを実装する」を挙げています。GUNJO は交差の手前で止めるのではなく、確定のときに小さいほうを最小・大きいほうを最大として並べ替えます。引っかかって動かないより、追い越せるほうが操作しやすいからです。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">step</code> の丸めも同じ場所でやります。
+                        </li>
+                        <li>
+                            <strong>数値の表示は、まだ書いていません。</strong>資料は「常に現在値を数値で表示する」を核に挙げていますが、この部品は帯とつまみだけで、数字を出しません。単位つきの表示も、数値入力との横並びも持たないので、いまは呼ぶ側が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">value</code> を受け取って自分で書く形です。
+                            <br />
+                            一般のスライダーの設計は UIXHERO の「スライダー」にあります。
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Two real <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">input[type=range]</code> elements, stacked.</strong> No hand-rolled drag handling: two native range inputs sit on top of each other, with pointer events reaching only the thumbs while the track and the filled span are decoration behind them. Arrow keys, Home and End and screen-reader support all come for free from that.
+                        </li>
+                        <li>
+                            <strong>Crossing thumbs swap instead of stopping.</strong> The article asks for logic that keeps the two handles from crossing. Rather than blocking at the boundary, GUNJO sorts the pair on commit so the lower value becomes the minimum and the higher one the maximum. Overtaking is easier to operate than jamming. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">step</code> rounding happens in the same place.
+                        </li>
+                        <li>
+                            <strong>The numeric readout is not written yet.</strong> The article&rsquo;s first principle is to always show the current value as a number, and this component shows only the track and the thumbs. There is no unit-aware readout and no paired number input, so today the caller reads <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">value</code> and prints it.
+                            <br />
+                            The general design of sliders is covered by UIXHERO&rsquo;s slider article.
+                        </li>
+                    </ul>
+                )}
             </section>
         </ComponentLayout>
     );

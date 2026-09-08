@@ -90,7 +90,8 @@ export default function InputOTPPage() {
     const content = getDocContent("components/input-otp", locale);
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
 
-    const code = `import * as React from "react";
+    const code = locale === "ja"
+        ? `import * as React from "react";
 import {
   FormDescription,
   FormGroup,
@@ -106,7 +107,7 @@ export function InputOTPDemo() {
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel>${locale === "ja" ? "確認コード" : "Verification code"}</FormLabel>
+      <FormLabel>確認コード</FormLabel>
       <InputOTP maxLength={6} value={value} onChange={setValue}>
         <InputOTPGroup>
           <InputOTPSlot index={0} />
@@ -121,21 +122,64 @@ export function InputOTPDemo() {
         </InputOTPGroup>
       </InputOTP>
       <FormDescription>
-        ${locale === "ja" ? "6桁の確認コードを入力します。" : "Enter the 6-digit verification code."}
+        6桁の確認コードを入力します。
+      </FormDescription>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import {
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSeparator,
+  InputOTPSlot,
+} from "@gunjo/ui";
+
+export function InputOTPDemo() {
+  const [value, setValue] = React.useState("");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel>Verification code</FormLabel>
+      <InputOTP maxLength={6} value={value} onChange={setValue}>
+        <InputOTPGroup>
+          <InputOTPSlot index={0} />
+          <InputOTPSlot index={1} />
+          <InputOTPSlot index={2} />
+        </InputOTPGroup>
+        <InputOTPSeparator />
+        <InputOTPGroup>
+          <InputOTPSlot index={3} />
+          <InputOTPSlot index={4} />
+          <InputOTPSlot index={5} />
+        </InputOTPGroup>
+      </InputOTP>
+      <FormDescription>
+        Enter the 6-digit verification code.
       </FormDescription>
     </FormGroup>
   );
 }`;
 
-    const usageCode = `import { InputOTP, InputOTPGroup, InputOTPSlot } from "@gunjo/ui";
+    const usageCode = `import * as React from "react";
+import { InputOTP, InputOTPGroup, InputOTPSlot } from "@gunjo/ui";
 
-<InputOTP maxLength={6} value={code} onChange={setCode}>
-  <InputOTPGroup>
-    {[0, 1, 2, 3, 4, 5].map((index) => (
-      <InputOTPSlot key={index} index={index} />
-    ))}
-  </InputOTPGroup>
-</InputOTP>`;
+export function VerificationCodeField() {
+  const [code, setCode] = React.useState("");
+
+  return (
+    <InputOTP maxLength={6} value={code} onChange={setCode}>
+      <InputOTPGroup>
+        {[0, 1, 2, 3, 4, 5].map((index) => (
+          <InputOTPSlot key={index} index={index} />
+        ))}
+      </InputOTPGroup>
+    </InputOTP>
+  );
+}`;
 
     const propsData = [
         {
@@ -220,15 +264,23 @@ export function InputOTPDemo() {
                             title: locale === "ja" ? "連続した6桁" : "Continuous slots",
                             description: locale === "ja" ? "短いコードでは、区切りなしで横一列に並べられます。" : "Short codes can be displayed in a single continuous group.",
                             preview: <OTPField locale={locale} grouped={false} defaultValue="2468" />,
-                            code: `import * as React from "react";
-import { FormDescription, FormGroup, FormLabel, InputOTP, InputOTPGroup, InputOTPSlot } from "@gunjo/ui";
+                            code: locale === "ja"
+                                ? `import * as React from "react";
+import {
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from "@gunjo/ui";
 
 export function ContinuousInputOTP() {
   const [value, setValue] = React.useState("2468");
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel>${locale === "ja" ? "確認コード" : "Verification code"}</FormLabel>
+      <FormLabel>確認コード</FormLabel>
       <InputOTP maxLength={6} value={value} onChange={setValue}>
         <InputOTPGroup>
           {[0, 1, 2, 3, 4, 5].map((index) => (
@@ -237,7 +289,36 @@ export function ContinuousInputOTP() {
         </InputOTPGroup>
       </InputOTP>
       <FormDescription>
-        ${locale === "ja" ? "入力値: 2468" : "Value: 2468"}
+        入力値: 2468
+      </FormDescription>
+    </FormGroup>
+  );
+}`
+                                : `import * as React from "react";
+import {
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  InputOTP,
+  InputOTPGroup,
+  InputOTPSlot,
+} from "@gunjo/ui";
+
+export function ContinuousInputOTP() {
+  const [value, setValue] = React.useState("2468");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel>Verification code</FormLabel>
+      <InputOTP maxLength={6} value={value} onChange={setValue}>
+        <InputOTPGroup>
+          {[0, 1, 2, 3, 4, 5].map((index) => (
+            <InputOTPSlot key={index} index={index} />
+          ))}
+        </InputOTPGroup>
+      </InputOTP>
+      <FormDescription>
+        Value: 2468
       </FormDescription>
     </FormGroup>
   );
@@ -248,12 +329,13 @@ export function ContinuousInputOTP() {
                             title: locale === "ja" ? "無効化" : "Disabled",
                             description: locale === "ja" ? "再送信待ちや期限切れでは操作を無効化し、ツールチップで理由を補足します。" : "Disable the input while waiting for resend or when a code expires, and explain the reason with a Tooltip.",
                             preview: <OTPField locale={locale} disabled defaultValue="123456" />,
-                            code: `import { FormDescription, FormGroup, FormLabel, InputOTP, InputOTPGroup, InputOTPSlot, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                            code: locale === "ja"
+                                ? `import { FormDescription, FormGroup, FormLabel, InputOTP, InputOTPGroup, InputOTPSlot, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 
 export function DisabledCode() {
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel>${locale === "ja" ? "確認コード" : "Verification code"}</FormLabel>
+      <FormLabel>確認コード</FormLabel>
       <Tooltip>
         <TooltipTrigger asChild>
           <span tabIndex={0}>
@@ -266,10 +348,36 @@ export function DisabledCode() {
             </InputOTP>
           </span>
         </TooltipTrigger>
-        <TooltipContent>${locale === "ja" ? "確認コードを再送信するまで入力できません。" : "Disabled until the verification code is resent."}</TooltipContent>
+        <TooltipContent>確認コードを再送信するまで入力できません。</TooltipContent>
       </Tooltip>
       <FormDescription>
-        ${locale === "ja" ? "確認コードを再送信するまで入力できません。" : "Disabled until the verification code is resent."}
+        確認コードを再送信するまで入力できません。
+      </FormDescription>
+    </FormGroup>
+  );
+}`
+                                : `import { FormDescription, FormGroup, FormLabel, InputOTP, InputOTPGroup, InputOTPSlot, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+
+export function DisabledCode() {
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel>Verification code</FormLabel>
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <span tabIndex={0}>
+            <InputOTP maxLength={6} disabled value="123456">
+              <InputOTPGroup>
+                {[0, 1, 2, 3, 4, 5].map((index) => (
+                  <InputOTPSlot key={index} index={index} />
+                ))}
+              </InputOTPGroup>
+            </InputOTP>
+          </span>
+        </TooltipTrigger>
+        <TooltipContent>Disabled until the verification code is resent.</TooltipContent>
+      </Tooltip>
+      <FormDescription>
+        Disabled until the verification code is resent.
       </FormDescription>
     </FormGroup>
   );

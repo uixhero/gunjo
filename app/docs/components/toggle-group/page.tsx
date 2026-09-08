@@ -10,6 +10,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import inputsMetadata from "@design/inputs-metadata.json";
 import { ToggleGroup, ToggleGroupItem, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 import { IconAlignCenter, IconAlignLeft, IconAlignRight, IconBold, IconItalic, IconUnderline } from "@tabler/icons-react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function GroupItem({
     value,
@@ -90,35 +91,77 @@ function ToggleGroupStatePreview({
 
 export default function ToggleGroupPage() {
     const { locale, sectionLabels } = useLocale();
-    const code = `import { ToggleGroup, ToggleGroupItem } from "@gunjo/ui";
+    const code = locale === "ja"
+        ? `import { ToggleGroup, ToggleGroupItem } from "@gunjo/ui";
 import { IconBold, IconItalic, IconUnderline } from "@tabler/icons-react";
 
 export function ToggleGroupDemo() {
   return (
     <ToggleGroup type="multiple">
-      <ToggleGroupItem value="bold" aria-label="${locale === "ja" ? "太字" : "Bold"}">
+      <ToggleGroupItem value="bold" aria-label="太字">
         <IconBold className="h-4 w-4" />
       </ToggleGroupItem>
-      <ToggleGroupItem value="italic" aria-label="${locale === "ja" ? "斜体" : "Italic"}">
+      <ToggleGroupItem value="italic" aria-label="斜体">
         <IconItalic className="h-4 w-4" />
       </ToggleGroupItem>
-      <ToggleGroupItem value="underline" aria-label="${locale === "ja" ? "下線" : "Underline"}">
+      <ToggleGroupItem value="underline" aria-label="下線">
+        <IconUnderline className="h-4 w-4" />
+      </ToggleGroupItem>
+    </ToggleGroup>
+  );
+}`
+        : `import { ToggleGroup, ToggleGroupItem } from "@gunjo/ui";
+import { IconBold, IconItalic, IconUnderline } from "@tabler/icons-react";
+
+export function ToggleGroupDemo() {
+  return (
+    <ToggleGroup type="multiple">
+      <ToggleGroupItem value="bold" aria-label="Bold">
+        <IconBold className="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="italic" aria-label="Italic">
+        <IconItalic className="h-4 w-4" />
+      </ToggleGroupItem>
+      <ToggleGroupItem value="underline" aria-label="Underline">
         <IconUnderline className="h-4 w-4" />
       </ToggleGroupItem>
     </ToggleGroup>
   );
 }`;
-    const usageCode = `import * as React from "react";
+    const usageCode = locale === "ja"
+        ? `import * as React from "react";
 import { ToggleGroup, ToggleGroupItem } from "@gunjo/ui";
 
 export function AlignControl() {
   const [value, setValue] = React.useState("left");
 
   return (
-    <ToggleGroup type="single" value={value} onValueChange={(next) => next && setValue(next)}>
-      <ToggleGroupItem value="left">${locale === "ja" ? "左" : "Left"}</ToggleGroupItem>
-      <ToggleGroupItem value="center">${locale === "ja" ? "中央" : "Center"}</ToggleGroupItem>
-      <ToggleGroupItem value="right">${locale === "ja" ? "右" : "Right"}</ToggleGroupItem>
+    <ToggleGroup
+      type="single"
+      value={value}
+      onValueChange={(next) => next && setValue(next)}
+    >
+      <ToggleGroupItem value="left">左</ToggleGroupItem>
+      <ToggleGroupItem value="center">中央</ToggleGroupItem>
+      <ToggleGroupItem value="right">右</ToggleGroupItem>
+    </ToggleGroup>
+  );
+}`
+        : `import * as React from "react";
+import { ToggleGroup, ToggleGroupItem } from "@gunjo/ui";
+
+export function AlignControl() {
+  const [value, setValue] = React.useState("left");
+
+  return (
+    <ToggleGroup
+      type="single"
+      value={value}
+      onValueChange={(next) => next && setValue(next)}
+    >
+      <ToggleGroupItem value="left">Left</ToggleGroupItem>
+      <ToggleGroupItem value="center">Center</ToggleGroupItem>
+      <ToggleGroupItem value="right">Right</ToggleGroupItem>
     </ToggleGroup>
   );
 }`;
@@ -147,6 +190,12 @@ export function AlignControl() {
                 { name: "TooltipButton", href: "/docs/components/tooltip-button" },
                 { name: "Button", href: "/docs/components/button" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: トグルグループ（Toggle Group）" : "UIXHERO: Toggle Group (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/toggle-group`,
+                },
+            ]}
         >
             <ComponentPreview embedSrc="/embed/toggle-group" code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels}>
                 <ToggleGroupDemo />
@@ -172,7 +221,24 @@ export function AlignControl() {
                             description: locale === "ja" ? "配置や表示モードなど、1つだけ選ぶ操作に使います。" : "Use for mutually exclusive choices such as alignment.",
                             preview: <ToggleGroupStatePreview type="single" />,
                             previewHeight: 150,
-                            code: `<ToggleGroup type="single" value={value} onValueChange={setValue}>...</ToggleGroup>`,
+                            code: `import * as React from "react";
+import { ToggleGroup, ToggleGroupItem } from "@gunjo/ui";
+
+export function AlignControl() {
+  const [value, setValue] = React.useState("left");
+
+  return (
+    <ToggleGroup
+      type="single"
+      value={value}
+      onValueChange={(next) => next && setValue(next)}
+    >
+      <ToggleGroupItem value="left">左</ToggleGroupItem>
+      <ToggleGroupItem value="center">中央</ToggleGroupItem>
+      <ToggleGroupItem value="right">右</ToggleGroupItem>
+    </ToggleGroup>
+  );
+}`,
                         },
                         {
                             key: "outline",
@@ -180,7 +246,15 @@ export function AlignControl() {
                             description: locale === "ja" ? "ツールバー内でボタン境界を見せたい場合に使います。" : "Use when toolbar item boundaries should be visible.",
                             preview: <ToggleGroupStatePreview outline />,
                             previewHeight: 150,
-                            code: `<ToggleGroupItem variant="outline" value="bold" />`,
+                            code: `import { ToggleGroup, ToggleGroupItem } from "@gunjo/ui";
+
+export function OutlineToggleGroup() {
+  return (
+    <ToggleGroup type="multiple">
+      <ToggleGroupItem variant="outline" value="bold" />
+    </ToggleGroup>
+  );
+}`,
                         },
                         {
                             key: "disabled",
@@ -188,14 +262,53 @@ export function AlignControl() {
                             description: locale === "ja" ? "一時的に操作できない項目はボタンの形を保ち、ツールチップで理由を補足します。" : "Disabled items keep their button shape and explain the reason with a tooltip.",
                             preview: <ToggleGroupStatePreview disabled />,
                             previewHeight: 150,
-                            code: `<Tooltip>
-  <TooltipTrigger asChild>
-    <span className="inline-flex cursor-not-allowed">
-      <ToggleGroupItem value="bold" disabled />
-    </span>
-  </TooltipTrigger>
-  <TooltipContent>${locale === "ja" ? "権限がないため、この項目は変更できません。" : "You do not have permission to change this item."}</TooltipContent>
-</Tooltip>`,
+                            code: locale === "ja"
+                                ? `import {
+  ToggleGroup,
+  ToggleGroupItem,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@gunjo/ui";
+
+export function DisabledToggleGroupItem() {
+  return (
+    <ToggleGroup type="multiple">
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <span className="inline-flex cursor-not-allowed">
+            <ToggleGroupItem value="bold" disabled />
+          </span>
+        </TooltipTrigger>
+        <TooltipContent>権限がないため、この項目は変更できません。</TooltipContent>
+      </Tooltip>
+    </ToggleGroup>
+  );
+}`
+                                : `import {
+  ToggleGroup,
+  ToggleGroupItem,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@gunjo/ui";
+
+export function DisabledToggleGroupItem() {
+  return (
+    <ToggleGroup type="multiple">
+      <Tooltip>
+        <TooltipTrigger asChild>
+          <span className="inline-flex cursor-not-allowed">
+            <ToggleGroupItem value="bold" disabled />
+          </span>
+        </TooltipTrigger>
+        <TooltipContent>
+          You do not have permission to change this item.
+        </TooltipContent>
+      </Tooltip>
+    </ToggleGroup>
+  );
+}`,
                         },
                     ]}
                 />
@@ -218,6 +331,38 @@ export function AlignControl() {
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
+            </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>「全部は外せない」を、既定ではなく明示の指定にした。</strong>資料は「単一選択では、選ばれている項目をもう一度押しても外れないようにする」を挙げています。GUNJO は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disallowEmpty</code> を渡したときだけそうします（#170）。フィルターのように「0件は、すべて表示」が正しい画面もあり、どちらが正しいかは並べたものの意味で変わるからです。土台の Radix が空の値を返してきたときに、それを捨てる形で作ってあります。
+                        </li>
+                        <li>
+                            <strong>選ばれたときの色を、項目ごとに変えられる。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">tone</code> に注意や成功や警告や破壊を渡すと、その項目が選ばれたときだけ淡い色に変わります（#288）。休講と補講と通常のように、選択肢そのものが意味を持つ切り替えのためです。色は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Badge</code> や <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Alert</code> と同じ淡い色の組み合わせなので、文字とのコントラストは揃っています。
+                        </li>
+                        <li>
+                            <strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">size</code> は親に1回書けば足りる。</strong>文脈で子に配り、項目ごとの上書きもできます。資料が求める <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">role</code> の付与と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-pressed</code> は土台の Radix が持つので、こちらは目的を伝える <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> を親に渡すだけで済みます。
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Not-empty is opt-in, not the default.</strong> The article asks that a single-select group refuse to clear itself when the active item is pressed again. GUNJO does that only when <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disallowEmpty</code> is passed (#170), because a filter row where zero selected means show everything is equally valid, and which reading is right depends on what the items mean. It is implemented by discarding the empty value Radix reports.
+                        </li>
+                        <li>
+                            <strong>The selected colour can differ per item.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">tone</code> as info, success, warning or destructive and that item tints only while selected (#288). This is for controls where the options themselves carry meaning, such as cancelled, make-up and normal class states. The tones reuse the same subtle pairs as <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Badge</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Alert</code>, so the text contrast is already settled.
+                        </li>
+                        <li>
+                            <strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">variant</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">size</code> are written once on the parent.</strong> They travel to the items through context and each item can still override. The group role and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-pressed</code> the article requires come from Radix, which leaves only the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> naming the purpose of the group to pass in.
+                        </li>
+                    </ul>
+                )}
             </section>
         </ComponentLayout>
     );

@@ -47,7 +47,7 @@ export default function RecipeDetailPage() {
 
     return (
         <div className="container py-10">
-            <div className="mx-auto max-w-3xl space-y-10">
+            <div className="space-y-10">
                 <Link
                     href="/docs/ai-handoff/cookbook"
                     className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"

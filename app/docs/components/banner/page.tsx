@@ -15,12 +15,8 @@ import {
     IconSpeakerphone as Megaphone,
 } from "@tabler/icons-react";
 
-export default function BannerPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
-
-const code = `import { Banner, Button } from "@gunjo/ui"
+const codeByLocale = {
+    ja: `import { Banner, Button } from "@gunjo/ui"
 import { IconSpeakerphone as Megaphone } from "@tabler/icons-react"
 
 export function ReleaseBanner() {
@@ -30,20 +26,40 @@ export function ReleaseBanner() {
       icon={<Megaphone className="h-4 w-4" />}
       action={
         <Button size="sm" variant="secondary" className="h-7 px-2">
-          ${isJa ? "変更を見る" : "View changes"}
+          変更を見る
         </Button>
       }
-      dismissLabel="${isJa ? "お知らせを閉じる" : "Dismiss announcement"}"
+      dismissLabel="お知らせを閉じる"
       onDismiss={() => {}}
     >
-      ${isJa ? "新しいリリースを公開しました。主な変更点を確認できます。" : "A new release is available. Review the highlights before updating."}
+      新しいリリースを公開しました。主な変更点を確認できます。
     </Banner>
   )
-}`;
+}`,
+    en: `import { Banner, Button } from "@gunjo/ui"
+import { IconSpeakerphone as Megaphone } from "@tabler/icons-react"
 
-    const usageCode = code;
+export function ReleaseBanner() {
+  return (
+    <Banner
+      variant="info"
+      icon={<Megaphone className="h-4 w-4" />}
+      action={
+        <Button size="sm" variant="secondary" className="h-7 px-2">
+          View changes
+        </Button>
+      }
+      dismissLabel="Dismiss announcement"
+      onDismiss={() => {}}
+    >
+      A new release is available. Review the highlights before updating.
+    </Banner>
+  )
+}`,
+};
 
-const infoActionCode = `import { Banner, Button } from "@gunjo/ui"
+const infoActionCodeByLocale = {
+    ja: `import { Banner, Button } from "@gunjo/ui"
 import { IconInfoCircle as Info } from "@tabler/icons-react"
 
 export function PermissionBanner() {
@@ -53,29 +69,63 @@ export function PermissionBanner() {
       icon={<Info className="h-4 w-4" />}
       action={
         <Button size="sm" variant="secondary" className="h-7 px-2">
-          ${isJa ? "詳細" : "Details"}
+          詳細
         </Button>
       }
-      dismissLabel="${isJa ? "お知らせを閉じる" : "Dismiss announcement"}"
+      dismissLabel="お知らせを閉じる"
       onDismiss={() => {}}
     >
-      ${isJa ? "新しい権限設定を利用できます。" : "New permission settings are available."}
+      新しい権限設定を利用できます。
     </Banner>
   )
-}`;
+}`,
+    en: `import { Banner, Button } from "@gunjo/ui"
+import { IconInfoCircle as Info } from "@tabler/icons-react"
 
-const warningCode = `import { Banner } from "@gunjo/ui"
+export function PermissionBanner() {
+  return (
+    <Banner
+      variant="info"
+      icon={<Info className="h-4 w-4" />}
+      action={
+        <Button size="sm" variant="secondary" className="h-7 px-2">
+          Details
+        </Button>
+      }
+      dismissLabel="Dismiss announcement"
+      onDismiss={() => {}}
+    >
+      New permission settings are available.
+    </Banner>
+  )
+}`,
+};
+
+const warningCodeByLocale = {
+    ja: `import { Banner } from "@gunjo/ui"
 import { IconAlertTriangle as AlertTriangle } from "@tabler/icons-react"
 
 export function MaintenanceBanner() {
   return (
     <Banner variant="warning" icon={<AlertTriangle className="h-4 w-4" />}>
-      ${isJa ? "2026年6月3日 02:00-04:00 JST にメンテナンスを行います。" : "Scheduled maintenance runs on June 3, 2026 from 02:00 to 04:00 JST."}
+      2026年6月3日 02:00-04:00 JST にメンテナンスを行います。
     </Banner>
   )
-}`;
+}`,
+    en: `import { Banner } from "@gunjo/ui"
+import { IconAlertTriangle as AlertTriangle } from "@tabler/icons-react"
 
-const destructiveCode = `import { Banner, Button } from "@gunjo/ui"
+export function MaintenanceBanner() {
+  return (
+    <Banner variant="warning" icon={<AlertTriangle className="h-4 w-4" />}>
+      Scheduled maintenance runs on June 3, 2026 from 02:00 to 04:00 JST.
+    </Banner>
+  )
+}`,
+};
+
+const destructiveCodeByLocale = {
+    ja: `import { Banner, Button } from "@gunjo/ui"
 import { IconShieldExclamation as ShieldAlert } from "@tabler/icons-react"
 
 export function IncidentBanner() {
@@ -85,16 +135,36 @@ export function IncidentBanner() {
       icon={<ShieldAlert className="h-4 w-4" />}
       action={
         <Button size="sm" variant="secondary" className="h-7 px-2">
-          ${isJa ? "状況を見る" : "View status"}
+          状況を見る
         </Button>
       }
     >
-      ${isJa ? "API の書き込み処理が遅延しています。復旧状況を確認してください。" : "API writes are degraded. Check the status page for recovery updates."}
+      API の書き込み処理が遅延しています。復旧状況を確認してください。
     </Banner>
   )
-}`;
+}`,
+    en: `import { Banner, Button } from "@gunjo/ui"
+import { IconShieldExclamation as ShieldAlert } from "@tabler/icons-react"
 
-const successCode = `import { Banner } from "@gunjo/ui"
+export function IncidentBanner() {
+  return (
+    <Banner
+      variant="destructive"
+      icon={<ShieldAlert className="h-4 w-4" />}
+      action={
+        <Button size="sm" variant="secondary" className="h-7 px-2">
+          View status
+        </Button>
+      }
+    >
+      API writes are degraded. Check the status page for recovery updates.
+    </Banner>
+  )
+}`,
+};
+
+const successCodeByLocale = {
+    ja: `import { Banner } from "@gunjo/ui"
 import { IconCircleCheck as CheckCircle } from "@tabler/icons-react"
 
 export function SetupCompleteBanner() {
@@ -102,13 +172,46 @@ export function SetupCompleteBanner() {
     <Banner
       variant="success"
       icon={<CheckCircle className="h-4 w-4" />}
-      dismissLabel="${isJa ? "完了メッセージを閉じる" : "Dismiss completion message"}"
+      dismissLabel="完了メッセージを閉じる"
       onDismiss={() => {}}
     >
-      ${isJa ? "ワークスペースの初期設定が完了しました。" : "Workspace setup is complete."}
+      ワークスペースの初期設定が完了しました。
     </Banner>
   )
-}`;
+}`,
+    en: `import { Banner } from "@gunjo/ui"
+import { IconCircleCheck as CheckCircle } from "@tabler/icons-react"
+
+export function SetupCompleteBanner() {
+  return (
+    <Banner
+      variant="success"
+      icon={<CheckCircle className="h-4 w-4" />}
+      dismissLabel="Dismiss completion message"
+      onDismiss={() => {}}
+    >
+      Workspace setup is complete.
+    </Banner>
+  )
+}`,
+};
+
+export default function BannerPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
+
+    const code = codeByLocale[locale];
+
+    const usageCode = code;
+
+    const infoActionCode = infoActionCodeByLocale[locale];
+
+    const warningCode = warningCodeByLocale[locale];
+
+    const destructiveCode = destructiveCodeByLocale[locale];
+
+    const successCode = successCodeByLocale[locale];
 
     const propsData = [
         {

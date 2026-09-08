@@ -24,6 +24,9 @@ concurrency:
 
 permissions:
   contents: read
+  # `prebuild` re-reads the cold-test issue metadata on every deploy, so a
+  # write-up that says "直した" is checked against the tracker as it is today.
+  issues: read
 
 env:
   VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
@@ -76,6 +79,8 @@ jobs:
         # その参照先を .vercelignore が除外しているためアップロードから消えて、
         # Vercel の "Deploying outputs..." が ENOENT で落ちる（#866）。
         run: vercel build --prod --standalone --token="${{ secrets.VERCEL_TOKEN }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy to production
         if: steps.guard.outputs.configured == 'true'

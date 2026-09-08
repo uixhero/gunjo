@@ -183,6 +183,31 @@ export const VISIBLE_PATTERNS: PatternEntry[] = SHOW_ALL_PATTERNS
     ? PATTERNS
     : PATTERNS.filter((pattern) => isPublicPatternSlug(pattern.slug));
 
+// 業界の見本レーン（/patterns）。カードは業界ページ（/cold-tests/categories/<slug>）
+// へ送り、そこに「動く見本」（架空の会社の業務アプリ）と裏付けのコールドテスト記録が
+// 並ぶ。表示文言は translations.ts の patterns.industryShowcase。
+export type IndustryShowcaseKey = "insurance";
+
+export interface IndustryShowcaseEntry {
+    key: IndustryShowcaseKey;
+    /** 業界ページ（カードのリンク先） */
+    href: string;
+    /** 動く見本の入口（業界ページ内の節からも遷移できる） */
+    demoHref: string;
+    screenCount: number;
+    roundCount: number;
+}
+
+export const INDUSTRY_SHOWCASES: IndustryShowcaseEntry[] = [
+    {
+        key: "insurance",
+        href: "/cold-tests/categories/insurance",
+        demoHref: "/cold-tests/categories/insurance/demo",
+        screenCount: 3,
+        roundCount: 5,
+    },
+];
+
 export const PLANNED_INDUSTRY_PATTERNS: PlannedIndustryPattern[] = [
     {
         key: "finance-wallet",

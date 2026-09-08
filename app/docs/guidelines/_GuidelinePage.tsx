@@ -70,7 +70,7 @@ export function GuidelinePage({
                     <h1 className="text-4xl font-bold tracking-tight">
                         {title[lang]}
                     </h1>
-                    <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground">
+                    <p className="text-lg leading-relaxed text-muted-foreground">
                         {description[lang]}
                     </p>
                 </div>
@@ -89,7 +89,7 @@ export function GuidelinePage({
                                 {section.title[lang]}
                             </h2>
                             {section.body ? (
-                                <p className="max-w-3xl leading-7 text-muted-foreground">
+                                <p className="leading-7 text-muted-foreground">
                                     {section.body[lang]}
                                 </p>
                             ) : null}

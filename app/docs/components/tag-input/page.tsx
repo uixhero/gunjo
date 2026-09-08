@@ -61,43 +61,112 @@ export default function TagInputPage() {
     const { locale, sectionLabels } = useLocale();
     const content = getDocContent("components/tag-input", locale);
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
-    const code = `import * as React from "react";
-import { FormControl, FormDescription, FormGroup, FormLabel, TagInput } from "@gunjo/ui";
+    const isJa = locale === "ja";
+    const code = isJa
+        ? `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  TagInput,
+} from "@gunjo/ui";
 
-export function TagInputDemo() {
-  const [tags, setTags] = React.useState<string[]>([${locale === "ja" ? '"資料", "確認中"' : '"docs", "review"'}]);
+export function AssetTagField() {
+  const [tags, setTags] = React.useState<string[]>(["資料", "確認中"]);
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="tags">${locale === "ja" ? "タグ" : "Tags"}</FormLabel>
+      <FormLabel htmlFor="tags">タグ</FormLabel>
       <FormControl>
         <TagInput
           id="tags"
           value={tags}
           onValueChange={setTags}
-          placeholder="${locale === "ja" ? "タグを追加..." : "Add tag..."}"
-          removeLabel="${locale === "ja" ? "タグを削除" : "Remove tag"}"
+          placeholder="タグを追加..."
+          removeLabel="タグを削除"
         />
       </FormControl>
-      <FormDescription>${locale === "ja" ? "Enter またはカンマでタグを追加できます。" : "Press Enter or comma to add a tag."}</FormDescription>
+      <FormDescription>
+        Enter またはカンマでタグを追加できます。
+      </FormDescription>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  TagInput,
+} from "@gunjo/ui";
+
+export function AssetTagField() {
+  const [tags, setTags] = React.useState<string[]>(["docs", "review"]);
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="tags">Tags</FormLabel>
+      <FormControl>
+        <TagInput
+          id="tags"
+          value={tags}
+          onValueChange={setTags}
+          placeholder="Add tag..."
+          removeLabel="Remove tag"
+        />
+      </FormControl>
+      <FormDescription>
+        Press Enter or comma to add a tag.
+      </FormDescription>
     </FormGroup>
   );
 }`;
 
-    const usageCode = `import { FormControl, FormGroup, FormLabel, TagInput } from "@gunjo/ui";
+    const usageCode = isJa
+        ? `import * as React from "react";
+import { FormControl, FormGroup, FormLabel, TagInput } from "@gunjo/ui";
 
-<FormGroup className="w-full max-w-sm">
-  <FormLabel htmlFor="tags">${locale === "ja" ? "タグ" : "Tags"}</FormLabel>
-  <FormControl>
-    <TagInput
-      id="tags"
-      value={tags}
-      onValueChange={setTags}
-      maxTags={5}
-      removeLabel="${locale === "ja" ? "タグを削除" : "Remove tag"}"
-    />
-  </FormControl>
-</FormGroup>`;
+export function ArticleTagField() {
+  const [tags, setTags] = React.useState<string[]>(["資料", "確認中"]);
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="tags">タグ</FormLabel>
+      <FormControl>
+        <TagInput
+          id="tags"
+          value={tags}
+          onValueChange={setTags}
+          maxTags={5}
+          removeLabel="タグを削除"
+        />
+      </FormControl>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import { FormControl, FormGroup, FormLabel, TagInput } from "@gunjo/ui";
+
+export function ArticleTagField() {
+  const [tags, setTags] = React.useState<string[]>(["docs", "review"]);
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="tags">Tags</FormLabel>
+      <FormControl>
+        <TagInput
+          id="tags"
+          value={tags}
+          onValueChange={setTags}
+          maxTags={5}
+          removeLabel="Remove tag"
+        />
+      </FormControl>
+    </FormGroup>
+  );
+}`;
 
     const propsData = [
         { name: "id", type: "string", description: locale === "ja" ? "内部の入力欄に付与する id です。ラベルとの紐づけに使います。" : "Applied to the inner input so the label can target the field." },
@@ -150,26 +219,62 @@ export function TagInputDemo() {
                             title: locale === "ja" ? "上限あり" : "With max tags",
                             description: locale === "ja" ? "タグ数に上限がある場合は補足文で条件を伝えます。" : "When tags are limited, explain the limit in helper text.",
                             preview: <TagInputStatePreview maxTags={3} />,
-                            code: `import * as React from "react";
-import { FormControl, FormDescription, FormGroup, FormLabel, TagInput } from "@gunjo/ui";
+                            code: isJa
+                                ? `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  TagInput,
+} from "@gunjo/ui";
 
 export function LimitedTagInput() {
-  const [tags, setTags] = React.useState<string[]>([${locale === "ja" ? '"資料", "確認中"' : '"docs", "review"'}]);
+  const [tags, setTags] = React.useState<string[]>(["資料", "確認中"]);
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="limited-tags">${locale === "ja" ? "タグ" : "Tags"}</FormLabel>
+      <FormLabel htmlFor="limited-tags">タグ</FormLabel>
       <FormControl>
         <TagInput
           id="limited-tags"
           value={tags}
           onValueChange={setTags}
           maxTags={3}
-          placeholder="${locale === "ja" ? "タグを追加..." : "Add tag..."}"
-          removeLabel="${locale === "ja" ? "タグを削除" : "Remove tag"}"
+          placeholder="タグを追加..."
+          removeLabel="タグを削除"
         />
       </FormControl>
-      <FormDescription>${locale === "ja" ? "最大 3 件まで追加できます。" : "Add up to 3 tags."}</FormDescription>
+      <FormDescription>最大 3 件まで追加できます。</FormDescription>
+    </FormGroup>
+  );
+}`
+                                : `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  TagInput,
+} from "@gunjo/ui";
+
+export function LimitedTagInput() {
+  const [tags, setTags] = React.useState<string[]>(["docs", "review"]);
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="limited-tags">Tags</FormLabel>
+      <FormControl>
+        <TagInput
+          id="limited-tags"
+          value={tags}
+          onValueChange={setTags}
+          maxTags={3}
+          placeholder="Add tag..."
+          removeLabel="Remove tag"
+        />
+      </FormControl>
+      <FormDescription>Add up to 3 tags.</FormDescription>
     </FormGroup>
   );
 }`,
@@ -179,15 +284,25 @@ export function LimitedTagInput() {
                             title: locale === "ja" ? "無効化" : "Disabled",
                             description: locale === "ja" ? "編集できない理由はツールチップと補足文で伝えます。" : "Explain why editing is disabled with a tooltip and helper text.",
                             preview: <TagInputStatePreview disabled />,
-                            code: `import * as React from "react";
-import { FormControl, FormDescription, FormGroup, FormLabel, TagInput, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                            code: isJa
+                                ? `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  TagInput,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@gunjo/ui";
 
 export function DisabledTagInput() {
-  const [tags, setTags] = React.useState<string[]>([${locale === "ja" ? '"資料", "確認中"' : '"docs", "review"'}]);
+  const [tags, setTags] = React.useState<string[]>(["資料", "確認中"]);
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="tag-disabled">${locale === "ja" ? "タグ" : "Tags"}</FormLabel>
+      <FormLabel htmlFor="tag-disabled">タグ</FormLabel>
       <FormControl>
         <Tooltip>
           <TooltipTrigger asChild>
@@ -196,16 +311,57 @@ export function DisabledTagInput() {
                 id="tag-disabled"
                 value={tags}
                 onValueChange={setTags}
-                placeholder="${locale === "ja" ? "タグを追加..." : "Add tag..."}"
-                removeLabel="${locale === "ja" ? "タグを削除" : "Remove tag"}"
+                placeholder="タグを追加..."
+                removeLabel="タグを削除"
                 disabled
               />
             </span>
           </TooltipTrigger>
-          <TooltipContent>${locale === "ja" ? "この素材はアーカイブ済みです。" : "This asset is archived."}</TooltipContent>
+          <TooltipContent>この素材はアーカイブ済みです。</TooltipContent>
         </Tooltip>
       </FormControl>
-      <FormDescription>${locale === "ja" ? "アーカイブ済みの素材ではタグを編集できません。" : "Archived assets cannot be edited."}</FormDescription>
+      <FormDescription>
+        アーカイブ済みの素材ではタグを編集できません。
+      </FormDescription>
+    </FormGroup>
+  );
+}`
+                                : `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  TagInput,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+} from "@gunjo/ui";
+
+export function DisabledTagInput() {
+  const [tags, setTags] = React.useState<string[]>(["docs", "review"]);
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="tag-disabled">Tags</FormLabel>
+      <FormControl>
+        <Tooltip>
+          <TooltipTrigger asChild>
+            <span className="block w-full" tabIndex={0}>
+              <TagInput
+                id="tag-disabled"
+                value={tags}
+                onValueChange={setTags}
+                placeholder="Add tag..."
+                removeLabel="Remove tag"
+                disabled
+              />
+            </span>
+          </TooltipTrigger>
+          <TooltipContent>This asset is archived.</TooltipContent>
+        </Tooltip>
+      </FormControl>
+      <FormDescription>Archived assets cannot be edited.</FormDescription>
     </FormGroup>
   );
 }`,

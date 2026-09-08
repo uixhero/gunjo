@@ -701,8 +701,8 @@ export default function ColorsPage() {
                     {c.eyebrow}
                 </p>
                 <h1 className="text-4xl font-bold tracking-tight">{c.heading}</h1>
-                <p className="max-w-3xl text-lg text-muted-foreground">{c.subtitle}</p>
-                <p className="max-w-3xl text-sm text-muted-foreground">
+                <p className="text-lg text-muted-foreground">{c.subtitle}</p>
+                <p className="text-sm text-muted-foreground">
                     {c.fixedUrlLead}
                     <a
                         href="/tokens.css"

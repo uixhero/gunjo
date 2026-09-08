@@ -99,7 +99,7 @@ export default function TypographyPage() {
                     {c.eyebrow}
                 </p>
                 <h1 className="text-4xl font-bold tracking-tight">{c.heading}</h1>
-                <p className="max-w-2xl text-lg text-muted-foreground">{c.subtitle}</p>
+                <p className="text-lg text-muted-foreground">{c.subtitle}</p>
             </header>
 
             <section className="space-y-4">

@@ -9,6 +9,7 @@ import { ChartPreviewWithControls } from "@/components/doc/ChartPreviewWithContr
 import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
 import { BarChart } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const weeklyData = [
     { label: "月", value: 42, color: "primary" },
@@ -66,8 +67,10 @@ const data = [
     { label: "Thu", value: 68, color: "info" },
 ];
 
-export function WeeklyActivity() {
-    return <BarChart data={data} averageValue={50} averageLabel="Average" />;
+export function WeeklyActivityBars() {
+    return (
+        <BarChart data={data} averageValue={50} averageLabel="Average" />
+    );
 }`,
     ja: `import { BarChart } from "@gunjo/ui";
 
@@ -78,8 +81,10 @@ const data = [
     { label: "木", value: 68, color: "info" },
 ];
 
-export function WeeklyActivity() {
-    return <BarChart data={data} averageValue={50} averageLabel="平均" />;
+export function WeeklyActivityBars() {
+    return (
+        <BarChart data={data} averageValue={50} averageLabel="平均" />
+    );
 }`,
 } as const;
 
@@ -93,10 +98,16 @@ const data = [
     { label: "Thu", value: 68, color: "info" },
 ];
 
-<BarChart data={data} />
-<BarChart data={data} variant="horizontal" showValues />
-<BarChart data={data} averageValue={50} averageLabel="Average" />
-<BarChart data={data} showGrid={false} showLabels={false} />`,
+export function BarChartUsage() {
+    return (
+        <div className="grid gap-6">
+            <BarChart data={data} />
+            <BarChart data={data} variant="horizontal" showValues />
+            <BarChart data={data} averageValue={50} averageLabel="Average" />
+            <BarChart data={data} showGrid={false} showLabels={false} />
+        </div>
+    );
+}`,
     ja: `import { BarChart } from "@gunjo/ui";
 
 const data = [
@@ -106,98 +117,202 @@ const data = [
     { label: "木", value: 68, color: "info" },
 ];
 
-<BarChart data={data} />
-<BarChart data={data} variant="horizontal" showValues />
-<BarChart data={data} averageValue={50} averageLabel="平均" />
-<BarChart data={data} showGrid={false} showLabels={false} />`,
+export function BarChartUsage() {
+    return (
+        <div className="grid gap-6">
+            <BarChart data={data} />
+            <BarChart data={data} variant="horizontal" showValues />
+            <BarChart data={data} averageValue={50} averageLabel="平均" />
+            <BarChart data={data} showGrid={false} showLabels={false} />
+        </div>
+    );
+}`,
 } as const;
 
 const stateCodeByLocale = {
     en: {
-        vertical: `const data = [
-  { label: "Mon", value: 42, color: "primary" },
-  { label: "Tue", value: 58, color: "success" },
-  { label: "Wed", value: 36, color: "warning" },
-  { label: "Thu", value: 68, color: "info" },
-  { label: "Fri", value: 54, color: "primary" },
+        vertical: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+    { label: "Mon", value: 42, color: "primary" },
+    { label: "Tue", value: 58, color: "success" },
+    { label: "Wed", value: 36, color: "warning" },
+    { label: "Thu", value: 68, color: "info" },
+    { label: "Fri", value: 54, color: "primary" },
 ];
 
-<BarChart data={data} className="mx-auto max-w-md" />`,
-        reference: `const data = [
-  { label: "Mon", value: 42, color: "primary" },
-  { label: "Tue", value: 58, color: "success" },
-  { label: "Wed", value: 36, color: "warning" },
-  { label: "Thu", value: 68, color: "info" },
-  { label: "Fri", value: 54, color: "primary" },
+export function WeeklyActivityBars() {
+    return (
+        <BarChart data={data} className="mx-auto max-w-md" />
+    );
+}`,
+        reference: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+    { label: "Mon", value: 42, color: "primary" },
+    { label: "Tue", value: 58, color: "success" },
+    { label: "Wed", value: 36, color: "warning" },
+    { label: "Thu", value: 68, color: "info" },
+    { label: "Fri", value: 54, color: "primary" },
 ];
 
-<BarChart
-  data={data}
-  averageValue={50}
-  averageLabel="Average"
-  className="mx-auto max-w-md"
-  showValues
-/>`,
-        horizontal: `const data = [
-  { label: "Search", value: 74, color: "primary" },
-  { label: "Social", value: 48, color: "info" },
-  { label: "Ads", value: 62, color: "warning" },
-  { label: "Referral", value: 31, color: "success" },
+export function WeeklyActivityWithAverage() {
+    return (
+        <BarChart
+            data={data}
+            averageValue={50}
+            averageLabel="Average"
+            className="mx-auto max-w-md"
+            showValues
+        />
+    );
+}`,
+        horizontal: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+    { label: "Search", value: 74, color: "primary" },
+    { label: "Social", value: 48, color: "info" },
+    { label: "Ads", value: 62, color: "warning" },
+    { label: "Referral", value: 31, color: "success" },
 ];
 
-<BarChart data={data} variant="horizontal" showValues />`,
-        quiet: `const data = [
-  { label: "Mon", value: 42, color: "primary" },
-  { label: "Tue", value: 58, color: "success" },
-  { label: "Wed", value: 36, color: "warning" },
-  { label: "Thu", value: 68, color: "info" },
-  { label: "Fri", value: 54, color: "primary" },
+export function ChannelRankingBars() {
+    return (
+        <BarChart data={data} variant="horizontal" showValues />
+    );
+}`,
+        threshold: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+    { label: "A", value: 42, color: "primary" },
+    { label: "B", value: 68, color: "primary" },
+    { label: "C", value: 51, color: "primary" },
+    { label: "D", value: 73, color: "primary" },
 ];
 
-<BarChart data={data} className="mx-auto max-w-md" showGrid={false} showLabels={false} />`,
+// Bars above 55 turn destructive; a limit line is drawn at 55.
+export function ThresholdBars() {
+    return (
+        <BarChart
+            data={data}
+            threshold={55}
+            thresholdLabel="Limit"
+            showValues
+        />
+    );
+}`,
+        quiet: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+    { label: "Mon", value: 42, color: "primary" },
+    { label: "Tue", value: 58, color: "success" },
+    { label: "Wed", value: 36, color: "warning" },
+    { label: "Thu", value: 68, color: "info" },
+    { label: "Fri", value: 54, color: "primary" },
+];
+
+export function QuietWeeklyBars() {
+    return (
+        <BarChart
+            data={data}
+            className="mx-auto max-w-md"
+            showGrid={false}
+            showLabels={false}
+        />
+    );
+}`,
     },
     ja: {
-        vertical: `const data = [
-  { label: "月", value: 42, color: "primary" },
-  { label: "火", value: 58, color: "success" },
-  { label: "水", value: 36, color: "warning" },
-  { label: "木", value: 68, color: "info" },
-  { label: "金", value: 54, color: "primary" },
+        vertical: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+    { label: "月", value: 42, color: "primary" },
+    { label: "火", value: 58, color: "success" },
+    { label: "水", value: 36, color: "warning" },
+    { label: "木", value: 68, color: "info" },
+    { label: "金", value: 54, color: "primary" },
 ];
 
-<BarChart data={data} className="mx-auto max-w-md" />`,
-        reference: `const data = [
-  { label: "月", value: 42, color: "primary" },
-  { label: "火", value: 58, color: "success" },
-  { label: "水", value: 36, color: "warning" },
-  { label: "木", value: 68, color: "info" },
-  { label: "金", value: 54, color: "primary" },
+export function WeeklyActivityBars() {
+    return (
+        <BarChart data={data} className="mx-auto max-w-md" />
+    );
+}`,
+        reference: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+    { label: "月", value: 42, color: "primary" },
+    { label: "火", value: 58, color: "success" },
+    { label: "水", value: 36, color: "warning" },
+    { label: "木", value: 68, color: "info" },
+    { label: "金", value: 54, color: "primary" },
 ];
 
-<BarChart
-  data={data}
-  averageValue={50}
-  averageLabel="平均"
-  className="mx-auto max-w-md"
-  showValues
-/>`,
-        horizontal: `const data = [
-  { label: "検索", value: 74, color: "primary" },
-  { label: "SNS", value: 48, color: "info" },
-  { label: "広告", value: 62, color: "warning" },
-  { label: "紹介", value: 31, color: "success" },
+export function WeeklyActivityWithAverage() {
+    return (
+        <BarChart
+            data={data}
+            averageValue={50}
+            averageLabel="平均"
+            className="mx-auto max-w-md"
+            showValues
+        />
+    );
+}`,
+        horizontal: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+    { label: "検索", value: 74, color: "primary" },
+    { label: "SNS", value: 48, color: "info" },
+    { label: "広告", value: 62, color: "warning" },
+    { label: "紹介", value: 31, color: "success" },
 ];
 
-<BarChart data={data} variant="horizontal" showValues />`,
-        quiet: `const data = [
-  { label: "月", value: 42, color: "primary" },
-  { label: "火", value: 58, color: "success" },
-  { label: "水", value: 36, color: "warning" },
-  { label: "木", value: 68, color: "info" },
-  { label: "金", value: 54, color: "primary" },
+export function ChannelRankingBars() {
+    return (
+        <BarChart data={data} variant="horizontal" showValues />
+    );
+}`,
+        threshold: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+    { label: "A", value: 42, color: "primary" },
+    { label: "B", value: 68, color: "primary" },
+    { label: "C", value: 51, color: "primary" },
+    { label: "D", value: 73, color: "primary" },
 ];
 
-<BarChart data={data} className="mx-auto max-w-md" showGrid={false} showLabels={false} />`,
+// 55 を超えた棒は destructive トーンになり、55 の位置に上限ラインを引きます。
+export function ThresholdBars() {
+    return (
+        <BarChart
+            data={data}
+            threshold={55}
+            thresholdLabel="上限"
+            showValues
+        />
+    );
+}`,
+        quiet: `import { BarChart } from "@gunjo/ui";
+
+const data = [
+    { label: "月", value: 42, color: "primary" },
+    { label: "火", value: 58, color: "success" },
+    { label: "水", value: 36, color: "warning" },
+    { label: "木", value: 68, color: "info" },
+    { label: "金", value: 54, color: "primary" },
+];
+
+export function QuietWeeklyBars() {
+    return (
+        <BarChart
+            data={data}
+            className="mx-auto max-w-md"
+            showGrid={false}
+            showLabels={false}
+        />
+    );
+}`,
     },
 } as const;
 
@@ -253,6 +368,12 @@ export default function BarChartPage() {
                 { name: "AnalyticsCard", href: "/docs/components/analytics-card" },
                 { name: "ChartLegend", href: "/docs/components/chart-legend" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: 棒グラフ（Bar Chart）" : "UIXHERO: Bar Chart (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/bar-chart`,
+                },
+            ]}
         >
             <ChartPreviewWithControls
                 code={code}
@@ -300,17 +421,7 @@ export default function BarChartPage() {
                                 ? "threshold を渡すと上限ラインを引き、それを超えた棒を destructive トーンで塗ります。スライダーで上限を動かすと、棒が超過した瞬間に色が変わります。"
                                 : "Pass threshold to draw a limit line and paint bars above it in the destructive tone. Drag the slider to move the limit and watch bars flip as they cross it.",
                             preview: <ThresholdBarDemo locale={locale} />,
-                            code: `import { BarChart } from "@gunjo/ui";
-
-const data = [
-  { label: "A", value: 42, color: "primary" },
-  { label: "B", value: 68, color: "primary" },
-  { label: "C", value: 51, color: "primary" },
-  { label: "D", value: 73, color: "primary" },
-];
-
-// Bars above 55 turn destructive; a limit line is drawn at 55.
-<BarChart data={data} threshold={55} thresholdLabel="${locale === "ja" ? "上限" : "Limit"}" showValues />`,
+                            code: stateCodeByLocale[locale].threshold,
                         },
                         {
                             key: "horizontal",
@@ -346,6 +457,38 @@ const data = [
                 </div>
                 <CodeBlock code={usageCode} />
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>基線を動かす指定を、作りませんでした。</strong>資料は「縦軸はゼロから始める」を最優先の判断に挙げています。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">BarChart</code> には下端を決める prop がありません。棒の長さは常に「値 ÷ 上端 × 100」で、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> は上端を上げるだけです。差が小さくて読み取れないときに軸を切る、という逃げ道を部品の側で塞いでいます。
+                        </li>
+                        <li>
+                            <strong>上限の超過は、色と同時に読み上げ名にも入ります。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">threshold</code> を渡すと上限の線が引かれ、超えた棒が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">thresholdTone</code>（既定は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">destructive</code>）で塗られます。それだけでは色だけの合図になるので、超えた棒の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> の末尾に「(over Limit)」が付きます（#285）。画面の上でも文字にしたいときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showValues</code> を足してください。上端は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code>・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">averageValue</code>・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">threshold</code>・データの最大値のうち最も大きいものになるので、線が枠の外に出ることはありません。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">thresholdLabel</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">averageLabel</code> の既定は英語なので、日本語の画面では渡し直します。
+                        </li>
+                        <li>
+                            <strong>数値の整形は、呼ぶ側に残しました。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> は関数を渡す prop なので、サーバーコンポーネントからは渡せません。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PieChart</code> などにはシリアライズできる <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code> を足しましたが（#338）、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">BarChart</code> にはまだありません。桁区切りを変えたいときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'"use client"'}</code> の境界を挟みます。棒は div の幅と高さで描いていて SVG ではないので、色は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ChartTone</code> の名前で渡します。綴りを間違えた色は開発中に一度だけ警告が出ます（#296）。
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>There is no way to move the baseline.</strong> The article makes “start the value axis at zero” its first principle. GUNJO&rsquo;s <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">BarChart</code> has no prop for the lower bound. A bar&rsquo;s length is always value divided by the top of the scale, and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> only raises that top. The escape hatch of truncating the axis when differences look too small is closed inside the component.
+                        </li>
+                        <li>
+                            <strong>Crossing the limit is announced in text, not only in colour.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">threshold</code> and the chart draws a limit line and paints bars above it in <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">thresholdTone</code> (default <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">destructive</code>). Colour alone would not reach every reader, so each over-limit bar appends “(over Limit)” to its <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> (#285). Add <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">showValues</code> when the same signal has to be readable on screen. The top of the scale is the largest of <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">averageValue</code>, <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">threshold</code> and the data, so a reference line never lands outside the track. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">thresholdLabel</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">averageLabel</code> default to English and should be replaced on a Japanese screen.
+                        </li>
+                        <li>
+                            <strong>Number formatting stays with the caller.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> is a function prop, so it cannot be passed from a Server Component. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">PieChart</code> and its siblings gained the serializable <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code> (#338); <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">BarChart</code> has not yet. Until it does, put a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'"use client"'}</code> boundary in between. Bars are plain divs sized by width and height rather than SVG, so colours arrive as <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ChartTone</code> names; a misspelled tone warns once in development (#296).
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

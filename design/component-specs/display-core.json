@@ -5010,6 +5010,30 @@
         }
       ]
     },
+    "statusLevel": {
+      "frameId": "synthetic:statusLevel",
+      "title": "StatusLevel",
+      "description": "The ORDERED qualitative level indicator: a scale written once (levels[], low end → high end) plus the current value, rendered as a colour-safe chip and a filled-step bar that reads 「4段階中 3段目」 to screen readers. For states that have a rank — 空いています < やや混雑 < 混雑, 平常運転 < 遅延 < 迂回 < 運休, 低 < 中 < 高 < 緊急, good < watch < bad, 在庫 多/少, 鮮度, 難易度. The order lives in ONE array, so the sort key (compareStatusLevel), the roll-up (highestStatusLevel) and the pill cannot drift apart — the papercut behind the hand-rolled LEVEL_META + LEVEL_BADGE + LEVEL_SEVERITY + rank quartet. Tone is the WEIGHT of a step, never the order: the bar is drawn in foreground-vs-border shades, not semantic tones, so the step count survives greyscale. NOT for unordered states (支払済 / 請求中, 下書き / 公開) — that is Badge. NOT for a position in a process (受付 → 審査 → 完了, 空席 → 着席 → 会計) — that is Stepper / ApprovalSteps / RouteStops, which advance without getting heavier. Pairs with the pure statusLevelIndex / statusLevelStep / compareStatusLevel / highestStatusLevel helpers, mirroring how ExpiryBadge pairs with classifyExpiry(). RSC-safe.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
     "leaderboard": {
       "frameId": "synthetic:leaderboard",
       "title": "Leaderboard",

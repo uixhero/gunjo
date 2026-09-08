@@ -169,6 +169,7 @@ export const navigation = [
             { title: "StatGroup", href: "/docs/components/stat-group" },
             { title: "Statistic", href: "/docs/components/statistic" },
             { title: "StatusBoard", href: "/docs/components/status-board" },
+            { title: "StatusLevel", href: "/docs/components/status-level" },
             { title: "SwatchGroup", href: "/docs/components/swatch-group" },
             { title: "Table", href: "/docs/components/table" },
             { title: "Tag", href: "/docs/components/tag" },

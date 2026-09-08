@@ -3,10 +3,12 @@
 import * as React from "react";
 import { CollapsiblePanelToggle, cn } from "@gunjo/ui";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
+import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import layoutMetadata from "@design/layout-metadata.json";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const usageCodeByLocale = {
     en: `import { CollapsiblePanelToggle } from "@gunjo/ui";
@@ -454,6 +456,13 @@ export default function CollapsiblePanelToggleDocPage() {
                 { name: "Resizable", href: "/docs/components/resizable" },
                 { name: "Sheet", href: "/docs/components/sheet" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: トグルボタン（Toggle）" : "UIXHERO: Toggle (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/toggle`,
+                    relation: "nearest",
+                },
+            ]}
         >
             <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="lg" previewHeight="auto">
                 <LeftPanelPreview locale={locale} />
@@ -465,64 +474,40 @@ export default function CollapsiblePanelToggleDocPage() {
                         {locale === "ja" ? "状態とバリエーション" : "States and Variants"}
                     </h2>
                 </div>
-                <div className="space-y-8">
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "左境界" : "Left edge"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja"
-                                    ? "左側のナビゲーションやサイドバーを開閉する標準的な境界トグルです。"
-                                    : "Use this standard edge toggle to collapse a left navigation or sidebar."}
-                            </p>
-                        </div>
-                        <ComponentPreview
-                            code={stateCodeByLocale[locale].left}
-                            codeBlock={<CodeBlock code={stateCodeByLocale[locale].left} />}
-                            previewBodyWidth="md"
-                            previewHeight="auto"
-                        >
-                            <LeftPanelPreview locale={locale} />
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "右境界" : "Right edge"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja"
-                                    ? "右側の補助パネルやインスペクターを開閉する境界トグルです。"
-                                    : "Use this toggle on the right edge for aside panels or inspectors."}
-                            </p>
-                        </div>
-                        <ComponentPreview
-                            code={stateCodeByLocale[locale].right}
-                            codeBlock={<CodeBlock code={stateCodeByLocale[locale].right} />}
-                            previewBodyWidth="md"
-                            previewHeight="auto"
-                        >
-                            <RightPanelPreview locale={locale} />
-                        </ComponentPreview>
-                    </section>
-
-                    <section className="space-y-3">
-                        <div className="space-y-1">
-                            <h3 className="text-lg font-semibold">{locale === "ja" ? "上境界" : "Top edge"}</h3>
-                            <p className="text-sm text-muted-foreground">
-                                {locale === "ja"
-                                    ? "上部のフィルターや補助ツールバーを開閉する境界トグルです。"
-                                    : "Use this toggle on the top edge for filter bars or auxiliary toolbars."}
-                            </p>
-                        </div>
-                        <ComponentPreview
-                            code={stateCodeByLocale[locale].top}
-                            codeBlock={<CodeBlock code={stateCodeByLocale[locale].top} />}
-                            previewBodyWidth="md"
-                            previewHeight="auto"
-                        >
-                            <TopPanelPreview locale={locale} />
-                        </ComponentPreview>
-                    </section>
-                </div>
+                <ComponentDemoStates
+                    states={[
+                        {
+                            key: "left-edge",
+                            title: locale === "ja" ? "左境界" : "Left edge",
+                            description: locale === "ja" ? "左側のナビゲーションやサイドバーを開閉する標準的な境界トグルです。" : "Use this standard edge toggle to collapse a left navigation or sidebar.",
+                            code: stateCodeByLocale[locale].left,
+                            previewBodyWidth: "md",
+                            preview: (
+                                <LeftPanelPreview locale={locale} />
+                            ),
+                        },
+                        {
+                            key: "right-edge",
+                            title: locale === "ja" ? "右境界" : "Right edge",
+                            description: locale === "ja" ? "右側の補助パネルやインスペクターを開閉する境界トグルです。" : "Use this toggle on the right edge for aside panels or inspectors.",
+                            code: stateCodeByLocale[locale].right,
+                            previewBodyWidth: "md",
+                            preview: (
+                                <RightPanelPreview locale={locale} />
+                            ),
+                        },
+                        {
+                            key: "top-edge",
+                            title: locale === "ja" ? "上境界" : "Top edge",
+                            description: locale === "ja" ? "上部のフィルターや補助ツールバーを開閉する境界トグルです。" : "Use this toggle on the top edge for filter bars or auxiliary toolbars.",
+                            code: stateCodeByLocale[locale].top,
+                            previewBodyWidth: "md",
+                            preview: (
+                                <TopPanelPreview locale={locale} />
+                            ),
+                        },
+                    ]}
+                />
             </section>
 
             <div className="space-y-4">
@@ -543,6 +528,42 @@ export default function CollapsiblePanelToggleDocPage() {
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>ON と OFF ではなく、次にやることを書く。</strong>資料はトグルを「状態を持つボタン」と定義していますが、この部品は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-pressed</code> を持たず、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">collapsed</code> の値でラベルとアイコンを「開く／閉じる」に入れ替える押しボタンです。パネルの開閉は結果が画面に大きく出るので、ボタン自身に状態を持たせるより「次にどうなるか」を書くほうが読みやすいと判断しました。
+                        </li>
+                        <li>
+                            <strong>どの辺のパネルかで、アイコンとツールチップの向きが決まる。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">side</code> に上下左右のどれかを渡すと、対応するアイコンに変わり、ツールチップはパネルの反対側に出ます。ツールチップが、自分が畳むパネルの上に重なると読めないためです。
+                        </li>
+                        <li>
+                            <strong>押した瞬間にツールチップを畳む。一方、パネルとの結び付きはまだ書いていません。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">tooltipCloseOnPress</code> を渡してあるので、押したあとに吹き出しが残りません。ただし <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-expanded</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-controls</code> で「どのパネルを開くのか」を伝えるところは<strong>まだ書いていません</strong>。読み上げでは、ラベルの「パネルを開く」までしか分かりません。
+                            <br />
+                            一般のトグルの設計は UIXHERO の「トグルボタン」にあります。
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>It states the next action, not an on/off state.</strong> The article defines a toggle as a button that holds state. This one deliberately does not set <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-pressed</code>: <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">collapsed</code> swaps the label and icon between open and close. Collapsing a panel produces a large visible result, so naming what will happen next reads better than reporting a pressed state.
+                        </li>
+                        <li>
+                            <strong>The panel&rsquo;s edge decides the icon and the tooltip side.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">side</code> as left, right, top or bottom and the icon changes to match while the tooltip opens on the opposite side, because a tooltip that lands on the very panel being collapsed cannot be read.
+                        </li>
+                        <li>
+                            <strong>The tooltip closes on press; the link to the panel is not written yet.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">tooltipCloseOnPress</code> is set, so no bubble is left hanging after the press. But <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-expanded</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-controls</code> are <strong>not written yet</strong>, so a screen reader hears only the label and never learns which panel this button governs.
+                            <br />
+                            The general design of toggles is covered by UIXHERO&rsquo;s toggle article.
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }
