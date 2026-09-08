@@ -5,7 +5,7 @@
   "score": "4/5",
   "category": "運輸：トラック",
   "title": "AI にトラックの労務コンプライアンス画面を作らせてみた — 「値 vs X」系統の4番目がコンポーネント化（やってみた #161）",
-  "summary": "`tsc` 緑・デスクトップ情報密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "「値 vs X」系統が4つになった。予備知識ゼロの AI が「自分で指摘した罠」に自分で落ちた。",
   "article": {
     "file": "zenn-yattemita-161-truck-compliance.md",
     "slug": "161-truck-compliance",

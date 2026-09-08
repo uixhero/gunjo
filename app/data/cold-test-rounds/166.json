@@ -5,7 +5,7 @@
   "score": "4/5",
   "category": "運輸：トラック",
   "title": "AI に国際輸送・通関追跡を作らせてみた — RouteStops が「複数日対応」でコンポーネント化（やってみた #166）",
-  "summary": "`tsc` 緑・デスクトップ密。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "RouteStops の複数日対応が3回目でコンポーネント化。「予備知識ゼロの AI がコンポーネントを捨てて代替に逃げる」のは最も鋭い 3回確認のサイン。",
   "article": {
     "file": "zenn-yattemita-166-intl-shipment.md",
     "slug": "166-intl-shipment",

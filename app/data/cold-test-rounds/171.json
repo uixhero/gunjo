@@ -5,7 +5,7 @@
   "score": "4/5",
   "category": "会計・給与",
   "title": "AI に給与明細ダウンロード画面を作らせてみた — DocumentRow が生まれた、ListCard では「構造的に」作れない理由（やってみた #171）",
-  "summary": "型チェックも通り、モバイル・デスクトップ両対応。群青を一度も触っていない AI の感想：",
+  "summary": "ダウンロード書類の行が3回目でコンポーネントに。「既存コンポーネントでは構造的に無理」は、一番強い\"作るべき根拠\"。",
   "article": {
     "file": "zenn-yattemita-171-hr-documents.md",
     "slug": "171-hr-documents",

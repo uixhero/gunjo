@@ -7,6 +7,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import feedbackMetadata from "@design/feedback-metadata.json";
 import { StatusBar } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
     ja: `import { StatusBar } from "@gunjo/ui"
@@ -215,11 +216,11 @@ export default function StatusBarDocPage() {
     const isJa = locale === "ja";
     const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
 
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
 
     const workspaceCode = workspaceCodeByLocale[locale];
 
-    const editorCode = code;
+    const editorCode = usageCode;
 
     const issueCode = issueCodeByLocale[locale];
 
@@ -265,8 +266,14 @@ export default function StatusBarDocPage() {
                 { name: "Toast", href: "/docs/components/toast" },
             ]}
             sectionLabels={sectionLabels}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: ステータスバー（Status Bar）" : "UIXHERO: Status Bar (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/status-bar`,
+                },
+            ]}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewHeight="auto" previewBodyWidth="xl" sectionLabels={sectionLabels}>
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewHeight="auto" previewBodyWidth="xl" sectionLabels={sectionLabels}>
                 <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
                     <div className="border-b bg-muted/40 px-4 py-2 text-sm font-medium">
                         {isJa ? "記事エディタ" : "Article editor"}
@@ -416,11 +423,43 @@ export default function StatusBarDocPage() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="rounded-md border bg-muted font-mono text-sm max-h-[350px] overflow-auto">
-                    <CodeBlock code={code} />
+                    <CodeBlock code={usageCode} />
                 </div>
+            </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>左右の2つではなく、真ん中を足して3つにした。</strong>資料は「左に重要な状態、右に補足情報」の2つの区画を挙げています。GUNJO は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">leftNode</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">rightNode</code> に加えて、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">children</code> を真ん中の区画に置きました。左右は幅の3割で頭打ちにしてあるので、いちばん伝えたい一文が両端の情報に押し出されずに済みます。
+                        </li>
+                        <li>
+                            <strong>狭い画面では、真ん中だけが上の行に移る。</strong>640px 未満では2列の格子になり、真ん中の区画が上の行に回って全幅を取ります。横に3つ並べたまま縮めると3つとも読めない長さになるからです。区画の中身はすべて1行に収めて、溢れた分は省略します。
+                        </li>
+                        <li>
+                            <strong>変化の読み上げは入っていません。</strong>資料は「バー全体を <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-live</code> の領域にして、接続や保存の変化を読み上げる」を挙げています。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">StatusBar</code> は素の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">div</code> で、その指定を持ちません。知らせたい画面は、いまは属性を渡して足します。なお <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">fixed</code> の既定は入りで画面の下に貼り付くので、文書の中に埋めたいときは切ります。
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Three zones, not the two in the article.</strong> The article splits a status bar into important state on the left and supporting detail on the right. GUNJO adds <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">children</code> as a centre zone alongside <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">leftNode</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">rightNode</code>. Left and right are capped at 30 percent of the width, so the one line that matters most is not squeezed out by the details flanking it.
+                        </li>
+                        <li>
+                            <strong>On a narrow screen only the centre zone moves.</strong> Below 640px the bar becomes a two-column grid and the centre zone wraps to a full-width row above the others, because keeping three items side by side while shrinking leaves all three unreadable. Every zone truncates its content to a single line.
+                        </li>
+                        <li>
+                            <strong>Changes are not announced.</strong> The article asks that the whole bar be a live region so that connection or save changes are read out. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">StatusBar</code> is a plain <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">div</code> with no such marking, so a screen that needs it passes the attribute itself. Note also that <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">fixed</code> defaults to on and pins the bar to the bottom of the viewport; turn it off to embed the bar in a document.
+                        </li>
+                    </ul>
+                )}
             </section>
         </ComponentLayout>
     );

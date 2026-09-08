@@ -5,7 +5,7 @@
   "score": "4.5/5",
   "category": "人材・HR・採用",
   "title": "AI に人事評価を作らせてみた — 3回手組みされた「人物セル」を、その場でコンポーネントにした（やってみた #85）",
-  "summary": "採用3枚目。観測の核は明確だった——**`PersonCell`（人物セル）が3回目の手組みになれば、3回ルールが発火してその場で固まる。** #83 採用パイプライン・#84 名簿で別々の予備知識ゼロの AI が独立に手組みした、あの組み合わせ。",
+  "summary": "PersonCell を作る。3回ルールは「待つ規律」であり「作る引き金」。",
   "article": {
     "file": "zenn-yattemita-85-performance-review.md",
     "slug": "85-performance-review",

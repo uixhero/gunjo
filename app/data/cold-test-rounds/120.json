@@ -5,7 +5,7 @@
   "score": "3.5/5",
   "category": "運輸：鉄道",
   "title": "AI に駅構内ナビを作らせてみた — ListCard は新しい型でも効いた、でも「カテゴリの横スクロール」が無い（やってみた #120）",
-  "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "全業種共通の土台の「適用範囲」が広がり、まだ固まっていない土台の証拠が貯まる。カテゴリの「横スクロールするチップのナビ」が無い（FilterChips）。",
   "article": {
     "file": "zenn-yattemita-120-station-guide.md",
     "slug": "120-station-guide",

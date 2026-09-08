@@ -7,6 +7,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { ChartPreviewWithControls } from "@/components/doc/ChartPreviewWithControls";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import type { UixheroLink } from "@/lib/uixhero-links";
 
 type Locale = "en" | "ja";
 
@@ -34,6 +35,16 @@ interface ChartDocPageProps {
     states: Record<Locale, readonly DemoState[]>;
     usedComponents: Record<Locale, DocLink[]>;
     relatedComponents: Record<Locale, DocLink[]>;
+    /**
+     * "Design decisions" list items per locale, supplied by each page so the
+     * UIXHERO reference it cites lives next to the component it is about.
+     */
+    designDecisions?: Record<Locale, React.ReactNode>;
+    /**
+     * このページが自分で持つ UIXHERO の記事リンク。ラベルが言語で変わるので
+     * locale ごとに受け、「いつ・なぜ使うか（UIXHERO）」の節へ渡す。
+     */
+    uixheroLinks?: Record<Locale, UixheroLink[]>;
 }
 
 export function ChartDocPage({
@@ -48,6 +59,8 @@ export function ChartDocPage({
     states,
     usedComponents,
     relatedComponents,
+    designDecisions,
+    uixheroLinks,
 }: ChartDocPageProps) {
     const { locale, sectionLabels } = useLocale();
     const currentCode = code[locale];
@@ -60,6 +73,7 @@ export function ChartDocPage({
             sectionLabels={sectionLabels}
             usedComponents={usedComponents[locale]}
             relatedComponents={relatedComponents[locale]}
+            uixheroLinks={uixheroLinks?.[locale]}
         >
             <ChartPreviewWithControls
                 code={currentCode}
@@ -87,6 +101,19 @@ export function ChartDocPage({
                 </div>
                 <CodeBlock code={currentUsageCode} />
             </div>
+
+            {designDecisions ? (
+                <section className="space-y-4">
+                    <div className="border-b pb-2">
+                        <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                            {locale === "ja" ? "設計の判断" : "Design decisions"}
+                        </h2>
+                    </div>
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        {designDecisions[locale]}
+                    </ul>
+                </section>
+            ) : null}
         </ComponentLayout>
     );
 }
