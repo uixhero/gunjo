@@ -52,8 +52,13 @@ const REQUIRED = [
     "glossary",
 ];
 
+// The material is what a translator actually reads: the title and the article
+// body. `summary` used to be in here too, but it is now derived from the
+// markdown (scripts/coldtest-summary.mjs), so hashing it only means that
+// tuning the summary rule marks all 117 translations stale for a change no
+// translator would act on. Any real prose edit still moves the markdown.
 function sourceHash(ja) {
-    const material = [ja.title, ja.summary, ja.article?.markdown ?? ""].join("\n \n");
+    const material = [ja.title, ja.article?.markdown ?? ""].join("\n \n");
     return `sha256:${crypto.createHash("sha256").update(material, "utf8").digest("hex")}`;
 }
 

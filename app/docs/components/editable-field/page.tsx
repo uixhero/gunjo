@@ -145,6 +145,7 @@ function FeedbackEditableField({
 
 export default function EditableFieldPage() {
     const { locale, sectionLabels } = useLocale();
+    const usageCode = codeByLocale[locale];
     const [title, setTitle] = React.useState("Campaign_Hero_2026");
     const [note, setNote] = React.useState(
         locale === "ja"
@@ -185,7 +186,7 @@ export default function EditableFieldPage() {
                 { name: "AssetInspectorPanel", href: "/docs/components/asset-inspector-panel" },
             ]}
         >
-            <ComponentPreview code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="sm">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="sm">
                 <div className="grid w-full max-w-sm gap-4">
                     <EditableField
                         label={locale === "ja" ? "タイトル" : "Title"}
@@ -225,7 +226,7 @@ export default function EditableFieldPage() {
                                     />
                                 </div>
                             ),
-                            code: codeByLocale[locale],
+                            code: usageCode,
                         },
                         {
                             key: "multi-line",
@@ -459,10 +460,10 @@ export function EmptyEditableField() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </div>
         </ComponentLayout>

@@ -5,7 +5,7 @@
   "score": "4.5/5",
   "category": "運輸：鉄道",
   "title": "AI に鉄道の車両検査を作らせてみた — 索引が「全部正解・誤誘導ゼロ」になった（やってみた #108）",
-  "summary": "#106指令・#107乗務員に続く設備/保守側。鉄道を三本柱（運行・人・車両）で締める。",
+  "summary": "索引がパーフェクトに。発見可能性の複利が満点に届いた。",
   "article": {
     "file": "zenn-yattemita-108-rail-maintenance.md",
     "slug": "108-rail-maintenance",

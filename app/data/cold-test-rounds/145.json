@@ -5,7 +5,7 @@
   "score": "4.5/5",
   "category": "運輸：タクシー",
   "title": "AI にタクシーの苦情・事故管理を作らせてみた — 型は通るのに無視される「嘘の prop」を見つけた回（やってみた #145）",
-  "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "ケース管理という別系統も土台に乗った。「予備知識ゼロのテストは4種類の欠陥を炙り出す」。",
   "article": {
     "file": "zenn-yattemita-145-taxi-incidents.md",
     "slug": "145-taxi-incidents",

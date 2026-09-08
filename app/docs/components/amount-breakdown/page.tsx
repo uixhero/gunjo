@@ -109,6 +109,61 @@ function AmountBreakdownPreview({ locale, initialFault = "30" }: { locale: Local
   );
 }
 
+function AmountTonePreview({ locale }: { locale: Locale }) {
+  const isJa = locale === "ja";
+  const refundLines: AmountLine[] = isJa
+    ? [
+        { type: "heading", label: "中途解約の精算" },
+        { label: "年間保険料", amount: 84_000 },
+        { label: "経過分保険料", kind: "subtract", amount: 35_000, note: "5か月ぶん" },
+      ]
+    : [
+        { type: "heading", label: "Mid-term cancellation" },
+        { label: "Annual premium", amount: 84_000 },
+        { label: "Premium already earned", kind: "subtract", amount: 35_000, note: "Five months" },
+      ];
+  const shortfallLines: AmountLine[] = isJa
+    ? [
+        { type: "heading", label: "認定損害額" },
+        { label: "修理費", amount: 180_000 },
+        { type: "subtotal", label: "認定損害額 計", amount: 180_000 },
+        { label: "過失相殺", kind: "subtract", amount: 90_000, note: "認定額 × 過失割合 50%" },
+        { label: "免責金額", kind: "subtract", amount: 50_000 },
+        { label: "既払金（内払）", kind: "subtract", amount: 100_000 },
+      ]
+    : [
+        { type: "heading", label: "Certified loss" },
+        { label: "Repair", amount: 180_000 },
+        { type: "subtotal", label: "Certified loss total", amount: 180_000 },
+        { label: "Fault deduction", kind: "subtract", amount: 90_000, note: "Certified total x 50% fault ratio" },
+        { label: "Deductible", kind: "subtract", amount: 50_000 },
+        { label: "Already paid", kind: "subtract", amount: 100_000 },
+      ];
+
+  return (
+    <div className="grid w-full max-w-3xl gap-4 sm:grid-cols-2">
+      <Card className="p-5">
+        <AmountBreakdown
+          lines={refundLines}
+          total={{ label: isJa ? "返戻金" : "Refund due", amount: 49_000, tone: "positive" }}
+          formula={isJa ? "返戻金 = 年間保険料 - 経過分保険料" : "Refund = annual premium - premium already earned"}
+        />
+      </Card>
+      <Card className="p-5">
+        <AmountBreakdown
+          lines={shortfallLines}
+          total={{ label: isJa ? "今回支払額" : "Payment this time", amount: -60_000, tone: "negative" }}
+          formula={
+            isJa
+              ? "今回支払額 = 認定損害額 - 過失相殺 - 免責 - 既払金"
+              : "Payment = certified loss - fault deduction - deductible - already paid"
+          }
+        />
+      </Card>
+    </div>
+  );
+}
+
 export default function AmountBreakdownDocPage() {
   const { locale, sectionLabels } = useLocale();
   const content = getDocContent("components/amount-breakdown", locale);
@@ -299,6 +354,97 @@ export function NoFaultPaymentBreakdown() {
   );
 }`;
 
+  const toneCode = locale === "ja"
+    ? `import { AmountBreakdown, Card, type AmountLine } from "@gunjo/ui";
+
+const refundLines: AmountLine[] = [
+  { type: "heading", label: "中途解約の精算" },
+  { label: "年間保険料", amount: 84000 },
+  { label: "経過分保険料", kind: "subtract", amount: 35000, note: "5か月ぶん" },
+];
+
+const shortfallLines: AmountLine[] = [
+  { type: "heading", label: "認定損害額" },
+  { label: "修理費", amount: 180000 },
+  { type: "subtotal", label: "認定損害額 計", amount: 180000 },
+  {
+    label: "過失相殺",
+    kind: "subtract",
+    amount: 90000,
+    note: "認定額 × 過失割合 50%",
+  },
+  { label: "免責金額", kind: "subtract", amount: 50000 },
+  { label: "既払金（内払）", kind: "subtract", amount: 100000 },
+];
+
+export function TotalTones() {
+  return (
+    <div className="grid gap-4 sm:grid-cols-2">
+      <Card className="p-5">
+        <AmountBreakdown
+          lines={refundLines}
+          total={{ label: "返戻金", amount: 49000, tone: "positive" }}
+          formula="返戻金 = 年間保険料 - 経過分保険料"
+        />
+      </Card>
+      <Card className="p-5">
+        <AmountBreakdown
+          lines={shortfallLines}
+          total={{ label: "今回支払額", amount: -60000, tone: "negative" }}
+          formula="今回支払額 = 認定損害額 - 過失相殺 - 免責 - 既払金"
+        />
+      </Card>
+    </div>
+  );
+}`
+    : `import { AmountBreakdown, Card, type AmountLine } from "@gunjo/ui";
+
+const refundLines: AmountLine[] = [
+  { type: "heading", label: "Mid-term cancellation" },
+  { label: "Annual premium", amount: 84000 },
+  {
+    label: "Premium already earned",
+    kind: "subtract",
+    amount: 35000,
+    note: "Five months",
+  },
+];
+
+const shortfallLines: AmountLine[] = [
+  { type: "heading", label: "Certified loss" },
+  { label: "Repair", amount: 180000 },
+  { type: "subtotal", label: "Certified loss total", amount: 180000 },
+  {
+    label: "Fault deduction",
+    kind: "subtract",
+    amount: 90000,
+    note: "Certified total x 50% fault ratio",
+  },
+  { label: "Deductible", kind: "subtract", amount: 50000 },
+  { label: "Already paid", kind: "subtract", amount: 100000 },
+];
+
+export function TotalTones() {
+  return (
+    <div className="grid gap-4 sm:grid-cols-2">
+      <Card className="p-5">
+        <AmountBreakdown
+          lines={refundLines}
+          total={{ label: "Refund due", amount: 49000, tone: "positive" }}
+          formula="Refund = annual premium - premium already earned"
+        />
+      </Card>
+      <Card className="p-5">
+        <AmountBreakdown
+          lines={shortfallLines}
+          total={{ label: "Payment this time", amount: -60000, tone: "negative" }}
+          formula="Payment = certified loss - fault deduction - deductible - already paid"
+        />
+      </Card>
+    </div>
+  );
+}`;
+
   const propsData = [
     {
       name: "lines",
@@ -382,6 +528,15 @@ export function NoFaultPaymentBreakdown() {
                 : "When parent inputs change the math, AmountBreakdown displays the derived values.",
               preview: <AmountBreakdownPreview locale={locale} initialFault="0" />,
               code: noFaultCode,
+            },
+            {
+              key: "total-tone",
+              title: locale === "ja" ? "合計のトーン" : "The tone of the total",
+              description: locale === "ja"
+                ? "戻る額は positive、足りない額は negative。控除行のマイナスは本物の − 記号なので、色が読めなくても符号が分かります。"
+                : "Money coming back uses positive, a shortfall uses negative. Deduction rows carry a real − glyph, so the sign never rides on colour alone.",
+              preview: <AmountTonePreview locale={locale} />,
+              code: toneCode,
             },
           ]}
         />

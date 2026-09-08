@@ -5,7 +5,7 @@
   "score": "4.5/5",
   "category": "飲食・レストラン",
   "title": "AI にレストラン予約管理を作らせてみた — 直前に作った StatGroup が、もう新業界で使われた（やってみた #95）",
-  "summary": "13業界目は飲食。観測：**直前に作った `StatGroup`（＋人物の階層 PersonCell/RelationshipRow）が、レストランという全く別の業界の予備知識ゼロの AI に自力で発掘されるか。**",
+  "summary": "「作る→次画面で発掘」は、3コンポーネント・業界横断で法則になった。人物の階層3コンポーネントが、全部発掘された。",
   "article": {
     "file": "zenn-yattemita-95-restaurant-reservations.md",
     "slug": "95-restaurant-reservations",

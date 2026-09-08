@@ -8,6 +8,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
 import { AssetCard } from "@gunjo/ui";
 import * as React from "react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const asset = {
     id: "hero",
@@ -105,6 +106,7 @@ const propsDataByLocale = {
 export default function AssetCardDocPage() {
     const [selected, setSelected] = React.useState(true);
     const { locale, sectionLabels } = useLocale();
+    const usageCode = codeByLocale[locale];
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
 
     return (
@@ -123,10 +125,17 @@ export default function AssetCardDocPage() {
                 { name: "MediaLightbox", href: "/docs/components/media-lightbox" },
                 { name: "AssetInspectorPanel", href: "/docs/components/asset-inspector-panel" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: カード（Card）" : "UIXHERO: Card (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+                    relation: "nearest",
+                },
+            ]}
         >
             <ComponentPreview
-                code={codeByLocale[locale]}
-                codeBlock={<CodeBlock code={codeByLocale[locale]} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 previewBodyWidth="sm"
                 previewHeight="auto"
             >
@@ -166,7 +175,7 @@ export default function AssetCardDocPage() {
                                 />
                             ),
                             previewHeight: "auto",
-                            code: codeByLocale[locale],
+                            code: usageCode,
                         },
                         {
                             key: "compact",
@@ -325,12 +334,48 @@ export function FileAssetCard() {
             <div className="space-y-4">
                 <div className="flex items-center justify-between gap-3 border-b pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{locale === "ja" ? "使い方" : "Usage"}</h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>画像の比率を固定して、揃うのは枠のほうにした。</strong>資料は「画像は比率を固定してグリッドのガタつきをなくす」を挙げています。GUNJO は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ImagePreview</code> に比率を持たせ、写真が縦でも横でも枠の大きさが変わらないようにしました。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">imageFit</code> で「切り抜く（cover）」か「収める（contain）」かを選べます。素材の管理画面では、切り抜かれると困る絵があるためです。
+                        </li>
+                        <li>
+                            <strong>お気に入りのボタンだけはカードの中に置いた。</strong>資料は「カード全体を押せるようにするなら、中にボタンを入れない」を挙げています。この部品はカード全体が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="button"'}</code> ですが、お気に入りだけは例外として中に置き、クリックの伝播を止めて選択と切り分けています。一覧のまま星を付ける操作を、詳細を開かずに済ませたいからです。
+                        </li>
+                        <li>
+                            <strong>選択の印は色ではなく形で出す。</strong>選ばれたカードは枠の色だけでなく、右上に丸のチェックが出ます。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">selectionMode</code> が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">multiple</code> のときは、選ばれていなくても空の丸を先に出して「ここは複数選べる」を見せます。
+                            <br />
+                            一般のカードの設計は UIXHERO の「カード」にあります。
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>The aspect ratio is pinned so the frames line up.</strong> The article asks for a fixed image ratio to stop grids from jittering. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ImagePreview</code> owns that ratio, so portrait and landscape assets occupy the same box. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">imageFit</code> chooses between <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">cover</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">contain</code>, because in an asset manager some artwork must not be cropped.
+                        </li>
+                        <li>
+                            <strong>The favourite button is the one control allowed inside the card.</strong> The article warns against putting buttons inside a card that is itself clickable. The card shell here is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="button"'}</code>, and the favourite toggle is the deliberate exception: it stops propagation so it never triggers selection. Starring an asset should not require opening it.
+                        </li>
+                        <li>
+                            <strong>Selection is shown by shape, not only by colour.</strong> A selected card gets a circular check in the top-right corner as well as the coloured frame. When <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">selectionMode</code> is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">multiple</code>, an empty circle appears even before anything is selected, so the multi-select affordance is visible up front.
+                            <br />
+                            The general design of cards is covered by UIXHERO&rsquo;s card article.
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

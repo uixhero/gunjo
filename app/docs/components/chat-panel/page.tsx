@@ -330,7 +330,6 @@ export default function ChatPanelDocPage() {
                 codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewBodyWidth="md"
-                previewHeight={760}
             >
                 <ChatPanelAuditDemo toastPlacement="container" />
             </ComponentPreview>
@@ -348,7 +347,6 @@ export default function ChatPanelDocPage() {
                             preview: <ChatPanelAuditDemo toastPlacement="container" />,
                             code: usageCode,
                             previewBodyWidth: "md",
-                            previewHeight: 760,
                         },
                         {
                             key: "empty",
@@ -373,7 +371,6 @@ export default function ChatPanelDocPage() {
                             ),
                             code: emptyCode,
                             previewBodyWidth: "md",
-                            previewHeight: 760,
                         },
                         {
                             key: "welcome",
@@ -386,7 +383,6 @@ export default function ChatPanelDocPage() {
                             ),
                             code: welcomeCode,
                             previewBodyWidth: "md",
-                            previewHeight: 800,
                         },
                         {
                             key: "compact",
@@ -395,7 +391,7 @@ export default function ChatPanelDocPage() {
                             preview: (
                                 <PreviewToastScope>
                                     <ChatPanelWithActionToast
-                                        className="h-[420px]"
+                                        variant="compact"
                                         title={isJa ? "サポートチャット" : "Support chat"}
                                         messages={[
                                             { id: "assistant", role: "assistant", userName: isJa ? "サポート" : "Support", content: isJa ? "短い確認に使います。" : "Use this for a compact review.", timestamp: "10:01" },
@@ -405,9 +401,8 @@ export default function ChatPanelDocPage() {
                                     />
                                 </PreviewToastScope>
                             ),
-                            code: usageCode.replace("description=\"会話履歴と入力欄を同じパネルで扱います。\"", "className=\"h-[420px]\""),
+                            code: usageCode.replace('      title="サポートチャット"', '      variant="compact"\n      title="サポートチャット"'),
                             previewBodyWidth: "md",
-                            previewHeight: 520,
                         },
                     ]}
                 />

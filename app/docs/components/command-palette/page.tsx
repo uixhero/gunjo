@@ -18,8 +18,9 @@ import {
     IconUserCircle as UserRound,
 } from "@tabler/icons-react";
 import { useEffect, useMemo, useState } from "react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
-function CommandPaletteExample({ minimal = false, defaultOpen = false }: { minimal?: boolean; defaultOpen?: boolean }) {
+function CommandPaletteExample({ minimal = false, empty = false, defaultOpen = false }: { minimal?: boolean; empty?: boolean; defaultOpen?: boolean }) {
     const { locale } = useLocale();
     const isJa = locale === "ja";
     const [open, setOpen] = useState(defaultOpen);
@@ -37,7 +38,7 @@ function CommandPaletteExample({ minimal = false, defaultOpen = false }: { minim
     }, []);
 
     const groups = useMemo(
-        () => [
+        () => (empty ? [] : [
             {
                 heading: isJa ? "移動" : "Navigation",
                 items: [
@@ -65,8 +66,8 @@ function CommandPaletteExample({ minimal = false, defaultOpen = false }: { minim
                           ],
                       },
                   ]),
-        ],
-        [isJa, minimal]
+        ]),
+        [empty, isJa, minimal]
     );
 
     return (
@@ -86,7 +87,15 @@ function CommandPaletteExample({ minimal = false, defaultOpen = false }: { minim
                     onOpenChange={setOpen}
                     dialogTitle={isJa ? "コマンドパレット" : "Command palette"}
                     placeholder={isJa ? "コマンドまたはページを検索..." : "Search commands or pages..."}
-                    emptyMessage={isJa ? "一致するコマンドがありません。" : "No commands found."}
+                    emptyMessage={
+                        empty
+                            ? isJa
+                                ? "使えるコマンドがまだありません。権限が付くとここに並びます。"
+                                : "No commands are available yet. They appear here once you have access."
+                            : isJa
+                              ? "一致するコマンドがありません。"
+                              : "No commands found."
+                    }
                     clearLabel={isJa ? "検索をクリア" : "Clear search"}
                     portalContainer={portalContainer}
                     groups={groups}
@@ -469,12 +478,65 @@ export function SmallCommandPalette() {
 }`,
 };
 
+const emptyCodeByLocale = {
+    ja: `"use client"
+
+import { Button, CommandPalette } from "@gunjo/ui"
+import { useState } from "react"
+
+export function EmptyCommandPalette() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <Button type="button" variant="outline" onClick={() => setOpen(true)}>
+        コマンドパレットを開く
+      </Button>
+      <CommandPalette
+        open={open}
+        onOpenChange={setOpen}
+        dialogTitle="コマンドパレット"
+        placeholder="コマンドまたはページを検索..."
+        emptyMessage="使えるコマンドがまだありません。権限が付くとここに並びます。"
+        clearLabel="検索をクリア"
+        groups={[]}
+      />
+    </>
+  )
+}`,
+    en: `"use client"
+
+import { Button, CommandPalette } from "@gunjo/ui"
+import { useState } from "react"
+
+export function EmptyCommandPalette() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <Button type="button" variant="outline" onClick={() => setOpen(true)}>
+        Open command palette
+      </Button>
+      <CommandPalette
+        open={open}
+        onOpenChange={setOpen}
+        dialogTitle="Command palette"
+        placeholder="Search commands or pages..."
+        emptyMessage="No commands are available yet. They appear here once you have access."
+        clearLabel="Clear search"
+        groups={[]}
+      />
+    </>
+  )
+}`,
+} as const;
+
 export default function CommandPalettePage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
     const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
 
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
 
     const minimalCode = minimalCodeByLocale[locale];
 
@@ -494,11 +556,17 @@ export default function CommandPalettePage() {
                 { name: "Combobox", href: "/docs/components/combobox" },
                 { name: "SearchInput", href: "/docs/components/search-input" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: コマンドパレット（Command Palette）" : "UIXHERO: Command Palette (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/command-palette`,
+                },
+            ]}
         >
             <ComponentPreview
                 embedSrc="/embed/command-palette"
-                code={code}
-                codeBlock={<CodeBlock code={code} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewBodyWidth="xl"
             >
@@ -519,7 +587,7 @@ export default function CommandPalettePage() {
                                 : "Combine global destinations and actions, and expose a keyboard shortcut to open it.",
                             preview: <CommandPaletteExample />,
                             previewBodyWidth: "xl",
-                            code,
+                            code: usageCode,
                         },
                         {
                             key: "small-set",
@@ -530,6 +598,16 @@ export default function CommandPalettePage() {
                             preview: <CommandPaletteExample minimal />,
                             previewBodyWidth: "xl",
                             code: minimalCode,
+                        },
+                        {
+                            key: "no-commands",
+                            title: isJa ? "コマンドが無いとき" : "When there are no commands",
+                            description: isJa
+                                ? "権限がまだ無い、あるいは絞り込みで全部消えたときに出る面です。開いて何も無いのが分かるよう、emptyMessage は「無い理由」まで書きます。"
+                                : "What the palette shows when nothing is available yet, or the filter removed everything. Write emptyMessage so it says why, not just that the list is empty.",
+                            preview: <CommandPaletteExample empty />,
+                            previewBodyWidth: "xl",
+                            code: emptyCodeByLocale[locale],
                         },
                     ]}
                 />
@@ -595,12 +673,44 @@ export default function CommandPalettePage() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={code} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {isJa ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {isJa ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>並びは呼ぶ側のデータで決める。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">groups</code> に見出しと項目を渡すと、群ごとに見出しが付き、群と群のあいだに区切りが入ります。資料が言う「最近使ったもの」「移動」「操作」の並べ分けは、この形でそのまま書けます。
+                        </li>
+                        <li>
+                            <strong>打った文字の当たり先を広げる。</strong>項目ごとの <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">keywords</code> に、表示名だけでなくショートカットの文字も入れています。入力欄は開いた時点で焦点が入り、消すボタンには <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">clearLabel</code> で名前を付けます。見つからないときの文言は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">LocaleProvider</code> から取るので、日本語の画面では日本語で出ます。
+                        </li>
+                        <li>
+                            <strong>画面の高さを超えない。</strong>中身の高さは画面の高さから余白を引いた値で頭打ちにしてあります。項目が増えても、パレットが画面の外にはみ出して下が押せなくなることがありません。上下キー・Enter・Esc と焦点の閉じ込めは土台の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">CommandDialog</code> が持ちます。
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>The grouping is data, not markup.</strong> Pass headings and items through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">groups</code> and each group gets its heading with a separator drawn between groups. The recent / navigate / act split the article recommends is expressible directly in that shape.
+                        </li>
+                        <li>
+                            <strong>Widen what the typed text can hit.</strong> Each item lists both its label and its shortcut in <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">keywords</code>. The input takes focus as the palette opens, the clear control is named through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">clearLabel</code>, and the empty message falls back to the wording on <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">LocaleProvider</code>.
+                        </li>
+                        <li>
+                            <strong>It never grows past the viewport.</strong> The body height is capped against the viewport minus a margin, so a long list cannot push the palette off the bottom of the screen. Arrow keys, Enter, Escape and the focus trap all come from the underlying <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">CommandDialog</code>.
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

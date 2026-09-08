@@ -9,6 +9,7 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
 import { ExpiryBadge, Label, MetadataList, Slider, classifyExpiry } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Locale = "ja" | "en";
 
@@ -250,6 +251,90 @@ export function ComplianceExpiryList() {
   );
 }`;
 
+  const warnCode = locale === "ja"
+    ? `import { ExpiryBadge } from "@gunjo/ui";
+
+const TODAY = "2026-06-28";
+const EXPIRY_LABELS = {
+  valid: "有効",
+  expiring: "期限間近",
+  expired: "失効",
+  missing: "未登録",
+};
+
+function formatRemaining(days) {
+  if (days < 0) return Math.abs(days) + "日超過";
+  if (days === 0) return "本日まで";
+  return "残" + days + "日";
+}
+
+// 同じ期限日でも、何日前から知らせるかは書類ごとに違います。
+const POLICIES = [
+  { label: "既定（30日前から）", warnWithinDays: 30 },
+  { label: "健診の運用（14日前から）", warnWithinDays: 14 },
+  { label: "車検の運用（60日前から）", warnWithinDays: 60 },
+];
+
+export function ExpiryWarnWindows() {
+  return (
+    <div className="flex flex-col gap-2">
+      {POLICIES.map((policy) => (
+        <div key={policy.label} className="flex items-center gap-3">
+          <ExpiryBadge
+            value="2026-08-05"
+            today={TODAY}
+            warnWithinDays={policy.warnWithinDays}
+            labels={EXPIRY_LABELS}
+            formatRemaining={formatRemaining}
+          />
+          <span className="text-xs text-muted-foreground">{policy.label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}`
+    : `import { ExpiryBadge } from "@gunjo/ui";
+
+const TODAY = "2026-06-28";
+const EXPIRY_LABELS = {
+  valid: "Valid",
+  expiring: "Expiring",
+  expired: "Expired",
+  missing: "Missing",
+};
+
+function formatRemaining(days) {
+  if (days < 0) return Math.abs(days) + " days overdue";
+  if (days === 0) return "Due today";
+  return days + " days left";
+}
+
+// The same expiry date, but each document gets its own warning window.
+const POLICIES = [
+  { label: "Default (30 days ahead)", warnWithinDays: 30 },
+  { label: "Health check (14 days ahead)", warnWithinDays: 14 },
+  { label: "Vehicle inspection (60 days ahead)", warnWithinDays: 60 },
+];
+
+export function ExpiryWarnWindows() {
+  return (
+    <div className="flex flex-col gap-2">
+      {POLICIES.map((policy) => (
+        <div key={policy.label} className="flex items-center gap-3">
+          <ExpiryBadge
+            value="2026-08-05"
+            today={TODAY}
+            warnWithinDays={policy.warnWithinDays}
+            labels={EXPIRY_LABELS}
+            formatRemaining={formatRemaining}
+          />
+          <span className="text-xs text-muted-foreground">{policy.label}</span>
+        </div>
+      ))}
+    </div>
+  );
+}`;
+
   const propsData = [
     {
       name: "value",
@@ -327,6 +412,13 @@ export function ComplianceExpiryList() {
         { name: "ReferenceValue", href: "/docs/components/reference-value" },
         { name: "Meter", href: "/docs/components/meter" },
         { name: "Badge", href: "/docs/components/badge" },
+      ]}
+      uixheroLinks={[
+        {
+          label: locale === "ja" ? "UIXHERO: バッジ（Badge）" : "UIXHERO: Badge (in Japanese)",
+          href: `${UIXHERO_BASE_URL}/resources/ui-components/badge`,
+          relation: "nearest",
+        },
       ]}
     >
       <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewHeight="auto" previewBodyWidth="md">
@@ -517,6 +609,35 @@ export function ExpiryDensityBadges() {
   );
 }`,
             },
+            {
+              key: "warn-window",
+              title: locale === "ja" ? "いつから知らせるか" : "How early it warns",
+              description: locale === "ja"
+                ? "warnWithinDays は「期限間近」に入る日数です。同じ期限日でも、書類ごとに知らせ始める時期は違います。"
+                : "warnWithinDays is how many days ahead the badge turns to expiring. The same date warrants a different lead time per document.",
+              preview: (
+                <div className="flex flex-col gap-2">
+                  {[
+                    { days: 30, label: locale === "ja" ? "既定（30日前から）" : "Default (30 days ahead)" },
+                    { days: 14, label: locale === "ja" ? "健診の運用（14日前から）" : "Health check (14 days ahead)" },
+                    { days: 60, label: locale === "ja" ? "車検の運用（60日前から）" : "Vehicle inspection (60 days ahead)" },
+                  ].map((policy) => (
+                    <div key={policy.days} className="flex items-center gap-3">
+                      <ExpiryBadge
+                        value="2026-08-05"
+                        today={today}
+                        warnWithinDays={policy.days}
+                        labels={expiryLabels(locale)}
+                        formatRemaining={formatExpiryRemaining(locale)}
+                      />
+                      <span className="text-xs text-muted-foreground">{policy.label}</span>
+                    </div>
+                  ))}
+                </div>
+              ),
+              code: warnCode,
+              previewBodyWidth: "md",
+            },
           ]}
         />
       </section>
@@ -538,6 +659,42 @@ export function ExpiryDensityBadges() {
         <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
+      </section>
+      <section className="space-y-4">
+        <div className="border-b pb-2">
+          <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+            {locale === "ja" ? "設計の判断" : "Design decisions"}
+          </h2>
+        </div>
+        {locale === "ja" ? (
+          <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+            <li>
+              <strong>判定を部品から外に出した。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">classifyExpiry()</code> は表示を持たない関数で、日付を渡すと「有効・期限間近・失効・未登録」と残り日数を返します。表の並べ替えや件数の集計は、バッジを描かずにこの関数だけで済みます。
+            </li>
+            <li>
+              <strong>色だけに意味を乗せない。</strong>4つの状態それぞれに別のアイコンと文字（有効／期限間近／失効／未登録）が付きます。資料も「色だけでステータスを表現しない」を核に挙げています。文字は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">labels</code> で差し替えられます。
+            </li>
+            <li>
+              <strong>「期限間近」の線は呼ぶ側が引く。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">warnWithinDays</code> の既定は30日です。車検と資格と保険では警告を出したい時期が違うので、部品の中に固定しませんでした。数のバッジではないので、資料の「0件で非表示」「99件を超えたら99+」の丸めは持ちません。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">today</code> も props で、サーバーとブラウザで結果がずれないようにしています。
+              <br />
+              一般のバッジの設計は UIXHERO の「バッジ」にあります。
+            </li>
+          </ul>
+        ) : (
+          <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+            <li>
+              <strong>The classification lives outside the component.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">classifyExpiry()</code> renders nothing: give it a date and it returns one of valid, expiring, expired or missing, plus the number of days. Sorting a table or counting a fleet needs only that function, not the badge.
+            </li>
+            <li>
+              <strong>Colour never carries the meaning alone.</strong> Each of the four states has its own icon and its own words. The article makes exactly this its core principle. The wording is replaceable through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">labels</code>.
+            </li>
+            <li>
+              <strong>The caller draws the line for &ldquo;expiring&rdquo;.</strong> <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">warnWithinDays</code> defaults to 30, because an inspection, a licence and an insurance policy each want a different warning window. This is not a count badge, so the article&rsquo;s zero-hides and 99-plus rounding do not apply. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">today</code> is likewise a prop, so server and client agree.
+              <br />
+              The general design of badges is covered by UIXHERO&rsquo;s badge article.
+            </li>
+          </ul>
+        )}
       </section>
     </ComponentLayout>
   );

@@ -69,6 +69,7 @@ const propsDataByLocale = {
 
 export default function ImagePreviewDocPage() {
     const { locale, sectionLabels } = useLocale();
+    const usageCode = codeByLocale[locale];
     const content = getDocContent("components/image-preview", locale);
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
     const title = content?.title ?? meta.imagePreview.title;
@@ -91,8 +92,8 @@ export default function ImagePreviewDocPage() {
             ]}
         >
             <ComponentPreview
-                code={codeByLocale[locale]}
-                codeBlock={<CodeBlock code={codeByLocale[locale]} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 previewBodyWidth="sm"
                 previewHeight="auto"
             >
@@ -127,7 +128,7 @@ export default function ImagePreviewDocPage() {
                                 />
                             ),
                             previewHeight: "auto",
-                            code: codeByLocale[locale],
+                            code: usageCode,
                         },
                         {
                             key: "contain",
@@ -189,10 +190,10 @@ export function EmptyImagePreview() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
                 </div>
             </div>
         </ComponentLayout>
