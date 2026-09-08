@@ -20,6 +20,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { CATEGORIES, categoryOf } from "./coldtest-category-map.mjs";
+import { summaryFrom } from "./coldtest-summary.mjs";
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), "..");
 const PROMO = process.env.GUNJO_PROMOTION_DIR
@@ -79,47 +80,23 @@ function findArticle(round) {
     return { name, content };
 }
 
-// Pull the article H1 (`# ...`) and a single-paragraph summary out of the
-// raw markdown. The drafts don't use YAML frontmatter — the H1 is the first
-// non-blank line and the summary is the first plain paragraph after it
-// (skipping blockquotes, which carry the "やってみたシリーズ" boilerplate).
+// Pull the article H1 (`# ...`) and a summary out of the raw markdown. The
+// drafts don't use YAML frontmatter — the H1 is the first non-blank line.
+//
+// The summary used to be the first plain paragraph after that H1. In this
+// series the format fixes what that paragraph says (files, lines, type check,
+// no sideways scroll), so it always reported the work and never the finding.
+// `summaryFrom` quotes the 結果 / 学び headings instead — see
+// scripts/coldtest-summary.mjs.
 function extractArticleMeta(content) {
-    const lines = content.split("\n");
     let title = "";
-    let summary = "";
-
-    for (const line of lines) {
+    for (const line of content.split("\n")) {
         if (/^#\s+/.test(line)) {
             title = line.replace(/^#\s+/, "").trim();
             break;
         }
     }
-
-    let inFence = false;
-    const paragraph = [];
-    for (let i = 0; i < lines.length; i++) {
-        const line = lines[i];
-        if (/^```/.test(line)) {
-            inFence = !inFence;
-            continue;
-        }
-        if (inFence) continue;
-        if (/^#\s+/.test(line)) continue;
-        if (/^>/.test(line)) continue;
-        if (/^##+\s/.test(line)) {
-            if (paragraph.length) break;
-            continue;
-        }
-        if (!line.trim()) {
-            if (paragraph.length) break;
-            continue;
-        }
-        paragraph.push(line.trim());
-    }
-    summary = paragraph.join(" ").replace(/\s+/g, " ").trim();
-    if (summary.length > 280) summary = summary.slice(0, 277) + "…";
-
-    return { title, summary };
+    return { title, summary: summaryFrom(content) };
 }
 
 function articleSlugFromName(name) {

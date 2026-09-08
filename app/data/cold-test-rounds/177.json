@@ -5,7 +5,7 @@
   "score": "5/5",
   "category": "建設・建築",
   "title": "AI に出来高査定を作らせてみた：金額の内訳も承認も確定ロックも既にそろっていて、新しく作るものがほぼ無かった（やってみた #177）",
-  "summary": "予備知識ゼロの AI に、公開されている npm パッケージと gunjo.jp の docs だけを渡して組ませました。`tsc` は緑、モバイルとデスクトップの両対応です。",
+  "summary": "新しく作るものがほとんど出なかった。",
   "article": {
     "file": "zenn-yattemita-177-progress-billing.md",
     "slug": "177-progress-billing",

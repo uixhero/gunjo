@@ -5,7 +5,7 @@
   "score": "4/5",
   "category": "運輸：バス",
   "title": "AI に高速バスの座席予約を作らせてみた — 予約土台は丸ごと業界越え、SeatMap は「グリッドは完璧・属性は航空の形」（やってみた #139）",
-  "summary": "`tsc` 緑・375px mobile-first・5ステップ予約フロー。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "予約の土台の5コンポーネントが高速バスに丸ごと業界越え。「同じコンポーネントでも、抽象のレイヤーで業界越えの効き方が分かれる」。",
   "article": {
     "file": "zenn-yattemita-139-highway-bus.md",
     "slug": "139-highway-bus",

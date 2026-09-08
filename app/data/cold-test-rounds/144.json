@@ -5,7 +5,7 @@
   "score": "5/5",
   "category": "運輸：タクシー",
   "title": "AI にタクシーの車両管理画面を作らせてみた — 連載で初めての満点（5/5）（やってみた #144）",
-  "summary": "型チェックも通り、デスクトップ向けの密度で一発完成。群青を一度も触っていない AI の感想：",
+  "summary": "連載で初めての満点。共通するパターンに合わせて作ると、業界を越えて効く。",
   "article": {
     "file": "zenn-yattemita-144-taxi-maintenance.md",
     "slug": "144-taxi-maintenance",

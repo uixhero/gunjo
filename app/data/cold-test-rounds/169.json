@@ -5,7 +5,7 @@
   "score": "4/5",
   "category": "運輸：鉄道",
   "title": "AI に鉄道の定時性ダッシュボードを作らせてみた — ストック深掘りで Statistic goodWhen がコンポーネント化（やってみた #169）",
-  "summary": "`tsc` 緑・デスクトップ密。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "狙い通り Statistic goodWhen が3回目でコンポーネント化。「ストック深掘り」は狙った 3回確認を確実に踏ませる。",
   "article": {
     "file": "zenn-yattemita-169-line-performance.md",
     "slug": "169-line-performance",

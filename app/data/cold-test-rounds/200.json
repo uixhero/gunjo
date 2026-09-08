@@ -6,7 +6,7 @@
   "category": "保険",
   "audience": "toC",
   "title": "AI に保険の契約者マイページを作らせてみた：「人生の長さ」を描く道具が無かった（やってみた #200）",
-  "summary": "予備知識ゼロの AI に、公開されている npm パッケージと gunjo.jp の docs だけを渡して組ませました。`tsc` は緑、実行してもエラーはありません。",
+  "summary": "骨格は組めたが、保険という商品の形が描けなかった。「人の一生に関わるもの」を扱う画面が、まだ苦手。",
   "article": {
     "file": "zenn-yattemita-200-policy-portal.md",
     "slug": "200-policy-portal",
