@@ -8,10 +8,20 @@ import { COLD_TEST_ROUND_COUNT } from "@/lib/cold-test-count";
 import gallery from "@/data/cold-test-gallery.json";
 
 // 「このサイトの読み方」— site-wide orientation page (KeEem decision
-// 2026-08-22, issue #880). The core is the 2×2: who reads (人間/AI) ×
-// what they look at (見本/試験), with JA readers entering top-left and
-// EN readers entering bottom-right. JA-only for now; the EN version is
-// a separate task per the JA/EN split decision.
+// 2026-08-22, issue #880). The core is the 2×2: whose doing the face is
+// about (人間がすること / AI がすること) × what that doing is aimed at
+// (見本/試験). The row axis used to be "読み手が人間か AI か", which broke
+// on the AI×試験 face: the AI takes that test, it does not read that face,
+// and the card itself says human EN readers enter there (writing-review,
+// issue #968 item 1). "主役" was tried next and broke the same face for a
+// different reason — a blind reader reads 主役 as "the one acting under
+// its own steam", and the AI there is the one being measured, while
+// "AI に試験を受けさせる" is grammatically the human's doing
+// (writing-review, 2026-09-10). "〜がすること" survives all four: 見る /
+// 読む / 画面を組む / 試験を受ける. Entry (which corner a human reader
+// starts from) is a separate thing from the axis and is written as such.
+// JA readers enter top-left and EN readers bottom-right. JA-only for now;
+// the EN version is a separate task per the JA/EN split decision.
 
 interface GalleryShape {
     categories: string[];
@@ -46,7 +56,7 @@ const GENERIC_SCREEN_COUNT = (gallery as GalleryShape).entries.filter(
 const INDUSTRY_SCREEN_COUNT = COLD_TEST_ROUND_COUNT - GENERIC_SCREEN_COUNT;
 
 const TITLE = "このサイトの読み方";
-const DESCRIPTION = `gunjo.jp の案内図。読み手（人間と AI）と見るもの（見本と試験）で分かれる4つの面、コールドテストとは何か、見つかった不具合の3つの状態、この試験で言えること・言えないこと。`;
+const DESCRIPTION = `gunjo.jp の案内図。「人間がすること」と「AI がすること」、「見本」と「試験」で分かれる4つの面、コールドテストとは何か、見つかった不具合の3つの状態、この試験で言えること・言えないこと。`;
 const SITE_URL = (
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.gunjo.jp"
 ).replace(/\/$/, "");
@@ -70,7 +80,7 @@ export const metadata: Metadata = {
 const QUADRANTS = [
     {
         key: "human-sample",
-        row: "人間が読む",
+        row: "人間がすること",
         col: "見本",
         title: "完成した画面を見る",
         body: "自分の業種の業務画面が、実際にどんな見た目で組めるのかを確かめる面です。コンポーネント（画面を組み立てる部品）の一覧と、業種ごとの画面の見本があります。",
@@ -80,34 +90,41 @@ const QUADRANTS = [
     },
     {
         key: "human-test",
-        row: "人間が読む",
+        row: "人間がすること",
         col: "試験",
         title: "試験の記録を読む",
-        body: "作る過程の記録そのものを読む面です。何がすぐに組めて、どこにコンポーネントが足りず、見つかった不具合がいまどの状態にあるか。作り手の主張ではなく、記録で確かめられます。",
+        body: "作っている最中の記録そのものを読む面です。何がすぐに組めて、どこにコンポーネントが足りず、見つかった不具合がいまどの状態にあるか。作り手の主張ではなく、記録で確かめられます。",
         href: "/cold-tests",
         linkLabel: "試験の記録へ",
         entry: null,
     },
     {
         key: "ai-sample",
-        row: "AI が使う",
+        row: "AI がすること",
         col: "見本",
         title: "実例を足場にする",
         // "公開されているコンポーネントだけで組んだ" contradicted the section
         // below, which says the AI reports "何が足りなくて自前で組んだか"
         // (writing-review, 2026-09-08): if it hand-rolled the missing pieces,
-        // the screens are not built from published components alone.
-        body: "組み上がった画面はどれも、公開されているコンポーネントを土台に組んだ実例です。AI が足りない分を自前で補った箇所も、記録に残っています。実例と、AI がそのまま読める仕様書をまとめてあるので、「この業種の画面はこう組む」の出発点として参照できます。",
+        // the screens are not built from published components alone. The
+        // sentence stays; the doer of the face is named up front, because
+        // "足場にする"/"手本にする" left the row header "AI がすること"
+        // unfilled (writing-review, 2026-09-10).
+        body: "AI が、組み上がった画面を読んで、そこから新しい画面を組み始める面です。どれも公開されているコンポーネントを土台に組んだ実例で、コンポーネントが足りずに AI が自前で作って埋めた箇所も、記録に残っています。実例と、AI がそのまま読める仕様書をまとめてあるので、「この業種の画面はこう組む」の出発点になります。",
         href: "/docs/ai-handoff",
         linkLabel: "AI に渡す仕様書へ",
         entry: null,
     },
     {
         key: "ai-test",
-        row: "AI が使う",
+        row: "AI がすること",
         col: "試験",
-        title: "AI に試験を受けさせる",
-        body: "「gunjo.jp のドキュメントと npm パッケージ（部品の配布物）だけで、AI は本当に画面を組めるか」を測る試験です。英語圏で eval と呼ばれる、AI の実力測定と同じ形式です。",
+        title: "AI が試験を受ける",
+        // The only face where the doer and the reader differ, so it says so
+        // outright: the AI takes the test, a human reads the result, and the
+        // entry line below is about where a *human* starts reading — a
+        // separate thing from the row axis (writing-review, issue #968 item 1).
+        body: "「gunjo.jp のドキュメントと npm パッケージ（部品の配布物）だけで、AI は本当に画面を組めるか」を測る試験です。試験を受けるのは AI で、その結果を読むのは人間です。",
         href: "/cold-tests/why",
         linkLabel: "この試験の詳しい説明へ",
         entry: "英語圏の読者の多くは、ここから入ります",
@@ -124,8 +141,8 @@ const QUADRANTS = [
 // being hidden from screen readers. On sm+ the card grid already IS the square,
 // and the same review found nothing missing there, so the map stays hidden.
 const QUADRANT_MAP_ROWS = [
-    { axis: "人間", cells: [QUADRANTS[0], QUADRANTS[1]] },
-    { axis: "AI", cells: [QUADRANTS[2], QUADRANTS[3]] },
+    { axis: QUADRANTS[0].row, cells: [QUADRANTS[0], QUADRANTS[1]] },
+    { axis: QUADRANTS[2].row, cells: [QUADRANTS[2], QUADRANTS[3]] },
 ] as const;
 // Two kinds, two words, fixed here and used nowhere else under another
 // name: 足りないもの (a component that does not exist yet) and 不具合 (one
@@ -139,6 +156,14 @@ const QUADRANT_MAP_ROWS = [
 // went back to check whether they were the same thing (writing-review).
 const KIND_MISSING = "足りないもの（使いたいコンポーネントが群青に無い）";
 const KIND_DEFECT = "不具合（あるコンポーネントが正しく動かない）";
+
+// The rail is a couple of characters wide, so CJK line-breaking would split
+// the axis name mid-word ("人間がす" / "ること"). Break it after the particle
+// instead and render one chunk per line.
+function axisLines(axis: string): string[] {
+    const at = axis.indexOf("が");
+    return at < 0 ? [axis] : [axis.slice(0, at + 1), axis.slice(at + 1)];
+}
 const FLYWHEEL_STEPS = [
     `AI が画面を組む途中でつまずきます。行き当たるのは、${KIND_MISSING}か、${KIND_DEFECT}かのどちらかです。`,
     "つまずいた箇所は、その場で記録されます。不具合は誰でも見られる公開の課題票（GitHub の issue）になり、修正の対象になります。",
@@ -249,9 +274,9 @@ function QuadrantMap() {
     return (
         <figure
             className="sm:hidden"
-            aria-label="4つの面の配置図。横に見本と試験、縦に人間と AI。左上が「完成した画面を見る」で日本語圏の入口、右上が「試験の記録を読む」、左下が「実例を足場にする」、右下が「AI に試験を受けさせる」で英語圏の入口。"
+            aria-label="4つの面の配置図。縦は人間がすることか AI がすることか、横は見本か試験か。左上が「完成した画面を見る」で日本語圏の読者の入口、右上が「試験の記録を読む」、左下が「実例を足場にする」、右下が「AI が試験を受ける」で英語圏の読者の入口。"
         >
-            <div className="grid grid-cols-[1.75rem_1fr_1fr] gap-1 text-center">
+            <div className="grid grid-cols-[3.25rem_1fr_1fr] gap-1 text-center">
                 <div aria-hidden />
                 <div className="pb-0.5 text-xs font-semibold text-foreground">
                     見本
@@ -265,8 +290,10 @@ function QuadrantMap() {
                             labels: "AI" is Latin, and vertical-rl lays its two
                             letters on their side. The names are short enough to
                             fit the rail upright. */}
-                        <div className="flex items-center justify-center text-center text-xs font-semibold leading-4 text-foreground">
-                            {row.axis}
+                        <div className="flex flex-col items-center justify-center text-center text-xs font-semibold leading-4 text-foreground">
+                            {axisLines(row.axis).map((line) => (
+                                <span key={line}>{line}</span>
+                            ))}
                         </div>
                         {row.cells.map((cell) => (
                             <div
@@ -305,7 +332,7 @@ export default function HowToReadPage() {
                     </h1>
                     <p className="text-lg leading-8 text-muted-foreground">
                         gunjo.jp
-                        は、役割の違う4つの面でできています。読み手が「人間」か「AI」か。見ているものが「見本（完成した画面）」か「試験（作る過程の記録）」か。この2つの分け方で、サイト全体は4つの面に分かれます。このページは、その案内図です。
+                        は、役割の違う4つの面でできています。分け方は2つあります。1つ目は、その面で描かれているのが「人間がすること」（見る・読む）か「AI がすること」（画面を組む・試験を受ける）か。2つ目は、その面が扱っているのが「見本（完成した画面）」か「試験（作っている最中）」か。この2つで、サイト全体は4つの面に分かれます。このページは、その案内図です。
                     </p>
                     <LocalNav />
                 </header>
@@ -314,6 +341,15 @@ export default function HowToReadPage() {
                     <h2 className="text-2xl font-bold tracking-tight">
                         4つの面
                     </h2>
+                    {/* Placed above the square on purpose. In the lead it read
+                        as cancelling the split it had just followed; below the
+                        square the reader met the puzzle first and its answer
+                        second, and went back to the row headers to re-read
+                        (writing-review, 2026-09-10). Here it arrives before
+                        the square it settles. */}
+                    <p className="text-sm leading-6 text-muted-foreground">
+                        4つのどの面も、ページを読むのは人間です。分けているのは、その面で描かれている作業のほうです。
+                    </p>
 
                     {/* 2×2 figure. Tokens only — and no left-edge color band
                         emphasis (KeEem rule): entry corners are marked by a
@@ -323,7 +359,10 @@ export default function HowToReadPage() {
                     {/* data-toc-skip: the four cell titles are h3s for
                         structure, but they are figure labels, not page
                         sections — keep them out of the page TOC. */}
-                    <figure aria-label="サイトの4つの面の一覧図" data-toc-skip>
+                    <figure
+                        aria-label="サイトの4つの面の一覧図。縦は人間がすることか AI がすることか、横は見本か試験か。"
+                        data-toc-skip
+                    >
                         <div className="grid grid-cols-1 gap-3 sm:grid-cols-[auto_1fr_1fr] sm:gap-x-3 sm:gap-y-3">
                             {/* Column headers (sm+) */}
                             <div className="hidden sm:block" aria-hidden />
@@ -336,23 +375,23 @@ export default function HowToReadPage() {
                             <div className="hidden text-center text-sm font-semibold text-foreground sm:block">
                                 試験
                                 <span className="block text-xs font-normal text-muted-foreground">
-                                    作る過程の記録
+                                    作っている最中
                                 </span>
                             </div>
 
-                            {/* Row: 人間が読む */}
+                            {/* Row: 人間がすること */}
                             <div className="hidden items-center sm:flex">
                                 <span className="text-sm font-semibold text-foreground [writing-mode:vertical-rl]">
-                                    人間が読む
+                                    人間がすること
                                 </span>
                             </div>
                             <QuadrantCell quadrant={QUADRANTS[0]} />
                             <QuadrantCell quadrant={QUADRANTS[1]} />
 
-                            {/* Row: AI が使う */}
+                            {/* Row: AI がすること */}
                             <div className="hidden items-center sm:flex">
                                 <span className="text-sm font-semibold text-foreground [writing-mode:vertical-rl]">
-                                    AI が使う
+                                    AI がすること
                                 </span>
                             </div>
                             <QuadrantCell quadrant={QUADRANTS[2]} />
@@ -371,8 +410,10 @@ export default function HowToReadPage() {
                         日本語圏と英語圏で、入口が逆になる
                     </h2>
                     <p className="leading-7 text-foreground">
-                        日本語圏の読者の多くは、左上の「完成した画面を見る」から入ります。自分の業種でも組めそうだと確かめてから、試験の記録へ進みます。英語圏の読者の多くは、その対角にある右下の「AI
-                        に試験を受けさせる」から入ります。試験の結果を先に確かめて、それから完成した画面を見に行きます。入る角は逆で、通る順も逆です。それでも、どちらの道も「見本」と「試験」の両方を通ります。
+                        日本語圏の読者の多くは、左上の「完成した画面を見る」から入り、見本の2面を見てから、試験の2面へ進みます。英語圏の読者の多くは、その対角にある右下の「AI
+                        が試験を受ける」から入り、試験の2面を確かめてから、見本の2面へ来ます。英語圏では、AI
+                        にどこまでできるかを測るこの種の試験を eval
+                        と呼んでいて、そちらの読者になじみがあるためです。入口は対角で、たどる向きも逆です。それでも、どちらの道も「見本」と「試験」の両方を通ります。
                     </p>
                 </section>
 
