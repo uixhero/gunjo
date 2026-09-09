@@ -15,6 +15,7 @@ import gallery from "@/data/cold-test-gallery.json";
 
 interface GalleryShape {
     categories: string[];
+    entries: { category: string }[];
 }
 // Industry count, computed the same way as /cold-tests/why (WhyView):
 // transport modes are cited separately (listed by name below) and the
@@ -31,9 +32,21 @@ const INDUSTRY_COUNT = (gallery as GalleryShape).categories.filter(
 const TRANSPORT_MODES = (gallery as GalleryShape).categories
     .filter((category) => category.startsWith(TRANSPORT_CATEGORY_PREFIX))
     .map((category) => category.slice(TRANSPORT_CATEGORY_PREFIX.length));
+// The prose used to name the 15 and the 5 without ever saying whether the
+// 5 were inside the 15 (issue #968), so it now leads with the total and
+// shows the addition. Both halves stay derived, so the sum can't drift.
+const INDUSTRY_TOTAL = INDUSTRY_COUNT + TRANSPORT_MODES.length;
+// Screens that pick no industry (settings, login, dashboard …). The series
+// opened with these, so they are the earliest rounds and always sit inside
+// COLD_TEST_ROUND_COUNT — which lets the industry half be the remainder
+// instead of a second count that could drift away from the total.
+const GENERIC_SCREEN_COUNT = (gallery as GalleryShape).entries.filter(
+    (entry) => entry.category === GENERIC_CATEGORY,
+).length;
+const INDUSTRY_SCREEN_COUNT = COLD_TEST_ROUND_COUNT - GENERIC_SCREEN_COUNT;
 
 const TITLE = "このサイトの読み方";
-const DESCRIPTION = `gunjo.jp の案内図。読み手（人間と AI）と見るもの（見本と試験）で分かれる4つの面、コールドテストとは何か、見つかった不備の3つの状態、この試験で言えること・言えないこと。`;
+const DESCRIPTION = `gunjo.jp の案内図。読み手（人間と AI）と見るもの（見本と試験）で分かれる4つの面、コールドテストとは何か、見つかった不具合の3つの状態、この試験で言えること・言えないこと。`;
 const SITE_URL = (
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.gunjo.jp"
 ).replace(/\/$/, "");
@@ -70,7 +83,7 @@ const QUADRANTS = [
         row: "人間が読む",
         col: "試験",
         title: "試験の記録を読む",
-        body: "作る過程の記録そのものを読む面です。何がすぐに組めて、どこにコンポーネントが足りず、見つかった不備がいまどの状態にあるか。作り手の主張ではなく、記録で確かめられます。",
+        body: "作る過程の記録そのものを読む面です。何がすぐに組めて、どこにコンポーネントが足りず、見つかった不具合がいまどの状態にあるか。作り手の主張ではなく、記録で確かめられます。",
         href: "/cold-tests",
         linkLabel: "試験の記録へ",
         entry: null,
@@ -84,9 +97,9 @@ const QUADRANTS = [
         // below, which says the AI reports "何が足りなくて自前で組んだか"
         // (writing-review, 2026-09-08): if it hand-rolled the missing pieces,
         // the screens are not built from published components alone.
-        body: "組み上がった画面はどれも、公開されているコンポーネントを土台に組んだ実例です。足りずに自前で補った箇所も記録に残っています。AI は「この業種の画面はこう組む」の出発点として参照できます。",
+        body: "組み上がった画面はどれも、公開されているコンポーネントを土台に組んだ実例です。AI が足りない分を自前で補った箇所も、記録に残っています。実例と、AI がそのまま読める仕様書をまとめてあるので、「この業種の画面はこう組む」の出発点として参照できます。",
         href: "/docs/ai-handoff",
-        linkLabel: "AI 向けの入口へ",
+        linkLabel: "AI に渡す仕様書へ",
         entry: null,
     },
     {
@@ -114,12 +127,24 @@ const QUADRANT_MAP_ROWS = [
     { axis: "人間", cells: [QUADRANTS[0], QUADRANTS[1]] },
     { axis: "AI", cells: [QUADRANTS[2], QUADRANTS[3]] },
 ] as const;
+// Two kinds, two words, fixed here and used nowhere else under another
+// name: 足りないもの (a component that does not exist yet) and 不具合 (one
+// that exists but misbehaves). The page used to call them 欠陥, 不備 and
+// 不具合 by turns, which left "3つの状態" hanging between the two and hid
+// the fact that they are handled differently (issue #968). つまずく stays,
+// but only as the verb for what the AI does, never as a name for either.
+// Both wordings are used twice on the page (here and above the three
+// states). They are constants so the two copies can never drift apart —
+// a context-zero reader who met "使いたい" once and "欲しい" the next time
+// went back to check whether they were the same thing (writing-review).
+const KIND_MISSING = "足りないもの（使いたいコンポーネントが群青に無い）";
+const KIND_DEFECT = "不具合（あるコンポーネントが正しく動かない）";
 const FLYWHEEL_STEPS = [
-    "AI が画面を組む途中でつまずきます。足りないコンポーネントに当たるか、既存コンポーネントの欠陥に当たるかです。",
-    "つまずいた箇所は、その場で記録されます。欠陥は誰でも見られる公開の課題票（GitHub の issue）になり、修正の対象になります。",
+    `AI が画面を組む途中でつまずきます。行き当たるのは、${KIND_MISSING}か、${KIND_DEFECT}かのどちらかです。`,
+    "つまずいた箇所は、その場で記録されます。不具合は誰でも見られる公開の課題票（GitHub の issue）になり、修正の対象になります。",
     "同じ「このコンポーネントが足りない」という記録が3回たまると、そのコンポーネントを正式に作って群青に加えます。",
-    "次の AI は、同じ場所でつまずきません。",
-    "コンポーネントが増えるほど、新しいつまずきが起きるのは、まだ試していない種類の画面だけになります。",
+    "そこから先の AI は、同じ場所でつまずきません。不具合も、修正が配られた後は同じです。",
+    "コンポーネントが増えるほど、足りないものでつまずく先は、まだ試していない種類の画面だけになります。不具合のほうは、一度試した画面でも新しく見つかります。",
 ] as const;
 
 // The age-field defect, one step per line: the reader has to carry the field's
@@ -148,7 +173,7 @@ const DEFECT_STATES = [
 ] as const;
 
 const CAN_SAY = [
-    `実在の業種の業務画面 ${COLD_TEST_ROUND_COUNT} 枚を組むのに、コンポーネントがどこまで足りたかの実測。`,
+    `業務画面 ${COLD_TEST_ROUND_COUNT} 枚（うち ${INDUSTRY_SCREEN_COUNT} 枚は実在の業種の画面）を組むのに、コンポーネントがどこまで足りたかの実測。`,
     "予備知識ゼロの AI が、ドキュメントと npm パッケージだけで業務画面を組めること。",
     "コンポーネントを組み合わせて実際に操作したときに出る類の不具合を、利用者の画面に載る前に見つけて記録できること。",
 ] as const;
@@ -156,7 +181,7 @@ const CAN_SAY = [
 const CANNOT_SAY = [
     "実データの量。試験の画面は現実的なサンプルデータで組んでいて、数万件の実データを流したときの挙動は測っていません。",
     "実運用。長期間の利用や、実際の利用者の操作でしか出ない問題は、この試験の外にあります。",
-    "組織ごとの業務手順。その会社の運用の中でしか再現しない欠陥は、ここでは出ません。",
+    "組織ごとの業務手順。その会社の運用の中でしか再現しない不具合は、ここでは出ません。",
 ] as const;
 
 // Footer doors, in reading order: the sample first (where most JA readers
@@ -165,7 +190,7 @@ const READ_NEXT = [
     { href: "/showcase", label: "コンポーネントと見本の一覧" },
     { href: "/cold-tests", label: "コールドテストの記録" },
     { href: "/cold-tests/why", label: "なぜコールドテストするか" },
-    { href: "/docs/ai-handoff", label: "AI 向けの入口" },
+    { href: "/docs/ai-handoff", label: "AI に渡す仕様書" },
 ] as const;
 
 function QuadrantCell({
@@ -338,13 +363,16 @@ export default function HowToReadPage() {
                     <QuadrantMap />
                 </section>
 
+                {/* h2, not h3: at h3 this sat at the same level as the four
+                    card titles above and read as a fifth face (issue #968).
+                    It is a summary of all four, so it is its own section. */}
                 <section className="space-y-4">
-                    <h3 className="text-xl font-bold tracking-tight">
-                        入口は逆でも、めぐる面は同じ
-                    </h3>
+                    <h2 className="text-2xl font-bold tracking-tight">
+                        日本語圏と英語圏で、入口が逆になる
+                    </h2>
                     <p className="leading-7 text-foreground">
                         日本語圏の読者の多くは、左上の「完成した画面を見る」から入ります。自分の業種でも組めそうだと確かめてから、試験の記録へ進みます。英語圏の読者の多くは、その対角にある右下の「AI
-                        に試験を受けさせる」から入ります。試験の結果を先に確かめて、それから完成した画面を見に行きます。入る角は逆で、通る順も逆です。それでも、行き着く先は同じ4つの面です。
+                        に試験を受けさせる」から入ります。試験の結果を先に確かめて、それから完成した画面を見に行きます。入る角は逆で、通る順も逆です。それでも、どちらの道も「見本」と「試験」の両方を通ります。
                     </p>
                 </section>
 
@@ -355,7 +383,7 @@ export default function HowToReadPage() {
                     <p className="leading-7 text-foreground">
                         群青（このサイト gunjo.jp で公開している UI
                         コンポーネント集）を一度も見たことのない AI
-                        に、実在の業種の業務画面を組ませる試験です。AI
+                        に、業務画面を組ませる試験です。AI
                         に渡すのは、公開されている npm パッケージと gunjo.jp
                         のドキュメントだけです。組み終えた AI
                         は「どのコンポーネントをそのまま使えたか」「何が足りなくて自前で組んだか」を報告します。
@@ -363,14 +391,21 @@ export default function HowToReadPage() {
                     {/* Split out of the paragraph above: definition and scale
                         ran together as one ~250-character block, and a
                         context-zero reader stopped reading before the list of
-                        industries (visual-rhythm detection, 2026-09-08). */}
+                        industries (visual-rhythm detection, 2026-09-08).
+                        The breakdown itself then named 15 and 5 without ever
+                        saying whether the 5 were inside the 15, and counted
+                        all COLD_TEST_ROUND_COUNT screens as 実在の業種のもの
+                        even though the generic ones are not (issue #968), so
+                        the totals lead and both sums are visible. */}
                     <p className="leading-7 text-foreground">
-                        これまでに {COLD_TEST_ROUND_COUNT}{" "}
-                        回繰り返してきました。対象は、金融・医療・建設などの{" "}
-                        {INDUSTRY_COUNT} 業種と、
-                        {TRANSPORT_MODES.join("・")}の
-                        {TRANSPORT_MODES.length}
-                        つの運輸分野、それに業種を選ばない画面です。
+                        これまでに {COLD_TEST_ROUND_COUNT} 回繰り返し、
+                        {COLD_TEST_ROUND_COUNT}{" "}
+                        枚の画面を組みました。そのうち {INDUSTRY_SCREEN_COUNT}{" "}
+                        枚は実在の業種の画面で、残りの {GENERIC_SCREEN_COUNT}{" "}
+                        枚は、設定やログインのように業種を選ばない画面です。業種は全部で{" "}
+                        {INDUSTRY_TOTAL} あります。金融・医療・建設などの{" "}
+                        {INDUSTRY_COUNT} 業種と、運輸の {TRANSPORT_MODES.length}{" "}
+                        業種（{TRANSPORT_MODES.join("・")}）を足した数です。
                     </p>
                 </section>
 
@@ -378,8 +413,12 @@ export default function HowToReadPage() {
                     <h2 className="text-2xl font-bold tracking-tight">
                         先につまずいた記録が、次の画面づくりを速くする
                     </h2>
+                    {/* "そういう作りです" used to come first and be taken
+                        back four paragraphs later by "設計上の狙いというより、
+                        実測の結果です" (issue #968). The measurement leads
+                        now, and the mechanism follows as explanation. */}
                     <p className="leading-7 text-foreground">
-                        この試験は、回を重ねるほど次の画面づくりが速くなる作りになっています。
+                        回を重ねるほど、次の画面づくりが速くなっています。狙って設計したというより、記録を数えたらそうなっていました。仕組みはこうです。
                     </p>
                     <ol className="ml-5 list-decimal space-y-2 text-foreground">
                         {FLYWHEEL_STEPS.map((step) => (
@@ -389,20 +428,20 @@ export default function HowToReadPage() {
                         ))}
                     </ol>
                     <p className="leading-7 text-foreground">
-                        これは設計上の狙いというより、実測の結果です。たとえば
+                        たとえば
                         <Link
                             href="/cold-tests/177"
                             className="font-medium text-primary hover:underline"
                         >
                             建設業の出来高査定（工事の進み具合に応じて支払いを査定する業務）の回
                         </Link>
-                        がそうでした。保険金や給与明細のために作ったコンポーネントが、まったく別の業種である建設の画面でそのまま主役を張り、新しく作るものはほとんどありませんでした。（連載の通し番号で
+                        がそうでした。保険金や給与明細のために作ったコンポーネントが、まったく別の業種である建設の画面でもそのまま使えて、新しく作るものはほとんどありませんでした。（連載の通し番号で
                         #177。番号は未公開の回にも振られるため、公開済みの回数とは一致しません）
                     </p>
                     <p className="leading-7 text-foreground">
-                        つまずきの記録には、コンポーネントが足りない話だけでなく、実際に触らないと気づけない類の欠陥も入ります。たとえば数値入力のコンポーネントには「年齢欄に
+                        つまずきの記録には、足りないものの話だけでなく、実際に触らないと気づけない類の不具合も入ります。たとえば数値入力のコンポーネントには「年齢欄に
                         45 と打ったら 75
-                        になる」という欠陥がありました。年齢欄に入れられるのは
+                        になる」という不具合がありました。年齢欄に入れられるのは
                         18 歳から 75
                         歳。1文字打つたびに、入力値をその範囲内へ丸める作りでした。
                     </p>
@@ -419,7 +458,7 @@ export default function HowToReadPage() {
                         ))}
                     </ol>
                     <p className="leading-7 text-foreground">
-                        画面を目で見るだけでは見つからず、実際に打ち込んで初めて出ます。この欠陥も、コールドテストが実際に画面を操作して見つけたものです。いまも課題票（
+                        画面を目で見るだけでは見つからず、実際に打ち込んで初めて出ます。この不具合も、コールドテストが実際に画面を操作して見つけたものです。いまも課題票（
                         <a
                             href="https://github.com/uixhero/gunjo/issues/790"
                             target="_blank"
@@ -434,10 +473,22 @@ export default function HowToReadPage() {
 
                 <section className="space-y-4">
                     <h2 className="text-2xl font-bold tracking-tight">
-                        見つかった不備の、3つの状態
+                        見つかった不具合の、3つの状態
                     </h2>
+                    {/* Which of the two kinds these states apply to was left
+                        open, and the two are handled differently: one is
+                        counted to three and built, the other is filed and
+                        fixed (issue #968). The pair is named again here, each
+                        with its own handling, and the sentence that mentions
+                        "3つ" is the last one before the list — putting the
+                        pair's count first made a reader stop to work out
+                        whether the section was about 2 things or 3
+                        (writing-review). */}
                     <p className="leading-7 text-foreground">
-                        試験で見つかった不備は、それぞれ次のどれかの状態にあります。
+                        試験で出てくるものは2種類あります。{KIND_MISSING}
+                        は、同じ記録が3回たまったらそのコンポーネントを作ります。
+                        {KIND_DEFECT}
+                        は、課題票にして直します。下に並べる3つは、その不具合がいまどの状態にあるかです。
                     </p>
                     <ul className="space-y-3">
                         {DEFECT_STATES.map((state) => (
@@ -458,9 +509,9 @@ export default function HowToReadPage() {
                         ))}
                     </ul>
                     <p className="leading-7 text-foreground">
-                        このサイトは「全部対応済みです」とは書きません。未対応の
+                        このサイトは「全部対応済みです」とは書きません。「直し方記録済み」と「追跡中」の
                         issue がそのまま GitHub
-                        で公開されていることが、この試験が実際に回っていることのなによりの証拠だからです。それぞれの不備がいまどの状態にあるかは、リンク先の
+                        で公開されていることが、この試験が実際に回っていることのなによりの証拠だからです。それぞれの不具合がいまどの状態にあるかは、リンク先の
                         issue でいつでも確認できます。
                     </p>
                 </section>
