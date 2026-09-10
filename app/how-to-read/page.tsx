@@ -180,12 +180,16 @@ const AGE_FIELD_STEPS = [
     "185 は 75 より大きいので、今度は上限の 75 に直されます。",
 ] as const;
 
-// The three states a found defect can be in. Deliberately NOT "全部対応済み"
-// — the open issues being public is the trust argument (see prose below).
-const DEFECT_STATES = [
+// The three states a finding can be in. They apply to BOTH kinds: every
+// requirement in app/data/cold-test-findings/*.json carries a status
+// (21/21 resolved on main), and FindingList renders the status badge
+// without looking at `kind`. The name was DEFECT_STATES back when this
+// section spoke only of 不具合. Deliberately NOT "全部対応済み" — the open
+// issues being public is the trust argument (see prose below).
+const FINDING_STATES = [
     {
         label: "対応済み",
-        body: "修正が済んで、配布中の最新版に反映されています。",
+        body: "足りないものはコンポーネントが加わり、不具合は修正が済んで、どちらも配布中の最新版に反映されています。",
     },
     {
         label: "直し方記録済み",
@@ -514,25 +518,29 @@ export default function HowToReadPage() {
 
                 <section className="space-y-4">
                     <h2 className="text-2xl font-bold tracking-tight">
-                        見つかった不具合の、3つの状態
+                        見つかったものの、3つの状態
                     </h2>
                     {/* Which of the two kinds these states apply to was left
                         open, and the two are handled differently: one is
                         counted to three and built, the other is filed and
                         fixed (issue #968). The pair is named again here, each
                         with its own handling, and the sentence that mentions
-                        "3つ" is the last one before the list — putting the
-                        pair's count first made a reader stop to work out
-                        whether the section was about 2 things or 3
-                        (writing-review). */}
+                        "3つ" comes after both handlings — putting the pair's
+                        count first made a reader stop to work out whether the
+                        section was about 2 things or 3 (writing-review).
+                        The last sentence carries the two 見出し words the
+                        round pages actually use: the guide says 足りないもの /
+                        不具合, the round page says この回で要ると分かったもの /
+                        この回でつまずいたところ, and two context-zero readers
+                        could only match them up when the page said so. */}
                     <p className="leading-7 text-foreground">
                         試験で出てくるものは2種類あります。{KIND_MISSING}
                         は、同じ記録が3回たまったらそのコンポーネントを作ります。
                         {KIND_DEFECT}
-                        は、課題票にして直します。下に並べる3つは、その不具合がいまどの状態にあるかです。
+                        は、課題票にして直します。下に並べる3つは、足りないものと不具合の、どちらにも付きます。回のページでは、足りないものが「この回で要ると分かったもの」、不具合が「この回でつまずいたところ」という見出しの下に並びます。
                     </p>
                     <ul className="space-y-3">
-                        {DEFECT_STATES.map((state) => (
+                        {FINDING_STATES.map((state) => (
                             <li
                                 key={state.label}
                                 className="flex flex-col gap-1.5 rounded-md border border-border/60 bg-muted/20 p-3 sm:flex-row sm:items-baseline sm:gap-3"
@@ -552,8 +560,8 @@ export default function HowToReadPage() {
                     <p className="leading-7 text-foreground">
                         このサイトは「全部対応済みです」とは書きません。「直し方記録済み」と「追跡中」の
                         issue がそのまま GitHub
-                        で公開されていることが、この試験が実際に回っていることのなによりの証拠だからです。それぞれの不具合がいまどの状態にあるかは、リンク先の
-                        issue でいつでも確認できます。
+                        で公開されていることが、この試験が実際に回っていることのなによりの証拠だからです。不具合の状態はリンク先の
+                        issue で、足りないものの状態は回のページで確認できます。
                     </p>
                 </section>
 
