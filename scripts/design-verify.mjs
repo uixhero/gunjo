@@ -29,6 +29,7 @@ import { verifyNoHardcodedColorClasses } from "./design-verify-hardcoded-color-c
 import { verifyNoLeftEmphasis } from "./check-left-emphasis.mjs";
 import { verifyFictionalNames } from "./check-fictional-names.mjs";
 import { verifyJapaneseLength } from "./check-japanese-length.mjs";
+import { verifyRequirementFindings } from "./check-requirement-findings.mjs";
 import { verifyAppGlobalsSync } from "./design-verify-app-globals-sync.mjs";
 import { verifyTailwindColorTokens } from "./design-verify-tailwind-color-tokens.mjs";
 import { verifyTailwindFoundationTokens } from "./design-verify-tailwind-foundation-tokens.mjs";
@@ -119,6 +120,7 @@ function main() {
   verifyNoLeftEmphasis({ root: ROOT });
   verifyFictionalNames({ root: ROOT });
   verifyJapaneseLength({ root: ROOT });
+  verifyRequirementFindings({ root: ROOT });
   verifyTailwindColorTokens({ root: ROOT });
   verifyTailwindFoundationTokens({ root: ROOT });
   verifyTailwindThemeSsot({ root: ROOT });

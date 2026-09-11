@@ -180,12 +180,15 @@ const AGE_FIELD_STEPS = [
     "185 は 75 より大きいので、今度は上限の 75 に直されます。",
 ] as const;
 
-// The three states a finding can be in. They apply to BOTH kinds: every
-// requirement in app/data/cold-test-findings/*.json carries a status
-// (21/21 resolved on main), and FindingList renders the status badge
-// without looking at `kind`. The name was DEFECT_STATES back when this
-// section spoke only of 不具合. Deliberately NOT "全部対応済み" — the open
-// issues being public is the trust argument (see prose below).
+// The three states a finding can be in. The type lets BOTH kinds take any of
+// them (FindingStatus in app/lib/cold-test-findings.ts), and FindingList
+// renders the status badge without looking at `kind`. In the data, though,
+// every requirement is 対応済み — it only reaches a round page once its
+// component exists — and the section says so above this list. That sentence
+// is held by scripts/check-requirement-findings.mjs (design:verify), not by
+// this comment. The name was DEFECT_STATES back when this section spoke only
+// of 不具合. Deliberately NOT "全部対応済み" — the open issues being public
+// is the trust argument (see prose below).
 const FINDING_STATES = [
     {
         label: "対応済み",
@@ -193,7 +196,10 @@ const FINDING_STATES = [
     },
     {
         label: "直し方記録済み",
-        body: "原因と直し方まで特定し、issue として公開しています。修正はこれからです。",
+        // "issue として公開しています" read as the issue being opened only
+        // once the fix was known, against the flywheel step that files it on
+        // the spot (writing-review, 2026-09-11).
+        body: "原因と直し方まで特定し、issue に記録しています。修正はこれからです。",
     },
     {
         label: "追跡中",
@@ -517,8 +523,12 @@ export default function HowToReadPage() {
                 </section>
 
                 <section className="space-y-4">
+                    {/* Was "見つかったものの、3つの状態". "〜ものの" has the
+                        same shape as the concessive "〜したものの", and all
+                        four context-zero readers misread it once
+                        (writing-review, 2026-09-11). */}
                     <h2 className="text-2xl font-bold tracking-tight">
-                        見つかったものの、3つの状態
+                        見つかったものに付く、3つの状態
                     </h2>
                     {/* Which of the two kinds these states apply to was left
                         open, and the two are handled differently: one is
@@ -528,7 +538,7 @@ export default function HowToReadPage() {
                         "3つ" comes after both handlings — putting the pair's
                         count first made a reader stop to work out whether the
                         section was about 2 things or 3 (writing-review).
-                        The last sentence carries the two 見出し words the
+                        The second paragraph carries the two 見出し words the
                         round pages actually use: the guide says 足りないもの /
                         不具合, the round page says この回で要ると分かったもの /
                         この回でつまずいたところ, and two context-zero readers
@@ -537,7 +547,31 @@ export default function HowToReadPage() {
                         試験で出てくるものは2種類あります。{KIND_MISSING}
                         は、同じ記録が3回たまったらそのコンポーネントを作ります。
                         {KIND_DEFECT}
-                        は、課題票にして直します。下に並べる3つは、足りないものと不具合の、どちらにも付きます。回のページでは、足りないものが「この回で要ると分かったもの」、不具合が「この回でつまずいたところ」という見出しの下に並びます。
+                        は、課題票にして直します。
+                    </p>
+                    {/* The round page's own heading calls only 不具合
+                        "つまずいたところ", while this page has used つまずく
+                        for running into either kind. All four context-zero
+                        readers took that as the definition shifting under
+                        them (writing-review, 2026-09-11), so it is said. */}
+                    <p className="leading-7 text-foreground">
+                        どちらも、回のページ（試験1回ぶんの記録をまとめたページ）に並びます。見出しは、足りないものが「この回で要ると分かったもの」、不具合が「この回でつまずいたところ」です。ここまでの説明では足りないものに行き当たることも「つまずく」と書いてきましたが、回のページの「つまずいたところ」に並ぶのは不具合だけです。
+                    </p>
+                    {/* 直し方記録済み / 追跡中 below are written in 不具合
+                        words (原因・直し方・再現), which cannot describe a
+                        component that does not exist yet. They never have
+                        to: no requirement has ever been in either state.
+                        This used to follow "下に並べる3つは、…どちらにも
+                        付きます", and all four readers took that pair as
+                        contradicting each other (writing-review,
+                        2026-09-11), so the states now attach to each item
+                        one at a time. The type would let a requirement take
+                        any state, so the second sentence is held by
+                        scripts/check-requirement-findings.mjs — it fails
+                        design:verify the moment a requirement lands in
+                        another state or without a component link. */}
+                    <p className="leading-7 text-foreground">
+                        並んだ一つひとつに、下の3つの状態のどれか1つが付きます。足りないものは、コンポーネントができた時点で、それが要ると分かった回のページの「この回で要ると分かったもの」に載るので、いまはすべて「対応済み」です。
                     </p>
                     <ul className="space-y-3">
                         {FINDING_STATES.map((state) => (
@@ -557,11 +591,23 @@ export default function HowToReadPage() {
                             </li>
                         ))}
                     </ul>
+                    {/* Was "このサイトは「全部対応済みです」とは書きません…".
+                        Six lines below "いまはすべて「対応済み」" it read as
+                        the page contradicting itself, and its reason
+                        (公開されていることが証拠だから) read as bugs being
+                        left open for show (writing-review, 2026-09-11). The
+                        stance is unchanged: nothing is called fixed that
+                        isn't, and the open issues are the evidence. The
+                        closing reason reuses the 試験 face's own argument
+                        (作り手の主張ではなく、記録で確かめられます) — "issue
+                        を見ればいまも続いていると確かめられる" skipped a
+                        step for all four second-round readers. Every open
+                        不具合 in the data links its issue (41/41 on
+                        2026-09-11). */}
                     <p className="leading-7 text-foreground">
-                        このサイトは「全部対応済みです」とは書きません。「直し方記録済み」と「追跡中」の
-                        issue がそのまま GitHub
-                        で公開されていることが、この試験が実際に回っていることのなによりの証拠だからです。不具合の状態はリンク先の
-                        issue で、足りないものの状態は回のページで確認できます。
+                        「直し方記録済み」と「追跡中」の不具合も、このサイトは隠しません。どれも
+                        issue として GitHub
+                        で公開していて、回のページで不具合の項目から開けます。何が直っていて何がまだかを、作り手の言葉ではなく記録で確かめられるようにするためです。
                     </p>
                 </section>
 
