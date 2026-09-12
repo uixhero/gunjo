@@ -148,6 +148,7 @@ export * from './components/display/LineChart';
 export * from './components/display/LineChip';
 export * from './components/display/List';
 export * from './components/display/ListCard';
+export * from './components/display/LiveBadge';
 export * from './components/display/LoyaltySummaryCard';
 export * from './components/display/MarkdownRenderer';
 export * from './components/display/MatchCard';

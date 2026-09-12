@@ -10,6 +10,7 @@ import {
 } from "@tabler/icons-react"
 
 import { cn } from "../../lib/utils"
+import { LiveBadge } from "../display/LiveBadge"
 import { Button } from "./Button"
 import { SegmentedControl } from "./SegmentedControl"
 
@@ -243,16 +244,13 @@ const TimeTransport = React.forwardRef<HTMLDivElement, TimeTransportProps>(
                     </div>
 
                     {isLive === null ? null : (
-                        <span
-                            className={cn(
-                                "inline-flex h-5 shrink-0 items-center gap-1 rounded-full border px-2.5 text-xs font-medium",
-                                isLive
-                                    ? "border-success-border bg-success-subtle text-success-subtle-foreground"
-                                    : "border-warning-border bg-warning-subtle text-warning-subtle-foreground"
-                            )}
-                        >
-                            {isLive ? t.live : t.detached}
-                        </span>
+                        // The same pill everything else on a board uses for
+                        // "this is the current value" — including the pulsing
+                        // dot. Keeping a lookalike here would mean two places
+                        // to fix the next time the live state changes shape.
+                        <LiveBadge live={isLive} detached={t.detached} className="shrink-0">
+                            {t.live}
+                        </LiveBadge>
                     )}
                 </div>
 

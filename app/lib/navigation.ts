@@ -145,6 +145,7 @@ export const navigation = [
             { title: "LineChip", href: "/docs/components/line-chip" },
             { title: "List", href: "/docs/components/list" },
             { title: "ListCard", href: "/docs/components/list-card" },
+            { title: "LiveBadge", href: "/docs/components/live-badge" },
             { title: "LoyaltySummaryCard", href: "/docs/components/loyalty-summary-card" },
             { title: "MarkdownRenderer", href: "/docs/components/markdown-renderer" },
             { title: "MatchCard", href: "/docs/components/match-card" },

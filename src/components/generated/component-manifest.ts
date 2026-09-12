@@ -1493,6 +1493,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "beta"
     },
+    "liveBadge": {
+      "title": "LiveBadge",
+      "description": "The small bordered pill that says 'this is the current value', with a dot that pulses slowly to show something is still arriving. When the value is no longer current the badge steps aside and states WHEN the value is from instead (`detached`) — and renders nothing at all when it has not been told. For monitoring boards, streams, match commentary, trading screens and sensor readouts: anywhere a number could be either live or a snapshot and the reader cannot tell by looking. Holds NO clock and compares nothing — `live` is the caller's decision (the TimeTransport rule); TimeTransport renders its own live state with this badge. The state is never carried by the dot or the colour: the badge always has a word on it (default `LIVE`), and the detached form replaces that word with the 'when'. The dot does not pulse under prefers-reduced-motion: reduce. Deliberately NOT a live region — `role='status'` here would interrupt a screen reader on every reconnection, so the caller adds it on the rare screen where the change is the news. Composed from Badge (success / warning tones, same size scale). Distinct from Badge (a state that is not about freshness), ExpiryBadge (a deadline, not a live edge) and TimeTransport (which also MOVES the value).",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/LiveBadge.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "loyaltySummaryCard": {
       "title": "LoyaltySummaryCard",
       "description": "The points/balance/tier hero every consumer loyalty screen opens with: a prominent balance, a tier/rank badge, optional secondary values (IC残高/当年実績), a higher-is-better progress-to-next-tier with a remaining label (『プラチナまであと ¥13,800』 — never auto-reds like a capacity Meter), an expiry-warning slot and a primary action. The brand tone is a filled gradient surface so the hero has shine without reaching for arbitrary brand-token classes. For airline マイル, 鉄道 IC/ポイント, retail/EC rewards, membership tiers. For the back-office KPI strip use StatGroup; for a money breakdown use AmountBreakdown; for the points/coupon/history list under the hero use ListCard. Presentational (the action slot owns interactivity) — RSC-safe.",
@@ -2475,7 +2486,7 @@ export const componentManifest = {
     },
     "timeTransport": {
       "title": "TimeTransport",
-      "description": "The playback / scrub transport for a continuous value: a large readout of where you are, play-pause, named speed steps, signed jump buttons, a live-vs-detached state and a one-press return to now. The generalisation of 'move a continuous value in graded steps, and get back to live' — log replay, rewinding a monitoring board, stepping a simulation clock, scrubbing a recording, and the map/globe time controls it was extracted from. Holds NO clock of its own: `value` comes in and `onValueChange` goes out, so the caller owns the ticking and SSR renders the same frame twice (the Stringline rule). Speeds are caller-named steps (`speeds[]`), never a raw multiplier range, because a design system cannot know whether 1× means a second or a day. Live-vs-detached is resolved from `now` (or forced with `live`) and is never carried by colour alone — a labelled chip states it and the readout colour only reinforces it. Distinct from Slider / RangeSlider (a value picker with no playback), TimePicker / DatePicker / Calendar (pick an ABSOLUTE instant, no relative motion), SegmentedControl (the speed steps alone) and Timeline / Stringline / Gantt / SegmentTimelineCard (which DISPLAY time and take no input). Pass a scrubber (DayBand) through the `scrubber` slot. Touch targets are ≥44px.",
+      "description": "The playback / scrub transport for a continuous value: a large readout of where you are, play-pause, named speed steps, signed jump buttons, a live-vs-detached state and a one-press return to now. The generalisation of 'move a continuous value in graded steps, and get back to live' — log replay, rewinding a monitoring board, stepping a simulation clock, scrubbing a recording, and the map/globe time controls it was extracted from. Holds NO clock of its own: `value` comes in and `onValueChange` goes out, so the caller owns the ticking and SSR renders the same frame twice (the Stringline rule). Speeds are caller-named steps (`speeds[]`), never a raw multiplier range, because a design system cannot know whether 1× means a second or a day. Live-vs-detached is resolved from `now` (or forced with `live`) and is never carried by colour alone — a labelled LiveBadge states it in words and the readout is not recoloured at all. Distinct from Slider / RangeSlider (a value picker with no playback), TimePicker / DatePicker / Calendar (pick an ABSOLUTE instant, no relative motion), SegmentedControl (the speed steps alone) and Timeline / Stringline / Gantt / SegmentTimelineCard (which DISPLAY time and take no input). Pass a scrubber (DayBand) through the `scrubber` slot. Touch targets are ≥44px.",
       "variantKeys": [
         "default"
       ],
