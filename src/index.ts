@@ -239,6 +239,7 @@ export * from './components/inputs/Switch';
 export * from './components/inputs/TagInput';
 export * from './components/inputs/Textarea';
 export * from './components/inputs/TimePicker';
+export * from './components/inputs/TimeTransport';
 export * from './components/inputs/Toggle';
 export * from './components/inputs/ToggleGroup';
 export * from './components/inputs/TooltipButton';
