@@ -1,4 +1,22 @@
+import type { Locale } from "@/lib/translations";
 import type { BookStoreId } from "./book-promo";
+
+/** 帯が画面に出す文字ぜんぶ。⭐ 言語を増やすときは、この形を1つ足すだけです。 */
+export interface BookPromoStrings {
+    /** 小見出し */
+    eyebrow: string;
+    /** 本のタイトル */
+    title: string;
+    /** 発売のキャッチ＋説明文 */
+    lead: string;
+    /** 販売先リンクの前に置く一言 */
+    cta: string;
+    /** 販売先のボタンの文字 */
+    storeLabels: Record<BookStoreId, string>;
+    /** 読み上げ用の補助。「◯◯」に店の名前が入る */
+    newTabTitle: (storeName: string) => string;
+    newTabNotice: string;
+}
 
 /**
  * ⛔⛔ ここが「フッター前の本の帯」の文言の唯一の置き場所です。
@@ -15,7 +33,7 @@ import type { BookStoreId } from "./book-promo";
  * ⚠️ uixhero.com では「発売のキャッチ」を項目として増やさず、説明文の先頭に付けました。
  *    ⭐ ここも同じ形です＝lead の1文目がキャッチ、2文目以降が説明文。
  */
-export const BOOK_PROMO_COPY = {
+const JA: BookPromoStrings = {
     /** 小見出し */
     eyebrow: "画面175枚の記録が本になりました",
 
@@ -51,7 +69,7 @@ export const BOOK_PROMO_COPY = {
         amazon: "Amazonで買う（¥1,500）",
         apple_books: "Apple Booksで買う（¥1,500）",
         google_play_books: "Google Playで買う（¥1,500）",
-    } satisfies Record<BookStoreId, string>,
+    },
 
     /**
      * 読み上げ用の補助。⚠️ 「◯◯」に店の名前（book-promo.ts の name）が入ります。
@@ -60,4 +78,33 @@ export const BOOK_PROMO_COPY = {
      */
     newTabTitle: (storeName: string) => `${storeName} を新しいタブで開く`,
     newTabNotice: "（新しいタブで開く）",
-} as const;
+};
+
+/**
+ * 言語ごとの文言。⭐⭐ **未設定（null）の言語には帯を出しません。**
+ *
+ * ⛔⛔ **英語はいま null＝英語の面（/en/**）に帯は出ません。**
+ *    理由＝**本は日本語だけ**です。日本語の本を英語の読み手に売る導線を、いま置く理由がありません。
+ *    ⛔ そして「日本語の帯を英語の面にそのまま出す」のはもっと悪い形です（#972 の初版がこれでした）。
+ *
+ * ⭐⭐ **英語を出す日にやることは、下の `en` に文言を入れること1つだけです。**
+ *    帯・器・計測・面ごとの置き場所は1行も直りません（出す／出さないはこの表だけが決めます）。
+ * ⛔⛔ そのとき**機械翻訳を入れないこと**＝上の日本語は writing-review と check-voice を通った
+ *    確定文言で、英語も同じ重さが要ります。翻訳を出すなら
+ *    ~/dev/new-4px/skills/translation-review/ の4段工程を通してから、ここに入れること。
+ */
+export const BOOK_PROMO_COPY: Record<Locale, BookPromoStrings | null> = {
+    ja: JA,
+    en: null,
+};
+
+/**
+ * その面の言語の文言。⭐ 無ければ null ＝呼ぶ側は帯ごと出しません。
+ *
+ * ⭐⭐ 「英語かどうか」を**パスの文字列で判定しないこと**＝判定はロケールを持っている側
+ *    （LocaleProvider）にあります。この関数は locale を受け取るだけなので、`app/en/` に面が
+ *    増えても、その面は勝手にこちら側（帯を出さない側）に入ります。
+ */
+export function bookPromoCopyFor(locale: Locale): BookPromoStrings | null {
+    return BOOK_PROMO_COPY[locale];
+}

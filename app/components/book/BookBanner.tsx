@@ -1,6 +1,6 @@
 import { Card, CardTitle } from "@gunjo/ui";
 import { availableBookStores, BOOK_COVER, isBookBannerVisible } from "@/lib/book-promo";
-import { BOOK_PROMO_COPY } from "@/lib/book-promo-copy";
+import type { BookPromoStrings } from "@/lib/book-promo-copy";
 import { BookStoreLink } from "./BookStoreLink";
 
 const TITLE_ID = "book-promo-title";
@@ -14,6 +14,9 @@ const TITLE_ID = "book-promo-title";
  *    ⚠️ 「同じ幅の値を書く」ではなく「同じ器を通す」こと。値で写すと必ずずれます。
  *
  * ⛔ 文言をここに書かないこと＝正は app/lib/book-promo-copy.ts。
+ * ⛔⛔ **言語をここで選ばないこと。** この帯は自分がどの言語の面に出ているかも知りません
+ *    ＝文言は `copy` で外から渡ります。選ぶのはロケールを持っている側＝BookBannerSlot.tsx
+ *    （そこが `useLocale()` を見て、その言語の文言が無ければ帯ごと出しません）。
  * ⛔ 販売先をここに書かないこと＝正は app/lib/book-promo.ts。
  *
  * ⭐ 地は @gunjo/ui の Card をそのまま通しています（`border` + `bg-card` + `shadow-sm`）。
@@ -49,7 +52,7 @@ const TITLE_ID = "book-promo-title";
  * ⛔ 左端の縦の色帯（border-left / inset shadow / absolute left-0 の細い帯）を足さないこと
  *    ＝gunjo.jp の UI 共通の禁止事項（CLAUDE.md）。
  */
-export function BookBanner() {
+export function BookBanner({ copy }: { copy: BookPromoStrings }) {
     if (!isBookBannerVisible()) return null;
 
     const stores = availableBookStores();
@@ -74,15 +77,15 @@ export function BookBanner() {
 
                         <div className="min-w-0">
                             <p className="text-xs font-medium tracking-wide text-muted-foreground">
-                                {BOOK_PROMO_COPY.eyebrow}
+                                {copy.eyebrow}
                             </p>
 
                             <CardTitle as="h2" id={TITLE_ID} className="mt-1.5 text-lg leading-snug sm:text-xl">
-                                {BOOK_PROMO_COPY.title}
+                                {copy.title}
                             </CardTitle>
 
                             <p className="mt-2.5 text-sm leading-relaxed text-muted-foreground">
-                                {BOOK_PROMO_COPY.lead}
+                                {copy.lead}
                             </p>
                         </div>
                     </div>
@@ -92,7 +95,7 @@ export function BookBanner() {
                            （いちばん長い「Google Playで買う（¥1,500）」は狭い画面で折り返します）。 */}
                     <div className="shrink-0 lg:w-64">
                         <p className="text-xs leading-relaxed text-muted-foreground">
-                            {BOOK_PROMO_COPY.cta}
+                            {copy.cta}
                         </p>
                         <div className="mt-3 flex flex-wrap gap-2">
                             {stores.map((store) => (
@@ -100,8 +103,9 @@ export function BookBanner() {
                                     key={store.id}
                                     id={store.id}
                                     name={store.name}
-                                    label={BOOK_PROMO_COPY.storeLabels[store.id]}
+                                    label={copy.storeLabels[store.id]}
                                     href={store.href}
+                                    copy={copy}
                                 />
                             ))}
                         </div>

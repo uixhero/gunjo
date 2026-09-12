@@ -4,7 +4,7 @@ import { track } from "@vercel/analytics";
 import { IconExternalLink } from "@tabler/icons-react";
 import { Button } from "@gunjo/ui";
 import { BOOK_ID, BOOK_PROMO_PLACEMENT, type BookStoreId } from "@/lib/book-promo";
-import { BOOK_PROMO_COPY } from "@/lib/book-promo-copy";
+import type { BookPromoStrings } from "@/lib/book-promo-copy";
 
 interface BookStoreLinkProps {
     id: BookStoreId;
@@ -13,6 +13,8 @@ interface BookStoreLinkProps {
     /** ボタンの文字。正は book-promo-copy.ts */
     label: string;
     href: string;
+    /** その面の言語の文言。⛔ ここで言語を選ばないこと＝選ぶのは BookBannerSlot（ロケールを持つ側） */
+    copy: BookPromoStrings;
 }
 
 /**
@@ -31,14 +33,14 @@ interface BookStoreLinkProps {
  *    placement = book_banner（本文中の導線と区別する）
  *    book      = gunjo-ai-ui-175（2冊目が出たときに本ごとに分けて読むため）
  */
-export function BookStoreLink({ id, name, label, href }: BookStoreLinkProps) {
+export function BookStoreLink({ id, name, label, href, copy }: BookStoreLinkProps) {
     return (
         <Button asChild variant="primary">
             <a
                 href={href}
                 target="_blank"
                 rel="noopener noreferrer"
-                title={BOOK_PROMO_COPY.newTabTitle(name)}
+                title={copy.newTabTitle(name)}
                 onClick={() =>
                     track("book_store_click", {
                         store: id,
@@ -49,7 +51,7 @@ export function BookStoreLink({ id, name, label, href }: BookStoreLinkProps) {
             >
                 {label}
                 <IconExternalLink className="size-3.5 shrink-0 opacity-70" aria-hidden />
-                <span className="sr-only">{BOOK_PROMO_COPY.newTabNotice}</span>
+                <span className="sr-only">{copy.newTabNotice}</span>
             </a>
         </Button>
     );
