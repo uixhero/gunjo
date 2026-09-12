@@ -234,7 +234,29 @@ There are 5 semantic tones (\`primary\` / \`info\` / \`success\` / \`warning\` /
 
 Shadows (\`--shadow-*\`) drop straight into \`box-shadow\`; \`--duration-*\` and \`--ease-*\` go into \`transition\`.
 
-### 3. Dark mode
+### 3. Spacing and type
+
+The sheet also carries the spacing and type scale, so you do not have to copy the numbers out of the docs by hand:
+
+\`\`\`css
+.panel {
+  padding: var(--space-6);          /* 24px */
+  gap: var(--space-2);              /* 8px */
+  font-size: var(--text-sm);        /* 14px */
+  line-height: var(--leading-normal);
+  font-weight: var(--font-weight-semibold);
+}
+\`\`\`
+
+**Step names, not measurements.** \`--space-2\` is the *second step* — 8px, the same 8px \`gap-2\` gives — not 2px. That is the vocabulary [Spacing](/docs/spacing) and the rest of the system already use, so a screen built on the sheet and a screen built on the package describe their spacing the same way. Fractional steps are written with a hyphen, since a bare \`.\` is not valid in a custom property name: \`--space-0-5\` is 2px.
+
+**Values are \`rem\`.** A reader who raises their browser's font size scales the whole screen with it. Each line carries the px equivalent as a comment for reference, but do not substitute the px value — that is what freezes the page against the reader's setting.
+
+Three tokens carry the density rules rather than a measurement: \`--control-h\` (36px — the shared height of buttons, inputs and selects), \`--text-ui\` (14px, UI default) and \`--text-prose\` (16px, long-form default). To make a screen denser or larger — a wall display, a gloved hand outdoors — re-point these three instead of hunting every declaration.
+
+Font families are \`--font-sans\` / \`--font-mono\` / \`--font-mincho\`, all meant to be overridden. The Mincho webfont is not shipped with the sheet; without it the stack falls back to the platform serif.
+
+### 4. Dark mode
 
 Toggle with \`<html class="dark">\` or \`<html data-theme="dark">\`. To follow the OS setting, add one line to \`<head>\`:
 
@@ -321,11 +343,11 @@ https://www.gunjo.jp/starter.html
 
 A ready-to-use instruction:
 
-> When npm and CDNs are unavailable, paste the design tokens from https://www.gunjo.jp/tokens.css and the pattern classes from https://www.gunjo.jp/patterns.css into a \`<style>\` block instead of using @gunjo/ui, and reproduce the GunjoUI look with the \`gj-\` classes and \`hsl(var(--token))\` notation. A worked example is at https://www.gunjo.jp/starter.html.
+> When npm and CDNs are unavailable, paste the design tokens from https://www.gunjo.jp/tokens.css and the pattern classes from https://www.gunjo.jp/patterns.css into a \`<style>\` block instead of using @gunjo/ui, and reproduce the GunjoUI look with the \`gj-\` classes and \`hsl(var(--token))\` notation. Use the same sheet's \`var(--space-*)\` / \`var(--text-*)\` / \`var(--font-weight-*)\` for spacing and type rather than writing px directly. A worked example is at https://www.gunjo.jp/starter.html.
 
 ### What this gives you, and what it does not
 
-tokens.css / patterns.css carry **the tokens and the look (color, radius, shadow, motion, and the pattern CSS)** — nothing more. Component implementations (accessibility, keyboard handling, state management) are not included; behaviors like switching tab panels need a little JavaScript of your own (there's a minimal example in starter.html). Where npm is available, [install \`@gunjo/ui\` itself](/docs/installation).
+tokens.css / patterns.css carry **the tokens and the look (color, radius, shadow, motion, spacing, type, and the pattern CSS)** — nothing more. Component implementations (accessibility, keyboard handling, state management) are not included; behaviors like switching tab panels need a little JavaScript of your own (there's a minimal example in starter.html). Where npm is available, [install \`@gunjo/ui\` itself](/docs/installation).
 
 If you have npm but not Tailwind, the same tokens.css / patterns.css also ship inside the package as subpath imports (\`@gunjo/ui/tokens.css\` / \`@gunjo/ui/patterns.css\`) — available since \`0.1.0-beta.2\`. See the [adoption guide](/docs/adoption) for details.`,
   },

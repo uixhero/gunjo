@@ -1,6 +1,7 @@
 "use client";
 
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { TEXT_SCALE, WEIGHT_SCALE } from "@/lib/data/token-scales.generated";
 
 const FONTS_BASE = [
     {
@@ -28,27 +29,19 @@ const FONT_USAGES = {
     ja: ["本文・見出し・UI", "ブランドの見出し・漢字", "コード・データ・識別子"],
 } as const;
 
-const SCALE = [
-    { name: "text-xs", className: "text-xs", size: "12px" },
-    { name: "text-sm", className: "text-sm", size: "14px" },
-    { name: "text-base", className: "text-base", size: "16px" },
-    { name: "text-lg", className: "text-lg", size: "18px" },
-    { name: "text-xl", className: "text-xl", size: "20px" },
-    { name: "text-2xl", className: "text-2xl", size: "24px" },
-    { name: "text-3xl", className: "text-3xl", size: "30px" },
-    { name: "text-4xl", className: "text-4xl", size: "36px" },
-    { name: "text-5xl", className: "text-5xl", size: "48px" },
-    { name: "text-6xl", className: "text-6xl", size: "60px" },
-    { name: "text-7xl", className: "text-7xl", size: "72px" },
-];
+// Sizes and weights are generated from scripts/design-sync/token-scales.mjs —
+// the same source public/tokens.css ships as --text-* / --font-weight-*. They
+// used to be hand-typed here, which made the docs a copy nothing checked. (#969)
+const SCALE = TEXT_SCALE.map((step) => ({
+    name: step.utility,
+    className: step.utility,
+    size: step.px,
+}));
 
-const WEIGHTS = [
-    { name: "font-normal", value: "400" },
-    { name: "font-medium", value: "500" },
-    { name: "font-semibold", value: "600" },
-    { name: "font-bold", value: "700" },
-    { name: "font-extrabold", value: "800" },
-];
+const WEIGHTS = WEIGHT_SCALE.map((step) => ({
+    name: step.utility,
+    value: step.value,
+}));
 
 const COPY = {
     en: {

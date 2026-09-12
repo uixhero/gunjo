@@ -9,6 +9,7 @@ import {
   findUndefinedPatternTokens,
 } from "./design-sync/sync-starter.mjs";
 import { syncTokenValues } from "./design-sync/sync-token-values.mjs";
+import { syncTokenScales } from "./design-sync/sync-token-scales.mjs";
 import { syncMetadata } from "./design-sync/sync-metadata.mjs";
 import { syncComponentSpecs } from "./design-sync/sync-component-specs.mjs";
 import { syncDocsNavigation } from "./design-sync/sync-docs-navigation.mjs";
@@ -36,6 +37,7 @@ import { verifyTailwindFoundationTokens } from "./design-verify-tailwind-foundat
 import { verifyTailwindPresetPlugins } from "./design-verify-tailwind-preset-plugins.mjs";
 import { verifyTailwindThemeSsot } from "./design-verify-tailwind-theme-ssot.mjs";
 import { verifyCssVariableCoverage } from "./design-verify-css-variable-coverage.mjs";
+import { verifyScaleTokens } from "./design-verify-scale-tokens.mjs";
 import { verifyColorContrast } from "./design-verify-color-contrast.mjs";
 import { METADATA_SYNC_CATEGORY_CONFIGS } from "./design-sync/sync-metadata.mjs";
 import { COMPONENT_SOURCE_CATEGORY_CONFIGS } from "./design-sync/component-source-map.mjs";
@@ -50,6 +52,7 @@ const STATIC_GENERATED_FILES = [
   "public/tokens.css",
   "public/starter.html",
   "app/lib/data/token-values.generated.ts",
+  "app/lib/data/token-scales.generated.ts",
   "src/components/generated/component-manifest.ts",
   "src/components/generated/component-style-hints.ts",
   "src/index.ts",
@@ -98,6 +101,7 @@ function main() {
   const before = snapshotGeneratedFiles();
 
   syncTokens();
+  syncTokenScales();
   syncStandaloneTokens();
   syncStarter();
   syncTokenValues();
@@ -126,6 +130,7 @@ function main() {
   verifyTailwindThemeSsot({ root: ROOT });
   verifyTailwindPresetPlugins({ root: ROOT });
   verifyCssVariableCoverage({ root: ROOT });
+  verifyScaleTokens({ root: ROOT });
   verifyColorContrast({ root: ROOT });
   verifyAppGlobalsSync({ root: ROOT });
 

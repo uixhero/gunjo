@@ -174,6 +174,10 @@ export const componentContentJa: Record<string, DocContent> = {
     title: "Stringline",
     description: "停車地点と時刻を結ぶ運行図表を表示し、計画と実績、上下方向、現在時刻を重ねて確認できます。",
   },
+  "components/time-transport": {
+    title: "TimeTransport",
+    description: "いま映している値を、名前をつけた速さの段で動かし、決まった幅で飛ばし、ひと押しで「いま」へ戻すための操作盤です。時計は持たず、進めるのは呼び出し側です。",
+  },
   "components/ticket-stub": {
     title: "TicketStub",
     description: "クーポン、搭乗券、会員証などの情報とバーコードまたはQRコードを、チケット形状で表示します。",
