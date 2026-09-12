@@ -89,6 +89,10 @@ export const componentContentEn: Record<string, DocContent> = {
     title: "LineChip",
     description: "An identity chip for transit lines or route numbers with brand color and automatic text contrast.",
   },
+  "components/live-badge": {
+    title: "LiveBadge",
+    description: "The small bordered pill that says this is the current value, with a dot that pulses slowly. Off the live edge it steps aside and states when the value is from instead.",
+  },
   "components/list-card": {
     title: "ListCard",
     description: "A scannable list item with leading accessory, body, status, metadata, and optional selected state.",
@@ -440,6 +444,10 @@ export const componentContentEn: Record<string, DocContent> = {
   "components/date-range-picker": {
     title: "DateRangePicker",
     description: "Pick a start and end date together with a two-month calendar popover.",
+  },
+  "components/day-band": {
+    title: "DayBand",
+    description: "One day as a single horizontal surface: coloured stretches, named marks, the live edge, and a thumb you can scrub. It computes nothing about the day — sunrise and now are numbers you pass in.",
   },
   "components/editable-field": {
     title: "EditableField",

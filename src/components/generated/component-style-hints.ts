@@ -2052,6 +2052,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "liveBadge": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": ""
+      },
+      "variantColorHints": {}
+    },
     "loyaltySummaryCard": {
       "variantKeys": [
         "default"
@@ -2919,6 +2932,19 @@ export const componentStyleHints = {
       "baseColorHint": null,
       "slotIds": [],
       "variantClasses": {},
+      "variantColorHints": {}
+    },
+    "dayBand": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
       "variantColorHints": {}
     },
     "editableField": {
