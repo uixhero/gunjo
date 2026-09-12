@@ -56,7 +56,7 @@ const GENERIC_SCREEN_COUNT = (gallery as GalleryShape).entries.filter(
 const INDUSTRY_SCREEN_COUNT = COLD_TEST_ROUND_COUNT - GENERIC_SCREEN_COUNT;
 
 const TITLE = "このサイトの読み方";
-const DESCRIPTION = `gunjo.jp の案内図。「人間がすること」と「AI がすること」、「見本」と「試験」で分かれる4つの面、コールドテストとは何か、見つかった不具合の3つの状態、この試験で言えること・言えないこと。`;
+const DESCRIPTION = `gunjo.jp の案内図。「人間がすること」と「AI がすること」、「見本」と「試験」で分かれる4つの面、コールドテストとは何か、見つかったものに付く3つの状態、この試験で言えること・言えないこと。`;
 const SITE_URL = (
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.gunjo.jp"
 ).replace(/\/$/, "");
@@ -571,7 +571,7 @@ export default function HowToReadPage() {
                         design:verify the moment a requirement lands in
                         another state or without a component link. */}
                     <p className="leading-7 text-foreground">
-                        並んだ一つひとつに、下の3つの状態のどれか1つが付きます。足りないものは、コンポーネントができた時点で、それが要ると分かった回のページの「この回で要ると分かったもの」に載るので、いまはすべて「対応済み」です。
+                        並んだ一つひとつに、下の3つの状態のどれか1つが付きます。足りないものが載るのはコンポーネントができてからなので、いまはすべて「対応済み」です。
                     </p>
                     <ul className="space-y-3">
                         {FINDING_STATES.map((state) => (
