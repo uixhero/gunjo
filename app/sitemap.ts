@@ -38,6 +38,7 @@ function collectPaths(node: unknown, acc: Set<string>): void {
 export default function sitemap(): MetadataRoute.Sitemap {
     const paths = new Set<string>([
         "/",
+        "/how-to-read",
         "/showcase",
         "/patterns",
         "/cold-tests",
