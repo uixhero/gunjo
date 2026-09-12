@@ -571,7 +571,7 @@ export default function HowToReadPage() {
                         design:verify the moment a requirement lands in
                         another state or without a component link. */}
                     <p className="leading-7 text-foreground">
-                        並んだ一つひとつに、下の3つの状態のどれか1つが付きます。足りないものが載るのはコンポーネントができてからなので、いまはすべて「対応済み」です。
+                        並んだ一つひとつに、下の3つの状態のどれか1つが付きます。足りないものは、コンポーネントができてから載るので、いまはすべて「対応済み」です。
                     </p>
                     <ul className="space-y-3">
                         {FINDING_STATES.map((state) => (
