@@ -127,6 +127,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "scan-gate": "Inputs",
   "co-sign": "Inputs",
   "time-transport": "Inputs",
+  "day-band": "Inputs",
   "password-input": "Inputs",
   "password-group": "Inputs",
   "password-requirement-list": "Inputs",

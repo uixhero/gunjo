@@ -212,6 +212,7 @@ export * from './components/inputs/CoSign';
 export * from './components/inputs/CurrencyInput';
 export * from './components/inputs/DatePicker';
 export * from './components/inputs/DateRangePicker';
+export * from './components/inputs/DayBand';
 export * from './components/inputs/EditableField';
 export * from './components/inputs/FileUploader';
 export * from './components/inputs/FilterButton';

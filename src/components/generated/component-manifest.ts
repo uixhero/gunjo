@@ -2195,6 +2195,17 @@ export const componentManifest = {
       "specSource": "design/inputs.pen",
       "stability": "experimental"
     },
+    "dayBand": {
+      "title": "DayBand",
+      "description": "The one-day band: a single horizontal surface that shows where you are inside a day. Coloured stretches (night / twilight / day, off-shift / handover / on-shift, closed / open) drawn as phases, named marks at the moments that matter (sunrise, a shift change), the live edge, and a thumb that can be scrubbed. The generalisation of 'show a position inside a day as a surface' — duty rosters, operating windows, opening hours, and the day/night band it was extracted from. Computes NOTHING about the day: sunrise and sunset are times the caller passes as marks, phases are stretches the caller passes, and `now` is a number the caller reads from its own clock — no astronomy, no timers, no locale assumptions inside (the TimeTransport / Stringline rule). Phase tones resolve to the SUBTLE surface tokens because a phase is a background that marks and the thumb are drawn on top of; a raw CSS colour is accepted when the ramp is artwork. Pointer scrubbing is `absolute` (press is position) or `relative` (drag by distance, which can roll past midnight and expects the caller to re-base the day). Real role=slider with arrow / shift-arrow / Page / Home / End keys and an aria-valuetext that names the clock time AND the phase it falls in, so a colour never carries meaning alone. Touch height is 44px. Drops into TimeTransport's `scrubber` slot. Distinct from Slider (a plain value with no day), SegmentTimelineCard (an ARBITRARY window, not one day) and WeekView / ScheduleGrid (more than one day).",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/inputs/DayBand.tsx",
+      "specSource": "design/inputs.pen",
+      "stability": "experimental"
+    },
     "editableField": {
       "title": "Editable Field",
       "description": "Labelled field that switches between read-only display and explicit save/cancel editing.",

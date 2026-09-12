@@ -2079,6 +2079,7 @@ export const translations: Record<
       DataTable: "データテーブル",
       DatePicker: "日付ピッカー",
       DateRangePicker: "日付範囲ピッカー",
+      DayBand: "いちにちの帯",
       DeviceFrame: "デバイスフレーム",
       DocNote: "注釈",
       DocumentPager: "ドキュメントページャー",

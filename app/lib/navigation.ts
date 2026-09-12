@@ -63,6 +63,7 @@ export const navigation = [
             { title: "CurrencyInput", href: "/docs/components/currency-input" },
             { title: "DatePicker", href: "/docs/components/date-picker" },
             { title: "DateRangePicker", href: "/docs/components/date-range-picker" },
+            { title: "DayBand", href: "/docs/components/day-band" },
             { title: "EditableField", href: "/docs/components/editable-field" },
             { title: "FileUploader", href: "/docs/components/file-uploader" },
             { title: "FilterButton", href: "/docs/components/filter-button" },

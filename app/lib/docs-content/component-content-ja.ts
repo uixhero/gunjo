@@ -462,6 +462,10 @@ export const componentContentJa: Record<string, DocContent> = {
     title: "DateRangePicker",
     description: "開始日と終了日をまとめて選択する、2か月表示のカレンダーポップオーバーです。",
   },
+  "components/day-band": {
+    title: "DayBand",
+    description: "1日を1本の帯にして、時間帯を面で、節目を印で、いまの時刻とつまみの位置を重ねて見せます。日の出も「いま」も呼び出し側が渡す数で、部品は1日について何も計算しません。",
+  },
   "components/editable-field": {
     title: "EditableField",
     description: "読み取り表示と明示的な保存・キャンセル付き編集を切り替えられる、ラベル付きフィールドです。",
