@@ -2921,6 +2921,19 @@ export const componentStyleHints = {
       "variantClasses": {},
       "variantColorHints": {}
     },
+    "dayBand": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
+      "variantColorHints": {}
+    },
     "editableField": {
       "variantKeys": [
         "default"

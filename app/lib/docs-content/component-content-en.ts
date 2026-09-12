@@ -441,6 +441,10 @@ export const componentContentEn: Record<string, DocContent> = {
     title: "DateRangePicker",
     description: "Pick a start and end date together with a two-month calendar popover.",
   },
+  "components/day-band": {
+    title: "DayBand",
+    description: "One day as a single horizontal surface: coloured stretches, named marks, the live edge, and a thumb you can scrub. It computes nothing about the day — sunrise and now are numbers you pass in.",
+  },
   "components/editable-field": {
     title: "EditableField",
     description: "A labelled field that switches between read-only display and explicit save/cancel editing.",
