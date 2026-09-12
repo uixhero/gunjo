@@ -1493,6 +1493,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "beta"
     },
+    "liveBadge": {
+      "title": "LiveBadge",
+      "description": "The small bordered pill that says 'this is the current value', with a dot that pulses slowly to show something is still arriving. When the value is no longer current the badge steps aside and states WHEN the value is from instead (`detached`) — and renders nothing at all when it has not been told. For monitoring boards, streams, match commentary, trading screens and sensor readouts: anywhere a number could be either live or a snapshot and the reader cannot tell by looking. Holds NO clock and compares nothing — `live` is the caller's decision (the TimeTransport rule); TimeTransport renders its own live state with this badge. The state is never carried by the dot or the colour: the badge always has a word on it (default `LIVE`), and the detached form replaces that word with the 'when'. The dot does not pulse under prefers-reduced-motion: reduce. Deliberately NOT a live region — `role='status'` here would interrupt a screen reader on every reconnection, so the caller adds it on the rare screen where the change is the news. Composed from Badge (success / warning tones, same size scale). Distinct from Badge (a state that is not about freshness), ExpiryBadge (a deadline, not a live edge) and TimeTransport (which also MOVES the value).",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/LiveBadge.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "loyaltySummaryCard": {
       "title": "LoyaltySummaryCard",
       "description": "The points/balance/tier hero every consumer loyalty screen opens with: a prominent balance, a tier/rank badge, optional secondary values (IC残高/当年実績), a higher-is-better progress-to-next-tier with a remaining label (『プラチナまであと ¥13,800』 — never auto-reds like a capacity Meter), an expiry-warning slot and a primary action. The brand tone is a filled gradient surface so the hero has shine without reaching for arbitrary brand-token classes. For airline マイル, 鉄道 IC/ポイント, retail/EC rewards, membership tiers. For the back-office KPI strip use StatGroup; for a money breakdown use AmountBreakdown; for the points/coupon/history list under the hero use ListCard. Presentational (the action slot owns interactivity) — RSC-safe.",
@@ -2184,6 +2195,17 @@ export const componentManifest = {
       "specSource": "design/inputs.pen",
       "stability": "experimental"
     },
+    "dayBand": {
+      "title": "DayBand",
+      "description": "The one-day band: a single horizontal surface that shows where you are inside a day. Coloured stretches (night / twilight / day, off-shift / handover / on-shift, closed / open) drawn as phases, named marks at the moments that matter (sunrise, a shift change), the live edge, and a thumb that can be scrubbed. The generalisation of 'show a position inside a day as a surface' — duty rosters, operating windows, opening hours, and the day/night band it was extracted from. Computes NOTHING about the day: sunrise and sunset are times the caller passes as marks, phases are stretches the caller passes, and `now` is a number the caller reads from its own clock — no astronomy, no timers, no locale assumptions inside (the TimeTransport / Stringline rule). Phase tones resolve to the SUBTLE surface tokens because a phase is a background that marks and the thumb are drawn on top of; a raw CSS colour is accepted when the ramp is artwork. Pointer scrubbing is `absolute` (press is position) or `relative` (drag by distance, which can roll past midnight and expects the caller to re-base the day). Real role=slider with arrow / shift-arrow / Page / Home / End keys and an aria-valuetext that names the clock time AND the phase it falls in, so a colour never carries meaning alone. Touch height is 44px. Drops into TimeTransport's `scrubber` slot. Distinct from Slider (a plain value with no day), SegmentTimelineCard (an ARBITRARY window, not one day) and WeekView / ScheduleGrid (more than one day).",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/inputs/DayBand.tsx",
+      "specSource": "design/inputs.pen",
+      "stability": "experimental"
+    },
     "editableField": {
       "title": "Editable Field",
       "description": "Labelled field that switches between read-only display and explicit save/cancel editing.",
@@ -2470,6 +2492,17 @@ export const componentManifest = {
       "variantKeys": [],
       "defaultVariantKey": null,
       "sourceFile": "src/components/inputs/TimePicker.tsx",
+      "specSource": "design/inputs.pen",
+      "stability": "experimental"
+    },
+    "timeTransport": {
+      "title": "TimeTransport",
+      "description": "The playback / scrub transport for a continuous value: a large readout of where you are, play-pause, named speed steps, signed jump buttons, a live-vs-detached state and a one-press return to now. The generalisation of 'move a continuous value in graded steps, and get back to live' — log replay, rewinding a monitoring board, stepping a simulation clock, scrubbing a recording, and the map/globe time controls it was extracted from. Holds NO clock of its own: `value` comes in and `onValueChange` goes out, so the caller owns the ticking and SSR renders the same frame twice (the Stringline rule). Speeds are caller-named steps (`speeds[]`), never a raw multiplier range, because a design system cannot know whether 1× means a second or a day. Live-vs-detached is resolved from `now` (or forced with `live`) and is never carried by colour alone — a labelled LiveBadge states it in words and the readout is not recoloured at all. Distinct from Slider / RangeSlider (a value picker with no playback), TimePicker / DatePicker / Calendar (pick an ABSOLUTE instant, no relative motion), SegmentedControl (the speed steps alone) and Timeline / Stringline / Gantt / SegmentTimelineCard (which DISPLAY time and take no input). Pass a scrubber (DayBand) through the `scrubber` slot. Touch targets are ≥44px.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/inputs/TimeTransport.tsx",
       "specSource": "design/inputs.pen",
       "stability": "experimental"
     },

@@ -1246,4 +1246,15 @@ export const DISPLAY_SPEC_DEFINITIONS = [
       ],
     }),
   },
+  {
+    key: "liveBadge",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:liveBadge",
+      title: "LiveBadge",
+      description: "The small bordered pill that says 'this is the current value', with a dot that pulses slowly to show something is still arriving. When the value is no longer current the badge steps aside and states WHEN the value is from instead (`detached`) — and renders nothing at all when it has not been told. For monitoring boards, streams, match commentary, trading screens and sensor readouts: anywhere a number could be either live or a snapshot and the reader cannot tell by looking. Holds NO clock and compares nothing — `live` is the caller's decision (the TimeTransport rule); TimeTransport renders its own live state with this badge. The state is never carried by the dot or the colour: the badge always has a word on it (default `LIVE`), and the detached form replaces that word with the 'when'. The dot does not pulse under prefers-reduced-motion: reduce. Deliberately NOT a live region — `role='status'` here would interrupt a screen reader on every reconnection, so the caller adds it on the rare screen where the change is the news. Composed from Badge (success / warning tones, same size scale). Distinct from Badge (a state that is not about freshness), ExpiryBadge (a deadline, not a live edge) and TimeTransport (which also MOVES the value).",
+      variants: [
+        createSyntheticVariant("default", { width: null, padding: null }),
+      ],
+    }),
+  },
 ];

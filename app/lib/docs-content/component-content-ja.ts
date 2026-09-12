@@ -90,6 +90,10 @@ export const componentContentJa: Record<string, DocContent> = {
     title: "LineChip",
     description: "路線名や系統番号を、ブランド色と自動コントラスト文字で表示する識別チップです。",
   },
+  "components/live-badge": {
+    title: "LiveBadge",
+    description: "「これはいまの値です」を示す小さな札です。枠と、ゆっくり明滅する点。実時間から外れているときは札を引っ込め、代わりに「いつの値か」を出します。",
+  },
   "components/list-card": {
     title: "ListCard",
     description: "一覧の1項目を、先頭アクセサリ、本文、状態、メタ情報、選択状態付きで表示します。",
@@ -173,6 +177,10 @@ export const componentContentJa: Record<string, DocContent> = {
   "components/stringline": {
     title: "Stringline",
     description: "停車地点と時刻を結ぶ運行図表を表示し、計画と実績、上下方向、現在時刻を重ねて確認できます。",
+  },
+  "components/time-transport": {
+    title: "TimeTransport",
+    description: "いま映している値を、名前をつけた速さの段で動かし、決まった幅で飛ばし、ひと押しで「いま」へ戻すための操作盤です。時計は持たず、進めるのは呼び出し側です。",
   },
   "components/ticket-stub": {
     title: "TicketStub",
@@ -453,6 +461,10 @@ export const componentContentJa: Record<string, DocContent> = {
   "components/date-range-picker": {
     title: "DateRangePicker",
     description: "開始日と終了日をまとめて選択する、2か月表示のカレンダーポップオーバーです。",
+  },
+  "components/day-band": {
+    title: "DayBand",
+    description: "1日を1本の帯にして、時間帯を面で、節目を印で、いまの時刻とつまみの位置を重ねて見せます。日の出も「いま」も呼び出し側が渡す数で、部品は1日について何も計算しません。",
   },
   "components/editable-field": {
     title: "EditableField",

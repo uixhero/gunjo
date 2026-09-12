@@ -192,6 +192,18 @@ export default function Home() {
                         <p className="text-2xl font-medium tracking-tight text-foreground">
                             {home.showcase.description}
                         </p>
+                        {/* JA-only guide-map link (issue #880). The page has no
+                            EN version yet — the EN counterpart is a separate
+                            task per the JA/EN split decision. */}
+                        {isJa && (
+                            <Link
+                                href="/how-to-read"
+                                className="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+                            >
+                                このサイトの読み方（案内図）
+                                <ArrowRight className="h-3.5 w-3.5" aria-hidden />
+                            </Link>
+                        )}
                     </div>
                     <div className="grid gap-4 sm:grid-cols-2">
                         {(

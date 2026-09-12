@@ -9,6 +9,7 @@ import {
   findUndefinedPatternTokens,
 } from "./design-sync/sync-starter.mjs";
 import { syncTokenValues } from "./design-sync/sync-token-values.mjs";
+import { syncTokenScales } from "./design-sync/sync-token-scales.mjs";
 import { syncMetadata } from "./design-sync/sync-metadata.mjs";
 import { syncComponentSpecs } from "./design-sync/sync-component-specs.mjs";
 import { syncDocsNavigation } from "./design-sync/sync-docs-navigation.mjs";
@@ -29,12 +30,14 @@ import { verifyNoHardcodedColorClasses } from "./design-verify-hardcoded-color-c
 import { verifyNoLeftEmphasis } from "./check-left-emphasis.mjs";
 import { verifyFictionalNames } from "./check-fictional-names.mjs";
 import { verifyJapaneseLength } from "./check-japanese-length.mjs";
+import { verifyRequirementFindings } from "./check-requirement-findings.mjs";
 import { verifyAppGlobalsSync } from "./design-verify-app-globals-sync.mjs";
 import { verifyTailwindColorTokens } from "./design-verify-tailwind-color-tokens.mjs";
 import { verifyTailwindFoundationTokens } from "./design-verify-tailwind-foundation-tokens.mjs";
 import { verifyTailwindPresetPlugins } from "./design-verify-tailwind-preset-plugins.mjs";
 import { verifyTailwindThemeSsot } from "./design-verify-tailwind-theme-ssot.mjs";
 import { verifyCssVariableCoverage } from "./design-verify-css-variable-coverage.mjs";
+import { verifyScaleTokens } from "./design-verify-scale-tokens.mjs";
 import { verifyColorContrast } from "./design-verify-color-contrast.mjs";
 import { METADATA_SYNC_CATEGORY_CONFIGS } from "./design-sync/sync-metadata.mjs";
 import { COMPONENT_SOURCE_CATEGORY_CONFIGS } from "./design-sync/component-source-map.mjs";
@@ -49,6 +52,7 @@ const STATIC_GENERATED_FILES = [
   "public/tokens.css",
   "public/starter.html",
   "app/lib/data/token-values.generated.ts",
+  "app/lib/data/token-scales.generated.ts",
   "src/components/generated/component-manifest.ts",
   "src/components/generated/component-style-hints.ts",
   "src/index.ts",
@@ -97,6 +101,7 @@ function main() {
   const before = snapshotGeneratedFiles();
 
   syncTokens();
+  syncTokenScales();
   syncStandaloneTokens();
   syncStarter();
   syncTokenValues();
@@ -119,11 +124,13 @@ function main() {
   verifyNoLeftEmphasis({ root: ROOT });
   verifyFictionalNames({ root: ROOT });
   verifyJapaneseLength({ root: ROOT });
+  verifyRequirementFindings({ root: ROOT });
   verifyTailwindColorTokens({ root: ROOT });
   verifyTailwindFoundationTokens({ root: ROOT });
   verifyTailwindThemeSsot({ root: ROOT });
   verifyTailwindPresetPlugins({ root: ROOT });
   verifyCssVariableCoverage({ root: ROOT });
+  verifyScaleTokens({ root: ROOT });
   verifyColorContrast({ root: ROOT });
   verifyAppGlobalsSync({ root: ROOT });
 
