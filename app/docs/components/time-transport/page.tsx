@@ -513,6 +513,7 @@ export function Replay() {
             sectionLabels={sectionLabels}
             usedComponents={[
                 { name: "Button", href: "/docs/components/button" },
+                { name: "LiveBadge", href: "/docs/components/live-badge" },
                 { name: "SegmentedControl", href: "/docs/components/segmented-control" },
                 { name: "Switch", href: "/docs/components/switch" },
                 { name: "Label", href: "/docs/components/label" },

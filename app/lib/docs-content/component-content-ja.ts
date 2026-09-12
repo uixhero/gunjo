@@ -90,6 +90,10 @@ export const componentContentJa: Record<string, DocContent> = {
     title: "LineChip",
     description: "路線名や系統番号を、ブランド色と自動コントラスト文字で表示する識別チップです。",
   },
+  "components/live-badge": {
+    title: "LiveBadge",
+    description: "「これはいまの値です」を示す小さな札です。枠と、ゆっくり明滅する点。実時間から外れているときは札を引っ込め、代わりに「いつの値か」を出します。",
+  },
   "components/list-card": {
     title: "ListCard",
     description: "一覧の1項目を、先頭アクセサリ、本文、状態、メタ情報、選択状態付きで表示します。",

@@ -217,6 +217,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "status-board": "Display",
   "status-level": "Display",
   "expiry-badge": "Display",
+  "live-badge": "Display",
   "limit-monitor": "Display",
   "reference-value": "Display",
   "signed-record": "Display",

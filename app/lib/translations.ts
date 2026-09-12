@@ -2090,6 +2090,7 @@ export const translations: Record<
       FilterButton: "フィルターボタン",
       Form: "フォーム",
       HoverCard: "ホバーカード",
+      LiveBadge: "LIVE の札",
       List: "リスト",
       MarkdownRenderer: "Markdown描画",
       MetadataList: "メタデータリスト",

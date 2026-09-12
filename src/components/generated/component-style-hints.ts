@@ -2052,6 +2052,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "liveBadge": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": ""
+      },
+      "variantColorHints": {}
+    },
     "loyaltySummaryCard": {
       "variantKeys": [
         "default"
