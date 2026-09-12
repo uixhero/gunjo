@@ -91,6 +91,7 @@ export const navigation = [
             { title: "TagInput", href: "/docs/components/tag-input" },
             { title: "Textarea", href: "/docs/components/textarea" },
             { title: "TimePicker", href: "/docs/components/time-picker" },
+            { title: "TimeTransport", href: "/docs/components/time-transport" },
             { title: "Toggle", href: "/docs/components/toggle" },
             { title: "ToggleGroup", href: "/docs/components/toggle-group" },
             { title: "TooltipButton", href: "/docs/components/tooltip-button" },

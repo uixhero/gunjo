@@ -2194,6 +2194,7 @@ export const translations: Record<
       TextLink: "テキストリンク",
       Timeline: "タイムライン",
       TimePicker: "時刻ピッカー",
+      TimeTransport: "時間の操作",
       Toast: "トースト",
       Tooltip: "ツールチップ",
       TreeView: "ツリービュー",

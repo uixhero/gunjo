@@ -13,6 +13,7 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ### Added
 
+- **`TimeTransport`**（影響: **none**）— 連続した値を「段階つきで動かし、いまへ戻る」ための Inputs 部品。大きい表示・再生と一時停止・名前をつけた速さの段（`speeds[]`）・符号つきの飛ばし（`jumps[]`）・実時間かどうかの札・ひと押しの「いまへ戻る」を1枚にまとめる。⭐ **時計を内側に持たない**（`value` を受け取り `onValueChange` で返すだけ）ので、サーバと最初のクライアント描画が一致し、試験で時間を止められる（`Stringline` と同じ決まり）。速さは倍率の連続値ではなく呼び出し側が名前をつけた段＝「1× が1秒なのか1日なのか」は部品には決められないため。実時間かどうかは `now` から導き（`live` で上書き可）、色だけには載せず必ず文字の札で言う。`now` も `live` も無いときは札も「いまへ戻る」も出さない（推測しない）。触れるところは 44px。掴んで動かす面は `scrubber` スロットで受ける。ログの再生・監視画面の巻き戻し・シミュレーションの時刻送りに使う。値を選ぶだけなら `Slider`、絶対の時刻なら `TimePicker` / `DatePicker`、時間を見せるだけなら `Timeline` / `Stringline` / `Gantt`。(#977)
 - **`StatusLevel`**（影響: **none**）— 順序のある段（平常運転＜遅延＜迂回＜運休、空いています＜やや混雑＜混雑、低＜中＜高＜緊急、good＜watch＜bad）を表す Display 部品。段は `levels[]` に軽い順で1回だけ書き、同じ配列がピルと並べ替え（`compareStatusLevel`）と全体の導出（`highestStatusLevel`）を動かすので、順序の書き写しが1か所に減る。段バーは意味トーンではなく前景色と枠線色の濃淡で描くため色を落としても段を数えられ（明色 13 対 230・実測）、読み上げには「4段階中 3段目」が乗る。順序のない状態は従来どおり `Badge`、工程の位置は `Stepper` / `ApprovalSteps` / `RouteStops`。純関数 `statusLevelIndex` / `statusLevelStep` / `compareStatusLevel` / `highestStatusLevel` を同梱。`Badge` の挙動と公開 API は不変。(#376)
 - **`StickyNoticeBar`**（影響: **none**）— サイト告知を body portal + `fixed` で上端または下端へ追従表示する Feedback 部品。`edge` は必須で既定値なし。同一 document の単一スロットに限定し、複数 mount 時は先着1件だけを表示して開発エラーを記録する。長文折り返し、アクション、44px の閉じるボタン、上下セーフエリア、ライト／ダークに対応。(#810)
 

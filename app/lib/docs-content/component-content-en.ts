@@ -173,6 +173,10 @@ export const componentContentEn: Record<string, DocContent> = {
     title: "Stringline",
     description: "A time-distance run diagram for planned and actual movement, directions, and the current time.",
   },
+  "components/time-transport": {
+    title: "TimeTransport",
+    description: "A playback transport for a continuous value: named speed steps, fixed jumps, a live-vs-detached state and a one-press return to now. It holds no clock — the caller owns the ticking.",
+  },
   "components/ticket-stub": {
     title: "TicketStub",
     description: "A ticket-shaped pass for coupons, boarding passes, and memberships with a barcode or QR code.",
