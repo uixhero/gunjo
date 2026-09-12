@@ -1,37 +1,10 @@
 "use client";
 
 import { useLocale } from "@/components/providers/LocaleProvider";
-
-const SPACING_SCALE = [
-    { name: "0", value: "0px", widthClass: "w-0" },
-    { name: "px", value: "1px", widthClass: "w-px" },
-    { name: "0.5", value: "2px", widthClass: "w-0.5" },
-    { name: "1", value: "4px", widthClass: "w-1" },
-    { name: "1.5", value: "6px", widthClass: "w-1.5" },
-    { name: "2", value: "8px", widthClass: "w-2" },
-    { name: "2.5", value: "10px", widthClass: "w-2.5" },
-    { name: "3", value: "12px", widthClass: "w-3" },
-    { name: "3.5", value: "14px", widthClass: "w-3.5" },
-    { name: "4", value: "16px", widthClass: "w-4" },
-    { name: "5", value: "20px", widthClass: "w-5" },
-    { name: "6", value: "24px", widthClass: "w-6" },
-    { name: "7", value: "28px", widthClass: "w-7" },
-    { name: "8", value: "32px", widthClass: "w-8" },
-    { name: "9", value: "36px", widthClass: "w-9" },
-    { name: "10", value: "40px", widthClass: "w-10" },
-    { name: "12", value: "48px", widthClass: "w-12" },
-    { name: "14", value: "56px", widthClass: "w-14" },
-    { name: "16", value: "64px", widthClass: "w-16" },
-    { name: "20", value: "80px", widthClass: "w-20" },
-    { name: "24", value: "96px", widthClass: "w-24" },
-    { name: "28", value: "112px", widthClass: "w-28" },
-    { name: "32", value: "128px", widthClass: "w-32" },
-    { name: "36", value: "144px", widthClass: "w-36" },
-    { name: "40", value: "160px", widthClass: "w-40" },
-    { name: "48", value: "192px", widthClass: "w-48" },
-    { name: "56", value: "224px", widthClass: "w-56" },
-    { name: "64", value: "256px", widthClass: "w-64" },
-];
+// The scale itself is generated from scripts/design-sync/token-scales.mjs, the
+// same source public/tokens.css ships as --space-*. This page used to carry the
+// 28 steps as a hand-typed array, which made the docs a copy nothing checked. (#969)
+import { SPACING_SCALE } from "@/lib/data/token-scales.generated";
 
 const COMMON_USES_BASE = [
     { token: "h-9", value: "36px" },
@@ -100,14 +73,14 @@ export default function SpacingPage() {
                 <div className="space-y-1.5 rounded-lg border border-border/40 bg-muted/20 p-5">
                     {SPACING_SCALE.map((step) => (
                         <div
-                            key={step.name}
+                            key={step.step}
                             className="flex items-center gap-4 border-b border-border/20 py-1.5 last:border-b-0"
                         >
                             <code className="w-12 shrink-0 font-mono text-xs text-muted-foreground">
-                                {step.name}
+                                {step.step}
                             </code>
                             <code className="w-16 shrink-0 font-mono text-[10px] text-muted-foreground">
-                                {step.value}
+                                {step.px}
                             </code>
                             <div
                                 className={`h-3 ${step.widthClass} rounded-sm bg-primary`}
