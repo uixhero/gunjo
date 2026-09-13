@@ -153,9 +153,31 @@ source の置き場が `src/components/display` でも、docs は `/docs/compone
 - props
 - usage
 - used components
-- related components
+- related components（各項目に `boundary` を1行）
 - preview と code の中身の一致
 - 日本語 / 英語の混在チェック
+
+#### related components の `boundary`（2026-09-13 KeEem 決定）
+
+部品を選ぶとき、読み手がいちばん知りたいのは「どこからが隣の部品か」。それを
+`relatedComponents` の各項目に1行（60字以内・日英）で書く。名前の下に小さく出る。
+
+```tsx
+relatedComponents={[
+    {
+        name: "Slider",
+        href: "/docs/components/slider",
+        boundary: isJa
+            ? "値を1つ選ぶだけ。1日という器も時間帯の面も無い。"
+            : "Picks one value; no day, no phases.",
+    },
+]}
+```
+
+- **新規ページは必須**。既存ページは任意（触るときに足す。一気に埋めない）
+- ⛔ ページ独自の節（「似た部品との境界」など）として書かない。2026-09-13 の実測で
+  その形を持つのは 239 ページ中 3 ページだけだった
+- 型の順は変えない。`使用コンポーネント` の次・`設計の判断` の前のまま
 
 ### 4.2 docs preview の注意
 

@@ -227,10 +227,34 @@ export function Announced() {
                 { name: "Label", href: "/docs/components/label" },
             ]}
             relatedComponents={[
-                { name: "Badge", href: "/docs/components/badge" },
-                { name: "ExpiryBadge", href: "/docs/components/expiry-badge" },
-                { name: "TimeTransport", href: "/docs/components/time-transport" },
-                { name: "DayBand", href: "/docs/components/day-band" },
+                {
+                    name: "Badge",
+                    href: "/docs/components/badge",
+                    boundary: isJa
+                        ? "鮮度の話ではない状態（下書き・承認済み）はこちら。"
+                        : "For a state that is not about freshness — draft, approved.",
+                },
+                {
+                    name: "ExpiryBadge",
+                    href: "/docs/components/expiry-badge",
+                    boundary: isJa
+                        ? "締切までの残り。いまの値かどうかとは別の軸です。"
+                        : "Time left before a deadline — a different axis.",
+                },
+                {
+                    name: "TimeTransport",
+                    href: "/docs/components/time-transport",
+                    boundary: isJa
+                        ? "読み手が値を動かすときの操作盤。その実時間の札がこれ。"
+                        : "The transport for moving the value; its live chip is this.",
+                },
+                {
+                    name: "DayBand",
+                    href: "/docs/components/day-band",
+                    boundary: isJa
+                        ? "1日の中の位置を面で見せる帯。鮮度の話ではない。"
+                        : "Position within a day as a surface — not about freshness.",
+                },
             ]}
         >
             <ComponentPreview
@@ -254,40 +278,6 @@ export function Announced() {
                 {isJa
                     ? "札には必ず言葉（既定は LIVE）が乗ります。明滅する点は「何かがまだ届いている」を添えるだけの飾りで、それだけで状態を伝えることはありません。動きを減らす設定（prefers-reduced-motion: reduce）では、点は残したまま明滅だけが止まります。消してしまうと理由もなく手がかりが1つ減るためです。"
                     : "The badge always carries a word (LIVE by default). The pulsing dot only adds “something is still arriving”; it never carries the state on its own. Under prefers-reduced-motion: reduce the dot stays put and simply stops breathing — removing it would take away a cue for no reason."}
-            </DocNote>
-
-            <DocNote variant="note" heading={isJa ? "似た部品との境界" : "Where the neighbours stop"}>
-                {isJa ? (
-                    <ul className="ml-4 list-disc space-y-1">
-                        <li>
-                            <strong>Badge</strong> — 鮮度の話ではない状態（下書き・承認済み・重要）はこちら。
-                            LiveBadge はその Badge を組んで作っています。
-                        </li>
-                        <li>
-                            <strong>ExpiryBadge</strong> — <strong>締切</strong>までの残り。こちらは「いまの値かどうか」で、
-                            期限とは別の軸です。
-                        </li>
-                        <li>
-                            <strong>TimeTransport</strong> — 読み手が値を<strong>動かす</strong>ときの操作盤。
-                            その中の実時間の札は、この部品が描いています。
-                        </li>
-                    </ul>
-                ) : (
-                    <ul className="ml-4 list-disc space-y-1">
-                        <li>
-                            <strong>Badge</strong> — for a state that is not about freshness (draft, approved,
-                            priority). LiveBadge is built from it.
-                        </li>
-                        <li>
-                            <strong>ExpiryBadge</strong> — time left before a <strong>deadline</strong>. This badge is
-                            about whether a value is current, which is a different axis.
-                        </li>
-                        <li>
-                            <strong>TimeTransport</strong> — the transport for when the reader also needs to{" "}
-                            <strong>move</strong> the value. Its live chip is this badge.
-                        </li>
-                    </ul>
-                )}
             </DocNote>
 
             <section className="space-y-4">

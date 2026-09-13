@@ -471,10 +471,34 @@ export function BandInTransport() {
                 { name: "Label", href: "/docs/components/label" },
             ]}
             relatedComponents={[
-                { name: "TimeTransport", href: "/docs/components/time-transport" },
-                { name: "Slider", href: "/docs/components/slider" },
-                { name: "SegmentTimelineCard", href: "/docs/components/segment-timeline-card" },
-                { name: "WeekView", href: "/docs/components/week-view" },
+                {
+                    name: "TimeTransport",
+                    href: "/docs/components/time-transport",
+                    boundary: isJa
+                        ? "時間を動かす操作盤。この帯はその scrubber に入る面です。"
+                        : "The transport that moves time; this band fills its scrubber.",
+                },
+                {
+                    name: "Slider",
+                    href: "/docs/components/slider",
+                    boundary: isJa
+                        ? "RangeSlider と同じく値を選ぶだけ。1日の器も時間帯の面も無い。"
+                        : "Picks a value; no day, no phases, no marks.",
+                },
+                {
+                    name: "SegmentTimelineCard",
+                    href: "/docs/components/segment-timeline-card",
+                    boundary: isJa
+                        ? "任意の区間を段で見せるカード。こちらの器はちょうど1日。"
+                        : "An arbitrary window as a card; this band is exactly one day.",
+                },
+                {
+                    name: "WeekView",
+                    href: "/docs/components/week-view",
+                    boundary: isJa
+                        ? "ScheduleGrid と同じく日が複数のとき。1本の帯では足りない。"
+                        : "For more than one day — one band is not enough.",
+                },
             ]}
         >
             <ComponentPreview
@@ -498,47 +522,6 @@ export function BandInTransport() {
                 {isJa
                     ? "日の出・日の入の時刻、夜と昼の境目、いまの時刻。どれも呼び出し側が渡します。部品の中に天文の計算も setInterval もありません。緯度経度から日の出を出すのは、この帯の仕事ではなく呼び出し側のデータの都合だからです（同じ形が当番表や営業時間にそのまま使えるのは、そのためです）。⚠️ now を渡すときの Date.now() は、描画中ではなく effect の中で読んでください（TimeTransport・Stringline と同じ決まり）。"
                     : "Sunrise, sunset, where night ends, and what time it is now are all numbers the caller hands over. There is no astronomy and no setInterval inside. Deriving sunrise from a latitude is the caller's data problem, not the band's — which is exactly why the same shape serves duty rosters and opening hours. ⚠️ When you pass now, read Date.now() inside an effect, not during render (the TimeTransport / Stringline rule)."}
-            </DocNote>
-
-            <DocNote variant="note" heading={isJa ? "似た部品との境界" : "Where the neighbours stop"}>
-                {isJa ? (
-                    <ul className="ml-4 list-disc space-y-1">
-                        <li>
-                            <strong>TimeTransport</strong> — 時間を<strong>動かす操作盤</strong>。この帯は、その{" "}
-                            <code>scrubber</code> スロットに入る「掴んで動かす面」です。組み合わせの例は下にあります。
-                        </li>
-                        <li>
-                            <strong>Slider・RangeSlider</strong> — 値を1つ選ぶだけ。1日という器も、時間帯の面も、節目の印も
-                            ありません。
-                        </li>
-                        <li>
-                            <strong>SegmentTimelineCard</strong> — <strong>任意の区間</strong>を段で見せるカード。こちらは
-                            「ちょうど1日」が器で、時刻の数字もその前提で入ります。
-                        </li>
-                        <li>
-                            <strong>WeekView・ScheduleGrid</strong> — 日が<strong>複数</strong>あるとき。1本の帯では足りません。
-                        </li>
-                    </ul>
-                ) : (
-                    <ul className="ml-4 list-disc space-y-1">
-                        <li>
-                            <strong>TimeTransport</strong> — the transport that <strong>moves</strong> time. This band is
-                            the scrub surface that goes in its <code>scrubber</code> slot; the pairing is demonstrated
-                            below.
-                        </li>
-                        <li>
-                            <strong>Slider / RangeSlider</strong> — one value and nothing else: no day, no phases, no
-                            marks.
-                        </li>
-                        <li>
-                            <strong>SegmentTimelineCard</strong> — an <strong>arbitrary</strong> window as a card. This
-                            band is exactly one day, and its hour numbers assume it.
-                        </li>
-                        <li>
-                            <strong>WeekView / ScheduleGrid</strong> — when there is <strong>more than one</strong> day.
-                        </li>
-                    </ul>
-                )}
             </DocNote>
 
             <section className="space-y-4">

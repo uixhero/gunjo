@@ -539,10 +539,41 @@ export function Replay() {
                 { name: "Label", href: "/docs/components/label" },
             ]}
             relatedComponents={[
-                { name: "Slider", href: "/docs/components/slider" },
-                { name: "TimePicker", href: "/docs/components/time-picker" },
-                { name: "Stringline", href: "/docs/components/stringline" },
-                { name: "Timeline", href: "/docs/components/timeline" },
+                {
+                    name: "Slider",
+                    href: "/docs/components/slider",
+                    boundary: isJa
+                        ? "値は選べるが、再生も速さも「いまへ戻る」も無い。"
+                        : "Picks a value: no playback, no speed, no return to live.",
+                },
+                {
+                    name: "TimePicker",
+                    href: "/docs/components/time-picker",
+                    boundary: isJa
+                        ? "Calendar と同じく絶対の時刻を選ぶもの。相対に動かせない。"
+                        : "Picks an absolute instant; no relative motion, no play.",
+                },
+                {
+                    name: "Stringline",
+                    href: "/docs/components/stringline",
+                    boundary: isJa
+                        ? "Gantt と同じく時間を見せるだけ。操作は受け取らない。"
+                        : "Displays time, like Gantt does, and takes no input.",
+                },
+                {
+                    name: "Timeline",
+                    href: "/docs/components/timeline",
+                    boundary: isJa
+                        ? "出来事を並べて見せるだけ。動かす操作は持たない。"
+                        : "Lays out events to read; it moves nothing.",
+                },
+                {
+                    name: "SegmentedControl",
+                    href: "/docs/components/segmented-control",
+                    boundary: isJa
+                        ? "速さの段だけなら、これ単体で足ります。"
+                        : "Enough on its own if the speed steps are all you need.",
+                },
             ]}
         >
             <ComponentPreview
@@ -562,49 +593,6 @@ export function Replay() {
                 {isJa
                     ? "この部品の中に setInterval も requestAnimationFrame もありません。位置は value で受け取り、変化は onValueChange で返すだけです。時計を内側に持つと、サーバの描画と最初のクライアント描画が食い違い、試験でも時間を止められなくなります（Stringline と同じ決まり）。⚠️ 呼び出し側でも Date.now() は描画中ではなく effect の中で読んでください。"
                     : "There is no setInterval and no requestAnimationFrame inside this component. Position comes in through value and changes go out through onValueChange. A clock on the inside makes the server render and the first client render disagree, and makes time impossible to hold still in a test (the same rule as Stringline). ⚠️ In your own code, read Date.now() inside an effect, not during render."}
-            </DocNote>
-
-            <DocNote
-                variant="note"
-                heading={isJa ? "似た部品との境界" : "Where the neighbours stop"}
-            >
-                {isJa ? (
-                    <ul className="ml-4 list-disc space-y-1">
-                        <li>
-                            <strong>Slider・RangeSlider</strong> — 値は選べますが、再生・速さ・いまへ戻るがありません。
-                            単に値を1つ選ぶだけならこちらです。
-                        </li>
-                        <li>
-                            <strong>TimePicker・DatePicker・Calendar</strong> — <strong>絶対の時刻を選ぶ</strong>もの。
-                            「いまから相対に動かす」「動かし続ける」は表せません。
-                        </li>
-                        <li>
-                            <strong>Timeline・Stringline・Gantt・SegmentTimelineCard</strong> — 時間を<strong>見せる</strong>
-                            もので、操作は受け取りません。
-                        </li>
-                        <li>
-                            <strong>SegmentedControl</strong> — 速さの段だけなら、これ単体で足ります。
-                        </li>
-                    </ul>
-                ) : (
-                    <ul className="ml-4 list-disc space-y-1">
-                        <li>
-                            <strong>Slider / RangeSlider</strong> — pick a value, but no playback, no speed, no return to
-                            live. Use those when all you need is one value.
-                        </li>
-                        <li>
-                            <strong>TimePicker / DatePicker / Calendar</strong> — pick an <strong>absolute</strong>{" "}
-                            instant. They cannot express relative motion or continuous play.
-                        </li>
-                        <li>
-                            <strong>Timeline / Stringline / Gantt / SegmentTimelineCard</strong> —{" "}
-                            <strong>display</strong> time and take no input.
-                        </li>
-                        <li>
-                            <strong>SegmentedControl</strong> — enough on its own if the speed steps are all you need.
-                        </li>
-                    </ul>
-                )}
             </DocNote>
 
             <section className="space-y-4">
