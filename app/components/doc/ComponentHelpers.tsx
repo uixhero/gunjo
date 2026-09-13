@@ -75,7 +75,18 @@ export interface UsedComponent {
     href: string;
 }
 
-export type ComponentReference = UsedComponent;
+export interface ComponentReference extends UsedComponent {
+    /**
+     * ⭐ 隣の部品との境界を1行で（60字以内・その言語だけで成立させる）。
+     * 部品を選ぶときにいちばん知りたいのは「どこからが隣の部品か」なので、
+     * 関連コンポーネントの名前の下に小さく出す。
+     *
+     * ⛔ これをページ独自の節（「似た部品との境界」）として書かないこと。
+     *   2026-09-13 の実測で、その形を持つのは239ページ中3ページだけだった。
+     * ⭐ 新しいページでは必須、既存ページは触るときに足す（一気に埋めない）。
+     */
+    boundary?: string;
+}
 
 interface ComponentLayoutProps {
     title: string;
@@ -277,6 +288,9 @@ export function UixheroRationaleLinks({
     );
 }
 
+const REFERENCE_CHIP =
+    "inline-flex items-center rounded-md border border-transparent bg-secondary px-2.5 py-0.5 text-xs font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2";
+
 function ComponentReferenceSection({
     id,
     label,
@@ -287,23 +301,42 @@ function ComponentReferenceSection({
     components: ComponentReference[];
 }) {
     const heading = label.replace(/[:：]\s*$/, "");
+    // 境界（boundary）を1つでも持つ節は、名前の下に1行を置けるよう縦に積む。
+    // 1つも持たない節（使用コンポーネントと、まだ埋めていないページ）は
+    // これまでどおり名前だけを並べる。
+    const hasBoundaries = components.some((component) => component.boundary);
 
     return (
         <section className="space-y-3">
             <h2 id={id} className="scroll-m-20 text-xl font-semibold tracking-tight">
                 {heading}
             </h2>
-            <div className="flex flex-wrap gap-2">
-                {components.map((component) => (
-                    <Link
-                        key={`${id}-${component.name}`}
-                        href={component.href}
-                        className="inline-flex items-center rounded-md border border-transparent bg-secondary px-2.5 py-0.5 text-xs font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                    >
-                        {component.name}
-                    </Link>
-                ))}
-            </div>
+            {hasBoundaries ? (
+                <ul className="grid gap-3 sm:grid-cols-2">
+                    {components.map((component) => (
+                        <li key={`${id}-${component.name}`} className="space-y-1">
+                            <Link href={component.href} className={REFERENCE_CHIP}>
+                                {component.name}
+                            </Link>
+                            {component.boundary ? (
+                                <p className="text-xs text-muted-foreground">{component.boundary}</p>
+                            ) : null}
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <div className="flex flex-wrap gap-2">
+                    {components.map((component) => (
+                        <Link
+                            key={`${id}-${component.name}`}
+                            href={component.href}
+                            className={REFERENCE_CHIP}
+                        >
+                            {component.name}
+                        </Link>
+                    ))}
+                </div>
+            )}
         </section>
     );
 }
