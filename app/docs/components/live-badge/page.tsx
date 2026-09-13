@@ -12,7 +12,7 @@ import { DocNote, Label, LiveBadge, Statistic, Switch, TimeTransport } from "@gu
 
 type Locale = "ja" | "en";
 
-/** ⚠️ Constants, not a clock: the page must render the same on the server. */
+/** Constants, not a clock: the page must render the same on the server. */
 const SNAPSHOT_TIME = "09:40";
 const DEMO_NOW = Date.UTC(2026, 8, 12, 3, 0, 0);
 const HOUR = 3_600_000;
@@ -110,7 +110,7 @@ export default function LiveBadgeDocPage() {
     const usageCode = isJa
         ? `import { LiveBadge, Statistic } from "@gunjo/ui";
 
-// ⭐ live かどうかは呼び出し側が決めます。札は時計も持たず、比較もしません。
+// live かどうかは呼び出し側が決めます。札は時計も持たず、比較もしません。
 const CONNECTED = true;
 const RECEIVED_AT = "09:40";
 
@@ -142,7 +142,7 @@ export function Announced() {
 }`
         : `import { LiveBadge, Statistic } from "@gunjo/ui";
 
-// ⭐ Liveness is the caller's decision. The badge holds no clock and
+// Liveness is the caller's decision. The badge holds no clock and
 // compares nothing.
 const CONNECTED = true;
 const RECEIVED_AT = "09:40";
