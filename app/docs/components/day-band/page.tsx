@@ -13,7 +13,7 @@ import { DayBand, DocNote, Label, SegmentedControl, Switch, TimeTransport } from
 type Locale = "ja" | "en";
 
 /**
- * ⚠️ Every number on this page is a constant. The band holds no clock and the
+ * Every number on this page is a constant. The band holds no clock and the
  * demo does not start one either, so the server and the first client frame
  * render the same thing.
  *
@@ -143,7 +143,7 @@ function TransportDemo({ locale }: { locale: Locale }) {
             value={value}
             now={DEMO_NOW}
             onValueChange={setValue}
-            // ⚠️ The unit here is MINUTES, so the default 1000 (one second of
+            // The unit here is MINUTES, so the default 1000 (one second of
             // epoch milliseconds) would call anything inside 16 hours "live".
             liveTolerance={1}
             jumps={[
@@ -200,7 +200,7 @@ const PHASES = [
   { start: 1138, end: 1440, label: "夜", color: "hsl(var(--gunjo-deepest))" },
 ];
 
-// ⚠️ 日の出・日の入は呼び出し側が渡します。部品は天文計算を持ちません。
+// 日の出・日の入は呼び出し側が渡します。部品は天文計算を持ちません。
 const MARKS = [
   { at: 322, label: "日の出 05:22", color: "warning" },
   { at: 1076, label: "日の入 17:56", color: "info" },
@@ -214,7 +214,7 @@ function clock(minutes) {
 
 export function SunBand() {
   const [value, setValue] = React.useState(640);
-  // ⚠️ いまの時刻は描画中ではなく effect の中で読んでください。
+  // いまの時刻を描画中に読まないこと。effect の中で読みます。
   const [nowMinutes, setNowMinutes] = React.useState(undefined);
 
   React.useEffect(() => {
@@ -267,7 +267,7 @@ const PHASES = [
   { start: 1138, end: 1440, label: "Night", color: "hsl(var(--gunjo-deepest))" },
 ];
 
-// ⚠️ Sunrise and sunset are times YOU pass in. The band does no astronomy.
+// Sunrise and sunset are times YOU pass in. The band does no astronomy.
 const MARKS = [
   { at: 322, label: "Sunrise 05:22", color: "warning" },
   { at: 1076, label: "Sunset 17:56", color: "info" },
@@ -281,7 +281,7 @@ function clock(minutes) {
 
 export function SunBand() {
   const [value, setValue] = React.useState(640);
-  // ⚠️ Read your clock in an effect, not during render.
+  // Do not read your clock during render. Read it in an effect.
   const [nowMinutes, setNowMinutes] = React.useState(undefined);
 
   React.useEffect(() => {
@@ -520,8 +520,8 @@ export function BandInTransport() {
                 }
             >
                 {isJa
-                    ? "日の出・日の入の時刻、夜と昼の境目、いまの時刻。どれも呼び出し側が渡します。部品の中に天文の計算も setInterval もありません。緯度経度から日の出を出すのは、この帯の仕事ではなく呼び出し側のデータの都合だからです（同じ形が当番表や営業時間にそのまま使えるのは、そのためです）。⚠️ now を渡すときの Date.now() は、描画中ではなく effect の中で読んでください（TimeTransport・Stringline と同じ決まり）。"
-                    : "Sunrise, sunset, where night ends, and what time it is now are all numbers the caller hands over. There is no astronomy and no setInterval inside. Deriving sunrise from a latitude is the caller's data problem, not the band's — which is exactly why the same shape serves duty rosters and opening hours. ⚠️ When you pass now, read Date.now() inside an effect, not during render (the TimeTransport / Stringline rule)."}
+                    ? "日の出・日の入の時刻、夜と昼の境目、いまの時刻。どれも呼び出し側が渡します。部品の中に天文の計算も setInterval もありません。緯度経度から日の出を出すのは、この帯の仕事ではなく呼び出し側のデータの都合だからです（同じ形が当番表や営業時間にそのまま使えるのは、そのためです）。now を渡すときの Date.now() は、描画中に読まないこと。effect の中で読みます（TimeTransport・Stringline と同じ決まり）。"
+                    : "Sunrise, sunset, where night ends, and what time it is now are all numbers the caller hands over. There is no astronomy and no setInterval inside. Deriving sunrise from a latitude is the caller's data problem, not the band's — which is exactly why the same shape serves duty rosters and opening hours. When you pass now, do not read Date.now() during render; read it inside an effect (the TimeTransport / Stringline rule)."}
             </DocNote>
 
             <section className="space-y-4">
@@ -534,8 +534,8 @@ export function BandInTransport() {
                             key: "transport",
                             title: isJa ? "TimeTransport の中に入れる" : "Inside a TimeTransport",
                             description: isJa
-                                ? "操作盤の scrubber スロットへ差し込んだ形。帯を掴めば時刻が動き、「いまへ戻る」で戻ります。この組み合わせのために作られた部品です。⚠️ ここでの単位は「分」なので、TimeTransport の liveTolerance も分で渡しています（既定の 1000 はエポックミリ秒の1秒ぶんです）。"
-                                : "Dropped into the transport's scrubber slot. Grab the band to move time, press return-to-now to come back. This pairing is what the band was extracted for. ⚠️ The unit here is minutes, so TimeTransport's liveTolerance is given in minutes too — the default 1000 is one second of epoch milliseconds.",
+                                ? "操作盤の scrubber スロットへ差し込んだ形。帯を掴めば時刻が動き、「いまへ戻る」で戻ります。この組み合わせのために作られた部品です。ここでの単位は「分」なので、TimeTransport の liveTolerance も分で渡しています（既定の 1000 はエポックミリ秒の1秒ぶんです）。"
+                                : "Dropped into the transport's scrubber slot. Grab the band to move time, press return-to-now to come back. This pairing is what the band was extracted for. The unit here is minutes, so TimeTransport's liveTolerance is given in minutes too — the default 1000 is one second of epoch milliseconds.",
                             preview: <TransportDemo locale={locale as Locale} />,
                             code: isJa
                                 ? `import * as React from "react";
@@ -562,7 +562,7 @@ export function BandInTransport() {
       value={value}
       now={NOW}
       onValueChange={setValue}
-      // ⚠️ ここでの単位は「分」なので、liveTolerance も分で渡します
+      // ここでの単位は「分」なので、liveTolerance も分で渡します
       liveTolerance={1}
       formatValue={clock}
       scrubber={
@@ -595,7 +595,7 @@ export function BandInTransport() {
       value={value}
       now={NOW}
       onValueChange={setValue}
-      // ⚠️ The unit here is minutes, so liveTolerance is in minutes too
+      // The unit here is minutes, so liveTolerance is in minutes too
       liveTolerance={1}
       formatValue={clock}
       scrubber={

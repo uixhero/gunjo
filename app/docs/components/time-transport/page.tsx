@@ -13,7 +13,7 @@ import { DocNote, Label, SegmentedControl, Switch, TimeTransport } from "@gunjo/
 type Locale = "ja" | "en";
 
 /**
- * ⚠️ A fixed instant, not `Date.now()`. The demo owns the clock (that is the
+ * A fixed instant, not `Date.now()`. The demo owns the clock (that is the
  * point of the component), but the FIRST frame has to be the same on the server
  * and on the client, so the real clock is only read inside the effect below.
  * 2026-09-12 12:00 JST.
@@ -281,7 +281,7 @@ export default function TimeTransportDocPage() {
         ? `import * as React from "react";
 import { TimeTransport } from "@gunjo/ui";
 
-// ⭐ 時計は TimeTransport の外。進めるのは呼び出し側です。
+// 時計は TimeTransport の外。進めるのは呼び出し側です。
 // サーバと最初の1フレームを合わせるため、時刻は effect の中で読みます。
 const BASE = Date.UTC(2026, 8, 12, 3, 0, 0);
 const CLOCK = new Intl.DateTimeFormat("en-GB", {
@@ -348,7 +348,7 @@ export function Replay() {
         : `import * as React from "react";
 import { TimeTransport } from "@gunjo/ui";
 
-// ⭐ The clock lives outside TimeTransport. The caller owns the ticking.
+// The clock lives outside TimeTransport. The caller owns the ticking.
 // Read the real clock in an effect so the server and the first client
 // frame render the same thing.
 const BASE = Date.UTC(2026, 8, 12, 3, 0, 0);
@@ -591,8 +591,8 @@ export function Replay() {
                 heading={isJa ? "時計は持ちません。進めるのは呼び出し側です" : "It holds no clock — the caller owns the ticking"}
             >
                 {isJa
-                    ? "この部品の中に setInterval も requestAnimationFrame もありません。位置は value で受け取り、変化は onValueChange で返すだけです。時計を内側に持つと、サーバの描画と最初のクライアント描画が食い違い、試験でも時間を止められなくなります（Stringline と同じ決まり）。⚠️ 呼び出し側でも Date.now() は描画中ではなく effect の中で読んでください。"
-                    : "There is no setInterval and no requestAnimationFrame inside this component. Position comes in through value and changes go out through onValueChange. A clock on the inside makes the server render and the first client render disagree, and makes time impossible to hold still in a test (the same rule as Stringline). ⚠️ In your own code, read Date.now() inside an effect, not during render."}
+                    ? "この部品の中に setInterval も requestAnimationFrame もありません。位置は value で受け取り、変化は onValueChange で返すだけです。時計を内側に持つと、サーバの描画と最初のクライアント描画が食い違い、試験でも時間を止められなくなります（Stringline と同じ決まり）。呼び出し側でも Date.now() を描画中に読まないこと。effect の中で読みます。"
+                    : "There is no setInterval and no requestAnimationFrame inside this component. Position comes in through value and changes go out through onValueChange. A clock on the inside makes the server render and the first client render disagree, and makes time impossible to hold still in a test (the same rule as Stringline). In your own code, do not read Date.now() during render; read it inside an effect."}
             </DocNote>
 
             <section className="space-y-4">
@@ -645,8 +645,8 @@ export function AtTheLiveEdge() {
                             key: "detached",
                             title: isJa ? "いまから外れている" : "Detached",
                             description: isJa
-                                ? "value が now から離れているとき。札が warning の色と文字に変わり、「いまへ戻る」が押せるようになります。⭐ 大きい表示の色は変えていません（下の「設計の判断」）。"
-                                : "value is away from now. The chip switches to the warning tone and wording, and return-to-now becomes available. ⭐ The readout itself is not recoloured (see Design decisions).",
+                                ? "value が now から離れているとき。札が warning の色と文字に変わり、「いまへ戻る」が押せるようになります。大きい表示の色は変えていません（下の「設計の判断」）。"
+                                : "value is away from now. The chip switches to the warning tone and wording, and return-to-now becomes available. The readout itself is not recoloured (see Design decisions).",
                             preview: (
                                 <StaticFrame
                                     locale={locale as Locale}
