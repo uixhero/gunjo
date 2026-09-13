@@ -187,76 +187,138 @@ export default function DayBandDocPage() {
     const description = content?.description ?? metadata.dayBand.description ?? "";
 
     const usageCode = isJa
-        ? `import { DayBand } from "@gunjo/ui";
+        ? `import * as React from "react";
+import { DayBand, TimeTransport } from "@gunjo/ui";
 
 // 既定の単位は「午前0時からの分」（min 0 / max 1440）。
 // 実日付で使うなら min にその日の0時のエポックミリ秒、max に +86400000 を渡します。
+const PHASES = [
+  { start: 0, end: 260, label: "夜", color: "hsl(var(--gunjo-deepest))" },
+  { start: 260, end: 322, label: "薄明", color: "hsl(var(--gunjo-deep))" },
+  { start: 322, end: 1076, label: "昼", color: "hsl(var(--gunjo-bright))" },
+  { start: 1076, end: 1138, label: "薄明", color: "hsl(var(--gunjo-deep))" },
+  { start: 1138, end: 1440, label: "夜", color: "hsl(var(--gunjo-deepest))" },
+];
+
+// ⚠️ 日の出・日の入は呼び出し側が渡します。部品は天文計算を持ちません。
+const MARKS = [
+  { at: 322, label: "日の出 05:22", color: "warning" },
+  { at: 1076, label: "日の入 17:56", color: "info" },
+];
+
+function clock(minutes) {
+  const hh = String(Math.floor(minutes / 60)).padStart(2, "0");
+  const mm = String(minutes % 60).padStart(2, "0");
+  return \`\${hh}:\${mm}\`;
+}
+
 export function SunBand() {
   const [value, setValue] = React.useState(640);
+  // ⚠️ いまの時刻は描画中ではなく effect の中で読んでください。
+  const [nowMinutes, setNowMinutes] = React.useState(undefined);
+
+  React.useEffect(() => {
+    const at = new Date();
+    setNowMinutes(at.getHours() * 60 + at.getMinutes());
+  }, []);
 
   return (
     <DayBand
       value={value}
       onValueChange={setValue}
-      // ⚠️ 日の出・日の入は呼び出し側が渡します。部品は天文計算を持ちません。
-      phases={[
-        { start: 0, end: 260, label: "夜", color: "hsl(var(--gunjo-deepest))" },
-        { start: 260, end: 322, label: "薄明", color: "hsl(var(--gunjo-deep))" },
-        { start: 322, end: 1076, label: "昼", color: "hsl(var(--gunjo-bright))" },
-        { start: 1076, end: 1138, label: "薄明", color: "hsl(var(--gunjo-deep))" },
-        { start: 1138, end: 1440, label: "夜", color: "hsl(var(--gunjo-deepest))" },
-      ]}
-      marks={[
-        { at: 322, label: "日の出 05:22", color: "warning" },
-        { at: 1076, label: "日の入 17:56", color: "info" },
-      ]}
-      // ⚠️ いまの時刻は描画中ではなく effect の中で読んでください。
+      phases={PHASES}
+      marks={MARKS}
       now={nowMinutes}
       label="東京　9月12日"
-      hint={formatClock(value)}
+      hint={clock(value)}
       labels={{ band: "いちにちの中の時刻", now: "いま" }}
     />
   );
 }
 
 // TimeTransport の掴んで動かす面として差し込む場合
-<TimeTransport value={value} now={now} onValueChange={setValue}
-  scrubber={<DayBand value={value} now={now} onValueChange={setValue} phases={PHASES} />} />`
-        : `import { DayBand } from "@gunjo/ui";
+export function BandInTransport() {
+  const [value, setValue] = React.useState(640);
+
+  return (
+    <TimeTransport
+      value={value}
+      now={640}
+      onValueChange={setValue}
+      liveTolerance={1}
+      formatValue={clock}
+      scrubber={
+        <DayBand value={value} now={640} onValueChange={setValue} phases={PHASES} />
+      }
+    />
+  );
+}`
+        : `import * as React from "react";
+import { DayBand, TimeTransport } from "@gunjo/ui";
 
 // The default unit is minutes from midnight (min 0 / max 1440).
 // For a real date, pass epoch milliseconds of that day's midnight as min
 // and min + 86400000 as max.
+const PHASES = [
+  { start: 0, end: 260, label: "Night", color: "hsl(var(--gunjo-deepest))" },
+  { start: 260, end: 322, label: "Twilight", color: "hsl(var(--gunjo-deep))" },
+  { start: 322, end: 1076, label: "Day", color: "hsl(var(--gunjo-bright))" },
+  { start: 1076, end: 1138, label: "Twilight", color: "hsl(var(--gunjo-deep))" },
+  { start: 1138, end: 1440, label: "Night", color: "hsl(var(--gunjo-deepest))" },
+];
+
+// ⚠️ Sunrise and sunset are times YOU pass in. The band does no astronomy.
+const MARKS = [
+  { at: 322, label: "Sunrise 05:22", color: "warning" },
+  { at: 1076, label: "Sunset 17:56", color: "info" },
+];
+
+function clock(minutes) {
+  const hh = String(Math.floor(minutes / 60)).padStart(2, "0");
+  const mm = String(minutes % 60).padStart(2, "0");
+  return \`\${hh}:\${mm}\`;
+}
+
 export function SunBand() {
   const [value, setValue] = React.useState(640);
+  // ⚠️ Read your clock in an effect, not during render.
+  const [nowMinutes, setNowMinutes] = React.useState(undefined);
+
+  React.useEffect(() => {
+    const at = new Date();
+    setNowMinutes(at.getHours() * 60 + at.getMinutes());
+  }, []);
 
   return (
     <DayBand
       value={value}
       onValueChange={setValue}
-      // ⚠️ Sunrise and sunset are times YOU pass in. The band does no astronomy.
-      phases={[
-        { start: 0, end: 260, label: "Night", color: "hsl(var(--gunjo-deepest))" },
-        { start: 260, end: 322, label: "Twilight", color: "hsl(var(--gunjo-deep))" },
-        { start: 322, end: 1076, label: "Day", color: "hsl(var(--gunjo-bright))" },
-        { start: 1076, end: 1138, label: "Twilight", color: "hsl(var(--gunjo-deep))" },
-        { start: 1138, end: 1440, label: "Night", color: "hsl(var(--gunjo-deepest))" },
-      ]}
-      marks={[
-        { at: 322, label: "Sunrise 05:22", color: "warning" },
-        { at: 1076, label: "Sunset 17:56", color: "info" },
-      ]}
-      // ⚠️ Read your clock in an effect, not during render.
+      phases={PHASES}
+      marks={MARKS}
       now={nowMinutes}
       label="Tokyo — 12 Sep"
-      hint={formatClock(value)}
+      hint={clock(value)}
     />
   );
 }
 
 // As the scrub surface of a TimeTransport
-<TimeTransport value={value} now={now} onValueChange={setValue}
-  scrubber={<DayBand value={value} now={now} onValueChange={setValue} phases={PHASES} />} />`;
+export function BandInTransport() {
+  const [value, setValue] = React.useState(640);
+
+  return (
+    <TimeTransport
+      value={value}
+      now={640}
+      onValueChange={setValue}
+      liveTolerance={1}
+      formatValue={clock}
+      scrubber={
+        <DayBand value={value} now={640} onValueChange={setValue} phases={PHASES} />
+      }
+    />
+  );
+}`;
 
     const propsData = [
         {
@@ -264,59 +326,57 @@ export function SunBand() {
             type: "number / number",
             defaultValue: "0 / 1440",
             description: isJa
-                ? "1日の始まりと終わり。単位は呼び出し側のもので、既定は午前0時からの分です。実日付ならその日の0時のエポックミリ秒と +86400000 を渡します。phases・marks・value・now はすべてこの単位です。"
-                : "The start and the end of the day, in the caller's own unit — minutes from midnight by default, or epoch milliseconds of local midnight and +86400000. phases, marks, value and now all speak this unit.",
+                ? "1日の始まりと終わり。既定は午前0時からの分です。"
+                : "The start and the end of the day. Minutes from midnight by default.",
         },
         {
             name: "value",
             type: "number",
-            description: isJa
-                ? "つまみが指す位置。渡さなければつまみは出ません（見せるだけの帯になります）。"
-                : "The position the thumb marks. Omit it for a band that only displays.",
+            description: isJa ? "つまみが指す位置。" : "The position the thumb marks.",
         },
         {
             name: "onValueChange",
             type: "(next: number) => void",
             description: isJa
-                ? "掴んで動かしたときの次の位置。渡さなければ帯は操作を受け取らず、スライダーの役割も焦点も持ちません。"
-                : "Fires with the next position while the band is scrubbed. Omit it and the band takes no input — no slider role, no focus.",
+                ? "掴んで動かしたときの、次の位置。"
+                : "Fires with the next position while the band is scrubbed.",
         },
         {
             name: "phases",
             type: "DayBandPhase[]",
             description: isJa
-                ? "1日の中の時間帯。{ start, end, label?, color? } で、面として敷かれます。color はトーン名（success など）か任意の CSS 色。トーンは面のトークン（--*-subtle）へ解決します。⚠️ 0時をまたぐ時間帯は2つに分けてください（22:00–24:00 と 00:00–06:00）。"
-                : "The stretches of the day, drawn as surfaces: { start, end, label?, color? }. color is a tone name (resolved to the subtle SURFACE token) or any CSS colour. ⚠️ A stretch crossing midnight is two phases, not one.",
+                ? "1日の中の時間帯。{ start, end, label?, color? } が面として敷かれます。"
+                : "The stretches of the day, drawn as surfaces: { start, end, label?, color? }.",
         },
         {
             name: "marks",
             type: "DayBandMark[]",
             description: isJa
-                ? "節目の印。{ at, label?, color? }。ラベルは帯の上の行に出ます（下の行は時刻の数字なので、ぶつかりません）。色がつくのは線だけで、文字は着色しません。"
-                : "Named moments: { at, label?, color? }. Labels sit in the row above the band (hour numbers sit below, so the two never collide). Only the line takes the colour — the label is never recoloured.",
+                ? "節目の印。{ at, label?, color? } で、ラベルは帯の上の行に出ます。"
+                : "Named moments: { at, label?, color? }. Labels sit in the row above the band.",
         },
         {
             name: "now",
             type: "number",
             description: isJa
-                ? "「いま」の位置。印として描かれるので、動かしたあとも戻り先が見えます。⚠️ 時刻は effect の中で読んでください（部品は時計を持ちません）。"
-                : "The live edge, drawn as its own marker so the position you scrubbed away from stays findable. ⚠️ Read your clock in an effect — the band holds none.",
+                ? "「いま」の位置。それ自身の印として描かれます。"
+                : "The live edge, drawn as its own marker.",
         },
         {
             name: "scrub",
             type: '"absolute" | "relative"',
             defaultValue: '"absolute"',
             description: isJa
-                ? "absolute は触った位置がそのまま時刻（ひと触りでどの時刻へも行けます）。relative は掴んだ距離ぶんだけ動く（指が現在位置を隠さず、触っただけでは動きません）。relative は0時をまたいで帯の外の値も返すので、呼び出し側が日を入れ替えます。"
-                : "absolute — the position you press is the position you get. relative — the value moves by how far you dragged, so your finger never covers what you are reading and a stray tap changes nothing; it also emits values outside min…max when it rolls past midnight, and expects the caller to re-base the day.",
+                ? "触った位置がそのまま時刻（absolute）か、掴んだ距離ぶん動く（relative）か。"
+                : "Whether the press lands where you touched (absolute) or moves by how far you dragged (relative).",
         },
         {
             name: "step / coarseStep",
             type: "number / number",
             defaultValue: isJa ? "1日の1/96・1/24" : "1/96 · 1/24 of the day",
             description: isJa
-                ? "矢印キーの刻みと、Shift＋矢印・PageUp / PageDown の刻み。既定は15分と1時間ぶんです。Home / End は帯の両端へ飛びます。"
-                : "The arrow-key step and the shift-arrow / Page step — 15 minutes and 1 hour by default. Home and End jump to the ends of the day.",
+                ? "矢印キーの刻みと、Shift＋矢印・Page キーの刻み。既定は15分と1時間です。"
+                : "The arrow-key step and the shift-arrow / Page step — 15 minutes and 1 hour.",
         },
         {
             name: "tickEvery",
@@ -331,36 +391,36 @@ export function SunBand() {
             type: "number[] / (hour: number) => ReactNode",
             defaultValue: "[0, 6, 12, 18, 24]",
             description: isJa
-                ? "帯の下に出す時刻の数字と、その書式。既定は単位なしの数字なので、そのまま多言語に出せます。[] で行ごと消えます。"
-                : "Which hours get a number under the band, and how it is written. The default is a bare number, so it travels between languages. [] hides the row.",
+                ? "帯の下に出す時刻の数字と、その書式。[] で行ごと消えます。"
+                : "Which hours get a number under the band, and how it is written. [] hides the row.",
         },
         {
             name: "formatValue",
             type: "(value: number) => string",
             description: isJa
-                ? "読み上げ（aria-valuetext）の書式。既定は1日の中の位置から出した HH:MM で、時間帯の名前が「10:40 · 昼」のように続きます。"
-                : "Formats the position for aria-valuetext. The default is HH:MM derived from the position within the day, followed by the phase name — 10:40 · Day.",
+                ? "読み上げ（aria-valuetext）の書式。既定は「10:40 · 昼」です。"
+                : "Formats the position for aria-valuetext. The default is 10:40 · Day.",
         },
         {
             name: "size",
             type: '"sm" | "default"',
             defaultValue: '"default"',
             description: isJa
-                ? "帯の高さ。default は触れる 44px、sm は 24px で、見せるだけの帯に使います。"
-                : "Band height. default is the 44px touch size; sm (24px) is for display-only bands.",
+                ? "帯の高さ。default は触れる 44px、sm は 24px です。"
+                : "Band height — default is the 44px touch size, sm is 24px.",
         },
         {
             name: "label / hint",
             type: "ReactNode / ReactNode",
             description: isJa
-                ? "帯の上の行。左が label（地点・日付・担当）、右が hint（いまの時刻・注記・合計）。現在時刻を出したいときは hint に渡します。"
-                : "The row above the band — label on the left (a place, a date, a person), hint on the right (the current time, a note, a total).",
+                ? "帯の上の行。左が label、右が hint です。"
+                : "The row above the band — label on the left, hint on the right.",
         },
         {
             name: "labels",
             type: "DayBandLabels",
             description: isJa
-                ? "組み込みの文字列の差し替え（band＝帯の読み上げ名／now＝「いま」の印の名前）。既定は英語です。"
+                ? "組み込みの文字列の差し替え（band / now）。既定は英語です。"
                 : "Overrides for the built-in strings (band, now). Defaults are English.",
         },
         {
@@ -494,7 +554,73 @@ export function SunBand() {
                                 ? "操作盤の scrubber スロットへ差し込んだ形。帯を掴めば時刻が動き、「いまへ戻る」で戻ります。この組み合わせのために作られた部品です。⚠️ ここでの単位は「分」なので、TimeTransport の liveTolerance も分で渡しています（既定の 1000 はエポックミリ秒の1秒ぶんです）。"
                                 : "Dropped into the transport's scrubber slot. Grab the band to move time, press return-to-now to come back. This pairing is what the band was extracted for. ⚠️ The unit here is minutes, so TimeTransport's liveTolerance is given in minutes too — the default 1000 is one second of epoch milliseconds.",
                             preview: <TransportDemo locale={locale as Locale} />,
-                            code: `<TimeTransport … scrubber={<DayBand value={value} onValueChange={setValue} phases={PHASES} />} />`,
+                            code: isJa
+                                ? `import * as React from "react";
+import { DayBand, TimeTransport } from "@gunjo/ui";
+
+const PHASES = [
+  { start: 0, end: 322, label: "夜", color: "hsl(var(--gunjo-deepest))" },
+  { start: 322, end: 1076, label: "昼", color: "hsl(var(--gunjo-bright))" },
+  { start: 1076, end: 1440, label: "夜", color: "hsl(var(--gunjo-deepest))" },
+];
+const NOW = 640;
+
+function clock(minutes) {
+  const hh = String(Math.floor(minutes / 60)).padStart(2, "0");
+  const mm = String(minutes % 60).padStart(2, "0");
+  return \`\${hh}:\${mm}\`;
+}
+
+export function BandInTransport() {
+  const [value, setValue] = React.useState(870);
+
+  return (
+    <TimeTransport
+      value={value}
+      now={NOW}
+      onValueChange={setValue}
+      // ⚠️ ここでの単位は「分」なので、liveTolerance も分で渡します
+      liveTolerance={1}
+      formatValue={clock}
+      scrubber={
+        <DayBand value={value} now={NOW} onValueChange={setValue} phases={PHASES} />
+      }
+    />
+  );
+}`
+                                : `import * as React from "react";
+import { DayBand, TimeTransport } from "@gunjo/ui";
+
+const PHASES = [
+  { start: 0, end: 322, label: "Night", color: "hsl(var(--gunjo-deepest))" },
+  { start: 322, end: 1076, label: "Day", color: "hsl(var(--gunjo-bright))" },
+  { start: 1076, end: 1440, label: "Night", color: "hsl(var(--gunjo-deepest))" },
+];
+const NOW = 640;
+
+function clock(minutes) {
+  const hh = String(Math.floor(minutes / 60)).padStart(2, "0");
+  const mm = String(minutes % 60).padStart(2, "0");
+  return \`\${hh}:\${mm}\`;
+}
+
+export function BandInTransport() {
+  const [value, setValue] = React.useState(870);
+
+  return (
+    <TimeTransport
+      value={value}
+      now={NOW}
+      onValueChange={setValue}
+      // ⚠️ The unit here is minutes, so liveTolerance is in minutes too
+      liveTolerance={1}
+      formatValue={clock}
+      scrubber={
+        <DayBand value={value} now={NOW} onValueChange={setValue} phases={PHASES} />
+      }
+    />
+  );
+}`,
                         },
                         {
                             key: "roster",
@@ -513,7 +639,78 @@ export function SunBand() {
                                     label={isJa ? "3階病棟　9月12日" : "Ward 3 — 12 Sep"}
                                 />
                             ),
-                            code: `<DayBand phases={[{ start: 540, end: 1080, label: "日勤", color: "success" }, …]} />`,
+                            code: isJa
+                                ? `import * as React from "react";
+import { DayBand } from "@gunjo/ui";
+
+const ROSTER = [
+  { start: 0, end: 480, label: "夜勤", color: "info" },
+  { start: 480, end: 540, label: "引き継ぎ", color: "warning" },
+  { start: 540, end: 1080, label: "日勤", color: "success" },
+  { start: 1080, end: 1140, label: "引き継ぎ", color: "warning" },
+  { start: 1140, end: 1440, label: "夜勤", color: "info" },
+];
+const HANDOVERS = [
+  { at: 480, label: "交代 08:00" },
+  { at: 1080, label: "交代 18:00" },
+];
+
+function clock(minutes) {
+  const hh = String(Math.floor(minutes / 60)).padStart(2, "0");
+  const mm = String(minutes % 60).padStart(2, "0");
+  return \`\${hh}:\${mm}\`;
+}
+
+export function WardRoster() {
+  const [value, setValue] = React.useState(870);
+
+  return (
+    <DayBand
+      value={value}
+      onValueChange={setValue}
+      phases={ROSTER}
+      marks={HANDOVERS}
+      label="3階病棟　9月12日"
+      hint={clock(value)}
+      labels={{ band: "いちにちの中の時刻", now: "いま" }}
+    />
+  );
+}`
+                                : `import * as React from "react";
+import { DayBand } from "@gunjo/ui";
+
+const ROSTER = [
+  { start: 0, end: 480, label: "Night shift", color: "info" },
+  { start: 480, end: 540, label: "Handover", color: "warning" },
+  { start: 540, end: 1080, label: "Day shift", color: "success" },
+  { start: 1080, end: 1140, label: "Handover", color: "warning" },
+  { start: 1140, end: 1440, label: "Night shift", color: "info" },
+];
+const HANDOVERS = [
+  { at: 480, label: "Handover 08:00" },
+  { at: 1080, label: "Handover 18:00" },
+];
+
+function clock(minutes) {
+  const hh = String(Math.floor(minutes / 60)).padStart(2, "0");
+  const mm = String(minutes % 60).padStart(2, "0");
+  return \`\${hh}:\${mm}\`;
+}
+
+export function WardRoster() {
+  const [value, setValue] = React.useState(870);
+
+  return (
+    <DayBand
+      value={value}
+      onValueChange={setValue}
+      phases={ROSTER}
+      marks={HANDOVERS}
+      label="Ward 3 — 12 Sep"
+      hint={clock(value)}
+    />
+  );
+}`,
                         },
                         {
                             key: "display",
@@ -532,7 +729,46 @@ export function SunBand() {
                                     labels={bandLabels(locale as Locale)}
                                 />
                             ),
-                            code: `<DayBand size="sm" phases={HOURS} />`,
+                            code: isJa
+                                ? `import { DayBand } from "@gunjo/ui";
+
+const HOURS = [
+  { start: 0, end: 660, label: "閉店", color: "muted" },
+  { start: 660, end: 1320, label: "営業中", color: "success" },
+  { start: 1320, end: 1440, label: "閉店", color: "muted" },
+];
+
+export function OpeningHours() {
+  return (
+    <DayBand
+      size="sm"
+      phases={HOURS}
+      marks={[{ at: 1260, label: "ラストオーダー 21:00" }]}
+      label="営業時間"
+      hint="11:00 – 22:00"
+      labels={{ band: "いちにちの中の時刻", now: "いま" }}
+    />
+  );
+}`
+                                : `import { DayBand } from "@gunjo/ui";
+
+const HOURS = [
+  { start: 0, end: 660, label: "Closed", color: "muted" },
+  { start: 660, end: 1320, label: "Open", color: "success" },
+  { start: 1320, end: 1440, label: "Closed", color: "muted" },
+];
+
+export function OpeningHours() {
+  return (
+    <DayBand
+      size="sm"
+      phases={HOURS}
+      marks={[{ at: 1260, label: "Last order 21:00" }]}
+      label="Opening hours"
+      hint="11:00 – 22:00"
+    />
+  );
+}`,
                         },
                         {
                             key: "relative",
@@ -549,7 +785,66 @@ export function SunBand() {
                                     labels={bandLabels(locale as Locale)}
                                 />
                             ),
-                            code: `<DayBand scrub="relative" value={value} onValueChange={setValue} … />`,
+                            code: isJa
+                                ? `import * as React from "react";
+import { DayBand } from "@gunjo/ui";
+
+const PHASES = [
+  { start: 0, end: 322, label: "夜", color: "hsl(var(--gunjo-deepest))" },
+  { start: 322, end: 1076, label: "昼", color: "hsl(var(--gunjo-bright))" },
+  { start: 1076, end: 1440, label: "夜", color: "hsl(var(--gunjo-deepest))" },
+];
+
+function clock(minutes) {
+  const hh = String(Math.floor(minutes / 60)).padStart(2, "0");
+  const mm = String(minutes % 60).padStart(2, "0");
+  return \`\${hh}:\${mm}\`;
+}
+
+export function RelativeScrub() {
+  const [value, setValue] = React.useState(870);
+
+  return (
+    <DayBand
+      scrub="relative"
+      value={value}
+      onValueChange={setValue}
+      phases={PHASES}
+      now={640}
+      hint={clock(value)}
+      labels={{ band: "いちにちの中の時刻", now: "いま" }}
+    />
+  );
+}`
+                                : `import * as React from "react";
+import { DayBand } from "@gunjo/ui";
+
+const PHASES = [
+  { start: 0, end: 322, label: "Night", color: "hsl(var(--gunjo-deepest))" },
+  { start: 322, end: 1076, label: "Day", color: "hsl(var(--gunjo-bright))" },
+  { start: 1076, end: 1440, label: "Night", color: "hsl(var(--gunjo-deepest))" },
+];
+
+function clock(minutes) {
+  const hh = String(Math.floor(minutes / 60)).padStart(2, "0");
+  const mm = String(minutes % 60).padStart(2, "0");
+  return \`\${hh}:\${mm}\`;
+}
+
+export function RelativeScrub() {
+  const [value, setValue] = React.useState(870);
+
+  return (
+    <DayBand
+      scrub="relative"
+      value={value}
+      onValueChange={setValue}
+      phases={PHASES}
+      now={640}
+      hint={clock(value)}
+    />
+  );
+}`,
                         },
                         {
                             key: "bare",
@@ -566,7 +861,34 @@ export function SunBand() {
                                     labels={bandLabels(locale as Locale)}
                                 />
                             ),
-                            code: `<DayBand size="sm" phases={PHASES} hourLabels={[]} tickEvery={0} />`,
+                            code: isJa
+                                ? `import { DayBand } from "@gunjo/ui";
+
+const PHASES = [
+  { start: 0, end: 322, label: "夜", color: "hsl(var(--gunjo-deepest))" },
+  { start: 322, end: 1076, label: "昼", color: "hsl(var(--gunjo-bright))" },
+  { start: 1076, end: 1440, label: "夜", color: "hsl(var(--gunjo-deepest))" },
+];
+
+export function BareBand() {
+  return (
+    <DayBand size="sm" phases={PHASES} hourLabels={[]} tickEvery={0}
+      labels={{ band: "いちにちの中の時刻", now: "いま" }} />
+  );
+}`
+                                : `import { DayBand } from "@gunjo/ui";
+
+const PHASES = [
+  { start: 0, end: 322, label: "Night", color: "hsl(var(--gunjo-deepest))" },
+  { start: 322, end: 1076, label: "Day", color: "hsl(var(--gunjo-bright))" },
+  { start: 1076, end: 1440, label: "Night", color: "hsl(var(--gunjo-deepest))" },
+];
+
+export function BareBand() {
+  return (
+    <DayBand size="sm" phases={PHASES} hourLabels={[]} tickEvery={0} />
+  );
+}`,
                         },
                         {
                             key: "disabled",
@@ -585,7 +907,44 @@ export function SunBand() {
                                     hint={clock(DEMO_VALUE)}
                                 />
                             ),
-                            code: `<DayBand disabled … />`,
+                            code: isJa
+                                ? `import { DayBand } from "@gunjo/ui";
+
+const PHASES = [
+  { start: 0, end: 322, label: "夜", color: "hsl(var(--gunjo-deepest))" },
+  { start: 322, end: 1076, label: "昼", color: "hsl(var(--gunjo-bright))" },
+  { start: 1076, end: 1440, label: "夜", color: "hsl(var(--gunjo-deepest))" },
+];
+
+export function FrozenBand() {
+  return (
+    <DayBand
+      value={870}
+      onValueChange={() => {}}
+      disabled
+      phases={PHASES}
+      labels={{ band: "いちにちの中の時刻", now: "いま" }}
+    />
+  );
+}`
+                                : `import { DayBand } from "@gunjo/ui";
+
+const PHASES = [
+  { start: 0, end: 322, label: "Night", color: "hsl(var(--gunjo-deepest))" },
+  { start: 322, end: 1076, label: "Day", color: "hsl(var(--gunjo-bright))" },
+  { start: 1076, end: 1440, label: "Night", color: "hsl(var(--gunjo-deepest))" },
+];
+
+export function FrozenBand() {
+  return (
+    <DayBand
+      value={870}
+      onValueChange={() => {}}
+      disabled
+      phases={PHASES}
+    />
+  );
+}`,
                         },
                     ]}
                 />
@@ -647,6 +1006,19 @@ export function SunBand() {
                             Home / End で、触らずに1日を歩けます。
                         </li>
                         <li>
+                            <strong>単位は1つだけ。</strong>
+                            <code>min</code> / <code>max</code> / <code>phases</code> / <code>marks</code> /{" "}
+                            <code>value</code> / <code>now</code> は、すべて同じ単位で書きます。既定は午前0時からの分
+                            （0〜1440）で、実日付ならその日の0時のエポックミリ秒と <code>+86400000</code> を渡します。
+                            部品が単位を知らないので、混ぜると黙ってずれます。
+                        </li>
+                        <li>
+                            <strong>渡さなかったものは、出しません。</strong>
+                            <code>value</code> が無ければつまみが消えて見せるだけの帯になり、
+                            <code>onValueChange</code> が無ければ操作も焦点も受け取りません。
+                            <code>now</code> が無ければ「いま」の印も出ません。
+                        </li>
+                        <li>
                             <strong>0時をまたぐ時間帯は2つに分けます。</strong>
                             1本の帯は1日です。<code>start</code> が <code>end</code> 以上の時間帯は描かず、開発時に
                             警告を出します（黙って反対側を塗るより、言うほうが正しいためです）。
@@ -681,6 +1053,18 @@ export function SunBand() {
                             <strong>phase name</strong> — 10:40 · Day — marks carry text labels, phases carry a pointer
                             name, and arrows, shift-arrows, Page keys and Home / End walk the whole day without a
                             pointer.
+                        </li>
+                        <li>
+                            <strong>One unit, everywhere.</strong> <code>min</code>, <code>max</code>,{" "}
+                            <code>phases</code>, <code>marks</code>, <code>value</code> and <code>now</code> are all
+                            written in the same unit — minutes from midnight (0–1440) by default, or epoch milliseconds
+                            of local midnight plus <code>86400000</code>. The band does not know which one you chose, so
+                            mixing them slips silently.
+                        </li>
+                        <li>
+                            <strong>What you do not pass is not drawn.</strong> Without <code>value</code> the thumb
+                            goes and the band only displays; without <code>onValueChange</code> it takes no input and
+                            holds no focus; without <code>now</code> there is no live marker.
                         </li>
                         <li>
                             <strong>A stretch crossing midnight is two phases.</strong> One band is one day. A phase

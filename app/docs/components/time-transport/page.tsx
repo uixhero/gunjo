@@ -278,10 +278,24 @@ export default function TimeTransportDocPage() {
     const description = content?.description ?? metadata.timeTransport.description ?? "";
 
     const usageCode = isJa
-        ? `import { TimeTransport } from "@gunjo/ui";
+        ? `import * as React from "react";
+import { TimeTransport } from "@gunjo/ui";
 
 // ⭐ 時計は TimeTransport の外。進めるのは呼び出し側です。
 // サーバと最初の1フレームを合わせるため、時刻は effect の中で読みます。
+const BASE = Date.UTC(2026, 8, 12, 3, 0, 0);
+const CLOCK = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Asia/Tokyo",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hour12: false,
+});
+
+function formatClock(at) {
+  return CLOCK.format(new Date(at));
+}
+
 export function Replay() {
   const [now, setNow] = React.useState(BASE);
   const [value, setValue] = React.useState(BASE);
@@ -331,11 +345,25 @@ export function Replay() {
     />
   );
 }`
-        : `import { TimeTransport } from "@gunjo/ui";
+        : `import * as React from "react";
+import { TimeTransport } from "@gunjo/ui";
 
 // ⭐ The clock lives outside TimeTransport. The caller owns the ticking.
 // Read the real clock in an effect so the server and the first client
 // frame render the same thing.
+const BASE = Date.UTC(2026, 8, 12, 3, 0, 0);
+const CLOCK = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Asia/Tokyo",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hour12: false,
+});
+
+function formatClock(at) {
+  return CLOCK.format(new Date(at));
+}
+
 export function Replay() {
   const [now, setNow] = React.useState(BASE);
   const [value, setValue] = React.useState(BASE);
@@ -393,87 +421,79 @@ export function Replay() {
             type: "number",
             required: true,
             description: isJa
-                ? "いまの位置。エポックミリ秒が普通ですが、フレーム番号やシミュレーションの刻みでも同じように動きます。"
-                : "The current position. Epoch milliseconds is the common case, but a frame index or a simulation tick works the same.",
+                ? "いまの位置（エポックミリ秒・フレーム番号・刻みの数）。"
+                : "The current position — epoch milliseconds, a frame index, a simulation tick.",
         },
         {
             name: "onValueChange",
             type: "(next: number) => void",
-            description: isJa
-                ? "飛ばしボタンやスクラブで位置が動いたときに、次の位置を返します。"
-                : "Fires with the next position when a jump or the scrubber moves it.",
+            description: isJa ? "位置が動いたときの、次の位置。" : "Fires with the next position when the value moves.",
         },
         {
             name: "now",
             type: "number",
-            description: isJa
-                ? "「いま」の位置。渡すと実時間かどうかの札と「いまへ戻る」が出ます。渡さなければどちらも出ません（部品は推測しません）。⚠️ 時刻は effect の中で読んでください。"
-                : "The live edge. Pass it to get the live/detached chip and the return-to-now button; omit it and neither renders. ⚠️ Read your clock in an effect, not during render.",
+            description: isJa ? "「いま」の位置。" : "The live edge.",
         },
         {
             name: "live",
             type: "boolean",
             description: isJa
-                ? "実時間かどうかを now から導かずに直接指定します。2つの数の差では言えない「実時間」（バッファのある配信など）に使います。"
-                : "Force the live/detached state instead of deriving it from now — for cases the distance between two numbers cannot express.",
+                ? "実時間かどうかを、now から導かずに直接指定します。"
+                : "Sets the live state directly instead of deriving it from now.",
         },
         {
             name: "liveTolerance",
             type: "number",
             defaultValue: "1000",
             description: isJa
-                ? "now からどれだけ離れるまでを実時間とみなすか。既定はエポックミリ秒での1秒です。"
-                : "How close to now still counts as live. Default 1000 (one second at epoch ms).",
+                ? "now からどれだけ離れるまでを実時間とみなすか。"
+                : "How close to now still counts as live.",
         },
         {
             name: "onReturnToNow",
             type: "() => void",
             description: isJa
-                ? "「いまへ戻る」を押したとき。省略すると now と onValueChange から onValueChange(now) が既定で使われます。"
-                : "Called by the return-to-now button. Defaults to onValueChange(now) when both are available.",
+                ? "「いまへ戻る」を押したとき。既定は onValueChange(now) です。"
+                : "Called by the return-to-now button. Defaults to onValueChange(now).",
         },
         {
             name: "playing",
             type: "boolean",
             defaultValue: "false",
-            description: isJa
-                ? "再生中かどうか。制御されている値です（進めるのは呼び出し側）。"
-                : "Whether playback is running. Controlled — the caller owns the ticking.",
+            description: isJa ? "再生中かどうか（制御される値）。" : "Whether playback is running. Controlled.",
         },
         {
             name: "onPlayingChange",
             type: "(playing: boolean) => void",
-            description: isJa
-                ? "再生・一時停止を押したとき。省略すると再生ボタンが出ません。"
-                : "Fires with the requested play state. Omit to hide the play/pause button.",
+            description: isJa ? "再生・一時停止を押したとき。" : "Fires with the requested play state.",
         },
         {
             name: "speeds",
             type: "TimeTransportSpeed[]",
             description: isJa
-                ? "速さの段。{ value, label } の配列で、名前は呼び出し側がつけます。省略すると速さの選択が出ません。"
-                : "Named speed steps, { value, label }. Omit to hide the speed picker.",
+                ? "速さの段。{ value, label } の配列で、名前は呼び出し側がつけます。"
+                : "Named speed steps, { value, label } — the caller does the naming.",
         },
         {
             name: "speed / onSpeedChange",
             type: "number / (speed: number) => void",
             description: isJa
-                ? "選ばれている速さと、その変更。speeds[].value と突き合わせます。"
-                : "The selected speed and its change handler, matched against speeds[].value.",
+                ? "選ばれている速さと、その変更。"
+                : "The selected speed and its change handler.",
         },
         {
             name: "jumps",
             type: "TimeTransportJump[]",
             description: isJa
-                ? "決まった幅の飛ばし。offset は符号つきで、負が戻る方向です。負は左・正は右に並び、向きはアイコンが示します（ラベルは大きさだけ）。省略すると出ません。"
-                : "Fixed jumps. offset is signed — negative goes back. Negatives render left, positives right, direction shown by icon; the label carries magnitude only. Omit to hide.",
+                ? "決まった幅の飛ばし。offset は符号つきで、負が戻る方向です。"
+                : "Fixed jumps. offset is signed — negative goes back.",
         },
         {
             name: "formatValue",
             type: "(value: number) => ReactNode",
             description: isJa
-                ? "大きい表示の書式。既定は String(value) なので、時刻として出すなら渡してください。"
-                : "Formats the large readout. Defaults to String(value) — pass a formatter for dates.",
+                ? "大きい表示の書式。既定は String(value) です。"
+                : "Formats the large readout. Defaults to String(value).",
         },
         {
             name: "secondary",
@@ -486,14 +506,14 @@ export function Replay() {
             name: "scrubber",
             type: "ReactNode",
             description: isJa
-                ? "掴んで動かす面のスロット。表示と操作段のあいだに全幅で入ります（いちにちの帯はここに入ります）。"
-                : "The scrub surface slot, rendered full width between the readout and the transport row.",
+                ? "掴んで動かす面のスロット。表示と操作段のあいだに全幅で入ります。"
+                : "The scrub surface slot, full width between the readout and the transport row.",
         },
         {
             name: "labels",
             type: "TimeTransportLabels",
             description: isJa
-                ? "組み込みの文字列の差し替え（group / play / pause / speed / returnToNow / live / detached / jumpBack / jumpForward）。既定は英語です。"
+                ? "組み込みの文字列の差し替え。既定は英語です。"
                 : "Overrides for every built-in string. Defaults are English.",
         },
         {
@@ -605,7 +625,33 @@ export function Replay() {
                             preview: (
                                 <StaticFrame locale={locale as Locale} value={nowRef} now={nowRef} />
                             ),
-                            code: `<TimeTransport value={now} now={now} … />`,
+                            code: `import * as React from "react";
+import { TimeTransport } from "@gunjo/ui";
+
+const NOW = Date.UTC(2026, 8, 12, 3, 0, 0);
+const HOUR = 3_600_000;
+const CLOCK = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Asia/Tokyo",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hour12: false,
+});
+
+
+export function AtTheLiveEdge() {
+  const [value, setValue] = React.useState(NOW);
+
+  return (
+    <TimeTransport
+      value={value}
+      now={NOW}
+      onValueChange={setValue}
+      formatValue={(at) => CLOCK.format(new Date(at))}
+      secondary="2026-09-12 JST"
+    />
+  );
+}`,
                         },
                         {
                             key: "detached",
@@ -620,7 +666,33 @@ export function Replay() {
                                     now={nowRef}
                                 />
                             ),
-                            code: `<TimeTransport value={now - 5 * HOUR} now={now} … />`,
+                            code: `import * as React from "react";
+import { TimeTransport } from "@gunjo/ui";
+
+const NOW = Date.UTC(2026, 8, 12, 3, 0, 0);
+const HOUR = 3_600_000;
+const CLOCK = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Asia/Tokyo",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hour12: false,
+});
+
+
+export function FiveHoursBack() {
+  const [value, setValue] = React.useState(NOW - 5 * HOUR);
+
+  return (
+    <TimeTransport
+      value={value}
+      now={NOW}
+      onValueChange={setValue}
+      formatValue={(at) => CLOCK.format(new Date(at))}
+      secondary="2026-09-12 JST"
+    />
+  );
+}`,
                         },
                         {
                             key: "playing",
@@ -636,7 +708,35 @@ export function Replay() {
                                     playing
                                 />
                             ),
-                            code: `<TimeTransport playing onPlayingChange={setPlaying} … />`,
+                            code: `import * as React from "react";
+import { TimeTransport } from "@gunjo/ui";
+
+const NOW = Date.UTC(2026, 8, 12, 3, 0, 0);
+const HOUR = 3_600_000;
+const CLOCK = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Asia/Tokyo",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hour12: false,
+});
+
+
+export function Playing() {
+  const [value, setValue] = React.useState(NOW - 2 * HOUR);
+  const [playing, setPlaying] = React.useState(true);
+
+  return (
+    <TimeTransport
+      value={value}
+      now={NOW}
+      onValueChange={setValue}
+      playing={playing}
+      onPlayingChange={setPlaying}
+      formatValue={(at) => CLOCK.format(new Date(at))}
+    />
+  );
+}`,
                         },
                         {
                             key: "no-jumps",
@@ -652,7 +752,85 @@ export function Replay() {
                                     jumps={false}
                                 />
                             ),
-                            code: `<TimeTransport value={now} now={now} speeds={SPEEDS} … />`,
+                            code: isJa
+                                ? `import * as React from "react";
+import { TimeTransport } from "@gunjo/ui";
+
+const NOW = Date.UTC(2026, 8, 12, 3, 0, 0);
+const HOUR = 3_600_000;
+const CLOCK = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Asia/Tokyo",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hour12: false,
+});
+
+
+const SPEEDS = [
+  { value: 1, label: "1×" },
+  { value: 60, label: "1分/秒" },
+  { value: 3600, label: "1時間/秒" },
+];
+
+export function WithoutJumps() {
+  const [value, setValue] = React.useState(NOW);
+  const [playing, setPlaying] = React.useState(false);
+  const [speed, setSpeed] = React.useState(60);
+
+  return (
+    <TimeTransport
+      value={value}
+      now={NOW}
+      onValueChange={setValue}
+      playing={playing}
+      onPlayingChange={setPlaying}
+      speeds={SPEEDS}
+      speed={speed}
+      onSpeedChange={setSpeed}
+      formatValue={(at) => CLOCK.format(new Date(at))}
+    />
+  );
+}`
+                                : `import * as React from "react";
+import { TimeTransport } from "@gunjo/ui";
+
+const NOW = Date.UTC(2026, 8, 12, 3, 0, 0);
+const HOUR = 3_600_000;
+const CLOCK = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Asia/Tokyo",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hour12: false,
+});
+
+
+const SPEEDS = [
+  { value: 1, label: "1x" },
+  { value: 60, label: "1m/s" },
+  { value: 3600, label: "1h/s" },
+];
+
+export function WithoutJumps() {
+  const [value, setValue] = React.useState(NOW);
+  const [playing, setPlaying] = React.useState(false);
+  const [speed, setSpeed] = React.useState(60);
+
+  return (
+    <TimeTransport
+      value={value}
+      now={NOW}
+      onValueChange={setValue}
+      playing={playing}
+      onPlayingChange={setPlaying}
+      speeds={SPEEDS}
+      speed={speed}
+      onSpeedChange={setSpeed}
+      formatValue={(at) => CLOCK.format(new Date(at))}
+    />
+  );
+}`,
                         },
                         {
                             key: "disabled",
@@ -668,7 +846,30 @@ export function Replay() {
                                     disabled
                                 />
                             ),
-                            code: `<TimeTransport disabled … />`,
+                            code: `import * as React from "react";
+import { TimeTransport } from "@gunjo/ui";
+
+const NOW = Date.UTC(2026, 8, 12, 3, 0, 0);
+const HOUR = 3_600_000;
+const CLOCK = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Asia/Tokyo",
+  hour: "2-digit",
+  minute: "2-digit",
+  second: "2-digit",
+  hour12: false,
+});
+
+
+export function ReadOnly() {
+  return (
+    <TimeTransport
+      value={NOW}
+      now={NOW}
+      disabled
+      formatValue={(at) => CLOCK.format(new Date(at))}
+    />
+  );
+}`,
                         },
                     ]}
                 />
@@ -720,8 +921,10 @@ export function Replay() {
                             ラベルに向きを書かせないので、そのまま多言語に出せます。
                         </li>
                         <li>
-                            <strong>実時間かどうかが分からないときは、出さない。</strong>
-                            <code>now</code> も <code>live</code> も渡されていなければ、札も「いまへ戻る」も出ません。
+                            <strong>渡さなかったものは、出しません。</strong>
+                            <code>speeds</code> が無ければ速さの選択、<code>onPlayingChange</code> が無ければ再生ボタン、
+                            <code>jumps</code> が無ければ飛ばしの列、<code>now</code> も <code>live</code> も無ければ
+                            実時間の札と「いまへ戻る」が、それぞれ描かれません。
                             推測して間違った状態を見せるより、黙っているほうが正しいためです。
                         </li>
                         <li>
@@ -748,9 +951,10 @@ export function Replay() {
                             translate without carrying direction words.
                         </li>
                         <li>
-                            <strong>When liveness is unknowable, nothing is shown.</strong> With neither{" "}
-                            <code>now</code> nor <code>live</code>, the chip and the return button both stay out. Silence
-                            beats a guessed state.
+                            <strong>What you do not pass is not drawn.</strong> No <code>speeds</code>, no speed picker;
+                            no <code>onPlayingChange</code>, no play button; no <code>jumps</code>, no jump row; neither{" "}
+                            <code>now</code> nor <code>live</code>, and both the live chip and the return button stay
+                            out. Silence beats a guessed state.
                         </li>
                         <li>
                             <strong>Touch targets stay at 44px.</strong> Play, the jumps and return-to-now are all 44px

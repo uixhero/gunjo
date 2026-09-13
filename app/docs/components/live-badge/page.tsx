@@ -108,57 +108,71 @@ export default function LiveBadgeDocPage() {
     const description = content?.description ?? metadata.liveBadge.description ?? "";
 
     const usageCode = isJa
-        ? `import { LiveBadge } from "@gunjo/ui";
+        ? `import { LiveBadge, Statistic } from "@gunjo/ui";
 
 // ⭐ live かどうかは呼び出し側が決めます。札は時計も持たず、比較もしません。
-export function WaitTime({ value, connected, receivedAt }) {
+const CONNECTED = true;
+const RECEIVED_AT = "09:40";
+
+export function WaitTime() {
   return (
     <Statistic
       label={
         <span className="inline-flex items-center gap-2">
           待ち時間
           {/* 実時間から外れたら、札の代わりに「いつの値か」を出します */}
-          <LiveBadge live={connected} detached={\`\${receivedAt} 時点\`}>
+          <LiveBadge live={CONNECTED} detached={\`\${RECEIVED_AT} 時点\`}>
             LIVE
           </LiveBadge>
         </span>
       }
-      value={value}
+      value="12分"
     />
   );
 }
 
 // detached を渡さなければ、外れているとき札そのものが消えます（推測しません）
-<LiveBadge live={false} />
+export function QuietWhenUnknown() {
+  return <LiveBadge live={false} />;
+}
 
 // 変化そのものが知らせたいことなら、読み上げ領域は呼び出し側で付けます
-<LiveBadge live={connected} detached={receivedAt} role="status" />`
-        : `import { LiveBadge } from "@gunjo/ui";
+export function Announced() {
+  return <LiveBadge live={CONNECTED} detached={RECEIVED_AT} role="status" />;
+}`
+        : `import { LiveBadge, Statistic } from "@gunjo/ui";
 
 // ⭐ Liveness is the caller's decision. The badge holds no clock and
 // compares nothing.
-export function WaitTime({ value, connected, receivedAt }) {
+const CONNECTED = true;
+const RECEIVED_AT = "09:40";
+
+export function WaitTime() {
   return (
     <Statistic
       label={
         <span className="inline-flex items-center gap-2">
           Wait time
           {/* Off the live edge, the badge states WHEN instead */}
-          <LiveBadge live={connected} detached={\`as of \${receivedAt}\`}>
+          <LiveBadge live={CONNECTED} detached={\`as of \${RECEIVED_AT}\`}>
             LIVE
           </LiveBadge>
         </span>
       }
-      value={value}
+      value="12 min"
     />
   );
 }
 
 // With no detached content the badge disappears entirely — it will not guess
-<LiveBadge live={false} />
+export function QuietWhenUnknown() {
+  return <LiveBadge live={false} />;
+}
 
 // When the change itself is the news, the caller adds the live region
-<LiveBadge live={connected} detached={receivedAt} role="status" />`;
+export function Announced() {
+  return <LiveBadge live={CONNECTED} detached={RECEIVED_AT} role="status" />;
+}`;
 
     const propsData = [
         {
@@ -166,23 +180,23 @@ export function WaitTime({ value, connected, receivedAt }) {
             type: "boolean",
             defaultValue: "true",
             description: isJa
-                ? "隣の値がいまの値かどうか。決めるのは呼び出し側です。札は時計を持たず、何も比較しません。"
-                : "Whether the value beside the badge is the current one. The caller decides — the badge holds no clock and compares nothing.",
+                ? "隣の値がいまの値かどうか。決めるのは呼び出し側です。"
+                : "Whether the value beside the badge is the current one. The caller decides.",
         },
         {
             name: "children",
             type: "ReactNode",
             defaultValue: '"LIVE"',
             description: isJa
-                ? "live のときの札の文字。⚠️ 必ず言葉にしてください。明滅する点は飾りで、点だけに載せた状態は半分の読み手に届きません。"
-                : "The word on the badge while live. ⚠️ Keep it a word — the pulsing dot is decoration, and a state carried by a dot alone reaches only half the readers.",
+                ? "live のときの札の文字。"
+                : "The word on the badge while live.",
         },
         {
             name: "detached",
             type: "ReactNode",
             description: isJa
-                ? "live でないときに、札の代わりに出すもの＝「ではいつの値か」の答え（日付・時刻・「09:40 時点」）。渡さなければ何も描きません（部品は推測しません）。"
-                : "What to show instead when live is false — the answer to “then when is this from?”. Omit it and the badge renders nothing at all.",
+                ? "live でないとき、札の代わりに出すもの＝いつの値かの答え。"
+                : "What to show instead when live is false — the answer to “then when is this from?”.",
         },
         {
             name: "size",
@@ -195,8 +209,8 @@ export function WaitTime({ value, connected, receivedAt }) {
             type: '"span" | "div"',
             defaultValue: '"span"',
             description: isJa
-                ? "描く要素。既定は span で、文の中にも置けます。"
-                : "The element to render. Defaults to span, so it is valid inside flow content.",
+                ? "描く要素。既定の span は文の中にも置けます。"
+                : "The element to render. The default span is valid inside flow content.",
         },
     ];
 
@@ -289,7 +303,11 @@ export function WaitTime({ value, connected, receivedAt }) {
                                 ? "success の色・枠・言葉と、ゆっくり明滅する点。点は飾りで、状態を言っているのは文字です。"
                                 : "The success tone, a border, a word — and a dot that pulses slowly. The dot is decoration; the word carries the state.",
                             preview: <LiveBadge>LIVE</LiveBadge>,
-                            code: `<LiveBadge>LIVE</LiveBadge>`,
+                            code: `import { LiveBadge } from "@gunjo/ui";
+
+export function LiveNow() {
+  return <LiveBadge>LIVE</LiveBadge>;
+}`,
                         },
                         {
                             key: "detached",
@@ -298,7 +316,21 @@ export function WaitTime({ value, connected, receivedAt }) {
                                 ? "実時間から外れたら、札は LIVE を名乗らず、その場所で「いつの値か」を答えます。色も warning に替わりますが、言っているのは文字です。"
                                 : "Off the live edge the badge stops claiming LIVE and answers when the value is from. The tone changes to warning, but the words do the telling.",
                             preview: <LiveBadge live={false} detached={isJa ? "09:40 時点" : "as of 09:40"} />,
-                            code: `<LiveBadge live={false} detached="09:40 時点" />`,
+                            code: isJa
+                                ? `import { LiveBadge } from "@gunjo/ui";
+
+const RECEIVED_AT = "09:40";
+
+export function LastReceived() {
+  return <LiveBadge live={false} detached={\`\${RECEIVED_AT} 時点\`} />;
+}`
+                                : `import { LiveBadge } from "@gunjo/ui";
+
+const RECEIVED_AT = "09:40";
+
+export function LastReceived() {
+  return <LiveBadge live={false} detached={\`as of \${RECEIVED_AT}\`} />;
+}`,
                         },
                         {
                             key: "empty",
@@ -312,7 +344,11 @@ export function WaitTime({ value, connected, receivedAt }) {
                                     {isJa ? "（札は描かれていません）" : "(no badge is rendered)"}
                                 </div>
                             ),
-                            code: `<LiveBadge live={false} />`,
+                            code: `import { LiveBadge } from "@gunjo/ui";
+
+export function NothingAtAll() {
+  return <LiveBadge live={false} />;
+}`,
                         },
                         {
                             key: "sizes",
@@ -327,7 +363,17 @@ export function WaitTime({ value, connected, receivedAt }) {
                                     <LiveBadge size="lg">LIVE</LiveBadge>
                                 </div>
                             ),
-                            code: `<LiveBadge size="sm">LIVE</LiveBadge>`,
+                            code: `import { LiveBadge } from "@gunjo/ui";
+
+export function BadgeSizes() {
+  return (
+    <div className="flex flex-wrap items-center gap-3">
+      <LiveBadge size="sm">LIVE</LiveBadge>
+      <LiveBadge>LIVE</LiveBadge>
+      <LiveBadge size="lg">LIVE</LiveBadge>
+    </div>
+  );
+}`,
                         },
                         {
                             key: "wording",
@@ -342,7 +388,29 @@ export function WaitTime({ value, connected, receivedAt }) {
                                     <LiveBadge size="sm">{isJa ? "自動更新" : "AUTO"}</LiveBadge>
                                 </div>
                             ),
-                            code: `<LiveBadge>実況中</LiveBadge>`,
+                            code: isJa
+                                ? `import { LiveBadge } from "@gunjo/ui";
+
+export function OwnWording() {
+  return (
+    <div className="flex flex-wrap items-center gap-3">
+      <LiveBadge>実況中</LiveBadge>
+      <LiveBadge>受信中</LiveBadge>
+      <LiveBadge size="sm">自動更新</LiveBadge>
+    </div>
+  );
+}`
+                                : `import { LiveBadge } from "@gunjo/ui";
+
+export function OwnWording() {
+  return (
+    <div className="flex flex-wrap items-center gap-3">
+      <LiveBadge>ON AIR</LiveBadge>
+      <LiveBadge>STREAMING</LiveBadge>
+      <LiveBadge size="sm">AUTO</LiveBadge>
+    </div>
+  );
+}`,
                         },
                         {
                             key: "transport",
@@ -351,7 +419,30 @@ export function WaitTime({ value, connected, receivedAt }) {
                                 ? "操作盤の実時間の札は、この部品が描いています。時刻を動かすと札は「いつの値か」の側に替わります（同じ形を2か所に作り置きしません）。"
                                 : "The transport's live chip is this badge. Move the value and it switches to the “when” side — one implementation, not two lookalikes.",
                             preview: <TransportDemo locale={locale as Locale} />,
-                            code: `<TimeTransport value={value} now={now} … />`,
+                            code: `import * as React from "react";
+import { TimeTransport } from "@gunjo/ui";
+
+const NOW = Date.UTC(2026, 8, 12, 3, 0, 0);
+const HOUR = 3_600_000;
+const CLOCK = new Intl.DateTimeFormat("en-GB", {
+  timeZone: "Asia/Tokyo",
+  hour: "2-digit",
+  minute: "2-digit",
+  hour12: false,
+});
+
+export function TransportWithChip() {
+  const [value, setValue] = React.useState(NOW - 3 * HOUR);
+
+  return (
+    <TimeTransport
+      value={value}
+      now={NOW}
+      onValueChange={setValue}
+      formatValue={(v) => CLOCK.format(new Date(v))}
+    />
+  );
+}`,
                         },
                     ]}
                 />
@@ -386,9 +477,8 @@ export function WaitTime({ value, connected, receivedAt }) {
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
                             <strong>「LIVE」を独立した札にしています。</strong>
-                            出どころでは <code>EARTH · TERMINATOR LIVE</code> と一続きの文字で出していて、
-                            触ってもらった人に「どういう意味？」と聞かれました。枠で囲って言葉を独立させると、
-                            それが状態の札だと分かります。
+                            状態を表す語を、隣の文字と一続きに並べると、それが状態の札だと読めません。
+                            枠で囲って語を独立させると、名前の一部ではなく「いまの状態」として読まれます。
                         </li>
                         <li>
                             <strong>読み上げ領域には、既定ではしていません。</strong>
@@ -414,9 +504,9 @@ export function WaitTime({ value, connected, receivedAt }) {
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>LIVE is its own pill.</strong> The implementation this came from ran it together
-                            with the stamp — <code>EARTH · TERMINATOR LIVE</code> — and a tester asked what the phrase
-                            meant. Boxing the word makes it read as a state.
+                            <strong>LIVE is its own pill.</strong> A state word run together with the text beside it
+                            does not read as a state. Boxing it separates the word from its neighbours, so it reads as
+                            the current state rather than part of a name.
                         </li>
                         <li>
                             <strong>It is not a live region by default.</strong> A default{" "}
