@@ -1743,10 +1743,33 @@
       "uixhero": "ui-design/visibility-of-system-status",
       "gunjo": [
         "/docs/components/status-bar",
-        "/docs/components/badge"
+        "/docs/components/badge",
+        "/docs/components/live-badge",
+        "/docs/components/time-transport"
       ],
-      "note": "",
+      "note": "「これはいまの値か」を画面が言い続ける話。live-badge / time-transport は 2026-09-13 追記",
       "title": "状態の可視化 (Visibility of System Status)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/color-independence",
+      "gunjo": [
+        "/docs/components/live-badge",
+        "/docs/components/day-band",
+        "/docs/components/time-transport"
+      ],
+      "note": "3部品とも「状態は文字が言う。色・点・面は補助」を設計の判断に持つ",
+      "title": "色だけに頼らない表現 (Color Independence)"
+    },
+    {
+      "kind": "page",
+      "uixhero": "ui-design/user-control",
+      "gunjo": [
+        "/docs/components/time-transport",
+        "/docs/components/day-band"
+      ],
+      "note": "読み手が時間の位置を握り、いつでも「いまへ戻る」ことの根拠",
+      "title": "ユーザーコントロール (User Control)"
     },
     {
       "kind": "page",
@@ -2081,5 +2104,5 @@
       "title": "キーボードナビゲーション (Keyboard Navigation)"
     }
   ],
-  "lawsRuling": "KeEem 2026-07-02 一旦承認（追加は後から laws に追記可）"
+  "lawsRuling": "KeEem 2026-07-02 一旦承認（追加は後から laws に追記可） / 2026-09-13 追記: earthmoon 由来の3部品（day-band / live-badge / time-transport）に「いつ・なぜ使うか」の節が出ていなかったため、当てはまる原則3本を足した（visibility-of-system-status に2件追記・color-independence と user-control を新設）。⛔ 3部品そのものの図鑑記事（ui-components/*）はまだ無い＝gunjo #986 で起票済み。"
 }
