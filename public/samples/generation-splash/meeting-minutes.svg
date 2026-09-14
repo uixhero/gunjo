@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
+  <title id="title">Meeting minutes generation scene</title>
+  <desc id="description">Speech cards flow from three participants into a structured document.</desc>
+  <defs>
+    <linearGradient id="wall" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#bed9f2"/><stop offset="1" stop-color="#e9f2f7"/></linearGradient>
+    <linearGradient id="table" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6b422d"/><stop offset="1" stop-color="#38251f"/></linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#183746" flood-opacity=".18"/></filter>
+    <style>
+      .bubble{animation:bubble 4.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}.bubble.b2{animation-delay:-2.4s}.paper{animation:paper 4.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}.document{animation:document 4.8s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+      @keyframes bubble{0%,100%{opacity:.45;transform:translateY(12px) scale(.97)}50%{opacity:1;transform:translateY(-10px) scale(1)}}
+      @keyframes paper{0%,18%{opacity:0;transform:translate(-90px,80px) rotate(-10deg)}58%,82%{opacity:1;transform:translate(0,0) rotate(4deg)}100%{opacity:0;transform:translate(90px,-55px) rotate(12deg)}}
+      @keyframes document{0%,100%{transform:scale(.985)}55%{transform:scale(1.015)}}
+      @media (prefers-reduced-motion:reduce){.bubble,.paper,.document{animation:none!important}}
+    </style>
+  </defs>
+  <rect width="1600" height="900" fill="url(#wall)"/><circle cx="1295" cy="168" r="86" fill="#fff0ac" opacity=".74"/>
+  <path d="M0 440C310 362 430 492 710 408c260-78 500 52 890-58v550H0Z" fill="#7ca68d" opacity=".42"/><rect y="640" width="1600" height="260" fill="#273d38"/>
+  <g class="document" filter="url(#shadow)">
+    <rect x="1120" y="230" width="330" height="410" rx="22" fill="#fff" stroke="#244e68" stroke-width="10"/><rect x="1174" y="286" width="222" height="18" rx="9" fill="#2c6aa0"/>
+    <g fill="#b6c8d4"><rect x="1174" y="338" width="190" height="12" rx="6"/><rect x="1174" y="380" width="222" height="12" rx="6"/><rect x="1174" y="422" width="162" height="12" rx="6"/></g>
+    <g fill="#36a271"><circle cx="1192" cy="488" r="13"/><circle cx="1192" cy="540" r="13"/><circle cx="1192" cy="592" r="13"/></g>
+    <g fill="#7993a4"><rect x="1225" y="480" width="168" height="14" rx="7"/><rect x="1225" y="532" width="142" height="14" rx="7"/><rect x="1225" y="584" width="178" height="14" rx="7"/></g>
+  </g>
+  <g class="bubble b1"><path d="M250 255h260a24 24 0 0124 24v78a24 24 0 01-24 24H356l-48 46 12-46h-70a24 24 0 01-24-24v-78a24 24 0 0124-24Z" fill="#fff"/><rect x="278" y="298" width="198" height="15" rx="8" fill="#527891"/><rect x="278" y="337" width="144" height="13" rx="7" fill="#afc0ca"/></g>
+  <g class="bubble b2"><path d="M620 158h290a24 24 0 0124 24v86a24 24 0 01-24 24H798l30 47-70-47H620a24 24 0 01-24-24v-86a24 24 0 0124-24Z" fill="#fff"/><rect x="648" y="202" width="218" height="15" rx="8" fill="#527891"/><rect x="648" y="243" width="168" height="13" rx="7" fill="#afc0ca"/></g>
+  <ellipse cx="640" cy="680" rx="510" ry="185" fill="url(#table)" stroke="#281b18" stroke-width="18"/>
+  <g transform="translate(208 430)"><circle cx="105" cy="72" r="63" fill="#e6b47b"/><path d="M40 66Q104-30 170 66Q132 42 104 5Q84 42 40 66Z" fill="#222a32"/><path d="M28 250Q40 130 105 130t79 120Z" fill="#315c8a"/></g>
+  <g transform="translate(520 350)"><circle cx="105" cy="72" r="63" fill="#dba36d"/><path d="M40 58Q105-22 170 58l-17-34-23 21-25-39-27 39-24-21Z" fill="#39404a"/><path d="M25 250Q36 130 105 130t82 120Z" fill="#7a3542"/></g>
+  <g transform="translate(818 432)"><circle cx="105" cy="72" r="63" fill="#e9ba83"/><path d="M43 63Q103-16 167 63Q135 35 105 17Q75 36 43 63Z" fill="#30383e"/><path d="M27 250Q38 130 105 130t81 120Z" fill="#3f7254"/></g>
+  <g class="paper" fill="#fff" stroke="#6e8fa3" stroke-width="5"><rect x="870" y="300" width="112" height="78" rx="8" transform="rotate(12 926 339)"/><rect x="978" y="362" width="112" height="78" rx="8" transform="rotate(-7 1034 401)"/></g>
+</svg>

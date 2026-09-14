@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 900" role="img" aria-labelledby="title description">
+  <title id="title">Trip plan generation scene</title><desc id="description">A train passes Mount Fuji while a route is assembled.</desc>
+  <style>
+    .train{animation:train 7.5s linear -2.3s infinite;transform-box:fill-box}.cloud-a{animation:cloud 8s ease-in-out infinite}.cloud-b{animation:cloud 10s ease-in-out infinite reverse}.route{animation:route 3s ease-in-out infinite}
+    @keyframes train{from{transform:translateX(-950px)}to{transform:translateX(1750px)}}@keyframes cloud{50%{transform:translateX(55px)}}@keyframes route{0%,100%{opacity:.35}50%{opacity:1}}
+    @media (prefers-reduced-motion:reduce){.train,.cloud-a,.cloud-b,.route{animation:none!important}.train{transform:translateX(360px)}}
+  </style>
+  <rect width="1600" height="900" fill="#dff3ff"/><circle cx="1290" cy="168" r="76" fill="#ffd978"/><circle cx="1290" cy="168" r="110" fill="none" stroke="#fff4c7" stroke-width="24" opacity=".42"/>
+  <g class="cloud-a" fill="#fff" opacity=".72"><ellipse cx="245" cy="185" rx="108" ry="30"/><ellipse cx="190" cy="170" rx="58" ry="43"/><ellipse cx="275" cy="158" rx="70" ry="54"/></g>
+  <g class="cloud-b" fill="#fff" opacity=".86"><ellipse cx="1110" cy="288" rx="124" ry="34"/><ellipse cx="1052" cy="270" rx="68" ry="51"/><ellipse cx="1145" cy="260" rx="76" ry="58"/></g>
+  <path d="M0 600l210-128 155 66 170-130 175 152 150-100 190 105 215-135 335 162v308H0Z" fill="#b9d8c2"/><path d="M320 620L800 150l480 470Z" fill="#7ea7bb"/><path d="M620 326L800 150l180 176-72-24-58 48-52-42-56 42-52-50Z" fill="#f7fbff"/>
+  <path d="M0 605c250-60 390 33 630-23 270-62 490 68 970-22v340H0Z" fill="#4f8d6d"/><path d="M0 650c280-48 485 50 760-22 280-72 510 52 840-10v282H0Z" fill="#34765a"/>
+  <g transform="translate(0 -10)"><rect y="675" width="1600" height="225" fill="#304e45"/><rect y="696" width="1600" height="16" fill="#24352f"/><g stroke="#71817a" stroke-width="18"><path d="M-30 740h1680"/><path d="M-30 802h1680"/></g><g stroke="#9faca6" stroke-width="9"> <path d="M-36 726l54 96m46-96 54 96m46-96 54 96m46-96 54 96m46-96 54 96m46-96 54 96m46-96 54 96m46-96 54 96m46-96 54 96m46-96 54 96m46-96 54 96m46-96 54 96m46-96 54 96m46-96 54 96m46-96 54 96m46-96 54 96m46-96 54 96m46-96 54 96"/></g></g>
+  <path class="route" d="M1110 395c-120 54-171 113-174 178 0 63 78 88 150 72 71-16 118-73 204-51" fill="none" stroke="#fff" stroke-width="11" stroke-linecap="round" stroke-dasharray="16 25"/>
+  <g class="train" transform="translate(0 535)"><g fill="#152c3a"><circle cx="140" cy="190" r="31"/><circle cx="360" cy="190" r="31"/><circle cx="584" cy="190" r="31"/><circle cx="752" cy="190" r="31"/></g><path d="M30 45h664c38 0 78 23 106 59l32 42H30Z" fill="#f8fafc" stroke="#17394b" stroke-width="8"/><path d="M30 120h787l15 26H30Z" fill="#e6a33b"/><path d="M698 58c40 8 72 30 100 68h-92Z" fill="#244d65"/><g fill="#5f879a"><rect x="62" y="66" width="116" height="47" rx="12"/><rect x="194" y="66" width="116" height="47" rx="12"/><rect x="326" y="66" width="116" height="47" rx="12"/><rect x="458" y="66" width="116" height="47" rx="12"/><rect x="590" y="66" width="92" height="47" rx="12"/></g><rect x="40" y="144" width="776" height="22" rx="8" fill="#17394b"/></g>
+</svg>
