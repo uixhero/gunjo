@@ -20,11 +20,15 @@ interface BookStoreLinkProps {
 /**
  * 本の帯の中の「販売先へ行くリンク」1本。
  *
- * ⭐ 計測は gunjo.jp が既に使っている仕組みに合わせる＝`@vercel/analytics` の track()。
- *    ⛔ 新しい仕組み（gtag / dataLayer への直接 push）を持ち込まないこと。GTM は app/layout.tsx に
- *    入っていますが、アプリ側から送っているイベントは PackForm.tsx / PackCta.tsx の track() だけです。
- * ⭐ イベント名 `book_store_click` は、gunjo の既存の命名（`pack_view` / `pack_registered` /
- *    `pack_cta_click`＝〈機能〉_〈動作〉の snake_case）に合わせて決めました。
+ * ⭐ gunjo には計測の送り先が2つあります。
+ *    1. `@vercel/analytics` の track()＝`pack_view` / `pack_registered` / `pack_cta_click`
+ *    2. GTM の dataLayer＝app/pack/PackForm.tsx の `sendGTMEvent({ event: "pack_register" })`
+ *       （GTM 自体の読み込みは app/layout.tsx）
+ *    この帯は track() のほうに揃えました＝イベント名 `book_store_click` を、上の3つと同じ
+ *    gunjo の既存の命名（〈機能〉_〈動作〉の snake_case）に合わせるためです。
+ *    ⛔ 3つ目の仕組み（`gtag()` の直接呼び出しなど）を増やさないこと。
+ *    ⚠️ `gtag()` はそもそも届きません＝このサイトは <GoogleTagManager> 経由でしか GA4 を
+ *    読み込んでいないためで、その説明は PackForm.tsx:98-99 にあります。
  *    ⚠️ uixhero.com の同じ帯は GA4 の `outbound_click` ですが、あちらは「本文中の外部リンク」と
  *    同じ名前で揃える設計で、gunjo には outbound_click に当たる既存イベントがありません。
  *    ⛔ 別サイトの名前をそのまま持ち込まないこと（ここでは gunjo 側の命名が正）。
