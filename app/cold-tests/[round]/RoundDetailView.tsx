@@ -463,12 +463,21 @@ export function RoundDetailView({
                         </Link>
                     </div>
                 )}
-                {/* In-page section nav. Auto-discovers h2/h3 in the main column
-                    (previews / 解説記事 / この回の発見 / 使用部品 /
+                {/* In-page section nav. Auto-discovers the h2 sections in the
+                    main column (previews / 解説記事 / この回の発見 / 使用部品 /
                     cold AI が組み上げた実コード
-                    + every h2/h3 inside the article markdown) and renders the
-                    same "ページ内" surface the docs pages use. */}
-                <LocalNav />
+                    + every h2 inside the article markdown) and renders the
+                    same "ページ内" surface the docs pages use.
+
+                    maxLevel={2} on purpose: the nav wraps its entries into a
+                    horizontal row, where an h3 is distinguished only by a dot
+                    and a smaller type size. On a round with several h3
+                    sub-sections the list read as one flat pile of 17 links
+                    rather than a hierarchy. The h3 headings stay in the
+                    article body — they just aren't listed here. Docs pages
+                    keep the default (h2 + h3) because there each h3 is a
+                    component demo and the nav is its only link. */}
+                <LocalNav maxLevel={2} />
             </header>
 
             {/* Previews — each is a button that opens the MediaLightbox with
@@ -553,10 +562,15 @@ export function RoundDetailView({
                 onNext={() => hasNext && setLightboxIndex((i) => i + 1)}
             />
 
-            {/* Article */}
+            {/* Article.
+                The section h2s outside the article (here, この回の発見, 使用部品,
+                実コード) use the same type as the article's own h2
+                (MarkdownRenderer: text-xl font-semibold). LocalNav lists them in
+                one row with the article h2s, so a small-caps label style read as
+                a lower level than the headings around it. */}
             {detail.article?.markdown ? (
                 <section className="space-y-3">
-                    <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                    <h2 className="text-xl font-semibold tracking-tight text-foreground">
                         {td.article}
                     </h2>
                     <Card className="border-border/80">
@@ -587,7 +601,7 @@ export function RoundDetailView({
                 items. Only rendered for rounds that have a findings file. */}
             {findings.length > 0 && (
                 <section className="space-y-4">
-                    <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                    <h2 className="text-xl font-semibold tracking-tight text-foreground">
                         {tf.roundHeading}
                     </h2>
                     <p className="text-sm text-muted-foreground">{tf.roundIntro}</p>
@@ -613,7 +627,7 @@ export function RoundDetailView({
             {/* Components used */}
             {detail.components.length > 0 && (
                 <section className="space-y-3">
-                    <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                    <h2 className="text-xl font-semibold tracking-tight text-foreground">
                         {td.componentsUsed}
                     </h2>
                     <p className="text-sm text-muted-foreground">{td.componentsUsedHint}</p>
@@ -641,7 +655,7 @@ export function RoundDetailView({
 
             {/* Source code (or disclosure when overwritten) */}
             <section className="space-y-3">
-                <h2 className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                <h2 className="text-xl font-semibold tracking-tight text-foreground">
                     {td.sourceCode}
                 </h2>
                 {detail.overwrittenBy ? (
