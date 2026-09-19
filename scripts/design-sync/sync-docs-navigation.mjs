@@ -81,6 +81,7 @@ function buildNavigation({ root }) {
         { title: "Shadows", href: "/docs/shadows" },
         { title: "Radius", href: "/docs/radius" },
         { title: "Animation", href: "/docs/animation" },
+        { title: "Exceptions", href: "/docs/exceptions" },
         { title: "DESIGN.md", href: "/docs/tokens/spec" },
       ],
     },

@@ -1977,6 +1977,7 @@ export const translations: Record<
       Spacing: "余白",
       Shadows: "影",
       Radius: "角丸",
+      Exceptions: "特例",
       // Functional category section headers (current taxonomy)
       Inputs: "入力",
       "Inputs Overview": "入力の概要",
