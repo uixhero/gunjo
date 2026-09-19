@@ -148,6 +148,8 @@ function buildNavigation({ root }) {
     title: "Patterns",
     items: [
       { title: "Patterns", href: "/patterns" },
+      { title: "Direction Finder", href: "/docs/patterns/direction-finder" },
+      { title: "Forecast Day Grid", href: "/docs/patterns/forecast-day-grid" },
     ],
   };
 

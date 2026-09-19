@@ -1994,6 +1994,8 @@ export const translations: Record<
       Layout: "レイアウト",
       "Layout Overview": "レイアウトの概要",
       Patterns: "パターン",
+      "Direction Finder": "方角と高さの案内",
+      "Forecast Day Grid": "日ごとの予報の格子",
       "Status Screen": "ステータス画面",
       StatusScreen: "ステータス画面",
       "Reference apps": "リファレンスアプリ",
