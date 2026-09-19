@@ -24,7 +24,9 @@ export default function IconPage() {
     const description = content?.description ?? displayMetadata.icon.description;
 
     const code = locale === "ja"
-        ? `import { Icon } from "@gunjo/ui";
+        ? `"use client";
+
+import { Icon } from "@gunjo/ui";
 import { IconBell } from "@tabler/icons-react";
 
 export function Example() {
@@ -37,7 +39,9 @@ export function Example() {
     />
   );
 }`
-        : `import { Icon } from "@gunjo/ui";
+        : `"use client";
+
+import { Icon } from "@gunjo/ui";
 import { IconBell } from "@tabler/icons-react";
 
 export function Example() {
@@ -52,7 +56,9 @@ export function Example() {
 }`;
 
     const usageCode = locale === "ja"
-        ? `import { Icon } from "@gunjo/ui";
+        ? `"use client";
+
+import { Icon } from "@gunjo/ui";
 import { IconAlertTriangle, IconCheck } from "@tabler/icons-react";
 
 export function StatusIcons() {
@@ -75,7 +81,9 @@ export function StatusIcons() {
     </div>
   );
 }`
-        : `import { Icon } from "@gunjo/ui";
+        : `"use client";
+
+import { Icon } from "@gunjo/ui";
 import { IconAlertTriangle, IconCheck } from "@tabler/icons-react";
 
 export function StatusIcons() {
@@ -196,7 +204,9 @@ export function StatusIcons() {
                                     <Icon icon={IconSparkles} size="xl" />
                                 </div>
                             ),
-                            code: `import { Icon } from "@gunjo/ui";
+                            code: `"use client";
+
+import { Icon } from "@gunjo/ui";
 import { IconSparkles } from "@tabler/icons-react";
 
 export function IconSizes() {
@@ -238,7 +248,9 @@ export function IconSizes() {
                                     <Icon icon={IconSparkles} size="sm" strokeWidth={1.75} />
                                 </div>
                             ),
-                            code: `import { Icon } from "@gunjo/ui";
+                            code: `"use client";
+
+import { Icon } from "@gunjo/ui";
 import { IconChevronDown } from "@tabler/icons-react";
 
 export function IndicatorIcon() {

@@ -377,7 +377,9 @@ export function ImageUploader() {
                                     : "The whole dropzone accepts click-to-browse and drag-and-drop input.",
                             preview: <FileUploader labels={labels} maxFiles={3} />,
                             code: locale === "ja"
-                                ? `import { FileUploader } from "@gunjo/ui";
+                                ? `"use client";
+
+import { FileUploader } from "@gunjo/ui";
 
 export function AttachmentUploader() {
   return (
@@ -394,7 +396,9 @@ export function AttachmentUploader() {
     />
   );
 }`
-                                : `import { FileUploader } from "@gunjo/ui";
+                                : `"use client";
+
+import { FileUploader } from "@gunjo/ui";
 
 export function AttachmentUploader() {
   return (
@@ -428,7 +432,9 @@ export function AttachmentUploader() {
                                 />
                             ),
                             code: locale === "ja"
-                                ? `import { FileUploader } from "@gunjo/ui";
+                                ? `"use client";
+
+import { FileUploader } from "@gunjo/ui";
 
 export function ImageUploader() {
   return (
@@ -449,7 +455,9 @@ export function ImageUploader() {
     />
   );
 }`
-                                : `import { FileUploader } from "@gunjo/ui";
+                                : `"use client";
+
+import { FileUploader } from "@gunjo/ui";
 
 export function ImageUploader() {
   return (
@@ -719,7 +727,9 @@ export function UploadFailureState() {
                                     </DisabledReasonTooltip>
                                 ),
                             code: locale === "ja"
-                                ? `import { FileUploader, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                                ? `"use client";
+
+import { FileUploader, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 
 export function DisabledUploader() {
   return (
@@ -743,7 +753,9 @@ export function DisabledUploader() {
     </Tooltip>
   );
 }`
-                                : `import { FileUploader, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                                : `"use client";
+
+import { FileUploader, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 
 export function DisabledUploader() {
   return (

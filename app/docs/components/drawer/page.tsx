@@ -36,7 +36,9 @@ function createDrawerCode(locale: "ja" | "en", side: DrawerSide = "bottom") {
         save: isJa ? "保存" : "Save",
     };
 
-    return `import * as React from "react";
+    return `"use client";
+
+import * as React from "react";
 import {
   Button,
   Drawer,

@@ -419,7 +419,9 @@ export default function CarouselDocPage() {
     const statesTitle = isJa ? "状態とバリエーション" : "States and variants";
 
     const code = isJa
-        ? `import {
+        ? `"use client";
+
+import {
   Carousel,
   CarouselContent,
   CarouselItem,
@@ -461,7 +463,9 @@ export function CarouselDemo() {
     </Carousel>
   )
 }`
-        : `import {
+        : `"use client";
+
+import {
   Carousel,
   CarouselContent,
   CarouselItem,

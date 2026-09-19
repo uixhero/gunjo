@@ -12,7 +12,9 @@ import { IconAlertTriangle, IconFolderOpen, IconSearch } from "@tabler/icons-rea
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
-    ja: `import { Button, EmptyState, Icon } from "@gunjo/ui";
+    ja: `"use client";
+
+import { Button, EmptyState, Icon } from "@gunjo/ui";
 import { IconFolderOpen } from "@tabler/icons-react";
 
 export function Example() {
@@ -25,7 +27,9 @@ export function Example() {
     />
   );
 }`,
-    en: `import { Button, EmptyState, Icon } from "@gunjo/ui";
+    en: `"use client";
+
+import { Button, EmptyState, Icon } from "@gunjo/ui";
 import { IconFolderOpen } from "@tabler/icons-react";
 
 export function Example() {
@@ -177,7 +181,9 @@ export default function EmptyStatePage() {
                                 />
                             ),
                             code: locale === "ja"
-                                ? `import { Button, EmptyState, Icon } from "@gunjo/ui";
+                                ? `"use client";
+
+import { Button, EmptyState, Icon } from "@gunjo/ui";
 import { IconAlertTriangle } from "@tabler/icons-react";
 
 export function FailedLoad() {
@@ -190,7 +196,9 @@ export function FailedLoad() {
     />
   );
 }`
-                                : `import { Button, EmptyState, Icon } from "@gunjo/ui";
+                                : `"use client";
+
+import { Button, EmptyState, Icon } from "@gunjo/ui";
 import { IconAlertTriangle } from "@tabler/icons-react";
 
 export function FailedLoad() {

@@ -45,7 +45,9 @@ export function Example() {
 } as const;
 
 const variantsCodeByLocale = {
-    ja: `import { ToolPill } from "@gunjo/ui";
+    ja: `"use client";
+
+import { ToolPill } from "@gunjo/ui";
 import { IconCopy as Copy, IconPlus as Plus, IconTrash as Trash2 } from "@tabler/icons-react";
 
 export function ToolPillVariants() {
@@ -57,7 +59,9 @@ export function ToolPillVariants() {
     </div>
   );
 }`,
-    en: `import { ToolPill } from "@gunjo/ui";
+    en: `"use client";
+
+import { ToolPill } from "@gunjo/ui";
 import { IconCopy as Copy, IconPlus as Plus, IconTrash as Trash2 } from "@tabler/icons-react";
 
 export function ToolPillVariants() {
@@ -72,7 +76,9 @@ export function ToolPillVariants() {
 } as const;
 
 const sizesCodeByLocale = {
-    ja: `import { ToolPill } from "@gunjo/ui";
+    ja: `"use client";
+
+import { ToolPill } from "@gunjo/ui";
 import { IconPencil as PenLine } from "@tabler/icons-react";
 
 export function ToolPillSizes() {
@@ -84,7 +90,9 @@ export function ToolPillSizes() {
     </div>
   );
 }`,
-    en: `import { ToolPill } from "@gunjo/ui";
+    en: `"use client";
+
+import { ToolPill } from "@gunjo/ui";
 import { IconPencil as PenLine } from "@tabler/icons-react";
 
 export function ToolPillSizes() {
@@ -99,7 +107,9 @@ export function ToolPillSizes() {
 } as const;
 
 const verticalCodeByLocale = {
-    ja: `import { ToolPill } from "@gunjo/ui";
+    ja: `"use client";
+
+import { ToolPill } from "@gunjo/ui";
 import { IconArrowsMove as Move, IconEraser as Eraser, IconPencil as PenLine, IconPointer as MousePointer2 } from "@tabler/icons-react";
 
 export function VerticalToolPillToolbar() {
@@ -112,7 +122,9 @@ export function VerticalToolPillToolbar() {
     </div>
   );
 }`,
-    en: `import { ToolPill } from "@gunjo/ui";
+    en: `"use client";
+
+import { ToolPill } from "@gunjo/ui";
 import { IconArrowsMove as Move, IconEraser as Eraser, IconPencil as PenLine, IconPointer as MousePointer2 } from "@tabler/icons-react";
 
 export function VerticalToolPillToolbar() {
@@ -249,7 +261,9 @@ export default function ToolPillPage() {
                                 </div>
                             ),
                             code: locale === "ja"
-                                ? `import { ToolPill } from "@gunjo/ui";
+                                ? `"use client";
+
+import { ToolPill } from "@gunjo/ui";
 import { IconEraser as Eraser, IconPointer as MousePointer2 } from "@tabler/icons-react";
 
 export function ActiveToolPill() {
@@ -260,7 +274,9 @@ export function ActiveToolPill() {
     </div>
   );
 }`
-                                : `import { ToolPill } from "@gunjo/ui";
+                                : `"use client";
+
+import { ToolPill } from "@gunjo/ui";
 import { IconEraser as Eraser, IconPointer as MousePointer2 } from "@tabler/icons-react";
 
 export function ActiveToolPill() {

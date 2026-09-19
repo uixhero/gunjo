@@ -432,7 +432,9 @@ export function ReasonRequiredCoSign() {
                 : "When value is present, the component renders a read-only signed state.",
               preview: <CoSignPreview locale={locale} initialValue={createSignedValue()} />,
               code: locale === "ja"
-                  ? `import { CoSign, type CoSignValue } from "@gunjo/ui";
+                  ? `"use client";
+
+import { CoSign, type CoSignValue } from "@gunjo/ui";
 
 const signedValue: CoSignValue = {
   signerId: "ns-sato",
@@ -453,7 +455,9 @@ export function SignedCoSign() {
     />
   );
 }`
-                  : `import { CoSign, type CoSignValue } from "@gunjo/ui";
+                  : `"use client";
+
+import { CoSign, type CoSignValue } from "@gunjo/ui";
 
 const signedValue: CoSignValue = {
   signerId: "ns-sato",
