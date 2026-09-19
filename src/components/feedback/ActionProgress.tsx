@@ -29,12 +29,23 @@ export interface ActionProgressProps {
      * work that ends just after `delayMs` does not flash either. Default 500.
      */
     minVisibleMs?: number
-    /** Render the dialog inside this element instead of `document.body`. */
+    /**
+     * Render the dialog inside this element instead of `document.body`, laid
+     * out in the element's flow so the element grows to the open dialog.
+     */
     portalContainer?: HTMLElement | null
     className?: string
 }
 
 const preventDismiss = (event: Event) => event.preventDefault()
+
+/**
+ * With a `portalContainer`, the dialog is laid out in that element's normal
+ * flow (under an overlay that covers only the container) instead of being
+ * centred over it, so the container grows to the dialog's height. Used to
+ * show the open dialog inside a preview or an embedded frame.
+ */
+const CONTAINED_CLASSES = "relative left-auto top-auto mx-auto my-4 max-h-none translate-x-0 translate-y-0"
 
 /**
  * Delayed show with a minimum visible time: true once `active` has stayed true
@@ -95,7 +106,7 @@ const ActionProgress = React.forwardRef<HTMLDivElement, ActionProgressProps>(
                     onPointerDownOutside={preventDismiss}
                     onInteractOutside={preventDismiss}
                     aria-busy="true"
-                    className={cn("gap-0 overflow-hidden p-0 sm:max-w-sm", className)}
+                    className={cn("gap-0 overflow-hidden p-0 sm:max-w-sm", portalContainer && CONTAINED_CLASSES, className)}
                 >
                     <Progress
                         indeterminate

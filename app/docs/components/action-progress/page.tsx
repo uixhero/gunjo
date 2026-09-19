@@ -24,6 +24,7 @@ export default function ActionProgressDocPage() {
 import { ActionProgress, Button } from "@gunjo/ui";
 
 export function SaveSettings() {
+  const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
   const [pending, setPending] = React.useState(false);
   const [saved, setSaved] = React.useState(0);
 
@@ -38,7 +39,7 @@ export function SaveSettings() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div ref={setContainer} className="relative flex w-full flex-col items-center gap-4">
       <div className="flex flex-wrap justify-center gap-2">
         <Button onClick={() => save(2000)}>${t("保存する（2秒）", "Save (2 s)")}</Button>
         <Button variant="outline" onClick={() => save(200)}>
@@ -49,6 +50,7 @@ export function SaveSettings() {
         {pending ? "${t("保存しています", "Saving")}" : saved > 0 ? \`${t("保存しました（${saved} 回）", "Saved (${saved})")}\` : ""}
       </p>
       <ActionProgress
+        portalContainer={container}
         open={pending}
         title="${t("保存しています", "Saving")}"
         description="${t("終わるとこの画面に戻ります。", "You will return to this screen when it is done.")}"
@@ -61,6 +63,7 @@ export function SaveSettings() {
 import { ActionProgress, Button } from "@gunjo/ui";
 
 export function JustAfterSave() {
+  const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
   const [pending, setPending] = React.useState(false);
   const [saved, setSaved] = React.useState(0);
 
@@ -75,7 +78,7 @@ export function JustAfterSave() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div ref={setContainer} className="relative flex w-full flex-col items-center gap-4">
       <div className="flex flex-wrap justify-center gap-2">
         <Button onClick={() => save(450)}>${t("0.45秒で終わる保存", "Save (0.45 s)")}</Button>
       </div>
@@ -83,6 +86,7 @@ export function JustAfterSave() {
         {pending ? "${t("保存しています", "Saving")}" : saved > 0 ? \`${t("保存しました（${saved} 回）", "Saved (${saved})")}\` : ""}
       </p>
       <ActionProgress
+        portalContainer={container}
         open={pending}
         title="${t("保存しています", "Saving")}"
         description="${t("終わるとこの画面に戻ります。", "You will return to this screen when it is done.")}"
@@ -95,10 +99,11 @@ export function JustAfterSave() {
 import { Button, FormActionProgress, Input, Label } from "@gunjo/ui";
 
 export function ProfileForm() {
+  const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
   const [saved, setSaved] = React.useState(0);
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div ref={setContainer} className="relative flex w-full flex-col items-center gap-4">
       <form
         className="flex w-full max-w-sm flex-col gap-3 text-left"
         action={async () => {
@@ -113,6 +118,7 @@ export function ProfileForm() {
         </div>
         <Button type="submit">${t("送信する", "Submit")}</Button>
         <FormActionProgress
+          portalContainer={container}
           title="${t("送信しています", "Sending")}"
           description="${t("終わるとこの画面に戻ります。", "You will return to this screen when it is done.")}"
         />
@@ -128,6 +134,7 @@ export function ProfileForm() {
 import { ActionProgress, Button, Label, Switch } from "@gunjo/ui";
 
 export function SaveSettings() {
+  const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
   const [pending, setPending] = React.useState(false);
   const [saved, setSaved] = React.useState(0);
 
@@ -142,7 +149,7 @@ export function SaveSettings() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4">
+    <div ref={setContainer} className="relative flex w-full flex-col items-center gap-4">
       <div className="flex flex-wrap justify-center gap-2">
         <Button onClick={() => save(2000)}>${t("保存する（2秒）", "Save (2 s)")}</Button>
         <Button variant="outline" onClick={() => save(200)}>
@@ -153,6 +160,7 @@ export function SaveSettings() {
         {pending ? "${t("保存しています", "Saving")}" : saved > 0 ? \`${t("保存しました（${saved} 回）", "Saved (${saved})")}\` : ""}
       </p>
       <ActionProgress
+        portalContainer={container}
         open={pending}
         title="${t("保存しています", "Saving")}"
         description="${t("終わるとこの画面に戻ります。", "You will return to this screen when it is done.")}"
@@ -189,7 +197,7 @@ export function ReduceMotionDemo() {
         { name: "description", type: "ReactNode", description: t("題の下の一文。", "One line under the title.") },
         { name: "icon", type: "ReactNode", description: t("既定の Spinner の代わりに置く絵。", "Replaces the default Spinner.") },
         { name: "delayMs", type: "number", default: "350", description: t("出すまで待つ時間（ミリ秒）。", "Wait before showing, in ms.") },
-        { name: "portalContainer", type: "HTMLElement | null", description: t("ポータルで描画する先の要素。既定は document.body。", "Where to render. Defaults to document.body.") },
+        { name: "portalContainer", type: "HTMLElement | null", description: t("描く先の要素。渡すと、その中に並べて描きます。", "Where to render; the dialog sits in its flow.") },
         { name: "className", type: "string", description: t("DialogContent に足すクラス。", "Extra classes for DialogContent.") },
     ];
 
@@ -230,7 +238,7 @@ export function ReduceMotionDemo() {
                 code={usageCode}
                 codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
-                previewHeight="auto"
+                embedSrc="/embed/action-progress"
                 previewBodyWidth="lg"
             >
                 <ActionProgressDemo />
@@ -258,7 +266,8 @@ export function ReduceMotionDemo() {
                                 "0.45秒で終わる保存です。350ms で出たダイアログは、処理が終わっても 500ms は消えません。",
                                 "A save that ends in 0.45 s. The dialog shown at 350ms stays for 500ms even though the work is done."
                             ),
-                            preview: <ActionProgressDemo variant="just-after" />,
+                            preview: null,
+                            embedSrc: "/embed/action-progress?variant=just-after",
                             previewBodyWidth: "lg",
                             code: justAfterCode,
                         },
@@ -269,7 +278,8 @@ export function ReduceMotionDemo() {
                                 "FormActionProgress は、置かれた form の送信中だけ出ます。pending の状態を自分で持たなくて済みます（React 19 の useFormStatus）。",
                                 "FormActionProgress follows the pending state of the form it sits in, so you keep no pending state yourself (React 19 useFormStatus)."
                             ),
-                            preview: <ActionProgressDemo variant="form" />,
+                            preview: null,
+                            embedSrc: "/embed/action-progress?variant=form",
                             previewBodyWidth: "lg",
                             code: formCode,
                         },
@@ -277,10 +287,11 @@ export function ReduceMotionDemo() {
                             key: "reduced-motion",
                             title: t("動きを減らす設定", "Reduced motion"),
                             description: t(
-                                "流れるバーと回る印（Spinner）が止まります。",
+                                "バーと回る印が止まります。",
                                 "The sweep and the spinner stop."
                             ),
-                            preview: <ActionProgressDemo motionToggle />,
+                            preview: null,
+                            embedSrc: "/embed/action-progress?variant=reduced-motion",
                             previewBodyWidth: "lg",
                             code: reducedCode,
                         },

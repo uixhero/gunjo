@@ -70,12 +70,23 @@ export interface ProgressDialogProps {
     cancelLabel?: React.ReactNode
     /** Short note beside the cancel action (e.g. what is kept after cancelling). */
     cancelNote?: React.ReactNode
-    /** Render the dialog inside this element instead of `document.body`. */
+    /**
+     * Render the dialog inside this element instead of `document.body`, laid
+     * out in the element's flow so the element grows to the open dialog.
+     */
     portalContainer?: HTMLElement | null
     className?: string
 }
 
 const preventDismiss = (event: Event) => event.preventDefault()
+
+/**
+ * With a `portalContainer`, the dialog is laid out in that element's normal
+ * flow (under an overlay that covers only the container) instead of being
+ * centred over it, so the container grows to the dialog's height. Used to
+ * show the open dialog inside a preview or an embedded frame.
+ */
+const CONTAINED_CLASSES = "relative left-auto top-auto mx-auto my-4 max-h-none translate-x-0 translate-y-0"
 
 /**
  * A modal wait for long-running work: a 16:9 visual, the current state in
@@ -133,7 +144,7 @@ const ProgressDialog = React.forwardRef<HTMLDivElement, ProgressDialogProps>(
                     onPointerDownOutside={preventDismiss}
                     onInteractOutside={preventDismiss}
                     aria-busy="true"
-                    className={cn("gap-0 overflow-hidden p-0 sm:max-w-2xl", className)}
+                    className={cn("gap-0 overflow-hidden p-0 sm:max-w-2xl", portalContainer && CONTAINED_CLASSES, className)}
                 >
                     <DialogBody>
                         {media ? (

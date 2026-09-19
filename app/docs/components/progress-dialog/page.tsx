@@ -28,17 +28,18 @@ const SCENE = "/demos/progress-dialog/meeting-minutes.svg";
 const SCENE_STILL = "/demos/progress-dialog/meeting-minutes-still.svg";
 
 export function CreateMinutes() {
+  const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
   const [open, setOpen] = React.useState(false);
   const [step, setStep] = React.useState(0);
   const [result, setResult] = React.useState("");
   const timer = React.useRef<number | null>(null);
 
-  const stop = () => {
+  const stop = React.useCallback(() => {
     if (timer.current !== null) window.clearInterval(timer.current);
     timer.current = null;
-  };
+  }, []);
 
-  const start = () => {
+  const start = React.useCallback(() => {
     stop();
     setStep(0);
     setResult("");
@@ -54,7 +55,12 @@ export function CreateMinutes() {
       }
       setStep(current);
     }, 2200);
-  };
+  }, [stop]);
+
+  React.useEffect(() => {
+    start();
+    return stop;
+  }, [start, stop]);
 
   const cancel = () => {
     stop();
@@ -63,10 +69,15 @@ export function CreateMinutes() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 text-center">
-      <Button onClick={start}>${t("議事録を作る", "Create minutes")}</Button>
-      <p className="text-sm text-muted-foreground" role="status">{result}</p>
+    <div ref={setContainer} className="relative w-full">
+      {open ? null : (
+        <div className="flex flex-col items-center gap-4 text-center">
+          <Button onClick={start}>${t("もう一度作る", "Create again")}</Button>
+          <p className="text-sm text-muted-foreground" role="status">{result}</p>
+        </div>
+      )}
       <ProgressDialog
+        portalContainer={container}
         variant="overlay"
         open={open}
         badge={<Badge variant="secondary">${t("AIで作成中", "Generating with AI")}</Badge>}
@@ -95,7 +106,8 @@ const SCENE = "/demos/progress-dialog/trip-plan.svg";
 const SCENE_STILL = "/demos/progress-dialog/trip-plan-still.svg";
 
 export function WithSlot() {
-  const [open, setOpen] = React.useState(false);
+  const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
+  const [open, setOpen] = React.useState(true);
 
   React.useEffect(() => {
     if (!open) return;
@@ -104,9 +116,10 @@ export function WithSlot() {
   }, [open]);
 
   return (
-    <div className="flex justify-center">
-      <Button onClick={() => setOpen(true)}>${t("旅の計画を作る", "Plan the trip")}</Button>
+    <div ref={setContainer} className="relative flex w-full justify-center">
+      {open ? null : <Button onClick={() => setOpen(true)}>${t("もう一度作る", "Plan again")}</Button>}
       <ProgressDialog
+        portalContainer={container}
         variant="overlay"
         open={open}
         badge={<Badge variant="secondary">${t("AIで作成中", "Generating with AI")}</Badge>}
@@ -142,7 +155,8 @@ const SCENE = "/demos/progress-dialog/meeting-minutes.svg";
 const SCENE_STILL = "/demos/progress-dialog/meeting-minutes-still.svg";
 
 export function KnownCount() {
-  const [open, setOpen] = React.useState(false);
+  const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
+  const [open, setOpen] = React.useState(true);
   const [done, setDone] = React.useState(0);
 
   React.useEffect(() => {
@@ -161,9 +175,10 @@ export function KnownCount() {
   }, [open]);
 
   return (
-    <div className="flex justify-center">
-      <Button onClick={() => setOpen(true)}>${t("録音を読み込む", "Import recordings")}</Button>
+    <div ref={setContainer} className="relative flex w-full justify-center">
+      {open ? null : <Button onClick={() => setOpen(true)}>${t("もう一度読み込む", "Import again")}</Button>}
       <ProgressDialog
+        portalContainer={container}
         open={open}
         title="${t("録音を読み込んでいます", "Importing recordings")}"
         media={
@@ -191,7 +206,8 @@ const SCENE = "/demos/progress-dialog/meeting-minutes.svg";
 const SCENE_STILL = "/demos/progress-dialog/meeting-minutes-still.svg";
 
 export function NoCancel() {
-  const [open, setOpen] = React.useState(false);
+  const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
+  const [open, setOpen] = React.useState(true);
 
   React.useEffect(() => {
     if (!open) return;
@@ -200,9 +216,10 @@ export function NoCancel() {
   }, [open]);
 
   return (
-    <div className="flex justify-center">
-      <Button onClick={() => setOpen(true)}>${t("議事録を作る", "Create minutes")}</Button>
+    <div ref={setContainer} className="relative flex w-full justify-center">
+      {open ? null : <Button onClick={() => setOpen(true)}>${t("もう一度作る", "Create again")}</Button>}
       <ProgressDialog
+        portalContainer={container}
         open={open}
         title="${t("会議を議事録にまとめています", "Turning the meeting into minutes")}"
         media={
@@ -225,17 +242,18 @@ const SCENE = "/demos/progress-dialog/meeting-minutes.svg";
 const SCENE_STILL = "/demos/progress-dialog/meeting-minutes-still.svg";
 
 function CreateMinutes(props: { still?: boolean }) {
+  const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
   const [open, setOpen] = React.useState(false);
   const [step, setStep] = React.useState(0);
   const [result, setResult] = React.useState("");
   const timer = React.useRef<number | null>(null);
 
-  const stop = () => {
+  const stop = React.useCallback(() => {
     if (timer.current !== null) window.clearInterval(timer.current);
     timer.current = null;
-  };
+  }, []);
 
-  const start = () => {
+  const start = React.useCallback(() => {
     stop();
     setStep(0);
     setResult("");
@@ -251,7 +269,9 @@ function CreateMinutes(props: { still?: boolean }) {
       }
       setStep(current);
     }, 2200);
-  };
+  }, [stop]);
+
+  React.useEffect(() => stop, [stop]);
 
   const cancel = () => {
     stop();
@@ -260,10 +280,15 @@ function CreateMinutes(props: { still?: boolean }) {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 text-center">
-      <Button onClick={start}>${t("議事録を作る", "Create minutes")}</Button>
-      <p className="text-sm text-muted-foreground" role="status">{result}</p>
+    <div ref={setContainer} className="relative w-full">
+      {open ? null : (
+        <div className="flex flex-col items-center gap-4 text-center">
+          <Button onClick={start}>{result ? "${t("もう一度作る", "Create again")}" : "${t("議事録を作る", "Create minutes")}"}</Button>
+          <p className="text-sm text-muted-foreground" role="status">{result}</p>
+        </div>
+      )}
       <ProgressDialog
+        portalContainer={container}
         variant="overlay"
         open={open}
         badge={<Badge variant="secondary">${t("AIで作成中", "Generating with AI")}</Badge>}
@@ -321,7 +346,7 @@ export function ReduceMotionDemo() {
         { name: "onCancel", type: "() => void", description: t("渡すとキャンセルのボタンが出ます。", "Adds a cancel button.") },
         { name: "cancelLabel", type: "ReactNode", default: '"Cancel"', description: t("キャンセルのボタンの文字。", "Cancel button label.") },
         { name: "cancelNote", type: "ReactNode", description: t("ボタンの横の短い注記。", "Short note beside the button.") },
-        { name: "portalContainer", type: "HTMLElement | null", description: t("ポータルで描画する先の要素。既定は document.body。", "Where to render. Defaults to document.body.") },
+        { name: "portalContainer", type: "HTMLElement | null", description: t("描く先の要素。渡すと、その中に並べて描きます。", "Where to render; the dialog sits in its flow.") },
         { name: "className", type: "string", description: t("DialogContent に足すクラス。", "Extra classes for DialogContent.") },
     ];
 
@@ -363,7 +388,7 @@ export function ReduceMotionDemo() {
                 code={usageCode}
                 codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
-                previewHeight="auto"
+                embedSrc="/embed/progress-dialog"
                 previewBodyWidth="lg"
             >
                 <ProgressDialogDemo />
@@ -374,7 +399,7 @@ export function ReduceMotionDemo() {
                 heading={t("進み具合が分からないなら、数字を出しません", "No number when you do not know the progress")}
             >
                 {t(
-                    "value を渡さないと、バーは端から端へ流れるだけで、％も読み上げの値も出しません。経過時間から割合を作ると、止まっているのに進んで見えるためです。状態の文も、処理から本当に知らせが届いたときに替えてください。",
+                    "value を渡さないと、バーは端から端へ流れるだけで、％も読み上げの値も出しません。経過時間から割合を作ると、止まっているのに進んで見えるためです。状態の文は、処理から知らせが届いたときに替えます。",
                     "Without value the bar only sweeps, with no percentage and no spoken value. A ratio made from elapsed time looks like progress even when the work has stalled. Change the status text only when your work actually reports a new step."
                 )}
             </DocNote>
@@ -392,7 +417,8 @@ export function ReduceMotionDemo() {
                                 "aside に渡したものを、状態の下にそのまま置きます。",
                                 "Whatever you pass to aside sits below the status as-is."
                             ),
-                            preview: <ProgressDialogDemo variant="aside" />,
+                            preview: null,
+                            embedSrc: "/embed/progress-dialog?variant=aside",
                             previewBodyWidth: "lg",
                             code: asideCode,
                         },
@@ -403,7 +429,8 @@ export function ReduceMotionDemo() {
                                 "処理が「5 件中 3 件」のように数を返すなら、value と max を渡します。",
                                 "If the work reports a count, pass value and max."
                             ),
-                            preview: <ProgressDialogDemo variant="known" />,
+                            preview: null,
+                            embedSrc: "/embed/progress-dialog?variant=known",
                             previewBodyWidth: "lg",
                             code: knownCode,
                         },
@@ -414,7 +441,8 @@ export function ReduceMotionDemo() {
                                 "onCancel を渡さない形です。やめられない処理に使います。",
                                 "No onCancel: for work that cannot be stopped."
                             ),
-                            preview: <ProgressDialogDemo variant="no-cancel" />,
+                            preview: null,
+                            embedSrc: "/embed/progress-dialog?variant=no-cancel",
                             previewBodyWidth: "lg",
                             code: noCancelCode,
                         },
@@ -422,10 +450,11 @@ export function ReduceMotionDemo() {
                             key: "reduced-motion",
                             title: t("動きを減らす設定", "Reduced motion"),
                             description: t(
-                                "流れるバーは止まり、全幅の淡い色の帯になります。絵は、呼び出し側が用意した止めた版の SVG に、picture の source で替えます。",
-                                "The sweep stops and becomes a still, dimmed bar. The media swaps, via a picture source, to a still SVG you provide."
+                                "流れるバーは止まり、淡い色の帯になります。絵は、呼び出し側が用意した止めた版の SVG に替えます（picture の source）。切り替えてから開いてください。",
+                                "The sweep stops and becomes a still, dimmed bar. The media swaps, via a picture source, to a still SVG you provide. This sample starts closed: flip the switch, then open it."
                             ),
-                            preview: <ProgressDialogDemo motionToggle />,
+                            preview: null,
+                            embedSrc: "/embed/progress-dialog?variant=reduced-motion",
                             previewBodyWidth: "lg",
                             code: reducedCode,
                         },

@@ -74,13 +74,14 @@ function Scene({ src, stillSrc, still = false }: { src: string; stillSrc: string
 export type ProgressDialogDemoVariant = "default" | "aside" | "known" | "no-cancel";
 
 /** Mirrors the usage snippet: caller-driven steps, a cancel, and a result line. */
-function ProgressDialogStepsDemo({ still = false }: { still?: boolean }) {
+function ProgressDialogStepsDemo({ still = false, autoStart = true }: { still?: boolean; autoStart?: boolean }) {
     const { locale } = useLocale();
     const isJa = locale === "ja";
     const steps = isJa
         ? ["会議の前提を読み取っています", "発言を要点に分けています", "議事録の形に整えています"]
         : ["Reading the meeting context", "Sorting remarks into points", "Shaping the minutes"];
 
+    const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
     const [open, setOpen] = React.useState(false);
     const [step, setStep] = React.useState(0);
     const [result, setResult] = React.useState("");
@@ -90,9 +91,8 @@ function ProgressDialogStepsDemo({ still = false }: { still?: boolean }) {
         if (timer.current !== null) window.clearInterval(timer.current);
         timer.current = null;
     }, []);
-    React.useEffect(() => stop, [stop]);
 
-    const start = () => {
+    const start = React.useCallback(() => {
         stop();
         setStep(0);
         setResult("");
@@ -108,7 +108,13 @@ function ProgressDialogStepsDemo({ still = false }: { still?: boolean }) {
             }
             setStep(current);
         }, 2200);
-    };
+    }, [isJa, steps.length, stop]);
+
+    // Open from the start; the dialog is what this demo shows.
+    React.useEffect(() => {
+        if (autoStart) start();
+        return stop;
+    }, [autoStart, start, stop]);
 
     const cancel = () => {
         stop();
@@ -117,10 +123,17 @@ function ProgressDialogStepsDemo({ still = false }: { still?: boolean }) {
     };
 
     return (
-        <div className="flex flex-col items-center gap-4 text-center">
-            <Button onClick={start}>{isJa ? "議事録を作る" : "Create minutes"}</Button>
-            <p className="text-sm text-muted-foreground" role="status">{result}</p>
+        <div ref={setContainer} className="relative w-full">
+            {open ? null : (
+                <div className="flex flex-col items-center gap-4 text-center">
+                    <Button onClick={start}>
+                        {autoStart || result ? (isJa ? "もう一度作る" : "Create again") : isJa ? "議事録を作る" : "Create minutes"}
+                    </Button>
+                    <p className="text-sm text-muted-foreground" role="status">{result}</p>
+                </div>
+            )}
             <ProgressDialog
+                portalContainer={container}
                 variant="overlay"
                 open={open}
                 badge={<Badge variant="secondary">{isJa ? "AIで作成中" : "Generating with AI"}</Badge>}
@@ -143,7 +156,7 @@ function ProgressDialogStepsDemo({ still = false }: { still?: boolean }) {
 
 /** Opens for `ms`, then the caller closes it. */
 function useTimedOpen(ms: number) {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = React.useState(true);
     React.useEffect(() => {
         if (!open) return;
         const timer = window.setTimeout(() => setOpen(false), ms);
@@ -155,12 +168,14 @@ function useTimedOpen(ms: number) {
 function ProgressDialogAsideDemo() {
     const { locale } = useLocale();
     const isJa = locale === "ja";
+    const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
     const [open, setOpen] = useTimedOpen(6000);
 
     return (
-        <div className="flex justify-center">
-            <Button onClick={() => setOpen(true)}>{isJa ? "旅の計画を作る" : "Plan the trip"}</Button>
+        <div ref={setContainer} className="relative flex w-full justify-center">
+            {open ? null : <Button onClick={() => setOpen(true)}>{isJa ? "もう一度作る" : "Plan again"}</Button>}
             <ProgressDialog
+                portalContainer={container}
                 variant="overlay"
                 open={open}
                 badge={<Badge variant="secondary">{isJa ? "AIで作成中" : "Generating with AI"}</Badge>}
@@ -189,7 +204,8 @@ function ProgressDialogKnownDemo() {
     const { locale } = useLocale();
     const isJa = locale === "ja";
     const TOTAL = 5;
-    const [open, setOpen] = React.useState(false);
+    const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
+    const [open, setOpen] = React.useState(true);
     const [done, setDone] = React.useState(0);
 
     React.useEffect(() => {
@@ -208,9 +224,10 @@ function ProgressDialogKnownDemo() {
     }, [open]);
 
     return (
-        <div className="flex justify-center">
-            <Button onClick={() => setOpen(true)}>{isJa ? "録音を読み込む" : "Import recordings"}</Button>
+        <div ref={setContainer} className="relative flex w-full justify-center">
+            {open ? null : <Button onClick={() => setOpen(true)}>{isJa ? "もう一度読み込む" : "Import again"}</Button>}
             <ProgressDialog
+                portalContainer={container}
                 open={open}
                 title={isJa ? "録音を読み込んでいます" : "Importing recordings"}
                 media={<Scene src={SCENE.minutes} stillSrc={SCENE.minutesStill} />}
@@ -229,12 +246,14 @@ function ProgressDialogKnownDemo() {
 function ProgressDialogNoCancelDemo() {
     const { locale } = useLocale();
     const isJa = locale === "ja";
+    const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
     const [open, setOpen] = useTimedOpen(4500);
 
     return (
-        <div className="flex justify-center">
-            <Button onClick={() => setOpen(true)}>{isJa ? "議事録を作る" : "Create minutes"}</Button>
+        <div ref={setContainer} className="relative flex w-full justify-center">
+            {open ? null : <Button onClick={() => setOpen(true)}>{isJa ? "もう一度作る" : "Create again"}</Button>}
             <ProgressDialog
+                portalContainer={container}
                 open={open}
                 title={isJa ? "会議を議事録にまとめています" : "Turning the meeting into minutes"}
                 media={<Scene src={SCENE.minutes} stillSrc={SCENE.minutesStill} />}
@@ -260,7 +279,7 @@ export function ProgressDialogDemo({
         ) : variant === "no-cancel" ? (
             <ProgressDialogNoCancelDemo />
         ) : (
-            <ProgressDialogStepsDemo still={motionToggle && reduce} />
+            <ProgressDialogStepsDemo still={motionToggle && reduce} autoStart={!motionToggle} />
         );
 
     return (
@@ -284,6 +303,7 @@ export function ActionProgressDemo({
 }) {
     const { locale } = useLocale();
     const isJa = locale === "ja";
+    const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
     const [pending, setPending] = React.useState(false);
     const [saved, setSaved] = React.useState(0);
 
@@ -301,7 +321,7 @@ export function ActionProgressDemo({
 
     if (variant === "form") {
         return (
-            <div className="flex w-full flex-col items-center gap-4">
+            <div ref={setContainer} className="relative flex w-full flex-col items-center gap-4">
                 <form
                     className="flex w-full max-w-sm flex-col gap-3 text-left"
                     action={async () => {
@@ -315,6 +335,7 @@ export function ActionProgressDemo({
                     </div>
                     <Button type="submit">{isJa ? "送信する" : "Submit"}</Button>
                     <FormActionProgress
+                        portalContainer={container}
                         title={isJa ? "送信しています" : "Sending"}
                         description={description}
                     />
@@ -327,7 +348,7 @@ export function ActionProgressDemo({
     }
 
     return (
-        <div className="flex w-full flex-col items-center gap-4">
+        <div ref={setContainer} className="relative flex w-full flex-col items-center gap-4">
             <div className="flex flex-wrap justify-center gap-2">
                 {variant === "just-after" ? (
                     <Button onClick={() => save(450)}>
@@ -356,7 +377,7 @@ export function ActionProgressDemo({
                       : ""}
             </p>
             {motionToggle ? <ReduceMotionSwitch id="action-progress-reduce-motion" /> : null}
-            <ActionProgress open={pending} title={title} description={description} />
+            <ActionProgress portalContainer={container} open={pending} title={title} description={description} />
         </div>
     );
 }
