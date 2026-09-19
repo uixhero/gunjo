@@ -2216,7 +2216,7 @@ const configs: Record<OverlayAuditKind, OverlayDocConfig> = {
     popover: {
         metadataKey: "popover",
         embed: "/embed/popover",
-        previewHeight: 460,
+        previewHeight: "fit",
         code: popoverCode,
         usedComponents: [{ name: "FormGroup", href: "/docs/components/form" }, { name: "Input", href: "/docs/components/input" }],
         relatedComponents: [{ name: "DropdownMenu", href: "/docs/components/dropdown-menu" }, { name: "Tooltip", href: "/docs/components/tooltip" }],
@@ -2238,16 +2238,16 @@ const configs: Record<OverlayAuditKind, OverlayDocConfig> = {
         },
         states: {
             ja: [
-                overlayState("settings", "表示密度の変更", "対象行の表示密度をその場で変更します。", "/embed/popover", "default", popoverCode.ja, 460),
-                overlayState("filter", "絞り込み条件", "対象行の条件ボタンからフィルター入力を開きます。", "/embed/popover", "filter", popoverFilterCode.ja, 460),
-                overlayState("confirm", "公開前の確認", "公開状態の行から、短い説明と確認操作を表示します。", "/embed/popover", "confirm", popoverConfirmCode.ja, 460),
-                overlayState("status", "同期状態の詳細", "同期状態の行から補助情報を表示します。", "/embed/popover", "status", popoverStatusCode.ja, 460),
+                overlayState("settings", "表示密度の変更", "対象行の表示密度をその場で変更します。", "/embed/popover", "default", popoverCode.ja, "fit"),
+                overlayState("filter", "絞り込み条件", "対象行の条件ボタンからフィルター入力を開きます。", "/embed/popover", "filter", popoverFilterCode.ja, "fit"),
+                overlayState("confirm", "公開前の確認", "公開状態の行から、短い説明と確認操作を表示します。", "/embed/popover", "confirm", popoverConfirmCode.ja, "fit"),
+                overlayState("status", "同期状態の詳細", "同期状態の行から補助情報を表示します。", "/embed/popover", "status", popoverStatusCode.ja, "fit"),
             ],
             en: [
-                overlayState("settings", "Display density", "Changes the display density from the target row.", "/embed/popover", "default", popoverCode.en, 460),
-                overlayState("filter", "Filter criteria", "Opens filter input from the criteria row.", "/embed/popover", "filter", popoverFilterCode.en, 460),
-                overlayState("confirm", "Publish confirmation", "Shows short explanatory copy and a confirmation action from the publish status row.", "/embed/popover", "confirm", popoverConfirmCode.en, 460),
-                overlayState("status", "Sync status details", "Shows supporting status from the sync status row.", "/embed/popover", "status", popoverStatusCode.en, 460),
+                overlayState("settings", "Display density", "Changes the display density from the target row.", "/embed/popover", "default", popoverCode.en, "fit"),
+                overlayState("filter", "Filter criteria", "Opens filter input from the criteria row.", "/embed/popover", "filter", popoverFilterCode.en, "fit"),
+                overlayState("confirm", "Publish confirmation", "Shows short explanatory copy and a confirmation action from the publish status row.", "/embed/popover", "confirm", popoverConfirmCode.en, "fit"),
+                overlayState("status", "Sync status details", "Shows supporting status from the sync status row.", "/embed/popover", "status", popoverStatusCode.en, "fit"),
             ],
         },
     },
