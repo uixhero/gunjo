@@ -1695,9 +1695,10 @@
       "kind": "page",
       "uixhero": "ui-design/fitts-law-touch-targets",
       "gunjo": [
-        "/docs/components/button"
+        "/docs/components/button",
+        "/docs/components/map-control-button"
       ],
-      "note": "クリック領域の根拠",
+      "note": "クリック領域の根拠。地図の上の4部品（map-control-button / scale-bar / layer-menu / place-panel）は 2026-09-19 追記",
       "title": "クリック領域・到達しやすさ (Fitts's Law / Touch Targets)"
     },
     {
@@ -1745,9 +1746,11 @@
         "/docs/components/status-bar",
         "/docs/components/badge",
         "/docs/components/live-badge",
-        "/docs/components/time-transport"
+        "/docs/components/time-transport",
+        "/docs/components/scale-bar",
+        "/docs/components/place-panel"
       ],
-      "note": "「これはいまの値か」を画面が言い続ける話。live-badge / time-transport は 2026-09-13 追記",
+      "note": "「これはいまの値か」を画面が言い続ける話。live-badge / time-transport は 2026-09-13 追記。地図の上の4部品（map-control-button / scale-bar / layer-menu / place-panel）は 2026-09-19 追記",
       "title": "状態の可視化 (Visibility of System Status)"
     },
     {
@@ -1756,9 +1759,11 @@
       "gunjo": [
         "/docs/components/live-badge",
         "/docs/components/day-band",
-        "/docs/components/time-transport"
+        "/docs/components/time-transport",
+        "/docs/components/map-control-button",
+        "/docs/components/layer-menu"
       ],
-      "note": "3部品とも「状態は文字が言う。色・点・面は補助」を設計の判断に持つ",
+      "note": "3部品とも「状態は文字が言う。色・点・面は補助」を設計の判断に持つ。地図の上の4部品（map-control-button / scale-bar / layer-menu / place-panel）は 2026-09-19 追記",
       "title": "色だけに頼らない表現 (Color Independence)"
     },
     {
@@ -1766,9 +1771,10 @@
       "uixhero": "ui-design/user-control",
       "gunjo": [
         "/docs/components/time-transport",
-        "/docs/components/day-band"
+        "/docs/components/day-band",
+        "/docs/components/layer-menu"
       ],
-      "note": "読み手が時間の位置を握り、いつでも「いまへ戻る」ことの根拠",
+      "note": "読み手が時間の位置を握り、いつでも「いまへ戻る」ことの根拠。地図の上の4部品（map-control-button / scale-bar / layer-menu / place-panel）は 2026-09-19 追記",
       "title": "ユーザーコントロール (User Control)"
     },
     {
@@ -1859,9 +1865,10 @@
       "gunjo": [
         "/docs/components/skeleton",
         "/docs/components/spinner",
-        "/docs/components/progress"
+        "/docs/components/progress",
+        "/docs/components/place-panel"
       ],
-      "note": "",
+      "note": "地図の上の4部品（map-control-button / scale-bar / layer-menu / place-panel）は 2026-09-19 追記",
       "title": "レスポンスと待ち時間設計 (Response Latency)"
     },
     {
@@ -1910,9 +1917,10 @@
       "kind": "page",
       "uixhero": "ui-design/iconography",
       "gunjo": [
-        "/docs/components/icon"
+        "/docs/components/icon",
+        "/docs/components/map-control-button"
       ],
-      "note": "",
+      "note": "地図の上の4部品（map-control-button / scale-bar / layer-menu / place-panel）は 2026-09-19 追記",
       "title": "アイコン設計 (Iconography)"
     },
     {
@@ -2030,9 +2038,10 @@
       "uixhero": "ux-reference/ux-intentional-friction",
       "gunjo": [
         "/docs/components/co-sign",
-        "/docs/components/scan-gate"
+        "/docs/components/scan-gate",
+        "/docs/components/layer-menu"
       ],
-      "note": "目玉ペア：法則→実装→cold-test実証",
+      "note": "目玉ペア：法則→実装→cold-test実証。地図の上の4部品（map-control-button / scale-bar / layer-menu / place-panel）は 2026-09-19 追記",
       "title": "意図的な摩擦 (Intentional Friction)"
     },
     {

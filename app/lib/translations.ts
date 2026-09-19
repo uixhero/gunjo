@@ -1977,6 +1977,7 @@ export const translations: Record<
       Spacing: "余白",
       Shadows: "影",
       Radius: "角丸",
+      Exceptions: "特例",
       // Functional category section headers (current taxonomy)
       Inputs: "入力",
       "Inputs Overview": "入力の概要",
@@ -2091,6 +2092,10 @@ export const translations: Record<
       Form: "フォーム",
       HoverCard: "ホバーカード",
       LiveBadge: "LIVE の札",
+      LayerMenu: "レイヤーのメニュー",
+      MapControlButton: "地図の上の丸いボタン",
+      PlacePanel: "地点の詳細",
+      ScaleBar: "縮尺バー",
       List: "リスト",
       MarkdownRenderer: "Markdown描画",
       MetadataList: "メタデータリスト",

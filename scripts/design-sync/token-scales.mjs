@@ -86,6 +86,36 @@ export const TEXT_STEPS = [
     { utility: "text-7xl", name: "--text-7xl", rem: 4.5 },
 ];
 
+/**
+ * The canvas tier — three sizes below `text-xs` (12px) for text that sits ON a
+ * map, a canvas or an image: a scale bar's "20 km", a map control's caption,
+ * the small status lines in a corner, a layer menu's group labels. Decided by
+ * KeEem on 2026-09-19 (new-4px DECISIONS.md): the tier exists, and it is for
+ * canvas overlays ONLY — every other screen keeps the scale above.
+ *
+ * Why a separate tier instead of extending the scale downwards: a step named
+ * `text-2xs` would read as "a smaller body size" and end up under paragraphs.
+ * The prefix carries the scope, and `design:verify:scale-tokens` holds it —
+ * `text-canvas-*` in any file not listed in
+ * design/policy/canvas-text-allowlist.json fails CI.
+ *
+ * Unlike the steps above these are GunjoUI's own, not Tailwind's: they are
+ * declared once here, shipped to Tailwind through `tailwind-theme-extend.cjs`
+ * (`fontSize`, so both the docs site and every adopter's preset get the
+ * utilities) and to the standalone sheet as `--text-canvas-*`. The verifier
+ * holds the theme to this list. Values are rem for the same reason as the rest:
+ * a reader who raises the browser's font size gets bigger map labels too.
+ *
+ * Steps are named after Tailwind's own suffixes below `xs` (`sm` > `xs` > `2xs`)
+ * so the order reads without a lookup; the numbers are the ones the source app
+ * (地球と月) settled on as `--text-hud` / `--text-hud-sm` / `--text-hud-xs`.
+ */
+export const CANVAS_TEXT_STEPS = [
+    { utility: "text-canvas-sm", name: "--text-canvas-sm", rem: 0.6875, lineHeight: "1.4" },
+    { utility: "text-canvas-xs", name: "--text-canvas-xs", rem: 0.625, lineHeight: "1.4" },
+    { utility: "text-canvas-2xs", name: "--text-canvas-2xs", rem: 0.59375, lineHeight: "1.4" },
+];
+
 export const LEADING_STEPS = [
     { utility: "leading-tight", name: "--leading-tight", value: "1.25" },
     { utility: "leading-snug", name: "--leading-snug", value: "1.375" },
@@ -207,6 +237,12 @@ export function buildScaleDeclarations() {
     }
 
     lines.push("");
+    lines.push("    /* 地図・canvas の上に重ねる字の段 — それ以外の画面では使わない（2026-09-19） */");
+    for (const entry of CANVAS_TEXT_STEPS) {
+        lines.push(declaration(entry.name, textValue(entry), textPx(entry)));
+    }
+
+    lines.push("");
     lines.push("    /* 行間 */");
     for (const entry of LEADING_STEPS) {
         lines.push(declaration(entry.name, entry.value));
@@ -239,6 +275,7 @@ export function scaleTokenNames() {
     return [
         ...SPACING_STEPS,
         ...TEXT_STEPS,
+        ...CANVAS_TEXT_STEPS,
         ...LEADING_STEPS,
         ...WEIGHT_STEPS,
         ...FONT_STACKS,

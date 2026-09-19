@@ -85,6 +85,13 @@ export const TEXT_SCALE: TextStep[] = [
     { utility: "text-7xl", token: "--text-7xl", value: "4.5rem", px: "72px" },
 ];
 
+/** Canvas overlays only (maps, canvases, images) — see token-scales.mjs. */
+export const CANVAS_TEXT_SCALE: TextStep[] = [
+    { utility: "text-canvas-sm", token: "--text-canvas-sm", value: "0.6875rem", px: "11px" },
+    { utility: "text-canvas-xs", token: "--text-canvas-xs", value: "0.625rem", px: "10px" },
+    { utility: "text-canvas-2xs", token: "--text-canvas-2xs", value: "0.59375rem", px: "9.5px" },
+];
+
 export const LEADING_SCALE: ScaleStep[] = [
     { utility: "leading-tight", token: "--leading-tight", value: "1.25" },
     { utility: "leading-snug", token: "--leading-snug", value: "1.375" },

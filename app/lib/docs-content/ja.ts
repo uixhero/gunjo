@@ -477,6 +477,10 @@ tokens.css / patterns.css が持つのは**トークンと見た目（色・角�
     title: "アニメーション",
     description: "トランジション用の時間とイージングのトークン。",
   },
+  exceptions: {
+    title: "特例",
+    description: "トークンの決まりから外れるものを、使う面を限って認めた一覧。",
+  },
   components: {
     title: "コンポーネント",
     description:

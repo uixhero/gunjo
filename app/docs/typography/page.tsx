@@ -59,6 +59,7 @@ const COPY = {
             { lead: "Default body:", body: "text-sm (14px) on UI controls, text-base (16px) in long-form prose." },
             { lead: "Control height:", body: "36px (h-9) for buttons, inputs, and selects. Compact-but-tappable for dashboards." },
             { lead: "Heading hierarchy:", body: "H1 text-4xl/lg:text-5xl, H2 text-2xl, H3 text-xl, H4 text-lg." },
+            { lead: "Smallest size:", body: "text-xs (12px). Smaller sizes are allowed only as listed exceptions — see Exceptions." },
         ],
     },
     ja: {
@@ -76,6 +77,7 @@ const COPY = {
             { lead: "本文のデフォルト：", body: "UI コントロールは text-sm (14px)、長文プロースは text-base (16px)。" },
             { lead: "コントロールの高さ：", body: "ボタン・入力・セレクトはすべて 36px (h-9)。ダッシュボード向けにコンパクトでありながらタップしやすいバランス。" },
             { lead: "見出しの階層：", body: "H1 は text-4xl/lg:text-5xl、H2 は text-2xl、H3 は text-xl、H4 は text-lg。" },
+            { lead: "いちばん小さい字：", body: "text-xs（12px）。これより小さい字は、特例のページにあるものだけです。" },
         ],
     },
 } as const;

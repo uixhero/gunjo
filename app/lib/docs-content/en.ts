@@ -477,6 +477,10 @@ The full canonical list (including shadow and motion tokens) is in \`src/globals
     title: "Animation",
     description: "Duration and easing tokens for smooth transitions.",
   },
+  exceptions: {
+    title: "Exceptions",
+    description: "What GunjoUI allows outside its tokens, each limited to one kind of surface.",
+  },
   components: {
     title: "Components",
     description:
