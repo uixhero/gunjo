@@ -46,7 +46,7 @@ export default function Embed() {
     ];
 
     return (
-        <div className={`w-full overflow-hidden rounded-md border bg-background ${drawerNav ? "!min-h-[560px]" : ""}`}>
+        <div className="w-full overflow-hidden rounded-md border bg-background">
             <Header className={compact ? "px-4" : undefined}>
                 <HeaderBrand>
                     <GunjoLogo />

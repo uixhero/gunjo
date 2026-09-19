@@ -58,6 +58,8 @@ export interface ComboboxProps {
     "aria-label"?: string
     "aria-required"?: boolean
     required?: boolean
+    /** Element the popup is portalled into (default: document.body). Pass the preview surface to keep it inside a bounded frame. */
+    portalContainer?: HTMLElement | null
 }
 
 const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
@@ -85,6 +87,7 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
             "aria-label": ariaLabel,
             "aria-required": ariaRequired,
             required,
+            portalContainer,
         },
         ref
     ) => {
@@ -218,7 +221,7 @@ const Combobox = React.forwardRef<HTMLButtonElement, ComboboxProps>(
                         </Tooltip>
                     ) : null}
                 </div>
-                <PopoverContent className={cn("w-[var(--radix-popover-trigger-width)] p-0", className)}>
+                <PopoverContent portalContainer={portalContainer} className={cn("w-[var(--radix-popover-trigger-width)] p-0", className)}>
                     <Command>
                         <CommandInput
                             placeholder={searchPlaceholder ?? strings.searchPlaceholder}

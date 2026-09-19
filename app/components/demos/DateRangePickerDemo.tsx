@@ -5,13 +5,17 @@ import { enUS } from "date-fns/locale/en-US";
 import { ja } from "date-fns/locale/ja";
 import type { DateRange } from "react-day-picker";
 import {
-    DateRangePicker,
+    DateRangePicker as GunjoDateRangePicker,
     FormControl,
     FormDescription,
     FormGroup,
     FormLabel,
 } from "@gunjo/ui";
+import { withPreviewPortal } from "@/components/doc/PreviewPortal";
 import { useLocale } from "@/components/providers/LocaleProvider";
+
+// Live previews open the popup inside the preview frame (docs-page rule ①).
+const DateRangePicker = withPreviewPortal(GunjoDateRangePicker);
 
 export function DateRangePickerDemo() {
     const { locale } = useLocale();

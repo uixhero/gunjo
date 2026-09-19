@@ -20,7 +20,7 @@ import {
     ChatPanel,
     ContextMenu,
     ContextMenuCheckboxItem,
-    ContextMenuContent,
+    ContextMenuContent as GunjoContextMenuContent,
     ContextMenuItem,
     ContextMenuLabel,
     ContextMenuRadioGroup,
@@ -28,7 +28,7 @@ import {
     ContextMenuSeparator,
     ContextMenuShortcut,
     ContextMenuSub,
-    ContextMenuSubContent,
+    ContextMenuSubContent as GunjoContextMenuSubContent,
     ContextMenuSubTrigger,
     ContextMenuTrigger,
     Dialog,
@@ -92,6 +92,11 @@ import {
     IconTrash as Trash2,
     IconUser as User,
 } from "@tabler/icons-react";
+import { withPreviewPortal } from "@/components/doc/PreviewPortal";
+
+// On docs pages the context menu opens inside the preview frame (docs-page rule ①); on /embed pages it keeps the body portal.
+const ContextMenuContent = withPreviewPortal(GunjoContextMenuContent);
+const ContextMenuSubContent = withPreviewPortal(GunjoContextMenuSubContent);
 
 interface ChatMessage {
     id: string;

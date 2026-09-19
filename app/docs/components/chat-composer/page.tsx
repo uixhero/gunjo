@@ -17,15 +17,20 @@ import {
 } from "@tabler/icons-react";
 import {
     Button,
-    ChatComposer,
+    ChatComposer as GunjoChatComposer,
     Popover,
-    PopoverContent,
+    PopoverContent as GunjoPopoverContent,
     PopoverTrigger,
     Switch,
     Tooltip,
     TooltipContent,
     TooltipTrigger,
 } from "@gunjo/ui";
+import { withPreviewPortal, withPreviewPortalIn } from "@/components/doc/PreviewPortal";
+
+// Live previews open popovers and menus inside the preview frame (docs-page rule ①).
+const ChatComposer = withPreviewPortalIn(GunjoChatComposer, "inputProps");
+const PopoverContent = withPreviewPortal(GunjoPopoverContent);
 
 function ComposerLabels(isJa: boolean) {
     return {

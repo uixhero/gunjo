@@ -10,8 +10,12 @@ import inputsMetadata from "@design/inputs-metadata.json";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { DatePickerDemo } from "@/components/demos/DatePickerDemo";
 import { CodeBlock } from "@/components/doc/CodeBlock";
-import { DatePicker, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+import { DatePicker as GunjoDatePicker, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { withPreviewPortal } from "@/components/doc/PreviewPortal";
+
+// Live previews open the popup inside the preview frame (docs-page rule ①).
+const DatePicker = withPreviewPortal(GunjoDatePicker);
 
 function DatePickerStates({ locale }: { locale: "ja" | "en" }) {
     const [date, setDate] = React.useState<Date | undefined>(new Date());
@@ -428,6 +432,12 @@ export function DatePickerUsage() {
         { name: "endMonth", type: "Date", description: locale === "ja" ? "月・年移動で選べる最後の月を Calendar に渡します。" : "Last month available in Calendar month/year navigation." },
         { name: "getDisabledReason", type: "(date: Date, modifiers: Modifiers) => ReactNode", description: locale === "ja" ? "無効日ごとの理由を Calendar の Tooltip に表示します。" : "Returns the per-date disabled reason shown by Calendar tooltip." },
         { name: "disabled", type: "boolean", description: locale === "ja" ? "入力とカレンダー操作を無効化します。" : "Disables the input and calendar button." },
+        {
+            name: "portalContainer",
+            type: "HTMLElement | null",
+            default: "document.body",
+            description: locale === "ja" ? "ポップアップを出す先の要素です。枠のある場所に置くときは、その枠を渡すと中に収まります。" : "Element the popup is portalled into. Pass a bounded container to keep the popup inside it.",
+        },
     ];
 
     return (
