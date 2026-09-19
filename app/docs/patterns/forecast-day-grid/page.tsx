@@ -15,7 +15,9 @@ type Locale = "ja" | "en";
 /* Pattern page, not a component page: the grid is Grid + Card, and the
    weather-specific rows stay out of @gunjo/ui (KeEem, 2026-09-19). */
 
-const USAGE_JA = `import { IconCloud, IconCloudRain } from "@tabler/icons-react";
+const USAGE_JA = `"use client";
+
+import { IconCloud, IconCloudRain } from "@tabler/icons-react";
 import { Card, Grid, Icon } from "@gunjo/ui";
 
 const DAYS = [
@@ -58,7 +60,9 @@ export function ForecastDays() {
   );
 }`;
 
-const USAGE_EN = `import { IconCloud, IconCloudRain } from "@tabler/icons-react";
+const USAGE_EN = `"use client";
+
+import { IconCloud, IconCloudRain } from "@tabler/icons-react";
 import { Card, Grid, Icon } from "@gunjo/ui";
 
 const DAYS = [
@@ -133,6 +137,13 @@ export default function ForecastDayGridPatternPage() {
             title={title}
             description={description}
             sectionLabels={sectionLabels}
+            uixheroLinks={[
+                {
+                    label: ja ? "日ごとの予報の格子の記事（#1001）" : "Article on the forecast day grid (#1001)",
+                    href: "https://github.com/uixhero/gunjo/issues/1001",
+                    relation: "unwritten",
+                },
+            ]}
             usedComponents={[
                 { name: "Grid", href: "/docs/components/grid" },
                 { name: "Card", href: "/docs/components/card" },
@@ -327,7 +338,6 @@ export function WeekendNames() {
                               "天気の文は長さがまちまちです（「雨 所により 朝から 雷を伴い 激しく降る」のような長い文もあります）。文の欄は、3列でいちばん長い文に高さを合わせます。気温と降水確率の段が3列でそろいます。",
                               "数字は等幅の数字にして、列ごとに桁をそろえます。",
                               "格子の上の見出しに、予報の出どころ（例：気象庁）を添えます。",
-                              "この判断を掘り下げた UIXHERO の記事は、まだ書いていません。",
                           ]
                         : [
                               "Each column is headed by a name: Today, Tomorrow, then the weekday (“Mon”) rather than “the day after”. Under it, the date and weekday in small type, so the weekday is readable even under Tomorrow.",
@@ -336,7 +346,6 @@ export function WeekendNames() {
                               "Forecast sentences vary in length (some run to “Rain, heavy with thunder in places from the morning”). The text row takes the height of the longest one, so temperatures and rain line up across the columns.",
                               "Digits are tabular so figures line up column by column.",
                               "The heading above the grid names the source (for example, JMA).",
-                              "The UIXHERO article on these decisions has not been written yet.",
                           ]
                     ).map((item) => (
                         <li key={item}>{item}</li>

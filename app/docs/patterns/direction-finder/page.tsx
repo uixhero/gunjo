@@ -204,6 +204,13 @@ export default function DirectionFinderPatternPage() {
             title={title}
             description={description}
             sectionLabels={sectionLabels}
+            uixheroLinks={[
+                {
+                    label: ja ? "方角と高さの案内の記事（#1001）" : "Article on the direction finder (#1001)",
+                    href: "https://github.com/uixhero/gunjo/issues/1001",
+                    relation: "unwritten",
+                },
+            ]}
             usedComponents={[
                 { name: "Slider", href: "/docs/components/slider" },
                 { name: "SegmentedControl", href: "/docs/components/segmented-control" },
@@ -488,13 +495,11 @@ export default function DirectionFinderPatternPage() {
                               "方角は文字盤、高さは弧と、絵を分けています。空を上から見た地図に両方を載せると、見る人が頭の中で向きを合わせ直す必要があります。",
                               "高さの絵には、地面に立つ人・地平線（0°）・真上（90°）を描きます。数字だけだと、目線からの角度か、端末の傾きかが分かりません。",
                               "文字盤の上を北にしないのは、外では自分の体の向きが基準になるためです。",
-                              "この判断を掘り下げた UIXHERO の記事は、まだ書いていません。",
                           ]
                         : [
                               "Direction and height are two pictures: a dial and an arc. Putting both on a top-down sky map makes the reader rotate it in their head.",
                               "The height picture shows a standing person, the horizon (0°) and overhead (90°). A bare number leaves it unclear whether it is from the eye line or the device's tilt.",
                               "The dial is not north-up because outdoors the body's own facing is the reference.",
-                              "The UIXHERO article on these decisions has not been written yet.",
                           ]
                     ).map((item) => (
                         <li key={item}>{item}</li>
