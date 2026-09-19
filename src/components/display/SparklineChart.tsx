@@ -51,6 +51,20 @@ export interface SparklineChartProps
      * Ignored when `formatValue` is set. Formats with a fixed `en-US` locale. (#338)
      */
     valueFormat?: NumberFormatSpec
+    /**
+     * Index in `data` of the point that is "now" (or whichever point the card
+     * is about). Draws a dot on the line and a thin vertical line through it,
+     * so a window that runs from the past into the future shows where the
+     * reading sits. Unlike `referenceValue` (a horizontal level), this marks a
+     * position along the time axis.
+     */
+    currentIndex?: number
+    /** Name of the current point, read after its value. Default `"Current"`. */
+    currentLabel?: React.ReactNode
+    /** Small text under the left end of the line (`"15 days ago"`). */
+    startLabel?: React.ReactNode
+    /** Small text under the right end of the line (`"in 15 days"`). */
+    endLabel?: React.ReactNode
 }
 
 const sparklineChartVariantClasses: Record<SparklineChartVariantKey, string> = {
@@ -193,6 +207,10 @@ const SparklineChart = React.forwardRef<HTMLDivElement, SparklineChartProps>(
             strokeWidth = 2,
             formatValue: formatValueProp,
             valueFormat,
+            currentIndex,
+            currentLabel = "Current",
+            startLabel,
+            endLabel,
             ...props
         },
         ref
@@ -228,17 +246,15 @@ const SparklineChart = React.forwardRef<HTMLDivElement, SparklineChartProps>(
         const referenceY =
             referencePoints.length === 2 ? (referencePoints[0].y / height) * 100 : null
         const referenceText = chartLabelToString(referenceLabel, "Reference")
+        const currentPoint =
+            currentIndex === undefined
+                ? undefined
+                : points.find((point) => point.index === currentIndex)
+        const currentText = chartLabelToString(currentLabel, "Current")
+        const hasEndLabels = startLabel != null || endLabel != null
         const linePoints = variant === "step" ? buildStepPoints(points) : buildLinePoints(points)
         const linePointList = buildSvgPointList(linePoints)
         const areaPointList = buildAreaPointList(linePoints, height)
-        const setRef = (node: HTMLDivElement | null) => {
-            setRootNode(node)
-            if (typeof ref === "function") {
-                ref(node)
-            } else if (ref) {
-                ref.current = node
-            }
-        }
         const openPointTooltip = (
             point: NormalizedPoint,
             position: { x: number; y: number }
@@ -281,123 +297,162 @@ const SparklineChart = React.forwardRef<HTMLDivElement, SparklineChartProps>(
 
         return (
             <div
-                ref={setRef}
+                ref={ref}
                 role="img"
                 className={cn(
                     sparklineChartVariantClasses[variant],
-                    "relative",
+                    "flex flex-col",
                     className
                 )}
-                onPointerMove={handlePointerMove}
-                onMouseMove={handlePointerMove}
-                onMouseLeave={() => setTooltipOpen(false)}
-                onPointerLeave={() => setTooltipOpen(false)}
                 {...props}
             >
-                {showGrid
-                    ? [25, 50, 75].map((percent) => (
-                          <span
-                              key={percent}
-                              className="pointer-events-none absolute inset-x-0 border-t border-border/55"
-                              style={{ top: `${percent}%` }}
-                              aria-hidden="true"
-                          />
-                      ))
-                    : null}
-                {referenceY !== null ? (
-                    <>
-                        <span
-                            className="pointer-events-none absolute inset-x-0 border-t border-dashed border-foreground/35"
-                            style={{ top: `${referenceY}%` }}
-                            aria-hidden="true"
-                        />
-                        <ChartTooltip
-                            label={referenceLabel}
-                            value={formatValue(referenceValue ?? 0)}
-                        >
-                            <span
-                                className="absolute inset-x-0 z-20 h-5 -translate-y-1/2 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                                style={{ top: `${referenceY}%` }}
-                                tabIndex={0}
-                                aria-label={`${referenceText}: ${formatValue(referenceValue ?? 0)}`}
-                                onPointerMove={(event) => {
-                                    event.stopPropagation()
-                                    setTooltipOpen(false)
-                                }}
-                                onMouseMove={(event) => {
-                                    event.stopPropagation()
-                                    setTooltipOpen(false)
-                                }}
-                            />
-                        </ChartTooltip>
-                    </>
-                ) : null}
-                <svg
-                    className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
-                    viewBox={`0 0 ${formatChartNumber(width)} ${formatChartNumber(height)}`}
-                    preserveAspectRatio="none"
-                    aria-hidden="true"
+                {/* The plot is its own box so the end labels below never squeeze
+                    the line or shift the hit areas. */}
+                <div
+                    ref={setRootNode}
+                    className="relative min-h-0 flex-1"
+                    onPointerMove={handlePointerMove}
+                    onMouseMove={handlePointerMove}
+                    onMouseLeave={() => setTooltipOpen(false)}
+                    onPointerLeave={() => setTooltipOpen(false)}
                 >
-                    {variant === "area" && areaPointList ? (
-                        <polygon
-                            points={areaPointList}
-                            fill={strokeColor}
-                            opacity={0.12}
-                        />
-                    ) : null}
-                    <polyline
-                        points={linePointList}
-                        fill="none"
-                        stroke={strokeColor}
-                        strokeWidth={strokeWidth}
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        vectorEffect="non-scaling-stroke"
-                    />
-                    {showDots
-                        ? points.map((point, index) => (
-                              <circle
-                                  key={`${point.x}-${index}`}
-                                  cx={formatChartNumber(point.x)}
-                                  cy={formatChartNumber(point.y)}
-                                  r={4}
-                                  fill="hsl(var(--background))"
-                                  stroke={strokeColor}
-                                  strokeWidth={2}
-                                  vectorEffect="non-scaling-stroke"
+                    {showGrid
+                        ? [25, 50, 75].map((percent) => (
+                              <span
+                                  key={percent}
+                                  className="pointer-events-none absolute inset-x-0 border-t border-border/55"
+                                  style={{ top: `${percent}%` }}
+                                  aria-hidden="true"
                               />
                           ))
                         : null}
-                </svg>
-                {points.map((point, index) => {
-                    const range = getPointHitRange(points, index, width)
-
-                    return (
-                        <span
-                            key={`hit-${point.x}-${index}`}
-                            className="pointer-events-none absolute inset-y-0 z-10 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                            style={{
-                                left: `${(range.start / width) * 100}%`,
-                                width: `${((range.end - range.start) / width) * 100}%`,
-                            }}
-                            tabIndex={0}
-                            aria-label={`${chartLabelToString(point.label)}: ${formatValue(point.value)}`}
-                            onFocus={() =>
-                                openPointTooltip(point, {
-                                    x: (point.x / width) * 100,
-                                    y: (point.y / height) * 100,
-                                })
-                            }
-                            onBlur={() => setTooltipOpen(false)}
+                    {referenceY !== null ? (
+                        <>
+                            <span
+                                className="pointer-events-none absolute inset-x-0 border-t border-dashed border-foreground/35"
+                                style={{ top: `${referenceY}%` }}
+                                aria-hidden="true"
+                            />
+                            <ChartTooltip
+                                label={referenceLabel}
+                                value={formatValue(referenceValue ?? 0)}
+                            >
+                                <span
+                                    className="absolute inset-x-0 z-20 h-5 -translate-y-1/2 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                                    style={{ top: `${referenceY}%` }}
+                                    tabIndex={0}
+                                    aria-label={`${referenceText}: ${formatValue(referenceValue ?? 0)}`}
+                                    onPointerMove={(event) => {
+                                        event.stopPropagation()
+                                        setTooltipOpen(false)
+                                    }}
+                                    onMouseMove={(event) => {
+                                        event.stopPropagation()
+                                        setTooltipOpen(false)
+                                    }}
+                                />
+                            </ChartTooltip>
+                        </>
+                    ) : null}
+                    <svg
+                        className="pointer-events-none absolute inset-0 h-full w-full overflow-visible"
+                        viewBox={`0 0 ${formatChartNumber(width)} ${formatChartNumber(height)}`}
+                        preserveAspectRatio="none"
+                        aria-hidden="true"
+                    >
+                        {variant === "area" && areaPointList ? (
+                            <polygon
+                                points={areaPointList}
+                                fill={strokeColor}
+                                opacity={0.12}
+                            />
+                        ) : null}
+                        <polyline
+                            points={linePointList}
+                            fill="none"
+                            stroke={strokeColor}
+                            strokeWidth={strokeWidth}
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            vectorEffect="non-scaling-stroke"
                         />
-                    )
-                })}
-                <ChartFloatingTooltip
-                    label={tooltipContent?.label}
-                    value={tooltipContent?.value}
-                    position={tooltipPosition}
-                    open={tooltipOpen}
-                />
+                        {showDots
+                            ? points.map((point, index) => (
+                                  <circle
+                                      key={`${point.x}-${index}`}
+                                      cx={formatChartNumber(point.x)}
+                                      cy={formatChartNumber(point.y)}
+                                      r={4}
+                                      fill="hsl(var(--background))"
+                                      stroke={strokeColor}
+                                      strokeWidth={2}
+                                      vectorEffect="non-scaling-stroke"
+                                  />
+                              ))
+                            : null}
+                    </svg>
+                    {points.map((point, index) => {
+                        const range = getPointHitRange(points, index, width)
+
+                        return (
+                            <span
+                                key={`hit-${point.x}-${index}`}
+                                className="pointer-events-none absolute inset-y-0 z-10 rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                                style={{
+                                    left: `${(range.start / width) * 100}%`,
+                                    width: `${((range.end - range.start) / width) * 100}%`,
+                                }}
+                                tabIndex={0}
+                                aria-label={`${chartLabelToString(point.label)}: ${formatValue(point.value)}${
+                                    point.index === currentPoint?.index ? ` (${currentText})` : ""
+                                }`}
+                                onFocus={() =>
+                                    openPointTooltip(point, {
+                                        x: (point.x / width) * 100,
+                                        y: (point.y / height) * 100,
+                                    })
+                                }
+                                onBlur={() => setTooltipOpen(false)}
+                            />
+                        )
+                    })}
+                    {currentPoint ? (
+                        <>
+                            <span
+                                className="pointer-events-none absolute inset-y-0 w-px -translate-x-1/2"
+                                style={{
+                                    left: `${(currentPoint.x / width) * 100}%`,
+                                    backgroundColor: strokeColor,
+                                }}
+                                aria-hidden="true"
+                            />
+                            <span
+                                className="pointer-events-none absolute z-[5] h-2 w-2 -translate-x-1/2 -translate-y-1/2 rounded-full ring-2 ring-background"
+                                style={{
+                                    left: `${(currentPoint.x / width) * 100}%`,
+                                    top: `${(currentPoint.y / height) * 100}%`,
+                                    backgroundColor: strokeColor,
+                                }}
+                                aria-hidden="true"
+                            />
+                        </>
+                    ) : null}
+                    <ChartFloatingTooltip
+                        label={tooltipContent?.label}
+                        value={tooltipContent?.value}
+                        position={tooltipPosition}
+                        open={tooltipOpen}
+                    />
+                </div>
+                {hasEndLabels ? (
+                    <div
+                        className="flex shrink-0 items-baseline justify-between gap-2 pt-1 text-xs leading-none text-muted-foreground"
+                        aria-hidden="true"
+                    >
+                        <span className="min-w-0 truncate">{startLabel}</span>
+                        <span className="min-w-0 truncate text-right">{endLabel}</span>
+                    </div>
+                ) : null}
             </div>
         )
     }

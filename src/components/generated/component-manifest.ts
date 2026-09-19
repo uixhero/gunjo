@@ -294,7 +294,7 @@ export const componentManifest = {
     },
     "stickyNoticeBar": {
       "title": "StickyNoticeBar",
-      "description": "A single fixed site-announcement slot at an explicitly selected top or bottom edge.",
+      "description": "A single fixed site-announcement slot at an explicitly selected top or bottom edge. The dismiss control can be a word instead of ×, and the message can wrap only between words.",
       "variantKeys": [
         "top",
         "bottom"
@@ -1560,6 +1560,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
+    "mapStatusCorner": {
+      "title": "MapStatusCorner",
+      "description": "A few short lines in the top-right of a map that say what the reader is looking at: the viewpoint, day or night, which cloud frame, where the terrain comes from, the rain time. On a narrow screen it shares the top edge with the words on the left (`lead`, e.g. the view name and a LiveBadge). `lead` floats left and each line is one unbreakable run, so a line that does not fit beside `lead` moves below it instead of breaking a word: only the first line or two sit beside `lead`, the rest get the full width (a two-column flex row pushed lines down and clipped the last character of a word at 320px). `startInset` keeps room free on the left under `lead` for a compass. Words use the canvas type tier (text-canvas-2xs, /docs/exceptions) with a halo in the page colour, over an optional top-down scrim. The whole corner ignores the pointer so the map still drags. A labelled list for assistive tech. Placed by the caller (absolute inset-x-0 top-0). Distinct from StatusBar (an app status strip on the page, not on imagery) and LiveBadge (one 'this is live' pill; it goes inside `lead`).",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/MapStatusCorner.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "markdownRenderer": {
       "title": "MarkdownRenderer",
       "description": "Markdown to HTML rendering with GFM (tables, task lists, code).",
@@ -1739,6 +1750,18 @@ export const componentManifest = {
       "sourceFile": "src/components/display/RadioCard.tsx",
       "specSource": "design/display.pen",
       "stability": "beta"
+    },
+    "rangeBar": {
+      "title": "RangeBar",
+      "description": "One range drawn where it sits inside a whole scale: a thin track from `min` to `max` with the stretch from `low` to `high` filled. Every row of a list shares the same `min` / `max`, so a week of forecasts (lowest to highest temperature), the price band of each plan or the opening hours of each site line up and the eye compares positions, not numbers — the numbers stay outside the bar, where the caller puts them. `variant='gradient'` lays one cool-to-warm ramp (primary → info → warning) across the WHOLE scale and reveals only the covered part, so the same value is the same colour on every row; `solid` fills with primary. Equal ends still draw, as a dot the height of the track ('20° to 20°' is an answer); an unknown range (`null`) draws the track only. role='img' with an accessible name ('Temperature: 20°–28°'). HTML/CSS, no SVG. Distinct from Meter (one value from zero), DistributionBar (shares that add up to 100%) and RangeSlider (an input with thumbs).",
+      "variantKeys": [
+        "solid",
+        "gradient"
+      ],
+      "defaultVariantKey": "solid",
+      "sourceFile": "src/components/display/RangeBar.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
     },
     "rating": {
       "title": "Rating",
@@ -1945,7 +1968,7 @@ export const componentManifest = {
     },
     "sparklineChart": {
       "title": "SparklineChart",
-      "description": "Compact HTML/CSS line, area, or stepped trend chart for dense dashboard cards with hover/focus point tooltips.",
+      "description": "Compact HTML/CSS line, area, or stepped trend chart for dense dashboard cards with hover/focus point tooltips. It can mark the current point with a dot and a vertical line, and put small labels under both ends (such as 15 days ago and in 15 days).",
       "variantKeys": [
         "line",
         "area",
@@ -2565,6 +2588,17 @@ export const componentManifest = {
       "sourceFile": "src/components/inputs/Textarea.tsx",
       "specSource": "design/inputs.pen",
       "stability": "beta"
+    },
+    "timelineScrubber": {
+      "title": "TimelineScrubber",
+      "description": "One scale that runs from the past into the future — radar frames from two hours ago to twelve hours ahead, a log's recent snapshots, a forecast run — with the selected moment FIXED in the middle and the scale sliding under it. Dragging slides the ticks (relative drag, touch-action pan-y so the page still scrolls), so the moment you are looking at stays where your eye already is; the ends fade out to say there is more; a tap on a tick jumps to it. `lastObservedIndex` splits measured from forecast, told apart three ways and never by colour alone: the header names the side (Badge 'Observed' / 'Forecast'), the boundary is a dashed line, and the ticks and the centre marker change tone (success / warning). Play steps forward every `stepInterval` ms and stops at the end (controlled `playing` or its own); it owns that timer only and never reads the clock, so what 'now' is stays the caller's decision (the TimeTransport rule). Dragging or a key pauses it. role='slider' with arrows, PageUp / PageDown and Home / End; aria-valuetext reads the step and its side ('11:05 · Forecast'). Major ticks carry labels, thinned so none sit closer than 44px; pending (not yet loaded) steps are drawn faint. HTML/CSS. Distinct from Slider (a value on a fixed track, thumb moves), DayBand (one day with phases, thumb moves) and TimeTransport (a continuous clock with speeds and jumps; this is its frame-by-frame sibling).",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/inputs/TimelineScrubber.tsx",
+      "specSource": "design/inputs.pen",
+      "stability": "experimental"
     },
     "timePicker": {
       "title": "TimePicker",

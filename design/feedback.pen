@@ -1843,7 +1843,7 @@
               "type": "text",
               "id": "stickyNoticeBarDesc",
               "fill": "#64748b",
-              "content": "A single fixed site-announcement slot at an explicitly selected top or bottom edge.",
+              "content": "A single fixed site-announcement slot at an explicitly selected top or bottom edge. The dismiss control can be a word instead of ×, and the message can wrap only between words.",
               "fontFamily": "Inter",
               "fontSize": 18,
               "fontWeight": "normal"

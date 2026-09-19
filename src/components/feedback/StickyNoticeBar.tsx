@@ -5,6 +5,7 @@ import { createPortal } from "react-dom"
 import { IconX as X } from "@tabler/icons-react"
 
 import { cn } from "../../lib/utils"
+import { Button } from "../inputs/Button"
 import { TooltipButton } from "../inputs/TooltipButton"
 import type { StickyNoticeBarVariantKey } from "./generated/variant-keys"
 
@@ -29,6 +30,21 @@ export interface StickyNoticeBarProps extends React.HTMLAttributes<HTMLDivElemen
     /** Accessible label and tooltip for the dismiss button. */
     dismissLabel?: string
     /**
+     * Show the dismiss control as a word ("Not now", "見送る") instead of ×.
+     * Use it when dismissing is a real choice next to `action` — letting a
+     * moment pass — rather than closing an announcement. The word is also the
+     * accessible name, so `dismissLabel` is not used.
+     */
+    dismissText?: React.ReactNode
+    /**
+     * How the message may break.
+     * - `"anywhere"` (default): wrap anywhere a word would overflow.
+     * - `"phrase"`: never break inside a word — Japanese breaks only at spaces,
+     *   punctuation and `<wbr>`, so 「出ます」 is never split into 「出ま／す」.
+     *   A run longer than the whole line still breaks rather than overflow.
+     */
+    textWrap?: "anywhere" | "phrase"
+    /**
      * Portal target. Defaults to document.body. Use with placement="container"
      * for a fake browser or contained preview whose root establishes positioning.
      */
@@ -40,7 +56,9 @@ export interface StickyNoticeBarProps extends React.HTMLAttributes<HTMLDivElemen
 /**
  * A persistent, scroll-following site announcement with an optional action and
  * dismiss control. Messages wrap instead of truncating so the announcement and
- * action remain understandable on narrow screens.
+ * action remain understandable on narrow screens. With `textWrap="phrase"` they
+ * wrap only between words, and `dismissText` turns × into a worded second
+ * action ("Not now") for a notice that offers a choice rather than an FYI.
  *
  * StickyNoticeBar owns one document-level slot. If more than one instance is
  * mounted, the first remains visible, later instances fail closed, leave a
@@ -54,12 +72,14 @@ const StickyNoticeBar = React.forwardRef<HTMLDivElement, StickyNoticeBarProps>(
             children,
             className,
             dismissLabel = "Dismiss announcement",
+            dismissText,
             edge,
             icon,
             onDismiss,
             placement = "viewport",
             portalContainer,
             role = "status",
+            textWrap = "anywhere",
             ...props
         },
         ref
@@ -146,14 +166,31 @@ const StickyNoticeBar = React.forwardRef<HTMLDivElement, StickyNoticeBarProps>(
                                 {icon}
                             </span>
                         ) : null}
-                        <div className="min-w-0 flex-1 break-words text-sm leading-5">
+                        <div
+                            className={cn(
+                                "min-w-0 flex-1 text-sm leading-5",
+                                textWrap === "phrase"
+                                    ? "break-keep [overflow-wrap:anywhere]"
+                                    : "break-words"
+                            )}
+                        >
                             {children}
                         </div>
                     </div>
                     {action || onDismiss ? (
                         <div className="flex shrink-0 items-center gap-2 self-end sm:self-center">
                             {action}
-                            {onDismiss ? (
+                            {onDismiss && dismissText != null ? (
+                                <Button
+                                    type="button"
+                                    variant="ghost"
+                                    size="touch"
+                                    onClick={onDismiss}
+                                    className="shrink-0 text-muted-foreground"
+                                >
+                                    {dismissText}
+                                </Button>
+                            ) : onDismiss ? (
                                 <TooltipButton
                                     type="button"
                                     variant="ghost"

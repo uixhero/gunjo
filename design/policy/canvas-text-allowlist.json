@@ -4,9 +4,11 @@
     { "file": "src/components/inputs/MapControlButton.tsx", "reason": "地図の上に浮かせる丸い釦。釦の下の小さな添え字（向き・角度など）" },
     { "file": "src/components/display/ScaleBar.tsx", "reason": "地図の上の縮尺バー。「20 km」の字" },
     { "file": "src/components/inputs/LayerMenu.tsx", "reason": "地図の上に開く重ねるものの選択。組の見出しと、項目の右の添え書き" },
+    { "file": "src/components/display/MapStatusCorner.tsx", "reason": "地図の右上に重ねる状態表示。視点・昼夜・雲の時刻などの短い行" },
     { "file": "app/docs/exceptions/page.tsx", "reason": "特例のページ（見本としてこの字の大きさそのものを見せる）" },
     { "file": "app/docs/components/map-control-button/page.tsx", "reason": "部品の docs（地図の上の見本）" },
     { "file": "app/docs/components/scale-bar/page.tsx", "reason": "部品の docs（地図の上の見本）" },
-    { "file": "app/docs/components/layer-menu/page.tsx", "reason": "部品の docs（地図の上の見本）" }
+    { "file": "app/docs/components/layer-menu/page.tsx", "reason": "部品の docs（地図の上の見本）" },
+    { "file": "app/docs/components/map-status-corner/page.tsx", "reason": "部品の docs（地図の上の見本）" }
   ]
 }

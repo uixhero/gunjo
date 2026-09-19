@@ -1473,7 +1473,7 @@
     "stickyNoticeBar": {
       "frameId": "stickyNoticeBarFrame",
       "title": "StickyNoticeBar",
-      "description": "A single fixed site-announcement slot at an explicitly selected top or bottom edge.",
+      "description": "A single fixed site-announcement slot at an explicitly selected top or bottom edge. The dismiss control can be a word instead of ×, and the message can wrap only between words.",
       "variants": [
         {
           "id": "stickyNoticeBarTop",

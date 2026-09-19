@@ -171,7 +171,9 @@ export function Sidebar() {
     React.useEffect(() => {
         const el = bodyRef.current;
         if (!el || !pathname) return;
-        revealSidebarLink(el, pathname, "start", true);
+        // ページ遷移では、開いたページのリンクが見えていればサイドバーを動かさない。
+        // 隠れているときだけ、動きを付けずに見える位置へ寄せる。
+        revealSidebarLink(el, pathname, "start");
     }, [pathname]);
 
     React.useEffect(() => {
