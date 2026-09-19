@@ -371,6 +371,28 @@ export const FEEDBACK_SPEC_DEFINITIONS = [
       ],
     }),
   },
+  {
+    key: "actionProgress",
+    syntheticSpec: createSyntheticFeedbackSpec({
+      frameId: "synthetic:actionProgress",
+      title: "ActionProgress",
+      description: "Blocking feedback for a short action (save, send, redirect), composed from Dialog, Progress (indeterminate) and Spinner. It appears only when the action is still pending after delayMs (default 350ms), so fast work never flashes a modal, and closes as soon as open turns false. Never shows a percentage. FormActionProgress reads the enclosing form's pending state via React 19 useFormStatus. Not for long work with a visual or a cancel — that is ProgressDialog.",
+      variants: [
+        createSyntheticFeedbackVariant("default", { width: null, padding: [0, 0, 0, 0], gap: null, cornerRadius: null }),
+      ],
+    }),
+  },
+  {
+    key: "routeProgress",
+    syntheticSpec: createSyntheticFeedbackSpec({
+      frameId: "synthetic:routeProgress",
+      title: "RouteProgress",
+      description: "A thin indeterminate bar pinned to the top of the viewport (or of a positioned container) while a page or view loads. Framework-agnostic: render it from any loading boundary and unmount it when done. Built on Progress indeterminate, so there is one sweep implementation; it never shows a percentage and becomes a still, dimmed bar under reduced motion.",
+      variants: [
+        createSyntheticFeedbackVariant("default", { width: null, padding: [0, 0, 0, 0], gap: null, cornerRadius: null }),
+      ],
+    }),
+  },
   // From organisms (structured style)
   {
     key: "toastProvider",

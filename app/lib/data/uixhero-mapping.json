@@ -1745,9 +1745,10 @@
         "/docs/components/status-bar",
         "/docs/components/badge",
         "/docs/components/live-badge",
-        "/docs/components/time-transport"
+        "/docs/components/time-transport",
+        "/docs/components/progress-dialog"
       ],
-      "note": "「これはいまの値か」を画面が言い続ける話。live-badge / time-transport は 2026-09-13 追記",
+      "note": "「これはいまの値か」を画面が言い続ける話。live-badge / time-transport は 2026-09-13 追記、progress-dialog（#996）は 2026-09-19 追記",
       "title": "状態の可視化 (Visibility of System Status)"
     },
     {
@@ -1859,9 +1860,12 @@
       "gunjo": [
         "/docs/components/skeleton",
         "/docs/components/spinner",
-        "/docs/components/progress"
+        "/docs/components/progress",
+        "/docs/components/action-progress",
+        "/docs/components/route-progress",
+        "/docs/components/progress-dialog"
       ],
-      "note": "",
+      "note": "待ちの3部品（#996）は 2026-09-19 追記",
       "title": "レスポンスと待ち時間設計 (Response Latency)"
     },
     {
@@ -1939,9 +1943,10 @@
       "uixhero": "ux-reference/ux-doherty-threshold",
       "gunjo": [
         "/docs/components/spinner",
-        "/docs/components/skeleton"
+        "/docs/components/skeleton",
+        "/docs/components/action-progress"
       ],
-      "note": "",
+      "note": "action-progress（#996）は 2026-09-19 追記",
       "title": "ドハティの閾値 (Doherty Threshold)"
     },
     {

@@ -1778,6 +1778,66 @@
         }
       ]
     },
+    "actionProgress": {
+      "frameId": "synthetic:actionProgress",
+      "title": "ActionProgress",
+      "description": "Blocking feedback for a short action (save, send, redirect), composed from Dialog, Progress (indeterminate) and Spinner. It appears only when the action is still pending after delayMs (default 350ms), so fast work never flashes a modal, and closes as soon as open turns false. Never shows a percentage. FormActionProgress reads the enclosing form's pending state via React 19 useFormStatus. Not for long work with a visual or a cancel — that is ProgressDialog.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
+        }
+      ]
+    },
+    "routeProgress": {
+      "frameId": "synthetic:routeProgress",
+      "title": "RouteProgress",
+      "description": "A thin indeterminate bar pinned to the top of the viewport (or of a positioned container) while a page or view loads. Framework-agnostic: render it from any loading boundary and unmount it when done. Built on Progress indeterminate, so there is one sweep implementation; it never shows a percentage and becomes a still, dimmed bar under reduced motion.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "text": null,
+          "texts": [],
+          "reusable": true
+        }
+      ]
+    },
     "toastProvider": {
       "frameId": "toastProviderFrame",
       "title": "Toast Provider",

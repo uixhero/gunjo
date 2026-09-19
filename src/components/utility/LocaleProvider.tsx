@@ -55,6 +55,10 @@ export interface LocaleStrings {
     open: string
     /** Accessible name for a primary navigation region and the control that opens it (DashboardTemplate). */
     navigation: string
+    /** Explicit cancel action for work in progress (ProgressDialog). */
+    cancel: string
+    /** Accessible name for an indeterminate wait (RouteProgress, ActionProgress). */
+    loading: string
 }
 
 const EN_STRINGS: LocaleStrings = {
@@ -70,6 +74,8 @@ const EN_STRINGS: LocaleStrings = {
     close: "Close",
     open: "Open",
     navigation: "Navigation",
+    cancel: "Cancel",
+    loading: "Loading",
 }
 
 const JA_STRINGS: LocaleStrings = {
@@ -85,6 +91,8 @@ const JA_STRINGS: LocaleStrings = {
     close: "閉じる",
     open: "開く",
     navigation: "ナビゲーション",
+    cancel: "キャンセル",
+    loading: "読み込み中",
 }
 
 /** Built-in bundles. `en` is the default when no provider is mounted. */

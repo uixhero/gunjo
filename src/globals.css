@@ -257,6 +257,40 @@
         }
     }
 
+    /* Progress indeterminate (#996): a segment sweeps across while the real
+       completion is unknown. Reduced motion keeps a still, dimmed full bar so
+       "work is in progress" survives without movement or a fake percentage. */
+    .gunjo-progress-indeterminate {
+        animation: gunjo-progress-indeterminate 1.4s ease-in-out infinite;
+        will-change: transform;
+    }
+
+    @keyframes gunjo-progress-indeterminate {
+        0% {
+            transform: translateX(-100%);
+        }
+
+        100% {
+            transform: translateX(250%);
+        }
+    }
+
+    /* `data-motion="reduce"` on any ancestor applies the same still bar, for
+       apps that offer their own "reduce motion" setting. */
+    [data-motion="reduce"] .gunjo-progress-indeterminate {
+        animation: none;
+        width: 100%;
+        opacity: 0.55;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+        .gunjo-progress-indeterminate {
+            animation: none;
+            width: 100%;
+            opacity: 0.55;
+        }
+    }
+
 }
 
 @media (max-width: 767px) {

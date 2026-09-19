@@ -273,6 +273,8 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   banner: "Feedback",
   "sticky-notice-bar": "Feedback",
   "safety-banner": "Feedback",
+  "action-progress": "Feedback",
+  "route-progress": "Feedback",
   toast: "Feedback",
   "toast-provider": "Feedback",
   "notification-center": "Feedback",
@@ -315,6 +317,7 @@ export const FUNCTIONAL_CATEGORY_OF_SLUG = {
   "floating-panel": "Overlay",
   "onboarding-flow": "Overlay",
   "media-lightbox": "Overlay",
+  "progress-dialog": "Overlay",
   "media-picker-dialog": "Overlay",
 
   // Layout

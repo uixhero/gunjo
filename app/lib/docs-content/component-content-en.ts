@@ -5,9 +5,21 @@ import type { DocContent } from "./types";
  * Mirrors componentContentJa keys 1:1.
  */
 export const componentContentEn: Record<string, DocContent> = {
+  "components/action-progress": {
+    title: "ActionProgress",
+    description: "A small blocking dialog for short work such as saving or sending: a sweeping bar at the top, a spinner, a title and a description. By default it waits 350ms before appearing, so quick work shows nothing, and it never shows a percentage.",
+  },
   "components/button": {
     title: "Button",
     description: "Displays a button or a component that looks like a button.",
+  },
+  "components/progress-dialog": {
+    title: "ProgressDialog",
+    description: "A dialog for waiting on long work: a 16:9 visual, the current state in words, an optional slot and an optional cancel. The user cannot dismiss it; your code closes it.",
+  },
+  "components/route-progress": {
+    title: "RouteProgress",
+    description: "A thin bar at the top of the screen while a page loads. It shows no percentage and sweeps only while rendered.",
   },
   "components/segmented-control": {
     title: "SegmentedControl",

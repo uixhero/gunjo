@@ -153,6 +153,17 @@ export const componentManifest = {
     }
   },
   "feedback": {
+    "actionProgress": {
+      "title": "ActionProgress",
+      "description": "Blocking feedback for a short action (save, send, redirect), composed from Dialog, Progress (indeterminate) and Spinner. It appears only when the action is still pending after delayMs (default 350ms), so fast work never flashes a modal, and closes as soon as open turns false. Never shows a percentage. FormActionProgress reads the enclosing form's pending state via React 19 useFormStatus. Not for long work with a visual or a cancel — that is ProgressDialog.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/feedback/ActionProgress.tsx",
+      "specSource": "design/feedback.pen",
+      "stability": "experimental"
+    },
     "alert": {
       "title": "Alert",
       "description": "Displays a callout for user attention.",
@@ -207,6 +218,17 @@ export const componentManifest = {
       ],
       "defaultVariantKey": "default",
       "sourceFile": "src/components/feedback/ProgressWidget.tsx",
+      "specSource": "design/feedback.pen",
+      "stability": "experimental"
+    },
+    "routeProgress": {
+      "title": "RouteProgress",
+      "description": "A thin indeterminate bar pinned to the top of the viewport (or of a positioned container) while a page or view loads. Framework-agnostic: render it from any loading boundary and unmount it when done. Built on Progress indeterminate, so there is one sweep implementation; it never shows a percentage and becomes a still, dimmed bar under reduced motion.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/feedback/RouteProgress.tsx",
       "specSource": "design/feedback.pen",
       "stability": "experimental"
     },
@@ -769,6 +791,17 @@ export const componentManifest = {
       ],
       "defaultVariantKey": "default",
       "sourceFile": "src/components/overlay/Popover.tsx",
+      "specSource": "design/overlay.pen",
+      "stability": "experimental"
+    },
+    "progressDialog": {
+      "title": "ProgressDialog",
+      "description": "Modal wait for long-running work, composed from Dialog: a replaceable 16:9 media area (decorative, aria-hidden), the title and description, the current state in words inside a polite live region, an optional slot, and an optional explicit cancel in the footer. Controlled only: Escape, outside click and the close button are all suppressed, so the caller closes it on success, failure or cancel. Uses Progress: a real value draws a determinate bar; with no value the bar sweeps without a number (no invented percentage). Under reduced motion the sweep stops while the status, slot and cancel remain usable. The body scrolls inside the dialog so the footer stays reachable at 390px.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/overlay/ProgressDialog.tsx",
       "specSource": "design/overlay.pen",
       "stability": "experimental"
     },

@@ -20,11 +20,13 @@ export * from './components/patterns/ResponsiveAuthCardPattern';
 export * from './components/patterns/SettingsTemplate';
 
 /** Feedback */
+export * from './components/feedback/ActionProgress';
 export * from './components/feedback/Alert';
 export * from './components/feedback/Banner';
 export * from './components/feedback/NotificationCenter';
 export * from './components/feedback/Progress';
 export * from './components/feedback/ProgressWidget';
+export * from './components/feedback/RouteProgress';
 export * from './components/feedback/SafetyBanner';
 export * from './components/feedback/Spinner';
 export * from './components/feedback/StatusBar';
@@ -82,6 +84,7 @@ export * from './components/overlay/MediaPickerDialog';
 export * from './components/overlay/Modal';
 export * from './components/overlay/OnboardingFlow';
 export * from './components/overlay/Popover';
+export * from './components/overlay/ProgressDialog';
 export * from './components/overlay/ShareModal';
 export * from './components/overlay/Sheet';
 export * from './components/overlay/Tooltip';
