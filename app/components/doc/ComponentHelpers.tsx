@@ -251,13 +251,19 @@ export function UixheroRationaleLinks({
     if (uixheroLinks.length === 0) return null;
 
     const heading = locale === "ja" ? "いつ・なぜ使うか（UIXHERO）" : "When and why to use it (UIXHERO)";
-    const description =
-        locale === "ja"
-            ? "「いつ・なぜ使うか」の判断は、姉妹サイト UIXHERO の記事で解説しています。"
-            : "The when-and-why guidance for this component lives on our sister site UIXHERO (articles in Japanese).";
+    // relation: "unwritten" だけなら、記事はまだ無い＝「解説しています」とは言わない。
+    const allUnwritten = uixheroLinks.every((item) => item.relation === "unwritten");
+    const description = allUnwritten
+        ? locale === "ja"
+            ? "「いつ・なぜ使うか」は姉妹サイト UIXHERO の記事で解説する予定です。記事を書くまでは、起票した issue を置いています。"
+            : "The when-and-why guidance will live on our sister site UIXHERO. Until the article is written, the issue tracking it is linked here."
+        : locale === "ja"
+          ? "「いつ・なぜ使うか」の判断は、姉妹サイト UIXHERO の記事で解説しています。"
+          : "The when-and-why guidance for this component lives on our sister site UIXHERO (articles in Japanese).";
     // relation: "nearest" ＝ この部品そのものの記事が無く、いちばん近い種類の
     // 記事を指している。但し書きは節が出す（ラベル側には書かない）。
     const nearestNote = locale === "ja" ? "近い記事" : "closest match";
+    const unwrittenNote = locale === "ja" ? "まだ書いていません" : "not written yet";
 
     return (
         <section className="space-y-3" data-uixhero-rationale="true">
@@ -275,9 +281,9 @@ export function UixheroRationaleLinks({
                         className="inline-flex items-center gap-1 rounded-md border border-transparent bg-secondary px-2.5 py-0.5 text-xs font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
                     >
                         {item.label}
-                        {item.relation === "nearest" ? (
+                        {item.relation === "nearest" || item.relation === "unwritten" ? (
                             <span className="rounded-sm bg-background px-1 py-px text-[10px] font-medium text-muted-foreground">
-                                {nearestNote}
+                                {item.relation === "nearest" ? nearestNote : unwrittenNote}
                             </span>
                         ) : null}
                         <ExternalLink className="h-3 w-3" aria-hidden="true" />

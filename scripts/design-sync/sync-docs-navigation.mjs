@@ -151,7 +151,29 @@ function buildNavigation({ root }) {
     ],
   };
 
-  return [...staticSections, ...componentSections, patternSection];
+  // Apps built with GUNJO: each app is a parent row, its screens are child
+  // rows (`parent` = the app's href). Items stay flat in order so the pager,
+  // search and breadcrumbs keep working; only the sidebar indents children.
+  // App-specific context (ISS, weather) stays here, not in Patterns.
+  const APPS = [
+    {
+      title: "Earth and Moon",
+      href: "/docs/apps/earthmoon",
+      screens: [
+        { title: "Direction Finder", href: "/docs/apps/earthmoon/direction-finder" },
+        { title: "Forecast Day Grid", href: "/docs/apps/earthmoon/forecast-day-grid" },
+      ],
+    },
+  ];
+  const appSection = {
+    title: "App Examples",
+    items: APPS.flatMap((app) => [
+      { title: app.title, href: app.href },
+      ...app.screens.map((screen) => ({ ...screen, parent: app.href })),
+    ]),
+  };
+
+  return [...staticSections, ...componentSections, patternSection, appSection];
 }
 
 function quote(value) {
@@ -162,6 +184,9 @@ function renderItem(item, indent = "            ") {
   const fields = [`title: ${quote(item.title)}`, `href: ${quote(item.href)}`];
   if (item.external) {
     fields.push("external: true");
+  }
+  if (item.parent) {
+    fields.push(`parent: ${quote(item.parent)}`);
   }
   return `${indent}{ ${fields.join(", ")} },`;
 }

@@ -45,8 +45,10 @@ export interface UixheroLink {
      * 省略時は "exact"。"nearest" はこの部品そのものの記事が UIXHERO に無く、
      * いちばん近い種類の記事を指していることを表す。表示側（節）が言語に合わせた
      * 但し書きを添えるので、ラベルの文字列に「近い記事」と書かないこと。
+     * "unwritten" は記事がまだ無いことを表す。href には記事を起票した issue を渡す
+     * （docs-page の型＝記事が無ければ「まだ書いていない」と出して起票する）。
      */
-    relation?: "exact" | "nearest";
+    relation?: "exact" | "nearest" | "unwritten";
 }
 
 /** 旧称。法則記事だけでなくページ自前のリンクも同じ形なので UixheroLink に統一した。 */

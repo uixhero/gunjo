@@ -320,4 +320,12 @@ export const navigation = [
             { title: "Patterns", href: "/patterns" },
         ],
     },
+    {
+        title: "App Examples",
+        items: [
+            { title: "Earth and Moon", href: "/docs/apps/earthmoon" },
+            { title: "Direction Finder", href: "/docs/apps/earthmoon/direction-finder", parent: "/docs/apps/earthmoon" },
+            { title: "Forecast Day Grid", href: "/docs/apps/earthmoon/forecast-day-grid", parent: "/docs/apps/earthmoon" },
+        ],
+    },
 ];
