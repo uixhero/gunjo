@@ -1,7 +1,7 @@
 "use client";
 
 import { useLocale } from "@/components/providers/LocaleProvider";
-import { TEXT_SCALE, WEIGHT_SCALE } from "@/lib/data/token-scales.generated";
+import { CANVAS_TEXT_SCALE, TEXT_SCALE, WEIGHT_SCALE } from "@/lib/data/token-scales.generated";
 
 const FONTS_BASE = [
     {
@@ -38,6 +38,15 @@ const SCALE = TEXT_SCALE.map((step) => ({
     size: step.px,
 }));
 
+// The canvas tier (text-canvas-*): map / canvas overlays only. Kept out of
+// SCALE on purpose — listing it under the main scale would read as "the
+// scale goes down to 9.5px".
+const CANVAS_SCALE = CANVAS_TEXT_SCALE.map((step) => ({
+    name: step.utility,
+    className: step.utility,
+    size: step.px,
+}));
+
 const WEIGHTS = WEIGHT_SCALE.map((step) => ({
     name: step.utility,
     value: step.value,
@@ -51,10 +60,14 @@ const COPY = {
         sections: {
             fonts: "Font families",
             scale: "Scale",
+            canvas: "Canvas tier",
             weights: "Weights",
             density: "Density rules",
         },
         scaleSample: "Becoming blue",
+        canvasLead: "Three sizes below text-xs, for text that sits on a map, a canvas or an image: a scale bar, a map control's caption, a layer menu's group labels. Nowhere else. On any other screen, text-xs (12px) is the floor.",
+        canvasSample: "20 km · 12:00",
+        canvasRule: "Using these outside a canvas overlay fails CI (design:verify:scale-tokens). Allowed files are listed, with reasons, in design/policy/canvas-text-allowlist.json.",
         density: [
             { lead: "Default body:", body: "text-sm (14px) on UI controls, text-base (16px) in long-form prose." },
             { lead: "Control height:", body: "36px (h-9) for buttons, inputs, and selects. Compact-but-tappable for dashboards." },
@@ -68,10 +81,14 @@ const COPY = {
         sections: {
             fonts: "Font families",
             scale: "Scale",
+            canvas: "地図の上に重ねる文字のサイズ",
             weights: "Weights",
             density: "密度のルール",
         },
         scaleSample: "Becoming blue",
+        canvasLead: "text-xs より小さい3段階です。地図・canvas・画像の上に重ねる文字だけに使います。縮尺バーの「20 km」、地図の上のボタンの印、レイヤーのメニューの組の見出しなどです。ほかの画面では text-xs（12px）が下限のままです。",
+        canvasSample: "20 km · 12:00",
+        canvasRule: "地図の上に重ねるコンポーネントの外で使うと、自動検査（CI の design:verify:scale-tokens）が失敗します。使ってよいファイルは、理由つきで design/policy/canvas-text-allowlist.json にあります。",
         density: [
             { lead: "本文のデフォルト：", body: "UI コントロールは text-sm (14px)、長文プロースは text-base (16px)。" },
             { lead: "コントロールの高さ：", body: "ボタン・入力・セレクトはすべて 36px (h-9)。ダッシュボード向けにコンパクトでありながらタップしやすいバランス。" },
@@ -144,6 +161,32 @@ export default function TypographyPage() {
                         </div>
                     ))}
                 </div>
+            </section>
+
+            <section className="space-y-4">
+                <h2 className="border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight">
+                    {c.sections.canvas}
+                </h2>
+                <p className="text-sm leading-7 text-muted-foreground">{c.canvasLead}</p>
+                <div className="space-y-3 rounded-lg bg-gunjo-deepest p-5 text-gunjo-light">
+                    {CANVAS_SCALE.map((step) => (
+                        <div
+                            key={step.name}
+                            className="flex items-baseline gap-6 border-b border-palette-white/10 pb-3 last:border-b-0 last:pb-0"
+                        >
+                            <code className="w-32 shrink-0 font-mono text-xs opacity-80">
+                                {step.name}
+                            </code>
+                            <code className="w-14 shrink-0 font-mono text-xs opacity-80">
+                                {step.size}
+                            </code>
+                            <div className={`${step.className} truncate font-mono tracking-wide`}>
+                                {c.canvasSample}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+                <p className="text-sm leading-7 text-muted-foreground">{c.canvasRule}</p>
             </section>
 
             <section className="space-y-4">

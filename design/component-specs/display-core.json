@@ -5671,6 +5671,30 @@
           "reusable": true
         }
       ]
+    },
+    "scaleBar": {
+      "frameId": "synthetic:scaleBar",
+      "title": "ScaleBar",
+      "description": "How far the reader is looking on a map or canvas: a distance in words ('20 km') over a line whose length is that distance at the current zoom. Deliberately NEVER a zoom factor — '×250' answers '250 times what?' with nothing. The distance is rounded to 1 / 2 / 5 × 10ⁿ by the exported pure `niceScale(metersPerPixel, targetWidth, minWidth)` so the words stay short and the line absorbs the remainder; the line eases between lengths (no easing under prefers-reduced-motion). Takes `metersPerPixel` at the centre of the view — the caller's map library knows it — and shows '—' with no line while that is unknown, because a bar that guesses is worse than none. The words use the canvas type tier (text-canvas-2xs) with a halo in the page background colour so they read over any imagery. role='img' with an accessible name ('Scale: 20 km'). Placed by the caller, usually bottom-left. Distinct from Meter / Progress (a share of a whole) and Slider (an input).",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
     }
   }
 }

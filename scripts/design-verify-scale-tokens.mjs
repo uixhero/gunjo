@@ -1,10 +1,11 @@
 #!/usr/bin/env node
 
 import { createRequire } from "node:module";
-import { readFileSync } from "node:fs";
-import { join } from "node:path";
+import { readdirSync, readFileSync } from "node:fs";
+import { join, relative } from "node:path";
 import { ROOT } from "./design-sync/shared.mjs";
 import {
+  CANVAS_TEXT_STEPS,
   DENSITY_TOKENS,
   FONT_STACKS,
   LEADING_STEPS,
@@ -157,6 +158,102 @@ function checkGlobalsStaysClean(root, errors) {
   }
 }
 
+const CANVAS_TEXT_ALLOWLIST_PATH = "design/policy/canvas-text-allowlist.json";
+const CANVAS_TEXT_SCAN_DIRS = ["src", "app"];
+const CANVAS_TEXT_USE_PATTERN = /\btext-canvas-(?:sm|xs|2xs)\b|--text-canvas-/g;
+
+/**
+ * The canvas tier is GunjoUI's own (not Tailwind's), so the thing to hold it to
+ * is the theme block that ships it: every step in CANVAS_TEXT_STEPS must be in
+ * tailwind-theme-extend.cjs `fontSize` with the same size and line height, and
+ * nothing else may be — the rest of the type scale stays Tailwind's.
+ */
+function checkCanvasTheme(errors) {
+  const require = createRequire(import.meta.url);
+  const themeExtend = require("../tailwind-theme-extend.cjs");
+  const fontSize = themeExtend.fontSize ?? {};
+  const expectedKeys = CANVAS_TEXT_STEPS.map((entry) => entry.utility.replace(/^text-/, ""));
+  for (const key of Object.keys(fontSize)) {
+    if (!expectedKeys.includes(key)) {
+      errors.push(
+        `- tailwind-theme-extend.cjs fontSize defines "${key}", which is not a canvas step. GunjoUI does not override Tailwind's type scale; only CANVAS_TEXT_STEPS belong here.`
+      );
+    }
+  }
+  for (const entry of CANVAS_TEXT_STEPS) {
+    const key = entry.utility.replace(/^text-/, "");
+    const shipped = fontSize[key];
+    const expected = [textValue(entry), { lineHeight: entry.lineHeight }];
+    if (JSON.stringify(shipped) !== JSON.stringify(expected)) {
+      errors.push(
+        `- tailwind-theme-extend.cjs fontSize["${key}"] is ${JSON.stringify(shipped)} but token-scales.mjs declares ${JSON.stringify(expected)}.`
+      );
+    }
+  }
+}
+
+function listSourceFiles(dir) {
+  const files = [];
+  const stack = [dir];
+  while (stack.length > 0) {
+    const current = stack.pop();
+    let entries;
+    try {
+      entries = readdirSync(current, { withFileTypes: true });
+    } catch {
+      continue;
+    }
+    for (const entry of entries) {
+      if (entry.name === "node_modules" || entry.name === "generated") continue;
+      const absolutePath = join(current, entry.name);
+      if (entry.isDirectory()) stack.push(absolutePath);
+      else if (entry.isFile() && entry.name.endsWith(".tsx")) files.push(absolutePath);
+    }
+  }
+  return files;
+}
+
+/**
+ * Where the canvas tier may be used. The decision was "canvas overlays only",
+ * and a class name cannot tell a map label from a paragraph — so the list of
+ * files is the check. Adding a file means saying why in the policy JSON.
+ */
+export function collectCanvasTextViolations(root, allowedFiles) {
+  const allowed = new Set(allowedFiles);
+  const violations = [];
+  for (const dir of CANVAS_TEXT_SCAN_DIRS) {
+    for (const filePath of listSourceFiles(join(root, dir))) {
+      const relativePath = relative(root, filePath);
+      if (allowed.has(relativePath)) continue;
+      const content = readFileSync(filePath, "utf-8");
+      const match = CANVAS_TEXT_USE_PATTERN.exec(content);
+      CANVAS_TEXT_USE_PATTERN.lastIndex = 0;
+      if (!match) continue;
+      const line = content.slice(0, match.index).split(/\r?\n/).length;
+      violations.push(`${relativePath}:${line} "${match[0]}"`);
+    }
+  }
+  return violations;
+}
+
+function checkCanvasUsage(root, errors) {
+  const policy = JSON.parse(readFileSync(join(root, CANVAS_TEXT_ALLOWLIST_PATH), "utf-8"));
+  const entries = Array.isArray(policy?.allowed) ? policy.allowed : [];
+  const files = [];
+  for (const [index, entry] of entries.entries()) {
+    if (typeof entry?.file !== "string" || typeof entry?.reason !== "string" || entry.reason.length === 0) {
+      errors.push(`- ${CANVAS_TEXT_ALLOWLIST_PATH} allowed[${index}] needs "file" and a non-empty "reason".`);
+      continue;
+    }
+    files.push(entry.file);
+  }
+  for (const violation of collectCanvasTextViolations(root, files)) {
+    errors.push(
+      `- ${violation}: the canvas type tier is for text on a map / canvas / image only. Use text-xs or larger, or add the file to ${CANVAS_TEXT_ALLOWLIST_PATH} with the reason (ask KeEem first).`
+    );
+  }
+}
+
 export function verifyScaleTokens({ root = ROOT } = {}) {
   const themeCss = readTailwindTheme();
   const errors = [];
@@ -167,6 +264,8 @@ export function verifyScaleTokens({ root = ROOT } = {}) {
   checkAgainstTheme(themeCss, errors, WEIGHT_STEPS, (entry) => entry.value, "font weight");
   checkAgainstTheme(themeCss, errors, FONT_STACKS, (entry) => entry.value, "font stack");
   checkDensity(themeCss, errors);
+  checkCanvasTheme(errors);
+  checkCanvasUsage(root, errors);
   checkTokensCss(root, errors);
   checkGlobalsStaysClean(root, errors);
 

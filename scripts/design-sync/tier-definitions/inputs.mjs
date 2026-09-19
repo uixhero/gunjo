@@ -553,4 +553,28 @@ export const INPUTS_SPEC_DEFINITIONS = [
       ],
     }),
   },
+  {
+    key: "mapControlButton",
+    syntheticSpec: createSyntheticInputsSpec({
+      frameId: "synthetic:mapControlButton",
+      title: "MapControlButton",
+      description: "The round, icon-only button that floats on a map or a canvas: zoom in, zoom out, go to the picked place, go to my location. Its surface is its own (translucent background, blurred backdrop, hairline border) because the thing behind it is imagery, not a page — which is why it is a component and not a Button variant. States: `pressed` (a toggle that is on, aria-pressed), `disabled` with a `disabledReason` tooltip reachable by keyboard, `status='busy'` (the glyph pulses, aria-busy; the pulse stops under prefers-reduced-motion) and `status='error'` (a warning ring plus a `!` mark — never colour alone; brief, and cleared by the caller because the button holds no timer). `label` is both the accessible name and the tooltip. Sizes: `default` 44px (the GunjoUI touch line), `sm` 34px (the floor for a dense phone column — never smaller), `lg` 48px (tablet). The glyph carries meaning: 'my location' is a pin and 'the place I picked' is a ring with a dot; one glyph for both makes the reader guess where the map will jump. Distinct from Button / TooltipButton (on a page, not on imagery) and ToggleGroup (several exclusive choices). LayerMenu uses it as its trigger.",
+      variants: [
+        createSyntheticVariant("default", { width: null, padding: null }),
+        createSyntheticVariant("sm", { width: null, padding: null }),
+        createSyntheticVariant("lg", { width: null, padding: null }),
+      ],
+    }),
+  },
+  {
+    key: "layerMenu",
+    syntheticSpec: createSyntheticInputsSpec({
+      frameId: "synthetic:layerMenu",
+      title: "LayerMenu",
+      description: "Choose what is drawn on top of a map — clouds, rain, borders, tracked objects — from a round map button: layers in labelled groups, each a toggle row with a mark, and an 'All' row first. A TAP opens the menu and a LONG PRESS (450ms, configurable, off with 0) hides every layer and a second one brings the previous set back: the action that repaints the whole picture goes on the gesture that cannot happen by accident, because a tap is how people find out what a button does. The 'All' row does the same for readers who never find the long press, keyboard included. 'All' has three states — all on, all off, some (a dash, aria-pressed='mixed') — and keeps the same mark as the other rows, since a row without a mark reads as a different kind of thing. A layer that cannot be switched now (`disabledReason`) keeps its row and its state, says why in a few words, and is left alone by 'All'. Rows stay open after a press so the marks can be seen changing. Group headings and notes use the canvas type tier. Controlled (`value` / `onValueChange`); `layerMenuAllState()` is exported for callers that mirror the state elsewhere. The same shape serves a chart's series. Distinct from DropdownMenu (actions, closes on select, no long press), CheckboxGroup (a form field on a page) and FilterChips (filters a list).",
+      variants: [
+        createSyntheticVariant("default", { width: null, padding: null }),
+      ],
+    }),
+  },
 ];
