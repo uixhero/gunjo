@@ -39,6 +39,7 @@ This boundary lets a future `GenerationSplash` component accept any scene as med
 - Do not use the animation as the only way to communicate progress.
 - Every sample includes a `prefers-reduced-motion: reduce` rule that removes motion and leaves a complete static composition.
 - The 1600 × 900 `viewBox` is intentionally scalable; preserve the 16:9 container to avoid clipping important elements.
+- Do not put a `transform` attribute on an element that also runs a CSS `transform` animation. The CSS value replaces the attribute, so the offset is lost. Put the offset on a wrapping `<g>` instead (the train in `trip-plan.svg` does this).
 
 ## Product-specific source
 

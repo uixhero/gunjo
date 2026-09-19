@@ -3,12 +3,12 @@
 import * as React from "react";
 import {
     AspectRatio,
-    Badge,
     Card,
     CardContent,
     CardDescription,
     CardHeader,
     CardTitle,
+    TextLink,
 } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
 
@@ -50,19 +50,19 @@ const COPY = {
         eyebrow: "Tokens · Animation",
         heading: "Animation",
         subtitle: "Eight duration tokens and four easing curves. Click any swatch to see it in motion.",
-        sections: { durations: "Durations", easings: "Easings", samples: "Generation waiting SVG samples" },
+        sections: { durations: "Durations", easings: "Easings", samples: "SVG samples for generation waits" },
         playLabel: "Click to play",
         playButton: "Play",
-        sampleIntro: "Standalone 16:9 scenes for prototyping a generation-waiting surface. The artwork is a reference asset, not a package export or a required visual style.",
-        sampleBoundary: "Keep status, progress, cancellation, and sponsor content in the host UI. The SVG should remain decorative, replaceable, and independent from product logic.",
-        reducedMotion: "Each file includes a prefers-reduced-motion fallback and can be downloaded directly from public/samples/generation-splash.",
-        sampleBadge: "Reference asset",
+        sampleIntro: "Animated 16:9 SVGs for prototyping the screen people see while AI or another process finishes writing a document. Each file is self-contained. They are not part of the @gunjo/ui package, so you cannot import them.",
+        sampleBoundary: "Build the status, progress, and cancel button in the screen that hosts the SVG, not inside the SVG.",
+        reducedMotion: "People who turn on reduced motion in their OS (prefers-reduced-motion) see a still picture. The files live at /samples/generation-splash/ on this site; load them by URL or save a copy.",
         downloadLabel: "Open SVG",
+        newTabLabel: "opens in a new tab",
         sampleItems: [
-            { title: "Meeting minutes", description: "Speech cards become a structured document." },
-            { title: "Trip plan", description: "A route is assembled while a train passes Mount Fuji." },
-            { title: "Trip report", description: "Field notes, a receipt, and a photo become a report." },
-            { title: "Trip evaluation", description: "Five review criteria resolve into an approval mark." },
+            { title: "Meeting minutes", description: "What participants said comes together as one set of minutes." },
+            { title: "Trip plan", description: "An itinerary comes together while a train passes Mount Fuji." },
+            { title: "Trip report", description: "A photo, a receipt, and the places visited come together as one report." },
+            { title: "Trip evaluation", description: "Five items on a report are checked one by one, then an approval stamp lands." },
         ],
         durationGuidance: (
             <>
@@ -82,19 +82,19 @@ const COPY = {
         eyebrow: "Tokens · Animation",
         heading: "Animation",
         subtitle: "8 段階の duration トークンと 4 種類の easing カーブ。スウォッチをクリックすると動きを確認できます。",
-        sections: { durations: "Durations", easings: "Easings", samples: "生成待機のSVGサンプル" },
+        sections: { durations: "Durations", easings: "Easings", samples: "生成待機のSVG見本" },
         playLabel: "クリックで再生",
         playButton: "再生",
-        sampleIntro: "生成待機画面を試作するための、単体で動く16:9シーンです。パッケージのexportや必須のビジュアルスタイルではなく、差し替え可能な参考素材です。",
-        sampleBoundary: "状態、進捗、キャンセル、スポンサー表示はホストUIが担当します。SVGにはプロダクトロジックや広告を埋め込まず、装飾として独立させてください。",
-        reducedMotion: "各ファイルは prefers-reduced-motion の静止表示に対応し、public/samples/generation-splash から直接参照できます。",
-        sampleBadge: "参考素材",
+        sampleIntro: "AIなどが文書を作り終えるまでの待ち時間に出す画面（生成待機画面）を試作するための、16:9のアニメーション付きSVGです。1ファイルで完結しています。@gunjo/ui のパッケージには含まれないため、import では使えません。",
+        sampleBoundary: "処理の状態・進み具合・キャンセルボタンは、SVGではなく、SVGを置く側の画面で作ってください。",
+        reducedMotion: "OSで動きを減らす設定（prefers-reduced-motion）にしている人には、止まった絵で表示されます。ファイルはこのサイトの /samples/generation-splash/ にあり、URLで読み込むか、保存して使えます。",
         downloadLabel: "SVGを開く",
+        newTabLabel: "新しいタブで開きます",
         sampleItems: [
-            { title: "議事録生成", description: "参加者の発言カードが整理された文書になります。" },
-            { title: "出張プラン生成", description: "富士山の前を電車が通り、旅程が組み上がります。" },
-            { title: "出張レポート生成", description: "現地メモ、領収書、写真がレポートになります。" },
-            { title: "出張評価", description: "5つの評価観点が承認印へ収束します。" },
+            { title: "議事録の生成", description: "参加者の発言が、1つの議事録にまとまります。" },
+            { title: "出張プランの生成", description: "富士山の前を列車が通るあいだに、旅程が組み上がります。" },
+            { title: "出張レポートの生成", description: "現地の写真、領収書、訪れた場所が、1冊のレポートにまとまります。" },
+            { title: "出張の評価", description: "報告書の5つの項目に順にチェックが入り、最後に承認の印が押されます。" },
         ],
         durationGuidance: (
             <>
@@ -254,31 +254,25 @@ export default function AnimationPage() {
 
                         return (
                             <Card key={sample.id} className="overflow-hidden">
-                                <AspectRatio ratio={16 / 9} className="overflow-hidden border-b bg-muted">
-                                    <img
-                                        src={sample.src}
-                                        alt=""
-                                        className="h-full w-full object-cover"
-                                        loading="lazy"
-                                    />
-                                </AspectRatio>
+                                <div className="border-b">
+                                    <AspectRatio ratio={16 / 9} className="overflow-hidden bg-muted">
+                                        <img
+                                            src={sample.src}
+                                            alt=""
+                                            className="h-full w-full object-cover"
+                                            loading="lazy"
+                                        />
+                                    </AspectRatio>
+                                </div>
                                 <CardHeader className="gap-3">
-                                    <div className="flex flex-wrap items-center justify-between gap-2">
-                                        <CardTitle as="h3" className="text-lg">{copy.title}</CardTitle>
-                                        <Badge variant="outline">{c.sampleBadge}</Badge>
-                                    </div>
+                                    <CardTitle as="h3" className="text-lg">{copy.title}</CardTitle>
                                     <CardDescription>{copy.description}</CardDescription>
                                 </CardHeader>
                                 <CardContent className="flex flex-wrap items-center justify-between gap-3">
                                     <code className="break-all text-xs text-muted-foreground">{sample.src}</code>
-                                    <a
-                                        href={sample.src}
-                                        target="_blank"
-                                        rel="noreferrer"
-                                        className="text-sm font-semibold text-primary underline-offset-4 hover:underline"
-                                    >
+                                    <TextLink href={sample.src} target="_blank" newTabLabel={c.newTabLabel}>
                                         {c.downloadLabel}
-                                    </a>
+                                    </TextLink>
                                 </CardContent>
                             </Card>
                         );
