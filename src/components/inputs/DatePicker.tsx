@@ -41,6 +41,8 @@ export interface DatePickerProps {
     disabledReason?: React.ReactNode
     disabledReasonLabel?: CalendarProps["disabledReasonLabel"]
     disabledReasonPortalContainer?: CalendarProps["disabledReasonPortalContainer"]
+    /** Element the popup is portalled into (default: document.body). Pass the preview surface to keep it inside a bounded frame. */
+    portalContainer?: HTMLElement | null
 }
 
 type DateSegment = "year" | "month" | "day"
@@ -152,6 +154,7 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
             disabledReason,
             disabledReasonLabel,
             disabledReasonPortalContainer,
+            portalContainer,
         },
         ref
     ) => {
@@ -498,6 +501,7 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
                     </div>
                 </PopoverAnchor>
                 <PopoverContent
+                    portalContainer={portalContainer}
                     className={cn(
                         "w-auto overflow-visible p-0",
                         className

@@ -80,6 +80,8 @@ export interface ChatInputProps
     defaultVoiceActive?: boolean;
     onVoiceActiveChange?: (active: boolean) => void;
     labels?: ChatInputLabels;
+    /** Element the options popover and model menu are portalled into (default: document.body). Pass the preview surface to keep them inside a bounded frame. */
+    portalContainer?: HTMLElement | null;
 }
 
 export function ChatInput({
@@ -109,6 +111,7 @@ export function ChatInput({
     defaultVoiceActive = false,
     onVoiceActiveChange,
     labels,
+    portalContainer,
     className,
     disabled,
     ...props
@@ -402,7 +405,7 @@ export function ChatInput({
                                     </TooltipTrigger>
                                     <TooltipContent>{resolvedLabels.options}</TooltipContent>
                                 </Tooltip>
-                                <PopoverContent align="start" side="top" className="w-72">
+                                <PopoverContent portalContainer={portalContainer} align="start" side="top" className="w-72">
                                     {optionsContent}
                                 </PopoverContent>
                             </Popover>
@@ -428,7 +431,7 @@ export function ChatInput({
                         modelOptions.length > 0 ? (
                             <DropdownMenu>
                                 <DropdownMenuTrigger asChild>{modelButton}</DropdownMenuTrigger>
-                                <DropdownMenuContent align="end" sideOffset={8} className="w-56">
+                                <DropdownMenuContent portalContainer={portalContainer} align="end" sideOffset={8} className="w-56">
                                     <DropdownMenuRadioGroup value={currentModelValue} onValueChange={handleModelValueChange}>
                                         {modelOptions.map((option) => (
                                             <DropdownMenuRadioItem key={option.value} value={option.value} className="items-start gap-2">

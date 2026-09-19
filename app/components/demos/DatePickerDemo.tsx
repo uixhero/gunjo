@@ -4,13 +4,17 @@ import * as React from "react";
 import { enUS } from "date-fns/locale/en-US";
 import { ja } from "date-fns/locale/ja";
 import {
-    DatePicker,
+    DatePicker as GunjoDatePicker,
     FormControl,
     FormDescription,
     FormGroup,
     FormLabel,
 } from "@gunjo/ui";
+import { withPreviewPortal } from "@/components/doc/PreviewPortal";
 import { useLocale } from "@/components/providers/LocaleProvider";
+
+// Live previews open the popup inside the preview frame (docs-page rule ①).
+const DatePicker = withPreviewPortal(GunjoDatePicker);
 
 export function DatePickerDemo() {
     const { locale } = useLocale();

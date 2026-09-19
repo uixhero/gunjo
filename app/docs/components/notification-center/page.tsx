@@ -6,9 +6,13 @@ import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import feedbackMetadata from "@design/feedback-metadata.json";
-import { NotificationCenter, type Notification, type NotificationCenterLabels } from "@gunjo/ui";
+import { NotificationCenter as GunjoNotificationCenter, type Notification, type NotificationCenterLabels } from "@gunjo/ui";
 import { useState } from "react";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
+import { withPreviewPortal } from "@/components/doc/PreviewPortal";
+
+// Live previews open the popup inside the preview frame (docs-page rule ①).
+const NotificationCenter = withPreviewPortal(GunjoNotificationCenter);
 
 const jaLabels: NotificationCenterLabels = {
     toggle: "通知を開く",
@@ -264,6 +268,12 @@ export default function NotificationCenterDocPage() {
             name: "onClearAll",
             type: "() => void",
             description: isJa ? "未読通知をまとめて既読にする操作で呼び出します。" : "Called when the user clears all unread notifications.",
+        },
+        {
+            name: "portalContainer",
+            type: "HTMLElement | null",
+            default: "document.body",
+            description: isJa ? "ポップアップを出す先の要素です。枠のある場所に置くときは、その枠を渡すと中に収まります。" : "Element the popup is portalled into. Pass a bounded container to keep the popup inside it.",
         },
     ];
 

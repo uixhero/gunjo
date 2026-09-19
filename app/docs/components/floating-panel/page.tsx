@@ -510,7 +510,6 @@ export default function FloatingPanelPage() {
                             preview: <FloatingPanelAuditDemo variant="solid" />,
                             code: floatingPanelCodes.solid[locale],
                             embedSrc: "/embed/floating-panel?variant=solid",
-                            previewHeight: 320,
                         },
                     ]}
                 />

@@ -35,6 +35,8 @@ export interface DateRangePickerProps {
     closeOnSelect?: boolean
     maxRangeDays?: number
     responsiveMonths?: boolean
+    /** Element the popup is portalled into (default: document.body). Pass the preview surface to keep it inside a bounded frame. */
+    portalContainer?: HTMLElement | null
 }
 
 function parseIsoDate(value: string): Date | undefined {
@@ -289,6 +291,7 @@ const DateRangePicker = React.forwardRef<HTMLInputElement, DateRangePickerProps>
             closeOnSelect = true,
             maxRangeDays,
             responsiveMonths = true,
+            portalContainer,
         },
         ref
     ) => {
@@ -778,6 +781,7 @@ const DateRangePicker = React.forwardRef<HTMLInputElement, DateRangePickerProps>
                     </div>
                 </PopoverAnchor>
                 <PopoverContent
+                    portalContainer={portalContainer}
                     className={cn("w-auto overflow-visible p-0", className)}
                     align="center"
                     sideOffset={8}

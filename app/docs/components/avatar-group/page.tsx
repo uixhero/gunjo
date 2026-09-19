@@ -10,8 +10,12 @@ import displayMetadata from "@design/display-metadata.json";
 import {
     Avatar,
     AvatarFallback,
-    AvatarGroup,
+    AvatarGroup as GunjoAvatarGroup,
 } from "@gunjo/ui";
+import { withPreviewPortal } from "@/components/doc/PreviewPortal";
+
+// Live previews open the +N member list inside the preview frame (docs-page rule ①).
+const AvatarGroup = withPreviewPortal(GunjoAvatarGroup, "overflowPortalContainer");
 
 type TeamMember = {
     id: string;
