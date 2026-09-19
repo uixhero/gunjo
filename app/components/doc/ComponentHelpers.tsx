@@ -717,6 +717,10 @@ export function ComponentPreview({ codeBlock, children, className, sectionLabels
                     ref={previewSurfaceRef}
                     className={cn(
                         "relative mt-0 rounded-md p-4 bg-muted/20 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                        // A popover portalled into this surface (PreviewPortal) paints inside the
+                        // scaled preview's stacking context; lift the surface while one is open so
+                        // the next preview's header does not cover it. Stays under the site header (z-40).
+                        "has-[[data-radix-popper-content-wrapper]]:z-30",
                         autoHeightPreview ? "min-h-0" : viewMode === "auto" ? "min-h-0" : "min-h-[350px]",
                         autoHeightPreview
                             ? "overflow-visible"
