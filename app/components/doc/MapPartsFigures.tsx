@@ -282,3 +282,198 @@ export function ScaleSawtoothFigure({ locale }: { locale: Locale }) {
         </FigureFrame>
     );
 }
+
+/* what: RangeBar は全体の幅に1本のグラデーションを描き、区間の窓から見せるので、
+   同じ 20° はどの行でも同じ色になる。区間ごとにやり直すと、行ごとに色が変わる。 */
+export function RangeBarRampFigure({ locale }: { locale: Locale }) {
+    const ja = locale === "ja";
+    const t = ja
+        ? {
+              label: "気温の範囲 14〜22° と 20〜28° を示す横棒2本を、2通りの塗り方で比べた図。上の組は全体（10〜35°）にグラデーションを1本描き、区間の部分だけを窓のように見せる。20° の縦線が2行とも同じ色の所を通る。下の組は区間ごとにグラデーションをやり直す塗り方で、20° は1行目では暖かい色、2行目では冷たい色になる。",
+              caption: "上が RangeBar の塗り方です。下のように区間ごとにやり直すと、同じ 20° が行ごとに違う色になります。",
+              whole: "全体に敷く",
+              wholeSub: "RangeBar の gradient",
+              local: "区間ごとにやり直す",
+              localSub: "比べるための例（使わない）",
+              same: "同じ色",
+              diff: "違う色",
+              scale: "全体（10〜35°）",
+          }
+        : {
+              label: "Two rows, 14–22° and 20–28°, painted two ways. Top pair: one ramp laid across the whole scale (10–35°), each range shown through a window; the 20° line crosses the same colour on both rows. Bottom pair: the ramp restarts inside each range, so 20° is warm on the first row and cool on the second.",
+              caption: "The top pair is how RangeBar paints. Restarting the ramp in each range (bottom) gives the same 20° a different colour on every row.",
+              whole: "Across the scale",
+              wholeSub: "RangeBar gradient",
+              local: "Restarted per range",
+              localSub: "for comparison only",
+              same: "same colour",
+              diff: "different colours",
+              scale: "Whole scale (10–35°)",
+          };
+    const x0 = 170;
+    const x1 = 590;
+    const at = (v: number) => x0 + ((v - 10) / 25) * (x1 - x0);
+    const rows: Array<[number, number]> = [
+        [14, 22],
+        [20, 28],
+    ];
+    const trackH = 10;
+    const bar = (y: number, lo: number, hi: number, fill: string, key: string) => (
+        <g key={key}>
+            <rect x={x0} y={y} width={x1 - x0} height={trackH} rx={trackH / 2} className="fill-muted" />
+            <rect x={at(lo)} y={y} width={at(hi) - at(lo)} height={trackH} rx={trackH / 2} fill={fill} />
+            <text x={at(lo) - 8} y={y + 9} textAnchor="end" className="fill-muted-foreground text-[11px]">{lo}°</text>
+            <text x={at(hi) + 8} y={y + 9} className="fill-muted-foreground text-[11px]">{hi}°</text>
+        </g>
+    );
+    return (
+        <FigureFrame label={t.label} caption={t.caption} minWidth={560}>
+            <svg viewBox="0 0 640 290" className="h-auto w-full" aria-hidden>
+                <defs>
+                    <linearGradient id="rb-ramp-whole" gradientUnits="userSpaceOnUse" x1={x0} x2={x1} y1="0" y2="0">
+                        <stop offset="0" style={{ stopColor: "hsl(var(--primary))" }} />
+                        <stop offset="0.5" style={{ stopColor: "hsl(var(--info))" }} />
+                        <stop offset="1" style={{ stopColor: "hsl(var(--warning))" }} />
+                    </linearGradient>
+                    <linearGradient id="rb-ramp-local" x1="0" x2="1" y1="0" y2="0">
+                        <stop offset="0" style={{ stopColor: "hsl(var(--primary))" }} />
+                        <stop offset="0.5" style={{ stopColor: "hsl(var(--info))" }} />
+                        <stop offset="1" style={{ stopColor: "hsl(var(--warning))" }} />
+                    </linearGradient>
+                </defs>
+                {/* the whole ramp, for reference */}
+                <text x="10" y="28" className="fill-foreground text-[12px] font-semibold">{t.scale}</text>
+                <rect x={x0} y="18" width={x1 - x0} height={trackH} rx={trackH / 2} fill="url(#rb-ramp-whole)" />
+                <text x={x0} y="46" textAnchor="middle" className="fill-muted-foreground text-[11px]">10°</text>
+                <text x={x1} y="46" textAnchor="middle" className="fill-muted-foreground text-[11px]">35°</text>
+
+                <text x="10" y="92" className="fill-foreground text-[12px] font-semibold">{t.whole}</text>
+                <text x="10" y="108" className="fill-muted-foreground text-[11px]">{t.wholeSub}</text>
+                {rows.map(([lo, hi], i) => bar(78 + i * 26, lo, hi, "url(#rb-ramp-whole)", `w${i}`))}
+
+                <text x="10" y="202" className="fill-foreground text-[12px] font-semibold">{t.local}</text>
+                <text x="10" y="218" className="fill-muted-foreground text-[11px]">{t.localSub}</text>
+                {rows.map(([lo, hi], i) => bar(188 + i * 26, lo, hi, "url(#rb-ramp-local)", `l${i}`))}
+
+                {/* the 20° line */}
+                <line x1={at(20)} x2={at(20)} y1="12" y2="250" className="stroke-foreground" strokeWidth="1.5" strokeDasharray="4 3" />
+                <text x={at(20)} y="268" textAnchor="middle" className="fill-foreground text-[12px] font-semibold">20°</text>
+                <text x={at(20) + 10} y="140" className="fill-success text-[11px]">{t.same}</text>
+                <text x={at(20) + 10} y="250" className="fill-destructive text-[11px]">{t.diff}</text>
+            </svg>
+        </FigureFrame>
+    );
+}
+
+/* what: 同じ細い幅で、左右2列の flex は行を押し出して語を途中で割るが、float なら
+   入りきらない行が左上の見出しの下へ回り、startInset の幅（方位磁針の場所）は空いたまま残る。 */
+export function MapCornerFlowFigure({ locale }: { locale: Locale }) {
+    const ja = locale === "ja";
+    const t = ja
+        ? {
+              label: "幅の細い地図の上端を2つ並べた比較。左は左右2列の flex。右の列は左上の見出しの横に残った幅（点線の枠）しか使えないので、「地形 Sentinel-2 z10」が2行に割れ、「雨 気象庁 11:00 実況」の最後の「況」だけが次の行に落ちる。右は MapStatusCorner の float で、この図では見出しの横に並ぶのは最初の2行だけ。残りの行は見出しの下に回る。そのとき左端の startInset の幅は空いたまま残り（見出しの下に置く方位磁針の場所）、各行は右寄せで1行ずつ並ぶ。",
+              caption: "左は2列の flex（点線が右の列の幅）、右は MapStatusCorner（float）です。網掛けが startInset で空けた幅です。",
+              flex: "左右2列（flex）",
+              float: "MapStatusCorner（float＝回り込み）",
+              lead: "EARTH · 昼夜",
+              lines: ["現在地", "日本は昼", "雲 最新", "地形 Sentinel-2 z10", "雨 気象庁 11:00 実況", "×123.4"],
+              flexLines: ["現在地", "日本は昼", "雲 最新", "地形 Sentinel-2", "z10", "雨 気象庁 11:00 実", "況", "×123.4"],
+              broken: [4, 6],
+              inset: "startInset",
+              column: "右の列の幅",
+              broke: "折り返された所",
+              compass: "方位磁針",
+          }
+        : {
+              label: "Two narrow map tops side by side. Left, a two-column flex: the right column only gets the width left beside the words (dashed box), 'Terrain Sentinel-2 z10' splits over two lines and the last letters of 'observed' drop to their own line. Right, MapStatusCorner's float: only the first two lines sit beside the words on the left; the rest move below them, stay right-aligned on one line each, and the startInset strip on the left (where the compass is) stays clear.",
+              caption: "Left: a two-column flex (the dashed box is the right column). Right: MapStatusCorner (float). The hatched strip is the room kept by startInset.",
+              flex: "Two-column flex",
+              float: "MapStatusCorner (float)",
+              lead: "EARTH · DAY & NIGHT",
+              lines: ["Here", "Day in Japan", "Clouds latest", "Terrain Sentinel-2 z10", "Rain JMA 11:00 observed", "×123.4"],
+              flexLines: ["Here", "Day in Japan", "Clouds latest", "Terrain Sentinel-2", "z10", "Rain JMA 11:00 obser", "ved", "×123.4"],
+              broken: [4, 6],
+              inset: "startInset",
+              column: "right column",
+              broke: "broken here",
+              compass: "compass",
+          };
+    const W = 250;
+    const H = 190;
+    const lh = 15;
+    const panel = (x: number, title: string, body: React.ReactNode, key: string) => (
+        <g key={key}>
+            <text x={x + W / 2} y="16" textAnchor="middle" className="fill-foreground text-[12px] font-semibold">{title}</text>
+            <clipPath id={`mc-clip-${key}`}>
+                <rect x={x} y="28" width={W} height={H} rx="10" />
+            </clipPath>
+            <g clipPath={`url(#mc-clip-${key})`}>
+                <rect x={x} y="28" width={W} height={H} className="fill-gunjo-deep" />
+                {body}
+            </g>
+            <rect x={x} y="28" width={W} height={H} rx="10" fill="none" className="stroke-border" strokeWidth="1.5" />
+        </g>
+    );
+    const mono = "font-mono text-[10.5px]";
+    const leftX = 20;
+    const rightX = 370;
+    return (
+        <FigureFrame label={t.label} caption={t.caption} minWidth={560}>
+            <svg viewBox="0 0 640 230" className="h-auto w-full" aria-hidden>
+                <defs>
+                    <pattern id="mc-hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                        <line x1="0" y1="0" x2="0" y2="6" className="stroke-gunjo-light" strokeWidth="1.5" opacity="0.45" />
+                    </pattern>
+                </defs>
+                {panel(
+                    leftX,
+                    t.flex,
+                    <>
+                        <text x={leftX + 10} y={50} className={`fill-palette-white/90 ${mono}`}>{t.lead}</text>
+                        {/* the right column: only the width left beside the lead */}
+                        <rect x={leftX + 128} y={36} width={W - 134} height={H - 16} rx="4" fill="none" className="stroke-gunjo-light" strokeWidth="1" strokeDasharray="4 3" opacity="0.7" />
+                        <text x={leftX + 128 + (W - 134) / 2} y={H + 12} textAnchor="middle" className="fill-palette-white/80 text-[10px]">{t.column}</text>
+                        <text x={leftX + 10} y={H + 12} className="fill-warning text-[10px] font-bold">■ {t.broke}</text>
+                        {t.flexLines.map((line, i) => (
+                            <text
+                                key={i}
+                                x={leftX + W - 10}
+                                y={50 + i * lh}
+                                textAnchor="end"
+                                className={`${t.broken.includes(i) ? "fill-warning font-bold" : "fill-palette-white/90"} ${mono}`}
+                            >
+                                {line}
+                            </text>
+                        ))}
+                        <circle cx={leftX + 36} cy={96} r="22" fill="none" className="stroke-gunjo-light" strokeWidth="1.2" opacity="0.8" />
+                        <text x={leftX + 36} y={132} textAnchor="middle" className="fill-palette-white/80 text-[9px]">{t.compass}</text>
+                    </>,
+                    "flex"
+                )}
+                {panel(
+                    rightX,
+                    t.float,
+                    <>
+                        <rect x={rightX} y={62} width={70} height={H - 34} fill="url(#mc-hatch)" />
+                        <rect x={rightX} y={62} width={70} height={H - 34} fill="none" className="stroke-gunjo-light" strokeWidth="1" strokeDasharray="4 3" />
+                        <rect x={rightX + 6} y={H + 1} width={58} height={15} rx="3" className="fill-gunjo-deep" />
+                        <text x={rightX + 35} y={H + 12} textAnchor="middle" className="fill-palette-white/90 text-[10px]">{t.inset}</text>
+                        <text x={rightX + 10} y={50} className={`fill-palette-white/90 ${mono}`}>{t.lead}</text>
+                        {t.lines.map((line, i) => (
+                            <text key={i} x={rightX + W - 10} y={50 + i * lh} textAnchor="end" className={`fill-palette-white/90 ${mono}`}>
+                                {line}
+                            </text>
+                        ))}
+                        <circle cx={rightX + 36} cy={96} r="22" fill="none" className="stroke-gunjo-light" strokeWidth="1.2" opacity="0.8" />
+                        <text x={rightX + 36} y={132} textAnchor="middle" className="fill-palette-white/80 text-[9px]">{t.compass}</text>
+                    </>,
+                    "float"
+                )}
+                <path d={`M${leftX + W + 20} 120 L ${rightX - 20} 120`} className="stroke-muted-foreground" strokeWidth="1.5" markerEnd="url(#mc-arrow)" />
+                <defs>
+                    <Arrow id="mc-arrow" />
+                </defs>
+            </svg>
+        </FigureFrame>
+    );
+}

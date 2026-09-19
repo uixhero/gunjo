@@ -13,6 +13,10 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ### Added
 
+- **`RangeBar`**（影響: **none**）— 全体の幅（`min`〜`max`）の中で、区間（`low`〜`high`）がどこにあるかを1本の帯で見せる Display 部品。週間予報の最低〜最高気温、プランごとの価格帯、拠点ごとの営業時間など、**並べる行が同じ `min` / `max` を持つ**ことで位置で比べられる。数字は帯の外に呼び出し側が置く。`variant="gradient"` は**全体に1本の色の段（primary → info → warning）を敷いて区間の部分だけを見せる**＝同じ値はどの行でも同じ色（区間ごとにやり直すと行ごとに色が変わるため）。`solid` は主色。両端が同じでも帯の高さぶんの点を出し、`null` のあいだは下地だけ。`role="img"` で「気温: 20°–28°」と読む。HTML/CSS（SVG なし）。Meter（0から1つの値）・DistributionBar（構成比）・RangeSlider（入力）では描けない形のため新設。(#998)
+- **`MapStatusCorner`**（影響: **none**）— 地図の右上に、いま何を見ているか（視点・昼夜・雲の時刻・地形の出どころ・倍率）を短い行で重ねる Display 部品。**左上の字（`lead`）を float で浮かせ、行は1行ずつ折らない塊にする**＝細い画面では、入りきらない行が左の字の下へ回り、左の字と並ぶのは頭の1〜2行だけになる（左右2列の flex だと、行ごと押し出されたり語の最後の1字が落ちたりする）。`startInset` で左に方位磁針などの場所を空ける。字は地図の上の字の段 `text-canvas-2xs`（特例のページ `/docs/exceptions`・`canvas-text-allowlist.json` に追加）に縁取り。ポインタを受けず、下の地図はそのまま動かせる。(#998)
+- **`TimelineScrubber`**（影響: **none**）— 過去（実測）から未来（予測）までを1本の目盛りで行き来する Inputs 部品。**中央の印は動かず、目盛りのほうが動く**（ドラッグは相対・`touch-action: pan-y`・目盛りを押すとそのコマへ・両端はぼかす）。`lastObservedIndex` で実況と予報を分け、**札の語（Badge）・境目の点線・色の3つで示す**（色だけにしない）。再生は `stepInterval` ごとに1コマ進み、最後で止まる（`playing` は制御・非制御の両方）。時計は持たず、持つのは再生のタイマーだけ＝「いま」は呼び出し側が決める（TimeTransport と同じ決まり）。`role="slider"` で矢印・PageUp / PageDown・Home / End、読み上げは「11:05 · 予報」。まだ届いていないコマ（`pending`）は薄く描く。(#998)
+
 - **待ちの表示を3つ追加：`ProgressDialog`・`ActionProgress`／`FormActionProgress`・`RouteProgress`**（影響: **none**）。3つとも、本当の進み具合が分からないときは％を出さない（`Progress` の `indeterminate` を使う）。`prefers-reduced-motion: reduce`（または祖先の `data-motion="reduce"`）では流れが止まり、淡い色の帯になる。ダイアログの2つは、`portalContainer` を渡すとその中に並べて描く。(#996)
   - `ProgressDialog`（Overlay）：数十秒以上かかる処理の待機画面（`Dialog` を合成）。16:9 の差し替えできる絵（`media`）、いまの状態を伝える一文（`status`）、自由に中身を入れられる補助の枠（`aside`）、キャンセルのボタン（`onCancel`）を持つ。`variant="overlay"` で札（`badge`）と題を絵の上に重ねる。Esc・外側のクリック・閉じるボタンでは閉じず、閉じるのは呼び出し側のコード。`value`／`max` を渡したときだけ割合でバーが伸びる。
   - `ActionProgress`（Feedback）：保存や送信のような短い処理のあいだ、画面を塞ぐ小さなダイアログ。既定で 350ms 待ってから出し、出たら 500ms は消さない（`delayMs`／`minVisibleMs`）。`FormActionProgress` は、置かれた form の送信中を React 19 の `useFormStatus` で読む。
@@ -34,6 +38,8 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ### Changed
 
+- **`SparklineChart` に「いまの位置」と両端の札を追加**（影響: **none**）— `currentIndex` で時間の軸の上の1点に点と細い縦線を置く（前後15日の線で今日がどこかを示す。`referenceValue` は値の高さの横線なので別物）。`currentLabel` はその点の読み上げ名。`startLabel` / `endLabel` で両端の下に小さな札（「15日前」「15日後」）を、線とは別の段に出す（線を縮めない）。点と縦線は HTML で重ねる。`AnalyticsCard` の中に入れれば、値＋一言＋小さな推移のカードになる。描画の土台を線の箱と札の段に分けたが、札を渡さなければ見た目は従来どおり。(#998)
+- **`StickyNoticeBar` に字の見送り釦と、語の途中で折らない指定を追加**（影響: **none**）— `dismissText` を渡すと × の代わりに字の釦（「見送る」）を出す＝時刻が迫ったときの知らせのように、見送ることも選択肢の1つである場合に使う（字がそのまま読み上げ名）。`textWrap="phrase"` は語の途中で折らない（`word-break: keep-all` ＋ `overflow-wrap: anywhere`）＝日本語は空白・句読点・`<wbr>` でだけ折れ、「出ま／す」にならない。既定は従来どおり `anywhere`。(#998)
 - **`Skeleton` が動きを減らす設定で明滅しなくなった**（影響: **none**）— `prefers-reduced-motion: reduce` のとき `animate-pulse` を止める（`motion-reduce:animate-none`）。`PlacePanel` の骨組みで使うため、#975 の1つ目だけを先に直した（値だけを骨組みにする形・読み上げの口は #975 に残る）。(#994 / #975)
 - **`ListCard` の severity 表現を意味トークンの境界線＋淡い背景に変更**（影響: **minor**）— 左端の色帯を廃止し、`Alert` / `Banner` と同じ意味トークンの境界線と淡い背景で重大度を補助する。状態の意味は従来どおり `Badge` と文言が担い、`severity` のプロパティ名・受け付ける値・型の公開方法は不変。
 - **`ActionQueue` の severity 表現から左端の太い色帯を廃止**（影響: **minor**）— 既存の全周の意味境界線＋淡い背景は維持し、`Alert` / `Banner` / `ListCard` と同じ面表現に統一する。重大度のアイコン・読み上げラベル・ソート順と公開 API は不変。

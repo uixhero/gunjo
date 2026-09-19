@@ -2132,6 +2132,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "mapStatusCorner": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": ""
+      },
+      "variantColorHints": {}
+    },
     "markdownRenderer": {
       "variantKeys": [],
       "defaultVariantKey": null,
@@ -2348,6 +2361,21 @@ export const componentStyleHints = {
       "slotIds": [],
       "variantClasses": {
         "default": "w-full"
+      },
+      "variantColorHints": {}
+    },
+    "rangeBar": {
+      "variantKeys": [
+        "solid",
+        "gradient"
+      ],
+      "defaultVariantKey": "solid",
+      "baseClasses": "",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "solid": "",
+        "gradient": ""
       },
       "variantColorHints": {}
     },
@@ -3393,6 +3421,19 @@ export const componentStyleHints = {
         "default": "fill=transparent | stroke=#e2e8f0@1px",
         "disabled": "fill=#f1f5f9 | stroke=#e2e8f0@1px"
       }
+    },
+    "timelineScrubber": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": ""
+      },
+      "variantColorHints": {}
     },
     "timePicker": {
       "variantKeys": [],

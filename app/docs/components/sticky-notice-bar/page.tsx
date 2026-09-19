@@ -11,13 +11,16 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import {
     StickyNoticeBarContainedDemo,
+    StickyNoticeBarTimedDemo,
     StickyNoticeBarViewportDemo,
 } from "@/components/demos/StickyNoticeBarDemo";
 import feedbackMetadata from "@design/feedback-metadata.json";
 import { DocNote } from "@gunjo/ui";
 
 const topCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client"
+
+import * as React from "react"
 import { Button, StickyNoticeBar, TextLink } from "@gunjo/ui"
 import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
 
@@ -51,7 +54,9 @@ export function SiteAnnouncement() {
     </main>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client"
+
+import * as React from "react"
 import { Button, StickyNoticeBar, TextLink } from "@gunjo/ui"
 import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
 
@@ -88,7 +93,9 @@ export function SiteAnnouncement() {
 };
 
 const bottomCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client"
+
+import * as React from "react"
 import { StickyNoticeBar, TextLink } from "@gunjo/ui"
 import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
 
@@ -117,7 +124,9 @@ export function ContainedAnnouncement() {
     </div>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client"
+
+import * as React from "react"
 import { StickyNoticeBar, TextLink } from "@gunjo/ui"
 import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
 
@@ -149,7 +158,9 @@ export function ContainedAnnouncement() {
 };
 
 const viewportCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client"
+
+import * as React from "react"
 import { StickyNoticeBar, TextLink } from "@gunjo/ui"
 import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
 
@@ -172,7 +183,9 @@ export function TopAnnouncement() {
     </StickyNoticeBar>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client"
+
+import * as React from "react"
 import { StickyNoticeBar, TextLink } from "@gunjo/ui"
 import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
 
@@ -198,7 +211,9 @@ export function TopAnnouncement() {
 };
 
 const longCopyCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client"
+
+import * as React from "react"
 import { StickyNoticeBar, TextLink } from "@gunjo/ui"
 import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
 
@@ -224,7 +239,9 @@ export function LongAnnouncement() {
     </StickyNoticeBar>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client"
+
+import * as React from "react"
 import { StickyNoticeBar, TextLink } from "@gunjo/ui"
 import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
 
@@ -247,6 +264,65 @@ export function LongAnnouncement() {
       onDismiss={() => setVisible(false)}
     >
       {MESSAGE}
+    </StickyNoticeBar>
+  )
+}`,
+};
+
+const timedCodeByLocale = {
+    ja: `"use client"
+
+import * as React from "react"
+import { Button, StickyNoticeBar } from "@gunjo/ui"
+
+export function DepartureNotice() {
+  const [visible, setVisible] = React.useState(true)
+
+  if (!visible) return null
+
+  return (
+    // textWrap="phrase" は語の途中で折りません。折ってよい場所に <wbr /> を置きます。
+    // dismissText を渡すと、× ではなく文字のボタンになります。
+    <StickyNoticeBar
+      edge="top"
+      textWrap="phrase"
+      action={
+        <Button size="touch" variant="outline" className="rounded-full">
+          のりばを見る
+        </Button>
+      }
+      dismissText="見送る"
+      onDismiss={() => setVisible(false)}
+    >
+      あと <strong>10分</strong><wbr />で、<wbr />最終の<wbr />バスが<wbr />駅前の<wbr />3番のりばから<wbr />出発します
+    </StickyNoticeBar>
+  )
+}`,
+    en: `"use client"
+
+import * as React from "react"
+import { Button, StickyNoticeBar } from "@gunjo/ui"
+
+export function DepartureNotice() {
+  const [visible, setVisible] = React.useState(true)
+
+  if (!visible) return null
+
+  return (
+    // textWrap="phrase" never breaks inside a word; in Japanese, mark the
+    // allowed breaks with <wbr />. dismissText makes the dismiss a word, not ×.
+    <StickyNoticeBar
+      edge="top"
+      textWrap="phrase"
+      action={
+        <Button size="touch" variant="outline" className="rounded-full">
+          Show the stand
+        </Button>
+      }
+      dismissText="Not now"
+      onDismiss={() => setVisible(false)}
+    >
+      In <strong>10 minutes</strong> the last bus leaves from stand 3
     </StickyNoticeBar>
   )
 }`,
@@ -304,6 +380,21 @@ export default function StickyNoticeBarPage() {
             description: isJa
                 ? "閉じるボタンの aria-label とツールチップです。"
                 : "aria-label and tooltip for the dismiss button.",
+        },
+        {
+            name: "dismissText",
+            type: "React.ReactNode",
+            description: isJa
+                ? "渡すと × の代わりに文字のボタン（「見送る」）を出します。その文字が読み上げ名になります。"
+                : "Shows a worded dismiss (“Not now”) instead of ×; the word is its accessible name.",
+        },
+        {
+            name: "textWrap",
+            type: "'anywhere' | 'phrase'",
+            default: "'anywhere'",
+            description: isJa
+                ? "\"phrase\" にすると語の途中で折り返しません。日本語は空白・句読点・<wbr> の位置でだけ折り返します。"
+                : "phrase never breaks inside a word; Japanese breaks only at spaces, punctuation and <wbr>.",
         },
         {
             name: "placement",
@@ -409,6 +500,19 @@ export default function StickyNoticeBarPage() {
                             previewBodyWidth: "sm",
                             fitViewport: "mobile",
                             code: longCopyCodeByLocale[locale],
+                        },
+                        {
+                            key: "timed-choice",
+                            title: isJa ? "時刻が迫ったら出し、「見送る」ボタンで閉じる" : "A timed notice with a worded dismiss",
+                            description: isJa
+                                ? "時刻が迫ったときに、「のりばを見る」と「見送る」の2つを示す使い方です。見送るのも選択肢の1つなので、× ではなく文字のボタンにします（dismissText）。textWrap=\"phrase\" にすると「出／発します」のような語の途中での折り返しが起きません。切り替えで違いを見られます。"
+                                : "When a time is near and the reader has two real choices, the dismiss is a word (dismissText), not ×. textWrap=\"phrase\" never breaks inside a word; the switch shows the difference.",
+                            preview: <StickyNoticeBarTimedDemo locale={locale} />,
+                            embedSrc: "/embed/sticky-notice-bar?variant=timed",
+                            previewHeight: 320,
+                            previewBodyWidth: "sm",
+                            fitViewport: "mobile",
+                            code: timedCodeByLocale[locale],
                         },
                     ]}
                 />
