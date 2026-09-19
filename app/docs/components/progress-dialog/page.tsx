@@ -27,7 +27,7 @@ const STEPS = ${t('["会議の前提を読み取っています", "発言を要�
 const SCENE = "/demos/progress-dialog/meeting-minutes.svg";
 const SCENE_STILL = "/demos/progress-dialog/meeting-minutes-still.svg";
 
-// ${t("開いているあいだの高さを覚えておき、閉じたあともその高さを保ちます（枠が跳ねないように）", "Remember the height while open and keep it after closing, so the frame does not jump")}
+// ${t("閉じたあとも、開いていたときの高さを保ちます", "Keep the open height after closing")}
 function useKeptHeight(container: HTMLElement | null, open: boolean) {
   const [height, setHeight] = React.useState<number>();
   React.useEffect(() => {
@@ -122,7 +122,7 @@ import { Badge, Button, ProgressDialog } from "@gunjo/ui";
 const SCENE = "/demos/progress-dialog/trip-plan.svg";
 const SCENE_STILL = "/demos/progress-dialog/trip-plan-still.svg";
 
-// ${t("開いているあいだの高さを覚えておき、閉じたあともその高さを保ちます（枠が跳ねないように）", "Remember the height while open and keep it after closing, so the frame does not jump")}
+// ${t("閉じたあとも、開いていたときの高さを保ちます", "Keep the open height after closing")}
 function useKeptHeight(container: HTMLElement | null, open: boolean) {
   const [height, setHeight] = React.useState<number>();
   React.useEffect(() => {
@@ -188,7 +188,7 @@ const TOTAL = 5;
 const SCENE = "/demos/progress-dialog/meeting-minutes.svg";
 const SCENE_STILL = "/demos/progress-dialog/meeting-minutes-still.svg";
 
-// ${t("開いているあいだの高さを覚えておき、閉じたあともその高さを保ちます（枠が跳ねないように）", "Remember the height while open and keep it after closing, so the frame does not jump")}
+// ${t("閉じたあとも、開いていたときの高さを保ちます", "Keep the open height after closing")}
 function useKeptHeight(container: HTMLElement | null, open: boolean) {
   const [height, setHeight] = React.useState<number>();
   React.useEffect(() => {
@@ -256,7 +256,7 @@ import { Button, ProgressDialog } from "@gunjo/ui";
 const SCENE = "/demos/progress-dialog/meeting-minutes.svg";
 const SCENE_STILL = "/demos/progress-dialog/meeting-minutes-still.svg";
 
-// ${t("開いているあいだの高さを覚えておき、閉じたあともその高さを保ちます（枠が跳ねないように）", "Remember the height while open and keep it after closing, so the frame does not jump")}
+// ${t("閉じたあとも、開いていたときの高さを保ちます", "Keep the open height after closing")}
 function useKeptHeight(container: HTMLElement | null, open: boolean) {
   const [height, setHeight] = React.useState<number>();
   React.useEffect(() => {
@@ -309,7 +309,7 @@ const STEPS = ${t('["会議の前提を読み取っています", "発言を要�
 const SCENE = "/demos/progress-dialog/meeting-minutes.svg";
 const SCENE_STILL = "/demos/progress-dialog/meeting-minutes-still.svg";
 
-// ${t("開いているあいだの高さを覚えておき、閉じたあともその高さを保ちます（枠が跳ねないように）", "Remember the height while open and keep it after closing, so the frame does not jump")}
+// ${t("閉じたあとも、開いていたときの高さを保ちます", "Keep the open height after closing")}
 function useKeptHeight(container: HTMLElement | null, open: boolean) {
   const [height, setHeight] = React.useState<number>();
   React.useEffect(() => {
@@ -399,7 +399,7 @@ function CreateMinutes(props: { still?: boolean }) {
 }
 
 export function ReduceMotionDemo() {
-  // ${t("画面の中の「動きを減らす」設定をオンにした姿です。バーは data-motion で、絵は止めた版で止まります", "The in-app reduce-motion setting turned on: data-motion stops the bar, the still SVG stops the scene")}
+  // ${t("動きを減らす設定をオンにした姿です", "Reduce motion turned on")}
   React.useEffect(() => {
     const root = document.documentElement;
     root.dataset.motion = "reduce";
@@ -531,8 +531,8 @@ export function ReduceMotionDemo() {
                             key: "reduced-motion",
                             title: t("動きを減らす設定", "Reduced motion"),
                             description: t(
-                                "流れるバーは止まり、淡い色の帯になります。絵は、呼び出し側が用意した止めた版の SVG に替えます（picture の source）。この見本は、その設定をオンにした姿です。",
-                                "The sweep stops and becomes a still, dimmed bar. The media swaps, via a picture source, to a still SVG you provide. This sample shows that setting turned on."
+                                "流れるバーは止まり、淡い色の帯になります。絵は、呼び出し側が用意した止めた版の SVG に替えます（picture の source）。",
+                                "The sweep stops and becomes a still, dimmed bar. The media swaps, via a picture source, to a still SVG you provide."
                             ),
                             preview: null,
                             embedSrc: "/embed/progress-dialog?variant=reduced-motion",

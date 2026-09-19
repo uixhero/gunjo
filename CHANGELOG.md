@@ -13,7 +13,7 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ### Added
 
-- **待ちの表示を3つ追加：`ProgressDialog`・`ActionProgress`／`FormActionProgress`・`RouteProgress`**（影響: **none**）。3つとも、本当の進み具合が分からないときは％を出さない（`Progress` の `indeterminate` を使う）。`prefers-reduced-motion: reduce`（または祖先の `data-motion="reduce"`）では流れが止まり、淡い色の帯になる。ダイアログの2つは、`portalContainer` を渡すとその要素の中に並べて描く（プレビューの枠の中で開いた姿を見せるため）。(#996)
+- **待ちの表示を3つ追加：`ProgressDialog`・`ActionProgress`／`FormActionProgress`・`RouteProgress`**（影響: **none**）。3つとも、本当の進み具合が分からないときは％を出さない（`Progress` の `indeterminate` を使う）。`prefers-reduced-motion: reduce`（または祖先の `data-motion="reduce"`）では流れが止まり、淡い色の帯になる。ダイアログの2つは、`portalContainer` を渡すとその中に並べて描く。(#996)
   - `ProgressDialog`（Overlay）：数十秒以上かかる処理の待機画面（`Dialog` を合成）。16:9 の差し替えできる絵（`media`）、いまの状態を伝える一文（`status`）、自由に中身を入れられる補助の枠（`aside`）、キャンセルのボタン（`onCancel`）を持つ。`variant="overlay"` で札（`badge`）と題を絵の上に重ねる。Esc・外側のクリック・閉じるボタンでは閉じず、閉じるのは呼び出し側のコード。`value`／`max` を渡したときだけ割合でバーが伸びる。
   - `ActionProgress`（Feedback）：保存や送信のような短い処理のあいだ、画面を塞ぐ小さなダイアログ。既定で 350ms 待ってから出し、出たら 500ms は消さない（`delayMs`／`minVisibleMs`）。`FormActionProgress` は、置かれた form の送信中を React 19 の `useFormStatus` で読む。
   - `RouteProgress`（Feedback）：ページの移動中に画面の上端へ出す細いバー。フレームワークに依存しない。`placement="container"` で、位置指定した親要素の上端にも置ける。

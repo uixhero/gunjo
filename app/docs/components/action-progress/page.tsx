@@ -39,7 +39,7 @@ export function SaveSettings() {
   };
 
   return (
-    // ${t("開いたダイアログの高さ（実測 135〜155px）を先に取り、ボタンとダイアログを同じマスに重ねます", "Reserve the open dialog's height (measured 135–155px) and stack the buttons and the dialog in one cell")}
+    // ${t("開いたときの高さ（実測 155px）を先に取ります", "Reserve the open height (measured 155px)")}
     <div ref={setContainer} className="relative grid min-h-[155px] w-full place-items-center [&>*]:[grid-area:1/1]">
       <div className="flex flex-col items-center gap-4">
       <div className="flex flex-wrap justify-center gap-2">
@@ -81,7 +81,7 @@ export function JustAfterSave() {
   };
 
   return (
-    // ${t("開いたダイアログの高さ（実測 135〜155px）を先に取り、ボタンとダイアログを同じマスに重ねます", "Reserve the open dialog's height (measured 135–155px) and stack the buttons and the dialog in one cell")}
+    // ${t("開いたときの高さ（実測 155px）を先に取ります", "Reserve the open height (measured 155px)")}
     <div ref={setContainer} className="relative grid min-h-[155px] w-full place-items-center [&>*]:[grid-area:1/1]">
       <div className="flex flex-col items-center gap-4">
       <div className="flex flex-wrap justify-center gap-2">
@@ -157,7 +157,7 @@ export function SaveSettings() {
   };
 
   return (
-    // ${t("開いたダイアログの高さ（実測 135〜155px）を先に取り、ボタンとダイアログを同じマスに重ねます", "Reserve the open dialog's height (measured 135–155px) and stack the buttons and the dialog in one cell")}
+    // ${t("開いたときの高さ（実測 155px）を先に取ります", "Reserve the open height (measured 155px)")}
     <div ref={setContainer} className="relative grid min-h-[155px] w-full place-items-center [&>*]:[grid-area:1/1]">
       <div className="flex flex-col items-center gap-4">
       <div className="flex flex-wrap justify-center gap-2">
