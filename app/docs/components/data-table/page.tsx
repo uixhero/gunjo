@@ -233,7 +233,9 @@ export default function DataTablePage() {
     const labels = React.useMemo(() => getTableLabels(isJa), [isJa]);
 
     const code = isJa
-        ? `import type { ColumnDef } from "@tanstack/react-table"
+        ? `"use client";
+
+import type { ColumnDef } from "@tanstack/react-table"
 import { Badge, DataTable, type DataTableLabels } from "@gunjo/ui"
 
 type Member = {
@@ -326,7 +328,9 @@ export function MembersTable() {
     />
   )
 }`
-        : `import type { ColumnDef } from "@tanstack/react-table"
+        : `"use client";
+
+import type { ColumnDef } from "@tanstack/react-table"
 import { Badge, DataTable, type DataTableLabels } from "@gunjo/ui"
 
 type Member = {
@@ -427,7 +431,9 @@ export function MembersTable() {
     );
 
     const footerTotalsCode = isJa
-        ? `import type { ColumnDef, Table } from "@tanstack/react-table";
+        ? `"use client";
+
+import type { ColumnDef, Table } from "@tanstack/react-table";
 import { DataTable } from "@gunjo/ui";
 
 type Invoice = { id: string; item: string; qty: number; amount: number };
@@ -466,7 +472,9 @@ const columns: ColumnDef<Invoice>[] = [
 export function InvoiceTotalsTable() {
   return <DataTable columns={columns} data={invoices} filter={null} />;
 }`
-        : `import type { ColumnDef, Table } from "@tanstack/react-table";
+        : `"use client";
+
+import type { ColumnDef, Table } from "@tanstack/react-table";
 import { DataTable } from "@gunjo/ui";
 
 type Invoice = { id: string; item: string; qty: number; amount: number };
