@@ -113,6 +113,17 @@ module.exports = {
             deepest: "hsl(var(--kobicha-deepest))",
         },
     },
+    // The canvas tier: text that sits ON a map / canvas / image only (scale
+    // bars, map-control captions, corner status). GunjoUI's own steps below
+    // text-xs — the rest of the type scale is Tailwind's and is not touched.
+    // SSOT is CANVAS_TEXT_STEPS in scripts/design-sync/token-scales.mjs;
+    // design:verify:scale-tokens holds this block to it and fails any use
+    // outside design/policy/canvas-text-allowlist.json. (2026-09-19)
+    fontSize: {
+        "canvas-sm": ["0.6875rem", { lineHeight: "1.4" }],
+        "canvas-xs": ["0.625rem", { lineHeight: "1.4" }],
+        "canvas-2xs": ["0.59375rem", { lineHeight: "1.4" }],
+    },
     borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

@@ -22,6 +22,22 @@ export const componentContentJa: Record<string, DocContent> = {
     title: "RouteProgress",
     description: "ページの移動中に画面の上端へ出す細いバーです。進み具合（％）を持たず、描画しているあいだだけ流れます。",
   },
+  "components/layer-menu": {
+    title: "LayerMenu",
+    description: "地図に重ねて出すもの（雲・雨・国境など）を、組に分けて表示・非表示にするメニューです。タップで開き、長押しでまとめて消す・戻す。",
+  },
+  "components/map-control-button": {
+    title: "MapControlButton",
+    description: "地図や canvas（図を一面に描く画面の部分）の上に浮かせる、アイコンだけの丸いボタンです。拡大・縮小・選んだ地点へ移動・現在地へ移動に使います。オン・使えない・取得中・失敗の状態を、色だけに頼らず見せます。",
+  },
+  "components/place-panel": {
+    title: "PlacePanel",
+    description: "地図で選んだ1か所の詳細を出す欄です（スマートフォンでは画面の下、広い画面では地図の横に置きます）。値が届くまで、値の場所には読み込み中の仮の枠（骨組み）を出します。",
+  },
+  "components/scale-bar": {
+    title: "ScaleBar",
+    description: "いまの縮尺を「20 km」の文字と、その長さの線で見せる物差しです。",
+  },
   "components/segmented-control": {
     title: "SegmentedControl",
     description: "少数の選択肢から1つを選ぶ、等幅セグメント型のコントロールです。",

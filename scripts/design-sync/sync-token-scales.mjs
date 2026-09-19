@@ -6,6 +6,7 @@ import {
   LEADING_STEPS,
   SPACING_STEPS,
   TEXT_STEPS,
+  CANVAS_TEXT_STEPS,
   WEIGHT_STEPS,
   spacingPx,
   spacingValue,
@@ -99,6 +100,16 @@ ${rows(SPACING_STEPS, (entry) => ({
 
 export const TEXT_SCALE: TextStep[] = [
 ${rows(TEXT_STEPS, (entry) => ({
+  utility: entry.utility,
+  token: entry.name,
+  value: textValue(entry),
+  px: textPx(entry),
+}))}
+];
+
+/** Canvas overlays only (maps, canvases, images) — see token-scales.mjs. */
+export const CANVAS_TEXT_SCALE: TextStep[] = [
+${rows(CANVAS_TEXT_STEPS, (entry) => ({
   utility: entry.utility,
   token: entry.name,
   value: textValue(entry),

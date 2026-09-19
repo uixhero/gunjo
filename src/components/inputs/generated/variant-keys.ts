@@ -22,6 +22,9 @@ export type FilterButtonVariantKey = (typeof filterButtonVariantKeys)[number];
 export const inputVariantKeys = ["default", "disabled", "placeholder"] as const;
 export type InputVariantKey = (typeof inputVariantKeys)[number];
 
+export const mapControlButtonVariantKeys = ["default", "lg", "sm"] as const;
+export type MapControlButtonVariantKey = (typeof mapControlButtonVariantKeys)[number];
+
 export const radioGroupVariantKeys = ["checked", "unchecked"] as const;
 export type RadioGroupVariantKey = (typeof radioGroupVariantKeys)[number];
 
@@ -45,6 +48,7 @@ export const inputsVariantKeys = {
   copyButton: copyButtonVariantKeys,
   filterButton: filterButtonVariantKeys,
   input: inputVariantKeys,
+  mapControlButton: mapControlButtonVariantKeys,
   radioGroup: radioGroupVariantKeys,
   sortButton: sortButtonVariantKeys,
   switch: switchVariantKeys,

@@ -21,6 +21,22 @@ export const componentContentEn: Record<string, DocContent> = {
     title: "RouteProgress",
     description: "A thin bar at the top of the screen while a page loads. It shows no percentage and sweeps only while rendered.",
   },
+  "components/layer-menu": {
+    title: "LayerMenu",
+    description: "Switch what is drawn on a map — clouds, rain, borders — in groups. A tap opens the menu; a long press hides everything and brings it back. The first row, All, has three states: all on, all off and some.",
+  },
+  "components/map-control-button": {
+    title: "MapControlButton",
+    description: "The round, icon-only button that floats on a map or a canvas: zoom, go to the picked place, go to my location. Pressed, disabled, busy and failed states, none of them colour alone.",
+  },
+  "components/place-panel": {
+    title: "PlacePanel",
+    description: "The details of one place picked on a map, in a panel from the bottom edge. Every row is there from the start; only the values wait as skeletons, and a value that could not be fetched settles to a dash.",
+  },
+  "components/scale-bar": {
+    title: "ScaleBar",
+    description: "The current scale as a distance (“20 km”) over a line of that length. Never a zoom factor.",
+  },
   "components/segmented-control": {
     title: "SegmentedControl",
     description: "An equal-width segmented control for choosing one option from a small set.",

@@ -253,4 +253,15 @@ export const OVERLAY_SPEC_DEFINITIONS = [
       variants: [createSyntheticVariant("default"), createSyntheticVariant("overlay")],
     }),
   },
+  {
+    key: "placePanel",
+    syntheticSpec: createSyntheticOverlaySpec({
+      frameId: "synthetic:placePanel",
+      title: "PlacePanel",
+      description: "The details of one place picked on a map, in a panel that comes up from the bottom edge: the place's name, one large value with a caption (the temperature and the sky), and a grid of labelled values. Every row is drawn from the first frame and only the VALUES wait, as fixed-width skeletons, because swapping rows in as each service answers changes the row count and shakes the panel; the panel's height does not change between loading and loaded, so the map above stays still. Each value has three states told apart by the value alone — `undefined` loading (skeleton), `null` could not be fetched (settles to '—' and stops pulsing: a skeleton left pulsing after the request gave up says 'still coming' when nothing is), anything else the value. `aria-busy` while anything is loading. NOT a Sheet: a Sheet is modal (overlay, focus trap, locked page), and a map reader must keep panning while the panel is up — this is a plain landmark the caller places (absolute at the bottom of the map container on a phone, beside the map on a wide screen). The field grid switches to two columns by the panel's own width (container query), not the viewport's. Composes Skeleton, which now stops pulsing under prefers-reduced-motion. Distinct from Sheet / Drawer (modal), DescriptionList / MetadataList (no loading states, not a panel) and Card.",
+      variants: [
+        createSyntheticVariant("default", { width: null, padding: null }),
+      ],
+    }),
+  },
 ];

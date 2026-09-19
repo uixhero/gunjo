@@ -1106,6 +1106,19 @@ export const componentStyleHints = {
       "variantClasses": {},
       "variantColorHints": {}
     },
+    "placePanel": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": ""
+      },
+      "variantColorHints": {}
+    },
     "popover": {
       "variantKeys": [
         "default"
@@ -2437,6 +2450,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "scaleBar": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": ""
+      },
+      "variantColorHints": {}
+    },
     "scheduleGrid": {
       "variantKeys": [
         "default"
@@ -3087,6 +3113,36 @@ export const componentStyleHints = {
       "baseColorHint": null,
       "slotIds": [],
       "variantClasses": {},
+      "variantColorHints": {}
+    },
+    "layerMenu": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": ""
+      },
+      "variantColorHints": {}
+    },
+    "mapControlButton": {
+      "variantKeys": [
+        "default",
+        "sm",
+        "lg"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "",
+        "sm": "",
+        "lg": ""
+      },
       "variantColorHints": {}
     },
     "mention": {

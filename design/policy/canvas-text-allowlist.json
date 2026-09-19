@@ -1,0 +1,12 @@
+{
+  "description": "Files allowed to use the canvas type tier (text-canvas-sm / -xs / -2xs, 11 / 10 / 9.5px). KeEem decision 2026-09-19: the tier is for text that sits on a map, a canvas or an image only; every other screen keeps text-xs (12px) as the floor. Checked by design:verify:scale-tokens. Ask KeEem before adding a file.",
+  "allowed": [
+    { "file": "src/components/inputs/MapControlButton.tsx", "reason": "地図の上に浮かせる丸い釦。釦の下の小さな添え字（向き・角度など）" },
+    { "file": "src/components/display/ScaleBar.tsx", "reason": "地図の上の縮尺バー。「20 km」の字" },
+    { "file": "src/components/inputs/LayerMenu.tsx", "reason": "地図の上に開く重ねるものの選択。組の見出しと、項目の右の添え書き" },
+    { "file": "app/docs/exceptions/page.tsx", "reason": "特例のページ（見本としてこの字の大きさそのものを見せる）" },
+    { "file": "app/docs/components/map-control-button/page.tsx", "reason": "部品の docs（地図の上の見本）" },
+    { "file": "app/docs/components/scale-bar/page.tsx", "reason": "部品の docs（地図の上の見本）" },
+    { "file": "app/docs/components/layer-menu/page.tsx", "reason": "部品の docs（地図の上の見本）" }
+  ]
+}

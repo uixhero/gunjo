@@ -783,6 +783,17 @@ export const componentManifest = {
       "specSource": "design/overlay.pen",
       "stability": "experimental"
     },
+    "placePanel": {
+      "title": "PlacePanel",
+      "description": "The details of one place picked on a map, in a panel that comes up from the bottom edge: the place's name, one large value with a caption (the temperature and the sky), and a grid of labelled values. Every row is drawn from the first frame and only the VALUES wait, as fixed-width skeletons, because swapping rows in as each service answers changes the row count and shakes the panel; the panel's height does not change between loading and loaded, so the map above stays still. Each value has three states told apart by the value alone — `undefined` loading (skeleton), `null` could not be fetched (settles to '—' and stops pulsing: a skeleton left pulsing after the request gave up says 'still coming' when nothing is), anything else the value. `aria-busy` while anything is loading. NOT a Sheet: a Sheet is modal (overlay, focus trap, locked page), and a map reader must keep panning while the panel is up — this is a plain landmark the caller places (absolute at the bottom of the map container on a phone, beside the map on a wide screen). The field grid switches to two columns by the panel's own width (container query), not the viewport's. Composes Skeleton, which now stops pulsing under prefers-reduced-motion. Distinct from Sheet / Drawer (modal), DescriptionList / MetadataList (no loading states, not a panel) and Card.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/overlay/PlacePanel.tsx",
+      "specSource": "design/overlay.pen",
+      "stability": "experimental"
+    },
     "popover": {
       "title": "Popover",
       "description": "Displays rich content in a portal, triggered by a button.",
@@ -1810,6 +1821,17 @@ export const componentManifest = {
       "specSource": "design/display.pen",
       "stability": "beta"
     },
+    "scaleBar": {
+      "title": "ScaleBar",
+      "description": "How far the reader is looking on a map or canvas: a distance in words ('20 km') over a line whose length is that distance at the current zoom. Deliberately NEVER a zoom factor — '×250' answers '250 times what?' with nothing. The distance is rounded to 1 / 2 / 5 × 10ⁿ by the exported pure `niceScale(metersPerPixel, targetWidth, minWidth)` so the words stay short and the line absorbs the remainder; the line eases between lengths (no easing under prefers-reduced-motion). Takes `metersPerPixel` at the centre of the view — the caller's map library knows it — and shows '—' with no line while that is unknown, because a bar that guesses is worse than none. The words use the canvas type tier (text-canvas-2xs) with a halo in the page background colour so they read over any imagery. role='img' with an accessible name ('Scale: 20 km'). Placed by the caller, usually bottom-left. Distinct from Meter / Progress (a share of a whole) and Slider (an input).",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/ScaleBar.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
     "scheduleGrid": {
       "title": "ScheduleGrid",
       "description": "A 2-D matrix grid: a row axis × a column axis of rich content cells with a frozen first column + sticky header row, role=grid semantics (rowheaders / columnheaders / gridcells with composed accessible names), roving-tabindex arrow-key navigation, per-cell tone (a destructive flag ring), an unavailable slot treatment, and a contained horizontal scroll that does not push the page on mobile. For any rows×columns matrix of rich navigable/editable cells — timetables (periods×days), gradebooks (students×subjects), shift rosters, comparison/cohort matrices, availability and room/resource booking grids. (Not for sortable list data — that is DataTable; not for value-by-color heatmaps — that is HeatmapChart.)",
@@ -2314,6 +2336,30 @@ export const componentManifest = {
       "sourceFile": "src/components/inputs/Label.tsx",
       "specSource": "design/inputs.pen",
       "stability": "beta"
+    },
+    "layerMenu": {
+      "title": "LayerMenu",
+      "description": "Choose what is drawn on top of a map — clouds, rain, borders, tracked objects — from a round map button: layers in labelled groups, each a toggle row with a mark, and an 'All' row first. A TAP opens the menu and a LONG PRESS (450ms, configurable, off with 0) hides every layer and a second one brings the previous set back: the action that repaints the whole picture goes on the gesture that cannot happen by accident, because a tap is how people find out what a button does. The 'All' row does the same for readers who never find the long press, keyboard included. 'All' has three states — all on, all off, some (a dash, aria-pressed='mixed') — and keeps the same mark as the other rows, since a row without a mark reads as a different kind of thing. A layer that cannot be switched now (`disabledReason`) keeps its row and its state, says why in a few words, and is left alone by 'All'. Rows stay open after a press so the marks can be seen changing. Group headings and notes use the canvas type tier. Controlled (`value` / `onValueChange`); `layerMenuAllState()` is exported for callers that mirror the state elsewhere. The same shape serves a chart's series. Distinct from DropdownMenu (actions, closes on select, no long press), CheckboxGroup (a form field on a page) and FilterChips (filters a list).",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/inputs/LayerMenu.tsx",
+      "specSource": "design/inputs.pen",
+      "stability": "experimental"
+    },
+    "mapControlButton": {
+      "title": "MapControlButton",
+      "description": "The round, icon-only button that floats on a map or a canvas: zoom in, zoom out, go to the picked place, go to my location. Its surface is its own (translucent background, blurred backdrop, hairline border) because the thing behind it is imagery, not a page — which is why it is a component and not a Button variant. States: `pressed` (a toggle that is on, aria-pressed), `disabled` with a `disabledReason` tooltip reachable by keyboard, `status='busy'` (the glyph pulses, aria-busy; the pulse stops under prefers-reduced-motion) and `status='error'` (a warning ring plus a `!` mark — never colour alone; brief, and cleared by the caller because the button holds no timer). `label` is both the accessible name and the tooltip. Sizes: `default` 44px (the GunjoUI touch line), `sm` 34px (the floor for a dense phone column — never smaller), `lg` 48px (tablet). The glyph carries meaning: 'my location' is a pin and 'the place I picked' is a ring with a dot; one glyph for both makes the reader guess where the map will jump. Distinct from Button / TooltipButton (on a page, not on imagery) and ToggleGroup (several exclusive choices). LayerMenu uses it as its trigger.",
+      "variantKeys": [
+        "default",
+        "sm",
+        "lg"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/inputs/MapControlButton.tsx",
+      "specSource": "design/inputs.pen",
+      "stability": "experimental"
     },
     "mention": {
       "title": "Mention",
