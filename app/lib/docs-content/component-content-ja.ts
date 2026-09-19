@@ -34,6 +34,18 @@ export const componentContentJa: Record<string, DocContent> = {
     title: "PlacePanel",
     description: "地図で選んだ1か所の詳細を出す欄です（スマートフォンでは画面の下、広い画面では地図の横に置きます）。値が届くまで、値の場所には読み込み中の仮の枠（骨組み）を出します。",
   },
+  "components/map-status-corner": {
+    title: "MapStatusCorner",
+    description: "地図の上端に重ねる表示です。左上に見出しを置き、右上に、いま何を見ているか（視点・昼夜・雲画像の時刻など）を短い行で並べます。細い画面では、見出しの横に入るのは最初の1〜2行だけで、残りは見出しの下に続きます。",
+  },
+  "components/range-bar": {
+    title: "RangeBar",
+    description: "全体の幅の中で、区間がどこにあるかを1本の帯で見せます。週間予報の最低〜最高気温、プランごとの価格帯などに使います。",
+  },
+  "components/timeline-scrubber": {
+    title: "TimelineScrubber",
+    description: "過去の実測値（実況）から未来の予測値（予報）までを、1本の目盛りで行き来します。中央の印は動かず、目盛りのほうが動きます。実況と予報の境目があり、再生もできます。",
+  },
   "components/scale-bar": {
     title: "ScaleBar",
     description: "いまの縮尺を「20 km」の文字と、その長さの線で見せる物差しです。",

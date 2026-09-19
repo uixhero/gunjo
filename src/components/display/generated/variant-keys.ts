@@ -103,6 +103,9 @@ export type RadarChartVariantKey = (typeof radarChartVariantKeys)[number];
 export const radialBarChartVariantKeys = ["compact", "default"] as const;
 export type RadialBarChartVariantKey = (typeof radialBarChartVariantKeys)[number];
 
+export const rangeBarVariantKeys = ["gradient", "solid"] as const;
+export type RangeBarVariantKey = (typeof rangeBarVariantKeys)[number];
+
 export const ratingVariantKeys = ["default", "lg", "sm"] as const;
 export type RatingVariantKey = (typeof ratingVariantKeys)[number];
 
@@ -174,6 +177,7 @@ export const displayVariantKeys = {
   quadrantMatrix: quadrantMatrixVariantKeys,
   radarChart: radarChartVariantKeys,
   radialBarChart: radialBarChartVariantKeys,
+  rangeBar: rangeBarVariantKeys,
   rating: ratingVariantKeys,
   retentionCohortCard: retentionCohortCardVariantKeys,
   ribbonChart: ribbonChartVariantKeys,

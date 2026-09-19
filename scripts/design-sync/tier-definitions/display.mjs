@@ -423,7 +423,7 @@ export const DISPLAY_SPEC_DEFINITIONS = [
     syntheticSpec: createSyntheticDisplaySpec({
       frameId: "synthetic:sparklineChart",
       title: "SparklineChart",
-      description: "Compact HTML/CSS line, area, or stepped trend chart for dense dashboard cards with hover/focus point tooltips.",
+      description: "Compact HTML/CSS line, area, or stepped trend chart for dense dashboard cards with hover/focus point tooltips. It can mark the current point with a dot and a vertical line, and put small labels under both ends (such as 15 days ago and in 15 days).",
       variants: [
         createSyntheticVariant("line", { height: 96 }),
         createSyntheticVariant("area", { height: 96 }),
@@ -1263,6 +1263,29 @@ export const DISPLAY_SPEC_DEFINITIONS = [
       frameId: "synthetic:scaleBar",
       title: "ScaleBar",
       description: "How far the reader is looking on a map or canvas: a distance in words ('20 km') over a line whose length is that distance at the current zoom. Deliberately NEVER a zoom factor — '×250' answers '250 times what?' with nothing. The distance is rounded to 1 / 2 / 5 × 10ⁿ by the exported pure `niceScale(metersPerPixel, targetWidth, minWidth)` so the words stay short and the line absorbs the remainder; the line eases between lengths (no easing under prefers-reduced-motion). Takes `metersPerPixel` at the centre of the view — the caller's map library knows it — and shows '—' with no line while that is unknown, because a bar that guesses is worse than none. The words use the canvas type tier (text-canvas-2xs) with a halo in the page background colour so they read over any imagery. role='img' with an accessible name ('Scale: 20 km'). Placed by the caller, usually bottom-left. Distinct from Meter / Progress (a share of a whole) and Slider (an input).",
+      variants: [
+        createSyntheticVariant("default", { width: null, padding: null }),
+      ],
+    }),
+  },
+  {
+    key: "rangeBar",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:rangeBar",
+      title: "RangeBar",
+      description: "One range drawn where it sits inside a whole scale: a thin track from `min` to `max` with the stretch from `low` to `high` filled. Every row of a list shares the same `min` / `max`, so a week of forecasts (lowest to highest temperature), the price band of each plan or the opening hours of each site line up and the eye compares positions, not numbers — the numbers stay outside the bar, where the caller puts them. `variant='gradient'` lays one cool-to-warm ramp (primary → info → warning) across the WHOLE scale and reveals only the covered part, so the same value is the same colour on every row; `solid` fills with primary. Equal ends still draw, as a dot the height of the track ('20° to 20°' is an answer); an unknown range (`null`) draws the track only. role='img' with an accessible name ('Temperature: 20°–28°'). HTML/CSS, no SVG. Distinct from Meter (one value from zero), DistributionBar (shares that add up to 100%) and RangeSlider (an input with thumbs).",
+      variants: [
+        createSyntheticVariant("solid", { width: null, padding: null }),
+        createSyntheticVariant("gradient", { width: null, padding: null }),
+      ],
+    }),
+  },
+  {
+    key: "mapStatusCorner",
+    syntheticSpec: createSyntheticDisplaySpec({
+      frameId: "synthetic:mapStatusCorner",
+      title: "MapStatusCorner",
+      description: "A few short lines in the top-right of a map that say what the reader is looking at: the viewpoint, day or night, which cloud frame, where the terrain comes from, the rain time. On a narrow screen it shares the top edge with the words on the left (`lead`, e.g. the view name and a LiveBadge). `lead` floats left and each line is one unbreakable run, so a line that does not fit beside `lead` moves below it instead of breaking a word: only the first line or two sit beside `lead`, the rest get the full width (a two-column flex row pushed lines down and clipped the last character of a word at 320px). `startInset` keeps room free on the left under `lead` for a compass. Words use the canvas type tier (text-canvas-2xs, /docs/exceptions) with a halo in the page colour, over an optional top-down scrim. The whole corner ignores the pointer so the map still drags. A labelled list for assistive tech. Placed by the caller (absolute inset-x-0 top-0). Distinct from StatusBar (an app status strip on the page, not on imagery) and LiveBadge (one 'this is live' pill; it goes inside `lead`).",
       variants: [
         createSyntheticVariant("default", { width: null, padding: null }),
       ],

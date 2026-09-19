@@ -1749,9 +1749,12 @@
         "/docs/components/time-transport",
         "/docs/components/progress-dialog",
         "/docs/components/scale-bar",
-        "/docs/components/place-panel"
+        "/docs/components/place-panel",
+        "/docs/components/map-status-corner",
+        "/docs/components/timeline-scrubber",
+        "/docs/components/sticky-notice-bar"
       ],
-      "note": "「これはいまの値か」を画面が言い続ける話。live-badge / time-transport は 2026-09-13 追記。地図の上の4部品（map-control-button / scale-bar / layer-menu / place-panel）は 2026-09-19 追記。progress-dialog（#996）は 2026-09-19 追記",
+      "note": "「これはいまの値か」を画面が言い続ける話。live-badge / time-transport は 2026-09-13 追記。地図の上の4部品（map-control-button / scale-bar / layer-menu / place-panel）は 2026-09-19 追記。progress-dialog（#996）は 2026-09-19 追記。地図の上の5部品の続き（range-bar / map-status-corner / timeline-scrubber と sticky-notice-bar・sparkline-chart の差分）は 2026-09-19 追記",
       "title": "状態の可視化 (Visibility of System Status)"
     },
     {
@@ -1762,9 +1765,11 @@
         "/docs/components/day-band",
         "/docs/components/time-transport",
         "/docs/components/map-control-button",
-        "/docs/components/layer-menu"
+        "/docs/components/layer-menu",
+        "/docs/components/timeline-scrubber",
+        "/docs/components/range-bar"
       ],
-      "note": "3部品とも「状態は文字が言う。色・点・面は補助」を設計の判断に持つ。地図の上の4部品（map-control-button / scale-bar / layer-menu / place-panel）は 2026-09-19 追記",
+      "note": "3部品とも「状態は文字が言う。色・点・面は補助」を設計の判断に持つ。地図の上の4部品（map-control-button / scale-bar / layer-menu / place-panel）は 2026-09-19 追記。地図の上の5部品の続き（range-bar / map-status-corner / timeline-scrubber と sticky-notice-bar・sparkline-chart の差分）は 2026-09-19 追記",
       "title": "色だけに頼らない表現 (Color Independence)"
     },
     {
@@ -1773,9 +1778,10 @@
       "gunjo": [
         "/docs/components/time-transport",
         "/docs/components/day-band",
-        "/docs/components/layer-menu"
+        "/docs/components/layer-menu",
+        "/docs/components/timeline-scrubber"
       ],
-      "note": "読み手が時間の位置を握り、いつでも「いまへ戻る」ことの根拠。地図の上の4部品（map-control-button / scale-bar / layer-menu / place-panel）は 2026-09-19 追記",
+      "note": "読み手が時間の位置を握り、いつでも「いまへ戻る」ことの根拠。地図の上の4部品（map-control-button / scale-bar / layer-menu / place-panel）は 2026-09-19 追記。地図の上の5部品の続き（range-bar / map-status-corner / timeline-scrubber と sticky-notice-bar・sparkline-chart の差分）は 2026-09-19 追記",
       "title": "ユーザーコントロール (User Control)"
     },
     {
@@ -1901,9 +1907,10 @@
       "uixhero": "ui-design/comparison-support",
       "gunjo": [
         "/docs/components/table",
-        "/docs/components/radio-card"
+        "/docs/components/radio-card",
+        "/docs/components/range-bar"
       ],
-      "note": "",
+      "note": "地図の上の5部品の続き（range-bar / map-status-corner / timeline-scrubber と sticky-notice-bar・sparkline-chart の差分）は 2026-09-19 追記",
       "title": "比較・検討の支援 (Comparison / Decision Support)"
     },
     {
