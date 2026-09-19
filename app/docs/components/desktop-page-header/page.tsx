@@ -7,7 +7,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { DesktopPageHeaderDemo } from "@/components/demos/DesktopPageHeaderDemo";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
-import { DesktopPageHeader } from "@gunjo/ui";
+import { Badge, Button, DesktopPageHeader } from "@gunjo/ui";
 
 const usageCode = `"use client";
 
@@ -34,10 +34,66 @@ export function FleetHeader() {
   );
 }`;
 
-const titleOnlyCode = `import { DesktopPageHeader } from "@gunjo/ui";
+const titleOnlyCode = `import { Badge, Button, DesktopPageHeader } from "@gunjo/ui";
 
 export function ReportHeader() {
   return <DesktopPageHeader title="Daily operations report" />;
+}`;
+
+const longTitleCodeJa = `import { Badge, Button, DesktopPageHeader } from "@gunjo/ui";
+
+const ACTIONS = [
+  { id: "export", label: "CSVで書き出す" },
+  { id: "print", label: "印刷する" },
+];
+
+export function LongTitleHeader() {
+  return (
+    <DesktopPageHeader
+      eyebrow="群青交通 · 品川営業所 · 車両管理"
+      title="車両点検と整備予定の一覧（2026年度 第2四半期・全営業所ぶん）"
+      subtitle="期限が近い順に並んでいます。整備工場の空きと突き合わせて予定を組みます。"
+      actions={
+        <>
+          <Badge variant="outline">下書き</Badge>
+          {ACTIONS.map((action) => (
+            <Button key={action.id} size="sm" variant="outline">
+              {action.label}
+            </Button>
+          ))}
+          <Button size="sm">予定を組む</Button>
+        </>
+      }
+    />
+  );
+}`;
+
+const longTitleCodeEn = `import { Badge, Button, DesktopPageHeader } from "@gunjo/ui";
+
+const ACTIONS = [
+  { id: "export", label: "Export CSV" },
+  { id: "print", label: "Print" },
+];
+
+export function LongTitleHeader() {
+  return (
+    <DesktopPageHeader
+      eyebrow="Gunjo Transit · Shinagawa depot · Fleet"
+      title="Vehicle inspections and workshop bookings for Q2, across every depot"
+      subtitle="Sorted by deadline. Cross-check against workshop availability before booking."
+      actions={
+        <>
+          <Badge variant="outline">Draft</Badge>
+          {ACTIONS.map((action) => (
+            <Button key={action.id} size="sm" variant="outline">
+              {action.label}
+            </Button>
+          ))}
+          <Button size="sm">Book workshop</Button>
+        </>
+      }
+    />
+  );
 }`;
 
 export default function DesktopPageHeaderDocPage() {
@@ -102,6 +158,42 @@ export default function DesktopPageHeaderDocPage() {
               description: isJa ? "補助情報や操作が無い場合も、同じ見出しのリズムを維持します。" : "Keep the same heading rhythm when no supporting content is needed.",
               preview: <DesktopPageHeader title={isJa ? "日次運行レポート" : "Daily operations report"} />,
               code: titleOnlyCode,
+              previewBodyWidth: "lg",
+            },
+            {
+              key: "long-title",
+              title: isJa ? "長いタイトルと、多い操作" : "A long title with many actions",
+              description: isJa
+                ? "タイトルは残った幅で折り返し、操作は行を折り返しても末尾に残ります。文字数が読めない画面でも崩れません。"
+                : "The title wraps into whatever width is left, and the actions wrap while staying at the trailing edge.",
+              preview: (
+                <DesktopPageHeader
+                  eyebrow={isJa ? "群青交通 · 品川営業所 · 車両管理" : "Gunjo Transit · Shinagawa depot · Fleet"}
+                  title={
+                    isJa
+                      ? "車両点検と整備予定の一覧（2026年度 第2四半期・全営業所ぶん）"
+                      : "Vehicle inspections and workshop bookings for Q2, across every depot"
+                  }
+                  subtitle={
+                    isJa
+                      ? "期限が近い順に並んでいます。整備工場の空きと突き合わせて予定を組みます。"
+                      : "Sorted by deadline. Cross-check against workshop availability before booking."
+                  }
+                  actions={
+                    <>
+                      <Badge variant="outline">{isJa ? "下書き" : "Draft"}</Badge>
+                      <Button size="sm" variant="outline">
+                        {isJa ? "CSVで書き出す" : "Export CSV"}
+                      </Button>
+                      <Button size="sm" variant="outline">
+                        {isJa ? "印刷する" : "Print"}
+                      </Button>
+                      <Button size="sm">{isJa ? "予定を組む" : "Book workshop"}</Button>
+                    </>
+                  }
+                />
+              ),
+              code: isJa ? longTitleCodeJa : longTitleCodeEn,
               previewBodyWidth: "lg",
             },
           ]}

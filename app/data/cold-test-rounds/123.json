@@ -5,7 +5,7 @@
   "score": "3.5/5",
   "category": "運輸：航空",
   "title": "AI に国際線 eチケットを作らせてみた — 「ゲートで掲げる券面」が、まだコンポーネントじゃない（やってみた #123）",
-  "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "「感情の中心」が一番未対応、という利用者向けの構造。TicketStub が2回目（2/3）。",
   "article": {
     "file": "zenn-yattemita-123-eticket.md",
     "slug": "123-eticket",

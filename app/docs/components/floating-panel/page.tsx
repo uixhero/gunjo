@@ -7,11 +7,16 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { FloatingPanelAuditDemo } from "@/components/demos/OverlayComponentDemos";
 import overlayMetadata from "@design/overlay-metadata.json";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const floatingPanelCodes = {
     canvas: {
         ja: `import { FloatingPanel } from "@gunjo/ui";
-import { IconBox as Box, IconPointer as MousePointer2, IconStack2 as Layers } from "@tabler/icons-react";
+import {
+  IconBox as Box,
+  IconPointer as MousePointer2,
+  IconStack2 as Layers,
+} from "@tabler/icons-react";
 
 export function CanvasFloatingPanels() {
   const tools = [
@@ -69,7 +74,11 @@ export function CanvasFloatingPanels() {
   );
 }`,
         en: `import { FloatingPanel } from "@gunjo/ui";
-import { IconBox as Box, IconPointer as MousePointer2, IconStack2 as Layers } from "@tabler/icons-react";
+import {
+  IconBox as Box,
+  IconPointer as MousePointer2,
+  IconStack2 as Layers,
+} from "@tabler/icons-react";
 
 export function CanvasFloatingPanels() {
   const tools = [
@@ -201,7 +210,12 @@ export function DraggableResizableFloatingPanel() {
     },
     toolbar: {
         ja: `import { FloatingPanel, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@gunjo/ui";
-import { IconBox as Box, IconPointer as MousePointer2, IconSettings as Settings, IconStack2 as Layers } from "@tabler/icons-react";
+import {
+  IconBox as Box,
+  IconPointer as MousePointer2,
+  IconSettings as Settings,
+  IconStack2 as Layers,
+} from "@tabler/icons-react";
 
 export function FloatingToolbar() {
   const tools = [
@@ -222,7 +236,11 @@ export function FloatingToolbar() {
       >
         編集対象
       </div>
-      <FloatingPanel variant="glass" className="absolute left-8 top-8 w-auto" contentClassName="flex items-center gap-1 p-1">
+      <FloatingPanel
+        variant="glass"
+        className="absolute left-8 top-8 w-auto"
+        contentClassName="flex items-center gap-1 p-1"
+      >
         <TooltipProvider>
           {tools.map(({ icon: Icon, label }) => (
             <Tooltip key={label}>
@@ -240,7 +258,12 @@ export function FloatingToolbar() {
   );
 }`,
         en: `import { FloatingPanel, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@gunjo/ui";
-import { IconBox as Box, IconPointer as MousePointer2, IconSettings as Settings, IconStack2 as Layers } from "@tabler/icons-react";
+import {
+  IconBox as Box,
+  IconPointer as MousePointer2,
+  IconSettings as Settings,
+  IconStack2 as Layers,
+} from "@tabler/icons-react";
 
 export function FloatingToolbar() {
   const tools = [
@@ -261,7 +284,11 @@ export function FloatingToolbar() {
       >
         Editable surface
       </div>
-      <FloatingPanel variant="glass" className="absolute left-8 top-8 w-auto" contentClassName="flex items-center gap-1 p-1">
+      <FloatingPanel
+        variant="glass"
+        className="absolute left-8 top-8 w-auto"
+        contentClassName="flex items-center gap-1 p-1"
+      >
         <TooltipProvider>
           {tools.map(({ icon: Icon, label }) => (
             <Tooltip key={label}>
@@ -295,7 +322,12 @@ export function StatusFloatingPanel() {
       >
         レビュー画面
       </div>
-      <FloatingPanel title="通知" variant="solid" className="absolute bottom-8 left-8 w-80" contentClassName="p-3">
+      <FloatingPanel
+        title="通知"
+        variant="solid"
+        className="absolute bottom-8 left-8 w-80"
+        contentClassName="p-3"
+      >
         <div className="space-y-3 text-sm">
           <div className="flex items-start gap-3">
             <Bell className="mt-0.5 h-4 w-4 text-primary" />
@@ -327,7 +359,12 @@ export function StatusFloatingPanel() {
       >
         Review surface
       </div>
-      <FloatingPanel title="Notifications" variant="solid" className="absolute bottom-8 left-8 w-80" contentClassName="p-3">
+      <FloatingPanel
+        title="Notifications"
+        variant="solid"
+        className="absolute bottom-8 left-8 w-80"
+        contentClassName="p-3"
+      >
         <div className="space-y-3 text-sm">
           <div className="flex items-start gap-3">
             <Bell className="mt-0.5 h-4 w-4 text-primary" />
@@ -376,7 +413,7 @@ export function SolidFloatingPanel() {
 export default function FloatingPanelPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
-    const code = floatingPanelCodes.canvas[locale];
+    const usageCode = floatingPanelCodes.canvas[locale];
 
     return (
         <ComponentLayout
@@ -392,11 +429,17 @@ export default function FloatingPanelPage() {
                 { name: "Dialog", href: "/docs/components/dialog" },
                 { name: "Popover", href: "/docs/components/popover" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: フローティングパネル（Floating Panel）" : "UIXHERO: Floating Panel (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/floating-panel`,
+                },
+            ]}
         >
             <ComponentPreview
                 embedSrc="/embed/floating-panel"
-                code={code}
-                codeBlock={<CodeBlock code={code} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewBodyWidth="full"
                 previewHeight={520}
@@ -519,12 +562,46 @@ export default function FloatingPanelPage() {
 
             <section className="space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
-                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
+            </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {isJa ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {isJa ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>つかむところを題の行に限る。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dragEnabled</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">title</code> の両方があるとき、動かせるのは題の行だけになります。中身の上でドラッグしても動かないので、パネルの中の文字を選んだりボタンを押したりできます。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dragMomentum</code> は切ってあるので、離した場所で止まります。
+                        </li>
+                        <li>
+                            <strong>動かしているあいだ、影や角を遅らせない。</strong>遅れを付けているのは影・枠線・背景の3つだけです。位置の変化にも遅れを付けるとパネルがカーソルに付いてこないので、そこは外してあります。
+                        </li>
+                        <li>
+                            <strong>資料に対して足りていないところ。</strong>資料は「画面の外にはみ出さないよう境界を必ず入れる」「折りたたみを付けて <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-expanded</code> で伝える」「<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="dialog"'}</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> を付ける」を挙げていますが、いまの <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">FloatingPanel</code> はどれも持っていません。引っぱって画面の外に出すと戻せなくなります。#937 で追っています。
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Only the title bar is a handle.</strong> When both <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dragEnabled</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">title</code> are set, dragging starts from the title row alone. The body stays inert to dragging, so text inside can be selected and buttons inside can be pressed. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dragMomentum</code> is off, so the panel stops where you let go.
+                        </li>
+                        <li>
+                            <strong>Do not put a delay on the movement itself.</strong> Only the shadow, the border colour and the background are transitioned. Transitioning the transform as well would make the panel lag behind the pointer, so it is left out.
+                        </li>
+                        <li>
+                            <strong>Where this falls short of the article.</strong> The article asks for drag bounds so the panel cannot leave the screen, a collapse control reported through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-expanded</code>, and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="dialog"'}</code> with an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code>. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">FloatingPanel</code> has none of them today, and a panel dragged off-screen cannot be recovered. Tracked in #937.
+                        </li>
+                    </ul>
+                )}
             </section>
         </ComponentLayout>
     );

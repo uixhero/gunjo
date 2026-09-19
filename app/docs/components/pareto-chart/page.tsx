@@ -31,44 +31,168 @@ function paretoData(locale: Locale) {
       ];
 }
 
-function paretoDataCode(locale: Locale) {
-  return locale === "ja"
-    ? `[
-  { label: "チョコ停", value: 142 },
-  { label: "段取替え", value: 96 },
-  { label: "故障", value: 64, color: "destructive" },
-  { label: "材料待ち", value: 38 },
-  { label: "品質調整", value: 22 },
-  { label: "その他", value: 11, color: "muted" },
-]`
-    : `[
+const stateCodeByLocale = {
+  en: {
+    default: `import { ParetoChart } from "@gunjo/ui";
+
+const downtimeCauses = [
   { label: "Micro-stops", value: 142 },
   { label: "Changeover", value: 96 },
   { label: "Failure", value: 64, color: "destructive" },
   { label: "Material wait", value: 38 },
   { label: "Quality tuning", value: 22 },
   { label: "Other", value: 11, color: "muted" },
-]`;
-}
+];
 
-function paretoChartStateCode(locale: Locale, mode: "default" | "noThreshold" | "unsorted") {
-  const label = locale === "ja" ? "停止時間" : "Downtime";
-  const cumulativeLabel = locale === "ja" ? "累計" : "Cumulative";
-  const thresholdLabel = locale === "ja" ? "主要因 80%" : "Vital 80%";
-  const unit = locale === "ja" ? "分" : " min";
-  const data = mode === "unsorted" ? `[...${paretoDataCode(locale)}].reverse()` : paretoDataCode(locale);
-  const formatValue = locale === "ja" ? "(value) => `${value}分`" : "(value) => `${value} min`";
+export function DowntimePareto() {
+  return (
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+      <ParetoChart
+        data={downtimeCauses}
+        label="Downtime"
+        cumulativeLabel="Cumulative"
+        threshold={80}
+        thresholdLabel="Vital 80%"
+        sort={true}
+        formatValue={(value) => value + " min"}
+        showValues
+      />
+    </div>
+  );
+}`,
+    noThreshold: `import { ParetoChart } from "@gunjo/ui";
 
-  return `<ParetoChart
-  data={${data}}
-  label="${label}"
-  cumulativeLabel="${cumulativeLabel}"
-  threshold={${mode === "noThreshold" ? "null" : "80"}}
-  ${mode === "noThreshold" ? "" : `thresholdLabel="${thresholdLabel}"\n  `}sort={${mode === "unsorted" ? "false" : "true"}}
-  formatValue={${formatValue}}
-  ${mode === "default" ? "showValues" : ""}
-/>`;
-}
+const downtimeCauses = [
+  { label: "Micro-stops", value: 142 },
+  { label: "Changeover", value: 96 },
+  { label: "Failure", value: 64, color: "destructive" },
+  { label: "Material wait", value: 38 },
+  { label: "Quality tuning", value: 22 },
+  { label: "Other", value: 11, color: "muted" },
+];
+
+export function DowntimeParetoWithoutThreshold() {
+  return (
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+      <ParetoChart
+        data={downtimeCauses}
+        label="Downtime"
+        cumulativeLabel="Cumulative"
+        threshold={null}
+        sort={true}
+        formatValue={(value) => value + " min"}
+      />
+    </div>
+  );
+}`,
+    unsorted: `import { ParetoChart } from "@gunjo/ui";
+
+const downtimeCauses = [
+  { label: "Micro-stops", value: 142 },
+  { label: "Changeover", value: 96 },
+  { label: "Failure", value: 64, color: "destructive" },
+  { label: "Material wait", value: 38 },
+  { label: "Quality tuning", value: 22 },
+  { label: "Other", value: 11, color: "muted" },
+];
+
+export function DowntimeParetoInInputOrder() {
+  return (
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+      <ParetoChart
+        data={[...downtimeCauses].reverse()}
+        label="Downtime"
+        cumulativeLabel="Cumulative"
+        threshold={80}
+        thresholdLabel="Vital 80%"
+        sort={false}
+        formatValue={(value) => value + " min"}
+      />
+    </div>
+  );
+}`,
+  },
+  ja: {
+    default: `import { ParetoChart } from "@gunjo/ui";
+
+const downtimeCauses = [
+  { label: "チョコ停", value: 142 },
+  { label: "段取替え", value: 96 },
+  { label: "故障", value: 64, color: "destructive" },
+  { label: "材料待ち", value: 38 },
+  { label: "品質調整", value: 22 },
+  { label: "その他", value: 11, color: "muted" },
+];
+
+export function DowntimePareto() {
+  return (
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+      <ParetoChart
+        data={downtimeCauses}
+        label="停止時間"
+        cumulativeLabel="累計"
+        threshold={80}
+        thresholdLabel="主要因 80%"
+        sort={true}
+        formatValue={(value) => value + "分"}
+        showValues
+      />
+    </div>
+  );
+}`,
+    noThreshold: `import { ParetoChart } from "@gunjo/ui";
+
+const downtimeCauses = [
+  { label: "チョコ停", value: 142 },
+  { label: "段取替え", value: 96 },
+  { label: "故障", value: 64, color: "destructive" },
+  { label: "材料待ち", value: 38 },
+  { label: "品質調整", value: 22 },
+  { label: "その他", value: 11, color: "muted" },
+];
+
+export function DowntimeParetoWithoutThreshold() {
+  return (
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+      <ParetoChart
+        data={downtimeCauses}
+        label="停止時間"
+        cumulativeLabel="累計"
+        threshold={null}
+        sort={true}
+        formatValue={(value) => value + "分"}
+      />
+    </div>
+  );
+}`,
+    unsorted: `import { ParetoChart } from "@gunjo/ui";
+
+const downtimeCauses = [
+  { label: "チョコ停", value: 142 },
+  { label: "段取替え", value: 96 },
+  { label: "故障", value: 64, color: "destructive" },
+  { label: "材料待ち", value: 38 },
+  { label: "品質調整", value: 22 },
+  { label: "その他", value: 11, color: "muted" },
+];
+
+export function DowntimeParetoInInputOrder() {
+  return (
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+      <ParetoChart
+        data={[...downtimeCauses].reverse()}
+        label="停止時間"
+        cumulativeLabel="累計"
+        threshold={80}
+        thresholdLabel="主要因 80%"
+        sort={false}
+        formatValue={(value) => value + "分"}
+      />
+    </div>
+  );
+}`,
+  },
+} as const;
 
 function ParetoChartPreview({ locale, mode = "default" }: { locale: Locale; mode?: "default" | "noThreshold" | "unsorted" }) {
   const copy = locale === "ja"
@@ -130,7 +254,7 @@ export function DowntimePareto() {
         cumulativeLabel="累計"
         threshold={80}
         thresholdLabel="主要因 80%"
-        formatValue={(value) => \`\${value}分\`}
+        formatValue={(value) => value + "分"}
         showValues
       />
     </div>
@@ -156,7 +280,7 @@ export function DowntimePareto() {
         cumulativeLabel="Cumulative"
         threshold={80}
         thresholdLabel="Vital 80%"
-        formatValue={(value) => \`\${value} min\`}
+        formatValue={(value) => value + " min"}
         showValues
       />
     </div>
@@ -200,7 +324,7 @@ export function DowntimePareto() {
               title: locale === "ja" ? "80%基準線" : "80% threshold",
               description: locale === "ja" ? "既定の Pareto 表示です。基準線と累積線で主要因を読み取ります。" : "The default Pareto view uses the threshold and cumulative line to find vital causes.",
               preview: <ParetoChartPreview locale={locale} />,
-              code: paretoChartStateCode(locale, "default"),
+              code: stateCodeByLocale[locale].default,
               previewBodyWidth: "xl",
             },
             {
@@ -208,7 +332,7 @@ export function DowntimePareto() {
               title: locale === "ja" ? "基準線なし" : "No threshold",
               description: locale === "ja" ? "累積の傾向だけを見たい場合は threshold={null} で基準線を隠します。" : "Use threshold={null} when the cumulative trend matters more than a cutoff.",
               preview: <ParetoChartPreview locale={locale} mode="noThreshold" />,
-              code: paretoChartStateCode(locale, "noThreshold"),
+              code: stateCodeByLocale[locale].noThreshold,
               previewBodyWidth: "xl",
             },
             {
@@ -216,7 +340,7 @@ export function DowntimePareto() {
               title: locale === "ja" ? "入力順を保持" : "Preserve input order",
               description: locale === "ja" ? "時系列や工程順で見せたい場合は sort={false} を使います。" : "Use sort={false} when sequence or process order matters more than Pareto ordering.",
               preview: <ParetoChartPreview locale={locale} mode="unsorted" />,
-              code: paretoChartStateCode(locale, "unsorted"),
+              code: stateCodeByLocale[locale].unsorted,
               previewBodyWidth: "xl",
             },
           ]}

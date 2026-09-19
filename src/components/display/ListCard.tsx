@@ -3,7 +3,7 @@ import { IconChevronRight } from "@tabler/icons-react"
 
 import { cn } from "../../lib/utils"
 
-/** Optional left accent rail tone. */
+/** Optional semantic severity surface tone. */
 export type ListCardSeverity = "critical" | "warning" | "info" | "success" | "neutral"
 
 export interface ListCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>, "title" | "onSelect"> {
@@ -21,7 +21,7 @@ export interface ListCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   meta?: React.ReactNode
   /** Trailing accessory. Defaults to a chevron when `onSelect` is set. Pass `null` to suppress. */
   trailing?: React.ReactNode
-  /** Optional left severity accent rail. */
+  /** Optional semantic border and subtle background for severity emphasis. */
   severity?: ListCardSeverity
   /** Selected/active visual state. */
   selected?: boolean
@@ -29,11 +29,11 @@ export interface ListCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   onSelect?: () => void
 }
 
-const ACCENT: Record<ListCardSeverity, string> = {
-  critical: "border-l-4 border-l-destructive-border",
-  warning: "border-l-4 border-l-warning-border",
-  info: "border-l-4 border-l-info-border",
-  success: "border-l-4 border-l-success-border",
+const SEVERITY_SURFACE: Record<ListCardSeverity, string> = {
+  critical: "border-destructive-border bg-destructive-subtle",
+  warning: "border-warning-border bg-warning-subtle",
+  info: "border-info-border bg-info-subtle",
+  success: "border-success-border bg-success-subtle",
   neutral: "",
 }
 
@@ -45,8 +45,8 @@ const ACCENT: Record<ListCardSeverity, string> = {
  * product / listing comparisons, status lists (運行状況・在庫・端末), order/incident queues.
  *
  * Tappable rows (`onSelect`) are a real ≥44px `button` with hover/focus/selected states;
- * status never rides on colour alone (pass a Badge with an icon, and use `severity` for the
- * accent rail). For the KPI strip use `StatGroup`; for a severity-triaged alert worklist use
+ * status never rides on colour alone (pass a Badge with text; `severity` only adds a semantic
+ * border and subtle background). For the KPI strip use `StatGroup`; for a severity-triaged alert worklist use
  * `ActionQueue`; for a money breakdown use `AmountBreakdown`. RSC-safe by default — `onSelect`
  * is the only function prop and is opt-in.
  */
@@ -55,6 +55,7 @@ export const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
     { leading, title, description, tags, status, meta, trailing, severity, selected, onSelect, className, ...props },
     ref
   ) => {
+    const hasSeveritySurface = severity != null && severity !== "neutral"
     const trailingNode =
       trailing !== undefined ? trailing : onSelect ? <IconChevronRight className="size-5" aria-hidden="true" /> : null
 
@@ -80,7 +81,7 @@ export const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
 
     const base = cn(
       "flex w-full items-start gap-3 rounded-lg border bg-card p-3 text-left",
-      severity && ACCENT[severity],
+      severity && SEVERITY_SURFACE[severity],
       selected && "border-ring ring-1 ring-ring",
       className
     )
@@ -94,8 +95,9 @@ export const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
           aria-pressed={selected || undefined}
           className={cn(
             base,
-            "min-h-11 cursor-pointer transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-            selected && "bg-accent"
+            "min-h-11 cursor-pointer transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            hasSeveritySurface ? "hover:brightness-95" : "hover:bg-accent",
+            selected && !hasSeveritySurface && "bg-accent"
           )}
         >
           {content}

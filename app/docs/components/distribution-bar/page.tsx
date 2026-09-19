@@ -86,8 +86,10 @@ const segments = [
     { label: "Paid", value: 8, color: "info" },
 ];
 
-export function ChannelMix() {
-    return <DistributionBar segments={segments} totalLabel="Total" showLegend />;
+export function ChannelMixBar() {
+    return (
+        <DistributionBar segments={segments} totalLabel="Total" showLegend />
+    );
 }`,
     ja: `import { DistributionBar } from "@gunjo/ui";
 
@@ -98,8 +100,10 @@ const segments = [
     { label: "広告", value: 8, color: "info" },
 ];
 
-export function ChannelMix() {
-    return <DistributionBar segments={segments} totalLabel="合計" showLegend />;
+export function ChannelMixBar() {
+    return (
+        <DistributionBar segments={segments} totalLabel="合計" showLegend />
+    );
 }`,
 } as const;
 
@@ -110,12 +114,21 @@ const segments = [
     { label: "Organic", value: 46, color: "primary" },
     { label: "Referral", value: 28, color: "success" },
     { label: "Direct", value: 18, color: "warning" },
-    { label: "Ads", value: 8, color: "info" },
+    { label: "Paid", value: 8, color: "info" },
 ];
 
-<DistributionBar segments={segments} />
-<DistributionBar segments={segments} totalLabel="Total" showLegend />
-<DistributionBar segments={segments} formatValue={(value) => \`$\${value.toLocaleString()}\`} />`,
+export function DistributionBarUsage() {
+    return (
+        <div className="grid gap-6">
+            <DistributionBar segments={segments} />
+            <DistributionBar segments={segments} totalLabel="Total" showLegend />
+            <DistributionBar
+                segments={segments}
+                formatValue={(value) => "$" + value.toLocaleString()}
+            />
+        </div>
+    );
+}`,
     ja: `import { DistributionBar } from "@gunjo/ui";
 
 const segments = [
@@ -125,109 +138,178 @@ const segments = [
     { label: "広告", value: 8, color: "info" },
 ];
 
-<DistributionBar segments={segments} />
-<DistributionBar segments={segments} totalLabel="合計" showLegend />
-<DistributionBar segments={segments} formatValue={(value) => \`\${value.toLocaleString()}円\`} />`,
+export function DistributionBarUsage() {
+    return (
+        <div className="grid gap-6">
+            <DistributionBar segments={segments} />
+            <DistributionBar segments={segments} totalLabel="合計" showLegend />
+            <DistributionBar
+                segments={segments}
+                formatValue={(value) => value.toLocaleString() + "円"}
+            />
+        </div>
+    );
+}`,
 } as const;
 
 const stateCodeByLocale = {
     en: {
-        default: `const segments = [
-  { label: "Organic", value: 46, color: "primary" },
-  { label: "Referral", value: 28, color: "success" },
-  { label: "Direct", value: 18, color: "warning" },
-  { label: "Paid", value: 8, color: "info" },
+        default: `import { DistributionBar } from "@gunjo/ui";
+
+const segments = [
+    { label: "Organic", value: 46, color: "primary" },
+    { label: "Referral", value: 28, color: "success" },
+    { label: "Direct", value: 18, color: "warning" },
+    { label: "Paid", value: 8, color: "info" },
 ];
 
-<DistributionBar segments={segments} totalLabel="Total" />`,
-        legend: `const segments = [
-  { label: "Organic", value: 46, color: "primary" },
-  { label: "Referral", value: 28, color: "success" },
-  { label: "Direct", value: 18, color: "warning" },
-  { label: "Paid", value: 8, color: "info" },
+export function ChannelMixBar() {
+    return (
+        <DistributionBar segments={segments} totalLabel="Total" />
+    );
+}`,
+        legend: `import { DistributionBar } from "@gunjo/ui";
+
+const segments = [
+    { label: "Organic", value: 46, color: "primary" },
+    { label: "Referral", value: 28, color: "success" },
+    { label: "Direct", value: 18, color: "warning" },
+    { label: "Paid", value: 8, color: "info" },
 ];
 
-<DistributionBar segments={segments} totalLabel="Total" showLegend />`,
-        formatted: `const segments = [
-  { label: "Product", value: 132000, color: "primary" },
-  { label: "Operations", value: 84000, color: "info" },
-  { label: "Support", value: 41000, color: "success" },
-  { label: "Reserve", value: 18000, color: "warning" },
+export function ChannelMixBarWithLegend() {
+    return (
+        <DistributionBar segments={segments} totalLabel="Total" showLegend />
+    );
+}`,
+        formatted: `import { DistributionBar } from "@gunjo/ui";
+
+const segments = [
+    { label: "Product", value: 132000, color: "primary" },
+    { label: "Operations", value: 84000, color: "info" },
+    { label: "Support", value: 41000, color: "success" },
+    { label: "Reserve", value: 18000, color: "warning" },
 ];
 
-<DistributionBar
-  segments={segments}
-  totalLabel="Budget"
-  showLegend
-  formatValue={(value) => \`$\${value.toLocaleString()}\`}
-/>`,
-        dense: `const segments = [
-  { label: "Search", value: 34, color: "primary" },
-  { label: "Social", value: 22, color: "info" },
-  { label: "Email", value: 16, color: "success" },
-  { label: "Ads", value: 12, color: "warning" },
-  { label: "Partner", value: 9, color: "accent" },
-  { label: "Other", value: 7, color: "muted" },
+export function BudgetMixBar() {
+    return (
+        <DistributionBar
+            segments={segments}
+            totalLabel="Budget"
+            showLegend
+            formatValue={(value) => "$" + value.toLocaleString()}
+        />
+    );
+}`,
+        dense: `import { DistributionBar } from "@gunjo/ui";
+
+const segments = [
+    { label: "Search", value: 34, color: "primary" },
+    { label: "Social", value: 22, color: "info" },
+    { label: "Email", value: 16, color: "success" },
+    { label: "Ads", value: 12, color: "warning" },
+    { label: "Partner", value: 9, color: "accent" },
+    { label: "Other", value: 7, color: "muted" },
 ];
 
-<DistributionBar segments={segments} totalLabel="Share" showLegend />`,
-        small: `const segments = [
-  { label: "Complete", value: 92, color: "success" },
-  { label: "Review", value: 5, color: "warning" },
-  { label: "Blocked", value: 2, color: "destructive" },
-  { label: "Unassigned", value: 1, color: "muted" },
+export function DenseSourceBar() {
+    return (
+        <DistributionBar segments={segments} totalLabel="Share" showLegend />
+    );
+}`,
+        small: `import { DistributionBar } from "@gunjo/ui";
+
+const segments = [
+    { label: "Complete", value: 92, color: "success" },
+    { label: "Review", value: 5, color: "warning" },
+    { label: "Blocked", value: 2, color: "destructive" },
+    { label: "Unassigned", value: 1, color: "muted" },
 ];
 
-<DistributionBar segments={segments} totalLabel="Items" showLegend />`,
+export function TaskStatusBar() {
+    return (
+        <DistributionBar segments={segments} totalLabel="Items" showLegend />
+    );
+}`,
     },
     ja: {
-        default: `const segments = [
-  { label: "自然流入", value: 46, color: "primary" },
-  { label: "紹介", value: 28, color: "success" },
-  { label: "直接", value: 18, color: "warning" },
-  { label: "広告", value: 8, color: "info" },
+        default: `import { DistributionBar } from "@gunjo/ui";
+
+const segments = [
+    { label: "自然流入", value: 46, color: "primary" },
+    { label: "紹介", value: 28, color: "success" },
+    { label: "直接", value: 18, color: "warning" },
+    { label: "広告", value: 8, color: "info" },
 ];
 
-<DistributionBar segments={segments} totalLabel="合計" />`,
-        legend: `const segments = [
-  { label: "自然流入", value: 46, color: "primary" },
-  { label: "紹介", value: 28, color: "success" },
-  { label: "直接", value: 18, color: "warning" },
-  { label: "広告", value: 8, color: "info" },
+export function ChannelMixBar() {
+    return (
+        <DistributionBar segments={segments} totalLabel="合計" />
+    );
+}`,
+        legend: `import { DistributionBar } from "@gunjo/ui";
+
+const segments = [
+    { label: "自然流入", value: 46, color: "primary" },
+    { label: "紹介", value: 28, color: "success" },
+    { label: "直接", value: 18, color: "warning" },
+    { label: "広告", value: 8, color: "info" },
 ];
 
-<DistributionBar segments={segments} totalLabel="合計" showLegend />`,
-        formatted: `const segments = [
-  { label: "プロダクト", value: 132000, color: "primary" },
-  { label: "運用", value: 84000, color: "info" },
-  { label: "サポート", value: 41000, color: "success" },
-  { label: "予備", value: 18000, color: "warning" },
+export function ChannelMixBarWithLegend() {
+    return (
+        <DistributionBar segments={segments} totalLabel="合計" showLegend />
+    );
+}`,
+        formatted: `import { DistributionBar } from "@gunjo/ui";
+
+const segments = [
+    { label: "プロダクト", value: 132000, color: "primary" },
+    { label: "運用", value: 84000, color: "info" },
+    { label: "サポート", value: 41000, color: "success" },
+    { label: "予備", value: 18000, color: "warning" },
 ];
 
-<DistributionBar
-  segments={segments}
-  totalLabel="予算"
-  showLegend
-  formatValue={(value) => \`\${value.toLocaleString()}円\`}
-/>`,
-        dense: `const segments = [
-  { label: "検索", value: 34, color: "primary" },
-  { label: "SNS", value: 22, color: "info" },
-  { label: "メール", value: 16, color: "success" },
-  { label: "広告", value: 12, color: "warning" },
-  { label: "提携", value: 9, color: "accent" },
-  { label: "その他", value: 7, color: "muted" },
+export function BudgetMixBar() {
+    return (
+        <DistributionBar
+            segments={segments}
+            totalLabel="予算"
+            showLegend
+            formatValue={(value) => value.toLocaleString() + "円"}
+        />
+    );
+}`,
+        dense: `import { DistributionBar } from "@gunjo/ui";
+
+const segments = [
+    { label: "検索", value: 34, color: "primary" },
+    { label: "SNS", value: 22, color: "info" },
+    { label: "メール", value: 16, color: "success" },
+    { label: "広告", value: 12, color: "warning" },
+    { label: "提携", value: 9, color: "accent" },
+    { label: "その他", value: 7, color: "muted" },
 ];
 
-<DistributionBar segments={segments} totalLabel="構成比" showLegend />`,
-        small: `const segments = [
-  { label: "完了", value: 92, color: "success" },
-  { label: "確認中", value: 5, color: "warning" },
-  { label: "停止中", value: 2, color: "destructive" },
-  { label: "未割当", value: 1, color: "muted" },
+export function DenseSourceBar() {
+    return (
+        <DistributionBar segments={segments} totalLabel="構成比" showLegend />
+    );
+}`,
+        small: `import { DistributionBar } from "@gunjo/ui";
+
+const segments = [
+    { label: "完了", value: 92, color: "success" },
+    { label: "確認中", value: 5, color: "warning" },
+    { label: "停止中", value: 2, color: "destructive" },
+    { label: "未割当", value: 1, color: "muted" },
 ];
 
-<DistributionBar segments={segments} totalLabel="項目数" showLegend />`,
+export function TaskStatusBar() {
+    return (
+        <DistributionBar segments={segments} totalLabel="項目数" showLegend />
+    );
+}`,
     },
 } as const;
 

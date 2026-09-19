@@ -18,10 +18,23 @@ function createDrawerCode(locale: "ja" | "en", side: DrawerSide = "bottom") {
         left: "LeftDeliverySettingsDrawer",
         top: "TopDeliverySettingsDrawer",
     };
-    const componentName = componentNameBySide[side];
     // `direction` on the Root is the single source of truth — it drives both the
     // styling and vaul's drag layer. DrawerContent derives its side from it. (#335)
-    const directionProp = side === "bottom" ? "" : ` direction="${side}"`;
+    const t = {
+        name: componentNameBySide[side],
+        direction: side === "bottom" ? "" : ` direction="${side}"`,
+        trigger: isJa ? "詳細を開く" : "Open details",
+        title: isJa ? "配信設定" : "Delivery settings",
+        description: isJa
+            ? "画面を離れずに補助的な設定を確認・変更します。"
+            : "Review and change supporting settings without leaving the page.",
+        titleLabel: isJa ? "タイトル" : "Title",
+        titleValue: isJa ? "週次レポート" : "Weekly report",
+        noteLabel: isJa ? "補足" : "Note",
+        noteValue: isJa ? "公開前にレビューが必要です。" : "Review is required before publishing.",
+        cancel: isJa ? "キャンセル" : "Cancel",
+        save: isJa ? "保存" : "Save",
+    };
 
     return `import * as React from "react";
 import {
@@ -39,35 +52,39 @@ import {
   Textarea,
 } from "@gunjo/ui";
 
-export function ${componentName}() {
-  const [portalContainer, setPortalContainer] = React.useState<HTMLDivElement | null>(null);
+export function ${t.name}() {
+  const [
+    portalContainer,
+    setPortalContainer,
+  ] = React.useState<HTMLDivElement | null>(null);
 
   return (
-    <div ref={setPortalContainer} className="relative min-h-[420px] overflow-hidden rounded-md">
-      <Drawer${directionProp} shouldScaleBackground={false} container={portalContainer}>
+    <div
+      ref={setPortalContainer}
+      className="relative min-h-[420px] overflow-hidden rounded-md"
+    >
+      <Drawer${t.direction} shouldScaleBackground={false} container={portalContainer}>
         <DrawerTrigger asChild>
-          <Button variant="outline">${isJa ? "詳細を開く" : "Open details"}</Button>
+          <Button variant="outline">${t.trigger}</Button>
         </DrawerTrigger>
         <DrawerContent portalContainer={portalContainer}>
           <DrawerHeader>
-            <DrawerTitle>${isJa ? "配信設定" : "Delivery settings"}</DrawerTitle>
+            <DrawerTitle>${t.title}</DrawerTitle>
             <DrawerDescription>
-              ${isJa
-                ? "画面を離れずに補助的な設定を確認・変更します。"
-                : "Review and change supporting settings without leaving the page."}
+              ${t.description}
             </DrawerDescription>
           </DrawerHeader>
           <div className="grid gap-3 px-4 pb-4">
-            <Label htmlFor="title">${isJa ? "タイトル" : "Title"}</Label>
-            <Input id="title" className="w-full" defaultValue="${isJa ? "週次レポート" : "Weekly report"}" />
-            <Label htmlFor="note">${isJa ? "補足" : "Note"}</Label>
-            <Textarea id="note" className="w-full" defaultValue="${isJa ? "公開前にレビューが必要です。" : "Review is required before publishing."}" />
+            <Label htmlFor="title">${t.titleLabel}</Label>
+            <Input id="title" className="w-full" defaultValue="${t.titleValue}" />
+            <Label htmlFor="note">${t.noteLabel}</Label>
+            <Textarea id="note" className="w-full" defaultValue="${t.noteValue}" />
           </div>
           <DrawerFooter>
             <DrawerClose asChild>
-              <Button variant="outline">${isJa ? "キャンセル" : "Cancel"}</Button>
+              <Button variant="outline">${t.cancel}</Button>
             </DrawerClose>
-            <Button>${isJa ? "保存" : "Save"}</Button>
+            <Button>${t.save}</Button>
           </DrawerFooter>
         </DrawerContent>
       </Drawer>
@@ -76,10 +93,11 @@ export function ${componentName}() {
 }`;
 }
 
+
 export default function DrawerPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
-    const code = createDrawerCode(locale);
+    const usageCode = createDrawerCode(locale);
     const rightCode = createDrawerCode(locale, "right");
     const leftCode = createDrawerCode(locale, "left");
     const topCode = createDrawerCode(locale, "top");
@@ -100,11 +118,10 @@ export default function DrawerPage() {
         >
             <ComponentPreview
                 embedSrc="/embed/drawer"
-                code={code}
-                codeBlock={<CodeBlock code={code} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewHeight={420}
-                fitEmbedHeightContent={false}
             >
                 <DrawerAuditDemo />
             </ComponentPreview>
@@ -123,9 +140,8 @@ export default function DrawerPage() {
                                 : "Default mobile-friendly shape for supporting actions and short forms.",
                             preview: <DrawerAuditDemo />,
                             embedSrc: "/embed/drawer?side=bottom",
-                            code,
+                            code: usageCode,
                             previewHeight: 420,
-                            fitEmbedHeightContent: false,
                         },
                         {
                             key: "right",
@@ -137,7 +153,6 @@ export default function DrawerPage() {
                             embedSrc: "/embed/drawer?side=right",
                             code: rightCode,
                             previewHeight: 420,
-                            fitEmbedHeightContent: false,
                         },
                         {
                             key: "left",
@@ -149,7 +164,6 @@ export default function DrawerPage() {
                             embedSrc: "/embed/drawer?side=left",
                             code: leftCode,
                             previewHeight: 420,
-                            fitEmbedHeightContent: false,
                         },
                         {
                             key: "top",
@@ -161,7 +175,6 @@ export default function DrawerPage() {
                             embedSrc: "/embed/drawer?side=top",
                             code: topCode,
                             previewHeight: 420,
-                            fitEmbedHeightContent: false,
                         },
                     ]}
                 />
@@ -216,12 +229,14 @@ export default function DrawerPage() {
 
             <section className="space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
-                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </section>
         </ComponentLayout>
     );

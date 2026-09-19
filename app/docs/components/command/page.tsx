@@ -156,12 +156,8 @@ function DisabledCommandItems() {
     );
 }
 
-export default function CommandPage() {
-    const { locale, sectionLabels } = useLocale();
-    const isJa = locale === "ja";
-    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
-
-    const code = `import {
+const codeByLocale = {
+    ja: `import {
   Command,
   CommandEmpty,
   CommandGroup,
@@ -171,93 +167,227 @@ export default function CommandPage() {
   CommandSeparator,
   CommandShortcut,
 } from "@gunjo/ui"
-import { IconCalculator as Calculator, IconCalendar as Calendar, IconCreditCard as CreditCard, IconMoodSmile as Smile, IconSettings as Settings, IconUserCircle as UserRound } from "@tabler/icons-react"
+import {
+  IconCalculator as Calculator,
+  IconCalendar as Calendar,
+  IconCreditCard as CreditCard,
+  IconMoodSmile as Smile,
+  IconSettings as Settings,
+  IconUserCircle as UserRound,
+} from "@tabler/icons-react"
 
 export function CommandExample() {
   return (
     <Command className="w-full max-w-[720px] rounded-lg border shadow-md">
       <CommandInput
-        placeholder="${isJa ? "コマンドまたは検索語を入力..." : "Type a command or search..."}"
+        placeholder="コマンドまたは検索語を入力..."
         clearable
-        clearLabel="${isJa ? "検索をクリア" : "Clear search"}"
+        clearLabel="検索をクリア"
       />
       <CommandList>
-        <CommandEmpty>${isJa ? "一致する結果がありません。" : "No results found."}</CommandEmpty>
-        <CommandGroup heading="${isJa ? "候補" : "Suggestions"}">
-          <CommandItem value="calendar" keywords={["${isJa ? "カレンダー" : "calendar"}", "${isJa ? "予定" : "schedule"}"]}>
+        <CommandEmpty>一致する結果がありません。</CommandEmpty>
+        <CommandGroup heading="候補">
+          <CommandItem value="calendar" keywords={["カレンダー", "予定"]}>
             <Calendar className="mr-2 h-4 w-4" />
-            <span>${isJa ? "カレンダー" : "Calendar"}</span>
+            <span>カレンダー</span>
           </CommandItem>
-          <CommandItem value="emoji" keywords={["${isJa ? "絵文字" : "emoji"}", "${isJa ? "顔文字" : "smile"}"]}>
+          <CommandItem value="emoji" keywords={["絵文字", "顔文字"]}>
             <Smile className="mr-2 h-4 w-4" />
-            <span>${isJa ? "絵文字を検索" : "Search emoji"}</span>
+            <span>絵文字を検索</span>
           </CommandItem>
-          <CommandItem value="calculator" keywords={["${isJa ? "計算機" : "calculator"}", "${isJa ? "電卓" : "math"}"]}>
+          <CommandItem value="calculator" keywords={["計算機", "電卓"]}>
             <Calculator className="mr-2 h-4 w-4" />
-            <span>${isJa ? "計算機" : "Calculator"}</span>
+            <span>計算機</span>
           </CommandItem>
         </CommandGroup>
         <CommandSeparator />
-        <CommandGroup heading="${isJa ? "設定" : "Settings"}">
-          <CommandItem value="profile" keywords={["${isJa ? "プロフィール" : "profile"}", "${isJa ? "アカウント" : "account"}"]}>
+        <CommandGroup heading="設定">
+          <CommandItem value="profile" keywords={["プロフィール", "アカウント"]}>
             <UserRound className="mr-2 h-4 w-4" />
-            <span>${isJa ? "プロフィール" : "Profile"}</span>
+            <span>プロフィール</span>
             <CommandShortcut>⌘P</CommandShortcut>
           </CommandItem>
-          <CommandItem value="billing" keywords={["${isJa ? "請求" : "billing"}", "${isJa ? "支払い" : "payment"}"]}>
+          <CommandItem value="billing" keywords={["請求", "支払い"]}>
             <CreditCard className="mr-2 h-4 w-4" />
-            <span>${isJa ? "請求" : "Billing"}</span>
+            <span>請求</span>
             <CommandShortcut>⌘B</CommandShortcut>
           </CommandItem>
-          <CommandItem value="settings" keywords={["${isJa ? "環境設定" : "settings"}", "${isJa ? "設定" : "preferences"}"]}>
+          <CommandItem value="settings" keywords={["環境設定", "設定"]}>
             <Settings className="mr-2 h-4 w-4" />
-            <span>${isJa ? "環境設定" : "Settings"}</span>
+            <span>環境設定</span>
             <CommandShortcut>⌘S</CommandShortcut>
           </CommandItem>
         </CommandGroup>
       </CommandList>
     </Command>
   )
-}`;
+}`,
+    en: `import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandSeparator,
+  CommandShortcut,
+} from "@gunjo/ui"
+import {
+  IconCalculator as Calculator,
+  IconCalendar as Calendar,
+  IconCreditCard as CreditCard,
+  IconMoodSmile as Smile,
+  IconSettings as Settings,
+  IconUserCircle as UserRound,
+} from "@tabler/icons-react"
 
-    const searchCode = `import * as React from "react"
-import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@gunjo/ui"
-import { IconCalculator as Calculator, IconCalendar as Calendar, IconMoodSmile as Smile } from "@tabler/icons-react"
+export function CommandExample() {
+  return (
+    <Command className="w-full max-w-[720px] rounded-lg border shadow-md">
+      <CommandInput
+        placeholder="Type a command or search..."
+        clearable
+        clearLabel="Clear search"
+      />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Suggestions">
+          <CommandItem value="calendar" keywords={["calendar", "schedule"]}>
+            <Calendar className="mr-2 h-4 w-4" />
+            <span>Calendar</span>
+          </CommandItem>
+          <CommandItem value="emoji" keywords={["emoji", "smile"]}>
+            <Smile className="mr-2 h-4 w-4" />
+            <span>Search emoji</span>
+          </CommandItem>
+          <CommandItem value="calculator" keywords={["calculator", "math"]}>
+            <Calculator className="mr-2 h-4 w-4" />
+            <span>Calculator</span>
+          </CommandItem>
+        </CommandGroup>
+        <CommandSeparator />
+        <CommandGroup heading="Settings">
+          <CommandItem value="profile" keywords={["profile", "account"]}>
+            <UserRound className="mr-2 h-4 w-4" />
+            <span>Profile</span>
+            <CommandShortcut>⌘P</CommandShortcut>
+          </CommandItem>
+          <CommandItem value="billing" keywords={["billing", "payment"]}>
+            <CreditCard className="mr-2 h-4 w-4" />
+            <span>Billing</span>
+            <CommandShortcut>⌘B</CommandShortcut>
+          </CommandItem>
+          <CommandItem value="settings" keywords={["settings", "preferences"]}>
+            <Settings className="mr-2 h-4 w-4" />
+            <span>Settings</span>
+            <CommandShortcut>⌘S</CommandShortcut>
+          </CommandItem>
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  )
+}`,
+};
+
+const searchCodeByLocale = {
+    ja: `import * as React from "react"
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@gunjo/ui"
+import {
+  IconCalculator as Calculator,
+  IconCalendar as Calendar,
+  IconMoodSmile as Smile,
+} from "@tabler/icons-react"
 
 export function EmptyCommandSearch() {
-  const [search, setSearch] = React.useState("${isJa ? "存在しない項目" : "Missing item"}")
+  const [search, setSearch] = React.useState("存在しない項目")
 
   return (
     <Command className="w-full max-w-[720px] rounded-lg border shadow-md">
       <CommandInput
         value={search}
         onValueChange={setSearch}
-        placeholder="${isJa ? "コマンドまたは検索語を入力..." : "Type a command or search..."}"
+        placeholder="コマンドまたは検索語を入力..."
         clearable
-        clearLabel="${isJa ? "検索をクリア" : "Clear search"}"
+        clearLabel="検索をクリア"
       />
       <CommandList>
-        <CommandEmpty>${isJa ? "一致する結果がありません。" : "No results found."}</CommandEmpty>
-        <CommandGroup heading="${isJa ? "候補" : "Suggestions"}">
-          <CommandItem value="calendar" keywords={["${isJa ? "カレンダー" : "calendar"}", "${isJa ? "予定" : "schedule"}"]}>
+        <CommandEmpty>一致する結果がありません。</CommandEmpty>
+        <CommandGroup heading="候補">
+          <CommandItem value="calendar" keywords={["カレンダー", "予定"]}>
             <Calendar className="mr-2 h-4 w-4" />
-            <span>${isJa ? "カレンダー" : "Calendar"}</span>
+            <span>カレンダー</span>
           </CommandItem>
-          <CommandItem value="emoji" keywords={["${isJa ? "絵文字" : "emoji"}", "${isJa ? "顔文字" : "smile"}"]}>
+          <CommandItem value="emoji" keywords={["絵文字", "顔文字"]}>
             <Smile className="mr-2 h-4 w-4" />
-            <span>${isJa ? "絵文字を検索" : "Search emoji"}</span>
+            <span>絵文字を検索</span>
           </CommandItem>
-          <CommandItem value="calculator" keywords={["${isJa ? "計算機" : "calculator"}", "${isJa ? "電卓" : "math"}"]}>
+          <CommandItem value="calculator" keywords={["計算機", "電卓"]}>
             <Calculator className="mr-2 h-4 w-4" />
-            <span>${isJa ? "計算機" : "Calculator"}</span>
+            <span>計算機</span>
           </CommandItem>
         </CommandGroup>
       </CommandList>
     </Command>
   )
-}`;
+}`,
+    en: `import * as React from "react"
+import {
+  Command,
+  CommandEmpty,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+} from "@gunjo/ui"
+import {
+  IconCalculator as Calculator,
+  IconCalendar as Calendar,
+  IconMoodSmile as Smile,
+} from "@tabler/icons-react"
 
-    const disabledCode = `import {
+export function EmptyCommandSearch() {
+  const [search, setSearch] = React.useState("Missing item")
+
+  return (
+    <Command className="w-full max-w-[720px] rounded-lg border shadow-md">
+      <CommandInput
+        value={search}
+        onValueChange={setSearch}
+        placeholder="Type a command or search..."
+        clearable
+        clearLabel="Clear search"
+      />
+      <CommandList>
+        <CommandEmpty>No results found.</CommandEmpty>
+        <CommandGroup heading="Suggestions">
+          <CommandItem value="calendar" keywords={["calendar", "schedule"]}>
+            <Calendar className="mr-2 h-4 w-4" />
+            <span>Calendar</span>
+          </CommandItem>
+          <CommandItem value="emoji" keywords={["emoji", "smile"]}>
+            <Smile className="mr-2 h-4 w-4" />
+            <span>Search emoji</span>
+          </CommandItem>
+          <CommandItem value="calculator" keywords={["calculator", "math"]}>
+            <Calculator className="mr-2 h-4 w-4" />
+            <span>Calculator</span>
+          </CommandItem>
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  )
+}`,
+};
+
+const disabledCodeByLocale = {
+    ja: `import {
   Command,
   CommandGroup,
   CommandInput,
@@ -268,40 +398,97 @@ export function EmptyCommandSearch() {
 import { IconSearch as Search, IconSettings as Settings } from "@tabler/icons-react"
 
 export function DisabledCommandItems() {
-  const disabledReason = "${isJa ? "管理者ロールを付与すると選択できます。ワークスペース管理者に依頼してください。" : "Ask a workspace administrator to grant the admin role before using this item."}"
+  const disabledReason = "管理者ロールを付与すると選択できます。ワークスペース管理者に依頼してください。"
 
   return (
     <Command className="w-full max-w-[720px] rounded-lg border shadow-md">
       <CommandInput
-        placeholder="${isJa ? "コマンドまたは検索語を入力..." : "Type a command or search..."}"
+        placeholder="コマンドまたは検索語を入力..."
         clearable
-        clearLabel="${isJa ? "検索をクリア" : "Clear search"}"
+        clearLabel="検索をクリア"
       />
       <CommandList>
-        <CommandGroup heading="${isJa ? "ワークスペース" : "Workspace"}">
-          <CommandItem value="search" keywords={["${isJa ? "検索" : "search"}", "${isJa ? "ワークスペース" : "workspace"}"]}>
+        <CommandGroup heading="ワークスペース">
+          <CommandItem value="search" keywords={["検索", "ワークスペース"]}>
             <Search className="mr-2 h-4 w-4" />
-            <span>${isJa ? "ワークスペースを検索" : "Search workspace"}</span>
+            <span>ワークスペースを検索</span>
             <CommandShortcut>⌘F</CommandShortcut>
           </CommandItem>
           <CommandItem
             value="settings"
             disabled
             disabledReason={disabledReason}
-            disabledReasonLabel="${isJa ? "管理設定を選択できない理由" : "Why admin settings are unavailable"}"
-            keywords={["${isJa ? "管理設定" : "admin settings"}", "${isJa ? "権限" : "permissions"}"]}
+            disabledReasonLabel="管理設定を選択できない理由"
+            keywords={["管理設定", "権限"]}
           >
             <Settings className="mr-2 h-4 w-4" />
-            <span>${isJa ? "管理設定" : "Admin settings"}</span>
+            <span>管理設定</span>
             <span className="ml-auto text-xs text-muted-foreground">
-              ${isJa ? "権限が必要" : "Requires role"}
+              権限が必要
             </span>
           </CommandItem>
         </CommandGroup>
       </CommandList>
     </Command>
   )
-}`;
+}`,
+    en: `import {
+  Command,
+  CommandGroup,
+  CommandInput,
+  CommandItem,
+  CommandList,
+  CommandShortcut,
+} from "@gunjo/ui"
+import { IconSearch as Search, IconSettings as Settings } from "@tabler/icons-react"
+
+export function DisabledCommandItems() {
+  const disabledReason = "Ask a workspace administrator to grant the admin role before using this item."
+
+  return (
+    <Command className="w-full max-w-[720px] rounded-lg border shadow-md">
+      <CommandInput
+        placeholder="Type a command or search..."
+        clearable
+        clearLabel="Clear search"
+      />
+      <CommandList>
+        <CommandGroup heading="Workspace">
+          <CommandItem value="search" keywords={["search", "workspace"]}>
+            <Search className="mr-2 h-4 w-4" />
+            <span>Search workspace</span>
+            <CommandShortcut>⌘F</CommandShortcut>
+          </CommandItem>
+          <CommandItem
+            value="settings"
+            disabled
+            disabledReason={disabledReason}
+            disabledReasonLabel="Why admin settings are unavailable"
+            keywords={["admin settings", "permissions"]}
+          >
+            <Settings className="mr-2 h-4 w-4" />
+            <span>Admin settings</span>
+            <span className="ml-auto text-xs text-muted-foreground">
+              Requires role
+            </span>
+          </CommandItem>
+        </CommandGroup>
+      </CommandList>
+    </Command>
+  )
+}`,
+};
+
+export default function CommandPage() {
+    const { locale, sectionLabels } = useLocale();
+    const isJa = locale === "ja";
+    const statesTitle = isJa ? "状態とバリエーション" : "States and variations";
+
+    const usageCode = codeByLocale[locale];
+
+    const searchCode = searchCodeByLocale[locale];
+
+    const disabledCode = disabledCodeByLocale[locale];
 
     return (
         <ComponentLayout
@@ -323,8 +510,8 @@ export function DisabledCommandItems() {
         >
             <ComponentPreview
                 embedSrc="/embed/command"
-                code={code}
-                codeBlock={<CodeBlock code={code} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewBodyWidth="xl"
             >
@@ -345,7 +532,7 @@ export function DisabledCommandItems() {
                                 : "Group commands by purpose and show shortcuts for frequent actions.",
                             preview: <CommandExample />,
                             previewBodyWidth: "xl",
-                            code,
+                            code: usageCode,
                         },
                         {
                             key: "empty",
@@ -477,10 +664,10 @@ export function DisabledCommandItems() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={code} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </div>
         </ComponentLayout>

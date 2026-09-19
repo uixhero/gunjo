@@ -5,7 +5,7 @@
   "score": "4/5",
   "category": "運輸：航空",
   "title": "AI にフライト運航状況案内を作らせてみた — ListCard と RouteStops が「これのために作られた」（やってみた #115）",
-  "summary": "`tsc` 緑・375px mobile-first・0 console error。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "利用者向けバッチで最高。利用者向けでも「一覧性」は強い、温かみは弱い。",
   "article": {
     "file": "zenn-yattemita-115-flight-status.md",
     "slug": "115-flight-status",

@@ -58,7 +58,7 @@ export function MarkdownResourcePage({
                     Docs resource
                 </p>
                 <h1 className="text-4xl font-bold tracking-tight">{title}</h1>
-                <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground">
+                <p className="text-lg leading-relaxed text-muted-foreground">
                     {description}
                 </p>
             </header>

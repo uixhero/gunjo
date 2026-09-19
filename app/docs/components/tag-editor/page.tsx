@@ -200,7 +200,7 @@ export default function TagEditorDocPage() {
     const { locale, sectionLabels } = useLocale();
     const content = getDocContent("components/tag-editor", locale);
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
     const baseTags = React.useMemo(() => (locale === "ja" ? ["ヒーロー", "Web"] : ["Hero", "Website"]), [locale]);
     const suggestions = React.useMemo(
         () => (locale === "ja" ? ["キャンペーン", "SNS", "商品", "セール"] : ["Campaign", "SNS", "Product", "Sale"]),
@@ -224,7 +224,7 @@ export default function TagEditorDocPage() {
                 { name: "ToolPill", href: "/docs/components/tool-pill" },
             ]}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewBodyWidth="md" previewHeight="auto">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md" previewHeight="auto">
                 <ControlledTagEditor
                     initialValue={baseTags}
                     suggestions={suggestions}
@@ -259,7 +259,7 @@ export default function TagEditorDocPage() {
                                     maxTagsReachedLabel={locale === "ja" ? "タグは6件まで追加できます。不要なタグを削除してから追加してください。" : "You can add up to 6 tags. Remove a tag before adding another."}
                                 />
                             ),
-                            code,
+                            code: usageCode,
                         },
                         {
                             key: "compact",
@@ -312,9 +312,11 @@ export default function TagEditorDocPage() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </div>
         </ComponentLayout>
     );

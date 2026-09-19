@@ -156,7 +156,7 @@ export function ShipmentCapacityMeter() {
         max={MAX_WEIGHT}
         incoming={previewIncoming ? NEXT_WEIGHT : undefined}
         thresholds={{ warning: 0.8, over: 1 }}
-        formatValue={(value) => \`\${value.toLocaleString("ja-JP")}kg\`}
+        formatValue={(value) => value.toLocaleString("ja-JP") + "kg"}
       />
       <div className="flex flex-wrap items-center gap-2">
         <Button
@@ -210,7 +210,7 @@ export function ShipmentCapacityMeter() {
         max={MAX_WEIGHT}
         incoming={previewIncoming ? NEXT_WEIGHT : undefined}
         thresholds={{ warning: 0.8, over: 1 }}
-        formatValue={(value) => \`\${value.toLocaleString("en-US")} kg\`}
+        formatValue={(value) => value.toLocaleString("en-US") + " kg"}
       />
       <div className="flex flex-wrap items-center gap-2">
         <Button
@@ -252,14 +252,21 @@ export function ShipmentCapacityMeter() {
 export function UtilizationMeters() {
   return (
     <div className="grid w-full max-w-lg gap-4 rounded-lg border bg-card p-4">
-      <Meter label="稼働率（目標 90%）" value={86} max={100} unit="%" direction="higher-is-better" target={90} />
+      <Meter
+        label="稼働率（目標 90%）"
+        value={86}
+        max={100}
+        unit="%"
+        direction="higher-is-better"
+        target={90}
+      />
       <Meter label="受注カバー率" value={87} max={100} unit="%" direction="fill-is-good" />
       <Meter
         label="予算消化"
         value={2340000}
         max={3000000}
         direction="higher-is-worse"
-        formatValue={(value) => \`¥\${value.toLocaleString("ja-JP")}\`}
+        formatValue={(value) => "¥" + value.toLocaleString("ja-JP")}
       />
     </div>
   );
@@ -269,14 +276,27 @@ export function UtilizationMeters() {
 export function UtilizationMeters() {
   return (
     <div className="grid w-full max-w-lg gap-4 rounded-lg border bg-card p-4">
-      <Meter label="Utilization target 90%" value={86} max={100} unit="%" direction="higher-is-better" target={90} />
-      <Meter label="Order coverage" value={87} max={100} unit="%" direction="fill-is-good" />
+      <Meter
+        label="Utilization target 90%"
+        value={86}
+        max={100}
+        unit="%"
+        direction="higher-is-better"
+        target={90}
+      />
+      <Meter
+        label="Order coverage"
+        value={87}
+        max={100}
+        unit="%"
+        direction="fill-is-good"
+      />
       <Meter
         label="Budget spent"
         value={2340000}
         max={3000000}
         direction="higher-is-worse"
-        formatValue={(value) => \`$\${value.toLocaleString("en-US")}\`}
+        formatValue={(value) => "$" + value.toLocaleString("en-US")}
       />
     </div>
   );
@@ -299,7 +319,12 @@ export function BinFillTable() {
           <tr key={row.bin} className="border-b last:border-b-0">
             <th className="whitespace-nowrap px-3 py-3 text-left font-medium text-foreground">{row.bin}</th>
             <td className="w-full px-3 py-3">
-              <Meter size="inline" value={row.value} max={row.max} label={\`\${row.bin} 棚充填\`} />
+              <Meter
+                size="inline"
+                value={row.value}
+                max={row.max}
+                label={\`\${row.bin} 棚充填\`}
+              />
             </td>
           </tr>
         ))}
@@ -323,12 +348,45 @@ export function BinFillTable() {
           <tr key={row.bin} className="border-b last:border-b-0">
             <th className="whitespace-nowrap px-3 py-3 text-left font-medium text-foreground">{row.bin}</th>
             <td className="w-full px-3 py-3">
-              <Meter size="inline" value={row.value} max={row.max} label={\`\${row.bin} Bin fill\`} />
+              <Meter
+                size="inline"
+                value={row.value}
+                max={row.max}
+                label={\`\${row.bin} Bin fill\`}
+              />
             </td>
           </tr>
         ))}
       </tbody>
     </table>
+  );
+}`;
+
+  const neutralCode = locale === "ja"
+    ? `import { Meter } from "@gunjo/ui";
+
+export function OccupancyMeter() {
+  return (
+    <Meter
+      label="満席率（2 / 7卓）"
+      value={2}
+      max={7}
+      target={6}
+      direction="neutral"
+    />
+  );
+}`
+    : `import { Meter } from "@gunjo/ui";
+
+export function OccupancyMeter() {
+  return (
+    <Meter
+      label="Occupancy (2 / 7 tables)"
+      value={2}
+      max={7}
+      target={6}
+      direction="neutral"
+    />
   );
 }`;
 
@@ -402,13 +460,7 @@ export function BinFillTable() {
                   </p>
                 </div>
               ),
-              code: `<Meter
-  label="${locale === "ja" ? "満席率（2 / 7卓）" : "Occupancy (2 / 7 tables)"}"
-  value={2}
-  max={7}
-  target={6}
-  direction="neutral"
-/>`,
+              code: neutralCode,
               previewBodyWidth: "lg",
             },
             {

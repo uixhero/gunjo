@@ -163,13 +163,196 @@ function HeaderExample({ compact = false, drawerNav = false }: { compact?: boole
     );
 }
 
+function HeaderManyLinksExample() {
+    const { locale } = useLocale();
+    const isJa = locale === "ja";
+    const navLinks = isJa
+        ? ["ダッシュボード", "配車", "車両", "乗務員", "運行実績", "整備", "請求", "設定"]
+        : ["Dashboard", "Dispatch", "Vehicles", "Drivers", "Trips", "Maintenance", "Billing", "Settings"];
+
+    return (
+        <div className="w-full max-w-md overflow-hidden rounded-md border bg-background">
+            <Header>
+                <HeaderBrand>
+                    <GunjoLogo />
+                </HeaderBrand>
+                <HeaderNav>
+                    {navLinks.map((label, index) => (
+                        <HeaderNavLink
+                            key={label}
+                            href="#"
+                            active={index === 0}
+                            onClick={(event) => event.preventDefault()}
+                        >
+                            {label}
+                        </HeaderNavLink>
+                    ))}
+                </HeaderNav>
+                <HeaderActions>
+                    <Avatar className="h-8 w-8">
+                        <AvatarFallback>
+                            <UserRound className="h-4 w-4" />
+                        </AvatarFallback>
+                    </Avatar>
+                </HeaderActions>
+            </Header>
+        </div>
+    );
+}
+
+const compactCodeByLocale = {
+    ja: `import { Button, Header, HeaderActions, HeaderBrand } from "@gunjo/ui"
+
+export function CompactHeader() {
+  return (
+    <Header className="px-4">
+      <HeaderBrand>
+        <span
+          aria-label="Gunjo UI"
+          role="img"
+          className="block h-8 w-[3.75rem] bg-primary [mask:url('/gunjo-logo.svg')_center/contain_no-repeat] [-webkit-mask:url('/gunjo-logo.svg')_center/contain_no-repeat]"
+        />
+      </HeaderBrand>
+      <HeaderActions>
+        <Button size="sm">ログイン</Button>
+      </HeaderActions>
+    </Header>
+  )
+}`,
+    en: `import { Button, Header, HeaderActions, HeaderBrand } from "@gunjo/ui"
+
+export function CompactHeader() {
+  return (
+    <Header className="px-4">
+      <HeaderBrand>
+        <span
+          aria-label="Gunjo UI"
+          role="img"
+          className="block h-8 w-[3.75rem] bg-primary [mask:url('/gunjo-logo.svg')_center/contain_no-repeat] [-webkit-mask:url('/gunjo-logo.svg')_center/contain_no-repeat]"
+        />
+      </HeaderBrand>
+      <HeaderActions>
+        <Button size="sm">Sign in</Button>
+      </HeaderActions>
+    </Header>
+  )
+}`,
+};
+
+const manyLinksCodeByLocale = {
+    ja: `import {
+  Avatar,
+  AvatarFallback,
+  Header,
+  HeaderActions,
+  HeaderBrand,
+  HeaderNav,
+  HeaderNavLink,
+} from "@gunjo/ui";
+import { IconUserCircle as UserRound } from "@tabler/icons-react";
+
+const NAV_LINKS = [
+  "ダッシュボード",
+  "配車",
+  "車両",
+  "乗務員",
+  "運行実績",
+  "整備",
+  "請求",
+  "設定",
+];
+
+export function WideNavHeader() {
+  return (
+    <Header>
+      <HeaderBrand>
+        <span className="text-base font-semibold">群青交通</span>
+      </HeaderBrand>
+      <HeaderNav>
+        {NAV_LINKS.map((label, index) => (
+          <HeaderNavLink key={label} href="#" active={index === 0}>
+            {label}
+          </HeaderNavLink>
+        ))}
+      </HeaderNav>
+      <HeaderActions>
+        <Avatar className="h-8 w-8">
+          <AvatarFallback>
+            <UserRound className="h-4 w-4" />
+          </AvatarFallback>
+        </Avatar>
+      </HeaderActions>
+    </Header>
+  );
+}`,
+    en: `import {
+  Avatar,
+  AvatarFallback,
+  Header,
+  HeaderActions,
+  HeaderBrand,
+  HeaderNav,
+  HeaderNavLink,
+} from "@gunjo/ui";
+import { IconUserCircle as UserRound } from "@tabler/icons-react";
+
+const NAV_LINKS = [
+  "Dashboard",
+  "Dispatch",
+  "Vehicles",
+  "Drivers",
+  "Trips",
+  "Maintenance",
+  "Billing",
+  "Settings",
+];
+
+export function WideNavHeader() {
+  return (
+    <Header>
+      <HeaderBrand>
+        <span className="text-base font-semibold">Gunjo Transit</span>
+      </HeaderBrand>
+      <HeaderNav>
+        {NAV_LINKS.map((label, index) => (
+          <HeaderNavLink key={label} href="#" active={index === 0}>
+            {label}
+          </HeaderNavLink>
+        ))}
+      </HeaderNav>
+      <HeaderActions>
+        <Avatar className="h-8 w-8">
+          <AvatarFallback>
+            <UserRound className="h-4 w-4" />
+          </AvatarFallback>
+        </Avatar>
+      </HeaderActions>
+    </Header>
+  );
+}`,
+} as const;
+
 export default function HeaderPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
-const code = `import * as React from "react"
-import { IconLanguage as Languages, IconMoon as Moon, IconSearch as Search, IconSun as Sun } from "@tabler/icons-react"
+const usageCode = `import * as React from "react"
+import {
+  IconLanguage as Languages,
+  IconMoon as Moon,
+  IconSearch as Search,
+  IconSun as Sun,
+} from "@tabler/icons-react"
 import { useTheme } from "next-themes"
-import { Button, CommandPalette, Header, HeaderActions, HeaderBrand, HeaderNav, HeaderNavLink, TooltipButton } from "@gunjo/ui"
+import {
+  Button,
+  CommandPalette,
+  Header,
+  HeaderActions,
+  HeaderBrand,
+  HeaderNav,
+  HeaderNavLink,
+  TooltipButton,
+} from "@gunjo/ui"
 
 type Locale = "ja" | "en"
 
@@ -199,6 +382,7 @@ export function SiteHeader() {
   const isJa = locale === "ja"
   const isDark = mounted && resolvedTheme === "dark"
   const navLinks = getNavLinks(isJa)
+  const currentPath = "/docs"
   const commandGroups = [
     {
       heading: isJa ? "ページ" : "Pages",
@@ -221,8 +405,12 @@ export function SiteHeader() {
           <BrandLogo />
         </HeaderBrand>
         <HeaderNav>
-          {navLinks.map((link, index) => (
-            <HeaderNavLink key={link.href} href={link.href} active={index === 0}>
+          {navLinks.map((link) => (
+            <HeaderNavLink
+              key={link.href}
+              href={link.href}
+              active={link.href === currentPath}
+            >
               {link.label}
             </HeaderNavLink>
           ))}
@@ -274,9 +462,33 @@ export function SiteHeader() {
   )
 }`;
 const drawerNavCode = `import * as React from "react"
-import { IconLanguage as Languages, IconMenu2 as Menu, IconMoon as Moon, IconSearch as Search, IconSun as Sun, IconUserCircle as UserRound } from "@tabler/icons-react"
+import {
+  IconLanguage as Languages,
+  IconMenu2 as Menu,
+  IconMoon as Moon,
+  IconSearch as Search,
+  IconSun as Sun,
+  IconUserCircle as UserRound,
+} from "@tabler/icons-react"
 import { useTheme } from "next-themes"
-import { Avatar, AvatarFallback, Button, CommandPalette, Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger, Header, HeaderActions, HeaderBrand, TooltipButton } from "@gunjo/ui"
+import {
+  Avatar,
+  AvatarFallback,
+  Button,
+  CommandPalette,
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerTrigger,
+  Header,
+  HeaderActions,
+  HeaderBrand,
+  TooltipButton,
+} from "@gunjo/ui"
 
 type Locale = "ja" | "en"
 
@@ -408,24 +620,7 @@ export function DrawerMenuHeader() {
     </>
   )
 }`;
-    const compactCode = `import { Button, Header, HeaderActions, HeaderBrand } from "@gunjo/ui"
-
-export function CompactHeader() {
-  return (
-    <Header className="px-4">
-      <HeaderBrand>
-        <span
-          aria-label="Gunjo UI"
-          role="img"
-          className="block h-8 w-[3.75rem] bg-primary [mask:url('/gunjo-logo.svg')_center/contain_no-repeat] [-webkit-mask:url('/gunjo-logo.svg')_center/contain_no-repeat]"
-        />
-      </HeaderBrand>
-      <HeaderActions>
-        <Button size="sm">${isJa ? "ログイン" : "Sign in"}</Button>
-      </HeaderActions>
-    </Header>
-  )
-}`;
+    const compactCode = compactCodeByLocale[locale];
 
     return (
         <ComponentLayout
@@ -444,7 +639,7 @@ export function CompactHeader() {
                 { name: "Button", href: "/docs/components/button" },
             ]}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} sectionLabels={sectionLabels} previewBodyWidth="full" previewHeight="auto" embedSrc="/embed/header">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} sectionLabels={sectionLabels} previewBodyWidth="full" previewHeight="auto" embedSrc="/embed/header">
                 <HeaderExample />
             </ComponentPreview>
 
@@ -474,6 +669,16 @@ export function CompactHeader() {
                             embedSrc: "/embed/header?variant=drawer-nav",
                             code: drawerNavCode,
                         },
+                        {
+                            key: "many-links",
+                            title: isJa ? "リンクが多いとき" : "When there are many links",
+                            description: isJa
+                                ? "HeaderNav は入り切らない分を横スクロールに逃がします。ブランドと操作は押し出されず、狭い画面ではナビが自分の段へ降ります。"
+                                : "HeaderNav sends the overflow into a horizontal scroll: the brand and the actions are never pushed out, and on narrow screens the nav drops onto its own row.",
+                            preview: <HeaderManyLinksExample />,
+                            previewBodyWidth: "lg",
+                            code: manyLinksCodeByLocale[locale],
+                        },
                     ]}
                 />
             </div>
@@ -497,9 +702,11 @@ export function CompactHeader() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </div>
         </ComponentLayout>
     );

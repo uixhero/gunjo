@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { cn } from "@gunjo/ui";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { BookBannerSlot } from "@/components/book/BookBannerSlot";
 
 const SECTIONS = [
     { href: "/tokens", label: "Overview" },
@@ -51,6 +52,8 @@ export default function TokensLayout({
             </aside>
             <main className="py-8 lg:py-10">
                 {children}
+                {/* 本の帯は本文の列の中（この面の本文はグリッドの右列） */}
+                <BookBannerSlot placement="content" />
                 <SiteFooter placement="content" />
             </main>
         </div>

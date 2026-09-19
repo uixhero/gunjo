@@ -106,7 +106,11 @@ export function EditProfileDialog() {
           </div>
           <div className="grid gap-2 sm:grid-cols-[96px_minmax(0,1fr)]">
             <Label htmlFor="bio" className="pt-2 sm:text-right">Note</Label>
-            <Textarea id="bio" className="w-full" defaultValue="Maintains the design system." />
+            <Textarea
+              id="bio"
+              className="w-full"
+              defaultValue="Maintains the design system."
+            />
           </div>
         </div>
         <DialogFooter>
@@ -311,6 +315,12 @@ const scrollCodeByLocale = {
   Label,
 } from "@gunjo/ui";
 
+const fields = Array.from({ length: 10 }, (_, i) => ({
+  id: "profile-field-" + (i + 1),
+  label: "項目 " + (i + 1),
+  value: "値 " + (i + 1),
+}));
+
 // DialogBody を直下に置くと DialogContent が高さ制限つきの flex 列になり、
 // ヘッダー/フッターは固定・中央だけがスクロールします。
 export function LongFormDialog() {
@@ -357,6 +367,12 @@ export function LongFormDialog() {
   Label,
 } from "@gunjo/ui";
 
+const fields = Array.from({ length: 10 }, (_, i) => ({
+  id: "profile-field-" + (i + 1),
+  label: "Field " + (i + 1),
+  value: "Value " + (i + 1),
+}));
+
 // A DialogBody as a direct child makes DialogContent a bounded flex column, so
 // the header and footer stay pinned while only the middle scrolls.
 export function LongFormDialog() {
@@ -393,7 +409,7 @@ export function LongFormDialog() {
 export default function DialogPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
     const confirmationCode = confirmationCodeByLocale[locale];
     const summaryCode = summaryCodeByLocale[locale];
     const scrollCode = scrollCodeByLocale[locale];
@@ -414,8 +430,8 @@ export default function DialogPage() {
         >
             <ComponentPreview
                 embedSrc="/embed/dialog"
-                code={code}
-                codeBlock={<CodeBlock code={code} />}
+                code={usageCode}
+                codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewHeight={600}
                 previewBodyWidth="lg"
@@ -436,7 +452,7 @@ export default function DialogPage() {
                                 ? "画面遷移せずに短い編集を完了するための標準的な構成です。"
                                 : "A standard composition for quick edits without leaving the current page.",
                             preview: <DialogAuditDemo />,
-                            code,
+                            code: usageCode,
                             embedSrc: "/embed/dialog?variant=form",
                             previewHeight: 600,
                             previewBodyWidth: "lg",
@@ -521,12 +537,14 @@ export default function DialogPage() {
 
             <section className="space-y-4">
                 <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
-                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </section>
         </ComponentLayout>
     );

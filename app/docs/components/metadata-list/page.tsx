@@ -9,6 +9,7 @@ import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
 import { MetadataList } from "@gunjo/ui";
 import { IconCalendarEvent as CalendarDays, IconDatabase as HardDrive, IconFileTypeJpg as FileImage, IconRuler as Ruler } from "@tabler/icons-react";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const itemsByLocale = {
     ja: [
@@ -152,7 +153,7 @@ export default function MetadataListDocPage() {
     const { locale, sectionLabels } = useLocale();
     const content = getDocContent("components/metadata-list", locale);
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
 
     return (
         <ComponentLayout
@@ -167,8 +168,15 @@ export default function MetadataListDocPage() {
                 { name: "AssetInspectorPanel", href: "/docs/components/asset-inspector-panel" },
                 { name: "Card", href: "/docs/components/card" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: リスト（List）" : "UIXHERO: List (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/list`,
+                    relation: "nearest",
+                },
+            ]}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewBodyWidth="sm" previewHeight="auto">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="sm" previewHeight="auto">
                 <MetadataList items={[...itemsByLocale[locale]]} />
             </ComponentPreview>
 
@@ -221,10 +229,48 @@ export default function MetadataListDocPage() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ul</code> ではなく <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dl</code> にした。</strong>資料は順序と操作の有無でリストの種類を選べと書いています。ここは「名前と値の組」なので、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dl</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dt</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dd</code> を使います。項目に順序の意味は無く、押すこともありません。
+                        </li>
+                        <li>
+                            <strong>既定は切り詰めで、伸ばすのは宣言で。</strong>値は既定で1行に切り詰め、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">title</code> 属性に全文を入れます。折り返したいときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">wrap</code> を渡し、項目ごとの上書きもできます（#284）。行の高さが揃うことを既定にしたのは、詳細パネルに縦に並べたときに読み飛ばしやすくするためです。
+                        </li>
+                        <li>
+                            <strong>空のときは何も描かずに済ませない。</strong>項目が0件のときは破線の枠に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">emptyMessage</code> を出します。資料も「空状態を必ず設計する」を挙げています。何も描かないと、読み込み中なのか本当に無いのかが分かりません。
+                            <br />
+                            一般のリストの設計は UIXHERO の「リスト」にあります。
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>A <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dl</code>, not a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ul</code>.</strong> The article picks the list element from order and interactivity. These are name-and-value pairs with no meaningful order and nothing to click, so they render as <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dl</code> with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dt</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dd</code>.
+                        </li>
+                        <li>
+                            <strong>Truncation is the default; wrapping is opt-in.</strong> Values truncate to one line and carry the full text in <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">title</code>. Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">wrap</code> to let them wrap, with a per-item override (#284). Equal row heights are the default because a details panel is read by skimming down the column.
+                        </li>
+                        <li>
+                            <strong>Empty is drawn, not skipped.</strong> With no items the list renders <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">emptyMessage</code> inside a dashed frame. The article calls for designing the empty state explicitly; drawing nothing leaves &ldquo;still loading&rdquo; and &ldquo;genuinely empty&rdquo; indistinguishable.
+                            <br />
+                            The general design of lists is covered by UIXHERO&rsquo;s list article.
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

@@ -234,7 +234,29 @@ AI エージェントなら URL を fetch して同じことができます。�
 
 影（\`--shadow-*\`）はそのまま \`box-shadow\` に、\`--duration-*\` と \`--ease-*\` は \`transition\` に使えます。
 
-### 3. ダークモード
+### 3. 余白と字
+
+余白と字の段階も同じシートに入っています。ドキュメントの数値を手で写す必要はありません：
+
+\`\`\`css
+.panel {
+  padding: var(--space-6);          /* 24px */
+  gap: var(--space-2);              /* 8px */
+  font-size: var(--text-sm);        /* 14px */
+  line-height: var(--leading-normal);
+  font-weight: var(--font-weight-semibold);
+}
+\`\`\`
+
+**名前は寸法ではなく段階です。** \`--space-2\` は「2 段目」＝ 8px（\`gap-2\` と同じ 8px）で、2px ではありません。[Spacing](/docs/spacing) をはじめシステム全体が使っている語彙と同じなので、このシートで組んだ画面とパッケージで組んだ画面が、余白を同じ言葉で説明できます。小数の段はハイフンで書きます（カスタムプロパティ名に素の \`.\` は置けないため）。\`--space-0-5\` が 2px です。
+
+**値は \`rem\` です。** 読み手がブラウザの文字サイズを上げれば、画面ごと大きくなります。各行の末尾に px を併記していますが、これは目安で、px の方に書き換えると読み手の設定が効かなくなります。
+
+寸法ではなく決まりを持っているトークンが 3 つあります。\`--control-h\`（36px・ボタンと入力とセレクトの共通の高さ）、\`--text-ui\`（14px・UI の既定）、\`--text-prose\`（16px・長文の既定）です。壁掛けの盤や屋外の手袋のように、画面を詰めたい・大きくしたいときは、個々の指定を探して回るのではなく、この 3 つを差し替えてください。
+
+文字種は \`--font-sans\` / \`--font-mono\` / \`--font-mincho\` の 3 つで、どれも上書き前提です。Mincho の webfont はシートに同梱していないので、無い環境では環境の明朝（最終的には serif）に落ちます。
+
+### 4. ダークモード
 
 \`<html class="dark">\` または \`<html data-theme="dark">\` で切り替わります。OS 設定に追従させる場合は \`<head>\` に 1 行：
 
@@ -321,11 +343,11 @@ https://www.gunjo.jp/starter.html
 
 そのまま使える指示文の例：
 
-> npm・CDN が使えない環境では、@gunjo/ui の代わりに https://www.gunjo.jp/tokens.css のデザイントークンと https://www.gunjo.jp/patterns.css のパターンクラスを \`<style>\` に貼り、\`gj-\` クラスと \`hsl(var(--トークン名))\` 記法で GunjoUI ルックを再現してください。見本は https://www.gunjo.jp/starter.html にあります。
+> npm・CDN が使えない環境では、@gunjo/ui の代わりに https://www.gunjo.jp/tokens.css のデザイントークンと https://www.gunjo.jp/patterns.css のパターンクラスを \`<style>\` に貼り、\`gj-\` クラスと \`hsl(var(--トークン名))\` 記法で GunjoUI ルックを再現してください。余白と字も同じシートの \`var(--space-*)\` / \`var(--text-*)\` / \`var(--font-weight-*)\` を使い、px の直書きはしないでください。見本は https://www.gunjo.jp/starter.html にあります。
 
 ### この方法で得られるもの・得られないもの
 
-tokens.css / patterns.css が持つのは**トークンと見た目（色・角丸・影・モーション・基本パターンの CSS）**だけです。コンポーネントの実装（アクセシビリティ対応、キーボード操作、状態管理）は含まれません。tabs のパネル切替のような挙動には別途 JavaScript が要ります（starter.html に最小例あり）。npm が使える環境では [\`@gunjo/ui\` 本体のインストール](/docs/installation) を使ってください。
+tokens.css / patterns.css が持つのは**トークンと見た目（色・角丸・影・モーション・余白・字・基本パターンの CSS）**だけです。コンポーネントの実装（アクセシビリティ対応、キーボード操作、状態管理）は含まれません。tabs のパネル切替のような挙動には別途 JavaScript が要ります（starter.html に最小例あり）。npm が使える環境では [\`@gunjo/ui\` 本体のインストール](/docs/installation) を使ってください。
 
 なお、npm はあるが Tailwind は使わないプロジェクトでは、同じ tokens.css / patterns.css をパッケージの subpath（\`@gunjo/ui/tokens.css\` / \`@gunjo/ui/patterns.css\`）として import できます（\`0.1.0-beta.2\` から収録）。詳細は [採用ガイド](/docs/adoption) を参照してください。`,
   },

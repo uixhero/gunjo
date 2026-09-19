@@ -60,12 +60,12 @@ function BottomActionBarPreview({ locale, initialStack = false }: { locale: Loca
         </Label>
       </div>
 
-      <div className="relative h-72 overflow-hidden rounded-xl border bg-muted/30">
-        <div className={stack ? "h-full overflow-y-auto px-4 pb-36 pt-4 text-sm text-muted-foreground" : "h-full overflow-y-auto px-4 pb-28 pt-4 text-sm text-muted-foreground"}>
+      <div className="relative overflow-hidden rounded-xl border bg-muted/30">
+        <div className={stack ? "px-4 pb-36 pt-4 text-sm text-muted-foreground" : "px-4 pb-28 pt-4 text-sm text-muted-foreground"}>
           <p className="font-medium text-foreground">{copy.title}</p>
           <p className="mt-1">{copy.route}</p>
           <p className="mt-3">{copy.car}</p>
-          <div className="mt-20 rounded-md border bg-background p-3 text-xs">
+          <div className="mt-6 rounded-md border bg-background p-3 text-xs">
             {copy.statusPrefix}: {called ? copy.statusCalled : copy.statusIdle}
           </div>
         </div>
@@ -92,6 +92,47 @@ function BottomActionBarPreview({ locale, initialStack = false }: { locale: Loca
   );
 }
 
+function BottomActionBarWidthPreview({ locale }: { locale: Locale }) {
+  const copy = bottomBarCopy(locale);
+  const isJa = locale === "ja";
+  const summary = (
+    <div className="flex flex-col">
+      <span className="text-xs text-muted-foreground">{copy.priceLabel}</span>
+      <span className="text-base font-semibold tabular-nums text-foreground">
+        {copy.price}{" "}
+        <Badge variant="info" className="ml-1 align-middle">
+          {copy.eta}
+        </Badge>
+      </span>
+    </div>
+  );
+
+  return (
+    <div className="flex w-full max-w-2xl flex-col gap-4">
+      <div className="flex flex-col gap-1">
+        <div className="overflow-hidden rounded-xl border bg-muted/30">
+          <BottomActionBar sticky={false} actions={<Button size="lg">{copy.call}</Button>}>
+            {summary}
+          </BottomActionBar>
+        </div>
+        <span className="font-mono text-xs text-muted-foreground">
+          {isJa ? "maxWidth なし＝画面いっぱい" : "no maxWidth — edge to edge"}
+        </span>
+      </div>
+      <div className="flex flex-col gap-1">
+        <div className="overflow-hidden rounded-xl border bg-muted/30">
+          <BottomActionBar sticky={false} maxWidth="md" actions={<Button size="lg">{copy.call}</Button>}>
+            {summary}
+          </BottomActionBar>
+        </div>
+        <span className="font-mono text-xs text-muted-foreground">
+          {isJa ? 'maxWidth="md"＝中央に寄せて幅を止める' : 'maxWidth="md" — centred and capped'}
+        </span>
+      </div>
+    </div>
+  );
+}
+
 export default function BottomActionBarDocPage() {
   const { locale, sectionLabels } = useLocale();
   const content = getDocContent("components/bottom-action-bar", locale);
@@ -114,12 +155,12 @@ export function RideBottomActionBar() {
         <Label htmlFor="ride-stack" className="text-xs">stack（料金の下にCTAを全幅で配置）</Label>
       </div>
 
-      <div className="relative h-72 overflow-hidden rounded-xl border bg-muted/30">
-        <div className={stack ? "h-full overflow-y-auto px-4 pb-36 pt-4 text-sm text-muted-foreground" : "h-full overflow-y-auto px-4 pb-28 pt-4 text-sm text-muted-foreground"}>
+      <div className="relative overflow-hidden rounded-xl border bg-muted/30">
+        <div className={stack ? "px-4 pb-36 pt-4 text-sm text-muted-foreground" : "px-4 pb-28 pt-4 text-sm text-muted-foreground"}>
           <p className="font-medium text-foreground">配車内容の確認</p>
           <p className="mt-1">乗車地：渋谷駅前 / 行き先：六本木ヒルズ</p>
           <p className="mt-3">車種：JPNタクシー・到着まで約4分</p>
-          <div className="mt-20 rounded-md border bg-background p-3 text-xs">
+          <div className="mt-6 rounded-md border bg-background p-3 text-xs">
             状態: {called ? "配車依頼中" : "未確定"}
           </div>
         </div>
@@ -160,12 +201,12 @@ export function RideBottomActionBar() {
         <Label htmlFor="ride-stack" className="text-xs">stack (full-width CTA below fare)</Label>
       </div>
 
-      <div className="relative h-72 overflow-hidden rounded-xl border bg-muted/30">
-        <div className={stack ? "h-full overflow-y-auto px-4 pb-36 pt-4 text-sm text-muted-foreground" : "h-full overflow-y-auto px-4 pb-28 pt-4 text-sm text-muted-foreground"}>
+      <div className="relative overflow-hidden rounded-xl border bg-muted/30">
+        <div className={stack ? "px-4 pb-36 pt-4 text-sm text-muted-foreground" : "px-4 pb-28 pt-4 text-sm text-muted-foreground"}>
           <p className="font-medium text-foreground">Ride details</p>
           <p className="mt-1">Pickup: Shibuya Station / Destination: Roppongi Hills</p>
           <p className="mt-3">Car: JPN Taxi / arrives in about 4 minutes</p>
-          <div className="mt-20 rounded-md border bg-background p-3 text-xs">
+          <div className="mt-6 rounded-md border bg-background p-3 text-xs">
             Status: {called ? "Requesting ride" : "Not requested"}
           </div>
         </div>
@@ -189,6 +230,58 @@ export function RideBottomActionBar() {
       </div>
 
       <p className="text-xs text-muted-foreground">The bar is pinned to the bottom of the preview frame.</p>
+    </div>
+  );
+}`;
+
+  const maxWidthCode = locale === "ja"
+    ? `import { Badge, BottomActionBar, Button } from "@gunjo/ui";
+
+const FARE = { label: "見積もり料金", price: "¥1,200〜", eta: "到着 4分" };
+
+export function CappedBottomActionBar() {
+  return (
+    <div className="overflow-hidden rounded-xl border bg-muted/30">
+      <BottomActionBar
+        sticky={false}
+        maxWidth="md"
+        actions={<Button size="lg">この内容で呼ぶ</Button>}
+      >
+        <div className="flex flex-col">
+          <span className="text-xs text-muted-foreground">{FARE.label}</span>
+          <span className="text-base font-semibold tabular-nums text-foreground">
+            {FARE.price}{" "}
+            <Badge variant="info" className="ml-1 align-middle">
+              {FARE.eta}
+            </Badge>
+          </span>
+        </div>
+      </BottomActionBar>
+    </div>
+  );
+}`
+    : `import { Badge, BottomActionBar, Button } from "@gunjo/ui";
+
+const FARE = { label: "Estimated fare", price: "¥1,200+", eta: "4 min" };
+
+export function CappedBottomActionBar() {
+  return (
+    <div className="overflow-hidden rounded-xl border bg-muted/30">
+      <BottomActionBar
+        sticky={false}
+        maxWidth="md"
+        actions={<Button size="lg">Request ride</Button>}
+      >
+        <div className="flex flex-col">
+          <span className="text-xs text-muted-foreground">{FARE.label}</span>
+          <span className="text-base font-semibold tabular-nums text-foreground">
+            {FARE.price}{" "}
+            <Badge variant="info" className="ml-1 align-middle">
+              {FARE.eta}
+            </Badge>
+          </span>
+        </div>
+      </BottomActionBar>
     </div>
   );
 }`;
@@ -282,8 +375,8 @@ export function RideBottomActionBar() {
 
 export function StackedRideBottomActionBar() {
   return (
-    <div className="relative h-72 overflow-hidden rounded-xl border bg-muted/30">
-      <div className="h-full overflow-y-auto px-4 pb-36 pt-4 text-sm text-muted-foreground">
+    <div className="relative overflow-hidden rounded-xl border bg-muted/30">
+      <div className="px-4 pb-36 pt-4 text-sm text-muted-foreground">
         <p className="font-medium text-foreground">配車内容の確認</p>
         <p className="mt-1">乗車地：渋谷駅前 / 行き先：六本木ヒルズ</p>
         <p className="mt-3">車種：JPNタクシー・到着まで約4分</p>
@@ -308,8 +401,8 @@ export function StackedRideBottomActionBar() {
 
 export function StackedRideBottomActionBar() {
   return (
-    <div className="relative h-72 overflow-hidden rounded-xl border bg-muted/30">
-      <div className="h-full overflow-y-auto px-4 pb-36 pt-4 text-sm text-muted-foreground">
+    <div className="relative overflow-hidden rounded-xl border bg-muted/30">
+      <div className="px-4 pb-36 pt-4 text-sm text-muted-foreground">
         <p className="font-medium text-foreground">Ride details</p>
         <p className="mt-1">Pickup: Shibuya Station / Destination: Roppongi Hills</p>
         <p className="mt-3">Car: JPN Taxi / arrives in about 4 minutes</p>
@@ -331,6 +424,16 @@ export function StackedRideBottomActionBar() {
   );
 }`,
               previewBodyWidth: "md",
+            },
+            {
+              key: "capped-width",
+              title: locale === "ja" ? "広い画面で幅を止める" : "Capping the width on wide screens",
+              description: locale === "ja"
+                ? "maxWidth を渡すと、バーの背景は画面いっぱいのまま、中身だけが中央で止まります。タブレットや横向きで料金とCTAが左右に離れすぎるのを防ぎます。"
+                : "With maxWidth the bar keeps its full-bleed background while the content centres and stops. It keeps fare and CTA from drifting apart on tablets and landscape phones.",
+              preview: <BottomActionBarWidthPreview locale={locale} />,
+              code: maxWidthCode,
+              previewBodyWidth: "lg",
             },
           ]}
         />

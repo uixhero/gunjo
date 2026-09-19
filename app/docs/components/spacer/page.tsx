@@ -128,7 +128,7 @@ export default function SpacerPage() {
     const { locale, sectionLabels } = useLocale();
     const content = getDocContent("components/spacer", locale);
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
-    const code = codeByLocale[locale];
+    const usageCode = codeByLocale[locale];
 
     return (
         <ComponentLayout
@@ -146,7 +146,7 @@ export default function SpacerPage() {
                 { name: "VStack", href: "/docs/components/v-stack" },
             ]}
         >
-            <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewBodyWidth="md" previewHeight="auto">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md" previewHeight="auto">
                 <div className="w-full space-y-3">
                     <div className="text-xs text-muted-foreground">
                         {locale === "ja" ? "Spacer が中央の残り幅を埋め、保存ボタンを右端へ寄せます。" : "Spacer fills the remaining width and pushes Save to the edge."}
@@ -184,7 +184,7 @@ export default function SpacerPage() {
                                     <Button>{locale === "ja" ? "保存" : "Save"}</Button>
                                 </div>
                             ),
-                            code,
+                            code: usageCode,
                         },
                         {
                             key: "push-vertical",
@@ -248,9 +248,11 @@ export default function SpacerPage() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={code} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
-                <CodeBlock code={code} />
+                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                    <CodeBlock code={usageCode} />
+                </div>
             </div>
         </ComponentLayout>
     );

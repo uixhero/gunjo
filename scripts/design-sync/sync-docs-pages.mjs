@@ -45,8 +45,14 @@ function extractVariantMeta(componentSpec) {
     .filter((key) => typeof key === "string" && key.length > 0);
 
   const orderedKeys = unique(keys);
+  const hasExplicitDefault =
+    componentSpec && Object.prototype.hasOwnProperty.call(componentSpec, "defaultVariantKey");
   return {
-    defaultVariantKey: orderedKeys.includes("default") ? "default" : orderedKeys[0] ?? null,
+    defaultVariantKey: hasExplicitDefault
+      ? componentSpec.defaultVariantKey
+      : orderedKeys.includes("default")
+        ? "default"
+        : orderedKeys[0] ?? null,
     variantKeys: uniqueSorted(orderedKeys),
   };
 }
@@ -152,7 +158,7 @@ function buildPreviewMeta(definition) {
     const target = targets[0];
     const componentExportName = target.componentExportName;
   const variantKeys = definition.variantKeys ?? [];
-  const defaultVariant = definition.defaultVariantKey ?? variantKeys[0] ?? null;
+  const defaultVariant = definition.defaultVariantKey;
   const variantProp = variantKeys.length > 1 && typeof defaultVariant === "string"
     ? ` variant="${defaultVariant}"`
     : "";
@@ -205,11 +211,11 @@ function renderVariantPropData(definition) {
   if (variantKeys.length <= 1) return "";
 
   const unionType = variantKeys.map((key) => JSON.stringify(key)).join(" | ");
-  const defaultVariant = definition.defaultVariantKey ?? variantKeys[0];
+  const defaultVariant = definition.defaultVariantKey;
   return `  {
     name: "variant",
     type: ${JSON.stringify(unionType)},
-    default: ${JSON.stringify(`"${defaultVariant}"`)},
+    ${defaultVariant === null ? "required: true," : `default: ${JSON.stringify(`"${defaultVariant}"`)},`}
     description: "Variant key derived from design/component-specs.",
   },`;
 }

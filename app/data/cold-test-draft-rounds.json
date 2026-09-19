@@ -1,0 +1,10 @@
+{
+  "_comment": "JAラウンドの下書きリスト（手書き・生成スクリプトは触らない）。ここに載ったラウンドは、ローカルと Vercel プレビューでは見えるが、本番（VERCEL_ENV=production）では /cold-tests の一覧・詳細・カテゴリ・sitemap・カウントから外れる。/en/cold-tests の status:\"draft\" と同じ作法（app/lib/cold-test-en.ts 参照）。公開の手順＝KeEem のレビュー後、この配列から番号を消して PR を出す。制作の手順は promotion/handoff/COLDTEST-PROCEDURE.md を参照。ゲート本体は app/lib/cold-test-drafts.ts。",
+  "draft": [
+    240,
+    241,
+    242,
+    243,
+    244
+  ]
+}

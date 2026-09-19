@@ -5,7 +5,7 @@
   "score": "4/5",
   "category": "運輸：バス",
   "title": "AI にバスの経路検索を作らせてみた — #126 で作った Itinerary が、別モードで自力発見された（やってみた #140）",
-  "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "Itinerary が別モードで自力発見。「クローズは早すぎることがある／業界越えは二択でなく深さ」。",
   "article": {
     "file": "zenn-yattemita-140-bus-route-search.md",
     "slug": "140-bus-route-search",

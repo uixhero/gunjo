@@ -3,6 +3,7 @@ import { Inter, Shippori_Mincho } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { BookBannerSlot } from "@/components/book/BookBannerSlot";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ThemeOverridesProvider } from "@/components/providers/ThemeOverridesProvider";
 import { LocaleProvider } from "@/components/providers/LocaleProvider";
@@ -73,6 +74,11 @@ export default function RootLayout({
                     <TooltipProvider delayDuration={300}>
                       <SiteHeader />
                       <div className="flex-1">{children}</div>
+                      {/* フッター前の本の帯。⭐ 横幅の器はここ（面を知っている側）で巻きます
+                          ＝BookBannerSlot が `container` を通します。自分でサイドバー付きの
+                          器を持っている面（/docs・/tokens・コールドテストの回）は、その面の
+                          シェルが placement="content" で自分の本文の列に置きます。 */}
+                      <BookBannerSlot />
                       <SiteFooter />
                     </TooltipProvider>
                   </ToastProvider>

@@ -80,7 +80,7 @@ export default function ShadowsPage() {
                     {c.eyebrow}
                 </p>
                 <h1 className="text-4xl font-bold tracking-tight">{c.heading}</h1>
-                <p className="max-w-2xl text-lg text-muted-foreground">{c.subtitle}</p>
+                <p className="text-lg text-muted-foreground">{c.subtitle}</p>
             </header>
 
             <section className="space-y-4">
@@ -112,7 +112,7 @@ export default function ShadowsPage() {
                 <h2 className="border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight">
                     {c.sections.behavior}
                 </h2>
-                <p className="max-w-2xl text-sm leading-7 text-muted-foreground">
+                <p className="text-sm leading-7 text-muted-foreground">
                     {c.behaviorBody}
                 </p>
             </section>

@@ -390,6 +390,28 @@ export const componentStyleHints = {
       "variantClasses": {},
       "variantColorHints": {}
     },
+    "stickyNoticeBar": {
+      "variantKeys": [
+        "top",
+        "bottom"
+      ],
+      "defaultVariantKey": null,
+      "baseClasses": "flex flex-row items-center w-full py-2 px-4 gap-3 border",
+      "baseColorHint": "fill=#ffffff | stroke=#e2e8f0@1px",
+      "slotIds": [
+        "stickyNoticeBarTopMessage",
+        "stickyNoticeBarTopAction",
+        "stickyNoticeBarTopDismiss"
+      ],
+      "variantClasses": {
+        "top": "flex flex-row items-center w-full py-2 px-4 gap-3 border",
+        "bottom": "flex flex-row items-center w-full py-2 px-4 gap-3 border"
+      },
+      "variantColorHints": {
+        "top": "fill=#ffffff | stroke=#e2e8f0@1px",
+        "bottom": "fill=#ffffff | stroke=#e2e8f0@1px"
+      }
+    },
     "toast": {
       "variantKeys": [
         "success",
@@ -2030,6 +2052,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "liveBadge": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": ""
+      },
+      "variantColorHints": {}
+    },
     "loyaltySummaryCard": {
       "variantKeys": [
         "default"
@@ -2563,6 +2598,19 @@ export const componentStyleHints = {
       },
       "variantColorHints": {}
     },
+    "statusLevel": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": ""
+      },
+      "variantColorHints": {}
+    },
     "stringline": {
       "variantKeys": [
         "default"
@@ -2884,6 +2932,19 @@ export const componentStyleHints = {
       "baseColorHint": null,
       "slotIds": [],
       "variantClasses": {},
+      "variantColorHints": {}
+    },
+    "dayBand": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
       "variantColorHints": {}
     },
     "editableField": {
@@ -3243,6 +3304,19 @@ export const componentStyleHints = {
       "baseColorHint": null,
       "slotIds": [],
       "variantClasses": {},
+      "variantColorHints": {}
+    },
+    "timeTransport": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full"
+      },
       "variantColorHints": {}
     },
     "toggle": {

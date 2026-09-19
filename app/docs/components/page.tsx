@@ -24,7 +24,7 @@ export default function ComponentsIndexPage() {
         <div className="space-y-10 pb-10">
             <div className="space-y-4">
                 <h1 className="scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl">{title}</h1>
-                <p className="text-lg text-muted-foreground w-full max-w-2xl">
+                <p className="text-lg text-muted-foreground w-full">
                     {description}
                 </p>
             </div>
@@ -70,7 +70,7 @@ export default function ComponentsIndexPage() {
                 <section className="space-y-4 rounded-lg border bg-muted/20 p-6">
                     <div className="space-y-2">
                         <h2 className="text-2xl font-semibold tracking-tight">{t("Patterns")}</h2>
-                        <p className="max-w-2xl text-sm text-muted-foreground">
+                        <p className="text-sm text-muted-foreground">
                             {locale === "ja"
                                 ? "パターンはコンポーネントの組み合わせ例として、アプリ画面単位で確認します。コンポーネント監査とは分けて、パターン集から実際の画面へ移動して確認してください。"
                                 : "Patterns are page-level compositions built from components. They are audited separately from component docs and can be reviewed from the patterns index."}

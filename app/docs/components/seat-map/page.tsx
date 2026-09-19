@@ -109,34 +109,34 @@ export default function SeatMapDocPage() {
 
   const usageCode = locale === "ja"
     ? `import * as React from "react";
-	import { SeatMap, type Seat } from "@gunjo/ui";
+import { SeatMap, type Seat } from "@gunjo/ui";
 
-	const columns = ["A", "B", "C", null, "D", "E", "F"];
-	const seats: Seat[] = [
-	  {
-	    id: "12A",
-	    row: 12,
-	    col: "A",
-	    position: "window",
-	    type: "非常口座席",
-	    fee: 1500,
-	    reason: (_seat, context) =>
-	      context.selected
-	        ? "選択中です。非常口座席のため、緊急時の補助に同意できる利用者だけ選択できます。"
-	        : "非常口座席のため、緊急時の補助に同意できる利用者だけ選択できます。",
-	  },
-	  { id: "12B", row: 12, col: "B", state: "occupied", reason: "すでに予約済みのため選択できません。" },
-	  { id: "12C", row: 12, col: "C", position: "aisle" },
-	  { id: "12D", row: 12, col: "D", position: "aisle", type: "足元ゆったり", fee: 1200, reason: "足元ゆったり席です。追加料金がかかります。" },
-	  { id: "12E", row: 12, col: "E", state: "held", reason: "別の利用者が決済手続き中のため、数分間選択できません。" },
-	  { id: "12F", row: 12, col: "F", position: "window" },
-	  { id: "13A", row: 13, col: "A", position: "window" },
-	  { id: "13B", row: 13, col: "B" },
-	  { id: "13C", row: 13, col: "C", position: "aisle" },
-	  { id: "13D", row: 13, col: "D", position: "aisle" },
-	  { id: "13E", row: 13, col: "E" },
-	  { id: "13F", row: 13, col: "F", position: "window", state: "occupied", reason: "すでに予約済みのため選択できません。" },
-	];
+const columns = ["A", "B", "C", null, "D", "E", "F"];
+const seats: Seat[] = [
+  {
+    id: "12A",
+    row: 12,
+    col: "A",
+    position: "window",
+    type: "非常口座席",
+    fee: 1500,
+    reason: (_seat, context) =>
+      context.selected
+        ? "選択中です。非常口座席のため、緊急時の補助に同意できる利用者だけ選択できます。"
+        : "非常口座席のため、緊急時の補助に同意できる利用者だけ選択できます。",
+  },
+  { id: "12B", row: 12, col: "B", state: "occupied", reason: "すでに予約済みのため選択できません。" },
+  { id: "12C", row: 12, col: "C", position: "aisle" },
+  { id: "12D", row: 12, col: "D", position: "aisle", type: "足元ゆったり", fee: 1200, reason: "足元ゆったり席です。追加料金がかかります。" },
+  { id: "12E", row: 12, col: "E", state: "held", reason: "別の利用者が決済手続き中のため、数分間選択できません。" },
+  { id: "12F", row: 12, col: "F", position: "window" },
+  { id: "13A", row: 13, col: "A", position: "window" },
+  { id: "13B", row: 13, col: "B" },
+  { id: "13C", row: 13, col: "C", position: "aisle" },
+  { id: "13D", row: 13, col: "D", position: "aisle" },
+  { id: "13E", row: 13, col: "E" },
+  { id: "13F", row: 13, col: "F", position: "window", state: "occupied", reason: "すでに予約済みのため選択できません。" },
+];
 
 export function SeatPicker() {
   const [selectedIds, setSelectedIds] = React.useState(["12A"]);
@@ -152,7 +152,7 @@ export function SeatPicker() {
         maxSelectable={2}
         onToggle={toggle}
         label="座席表"
-        formatFee={(fee) => \`¥\${fee.toLocaleString("ja-JP")}\`}
+        formatFee={(fee) => "¥" + fee.toLocaleString("ja-JP")}
       />
       <p className="rounded-md border bg-muted/30 px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
         選択中: {selectedIds.join(", ") || "未選択"}
@@ -163,45 +163,46 @@ export function SeatPicker() {
     : `import * as React from "react";
 import { SeatMap, type Seat, type SeatMapLabels } from "@gunjo/ui";
 
-	const columns = ["A", "B", "C", null, "D", "E", "F"];
-	const seats: Seat[] = [
-	  {
-	    id: "12A",
-	    row: 12,
-	    col: "A",
-	    position: "window",
-	    type: "Exit row",
-	    fee: 1500,
-	    reason: (_seat, context) =>
-	      context.selected
-	        ? "This seat is selected. Exit-row seats require the passenger to accept emergency-assistance duties."
-	        : "Exit-row seats require the passenger to accept emergency-assistance duties.",
-	  },
-	  { id: "12B", row: 12, col: "B", state: "occupied", reason: "This seat is already booked and cannot be selected." },
-	  { id: "12C", row: 12, col: "C", position: "aisle" },
-	  { id: "12D", row: 12, col: "D", position: "aisle", type: "Extra legroom", fee: 1200, reason: "Extra-legroom seat. An additional fee applies." },
-	  { id: "12E", row: 12, col: "E", state: "held", reason: "Another passenger is checking out with this seat, so it is temporarily held." },
-	  { id: "12F", row: 12, col: "F", position: "window" },
-	  { id: "13A", row: 13, col: "A", position: "window" },
-	  { id: "13B", row: 13, col: "B" },
-	  { id: "13C", row: 13, col: "C", position: "aisle" },
-	  { id: "13D", row: 13, col: "D", position: "aisle" },
-	  { id: "13E", row: 13, col: "E" },
-	  { id: "13F", row: 13, col: "F", position: "window", state: "occupied", reason: "This seat is already booked and cannot be selected." },
-	];
+const columns = ["A", "B", "C", null, "D", "E", "F"];
+const seats: Seat[] = [
+  {
+    id: "12A",
+    row: 12,
+    col: "A",
+    position: "window",
+    type: "Exit row",
+    fee: 1500,
+    reason: (_seat, context) =>
+      context.selected
+        ? "This seat is selected. Exit-row seats require the passenger to accept emergency-assistance duties."
+        : "Exit-row seats require the passenger to accept emergency-assistance duties.",
+  },
+  { id: "12B", row: 12, col: "B", state: "occupied", reason: "This seat is already booked and cannot be selected." },
+  { id: "12C", row: 12, col: "C", position: "aisle" },
+  { id: "12D", row: 12, col: "D", position: "aisle", type: "Extra legroom", fee: 1200, reason: "Extra-legroom seat. An additional fee applies." },
+  { id: "12E", row: 12, col: "E", state: "held", reason: "Another passenger is checking out with this seat, so it is temporarily held." },
+  { id: "12F", row: 12, col: "F", position: "window" },
+  { id: "13A", row: 13, col: "A", position: "window" },
+  { id: "13B", row: 13, col: "B" },
+  { id: "13C", row: 13, col: "C", position: "aisle" },
+  { id: "13D", row: 13, col: "D", position: "aisle" },
+  { id: "13E", row: 13, col: "E" },
+  { id: "13F", row: 13, col: "F", position: "window", state: "occupied", reason: "This seat is already booked and cannot be selected." },
+];
+
 const labels: SeatMapLabels = {
   available: "Available",
-	  occupied: "Occupied",
-	  held: "Held",
-	  blocked: "Blocked",
-		  selected: "Selected",
-		  selectedReason: "This seat is selected.",
-	  window: "Window",
-	  aisle: "Aisle",
-	  middle: "Middle",
-	  specialSeat: "Special seat",
-	  seatName: (seat) => \`Seat \${seat.row}\${seat.col}\`,
-	};
+  occupied: "Occupied",
+  held: "Held",
+  blocked: "Blocked",
+  selected: "Selected",
+  selectedReason: "This seat is selected.",
+  window: "Window",
+  aisle: "Aisle",
+  middle: "Middle",
+  specialSeat: "Special seat",
+  seatName: (seat) => "Seat " + seat.row + seat.col,
+};
 
 export function SeatPicker() {
   const [selectedIds, setSelectedIds] = React.useState(["12A"]);
@@ -210,7 +211,16 @@ export function SeatPicker() {
 
   return (
     <div className="flex w-full max-w-lg flex-col gap-3 rounded-lg border bg-card p-4">
-      <SeatMap columns={columns} seats={seats} selectedIds={selectedIds} maxSelectable={2} onToggle={toggle} label="Seat map" labels={labels} formatFee={(fee) => \`$\${Math.round(fee / 150)}\`} />
+      <SeatMap
+        columns={columns}
+        seats={seats}
+        selectedIds={selectedIds}
+        maxSelectable={2}
+        onToggle={toggle}
+        label="Seat map"
+        labels={labels}
+        formatFee={(fee) => "$" + Math.round(fee / 150)}
+      />
       <p className="rounded-md border bg-muted/30 px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
         Selected: {selectedIds.join(", ") || "None"}
       </p>

@@ -5,7 +5,7 @@
   "score": "4.5/5",
   "category": "運輸：バス",
   "title": "AI にバスのモバイル乗車券を作らせてみた — SegmentedControl がコンポーネント化、2回連続でその場で作成（やってみた #156）",
-  "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "SegmentedControl がコンポーネント化（#155 Leaderboard に続き2回連続で作成）。「3回確認に達した候補のストック」は連続で放出される。",
   "article": {
     "file": "zenn-yattemita-156-bus-ticket.md",
     "slug": "156-bus-ticket",

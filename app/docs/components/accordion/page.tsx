@@ -16,6 +16,7 @@ import {
     TooltipContent,
     TooltipTrigger,
 } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 export default function AccordionPage() {
     const { locale, sectionLabels } = useLocale();
@@ -172,6 +173,12 @@ export function SettingsAccordion() {
                 { name: "CollapsiblePanelToggle", href: "/docs/components/collapsible-panel-toggle" },
                 { name: "Tabs", href: "/docs/components/tabs" },
                 { name: "TreeView", href: "/docs/components/tree-view" },
+            ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: アコーディオン（Accordion）" : "UIXHERO: Accordion (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/accordion`,
+                },
             ]}
         >
             <ComponentPreview
@@ -438,6 +445,38 @@ export function DisabledAccordion() {
                 </div>
                 <CodeBlock code={usageCode} />
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>開いているかどうかを、形と言葉の両方で出す。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AccordionTrigger</code> の指標は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">chevron</code>（開くと180度回る）・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">plus</code>（開くと45度回って×に見える）・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">none</code> から選べます。さらに指標にはツールチップが付いていて、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">data-state</code> の変化を見て「開く」と「閉じる」に文言が入れ替わります。文言は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">LocaleProvider</code> の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">strings</code> から取るので、日本語の画面では日本語で出ます。向きの変化だけだと小さい画面では読み取りにくいので、言葉を足しています。
+                        </li>
+                        <li>
+                            <strong>最後の行の罫線は引かない。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Accordion</code> の外枠が全周の境界線を描いているので、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AccordionItem</code> は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">border-b last:border-b-0</code> にしてあります。最後の項目だけ線が二重に見える粗さの直しです（#695）。
+                        </li>
+                        <li>
+                            <strong>見出しの構造は Radix に任せる。</strong>トリガーは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AccordionPrimitive.Header</code> の中の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> なので、開閉と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-expanded</code> の対応付けを自分では書きません。そもそも何を折りたたんでよいか、1つずつ開くか複数開くか、という判断は資料に書いてあります。
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Show open and closed with both a shape and a word.</strong> The <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AccordionTrigger</code> indicator can be <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">chevron</code> (rotates 180 degrees when open), <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">plus</code> (rotates 45 degrees into a cross), or <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">none</code>. The indicator also carries a tooltip that watches <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">data-state</code> and swaps between the open and close wording, taken from <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">strings</code> on <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">LocaleProvider</code>. Rotation alone is hard to read on a small screen, so the wording is there as well.
+                        </li>
+                        <li>
+                            <strong>Do not draw a rule under the last row.</strong> The <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">Accordion</code> root already draws a full border, so <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AccordionItem</code> uses <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">border-b last:border-b-0</code>. Without it the last row shows a doubled line (#695).
+                        </li>
+                        <li>
+                            <strong>Leave the heading structure to Radix.</strong> The trigger is a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> inside <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">AccordionPrimitive.Header</code>, so the open state and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-expanded</code> are not wired by hand. What is safe to collapse, and whether one or many items open at once, is covered in the article.
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

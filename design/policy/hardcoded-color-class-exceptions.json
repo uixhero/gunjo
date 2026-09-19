@@ -34,6 +34,13 @@
       "reason": "Double halo around the chart hover marker, keeping it legible over any series colour. Colours are already tokenised (--background / --ring); only the two-ring geometry is arbitrary. Pending a first-class ring token. (#699)",
       "addedOn": "2026-07-26",
       "expiresOn": "2026-10-31"
+    },
+    {
+      "file": "app/components/book/BookBanner.tsx",
+      "className": "shadow-[0_0_8px_hsl(var(--foreground)/0.45),0_6px_14px_-3px_hsl(var(--foreground)/0.28)]",
+      "reason": "Ambient light under the book cover in the promo banner. The cover's four edges are near-white (top edge rgb(251,239,227)), so on the light-theme card ground rgb(255,255,255) the top edge melts (measured 1.13:1). Every step of the elevation scale is a drop shadow with a downward y-offset — `shadow-md` moves the pixel row above the top edge by one level (1.13 -> 1.12:1), so the scale cannot solve an edge that needs light from above. Colour is already tokenised (--foreground, light theme only via dark:shadow-none); only the offset-0 ambient geometry is arbitrary. Measured 1.46:1 with this value. Pending a first-class ambient/glow token. (#971)",
+      "addedOn": "2026-09-12",
+      "expiresOn": "2026-12-31"
     }
   ]
 }

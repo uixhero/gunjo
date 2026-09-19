@@ -284,6 +284,56 @@ function LeaderboardPreview({ locale, variant = "worst" }: { locale: Locale; var
   );
 }
 
+const bestFirstCodeByLocale = {
+  ja: `import { Leaderboard } from "@gunjo/ui";
+
+const teams = [
+  { id: "first", label: "目標達成チーム A", value: 148, delta: 16, tone: "success" },
+  { id: "second", label: "目標達成チーム B", value: 132, delta: 8, tone: "primary" },
+];
+
+export function CompletionLeaderboard() {
+  return <Leaderboard items={teams} label="処理件数ランキング" />;
+}`,
+  en: `import { Leaderboard } from "@gunjo/ui";
+
+const teams = [
+  { id: "first", label: "Goal team A", value: 148, delta: 16, tone: "success" },
+  { id: "second", label: "Goal team B", value: 132, delta: 8, tone: "primary" },
+];
+
+export function CompletionLeaderboard() {
+  return <Leaderboard items={teams} label="Completion leaderboard" />;
+}`,
+} as const;
+
+const compactCodeByLocale = {
+  ja: `import { Leaderboard } from "@gunjo/ui";
+
+const routes = [
+  { id: "shibuya88", label: "渋88 系統", value: 3.4 },
+  { id: "shuku51", label: "宿51 系統", value: 2.8 },
+];
+
+export function CompactRouteLeaderboard() {
+  return (
+    <Leaderboard items={routes} showBar={false} selectedId="shibuya88" />
+  );
+}`,
+  en: `import { Leaderboard } from "@gunjo/ui";
+
+const routes = [
+  { id: "shibuya88", label: "Shibuya 88", value: 3.4 },
+  { id: "shuku51", label: "Shuku 51", value: 2.8 },
+];
+
+export function CompactRouteLeaderboard() {
+  return (
+    <Leaderboard items={routes} showBar={false} selectedId="shibuya88" />
+  );
+}`,
+} as const;
+
 export default function LeaderboardDocPage() {
   const { locale, sectionLabels } = useLocale();
   const content = getDocContent("components/leaderboard", locale);
@@ -293,36 +343,134 @@ export default function LeaderboardDocPage() {
 
   const usageCode = locale === "ja"
     ? `import * as React from "react";
-	import {
-	  Badge,
-	  Leaderboard,
-	  Sheet,
-	  SheetContent,
-	  SheetDescription,
-	  SheetHeader,
-	  SheetTitle,
-	  type LeaderboardItem,
-	} from "@gunjo/ui";
+import {
+  Badge,
+  Leaderboard,
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  type LeaderboardItem,
+} from "@gunjo/ui";
 import { IconBus, IconMapPin } from "@tabler/icons-react";
 
 const routes: LeaderboardItem[] = [
-  { id: "shibuya88", label: "渋88 系統", sublabel: "渋谷↔六本木", value: 3.4, delta: 0.9, tone: "destructive", icon: <IconBus className="h-4 w-4" /> },
-  { id: "shuku51", label: "宿51 系統", sublabel: "新宿↔渋谷", value: 2.8, delta: 0.3, tone: "destructive", icon: <IconBus className="h-4 w-4" /> },
-  { id: "to07", label: "都07 系統", sublabel: "錦糸町↔門前仲町", value: 1.2, delta: -0.2, tone: "warning", icon: <IconMapPin className="h-4 w-4" /> },
-  { id: "km01", label: "海01 系統", sublabel: "門前仲町↔東京テレポート", value: 0.7, delta: -0.4, tone: "success", icon: <IconBus className="h-4 w-4" /> },
-  { id: "shina97", label: "品97 系統", sublabel: "品川↔新宿", value: 0.6, delta: -0.1, tone: "success", icon: <IconBus className="h-4 w-4" /> },
-  { id: "higashi15", label: "東15 系統", sublabel: "東京駅↔深川車庫", value: 0.4, delta: 0, tone: "info", icon: <IconBus className="h-4 w-4" /> },
-  { id: "to05", label: "都05 系統", sublabel: "東京駅↔晴海埠頭", value: 0, delta: 0, tone: "success", icon: <IconMapPin className="h-4 w-4" /> },
+  {
+    id: "shibuya88",
+    label: "渋88 系統",
+    sublabel: "渋谷↔六本木",
+    value: 3.4,
+    delta: 0.9,
+    tone: "destructive",
+    icon: <IconBus className="h-4 w-4" />,
+  },
+  {
+    id: "shuku51",
+    label: "宿51 系統",
+    sublabel: "新宿↔渋谷",
+    value: 2.8,
+    delta: 0.3,
+    tone: "destructive",
+    icon: <IconBus className="h-4 w-4" />,
+  },
+  {
+    id: "to07",
+    label: "都07 系統",
+    sublabel: "錦糸町↔門前仲町",
+    value: 1.2,
+    delta: -0.2,
+    tone: "warning",
+    icon: <IconMapPin className="h-4 w-4" />,
+  },
+  {
+    id: "km01",
+    label: "海01 系統",
+    sublabel: "門前仲町↔東京テレポート",
+    value: 0.7,
+    delta: -0.4,
+    tone: "success",
+    icon: <IconBus className="h-4 w-4" />,
+  },
+  {
+    id: "shina97",
+    label: "品97 系統",
+    sublabel: "品川↔新宿",
+    value: 0.6,
+    delta: -0.1,
+    tone: "success",
+    icon: <IconBus className="h-4 w-4" />,
+  },
+  {
+    id: "higashi15",
+    label: "東15 系統",
+    sublabel: "東京駅↔深川車庫",
+    value: 0.4,
+    delta: 0,
+    tone: "info",
+    icon: <IconBus className="h-4 w-4" />,
+  },
+  {
+    id: "to05",
+    label: "都05 系統",
+    sublabel: "東京駅↔晴海埠頭",
+    value: 0,
+    delta: 0,
+    tone: "success",
+    icon: <IconMapPin className="h-4 w-4" />,
+  },
 ];
 
 const routeDetails = {
-  shibuya88: { status: "重点対応", scope: "渋谷から六本木の運行区間", owner: "城南営業所", period: "2026年6月", next: "朝ピーク帯のヒヤリハット記録を翌営業日までに確認します。" },
-  shuku51: { status: "要確認", scope: "新宿から渋谷の運行区間", owner: "新宿営業所", period: "2026年6月", next: "交差点付近の遅延要因と運転記録を確認します。" },
-  to07: { status: "改善傾向", scope: "錦糸町から門前仲町の運行区間", owner: "深川営業所", period: "2026年6月", next: "改善施策を継続し、雨天日の発生率だけを追加で確認します。" },
-  km01: { status: "安定", scope: "門前仲町から東京テレポートの運行区間", owner: "臨海営業所", period: "2026年6月", next: "現行運用を継続し、次月も同じ指標で比較します。" },
-  shina97: { status: "安定", scope: "品川から新宿の運行区間", owner: "品川営業所", period: "2026年6月", next: "現行の安全確認フローを継続します。" },
-  higashi15: { status: "通常監視", scope: "東京駅から深川車庫の運行区間", owner: "深川営業所", period: "2026年6月", next: "通常の月次レビューで推移を確認します。" },
-  to05: { status: "良好", scope: "東京駅から晴海埠頭の運行区間", owner: "晴海営業所", period: "2026年6月", next: "改善値を維持できているか来月も確認します。" },
+  shibuya88: {
+    status: "重点対応",
+    scope: "渋谷から六本木の運行区間",
+    owner: "城南営業所",
+    period: "2026年6月",
+    next: "朝ピーク帯のヒヤリハット記録を翌営業日までに確認します。",
+  },
+  shuku51: {
+    status: "要確認",
+    scope: "新宿から渋谷の運行区間",
+    owner: "新宿営業所",
+    period: "2026年6月",
+    next: "交差点付近の遅延要因と運転記録を確認します。",
+  },
+  to07: {
+    status: "改善傾向",
+    scope: "錦糸町から門前仲町の運行区間",
+    owner: "深川営業所",
+    period: "2026年6月",
+    next: "改善施策を継続し、雨天日の発生率だけを追加で確認します。",
+  },
+  km01: {
+    status: "安定",
+    scope: "門前仲町から東京テレポートの運行区間",
+    owner: "臨海営業所",
+    period: "2026年6月",
+    next: "現行運用を継続し、次月も同じ指標で比較します。",
+  },
+  shina97: {
+    status: "安定",
+    scope: "品川から新宿の運行区間",
+    owner: "品川営業所",
+    period: "2026年6月",
+    next: "現行の安全確認フローを継続します。",
+  },
+  higashi15: {
+    status: "通常監視",
+    scope: "東京駅から深川車庫の運行区間",
+    owner: "深川営業所",
+    period: "2026年6月",
+    next: "通常の月次レビューで推移を確認します。",
+  },
+  to05: {
+    status: "良好",
+    scope: "東京駅から晴海埠頭の運行区間",
+    owner: "晴海営業所",
+    period: "2026年6月",
+    next: "改善値を維持できているか来月も確認します。",
+  },
 };
 
 export function IncidentLeaderboard() {
@@ -363,7 +511,11 @@ export function IncidentLeaderboard() {
   return (
     <div
       ref={setPortalContainer}
-      className={isCompactLayout ? "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-visible rounded-lg border bg-card p-4" : "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-hidden rounded-lg border bg-card p-4 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]"}
+      className={
+        isCompactLayout
+          ? "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-visible rounded-lg border bg-card p-4"
+          : "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-hidden rounded-lg border bg-card p-4 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]"
+      }
     >
       <Leaderboard
         items={items}
@@ -397,15 +549,48 @@ export function IncidentLeaderboard() {
                     <p className="truncate text-base font-semibold text-foreground">{selectedRoute.label}</p>
                     <p className="mt-1 text-xs text-muted-foreground">{selectedRoute.sublabel}</p>
                   </div>
-                  <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">{selectedDetail.status}</Badge>
+                  <Badge
+                    variant="outline"
+                    className="shrink-0 border-border bg-background text-foreground shadow-sm"
+                  >{selectedDetail.status}</Badge>
                 </div>
                 <dl className="mt-3 grid gap-2 text-xs">
-                  <div><dt className="text-muted-foreground">指標値</dt><dd className="font-medium text-foreground">{selectedRoute.value === 0 ? "0件" : selectedRoute.value.toFixed(1) + "件"}</dd></div>
-                  <div><dt className="text-muted-foreground">前月比</dt><dd className="font-medium text-foreground">{selectedRoute.delta && selectedRoute.delta > 0 ? "+" : ""}{selectedRoute.delta?.toFixed(1)}</dd></div>
-                  <div><dt className="text-muted-foreground">対象範囲</dt><dd className="font-medium text-foreground">{selectedDetail.scope}</dd></div>
-                  <div><dt className="text-muted-foreground">担当</dt><dd className="font-medium text-foreground">{selectedDetail.owner}</dd></div>
-                  <div><dt className="text-muted-foreground">集計期間</dt><dd className="font-medium text-foreground">{selectedDetail.period}</dd></div>
-                  <div><dt className="text-muted-foreground">次の対応</dt><dd className="font-medium text-foreground">{selectedDetail.next}</dd></div>
+                  <div>
+                    <dt className="text-muted-foreground">指標値</dt>
+                    <dd className="font-medium text-foreground">
+                      {selectedRoute.value === 0 ? "0件" : selectedRoute.value.toFixed(1) + "件"}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-muted-foreground">前月比</dt>
+                    <dd className="font-medium text-foreground">
+                      {selectedRoute.delta && selectedRoute.delta > 0 ? "+" : ""}{selectedRoute.delta?.toFixed(1)}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-muted-foreground">対象範囲</dt>
+                    <dd className="font-medium text-foreground">
+                      {selectedDetail.scope}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-muted-foreground">担当</dt>
+                    <dd className="font-medium text-foreground">
+                      {selectedDetail.owner}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-muted-foreground">集計期間</dt>
+                    <dd className="font-medium text-foreground">
+                      {selectedDetail.period}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-muted-foreground">次の対応</dt>
+                    <dd className="font-medium text-foreground">
+                      {selectedDetail.next}
+                    </dd>
+                  </div>
                 </dl>
               </div>
             </div>
@@ -421,15 +606,48 @@ export function IncidentLeaderboard() {
                 <p className="truncate text-base font-semibold text-foreground">{selectedRoute.label}</p>
                 <p className="mt-1 text-xs text-muted-foreground">{selectedRoute.sublabel}</p>
               </div>
-              <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">{selectedDetail.status}</Badge>
+              <Badge
+                variant="outline"
+                className="shrink-0 border-border bg-background text-foreground shadow-sm"
+              >{selectedDetail.status}</Badge>
             </div>
             <dl className="mt-3 grid gap-2 text-xs">
-              <div><dt className="text-muted-foreground">指標値</dt><dd className="font-medium text-foreground">{selectedRoute.value === 0 ? "0件" : selectedRoute.value.toFixed(1) + "件"}</dd></div>
-              <div><dt className="text-muted-foreground">前月比</dt><dd className="font-medium text-foreground">{selectedRoute.delta && selectedRoute.delta > 0 ? "+" : ""}{selectedRoute.delta?.toFixed(1)}</dd></div>
-              <div><dt className="text-muted-foreground">対象範囲</dt><dd className="font-medium text-foreground">{selectedDetail.scope}</dd></div>
-              <div><dt className="text-muted-foreground">担当</dt><dd className="font-medium text-foreground">{selectedDetail.owner}</dd></div>
-              <div><dt className="text-muted-foreground">集計期間</dt><dd className="font-medium text-foreground">{selectedDetail.period}</dd></div>
-              <div><dt className="text-muted-foreground">次の対応</dt><dd className="font-medium text-foreground">{selectedDetail.next}</dd></div>
+              <div>
+                <dt className="text-muted-foreground">指標値</dt>
+                <dd className="font-medium text-foreground">
+                  {selectedRoute.value === 0 ? "0件" : selectedRoute.value.toFixed(1) + "件"}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">前月比</dt>
+                <dd className="font-medium text-foreground">
+                  {selectedRoute.delta && selectedRoute.delta > 0 ? "+" : ""}{selectedRoute.delta?.toFixed(1)}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">対象範囲</dt>
+                <dd className="font-medium text-foreground">
+                  {selectedDetail.scope}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">担当</dt>
+                <dd className="font-medium text-foreground">
+                  {selectedDetail.owner}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">集計期間</dt>
+                <dd className="font-medium text-foreground">
+                  {selectedDetail.period}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">次の対応</dt>
+                <dd className="font-medium text-foreground">
+                  {selectedDetail.next}
+                </dd>
+              </div>
             </dl>
           </div>
         </aside>
@@ -438,36 +656,134 @@ export function IncidentLeaderboard() {
   );
 }`
     : `import * as React from "react";
-	import {
-	  Badge,
-	  Leaderboard,
-	  Sheet,
-	  SheetContent,
-	  SheetDescription,
-	  SheetHeader,
-	  SheetTitle,
-	  type LeaderboardItem,
-	} from "@gunjo/ui";
+import {
+  Badge,
+  Leaderboard,
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  type LeaderboardItem,
+} from "@gunjo/ui";
 import { IconBus, IconMapPin } from "@tabler/icons-react";
 
 const routes: LeaderboardItem[] = [
-  { id: "shibuya88", label: "Shibuya 88", sublabel: "Shibuya to Roppongi", value: 3.4, delta: 0.9, tone: "destructive", icon: <IconBus className="h-4 w-4" /> },
-  { id: "shuku51", label: "Shuku 51", sublabel: "Shinjuku to Shibuya", value: 2.8, delta: 0.3, tone: "destructive", icon: <IconBus className="h-4 w-4" /> },
-  { id: "to07", label: "To 07", sublabel: "Kinshicho to Monzen-nakacho", value: 1.2, delta: -0.2, tone: "warning", icon: <IconMapPin className="h-4 w-4" /> },
-  { id: "km01", label: "Kai 01", sublabel: "Monzen-nakacho to Tokyo Teleport", value: 0.7, delta: -0.4, tone: "success", icon: <IconBus className="h-4 w-4" /> },
-  { id: "shina97", label: "Shina 97", sublabel: "Shinagawa to Shinjuku", value: 0.6, delta: -0.1, tone: "success", icon: <IconBus className="h-4 w-4" /> },
-  { id: "higashi15", label: "Higashi 15", sublabel: "Tokyo Station to Fukagawa depot", value: 0.4, delta: 0, tone: "info", icon: <IconBus className="h-4 w-4" /> },
-  { id: "to05", label: "To 05", sublabel: "Tokyo Station to Harumi pier", value: 0, delta: 0, tone: "success", icon: <IconMapPin className="h-4 w-4" /> },
+  {
+    id: "shibuya88",
+    label: "Shibuya 88",
+    sublabel: "Shibuya to Roppongi",
+    value: 3.4,
+    delta: 0.9,
+    tone: "destructive",
+    icon: <IconBus className="h-4 w-4" />,
+  },
+  {
+    id: "shuku51",
+    label: "Shuku 51",
+    sublabel: "Shinjuku to Shibuya",
+    value: 2.8,
+    delta: 0.3,
+    tone: "destructive",
+    icon: <IconBus className="h-4 w-4" />,
+  },
+  {
+    id: "to07",
+    label: "To 07",
+    sublabel: "Kinshicho to Monzen-nakacho",
+    value: 1.2,
+    delta: -0.2,
+    tone: "warning",
+    icon: <IconMapPin className="h-4 w-4" />,
+  },
+  {
+    id: "km01",
+    label: "Kai 01",
+    sublabel: "Monzen-nakacho to Tokyo Teleport",
+    value: 0.7,
+    delta: -0.4,
+    tone: "success",
+    icon: <IconBus className="h-4 w-4" />,
+  },
+  {
+    id: "shina97",
+    label: "Shina 97",
+    sublabel: "Shinagawa to Shinjuku",
+    value: 0.6,
+    delta: -0.1,
+    tone: "success",
+    icon: <IconBus className="h-4 w-4" />,
+  },
+  {
+    id: "higashi15",
+    label: "Higashi 15",
+    sublabel: "Tokyo Station to Fukagawa depot",
+    value: 0.4,
+    delta: 0,
+    tone: "info",
+    icon: <IconBus className="h-4 w-4" />,
+  },
+  {
+    id: "to05",
+    label: "To 05",
+    sublabel: "Tokyo Station to Harumi pier",
+    value: 0,
+    delta: 0,
+    tone: "success",
+    icon: <IconMapPin className="h-4 w-4" />,
+  },
 ];
 
 const routeDetails = {
-  shibuya88: { status: "Priority response", scope: "Shibuya to Roppongi operating section", owner: "Jonan depot", period: "June 2026", next: "Review near-miss logs for morning peak by the next business day." },
-  shuku51: { status: "Needs review", scope: "Shinjuku to Shibuya operating section", owner: "Shinjuku depot", period: "June 2026", next: "Check intersection delays and driving records." },
-  to07: { status: "Improving", scope: "Kinshicho to Monzen-nakacho operating section", owner: "Fukagawa depot", period: "June 2026", next: "Continue the countermeasure and review rainy-day incidents separately." },
-  km01: { status: "Stable", scope: "Monzen-nakacho to Tokyo Teleport operating section", owner: "Rinkai depot", period: "June 2026", next: "Keep the current operation and compare the same metric next month." },
-  shina97: { status: "Stable", scope: "Shinagawa to Shinjuku operating section", owner: "Shinagawa depot", period: "June 2026", next: "Continue the current safety-check workflow." },
-  higashi15: { status: "Standard monitoring", scope: "Tokyo Station to Fukagawa depot operating section", owner: "Fukagawa depot", period: "June 2026", next: "Review the trend in the regular monthly review." },
-  to05: { status: "Healthy", scope: "Tokyo Station to Harumi pier operating section", owner: "Harumi depot", period: "June 2026", next: "Confirm next month that the improvement is sustained." },
+  shibuya88: {
+    status: "Priority response",
+    scope: "Shibuya to Roppongi operating section",
+    owner: "Jonan depot",
+    period: "June 2026",
+    next: "Review near-miss logs for morning peak by the next business day.",
+  },
+  shuku51: {
+    status: "Needs review",
+    scope: "Shinjuku to Shibuya operating section",
+    owner: "Shinjuku depot",
+    period: "June 2026",
+    next: "Check intersection delays and driving records.",
+  },
+  to07: {
+    status: "Improving",
+    scope: "Kinshicho to Monzen-nakacho operating section",
+    owner: "Fukagawa depot",
+    period: "June 2026",
+    next: "Continue the countermeasure and review rainy-day incidents separately.",
+  },
+  km01: {
+    status: "Stable",
+    scope: "Monzen-nakacho to Tokyo Teleport operating section",
+    owner: "Rinkai depot",
+    period: "June 2026",
+    next: "Keep the current operation and compare the same metric next month.",
+  },
+  shina97: {
+    status: "Stable",
+    scope: "Shinagawa to Shinjuku operating section",
+    owner: "Shinagawa depot",
+    period: "June 2026",
+    next: "Continue the current safety-check workflow.",
+  },
+  higashi15: {
+    status: "Standard monitoring",
+    scope: "Tokyo Station to Fukagawa depot operating section",
+    owner: "Fukagawa depot",
+    period: "June 2026",
+    next: "Review the trend in the regular monthly review.",
+  },
+  to05: {
+    status: "Healthy",
+    scope: "Tokyo Station to Harumi pier operating section",
+    owner: "Harumi depot",
+    period: "June 2026",
+    next: "Confirm next month that the improvement is sustained.",
+  },
 };
 
 export function IncidentLeaderboard() {
@@ -508,7 +824,11 @@ export function IncidentLeaderboard() {
   return (
     <div
       ref={setPortalContainer}
-      className={isCompactLayout ? "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-visible rounded-lg border bg-card p-4" : "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-hidden rounded-lg border bg-card p-4 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]"}
+      className={
+        isCompactLayout
+          ? "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-visible rounded-lg border bg-card p-4"
+          : "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-hidden rounded-lg border bg-card p-4 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]"
+      }
     >
       <Leaderboard
         items={items}
@@ -542,15 +862,48 @@ export function IncidentLeaderboard() {
                     <p className="truncate text-base font-semibold text-foreground">{selectedRoute.label}</p>
                     <p className="mt-1 text-xs text-muted-foreground">{selectedRoute.sublabel}</p>
                   </div>
-                  <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">{selectedDetail.status}</Badge>
+                  <Badge
+                    variant="outline"
+                    className="shrink-0 border-border bg-background text-foreground shadow-sm"
+                  >{selectedDetail.status}</Badge>
                 </div>
                 <dl className="mt-3 grid gap-2 text-xs">
-                  <div><dt className="text-muted-foreground">Metric value</dt><dd className="font-medium text-foreground">{selectedRoute.value === 0 ? "0" : selectedRoute.value.toFixed(1)}</dd></div>
-                  <div><dt className="text-muted-foreground">Month over month</dt><dd className="font-medium text-foreground">{selectedRoute.delta && selectedRoute.delta > 0 ? "+" : ""}{selectedRoute.delta?.toFixed(1)}</dd></div>
-                  <div><dt className="text-muted-foreground">Scope</dt><dd className="font-medium text-foreground">{selectedDetail.scope}</dd></div>
-                  <div><dt className="text-muted-foreground">Owner</dt><dd className="font-medium text-foreground">{selectedDetail.owner}</dd></div>
-                  <div><dt className="text-muted-foreground">Period</dt><dd className="font-medium text-foreground">{selectedDetail.period}</dd></div>
-                  <div><dt className="text-muted-foreground">Next action</dt><dd className="font-medium text-foreground">{selectedDetail.next}</dd></div>
+                  <div>
+                    <dt className="text-muted-foreground">Metric value</dt>
+                    <dd className="font-medium text-foreground">
+                      {selectedRoute.value === 0 ? "0" : selectedRoute.value.toFixed(1)}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-muted-foreground">Month over month</dt>
+                    <dd className="font-medium text-foreground">
+                      {selectedRoute.delta && selectedRoute.delta > 0 ? "+" : ""}{selectedRoute.delta?.toFixed(1)}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-muted-foreground">Scope</dt>
+                    <dd className="font-medium text-foreground">
+                      {selectedDetail.scope}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-muted-foreground">Owner</dt>
+                    <dd className="font-medium text-foreground">
+                      {selectedDetail.owner}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-muted-foreground">Period</dt>
+                    <dd className="font-medium text-foreground">
+                      {selectedDetail.period}
+                    </dd>
+                  </div>
+                  <div>
+                    <dt className="text-muted-foreground">Next action</dt>
+                    <dd className="font-medium text-foreground">
+                      {selectedDetail.next}
+                    </dd>
+                  </div>
                 </dl>
               </div>
             </div>
@@ -566,15 +919,48 @@ export function IncidentLeaderboard() {
                 <p className="truncate text-base font-semibold text-foreground">{selectedRoute.label}</p>
                 <p className="mt-1 text-xs text-muted-foreground">{selectedRoute.sublabel}</p>
               </div>
-              <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">{selectedDetail.status}</Badge>
+              <Badge
+                variant="outline"
+                className="shrink-0 border-border bg-background text-foreground shadow-sm"
+              >{selectedDetail.status}</Badge>
             </div>
             <dl className="mt-3 grid gap-2 text-xs">
-              <div><dt className="text-muted-foreground">Metric value</dt><dd className="font-medium text-foreground">{selectedRoute.value === 0 ? "0" : selectedRoute.value.toFixed(1)}</dd></div>
-              <div><dt className="text-muted-foreground">Month over month</dt><dd className="font-medium text-foreground">{selectedRoute.delta && selectedRoute.delta > 0 ? "+" : ""}{selectedRoute.delta?.toFixed(1)}</dd></div>
-              <div><dt className="text-muted-foreground">Scope</dt><dd className="font-medium text-foreground">{selectedDetail.scope}</dd></div>
-              <div><dt className="text-muted-foreground">Owner</dt><dd className="font-medium text-foreground">{selectedDetail.owner}</dd></div>
-              <div><dt className="text-muted-foreground">Period</dt><dd className="font-medium text-foreground">{selectedDetail.period}</dd></div>
-              <div><dt className="text-muted-foreground">Next action</dt><dd className="font-medium text-foreground">{selectedDetail.next}</dd></div>
+              <div>
+                <dt className="text-muted-foreground">Metric value</dt>
+                <dd className="font-medium text-foreground">
+                  {selectedRoute.value === 0 ? "0" : selectedRoute.value.toFixed(1)}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">Month over month</dt>
+                <dd className="font-medium text-foreground">
+                  {selectedRoute.delta && selectedRoute.delta > 0 ? "+" : ""}{selectedRoute.delta?.toFixed(1)}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">Scope</dt>
+                <dd className="font-medium text-foreground">
+                  {selectedDetail.scope}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">Owner</dt>
+                <dd className="font-medium text-foreground">
+                  {selectedDetail.owner}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">Period</dt>
+                <dd className="font-medium text-foreground">
+                  {selectedDetail.period}
+                </dd>
+              </div>
+              <div>
+                <dt className="text-muted-foreground">Next action</dt>
+                <dd className="font-medium text-foreground">
+                  {selectedDetail.next}
+                </dd>
+              </div>
             </dl>
           </div>
         </aside>
@@ -636,21 +1022,7 @@ export function IncidentLeaderboard() {
               title: locale === "ja" ? "上位順" : "Best first",
               description: locale === "ja" ? "処理件数や売上など、値が大きいほど良いランキングにも使えます。" : "Use the same component for higher-is-better rankings such as completions or revenue.",
               preview: <LeaderboardPreview locale={locale} variant="best" />,
-              code: locale === "ja"
-                ? `<Leaderboard
-  items={[
-    { id: "first", label: "目標達成チーム A", value: 148, delta: 16, tone: "success" },
-    { id: "second", label: "目標達成チーム B", value: 132, delta: 8, tone: "primary" },
-  ]}
-  label="処理件数ランキング"
-/>`
-                : `<Leaderboard
-  items={[
-    { id: "first", label: "Goal team A", value: 148, delta: 16, tone: "success" },
-    { id: "second", label: "Goal team B", value: 132, delta: 8, tone: "primary" },
-  ]}
-  label="Completion leaderboard"
-/>`,
+              code: bestFirstCodeByLocale[locale],
               previewBodyWidth: "xl",
             },
             {
@@ -658,14 +1030,7 @@ export function IncidentLeaderboard() {
               title: locale === "ja" ? "バーなし" : "Without bars",
               description: locale === "ja" ? "値の比較より順位ラベルを優先する場合は showBar={false} にします。" : "Use showBar={false} when rank and labels matter more than bar comparison.",
               preview: <LeaderboardPreview locale={locale} variant="compact" />,
-              code: `<Leaderboard
-  items={[
-    { id: "shibuya88", label: "${locale === "ja" ? "渋88 系統" : "Shibuya 88"}", value: 3.4 },
-    { id: "shuku51", label: "${locale === "ja" ? "宿51 系統" : "Shuku 51"}", value: 2.8 },
-  ]}
-  showBar={false}
-  selectedId="shibuya88"
-/>`,
+              code: compactCodeByLocale[locale],
               previewBodyWidth: "xl",
             },
           ]}

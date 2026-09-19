@@ -5,7 +5,7 @@
   "score": "4.5/5",
   "category": "運輸：鉄道",
   "title": "AI に鉄道の乗務員交番を作らせてみた — 昨日作った「対応キュー」を、別のAIが翌日もう使った（やってみた #107）",
-  "summary": "#106 は運転指令（指令側）。#107 は乗務員区（運用/HR側）＝別のペルソナ。観測の核——**前回作ったばかりの `ActionQueue` を、別の予備知識ゼロの AI が点呼未了・超過勤務アラートで自力発見できるか。**",
+  "summary": "ActionQueue の法則がまた1ラウンドで閉じた。全業種共通の土台は、業界をまたいで「翌画面で裏付く」。",
   "article": {
     "file": "zenn-yattemita-107-rail-crew-roster.md",
     "slug": "107-rail-crew-roster",

@@ -28,6 +28,16 @@ Any change to a shipped component under `src/components/**` is also an SSOT chan
 
 Chart components that render variable data should be built with HTML/CSS layout primitives by default. Do not use SVG for data-driven chart rendering unless the shape is fixed and known not to change with arbitrary user data; fixed decorative assets are the exception. Chart demos should include controls that let reviewers edit representative data and verify the component responds correctly, rather than showing only static sample data.
 
+## No left-edge colour rails in gunjo.jp UI (app/)
+
+KeEemルール（new-4px DECISIONS.md 2026-08-16）。gunjo.jp のUI（`app/` 配下）を書くときの禁止事項:
+
+- ⛔ 左端に縦の色帯を置いて強調する形そのものを使わない。実装手段を問わない — `border-left`（`border-l-*` / `border-s-*`）・inset `box-shadow`・`absolute left-0` の細い色帯、いずれも。強調だけでなく飾りも含めて全部。
+- 例外: `blockquote` の border-left は対象外（引用の慣習表現）。パネル仕切りの素の `border-l`（1px・強調でない構造線）も対象外。
+- 代替: 背景の淡い色・字の強さ（weight）・上罫（`border-top`）・余白。
+- 機械検査: `npm run design:verify:left-emphasis`（`design:verify` に含まれ、CI で走る）。既存分は `design/policy/left-emphasis-exceptions.json` に理由つきで基線化済み＝新規の追加はここで落ちる。許可リストへ追加する前に KeEem に確認する。
+- `@gunjo/ui` `ListCard` の `severity` は、PR #871（2026-08-22 マージ）で左罫から全周の境界線＋淡い背景に変わった＝左端強調ではなくなったので、この規則の対象外（かつての app 内使用禁止の条項は撤去済み）。
+
 ## Verification before declaring done
 
 Use the `mcp__Claude_Preview__*` tools to verify UI changes in the running dev server before reporting work as complete. Server name in `.claude/launch.json`: `gunjo-docs (Next.js dev)` on port 13030. Do not ask the user to verify visually — verify and share proof.

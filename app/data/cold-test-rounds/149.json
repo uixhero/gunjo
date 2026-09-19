@@ -5,7 +5,7 @@
   "score": "4/5",
   "category": "運輸：タクシー",
   "title": "AI にタクシーの乗車履歴・領収書を作らせてみた — TicketStub が「正しく使われなかった」回（やってみた #149）",
-  "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "アカウント系も土台に乗った。TicketStub が「正しく使われなかった」＝守備範囲の確定の成熟形。",
   "article": {
     "file": "zenn-yattemita-149-taxi-history.md",
     "slug": "149-taxi-history",

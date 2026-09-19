@@ -5,7 +5,7 @@
   "score": "4.5/5",
   "category": "介護・福祉",
   "title": "AI に介護記録を作らせてみた — 前回作った RelationshipRow が、もう使われていた（やってみた #91）",
-  "summary": "#90 で `RelationshipRow` を3回ルールで作った。#91 の観測：**たった今作った RelationshipRow を、何も知らない次の予備知識ゼロの AI が自力で発掘するか。** PersonCell #85→#86 と同じ、複利の最短検証。",
+  "summary": "RelationshipRow は発掘された。複利は「コンポーネントの階層」を上っても回る。",
   "article": {
     "file": "zenn-yattemita-91-care-record.md",
     "slug": "91-care-record",

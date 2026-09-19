@@ -1,0 +1,89 @@
+{
+  "schemaVersion": 1,
+  "round": 203,
+  "lang": "ja",
+  "findings": [
+    {
+      "id": "203-conditional-reveal",
+      "kind": "requirement",
+      "group": "conditional-reveal",
+      "phenomenon": "「はい」と答えたときだけ、病名や時期を書く欄が開きます。欄が増えたことは画面読み上げソフトにも伝わるので、目で見ている人だけが変化に気づく、ということが起きません。",
+      "where": {
+        "round": 203,
+        "screen": "生命保険の告知",
+        "spot": "病歴の問い"
+      },
+      "status": "resolved",
+      "links": [
+        { "kind": "component", "slug": "reveal-section", "label": "RevealSection" }
+      ],
+      "selfCheck": "答えによって欄が増える画面を読み上げだけで進めて、欄が増えたことが分かるか確かめてください。"
+    },
+    {
+      "id": "203-acknowledge-gate",
+      "kind": "requirement",
+      "phenomenon": "事実と違う申告をするとどうなるかを、読み飛ばせないように見せられます。注意書きを読んでくださいと文章で頼むのではなく、読んだという印を付けるまで送信を止められます。",
+      "where": {
+        "round": 203,
+        "screen": "生命保険の告知",
+        "spot": "重要事項の確認"
+      },
+      "status": "resolved",
+      "links": [
+        { "kind": "component", "slug": "safety-banner", "label": "SafetyBanner" }
+      ],
+      "selfCheck": "重い注意書きを置いた画面で、読んだという印を付けないまま先へ進めてしまわないか確かめてください。"
+    },
+    {
+      "id": "203-fieldset-question-group",
+      "kind": "pitfall",
+      "phenomenon": "「はい・いいえ」や「完治・通院中・経過観察・分からない」のように、選択肢のまとまりを1つの問いとしてまとめるコンポーネントがありませんでした。",
+      "where": {
+        "round": 203,
+        "screen": "生命保険の告知",
+        "spot": "問いの組み立て"
+      },
+      "cause": "フォームの項目のコンポーネントが単一の入力欄を前提にしていて、選択肢のまとまりや、年と月のように2つの入力で1つになる問いに、問い全体の見出しを持たせられないためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 794 },
+        { "kind": "component", "slug": "form", "label": "Form" }
+      ],
+      "selfCheck": "選択肢のまとまりを1つの問いとして置いた箇所で、選択肢よりも先に問いの文が読み上げられるか確かめてください。"
+    },
+    {
+      "id": "203-error-summary",
+      "kind": "pitfall",
+      "phenomenon": "入力が済んでいない項目が何件あるかと、それぞれの箇所へ飛べる一覧を出すところを一から書きました。3つの別々の画面で同じものが要ったので、コンポーネントとして作ることに決まりました。",
+      "where": {
+        "round": 203,
+        "screen": "生命保険の告知",
+        "spot": "送信時のエラー表示"
+      },
+      "cause": "フォームに、エラーの件数と各項目への案内をまとめて出す仕組みが無いためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 793 },
+        { "kind": "component", "slug": "form", "label": "Form" }
+      ],
+      "selfCheck": "必須の項目を空のまま送信して、残りが何件でどこにあるかが1か所に出るか確かめてください。"
+    },
+    {
+      "id": "203-no-tone-in-components",
+      "kind": "pitfall",
+      "phenomenon": "急がせない、追い詰めない、分からないと答えてよい。この落ち着いた雰囲気を支えていたのは、コンポーネントではなく、病歴の質問に添えた5つの短い説明文の言葉づかいだけでした。",
+      "where": {
+        "round": 203,
+        "screen": "生命保険の告知",
+        "spot": "画面全体の調子"
+      },
+      "cause": "用意されているのは進み具合のバー、いま何段目かを示す表示、画面の下に貼り付く操作ボタンの列だけで、どれも先へ進ませるための道具なので、急がせたくない画面では文章で落ち着かせるしかないからです。",
+      "status": "tracking",
+      "links": [
+        { "kind": "issue", "id": 795 },
+        { "kind": "component", "slug": "doc-note", "label": "DocNote" }
+      ],
+      "selfCheck": "答えたくないことを聞く画面を開いて、急がせない雰囲気を支えているのが説明文だけになっていないか確かめてください。"
+    }
+  ]
+}

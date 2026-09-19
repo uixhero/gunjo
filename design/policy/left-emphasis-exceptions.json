@@ -1,0 +1,44 @@
+{
+  "exceptions": [
+    {
+      "file": "app/docs/ai-handoff/mcp/page.tsx",
+      "className": "border-l-4",
+      "count": 1,
+      "reason": "ルール制定（2026-08-16）以前からある注意書きカルーアウトの左罫。2026-08-22 実測で基線化。作り直す際は上罫（border-top）＋背景の淡色へ。",
+      "addedOn": "2026-08-22",
+      "expiresOn": "permanent"
+    },
+    {
+      "file": "app/docs/components/gantt/page.tsx",
+      "className": "border-l-4",
+      "count": 5,
+      "reason": "部品 docs ページ内の模擬詳細パネルの左罫（ルール制定以前からの既存）。2026-08-22 実測で基線化。作り直しはKeEemの設計判断待ち。",
+      "addedOn": "2026-08-22",
+      "expiresOn": "permanent"
+    },
+    {
+      "file": "app/docs/components/itinerary/page.tsx",
+      "className": "border-l-4",
+      "count": 5,
+      "reason": "部品 docs ページ内の模擬詳細パネルの左罫（ルール制定以前からの既存）。2026-08-22 実測で基線化。作り直しはKeEemの設計判断待ち。",
+      "addedOn": "2026-08-22",
+      "expiresOn": "permanent"
+    },
+    {
+      "file": "app/docs/components/kanban-board/page.tsx",
+      "className": "border-l-4",
+      "count": 3,
+      "reason": "部品 docs ページ内の模擬カード・警告パネルの左罫（ルール制定以前からの既存）。2026-08-22 実測で基線化。作り直しはKeEemの設計判断待ち。",
+      "addedOn": "2026-08-22",
+      "expiresOn": "permanent"
+    },
+    {
+      "file": "app/docs/components/leaderboard/page.tsx",
+      "className": "border-l-4",
+      "count": 5,
+      "reason": "部品 docs ページ内の模擬詳細パネルの左罫（ルール制定以前からの既存）。2026-08-22 実測で基線化。作り直しはKeEemの設計判断待ち。",
+      "addedOn": "2026-08-22",
+      "expiresOn": "permanent"
+    }
+  ]
+}

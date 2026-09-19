@@ -9,6 +9,10 @@ on:
 permissions:
   contents: read
   pull-requests: write
+  # The production build below refreshes app/data/github-issues.json from the
+  # tracker (`prebuild`). Read-only, and the build falls back to the committed
+  # snapshot if the call cannot be made.
+  issues: read
 
 jobs:
   design-verify:
@@ -358,3 +362,6 @@ jobs:
         run: npm run build
         env:
           NEXT_TELEMETRY_DISABLED: "1"
+          # Lets `prebuild` read the issue tracker without hitting the
+          # unauthenticated rate limit shared across runners.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

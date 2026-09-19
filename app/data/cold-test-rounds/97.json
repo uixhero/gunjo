@@ -5,7 +5,7 @@
   "score": "4.5/5",
   "category": "飲食・レストラン",
   "title": "AI に飲食店のシフト管理を作らせてみた — シフト表は ScheduleGrid の本丸、でも「過不足タイル」は手組み（やってみた #97）",
-  "summary": "#96リアルタイム運営とは別の、週次の労務系。観測：**ScheduleGrid（シフト表の本丸）＋StatGroup の継続再利用＋StatusTile族の再出現。**",
+  "summary": "運営タイル族が、3回ルールに近づいている。シフト表は ScheduleGrid、人件費は StatGroup＋formatCurrency。",
   "article": {
     "file": "zenn-yattemita-97-restaurant-shifts.md",
     "slug": "97-restaurant-shifts",

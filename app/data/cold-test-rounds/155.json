@@ -5,7 +5,7 @@
   "score": "4.5/5",
   "category": "運輸：バス",
   "title": "AI にバスの安全・事故管理コンソールを作らせてみた — Leaderboard が3回目でコンポーネント化、その場で作った（やってみた #155）",
-  "summary": "`tsc` 緑・デスクトップ情報密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "Leaderboard が3回目でコンポーネント化。「能動的な誤誘導」は、作る判断を早める。",
   "article": {
     "file": "zenn-yattemita-155-bus-safety.md",
     "slug": "155-bus-safety",

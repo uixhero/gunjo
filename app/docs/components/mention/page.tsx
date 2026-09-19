@@ -98,58 +98,136 @@ function MentionStatePreview({
 export default function MentionPage() {
     const { locale, sectionLabels } = useLocale();
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
-    const code = `import * as React from "react";
-import { Code, FormControl, FormDescription, FormGroup, FormLabel, Mention } from "@gunjo/ui";
+    const code = locale === "ja"
+        ? `import * as React from "react";
+import {
+  Code,
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  Mention,
+} from "@gunjo/ui";
 
 const PEOPLE = [
-  ${locale === "ja"
-      ? `{ id: "tanaka", label: "田中", hint: "デザイナー" },
+  { id: "tanaka", label: "田中", hint: "デザイナー" },
   { id: "sato", label: "佐藤", hint: "エンジニア" },
-  { id: "suzuki", label: "鈴木", hint: "PM" },`
-      : `{ id: "alice", label: "alice", hint: "Alice Chen" },
-  { id: "alex", label: "alex", hint: "Alex Park" },
-  { id: "bob", label: "bob", hint: "Bob Tanaka" },`}
+  { id: "suzuki", label: "鈴木", hint: "PM" },
 ];
 
 export function MentionDemo() {
-  const [value, setValue] = React.useState("${locale === "ja" ? "担当は @田" : "Hi @al"}");
+  const [value, setValue] = React.useState("担当は @田");
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="mention-message">${locale === "ja" ? "メッセージ" : "Message"}</FormLabel>
+      <FormLabel htmlFor="mention-message">メッセージ</FormLabel>
       <FormControl>
         <Mention
           id="mention-message"
           value={value}
           onValueChange={setValue}
           options={PEOPLE}
-          placeholder="${locale === "ja" ? "@ を入力してメンションを追加" : "Type @ to mention..."}"
+          placeholder="@ を入力してメンションを追加"
           rows={3}
         />
       </FormControl>
       <FormDescription>
-        ${locale === "ja" ? "候補を表示するには" : "Type"} <Code>@</Code>${locale === "ja" ? " を入力します。" : " to trigger suggestions."}
+        候補を表示するには <Code>@</Code> を入力します。
+      </FormDescription>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import {
+  Code,
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  Mention,
+} from "@gunjo/ui";
+
+const PEOPLE = [
+  { id: "alice", label: "alice", hint: "Alice Chen" },
+  { id: "alex", label: "alex", hint: "Alex Park" },
+  { id: "bob", label: "bob", hint: "Bob Tanaka" },
+];
+
+export function MentionDemo() {
+  const [value, setValue] = React.useState("Hi @al");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="mention-message">Message</FormLabel>
+      <FormControl>
+        <Mention
+          id="mention-message"
+          value={value}
+          onValueChange={setValue}
+          options={PEOPLE}
+          placeholder="Type @ to mention..."
+          rows={3}
+        />
+      </FormControl>
+      <FormDescription>
+        Type <Code>@</Code> to trigger suggestions.
       </FormDescription>
     </FormGroup>
   );
 }`;
 
-    const usageCode = `import { FormControl, FormGroup, FormLabel, Mention } from "@gunjo/ui";
+    const usageCode = locale === "ja"
+        ? `import * as React from "react";
+import { FormControl, FormGroup, FormLabel, Mention } from "@gunjo/ui";
+
+const TEAM_MEMBERS = [
+  { id: "tanaka", label: "田中", hint: "デザイナー" },
+  { id: "sato", label: "佐藤", hint: "エンジニア" },
+  { id: "suzuki", label: "鈴木", hint: "PM" },
+];
 
 export function MessageField() {
   const [text, setText] = React.useState("");
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="message">${locale === "ja" ? "メッセージ" : "Message"}</FormLabel>
+      <FormLabel htmlFor="message">メッセージ</FormLabel>
       <FormControl>
         <Mention
           id="message"
-          options={teamMembers}
+          options={TEAM_MEMBERS}
           value={text}
           onValueChange={setText}
           trigger="@"
-          placeholder="${locale === "ja" ? "@ を入力して担当者をメンション" : "Type @ to mention a teammate"}"
+          placeholder="@ を入力して担当者をメンション"
+        />
+      </FormControl>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import { FormControl, FormGroup, FormLabel, Mention } from "@gunjo/ui";
+
+const TEAM_MEMBERS = [
+  { id: "alice", label: "alice", hint: "Alice Chen" },
+  { id: "alex", label: "alex", hint: "Alex Park" },
+  { id: "bob", label: "bob", hint: "Bob Tanaka" },
+];
+
+export function MessageField() {
+  const [text, setText] = React.useState("");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="message">Message</FormLabel>
+      <FormControl>
+        <Mention
+          id="message"
+          options={TEAM_MEMBERS}
+          value={text}
+          onValueChange={setText}
+          trigger="@"
+          placeholder="Type @ to mention a teammate"
         />
       </FormControl>
     </FormGroup>
@@ -266,15 +344,51 @@ export function MessageField() {
                                 />
                             ),
                             previewHeight: 360,
-                            code: `import { Mention } from "@gunjo/ui";
+                            code: locale === "ja"
+                                ? `import * as React from "react";
+import { Mention } from "@gunjo/ui";
 
-<Mention
-  trigger="#"
-  options={tags}
-  value={value}
-  onValueChange={setValue}
-  placeholder="${locale === "ja" ? "# を入力してタグを追加" : "Type # to tag"}"
-/>`,
+const TAGS = [
+  { id: "urgent", label: "緊急", hint: "優先対応" },
+  { id: "review", label: "レビュー", hint: "確認待ち" },
+  { id: "blocked", label: "ブロック", hint: "進行不可" },
+];
+
+export function TaggedNoteField() {
+  const [value, setValue] = React.useState("#緊");
+
+  return (
+    <Mention
+      trigger="#"
+      options={TAGS}
+      value={value}
+      onValueChange={setValue}
+      placeholder="# を入力してタグを追加"
+    />
+  );
+}`
+                                : `import * as React from "react";
+import { Mention } from "@gunjo/ui";
+
+const TAGS = [
+  { id: "urgent", label: "urgent", hint: "Needs response" },
+  { id: "review", label: "review", hint: "Needs review" },
+  { id: "blocked", label: "blocked", hint: "Blocked task" },
+];
+
+export function TaggedNoteField() {
+  const [value, setValue] = React.useState("#ur");
+
+  return (
+    <Mention
+      trigger="#"
+      options={TAGS}
+      value={value}
+      onValueChange={setValue}
+      placeholder="Type # to tag"
+    />
+  );
+}`,
                         },
                         {
                             key: "disabled",
@@ -291,12 +405,43 @@ export function MessageField() {
                                 />
                             ),
                             previewHeight: 210,
-                            code: `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
+                            code: locale === "ja"
+                                ? `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
 import { Mention } from "@gunjo/ui";
 
-<DisabledReasonTooltip fullWidth reason="${locale === "ja" ? "このスレッドはアーカイブ済みのため編集できません。" : "This thread is archived and cannot be edited."}">
-  <Mention disabled value={value} options={people} />
-</DisabledReasonTooltip>`,
+const PEOPLE = [
+  { id: "tanaka", label: "田中", hint: "デザイナー" },
+  { id: "sato", label: "佐藤", hint: "エンジニア" },
+];
+
+export function ArchivedMessageField() {
+  return (
+    <DisabledReasonTooltip
+      fullWidth
+      reason="このスレッドはアーカイブ済みのため編集できません。"
+    >
+      <Mention disabled value="アーカイブ済みのメッセージです。" options={PEOPLE} />
+    </DisabledReasonTooltip>
+  );
+}`
+                                : `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
+import { Mention } from "@gunjo/ui";
+
+const PEOPLE = [
+  { id: "alice", label: "alice", hint: "Alice Chen" },
+  { id: "alex", label: "alex", hint: "Alex Park" },
+];
+
+export function ArchivedMessageField() {
+  return (
+    <DisabledReasonTooltip
+      fullWidth
+      reason="This thread is archived and cannot be edited."
+    >
+      <Mention disabled value="Archived message." options={PEOPLE} />
+    </DisabledReasonTooltip>
+  );
+}`,
                         },
                     ]}
                 />

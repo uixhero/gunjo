@@ -8,7 +8,7 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
-import { Badge, PersonCell, Separator } from "@gunjo/ui";
+import { Badge, PersonCell } from "@gunjo/ui";
 
 type Locale = "ja" | "en";
 
@@ -53,23 +53,20 @@ function PersonCellPreview({ locale, mode = "list" }: { locale: Locale; mode?: "
   }
 
   return (
-    <div className="flex w-full max-w-md flex-col rounded-lg border bg-card p-3">
-      {people(locale).map((person, index) => (
-        <React.Fragment key={person.name}>
-          {index > 0 ? <Separator /> : null}
-          <div className="py-2.5">
-            <PersonCell
-              name={person.name}
-              secondary={person.secondary}
-              tertiary={person.tertiary}
-              avatar={person.avatar}
-              avatarClassName={person.avatarClassName}
-              presence={person.presence}
-              presenceLabel={person.presence}
-              trailing={person.trailing}
-            />
-          </div>
-        </React.Fragment>
+    <div className="flex w-full max-w-md flex-col divide-y rounded-lg border bg-card p-3">
+      {people(locale).map((person) => (
+        <div key={person.name} className="py-2.5">
+          <PersonCell
+            name={person.name}
+            secondary={person.secondary}
+            tertiary={person.tertiary}
+            avatar={person.avatar}
+            avatarClassName={person.avatarClassName}
+            presence={person.presence}
+            presenceLabel={person.presence}
+            trailing={person.trailing}
+          />
+        </div>
       ))}
     </div>
   );
@@ -110,8 +107,7 @@ export default function PersonCellDocPage() {
   const description = content?.description ?? metadata.personCell.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
-import { Badge, PersonCell, Separator } from "@gunjo/ui";
+    ? `import { Badge, PersonCell } from "@gunjo/ui";
 
 const people = [
   {
@@ -143,20 +139,16 @@ const people = [
 
 export function DirectoryRows() {
   return (
-    <div className="flex w-full max-w-md flex-col rounded-lg border bg-card p-3">
-      {people.map((person, index) => (
-        <React.Fragment key={person.name}>
-          {index > 0 ? <Separator /> : null}
-          <div className="py-2.5">
-            <PersonCell {...person} presenceLabel={person.presence} />
-          </div>
-        </React.Fragment>
+    <div className="flex w-full max-w-md flex-col divide-y rounded-lg border bg-card p-3">
+      {people.map((person) => (
+        <div key={person.name} className="py-2.5">
+          <PersonCell {...person} presenceLabel={person.presence} />
+        </div>
       ))}
     </div>
   );
 }`
-    : `import * as React from "react";
-import { Badge, PersonCell, Separator } from "@gunjo/ui";
+    : `import { Badge, PersonCell } from "@gunjo/ui";
 
 const people = [
   {
@@ -188,14 +180,11 @@ const people = [
 
 export function DirectoryRows() {
   return (
-    <div className="flex w-full max-w-md flex-col rounded-lg border bg-card p-3">
-      {people.map((person, index) => (
-        <React.Fragment key={person.name}>
-          {index > 0 ? <Separator /> : null}
-          <div className="py-2.5">
-            <PersonCell {...person} presenceLabel={person.presence} />
-          </div>
-        </React.Fragment>
+    <div className="flex w-full max-w-md flex-col divide-y rounded-lg border bg-card p-3">
+      {people.map((person) => (
+        <div key={person.name} className="py-2.5">
+          <PersonCell {...person} presenceLabel={person.presence} />
+        </div>
       ))}
     </div>
   );
@@ -207,9 +196,24 @@ export function DirectoryRows() {
 export function PersonCellSizes() {
   return (
     <div className="grid w-full max-w-md gap-4 rounded-lg border bg-card p-4">
-      <PersonCell size="sm" name="中野 葵" secondary="エンジニアリング本部" avatar={{ fallback: "中" }} />
-      <PersonCell size="md" name="中野 葵" secondary="エンジニアリング本部" avatar={{ fallback: "中" }} />
-      <PersonCell size="lg" name="中野 葵" secondary="エンジニアリング本部" avatar={{ fallback: "中" }} />
+      <PersonCell
+        size="sm"
+        name="中野 葵"
+        secondary="エンジニアリング本部"
+        avatar={{ fallback: "中" }}
+      />
+      <PersonCell
+        size="md"
+        name="中野 葵"
+        secondary="エンジニアリング本部"
+        avatar={{ fallback: "中" }}
+      />
+      <PersonCell
+        size="lg"
+        name="中野 葵"
+        secondary="エンジニアリング本部"
+        avatar={{ fallback: "中" }}
+      />
     </div>
   );
 }`
@@ -218,9 +222,24 @@ export function PersonCellSizes() {
 export function PersonCellSizes() {
   return (
     <div className="grid w-full max-w-md gap-4 rounded-lg border bg-card p-4">
-      <PersonCell size="sm" name="Aoi Nakano" secondary="Engineering" avatar={{ fallback: "A" }} />
-      <PersonCell size="md" name="Aoi Nakano" secondary="Engineering" avatar={{ fallback: "A" }} />
-      <PersonCell size="lg" name="Aoi Nakano" secondary="Engineering" avatar={{ fallback: "A" }} />
+      <PersonCell
+        size="sm"
+        name="Aoi Nakano"
+        secondary="Engineering"
+        avatar={{ fallback: "A" }}
+      />
+      <PersonCell
+        size="md"
+        name="Aoi Nakano"
+        secondary="Engineering"
+        avatar={{ fallback: "A" }}
+      />
+      <PersonCell
+        size="lg"
+        name="Aoi Nakano"
+        secondary="Engineering"
+        avatar={{ fallback: "A" }}
+      />
     </div>
   );
 }`;
@@ -259,40 +278,82 @@ export function MinimalPersonCell() {
     ? `import * as React from "react";
 import { PersonCell } from "@gunjo/ui";
 
-export function PeopleList({ people }) {
+const people = [
+  {
+    id: "sato",
+    name: "佐藤 美咲",
+    secondary: "プロダクト本部 / シニアUXデザイナー",
+    avatar: { fallback: "佐" },
+  },
+  { id: "takahashi", name: "高橋 健一", secondary: "デザインマネージャー", avatar: { fallback: "高" } },
+  { id: "yamada", name: "山田 涼介", secondary: "人事 HRBP", avatar: { fallback: "山" } },
+];
+
+export function PeopleList() {
   const [selected, setSelected] = React.useState(null);
+
   return (
-    <div className="flex flex-col gap-1">
-      {people.map((p) => (
-        // onActivate → ルートが <button>、chevron が affordance。href なら <a>。
+    <div className="flex w-full max-w-sm flex-col gap-1">
+      {/* onActivate を渡すとルートが <button> になり、chevron が affordance になります。href なら <a> です。 */}
+      {people.map((person) => (
         <PersonCell
-          key={p.id}
-          name={p.name}
-          secondary={p.secondary}
-          avatar={p.avatar}
-          onActivate={() => setSelected(p.id)}
+          key={person.id}
+          name={person.name}
+          secondary={person.secondary}
+          avatar={person.avatar}
+          onActivate={() => setSelected(person.name)}
         />
       ))}
+      <p className="mt-2 text-sm text-muted-foreground" aria-live="polite">
+        {"選択中: "}
+        <span className="font-medium text-foreground">{selected ?? "—"}</span>
+      </p>
     </div>
   );
 }`
     : `import * as React from "react";
 import { PersonCell } from "@gunjo/ui";
 
-export function PeopleList({ people }) {
+const people = [
+  {
+    id: "sato",
+    name: "Misaki Sato",
+    secondary: "Product division / Senior UX designer",
+    avatar: { fallback: "M" },
+  },
+  {
+    id: "takahashi",
+    name: "Kenichi Takahashi",
+    secondary: "Design manager",
+    avatar: { fallback: "K" },
+  },
+  {
+    id: "yamada",
+    name: "Ryosuke Yamada",
+    secondary: "HR business partner",
+    avatar: { fallback: "R" },
+  },
+];
+
+export function PeopleList() {
   const [selected, setSelected] = React.useState(null);
+
   return (
-    <div className="flex flex-col gap-1">
-      {people.map((p) => (
-        // onActivate → root is a <button>, chevron is the affordance. Use href for an <a>.
+    <div className="flex w-full max-w-sm flex-col gap-1">
+      {/* onActivate renders the root as a <button> with a chevron affordance. Use href for an <a>. */}
+      {people.map((person) => (
         <PersonCell
-          key={p.id}
-          name={p.name}
-          secondary={p.secondary}
-          avatar={p.avatar}
-          onActivate={() => setSelected(p.id)}
+          key={person.id}
+          name={person.name}
+          secondary={person.secondary}
+          avatar={person.avatar}
+          onActivate={() => setSelected(person.name)}
         />
       ))}
+      <p className="mt-2 text-sm text-muted-foreground" aria-live="polite">
+        {"Selected: "}
+        <span className="font-medium text-foreground">{selected ?? "—"}</span>
+      </p>
     </div>
   );
 }`;

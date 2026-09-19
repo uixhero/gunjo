@@ -24,7 +24,15 @@ function getVariantByKey(componentSpec) {
   return variantByKey;
 }
 
-function getDefaultVariantKey(variantKeys) {
+function getDefaultVariantKey(componentSpec, variantKeys) {
+  if (
+    componentSpec &&
+    Object.prototype.hasOwnProperty.call(componentSpec, "defaultVariantKey")
+  ) {
+    const explicitDefault = componentSpec.defaultVariantKey;
+    if (explicitDefault === null) return null;
+    if (variantKeys.includes(explicitDefault)) return explicitDefault;
+  }
   if (variantKeys.length === 0) return null;
   return variantKeys.includes("default") ? "default" : variantKeys[0];
 }
@@ -71,7 +79,7 @@ function buildVariantColorHintsRecord(variantKeys, variantByKey) {
 function buildComponentStyleHint(componentSpec) {
   const variantByKey = getVariantByKey(componentSpec);
   const variantKeys = [...variantByKey.keys()];
-  const defaultVariantKey = getDefaultVariantKey(variantKeys);
+  const defaultVariantKey = getDefaultVariantKey(componentSpec, variantKeys);
   const baseVariant =
     (defaultVariantKey ? variantByKey.get(defaultVariantKey) : null) ??
     (variantKeys.length > 0 ? variantByKey.get(variantKeys[0]) : null);

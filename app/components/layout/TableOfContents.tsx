@@ -12,6 +12,21 @@ interface TocItem {
     level: 2 | 3;
 }
 
+interface LocalNavProps {
+    /**
+     * Deepest heading level to list. Defaults to 3 (h2 + h3), which is what
+     * every docs surface uses — a docs page's h3 entries are the individual
+     * component demos, so dropping them would remove the only links to them.
+     *
+     * `/cold-tests/[round]` passes 2. This nav lays its entries out in a
+     * horizontal wrap, where an h3 is marked only by a 1.5px dot and a
+     * smaller type size — at a glance the depth doesn't read as a depth, it
+     * reads as noise. Article h3 headings still render in the body; they
+     * just don't get a nav entry.
+     */
+    maxLevel?: 2 | 3;
+}
+
 /**
  * Inline page-section nav, rendered below the page description.
  *
@@ -25,13 +40,16 @@ interface TocItem {
  * below xl, and small viewports get no benefit from a section index for
  * a page they're already scrolling.
  */
-export function LocalNav() {
+export function LocalNav({ maxLevel = 3 }: LocalNavProps = {}) {
     const pathname = usePathname();
     const { locale } = useLocale();
     const [headings, setHeadings] = useState<TocItem[]>([]);
     const [activeId, setActiveId] = useState<string>("");
 
     useEffect(() => {
+        // One selector for both passes below, so the observed set can never
+        // drift from the listed set.
+        const selector = maxLevel === 2 ? "h2" : "h2, h3";
         const items: TocItem[] = [];
         const existingIds = new Set<string>();
         let unnamedCount = 0;
@@ -40,7 +58,7 @@ export function LocalNav() {
         // etc.) and other peripheral headings don't pollute the local nav.
         const scope = document.querySelector("main") ?? document.body;
 
-        scope.querySelectorAll("h2, h3").forEach((elem) => {
+        scope.querySelectorAll(selector).forEach((elem) => {
             // Skip hidden headings (e.g. mobile-only sections on desktop).
             if ((elem as HTMLElement).offsetParent === null) return;
             // Opt-out: a parent can mark its sub-headings as TOC-irrelevant
@@ -86,14 +104,14 @@ export function LocalNav() {
             { rootMargin: "0% 0% -80% 0%" }
         );
 
-        scope.querySelectorAll("h2, h3").forEach((elem) => {
+        scope.querySelectorAll(selector).forEach((elem) => {
             if ((elem as HTMLElement).offsetParent === null) return;
             if (elem.closest("[data-toc-skip]")) return;
             observer.observe(elem);
         });
 
         return () => observer.disconnect();
-    }, [pathname, locale]);
+    }, [pathname, locale, maxLevel]);
 
     if (headings.length === 0) return null;
 

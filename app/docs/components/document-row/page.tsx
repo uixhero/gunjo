@@ -418,6 +418,74 @@ function DocumentRowPreview({ locale, lockedOnly = false }: { locale: Locale; lo
   );
 }
 
+function DocumentRowAttachmentsPreview({ locale }: { locale: Locale }) {
+  const isJa = locale === "ja";
+  const attachments = isJa
+    ? [
+        {
+          id: "quote",
+          title: "見積書_群青交通様_車両整備一式.pdf",
+          meta: "PDF・124KB・2026/06/25",
+          icon: <IconFileTypePdf className="size-5" />,
+        },
+        {
+          id: "spec",
+          title: "整備仕様書（第3版・車両12台ぶん・別紙の写真と部品表を含む・2026年度上期）.pdf",
+          meta: "PDF・4.2MB・2026/06/24",
+          icon: <IconFileTypePdf className="size-5" />,
+        },
+        {
+          id: "photos",
+          title: "現車写真.zip",
+          meta: "ZIP・38MB・2026/06/24",
+          icon: <IconFileTypeZip className="size-5" />,
+        },
+      ]
+    : [
+        {
+          id: "quote",
+          title: "Quote_GunjoTransit_fleet-maintenance.pdf",
+          meta: "PDF · 124KB · 25 Jun 2026",
+          icon: <IconFileTypePdf className="size-5" />,
+        },
+        {
+          id: "spec",
+          title: "Maintenance specification (third revision, twelve vehicles, photo and parts annex, H1 2026).pdf",
+          meta: "PDF · 4.2MB · 24 Jun 2026",
+          icon: <IconFileTypePdf className="size-5" />,
+        },
+        {
+          id: "photos",
+          title: "vehicle-photos.zip",
+          meta: "ZIP · 38MB · 24 Jun 2026",
+          icon: <IconFileTypeZip className="size-5" />,
+        },
+      ];
+
+  return (
+    <div className="w-full max-w-lg divide-y rounded-lg border bg-card">
+      {attachments.map((attachment) => (
+        <DocumentRow
+          key={attachment.id}
+          icon={attachment.icon}
+          title={attachment.title}
+          meta={attachment.meta}
+          actions={
+            <TooltipButton
+              size="icon"
+              variant="ghost"
+              tooltip={isJa ? "ダウンロード" : "Download"}
+              aria-label={isJa ? `${attachment.title} をダウンロード` : `Download ${attachment.title}`}
+            >
+              <IconDownload className="size-4" />
+            </TooltipButton>
+          }
+        />
+      ))}
+    </div>
+  );
+}
+
 export default function DocumentRowDocPage() {
   const { locale, sectionLabels } = useLocale();
   const content = getDocContent("components/document-row", locale);
@@ -901,6 +969,152 @@ export function PayrollDocuments() {
   );
 }`;
 
+  const disabledDownloadCode = locale === "ja"
+    ? `import { Button, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+import { IconDownload } from "@tabler/icons-react";
+
+export function DisabledDownloadAction() {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <span tabIndex={0} className="inline-flex">
+          <Button size="icon" variant="ghost" disabled aria-label="ダウンロード: 経費精算 添付書類">
+            <IconDownload className="h-4 w-4" />
+          </Button>
+        </span>
+      </TooltipTrigger>
+      <TooltipContent>確定処理中のため、ダウンロードはまだ利用できません。</TooltipContent>
+    </Tooltip>
+  );
+}`
+    : `import { Button, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+import { IconDownload } from "@tabler/icons-react";
+
+export function DisabledDownloadAction() {
+  return (
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <span tabIndex={0} className="inline-flex">
+          <Button size="icon" variant="ghost" disabled aria-label="Download: Expense report attachments">
+            <IconDownload className="h-4 w-4" />
+          </Button>
+        </span>
+      </TooltipTrigger>
+      <TooltipContent>The file is still being finalized, so download is unavailable.</TooltipContent>
+    </Tooltip>
+  );
+}`;
+
+  const attachmentsCode = locale === "ja"
+    ? `import { DocumentRow, TooltipButton } from "@gunjo/ui";
+import { IconDownload, IconFileTypePdf, IconFileTypeZip } from "@tabler/icons-react";
+
+const ATTACHMENTS = [
+  {
+    id: "quote",
+    title: "見積書_群青交通様_車両整備一式.pdf",
+    meta: "PDF・124KB・2026/06/25",
+    kind: "pdf",
+  },
+  {
+    id: "spec",
+    title: "整備仕様書（第3版・車両12台ぶん・別紙の写真と部品表を含む・2026年度上期）.pdf",
+    meta: "PDF・4.2MB・2026/06/24",
+    kind: "pdf",
+  },
+  {
+    id: "photos",
+    title: "現車写真.zip",
+    meta: "ZIP・38MB・2026/06/24",
+    kind: "zip",
+  },
+];
+
+export function AttachmentList() {
+  return (
+    <div className="w-full max-w-lg divide-y rounded-lg border bg-card">
+      {ATTACHMENTS.map((attachment) => (
+        <DocumentRow
+          key={attachment.id}
+          icon={
+            attachment.kind === "zip" ? (
+              <IconFileTypeZip className="size-5" />
+            ) : (
+              <IconFileTypePdf className="size-5" />
+            )
+          }
+          title={attachment.title}
+          meta={attachment.meta}
+          actions={
+            <TooltipButton
+              size="icon"
+              variant="ghost"
+              tooltip="ダウンロード"
+              aria-label={attachment.title + " をダウンロード"}
+            >
+              <IconDownload className="size-4" />
+            </TooltipButton>
+          }
+        />
+      ))}
+    </div>
+  );
+}`
+    : `import { DocumentRow, TooltipButton } from "@gunjo/ui";
+import { IconDownload, IconFileTypePdf, IconFileTypeZip } from "@tabler/icons-react";
+
+const ATTACHMENTS = [
+  {
+    id: "quote",
+    title: "Quote_GunjoTransit_fleet-maintenance.pdf",
+    meta: "PDF · 124KB · 25 Jun 2026",
+    kind: "pdf",
+  },
+  {
+    id: "spec",
+    title: "Maintenance specification (third revision, twelve vehicles, photo and parts annex).pdf",
+    meta: "PDF · 4.2MB · 24 Jun 2026",
+    kind: "pdf",
+  },
+  {
+    id: "photos",
+    title: "vehicle-photos.zip",
+    meta: "ZIP · 38MB · 24 Jun 2026",
+    kind: "zip",
+  },
+];
+
+export function AttachmentList() {
+  return (
+    <div className="w-full max-w-lg divide-y rounded-lg border bg-card">
+      {ATTACHMENTS.map((attachment) => (
+        <DocumentRow
+          key={attachment.id}
+          icon={
+            attachment.kind === "zip" ? (
+              <IconFileTypeZip className="size-5" />
+            ) : (
+              <IconFileTypePdf className="size-5" />
+            )
+          }
+          title={attachment.title}
+          meta={attachment.meta}
+          actions={
+            <TooltipButton
+              size="icon"
+              variant="ghost"
+              tooltip="Download"
+              aria-label={"Download " + attachment.title}
+            >
+              <IconDownload className="size-4" />
+            </TooltipButton>
+          }
+        />
+      ))}
+    </div>
+  );
+}`;
+
   const propsData = [
     {
       name: "title",
@@ -990,27 +1204,17 @@ export function PayrollDocuments() {
                 ? "無効なダウンロード操作は、ホバーまたはフォーカスで理由を説明します。"
                 : "A disabled download explains why on hover or focus.",
               preview: <DocumentRowPreview locale={locale} lockedOnly />,
-              code: locale === "ja"
-                ? `<Tooltip>
-  <TooltipTrigger asChild>
-    <span tabIndex={0} className="inline-flex">
-      <Button size="icon" variant="ghost" disabled aria-label="ダウンロード: 経費精算 添付書類">
-        <IconDownload className="h-4 w-4" />
-      </Button>
-    </span>
-  </TooltipTrigger>
-  <TooltipContent>確定処理中のため、ダウンロードはまだ利用できません。</TooltipContent>
-</Tooltip>`
-                : `<Tooltip>
-  <TooltipTrigger asChild>
-    <span tabIndex={0} className="inline-flex">
-      <Button size="icon" variant="ghost" disabled aria-label="Download: Expense report attachments">
-        <IconDownload className="h-4 w-4" />
-      </Button>
-    </span>
-  </TooltipTrigger>
-  <TooltipContent>The file is still being finalized, so download is unavailable.</TooltipContent>
-</Tooltip>`,
+              code: disabledDownloadCode,
+              previewBodyWidth: "lg",
+            },
+            {
+              key: "attachments",
+              title: locale === "ja" ? "読むだけの一覧" : "A read-only list",
+              description: locale === "ja"
+                ? "選択もプレビューも要らないときは control と onOpen を省きます。長いファイル名は末尾が省略されるので、形式・大きさ・日付は meta に分けて置きます。"
+                : "Drop control and onOpen when nothing needs selecting or previewing. A long file name is truncated, so keep the format, size, and date in meta where they stay readable.",
+              preview: <DocumentRowAttachmentsPreview locale={locale} />,
+              code: attachmentsCode,
               previewBodyWidth: "lg",
             },
           ]}

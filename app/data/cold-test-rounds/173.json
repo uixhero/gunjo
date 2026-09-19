@@ -5,7 +5,7 @@
   "score": "3.5/5",
   "category": "金融",
   "title": "AI に補助金マッチングを作らせてみた — MatchCard がコンポーネント化、「会社×制度」が対象を問わないことを証明した（やってみた #173）",
-  "summary": "`tsc` 緑・モバイル/デスクトップ両対応。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "二者間ペアリングが最後まで欠落。「3つ目の目撃」が仕様を最終確定させる。",
   "article": {
     "file": "zenn-yattemita-173-subsidy-matching.md",
     "slug": "173-subsidy-matching",

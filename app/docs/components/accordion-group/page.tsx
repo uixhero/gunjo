@@ -137,7 +137,14 @@ export function Example() {
 }`;
 
     const usageCode = isJa
-        ? `const sections = [
+        ? `import {
+  AccordionContent,
+  AccordionGroup,
+  AccordionItem,
+  AccordionTrigger,
+} from "@gunjo/ui";
+
+const sections = [
   { id: "billing", title: "請求設定", body: "支払い方法、請求書、更新日を確認できます。" },
   { id: "team", title: "チーム設定", body: "メンバー招待、権限、ロールを管理できます。" },
   { id: "security", title: "セキュリティ", body: "2段階認証、監査ログ、セッションを確認できます。" },
@@ -160,10 +167,29 @@ export function SettingsAccordionGroup() {
     </AccordionGroup>
   );
 }`
-        : `const sections = [
-  { id: "billing", title: "Billing settings", body: "Review payment methods, invoices, and renewal dates." },
-  { id: "team", title: "Team settings", body: "Manage invitations, permissions, and roles." },
-  { id: "security", title: "Security", body: "Review two-factor authentication, audit logs, and sessions." },
+        : `import {
+  AccordionContent,
+  AccordionGroup,
+  AccordionItem,
+  AccordionTrigger,
+} from "@gunjo/ui";
+
+const sections = [
+  {
+    id: "billing",
+    title: "Billing settings",
+    body: "Review payment methods, invoices, and renewal dates.",
+  },
+  {
+    id: "team",
+    title: "Team settings",
+    body: "Manage invitations, permissions, and roles.",
+  },
+  {
+    id: "security",
+    title: "Security",
+    body: "Review two-factor authentication, audit logs, and sessions.",
+  },
 ];
 
 export function SettingsAccordionGroup() {
@@ -173,6 +199,82 @@ export function SettingsAccordionGroup() {
       label="Settings"
       expandLabel="Open all"
       collapseLabel="Close all"
+    >
+      {sections.map((section) => (
+        <AccordionItem key={section.id} value={section.id}>
+          <AccordionTrigger>{section.title}</AccordionTrigger>
+          <AccordionContent>{section.body}</AccordionContent>
+        </AccordionItem>
+      ))}
+    </AccordionGroup>
+  );
+}`;
+
+    const individualCode = isJa
+        ? `import {
+  AccordionContent,
+  AccordionGroup,
+  AccordionItem,
+  AccordionTrigger,
+} from "@gunjo/ui";
+
+const sections = [
+  { id: "billing", title: "請求設定", body: "支払い方法、請求書、更新日を確認できます。" },
+  { id: "team", title: "チーム設定", body: "メンバー招待、権限、ロールを管理できます。" },
+  { id: "security", title: "セキュリティ", body: "2段階認証、監査ログ、セッションを確認できます。" },
+];
+
+export function PublishingAccordionGroup() {
+  return (
+    <AccordionGroup
+      values={sections.map((section) => section.id)}
+      showControls={false}
+      label="公開設定"
+      description="必要な項目を個別に開いて確認します。"
+      className="w-full max-w-md"
+    >
+      {sections.map((section) => (
+        <AccordionItem key={section.id} value={section.id}>
+          <AccordionTrigger>{section.title}</AccordionTrigger>
+          <AccordionContent>{section.body}</AccordionContent>
+        </AccordionItem>
+      ))}
+    </AccordionGroup>
+  );
+}`
+        : `import {
+  AccordionContent,
+  AccordionGroup,
+  AccordionItem,
+  AccordionTrigger,
+} from "@gunjo/ui";
+
+const sections = [
+  {
+    id: "billing",
+    title: "Billing settings",
+    body: "Review payment methods, invoices, and renewal dates.",
+  },
+  {
+    id: "team",
+    title: "Team settings",
+    body: "Manage invitations, permissions, and roles.",
+  },
+  {
+    id: "security",
+    title: "Security",
+    body: "Review two-factor authentication, audit logs, and sessions.",
+  },
+];
+
+export function PublishingAccordionGroup() {
+  return (
+    <AccordionGroup
+      values={sections.map((section) => section.id)}
+      showControls={false}
+      label="Publishing settings"
+      description="Open each section individually."
+      className="w-full max-w-md"
     >
       {sections.map((section) => (
         <AccordionItem key={section.id} value={section.id}>
@@ -347,19 +449,7 @@ export function SettingsAccordionGroup() {
                             ),
                             previewHeight: "auto",
                             previewClassName: "items-start",
-                            code: isJa
-                                ? `<AccordionGroup values={sectionValues} showControls={false} label="公開設定">
-  <AccordionItem value="billing">
-    <AccordionTrigger>請求設定</AccordionTrigger>
-    <AccordionContent>支払い方法、請求書、更新日を確認できます。</AccordionContent>
-  </AccordionItem>
-</AccordionGroup>`
-                                : `<AccordionGroup values={sectionValues} showControls={false} label="Publishing settings">
-  <AccordionItem value="billing">
-    <AccordionTrigger>Billing settings</AccordionTrigger>
-    <AccordionContent>Review payment methods, invoices, and renewal dates.</AccordionContent>
-  </AccordionItem>
-</AccordionGroup>`,
+                            code: individualCode,
                         },
                     ]}
                 />

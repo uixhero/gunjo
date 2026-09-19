@@ -5,7 +5,7 @@
   "score": "4/5",
   "category": "運輸：鉄道",
   "title": "AI に新幹線予約画面を作らせてみた — A→B 区間の見出しがコンポーネント化、索引の「縦と横」の取り違えを是正（やってみた #170）",
-  "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "A→B 区間の見出しが3回目でコンポーネント化。索引の罠に「形（縦 vs 横）の取り違え」が加わった。",
   "article": {
     "file": "zenn-yattemita-170-express-booking.md",
     "slug": "170-express-booking",

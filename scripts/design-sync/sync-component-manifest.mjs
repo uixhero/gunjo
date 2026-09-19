@@ -34,7 +34,15 @@ function getVariantKeys(componentSpec) {
   return keys;
 }
 
-function getDefaultVariantKey(variantKeys) {
+function getDefaultVariantKey(componentSpec, variantKeys) {
+  if (
+    componentSpec &&
+    Object.prototype.hasOwnProperty.call(componentSpec, "defaultVariantKey")
+  ) {
+    const explicitDefault = componentSpec.defaultVariantKey;
+    if (explicitDefault === null) return null;
+    if (variantKeys.includes(explicitDefault)) return explicitDefault;
+  }
   if (variantKeys.length === 0) return null;
   return variantKeys.includes("default") ? "default" : variantKeys[0];
 }
@@ -54,7 +62,7 @@ function buildCategoryManifest({ root, category, specPath, sourceDir, fileNameOv
             title: componentSpec?.title ?? null,
             description: componentSpec?.description ?? null,
             variantKeys,
-            defaultVariantKey: getDefaultVariantKey(variantKeys),
+            defaultVariantKey: getDefaultVariantKey(componentSpec, variantKeys),
             sourceFile: `${sourceDir}/${getComponentFileName(componentKey, fileNameOverrides)}`,
             specSource: spec?.source ?? null,
             stability: stabilityMap[componentKey] ?? STABILITY_DEFAULT,

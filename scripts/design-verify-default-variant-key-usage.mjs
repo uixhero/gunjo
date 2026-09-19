@@ -18,7 +18,9 @@ function verifyDefaultVariantKeyUsage({
   componentsDir,
 }) {
   const spec = readJson(join(root, specPath));
-  const expectedComponents = buildVariantKeyEntries(spec).map((entry) => entry.key);
+  const expectedComponents = buildVariantKeyEntries(spec)
+    .filter((entry) => typeof entry.defaultKey === "string")
+    .map((entry) => entry.key);
   const missingFiles = [];
   const missingUsage = [];
 

@@ -34,24 +34,58 @@ const codeByLocale = {
     en: `import { ChartLegend } from "@gunjo/ui";
 
 const items = [
-    { label: "Organic", value: "46%", color: "primary", description: "Total: 12,400" },
-    { label: "Referral", value: "28%", color: "success", description: "Total: 7,560" },
-    { label: "Direct", value: "18%", color: "warning", description: "Total: 4,860" },
+    {
+        label: "Organic",
+        value: "46%",
+        color: "primary",
+        description: "Total: 12,400",
+    },
+    {
+        label: "Referral",
+        value: "28%",
+        color: "success",
+        description: "Total: 7,560",
+    },
+    {
+        label: "Direct",
+        value: "18%",
+        color: "warning",
+        description: "Total: 4,860",
+    },
 ];
 
-export function Legend() {
-    return <ChartLegend items={items} />;
+export function ChannelLegend() {
+    return (
+        <ChartLegend items={items} />
+    );
 }`,
     ja: `import { ChartLegend } from "@gunjo/ui";
 
 const items = [
-    { label: "自然流入", value: "46%", color: "primary", description: "合計: 12,400" },
-    { label: "紹介", value: "28%", color: "success", description: "合計: 7,560" },
-    { label: "直接", value: "18%", color: "warning", description: "合計: 4,860" },
+    {
+        label: "自然流入",
+        value: "46%",
+        color: "primary",
+        description: "合計: 12,400",
+    },
+    {
+        label: "紹介",
+        value: "28%",
+        color: "success",
+        description: "合計: 7,560",
+    },
+    {
+        label: "直接",
+        value: "18%",
+        color: "warning",
+        description: "合計: 4,860",
+    },
 ];
 
-export function Legend() {
-    return <ChartLegend items={items} />;
+export function ChannelLegend() {
+    return (
+        <ChartLegend items={items} />
+    );
 }`,
 } as const;
 
@@ -59,105 +93,343 @@ const usageCodeByLocale = {
     en: `import { ChartLegend } from "@gunjo/ui";
 
 const items = [
-    { label: "Organic", value: "46%", color: "primary", description: "Total: 12,400" },
-    { label: "Referral", value: "28%", color: "success", description: "Total: 7,560" },
-    { label: "Direct", value: "18%", color: "warning", description: "Total: 4,860" },
+    {
+        label: "Organic",
+        value: "46%",
+        color: "primary",
+        description: "Total: 12,400",
+    },
+    {
+        label: "Referral",
+        value: "28%",
+        color: "success",
+        description: "Total: 7,560",
+    },
+    {
+        label: "Direct",
+        value: "18%",
+        color: "warning",
+        description: "Total: 4,860",
+    },
 ];
 
 const itemsWithoutValues = [
-    { label: "Search", color: "primary" },
-    { label: "Social", color: "info" },
-    { label: "Ads", color: "warning" },
+    {
+        label: "Search",
+        color: "primary",
+    },
+    {
+        label: "Social",
+        color: "info",
+    },
+    {
+        label: "Ads",
+        color: "warning",
+    },
 ];
 
-<ChartLegend items={items} />
-<ChartLegend items={items} variant="vertical" />
-<ChartLegend items={itemsWithoutValues} />`,
+export function ChartLegendUsage() {
+    return (
+        <div className="grid gap-6">
+            <ChartLegend items={items} />
+            <ChartLegend items={items} variant="vertical" />
+            <ChartLegend items={itemsWithoutValues} />
+        </div>
+    );
+}`,
     ja: `import { ChartLegend } from "@gunjo/ui";
 
 const items = [
-    { label: "自然流入", value: "46%", color: "primary", description: "合計: 12,400" },
-    { label: "紹介", value: "28%", color: "success", description: "合計: 7,560" },
-    { label: "直接", value: "18%", color: "warning", description: "合計: 4,860" },
+    {
+        label: "自然流入",
+        value: "46%",
+        color: "primary",
+        description: "合計: 12,400",
+    },
+    {
+        label: "紹介",
+        value: "28%",
+        color: "success",
+        description: "合計: 7,560",
+    },
+    {
+        label: "直接",
+        value: "18%",
+        color: "warning",
+        description: "合計: 4,860",
+    },
 ];
 
 const itemsWithoutValues = [
-    { label: "検索", color: "primary" },
-    { label: "SNS", color: "info" },
-    { label: "広告", color: "warning" },
+    {
+        label: "検索",
+        color: "primary",
+    },
+    {
+        label: "SNS",
+        color: "info",
+    },
+    {
+        label: "広告",
+        color: "warning",
+    },
 ];
 
-<ChartLegend items={items} />
-<ChartLegend items={items} variant="vertical" />
-<ChartLegend items={itemsWithoutValues} />`,
+export function ChartLegendUsage() {
+    return (
+        <div className="grid gap-6">
+            <ChartLegend items={items} />
+            <ChartLegend items={items} variant="vertical" />
+            <ChartLegend items={itemsWithoutValues} />
+        </div>
+    );
+}`,
 } as const;
 
 const stateCodeByLocale = {
     en: {
-        horizontal: `const items = [
-  { label: "Organic", value: "46%", color: "primary", description: "Total: 12,400" },
-  { label: "Referral", value: "28%", color: "success", description: "Total: 7,560" },
-  { label: "Direct", value: "18%", color: "warning", description: "Total: 4,860" },
+        horizontal: `import { ChartLegend } from "@gunjo/ui";
+
+const items = [
+    {
+        label: "Organic",
+        value: "46%",
+        color: "primary",
+        description: "Total: 12,400",
+    },
+    {
+        label: "Referral",
+        value: "28%",
+        color: "success",
+        description: "Total: 7,560",
+    },
+    {
+        label: "Direct",
+        value: "18%",
+        color: "warning",
+        description: "Total: 4,860",
+    },
 ];
 
-<ChartLegend items={items} />`,
-        vertical: `const items = [
-  { label: "Complete", value: "128", color: "success", description: "Published items." },
-  { label: "In progress", value: "36", color: "info", description: "Items currently in progress." },
-  { label: "Review", value: "14", color: "warning", description: "Items waiting for review." },
-  { label: "Returned", value: "5", color: "destructive", description: "Items that need changes." },
+export function ChannelLegend() {
+    return (
+        <ChartLegend items={items} />
+    );
+}`,
+        vertical: `import { ChartLegend } from "@gunjo/ui";
+
+const items = [
+    {
+        label: "Complete",
+        value: "128",
+        color: "success",
+        description: "Published items.",
+    },
+    {
+        label: "In progress",
+        value: "36",
+        color: "info",
+        description: "Items currently in progress.",
+    },
+    {
+        label: "Review",
+        value: "14",
+        color: "warning",
+        description: "Items waiting for review.",
+    },
+    {
+        label: "Returned",
+        value: "5",
+        color: "destructive",
+        description: "Items that need changes.",
+    },
 ];
 
-<ChartLegend items={items} variant="vertical" />`,
-        labelOnly: `const items = [
-  { label: "Search", color: "primary" },
-  { label: "Social", color: "info" },
-  { label: "Ads", color: "warning" },
-  { label: "Email", color: "success" },
-  { label: "Other", color: "muted" },
+export function StatusLegendVertical() {
+    return (
+        <ChartLegend items={items} variant="vertical" />
+    );
+}`,
+        labelOnly: `import { ChartLegend } from "@gunjo/ui";
+
+const items = [
+    {
+        label: "Search",
+        color: "primary",
+    },
+    {
+        label: "Social",
+        color: "info",
+    },
+    {
+        label: "Ads",
+        color: "warning",
+    },
+    {
+        label: "Email",
+        color: "success",
+    },
+    {
+        label: "Other",
+        color: "muted",
+    },
 ];
 
-<ChartLegend items={items} />`,
-        constrained: `const items = [
-  { label: "Organic", value: "46%", color: "primary", description: "Total: 12,400" },
-  { label: "Referral", value: "28%", color: "success", description: "Total: 7,560" },
-  { label: "Direct", value: "18%", color: "warning", description: "Total: 4,860" },
+export function SourceLegendLabelsOnly() {
+    return (
+        <ChartLegend items={items} />
+    );
+}`,
+        constrained: `import { ChartLegend } from "@gunjo/ui";
+
+const items = [
+    {
+        label: "Organic",
+        value: "46%",
+        color: "primary",
+        description: "Total: 12,400",
+    },
+    {
+        label: "Referral",
+        value: "28%",
+        color: "success",
+        description: "Total: 7,560",
+    },
+    {
+        label: "Direct",
+        value: "18%",
+        color: "warning",
+        description: "Total: 4,860",
+    },
 ];
 
-<ChartLegend items={items} className="max-w-xs" />`,
+export function ConstrainedChannelLegend() {
+    return (
+        <ChartLegend items={items} className="max-w-xs" />
+    );
+}`,
     },
     ja: {
-        horizontal: `const items = [
-  { label: "自然流入", value: "46%", color: "primary", description: "合計: 12,400" },
-  { label: "紹介", value: "28%", color: "success", description: "合計: 7,560" },
-  { label: "直接", value: "18%", color: "warning", description: "合計: 4,860" },
+        horizontal: `import { ChartLegend } from "@gunjo/ui";
+
+const items = [
+    {
+        label: "自然流入",
+        value: "46%",
+        color: "primary",
+        description: "合計: 12,400",
+    },
+    {
+        label: "紹介",
+        value: "28%",
+        color: "success",
+        description: "合計: 7,560",
+    },
+    {
+        label: "直接",
+        value: "18%",
+        color: "warning",
+        description: "合計: 4,860",
+    },
 ];
 
-<ChartLegend items={items} />`,
-        vertical: `const items = [
-  { label: "完了", value: "128", color: "success", description: "公開済みの項目です。" },
-  { label: "進行中", value: "36", color: "info", description: "作業中の項目です。" },
-  { label: "確認待ち", value: "14", color: "warning", description: "レビュー待ちの項目です。" },
-  { label: "差し戻し", value: "5", color: "destructive", description: "修正が必要な項目です。" },
+export function ChannelLegend() {
+    return (
+        <ChartLegend items={items} />
+    );
+}`,
+        vertical: `import { ChartLegend } from "@gunjo/ui";
+
+const items = [
+    {
+        label: "完了",
+        value: "128",
+        color: "success",
+        description: "公開済みの項目です。",
+    },
+    {
+        label: "進行中",
+        value: "36",
+        color: "info",
+        description: "作業中の項目です。",
+    },
+    {
+        label: "確認待ち",
+        value: "14",
+        color: "warning",
+        description: "レビュー待ちの項目です。",
+    },
+    {
+        label: "差し戻し",
+        value: "5",
+        color: "destructive",
+        description: "修正が必要な項目です。",
+    },
 ];
 
-<ChartLegend items={items} variant="vertical" />`,
-        labelOnly: `const items = [
-  { label: "検索", color: "primary" },
-  { label: "SNS", color: "info" },
-  { label: "広告", color: "warning" },
-  { label: "メール", color: "success" },
-  { label: "その他", color: "muted" },
+export function StatusLegendVertical() {
+    return (
+        <ChartLegend items={items} variant="vertical" />
+    );
+}`,
+        labelOnly: `import { ChartLegend } from "@gunjo/ui";
+
+const items = [
+    {
+        label: "検索",
+        color: "primary",
+    },
+    {
+        label: "SNS",
+        color: "info",
+    },
+    {
+        label: "広告",
+        color: "warning",
+    },
+    {
+        label: "メール",
+        color: "success",
+    },
+    {
+        label: "その他",
+        color: "muted",
+    },
 ];
 
-<ChartLegend items={items} />`,
-        constrained: `const items = [
-  { label: "自然流入", value: "46%", color: "primary", description: "合計: 12,400" },
-  { label: "紹介", value: "28%", color: "success", description: "合計: 7,560" },
-  { label: "直接", value: "18%", color: "warning", description: "合計: 4,860" },
+export function SourceLegendLabelsOnly() {
+    return (
+        <ChartLegend items={items} />
+    );
+}`,
+        constrained: `import { ChartLegend } from "@gunjo/ui";
+
+const items = [
+    {
+        label: "自然流入",
+        value: "46%",
+        color: "primary",
+        description: "合計: 12,400",
+    },
+    {
+        label: "紹介",
+        value: "28%",
+        color: "success",
+        description: "合計: 7,560",
+    },
+    {
+        label: "直接",
+        value: "18%",
+        color: "warning",
+        description: "合計: 4,860",
+    },
 ];
 
-<ChartLegend items={items} className="max-w-xs" />`,
+export function ConstrainedChannelLegend() {
+    return (
+        <ChartLegend items={items} className="max-w-xs" />
+    );
+}`,
     },
 } as const;
 

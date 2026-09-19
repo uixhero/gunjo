@@ -99,7 +99,7 @@ export const ActionQueue = React.forwardRef<HTMLUListElement, ActionQueueProps>(
           return (
             <li
               key={item.id ?? i}
-              className={cn("flex items-start gap-3 rounded-md border border-l-4 px-3 py-2.5", sev.row)}
+              className={cn("flex items-start gap-3 rounded-md border px-3 py-2.5", sev.row)}
             >
               <span className={cn("mt-0.5 shrink-0", sev.icon)} aria-hidden="true">
                 {item.icon ?? <Icon className="size-5" />}

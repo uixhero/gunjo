@@ -115,7 +115,7 @@ export default function StabilityPage() {
     const copy = locale === "ja" ? COPY_JA : COPY_EN;
 
     return (
-        <div className="container max-w-3xl py-12 space-y-12">
+        <div className="container py-12 space-y-12">
             <header className="space-y-4">
                 <Badge variant="outline">{copy.badge}</Badge>
                 <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">

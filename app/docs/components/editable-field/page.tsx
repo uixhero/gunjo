@@ -15,7 +15,7 @@ const codeByLocale = {
     en: `import * as React from "react";
 import { EditableField } from "@gunjo/ui";
 
-export function Example() {
+export function AssetTitleField() {
   const [title, setTitle] = React.useState("Campaign_Hero_2026");
 
   return (
@@ -30,7 +30,7 @@ export function Example() {
     ja: `import * as React from "react";
 import { EditableField } from "@gunjo/ui";
 
-export function Example() {
+export function AssetTitleField() {
   const [title, setTitle] = React.useState("Campaign_Hero_2026");
 
   return (
@@ -145,6 +145,7 @@ function FeedbackEditableField({
 
 export default function EditableFieldPage() {
     const { locale, sectionLabels } = useLocale();
+    const usageCode = codeByLocale[locale];
     const [title, setTitle] = React.useState("Campaign_Hero_2026");
     const [note, setNote] = React.useState(
         locale === "ja"
@@ -153,6 +154,7 @@ export default function EditableFieldPage() {
     );
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
     const content = getDocContent("components/editable-field", locale);
+    const isJa = locale === "ja";
 
     React.useEffect(() => {
         setNote(
@@ -184,7 +186,7 @@ export default function EditableFieldPage() {
                 { name: "AssetInspectorPanel", href: "/docs/components/asset-inspector-panel" },
             ]}
         >
-            <ComponentPreview code={codeByLocale[locale]} codeBlock={<CodeBlock code={codeByLocale[locale]} />} previewBodyWidth="sm">
+            <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="sm">
                 <div className="grid w-full max-w-sm gap-4">
                     <EditableField
                         label={locale === "ja" ? "タイトル" : "Title"}
@@ -224,7 +226,7 @@ export default function EditableFieldPage() {
                                     />
                                 </div>
                             ),
-                            code: codeByLocale[locale],
+                            code: usageCode,
                         },
                         {
                             key: "multi-line",
@@ -246,15 +248,36 @@ export default function EditableFieldPage() {
 	                                </div>
 	                            ),
 	                            previewHeight: 220,
-	                            code: `import * as React from "react";
+	                            code: isJa
+                                ? `import * as React from "react";
 import { EditableField } from "@gunjo/ui";
 
-export function NotesField() {
-  const [note, setNote] = React.useState("${locale === "ja" ? "SNS配信用のメインビジュアル。" : "Main visual for social distribution."}");
+export function AssetNotesField() {
+  const [note, setNote] = React.useState(
+    "SNS配信用のメインビジュアル。"
+  );
 
   return (
     <EditableField
-      label="${locale === "ja" ? "メモ" : "Note"}"
+      label="メモ"
+      value={note}
+      onSave={setNote}
+      minRows={2}
+      maxRows={3}
+    />
+  );
+}`
+                                : `import * as React from "react";
+import { EditableField } from "@gunjo/ui";
+
+export function AssetNotesField() {
+  const [note, setNote] = React.useState(
+    "Main visual for social distribution."
+  );
+
+  return (
+    <EditableField
+      label="Note"
       value={note}
       onSave={setNote}
       minRows={2}
@@ -276,7 +299,8 @@ export function NotesField() {
                                 </div>
                             ),
                             previewHeight: 180,
-                            code: `import * as React from "react";
+                            code: isJa
+                                ? `import * as React from "react";
 import { EditableField, useToast } from "@gunjo/ui";
 
 export function EditableFieldWithFeedback() {
@@ -285,11 +309,29 @@ export function EditableFieldWithFeedback() {
 
   return (
     <EditableField
-      label="${locale === "ja" ? "タイトル" : "Title"}"
+      label="タイトル"
       value={value}
       onSave={(nextValue) => {
         setValue(nextValue);
-        showToast("${locale === "ja" ? "保存しました。" : "Saved."}", "success");
+        showToast("保存しました。", "success");
+      }}
+    />
+  );
+}`
+                                : `import * as React from "react";
+import { EditableField, useToast } from "@gunjo/ui";
+
+export function EditableFieldWithFeedback() {
+  const { showToast } = useToast();
+  const [value, setValue] = React.useState("Campaign_Hero_2026");
+
+  return (
+    <EditableField
+      label="Title"
+      value={value}
+      onSave={(nextValue) => {
+        setValue(nextValue);
+        showToast("Saved.", "success");
       }}
     />
   );
@@ -308,7 +350,8 @@ export function EditableFieldWithFeedback() {
                                 </div>
                             ),
                             previewHeight: 240,
-                            code: `import * as React from "react";
+                            code: isJa
+                                ? `import * as React from "react";
 import { EditableField, useToast } from "@gunjo/ui";
 
 export function EditableFieldErrorState() {
@@ -317,11 +360,32 @@ export function EditableFieldErrorState() {
 
   return (
     <EditableField
-      label="${locale === "ja" ? "メモ" : "Note"}"
-      value="${locale === "ja" ? "保存失敗時のメモ。" : "Note with a failing save."}"
+      label="メモ"
+      value="保存失敗時のメモ。"
       error={error}
       onSave={async () => {
-        const message = "${locale === "ja" ? "保存に失敗しました。" : "Could not save."}";
+        const message = "保存に失敗しました。";
+        setError(message);
+        showToast(message, "error");
+        throw new Error(message);
+      }}
+    />
+  );
+}`
+                                : `import * as React from "react";
+import { EditableField, useToast } from "@gunjo/ui";
+
+export function EditableFieldErrorState() {
+  const { showToast } = useToast();
+  const [error, setError] = React.useState<string>();
+
+  return (
+    <EditableField
+      label="Note"
+      value="Note with a failing save."
+      error={error}
+      onSave={async () => {
+        const message = "Could not save.";
         setError(message);
         showToast(message, "error");
         throw new Error(message);
@@ -348,7 +412,8 @@ export function EditableFieldErrorState() {
                                     />
                                 </div>
                             ),
-                            code: `import * as React from "react";
+                            code: isJa
+                                ? `import * as React from "react";
 import { EditableField } from "@gunjo/ui";
 
 export function EmptyEditableField() {
@@ -356,10 +421,25 @@ export function EmptyEditableField() {
 
   return (
     <EditableField
-      label="${locale === "ja" ? "代替テキスト" : "Alt text"}"
+      label="代替テキスト"
       value={altText}
       onSave={setAltText}
-      placeholder="${locale === "ja" ? "説明を追加" : "Add a description"}"
+      placeholder="説明を追加"
+    />
+  );
+}`
+                                : `import * as React from "react";
+import { EditableField } from "@gunjo/ui";
+
+export function EmptyEditableField() {
+  const [altText, setAltText] = React.useState("");
+
+  return (
+    <EditableField
+      label="Alt text"
+      value={altText}
+      onSave={setAltText}
+      placeholder="Add a description"
     />
   );
 }`,
@@ -380,10 +460,10 @@ export function EmptyEditableField() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
-                    <CodeCopyButton code={codeByLocale[locale]} />
+                    <CodeCopyButton code={usageCode} />
                 </div>
                 <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
-                    <CodeBlock code={codeByLocale[locale]} />
+                    <CodeBlock code={usageCode} />
                 </div>
             </div>
         </ComponentLayout>

@@ -59,42 +59,96 @@ function PasswordStatePreview({
 export default function PasswordInputPage() {
     const { locale, sectionLabels } = useLocale();
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
-    const code = `import * as React from "react";
-import { FormControl, FormDescription, FormGroup, FormLabel, PasswordInput } from "@gunjo/ui";
+    const code = locale === "ja"
+        ? `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  PasswordInput,
+} from "@gunjo/ui";
 
 export function PasswordInputDemo() {
   const [value, setValue] = React.useState("sample-password");
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="password">${locale === "ja" ? "パスワード" : "Password"}</FormLabel>
+      <FormLabel htmlFor="password">パスワード</FormLabel>
       <FormControl>
         <PasswordInput
           id="password"
           value={value}
           onChange={(event) => setValue(event.target.value)}
-          placeholder="${locale === "ja" ? "パスワードを入力" : "Enter password..."}"
-          showLabel="${locale === "ja" ? "パスワードを表示" : "Show password"}"
-          hideLabel="${locale === "ja" ? "パスワードを隠す" : "Hide password"}"
+          placeholder="パスワードを入力"
+          showLabel="パスワードを表示"
+          hideLabel="パスワードを隠す"
         />
       </FormControl>
-      <FormDescription>${locale === "ja" ? "右端のボタンで入力内容の表示・非表示を切り替えます。" : "Use the visibility button to inspect the value."}</FormDescription>
+      <FormDescription>右端のボタンで入力内容の表示・非表示を切り替えます。</FormDescription>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import {
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+  PasswordInput,
+} from "@gunjo/ui";
+
+export function PasswordInputDemo() {
+  const [value, setValue] = React.useState("sample-password");
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="password">Password</FormLabel>
+      <FormControl>
+        <PasswordInput
+          id="password"
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+          placeholder="Enter password..."
+          showLabel="Show password"
+          hideLabel="Hide password"
+        />
+      </FormControl>
+      <FormDescription>Use the visibility button to inspect the value.</FormDescription>
     </FormGroup>
   );
 }`;
 
-    const usageCode = `import { FormControl, FormGroup, FormLabel, PasswordInput } from "@gunjo/ui";
+    const usageCode = locale === "ja"
+        ? `import { FormControl, FormGroup, FormLabel, PasswordInput } from "@gunjo/ui";
 
 export function PasswordField() {
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="password">${locale === "ja" ? "パスワード" : "Password"}</FormLabel>
+      <FormLabel htmlFor="password">パスワード</FormLabel>
       <FormControl>
         <PasswordInput
           id="password"
-          placeholder="${locale === "ja" ? "パスワードを入力" : "Password"}"
-          showLabel="${locale === "ja" ? "パスワードを表示" : "Show password"}"
-          hideLabel="${locale === "ja" ? "パスワードを隠す" : "Hide password"}"
+          placeholder="パスワードを入力"
+          showLabel="パスワードを表示"
+          hideLabel="パスワードを隠す"
+        />
+      </FormControl>
+    </FormGroup>
+  );
+}`
+        : `import { FormControl, FormGroup, FormLabel, PasswordInput } from "@gunjo/ui";
+
+export function PasswordField() {
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="password">Password</FormLabel>
+      <FormControl>
+        <PasswordInput
+          id="password"
+          placeholder="Password"
+          showLabel="Show password"
+          hideLabel="Hide password"
         />
       </FormControl>
     </FormGroup>
@@ -193,9 +247,16 @@ export function PasswordField() {
                                     : "Control visibility from external state when needed.",
                             preview: <PasswordStatePreview showDefault />,
                             previewHeight: 170,
-                            code: `import { PasswordInput } from "@gunjo/ui";
+                            code: `import * as React from "react";
+import { PasswordInput } from "@gunjo/ui";
 
-<PasswordInput show={show} onShowChange={setShow} />`,
+export function ControlledPasswordField() {
+  const [show, setShow] = React.useState(false);
+
+  return (
+    <PasswordInput show={show} onShowChange={setShow} />
+  );
+}`,
                         },
                         {
                             key: "disabled",
@@ -206,12 +267,30 @@ export function PasswordField() {
                                     : "Explain why the password cannot be changed with a Tooltip and helper copy.",
                             preview: <PasswordStatePreview disabled />,
                             previewHeight: 170,
-                            code: `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
+                            code: locale === "ja"
+                                ? `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
 import { PasswordInput } from "@gunjo/ui";
 
-<DisabledReasonTooltip fullWidth reason="${locale === "ja" ? "シングルサインオン管理のため直接変更できません。" : "This password is managed by SSO."}">
-  <PasswordInput disabled value="sample-password" />
-</DisabledReasonTooltip>`,
+export function LockedPasswordField() {
+  return (
+    <DisabledReasonTooltip
+      fullWidth
+      reason="シングルサインオン管理のため直接変更できません。"
+    >
+      <PasswordInput disabled value="sample-password" />
+    </DisabledReasonTooltip>
+  );
+}`
+                                : `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
+import { PasswordInput } from "@gunjo/ui";
+
+export function LockedPasswordField() {
+  return (
+    <DisabledReasonTooltip fullWidth reason="This password is managed by SSO.">
+      <PasswordInput disabled value="sample-password" />
+    </DisabledReasonTooltip>
+  );
+}`,
                         },
                     ]}
                 />

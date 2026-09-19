@@ -5,7 +5,7 @@
   "score": "4/5",
   "category": "人材・HR・採用",
   "title": "AI に入社オンボーディングを作らせてみた — PersonCell をまた発掘、そして Drawer の罠（やってみた #87）",
-  "summary": "`tsc`/`build` 緑・375px・0 console error。新入社員一覧・フェーズ別チェックリスト・書類提出状況・手続き完了承認・掘り下げる詳細。",
+  "summary": "「在るコンポーネント」が発掘される一方、「在るが壊れている選択肢」が罠になる。PersonCell をまた手組みしなかった。",
   "article": {
     "file": "zenn-yattemita-87-employee-onboarding.md",
     "slug": "87-employee-onboarding",

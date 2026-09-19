@@ -17,7 +17,7 @@ import { CopySpecButton } from "@/components/doc/CopySpecButton";
 import { copyTextToClipboard } from "@/components/doc/clipboard";
 import { StabilityBadge } from "@/components/doc/StabilityBadge";
 import { LocalNav } from "@/components/layout/TableOfContents";
-import { getUixheroLinks } from "@/lib/uixhero-links";
+import { getUixheroLinks, mergeUixheroLinks, type UixheroLink } from "@/lib/uixhero-links";
 
 import {
     IconCheck as Check,
@@ -75,7 +75,18 @@ export interface UsedComponent {
     href: string;
 }
 
-export type ComponentReference = UsedComponent;
+export interface ComponentReference extends UsedComponent {
+    /**
+     * ⭐ 隣の部品との境界を1行で（60字以内・その言語だけで成立させる）。
+     * 部品を選ぶときにいちばん知りたいのは「どこからが隣の部品か」なので、
+     * 関連コンポーネントの名前の下に小さく出す。
+     *
+     * ⛔ これをページ独自の節（「似た部品との境界」）として書かないこと。
+     *   2026-09-13 の実測で、その形を持つのは239ページ中3ページだけだった。
+     * ⭐ 新しいページでは必須、既存ページは触るときに足す（一気に埋めない）。
+     */
+    boundary?: string;
+}
 
 interface ComponentLayoutProps {
     title: string;
@@ -84,9 +95,16 @@ interface ComponentLayoutProps {
     usedComponents?: UsedComponent[];
     relatedComponents?: ComponentReference[];
     sectionLabels?: SectionLabels;
+    /**
+     * そのページが自分で持つ UIXHERO の記事リンク。地図
+     * （uixhero-mapping.json）から導かれる自動のリンクと合流し、href が同じ
+     * ものは落ちる。並び順は自動が先、ここで渡したものが後
+     * （規則は lib/uixhero-links.ts の mergeUixheroLinks）。
+     */
+    uixheroLinks?: UixheroLink[];
 }
 
-export function ComponentLayout({ title, description, children, usedComponents, relatedComponents, sectionLabels }: ComponentLayoutProps) {
+export function ComponentLayout({ title, description, children, usedComponents, relatedComponents, sectionLabels, uixheroLinks }: ComponentLayoutProps) {
     const pathname = usePathname();
     const { locale, bilingual } = useLocale();
     const usedLabel = sectionLabels?.usedComponents ?? (locale === "ja" ? "使用コンポーネント:" : "Used Components:");
@@ -185,40 +203,61 @@ export function ComponentLayout({ title, description, children, usedComponents, 
                     componentSlug={deriveFlatSlug(pathname)}
                     componentTitle={title}
                     locale={locale}
+                    pageLinks={uixheroLinks}
                 />
             </div>
         </div>
     );
 }
 
-// 姉妹サイト UIXHERO への逆リンク（設計の判断・根拠）。対応の有無は
-// uixhero-mapping.json（SSOT）から導出され、対応がない部品では何も出ない。
+// 姉妹サイト UIXHERO への逆リンクを1か所に集める節。ページ本文の
+// 「設計の判断」が GUNJO の作り方を書くのに対し、こちらは「この種の部品を
+// いつ・なぜ使うか」の記事だけを並べる。リンクは uixhero-mapping.json（SSOT）
+// から導かれる自動ぶんと、ページが uixheroLinks で渡すぶんの合流。
 function UixheroRationaleSection({
     componentSlug,
     componentTitle,
     locale,
+    pageLinks,
 }: {
     componentSlug: string | null;
     componentTitle: string;
     locale: "en" | "ja";
+    pageLinks?: UixheroLink[];
 }) {
-    const links = React.useMemo(() => getUixheroLinks(componentSlug), [componentSlug]);
-    if (!links.zukanHref && links.laws.length === 0) return null;
-
-    const heading = locale === "ja" ? "設計の判断（UIXHERO）" : "Design rationale (UIXHERO)";
-    const description =
-        locale === "ja"
-            ? "「いつ・なぜ使うか」の判断は、姉妹サイト UIXHERO の記事で解説しています。"
-            : "The when-and-why guidance for this component lives on our sister site UIXHERO (articles in Japanese).";
     const zukanLabel =
         locale === "ja"
             ? `UIコンポーネント: ${componentTitle}`
             : `UI component: ${componentTitle}`;
 
-    const items = [
-        ...(links.zukanHref ? [{ label: zukanLabel, href: links.zukanHref }] : []),
-        ...links.laws,
-    ];
+    const items = React.useMemo(
+        () => mergeUixheroLinks(getUixheroLinks(componentSlug), zukanLabel, pageLinks),
+        [componentSlug, zukanLabel, pageLinks]
+    );
+
+    return <UixheroRationaleLinks uixheroLinks={items} locale={locale} />;
+}
+
+// 節の見た目そのもの。ComponentLayout を通らない索引ページ（charts / display /
+// inputs / tokens）からも同じ見出し・同じ前書きで出せるように export する。
+// 文言はここ1か所にあり、日本語と英語が混ざらないよう locale で全部が切り替わる。
+export function UixheroRationaleLinks({
+    uixheroLinks,
+    locale,
+}: {
+    uixheroLinks: UixheroLink[];
+    locale: "en" | "ja";
+}) {
+    if (uixheroLinks.length === 0) return null;
+
+    const heading = locale === "ja" ? "いつ・なぜ使うか（UIXHERO）" : "When and why to use it (UIXHERO)";
+    const description =
+        locale === "ja"
+            ? "「いつ・なぜ使うか」の判断は、姉妹サイト UIXHERO の記事で解説しています。"
+            : "The when-and-why guidance for this component lives on our sister site UIXHERO (articles in Japanese).";
+    // relation: "nearest" ＝ この部品そのものの記事が無く、いちばん近い種類の
+    // 記事を指している。但し書きは節が出す（ラベル側には書かない）。
+    const nearestNote = locale === "ja" ? "近い記事" : "closest match";
 
     return (
         <section className="space-y-3" data-uixhero-rationale="true">
@@ -227,7 +266,7 @@ function UixheroRationaleSection({
             </h2>
             <p className="text-sm text-muted-foreground">{description}</p>
             <div className="flex flex-wrap gap-2">
-                {items.map((item) => (
+                {uixheroLinks.map((item) => (
                     <a
                         key={item.href}
                         href={item.href}
@@ -236,6 +275,11 @@ function UixheroRationaleSection({
                         className="inline-flex items-center gap-1 rounded-md border border-transparent bg-secondary px-2.5 py-0.5 text-xs font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
                     >
                         {item.label}
+                        {item.relation === "nearest" ? (
+                            <span className="rounded-sm bg-background px-1 py-px text-[10px] font-medium text-muted-foreground">
+                                {nearestNote}
+                            </span>
+                        ) : null}
                         <ExternalLink className="h-3 w-3" aria-hidden="true" />
                     </a>
                 ))}
@@ -243,6 +287,9 @@ function UixheroRationaleSection({
         </section>
     );
 }
+
+const REFERENCE_CHIP =
+    "inline-flex items-center rounded-md border border-transparent bg-secondary px-2.5 py-0.5 text-xs font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2";
 
 function ComponentReferenceSection({
     id,
@@ -254,23 +301,42 @@ function ComponentReferenceSection({
     components: ComponentReference[];
 }) {
     const heading = label.replace(/[:：]\s*$/, "");
+    // 境界（boundary）を1つでも持つ節は、名前の下に1行を置けるよう縦に積む。
+    // 1つも持たない節（使用コンポーネントと、まだ埋めていないページ）は
+    // これまでどおり名前だけを並べる。
+    const hasBoundaries = components.some((component) => component.boundary);
 
     return (
         <section className="space-y-3">
             <h2 id={id} className="scroll-m-20 text-xl font-semibold tracking-tight">
                 {heading}
             </h2>
-            <div className="flex flex-wrap gap-2">
-                {components.map((component) => (
-                    <Link
-                        key={`${id}-${component.name}`}
-                        href={component.href}
-                        className="inline-flex items-center rounded-md border border-transparent bg-secondary px-2.5 py-0.5 text-xs font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
-                    >
-                        {component.name}
-                    </Link>
-                ))}
-            </div>
+            {hasBoundaries ? (
+                <ul className="grid gap-3 sm:grid-cols-2">
+                    {components.map((component) => (
+                        <li key={`${id}-${component.name}`} className="space-y-1">
+                            <Link href={component.href} className={REFERENCE_CHIP}>
+                                {component.name}
+                            </Link>
+                            {component.boundary ? (
+                                <p className="text-xs text-muted-foreground">{component.boundary}</p>
+                            ) : null}
+                        </li>
+                    ))}
+                </ul>
+            ) : (
+                <div className="flex flex-wrap gap-2">
+                    {components.map((component) => (
+                        <Link
+                            key={`${id}-${component.name}`}
+                            href={component.href}
+                            className={REFERENCE_CHIP}
+                        >
+                            {component.name}
+                        </Link>
+                    ))}
+                </div>
+            )}
         </section>
     );
 }

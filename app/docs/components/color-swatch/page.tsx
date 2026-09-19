@@ -24,7 +24,8 @@ export default function ColorSwatchPage() {
     const copyLabel = isJa ? "カラー値をコピー" : "Copy color value";
     const copiedLabel = isJa ? "コピーしました" : "Copied";
 
-    const code = `import { ColorSwatch } from "@gunjo/ui"
+    const code = isJa
+        ? `import { ColorSwatch } from "@gunjo/ui";
 
 const tokenSwatches = [
   { color: "hsl(var(--background))", label: "background" },
@@ -33,9 +34,9 @@ const tokenSwatches = [
   { color: "hsl(var(--muted))", label: "muted" },
   { color: "hsl(var(--destructive))", label: "destructive" },
   { color: "hsl(var(--success))", label: "success" },
-]
+];
 
-export function ColorSwatchDemo() {
+export function DesignTokenSwatchGrid() {
   return (
     <div className="grid w-full max-w-md grid-cols-1 gap-2 sm:grid-cols-2">
       {tokenSwatches.map((token) => (
@@ -43,12 +44,87 @@ export function ColorSwatchDemo() {
           key={token.label}
           color={token.color}
           label={token.label}
-          copyLabel="${copyLabel}"
-          copiedLabel="${copiedLabel}"
+          copyLabel="カラー値をコピー"
+          copiedLabel="コピーしました"
         />
       ))}
     </div>
-  )
+  );
+}`
+        : `import { ColorSwatch } from "@gunjo/ui";
+
+const tokenSwatches = [
+  { color: "hsl(var(--background))", label: "background" },
+  { color: "hsl(var(--foreground))", label: "foreground" },
+  { color: "hsl(var(--primary))", label: "primary" },
+  { color: "hsl(var(--muted))", label: "muted" },
+  { color: "hsl(var(--destructive))", label: "destructive" },
+  { color: "hsl(var(--success))", label: "success" },
+];
+
+export function DesignTokenSwatchGrid() {
+  return (
+    <div className="grid w-full max-w-md grid-cols-1 gap-2 sm:grid-cols-2">
+      {tokenSwatches.map((token) => (
+        <ColorSwatch
+          key={token.label}
+          color={token.color}
+          label={token.label}
+          copyLabel="Copy color value"
+          copiedLabel="Copied"
+        />
+      ))}
+    </div>
+  );
+}`;
+
+    const sizesCode = `import { ColorSwatch } from "@gunjo/ui";
+
+const swatches = [
+  { color: "hsl(var(--primary))", label: "primary", size: "sm" as const },
+  { color: "hsl(var(--primary))", label: "primary", size: "default" as const },
+  { color: "hsl(var(--primary))", label: "primary", size: "lg" as const },
+];
+
+export function BrandColorSwatchSizes() {
+  return (
+    <div className="flex flex-wrap items-center gap-3">
+      {swatches.map((swatch) => (
+        <ColorSwatch
+          key={swatch.size}
+          color={swatch.color}
+          label={swatch.label}
+          size={swatch.size}
+        />
+      ))}
+    </div>
+  );
+}`;
+
+    const readonlyCode = isJa
+        ? `import { ColorSwatch } from "@gunjo/ui";
+
+const success = {
+  color: "hsl(var(--success))",
+  label: "成功",
+};
+
+export function SuccessColorLegend() {
+  return (
+    <ColorSwatch color={success.color} label={success.label} copyable={false} />
+  );
+}`
+        : `import { ColorSwatch } from "@gunjo/ui";
+
+const success = {
+  color: "hsl(var(--success))",
+  label: "Success",
+};
+
+export function SuccessColorLegend() {
+  return (
+    <ColorSwatch color={success.color} label={success.label} copyable={false} />
+  );
 }`;
 
     const usageCode = `import { ColorSwatch } from "@gunjo/ui"
@@ -170,7 +246,7 @@ export function PrimarySwatch() {
                                 </div>
                             ),
                             previewHeight: "auto",
-                            code: `import { ColorSwatch } from "@gunjo/ui"\n\nconst swatches = [\n  { color: "hsl(var(--primary))", label: "primary", size: "sm" as const },\n  { color: "hsl(var(--primary))", label: "primary" },\n  { color: "hsl(var(--primary))", label: "primary", size: "lg" as const },\n]\n\nexport function ColorSwatchSizes() {\n  return (\n    <div className="flex flex-wrap items-center gap-3">\n      {swatches.map((swatch, index) => (\n        <ColorSwatch key={index} {...swatch} />\n      ))}\n    </div>\n  )\n}`,
+                            code: sizesCode,
                         },
                         {
                             key: "readonly",
@@ -180,7 +256,7 @@ export function PrimarySwatch() {
                                 : "Hide the copy action in legends or places where copying is not needed.",
                             preview: <ColorSwatch color="hsl(var(--success))" label={isJa ? "成功" : "Success"} copyable={false} />,
                             previewHeight: "auto",
-                            code: `import { ColorSwatch } from "@gunjo/ui"\n\nconst success = {\n  color: "hsl(var(--success))",\n  label: "${isJa ? "成功" : "Success"}",\n}\n\nexport function ReadonlySwatch() {\n  return <ColorSwatch color={success.color} label={success.label} copyable={false} />\n}`,
+                            code: readonlyCode,
                         },
                     ]}
                 />

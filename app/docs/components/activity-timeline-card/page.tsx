@@ -8,15 +8,16 @@ import { ChartPreviewWithControls } from "@/components/doc/ChartPreviewWithContr
 import displayMetadata from "@design/display-metadata.json";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { ActivityTimelineCard } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
     en: `import { useState } from "react";
 import { ActivityTimelineCard } from "@gunjo/ui";
 
 const metrics = [
-    { label: "Than yesterday", value: "+23%", tooltip: "Compared with the same time slot baseline." },
-    { label: "Burned", value: "760 kcal", tooltip: "Sum of activity across all time slots." },
-    { label: "Daily avg", value: "253 kcal", tooltip: "Burned total divided by the number of slots." },
+    { label: "Than yesterday", value: "+23%" },
+    { label: "Burned", value: "760 kcal" },
+    { label: "Daily avg", value: "253 kcal" },
 ];
 
 const segments = [
@@ -26,10 +27,11 @@ const segments = [
 ];
 
 const segmentTotal = segments.reduce((sum, segment) => sum + segment.value, 0);
-const createSlotSegments = (value: number) =>
+
+const createSlotSegments = (slotValue: number) =>
     segments.map((segment) => ({
         ...segment,
-        value: Math.round((value * segment.value) / segmentTotal),
+        value: Math.round((slotValue * segment.value) / segmentTotal),
     }));
 
 const slots = [
@@ -41,9 +43,9 @@ const slots = [
     { label: "4 PM", value: 46, segments: createSlotSegments(46) },
 ];
 
-export function ActivityPanel() {
+export function ActivityTimelinePanel() {
     const [selectedSlot, setSelectedSlot] = useState(3);
-    const selectedSegments = slots[selectedSlot]?.segments ?? segments;
+    const selectedSegments = slots[selectedSlot].segments;
 
     return (
         <ActivityTimelineCard
@@ -54,7 +56,7 @@ export function ActivityPanel() {
             slots={slots}
             segments={selectedSegments}
             selectedSlot={selectedSlot}
-            onSlotSelect={(_, index) => setSelectedSlot(index)}
+            onSlotSelect={(slot, index) => setSelectedSlot(index)}
             max={200}
             caption="Inspect the selected time slot load and segment contribution."
         />
@@ -64,9 +66,9 @@ export function ActivityPanel() {
 import { ActivityTimelineCard } from "@gunjo/ui";
 
 const metrics = [
-    { label: "昨日比", value: "+23%", tooltip: "同じ時間帯の基準値と比較しています。" },
-    { label: "消費", value: "760 kcal", tooltip: "全時間帯の活動量を合計しています。" },
-    { label: "日平均", value: "253 kcal", tooltip: "消費合計を時間帯数で割っています。" },
+    { label: "昨日比", value: "+23%" },
+    { label: "消費", value: "760 kcal" },
+    { label: "日平均", value: "253 kcal" },
 ];
 
 const segments = [
@@ -76,10 +78,11 @@ const segments = [
 ];
 
 const segmentTotal = segments.reduce((sum, segment) => sum + segment.value, 0);
-const createSlotSegments = (value: number) =>
+
+const createSlotSegments = (slotValue: number) =>
     segments.map((segment) => ({
         ...segment,
-        value: Math.round((value * segment.value) / segmentTotal),
+        value: Math.round((slotValue * segment.value) / segmentTotal),
     }));
 
 const slots = [
@@ -91,9 +94,9 @@ const slots = [
     { label: "16時", value: 46, segments: createSlotSegments(46) },
 ];
 
-export function ActivityPanel() {
+export function ActivityTimelinePanel() {
     const [selectedSlot, setSelectedSlot] = useState(3);
-    const selectedSegments = slots[selectedSlot]?.segments ?? segments;
+    const selectedSegments = slots[selectedSlot].segments;
 
     return (
         <ActivityTimelineCard
@@ -104,7 +107,7 @@ export function ActivityPanel() {
             slots={slots}
             segments={selectedSegments}
             selectedSlot={selectedSlot}
-            onSlotSelect={(_, index) => setSelectedSlot(index)}
+            onSlotSelect={(slot, index) => setSelectedSlot(index)}
             max={200}
             caption="選択した時間帯の活動量と内訳を一枚のカードで確認します。"
         />
@@ -136,10 +139,35 @@ const slots = [
     { label: "4 PM", value: 46 },
 ];
 
-<ActivityTimelineCard metrics={metrics} slots={slots} segments={segments} />
-<ActivityTimelineCard metrics={metrics} slots={slots} segments={segments} selectedSlot={3} />
-<ActivityTimelineCard metrics={metrics} slots={slots} segments={segments} showSlotValues />
-<ActivityTimelineCard metrics={metrics} slots={slots} segments={segments} variant="compact" />`,
+export function ActivityTimelineCardUsage() {
+    return (
+        <div className="grid gap-8">
+            <ActivityTimelineCard
+                metrics={metrics}
+                slots={slots}
+                segments={segments}
+            />
+            <ActivityTimelineCard
+                metrics={metrics}
+                slots={slots}
+                segments={segments}
+                selectedSlot={3}
+            />
+            <ActivityTimelineCard
+                metrics={metrics}
+                slots={slots}
+                segments={segments}
+                showSlotValues
+            />
+            <ActivityTimelineCard
+                metrics={metrics}
+                slots={slots}
+                segments={segments}
+                variant="compact"
+            />
+        </div>
+    );
+}`,
     ja: `import { ActivityTimelineCard } from "@gunjo/ui";
 
 const metrics = [
@@ -163,64 +191,267 @@ const slots = [
     { label: "16時", value: 46 },
 ];
 
-<ActivityTimelineCard metrics={metrics} slots={slots} segments={segments} />
-<ActivityTimelineCard metrics={metrics} slots={slots} segments={segments} selectedSlot={3} />
-<ActivityTimelineCard metrics={metrics} slots={slots} segments={segments} showSlotValues />
-<ActivityTimelineCard metrics={metrics} slots={slots} segments={segments} variant="compact" />`,
+export function ActivityTimelineCardUsage() {
+    return (
+        <div className="grid gap-8">
+            <ActivityTimelineCard
+                metrics={metrics}
+                slots={slots}
+                segments={segments}
+            />
+            <ActivityTimelineCard
+                metrics={metrics}
+                slots={slots}
+                segments={segments}
+                selectedSlot={3}
+            />
+            <ActivityTimelineCard
+                metrics={metrics}
+                slots={slots}
+                segments={segments}
+                showSlotValues
+            />
+            <ActivityTimelineCard
+                metrics={metrics}
+                slots={slots}
+                segments={segments}
+                variant="compact"
+            />
+        </div>
+    );
+}`,
 } as const;
 
 const stateCodeByLocale = {
     en: {
-        default: `<ActivityTimelineCard
-  title="Energy timeline"
-  metrics={metrics}
-  slots={slots}
-  segments={segments}
-  max={200}
-/>`,
-        selected: `<ActivityTimelineCard
-  title="Selected time slot"
-  metrics={metrics}
-  slots={slots}
-  segments={slots[3].segments}
-  selectedSlot={3}
-  showSlotValues
-  max={200}
-/>`,
-        compact: `<ActivityTimelineCard
-  title="Compact timeline"
-  metrics={metrics}
-  slots={slots}
-  segments={segments}
-  variant="compact"
-  max={200}
-/>`,
+        default: `import { ActivityTimelineCard } from "@gunjo/ui";
+
+const metrics = [
+    { label: "Than yesterday", value: "+23%" },
+    { label: "Burned", value: "760 kcal" },
+    { label: "Daily avg", value: "253 kcal" },
+];
+
+const segments = [
+    { label: "Walking", value: 127 },
+    { label: "Running", value: 384 },
+    { label: "Workout", value: 249 },
+];
+
+const slots = [
+    { label: "6 AM", value: 42 },
+    { label: "8 AM", value: 84 },
+    { label: "10 AM", value: 58 },
+    { label: "12 PM", value: 156 },
+    { label: "2 PM", value: 92 },
+    { label: "4 PM", value: 46 },
+];
+
+export function ActivityTimelinePanel() {
+    return (
+        <ActivityTimelineCard
+            title="Energy timeline"
+            metrics={metrics}
+            slots={slots}
+            segments={segments}
+            max={200}
+        />
+    );
+}`,
+        selected: `import { ActivityTimelineCard } from "@gunjo/ui";
+
+const metrics = [
+    { label: "Than yesterday", value: "+23%" },
+    { label: "Burned", value: "760 kcal" },
+    { label: "Daily avg", value: "253 kcal" },
+];
+
+const segments = [
+    { label: "Walking", value: 127 },
+    { label: "Running", value: 384 },
+    { label: "Workout", value: 249 },
+];
+
+const segmentTotal = segments.reduce((sum, segment) => sum + segment.value, 0);
+
+const createSlotSegments = (slotValue: number) =>
+    segments.map((segment) => ({
+        ...segment,
+        value: Math.round((slotValue * segment.value) / segmentTotal),
+    }));
+
+const slots = [
+    { label: "6 AM", value: 42, segments: createSlotSegments(42) },
+    { label: "8 AM", value: 84, segments: createSlotSegments(84) },
+    { label: "10 AM", value: 58, segments: createSlotSegments(58) },
+    { label: "12 PM", value: 156, segments: createSlotSegments(156) },
+    { label: "2 PM", value: 92, segments: createSlotSegments(92) },
+    { label: "4 PM", value: 46, segments: createSlotSegments(46) },
+];
+
+export function SelectedSlotTimeline() {
+    return (
+        <ActivityTimelineCard
+            title="Selected time slot"
+            metrics={metrics}
+            slots={slots}
+            segments={slots[3].segments}
+            selectedSlot={3}
+            showSlotValues
+            max={200}
+        />
+    );
+}`,
+        compact: `import { ActivityTimelineCard } from "@gunjo/ui";
+
+const metrics = [
+    { label: "Than yesterday", value: "+23%" },
+    { label: "Burned", value: "760 kcal" },
+    { label: "Daily avg", value: "253 kcal" },
+];
+
+const segments = [
+    { label: "Walking", value: 127 },
+    { label: "Running", value: 384 },
+    { label: "Workout", value: 249 },
+];
+
+const slots = [
+    { label: "6 AM", value: 42 },
+    { label: "8 AM", value: 84 },
+    { label: "10 AM", value: 58 },
+    { label: "12 PM", value: 156 },
+    { label: "2 PM", value: 92 },
+    { label: "4 PM", value: 46 },
+];
+
+export function CompactActivityTimeline() {
+    return (
+        <ActivityTimelineCard
+            title="Compact timeline"
+            metrics={metrics}
+            slots={slots}
+            segments={segments}
+            variant="compact"
+            max={200}
+        />
+    );
+}`,
     },
     ja: {
-        default: `<ActivityTimelineCard
-  title="活動量タイムライン"
-  metrics={metrics}
-  slots={slots}
-  segments={segments}
-  max={200}
-/>`,
-        selected: `<ActivityTimelineCard
-  title="選択中の時間帯"
-  metrics={metrics}
-  slots={slots}
-  segments={slots[3].segments}
-  selectedSlot={3}
-  showSlotValues
-  max={200}
-/>`,
-        compact: `<ActivityTimelineCard
-  title="コンパクト表示"
-  metrics={metrics}
-  slots={slots}
-  segments={segments}
-  variant="compact"
-  max={200}
-/>`,
+        default: `import { ActivityTimelineCard } from "@gunjo/ui";
+
+const metrics = [
+    { label: "昨日比", value: "+23%" },
+    { label: "消費", value: "760 kcal" },
+    { label: "日平均", value: "253 kcal" },
+];
+
+const segments = [
+    { label: "ウォーク", value: 127 },
+    { label: "ラン", value: 384 },
+    { label: "ワークアウト", value: 249 },
+];
+
+const slots = [
+    { label: "6時", value: 42 },
+    { label: "8時", value: 84 },
+    { label: "10時", value: 58 },
+    { label: "12時", value: 156 },
+    { label: "14時", value: 92 },
+    { label: "16時", value: 46 },
+];
+
+export function ActivityTimelinePanel() {
+    return (
+        <ActivityTimelineCard
+            title="活動量タイムライン"
+            metrics={metrics}
+            slots={slots}
+            segments={segments}
+            max={200}
+        />
+    );
+}`,
+        selected: `import { ActivityTimelineCard } from "@gunjo/ui";
+
+const metrics = [
+    { label: "昨日比", value: "+23%" },
+    { label: "消費", value: "760 kcal" },
+    { label: "日平均", value: "253 kcal" },
+];
+
+const segments = [
+    { label: "ウォーク", value: 127 },
+    { label: "ラン", value: 384 },
+    { label: "ワークアウト", value: 249 },
+];
+
+const segmentTotal = segments.reduce((sum, segment) => sum + segment.value, 0);
+
+const createSlotSegments = (slotValue: number) =>
+    segments.map((segment) => ({
+        ...segment,
+        value: Math.round((slotValue * segment.value) / segmentTotal),
+    }));
+
+const slots = [
+    { label: "6時", value: 42, segments: createSlotSegments(42) },
+    { label: "8時", value: 84, segments: createSlotSegments(84) },
+    { label: "10時", value: 58, segments: createSlotSegments(58) },
+    { label: "12時", value: 156, segments: createSlotSegments(156) },
+    { label: "14時", value: 92, segments: createSlotSegments(92) },
+    { label: "16時", value: 46, segments: createSlotSegments(46) },
+];
+
+export function SelectedSlotTimeline() {
+    return (
+        <ActivityTimelineCard
+            title="選択中の時間帯"
+            metrics={metrics}
+            slots={slots}
+            segments={slots[3].segments}
+            selectedSlot={3}
+            showSlotValues
+            max={200}
+        />
+    );
+}`,
+        compact: `import { ActivityTimelineCard } from "@gunjo/ui";
+
+const metrics = [
+    { label: "昨日比", value: "+23%" },
+    { label: "消費", value: "760 kcal" },
+    { label: "日平均", value: "253 kcal" },
+];
+
+const segments = [
+    { label: "ウォーク", value: 127 },
+    { label: "ラン", value: 384 },
+    { label: "ワークアウト", value: 249 },
+];
+
+const slots = [
+    { label: "6時", value: 42 },
+    { label: "8時", value: 84 },
+    { label: "10時", value: 58 },
+    { label: "12時", value: 156 },
+    { label: "14時", value: 92 },
+    { label: "16時", value: 46 },
+];
+
+export function CompactActivityTimeline() {
+    return (
+        <ActivityTimelineCard
+            title="コンパクト表示"
+            metrics={metrics}
+            slots={slots}
+            segments={segments}
+            variant="compact"
+            max={200}
+        />
+    );
+}`,
     },
 } as const;
 
@@ -327,49 +558,6 @@ const propsDataByLocale = {
     ],
 } as const;
 
-const stateCodeDataByLocale = {
-    en: `const metrics = [
-  { label: "Than yesterday", value: "+23%" },
-  { label: "Burned", value: "760 kcal" },
-  { label: "Daily avg", value: "253 kcal" },
-];
-
-const segments = [
-  { label: "Walking", value: 127 },
-  { label: "Running", value: 384 },
-  { label: "Workout", value: 249 },
-];
-
-const slots = [
-  { label: "6 AM", value: 42 },
-  { label: "8 AM", value: 84 },
-  { label: "10 AM", value: 58 },
-  { label: "12 PM", value: 156 },
-  { label: "2 PM", value: 92 },
-  { label: "4 PM", value: 46 },
-];`,
-    ja: `const metrics = [
-  { label: "昨日比", value: "+23%" },
-  { label: "消費", value: "760 kcal" },
-  { label: "日平均", value: "253 kcal" },
-];
-
-const segments = [
-  { label: "ウォーク", value: 127 },
-  { label: "ラン", value: 384 },
-  { label: "ワークアウト", value: 249 },
-];
-
-const slots = [
-  { label: "6時", value: 42 },
-  { label: "8時", value: 84 },
-  { label: "10時", value: 58 },
-  { label: "12時", value: 156 },
-  { label: "14時", value: 92 },
-  { label: "16時", value: 46 },
-];`,
-} as const;
-
 function buildActivityTimelineData(locale: "ja" | "en") {
     const metrics = locale === "ja"
         ? [
@@ -416,7 +604,6 @@ export default function ActivityTimelineCardPage() {
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
     const { locale, sectionLabels } = useLocale();
     const stateData = buildActivityTimelineData(locale);
-    const withStateCodeData = (nextCode: string) => `${stateCodeDataByLocale[locale]}\n\n${nextCode}`;
 
     return (
         <ComponentLayout
@@ -434,6 +621,13 @@ export default function ActivityTimelineCardPage() {
                 { name: "SegmentTimelineCard", href: "/docs/components/segment-timeline-card" },
                 { name: "AnalyticsCard", href: "/docs/components/analytics-card" },
                 { name: "BarChart", href: "/docs/components/bar-chart" },
+            ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: カード（Card）" : "UIXHERO: Card (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/card`,
+                    relation: "nearest",
+                },
             ]}
         >
             <ChartPreviewWithControls
@@ -467,7 +661,7 @@ export default function ActivityTimelineCardPage() {
                                     max={200}
                                 />
                             ),
-                            code: withStateCodeData(stateCodeByLocale[locale].default),
+                            code: stateCodeByLocale[locale].default,
                         },
                         {
                             key: "selected",
@@ -489,7 +683,7 @@ export default function ActivityTimelineCardPage() {
                                     max={200}
                                 />
                             ),
-                            code: withStateCodeData(stateCodeByLocale[locale].selected),
+                            code: stateCodeByLocale[locale].selected,
                         },
                         {
                             key: "compact",
@@ -508,7 +702,7 @@ export default function ActivityTimelineCardPage() {
                                     max={200}
                                 />
                             ),
-                            code: withStateCodeData(stateCodeByLocale[locale].compact),
+                            code: stateCodeByLocale[locale].compact,
                         },
                     ]}
                 />
@@ -526,6 +720,42 @@ export default function ActivityTimelineCardPage() {
                 </div>
                 <CodeBlock code={usageCodeByLocale[locale]} />
             </div>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>1枚に3つの領域を重ねた。</strong>資料はカードの責務を「1つのエンティティを伝えて次の行動へ導く」と定めています。この部品は上から <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">metrics</code>（数値3つ）・時間帯の棒・<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">segments</code> の凡例を1枚に載せていますが、これは3件のエンティティではなく、同じ1つの活動を粗さの違う3段で見せたものです。だから3枚に割らず、カードの中にカードを入れることもしていません。
+                        </li>
+                        <li>
+                            <strong>押せるのは中の印だけで、外枠は押せない。</strong>資料は「カード全体を押せるようにするなら、中にボタンを入れない」を挙げています。GUNJO はこの部品でカードの外枠に何も付けず、時間帯の棒と凡例の行だけを本物の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> にしました。1枚から選べる対象が複数あるので、外枠まで押せるようにすると入れ子になります。
+                        </li>
+                        <li>
+                            <strong>棒の高さの基準を呼ぶ側に開けた。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> を渡さなければ、いちばん高い棒はそのデータの最大値です。カードを2枚並べて比べるときは、同じ <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> を渡して基準をそろえます。値の書式は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code>（関数）と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code>（文字列で渡せる形）の2本立てで、サーバーコンポーネントから渡せるのは後者だけです（#338）。
+                            <br />
+                            一般のカードの設計は UIXHERO の「カード」にあります。
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Three regions stacked into one card.</strong> The article defines a card&rsquo;s job as carrying one entity and pointing at the next action. This component puts <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">metrics</code>, an hour-by-hour bar row and the <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">segments</code> legend into a single card, but those are not three entities: they are one activity at three grains. So it is never split into three cards, and no card is nested inside another.
+                        </li>
+                        <li>
+                            <strong>Only the marks inside are clickable; the shell is not.</strong> The article warns against putting a button inside a card that is itself clickable. GUNJO leaves the card shell inert and makes only the slot bars and the legend rows real <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">button</code> elements. One card offers several things to pick, so making the shell clickable too would nest interactive roles.
+                        </li>
+                        <li>
+                            <strong>The bar scale stays open to the caller.</strong> Without <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code>, the tallest bar is the largest value in that data set. Pass the same <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">max</code> to two cards to put them on one scale. Values format through either <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">formatValue</code> (a function) or <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">valueFormat</code> (a serializable spec); only the latter can be passed from a Server Component (#338).
+                            <br />
+                            The general design of cards is covered by UIXHERO&rsquo;s card article.
+                        </li>
+                    </ul>
+                )}
+            </section>
         </ComponentLayout>
     );
 }

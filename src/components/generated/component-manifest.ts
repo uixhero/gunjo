@@ -270,6 +270,18 @@ export const componentManifest = {
       "specSource": "design/feedback.pen",
       "stability": "beta"
     },
+    "stickyNoticeBar": {
+      "title": "StickyNoticeBar",
+      "description": "A single fixed site-announcement slot at an explicitly selected top or bottom edge.",
+      "variantKeys": [
+        "top",
+        "bottom"
+      ],
+      "defaultVariantKey": null,
+      "sourceFile": "src/components/feedback/StickyNoticeBar.tsx",
+      "specSource": "design/feedback.pen",
+      "stability": "experimental"
+    },
     "toast": {
       "title": "Toast",
       "description": "Transient feedback message with semantic variants.",
@@ -1472,7 +1484,7 @@ export const componentManifest = {
     },
     "listCard": {
       "title": "ListCard",
-      "description": "The tappable list entry: one item in a scannable, mobile-dense list — a leading accessory (icon / avatar / colour dot / rank / line chip), a title + secondary, optional tag chips, a right-aligned status pill and meta (price / time / count / timestamp), and a trailing chevron. The result-card / status-row primitive every consumer 'list of things' screen opens with — search results, route / product / listing comparisons, status lists (運行状況・在庫・端末), order/incident queues. Tappable rows (onSelect) are a real ≥44px button with hover/focus/selected states; status never rides on colour alone (Badge with icon + an optional severity accent rail). For the KPI strip use StatGroup; for a severity-triaged alert worklist use ActionQueue; for a money breakdown use AmountBreakdown. RSC-safe by default — onSelect is the only function prop and is opt-in.",
+      "description": "The tappable list entry: one item in a scannable, mobile-dense list — a leading accessory (icon / avatar / colour dot / rank / line chip), a title + secondary, optional tag chips, a right-aligned status pill and meta (price / time / count / timestamp), and a trailing chevron. The result-card / status-row primitive every consumer 'list of things' screen opens with — search results, route / product / listing comparisons, status lists (運行状況・在庫・端末), order/incident queues. Tappable rows (onSelect) are a real ≥44px button with hover/focus/selected states; status never rides on colour alone (Badge and status text carry meaning; severity only adds an optional semantic border and subtle background). For the KPI strip use StatGroup; for a severity-triaged alert worklist use ActionQueue; for a money breakdown use AmountBreakdown. RSC-safe by default — onSelect is the only function prop and is opt-in.",
       "variantKeys": [
         "default"
       ],
@@ -1480,6 +1492,17 @@ export const componentManifest = {
       "sourceFile": "src/components/display/ListCard.tsx",
       "specSource": "design/display.pen",
       "stability": "beta"
+    },
+    "liveBadge": {
+      "title": "LiveBadge",
+      "description": "The small bordered pill that says 'this is the current value', with a dot that pulses slowly to show something is still arriving. When the value is no longer current the badge steps aside and states WHEN the value is from instead (`detached`) — and renders nothing at all when it has not been told. For monitoring boards, streams, match commentary, trading screens and sensor readouts: anywhere a number could be either live or a snapshot and the reader cannot tell by looking. Holds NO clock and compares nothing — `live` is the caller's decision (the TimeTransport rule); TimeTransport renders its own live state with this badge. The state is never carried by the dot or the colour: the badge always has a word on it (default `LIVE`), and the detached form replaces that word with the 'when'. The dot does not pulse under prefers-reduced-motion: reduce. Deliberately NOT a live region — `role='status'` here would interrupt a screen reader on every reconnection, so the caller adds it on the rare screen where the change is the news. Composed from Badge (success / warning tones, same size scale). Distinct from Badge (a state that is not about freshness), ExpiryBadge (a deadline, not a live edge) and TimeTransport (which also MOVES the value).",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/LiveBadge.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
     },
     "loyaltySummaryCard": {
       "title": "LoyaltySummaryCard",
@@ -1911,12 +1934,23 @@ export const componentManifest = {
     },
     "statusBoard": {
       "title": "StatusBoard",
-      "description": "The live entity status board at the center of every dispatch / monitoring floor: many labeled entities (vehicles / machines / spots), each carrying a status (空車 / 故障 / 稼働中), a location, and a note, laid out as a responsive tile grid. The tone contract accepts canonical SemanticTone directly; the 0.1.x danger alias normalizes to destructive before styling, severity sorting, and problemTones matching. Problems and availability stand out via a tone-accent rail + a colour-safe status pill (icon + text, never colour alone); tiles sort fault-first by default; tiles group by zone/area with a per-group problem count. items[] (flat) or groups[] of {id,label,status,tone,location?,note?,icon?,trailing?,rank?,onSelect?}. The board a Gantt / DataTable / HeatmapChart can't be — taxi 配車盤, 駅務の機器状態盤, ramp GSE board, factory line OEE. (Gantt = rows × time, DataTable = sortable grid of rows, HeatmapChart = read-only value-by-colour matrix; this is a spatial/grouped board of selectable status entities where problems pop.) RSC-safe except the opt-in onSelect.",
+      "description": "The live entity status board at the center of every dispatch / monitoring floor: many labeled entities (vehicles / machines / spots), each carrying a status (空車 / 故障 / 稼働中), a location, and a note, laid out as a responsive tile grid. The tone contract accepts canonical SemanticTone directly; the 0.1.x danger alias normalizes to destructive before styling, severity sorting, and problemTones matching. Problems and availability stand out via a semantic border + subtle background and a colour-safe status pill (icon + text, never colour alone); tiles sort fault-first by default; tiles group by zone/area with a per-group problem count. items[] (flat) or groups[] of {id,label,status,tone,location?,note?,icon?,trailing?,rank?,onSelect?}. The board a Gantt / DataTable / HeatmapChart can't be — taxi 配車盤, 駅務の機器状態盤, ramp GSE board, factory line OEE. (Gantt = rows × time, DataTable = sortable grid of rows, HeatmapChart = read-only value-by-colour matrix; this is a spatial/grouped board of selectable status entities where problems pop.) RSC-safe except the opt-in onSelect.",
       "variantKeys": [
         "default"
       ],
       "defaultVariantKey": "default",
       "sourceFile": "src/components/display/StatusBoard.tsx",
+      "specSource": "design/display.pen",
+      "stability": "experimental"
+    },
+    "statusLevel": {
+      "title": "StatusLevel",
+      "description": "The ORDERED qualitative level indicator: a scale written once (levels[], low end → high end) plus the current value, rendered as a colour-safe chip and a filled-step bar that reads 「4段階中 3段目」 to screen readers. For states that have a rank — 空いています < やや混雑 < 混雑, 平常運転 < 遅延 < 迂回 < 運休, 低 < 中 < 高 < 緊急, good < watch < bad, 在庫 多/少, 鮮度, 難易度. The order lives in ONE array, so the sort key (compareStatusLevel), the roll-up (highestStatusLevel) and the pill cannot drift apart — the papercut behind the hand-rolled LEVEL_META + LEVEL_BADGE + LEVEL_SEVERITY + rank quartet. Tone is the WEIGHT of a step, never the order: the bar is drawn in foreground-vs-border shades, not semantic tones, so the step count survives greyscale. NOT for unordered states (支払済 / 請求中, 下書き / 公開) — that is Badge. NOT for a position in a process (受付 → 審査 → 完了, 空席 → 着席 → 会計) — that is Stepper / ApprovalSteps / RouteStops, which advance without getting heavier. Pairs with the pure statusLevelIndex / statusLevelStep / compareStatusLevel / highestStatusLevel helpers, mirroring how ExpiryBadge pairs with classifyExpiry(). RSC-safe.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/display/StatusLevel.tsx",
       "specSource": "design/display.pen",
       "stability": "experimental"
     },
@@ -2158,6 +2192,17 @@ export const componentManifest = {
       "variantKeys": [],
       "defaultVariantKey": null,
       "sourceFile": "src/components/inputs/DateRangePicker.tsx",
+      "specSource": "design/inputs.pen",
+      "stability": "experimental"
+    },
+    "dayBand": {
+      "title": "DayBand",
+      "description": "The one-day band: a single horizontal surface that shows where you are inside a day. Coloured stretches (night / twilight / day, off-shift / handover / on-shift, closed / open) drawn as phases, named marks at the moments that matter (sunrise, a shift change), the live edge, and a thumb that can be scrubbed. The generalisation of 'show a position inside a day as a surface' — duty rosters, operating windows, opening hours, and the day/night band it was extracted from. Computes NOTHING about the day: sunrise and sunset are times the caller passes as marks, phases are stretches the caller passes, and `now` is a number the caller reads from its own clock — no astronomy, no timers, no locale assumptions inside (the TimeTransport / Stringline rule). Phase tones resolve to the SUBTLE surface tokens because a phase is a background that marks and the thumb are drawn on top of; a raw CSS colour is accepted when the ramp is artwork. Pointer scrubbing is `absolute` (press is position) or `relative` (drag by distance, which can roll past midnight and expects the caller to re-base the day). Real role=slider with arrow / shift-arrow / Page / Home / End keys and an aria-valuetext that names the clock time AND the phase it falls in, so a colour never carries meaning alone. Touch height is 44px. Drops into TimeTransport's `scrubber` slot. Distinct from Slider (a plain value with no day), SegmentTimelineCard (an ARBITRARY window, not one day) and WeekView / ScheduleGrid (more than one day).",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/inputs/DayBand.tsx",
       "specSource": "design/inputs.pen",
       "stability": "experimental"
     },
@@ -2447,6 +2492,17 @@ export const componentManifest = {
       "variantKeys": [],
       "defaultVariantKey": null,
       "sourceFile": "src/components/inputs/TimePicker.tsx",
+      "specSource": "design/inputs.pen",
+      "stability": "experimental"
+    },
+    "timeTransport": {
+      "title": "TimeTransport",
+      "description": "The playback / scrub transport for a continuous value: a large readout of where you are, play-pause, named speed steps, signed jump buttons, a live-vs-detached state and a one-press return to now. The generalisation of 'move a continuous value in graded steps, and get back to live' — log replay, rewinding a monitoring board, stepping a simulation clock, scrubbing a recording, and the map/globe time controls it was extracted from. Holds NO clock of its own: `value` comes in and `onValueChange` goes out, so the caller owns the ticking and SSR renders the same frame twice (the Stringline rule). Speeds are caller-named steps (`speeds[]`), never a raw multiplier range, because a design system cannot know whether 1× means a second or a day. Live-vs-detached is resolved from `now` (or forced with `live`) and is never carried by colour alone — a labelled LiveBadge states it in words and the readout is not recoloured at all. Distinct from Slider / RangeSlider (a value picker with no playback), TimePicker / DatePicker / Calendar (pick an ABSOLUTE instant, no relative motion), SegmentedControl (the speed steps alone) and Timeline / Stringline / Gantt / SegmentTimelineCard (which DISPLAY time and take no input). Pass a scrubber (DayBand) through the `scrubber` slot. Touch targets are ≥44px.",
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "sourceFile": "src/components/inputs/TimeTransport.tsx",
       "specSource": "design/inputs.pen",
       "stability": "experimental"
     },

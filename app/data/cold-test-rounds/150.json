@@ -5,7 +5,7 @@
   "score": "3.5/5",
   "category": "運輸：タクシー",
   "title": "AI にタクシーの評価・サポート画面を作らせてみた — 索引が「動かないコンポーネント」に誘導した回（やってみた #150・節目）",
-  "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "枠と FAQ は良いが「評価の入力」が無い。「欠落」と「能動的な誤誘導」は違う。後者の方が危険。",
   "article": {
     "file": "zenn-yattemita-150-taxi-support.md",
     "slug": "150-taxi-support",

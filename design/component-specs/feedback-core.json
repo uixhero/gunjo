@@ -1470,6 +1470,284 @@
       "variants": [],
       "nodes": {}
     },
+    "stickyNoticeBar": {
+      "frameId": "stickyNoticeBarFrame",
+      "title": "StickyNoticeBar",
+      "description": "A single fixed site-announcement slot at an explicitly selected top or bottom edge.",
+      "variants": [
+        {
+          "id": "stickyNoticeBarTop",
+          "name": "StickyNoticeBar/Top",
+          "key": "top",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "layout": "horizontal",
+          "padding": [
+            8,
+            16,
+            8,
+            16
+          ],
+          "gap": 12,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "reusable": true,
+          "children": [
+            "stickyNoticeBarTopMessage",
+            "stickyNoticeBarTopAction",
+            "stickyNoticeBarTopDismiss"
+          ]
+        },
+        {
+          "id": "stickyNoticeBarBottom",
+          "name": "StickyNoticeBar/Bottom",
+          "key": "bottom",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "layout": "horizontal",
+          "padding": [
+            8,
+            16,
+            8,
+            16
+          ],
+          "gap": 12,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "reusable": true,
+          "children": [
+            "stickyNoticeBarBottomMessage",
+            "stickyNoticeBarBottomAction",
+            "stickyNoticeBarBottomDismiss"
+          ]
+        }
+      ],
+      "nodes": {
+        "top": {
+          "id": "stickyNoticeBarTop",
+          "type": "frame",
+          "name": "StickyNoticeBar/Top",
+          "width": "fill_container",
+          "height": null,
+          "layout": "horizontal",
+          "padding": [
+            8,
+            16,
+            8,
+            16
+          ],
+          "gap": 12,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "stickyNoticeBarTopMessage",
+            "stickyNoticeBarTopAction",
+            "stickyNoticeBarTopDismiss"
+          ]
+        },
+        "topMessage": {
+          "id": "stickyNoticeBarTopMessage",
+          "type": "frame",
+          "name": null,
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "stickyNoticeBarTopIcon",
+            "stickyNoticeBarTopText"
+          ]
+        },
+        "topAction": {
+          "id": "stickyNoticeBarTopAction",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#1d4ed8",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "500",
+          "content": "View details",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "topDismiss": {
+          "id": "stickyNoticeBarTopDismiss",
+          "type": "frame",
+          "name": null,
+          "width": 44,
+          "height": 44,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "stickyNoticeBarTopDismissIcon"
+          ]
+        },
+        "bottom": {
+          "id": "stickyNoticeBarBottom",
+          "type": "frame",
+          "name": "StickyNoticeBar/Bottom",
+          "width": "fill_container",
+          "height": null,
+          "layout": "horizontal",
+          "padding": [
+            8,
+            16,
+            8,
+            16
+          ],
+          "gap": 12,
+          "cornerRadius": null,
+          "fill": "#ffffff",
+          "stroke": {
+            "align": "inside",
+            "fill": "#e2e8f0",
+            "thickness": 1
+          },
+          "justifyContent": "space_between",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "stickyNoticeBarBottomMessage",
+            "stickyNoticeBarBottomAction",
+            "stickyNoticeBarBottomDismiss"
+          ]
+        },
+        "bottomMessage": {
+          "id": "stickyNoticeBarBottomMessage",
+          "type": "frame",
+          "name": null,
+          "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": 8,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "stickyNoticeBarBottomIcon",
+            "stickyNoticeBarBottomText"
+          ]
+        },
+        "bottomAction": {
+          "id": "stickyNoticeBarBottomAction",
+          "type": "text",
+          "name": null,
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": "#1d4ed8",
+          "stroke": null,
+          "justifyContent": null,
+          "alignItems": null,
+          "fontSize": 14,
+          "fontWeight": "500",
+          "content": "View details",
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": []
+        },
+        "bottomDismiss": {
+          "id": "stickyNoticeBarBottomDismiss",
+          "type": "frame",
+          "name": null,
+          "width": 44,
+          "height": 44,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "justifyContent": "center",
+          "alignItems": "center",
+          "fontSize": null,
+          "fontWeight": null,
+          "content": null,
+          "iconFontFamily": null,
+          "iconFontName": null,
+          "textGrowth": null,
+          "children": [
+            "stickyNoticeBarBottomDismissIcon"
+          ]
+        }
+      },
+      "defaultVariantKey": null
+    },
     "safetyBanner": {
       "frameId": "synthetic:safetyBanner",
       "title": "SafetyBanner",

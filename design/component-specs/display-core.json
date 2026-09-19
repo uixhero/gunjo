@@ -4725,7 +4725,7 @@
     "statusBoard": {
       "frameId": "synthetic:statusBoard",
       "title": "StatusBoard",
-      "description": "The live entity status board at the center of every dispatch / monitoring floor: many labeled entities (vehicles / machines / spots), each carrying a status (空車 / 故障 / 稼働中), a location, and a note, laid out as a responsive tile grid. The tone contract accepts canonical SemanticTone directly; the 0.1.x danger alias normalizes to destructive before styling, severity sorting, and problemTones matching. Problems and availability stand out via a tone-accent rail + a colour-safe status pill (icon + text, never colour alone); tiles sort fault-first by default; tiles group by zone/area with a per-group problem count. items[] (flat) or groups[] of {id,label,status,tone,location?,note?,icon?,trailing?,rank?,onSelect?}. The board a Gantt / DataTable / HeatmapChart can't be — taxi 配車盤, 駅務の機器状態盤, ramp GSE board, factory line OEE. (Gantt = rows × time, DataTable = sortable grid of rows, HeatmapChart = read-only value-by-colour matrix; this is a spatial/grouped board of selectable status entities where problems pop.) RSC-safe except the opt-in onSelect.",
+      "description": "The live entity status board at the center of every dispatch / monitoring floor: many labeled entities (vehicles / machines / spots), each carrying a status (空車 / 故障 / 稼働中), a location, and a note, laid out as a responsive tile grid. The tone contract accepts canonical SemanticTone directly; the 0.1.x danger alias normalizes to destructive before styling, severity sorting, and problemTones matching. Problems and availability stand out via a semantic border + subtle background and a colour-safe status pill (icon + text, never colour alone); tiles sort fault-first by default; tiles group by zone/area with a per-group problem count. items[] (flat) or groups[] of {id,label,status,tone,location?,note?,icon?,trailing?,rank?,onSelect?}. The board a Gantt / DataTable / HeatmapChart can't be — taxi 配車盤, 駅務の機器状態盤, ramp GSE board, factory line OEE. (Gantt = rows × time, DataTable = sortable grid of rows, HeatmapChart = read-only value-by-colour matrix; this is a spatial/grouped board of selectable status entities where problems pop.) RSC-safe except the opt-in onSelect.",
       "variants": [
         {
           "id": "synthetic:default",
@@ -4990,6 +4990,30 @@
       "frameId": "synthetic:lineChip",
       "title": "LineChip",
       "description": "The transit line / route identity chip: a small pill showing a line/route number (渋66 / 東98 / JY / 丸ノ内線) in the line's official brand colour, with auto-contrast text (black/white by luminance) so it stays readable on any hue. The label carries the meaning, so it works colour-blind / in mono — colour is decoration. The IDENTITY counterpart to Badge (a status/semantic tone): this keys a chip to a transit line. For approach lists, route candidates, leg details, run-diagram labels — rail / bus / subway. label + optional color (hex) + optional icon; omit color for a neutral chip. RSC-safe.",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": null,
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "statusLevel": {
+      "frameId": "synthetic:statusLevel",
+      "title": "StatusLevel",
+      "description": "The ORDERED qualitative level indicator: a scale written once (levels[], low end → high end) plus the current value, rendered as a colour-safe chip and a filled-step bar that reads 「4段階中 3段目」 to screen readers. For states that have a rank — 空いています < やや混雑 < 混雑, 平常運転 < 遅延 < 迂回 < 運休, 低 < 中 < 高 < 緊急, good < watch < bad, 在庫 多/少, 鮮度, 難易度. The order lives in ONE array, so the sort key (compareStatusLevel), the roll-up (highestStatusLevel) and the pill cannot drift apart — the papercut behind the hand-rolled LEVEL_META + LEVEL_BADGE + LEVEL_SEVERITY + rank quartet. Tone is the WEIGHT of a step, never the order: the bar is drawn in foreground-vs-border shades, not semantic tones, so the step count survives greyscale. NOT for unordered states (支払済 / 請求中, 下書き / 公開) — that is Badge. NOT for a position in a process (受付 → 審査 → 完了, 空席 → 着席 → 会計) — that is Stepper / ApprovalSteps / RouteStops, which advance without getting heavier. Pairs with the pure statusLevelIndex / statusLevelStep / compareStatusLevel / highestStatusLevel helpers, mirroring how ExpiryBadge pairs with classifyExpiry(). RSC-safe.",
       "variants": [
         {
           "id": "synthetic:default",
@@ -5387,7 +5411,7 @@
     "listCard": {
       "frameId": "synthetic:listCard",
       "title": "ListCard",
-      "description": "The tappable list entry: one item in a scannable, mobile-dense list — a leading accessory (icon / avatar / colour dot / rank / line chip), a title + secondary, optional tag chips, a right-aligned status pill and meta (price / time / count / timestamp), and a trailing chevron. The result-card / status-row primitive every consumer 'list of things' screen opens with — search results, route / product / listing comparisons, status lists (運行状況・在庫・端末), order/incident queues. Tappable rows (onSelect) are a real ≥44px button with hover/focus/selected states; status never rides on colour alone (Badge with icon + an optional severity accent rail). For the KPI strip use StatGroup; for a severity-triaged alert worklist use ActionQueue; for a money breakdown use AmountBreakdown. RSC-safe by default — onSelect is the only function prop and is opt-in.",
+      "description": "The tappable list entry: one item in a scannable, mobile-dense list — a leading accessory (icon / avatar / colour dot / rank / line chip), a title + secondary, optional tag chips, a right-aligned status pill and meta (price / time / count / timestamp), and a trailing chevron. The result-card / status-row primitive every consumer 'list of things' screen opens with — search results, route / product / listing comparisons, status lists (運行状況・在庫・端末), order/incident queues. Tappable rows (onSelect) are a real ≥44px button with hover/focus/selected states; status never rides on colour alone (Badge and status text carry meaning; severity only adds an optional semantic border and subtle background). For the KPI strip use StatGroup; for a severity-triaged alert worklist use ActionQueue; for a money breakdown use AmountBreakdown. RSC-safe by default — onSelect is the only function prop and is opt-in.",
       "variants": [
         {
           "id": "synthetic:default",
@@ -5611,6 +5635,30 @@
           "key": "default",
           "type": "frame",
           "width": "fill_container",
+          "height": null,
+          "padding": null,
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        }
+      ]
+    },
+    "liveBadge": {
+      "frameId": "synthetic:liveBadge",
+      "title": "LiveBadge",
+      "description": "The small bordered pill that says 'this is the current value', with a dot that pulses slowly to show something is still arriving. When the value is no longer current the badge steps aside and states WHEN the value is from instead (`detached`) — and renders nothing at all when it has not been told. For monitoring boards, streams, match commentary, trading screens and sensor readouts: anywhere a number could be either live or a snapshot and the reader cannot tell by looking. Holds NO clock and compares nothing — `live` is the caller's decision (the TimeTransport rule); TimeTransport renders its own live state with this badge. The state is never carried by the dot or the colour: the badge always has a word on it (default `LIVE`), and the detached form replaces that word with the 'when'. The dot does not pulse under prefers-reduced-motion: reduce. Deliberately NOT a live region — `role='status'` here would interrupt a screen reader on every reconnection, so the caller adds it on the rare screen where the change is the news. Composed from Badge (success / warning tones, same size scale). Distinct from Badge (a state that is not about freshness), ExpiryBadge (a deadline, not a live edge) and TimeTransport (which also MOVES the value).",
+      "variants": [
+        {
+          "id": "synthetic:default",
+          "name": "default",
+          "key": "default",
+          "type": "frame",
+          "width": null,
           "height": null,
           "padding": null,
           "gap": null,

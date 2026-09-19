@@ -1,0 +1,76 @@
+{
+  "schemaVersion": 1,
+  "round": 200,
+  "lang": "ja",
+  "findings": [
+    {
+      "id": "200-consumer-mypage-vocabulary",
+      "kind": "requirement",
+      "phenomenon": "保険料の内訳、証明書のダウンロード、手続きの一覧、給付の履歴、払込の履歴。契約者が自分の契約を見る画面は、必要なものが一通りそろっています。",
+      "where": {
+        "round": 200,
+        "screen": "生命保険の契約者マイページ",
+        "spot": "画面全体"
+      },
+      "status": "resolved",
+      "links": [
+        { "kind": "component", "slug": "amount-breakdown", "label": "AmountBreakdown" },
+        { "kind": "component", "slug": "document-row", "label": "DocumentRow" },
+        { "kind": "component", "slug": "section-list", "label": "SectionList" }
+      ],
+      "selfCheck": "契約者が自分の契約を見る画面を開いて、手続きと証明書と履歴が同じ画面から辿れるか確かめてください。"
+    },
+    {
+      "id": "200-coverage-hierarchy",
+      "kind": "pitfall",
+      "phenomenon": "主契約の下に特約がぶら下がるという保険の構造を、そのまま画面に出せませんでした。がん特約や先進医療特約を、主契約の子として並べる置き場がありません。",
+      "where": {
+        "round": 200,
+        "screen": "生命保険の契約者マイページ",
+        "spot": "保障内容の階層"
+      },
+      "cause": "入れ子にできるコンポーネントは、子の行の項目名を1行に切り詰めるうえ、読むだけの契約内容を押せるものとして画面読み上げソフトに伝えるので、契約内容の表示には使えないからです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 787 },
+        { "kind": "component", "slug": "tree-view", "label": "TreeView" }
+      ],
+      "selfCheck": "主契約と特約を親子に並べた一覧を開いて、子の行の項目名が1行に切り詰められていないか確かめてください。"
+    },
+    {
+      "id": "200-year-scale-span",
+      "kind": "pitfall",
+      "phenomenon": "主契約は終身、通院は70歳まで、がんは80歳まで。満了する年齢が違う保障を、並べて比べる図が描けませんでした。",
+      "where": {
+        "round": 200,
+        "screen": "生命保険の契約者マイページ",
+        "spot": "保障期間の比較"
+      },
+      "cause": "工程表のコンポーネントは目盛りを日と時間でしか刻めず何十年という保障期間を表せないうえ、1本の帯で期間を示すコンポーネントは何本並べても全部が同じ1行に重なるためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 788 },
+        { "kind": "component", "slug": "gantt", "label": "Gantt" },
+        { "kind": "component", "slug": "segment-timeline-card", "label": "SegmentTimelineCard" }
+      ],
+      "selfCheck": "開始が同じで終わりだけ違う期間を4本出してみて、4本が別々の行として見比べられるか確かめてください。"
+    },
+    {
+      "id": "200-expiry-badge-whole-life",
+      "kind": "pitfall",
+      "phenomenon": "一生涯続く保障には満了の日付がありません。日付が空のままだと、期限の表示が「未登録」になります。良い知らせが、登録し忘れに見えます。",
+      "where": {
+        "round": 200,
+        "screen": "生命保険の契約者マイページ",
+        "spot": "保障の満了表示"
+      },
+      "cause": "期限の表示に「そもそも期限が無い」という出し方が用意されておらず、日付が空なら未入力とみなすためです。",
+      "status": "fix-known",
+      "links": [
+        { "kind": "issue", "id": 721 },
+        { "kind": "component", "slug": "expiry-badge", "label": "ExpiryBadge" }
+      ],
+      "selfCheck": "満了日の無い項目に期限の表示を付けてみて、未入力と読める言葉が出ていないか確かめてください。"
+    }
+  ]
+}

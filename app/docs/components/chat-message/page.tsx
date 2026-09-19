@@ -176,13 +176,33 @@ export default function ChatMessageDocPage() {
                             title: isJa ? "アシスタント" : "Assistant",
                             description: isJa ? "回答側は本文の枠を持たず、コピー・分岐・Raw の操作を下に並べます。" : "Assistant messages keep the body unframed and expose copy, branch, and Raw actions.",
                             preview: <ChatMessagePreviewWithToast role="assistant" userName={isJa ? "アシスタント" : "Assistant"} content={isJa ? "候補を3件見つけました。条件を変える場合は分岐できます。" : "Found three candidates. Branch if you want to change the conditions."} timestamp="10:01" />,
-                            code: `<ChatMessage
-  role="assistant"
-  userName="アシスタント"
-  content="候補を3件見つけました。条件を変える場合は分岐できます。"
-  timestamp="10:01"
-  onAction={(action) => console.log(action)}
-/>`,
+                            code: isJa
+                            ? `import { ChatMessage } from "@gunjo/ui";
+
+export function AssistantChatMessage() {
+  return (
+    <ChatMessage
+      role="assistant"
+      userName="アシスタント"
+      content="候補を3件見つけました。条件を変える場合は分岐できます。"
+      timestamp="10:01"
+      onAction={(action) => console.log(action)}
+    />
+  );
+}`
+                            : `import { ChatMessage } from "@gunjo/ui";
+
+export function AssistantChatMessage() {
+  return (
+    <ChatMessage
+      role="assistant"
+      userName="Assistant"
+      content="Found three candidates. Branch if you want to change the conditions."
+      timestamp="10:01"
+      onAction={(action) => console.log(action)}
+    />
+  );
+}`,
                             previewBodyWidth: "lg",
                         },
                         {
@@ -190,13 +210,33 @@ export default function ChatMessageDocPage() {
                             title: isJa ? "ユーザー" : "User",
                             description: isJa ? "送信者側は右寄せの背景付き吹き出しにし、コピーと編集を操作に出します。" : "User messages are right-aligned with a filled bubble and copy/edit actions.",
                             preview: <ChatMessagePreviewWithToast role="user" userName={isJa ? "あなた" : "You"} content={isJa ? "この内容で進めて。" : "Proceed with this."} timestamp="10:02" />,
-                            code: `<ChatMessage
-  role="user"
-  userName="あなた"
-  content="この内容で進めて。"
-  timestamp="10:02"
-  onAction={(action) => console.log(action)}
-/>`,
+                            code: isJa
+                            ? `import { ChatMessage } from "@gunjo/ui";
+
+export function UserChatMessage() {
+  return (
+    <ChatMessage
+      role="user"
+      userName="あなた"
+      content="この内容で進めて。"
+      timestamp="10:02"
+      onAction={(action) => console.log(action)}
+    />
+  );
+}`
+                            : `import { ChatMessage } from "@gunjo/ui";
+
+export function UserChatMessage() {
+  return (
+    <ChatMessage
+      role="user"
+      userName="You"
+      content="Proceed with this."
+      timestamp="10:02"
+      onAction={(action) => console.log(action)}
+    />
+  );
+}`,
                             previewBodyWidth: "lg",
                         },
                         {
@@ -220,21 +260,53 @@ export default function ChatMessageDocPage() {
                                     copyValue={isJa ? "確認結果をまとめました。成果物ドラフト drafts/component-audit.md" : "I summarized the review. Draft artifact drafts/component-audit.md"}
                                 />
                             ),
-                            code: `<ChatMessage
-  role="assistant"
-  userName="アシスタント"
-  timestamp="10:03"
-  copyValue="確認結果をまとめました。成果物ドラフト drafts/component-audit.md"
-  content={
-    <div className="space-y-3">
-      <p>確認結果をまとめました。必要であれば、この草案を保存してから編集できます。</p>
-      <div className="rounded-xl border bg-muted/30 p-3 shadow-sm">
-        <p className="text-sm font-semibold">成果物ドラフト</p>
-        <p className="mt-1 text-xs text-muted-foreground">drafts/component-audit.md</p>
-      </div>
-    </div>
-  }
-/>`,
+                            code: isJa
+                            ? `import { ChatMessage } from "@gunjo/ui";
+
+export function AssistantCardChatMessage() {
+  return (
+    <ChatMessage
+      role="assistant"
+      userName="アシスタント"
+      timestamp="10:03"
+      copyValue="確認結果をまとめました。成果物ドラフト drafts/component-audit.md"
+      content={
+        <div className="space-y-3">
+          <p>{"確認結果をまとめました。必要であれば、この草案を保存してから編集できます。"}</p>
+          <div className="rounded-xl border bg-muted/30 p-3 shadow-sm">
+            <p className="text-sm font-semibold">{"成果物ドラフト"}</p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              drafts/component-audit.md
+            </p>
+          </div>
+        </div>
+      }
+    />
+  );
+}`
+                            : `import { ChatMessage } from "@gunjo/ui";
+
+export function AssistantCardChatMessage() {
+  return (
+    <ChatMessage
+      role="assistant"
+      userName="Assistant"
+      timestamp="10:03"
+      copyValue="I summarized the review. Draft artifact drafts/component-audit.md"
+      content={
+        <div className="space-y-3">
+          <p>{"I summarized the review. Save this draft before editing it if needed."}</p>
+          <div className="rounded-xl border bg-muted/30 p-3 shadow-sm">
+            <p className="text-sm font-semibold">{"Draft artifact"}</p>
+            <p className="mt-1 text-xs text-muted-foreground">
+              drafts/component-audit.md
+            </p>
+          </div>
+        </div>
+      }
+    />
+  );
+}`,
                             previewBodyWidth: "lg",
                         },
                         {
@@ -242,7 +314,17 @@ export default function ChatMessageDocPage() {
                             title: isJa ? "システム" : "System",
                             description: isJa ? "会話の開始や区切りを中央の補助ラベルで示します。" : "Marks session events with a centered helper label.",
                             preview: <ChatMessage role="system" content={isJa ? "会話を開始しました。" : "Conversation started."} />,
-                            code: `<ChatMessage role="system" content="会話を開始しました。" />`,
+                            code: isJa
+                            ? `import { ChatMessage } from "@gunjo/ui";
+
+export function SystemChatMessage() {
+  return <ChatMessage role="system" content="会話を開始しました。" />;
+}`
+                            : `import { ChatMessage } from "@gunjo/ui";
+
+export function SystemChatMessage() {
+  return <ChatMessage role="system" content="Conversation started." />;
+}`,
                             previewBodyWidth: "lg",
                         },
                         {
@@ -258,13 +340,33 @@ export default function ChatMessageDocPage() {
                                     typingMessages={isJa ? ["内容を作成しています...", "入力中です..."] : ["Writing a response...", "Typing..."]}
                                 />
                             ),
-                            code: `<ChatMessage
-  role="assistant"
-  userName="アシスタント"
-  content=""
-  isTyping
-  typingMessages={["内容を作成しています...", "入力中です..."]}
-/>`,
+                            code: isJa
+                            ? `import { ChatMessage } from "@gunjo/ui";
+
+export function TypingChatMessage() {
+  return (
+    <ChatMessage
+      role="assistant"
+      userName="アシスタント"
+      content=""
+      isTyping
+      typingMessages={["内容を作成しています...", "入力中です..."]}
+    />
+  );
+}`
+                            : `import { ChatMessage } from "@gunjo/ui";
+
+export function TypingChatMessage() {
+  return (
+    <ChatMessage
+      role="assistant"
+      userName="Assistant"
+      content=""
+      isTyping
+      typingMessages={["Writing a response...", "Typing..."]}
+    />
+  );
+}`,
                             previewBodyWidth: "lg",
                         },
                     ]}

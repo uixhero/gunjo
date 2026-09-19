@@ -5,7 +5,7 @@
   "score": "4/5",
   "category": "運輸：タクシー",
   "title": "AI にタクシー需要予測を作らせてみた — 誤誘導先だった HeatmapChart が、遂に「本来の居場所」で輝いた（やってみた #146）",
-  "summary": "`tsc` 緑・デスクトップ密度。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "予測/最適化の分析系統も土台に乗った。「守備範囲は『ここでない』と『ここだ』の両側から確定する」。",
   "article": {
     "file": "zenn-yattemita-146-taxi-demand.md",
     "slug": "146-taxi-demand",

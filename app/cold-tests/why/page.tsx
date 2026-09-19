@@ -1,16 +1,20 @@
 import type { Metadata } from "next";
 import gallery from "@/data/cold-test-gallery.json";
+import { publishableJaEntries } from "@/lib/cold-test-drafts";
 import { WhyView } from "./WhyView";
 
 interface GalleryShape {
     count: number;
     crystallizedCount: number;
+    entries: { round: number }[];
 }
 // Both counts come from the snapshot so the share copy tracks the series as
 // it grows. `crystallizedCount` is the deduped total of primitives named
 // across every published industry door page (cold-test-categories.json) —
-// it moves whenever KeEem adds a new discovered component.
-const ROUND_COUNT = (gallery as GalleryShape).count;
+// it moves whenever KeEem adds a new discovered component. Draft rounds
+// (cold-test-drafts.ts) are excluded from the count in production.
+const visibleEntries = publishableJaEntries((gallery as GalleryShape).entries);
+const ROUND_COUNT = visibleEntries.length;
 const CRYSTALLIZED_COUNT = (gallery as GalleryShape).crystallizedCount;
 
 // JA copy — Google reads OG/twitter for share previews and JA is the primary
@@ -71,7 +75,7 @@ export default function ColdTestsWhyPage() {
                 // Serialise once on the server; safe content (no user input).
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
-            <WhyView />
+            <WhyView visibleRounds={visibleEntries.map((e) => e.round)} />
         </>
     );
 }

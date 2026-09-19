@@ -408,6 +408,22 @@ export function MorningActionQueue() {
     'React.useState("renewal")'
   );
 
+  const emptyCode = locale === "ja"
+    ? `import { ActionQueue, type ActionItem } from "@gunjo/ui";
+
+const items: ActionItem[] = [];
+
+export function EmptyActionQueue() {
+  return <ActionQueue items={items} emptyLabel="対応が必要な項目はありません" />;
+}`
+    : `import { ActionQueue, type ActionItem } from "@gunjo/ui";
+
+const items: ActionItem[] = [];
+
+export function EmptyActionQueue() {
+  return <ActionQueue items={items} emptyLabel="No action items" />;
+}`;
+
   const propsData = [
     {
       name: "items",
@@ -517,9 +533,7 @@ export function MorningActionQueue() {
                 ? "対応項目がない場合は、破線のプレースホルダーだけを表示します。"
                 : "When there are no rows, a dashed placeholder communicates the empty state.",
               preview: <ActionQueuePreview locale={locale} empty />,
-              code: locale === "ja"
-                ? `<ActionQueue items={[]} emptyLabel="対応が必要な項目はありません" />`
-                : `<ActionQueue items={[]} emptyLabel="No action items" />`,
+              code: emptyCode,
             },
           ]}
         />

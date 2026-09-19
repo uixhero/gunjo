@@ -38,6 +38,7 @@ import {
     Select,
     type ActionDataTableLabels,
 } from "@gunjo/ui";
+import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Campaign = {
     id: string;
@@ -197,7 +198,13 @@ function getColumns(isJa: boolean): ColumnDef<Campaign>[] {
     ];
 }
 
-function ActionDataTableDemo({ compact = false }: { compact?: boolean }) {
+function ActionDataTableDemo({
+    compact = false,
+    rowActionsVariant,
+}: {
+    compact?: boolean;
+    rowActionsVariant?: "inline" | "menu";
+}) {
     const { locale } = useLocale();
     const isJa = locale === "ja";
     const labels = React.useMemo(() => getLabels(isJa), [isJa]);
@@ -264,6 +271,7 @@ function ActionDataTableDemo({ compact = false }: { compact?: boolean }) {
                 labels={labels}
                 getRowId={(row) => row.id}
                 getRowLabel={(row) => row.name}
+                rowActionsVariant={rowActionsVariant}
                 bulkActions={[
                     {
                         id: "archive",
@@ -392,7 +400,8 @@ export default function ActionDataTablePage() {
     const statesTitle = isJa ? "状態とバリエーション" : "States and variants";
     const meta = displayMetadata as Record<string, { title: string; description: string }>;
 
-    const code = `"use client"
+    const code = isJa
+        ? `"use client"
 
 import * as React from "react"
 import type { ColumnDef } from "@tanstack/react-table"
@@ -408,17 +417,17 @@ type Campaign = {
 }
 
 const campaigns: Campaign[] = [
-  { id: "c-001", name: "${isJa ? "春の新生活バナー" : "Spring campaign"}", owner: "${isJa ? "青井 花" : "Hana Aoi"}", status: "active", updatedAt: "2026-05-12" },
-  { id: "c-002", name: "${isJa ? "アプリ訴求 LP" : "App landing page"}", owner: "${isJa ? "田中 空" : "Sora Tanaka"}", status: "draft", updatedAt: "2026-05-10" },
-  { id: "c-003", name: "${isJa ? "法人向け資料広告" : "B2B document ad"}", owner: "${isJa ? "山本 優" : "Yu Yamamoto"}", status: "active", updatedAt: "2026-05-08" },
-  { id: "c-004", name: "${isJa ? "旧キャンペーン素材" : "Archived campaign assets"}", owner: "${isJa ? "小林 真央" : "Mao Kobayashi"}", status: "archived", updatedAt: "2026-04-28" },
-  { id: "c-005", name: "${isJa ? "展示会フォロー" : "Event follow-up"}", owner: "${isJa ? "中村 蓮" : "Ren Nakamura"}", status: "draft", updatedAt: "2026-04-25" },
+  { id: "c-001", name: "春の新生活バナー", owner: "青井 花", status: "active", updatedAt: "2026-05-12" },
+  { id: "c-002", name: "アプリ訴求 LP", owner: "田中 空", status: "draft", updatedAt: "2026-05-10" },
+  { id: "c-003", name: "法人向け資料広告", owner: "山本 優", status: "active", updatedAt: "2026-05-08" },
+  { id: "c-004", name: "旧キャンペーン素材", owner: "小林 真央", status: "archived", updatedAt: "2026-04-28" },
+  { id: "c-005", name: "展示会フォロー", owner: "中村 蓮", status: "draft", updatedAt: "2026-04-25" },
 ]
 
 const statusLabels: Record<Campaign["status"], string> = {
-  active: "${isJa ? "公開中" : "Active"}",
-  draft: "${isJa ? "下書き" : "Draft"}",
-  archived: "${isJa ? "保管済み" : "Archived"}",
+  active: "公開中",
+  draft: "下書き",
+  archived: "保管済み",
 }
 
 const statusVariants: Record<Campaign["status"], "default" | "secondary" | "outline"> = {
@@ -430,40 +439,40 @@ const statusVariants: Record<Campaign["status"], "default" | "secondary" | "outl
 const columns: ColumnDef<Campaign>[] = [
   {
     accessorKey: "name",
-    header: "${isJa ? "キャンペーン" : "Campaign"}",
+    header: "キャンペーン",
     size: 280,
     cell: ({ row }) => <span className="font-medium">{row.original.name}</span>,
   },
-  { accessorKey: "owner", header: "${isJa ? "担当者" : "Owner"}", size: 128 },
+  { accessorKey: "owner", header: "担当者", size: 128 },
   {
     accessorKey: "status",
-    header: "${isJa ? "状態" : "Status"}",
+    header: "状態",
     size: 112,
     cell: ({ row }) => {
       const status = row.original.status
       return <Badge variant={statusVariants[status]}>{statusLabels[status]}</Badge>
     },
   },
-  { accessorKey: "updatedAt", header: "${isJa ? "更新日" : "Updated"}", size: 120 },
+  { accessorKey: "updatedAt", header: "更新日", size: 120 },
 ]
 
 const labels: ActionDataTableLabels = {
-  filterPlaceholder: "${isJa ? "キャンペーン名で絞り込み..." : "Filter campaigns..."}",
-  noResults: "${isJa ? "該当するキャンペーンがありません。" : "No campaigns found."}",
-  previous: "${isJa ? "前へ" : "Previous"}",
-  next: "${isJa ? "次へ" : "Next"}",
-  rowsPerPage: "${isJa ? "表示件数" : "Rows"}",
-  selectedRows: (count) => ${isJa ? 'count + "件を選択中"' : 'count + " selected"'},
-  selectedRowsLabel: "${isJa ? "選択中" : "selected"}",
-  selectAllRows: "${isJa ? "すべての行を選択します" : "Select all rows"}",
-  selectRow: (label) => ${isJa ? 'label + "を選択します"' : '"Select " + label'},
-  selectAllRowsSelected: "${isJa ? "すべての選択を外します" : "Deselect all rows"}",
-  selectRowSelected: (label) => ${isJa ? 'label + "の選択を外します"' : '"Deselect " + label'},
-  clearSelection: "${isJa ? "選択を解除" : "Clear selection"}",
-  actions: "${isJa ? "行操作" : "Row actions"}",
-  bulkActions: "${isJa ? "一括操作" : "Bulk actions"}",
-  bulkActionPlaceholder: "${isJa ? "一括操作" : "Bulk actions"}",
-  disabledAction: "${isJa ? "行を選択すると操作できます" : "Select rows first"}",
+  filterPlaceholder: "キャンペーン名で絞り込み...",
+  noResults: "該当するキャンペーンがありません。",
+  previous: "前へ",
+  next: "次へ",
+  rowsPerPage: "表示件数",
+  selectedRows: (count) => count + "件を選択中",
+  selectedRowsLabel: "選択中",
+  selectAllRows: "すべての行を選択します",
+  selectRow: (label) => label + "を選択します",
+  selectAllRowsSelected: "すべての選択を外します",
+  selectRowSelected: (label) => label + "の選択を外します",
+  clearSelection: "選択を解除",
+  actions: "行操作",
+  bulkActions: "一括操作",
+  bulkActionPlaceholder: "一括操作",
+  disabledAction: "行を選択すると操作できます",
 }
 
 export function CampaignTable() {
@@ -496,42 +505,188 @@ export function CampaignTable() {
       rowActions={[
         {
           id: "edit",
-          label: "${isJa ? "編集" : "Edit"}",
+          label: "編集",
           icon: IconPencil,
-          onSelect: (row) => window.alert(row.name + "${isJa ? "を編集します" : " will be edited"}"),
+          onSelect: (row) => window.alert(row.name + "を編集します"),
         },
         {
           id: "archive",
-          label: "${isJa ? "保管" : "Archive"}",
+          label: "保管",
           icon: IconArchive,
           disabled: (row) => row.status === "archived",
-          disabledReason: "${isJa ? "すでに保管済みです" : "Already archived"}",
+          disabledReason: "すでに保管済みです",
           onSelect: (row) => archiveRows([row]),
         },
         {
           id: "delete",
-          label: "${isJa ? "削除" : "Delete"}",
+          label: "削除",
           icon: IconTrash,
           variant: "destructive",
           disabled: (row) => row.status === "archived",
-          disabledReason: "${isJa ? "保管済みの行はこの画面から削除できません" : "Archived rows cannot be deleted here"}",
+          disabledReason: "保管済みの行はこの画面から削除できません",
           onSelect: (row) => deleteRows([row]),
         },
       ]}
       bulkActions={[
         {
           id: "archive",
-          label: "${isJa ? "保管" : "Archive"}",
+          label: "保管",
           icon: IconArchive,
-          disabledReason: "${isJa ? "行を選択すると保管できます" : "Select rows to archive"}",
+          disabledReason: "行を選択すると保管できます",
           onSelect: archiveRows,
         },
         {
           id: "delete",
-          label: "${isJa ? "削除" : "Delete"}",
+          label: "削除",
           icon: IconTrash,
           variant: "destructive",
-          disabledReason: "${isJa ? "行を選択すると削除できます" : "Select rows to delete"}",
+          disabledReason: "行を選択すると削除できます",
+          onSelect: deleteRows,
+        },
+      ]}
+    />
+  )
+}`
+        : `"use client"
+
+import * as React from "react"
+import type { ColumnDef } from "@tanstack/react-table"
+import { IconArchive, IconPencil, IconTrash } from "@tabler/icons-react"
+import { ActionDataTable, Badge, type ActionDataTableLabels } from "@gunjo/ui"
+
+type Campaign = {
+  id: string
+  name: string
+  owner: string
+  status: "active" | "draft" | "archived"
+  updatedAt: string
+}
+
+const campaigns: Campaign[] = [
+  { id: "c-001", name: "Spring campaign", owner: "Hana Aoi", status: "active", updatedAt: "2026-05-12" },
+  { id: "c-002", name: "App landing page", owner: "Sora Tanaka", status: "draft", updatedAt: "2026-05-10" },
+  { id: "c-003", name: "B2B document ad", owner: "Yu Yamamoto", status: "active", updatedAt: "2026-05-08" },
+  { id: "c-004", name: "Archived campaign assets", owner: "Mao Kobayashi", status: "archived", updatedAt: "2026-04-28" },
+  { id: "c-005", name: "Event follow-up", owner: "Ren Nakamura", status: "draft", updatedAt: "2026-04-25" },
+]
+
+const statusLabels: Record<Campaign["status"], string> = {
+  active: "Active",
+  draft: "Draft",
+  archived: "Archived",
+}
+
+const statusVariants: Record<Campaign["status"], "default" | "secondary" | "outline"> = {
+  active: "default",
+  draft: "secondary",
+  archived: "outline",
+}
+
+const columns: ColumnDef<Campaign>[] = [
+  {
+    accessorKey: "name",
+    header: "Campaign",
+    size: 280,
+    cell: ({ row }) => <span className="font-medium">{row.original.name}</span>,
+  },
+  { accessorKey: "owner", header: "Owner", size: 128 },
+  {
+    accessorKey: "status",
+    header: "Status",
+    size: 112,
+    cell: ({ row }) => {
+      const status = row.original.status
+      return <Badge variant={statusVariants[status]}>{statusLabels[status]}</Badge>
+    },
+  },
+  { accessorKey: "updatedAt", header: "Updated", size: 120 },
+]
+
+const labels: ActionDataTableLabels = {
+  filterPlaceholder: "Filter campaigns...",
+  noResults: "No campaigns found.",
+  previous: "Previous",
+  next: "Next",
+  rowsPerPage: "Rows",
+  selectedRows: (count) => count + " selected",
+  selectedRowsLabel: "selected",
+  selectAllRows: "Select all rows",
+  selectRow: (label) => "Select " + label,
+  selectAllRowsSelected: "Deselect all rows",
+  selectRowSelected: (label) => "Deselect " + label,
+  clearSelection: "Clear selection",
+  actions: "Row actions",
+  bulkActions: "Bulk actions",
+  bulkActionPlaceholder: "Bulk actions",
+  disabledAction: "Select rows first",
+}
+
+export function CampaignTable() {
+  const [rows, setRows] = React.useState(campaigns)
+
+  const archiveRows = (selectedRows: Campaign[]) => {
+    const selectedIds = new Set(selectedRows.map((row) => row.id))
+    setRows((current) =>
+      current.map((row) =>
+        selectedIds.has(row.id)
+          ? { ...row, status: "archived", updatedAt: "2026-05-22" }
+          : row
+      )
+    )
+  }
+
+  const deleteRows = (selectedRows: Campaign[]) => {
+    const selectedIds = new Set(selectedRows.map((row) => row.id))
+    setRows((current) => current.filter((row) => !selectedIds.has(row.id)))
+  }
+
+  return (
+    <ActionDataTable
+      columns={columns}
+      data={rows}
+      filter={{ columnId: "name", placeholder: labels.filterPlaceholder }}
+      labels={labels}
+      getRowId={(row) => row.id}
+      getRowLabel={(row) => row.name}
+      rowActions={[
+        {
+          id: "edit",
+          label: "Edit",
+          icon: IconPencil,
+          onSelect: (row) => window.alert(row.name + " will be edited"),
+        },
+        {
+          id: "archive",
+          label: "Archive",
+          icon: IconArchive,
+          disabled: (row) => row.status === "archived",
+          disabledReason: "Already archived",
+          onSelect: (row) => archiveRows([row]),
+        },
+        {
+          id: "delete",
+          label: "Delete",
+          icon: IconTrash,
+          variant: "destructive",
+          disabled: (row) => row.status === "archived",
+          disabledReason: "Archived rows cannot be deleted here",
+          onSelect: (row) => deleteRows([row]),
+        },
+      ]}
+      bulkActions={[
+        {
+          id: "archive",
+          label: "Archive",
+          icon: IconArchive,
+          disabledReason: "Select rows to archive",
+          onSelect: archiveRows,
+        },
+        {
+          id: "delete",
+          label: "Delete",
+          icon: IconTrash,
+          variant: "destructive",
+          disabledReason: "Select rows to delete",
           onSelect: deleteRows,
         },
       ]}
@@ -540,6 +695,97 @@ export function CampaignTable() {
 }`;
 
     const usageCode = code;
+
+    const menuCode = isJa
+        ? `"use client"
+
+import type { ColumnDef } from "@tanstack/react-table"
+import { IconArchive, IconPencil, IconTrash } from "@tabler/icons-react"
+import { ActionDataTable } from "@gunjo/ui"
+
+type Campaign = { id: string; name: string; owner: string; updatedAt: string }
+
+const campaigns: Campaign[] = [
+  { id: "c-001", name: "春の新生活バナー", owner: "青井 花", updatedAt: "2026-05-12" },
+  { id: "c-002", name: "アプリ訴求 LP", owner: "田中 空", updatedAt: "2026-05-10" },
+  { id: "c-003", name: "法人向け資料広告", owner: "山本 優", updatedAt: "2026-05-08" },
+]
+
+const columns: ColumnDef<Campaign>[] = [
+  { accessorKey: "name", header: "キャンペーン", size: 280 },
+  { accessorKey: "owner", header: "担当者", size: 128 },
+  { accessorKey: "updatedAt", header: "更新日", size: 120 },
+]
+
+export function CampaignTableWithMenu() {
+  return (
+    <ActionDataTable
+      columns={columns}
+      data={campaigns}
+      getRowId={(row) => row.id}
+      getRowLabel={(row) => row.name}
+      rowActionsVariant="menu"
+      labels={{ actions: "行操作" }}
+      rowActions={[
+        { id: "edit", label: "編集", icon: IconPencil },
+        { id: "archive", label: "保管", icon: IconArchive },
+        { id: "delete", label: "削除", icon: IconTrash, variant: "destructive" },
+      ]}
+    />
+  )
+}`
+        : `"use client"
+
+import type { ColumnDef } from "@tanstack/react-table"
+import { IconArchive, IconPencil, IconTrash } from "@tabler/icons-react"
+import { ActionDataTable } from "@gunjo/ui"
+
+type Campaign = { id: string; name: string; owner: string; updatedAt: string }
+
+const campaigns: Campaign[] = [
+  {
+    id: "c-001",
+    name: "Spring launch banner",
+    owner: "Hana Aoi",
+    updatedAt: "2026-05-12",
+  },
+  {
+    id: "c-002",
+    name: "App install landing page",
+    owner: "Sora Tanaka",
+    updatedAt: "2026-05-10",
+  },
+  {
+    id: "c-003",
+    name: "Enterprise whitepaper ad",
+    owner: "Yu Yamamoto",
+    updatedAt: "2026-05-08",
+  },
+]
+
+const columns: ColumnDef<Campaign>[] = [
+  { accessorKey: "name", header: "Campaign", size: 280 },
+  { accessorKey: "owner", header: "Owner", size: 128 },
+  { accessorKey: "updatedAt", header: "Updated", size: 120 },
+]
+
+export function CampaignTableWithMenu() {
+  return (
+    <ActionDataTable
+      columns={columns}
+      data={campaigns}
+      getRowId={(row) => row.id}
+      getRowLabel={(row) => row.name}
+      rowActionsVariant="menu"
+      labels={{ actions: "Row actions" }}
+      rowActions={[
+        { id: "edit", label: "Edit", icon: IconPencil },
+        { id: "archive", label: "Archive", icon: IconArchive },
+        { id: "delete", label: "Delete", icon: IconTrash, variant: "destructive" },
+      ]}
+    />
+  )
+}`;
 
     const propsData = [
         {
@@ -607,6 +853,13 @@ export function CampaignTable() {
                 { name: "Table", href: "/docs/components/table" },
                 { name: "FilterButton", href: "/docs/components/filter-button" },
             ]}
+            uixheroLinks={[
+                {
+                    label: locale === "ja" ? "UIXHERO: テーブル（Table）" : "UIXHERO: Table (in Japanese)",
+                    href: `${UIXHERO_BASE_URL}/resources/ui-components/table`,
+                    relation: "nearest",
+                },
+            ]}
         >
             <ComponentPreview code={code} codeBlock={<CodeBlock code={code} />} previewHeight="auto" previewBodyWidth="xl">
                 <ActionDataTableDemo />
@@ -640,6 +893,17 @@ export function CampaignTable() {
                             previewClassName: "max-w-none",
                             code,
                         },
+                        {
+                            key: "row-actions-menu",
+                            title: isJa ? "行操作をひとつにまとめる" : "Row actions in one menu",
+                            description: isJa
+                                ? "rowActionsVariant=\"menu\" にすると、行の操作が「⋯」のメニューに畳まれます。操作が3つを超える表や、列が詰まっている表で使います。"
+                                : 'With rowActionsVariant="menu" the per-row actions collapse into a “⋯” overflow menu — the call for tables with more than three actions, or with no room left at the end of the row.',
+                            preview: <ActionDataTableDemo compact rowActionsVariant="menu" />,
+                            previewHeight: "auto",
+                            previewClassName: "max-w-none",
+                            code: menuCode,
+                        },
                     ]}
                 />
             </section>
@@ -657,6 +921,42 @@ export function CampaignTable() {
                 </h2>
                 <CodeCopyButton code={usageCode} />
                 <CodeBlock code={usageCode} />
+            </section>
+            <section className="space-y-4">
+                <div className="border-b pb-2">
+                    <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
+                        {locale === "ja" ? "設計の判断" : "Design decisions"}
+                    </h2>
+                </div>
+                {locale === "ja" ? (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>選択の列と操作の列を <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DataTable</code> の外側で足した。</strong>この部品は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DataTable</code> を包んで、先頭にチェックボックスの列を、末尾に行ごとの操作の列を差し込みます。線を減らすこと・揃え・横スクロールの閉じ込めといった表そのものの決まりは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DataTable</code> のままで、ここでは変えていません。
+                        </li>
+                        <li>
+                            <strong>全選択のチェックは「途中」の状態を持つ。</strong>一部の行だけが選ばれているとき、見出しのチェックは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-checked="mixed"'}</code> になります。入っているか空かの2つしか無いと、「一部選択」が「全部選択」に見えてしまうためです。
+                        </li>
+                        <li>
+                            <strong>行の操作は数が増えたら畳める。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">rowActionsVariant</code> に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">menu</code> を渡すと、並べたアイコンをドロップダウンに畳みます。資料は「線を減らしてデータを主役にする」を核に挙げていますが、行ごとに5個のアイコンが並ぶのも同じ種類のノイズだからです。使えない操作は消さず、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> で理由を読めるようにしています。
+                            <br />
+                            一般の表の設計は UIXHERO の「テーブル」にあります。
+                        </li>
+                    </ul>
+                ) : (
+                    <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
+                        <li>
+                            <strong>Selection and row actions are added around <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DataTable</code>, not inside it.</strong> This component wraps <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DataTable</code>, injecting a checkbox column at the front and a row-action column at the end. Everything the table itself decides (dropping rules, alignment, containing horizontal scroll) stays with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">DataTable</code> and is not re-litigated here.
+                        </li>
+                        <li>
+                            <strong>The select-all checkbox has a third state.</strong> When only some rows are selected the header checkbox reports <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'aria-checked="mixed"'}</code>. With only checked and unchecked available, a partial selection would read as a full one.
+                        </li>
+                        <li>
+                            <strong>Row actions collapse once there are too many.</strong> Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">menu</code> to <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">rowActionsVariant</code> and the icon row folds into a dropdown. The article&rsquo;s core principle is to remove lines so the data leads; five icons repeated on every row are the same kind of noise. Unavailable actions are kept rather than hidden, with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">disabledReason</code> explaining why.
+                            <br />
+                            The general design of tables is covered by UIXHERO&rsquo;s table article.
+                        </li>
+                    </ul>
+                )}
             </section>
         </ComponentLayout>
     );

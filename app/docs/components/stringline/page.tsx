@@ -183,29 +183,70 @@ const runs: StringlineRun[] = [
     label: "712T",
     direction: "down",
     tone: "primary",
-    points: [{ stopId: "sjk", time: 432 }, { stopId: "mtk", time: 451 }, { stopId: "ttc", time: 469 }, { stopId: "hco", time: 486 }],
-    actual: [{ stopId: "sjk", time: 432 }, { stopId: "mtk", time: 455 }, { stopId: "ttc", time: 477 }, { stopId: "hco", time: 494 }],
+    points: [
+      { stopId: "sjk", time: 432 },
+      { stopId: "mtk", time: 451 },
+      { stopId: "ttc", time: 469 },
+      { stopId: "hco", time: 486 },
+    ],
+    actual: [
+      { stopId: "sjk", time: 432 },
+      { stopId: "mtk", time: 455 },
+      { stopId: "ttc", time: 477 },
+      { stopId: "hco", time: 494 },
+    ],
   },
   {
     id: "809M",
     label: "809M",
     direction: "up",
     tone: "info",
-    points: [{ stopId: "hco", time: 438 }, { stopId: "ttc", time: 456 }, { stopId: "mtk", time: 474 }, { stopId: "sjk", time: 494 }],
+    points: [
+      { stopId: "hco", time: 438 },
+      { stopId: "ttc", time: 456 },
+      { stopId: "mtk", time: 474 },
+      { stopId: "sjk", time: 494 },
+    ],
   },
   {
     id: "615A",
     label: "615A",
     direction: "down",
     tone: "warning",
-    points: [{ stopId: "sjk", time: 450 }, { stopId: "mtk", time: 466 }, { stopId: "ttc", time: 490 }, { stopId: "hco", time: 510 }],
+    points: [
+      { stopId: "sjk", time: 450 },
+      { stopId: "mtk", time: 466 },
+      { stopId: "ttc", time: 490 },
+      { stopId: "hco", time: 510 },
+    ],
   },
 ];
 
 const details = {
-  "712T": { direction: "下り", planned: "新宿 7:12 → 八王子 8:06", actual: "新宿 7:12 → 八王子 8:14", delay: "+8分", platform: "新宿 12番線", crew: "中央線運行指令" },
-  "809M": { direction: "上り", planned: "八王子 7:18 → 新宿 8:14", actual: "計画通り", delay: "定時", platform: "八王子 3番線", crew: "中央線運行指令" },
-  "615A": { direction: "下り", planned: "新宿 7:30 → 八王子 8:30", actual: "立川で調整中", delay: "+12分見込み", platform: "新宿 10番線", crew: "運転整理担当" },
+  "712T": {
+    direction: "下り",
+    planned: "新宿 7:12 → 八王子 8:06",
+    actual: "新宿 7:12 → 八王子 8:14",
+    delay: "+8分",
+    platform: "新宿 12番線",
+    crew: "中央線運行指令",
+  },
+  "809M": {
+    direction: "上り",
+    planned: "八王子 7:18 → 新宿 8:14",
+    actual: "計画通り",
+    delay: "定時",
+    platform: "八王子 3番線",
+    crew: "中央線運行指令",
+  },
+  "615A": {
+    direction: "下り",
+    planned: "新宿 7:30 → 八王子 8:30",
+    actual: "立川で調整中",
+    delay: "+12分見込み",
+    platform: "新宿 10番線",
+    crew: "運転整理担当",
+  },
 };
 
 export function TrainDiagram() {
@@ -216,8 +257,22 @@ export function TrainDiagram() {
 
   return (
     <div className="flex w-full max-w-4xl flex-col gap-3 rounded-lg border bg-card p-4">
-      <Stringline stops={stops} runs={selectableRuns} startTime={420} endTime={520} now={462} tickInterval={20} height={300} selectedRunId={selectedRunId} ariaLabel="中央線の運行図表" />
-      <section className="grid min-w-0 gap-3 rounded-md border bg-background p-3" aria-live="polite" aria-label="選択中運行の詳細">
+      <Stringline
+        stops={stops}
+        runs={selectableRuns}
+        startTime={420}
+        endTime={520}
+        now={462}
+        tickInterval={20}
+        height={300}
+        selectedRunId={selectedRunId}
+        ariaLabel="中央線の運行図表"
+      />
+      <section
+        className="grid min-w-0 gap-3 rounded-md border bg-background p-3"
+        aria-live="polite"
+        aria-label="選択中運行の詳細"
+      >
         <div className="min-w-0 space-y-1.5">
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="text-sm font-semibold text-foreground">{selectedRun.label}</h3>
@@ -228,8 +283,18 @@ export function TrainDiagram() {
           <p className="text-sm text-foreground">{detail.actual}</p>
         </div>
         <dl className="grid min-w-0 gap-2 rounded-md bg-muted/40 p-3 text-xs">
-          <div><dt className="text-muted-foreground">計画</dt><dd className="font-medium text-foreground">{detail.planned}</dd></div>
-          <div><dt className="text-muted-foreground">運行担当</dt><dd className="font-medium text-foreground">{detail.crew}</dd></div>
+          <div>
+            <dt className="text-muted-foreground">計画</dt>
+            <dd className="font-medium text-foreground">
+              {detail.planned}
+            </dd>
+          </div>
+          <div>
+            <dt className="text-muted-foreground">運行担当</dt>
+            <dd className="font-medium text-foreground">
+              {detail.crew}
+            </dd>
+          </div>
         </dl>
       </section>
     </div>
@@ -250,29 +315,70 @@ const runs: StringlineRun[] = [
     label: "712T",
     direction: "down",
     tone: "primary",
-    points: [{ stopId: "sjk", time: 432 }, { stopId: "mtk", time: 451 }, { stopId: "ttc", time: 469 }, { stopId: "hco", time: 486 }],
-    actual: [{ stopId: "sjk", time: 432 }, { stopId: "mtk", time: 455 }, { stopId: "ttc", time: 477 }, { stopId: "hco", time: 494 }],
+    points: [
+      { stopId: "sjk", time: 432 },
+      { stopId: "mtk", time: 451 },
+      { stopId: "ttc", time: 469 },
+      { stopId: "hco", time: 486 },
+    ],
+    actual: [
+      { stopId: "sjk", time: 432 },
+      { stopId: "mtk", time: 455 },
+      { stopId: "ttc", time: 477 },
+      { stopId: "hco", time: 494 },
+    ],
   },
   {
     id: "809M",
     label: "809M",
     direction: "up",
     tone: "info",
-    points: [{ stopId: "hco", time: 438 }, { stopId: "ttc", time: 456 }, { stopId: "mtk", time: 474 }, { stopId: "sjk", time: 494 }],
+    points: [
+      { stopId: "hco", time: 438 },
+      { stopId: "ttc", time: 456 },
+      { stopId: "mtk", time: 474 },
+      { stopId: "sjk", time: 494 },
+    ],
   },
   {
     id: "615A",
     label: "615A",
     direction: "down",
     tone: "warning",
-    points: [{ stopId: "sjk", time: 450 }, { stopId: "mtk", time: 466 }, { stopId: "ttc", time: 490 }, { stopId: "hco", time: 510 }],
+    points: [
+      { stopId: "sjk", time: 450 },
+      { stopId: "mtk", time: 466 },
+      { stopId: "ttc", time: 490 },
+      { stopId: "hco", time: 510 },
+    ],
   },
 ];
 
 const details = {
-  "712T": { direction: "Outbound", planned: "Shinjuku 7:12 -> Hachioji 8:06", actual: "Shinjuku 7:12 -> Hachioji 8:14", delay: "+8 min", platform: "Shinjuku platform 12", crew: "Chuo Line control" },
-  "809M": { direction: "Inbound", planned: "Hachioji 7:18 -> Shinjuku 8:14", actual: "On schedule", delay: "On time", platform: "Hachioji platform 3", crew: "Chuo Line control" },
-  "615A": { direction: "Outbound", planned: "Shinjuku 7:30 -> Hachioji 8:30", actual: "Holding at Tachikawa", delay: "+12 min est.", platform: "Shinjuku platform 10", crew: "Traffic adjustment desk" },
+  "712T": {
+    direction: "Outbound",
+    planned: "Shinjuku 7:12 -> Hachioji 8:06",
+    actual: "Shinjuku 7:12 -> Hachioji 8:14",
+    delay: "+8 min",
+    platform: "Shinjuku platform 12",
+    crew: "Chuo Line control",
+  },
+  "809M": {
+    direction: "Inbound",
+    planned: "Hachioji 7:18 -> Shinjuku 8:14",
+    actual: "On schedule",
+    delay: "On time",
+    platform: "Hachioji platform 3",
+    crew: "Chuo Line control",
+  },
+  "615A": {
+    direction: "Outbound",
+    planned: "Shinjuku 7:30 -> Hachioji 8:30",
+    actual: "Holding at Tachikawa",
+    delay: "+12 min est.",
+    platform: "Shinjuku platform 10",
+    crew: "Traffic adjustment desk",
+  },
 };
 
 export function TrainDiagram() {
@@ -283,8 +389,24 @@ export function TrainDiagram() {
 
   return (
     <div className="flex w-full max-w-4xl flex-col gap-3 rounded-lg border bg-card p-4">
-      <Stringline stops={stops} runs={selectableRuns} startTime={420} endTime={520} now={462} tickInterval={20} height={300} selectedRunId={selectedRunId} ariaLabel="Chuo Line time-distance diagram" runLabel="Run" directionLabels={{ up: "inbound", down: "outbound" }} />
-      <section className="grid min-w-0 gap-3 rounded-md border bg-background p-3" aria-live="polite" aria-label="Selected run details">
+      <Stringline
+        stops={stops}
+        runs={selectableRuns}
+        startTime={420}
+        endTime={520}
+        now={462}
+        tickInterval={20}
+        height={300}
+        selectedRunId={selectedRunId}
+        ariaLabel="Chuo Line time-distance diagram"
+        runLabel="Run"
+        directionLabels={{ up: "inbound", down: "outbound" }}
+      />
+      <section
+        className="grid min-w-0 gap-3 rounded-md border bg-background p-3"
+        aria-live="polite"
+        aria-label="Selected run details"
+      >
         <div className="min-w-0 space-y-1.5">
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="text-sm font-semibold text-foreground">{selectedRun.label}</h3>
@@ -295,8 +417,18 @@ export function TrainDiagram() {
           <p className="text-sm text-foreground">{detail.actual}</p>
         </div>
         <dl className="grid min-w-0 gap-2 rounded-md bg-muted/40 p-3 text-xs">
-          <div><dt className="text-muted-foreground">Planned</dt><dd className="font-medium text-foreground">{detail.planned}</dd></div>
-          <div><dt className="text-muted-foreground">Control</dt><dd className="font-medium text-foreground">{detail.crew}</dd></div>
+          <div>
+            <dt className="text-muted-foreground">Planned</dt>
+            <dd className="font-medium text-foreground">
+              {detail.planned}
+            </dd>
+          </div>
+          <div>
+            <dt className="text-muted-foreground">Control</dt>
+            <dd className="font-medium text-foreground">
+              {detail.crew}
+            </dd>
+          </div>
         </dl>
       </section>
     </div>

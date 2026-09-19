@@ -63,7 +63,13 @@ function DateRangePickerStates({ locale }: { locale: "ja" | "en" }) {
                     ),
                     code: `import * as React from "react";
 import type { DateRange } from "react-day-picker";
-import { DateRangePicker, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+import {
+  DateRangePicker,
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+} from "@gunjo/ui";
 
 export default function CampaignWindowField() {
   const [range, setRange] = React.useState<DateRange | undefined>();
@@ -154,7 +160,13 @@ export default function EmptyRangeField() {
                     ),
                     code: `import * as React from "react";
 import type { DateRange } from "react-day-picker";
-import { DateRangePicker, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+import {
+  DateRangePicker,
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+} from "@gunjo/ui";
 
 export default function PersistentRangeField() {
   const [range, setRange] = React.useState<DateRange | undefined>();
@@ -163,7 +175,12 @@ export default function PersistentRangeField() {
     <FormGroup className="w-full max-w-sm">
       <FormLabel htmlFor="comparison-period">Comparison period</FormLabel>
       <FormControl>
-        <DateRangePicker id="comparison-period" value={range} onValueChange={setRange} closeOnSelect={false} />
+        <DateRangePicker
+          id="comparison-period"
+          value={range}
+          onValueChange={setRange}
+          closeOnSelect={false}
+        />
       </FormControl>
       <FormDescription>Compare multiple ranges without reopening the calendar.</FormDescription>
     </FormGroup>
@@ -200,14 +217,28 @@ export default function PersistentRangeField() {
                     ),
                     code: `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
 import type { DateRange } from "react-day-picker";
-import { DateRangePicker, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+import {
+  DateRangePicker,
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+} from "@gunjo/ui";
 
-export default function LockedRangeField({ range }: { range: DateRange }) {
+const range: DateRange = {
+  from: new Date(2026, 5, 1),
+  to: new Date(2026, 5, 14),
+};
+
+export default function LockedRangeField() {
   return (
     <FormGroup className="w-full max-w-sm">
       <FormLabel htmlFor="publication-window">Publication window</FormLabel>
       <FormControl>
-        <DisabledReasonTooltip fullWidth reason="Locked because the publication window is final.">
+        <DisabledReasonTooltip
+          fullWidth
+          reason="Locked because the publication window is final."
+        >
           <DateRangePicker id="publication-window" value={range} disabled />
         </DisabledReasonTooltip>
       </FormControl>
@@ -223,9 +254,16 @@ export default function LockedRangeField({ range }: { range: DateRange }) {
 
 export default function DateRangePickerPage() {
     const { locale, sectionLabels } = useLocale();
-    const code = `import * as React from "react";
+    const code = locale === "ja"
+        ? `import * as React from "react";
 import type { DateRange } from "react-day-picker";
-import { DateRangePicker, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+import {
+  DateRangePicker,
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+} from "@gunjo/ui";
 
 export function DateRangePickerDemo() {
   const today = new Date();
@@ -238,7 +276,7 @@ export function DateRangePickerDemo() {
 
   return (
     <FormGroup className="w-full max-w-sm">
-      <FormLabel htmlFor="campaign-window">${locale === "ja" ? "キャンペーン期間" : "Campaign window"}</FormLabel>
+      <FormLabel htmlFor="campaign-window">キャンペーン期間</FormLabel>
       <FormControl>
         <DateRangePicker
           id="campaign-window"
@@ -247,7 +285,41 @@ export function DateRangePickerDemo() {
           maxRangeDays={365}
         />
       </FormControl>
-      <FormDescription>${locale === "ja" ? "開始日と終了日をまとめて選択します。" : "Choose start and end dates together."}</FormDescription>
+      <FormDescription>開始日と終了日をまとめて選択します。</FormDescription>
+    </FormGroup>
+  );
+}`
+        : `import * as React from "react";
+import type { DateRange } from "react-day-picker";
+import {
+  DateRangePicker,
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
+} from "@gunjo/ui";
+
+export function DateRangePickerDemo() {
+  const today = new Date();
+  const twoWeeksLater = new Date();
+  twoWeeksLater.setDate(today.getDate() + 13);
+  const [range, setRange] = React.useState<DateRange | undefined>({
+    from: today,
+    to: twoWeeksLater,
+  });
+
+  return (
+    <FormGroup className="w-full max-w-sm">
+      <FormLabel htmlFor="campaign-window">Campaign window</FormLabel>
+      <FormControl>
+        <DateRangePicker
+          id="campaign-window"
+          value={range}
+          onValueChange={setRange}
+          maxRangeDays={365}
+        />
+      </FormControl>
+      <FormDescription>Choose start and end dates together.</FormDescription>
     </FormGroup>
   );
 }`;

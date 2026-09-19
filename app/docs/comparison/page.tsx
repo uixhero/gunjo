@@ -186,13 +186,13 @@ export default function WhyPage() {
     const notFor = locale === "ja" ? NOT_FOR_JA : NOT_FOR_EN;
 
     return (
-        <div className="container max-w-5xl py-12 space-y-12">
+        <div className="container py-12 space-y-12">
             <header className="space-y-4">
                 <Badge variant="outline">{copy.badge}</Badge>
                 <h1 className="text-4xl font-bold tracking-tight lg:text-5xl">
                     {copy.heading}
                 </h1>
-                <p className="text-lg text-muted-foreground max-w-3xl">
+                <p className="text-lg text-muted-foreground">
                     {copy.subtitle}
                 </p>
             </header>

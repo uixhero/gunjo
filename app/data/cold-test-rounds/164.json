@@ -5,7 +5,7 @@
   "score": "4.5/5",
   "category": "運輸：トラック",
   "title": "AI にトラックの荷主ポータルを作らせてみた — 前回作ったコンポーネントが「翌回」で自力発見された（やってみた #164）",
-  "summary": "`tsc` 緑・375px mobile-first。予備知識ゼロの AI（群青を一度も触っていない設定）：",
+  "summary": "「最速の 作る→検証」。「作る→検証の距離」が縮むのが土台成熟の最終指標。",
   "article": {
     "file": "zenn-yattemita-164-shipper-portal.md",
     "slug": "164-shipper-portal",

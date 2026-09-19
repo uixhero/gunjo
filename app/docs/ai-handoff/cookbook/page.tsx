@@ -18,7 +18,7 @@ export default function CookbookIndexPage() {
     return (
         <div className="container py-12">
             <div className="space-y-12">
-                <header className="max-w-3xl space-y-4">
+                <header className="space-y-4">
                     <Badge variant="outline" className="gap-1.5">
                         <ChefHat className="h-3 w-3" />
                         Prompt cookbook

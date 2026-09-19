@@ -130,9 +130,9 @@ const pairs = [
 export function CareRelationship() {
   return (
     <div className="flex w-full max-w-xl flex-col rounded-lg border bg-card p-3">
-      {pairs.map((pair, index) => (
-        <React.Fragment key={\`\${pair.from.name}-\${pair.to.name}\`}>
-          {index > 0 ? <Separator /> : null}
+      {pairs.map((pair) => (
+        <React.Fragment key={pair.from.name + "-" + pair.to.name}>
+          {pair === pairs[0] ? null : <Separator />}
           <div className="py-2.5">
             <RelationshipRow from={pair.from} to={pair.to} relationshipLabel={pair.relationshipLabel} trailing={pair.trailing} />
           </div>
@@ -168,9 +168,9 @@ const pairs = [
 export function CareRelationship() {
   return (
     <div className="flex w-full max-w-xl flex-col rounded-lg border bg-card p-3">
-      {pairs.map((pair, index) => (
-        <React.Fragment key={\`\${pair.from.name}-\${pair.to.name}\`}>
-          {index > 0 ? <Separator /> : null}
+      {pairs.map((pair) => (
+        <React.Fragment key={pair.from.name + "-" + pair.to.name}>
+          {pair === pairs[0] ? null : <Separator />}
           <div className="py-2.5">
             <RelationshipRow from={pair.from} to={pair.to} relationshipLabel={pair.relationshipLabel} trailing={pair.trailing} />
           </div>

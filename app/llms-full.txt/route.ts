@@ -4,6 +4,7 @@ import {
     type ComponentSpec,
 } from "@/lib/component-spec-builder";
 import coldTestGallery from "@/data/cold-test-gallery.json";
+import { publishableJaEntries } from "@/lib/cold-test-drafts";
 
 // Served at /llms-full.txt. The exhaustive companion to /llms.txt: every
 // component's name + one-line description + docs URL, plus every cold-test
@@ -65,7 +66,9 @@ export function GET() {
         count: number;
         entries: ColdTestEntry[];
     };
-    const coldTestLines = [...gallery.entries]
+    // Draft rounds 404 in production (cold-test-drafts.ts) — do not hand
+    // crawlers a link list that contains them.
+    const coldTestLines = [...publishableJaEntries(gallery.entries)]
         .sort((a, b) => a.round - b.round)
         .map(
             (entry) =>
@@ -79,7 +82,7 @@ export function GET() {
 > 概要と主要な入口は ${BASE_URL}/llms.txt。
 >
 > パッケージ: @gunjo/ui（現在 beta・0.1.0-beta 系。API は変わりえます）。
-> コンポーネント計 ${specs.length} 件 / コールドテスト計 ${gallery.count} 件。
+> コンポーネント計 ${specs.length} 件 / コールドテスト計 ${coldTestLines.length} 件。
 > npm が使えない環境（単一 HTML 等）では ${BASE_URL}/tokens.css（純 CSS トークン）・
 > ${BASE_URL}/patterns.css（gj- パターンクラス）・${BASE_URL}/starter.html（見本）と
 > ${BASE_URL}/docs/no-npm を参照。
@@ -88,7 +91,7 @@ export function GET() {
 
 ${sections.join("\n\n")}
 
-# コールドテスト（実証記録・${gallery.count} 件）
+# コールドテスト（実証記録・${coldTestLines.length} 件）
 
 予備知識ゼロの AI に @gunjo/ui で実際に画面を作らせた記録。方針: ${BASE_URL}/cold-tests/why
 

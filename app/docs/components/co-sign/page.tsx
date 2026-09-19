@@ -166,7 +166,7 @@ export default function CoSignDocPage() {
   const description = content?.description ?? metadata.coSign.description;
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+      ? `import * as React from "react";
 import { CoSign, CoSignBadge, type CoSignValue } from "@gunjo/ui";
 
 export function MedicationDoubleCheck() {
@@ -208,7 +208,7 @@ export function MedicationDoubleCheck() {
     </div>
   );
 }`
-    : `import * as React from "react";
+      : `import * as React from "react";
 import { CoSign, CoSignBadge, type CoSignValue } from "@gunjo/ui";
 
 export function MedicationDoubleCheck() {
@@ -237,7 +237,7 @@ export function MedicationDoubleCheck() {
           sign: "Sign as second reviewer",
           signed: "Second review complete",
           pending: "Second review required",
-          signerOf: (id) => \`Reviewer: \${id}\`,
+          signerOf: (id) => "Reviewer: " + id,
           signDisabledAttestations: "Check every attestation before signing.",
           signDisabledSigner: "Enter the second reviewer ID before signing.",
         }}
@@ -371,42 +371,54 @@ export function MedicationDoubleCheck() {
                 : "For exceptional or higher-risk actions, require a reason before signing.",
               preview: <CoSignPreview locale={locale} requireReason />,
               code: locale === "ja"
-                ? `<CoSign
-  primaryId="ns-tanaka"
-  requireReason
-  signerLabel="確認者ID（2人目）"
-  reasonLabel="理由"
-  samePersonError="主担当者と同一人物では確認できません。"
-  labels={{
-    sign: "2人確認して署名",
-    signed: "2人確認 済",
-    signDisabledAttestations: "すべての確認項目を選択してください。",
-    signDisabledSigner: "確認者 ID を入力してください。",
-    signDisabledReason: "理由を入力してください。",
-  }}
-  attestations={[
-    { id: "drug", label: "薬剤名・規格・用量を確認した" },
-    { id: "patient", label: "患者・指示を確認した" },
-  ]}
-/>`
-                : `<CoSign
-  primaryId="ns-tanaka"
-  requireReason
-  signerLabel="Second reviewer ID"
-  reasonLabel="Reason"
-  samePersonError="The second reviewer must be different from the primary."
-  labels={{
-    sign: "Sign as second reviewer",
-    signed: "Second review complete",
-    signDisabledAttestations: "Check every attestation before signing.",
-    signDisabledSigner: "Enter the second reviewer ID before signing.",
-    signDisabledReason: "Enter a reason before signing.",
-  }}
-  attestations={[
-    { id: "drug", label: "Drug, strength, and dose checked" },
-    { id: "patient", label: "Patient and order checked" },
-  ]}
-/>`,
+                  ? `import { CoSign } from "@gunjo/ui";
+
+export function ReasonRequiredCoSign() {
+  return (
+    <CoSign
+      primaryId="ns-tanaka"
+      requireReason
+      signerLabel="確認者ID（2人目）"
+      reasonLabel="理由"
+      samePersonError="主担当者と同一人物では確認できません。"
+      labels={{
+        sign: "2人確認して署名",
+        signed: "2人確認 済",
+        signDisabledAttestations: "すべての確認項目を選択してください。",
+        signDisabledSigner: "確認者 ID を入力してください。",
+        signDisabledReason: "理由を入力してください。",
+      }}
+      attestations={[
+        { id: "drug", label: "薬剤名・規格・用量を確認した" },
+        { id: "patient", label: "患者・指示を確認した" },
+      ]}
+    />
+  );
+}`
+                  : `import { CoSign } from "@gunjo/ui";
+
+export function ReasonRequiredCoSign() {
+  return (
+    <CoSign
+      primaryId="ns-tanaka"
+      requireReason
+      signerLabel="Second reviewer ID"
+      reasonLabel="Reason"
+      samePersonError="The second reviewer must be different from the primary."
+      labels={{
+        sign: "Sign as second reviewer",
+        signed: "Second review complete",
+        signDisabledAttestations: "Check every attestation before signing.",
+        signDisabledSigner: "Enter the second reviewer ID before signing.",
+        signDisabledReason: "Enter a reason before signing.",
+      }}
+      attestations={[
+        { id: "drug", label: "Drug, strength, and dose checked" },
+        { id: "patient", label: "Patient and order checked" },
+      ]}
+    />
+  );
+}`,
             },
             {
               key: "signed",
@@ -416,36 +428,48 @@ export function MedicationDoubleCheck() {
                 : "When value is present, the component renders a read-only signed state.",
               preview: <CoSignPreview locale={locale} initialValue={createSignedValue()} />,
               code: locale === "ja"
-                ? `const signedValue = {
+                  ? `import { CoSign, type CoSignValue } from "@gunjo/ui";
+
+const signedValue: CoSignValue = {
   signerId: "ns-sato",
   attestedAt: "2026-06-30T09:30:00.000Z",
   attestations: ["drug", "patient"],
 };
 
-<CoSign
-  value={signedValue}
-  primaryId="ns-tanaka"
-  signerLabel="確認者ID（2人目）"
-  labels={{
-    signed: "2人確認 済",
-    signerOf: (id) => \`確認者: \${id}\`,
-  }}
-/>`
-                : `const signedValue = {
+export function SignedCoSign() {
+  return (
+    <CoSign
+      value={signedValue}
+      primaryId="ns-tanaka"
+      signerLabel="確認者ID（2人目）"
+      labels={{
+        signed: "2人確認 済",
+        signerOf: (id) => "確認者: " + id,
+      }}
+    />
+  );
+}`
+                  : `import { CoSign, type CoSignValue } from "@gunjo/ui";
+
+const signedValue: CoSignValue = {
   signerId: "ns-sato",
   attestedAt: "2026-06-30T09:30:00.000Z",
   attestations: ["drug", "patient"],
 };
 
-<CoSign
-  value={signedValue}
-  primaryId="ns-tanaka"
-  signerLabel="Second reviewer ID"
-  labels={{
-    signed: "Second review complete",
-    signerOf: (id) => \`Reviewer: \${id}\`,
-  }}
-/>`,
+export function SignedCoSign() {
+  return (
+    <CoSign
+      value={signedValue}
+      primaryId="ns-tanaka"
+      signerLabel="Second reviewer ID"
+      labels={{
+        signed: "Second review complete",
+        signerOf: (id) => "Reviewer: " + id,
+      }}
+    />
+  );
+}`,
             },
             {
               key: "gated-action",
@@ -455,8 +479,15 @@ export function MedicationDoubleCheck() {
                 : "Disable the follow-up action until the second review is complete, with tooltip feedback.",
               preview: <GatedActionPreview locale={locale} />,
               code: locale === "ja"
-                ? `import * as React from "react";
-import { Button, CoSign, Tooltip, TooltipContent, TooltipTrigger, type CoSignValue } from "@gunjo/ui";
+                  ? `import * as React from "react";
+import {
+  Button,
+  CoSign,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+  type CoSignValue,
+} from "@gunjo/ui";
 
 export function GatedMedicationAction() {
   const [value, setValue] = React.useState<CoSignValue | undefined>();
@@ -491,8 +522,15 @@ export function GatedMedicationAction() {
     </div>
   );
 }`
-                : `import * as React from "react";
-import { Button, CoSign, Tooltip, TooltipContent, TooltipTrigger, type CoSignValue } from "@gunjo/ui";
+                  : `import * as React from "react";
+import {
+  Button,
+  CoSign,
+  Tooltip,
+  TooltipContent,
+  TooltipTrigger,
+  type CoSignValue,
+} from "@gunjo/ui";
 
 export function GatedMedicationAction() {
   const [value, setValue] = React.useState<CoSignValue | undefined>();
@@ -518,7 +556,10 @@ export function GatedMedicationAction() {
         <Tooltip>
           <TooltipTrigger asChild>
             <span className={!value ? "inline-flex cursor-not-allowed" : "inline-flex"}>
-              <Button disabled={!value} variant="destructive">Record administration</Button>
+              <Button
+                disabled={!value}
+                variant="destructive"
+              >Record administration</Button>
             </span>
           </TooltipTrigger>
           {!value ? <TooltipContent>Complete the second review before running this action.</TooltipContent> : null}

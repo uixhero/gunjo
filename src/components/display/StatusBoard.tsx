@@ -20,7 +20,7 @@ export interface StatusBoardItem {
   label: React.ReactNode
   /** Status label (空車 / 故障 / 稼働中). Shown as a colour-safe pill (icon + text). */
   status: React.ReactNode
-  /** Tone for the status pill + tile accent. Default `default`. */
+  /** Tone for the status pill + semantic tile surface. Default `default`. */
   tone?: StatusBoardTone
   /** Optional status icon (paired with the label — meaning never rides on colour alone). */
   statusIcon?: React.ReactNode
@@ -69,13 +69,13 @@ export interface StatusBoardProps extends Omit<React.HTMLAttributes<HTMLDivEleme
 }
 
 const TONE_TILE: Record<SemanticTone, string> = {
-  default: "border-l-border",
-  primary: "border-l-primary",
-  info: "border-l-info",
-  success: "border-l-success",
-  warning: "border-l-warning",
-  destructive: "border-l-destructive",
-  muted: "border-l-border",
+  default: "",
+  primary: "border-primary-border bg-primary-subtle",
+  info: "border-info-border bg-info-subtle",
+  success: "border-success-border bg-success-subtle",
+  warning: "border-warning-border bg-warning-subtle",
+  destructive: "border-destructive-border bg-destructive-subtle",
+  muted: "",
 }
 
 const TONE_PILL: Record<SemanticTone, string> = {
@@ -127,6 +127,7 @@ function sortItems(items: StatusBoardItem[]): StatusBoardItem[] {
 
 function Tile({ item, selected }: { item: StatusBoardItem; selected: boolean }) {
   const tone = normalizeStatusBoardTone(item.tone ?? "default")
+  const hasToneSurface = tone !== "default" && tone !== "muted"
   const body = (
     <>
       <div className="flex items-start justify-between gap-2">
@@ -150,10 +151,12 @@ function Tile({ item, selected }: { item: StatusBoardItem; selected: boolean }) 
     </>
   )
   const className = cn(
-    "flex flex-col rounded-md border border-l-4 bg-card p-2.5 text-left transition-colors",
+    "flex flex-col rounded-md border bg-card p-2.5 text-left transition-colors",
     TONE_TILE[tone],
-    selected && "ring-2 ring-ring",
-    item.onSelect && "hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+    selected && "border-ring ring-1 ring-ring",
+    selected && !hasToneSurface && "bg-accent",
+    item.onSelect && "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+    item.onSelect && (hasToneSurface ? "hover:brightness-95" : "hover:bg-accent")
   )
   if (item.onSelect) {
     return (
@@ -173,7 +176,8 @@ function Tile({ item, selected }: { item: StatusBoardItem; selected: boolean }) 
  * StatusBoard — the live entity status board at the center of every dispatch / monitoring floor:
  * many labeled entities (vehicles / machines / spots), each carrying a status (空車 / 故障 /
  * 稼働中), a location, and a note, laid out as a responsive tile grid. Problems and availability
- * stand out via a tone-accent rail + a colour-safe status pill (icon + text, never colour alone),
+ * stand out via a semantic border + subtle background and a colour-safe status pill
+ * (icon + text, never colour alone),
  * tiles sort fault-first by default, and tiles can be grouped by zone/area with a per-group
  * problem count. The board a Gantt/DataTable/HeatmapChart can't be — taxi 配車盤, 駅務の機器状態盤,
  * ramp GSE board, factory line OEE. RSC-safe except the opt-in onSelect.

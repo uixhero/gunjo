@@ -719,7 +719,7 @@ function AltTextGuidance({ isJa }: { isJa: boolean }) {
                 <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
                     {isJa ? "画像と代替テキスト" : "Images and Alt Text"}
                 </h2>
-                <p className="max-w-3xl text-muted-foreground">
+                <p className="text-muted-foreground">
                     {isJa
                         ? "画像の `alt` は翻訳のついでではなく、画像が UI の中で何を担っているかを説明する文言です。Img、ImagePreview、AssetCard、Avatar、グラフ、地図を確認する時は必ず見ます。"
                         : "Image alt text is not an afterthought. It explains what the image does in the UI. Review it for Img, ImagePreview, AssetCard, Avatar, charts, and maps."}
@@ -805,7 +805,7 @@ export default function WritingGuidelinesPage() {
                                 {isJa ? "Voice & Tone" : "文言"}
                             </span>
                         </h1>
-                        <p className="max-w-3xl text-lg leading-relaxed text-muted-foreground">
+                        <p className="text-lg leading-relaxed text-muted-foreground">
                             {isJa
                                 ? "GunjoUI のボタン、説明文、エラー、空状態、ツールチップ、トーストを、同じ判断基準で設計するためのガイドラインです。文言は翻訳の後工程ではなく、コンポーネント品質の一部として扱います。"
                                 : "Guidelines for designing GunjoUI button labels, descriptions, errors, empty states, tooltips, and toasts with a shared content model. Copy is part of component quality, not a translation afterthought."}
@@ -839,7 +839,7 @@ export default function WritingGuidelinesPage() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
                         {isJa ? "基本原則" : "Principles"}
                     </h2>
-                    <p className="max-w-3xl text-muted-foreground">
+                    <p className="text-muted-foreground">
                         {isJa
                             ? "文言は、UI の余白を埋めるものではありません。操作を決めるための情報として置きます。"
                             : "Copy is not filler. It is information that helps people decide and act."}
@@ -905,7 +905,7 @@ export default function WritingGuidelinesPage() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
                         {isJa ? "場面別パターン" : "Patterns by Context"}
                     </h2>
-                    <p className="max-w-3xl text-muted-foreground">
+                    <p className="text-muted-foreground">
                         {isJa
                             ? "読む人が最初に知りたいのは、文言の分類ではなく、いま見ている UI で何を書けばよいかです。"
                             : "People do not start with taxonomy. They start with the UI in front of them and what it needs to say."}
@@ -945,7 +945,7 @@ export default function WritingGuidelinesPage() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
                         {isJa ? "良い例 / 悪い例" : "Do / Don’t"}
                     </h2>
-                    <p className="max-w-3xl text-muted-foreground">
+                    <p className="text-muted-foreground">
                         {isJa
                             ? "短いだけ、実装語のまま、理由がない文言は直します。比較で見ると判断しやすくなります。"
                             : "Copy that is merely short, implementation-heavy, or missing a reason should be revised. Comparisons make the rule easier to apply."}
@@ -984,7 +984,7 @@ export default function WritingGuidelinesPage() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
                         {isJa ? "メッセージ一覧" : "Message Catalog"}
                     </h2>
-                    <p className="max-w-3xl text-muted-foreground">
+                    <p className="text-muted-foreground">
                         {isJa
                             ? "文言は最終的に大量の辞書になります。ここではまず頻出する操作、状態、エラー、確認、docs 説明をカテゴリ別に並べ、今後追加する候補も同じ形式で増やします。"
                             : "Copy eventually becomes a large catalog. This page starts with common actions, states, errors, confirmations, and docs copy so future candidates can be added in the same format."}
@@ -1065,7 +1065,7 @@ export default function WritingGuidelinesPage() {
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
                         {isJa ? "確認手順" : "Review Process"}
                     </h2>
-                    <p className="max-w-3xl text-muted-foreground">
+                    <p className="text-muted-foreground">
                         {isJa
                             ? "コンポーネント詳細ページやパターンを更新する時は、見た目、操作、文言をまとめて確認します。"
                             : "When updating component docs or patterns, review visual quality, behavior, and copy together."}
@@ -1097,7 +1097,7 @@ export default function WritingGuidelinesPage() {
                     <Badge variant="outline">GitHub Issue #234</Badge>
                     <Badge variant="outline">component docs audit</Badge>
                 </div>
-                <p className="max-w-3xl text-sm leading-6 text-muted-foreground">
+                <p className="text-sm leading-6 text-muted-foreground">
                     {isJa
                         ? "このページは公開向けの基準です。運用メモ、棚卸し、今後追加するメッセージ候補はリポジトリ内の docs/content-guidelines.md と Issue #234 で管理します。"
                         : "This page is the public-facing standard. Operating notes, audits, and future message candidates remain tracked in docs/content-guidelines.md and Issue #234."}

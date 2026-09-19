@@ -5,7 +5,7 @@
   "score": "4/5",
   "category": "保険",
   "title": "AI に保険の契約管理を作らせてみた — 金額内訳がまた手組み、次に作るべきものが見えた（やってみた #102）",
-  "summary": "#101査定とは別の契約/営業系。観測の核——**#101 で課題に記録した CalculationLedger（金額の導出ブロック）が、保険料内訳でまた手組みされるか。**",
+  "summary": "~85%が組み立て。索引は効く、が「合成コンポーネント」には更新が要る。",
   "article": {
     "file": "zenn-yattemita-102-insurance-policies.md",
     "slug": "102-insurance-policies",
