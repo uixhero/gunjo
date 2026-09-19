@@ -577,4 +577,15 @@ export const INPUTS_SPEC_DEFINITIONS = [
       ],
     }),
   },
+  {
+    key: "timelineScrubber",
+    syntheticSpec: createSyntheticInputsSpec({
+      frameId: "synthetic:timelineScrubber",
+      title: "TimelineScrubber",
+      description: "One scale that runs from the past into the future — radar frames from two hours ago to twelve hours ahead, a log's recent snapshots, a forecast run — with the selected moment FIXED in the middle and the scale sliding under it. Dragging slides the ticks (relative drag, touch-action pan-y so the page still scrolls), so the moment you are looking at stays where your eye already is; the ends fade out to say there is more; a tap on a tick jumps to it. `lastObservedIndex` splits measured from forecast, told apart three ways and never by colour alone: the header names the side (Badge 'Observed' / 'Forecast'), the boundary is a dashed line, and the ticks and the centre marker change tone (success / warning). Play steps forward every `stepInterval` ms and stops at the end (controlled `playing` or its own); it owns that timer only and never reads the clock, so what 'now' is stays the caller's decision (the TimeTransport rule). Dragging or a key pauses it. role='slider' with arrows, PageUp / PageDown and Home / End; aria-valuetext reads the step and its side ('11:05 · Forecast'). Major ticks carry labels, thinned so none sit closer than 44px; pending (not yet loaded) steps are drawn faint. HTML/CSS. Distinct from Slider (a value on a fixed track, thumb moves), DayBand (one day with phases, thumb moves) and TimeTransport (a continuous clock with speeds and jumps; this is its frame-by-frame sibling).",
+      variants: [
+        createSyntheticVariant("default", { width: null, padding: null }),
+      ],
+    }),
+  },
 ];

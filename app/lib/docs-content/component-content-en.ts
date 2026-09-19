@@ -33,6 +33,18 @@ export const componentContentEn: Record<string, DocContent> = {
     title: "PlacePanel",
     description: "The details of one place picked on a map, in a panel from the bottom edge. Every row is there from the start; only the values wait as skeletons, and a value that could not be fetched settles to a dash.",
   },
+  "components/map-status-corner": {
+    title: "MapStatusCorner",
+    description: "A few short lines in the top-right of a map saying what the reader is looking at. On a narrow screen only the first line or two sit beside the words on the left.",
+  },
+  "components/range-bar": {
+    title: "RangeBar",
+    description: "One range drawn where it sits inside a whole scale: a week of low-to-high temperatures, the price band of each plan.",
+  },
+  "components/timeline-scrubber": {
+    title: "TimelineScrubber",
+    description: "One scale from the past (measured) into the future (forecast). The centre stays put and the scale slides under it, with a boundary between the two and playback.",
+  },
   "components/scale-bar": {
     title: "ScaleBar",
     description: "The current scale as a distance (“20 km”) over a line of that length. Never a zoom factor.",

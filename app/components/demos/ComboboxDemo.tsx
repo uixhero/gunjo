@@ -2,13 +2,17 @@
 
 import * as React from "react";
 import {
-    Combobox,
+    Combobox as GunjoCombobox,
     FormControl,
     FormDescription,
     FormGroup,
     FormLabel,
 } from "@gunjo/ui";
+import { withPreviewPortal } from "@/components/doc/PreviewPortal";
 import { useLocale } from "@/components/providers/LocaleProvider";
+
+// On docs pages the list opens inside the preview frame (docs-page rule ①); on /embed pages it keeps the body portal.
+const Combobox = withPreviewPortal(GunjoCombobox);
 
 const frameworks = [
     { value: "next", label: "Next.js" },

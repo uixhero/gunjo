@@ -11,8 +11,12 @@ import inputsMetadata from "@design/inputs-metadata.json";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { DateRangePickerDemo } from "@/components/demos/DateRangePickerDemo";
 import { CodeBlock } from "@/components/doc/CodeBlock";
-import { DateRangePicker, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+import { DateRangePicker as GunjoDateRangePicker, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { withPreviewPortal } from "@/components/doc/PreviewPortal";
+
+// Live previews open the popup inside the preview frame (docs-page rule ①).
+const DateRangePicker = withPreviewPortal(GunjoDateRangePicker);
 
 function createRange(daysFromToday: number, durationDays: number): DateRange {
     const from = new Date();
@@ -366,6 +370,12 @@ export function DateRangePickerUsage() {
         { name: "closeOnSelect", type: "boolean", default: "true", description: locale === "ja" ? "開始日と終了日が揃った時にカレンダーを閉じるかを指定します。期間を見比べる用途では、開いたままにします。" : "Whether the calendar closes after both dates are selected. Set false when users need to compare ranges." },
         { name: "maxRangeDays", type: "number", description: locale === "ja" ? "選択できる最大日数。3か月なら 90、半年なら 180、1年なら 365 のように用途ごとに指定します。未指定の場合は上限を設けません。" : "Maximum selectable range in days. Use 90 for three months, 180 for six months, or 365 for one year. Leave undefined for no limit." },
         { name: "disabled", type: "boolean", default: "false", description: locale === "ja" ? "入力とカレンダー操作を無効化します。" : "Disables the input and calendar button." },
+        {
+            name: "portalContainer",
+            type: "HTMLElement | null",
+            default: "document.body",
+            description: locale === "ja" ? "ポップアップを出す先の要素です。枠のある場所に置くときは、その枠を渡すと中に収まります。" : "Element the popup is portalled into. Pass a bounded container to keep the popup inside it.",
+        },
     ];
 
     return (

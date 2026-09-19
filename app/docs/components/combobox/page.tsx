@@ -8,13 +8,17 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { ComboboxDemo } from "@/components/demos/ComboboxDemo";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import {
-    Combobox,
+    Combobox as GunjoCombobox,
     FormControl,
     FormDescription,
     FormGroup,
     FormLabel,
 } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
+import { withPreviewPortal } from "@/components/doc/PreviewPortal";
+
+// Live previews open the popup inside the preview frame (docs-page rule ①).
+const Combobox = withPreviewPortal(GunjoCombobox);
 
 const FRAMEWORKS = [
     { value: "next", label: "Next.js" },
@@ -557,6 +561,12 @@ export function ComboboxUsage() {
             type: "boolean",
             description: locale === "ja" ? "選択ボタンを操作できない状態にします。" : "Disables the trigger button.",
         },
+        {
+            name: "portalContainer",
+            type: "HTMLElement | null",
+            default: "document.body",
+            description: isJa ? "ポップアップを出す先の要素です。枠のある場所に置くときは、その枠を渡すと中に収まります。" : "Element the popup is portalled into. Pass a bounded container to keep the popup inside it.",
+        },
     ];
 
     return (
@@ -579,11 +589,11 @@ export function ComboboxUsage() {
             ]}
         >
             <ComponentPreview
-                embedSrc="/embed/combobox"
                 code={code}
                 codeBlock={<CodeBlock code={code} />}
                 sectionLabels={sectionLabels}
                 previewBodyWidth="md"
+                previewHeight="auto"
             >
                 <ComboboxDemo />
             </ComponentPreview>

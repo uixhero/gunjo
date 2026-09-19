@@ -314,12 +314,11 @@ export default function ContextMenuPage() {
             ]}
         >
             <ComponentPreview
-                embedSrc="/embed/context-menu"
                 code={usageCode}
                 codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
-                previewHeight={360}
                 previewBodyWidth="lg"
+                previewHeight="auto"
             >
                 <ContextMenuAuditDemo />
             </ComponentPreview>
@@ -338,8 +337,6 @@ export default function ContextMenuPage() {
                                 : "A context menu with right-click access, keyboard support, checkboxes, and radio selection.",
                             preview: <ContextMenuAuditDemo />,
                             code: usageCode,
-                            embedSrc: "/embed/context-menu?variant=file-actions",
-                            previewHeight: 360,
                             previewBodyWidth: "lg",
                         },
                         {
@@ -350,8 +347,6 @@ export default function ContextMenuPage() {
                                 : "Keeps a plain text menu left-aligned and easy to scan.",
                             preview: <ContextMenuAuditDemo variant="text-only" />,
                             code: textOnlyCode,
-                            embedSrc: "/embed/context-menu?variant=text-only",
-                            previewHeight: 360,
                             previewBodyWidth: "lg",
                         },
                         {
@@ -362,8 +357,6 @@ export default function ContextMenuPage() {
                                 : "Groups related actions in a submenu while preserving shortcut and disabled item alignment.",
                             preview: <ContextMenuAuditDemo variant="nested-actions" />,
                             code: nestedCode,
-                            embedSrc: "/embed/context-menu?variant=nested-actions",
-                            previewHeight: 360,
                             previewBodyWidth: "lg",
                         },
                     ]}

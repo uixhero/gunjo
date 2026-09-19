@@ -32,7 +32,8 @@ type PropRow = {
 type OverlayDocConfig = {
     metadataKey: keyof typeof overlayMetadata;
     embed: string;
-    previewHeight: number;
+    /** "fit" sizes the frame to the content instead of reserving a fixed height. */
+    previewHeight: number | "fit";
     code: Record<Locale, string>;
     props: Record<Locale, PropRow[]>;
     states: Record<Locale, DemoState[]>;
@@ -95,7 +96,8 @@ function overlayState(
     embed: string,
     variant: string,
     code: string,
-    previewHeight = 500
+    // "fit" = size the frame to the content (docs-page rule ①: do not reserve room for an overlay that opens as a side effect).
+    previewHeight: number | "fit" = 500
 ): DemoState {
     return {
         key,
@@ -105,8 +107,8 @@ function overlayState(
         preview: <div />,
         code,
         previewBodyWidth: "full",
-        previewHeight,
-        fitEmbedHeightContent: false,
+        previewHeight: previewHeight === "fit" ? undefined : previewHeight,
+        fitEmbedHeightContent: previewHeight === "fit",
     };
 }
 
@@ -2201,13 +2203,13 @@ const configs: Record<OverlayAuditKind, OverlayDocConfig> = {
                 overlayState("standard", "標準表示", "入力、設定、完了の3ステップを順番に進めます。", "/embed/onboarding-flow", "default", onboardingCode.ja, 460),
                 overlayState("compact", "コンパクト", "狭い面でもステップ内容を読みやすく保ちます。", "/embed/onboarding-flow", "compact", onboardingCode.ja, 440),
                 overlayState("controlled", "制御状態", "現在ステップを外部 state で管理する構成です。", "/embed/onboarding-flow", "controlled", onboardingControlledCode.ja, 460),
-                overlayState("complete", "完了後", "最後のステップ後に表示する完了状態です。", "/embed/onboarding-flow", "complete", onboardingCompleteCode.ja, 460),
+                overlayState("complete", "完了後", "最後のステップ後に表示する完了状態です。", "/embed/onboarding-flow", "complete", onboardingCompleteCode.ja, "fit"),
             ],
             en: [
                 overlayState("standard", "Standard", "Walks through profile, workspace, and completion steps.", "/embed/onboarding-flow", "default", onboardingCode.en, 460),
                 overlayState("compact", "Compact", "Keeps step content readable in a narrow surface.", "/embed/onboarding-flow", "compact", onboardingCode.en, 440),
                 overlayState("controlled", "Controlled", "Manages the current step from external state.", "/embed/onboarding-flow", "controlled", onboardingControlledCode.en, 460),
-                overlayState("complete", "Complete", "Shows the completion state after the final step.", "/embed/onboarding-flow", "complete", onboardingCompleteCode.en, 460),
+                overlayState("complete", "Complete", "Shows the completion state after the final step.", "/embed/onboarding-flow", "complete", onboardingCompleteCode.en, "fit"),
             ],
         },
     },
@@ -2332,7 +2334,7 @@ const configs: Record<OverlayAuditKind, OverlayDocConfig> = {
     tooltip: {
         metadataKey: "tooltip",
         embed: "/embed/tooltip",
-        previewHeight: 360,
+        previewHeight: "fit",
         code: tooltipCode,
         relatedComponents: [{ name: "TooltipButton", href: "/docs/components/tooltip-button" }, { name: "Popover", href: "/docs/components/popover" }],
         props: {
@@ -2351,18 +2353,18 @@ const configs: Record<OverlayAuditKind, OverlayDocConfig> = {
         },
         states: {
             ja: [
-                overlayState("icon", "アイコン操作", "アイコンだけのボタンに操作名を補足します。", "/embed/tooltip", "icon", tooltipCode.ja, 360),
-                overlayState("shortcut", "ショートカット付き", "操作名とキーボードショートカットを一緒に伝えます。", "/embed/tooltip", "shortcut", tooltipShortcutCode.ja, 360),
-                overlayState("disabled", "無効理由", "押せない理由を hover/focus で説明します。", "/embed/tooltip", "disabled", tooltipDisabledCode.ja, 360),
-                overlayState("long", "長めの補足", "長すぎる場合は Popover へ分ける判断材料にします。", "/embed/tooltip", "long", tooltipLongCode.ja, 360),
-                overlayState("placement", "表示位置", "上下左右の表示位置を指定できます。", "/embed/tooltip", "placement", tooltipPlacementCode.ja, 360),
+                overlayState("icon", "アイコン操作", "アイコンだけのボタンに操作名を補足します。", "/embed/tooltip", "icon", tooltipCode.ja, "fit"),
+                overlayState("shortcut", "ショートカット付き", "操作名とキーボードショートカットを一緒に伝えます。", "/embed/tooltip", "shortcut", tooltipShortcutCode.ja, "fit"),
+                overlayState("disabled", "無効理由", "押せない理由を hover/focus で説明します。", "/embed/tooltip", "disabled", tooltipDisabledCode.ja, "fit"),
+                overlayState("long", "長めの補足", "長すぎる場合は Popover へ分ける判断材料にします。", "/embed/tooltip", "long", tooltipLongCode.ja, "fit"),
+                overlayState("placement", "表示位置", "上下左右の表示位置を指定できます。", "/embed/tooltip", "placement", tooltipPlacementCode.ja, "fit"),
             ],
             en: [
-                overlayState("icon", "Icon action", "Names an icon-only button.", "/embed/tooltip", "icon", tooltipCode.en, 360),
-                overlayState("shortcut", "With shortcut", "Pairs the action name with a keyboard shortcut.", "/embed/tooltip", "shortcut", tooltipShortcutCode.en, 360),
-                overlayState("disabled", "Disabled reason", "Explains why a control is unavailable on hover/focus.", "/embed/tooltip", "disabled", tooltipDisabledCode.en, 360),
-                overlayState("long", "Long helper", "Shows when to move longer copy into a Popover.", "/embed/tooltip", "long", tooltipLongCode.en, 360),
-                overlayState("placement", "Placement", "Specifies top, right, bottom, and left placement.", "/embed/tooltip", "placement", tooltipPlacementCode.en, 360),
+                overlayState("icon", "Icon action", "Names an icon-only button.", "/embed/tooltip", "icon", tooltipCode.en, "fit"),
+                overlayState("shortcut", "With shortcut", "Pairs the action name with a keyboard shortcut.", "/embed/tooltip", "shortcut", tooltipShortcutCode.en, "fit"),
+                overlayState("disabled", "Disabled reason", "Explains why a control is unavailable on hover/focus.", "/embed/tooltip", "disabled", tooltipDisabledCode.en, "fit"),
+                overlayState("long", "Long helper", "Shows when to move longer copy into a Popover.", "/embed/tooltip", "long", tooltipLongCode.en, "fit"),
+                overlayState("placement", "Placement", "Specifies top, right, bottom, and left placement.", "/embed/tooltip", "placement", tooltipPlacementCode.en, "fit"),
             ],
         },
     },
@@ -2407,8 +2409,8 @@ export function OverlayAuditDocPage({
                 code={code}
                 codeBlock={<CodeBlock code={code} />}
                 previewBodyWidth="full"
-                previewHeight={config.previewHeight}
-                fitEmbedHeightContent={false}
+                previewHeight={config.previewHeight === "fit" ? undefined : config.previewHeight}
+                fitEmbedHeightContent={config.previewHeight === "fit"}
                 sectionLabels={sectionLabels}
             >
                 <div />

@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import { Button, StickyNoticeBar, TextLink } from "@gunjo/ui";
+import { Button, StickyNoticeBar, Switch, TextLink } from "@gunjo/ui";
 import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react";
 
 type Locale = "ja" | "en";
@@ -109,5 +109,71 @@ export function StickyNoticeBarContainedDemo({ locale = "en" }: { locale?: Local
                 </div>
             </div>
         </div>
+    );
+}
+
+const timedCopy = {
+    ja: {
+        before: "あと",
+        minutes: "10分",
+        after: ["で、", "最終の", "バスが", "駅前の", "3番のりばから", "出発します"],
+        action: "のりばを見る",
+        dismiss: "見送る",
+        restore: "もう一度出す",
+        toggle: "語の途中で折らない（textWrap=\"phrase\"）",
+    },
+    en: {
+        before: "In",
+        minutes: "10 minutes",
+        after: [" the last bus", " leaves from", " stand 3"],
+        action: "Show the stand",
+        dismiss: "Not now",
+        restore: "Show again",
+        toggle: "Never break inside a word (textWrap=\"phrase\")",
+    },
+} as const;
+
+/**
+ * N: a notice that appears when a time is near. The dismiss is a word (a real
+ * second choice), and with textWrap="phrase" the Japanese message breaks only
+ * at the <wbr> marks between phrases. The switch shows the difference.
+ */
+export function StickyNoticeBarTimedDemo({ locale = "en" }: { locale?: Locale }) {
+    const labels = timedCopy[locale];
+    const [visible, setVisible] = React.useState(true);
+    const [phrase, setPhrase] = React.useState(true);
+
+    return (
+        <main className="relative h-screen min-h-[320px] overflow-hidden bg-muted text-foreground">
+            {visible ? (
+                <StickyNoticeBar
+                    edge="top"
+                    textWrap={phrase ? "phrase" : "anywhere"}
+                    action={
+                        <Button size="touch" variant="outline" className="rounded-full">
+                            {labels.action}
+                        </Button>
+                    }
+                    dismissText={labels.dismiss}
+                    onDismiss={() => setVisible(false)}
+                >
+                    {labels.before} <strong className="font-semibold text-primary">{labels.minutes}</strong>
+                    {labels.after.map((part) => (
+                        <React.Fragment key={part}>
+                            <wbr />
+                            {part}
+                        </React.Fragment>
+                    ))}
+                </StickyNoticeBar>
+            ) : null}
+            <div className="flex h-full flex-col items-center justify-end gap-4 px-4 pb-8">
+                {!visible ? (
+                    <Button size="touch" onClick={() => setVisible(true)}>
+                        {labels.restore}
+                    </Button>
+                ) : null}
+                <Switch checked={phrase} onCheckedChange={setPhrase} label={labels.toggle} />
+            </div>
+        </main>
     );
 }

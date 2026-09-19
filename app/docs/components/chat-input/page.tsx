@@ -17,16 +17,22 @@ import {
     IconSparkles as Sparkles,
 } from "@tabler/icons-react";
 import {
-    ChatComposer,
-    ChatInput,
+    ChatComposer as GunjoChatComposer,
+    ChatInput as GunjoChatInput,
     Popover,
-    PopoverContent,
+    PopoverContent as GunjoPopoverContent,
     PopoverTrigger,
     Switch,
     Tooltip,
     TooltipContent,
     TooltipTrigger,
 } from "@gunjo/ui";
+import { withPreviewPortal, withPreviewPortalIn } from "@/components/doc/PreviewPortal";
+
+// Live previews open popovers and menus inside the preview frame (docs-page rule ①).
+const ChatComposer = withPreviewPortalIn(GunjoChatComposer, "inputProps");
+const ChatInput = withPreviewPortal(GunjoChatInput);
+const PopoverContent = withPreviewPortal(GunjoPopoverContent);
 
 function ChatInputExample({ processing = false, disabled = false }: { processing?: boolean; disabled?: boolean }) {
     const { locale } = useLocale();
@@ -686,12 +692,11 @@ export default function ChatInputDocPage() {
             ]}
         >
             <ComponentPreview
-                embedSrc="/embed/chat-input"
                 code={usageCode}
                 codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
                 previewBodyWidth="lg"
-                previewHeight={340}
+                previewHeight="auto"
             >
                 <ChatInputExample />
             </ComponentPreview>
@@ -786,6 +791,7 @@ export default function ChatInputDocPage() {
                         { name: "voiceActive", type: "boolean", default: "false", description: isJa ? "音声認識の録音中状態を外部から制御する場合に指定します。" : "Controls the speech recognition listening state from outside." },
                         { name: "showOptionsButton / showModelSelector / showVoiceButton", type: "boolean", default: "true", description: isJa ? "下段ツールバーの補助操作を表示するかを指定します。入力オプションは optionsContent または onOptionsClick がある場合だけ表示されます。" : "Controls optional toolbar actions. The options action is shown only when optionsContent or onOptionsClick is provided." },
                         { name: "labels", type: "ChatInputLabels", description: isJa ? "ツールチップと無効化理由の文言を指定します。" : "Labels for tooltips and disabled reasons." },
+                        { name: "portalContainer", type: "HTMLElement | null", default: "document.body", description: isJa ? "オプションとモデル選択のポップアップを出す先の要素です。枠のある場所に置くときは、その枠を渡すと中に収まります。" : "Element the options popover and model menu are portalled into. Pass a bounded container to keep them inside it." },
                     ]}
                 />
             </section>

@@ -31,6 +31,8 @@ export interface NotificationCenterProps {
     onLinkClick?: (id: string) => void
     onClearAll?: () => void
     labels?: NotificationCenterLabels
+    /** Element the popup is portalled into (default: document.body). Pass the preview surface to keep it inside a bounded frame. */
+    portalContainer?: HTMLElement | null
 }
 
 const NotificationCenter = ({
@@ -39,6 +41,7 @@ const NotificationCenter = ({
     onLinkClick,
     onClearAll,
     labels,
+    portalContainer,
 }: NotificationCenterProps) => {
     const unreadCount = notifications.filter((n) => !n.read).length
     const [isOpen, setIsOpen] = React.useState(false)
@@ -71,7 +74,7 @@ const NotificationCenter = ({
                 </PopoverTrigger>
                 <TooltipContent>{resolvedLabels.toggle}</TooltipContent>
             </Tooltip>
-            <PopoverContent align="end" className="w-[320px] p-0" sideOffset={8}>
+            <PopoverContent portalContainer={portalContainer} align="end" className="w-[320px] p-0" sideOffset={8}>
                 <div className="flex items-center justify-between border-b px-4 py-3 bg-muted/50 backdrop-blur">
                     <h4 className="font-semibold text-sm">{resolvedLabels.title}</h4>
                     {unreadCount > 0 && onClearAll && (

@@ -11,7 +11,11 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import inputsMetadata from "@design/inputs-metadata.json";
-import { DocNote, LayerMenu, layerMenuAllState, type LayerMenuGroup } from "@gunjo/ui";
+import { DocNote, LayerMenu as GunjoLayerMenu, layerMenuAllState, type LayerMenuGroup } from "@gunjo/ui";
+import { withPreviewPortal } from "@/components/doc/PreviewPortal";
+
+// Live previews open the layer list inside the preview frame (docs-page rule ①).
+const LayerMenu = withPreviewPortal(GunjoLayerMenu);
 
 type Locale = "ja" | "en";
 
