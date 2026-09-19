@@ -6,9 +6,21 @@ import type { DocContent } from "./types";
  * を補完し、特に description は日本語ページで英語 fallback にならないようにする。
  */
 export const componentContentJa: Record<string, DocContent> = {
+  "components/action-progress": {
+    title: "ActionProgress",
+    description: "保存や送信のような短い処理のあいだ、画面を塞いで「処理中」を伝える小さなダイアログです。中身は、上端の流れるバー、回る印（Spinner）、題と説明です。既定では 350ms 待ってから出すので、すぐ終わる処理では何も出ません。",
+  },
   "components/button": {
     title: "Button",
     description: "ボタン、またはボタン風の見た目のコンポーネントを表示します。",
+  },
+  "components/progress-dialog": {
+    title: "ProgressDialog",
+    description: "数十秒以上かかる処理を待つあいだのダイアログです。16:9 の絵、いまの状態を伝える一文、自由に中身を入れられる補助の枠（任意）、キャンセルのボタン（任意）を持ちます。利用者の操作では閉じず、閉じるのは呼び出し側のコードです。",
+  },
+  "components/route-progress": {
+    title: "RouteProgress",
+    description: "ページの移動中に画面の上端へ出す細いバーです。進み具合（％）を持たず、描画しているあいだだけ流れます。",
   },
   "components/layer-menu": {
     title: "LayerMenu",

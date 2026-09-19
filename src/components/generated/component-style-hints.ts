@@ -220,6 +220,19 @@ export const componentStyleHints = {
     }
   },
   "feedback": {
+    "actionProgress": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "p-0",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "p-0"
+      },
+      "variantColorHints": {}
+    },
     "alert": {
       "variantKeys": [
         "default",
@@ -304,6 +317,19 @@ export const componentStyleHints = {
       "variantColorHints": {
         "default": "fill=#ffffff | stroke=#e2e8f0@1px"
       }
+    },
+    "routeProgress": {
+      "variantKeys": [
+        "default"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "p-0",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "p-0"
+      },
+      "variantColorHints": {}
     },
     "safetyBanner": {
       "variantKeys": [
@@ -1110,6 +1136,21 @@ export const componentStyleHints = {
       "variantColorHints": {
         "default": "fill=#FFFFFF | stroke=#e2e8f0@1px"
       }
+    },
+    "progressDialog": {
+      "variantKeys": [
+        "default",
+        "overlay"
+      ],
+      "defaultVariantKey": "default",
+      "baseClasses": "w-full p-0",
+      "baseColorHint": null,
+      "slotIds": [],
+      "variantClasses": {
+        "default": "w-full p-0",
+        "overlay": "w-full p-0"
+      },
+      "variantColorHints": {}
     },
     "shareModal": {
       "variantKeys": [

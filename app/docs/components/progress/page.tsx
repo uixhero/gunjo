@@ -495,11 +495,49 @@ export default function ProgressPage() {
                 : "Human-readable value announced to screen readers (e.g. \"完了 42/120\").",
         },
         {
+            name: "indeterminate",
+            type: "boolean",
+            default: "false",
+            description: isJa
+                ? "本当の進み具合が分からないとき。短い帯が流れ、％も読み上げの値も出しません。"
+                : "Real progress is unknown. A short segment sweeps; no percentage, no spoken value.",
+        },
+        {
             name: "className",
             type: "string",
             description: isJa ? "進捗バーのサイズや余白を調整するクラスです。" : "Additional class names for sizing or spacing the bar.",
         },
     ];
+
+    const indeterminateCode = isJa
+        ? `import { Progress } from "@gunjo/ui";
+
+export function WaitingForServer() {
+  return (
+    <div className="w-full space-y-2">
+      <div className="flex items-center justify-between gap-4 text-sm">
+        <span className="font-medium">書き出し</span>
+      </div>
+      {/* 進み具合を返さない処理なので、value を渡さず indeterminate にします */}
+      <Progress indeterminate label="書き出し" tone="primary" className="h-2" />
+      <p className="text-sm text-muted-foreground">サーバーで書き出しています。</p>
+    </div>
+  );
+}`
+        : `import { Progress } from "@gunjo/ui";
+
+export function WaitingForServer() {
+  return (
+    <div className="w-full space-y-2">
+      <div className="flex items-center justify-between gap-4 text-sm">
+        <span className="font-medium">Export</span>
+      </div>
+      {/* The work reports no progress, so pass no value and use indeterminate */}
+      <Progress indeterminate label="Export" tone="primary" className="h-2" />
+      <p className="text-sm text-muted-foreground">Exporting on the server.</p>
+    </div>
+  );
+}`;
 
     return (
         <ComponentLayout
@@ -513,6 +551,8 @@ export default function ProgressPage() {
                 { name: "ProgressWidget", href: "/docs/components/progress-widget" },
                 { name: "Spinner", href: "/docs/components/spinner" },
                 { name: "Skeleton", href: "/docs/components/skeleton" },
+                { name: "RouteProgress", href: "/docs/components/route-progress" },
+                { name: "ProgressDialog", href: "/docs/components/progress-dialog" },
             ]}
             sectionLabels={sectionLabels}
         >
@@ -591,6 +631,26 @@ export default function ProgressPage() {
                             ),
                             previewBodyWidth: "md",
                             code: completeCode,
+                        },
+                        {
+                            key: "indeterminate",
+                            title: isJa ? "進み具合が分からないとき" : "Unknown progress",
+                            description: isJa
+                                ? "処理が進み具合を返さないときは indeterminate にします。短い帯が流れ、％は出しません。動きを減らす設定では、流れが止まって淡い色の帯になります。"
+                                : "When the work reports no progress, use indeterminate. A short segment sweeps with no percentage; under reduced motion it becomes a still, dimmed bar.",
+                            preview: (
+                                <div className="w-full space-y-2">
+                                    <div className="flex items-center justify-between gap-4 text-sm">
+                                        <span className="font-medium">{isJa ? "書き出し" : "Export"}</span>
+                                    </div>
+                                    <Progress indeterminate label={isJa ? "書き出し" : "Export"} tone="primary" className="h-2" />
+                                    <p className="text-sm text-muted-foreground">
+                                        {isJa ? "サーバーで書き出しています。" : "Exporting on the server."}
+                                    </p>
+                                </div>
+                            ),
+                            previewBodyWidth: "md",
+                            code: indeterminateCode,
                         },
                         {
                             key: "custom-max",
