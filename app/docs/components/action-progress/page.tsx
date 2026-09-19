@@ -39,7 +39,9 @@ export function SaveSettings() {
   };
 
   return (
-    <div ref={setContainer} className="relative flex w-full flex-col items-center gap-4">
+    // ${t("開いたダイアログの高さ（実測 135〜155px）を先に取り、ボタンとダイアログを同じマスに重ねます", "Reserve the open dialog's height (measured 135–155px) and stack the buttons and the dialog in one cell")}
+    <div ref={setContainer} className="relative grid min-h-[155px] w-full place-items-center [&>*]:[grid-area:1/1]">
+      <div className="flex flex-col items-center gap-4">
       <div className="flex flex-wrap justify-center gap-2">
         <Button onClick={() => save(2000)}>${t("保存する（2秒）", "Save (2 s)")}</Button>
         <Button variant="outline" onClick={() => save(200)}>
@@ -49,6 +51,7 @@ export function SaveSettings() {
       <p className="text-sm text-muted-foreground" role="status">
         {pending ? "${t("保存しています", "Saving")}" : saved > 0 ? \`${t("保存しました（${saved} 回）", "Saved (${saved})")}\` : ""}
       </p>
+      </div>
       <ActionProgress
         portalContainer={container}
         open={pending}
@@ -78,13 +81,16 @@ export function JustAfterSave() {
   };
 
   return (
-    <div ref={setContainer} className="relative flex w-full flex-col items-center gap-4">
+    // ${t("開いたダイアログの高さ（実測 135〜155px）を先に取り、ボタンとダイアログを同じマスに重ねます", "Reserve the open dialog's height (measured 135–155px) and stack the buttons and the dialog in one cell")}
+    <div ref={setContainer} className="relative grid min-h-[155px] w-full place-items-center [&>*]:[grid-area:1/1]">
+      <div className="flex flex-col items-center gap-4">
       <div className="flex flex-wrap justify-center gap-2">
         <Button onClick={() => save(450)}>${t("0.45秒で終わる保存", "Save (0.45 s)")}</Button>
       </div>
       <p className="text-sm text-muted-foreground" role="status">
         {pending ? "${t("保存しています", "Saving")}" : saved > 0 ? \`${t("保存しました（${saved} 回）", "Saved (${saved})")}\` : ""}
       </p>
+      </div>
       <ActionProgress
         portalContainer={container}
         open={pending}
@@ -103,7 +109,8 @@ export function ProfileForm() {
   const [saved, setSaved] = React.useState(0);
 
   return (
-    <div ref={setContainer} className="relative flex w-full flex-col items-center gap-4">
+    <div ref={setContainer} className="relative grid min-h-[155px] w-full place-items-center [&>*]:[grid-area:1/1]">
+      <div className="flex w-full flex-col items-center gap-4">
       <form
         className="flex w-full max-w-sm flex-col gap-3 text-left"
         action={async () => {
@@ -126,6 +133,7 @@ export function ProfileForm() {
       <p className="text-sm text-muted-foreground" role="status">
         {saved > 0 ? \`${t("送信しました（${saved} 回）", "Sent (${saved})")}\` : ""}
       </p>
+      </div>
     </div>
   );
 }`;
@@ -149,7 +157,9 @@ export function SaveSettings() {
   };
 
   return (
-    <div ref={setContainer} className="relative flex w-full flex-col items-center gap-4">
+    // ${t("開いたダイアログの高さ（実測 135〜155px）を先に取り、ボタンとダイアログを同じマスに重ねます", "Reserve the open dialog's height (measured 135–155px) and stack the buttons and the dialog in one cell")}
+    <div ref={setContainer} className="relative grid min-h-[155px] w-full place-items-center [&>*]:[grid-area:1/1]">
+      <div className="flex flex-col items-center gap-4">
       <div className="flex flex-wrap justify-center gap-2">
         <Button onClick={() => save(2000)}>${t("保存する（2秒）", "Save (2 s)")}</Button>
         <Button variant="outline" onClick={() => save(200)}>
@@ -159,6 +169,7 @@ export function SaveSettings() {
       <p className="text-sm text-muted-foreground" role="status">
         {pending ? "${t("保存しています", "Saving")}" : saved > 0 ? \`${t("保存しました（${saved} 回）", "Saved (${saved})")}\` : ""}
       </p>
+      </div>
       <ActionProgress
         portalContainer={container}
         open={pending}

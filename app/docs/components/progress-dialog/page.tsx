@@ -27,12 +27,25 @@ const STEPS = ${t('["会議の前提を読み取っています", "発言を要�
 const SCENE = "/demos/progress-dialog/meeting-minutes.svg";
 const SCENE_STILL = "/demos/progress-dialog/meeting-minutes-still.svg";
 
+// ${t("開いているあいだの高さを覚えておき、閉じたあともその高さを保ちます（枠が跳ねないように）", "Remember the height while open and keep it after closing, so the frame does not jump")}
+function useKeptHeight(container: HTMLElement | null, open: boolean) {
+  const [height, setHeight] = React.useState<number>();
+  React.useEffect(() => {
+    if (!container || !open) return;
+    const observer = new ResizeObserver(() => setHeight(container.offsetHeight));
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [container, open]);
+  return open ? undefined : height;
+}
+
 export function CreateMinutes() {
   const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
   const [open, setOpen] = React.useState(false);
   const [step, setStep] = React.useState(0);
   const [result, setResult] = React.useState("");
   const timer = React.useRef<number | null>(null);
+  const keptHeight = useKeptHeight(container, open);
 
   const stop = React.useCallback(() => {
     if (timer.current !== null) window.clearInterval(timer.current);
@@ -69,7 +82,11 @@ export function CreateMinutes() {
   };
 
   return (
-    <div ref={setContainer} className="relative w-full">
+    <div
+      ref={setContainer}
+      className="relative grid w-full place-items-center [&>*]:[grid-area:1/1]"
+      style={{ minHeight: keptHeight }}
+    >
       {open ? null : (
         <div className="flex flex-col items-center gap-4 text-center">
           <Button onClick={start}>${t("もう一度作る", "Create again")}</Button>
@@ -105,9 +122,22 @@ import { Badge, Button, ProgressDialog } from "@gunjo/ui";
 const SCENE = "/demos/progress-dialog/trip-plan.svg";
 const SCENE_STILL = "/demos/progress-dialog/trip-plan-still.svg";
 
+// ${t("開いているあいだの高さを覚えておき、閉じたあともその高さを保ちます（枠が跳ねないように）", "Remember the height while open and keep it after closing, so the frame does not jump")}
+function useKeptHeight(container: HTMLElement | null, open: boolean) {
+  const [height, setHeight] = React.useState<number>();
+  React.useEffect(() => {
+    if (!container || !open) return;
+    const observer = new ResizeObserver(() => setHeight(container.offsetHeight));
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [container, open]);
+  return open ? undefined : height;
+}
+
 export function WithSlot() {
   const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
   const [open, setOpen] = React.useState(true);
+  const keptHeight = useKeptHeight(container, open);
 
   React.useEffect(() => {
     if (!open) return;
@@ -116,7 +146,11 @@ export function WithSlot() {
   }, [open]);
 
   return (
-    <div ref={setContainer} className="relative flex w-full justify-center">
+    <div
+      ref={setContainer}
+      className="relative grid w-full place-items-center [&>*]:[grid-area:1/1]"
+      style={{ minHeight: keptHeight }}
+    >
       {open ? null : <Button onClick={() => setOpen(true)}>${t("もう一度作る", "Plan again")}</Button>}
       <ProgressDialog
         portalContainer={container}
@@ -154,10 +188,23 @@ const TOTAL = 5;
 const SCENE = "/demos/progress-dialog/meeting-minutes.svg";
 const SCENE_STILL = "/demos/progress-dialog/meeting-minutes-still.svg";
 
+// ${t("開いているあいだの高さを覚えておき、閉じたあともその高さを保ちます（枠が跳ねないように）", "Remember the height while open and keep it after closing, so the frame does not jump")}
+function useKeptHeight(container: HTMLElement | null, open: boolean) {
+  const [height, setHeight] = React.useState<number>();
+  React.useEffect(() => {
+    if (!container || !open) return;
+    const observer = new ResizeObserver(() => setHeight(container.offsetHeight));
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [container, open]);
+  return open ? undefined : height;
+}
+
 export function KnownCount() {
   const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
   const [open, setOpen] = React.useState(true);
   const [done, setDone] = React.useState(0);
+  const keptHeight = useKeptHeight(container, open);
 
   React.useEffect(() => {
     if (!open) return;
@@ -175,7 +222,11 @@ export function KnownCount() {
   }, [open]);
 
   return (
-    <div ref={setContainer} className="relative flex w-full justify-center">
+    <div
+      ref={setContainer}
+      className="relative grid w-full place-items-center [&>*]:[grid-area:1/1]"
+      style={{ minHeight: keptHeight }}
+    >
       {open ? null : <Button onClick={() => setOpen(true)}>${t("もう一度読み込む", "Import again")}</Button>}
       <ProgressDialog
         portalContainer={container}
@@ -205,9 +256,22 @@ import { Button, ProgressDialog } from "@gunjo/ui";
 const SCENE = "/demos/progress-dialog/meeting-minutes.svg";
 const SCENE_STILL = "/demos/progress-dialog/meeting-minutes-still.svg";
 
+// ${t("開いているあいだの高さを覚えておき、閉じたあともその高さを保ちます（枠が跳ねないように）", "Remember the height while open and keep it after closing, so the frame does not jump")}
+function useKeptHeight(container: HTMLElement | null, open: boolean) {
+  const [height, setHeight] = React.useState<number>();
+  React.useEffect(() => {
+    if (!container || !open) return;
+    const observer = new ResizeObserver(() => setHeight(container.offsetHeight));
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [container, open]);
+  return open ? undefined : height;
+}
+
 export function NoCancel() {
   const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
   const [open, setOpen] = React.useState(true);
+  const keptHeight = useKeptHeight(container, open);
 
   React.useEffect(() => {
     if (!open) return;
@@ -216,7 +280,11 @@ export function NoCancel() {
   }, [open]);
 
   return (
-    <div ref={setContainer} className="relative flex w-full justify-center">
+    <div
+      ref={setContainer}
+      className="relative grid w-full place-items-center [&>*]:[grid-area:1/1]"
+      style={{ minHeight: keptHeight }}
+    >
       {open ? null : <Button onClick={() => setOpen(true)}>${t("もう一度作る", "Create again")}</Button>}
       <ProgressDialog
         portalContainer={container}
@@ -235,11 +303,23 @@ export function NoCancel() {
 }`;
 
     const reducedCode = `import * as React from "react";
-import { Badge, Button, Label, ProgressDialog, Switch } from "@gunjo/ui";
+import { Badge, Button, ProgressDialog } from "@gunjo/ui";
 
 const STEPS = ${t('["会議の前提を読み取っています", "発言を要点に分けています", "議事録の形に整えています"]', '["Reading the meeting context", "Sorting remarks into points", "Shaping the minutes"]')};
 const SCENE = "/demos/progress-dialog/meeting-minutes.svg";
 const SCENE_STILL = "/demos/progress-dialog/meeting-minutes-still.svg";
+
+// ${t("開いているあいだの高さを覚えておき、閉じたあともその高さを保ちます（枠が跳ねないように）", "Remember the height while open and keep it after closing, so the frame does not jump")}
+function useKeptHeight(container: HTMLElement | null, open: boolean) {
+  const [height, setHeight] = React.useState<number>();
+  React.useEffect(() => {
+    if (!container || !open) return;
+    const observer = new ResizeObserver(() => setHeight(container.offsetHeight));
+    observer.observe(container);
+    return () => observer.disconnect();
+  }, [container, open]);
+  return open ? undefined : height;
+}
 
 function CreateMinutes(props: { still?: boolean }) {
   const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
@@ -247,6 +327,7 @@ function CreateMinutes(props: { still?: boolean }) {
   const [step, setStep] = React.useState(0);
   const [result, setResult] = React.useState("");
   const timer = React.useRef<number | null>(null);
+  const keptHeight = useKeptHeight(container, open);
 
   const stop = React.useCallback(() => {
     if (timer.current !== null) window.clearInterval(timer.current);
@@ -271,7 +352,10 @@ function CreateMinutes(props: { still?: boolean }) {
     }, 2200);
   }, [stop]);
 
-  React.useEffect(() => stop, [stop]);
+  React.useEffect(() => {
+    start();
+    return stop;
+  }, [start, stop]);
 
   const cancel = () => {
     stop();
@@ -280,10 +364,14 @@ function CreateMinutes(props: { still?: boolean }) {
   };
 
   return (
-    <div ref={setContainer} className="relative w-full">
+    <div
+      ref={setContainer}
+      className="relative grid w-full place-items-center [&>*]:[grid-area:1/1]"
+      style={{ minHeight: keptHeight }}
+    >
       {open ? null : (
         <div className="flex flex-col items-center gap-4 text-center">
-          <Button onClick={start}>{result ? "${t("もう一度作る", "Create again")}" : "${t("議事録を作る", "Create minutes")}"}</Button>
+          <Button onClick={start}>${t("もう一度作る", "Create again")}</Button>
           <p className="text-sm text-muted-foreground" role="status">{result}</p>
         </div>
       )}
@@ -311,23 +399,16 @@ function CreateMinutes(props: { still?: boolean }) {
 }
 
 export function ReduceMotionDemo() {
-  const [reduce, setReduce] = React.useState(false);
-
+  // ${t("画面の中の「動きを減らす」設定をオンにした姿です。バーは data-motion で、絵は止めた版で止まります", "The in-app reduce-motion setting turned on: data-motion stops the bar, the still SVG stops the scene")}
   React.useEffect(() => {
     const root = document.documentElement;
-    if (reduce) root.dataset.motion = "reduce";
-    else delete root.dataset.motion;
-  }, [reduce]);
+    root.dataset.motion = "reduce";
+    return () => {
+      delete root.dataset.motion;
+    };
+  }, []);
 
-  return (
-    <div className="flex flex-col items-center gap-2">
-      <CreateMinutes still={reduce} />
-      <div className="flex items-center gap-2">
-        <Switch id="reduce-motion" checked={reduce} onCheckedChange={setReduce} />
-        <Label htmlFor="reduce-motion">${t("動きを減らす", "Reduce motion")}</Label>
-      </div>
-    </div>
-  );
+  return <CreateMinutes still />;
 }`;
 
     const propsData = [
@@ -450,8 +531,8 @@ export function ReduceMotionDemo() {
                             key: "reduced-motion",
                             title: t("動きを減らす設定", "Reduced motion"),
                             description: t(
-                                "流れるバーは止まり、淡い色の帯になります。絵は、呼び出し側が用意した止めた版の SVG に替えます（picture の source）。切り替えてから開いてください。",
-                                "The sweep stops and becomes a still, dimmed bar. The media swaps, via a picture source, to a still SVG you provide. This sample starts closed: flip the switch, then open it."
+                                "流れるバーは止まり、淡い色の帯になります。絵は、呼び出し側が用意した止めた版の SVG に替えます（picture の source）。この見本は、その設定をオンにした姿です。",
+                                "The sweep stops and becomes a still, dimmed bar. The media swaps, via a picture source, to a still SVG you provide. This sample shows that setting turned on."
                             ),
                             preview: null,
                             embedSrc: "/embed/progress-dialog?variant=reduced-motion",

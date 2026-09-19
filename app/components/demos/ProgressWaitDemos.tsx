@@ -74,7 +74,7 @@ function Scene({ src, stillSrc, still = false }: { src: string; stillSrc: string
 export type ProgressDialogDemoVariant = "default" | "aside" | "known" | "no-cancel";
 
 /** Mirrors the usage snippet: caller-driven steps, a cancel, and a result line. */
-function ProgressDialogStepsDemo({ still = false, autoStart = true }: { still?: boolean; autoStart?: boolean }) {
+function ProgressDialogStepsDemo({ still = false }: { still?: boolean }) {
     const { locale } = useLocale();
     const isJa = locale === "ja";
     const steps = isJa
@@ -86,6 +86,7 @@ function ProgressDialogStepsDemo({ still = false, autoStart = true }: { still?: 
     const [step, setStep] = React.useState(0);
     const [result, setResult] = React.useState("");
     const timer = React.useRef<number | null>(null);
+    const keptHeight = useKeptHeight(container, open);
 
     const stop = React.useCallback(() => {
         if (timer.current !== null) window.clearInterval(timer.current);
@@ -112,9 +113,9 @@ function ProgressDialogStepsDemo({ still = false, autoStart = true }: { still?: 
 
     // Open from the start; the dialog is what this demo shows.
     React.useEffect(() => {
-        if (autoStart) start();
+        start();
         return stop;
-    }, [autoStart, start, stop]);
+    }, [start, stop]);
 
     const cancel = () => {
         stop();
@@ -123,13 +124,17 @@ function ProgressDialogStepsDemo({ still = false, autoStart = true }: { still?: 
     };
 
     return (
-        <div ref={setContainer} className="relative w-full">
+        <div
+            ref={setContainer}
+            className="relative grid w-full place-items-center [&>*]:[grid-area:1/1]"
+            style={{ minHeight: keptHeight }}
+        >
             {open ? null : (
                 <div className="flex flex-col items-center gap-4 text-center">
-                    <Button onClick={start}>
-                        {autoStart || result ? (isJa ? "もう一度作る" : "Create again") : isJa ? "議事録を作る" : "Create minutes"}
-                    </Button>
-                    <p className="text-sm text-muted-foreground" role="status">{result}</p>
+                    <Button onClick={start}>{isJa ? "もう一度作る" : "Create again"}</Button>
+                    <p className="text-sm text-muted-foreground" role="status">
+                        {result}
+                    </p>
                 </div>
             )}
             <ProgressDialog
@@ -148,10 +153,27 @@ function ProgressDialogStepsDemo({ still = false, autoStart = true }: { still?: 
                 status={steps[step]}
                 onCancel={cancel}
                 cancelLabel={isJa ? "作成をやめる" : "Stop"}
-                cancelNote={isJa ? "やめても入力内容はこの画面に残ります。" : "Your input stays on this screen if you stop."}
+                cancelNote={
+                    isJa ? "やめても入力内容はこの画面に残ります。" : "Your input stays on this screen if you stop."
+                }
             />
         </div>
     );
+}
+
+/**
+ * While the dialog is open, remember the container's height; after it closes,
+ * keep that height so the preview does not jump.
+ */
+function useKeptHeight(container: HTMLElement | null, open: boolean) {
+    const [height, setHeight] = React.useState<number>();
+    React.useEffect(() => {
+        if (!container || !open) return;
+        const observer = new ResizeObserver(() => setHeight(container.offsetHeight));
+        observer.observe(container);
+        return () => observer.disconnect();
+    }, [container, open]);
+    return open ? undefined : height;
 }
 
 /** Opens for `ms`, then the caller closes it. */
@@ -170,9 +192,14 @@ function ProgressDialogAsideDemo() {
     const isJa = locale === "ja";
     const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
     const [open, setOpen] = useTimedOpen(6000);
+    const keptHeight = useKeptHeight(container, open);
 
     return (
-        <div ref={setContainer} className="relative flex w-full justify-center">
+        <div
+            ref={setContainer}
+            className="relative grid w-full place-items-center [&>*]:[grid-area:1/1]"
+            style={{ minHeight: keptHeight }}
+        >
             {open ? null : <Button onClick={() => setOpen(true)}>{isJa ? "もう一度作る" : "Plan again"}</Button>}
             <ProgressDialog
                 portalContainer={container}
@@ -207,6 +234,7 @@ function ProgressDialogKnownDemo() {
     const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
     const [open, setOpen] = React.useState(true);
     const [done, setDone] = React.useState(0);
+    const keptHeight = useKeptHeight(container, open);
 
     React.useEffect(() => {
         if (!open) return;
@@ -224,7 +252,11 @@ function ProgressDialogKnownDemo() {
     }, [open]);
 
     return (
-        <div ref={setContainer} className="relative flex w-full justify-center">
+        <div
+            ref={setContainer}
+            className="relative grid w-full place-items-center [&>*]:[grid-area:1/1]"
+            style={{ minHeight: keptHeight }}
+        >
             {open ? null : <Button onClick={() => setOpen(true)}>{isJa ? "もう一度読み込む" : "Import again"}</Button>}
             <ProgressDialog
                 portalContainer={container}
@@ -248,9 +280,14 @@ function ProgressDialogNoCancelDemo() {
     const isJa = locale === "ja";
     const [container, setContainer] = React.useState<HTMLDivElement | null>(null);
     const [open, setOpen] = useTimedOpen(4500);
+    const keptHeight = useKeptHeight(container, open);
 
     return (
-        <div ref={setContainer} className="relative flex w-full justify-center">
+        <div
+            ref={setContainer}
+            className="relative grid w-full place-items-center [&>*]:[grid-area:1/1]"
+            style={{ minHeight: keptHeight }}
+        >
             {open ? null : <Button onClick={() => setOpen(true)}>{isJa ? "もう一度作る" : "Create again"}</Button>}
             <ProgressDialog
                 portalContainer={container}
@@ -265,31 +302,26 @@ function ProgressDialogNoCancelDemo() {
 
 export function ProgressDialogDemo({
     variant = "default",
-    motionToggle = false,
+    reduced = false,
 }: {
     variant?: ProgressDialogDemoVariant;
-    motionToggle?: boolean;
+    reduced?: boolean;
 }) {
-    const [reduce, setReduce] = React.useState(false);
-    const demo =
-        variant === "aside" ? (
-            <ProgressDialogAsideDemo />
-        ) : variant === "known" ? (
-            <ProgressDialogKnownDemo />
-        ) : variant === "no-cancel" ? (
-            <ProgressDialogNoCancelDemo />
-        ) : (
-            <ProgressDialogStepsDemo still={motionToggle && reduce} autoStart={!motionToggle} />
-        );
+    // The reduced-motion sample shows the dialog open in its still form: the
+    // bar follows data-motion, the scene swaps to its still SVG.
+    React.useEffect(() => {
+        if (!reduced) return;
+        const root = document.documentElement;
+        root.dataset.motion = "reduce";
+        return () => {
+            delete root.dataset.motion;
+        };
+    }, [reduced]);
 
-    return (
-        <div className="flex w-full flex-col items-center gap-2">
-            {demo}
-            {motionToggle ? (
-                <ReduceMotionSwitch id="progress-dialog-reduce-motion" checked={reduce} onCheckedChange={setReduce} />
-            ) : null}
-        </div>
-    );
+    if (variant === "aside") return <ProgressDialogAsideDemo />;
+    if (variant === "known") return <ProgressDialogKnownDemo />;
+    if (variant === "no-cancel") return <ProgressDialogNoCancelDemo />;
+    return <ProgressDialogStepsDemo still={reduced} />;
 }
 
 export type ActionProgressDemoVariant = "default" | "just-after" | "form";
@@ -321,62 +353,67 @@ export function ActionProgressDemo({
 
     if (variant === "form") {
         return (
-            <div ref={setContainer} className="relative flex w-full flex-col items-center gap-4">
-                <form
-                    className="flex w-full max-w-sm flex-col gap-3 text-left"
-                    action={async () => {
-                        await new Promise((resolve) => window.setTimeout(resolve, 1500));
-                        setSaved((n) => n + 1);
-                    }}
-                >
-                    <div className="space-y-1.5">
-                        <Label htmlFor="action-progress-name">{isJa ? "表示名" : "Display name"}</Label>
-                        <Input id="action-progress-name" name="name" defaultValue={isJa ? "青木" : "Aoki"} />
-                    </div>
-                    <Button type="submit">{isJa ? "送信する" : "Submit"}</Button>
-                    <FormActionProgress
-                        portalContainer={container}
-                        title={isJa ? "送信しています" : "Sending"}
-                        description={description}
-                    />
-                </form>
-                <p className="text-sm text-muted-foreground" role="status">
-                    {saved > 0 ? (isJa ? `送信しました（${saved} 回）` : `Sent (${saved})`) : ""}
-                </p>
+            // Reserve the open dialog's height (measured: 135px ja / 155px en, 375–1280px)
+            // and stack the controls and the dialog in one grid cell, so the frame never jumps.
+            <div
+                ref={setContainer}
+                className="relative grid min-h-[155px] w-full place-items-center [&>*]:[grid-area:1/1]"
+            >
+                <div className="flex w-full flex-col items-center gap-4">
+                    <form
+                        className="flex w-full max-w-sm flex-col gap-3 text-left"
+                        action={async () => {
+                            await new Promise((resolve) => window.setTimeout(resolve, 1500));
+                            setSaved((n) => n + 1);
+                        }}
+                    >
+                        <div className="space-y-1.5">
+                            <Label htmlFor="action-progress-name">{isJa ? "表示名" : "Display name"}</Label>
+                            <Input id="action-progress-name" name="name" defaultValue={isJa ? "青木" : "Aoki"} />
+                        </div>
+                        <Button type="submit">{isJa ? "送信する" : "Submit"}</Button>
+                        <FormActionProgress
+                            portalContainer={container}
+                            title={isJa ? "送信しています" : "Sending"}
+                            description={description}
+                        />
+                    </form>
+                    <p className="text-sm text-muted-foreground" role="status">
+                        {saved > 0 ? (isJa ? `送信しました（${saved} 回）` : `Sent (${saved})`) : ""}
+                    </p>
+                </div>
             </div>
         );
     }
 
     return (
-        <div ref={setContainer} className="relative flex w-full flex-col items-center gap-4">
-            <div className="flex flex-wrap justify-center gap-2">
-                {variant === "just-after" ? (
-                    <Button onClick={() => save(450)}>
-                        {isJa ? "0.45秒で終わる保存" : "Save (0.45 s)"}
-                    </Button>
-                ) : (
-                    <>
-                        <Button onClick={() => save(2000)}>
-                            {isJa ? "保存する（2秒）" : "Save (2 s)"}
-                        </Button>
-                        <Button variant="outline" onClick={() => save(200)}>
-                            {isJa ? "保存する（0.2秒）" : "Save (0.2 s)"}
-                        </Button>
-                    </>
-                )}
+        <div ref={setContainer} className="relative grid min-h-[155px] w-full place-items-center [&>*]:[grid-area:1/1]">
+            <div className="flex flex-col items-center gap-4">
+                <div className="flex flex-wrap justify-center gap-2">
+                    {variant === "just-after" ? (
+                        <Button onClick={() => save(450)}>{isJa ? "0.45秒で終わる保存" : "Save (0.45 s)"}</Button>
+                    ) : (
+                        <>
+                            <Button onClick={() => save(2000)}>{isJa ? "保存する（2秒）" : "Save (2 s)"}</Button>
+                            <Button variant="outline" onClick={() => save(200)}>
+                                {isJa ? "保存する（0.2秒）" : "Save (0.2 s)"}
+                            </Button>
+                        </>
+                    )}
+                </div>
+                <p className="text-sm text-muted-foreground" role="status">
+                    {pending
+                        ? isJa
+                            ? "保存しています"
+                            : "Saving"
+                        : saved > 0
+                          ? isJa
+                              ? `保存しました（${saved} 回）`
+                              : `Saved (${saved})`
+                          : ""}
+                </p>
+                {motionToggle ? <ReduceMotionSwitch id="action-progress-reduce-motion" /> : null}
             </div>
-            <p className="text-sm text-muted-foreground" role="status">
-                {pending
-                    ? isJa
-                        ? "保存しています"
-                        : "Saving"
-                    : saved > 0
-                      ? isJa
-                          ? `保存しました（${saved} 回）`
-                          : `Saved (${saved})`
-                      : ""}
-            </p>
-            {motionToggle ? <ReduceMotionSwitch id="action-progress-reduce-motion" /> : null}
             <ActionProgress portalContainer={container} open={pending} title={title} description={description} />
         </div>
     );
@@ -440,9 +477,7 @@ export function RouteProgressDemo({
         <div className="flex w-full flex-col items-center gap-4">
             {loading ? <RouteProgress label={label} /> : null}
             <p className="text-sm font-medium">{isJa ? `いまは ${page} ページ目` : `You are on page ${page}`}</p>
-            <Button onClick={go}>
-                {isJa ? "次のページへ移る" : "Go to next page"}
-            </Button>
+            <Button onClick={go}>{isJa ? "次のページへ移る" : "Go to next page"}</Button>
             {motionToggle ? <ReduceMotionSwitch id="route-progress-reduce-motion" /> : null}
         </div>
     );
@@ -459,9 +494,21 @@ export function ActionProgressTimingFigure() {
     const SCALE = 2200;
     const pct = (ms: number) => `${(Math.min(ms, SCALE) / SCALE) * 100}%`;
     const rows = [
-        { label: isJa ? "0.2秒で終わる" : "Ends at 0.2 s", work: 200, dialog: null as null | [number, number] },
-        { label: isJa ? "0.45秒で終わる" : "Ends at 0.45 s", work: 450, dialog: [350, 850] as [number, number] },
-        { label: isJa ? "2秒で終わる" : "Ends at 2 s", work: 2000, dialog: [350, 2000] as [number, number] },
+        {
+            label: isJa ? "0.2秒で終わる" : "Ends at 0.2 s",
+            work: 200,
+            dialog: null as null | [number, number],
+        },
+        {
+            label: isJa ? "0.45秒で終わる" : "Ends at 0.45 s",
+            work: 450,
+            dialog: [350, 850] as [number, number],
+        },
+        {
+            label: isJa ? "2秒で終わる" : "Ends at 2 s",
+            work: 2000,
+            dialog: [350, 2000] as [number, number],
+        },
     ];
 
     return (
@@ -471,12 +518,22 @@ export function ActionProgressTimingFigure() {
                     <div key={row.label} className="grid grid-cols-[6.5rem_1fr] items-center gap-3 text-xs">
                         <span className="font-medium">{row.label}</span>
                         <div className="relative h-7">
-                            <div className="absolute inset-y-0 w-px bg-foreground/40" style={{ left: pct(350) }} aria-hidden="true" />
-                            <div className="absolute top-0 h-2.5 rounded-full bg-muted-foreground/40" style={{ left: 0, width: pct(row.work) }} />
+                            <div
+                                className="absolute inset-y-0 w-px bg-foreground/40"
+                                style={{ left: pct(350) }}
+                                aria-hidden="true"
+                            />
+                            <div
+                                className="absolute top-0 h-2.5 rounded-full bg-muted-foreground/40"
+                                style={{ left: 0, width: pct(row.work) }}
+                            />
                             {row.dialog ? (
                                 <div
                                     className="absolute bottom-0 h-2.5 rounded-full bg-primary"
-                                    style={{ left: pct(row.dialog[0]), width: `calc(${pct(row.dialog[1])} - ${pct(row.dialog[0])})` }}
+                                    style={{
+                                        left: pct(row.dialog[0]),
+                                        width: `calc(${pct(row.dialog[1])} - ${pct(row.dialog[0])})`,
+                                    }}
                                 />
                             ) : (
                                 <span className="absolute bottom-0 left-0 text-muted-foreground">
@@ -490,8 +547,12 @@ export function ActionProgressTimingFigure() {
                     <span />
                     <div className="relative h-4">
                         <span className="absolute left-0">0</span>
-                        <span className="absolute -translate-x-1/2" style={{ left: pct(350) }}>350ms</span>
-                        <span className="absolute -translate-x-1/2" style={{ left: pct(2000) }}>2s</span>
+                        <span className="absolute -translate-x-1/2" style={{ left: pct(350) }}>
+                            350ms
+                        </span>
+                        <span className="absolute -translate-x-1/2" style={{ left: pct(2000) }}>
+                            2s
+                        </span>
                     </div>
                 </div>
             </div>
