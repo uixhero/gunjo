@@ -18,7 +18,9 @@ import feedbackMetadata from "@design/feedback-metadata.json";
 import { DocNote } from "@gunjo/ui";
 
 const topCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client"
+
+import * as React from "react"
 import { Button, StickyNoticeBar, TextLink } from "@gunjo/ui"
 import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
 
@@ -52,7 +54,9 @@ export function SiteAnnouncement() {
     </main>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client"
+
+import * as React from "react"
 import { Button, StickyNoticeBar, TextLink } from "@gunjo/ui"
 import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
 
@@ -89,7 +93,9 @@ export function SiteAnnouncement() {
 };
 
 const bottomCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client"
+
+import * as React from "react"
 import { StickyNoticeBar, TextLink } from "@gunjo/ui"
 import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
 
@@ -118,7 +124,9 @@ export function ContainedAnnouncement() {
     </div>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client"
+
+import * as React from "react"
 import { StickyNoticeBar, TextLink } from "@gunjo/ui"
 import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
 
@@ -150,7 +158,9 @@ export function ContainedAnnouncement() {
 };
 
 const viewportCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client"
+
+import * as React from "react"
 import { StickyNoticeBar, TextLink } from "@gunjo/ui"
 import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
 
@@ -173,7 +183,9 @@ export function TopAnnouncement() {
     </StickyNoticeBar>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client"
+
+import * as React from "react"
 import { StickyNoticeBar, TextLink } from "@gunjo/ui"
 import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
 
@@ -199,7 +211,9 @@ export function TopAnnouncement() {
 };
 
 const longCopyCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client"
+
+import * as React from "react"
 import { StickyNoticeBar, TextLink } from "@gunjo/ui"
 import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
 
@@ -225,7 +239,9 @@ export function LongAnnouncement() {
     </StickyNoticeBar>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client"
+
+import * as React from "react"
 import { StickyNoticeBar, TextLink } from "@gunjo/ui"
 import { IconSpeakerphone as Speakerphone } from "@tabler/icons-react"
 
@@ -254,7 +270,9 @@ export function LongAnnouncement() {
 };
 
 const timedCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client"
+
+import * as React from "react"
 import { Button, StickyNoticeBar } from "@gunjo/ui"
 
 export function DepartureNotice() {
@@ -280,7 +298,9 @@ export function DepartureNotice() {
     </StickyNoticeBar>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client"
+
+import * as React from "react"
 import { Button, StickyNoticeBar } from "@gunjo/ui"
 
 export function DepartureNotice() {

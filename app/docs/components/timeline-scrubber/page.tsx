@@ -93,7 +93,9 @@ function StaticScrubber({
 
 const CODE = {
     usage: {
-        ja: `import * as React from "react";
+        ja: `"use client";
+
+import * as React from "react";
 import { TimelineScrubber } from "@gunjo/ui";
 
 // 09:00 から 13:00 まで5分ごと（49コマ）。30分ごとに字を出します。
@@ -116,7 +118,9 @@ export function RainTimeline() {
     />
   );
 }`,
-        en: `import * as React from "react";
+        en: `"use client";
+
+import * as React from "react";
 import { TimelineScrubber } from "@gunjo/ui";
 
 // 09:00 to 13:00 every 5 minutes (49 frames), a label every 30 minutes.
@@ -141,7 +145,9 @@ export function RainTimeline() {
 }`,
     },
     forecast: {
-        ja: `import * as React from "react";
+        ja: `"use client";
+
+import * as React from "react";
 import { TimelineScrubber } from "@gunjo/ui";
 
 // 09:00 から 13:00 まで5分ごと（49コマ）。30分ごとに字を出します。
@@ -157,7 +163,9 @@ export function ForecastSide() {
     <TimelineScrubber steps={STEPS} value={value} onValueChange={setValue} lastObservedIndex={24} labels={{ scrubber: "時刻", observed: "実況", forecast: "予報", play: "再生", pause: "一時停止" }} />
   );
 }`,
-        en: `import * as React from "react";
+        en: `"use client";
+
+import * as React from "react";
 import { TimelineScrubber } from "@gunjo/ui";
 
 // 09:00 to 13:00 every 5 minutes (49 frames), a label every 30 minutes.
@@ -175,7 +183,9 @@ export function ForecastSide() {
 }`,
     },
     pending: {
-        ja: `import * as React from "react";
+        ja: `"use client";
+
+import * as React from "react";
 import { TimelineScrubber } from "@gunjo/ui";
 
 // 09:00 から 13:00 まで5分ごと（49コマ）。30分ごとに字を出します。
@@ -191,7 +201,9 @@ export function StillLoading() {
     <TimelineScrubber steps={STEPS} value={value} onValueChange={setValue} lastObservedIndex={24} labels={{ scrubber: "時刻", observed: "実況", forecast: "予報", play: "再生", pause: "一時停止" }} />
   );
 }`,
-        en: `import * as React from "react";
+        en: `"use client";
+
+import * as React from "react";
 import { TimelineScrubber } from "@gunjo/ui";
 
 // 09:00 to 13:00 every 5 minutes (49 frames), a label every 30 minutes.
@@ -209,7 +221,9 @@ export function StillLoading() {
 }`,
     },
     bare: {
-        ja: `import * as React from "react";
+        ja: `"use client";
+
+import * as React from "react";
 import { TimelineScrubber } from "@gunjo/ui";
 
 // 09:00 から 13:00 まで5分ごと（49コマ）。30分ごとに字を出します。
@@ -225,7 +239,9 @@ export function ScaleOnly() {
     <TimelineScrubber steps={STEPS} value={value} onValueChange={setValue} showHeader={false} labels={{ scrubber: "時刻", observed: "実況", forecast: "予報", play: "再生", pause: "一時停止" }} />
   );
 }`,
-        en: `import * as React from "react";
+        en: `"use client";
+
+import * as React from "react";
 import { TimelineScrubber } from "@gunjo/ui";
 
 // 09:00 to 13:00 every 5 minutes (49 frames), a label every 30 minutes.
