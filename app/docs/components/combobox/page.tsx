@@ -589,11 +589,11 @@ export function ComboboxUsage() {
             ]}
         >
             <ComponentPreview
-                embedSrc="/embed/combobox"
                 code={code}
                 codeBlock={<CodeBlock code={code} />}
                 sectionLabels={sectionLabels}
                 previewBodyWidth="md"
+                previewHeight="auto"
             >
                 <ComboboxDemo />
             </ComponentPreview>

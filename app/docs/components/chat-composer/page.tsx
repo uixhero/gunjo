@@ -559,7 +559,6 @@ export default function ChatComposerDocPage() {
             ]}
         >
             <ComponentPreview
-                embedSrc="/embed/chat-composer"
                 code={usageCode}
                 codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
