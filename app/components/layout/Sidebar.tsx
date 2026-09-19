@@ -29,6 +29,49 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 
 const SCROLL_STORAGE_KEY = "gunjo-docs-sidebar-scroll";
 
+/** Child rows carry the href of their parent row (see sync-docs-navigation.mjs). */
+function itemParent(item: object): string | undefined {
+    return "parent" in item && typeof item.parent === "string" ? item.parent : undefined;
+}
+
+function NavLink({
+    href,
+    label,
+    active,
+    onPath = false,
+    onNavigate,
+}: {
+    href: string;
+    label: { primary: string; secondary: string };
+    active: boolean;
+    /** A child of this row is the current page: medium weight, no fill. */
+    onPath?: boolean;
+    onNavigate?: () => void;
+}) {
+    return (
+        <Link
+            href={href}
+            onClick={onNavigate}
+            aria-current={active ? "page" : undefined}
+            className={cn(
+                "group relative flex w-full flex-col gap-0 rounded-md px-2 py-1.5 leading-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                active
+                    ? "bg-primary-subtle text-primary-subtle-foreground shadow-[inset_0_0_0_1px_hsl(var(--primary-border))]"
+                    : onPath
+                      ? "font-medium text-foreground hover:bg-muted/55"
+                      : "text-foreground/90 hover:bg-muted/55 hover:text-foreground"
+            )}
+        >
+            <span className={cn(active ? "font-semibold" : "")}>{label.primary}</span>
+            {label.secondary !== label.primary && (
+                <span className={cn("text-[9px]", active ? "text-primary-strong" : "text-muted-foreground")}>
+                    {label.secondary}
+                </span>
+            )}
+        </Link>
+    );
+}
+
 /**
  * Renders the docs navigation tree. Used both in the sticky desktop
  * sidebar and inside the mobile drawer — single source of truth so the
@@ -100,50 +143,47 @@ function NavTree({
                         </h4>
                         {section.items?.length ? (
                             <div className="grid grid-flow-row auto-rows-max text-sm">
-                                {section.items.map((item, i) => {
-                                    const isSectionLanding = isDocsSectionLandingItem(section, item);
-                                    const rawItemLabel = bilingual(item.title);
-                                    const itemLabel =
-                                        isSectionLanding && item.title.endsWith(" Overview")
-                                            ? {
-                                                primary: locale === "ja" ? "概要" : "Overview",
-                                                secondary: locale === "ja" ? "Overview" : "概要",
-                                            }
-                                            : rawItemLabel;
-                                    const active = pathname === item.href;
-                                    return (
-                                        <Link
-                                            key={i}
-                                            href={item.href}
-                                            onClick={onNavigate}
-                                            aria-current={active ? "page" : undefined}
-                                            className={cn(
-                                                "group relative flex w-full flex-col gap-0 rounded-md px-2 py-1.5 leading-tight transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-                                                active
-                                                    ? "bg-primary-subtle text-primary-subtle-foreground shadow-[inset_0_0_0_1px_hsl(var(--primary-border))]"
-                                                    : "text-foreground/90 hover:bg-muted/55 hover:text-foreground"
-                                            )}
-                                        >
-                                            <span
-                                                className={cn(
-                                                    active ? "font-semibold" : ""
-                                                )}
-                                            >
-                                                {itemLabel.primary}
-                                            </span>
-                                            {itemLabel.secondary !== itemLabel.primary && (
-                                                <span
-                                                    className={cn(
-                                                        "text-[9px]",
-                                                        active ? "text-primary-strong" : "text-muted-foreground"
-                                                    )}
-                                                >
-                                                    {itemLabel.secondary}
-                                                </span>
-                                            )}
-                                        </Link>
-                                    );
-                                })}
+                                {section.items
+                                    .filter((item) => !itemParent(item))
+                                    .map((item, i) => {
+                                        const children = section.items.filter((child) => itemParent(child) === item.href);
+                                        const isSectionLanding = isDocsSectionLandingItem(section, item);
+                                        const rawItemLabel = bilingual(item.title);
+                                        const itemLabel =
+                                            isSectionLanding && item.title.endsWith(" Overview")
+                                                ? {
+                                                    primary: locale === "ja" ? "概要" : "Overview",
+                                                    secondary: locale === "ja" ? "Overview" : "概要",
+                                                }
+                                                : rawItemLabel;
+                                        const onPath = children.some((child) => child.href === pathname);
+                                        return (
+                                            <React.Fragment key={i}>
+                                                <NavLink
+                                                    href={item.href}
+                                                    label={itemLabel}
+                                                    active={pathname === item.href}
+                                                    onPath={onPath}
+                                                    onNavigate={onNavigate}
+                                                />
+                                                {children.length ? (
+                                                    // Second level (app, then its screens). Indented, no rail:
+                                                    // left colour rails are off-limits in app/ (CLAUDE.md).
+                                                    <div role="group" aria-label={itemLabel.primary} className="grid grid-flow-row auto-rows-max pl-4">
+                                                        {children.map((child) => (
+                                                            <NavLink
+                                                                key={child.href}
+                                                                href={child.href}
+                                                                label={bilingual(child.title)}
+                                                                active={pathname === child.href}
+                                                                onNavigate={onNavigate}
+                                                            />
+                                                        ))}
+                                                    </div>
+                                                ) : null}
+                                            </React.Fragment>
+                                        );
+                                    })}
                             </div>
                         ) : null}
                     </div>
