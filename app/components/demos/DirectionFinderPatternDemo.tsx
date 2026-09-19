@@ -9,7 +9,7 @@ import {
 import { Button, Icon, Label, SegmentedControl, Slider, Toggle, cn } from "@gunjo/ui";
 
 /**
- * Pattern demo: direction finder (docs/patterns/direction-finder).
+ * Pattern demo: direction finder (docs/apps/earthmoon/direction-finder).
  *
  * Guides a device towards a direction (azimuth) and a height (elevation).
  * The dial and the height arc are HTML/CSS (CLAUDE.md: variable data is not

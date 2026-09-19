@@ -5,7 +5,7 @@ import { IconCloud, IconCloudRain, IconCloudStorm, IconSun } from "@tabler/icons
 import { Card, Grid, Icon, SegmentedControl, cn, type IconGlyph } from "@gunjo/ui";
 
 /**
- * Pattern demo: forecast day grid (docs/patterns/forecast-day-grid).
+ * Pattern demo: forecast day grid (docs/apps/earthmoon/forecast-day-grid).
  *
  * One column per day, the rows shared across columns through CSS subgrid so the
  * temperature and rain rows line up even when one day's forecast text runs long.

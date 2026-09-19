@@ -148,12 +148,21 @@ function buildNavigation({ root }) {
     title: "Patterns",
     items: [
       { title: "Patterns", href: "/patterns" },
-      { title: "Direction Finder", href: "/docs/patterns/direction-finder" },
-      { title: "Forecast Day Grid", href: "/docs/patterns/forecast-day-grid" },
     ],
   };
 
-  return [...staticSections, ...componentSections, patternSection];
+  // Apps built with GUNJO: one entry page per app, its pattern pages right
+  // under it. App-specific context (ISS, weather) stays here, not in Patterns.
+  const appSection = {
+    title: "App Examples",
+    items: [
+      { title: "Earth and Moon", href: "/docs/apps/earthmoon" },
+      { title: "Direction Finder", href: "/docs/apps/earthmoon/direction-finder" },
+      { title: "Forecast Day Grid", href: "/docs/apps/earthmoon/forecast-day-grid" },
+    ],
+  };
+
+  return [...staticSections, ...componentSections, patternSection, appSection];
 }
 
 function quote(value) {

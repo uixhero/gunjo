@@ -1,7 +1,7 @@
 import * as React from "react";
 
 /**
- * Explanatory figures for the pattern pages under /docs/patterns
+ * Explanatory figures for the pattern pages under /docs/apps/earthmoon
  * (figure-review, 2026-09-19). Each answers a question a context-free reader
  * got stuck on; the one-line "what" above each figure is its acceptance
  * criterion.
