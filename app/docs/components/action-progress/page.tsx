@@ -38,14 +38,14 @@ export function SaveSettings() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 py-6">
+    <div className="flex flex-col items-center gap-4">
       <div className="flex flex-wrap justify-center gap-2">
         <Button onClick={() => save(2000)}>${t("保存する（2秒）", "Save (2 s)")}</Button>
         <Button variant="outline" onClick={() => save(200)}>
           ${t("保存する（0.2秒）", "Save (0.2 s)")}
         </Button>
       </div>
-      <p className="min-h-5 text-sm text-muted-foreground" role="status">
+      <p className="text-sm text-muted-foreground" role="status">
         {pending ? "${t("保存しています", "Saving")}" : saved > 0 ? \`${t("保存しました（${saved} 回）", "Saved (${saved})")}\` : ""}
       </p>
       <ActionProgress
@@ -75,11 +75,11 @@ export function JustAfterSave() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 py-6">
+    <div className="flex flex-col items-center gap-4">
       <div className="flex flex-wrap justify-center gap-2">
         <Button onClick={() => save(450)}>${t("0.45秒で終わる保存", "Save (0.45 s)")}</Button>
       </div>
-      <p className="min-h-5 text-sm text-muted-foreground" role="status">
+      <p className="text-sm text-muted-foreground" role="status">
         {pending ? "${t("保存しています", "Saving")}" : saved > 0 ? \`${t("保存しました（${saved} 回）", "Saved (${saved})")}\` : ""}
       </p>
       <ActionProgress
@@ -98,7 +98,7 @@ export function ProfileForm() {
   const [saved, setSaved] = React.useState(0);
 
   return (
-    <div className="flex flex-col items-center gap-4 py-6">
+    <div className="flex flex-col items-center gap-4">
       <form
         className="flex w-full max-w-sm flex-col gap-3 text-left"
         action={async () => {
@@ -117,7 +117,7 @@ export function ProfileForm() {
           description="${t("終わるとこの画面に戻ります。", "You will return to this screen when it is done.")}"
         />
       </form>
-      <p className="min-h-5 text-sm text-muted-foreground" role="status">
+      <p className="text-sm text-muted-foreground" role="status">
         {saved > 0 ? \`${t("送信しました（${saved} 回）", "Sent (${saved})")}\` : ""}
       </p>
     </div>
@@ -142,14 +142,14 @@ export function SaveSettings() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 py-6">
+    <div className="flex flex-col items-center gap-4">
       <div className="flex flex-wrap justify-center gap-2">
         <Button onClick={() => save(2000)}>${t("保存する（2秒）", "Save (2 s)")}</Button>
         <Button variant="outline" onClick={() => save(200)}>
           ${t("保存する（0.2秒）", "Save (0.2 s)")}
         </Button>
       </div>
-      <p className="min-h-5 text-sm text-muted-foreground" role="status">
+      <p className="text-sm text-muted-foreground" role="status">
         {pending ? "${t("保存しています", "Saving")}" : saved > 0 ? \`${t("保存しました（${saved} 回）", "Saved (${saved})")}\` : ""}
       </p>
       <ActionProgress
@@ -227,11 +227,10 @@ export function ReduceMotionDemo() {
             ]}
         >
             <ComponentPreview
-                embedSrc="/embed/action-progress"
                 code={usageCode}
                 codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
-                previewHeight={420}
+                previewHeight="auto"
                 previewBodyWidth="lg"
             >
                 <ActionProgressDemo />
@@ -259,9 +258,7 @@ export function ReduceMotionDemo() {
                                 "0.45秒で終わる保存です。350ms で出たダイアログは、処理が終わっても 500ms は消えません。",
                                 "A save that ends in 0.45 s. The dialog shown at 350ms stays for 500ms even though the work is done."
                             ),
-                            preview: null,
-                            embedSrc: "/embed/action-progress?variant=just-after",
-                            previewHeight: 420,
+                            preview: <ActionProgressDemo variant="just-after" />,
                             previewBodyWidth: "lg",
                             code: justAfterCode,
                         },
@@ -272,9 +269,7 @@ export function ReduceMotionDemo() {
                                 "FormActionProgress は、置かれた form の送信中だけ出ます。pending の状態を自分で持たなくて済みます（React 19 の useFormStatus）。",
                                 "FormActionProgress follows the pending state of the form it sits in, so you keep no pending state yourself (React 19 useFormStatus)."
                             ),
-                            preview: null,
-                            embedSrc: "/embed/action-progress?variant=form",
-                            previewHeight: 420,
+                            preview: <ActionProgressDemo variant="form" />,
                             previewBodyWidth: "lg",
                             code: formCode,
                         },
@@ -285,9 +280,7 @@ export function ReduceMotionDemo() {
                                 "流れるバーと回る印（Spinner）が止まります。",
                                 "The sweep and the spinner stop."
                             ),
-                            preview: null,
-                            embedSrc: "/embed/action-progress?variant=reduced-motion",
-                            previewHeight: 420,
+                            preview: <ActionProgressDemo motionToggle />,
                             previewBodyWidth: "lg",
                             code: reducedCode,
                         },

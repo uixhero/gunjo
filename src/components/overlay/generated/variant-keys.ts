@@ -10,8 +10,12 @@ export type MediaLightboxVariantKey = (typeof mediaLightboxVariantKeys)[number];
 export const mediaPickerDialogVariantKeys = ["compact", "default"] as const;
 export type MediaPickerDialogVariantKey = (typeof mediaPickerDialogVariantKeys)[number];
 
+export const progressDialogVariantKeys = ["default", "overlay"] as const;
+export type ProgressDialogVariantKey = (typeof progressDialogVariantKeys)[number];
+
 export const overlayVariantKeys = {
   chatPanel: chatPanelVariantKeys,
   mediaLightbox: mediaLightboxVariantKeys,
   mediaPickerDialog: mediaPickerDialogVariantKeys,
+  progressDialog: progressDialogVariantKeys,
 } as const;

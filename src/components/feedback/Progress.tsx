@@ -57,7 +57,7 @@ const Progress = React.forwardRef<HTMLDivElement, ProgressProps>(
                 {...props}
             >
                 {indeterminate ? (
-                    <div className={cn("gunjo-progress-indeterminate h-full w-2/5 rounded-full", TONE_INDICATOR[tone])} />
+                    <div className={cn("gunjo-progress-indeterminate h-full rounded-full", TONE_INDICATOR[tone])} />
                 ) : (
                     <div
                         className={cn("h-full w-full flex-1 transition-all", TONE_INDICATOR[tone])}

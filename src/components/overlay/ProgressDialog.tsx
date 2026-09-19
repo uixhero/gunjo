@@ -15,8 +15,25 @@ import {
     DialogHeader,
     DialogTitle,
 } from "./Dialog"
+import type { ProgressDialogVariantKey } from "./generated/variant-keys"
+import { progressDialogDefaultVariantKey } from "./generated/default-variant-keys"
+
+/** Where the title block sits relative to the media. */
+const titleBlockClasses: Record<ProgressDialogVariantKey, string> = {
+    default: "",
+    overlay:
+        "absolute inset-x-0 top-0 bg-gradient-to-b from-background/95 via-background/70 to-transparent px-5 pb-12 pt-5 text-foreground sm:px-6 sm:pb-16 sm:pt-6",
+}
 
 export interface ProgressDialogProps {
+    /**
+     * `"default"` stacks the title under the media. `"overlay"` lays the badge,
+     * title and description over the top of the media on a background-colour scrim (falls
+     * back to `"default"` when there is no media).
+     */
+    variant?: ProgressDialogVariantKey
+    /** Small label beside the title (e.g. a `Badge` saying what is running). */
+    badge?: React.ReactNode
     /** Controlled. The caller closes it when the work succeeds, fails or is cancelled. */
     open: boolean
     title: React.ReactNode
@@ -29,8 +46,11 @@ export interface ProgressDialogProps {
     /** Small caption above the status (e.g. "Now"). */
     statusLabel?: React.ReactNode
     /**
-     * Any 16:9 visual — an `<img>`, an inline SVG, a video. Treated as
-     * decoration (`aria-hidden`), so it must never be the only progress cue.
+     * Any 16:9 visual — an `<img>`, a `<picture>`, an inline SVG, a video.
+     * Treated as decoration (`aria-hidden`), so it must never be the only
+     * progress cue. An animated SVG loaded through `<img>` may ignore the
+     * reader's reduced-motion setting; use `<picture>` with a
+     * `(prefers-reduced-motion: reduce)` source to swap in a still frame.
      */
     media?: React.ReactNode
     /**
@@ -66,6 +86,8 @@ const preventDismiss = (event: Event) => event.preventDefault()
 const ProgressDialog = React.forwardRef<HTMLDivElement, ProgressDialogProps>(
     (
         {
+            variant = progressDialogDefaultVariantKey,
+            badge,
             open,
             title,
             description,
@@ -87,6 +109,18 @@ const ProgressDialog = React.forwardRef<HTMLDivElement, ProgressDialogProps>(
         const { strings } = useLocale()
         const known = typeof value === "number" && Number.isFinite(value)
         const progressName = typeof title === "string" ? title : strings.loading
+        const overlaid = variant === "overlay" && Boolean(media)
+        const titleBlock = (
+            <DialogHeader className={cn("space-y-2 pr-0", titleBlockClasses[overlaid ? "overlay" : "default"])}>
+                {badge ? <div className="flex">{badge}</div> : null}
+                <DialogTitle className={cn(overlaid && "text-xl sm:text-2xl")}>{title}</DialogTitle>
+                {description ? (
+                    <DialogDescription className={cn(overlaid && "sr-only text-foreground sm:not-sr-only")}>
+                        {description}
+                    </DialogDescription>
+                ) : null}
+            </DialogHeader>
+        )
 
         return (
             // Ignore every dismiss request; only the `open` prop changes the state.
@@ -103,12 +137,15 @@ const ProgressDialog = React.forwardRef<HTMLDivElement, ProgressDialogProps>(
                 >
                     <DialogBody>
                         {media ? (
-                            <div
-                                aria-hidden="true"
-                                data-slot="media"
-                                className="relative aspect-video w-full overflow-hidden bg-muted [&>img]:h-full [&>img]:w-full [&>img]:object-cover [&>svg]:h-full [&>svg]:w-full [&>video]:h-full [&>video]:w-full [&>video]:object-cover"
-                            >
-                                {media}
+                            <div className="relative">
+                                <div
+                                    aria-hidden="true"
+                                    data-slot="media"
+                                    className="relative aspect-video w-full overflow-hidden bg-muted [&>picture]:block [&>picture]:h-full [&>picture]:w-full [&>svg]:h-full [&>svg]:w-full [&_img]:h-full [&_img]:w-full [&_img]:object-cover [&>video]:h-full [&>video]:w-full [&>video]:object-cover"
+                                >
+                                    {media}
+                                </div>
+                                {overlaid ? titleBlock : null}
                             </div>
                         ) : null}
                         <Progress
@@ -120,11 +157,8 @@ const ProgressDialog = React.forwardRef<HTMLDivElement, ProgressDialogProps>(
                             tone="primary"
                             className="h-1 rounded-none bg-primary/10"
                         />
-                        <div className="space-y-4 p-6">
-                            <DialogHeader className="pr-0">
-                                <DialogTitle>{title}</DialogTitle>
-                                {description ? <DialogDescription>{description}</DialogDescription> : null}
-                            </DialogHeader>
+                        <div className="space-y-4 p-4 sm:p-6">
+                            {overlaid ? null : titleBlock}
                             <div role="status" aria-live="polite" className="rounded-md bg-muted px-4 py-3">
                                 {statusLabel ? (
                                     <p className="text-xs font-medium text-muted-foreground">{statusLabel}</p>
@@ -135,7 +169,7 @@ const ProgressDialog = React.forwardRef<HTMLDivElement, ProgressDialogProps>(
                         </div>
                     </DialogBody>
                     {onCancel ? (
-                        <DialogFooter className="items-center border-t px-6 py-4">
+                        <DialogFooter className="items-center border-t px-4 py-3 sm:px-6 sm:py-4">
                             {cancelNote ? (
                                 <p className="mr-auto min-w-0 flex-1 text-xs text-muted-foreground">{cancelNote}</p>
                             ) : null}

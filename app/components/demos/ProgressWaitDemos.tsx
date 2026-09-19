@@ -3,6 +3,7 @@
 import * as React from "react";
 import {
     ActionProgress,
+    Badge,
     Button,
     FormActionProgress,
     Input,
@@ -21,9 +22,19 @@ import { useLocale } from "@/components/providers/LocaleProvider";
  */
 
 /** Flips the app-level reduce-motion hook the components read (`data-motion="reduce"`). */
-export function ReduceMotionSwitch({ id }: { id: string }) {
+export function ReduceMotionSwitch({
+    id,
+    checked,
+    onCheckedChange,
+}: {
+    id: string;
+    checked?: boolean;
+    onCheckedChange?: (value: boolean) => void;
+}) {
     const { locale } = useLocale();
-    const [reduce, setReduce] = React.useState(false);
+    const [own, setOwn] = React.useState(false);
+    const reduce = checked ?? own;
+    const setReduce = onCheckedChange ?? setOwn;
 
     React.useEffect(() => {
         const root = document.documentElement;
@@ -42,28 +53,33 @@ export function ReduceMotionSwitch({ id }: { id: string }) {
     );
 }
 
-/** Stand-in 16:9 visual. Any img / svg / video goes here in a real app. */
-export function DemoMedia() {
+/** Sample scenes for ProgressDialog (copied from the generation-splash SVG samples, #762). */
+const SCENE = {
+    minutes: "/demos/progress-dialog/meeting-minutes.svg",
+    minutesStill: "/demos/progress-dialog/meeting-minutes-still.svg",
+    trip: "/demos/progress-dialog/trip-plan.svg",
+    tripStill: "/demos/progress-dialog/trip-plan-still.svg",
+};
+
+/** An animated scene that swaps to its still frame under reduced motion (OS setting, or `still`). */
+function Scene({ src, stillSrc, still = false }: { src: string; stillSrc: string; still?: boolean }) {
     return (
-        <div className="grid h-full w-full place-items-center bg-gradient-to-br from-primary/20 via-muted to-background p-6">
-            <div className="w-3/5 space-y-3 rounded-lg border bg-background/80 p-4 shadow-sm">
-                <div className="h-3 w-2/3 rounded-full bg-primary/40" />
-                <div className="h-2 w-full rounded-full bg-muted-foreground/20" />
-                <div className="h-2 w-5/6 rounded-full bg-muted-foreground/20" />
-            </div>
-        </div>
+        <picture>
+            <source media="(prefers-reduced-motion: reduce)" srcSet={stillSrc} />
+            <img src={still ? stillSrc : src} alt="" />
+        </picture>
     );
 }
 
 export type ProgressDialogDemoVariant = "default" | "aside" | "known" | "no-cancel";
 
 /** Mirrors the usage snippet: caller-driven steps, a cancel, and a result line. */
-function ProgressDialogStepsDemo() {
+function ProgressDialogStepsDemo({ still = false }: { still?: boolean }) {
     const { locale } = useLocale();
     const isJa = locale === "ja";
     const steps = isJa
-        ? ["資料を読み込んでいます", "構成を組み立てています", "仕上げています"]
-        : ["Reading the material", "Building the outline", "Finishing up"];
+        ? ["会議の前提を読み取っています", "発言を要点に分けています", "議事録の形に整えています"]
+        : ["Reading the meeting context", "Sorting remarks into points", "Shaping the minutes"];
 
     const [open, setOpen] = React.useState(false);
     const [step, setStep] = React.useState(0);
@@ -87,7 +103,7 @@ function ProgressDialogStepsDemo() {
             if (current >= steps.length) {
                 stop();
                 setOpen(false);
-                setResult(isJa ? "できあがりました。" : "Done.");
+                setResult(isJa ? "議事録ができました。" : "The minutes are ready.");
                 return;
             }
             setStep(current);
@@ -97,27 +113,29 @@ function ProgressDialogStepsDemo() {
     const cancel = () => {
         stop();
         setOpen(false);
-        setResult(isJa ? "キャンセルしました。入力は残っています。" : "Cancelled. Your input is still here.");
+        setResult(isJa ? "作成をやめました。入力内容は残っています。" : "Stopped. Your input is still here.");
     };
 
     return (
-        <div className="flex flex-col items-center gap-4 py-6 text-center">
-            <Button onClick={start}>{isJa ? "作成を始める" : "Start"}</Button>
-            <p className="min-h-5 text-sm text-muted-foreground" role="status">{result}</p>
+        <div className="flex flex-col items-center gap-4 text-center">
+            <Button onClick={start}>{isJa ? "議事録を作る" : "Create minutes"}</Button>
+            <p className="text-sm text-muted-foreground" role="status">{result}</p>
             <ProgressDialog
+                variant="overlay"
                 open={open}
-                title={isJa ? "資料を作成しています" : "Creating your document"}
+                badge={<Badge variant="secondary">{isJa ? "AIで作成中" : "Generating with AI"}</Badge>}
+                title={isJa ? "会議を議事録にまとめています" : "Turning the meeting into minutes"}
                 description={
                     isJa
                         ? "数十秒かかることがあります。この画面のままお待ちください。"
                         : "This can take a few dozen seconds. Please keep this screen open."
                 }
-                media={<DemoMedia />}
+                media={<Scene src={SCENE.minutes} stillSrc={SCENE.minutesStill} still={still} />}
                 statusLabel={isJa ? "いまの作業" : "Now"}
                 status={steps[step]}
                 onCancel={cancel}
                 cancelLabel={isJa ? "作成をやめる" : "Stop"}
-                cancelNote={isJa ? "やめても入力は残ります。" : "Your input stays if you stop."}
+                cancelNote={isJa ? "やめても入力内容はこの画面に残ります。" : "Your input stays on this screen if you stop."}
             />
         </div>
     );
@@ -140,21 +158,23 @@ function ProgressDialogAsideDemo() {
     const [open, setOpen] = useTimedOpen(6000);
 
     return (
-        <div className="flex justify-center py-6">
-            <Button onClick={() => setOpen(true)}>{isJa ? "作成を始める" : "Start"}</Button>
+        <div className="flex justify-center">
+            <Button onClick={() => setOpen(true)}>{isJa ? "旅の計画を作る" : "Plan the trip"}</Button>
             <ProgressDialog
+                variant="overlay"
                 open={open}
-                title={isJa ? "資料を作成しています" : "Creating your document"}
-                media={<DemoMedia />}
+                badge={<Badge variant="secondary">{isJa ? "AIで作成中" : "Generating with AI"}</Badge>}
+                title={isJa ? "旅の計画を組み立てています" : "Putting the trip plan together"}
+                media={<Scene src={SCENE.trip} stillSrc={SCENE.tripStill} />}
                 statusLabel={isJa ? "いまの作業" : "Now"}
-                status={isJa ? "構成を組み立てています" : "Building the outline"}
+                status={isJa ? "移動の順番を考えています" : "Working out the order of stops"}
                 aside={
                     <div className="rounded-md border p-4 text-left text-sm">
                         <p className="font-medium">{isJa ? "待っているあいだに" : "While you wait"}</p>
                         <p className="mt-1 text-muted-foreground">
                             {isJa
-                                ? "できあがった資料は、あとから一覧でも開けます。"
-                                : "You can reopen the finished document from the list later."}
+                                ? "できあがった計画は、あとから一覧でも開けます。"
+                                : "You can reopen the finished plan from the list later."}
                         </p>
                     </div>
                 }
@@ -188,19 +208,19 @@ function ProgressDialogKnownDemo() {
     }, [open]);
 
     return (
-        <div className="flex justify-center py-6">
-            <Button onClick={() => setOpen(true)}>{isJa ? "作成を始める" : "Start"}</Button>
+        <div className="flex justify-center">
+            <Button onClick={() => setOpen(true)}>{isJa ? "録音を読み込む" : "Import recordings"}</Button>
             <ProgressDialog
                 open={open}
-                title={isJa ? "資料を作成しています" : "Creating your document"}
-                media={<DemoMedia />}
+                title={isJa ? "録音を読み込んでいます" : "Importing recordings"}
+                media={<Scene src={SCENE.minutes} stillSrc={SCENE.minutesStill} />}
                 statusLabel={isJa ? "いまの作業" : "Now"}
-                status={isJa ? `${done + 1} 件目のファイルを読み込んでいます` : `Reading file ${done + 1}`}
+                status={isJa ? `${done + 1} 件目の録音を読み込んでいます` : `Reading recording ${done + 1}`}
                 value={done}
                 max={TOTAL}
-                valueText={isJa ? `${TOTAL} 件中 ${done} 件完了` : `${done} of ${TOTAL} files done`}
+                valueText={isJa ? `${TOTAL} 件中 ${done} 件完了` : `${done} of ${TOTAL} recordings done`}
                 onCancel={() => setOpen(false)}
-                cancelLabel={isJa ? "作成をやめる" : "Stop"}
+                cancelLabel={isJa ? "読み込みをやめる" : "Stop"}
             />
         </div>
     );
@@ -212,13 +232,13 @@ function ProgressDialogNoCancelDemo() {
     const [open, setOpen] = useTimedOpen(4500);
 
     return (
-        <div className="flex justify-center py-6">
-            <Button onClick={() => setOpen(true)}>{isJa ? "作成を始める" : "Start"}</Button>
+        <div className="flex justify-center">
+            <Button onClick={() => setOpen(true)}>{isJa ? "議事録を作る" : "Create minutes"}</Button>
             <ProgressDialog
                 open={open}
-                title={isJa ? "資料を作成しています" : "Creating your document"}
-                media={<DemoMedia />}
-                status={isJa ? "仕上げています" : "Finishing up"}
+                title={isJa ? "会議を議事録にまとめています" : "Turning the meeting into minutes"}
+                media={<Scene src={SCENE.minutes} stillSrc={SCENE.minutesStill} />}
+                status={isJa ? "議事録の形に整えています" : "Shaping the minutes"}
             />
         </div>
     );
@@ -231,6 +251,7 @@ export function ProgressDialogDemo({
     variant?: ProgressDialogDemoVariant;
     motionToggle?: boolean;
 }) {
+    const [reduce, setReduce] = React.useState(false);
     const demo =
         variant === "aside" ? (
             <ProgressDialogAsideDemo />
@@ -239,13 +260,15 @@ export function ProgressDialogDemo({
         ) : variant === "no-cancel" ? (
             <ProgressDialogNoCancelDemo />
         ) : (
-            <ProgressDialogStepsDemo />
+            <ProgressDialogStepsDemo still={motionToggle && reduce} />
         );
 
     return (
         <div className="flex w-full flex-col items-center gap-2">
             {demo}
-            {motionToggle ? <ReduceMotionSwitch id="progress-dialog-reduce-motion" /> : null}
+            {motionToggle ? (
+                <ReduceMotionSwitch id="progress-dialog-reduce-motion" checked={reduce} onCheckedChange={setReduce} />
+            ) : null}
         </div>
     );
 }
@@ -278,7 +301,7 @@ export function ActionProgressDemo({
 
     if (variant === "form") {
         return (
-            <div className="flex w-full flex-col items-center gap-4 py-6">
+            <div className="flex w-full flex-col items-center gap-4">
                 <form
                     className="flex w-full max-w-sm flex-col gap-3 text-left"
                     action={async () => {
@@ -296,7 +319,7 @@ export function ActionProgressDemo({
                         description={description}
                     />
                 </form>
-                <p className="min-h-5 text-sm text-muted-foreground" role="status">
+                <p className="text-sm text-muted-foreground" role="status">
                     {saved > 0 ? (isJa ? `送信しました（${saved} 回）` : `Sent (${saved})`) : ""}
                 </p>
             </div>
@@ -304,7 +327,7 @@ export function ActionProgressDemo({
     }
 
     return (
-        <div className="flex w-full flex-col items-center gap-4 py-6">
+        <div className="flex w-full flex-col items-center gap-4">
             <div className="flex flex-wrap justify-center gap-2">
                 {variant === "just-after" ? (
                     <Button onClick={() => save(450)}>
@@ -321,7 +344,7 @@ export function ActionProgressDemo({
                     </>
                 )}
             </div>
-            <p className="min-h-5 text-sm text-muted-foreground" role="status">
+            <p className="text-sm text-muted-foreground" role="status">
                 {pending
                     ? isJa
                         ? "保存しています"
@@ -377,7 +400,7 @@ export function RouteProgressDemo({
 
     if (variant === "container") {
         return (
-            <div className="w-full max-w-md py-6">
+            <div className="w-full max-w-md">
                 <div className="relative overflow-hidden rounded-lg border p-4" aria-busy={loading}>
                     {loading ? <RouteProgress placement="container" label={label} /> : null}
                     <p className="text-sm font-medium">{isJa ? `一覧 ${page} ページ目` : `List, page ${page}`}</p>
@@ -393,7 +416,7 @@ export function RouteProgressDemo({
     }
 
     return (
-        <div className="flex w-full flex-col items-center gap-4 py-6">
+        <div className="flex w-full flex-col items-center gap-4">
             {loading ? <RouteProgress label={label} /> : null}
             <p className="text-sm font-medium">{isJa ? `いまは ${page} ページ目` : `You are on page ${page}`}</p>
             <Button onClick={go}>

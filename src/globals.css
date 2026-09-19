@@ -261,6 +261,7 @@
        completion is unknown. Reduced motion keeps a still, dimmed full bar so
        "work is in progress" survives without movement or a fake percentage. */
     .gunjo-progress-indeterminate {
+        width: 40%;
         animation: gunjo-progress-indeterminate 1.4s ease-in-out infinite;
         will-change: transform;
     }

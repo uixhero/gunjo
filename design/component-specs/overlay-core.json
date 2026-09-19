@@ -1864,12 +1864,34 @@
     "progressDialog": {
       "frameId": "synthetic:progressDialog",
       "title": "ProgressDialog",
-      "description": "Modal wait for long-running work, composed from Dialog: a replaceable 16:9 media area (decorative, aria-hidden), the title and description, the current state in words inside a polite live region, an optional slot, and an optional explicit cancel in the footer. Controlled only: Escape, outside click and the close button are all suppressed, so the caller closes it on success, failure or cancel. Uses Progress: a real value draws a determinate bar; with no value the bar sweeps without a number (no invented percentage). Under reduced motion the sweep stops while the status, slot and cancel remain usable. The body scrolls inside the dialog so the footer stays reachable at 390px.",
+      "description": "Modal wait for long-running work, composed from Dialog: a replaceable 16:9 media area (decorative, aria-hidden), the title and description, the current state in words inside a polite live region, an optional slot, and an optional explicit cancel in the footer. Controlled only: Escape, outside click and the close button are all suppressed, so the caller closes it on success, failure or cancel. Uses Progress: a real value draws a determinate bar; with no value the bar sweeps without a number (no invented percentage). Under reduced motion the sweep stops while the status, slot and cancel remain usable. The body scrolls inside the dialog so the footer stays reachable at 390px. Variants: default stacks the title under the media; overlay lays the title, description and an optional badge over the top of the media on a background-colour scrim.",
       "variants": [
         {
           "id": "synthetic:default",
           "name": "default",
           "key": "default",
+          "type": "frame",
+          "width": "fill_container",
+          "height": null,
+          "padding": [
+            0,
+            0,
+            0,
+            0
+          ],
+          "gap": null,
+          "cornerRadius": null,
+          "fill": null,
+          "stroke": null,
+          "text": null,
+          "texts": [],
+          "children": [],
+          "reusable": true
+        },
+        {
+          "id": "synthetic:overlay",
+          "name": "overlay",
+          "key": "overlay",
           "type": "frame",
           "width": "fill_container",
           "height": null,

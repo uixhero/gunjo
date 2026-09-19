@@ -38,7 +38,7 @@ export function NextPage() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 py-6">
+    <div className="flex flex-col items-center gap-4">
       {loading ? <RouteProgress label="${t("ページを読み込み中", "Loading page")}" /> : null}
       <p className="text-sm font-medium">${t("いまは {page} ページ目", "You are on page {page}")}</p>
       <Button onClick={go}>${t("次のページへ移る", "Go to next page")}</Button>
@@ -77,7 +77,7 @@ export function ReloadingPanel() {
   };
 
   return (
-    <div className="w-full max-w-md py-6">
+    <div className="w-full max-w-md">
       <div className="relative overflow-hidden rounded-lg border p-4" aria-busy={loading}>
         {loading ? <RouteProgress placement="container" label="${t("ページを読み込み中", "Loading page")}" /> : null}
         <p className="text-sm font-medium">${t("一覧 {page} ページ目", "List, page {page}")}</p>
@@ -108,7 +108,7 @@ export function NextPage() {
   };
 
   return (
-    <div className="flex flex-col items-center gap-4 py-6">
+    <div className="flex flex-col items-center gap-4">
       {loading ? <RouteProgress label="${t("ページを読み込み中", "Loading page")}" /> : null}
       <p className="text-sm font-medium">${t("いまは {page} ページ目", "You are on page {page}")}</p>
       <Button onClick={go}>${t("次のページへ移る", "Go to next page")}</Button>
@@ -182,7 +182,6 @@ export function ReduceMotionDemo() {
                 code={usageCode}
                 codeBlock={<CodeBlock code={usageCode} />}
                 sectionLabels={sectionLabels}
-                previewHeight={320}
                 previewBodyWidth="lg"
             >
                 <RouteProgressDemo />
@@ -210,7 +209,6 @@ export function ReduceMotionDemo() {
                             ),
                             preview: null,
                             embedSrc: "/embed/route-progress?variant=container",
-                            previewHeight: 320,
                             previewBodyWidth: "lg",
                             code: containerCode,
                         },
@@ -223,7 +221,6 @@ export function ReduceMotionDemo() {
                             ),
                             preview: null,
                             embedSrc: "/embed/route-progress?variant=boundary",
-                            previewHeight: 320,
                             previewBodyWidth: "lg",
                             code: loadingBoundaryCode,
                         },
@@ -236,7 +233,6 @@ export function ReduceMotionDemo() {
                             ),
                             preview: null,
                             embedSrc: "/embed/route-progress?variant=reduced-motion",
-                            previewHeight: 320,
                             previewBodyWidth: "lg",
                             code: reducedCode,
                         },

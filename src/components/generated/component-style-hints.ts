@@ -1126,14 +1126,16 @@ export const componentStyleHints = {
     },
     "progressDialog": {
       "variantKeys": [
-        "default"
+        "default",
+        "overlay"
       ],
       "defaultVariantKey": "default",
       "baseClasses": "w-full p-0",
       "baseColorHint": null,
       "slotIds": [],
       "variantClasses": {
-        "default": "w-full p-0"
+        "default": "w-full p-0",
+        "overlay": "w-full p-0"
       },
       "variantColorHints": {}
     },
