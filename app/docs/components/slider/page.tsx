@@ -73,7 +73,9 @@ export default function SliderPage() {
     const { locale, sectionLabels } = useLocale();
     const content = getDocContent("components/slider", locale);
     const code = locale === "ja"
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -107,7 +109,9 @@ export function SliderDemo() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -143,7 +147,9 @@ export function SliderDemo() {
 }`;
 
     const usageCode = locale === "ja"
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { FormControl, FormGroup, FormLabel, HStack, Slider } from "@gunjo/ui";
 
 export function VolumeField() {
@@ -169,7 +175,9 @@ export function VolumeField() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { FormControl, FormGroup, FormLabel, HStack, Slider } from "@gunjo/ui";
 
 export function VolumeField() {
@@ -252,7 +260,9 @@ export function VolumeField() {
                             description: locale === "ja" ? "数値を意味のある段階名へ対応させる時に使います。" : "Map numeric steps to meaningful labels.",
                             preview: <ValueSlider steps />,
                             code: locale === "ja"
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -291,7 +301,9 @@ export function StepLabelSlider() {
     </FormGroup>
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,

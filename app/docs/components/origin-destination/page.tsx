@@ -107,7 +107,9 @@ export default function OriginDestinationDocPage() {
   const description = content?.description ?? metadata.originDestination.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { Card, CardContent, OriginDestination } from "@gunjo/ui";
 
 export function RouteHeader() {
@@ -133,7 +135,9 @@ export function RouteHeader() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { Card, CardContent, OriginDestination } from "@gunjo/ui";
 
 export function RouteHeader() {

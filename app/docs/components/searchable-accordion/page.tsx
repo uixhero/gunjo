@@ -90,7 +90,9 @@ function buildCode(locale: "ja" | "en", withCategories = true, defaultSearchValu
         : '"Showing " + visible + " of " + total';
 
     return withCategories
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { SearchableAccordion, type SearchableAccordionItem } from "@gunjo/ui";
 
 const items: SearchableAccordionItem[] = ${JSON.stringify(items, null, 2)};
@@ -122,7 +124,9 @@ export function HelpAccordion() {
     />
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { SearchableAccordion, type SearchableAccordionItem } from "@gunjo/ui";
 
 const items: SearchableAccordionItem[] = ${JSON.stringify(items, null, 2)};

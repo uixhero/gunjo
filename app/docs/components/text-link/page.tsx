@@ -131,7 +131,9 @@ function TextLinkMetadataPreview() {
 }
 
 const codeByLocale = {
-    ja: `import { TextLink, useToast } from "@gunjo/ui";
+    ja: `"use client";
+
+import { TextLink, useToast } from "@gunjo/ui";
 import type { MouseEvent } from "react";
 
 export function Example() {
@@ -147,7 +149,9 @@ export function Example() {
     </TextLink>
   );
 }`,
-    en: `import { TextLink, useToast } from "@gunjo/ui";
+    en: `"use client";
+
+import { TextLink, useToast } from "@gunjo/ui";
 import type { MouseEvent } from "react";
 
 export function Example() {
@@ -166,7 +170,9 @@ export function Example() {
 } as const;
 
 const newTabCodeByLocale = {
-    ja: `import { TextLink, useToast } from "@gunjo/ui";
+    ja: `"use client";
+
+import { TextLink, useToast } from "@gunjo/ui";
 import type { MouseEvent } from "react";
 
 export function ExternalReference() {
@@ -183,7 +189,9 @@ export function ExternalReference() {
     </TextLink>
   );
 }`,
-    en: `import { TextLink, useToast } from "@gunjo/ui";
+    en: `"use client";
+
+import { TextLink, useToast } from "@gunjo/ui";
 import type { MouseEvent } from "react";
 
 export function ExternalReference() {
@@ -203,7 +211,9 @@ export function ExternalReference() {
 } as const;
 
 const mutedCodeByLocale = {
-    ja: `import { TextLink } from "@gunjo/ui";
+    ja: `"use client";
+
+import { TextLink } from "@gunjo/ui";
 
 export function MutedLink() {
   return (
@@ -212,7 +222,9 @@ export function MutedLink() {
     </TextLink>
   );
 }`,
-    en: `import { TextLink } from "@gunjo/ui";
+    en: `"use client";
+
+import { TextLink } from "@gunjo/ui";
 
 export function MutedLink() {
   return (
@@ -224,7 +236,9 @@ export function MutedLink() {
 } as const;
 
 const previewCodeByLocale = {
-    ja: `import {
+    ja: `"use client";
+
+import {
   Button,
   HoverCard,
   HoverCardContent,
@@ -289,7 +303,9 @@ export function TextLinkWithPreview() {
     </div>
   );
 }`,
-    en: `import {
+    en: `"use client";
+
+import {
   Button,
   HoverCard,
   HoverCardContent,

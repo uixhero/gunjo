@@ -409,7 +409,9 @@ export function OwnWording() {
                                 ? "操作盤の実時間の札は、この部品が描いています。時刻を動かすと札は「いつの値か」の側に替わります（同じ形を2か所に作り置きしません）。"
                                 : "The transport's live chip is this badge. Move the value and it switches to the “when” side — one implementation, not two lookalikes.",
                             preview: <TransportDemo locale={locale as Locale} />,
-                            code: `import * as React from "react";
+                            code: `"use client";
+
+import * as React from "react";
 import { TimeTransport } from "@gunjo/ui";
 
 const NOW = Date.UTC(2026, 8, 12, 3, 0, 0);

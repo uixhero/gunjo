@@ -132,7 +132,9 @@ export default function WeekViewDocPage() {
 
   const usageCode =
     locale === "ja"
-      ? `import * as React from "react";
+      ? `"use client";
+
+import * as React from "react";
 import { Badge, WeekView, type WeekEvent } from "@gunjo/ui";
 
 const events: WeekEvent[] = [
@@ -176,7 +178,9 @@ export function WeeklySchedule() {
     </div>
   );
 }`
-      : `import * as React from "react";
+      : `"use client";
+
+import * as React from "react";
 import { Badge, WeekView, type WeekEvent } from "@gunjo/ui";
 
 const events: WeekEvent[] = [

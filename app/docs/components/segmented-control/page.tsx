@@ -113,7 +113,9 @@ export default function SegmentedControlDocPage() {
   const description = content?.description ?? metadata.segmentedControl.description;
 
   const usageCode = locale === "ja"
-      ? `import * as React from "react";
+      ? `"use client";
+
+import * as React from "react";
 import { SegmentedControl } from "@gunjo/ui";
 
 export function SegmentedControlExample() {
@@ -156,7 +158,9 @@ export function SegmentedControlExample() {
     </div>
   );
 }`
-      : `import * as React from "react";
+      : `"use client";
+
+import * as React from "react";
 import { SegmentedControl } from "@gunjo/ui";
 
 export function SegmentedControlExample() {

@@ -92,7 +92,9 @@ const calloutMarkdownByLocale = {
 } as const;
 
 const calloutCodeByLocale = {
-    ja: `import { DocNote, MarkdownRenderer } from "@gunjo/ui";
+    ja: `"use client";
+
+import { DocNote, MarkdownRenderer } from "@gunjo/ui";
 
 const content = \`## 移行の手順
 
@@ -113,7 +115,9 @@ export function MigrationNotes() {
     />
   );
 }`,
-    en: `import { DocNote, MarkdownRenderer } from "@gunjo/ui";
+    en: `"use client";
+
+import { DocNote, MarkdownRenderer } from "@gunjo/ui";
 
 const content = \`## Migration steps
 

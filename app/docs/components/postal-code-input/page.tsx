@@ -11,7 +11,9 @@ export default function PostalCodeInputPage() {
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
     const isJa = locale === "ja";
     const code = isJa
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -37,7 +39,9 @@ export function ShippingPostalCodeField() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,

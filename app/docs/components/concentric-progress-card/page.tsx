@@ -53,7 +53,9 @@ const metricsByLocale: Record<"en" | "ja", ConcentricProgressMetric[]> = {
 };
 
 const codeByLocale = {
-    en: `import { ConcentricProgressCard } from "@gunjo/ui";
+    en: `"use client";
+
+import { ConcentricProgressCard } from "@gunjo/ui";
 
 const rings = [
     { label: "Documents", value: 42 },
@@ -79,7 +81,9 @@ export function StorageOverviewCard() {
         />
     );
 }`,
-    ja: `import { ConcentricProgressCard } from "@gunjo/ui";
+    ja: `"use client";
+
+import { ConcentricProgressCard } from "@gunjo/ui";
 
 const rings = [
     { label: "書類", value: 42 },
@@ -164,7 +168,9 @@ export function ConcentricProgressCardUsage() {
 
 const stateCodeByLocale = {
     en: {
-        default: `import { ConcentricProgressCard } from "@gunjo/ui";
+        default: `"use client";
+
+import { ConcentricProgressCard } from "@gunjo/ui";
 
 const rings = [
     { label: "Documents", value: 42 },
@@ -196,7 +202,9 @@ export function StorageOverviewCard() {
         />
     );
 }`,
-        compact: `import { ConcentricProgressCard } from "@gunjo/ui";
+        compact: `"use client";
+
+import { ConcentricProgressCard } from "@gunjo/ui";
 
 const rings = [
     { label: "CPU", value: 74 },
@@ -219,7 +227,9 @@ export function CompactResourceLoadCard() {
         />
     );
 }`,
-        selected: `import { useState } from "react";
+        selected: `"use client";
+
+import { useState } from "react";
 import { ConcentricProgressCard } from "@gunjo/ui";
 
 const rings = [
@@ -247,7 +257,9 @@ export function SelectedRingCard() {
         />
     );
 }`,
-        metrics: `import { ConcentricProgressCard } from "@gunjo/ui";
+        metrics: `"use client";
+
+import { ConcentricProgressCard } from "@gunjo/ui";
 
 const rings = [
     { label: "Documents", value: 42 },
@@ -276,7 +288,9 @@ export function CapacitySummaryCard() {
         />
     );
 }`,
-        chartOnly: `import { ConcentricProgressCard } from "@gunjo/ui";
+        chartOnly: `"use client";
+
+import { ConcentricProgressCard } from "@gunjo/ui";
 
 const rings = [
     { label: "Documents", value: 42 },
@@ -302,7 +316,9 @@ export function ChartOnlyStorageCard() {
 }`,
     },
     ja: {
-        default: `import { ConcentricProgressCard } from "@gunjo/ui";
+        default: `"use client";
+
+import { ConcentricProgressCard } from "@gunjo/ui";
 
 const rings = [
     { label: "書類", value: 42 },
@@ -334,7 +350,9 @@ export function StorageOverviewCard() {
         />
     );
 }`,
-        compact: `import { ConcentricProgressCard } from "@gunjo/ui";
+        compact: `"use client";
+
+import { ConcentricProgressCard } from "@gunjo/ui";
 
 const rings = [
     { label: "CPU", value: 74 },
@@ -357,7 +375,9 @@ export function CompactResourceLoadCard() {
         />
     );
 }`,
-        selected: `import { useState } from "react";
+        selected: `"use client";
+
+import { useState } from "react";
 import { ConcentricProgressCard } from "@gunjo/ui";
 
 const rings = [
@@ -385,7 +405,9 @@ export function SelectedRingCard() {
         />
     );
 }`,
-        metrics: `import { ConcentricProgressCard } from "@gunjo/ui";
+        metrics: `"use client";
+
+import { ConcentricProgressCard } from "@gunjo/ui";
 
 const rings = [
     { label: "書類", value: 42 },
@@ -414,7 +436,9 @@ export function CapacitySummaryCard() {
         />
     );
 }`,
-        chartOnly: `import { ConcentricProgressCard } from "@gunjo/ui";
+        chartOnly: `"use client";
+
+import { ConcentricProgressCard } from "@gunjo/ui";
 
 const rings = [
     { label: "書類", value: 42 },

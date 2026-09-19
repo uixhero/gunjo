@@ -24,7 +24,9 @@ const meta = displayMetadata as Record<string, { title?: string; description?: s
 const yen = (v: number) => formatCurrency(v, { signed: true });
 const magnitude = (v: number) => formatCurrency(Math.abs(v));
 
-const usageCode = `import { Delta, formatCurrency } from "@gunjo/ui"
+const usageCode = `"use client";
+
+import { Delta, formatCurrency } from "@gunjo/ui"
 
 const yen = (v: number) => formatCurrency(v, { signed: true })
 
@@ -212,7 +214,9 @@ export function MemberCountDelta() {
                 </div>
               ),
               code: locale === "ja"
-                ? `import {
+                ? `"use client";
+
+import {
   Delta,
   Table,
   TableBody,
@@ -258,7 +262,9 @@ export function BudgetVarianceTable() {
     </Table>
   );
 }`
-                : `import {
+                : `"use client";
+
+import {
   Delta,
   Table,
   TableBody,
@@ -328,7 +334,9 @@ export function BudgetVarianceTable() {
                 </div>
               ),
               code: locale === "ja"
-                ? `import { Delta, formatCurrency } from "@gunjo/ui";
+                ? `"use client";
+
+import { Delta, formatCurrency } from "@gunjo/ui";
 
 const magnitude = (v: number) => formatCurrency(Math.abs(v));
 
@@ -350,7 +358,9 @@ export function SalesMagnitude() {
     </div>
   );
 }`
-                : `import { Delta, formatCurrency } from "@gunjo/ui";
+                : `"use client";
+
+import { Delta, formatCurrency } from "@gunjo/ui";
 
 const magnitude = (v: number) => formatCurrency(Math.abs(v));
 

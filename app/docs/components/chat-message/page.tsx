@@ -9,7 +9,9 @@ import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
 import { ChatMessage, ToastProvider, useToast, type ChatMessageActionKey } from "@gunjo/ui";
 
-const usageCode = `import { ChatMessage, ToastProvider, useToast } from "@gunjo/ui";
+const usageCode = `"use client";
+
+import { ChatMessage, ToastProvider, useToast } from "@gunjo/ui";
 
 const actionMessages = {
   copy: "メッセージをコピーしました。",
@@ -177,7 +179,9 @@ export default function ChatMessageDocPage() {
                             description: isJa ? "回答側は本文の枠を持たず、コピー・分岐・Raw の操作を下に並べます。" : "Assistant messages keep the body unframed and expose copy, branch, and Raw actions.",
                             preview: <ChatMessagePreviewWithToast role="assistant" userName={isJa ? "アシスタント" : "Assistant"} content={isJa ? "候補を3件見つけました。条件を変える場合は分岐できます。" : "Found three candidates. Branch if you want to change the conditions."} timestamp="10:01" />,
                             code: isJa
-                            ? `import { ChatMessage } from "@gunjo/ui";
+                            ? `"use client";
+
+import { ChatMessage } from "@gunjo/ui";
 
 export function AssistantChatMessage() {
   return (
@@ -190,7 +194,9 @@ export function AssistantChatMessage() {
     />
   );
 }`
-                            : `import { ChatMessage } from "@gunjo/ui";
+                            : `"use client";
+
+import { ChatMessage } from "@gunjo/ui";
 
 export function AssistantChatMessage() {
   return (
@@ -211,7 +217,9 @@ export function AssistantChatMessage() {
                             description: isJa ? "送信者側は右寄せの背景付き吹き出しにし、コピーと編集を操作に出します。" : "User messages are right-aligned with a filled bubble and copy/edit actions.",
                             preview: <ChatMessagePreviewWithToast role="user" userName={isJa ? "あなた" : "You"} content={isJa ? "この内容で進めて。" : "Proceed with this."} timestamp="10:02" />,
                             code: isJa
-                            ? `import { ChatMessage } from "@gunjo/ui";
+                            ? `"use client";
+
+import { ChatMessage } from "@gunjo/ui";
 
 export function UserChatMessage() {
   return (
@@ -224,7 +232,9 @@ export function UserChatMessage() {
     />
   );
 }`
-                            : `import { ChatMessage } from "@gunjo/ui";
+                            : `"use client";
+
+import { ChatMessage } from "@gunjo/ui";
 
 export function UserChatMessage() {
   return (

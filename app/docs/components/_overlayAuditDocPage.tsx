@@ -113,7 +113,9 @@ function overlayState(
 }
 
 const lightboxCode = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { Button, MediaLightbox } from "@gunjo/ui";
 
 ${MEDIA_ASSET_DATA}
@@ -142,7 +144,9 @@ export function MediaLightboxExample() {
     </>
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { Button, MediaLightbox } from "@gunjo/ui";
 
 ${MEDIA_ASSET_DATA}
@@ -174,7 +178,9 @@ export function MediaLightboxExample() {
 };
 
 const mediaPickerCode = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { Button, MediaPickerDialog } from "@gunjo/ui";
 
 ${MEDIA_ASSET_DATA}
@@ -209,7 +215,9 @@ export function MediaPickerDialogExample() {
     </>
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { Button, MediaPickerDialog } from "@gunjo/ui";
 
 ${MEDIA_ASSET_DATA}
@@ -240,7 +248,9 @@ export function MediaPickerDialogExample() {
 };
 
 const modalCode = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { Button, Modal } from "@gunjo/ui";
 
 export function ModalExample() {
@@ -276,7 +286,9 @@ export function ModalExample() {
     </>
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { Button, Modal } from "@gunjo/ui";
 
 export function ModalExample() {
@@ -314,7 +326,9 @@ export function ModalExample() {
 };
 
 const modalFormCode = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { Button, FormControl, FormDescription, FormGroup, FormLabel, Input, Modal } from "@gunjo/ui";
 
 export function ModalFormExample() {
@@ -359,7 +373,9 @@ export function ModalFormExample() {
     </>
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { Button, FormControl, FormDescription, FormGroup, FormLabel, Input, Modal } from "@gunjo/ui";
 
 export function ModalFormExample() {
@@ -406,7 +422,9 @@ export function ModalFormExample() {
 };
 
 const modalDestructiveCode = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { Button, Modal } from "@gunjo/ui";
 
 export function DestructiveModalExample() {
@@ -440,7 +458,9 @@ export function DestructiveModalExample() {
     </>
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { Button, Modal } from "@gunjo/ui";
 
 export function DestructiveModalExample() {
@@ -476,7 +496,9 @@ export function DestructiveModalExample() {
 };
 
 const modalNoFooterCode = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { Button, Modal } from "@gunjo/ui";
 
 export function NoFooterModalExample() {
@@ -500,7 +522,9 @@ export function NoFooterModalExample() {
     </>
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { Button, Modal } from "@gunjo/ui";
 
 export function NoFooterModalExample() {
@@ -526,7 +550,9 @@ export function NoFooterModalExample() {
 };
 
 const modalTabsCode = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { Button, Modal, Tabs, TabsContent, TabsList, TabsTrigger } from "@gunjo/ui";
 
 export function TabsModalExample() {
@@ -582,7 +608,9 @@ export function TabsModalExample() {
     </>
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { Button, Modal, Tabs, TabsContent, TabsList, TabsTrigger } from "@gunjo/ui";
 
 export function TabsModalExample() {
@@ -640,7 +668,9 @@ export function TabsModalExample() {
 };
 
 const onboardingCode = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { FormControl, FormDescription, FormGroup, FormLabel, Input, OnboardingFlow, Switch } from "@gunjo/ui";
 
 const steps = [
@@ -700,7 +730,9 @@ export function OnboardingFlowExample() {
     />
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { FormControl, FormDescription, FormGroup, FormLabel, Input, OnboardingFlow, Switch } from "@gunjo/ui";
 
 const steps = [
@@ -758,7 +790,9 @@ export function OnboardingFlowExample() {
 };
 
 const onboardingControlledCode = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { Button, OnboardingFlow, type OnboardingStep } from "@gunjo/ui";
 
 const steps: OnboardingStep[] = [
@@ -791,7 +825,9 @@ export function ControlledOnboardingFlowExample() {
     </div>
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { Button, OnboardingFlow, type OnboardingStep } from "@gunjo/ui";
 
 const steps: OnboardingStep[] = [
@@ -853,7 +889,9 @@ export function OnboardingCompleteExample() {
 };
 
 const popoverCode = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { Button, Popover, PopoverContent, PopoverTrigger, Switch } from "@gunjo/ui";
 import { IconAdjustmentsHorizontal as SlidersHorizontal } from "@tabler/icons-react";
 
@@ -901,7 +939,9 @@ export function PopoverExample() {
     </div>
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { Button, Popover, PopoverContent, PopoverTrigger, Switch } from "@gunjo/ui";
 import { IconAdjustmentsHorizontal as SlidersHorizontal } from "@tabler/icons-react";
 
@@ -952,7 +992,9 @@ export function PopoverExample() {
 };
 
 const popoverFilterCode = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { Button, FormControl, FormDescription, FormGroup, FormLabel, Input, Popover, PopoverContent, PopoverTrigger } from "@gunjo/ui";
 import { IconFilter as Filter } from "@tabler/icons-react";
 
@@ -1003,7 +1045,9 @@ export function FilterPopoverExample() {
     </div>
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { Button, FormControl, FormDescription, FormGroup, FormLabel, Input, Popover, PopoverContent, PopoverTrigger } from "@gunjo/ui";
 import { IconFilter as Filter } from "@tabler/icons-react";
 
@@ -1057,7 +1101,9 @@ export function FilterPopoverExample() {
 };
 
 const popoverConfirmCode = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { Button, Popover, PopoverContent, PopoverTrigger } from "@gunjo/ui";
 import { IconDots as MoreHorizontal } from "@tabler/icons-react";
 
@@ -1102,7 +1148,9 @@ export function ConfirmPopoverExample() {
     </div>
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { Button, Popover, PopoverContent, PopoverTrigger } from "@gunjo/ui";
 import { IconDots as MoreHorizontal } from "@tabler/icons-react";
 
@@ -1227,7 +1275,9 @@ export function StatusPopoverExample() {
 };
 
 const shareCode = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { Button, ShareModal, ToastProvider, useToast } from "@gunjo/ui";
 
 async function writeClipboardText(text: string) {
@@ -1319,7 +1369,9 @@ function ShareModalExampleContent() {
     </>
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { Button, ShareModal, ToastProvider, useToast } from "@gunjo/ui";
 
 async function writeClipboardText(text: string) {
@@ -1428,7 +1480,9 @@ const shareStatsCode = {
 };
 
 const sheetCode = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { Button, Input, Label, Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, Switch, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@gunjo/ui";
 
 export function SheetExample() {
@@ -1487,7 +1541,9 @@ export function SheetExample() {
     </Sheet>
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { Button, Input, Label, Sheet, SheetClose, SheetContent, SheetDescription, SheetFooter, SheetHeader, SheetTitle, SheetTrigger, Switch, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@gunjo/ui";
 
 export function SheetExample() {

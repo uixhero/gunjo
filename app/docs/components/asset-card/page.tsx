@@ -24,7 +24,9 @@ const asset = {
 };
 
 const codeByLocale = {
-    en: `import { AssetCard } from "@gunjo/ui";
+    en: `"use client";
+
+import { AssetCard } from "@gunjo/ui";
 
 const asset = {
   id: "hero",
@@ -48,7 +50,9 @@ export function CampaignAssetCard() {
     />
   );
 }`,
-    ja: `import { AssetCard } from "@gunjo/ui";
+    ja: `"use client";
+
+import { AssetCard } from "@gunjo/ui";
 
 const asset = {
   id: "hero",
@@ -193,7 +197,9 @@ export default function AssetCardDocPage() {
                             ),
                             previewHeight: "auto",
                             code: locale === "ja"
-                                ? `import { AssetCard } from "@gunjo/ui";
+                                ? `"use client";
+
+import { AssetCard } from "@gunjo/ui";
 
 const asset = {
   id: "hero",
@@ -210,7 +216,9 @@ const asset = {
 export function CompactAssetCard() {
   return <AssetCard asset={asset} variant="compact" onSelect={() => {}} />;
 }`
-                                : `import { AssetCard } from "@gunjo/ui";
+                                : `"use client";
+
+import { AssetCard } from "@gunjo/ui";
 
 const asset = {
   id: "hero",
@@ -244,7 +252,9 @@ export function CompactAssetCard() {
                             ),
                             previewHeight: "auto",
                             code: locale === "ja"
-                                ? `import { AssetCard } from "@gunjo/ui";
+                                ? `"use client";
+
+import { AssetCard } from "@gunjo/ui";
 
 const asset = {
   id: "hero",
@@ -261,7 +271,9 @@ const asset = {
 export function FullAssetCard() {
   return <AssetCard asset={asset} imageFit="contain" onSelect={() => {}} />;
 }`
-                                : `import { AssetCard } from "@gunjo/ui";
+                                : `"use client";
+
+import { AssetCard } from "@gunjo/ui";
 
 const asset = {
   id: "hero",
@@ -301,7 +313,9 @@ export function FullAssetCard() {
                             ),
                             previewHeight: "auto",
                             code: locale === "ja"
-                                ? `import { AssetCard } from "@gunjo/ui";
+                                ? `"use client";
+
+import { AssetCard } from "@gunjo/ui";
 
 export function FileAssetCard() {
   return (
@@ -311,7 +325,9 @@ export function FileAssetCard() {
     />
   );
 }`
-                                : `import { AssetCard } from "@gunjo/ui";
+                                : `"use client";
+
+import { AssetCard } from "@gunjo/ui";
 
 export function FileAssetCard() {
   return (

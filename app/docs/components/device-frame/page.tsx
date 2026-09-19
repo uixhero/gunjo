@@ -16,7 +16,9 @@ const previewSizes: Record<MarqueeViewport, { width: number; height: number }> =
 };
 
 const codeByLocale = {
-    en: `import { Button, DeviceFrame, type MarqueeViewport } from "@gunjo/ui";
+    en: `"use client";
+
+import { Button, DeviceFrame, type MarqueeViewport } from "@gunjo/ui";
 import * as React from "react";
 
 const previewSizes: Record<MarqueeViewport, { width: number; height: number }> = {
@@ -76,7 +78,9 @@ export function Example() {
     </div>
   );
 }`,
-    ja: `import { Button, DeviceFrame, type MarqueeViewport } from "@gunjo/ui";
+    ja: `"use client";
+
+import { Button, DeviceFrame, type MarqueeViewport } from "@gunjo/ui";
 import * as React from "react";
 
 const previewSizes: Record<MarqueeViewport, { width: number; height: number }> = {
@@ -140,7 +144,9 @@ export function Example() {
 
 const stateCodeByLocale = {
     en: {
-        macos: `import { DeviceFrame, type MarqueeViewport } from "@gunjo/ui";
+        macos: `"use client";
+
+import { DeviceFrame, type MarqueeViewport } from "@gunjo/ui";
 import * as React from "react";
 
 const previewSizes: Record<MarqueeViewport, { width: number; height: number }> = {
@@ -174,7 +180,9 @@ export function MacOSFrame() {
     </div>
   );
 }`,
-        windows: `import { DeviceFrame, type MarqueeViewport } from "@gunjo/ui";
+        windows: `"use client";
+
+import { DeviceFrame, type MarqueeViewport } from "@gunjo/ui";
 import * as React from "react";
 
 const previewSizes: Record<MarqueeViewport, { width: number; height: number }> = {
@@ -208,7 +216,9 @@ export function WindowsFrame() {
     </div>
   );
 }`,
-        mobile: `import { DeviceFrame, type MarqueeViewport } from "@gunjo/ui";
+        mobile: `"use client";
+
+import { DeviceFrame, type MarqueeViewport } from "@gunjo/ui";
 import * as React from "react";
 
 const previewSizes: Record<MarqueeViewport, { width: number; height: number }> = {
@@ -241,7 +251,9 @@ export function MobileFrame() {
     </div>
   );
 }`,
-        navigation: `import { DeviceFrame, type MarqueeViewport } from "@gunjo/ui";
+        navigation: `"use client";
+
+import { DeviceFrame, type MarqueeViewport } from "@gunjo/ui";
 import * as React from "react";
 
 const previewSizes: Record<MarqueeViewport, { width: number; height: number }> = {
@@ -291,7 +303,9 @@ export function NavigableFrame() {
 }`,
     },
     ja: {
-        macos: `import { DeviceFrame, type MarqueeViewport } from "@gunjo/ui";
+        macos: `"use client";
+
+import { DeviceFrame, type MarqueeViewport } from "@gunjo/ui";
 import * as React from "react";
 
 const previewSizes: Record<MarqueeViewport, { width: number; height: number }> = {
@@ -330,7 +344,9 @@ export function MacOSFrame() {
     </div>
   );
 }`,
-        windows: `import { DeviceFrame, type MarqueeViewport } from "@gunjo/ui";
+        windows: `"use client";
+
+import { DeviceFrame, type MarqueeViewport } from "@gunjo/ui";
 import * as React from "react";
 
 const previewSizes: Record<MarqueeViewport, { width: number; height: number }> = {
@@ -369,7 +385,9 @@ export function WindowsFrame() {
     </div>
   );
 }`,
-        mobile: `import { DeviceFrame, type MarqueeViewport } from "@gunjo/ui";
+        mobile: `"use client";
+
+import { DeviceFrame, type MarqueeViewport } from "@gunjo/ui";
 import * as React from "react";
 
 const previewSizes: Record<MarqueeViewport, { width: number; height: number }> = {
@@ -407,7 +425,9 @@ export function MobileFrame() {
     </div>
   );
 }`,
-        navigation: `import { DeviceFrame, type MarqueeViewport } from "@gunjo/ui";
+        navigation: `"use client";
+
+import { DeviceFrame, type MarqueeViewport } from "@gunjo/ui";
 import * as React from "react";
 
 const previewSizes: Record<MarqueeViewport, { width: number; height: number }> = {

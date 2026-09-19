@@ -41,7 +41,9 @@ export default function SortButtonDocPage() {
     const sortVariantType = getCategoryVariantUnionType("inputs", "sortButton");
     const isJa = locale === "ja";
     const usageCode = isJa
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { SortButton, type SortButtonVariantKey } from "@gunjo/ui";
 
 export function DateJoinedSortButton() {
@@ -56,7 +58,9 @@ export function DateJoinedSortButton() {
     />
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { SortButton, type SortButtonVariantKey } from "@gunjo/ui";
 
 export function DateJoinedSortButton() {
@@ -116,7 +120,9 @@ export function DateJoinedSortButton() {
                             description: locale === "ja" ? "クリックすると昇順、降順、未指定の順に切り替わります。" : "Click to cycle through ascending, descending, and none.",
                             preview: <SortButtonStatePreview />,
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { SortButton, type SortButtonVariantKey } from "@gunjo/ui";
 
 export function UnsortedButton() {
@@ -131,7 +137,9 @@ export function UnsortedButton() {
     />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { SortButton, type SortButtonVariantKey } from "@gunjo/ui";
 
 export function UnsortedButton() {
@@ -153,7 +161,9 @@ export function UnsortedButton() {
                             description: locale === "ja" ? "現在の並び替え方向をアイコンとラベルで示します。" : "The icon and label show the current direction.",
                             preview: <SortButtonStatePreview initial="asc" />,
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { SortButton, type SortButtonVariantKey } from "@gunjo/ui";
 
 export function AscendingSortButton() {
@@ -168,7 +178,9 @@ export function AscendingSortButton() {
     />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { SortButton, type SortButtonVariantKey } from "@gunjo/ui";
 
 export function AscendingSortButton() {

@@ -319,7 +319,9 @@ export default function GanttDocPage() {
   const description = content?.description ?? metadata.gantt.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 	import {
 	  Badge,
 	  Gantt,
@@ -434,7 +436,9 @@ export function ProductionGantt() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 	import {
 	  Badge,
 	  Gantt,
@@ -551,7 +555,9 @@ export function ProductionGantt() {
 }`;
 
   const segmentedCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import {
   Badge,
   Gantt,
@@ -636,7 +642,9 @@ export function SegmentedProductionGantt() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import {
   Badge,
   Gantt,
@@ -723,7 +731,9 @@ export function SegmentedProductionGantt() {
 }`;
 
   const hourCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { Gantt, type GanttItem, type GanttRow } from "@gunjo/ui";
 
 const rows: GanttRow[] = [
@@ -770,7 +780,9 @@ export function VehicleRunGantt() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { Gantt, type GanttItem, type GanttRow } from "@gunjo/ui";
 
 const rows: GanttRow[] = [

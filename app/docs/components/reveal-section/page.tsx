@@ -16,7 +16,9 @@ import { RevealSectionDemo } from "@/components/demos/RevealSectionDemo";
 
 const meta = displayMetadata as Record<string, { title?: string; description?: string }>;
 
-const usageCode = `import { RevealSection, Switch } from "@gunjo/ui"
+const usageCode = `"use client";
+
+import { RevealSection, Switch } from "@gunjo/ui"
 
 export function Example() {
   const [hasSpouse, setHasSpouse] = React.useState(false)
@@ -199,7 +201,9 @@ export default function RevealSectionDocPage() {
                                 : "announce={false} drops the aria-live wiring. Use it when opening the section did not add anything to answer, such as unfolding the arithmetic behind a figure already on screen. The name stays, so the region still reads as a named section when reached later.",
                             preview: <QuietRevealPreview locale={locale} />,
                             code: locale === "ja"
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { RevealSection, Switch } from "@gunjo/ui";
 
 export function CalculationNote() {
@@ -227,7 +231,9 @@ export function CalculationNote() {
     </div>
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { RevealSection, Switch } from "@gunjo/ui";
 
 export function CalculationNote() {
@@ -264,7 +270,9 @@ export function CalculationNote() {
                                 : "When the section contains its own heading, point aria-labelledby at it instead of repeating the words in label. The name then has a single source, and editing the heading updates what is announced.",
                             preview: <LabelledByPreview locale={locale} />,
                             code: locale === "ja"
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { Input, Label, RevealSection, Switch } from "@gunjo/ui";
 
 export function BillingNameSection() {
@@ -297,7 +305,9 @@ export function BillingNameSection() {
     </div>
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { Input, Label, RevealSection, Switch } from "@gunjo/ui";
 
 export function BillingNameSection() {
@@ -339,7 +349,9 @@ export function BillingNameSection() {
                                 : "A section can hold another one. Each open watches a different answer, so clearing the first checkbox takes the inner section with it. Declaration forms and delivery options branch exactly like this.",
                             preview: <ChainedRevealPreview locale={locale} />,
                             code: locale === "ja"
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { Checkbox, Label, RevealSection, Textarea } from "@gunjo/ui";
 
 export function DeliveryOptions() {
@@ -383,7 +395,9 @@ export function DeliveryOptions() {
     </div>
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { Checkbox, Label, RevealSection, Textarea } from "@gunjo/ui";
 
 export function DeliveryOptions() {

@@ -9,7 +9,9 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import navigationMetadata from "@design/navigation-metadata.json";
 
 const codeByLocale = {
-    ja: `import { Badge, PageAside } from "@gunjo/ui"
+    ja: `"use client";
+
+import { Badge, PageAside } from "@gunjo/ui"
 
 const pageLinks = [
   { id: "overview", label: "概要" },
@@ -91,7 +93,9 @@ export function DocsPageWithAside() {
     </PageAside>
   )
 }`,
-    en: `import { Badge, PageAside } from "@gunjo/ui"
+    en: `"use client";
+
+import { Badge, PageAside } from "@gunjo/ui"
 
 const pageLinks = [
   { id: "overview", label: "Overview" },
@@ -176,7 +180,9 @@ export function DocsPageWithAside() {
 };
 
 const statusCodeByLocale = {
-    ja: `import { Badge, PageAside } from "@gunjo/ui"
+    ja: `"use client";
+
+import { Badge, PageAside } from "@gunjo/ui"
 
 const pageLinks = [
   { id: "overview", label: "概要" },
@@ -251,7 +257,9 @@ export function PageStatusAside() {
     </PageAside>
   )
 }`,
-    en: `import { Badge, PageAside } from "@gunjo/ui"
+    en: `"use client";
+
+import { Badge, PageAside } from "@gunjo/ui"
 
 const pageLinks = [
   { id: "overview", label: "Overview" },
@@ -329,7 +337,9 @@ export function PageStatusAside() {
 };
 
 const linksCodeByLocale = {
-    ja: `import { Badge, PageAside } from "@gunjo/ui"
+    ja: `"use client";
+
+import { Badge, PageAside } from "@gunjo/ui"
 
 const pageLinks = [
   { id: "overview", label: "概要" },
@@ -432,7 +442,9 @@ export function RelatedLinksAside() {
     </PageAside>
   )
 }`,
-    en: `import { Badge, PageAside } from "@gunjo/ui"
+    en: `"use client";
+
+import { Badge, PageAside } from "@gunjo/ui"
 
 const pageLinks = [
   { id: "overview", label: "Overview" },
@@ -538,7 +550,9 @@ export function RelatedLinksAside() {
 };
 
 const narrowCodeByLocale = {
-    ja: `import { Badge, PageAside } from "@gunjo/ui"
+    ja: `"use client";
+
+import { Badge, PageAside } from "@gunjo/ui"
 
 const pageStatuses = [
   { label: "状態", value: "公開前確認", tone: "default" },
@@ -585,7 +599,9 @@ export function NarrowPageAside() {
     </PageAside>
   )
 }`,
-    en: `import { Badge, PageAside } from "@gunjo/ui"
+    en: `"use client";
+
+import { Badge, PageAside } from "@gunjo/ui"
 
 const pageStatuses = [
   { label: "Status", value: "Pre-release", tone: "default" },

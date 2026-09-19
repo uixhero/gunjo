@@ -237,7 +237,9 @@ function SidebarContentExample({ actions = false, nested = true }: { actions?: b
 }
 
 const codeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client";
+
+import * as React from "react"
 import { SidebarItem, TooltipButton } from "@gunjo/ui"
 import {
   IconChevronRight as ChevronRight,
@@ -358,7 +360,9 @@ export function MediaLibrarySidebarContent() {
     </div>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client";
+
+import * as React from "react"
 import { SidebarItem, TooltipButton } from "@gunjo/ui"
 import {
   IconChevronRight as ChevronRight,
@@ -489,7 +493,9 @@ export function MediaLibrarySidebarContent() {
 };
 
 const flatCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client";
+
+import * as React from "react"
 import { SidebarItem } from "@gunjo/ui"
 import { IconFileText as FileText, IconGridDots as Grid } from "@tabler/icons-react"
 
@@ -518,7 +524,9 @@ export function FlatNavigationItems() {
     </div>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client";
+
+import * as React from "react"
 import { SidebarItem } from "@gunjo/ui"
 import { IconFileText as FileText, IconGridDots as Grid } from "@tabler/icons-react"
 
@@ -550,7 +558,9 @@ export function FlatNavigationItems() {
 };
 
 const collapsedCodeByLocale = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { SidebarItem } from "@gunjo/ui";
 import {
   IconFolder as Folder,
@@ -593,7 +603,9 @@ export function CollapsedLibraryRail() {
     </div>
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { SidebarItem } from "@gunjo/ui";
 import {
   IconFolder as Folder,
@@ -639,7 +651,9 @@ export function CollapsedLibraryRail() {
 };
 
 const actionsCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client";
+
+import * as React from "react"
 import {
   AlertDialog,
   AlertDialogAction,
@@ -811,7 +825,9 @@ export function MediaLibrarySidebarContent() {
     </div>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client";
+
+import * as React from "react"
 import {
   AlertDialog,
   AlertDialogAction,

@@ -111,7 +111,9 @@ export default function LayerMenuDocPage() {
     const description = content?.description ?? metadata.layerMenu.description ?? "";
 
     const usageCode = isJa
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { LayerMenu, type LayerMenuGroup } from "@gunjo/ui";
 import { IconEye } from "@tabler/icons-react";
 
@@ -149,7 +151,9 @@ export function MapLayers() {
     />
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { LayerMenu, type LayerMenuGroup } from "@gunjo/ui";
 import { IconEye } from "@tabler/icons-react";
 
@@ -280,7 +284,9 @@ export function MapLayers() {
                                 : "With some layers on, “All” shows a dash (aria-pressed=\"mixed\"). One press hides everything; another brings the previous set back.",
                             preview: <OpenMenu locale={locale as Locale} value={["cloud", "iss", "border"]} />,
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { LayerMenu } from "@gunjo/ui";
 import { IconEye } from "@tabler/icons-react";
 
@@ -296,7 +302,9 @@ export function PartlyOn() {
       icon={<IconEye />} label="重ねるもの" allLabel="すべて" />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { LayerMenu } from "@gunjo/ui";
 import { IconEye } from "@tabler/icons-react";
 
@@ -326,7 +334,9 @@ export function PartlyOn() {
                                 />
                             ),
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { LayerMenu } from "@gunjo/ui";
 import { IconEye } from "@tabler/icons-react";
 
@@ -341,7 +351,9 @@ export function AllOn() {
       icon={<IconEye />} label="重ねるもの" allLabel="すべて" />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { LayerMenu } from "@gunjo/ui";
 import { IconEye } from "@tabler/icons-react";
 
@@ -365,7 +377,9 @@ export function AllOn() {
                                 : "Everything off: the button's surface fades and “All” shows an empty box.",
                             preview: <OpenMenu locale={locale as Locale} value={[]} />,
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { LayerMenu } from "@gunjo/ui";
 import { IconEye } from "@tabler/icons-react";
 
@@ -380,7 +394,9 @@ export function AllOff() {
       icon={<IconEye />} label="重ねるもの" allLabel="すべて" />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { LayerMenu } from "@gunjo/ui";
 import { IconEye } from "@tabler/icons-react";
 
@@ -404,7 +420,9 @@ export function AllOff() {
                                 : "A layer that cannot be switched now keeps its row and state and says why in a few words. “All” leaves it alone too.",
                             preview: <OpenMenu locale={locale as Locale} value={["cloud", "rain", "iss"]} zoomedIn={false} />,
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { LayerMenu } from "@gunjo/ui";
 import { IconEye } from "@tabler/icons-react";
 
@@ -426,7 +444,9 @@ export function ZoomToUse() {
       icon={<IconEye />} label="重ねるもの" allLabel="すべて" />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { LayerMenu } from "@gunjo/ui";
 import { IconEye } from "@tabler/icons-react";
 

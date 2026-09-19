@@ -139,7 +139,9 @@ export default function NavRowDocPage() {
   const description = content?.description ?? metadata.navRow.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import {
   Button,
   Dialog,
@@ -211,7 +213,9 @@ export function BillingRows() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import {
   Button,
   Dialog,
@@ -285,7 +289,9 @@ export function BillingRows() {
 }`;
 
   const controlStateCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { NavRow, SettingGroup, Switch } from "@gunjo/ui";
 import { IconMail } from "@tabler/icons-react";
 
@@ -305,7 +311,9 @@ export function NotificationRow() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { NavRow, SettingGroup, Switch } from "@gunjo/ui";
 import { IconMail } from "@tabler/icons-react";
 

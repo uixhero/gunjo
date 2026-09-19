@@ -110,7 +110,9 @@ function NotificationCenterPreview({
 }
 
 const codeByLocale = {
-    ja: `import { NotificationCenter, type Notification, type NotificationCenterLabels } from "@gunjo/ui"
+    ja: `"use client";
+
+import { NotificationCenter, type Notification, type NotificationCenterLabels } from "@gunjo/ui"
 import { useState } from "react"
 
 const labels: NotificationCenterLabels = {
@@ -168,7 +170,9 @@ export function Notifications() {
     />
   )
 }`,
-    en: `import { NotificationCenter, type Notification, type NotificationCenterLabels } from "@gunjo/ui"
+    en: `"use client";
+
+import { NotificationCenter, type Notification, type NotificationCenterLabels } from "@gunjo/ui"
 import { useState } from "react"
 
 const labels: NotificationCenterLabels = {

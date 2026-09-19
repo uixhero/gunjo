@@ -75,7 +75,9 @@ function SingleProviderTrigger({
 }
 
 const codeByLocale = {
-    ja: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+    ja: `"use client";
+
+import { Button, ToastProvider, useToast } from "@gunjo/ui"
 
 function ToastActions() {
   const { showToast } = useToast()
@@ -105,7 +107,9 @@ export function ToastProviderExample() {
     </ToastProvider>
   )
 }`,
-    en: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+    en: `"use client";
+
+import { Button, ToastProvider, useToast } from "@gunjo/ui"
 
 function ToastActions() {
   const { showToast } = useToast()
@@ -138,7 +142,9 @@ export function ToastProviderExample() {
 };
 
 const successOnlyCodeByLocale = {
-    ja: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+    ja: `"use client";
+
+import { Button, ToastProvider, useToast } from "@gunjo/ui"
 
 function SaveAction() {
   const { showToast } = useToast()
@@ -157,7 +163,9 @@ export function SaveToastProvider() {
     </ToastProvider>
   )
 }`,
-    en: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+    en: `"use client";
+
+import { Button, ToastProvider, useToast } from "@gunjo/ui"
 
 function SaveAction() {
   const { showToast } = useToast()
@@ -179,7 +187,9 @@ export function SaveToastProvider() {
 };
 
 const durationCodeByLocale = {
-    ja: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+    ja: `"use client";
+
+import { Button, ToastProvider, useToast } from "@gunjo/ui"
 
 function RetryAction() {
   const { showToast } = useToast()
@@ -201,7 +211,9 @@ export function ErrorToastProvider() {
     </ToastProvider>
   )
 }`,
-    en: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+    en: `"use client";
+
+import { Button, ToastProvider, useToast } from "@gunjo/ui"
 
 function RetryAction() {
   const { showToast } = useToast()
@@ -226,7 +238,9 @@ export function ErrorToastProvider() {
 };
 
 const localizedCodeByLocale = {
-    ja: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+    ja: `"use client";
+
+import { Button, ToastProvider, useToast } from "@gunjo/ui"
 
 function LocalizedToastAction() {
   const { showToast } = useToast()
@@ -245,7 +259,9 @@ export function LocalizedToastProvider() {
     </ToastProvider>
   )
 }`,
-    en: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+    en: `"use client";
+
+import { Button, ToastProvider, useToast } from "@gunjo/ui"
 
 function LocalizedToastAction() {
   const { showToast } = useToast()
@@ -267,7 +283,9 @@ export function LocalizedToastProvider() {
 };
 
 const richCodeByLocale = {
-    ja: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+    ja: `"use client";
+
+import { Button, ToastProvider, useToast } from "@gunjo/ui"
 
 function DeleteButton() {
   const { showToast } = useToast()
@@ -297,7 +315,9 @@ export function RichToastProvider() {
     </ToastProvider>
   )
 }`,
-    en: `import { Button, ToastProvider, useToast } from "@gunjo/ui"
+    en: `"use client";
+
+import { Button, ToastProvider, useToast } from "@gunjo/ui"
 
 function DeleteButton() {
   const { showToast } = useToast()

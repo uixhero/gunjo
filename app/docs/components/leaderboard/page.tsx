@@ -342,7 +342,9 @@ export default function LeaderboardDocPage() {
   const description = content?.description ?? metadata.leaderboard.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import {
   Badge,
   Leaderboard,
@@ -655,7 +657,9 @@ export function IncidentLeaderboard() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import {
   Badge,
   Leaderboard,

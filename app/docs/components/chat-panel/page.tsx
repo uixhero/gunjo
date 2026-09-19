@@ -12,7 +12,9 @@ import overlayMetadata from "@design/overlay-metadata.json";
 import { ChatPanel, EmptyState, ToastProvider, useToast, type ChatMessageActionKey, type ChatPanelMessage } from "@gunjo/ui";
 import { IconChecklist, IconFileText, IconSparkles, IconWand } from "@tabler/icons-react";
 
-const usageCode = `import * as React from "react";
+const usageCode = `"use client";
+
+import * as React from "react";
 import { ChatPanel, ToastProvider, useToast, type ChatPanelMessage } from "@gunjo/ui";
 
 const actionMessages = {
@@ -66,7 +68,9 @@ export function SupportChatPanel() {
   );
 }`;
 
-const emptyCode = `import { ChatPanel, EmptyState } from "@gunjo/ui";
+const emptyCode = `"use client";
+
+import { ChatPanel, EmptyState } from "@gunjo/ui";
 
 export function EmptySupportChatPanel() {
   return (
@@ -86,7 +90,9 @@ export function EmptySupportChatPanel() {
   );
 }`;
 
-const welcomeCode = `import * as React from "react";
+const welcomeCode = `"use client";
+
+import * as React from "react";
 import { ChatPanel, type ChatPanelMessage } from "@gunjo/ui";
 import { IconChecklist, IconFileText, IconSparkles, IconWand } from "@tabler/icons-react";
 

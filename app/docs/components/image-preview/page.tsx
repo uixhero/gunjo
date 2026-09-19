@@ -13,7 +13,9 @@ const imageSrc = "https://images.unsplash.com/photo-1497366754035-f200968a6e72?a
 const bannerSrc = "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1200&q=80";
 
 const codeByLocale = {
-    en: `import { ImagePreview } from "@gunjo/ui";
+    en: `"use client";
+
+import { ImagePreview } from "@gunjo/ui";
 
 export function Example() {
   return (
@@ -25,7 +27,9 @@ export function Example() {
     />
   );
 }`,
-    ja: `import { ImagePreview } from "@gunjo/ui";
+    ja: `"use client";
+
+import { ImagePreview } from "@gunjo/ui";
 
 export function Example() {
   return (

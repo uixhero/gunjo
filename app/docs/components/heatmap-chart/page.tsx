@@ -261,7 +261,9 @@ export function HeatmapWithPeakSummary() {
         />
     );
 }`,
-        values: `import { HeatmapChart } from "@gunjo/ui";
+        values: `"use client";
+
+import { HeatmapChart } from "@gunjo/ui";
 
 const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 const times = ["00", "04", "08", "12", "16", "20"];
@@ -423,7 +425,9 @@ export function HeatmapWithPeakSummary() {
         />
     );
 }`,
-        values: `import { HeatmapChart } from "@gunjo/ui";
+        values: `"use client";
+
+import { HeatmapChart } from "@gunjo/ui";
 
 const days = ["月", "火", "水", "木", "金", "土", "日"];
 const times = ["00", "04", "08", "12", "16", "20"];

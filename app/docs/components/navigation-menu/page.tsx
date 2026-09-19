@@ -171,7 +171,9 @@ function WideMenuExample() {
 }
 
 const codeByLocale = {
-    ja: `import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@gunjo/ui"
+    ja: `"use client";
+
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@gunjo/ui"
 
 const products = [
   { title: "コンポーネント", href: "/docs/components", desc: "再利用できる UI 部品" },
@@ -215,7 +217,9 @@ export function ProductNavigation() {
     </NavigationMenu>
   )
 }`,
-    en: `import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@gunjo/ui"
+    en: `"use client";
+
+import { NavigationMenu, NavigationMenuContent, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, NavigationMenuTrigger, navigationMenuTriggerStyle } from "@gunjo/ui"
 
 const products = [
   { title: "Components", href: "/docs/components", desc: "Reusable UI parts" },
@@ -262,7 +266,9 @@ export function ProductNavigation() {
 };
 
 const directCodeByLocale = {
-    ja: `import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "@gunjo/ui"
+    ja: `"use client";
+
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "@gunjo/ui"
 
 export function DirectNavigation() {
   return (
@@ -282,7 +288,9 @@ export function DirectNavigation() {
     </NavigationMenu>
   )
 }`,
-    en: `import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "@gunjo/ui"
+    en: `"use client";
+
+import { NavigationMenu, NavigationMenuItem, NavigationMenuLink, NavigationMenuList, navigationMenuTriggerStyle } from "@gunjo/ui"
 
 export function DirectNavigation() {
   return (
@@ -305,7 +313,9 @@ export function DirectNavigation() {
 };
 
 const currentCodeByLocale = {
-    ja: `import {
+    ja: `"use client";
+
+import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,
@@ -344,7 +354,9 @@ export function SiteNavigation() {
     </NavigationMenu>
   )
 }`,
-    en: `import {
+    en: `"use client";
+
+import {
   NavigationMenu,
   NavigationMenuItem,
   NavigationMenuLink,

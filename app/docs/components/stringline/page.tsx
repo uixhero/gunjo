@@ -168,7 +168,9 @@ export default function StringlineDocPage() {
 
   const usageCode =
     locale === "ja"
-      ? `import * as React from "react";
+      ? `"use client";
+
+import * as React from "react";
 import { Badge, Stringline, type StringlineRun, type StringlineStop } from "@gunjo/ui";
 
 const stops: StringlineStop[] = [
@@ -300,7 +302,9 @@ export function TrainDiagram() {
     </div>
   );
 }`
-      : `import * as React from "react";
+      : `"use client";
+
+import * as React from "react";
 import { Badge, Stringline, type StringlineRun, type StringlineStop } from "@gunjo/ui";
 
 const stops: StringlineStop[] = [

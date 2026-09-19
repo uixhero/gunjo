@@ -56,7 +56,9 @@ function CalendarStatesContent({ locale }: { locale: "ja" | "en" }) {
                             className="rounded-md border"
                         />
                     ),
-                    code: `import { Calendar } from "@gunjo/ui";
+                    code: `"use client";
+
+import { Calendar } from "@gunjo/ui";
 import * as React from "react";
 
 export default function MultipleCalendar() {
@@ -95,7 +97,9 @@ export default function MultipleCalendar() {
                             numberOfMonths={2}
                         />
                     ),
-                    code: `import { Calendar } from "@gunjo/ui";
+                    code: `"use client";
+
+import { Calendar } from "@gunjo/ui";
 import * as React from "react";
 import type { DateRange } from "react-day-picker";
 
@@ -133,7 +137,9 @@ export default function RangeCalendar() {
                         />
                     ),
                     code: locale === "ja"
-                        ? `import * as React from "react";
+                        ? `"use client";
+
+import * as React from "react";
 import { Calendar } from "@gunjo/ui";
 
 export function FutureOnlyCalendar() {
@@ -152,7 +158,9 @@ export function FutureOnlyCalendar() {
     />
   );
 }`
-                        : `import * as React from "react";
+                        : `"use client";
+
+import * as React from "react";
 import { Calendar } from "@gunjo/ui";
 
 export function FutureOnlyCalendar() {
@@ -179,7 +187,9 @@ export function FutureOnlyCalendar() {
 
 export default function CalendarPage() {
     const { locale, sectionLabels } = useLocale();
-    const code = `import { Calendar } from "@gunjo/ui"
+    const code = `"use client";
+
+import { Calendar } from "@gunjo/ui"
 import React from "react"
 
 export function CalendarDemo() {

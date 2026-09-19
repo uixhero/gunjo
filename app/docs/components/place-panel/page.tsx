@@ -102,7 +102,9 @@ export default function PlacePanelDocPage() {
     const description = content?.description ?? metadata.placePanel.description ?? "";
 
     const usageCode = isJa
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { PlacePanel } from "@gunjo/ui";
 
 type Current = { temperature_2m?: number; relative_humidity_2m?: number };
@@ -140,7 +142,9 @@ export function PickedPlace() {
     </div>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { PlacePanel } from "@gunjo/ui";
 
 type Current = { temperature_2m?: number; relative_humidity_2m?: number };

@@ -99,7 +99,9 @@ export default function MentionPage() {
     const { locale, sectionLabels } = useLocale();
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
     const code = locale === "ja"
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import {
   Code,
   FormControl,
@@ -137,7 +139,9 @@ export function MentionDemo() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import {
   Code,
   FormControl,
@@ -177,7 +181,9 @@ export function MentionDemo() {
 }`;
 
     const usageCode = locale === "ja"
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { FormControl, FormGroup, FormLabel, Mention } from "@gunjo/ui";
 
 const TEAM_MEMBERS = [
@@ -205,7 +211,9 @@ export function MessageField() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { FormControl, FormGroup, FormLabel, Mention } from "@gunjo/ui";
 
 const TEAM_MEMBERS = [
@@ -345,7 +353,9 @@ export function MessageField() {
                             ),
                             previewHeight: 360,
                             code: locale === "ja"
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { Mention } from "@gunjo/ui";
 
 const TAGS = [
@@ -367,7 +377,9 @@ export function TaggedNoteField() {
     />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { Mention } from "@gunjo/ui";
 
 const TAGS = [

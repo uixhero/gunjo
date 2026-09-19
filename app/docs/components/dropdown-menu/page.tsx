@@ -14,7 +14,9 @@ import overlayMetadata from "@design/overlay-metadata.json";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import {
   Button,
   DropdownMenu,
@@ -62,7 +64,9 @@ export function ViewSettingsMenu() {
     </DropdownMenu>
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import {
   Button,
   DropdownMenu,

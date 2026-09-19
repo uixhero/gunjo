@@ -23,7 +23,9 @@ const segmentsCode = {
 ];`,
 } as const;
 
-const code = { en: `import { SegmentedGaugeCard } from "@gunjo/ui";
+const code = { en: `"use client";
+
+import { SegmentedGaugeCard } from "@gunjo/ui";
 
 const segments = [
     { label: "Essentials", value: 35, rangeLabel: "Fixed" },
@@ -51,7 +53,9 @@ export function SpendBreakdownGauge() {
             caption="Inspect spend, progress, or risk status with segmented gauge ranges."
         />
     );
-}`, ja: `import { SegmentedGaugeCard } from "@gunjo/ui";
+}`, ja: `"use client";
+
+import { SegmentedGaugeCard } from "@gunjo/ui";
 
 const segments = [
     { label: "基礎費", value: 35, rangeLabel: "固定費" },

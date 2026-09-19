@@ -290,7 +290,9 @@ export function CommandExample() {
 };
 
 const searchCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client";
+
+import * as React from "react"
 import {
   Command,
   CommandEmpty,
@@ -337,7 +339,9 @@ export function EmptyCommandSearch() {
     </Command>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client";
+
+import * as React from "react"
 import {
   Command,
   CommandEmpty,

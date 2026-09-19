@@ -69,7 +69,9 @@ export default function RangeSliderPage() {
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
     const isJa = locale === "ja";
     const code = isJa
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { FormControl, FormGroup, FormLabel, RangeSlider } from "@gunjo/ui";
 
 export function PriceRangeSlider() {
@@ -94,7 +96,9 @@ export function PriceRangeSlider() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { FormControl, FormGroup, FormLabel, RangeSlider } from "@gunjo/ui";
 
 export function PriceRangeSlider() {
@@ -121,7 +125,9 @@ export function PriceRangeSlider() {
 }`;
 
     const usageCode = isJa
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { RangeSlider } from "@gunjo/ui";
 
 export function PriceRangeFilter() {
@@ -140,7 +146,9 @@ export function PriceRangeFilter() {
     />
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { RangeSlider } from "@gunjo/ui";
 
 export function PriceRangeFilter() {
@@ -263,7 +271,9 @@ export function PriceRangeFilter() {
                             preview: <RangeStatePreview step={10} initialValue={[20, 80]} />,
                             previewHeight: 190,
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { RangeSlider } from "@gunjo/ui";
 
 export function SteppedPriceRangeSlider() {
@@ -282,7 +292,9 @@ export function SteppedPriceRangeSlider() {
     />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { RangeSlider } from "@gunjo/ui";
 
 export function SteppedPriceRangeSlider() {
@@ -312,7 +324,9 @@ export function SteppedPriceRangeSlider() {
                             preview: <RangeSliderDemo />,
                             previewHeight: 250,
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { NumberInput, RangeSlider } from "@gunjo/ui";
 
 export function PriceRangeWithInputs() {
@@ -341,7 +355,9 @@ export function PriceRangeWithInputs() {
     </div>
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { NumberInput, RangeSlider } from "@gunjo/ui";
 
 export function PriceRangeWithInputs() {

@@ -193,7 +193,9 @@ export default function KanbanBoardDocPage() {
   const description = content?.description ?? metadata.kanbanBoard.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import {
   Badge,
   KanbanBoard,
@@ -327,7 +329,9 @@ export function ReviewKanban() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import {
   Badge,
   KanbanBoard,
@@ -463,7 +467,9 @@ export function ReviewKanban() {
 }`;
 
   const emptyColumnCode = locale === "ja"
-    ? `import { KanbanBoard, type KanbanColumn } from "@gunjo/ui";
+    ? `"use client";
+
+import { KanbanBoard, type KanbanColumn } from "@gunjo/ui";
 
 type Task = { id: string; status: string; title: string };
 
@@ -490,7 +496,9 @@ export function EmptyColumnKanban() {
     />
   );
 }`
-    : `import { KanbanBoard, type KanbanColumn } from "@gunjo/ui";
+    : `"use client";
+
+import { KanbanBoard, type KanbanColumn } from "@gunjo/ui";
 
 type Task = { id: string; status: string; title: string };
 
@@ -519,7 +527,9 @@ export function EmptyColumnKanban() {
 }`;
 
   const withoutCountCode = locale === "ja"
-    ? `import { KanbanBoard, type KanbanColumn } from "@gunjo/ui";
+    ? `"use client";
+
+import { KanbanBoard, type KanbanColumn } from "@gunjo/ui";
 
 type Task = { id: string; status: string; title: string };
 
@@ -545,7 +555,9 @@ export function KanbanWithoutCounts() {
     />
   );
 }`
-    : `import { KanbanBoard, type KanbanColumn } from "@gunjo/ui";
+    : `"use client";
+
+import { KanbanBoard, type KanbanColumn } from "@gunjo/ui";
 
 type Task = { id: string; status: string; title: string };
 
