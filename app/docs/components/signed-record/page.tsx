@@ -205,7 +205,9 @@ export default function SignedRecordDocPage() {
 
   const usageCode =
     locale === "ja"
-      ? `import * as React from "react";
+      ? `"use client";
+
+import * as React from "react";
 import { SignedRecord, Textarea, type SignedRecordValue } from "@gunjo/ui";
 
 export function DischargeRecord() {
@@ -242,7 +244,9 @@ export function DischargeRecord() {
     </div>
   );
 }`
-      : `import * as React from "react";
+      : `"use client";
+
+import * as React from "react";
 import { SignedRecord, Textarea, type SignedRecordValue } from "@gunjo/ui";
 
 export function DischargeRecord() {
@@ -282,7 +286,9 @@ export function DischargeRecord() {
 
   const signedStateCode =
     locale === "ja"
-      ? `import { SignedRecord, type SignedRecordValue } from "@gunjo/ui";
+      ? `"use client";
+
+import { SignedRecord, type SignedRecordValue } from "@gunjo/ui";
 
 const signedRecord: SignedRecordValue = {
   status: "signed",
@@ -317,7 +323,9 @@ export function SignedDischargeRecord() {
     </div>
   );
 }`
-      : `import { SignedRecord, type SignedRecordValue } from "@gunjo/ui";
+      : `"use client";
+
+import { SignedRecord, type SignedRecordValue } from "@gunjo/ui";
 
 const signedRecord: SignedRecordValue = {
   status: "signed",
@@ -355,7 +363,9 @@ export function SignedDischargeRecord() {
 
   const blockedStateCode =
     locale === "ja"
-      ? `import * as React from "react";
+      ? `"use client";
+
+import * as React from "react";
 import { SignedRecord, Textarea, type SignedRecordValue } from "@gunjo/ui";
 
 export function MissingBodyDischargeRecord() {
@@ -385,7 +395,9 @@ export function MissingBodyDischargeRecord() {
     </div>
   );
 }`
-      : `import * as React from "react";
+      : `"use client";
+
+import * as React from "react";
 import { SignedRecord, Textarea, type SignedRecordValue } from "@gunjo/ui";
 
 export function MissingBodyDischargeRecord() {
@@ -417,7 +429,9 @@ export function MissingBodyDischargeRecord() {
 }`;
 
   const multiSignerCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { SignedRecord, Textarea, type SignedRecordValue } from "@gunjo/ui";
 
 const signers = [
@@ -459,7 +473,9 @@ export function MultiSignedNote() {
     </SignedRecord>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { SignedRecord, Textarea, type SignedRecordValue } from "@gunjo/ui";
 
 const signers = [

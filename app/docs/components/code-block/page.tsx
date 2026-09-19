@@ -368,7 +368,9 @@ export function CodeBlockWithHeader() {
                             ),
                             previewHeight: "auto",
                             code: isJa
-                              ? `import * as React from "react"
+                              ? `"use client";
+
+import * as React from "react"
 import { CodeBlock } from "@gunjo/ui"
 
 const initialSource = [
@@ -395,7 +397,9 @@ export function EditableCodeBlock() {
     />
   )
 }`
-                              : `import * as React from "react"
+                              : `"use client";
+
+import * as React from "react"
 import { CodeBlock } from "@gunjo/ui"
 
 const initialSource = [

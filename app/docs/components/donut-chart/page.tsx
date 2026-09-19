@@ -106,7 +106,9 @@ export function SegmentMixDonut() {
 } as const;
 
 const usageCodeByLocale = {
-    en: `import { DonutChart } from "@gunjo/ui";
+    en: `"use client";
+
+import { DonutChart } from "@gunjo/ui";
 
 const segments = [
     { label: "Organic", value: 46, color: "primary" },
@@ -134,7 +136,9 @@ export function DonutChartUsage() {
         </div>
     );
 }`,
-    ja: `import { DonutChart } from "@gunjo/ui";
+    ja: `"use client";
+
+import { DonutChart } from "@gunjo/ui";
 
 const segments = [
     { label: "自然流入", value: 46, color: "primary" },
@@ -245,7 +249,9 @@ export function ThickSegmentDonut() {
         />
     );
 }`,
-        formatted: `import { DonutChart } from "@gunjo/ui";
+        formatted: `"use client";
+
+import { DonutChart } from "@gunjo/ui";
 
 const segments = [
     { label: "Product", value: 132000, color: "primary" },
@@ -368,7 +374,9 @@ export function ThickSegmentDonut() {
         />
     );
 }`,
-        formatted: `import { DonutChart } from "@gunjo/ui";
+        formatted: `"use client";
+
+import { DonutChart } from "@gunjo/ui";
 
 const segments = [
     { label: "プロダクト", value: 132000, color: "primary" },

@@ -250,7 +250,9 @@ export function StorageProgress() {
 };
 
 const dynamicCodeByLocale = {
-    ja: `import { Button, Progress } from "@gunjo/ui"
+    ja: `"use client";
+
+import { Button, Progress } from "@gunjo/ui"
 import { useEffect, useState } from "react"
 
 type ProgressStatus = "running" | "paused" | "failed" | "complete"
@@ -331,7 +333,9 @@ export function DynamicUploadProgress() {
     </div>
   )
 }`,
-    en: `import { Button, Progress } from "@gunjo/ui"
+    en: `"use client";
+
+import { Button, Progress } from "@gunjo/ui"
 import { useEffect, useState } from "react"
 
 type ProgressStatus = "running" | "paused" | "failed" | "complete"

@@ -12,7 +12,9 @@ import patternsMetadata from "@design/patterns-metadata.json";
 export default function OnboardingTemplatePage() {
     const { locale } = useLocale();
 
-    const code = `import { OnboardingFlow, OnboardingTemplate } from "@gunjo/ui";
+    const code = `"use client";
+
+import { OnboardingFlow, OnboardingTemplate } from "@gunjo/ui";
 
 export function Onboarding() {
     return (

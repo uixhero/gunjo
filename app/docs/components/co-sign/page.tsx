@@ -166,7 +166,9 @@ export default function CoSignDocPage() {
   const description = content?.description ?? metadata.coSign.description;
 
   const usageCode = locale === "ja"
-      ? `import * as React from "react";
+      ? `"use client";
+
+import * as React from "react";
 import { CoSign, CoSignBadge, type CoSignValue } from "@gunjo/ui";
 
 export function MedicationDoubleCheck() {
@@ -208,7 +210,9 @@ export function MedicationDoubleCheck() {
     </div>
   );
 }`
-      : `import * as React from "react";
+      : `"use client";
+
+import * as React from "react";
 import { CoSign, CoSignBadge, type CoSignValue } from "@gunjo/ui";
 
 export function MedicationDoubleCheck() {
@@ -479,7 +483,9 @@ export function SignedCoSign() {
                 : "Disable the follow-up action until the second review is complete, with tooltip feedback.",
               preview: <GatedActionPreview locale={locale} />,
               code: locale === "ja"
-                  ? `import * as React from "react";
+                  ? `"use client";
+
+import * as React from "react";
 import {
   Button,
   CoSign,
@@ -522,7 +528,9 @@ export function GatedMedicationAction() {
     </div>
   );
 }`
-                  : `import * as React from "react";
+                  : `"use client";
+
+import * as React from "react";
 import {
   Button,
   CoSign,

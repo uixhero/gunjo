@@ -10,7 +10,9 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import layoutMetadata from "@design/layout-metadata.json";
 
 const codeByLocale = {
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { Button, MarqueeFrame } from "@gunjo/ui";
 
 const pathOptions = [
@@ -76,7 +78,9 @@ export function Example() {
     </div>
   );
 }`,
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { Button, MarqueeFrame } from "@gunjo/ui";
 
 const pathOptions = [

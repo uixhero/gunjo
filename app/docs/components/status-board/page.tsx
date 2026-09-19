@@ -156,7 +156,9 @@ export default function StatusBoardDocPage() {
 
   const usageCode =
     locale === "ja"
-      ? `import * as React from "react";
+      ? `"use client";
+
+import * as React from "react";
 import { Badge, StatusBoard, type StatusBoardGroup } from "@gunjo/ui";
 import { IconAlertTriangle, IconCar, IconCircleCheck, IconTool } from "@tabler/icons-react";
 
@@ -218,7 +220,9 @@ export function DispatchBoard() {
     </div>
   );
 }`
-      : `import * as React from "react";
+      : `"use client";
+
+import * as React from "react";
 import { Badge, StatusBoard, type StatusBoardGroup } from "@gunjo/ui";
 import { IconAlertTriangle, IconCar, IconCircleCheck, IconTool } from "@tabler/icons-react";
 

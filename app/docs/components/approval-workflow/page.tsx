@@ -141,7 +141,9 @@ export default function ApprovalWorkflowDocPage() {
   const description = content?.description ?? metadata.approvalWorkflow.description;
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import {
   ApprovalWorkflow,
   Button,
@@ -203,7 +205,9 @@ export function ScreeningWorkflow() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import {
   ApprovalWorkflow,
   Button,
@@ -280,7 +284,9 @@ export function ScreeningWorkflow() {
 }`;
 
   const blockedCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import {
   ApprovalWorkflow,
   type WorkflowStage,
@@ -314,7 +320,9 @@ export function BlockedWorkflow() {
     />
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import {
   ApprovalWorkflow,
   type WorkflowStage,
@@ -363,7 +371,9 @@ export function BlockedWorkflow() {
 }`;
 
   const completedCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import {
   ApprovalWorkflow,
   type WorkflowStage,
@@ -399,7 +409,9 @@ export function CompletedWorkflow() {
     />
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import {
   ApprovalWorkflow,
   type WorkflowStage,

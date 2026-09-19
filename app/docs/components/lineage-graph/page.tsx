@@ -179,7 +179,9 @@ export default function LineageGraphDocPage() {
   const description = content?.description ?? metadata.lineageGraph.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import {
   Badge,
   LineageGraph,
@@ -269,7 +271,9 @@ export function LotLineage() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import {
   Badge,
   LineageGraph,
@@ -431,7 +435,9 @@ export function VerticalLotLineage() {
 }`;
 
   const customNodeCode = locale === "ja"
-    ? `import {
+    ? `"use client";
+
+import {
   Badge,
   LineageGraph,
   type LineageEdge,
@@ -466,7 +472,9 @@ export function CustomNodeLotLineage() {
     />
   );
 }`
-    : `import {
+    : `"use client";
+
+import {
   Badge,
   LineageGraph,
   type LineageEdge,

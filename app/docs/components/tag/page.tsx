@@ -11,7 +11,9 @@ import displayMetadata from "@design/display-metadata.json";
 import { Tag } from "@gunjo/ui";
 
 const codeByLocale = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { Tag } from "@gunjo/ui";
 
 export function Example() {
@@ -31,7 +33,9 @@ export function Example() {
     </div>
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { Tag } from "@gunjo/ui";
 
 export function Example() {

@@ -20,7 +20,9 @@ export default function ProgressDialogDocPage() {
     const title = content?.title ?? metadata.progressDialog.title ?? "ProgressDialog";
     const description = content?.description ?? metadata.progressDialog.description ?? "";
 
-    const usageCode = `import * as React from "react";
+    const usageCode = `"use client";
+
+import * as React from "react";
 import { Badge, Button, ProgressDialog } from "@gunjo/ui";
 
 const STEPS = ${t('["会議の前提を読み取っています", "発言を要点に分けています", "議事録の形に整えています"]', '["Reading the meeting context", "Sorting remarks into points", "Shaping the minutes"]')};
@@ -116,7 +118,9 @@ export function CreateMinutes() {
   );
 }`;
 
-    const asideCode = `import * as React from "react";
+    const asideCode = `"use client";
+
+import * as React from "react";
 import { Badge, Button, ProgressDialog } from "@gunjo/ui";
 
 const SCENE = "/demos/progress-dialog/trip-plan.svg";
@@ -181,7 +185,9 @@ export function WithSlot() {
   );
 }`;
 
-    const knownCode = `import * as React from "react";
+    const knownCode = `"use client";
+
+import * as React from "react";
 import { Button, ProgressDialog } from "@gunjo/ui";
 
 const TOTAL = 5;
@@ -250,7 +256,9 @@ export function KnownCount() {
   );
 }`;
 
-    const noCancelCode = `import * as React from "react";
+    const noCancelCode = `"use client";
+
+import * as React from "react";
 import { Button, ProgressDialog } from "@gunjo/ui";
 
 const SCENE = "/demos/progress-dialog/meeting-minutes.svg";
@@ -302,7 +310,9 @@ export function NoCancel() {
   );
 }`;
 
-    const reducedCode = `import * as React from "react";
+    const reducedCode = `"use client";
+
+import * as React from "react";
 import { Badge, Button, ProgressDialog } from "@gunjo/ui";
 
 const STEPS = ${t('["会議の前提を読み取っています", "発言を要点に分けています", "議事録の形に整えています"]', '["Reading the meeting context", "Sorting remarks into points", "Shaping the minutes"]')};

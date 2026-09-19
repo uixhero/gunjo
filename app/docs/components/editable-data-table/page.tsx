@@ -23,7 +23,9 @@ import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const meta = displayMetadata as Record<string, { title?: string; description?: string }>;
 
-const usageCode = `import * as React from "react";
+const usageCode = `"use client";
+
+import * as React from "react";
 import {
   EditableDataTable,
   type EditableColumn,
@@ -452,7 +454,9 @@ export default function EditableDataTableDocPage() {
                                 : "variant=\"compact\" tightens the cell padding. Reach for it on journals and stocktakes where dozens of rows are typed in one sitting and the vertical travel is the cost. The editors themselves keep their size, so nothing becomes harder to hit.",
                             preview: <CompactGridPreview locale={locale} />,
                             code: locale === "ja"
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import {
   EditableDataTable,
   type EditableColumn,
@@ -524,7 +528,9 @@ export function CompactJournal() {
     />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import {
   EditableDataTable,
   type EditableColumn,
@@ -605,7 +611,9 @@ export function CompactJournal() {
                                 : "renderFooterCell puts a number under a column, but a verdict such as whether the two sides balance does not belong under any one of them. footer renders a single full-width band instead, in the same place on desktop and on a phone. The two can be used together.",
                             preview: <BalanceGridPreview locale={locale} />,
                             code: locale === "ja"
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import {
   EditableDataTable,
   type EditableColumn,
@@ -699,7 +707,9 @@ export function BalancedJournal() {
     />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import {
   EditableDataTable,
   type EditableColumn,
@@ -802,7 +812,9 @@ export function BalancedJournal() {
                                 : "An empty rows array does not remove the grid: the headers stay, with a line saying there is nothing yet. labels.empty replaces the built-in \"No rows.\" when the surrounding copy calls for different words, and caption describes the grid itself, including to screen readers. The add-row affordance matters most in exactly this state.",
                             preview: <EmptyGridPreview locale={locale} />,
                             code: locale === "ja"
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { EditableDataTable, type EditableColumn, Input } from "@gunjo/ui";
 
 type Guest = { id: string; name: string; company: string };
@@ -864,7 +876,9 @@ export function GuestList() {
     />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { EditableDataTable, type EditableColumn, Input } from "@gunjo/ui";
 
 type Guest = { id: string; name: string; company: string };

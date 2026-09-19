@@ -302,7 +302,9 @@ export default function FilterChipsDocPage() {
   const description = content?.description ?? metadata.filterChips.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { createPortal } from "react-dom";
 import {
   Badge,
@@ -484,7 +486,9 @@ export function FacilityFinder() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { createPortal } from "react-dom";
 import {
   Badge,
@@ -673,7 +677,9 @@ export function FacilityFinder() {
 }`;
 
   const selectedCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { FilterChips, type FilterChip } from "@gunjo/ui";
 
 const categories: FilterChip[] = [
@@ -694,7 +700,9 @@ export function FacilityCategoryChips() {
     />
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { FilterChips, type FilterChip } from "@gunjo/ui";
 
 const categories: FilterChip[] = [
@@ -717,7 +725,9 @@ export function FacilityCategoryChips() {
 }`;
 
   const disabledCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { Badge, FilterChips, ListCard, type FilterChip } from "@gunjo/ui";
 
 const categories: FilterChip[] = [
@@ -794,7 +804,9 @@ export function DisabledCategoryChips() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { Badge, FilterChips, ListCard, type FilterChip } from "@gunjo/ui";
 
 const categories: FilterChip[] = [

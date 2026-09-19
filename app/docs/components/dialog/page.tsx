@@ -9,7 +9,9 @@ import { DialogAuditDemo } from "@/components/demos/OverlayComponentDemos";
 import overlayMetadata from "@design/overlay-metadata.json";
 
 const codeByLocale = {
-    ja: `import {
+    ja: `"use client";
+
+import {
   Button,
   Dialog,
   DialogClose,
@@ -64,7 +66,9 @@ export function EditProfileDialog() {
     </Dialog>
   );
 }`,
-    en: `import {
+    en: `"use client";
+
+import {
   Button,
   Dialog,
   DialogClose,

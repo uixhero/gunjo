@@ -106,7 +106,9 @@ export function TextareaDemo() {
   );
 }`;
     const usageCode = locale === "ja"
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { FormControl, FormDescription, FormGroup, FormLabel, Textarea } from "@gunjo/ui";
 
 const LIMIT = 120;
@@ -130,7 +132,9 @@ export function MemoField() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { FormControl, FormDescription, FormGroup, FormLabel, Textarea } from "@gunjo/ui";
 
 const LIMIT = 120;
@@ -215,7 +219,9 @@ export function MemoField() {
                             description: locale === "ja" ? "残り文字数を表示し、送信前に入力制限を確認できます。" : "Show the remaining character budget before submit.",
                             preview: <TextareaStatePreview counter />,
                             previewHeight: 230,
-                            code: `import * as React from "react";
+                            code: `"use client";
+
+import * as React from "react";
 import { Textarea } from "@gunjo/ui";
 
 export function CountedTextarea() {

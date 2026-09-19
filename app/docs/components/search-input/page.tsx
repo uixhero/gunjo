@@ -70,7 +70,9 @@ export default function SearchInputPage() {
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
 
     const code = locale === "ja"
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -100,7 +102,9 @@ export function SearchInputDemo() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -132,7 +136,9 @@ export function SearchInputDemo() {
 }`;
 
     const usageCode = locale === "ja"
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { FormControl, FormGroup, FormLabel, SearchInput } from "@gunjo/ui";
 
 export function AssetSearchField() {
@@ -152,7 +158,9 @@ export function AssetSearchField() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { FormControl, FormGroup, FormLabel, SearchInput } from "@gunjo/ui";
 
 export function AssetSearchField() {
@@ -215,7 +223,9 @@ export function AssetSearchField() {
                             description: locale === "ja" ? "入力済みの時だけクリアボタンを表示します。" : "Shows a clear button only while a query is present.",
                             preview: <SearchInputStatePreview initialValue={locale === "ja" ? "バナー" : "banner"} />,
                             code: locale === "ja"
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -245,7 +255,9 @@ export function ClearableSearchInput() {
     </FormGroup>
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -282,7 +294,9 @@ export function ClearableSearchInput() {
                             description: locale === "ja" ? "候補やフィルター側でリセットする検索欄では、クリアボタンを非表示にできます。" : "Hide the clear button when reset is handled elsewhere.",
                             preview: <SearchInputStatePreview clearable={false} initialValue={locale === "ja" ? "画像" : "image"} />,
                             code: locale === "ja"
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -312,7 +326,9 @@ export function SearchWithoutClearButton() {
     </FormGroup>
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,

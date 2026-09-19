@@ -165,7 +165,9 @@ export default function ListCardDocPage() {
   const description = content?.description ?? metadata.listCard.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { Badge, LineChip, ListCard, Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@gunjo/ui";
 
 export function RouteResults() {
@@ -240,7 +242,9 @@ export function RouteResults() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { Badge, LineChip, ListCard, Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@gunjo/ui";
 
 export function RouteResults() {

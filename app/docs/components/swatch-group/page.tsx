@@ -24,7 +24,9 @@ const swatchOptions = [
   { value: "muted", label: "Muted (sold out)", color: "hsl(var(--muted))", disabled: true },
 ];
 
-const usageCode = `import { SwatchGroup } from "@gunjo/ui"
+const usageCode = `"use client";
+
+import { SwatchGroup } from "@gunjo/ui"
 
 const options = [
   { value: "ink", label: "Ink", color: "hsl(var(--foreground))" },
@@ -203,7 +205,9 @@ export function SwatchSizes() {
                 : "Passing value with onValueChange moves the selection out to the page, which is what lets you print the chosen colour by name or swap the photo to match. Adding disallowEmpty means clicking the active dot again will not clear it, which is what an order form needs when a colour is mandatory.",
               preview: <ControlledSwatchPreview locale={locale} />,
               code: locale === "ja"
-                ? `import * as React from "react";
+                ? `"use client";
+
+import * as React from "react";
 import { SwatchGroup } from "@gunjo/ui";
 
 const options = [
@@ -228,7 +232,9 @@ export function ColourPicker() {
     </div>
   );
 }`
-                : `import * as React from "react";
+                : `"use client";
+
+import * as React from "react";
 import { SwatchGroup } from "@gunjo/ui";
 
 const options = [
@@ -262,7 +268,9 @@ export function ColourPicker() {
                 : "A disabled dot cannot be clicked and arrow keys step over it. It stays on show because the fact that the colour exists is itself information to a buyer. The dimmed look must not be the only clue, so the state goes into label as well. Arrow through the row and the selection hops over the sold-out dots.",
               preview: <StockSwatchPreview locale={locale} />,
               code: locale === "ja"
-                ? `import * as React from "react";
+                ? `"use client";
+
+import * as React from "react";
 import { SwatchGroup } from "@gunjo/ui";
 
 const options = [
@@ -288,7 +296,9 @@ export function StockAwarePicker() {
     </div>
   );
 }`
-                : `import * as React from "react";
+                : `"use client";
+
+import * as React from "react";
 import { SwatchGroup } from "@gunjo/ui";
 
 const options = [

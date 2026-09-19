@@ -51,7 +51,9 @@ import { CodeBlock } from "@/components/doc/CodeBlock";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const SAMPLE_CODE = {
-    ja: `import { useState } from "react";
+    ja: `"use client";
+
+import { useState } from "react";
 import {
     Button,
     Checkbox,
@@ -190,7 +192,9 @@ export function WorkspaceSettingsForm() {
         </Form>
     );
 }`,
-    en: `import { useState } from "react";
+    en: `"use client";
+
+import { useState } from "react";
 import {
     Button,
     Checkbox,

@@ -145,12 +145,16 @@ export default function ButtonPage() {
     const variantType = getCategoryVariantUnionType("inputs", "button");
 
     const usageCode = locale === "ja"
-        ? `import { Button } from "@gunjo/ui"
+        ? `"use client";
+
+import { Button } from "@gunjo/ui"
 
 export function Example() {
   return <Button variant="primary" onClick={() => console.log("click")}>保存する</Button>
 }`
-        : `import { Button } from "@gunjo/ui"
+        : `"use client";
+
+import { Button } from "@gunjo/ui"
 
 export function Example() {
   return <Button variant="primary" onClick={() => console.log("click")}>Click me</Button>
@@ -480,7 +484,9 @@ export default function SaveIconButton() {
                                 </Tooltip>
                             ),
                             code: locale === "ja"
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import {
   Button,
   Tooltip,
@@ -507,7 +513,9 @@ export function SubmitButton() {
     </Tooltip>
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import {
   Button,
   Tooltip,

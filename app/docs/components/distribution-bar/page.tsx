@@ -108,7 +108,9 @@ export function ChannelMixBar() {
 } as const;
 
 const usageCodeByLocale = {
-    en: `import { DistributionBar } from "@gunjo/ui";
+    en: `"use client";
+
+import { DistributionBar } from "@gunjo/ui";
 
 const segments = [
     { label: "Organic", value: 46, color: "primary" },
@@ -129,7 +131,9 @@ export function DistributionBarUsage() {
         </div>
     );
 }`,
-    ja: `import { DistributionBar } from "@gunjo/ui";
+    ja: `"use client";
+
+import { DistributionBar } from "@gunjo/ui";
 
 const segments = [
     { label: "自然流入", value: 46, color: "primary" },
@@ -182,7 +186,9 @@ export function ChannelMixBarWithLegend() {
         <DistributionBar segments={segments} totalLabel="Total" showLegend />
     );
 }`,
-        formatted: `import { DistributionBar } from "@gunjo/ui";
+        formatted: `"use client";
+
+import { DistributionBar } from "@gunjo/ui";
 
 const segments = [
     { label: "Product", value: 132000, color: "primary" },
@@ -261,7 +267,9 @@ export function ChannelMixBarWithLegend() {
         <DistributionBar segments={segments} totalLabel="合計" showLegend />
     );
 }`,
-        formatted: `import { DistributionBar } from "@gunjo/ui";
+        formatted: `"use client";
+
+import { DistributionBar } from "@gunjo/ui";
 
 const segments = [
     { label: "プロダクト", value: 132000, color: "primary" },

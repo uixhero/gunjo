@@ -334,7 +334,9 @@ export function CompactPlatformDonut() {
         />
     );
 }`,
-        formatted: `import { LabeledDonutCard } from "@gunjo/ui";
+        formatted: `"use client";
+
+import { LabeledDonutCard } from "@gunjo/ui";
 
 const budgetSegments = [
     {
@@ -549,7 +551,9 @@ export function CompactPlatformDonut() {
         />
     );
 }`,
-        formatted: `import { LabeledDonutCard } from "@gunjo/ui";
+        formatted: `"use client";
+
+import { LabeledDonutCard } from "@gunjo/ui";
 
 const budgetSegments = [
     {

@@ -60,7 +60,9 @@ export default function PasswordInputPage() {
     const { locale, sectionLabels } = useLocale();
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
     const code = locale === "ja"
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -89,7 +91,9 @@ export function PasswordInputDemo() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -247,7 +251,9 @@ export function PasswordField() {
                                     : "Control visibility from external state when needed.",
                             preview: <PasswordStatePreview showDefault />,
                             previewHeight: 170,
-                            code: `import * as React from "react";
+                            code: `"use client";
+
+import * as React from "react";
 import { PasswordInput } from "@gunjo/ui";
 
 export function ControlledPasswordField() {

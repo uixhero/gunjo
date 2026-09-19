@@ -20,7 +20,9 @@ export default function ActionProgressDocPage() {
     const title = content?.title ?? metadata.actionProgress.title ?? "ActionProgress";
     const description = content?.description ?? metadata.actionProgress.description ?? "";
 
-    const usageCode = `import * as React from "react";
+    const usageCode = `"use client";
+
+import * as React from "react";
 import { ActionProgress, Button } from "@gunjo/ui";
 
 export function SaveSettings() {
@@ -62,7 +64,9 @@ export function SaveSettings() {
   );
 }`;
 
-    const justAfterCode = `import * as React from "react";
+    const justAfterCode = `"use client";
+
+import * as React from "react";
 import { ActionProgress, Button } from "@gunjo/ui";
 
 export function JustAfterSave() {
@@ -101,7 +105,9 @@ export function JustAfterSave() {
   );
 }`;
 
-    const formCode = `import * as React from "react";
+    const formCode = `"use client";
+
+import * as React from "react";
 import { Button, FormActionProgress, Input, Label } from "@gunjo/ui";
 
 export function ProfileForm() {
@@ -138,7 +144,9 @@ export function ProfileForm() {
   );
 }`;
 
-    const reducedCode = `import * as React from "react";
+    const reducedCode = `"use client";
+
+import * as React from "react";
 import { ActionProgress, Button, Label, Switch } from "@gunjo/ui";
 
 export function SaveSettings() {

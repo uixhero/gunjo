@@ -105,7 +105,9 @@ export default function ReferenceValueDocPage() {
   const description = content?.description ?? metadata.referenceValue.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import { ReferenceValue, type ReferenceRange } from "@gunjo/ui";
+    ? `"use client";
+
+import { ReferenceValue, type ReferenceRange } from "@gunjo/ui";
 
 type ResultRow = { name: string; value: number; unit: string; range: ReferenceRange };
 
@@ -148,7 +150,9 @@ export function VitalResultTable() {
     </div>
   );
 }`
-    : `import { ReferenceValue, type RangeFlag, type ReferenceRange } from "@gunjo/ui";
+    : `"use client";
+
+import { ReferenceValue, type RangeFlag, type ReferenceRange } from "@gunjo/ui";
 
 const labels: Partial<Record<RangeFlag, string>> = {
   normal: "Within range",
@@ -202,7 +206,9 @@ export function VitalResultTable() {
 }`;
 
   const labelsStateCode = locale === "ja"
-    ? `import { ReferenceValue } from "@gunjo/ui";
+    ? `"use client";
+
+import { ReferenceValue } from "@gunjo/ui";
 
 export function LabeledReferenceValues() {
   return (
@@ -213,7 +219,9 @@ export function LabeledReferenceValues() {
     </div>
   );
 }`
-    : `import { ReferenceValue, type RangeFlag } from "@gunjo/ui";
+    : `"use client";
+
+import { ReferenceValue, type RangeFlag } from "@gunjo/ui";
 
 const labels: Partial<Record<RangeFlag, string>> = {
   normal: "Within range",

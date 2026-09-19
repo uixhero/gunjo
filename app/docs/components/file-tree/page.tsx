@@ -21,7 +21,9 @@ import {
 import { IconDots as MoreHorizontal } from "@tabler/icons-react";
 
 const codeByLocale = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { FileTree, type FileTreeNode } from "@gunjo/ui";
 
 const nodes: FileTreeNode[] = [
@@ -49,7 +51,9 @@ export function AssetFileTree() {
     />
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { FileTree, type FileTreeNode } from "@gunjo/ui";
 
 const nodes: FileTreeNode[] = [
@@ -153,7 +157,9 @@ export function MultiSelectFileTree() {
 } as const;
 
 const actionsCodeByLocale = {
-    ja: `import {
+    ja: `"use client";
+
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -219,7 +225,9 @@ export function FileTreeWithActions() {
     />
   );
 }`,
-    en: `import {
+    en: `"use client";
+
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,

@@ -12,7 +12,9 @@ import { ToolPill } from "@gunjo/ui";
 import { IconArrowsMove as Move, IconCopy as Copy, IconEraser as Eraser, IconPencil as PenLine, IconPlus as Plus, IconPointer as MousePointer2, IconTrash as Trash2 } from "@tabler/icons-react";
 
 const codeByLocale = {
-    ja: `import { ToolPill } from "@gunjo/ui";
+    ja: `"use client";
+
+import { ToolPill } from "@gunjo/ui";
 import { IconArrowsMove as Move, IconPencil as PenLine, IconPointer as MousePointer2, IconTrash as Trash2 } from "@tabler/icons-react";
 
 export function Example() {
@@ -25,7 +27,9 @@ export function Example() {
     </div>
   );
 }`,
-    en: `import { ToolPill } from "@gunjo/ui";
+    en: `"use client";
+
+import { ToolPill } from "@gunjo/ui";
 import { IconArrowsMove as Move, IconPencil as PenLine, IconPointer as MousePointer2, IconTrash as Trash2 } from "@tabler/icons-react";
 
 export function Example() {

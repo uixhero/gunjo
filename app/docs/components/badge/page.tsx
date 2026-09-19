@@ -408,7 +408,9 @@ export function VerifiedBadge() {
                                 : "For filters and tag inputs, compose Badge with a small Button for removal.",
                             preview: <RemovableBadgePreview locale={locale} />,
                             code: locale === "ja"
-                                ? `import { Badge, Button, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                                ? `"use client";
+
+import { Badge, Button, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 import { IconX } from "@tabler/icons-react";
 import { useState } from "react";
 
@@ -445,7 +447,9 @@ export function RemovableTags() {
     </div>
   );
 }`
-                                : `import { Badge, Button, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                                : `"use client";
+
+import { Badge, Button, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 import { IconX } from "@tabler/icons-react";
 import { useState } from "react";
 
@@ -524,7 +528,9 @@ export function RemovableTags() {
                                 : "Use a dashed outline and plus icon for a badge-shaped add trigger.",
                             preview: <AddableBadgePreview locale={locale} />,
                             code: locale === "ja"
-                                ? `import { Badge, Button, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                                ? `"use client";
+
+import { Badge, Button, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 import { IconPlus } from "@tabler/icons-react";
 import { useState } from "react";
 
@@ -554,7 +560,9 @@ export function AddableTags() {
     </div>
   );
 }`
-                                : `import { Badge, Button, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                                : `"use client";
+
+import { Badge, Button, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 import { IconPlus } from "@tabler/icons-react";
 import { useState } from "react";
 
@@ -593,7 +601,9 @@ export function AddableTags() {
                                 : "When a chevron opens choices, treat it as a badge-shaped Button. The option list belongs to DropdownMenu or FilterButton.",
                             preview: <SelectableBadgePreview locale={locale} />,
                             code: locale === "ja"
-                                ? `import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@gunjo/ui";
+                                ? `"use client";
+
+import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@gunjo/ui";
 import { IconCheck, IconChevronDown } from "@tabler/icons-react";
 import { useState } from "react";
 
@@ -622,7 +632,9 @@ export function SelectableBadge() {
     </DropdownMenu>
   );
 }`
-                                : `import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@gunjo/ui";
+                                : `"use client";
+
+import { Button, DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@gunjo/ui";
 import { IconCheck, IconChevronDown } from "@tabler/icons-react";
 import { useState } from "react";
 

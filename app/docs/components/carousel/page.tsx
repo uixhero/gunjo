@@ -553,7 +553,9 @@ export function Gallery() {
 }`;
 
     const cardCarouselCode = isJa
-        ? `import {
+        ? `"use client";
+
+import {
   Carousel,
   CarouselContent,
   CarouselDots,
@@ -614,7 +616,9 @@ export function PeekCarousel() {
     </div>
   )
 }`
-        : `import {
+        : `"use client";
+
+import {
   Carousel,
   CarouselContent,
   CarouselDots,
@@ -797,7 +801,9 @@ export function MultiVisibleCarousel() {
 }`;
 
     const imageCarouselCode = isJa
-        ? `import {
+        ? `"use client";
+
+import {
   Carousel,
   CarouselContent,
   CarouselDots,
@@ -854,7 +860,9 @@ export function ImageCarousel() {
     </Carousel>
   )
 }`
-        : `import {
+        : `"use client";
+
+import {
   Carousel,
   CarouselContent,
   CarouselDots,
@@ -1057,7 +1065,9 @@ export function ThumbnailCarousel() {
 }`;
 
     const autoplayCarouselCode = isJa
-        ? `import {
+        ? `"use client";
+
+import {
   Carousel,
   CarouselAutoplayToggle,
   CarouselContent,
@@ -1122,7 +1132,9 @@ export function AutoplayCarousel() {
     </Carousel>
   )
 }`
-        : `import {
+        : `"use client";
+
+import {
   Carousel,
   CarouselAutoplayToggle,
   CarouselContent,

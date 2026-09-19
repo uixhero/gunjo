@@ -278,7 +278,9 @@ export default function TimeTransportDocPage() {
     const description = content?.description ?? metadata.timeTransport.description ?? "";
 
     const usageCode = isJa
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { TimeTransport } from "@gunjo/ui";
 
 // 時計は TimeTransport の外。進めるのは呼び出し側です。
@@ -345,7 +347,9 @@ export function Replay() {
     />
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { TimeTransport } from "@gunjo/ui";
 
 // The clock lives outside TimeTransport. The caller owns the ticking.
@@ -613,7 +617,9 @@ export function Replay() {
                             preview: (
                                 <StaticFrame locale={locale as Locale} value={nowRef} now={nowRef} />
                             ),
-                            code: `import * as React from "react";
+                            code: `"use client";
+
+import * as React from "react";
 import { TimeTransport } from "@gunjo/ui";
 
 const NOW = Date.UTC(2026, 8, 12, 3, 0, 0);
@@ -654,7 +660,9 @@ export function AtTheLiveEdge() {
                                     now={nowRef}
                                 />
                             ),
-                            code: `import * as React from "react";
+                            code: `"use client";
+
+import * as React from "react";
 import { TimeTransport } from "@gunjo/ui";
 
 const NOW = Date.UTC(2026, 8, 12, 3, 0, 0);
@@ -696,7 +704,9 @@ export function FiveHoursBack() {
                                     playing
                                 />
                             ),
-                            code: `import * as React from "react";
+                            code: `"use client";
+
+import * as React from "react";
 import { TimeTransport } from "@gunjo/ui";
 
 const NOW = Date.UTC(2026, 8, 12, 3, 0, 0);
@@ -741,7 +751,9 @@ export function Playing() {
                                 />
                             ),
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { TimeTransport } from "@gunjo/ui";
 
 const NOW = Date.UTC(2026, 8, 12, 3, 0, 0);
@@ -780,7 +792,9 @@ export function WithoutJumps() {
     />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { TimeTransport } from "@gunjo/ui";
 
 const NOW = Date.UTC(2026, 8, 12, 3, 0, 0);
@@ -834,7 +848,9 @@ export function WithoutJumps() {
                                     disabled
                                 />
                             ),
-                            code: `import * as React from "react";
+                            code: `"use client";
+
+import * as React from "react";
 import { TimeTransport } from "@gunjo/ui";
 
 const NOW = Date.UTC(2026, 8, 12, 3, 0, 0);

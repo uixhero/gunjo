@@ -335,7 +335,9 @@ export function WideNavHeader() {
 export default function HeaderPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
-const usageCode = `import * as React from "react"
+const usageCode = `"use client";
+
+import * as React from "react"
 import {
   IconLanguage as Languages,
   IconMoon as Moon,
@@ -461,7 +463,9 @@ export function SiteHeader() {
     </>
   )
 }`;
-const drawerNavCode = `import * as React from "react"
+const drawerNavCode = `"use client";
+
+import * as React from "react"
 import {
   IconLanguage as Languages,
   IconMenu2 as Menu,

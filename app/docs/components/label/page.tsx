@@ -15,7 +15,9 @@ export default function LabelPage() {
     const [newsletterChecked, setNewsletterChecked] = React.useState(false);
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
     const code = locale === "ja"
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import {
   Checkbox,
   FormControl,
@@ -45,7 +47,9 @@ export function LabelDemo() {
     </VStack>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import {
   Checkbox,
   FormControl,
@@ -182,7 +186,9 @@ export function DisplayNameField() {
                             ),
                             previewHeight: 140,
                             code: locale === "ja"
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { Checkbox, HStack, Label } from "@gunjo/ui";
 
 export function NewsletterLabel() {
@@ -195,7 +201,9 @@ export function NewsletterLabel() {
     </HStack>
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { Checkbox, HStack, Label } from "@gunjo/ui";
 
 export function NewsletterLabel() {

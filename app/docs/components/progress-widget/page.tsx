@@ -187,7 +187,9 @@ export function RiskProgressWidget() {
 };
 
 const liveCodeByLocale = {
-    ja: `import { ProgressWidget } from "@gunjo/ui"
+    ja: `"use client";
+
+import { ProgressWidget } from "@gunjo/ui"
 import { IconActivity as Activity } from "@tabler/icons-react"
 import { useEffect, useState } from "react"
 
@@ -220,7 +222,9 @@ export function LiveSyncProgressWidget() {
     />
   )
 }`,
-    en: `import { ProgressWidget } from "@gunjo/ui"
+    en: `"use client";
+
+import { ProgressWidget } from "@gunjo/ui"
 import { IconActivity as Activity } from "@tabler/icons-react"
 import { useEffect, useState } from "react"
 

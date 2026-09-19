@@ -93,7 +93,9 @@ export default function LoyaltySummaryCardDocPage() {
   const description = content?.description ?? metadata.loyaltySummaryCard.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import {
   Badge,
   Button,
@@ -148,7 +150,9 @@ export function MemberSummary() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import {
   Badge,
   Button,

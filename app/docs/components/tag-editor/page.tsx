@@ -11,7 +11,9 @@ import displayMetadata from "@design/display-metadata.json";
 import { TagEditor } from "@gunjo/ui";
 
 const codeByLocale = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { TagEditor } from "@gunjo/ui";
 
 export function Example() {
@@ -30,7 +32,9 @@ export function Example() {
     />
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { TagEditor } from "@gunjo/ui";
 
 export function Example() {
@@ -52,7 +56,9 @@ export function Example() {
 } as const;
 
 const compactCodeByLocale = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { TagEditor } from "@gunjo/ui";
 
 export function CompactTagEditor() {
@@ -69,7 +75,9 @@ export function CompactTagEditor() {
     />
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { TagEditor } from "@gunjo/ui";
 
 export function CompactTagEditor() {
@@ -89,7 +97,9 @@ export function CompactTagEditor() {
 } as const;
 
 const limitedCodeByLocale = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { TagEditor } from "@gunjo/ui";
 
 export function LimitedTagEditor() {
@@ -107,7 +117,9 @@ export function LimitedTagEditor() {
     />
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { TagEditor } from "@gunjo/ui";
 
 export function LimitedTagEditor() {

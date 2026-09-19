@@ -211,7 +211,9 @@ export function TabsWithCounts() {
 };
 
 const controlledCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client";
+
+import * as React from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@gunjo/ui"
 
 export function ControlledTabs() {
@@ -236,7 +238,9 @@ export function ControlledTabs() {
     </Tabs>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client";
+
+import * as React from "react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@gunjo/ui"
 
 export function ControlledTabs() {

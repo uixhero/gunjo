@@ -101,7 +101,9 @@ export default function CurrencyInputDocPage() {
     const isJa = locale === "ja";
     const description = content?.description ?? metadata.currencyInput.description;
     const usageCode = isJa
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { CurrencyInput, formatCurrency } from "@gunjo/ui";
 
 export function InvoiceAmountField() {
@@ -126,7 +128,9 @@ export function InvoiceAmountField() {
     </div>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { CurrencyInput, formatCurrency } from "@gunjo/ui";
 
 export function InvoiceAmountField() {
@@ -203,7 +207,9 @@ export function InvoiceAmountField() {
                                 : "Combine currency and locale to change the symbol and grouping for international invoices.",
                             preview: <CurrencyInputPreview locale={locale} variant="usd" />,
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { CurrencyInput } from "@gunjo/ui";
 
 export function ForeignInvoiceAmountField() {
@@ -221,7 +227,9 @@ export function ForeignInvoiceAmountField() {
     />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { CurrencyInput } from "@gunjo/ui";
 
 export function ForeignInvoiceAmountField() {
@@ -248,7 +256,9 @@ export function ForeignInvoiceAmountField() {
                                 : "Use showSymbol=false when a table or list already shows the currency unit.",
                             preview: <CurrencyInputPreview locale={locale} variant="no-symbol" />,
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { CurrencyInput } from "@gunjo/ui";
 
 export function PlainInvoiceAmountField() {
@@ -263,7 +273,9 @@ export function PlainInvoiceAmountField() {
     />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { CurrencyInput } from "@gunjo/ui";
 
 export function PlainInvoiceAmountField() {

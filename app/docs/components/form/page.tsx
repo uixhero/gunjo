@@ -372,7 +372,9 @@ export function FormUsage() {
                                     : "FormMessage renders in destructive color and pairs with aria-invalid on the control. Validate on submit, not on every keystroke to reduce false negatives.",
                             preview: <ValidatedSignupForm locale={locale} />,
                             code: locale === "ja"
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import {
   Button,
   Form,
@@ -430,7 +432,9 @@ export default function SignupForm() {
     </Form>
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import {
   Button,
   Form,
@@ -498,7 +502,9 @@ export default function SignupForm() {
                                     : "Disable the submit button and swap its label for Spinner + status text while the request is in flight.",
                             preview: <PendingSubmitForm locale={locale} />,
                             code: locale === "ja"
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import {
   Button,
   Form,
@@ -548,7 +554,9 @@ export default function FeedbackForm() {
     </Form>
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import {
   Button,
   Form,
@@ -608,7 +616,9 @@ export default function FeedbackForm() {
                                     : "FormGroup is only a container — you wire the ids and aria yourself. FormField takes required and error instead and derives the id, aria-describedby, aria-invalid, aria-required and the label asterisk. A field with no description gets no aria-describedby at all.",
                             preview: <WiredFieldForm locale={locale} />,
                             code: locale === "ja"
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import {
   Button,
   Form,
@@ -653,7 +663,9 @@ export default function CompanyForm() {
     </Form>
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import {
   Button,
   Form,

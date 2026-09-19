@@ -16,7 +16,9 @@ import {
 } from "@tabler/icons-react";
 
 const codeByLocale = {
-    ja: `import { Banner, Button } from "@gunjo/ui"
+    ja: `"use client";
+
+import { Banner, Button } from "@gunjo/ui"
 import { IconSpeakerphone as Megaphone } from "@tabler/icons-react"
 
 export function ReleaseBanner() {
@@ -36,7 +38,9 @@ export function ReleaseBanner() {
     </Banner>
   )
 }`,
-    en: `import { Banner, Button } from "@gunjo/ui"
+    en: `"use client";
+
+import { Banner, Button } from "@gunjo/ui"
 import { IconSpeakerphone as Megaphone } from "@tabler/icons-react"
 
 export function ReleaseBanner() {
@@ -59,7 +63,9 @@ export function ReleaseBanner() {
 };
 
 const infoActionCodeByLocale = {
-    ja: `import { Banner, Button } from "@gunjo/ui"
+    ja: `"use client";
+
+import { Banner, Button } from "@gunjo/ui"
 import { IconInfoCircle as Info } from "@tabler/icons-react"
 
 export function PermissionBanner() {
@@ -79,7 +85,9 @@ export function PermissionBanner() {
     </Banner>
   )
 }`,
-    en: `import { Banner, Button } from "@gunjo/ui"
+    en: `"use client";
+
+import { Banner, Button } from "@gunjo/ui"
 import { IconInfoCircle as Info } from "@tabler/icons-react"
 
 export function PermissionBanner() {
@@ -164,7 +172,9 @@ export function IncidentBanner() {
 };
 
 const successCodeByLocale = {
-    ja: `import { Banner } from "@gunjo/ui"
+    ja: `"use client";
+
+import { Banner } from "@gunjo/ui"
 import { IconCircleCheck as CheckCircle } from "@tabler/icons-react"
 
 export function SetupCompleteBanner() {
@@ -179,7 +189,9 @@ export function SetupCompleteBanner() {
     </Banner>
   )
 }`,
-    en: `import { Banner } from "@gunjo/ui"
+    en: `"use client";
+
+import { Banner } from "@gunjo/ui"
 import { IconCircleCheck as CheckCircle } from "@tabler/icons-react"
 
 export function SetupCompleteBanner() {
