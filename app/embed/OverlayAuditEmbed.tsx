@@ -2,7 +2,6 @@
 
 import * as React from "react";
 import { useSearchParams } from "next/navigation";
-import { cn } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import {
     MediaLightboxAuditDemo,
@@ -30,12 +29,9 @@ export function OverlayAuditEmbed({ kind }: { kind: OverlayAuditKind }) {
     const params = useSearchParams();
     const variant = params.get("variant") ?? "default";
     const tooltipVariant = variant === "default" ? "icon" : variant;
-    // A frame sized to its content must not take the iframe's height as its own
-    // minimum, or the frame can never shrink below the height it was given.
-    const fitsContent = params.get("fitHeight") === "content";
 
     return (
-        <div className={cn("flex w-full items-center justify-center p-4", !fitsContent && "min-h-screen")}>
+        <div className="flex min-h-screen w-full items-center justify-center p-4">
             {kind === "media-lightbox" ? (
                 <MediaLightboxAuditDemo locale={locale} variant={variant as "default" | "compact" | "metadata"} />
             ) : kind === "media-picker-dialog" ? (

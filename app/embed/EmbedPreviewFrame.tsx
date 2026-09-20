@@ -50,25 +50,6 @@ function isClippedByDemo(element: Element, root: Element | null) {
     return false;
 }
 
-/**
- * Bottom edge of an overlay at its natural height. Radix caps popper content
- * to the space left in the iframe, so the painted box alone would never ask
- * the frame to grow; the capped element's scrollHeight still has the full height.
- * Only popper content is capped this way: a dialog that scrolls its own body
- * is meant to scroll, so its painted box is its height.
- */
-function naturalOverlayBottom(element: Element) {
-    if (!element.matches("[data-radix-popper-content-wrapper]")) return element.getBoundingClientRect().bottom;
-    const naturalBottom = [element, ...Array.from(element.children)].reduce((bottom, node) => {
-        const rect = node.getBoundingClientRect();
-        return Math.max(bottom, rect.bottom, rect.top + node.scrollHeight);
-    }, 0);
-    return naturalBottom + POPPER_GAP;
-}
-
-// Space kept between an open popover and the bottom edge of the frame.
-const POPPER_GAP = 16;
-
 export function EmbedPreviewFrame({ children }: { children: React.ReactNode }) {
     const searchParams = useSearchParams();
     const previewWrap = resolvePreviewWrap(searchParams.get("previewWrap"));
@@ -86,25 +67,14 @@ export function EmbedPreviewFrame({ children }: { children: React.ReactNode }) {
                 document.querySelectorAll("[data-radix-popper-content-wrapper], [data-radix-popover-content], [role='dialog'], [data-slot='mention-suggestions']")
             ).filter((element) => !isTooltipOverlay(element) && !isClippedByDemo(element, root));
             setHasFloatingOverlay(floatingOverlays.length > 0);
-            const overlayRects = floatingOverlays
-                .map((element) => ({ rect: element.getBoundingClientRect(), naturalBottom: naturalOverlayBottom(element) }))
-                .filter(({ rect }) => rect.width > 0 && rect.height > 0);
-            const overlayTop = overlayRects.reduce((top, { rect }) => Math.min(top, rect.top), rootRect?.top ?? 0);
-            const overlayBottom = overlayRects.reduce((bottom, { naturalBottom }) => Math.max(bottom, naturalBottom), 0);
-            // Grow the top inset while an overlay is open and only release it once
-            // every overlay has closed: shrinking it while the overlay is still
-            // open lets the overlay flip back above the frame and the two loop.
-            // Read the inset that is actually painted, so a measurement taken before
-            // the last update rendered does not add the same shortfall twice.
-            const paintedInsetTop = root ? Number.parseFloat(window.getComputedStyle(root).paddingTop) || 0 : 0;
-            const missingTop = Math.max(0, Math.ceil(-(Math.min(rootRect?.top ?? 0, overlayTop))));
-            const nextInsetTop = overlayRects.length > 0 ? Math.round(paintedInsetTop) + missingTop : 0;
+            const overlayTop = floatingOverlays.reduce((top, element) => {
+                const rect = element.getBoundingClientRect();
+                return Math.min(top, rect.top);
+            }, rootRect?.top ?? 0);
+            const nextInsetTop = Math.max(0, Math.ceil(-(Math.min(rootRect?.top ?? 0, overlayTop))));
             setFloatingOverlayInsetTop((current) => current === nextInsetTop ? current : nextInsetTop);
 
-            // Open overlays are portalled outside the wrap, so their bottom edge is
-            // added here: the frame grows while one is open and shrinks after it
-            // closes, instead of reserving room for it (docs-page rule ①).
-            return Math.ceil(Math.max(root?.scrollHeight ?? 0, rootRect?.bottom ?? 0, overlayBottom));
+            return Math.ceil(Math.max(root?.scrollHeight ?? 0, rootRect?.bottom ?? 0));
         };
 
         let frame: number | null = null;
