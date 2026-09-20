@@ -45,6 +45,13 @@ export interface BannerProps
  * For a **multi-line / block callout** — a title + body, embargo notices,
  * anything that wraps — use `Alert` instead (icon + `AlertTitle` +
  * `AlertDescription`, no height cap). Banner = one-line strip; Alert = block. (#324)
+ *
+ * The `action` slot never shrinks. A flex item's default `min-width: auto`
+ * bottoms out at min-content, but Japanese breaks between any two characters,
+ * so min-content for a CJK label is ONE character: the action was squeezed to a
+ * single column and its label wrapped out of the `h-10` button. `shrink-0` keeps
+ * the action at its natural width and lets the message truncate instead, which
+ * is the contract above. (#874)
  */
 const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
     (
@@ -74,7 +81,7 @@ const Banner = React.forwardRef<HTMLDivElement, BannerProps>(
                 ) : null}
                 <span className="min-w-0 truncate">{children}</span>
             </div>
-            <div className="flex items-center gap-2">
+            <div className="flex shrink-0 items-center gap-2">
                 {action}
                 {onDismiss ? (
                     <TooltipProvider>

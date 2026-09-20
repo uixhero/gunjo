@@ -13,7 +13,7 @@
 //   - `.next/prerender-manifest.json`   … 前もって描かれた URL の全部
 //   - `.next/server/app/<path>.meta`    … その URL の HTTP status（無ければ 200）
 //   - `.next/server/app/<path>.html`    … ページかどうか（画像や .txt の経路は無い）
-//   - `.next/app-path-routes-manifest.json` … 実行時に描くページ（/pack など）
+//   - `.next/app-path-routes-manifest.json` … 実行時に描くページ（/cold-tests/<回> など）
 //   - `.next/server/app/sitemap.xml.body`   … 出来上がったサイトマップ
 //
 // 見るのは3つ:

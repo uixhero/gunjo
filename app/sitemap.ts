@@ -46,9 +46,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
     // 動的セグメントのページは、ディレクトリではなく元データが URL を持つ。
 
-    // `/pack` は申込みのフォームで、ページ自体は歩いて拾えている（静的な
-    // ディレクトリなので上のループに入る）。
-
     // コールドテストの回。下書き（cold-test-drafts.ts）は本番で 404 になるので
     // ここにも出さない。
     for (const entry of publishableJaEntries(

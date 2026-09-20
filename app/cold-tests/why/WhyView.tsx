@@ -15,7 +15,7 @@ import {
 } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { LocalNav } from "@/components/layout/TableOfContents";
-import { PackCta } from "@/components/pack/PackCta";
+import { SiteNoticeSlot } from "@/components/notice/SiteNoticeSlot";
 import gallery from "@/data/cold-test-gallery.json";
 
 interface GalleryEntry {
@@ -459,7 +459,7 @@ export function WhyView({
                     </CardContent>
                 </Card>
 
-                <PackCta placement="coldtests_why" />
+                <SiteNoticeSlot placement="coldtests_why" />
             </article>
         </div>
     );
