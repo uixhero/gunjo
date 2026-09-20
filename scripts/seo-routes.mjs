@@ -21,21 +21,27 @@ function isDynamicSegment(name) {
     return name.startsWith("[");
 }
 
+/** ルートグループ（`(index)` など）。URL には出ないので、段を増やさずに中を見る。 */
+export function isRouteGroup(name) {
+    return name.startsWith("(") && name.endsWith(")");
+}
+
 function walk(dir, url, acc) {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
         if (!entry.isDirectory()) continue;
         if (entry.name.startsWith("_") || entry.name.startsWith(".")) continue;
+        if (isDynamicSegment(entry.name)) continue;
         const childDir = join(dir, entry.name);
-        const childUrl = `${url}/${entry.name}`;
+        const childUrl = isRouteGroup(entry.name) ? url : `${url}/${entry.name}`;
         const pagePath = join(childDir, "page.tsx");
-        if (existsSync(pagePath) && !isDynamicSegment(entry.name)) {
+        if (existsSync(pagePath)) {
             acc.push({
                 path: childUrl,
                 dir: childDir,
                 redirectOnly: isRedirectOnlyPage(readFileSync(pagePath, "utf8")),
             });
         }
-        if (!isDynamicSegment(entry.name)) walk(childDir, childUrl, acc);
+        walk(childDir, childUrl, acc);
     }
 }
 
@@ -81,4 +87,37 @@ export function loadTsModule(relativePath, root = ROOT) {
         interopDefault: true,
     });
     return jiti(join(root, relativePath));
+}
+
+/**
+ * 対象の面の下にある全ディレクトリ。生成物の後片づけ（ルートでなくなった
+ * ところに残った layout.tsx を消す）に使う。
+ */
+export function listSeoDirs(root = ROOT) {
+    const acc = [];
+    const walkDirs = (dir) => {
+        for (const entry of readdirSync(dir, { withFileTypes: true })) {
+            if (!entry.isDirectory()) continue;
+            if (entry.name.startsWith("_") || entry.name.startsWith(".")) continue;
+            const child = join(dir, entry.name);
+            acc.push(child);
+            walkDirs(child);
+        }
+    };
+    for (const section of SEO_SECTIONS) {
+        const dir = join(root, "app", section);
+        if (!existsSync(dir)) continue;
+        acc.push(dir);
+        walkDirs(dir);
+    }
+    return acc;
+}
+
+/**
+ * そのルートの下に別のルートがあるか（＝この layout が子ページも囲むか）。
+ * 囲むなら、そこから構造化データを出すと子にも付いてしまうので、索引のページは
+ * ルートグループ（`(index)`）に入れて、そこから出す。
+ */
+export function hasChildRoutes(route, routes) {
+    return routes.some((other) => other.path !== route.path && other.path.startsWith(`${route.path}/`));
 }

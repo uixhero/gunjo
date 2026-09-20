@@ -2,9 +2,15 @@
 import type { ReactNode } from "react";
 import type { Metadata } from "next";
 import { pageMetadata } from "@/lib/seo/page-metadata";
+import { StructuredData } from "@/components/seo/StructuredData";
 
 export const metadata: Metadata = pageMetadata("/patterns/dashboard/projects");
 
 export default function SeoLayout({ children }: { children: ReactNode }) {
-    return children;
+    return (
+        <>
+            <StructuredData path="/patterns/dashboard/projects" />
+            {children}
+        </>
+    );
 }

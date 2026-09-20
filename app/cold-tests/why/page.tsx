@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import gallery from "@/data/cold-test-gallery.json";
 import { publishableJaEntries } from "@/lib/cold-test-drafts";
 import { WhyView } from "./WhyView";
+import { JsonLdScript } from "@/components/seo/StructuredData";
+import { breadcrumbList, coldTestTrail } from "@/lib/seo/structured-data";
+import { translations } from "@/lib/translations";
 
 interface GalleryShape {
     count: number;
@@ -67,6 +70,15 @@ const jsonLd = {
     },
 };
 
+// パンくずの段の名前は画面で出している見出しと同じ SSOT から引く
+// （⛔ ここで短い名前を作らない）。
+const breadcrumbNode = breadcrumbList(
+    coldTestTrail({
+        name: translations.ja.pages.coldTests.why.heading,
+        path: "/cold-tests/why",
+    })
+);
+
 export default function ColdTestsWhyPage() {
     return (
         <>
@@ -75,6 +87,7 @@ export default function ColdTestsWhyPage() {
                 // Serialise once on the server; safe content (no user input).
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
+            {breadcrumbNode ? <JsonLdScript node={breadcrumbNode} /> : null}
             <WhyView visibleRounds={visibleEntries.map((e) => e.round)} />
         </>
     );
