@@ -91,7 +91,9 @@ function getLabels(locale: "en" | "ja") {
 }
 
 const codeByLocale = {
-    en: `import { AssetInspectorPanel } from "@gunjo/ui";
+    en: `"use client";
+
+import { AssetInspectorPanel } from "@gunjo/ui";
 import * as React from "react";
 
 const asset = {
@@ -136,7 +138,9 @@ export function Example() {
     />
   );
 }`,
-    ja: `import { AssetInspectorPanel } from "@gunjo/ui";
+    ja: `"use client";
+
+import { AssetInspectorPanel } from "@gunjo/ui";
 import * as React from "react";
 
 const asset = {
@@ -230,7 +234,9 @@ const propsDataByLocale = {
 
 const stateCodeByLocale = {
     en: {
-        default: `import { AssetInspectorPanel } from "@gunjo/ui";
+        default: `"use client";
+
+import { AssetInspectorPanel } from "@gunjo/ui";
 import * as React from "react";
 
 const asset = {
@@ -270,7 +276,9 @@ export function DefaultInspector() {
   asset={null}
   labels={{ emptyTitle: "Select an asset to view details." }}
 />`,
-        compact: `import { AssetInspectorPanel } from "@gunjo/ui";
+        compact: `"use client";
+
+import { AssetInspectorPanel } from "@gunjo/ui";
 import * as React from "react";
 
 const initialAsset = {
@@ -308,7 +316,9 @@ export function CompactInspector() {
 }`,
     },
     ja: {
-        default: `import { AssetInspectorPanel } from "@gunjo/ui";
+        default: `"use client";
+
+import { AssetInspectorPanel } from "@gunjo/ui";
 import * as React from "react";
 
 const asset = {
@@ -348,7 +358,9 @@ export function DefaultInspector() {
   asset={null}
   labels={{ emptyTitle: "アセットを選択すると詳細が表示されます。" }}
 />`,
-        compact: `import { AssetInspectorPanel } from "@gunjo/ui";
+        compact: `"use client";
+
+import { AssetInspectorPanel } from "@gunjo/ui";
 import * as React from "react";
 
 const initialAsset = {

@@ -183,7 +183,9 @@ function AppRailUnreadExample() {
 }
 
 const codeByLocale = {
-    ja: `import { AppRail, TooltipButton } from "@gunjo/ui"
+    ja: `"use client";
+
+import { AppRail, TooltipButton } from "@gunjo/ui"
 import {
   IconBell as Bell,
   IconHome as Home,
@@ -302,7 +304,9 @@ export function AppRailExample() {
     </div>
     )
 }`,
-    en: `import { AppRail, TooltipButton } from "@gunjo/ui"
+    en: `"use client";
+
+import { AppRail, TooltipButton } from "@gunjo/ui"
 import {
   IconBell as Bell,
   IconHome as Home,
@@ -424,7 +428,9 @@ export function AppRailExample() {
 };
 
 const compactCodeByLocale = {
-    ja: `import { AppRail, TooltipButton } from "@gunjo/ui"
+    ja: `"use client";
+
+import { AppRail, TooltipButton } from "@gunjo/ui"
 import {
   IconHome as Home,
   IconSearch as Search,
@@ -527,7 +533,9 @@ export function CompactAppRailExample() {
     </div>
   )
 }`,
-    en: `import { AppRail, TooltipButton } from "@gunjo/ui"
+    en: `"use client";
+
+import { AppRail, TooltipButton } from "@gunjo/ui"
 import {
   IconHome as Home,
   IconSearch as Search,
@@ -633,7 +641,9 @@ export function CompactAppRailExample() {
 };
 
 const unreadCodeByLocale = {
-    ja: `import { useState } from "react";
+    ja: `"use client";
+
+import { useState } from "react";
 import { AppRail, Badge, TooltipButton } from "@gunjo/ui";
 import { IconBell as Bell, IconHome as Home } from "@tabler/icons-react";
 
@@ -684,7 +694,9 @@ export function AppRailWithUnread() {
     </AppRail>
   );
 }`,
-    en: `import { useState } from "react";
+    en: `"use client";
+
+import { useState } from "react";
 import { AppRail, Badge, TooltipButton } from "@gunjo/ui";
 import { IconBell as Bell, IconHome as Home } from "@tabler/icons-react";
 

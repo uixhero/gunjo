@@ -135,7 +135,9 @@ function ControlledSidebarExample() {
 }
 
 const codeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client";
+
+import * as React from "react"
 import {
   Avatar,
   AvatarFallback,
@@ -214,7 +216,9 @@ export function SidebarLayout() {
     </div>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client";
+
+import * as React from "react"
 import {
   Avatar,
   AvatarFallback,
@@ -381,7 +385,9 @@ export function SidebarWithHeaderToggle() {
 };
 
 const controlledCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client";
+
+import * as React from "react"
 import {
   Button,
   Sidebar,
@@ -426,7 +432,9 @@ export function ControlledSidebarLayout() {
     </div>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client";
+
+import * as React from "react"
 import {
   Button,
   Sidebar,

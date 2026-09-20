@@ -13,7 +13,9 @@ import { ScanInputDemo } from "@/components/demos/ScanInputDemo";
 
 const meta = inputsMetadata as Record<string, { title?: string; description?: string }>;
 
-const usageCode = `import * as React from "react";
+const usageCode = `"use client";
+
+import * as React from "react";
 import { ScanInput, type ScanResult } from "@gunjo/ui";
 
 const ORDER_LINES = [
@@ -283,7 +285,9 @@ export default function ScanInputDocPage() {
                 : "By default a result is announced politely, so continuous scanning never interrupts itself. Where a mismatch is a safety event, such as medication or part verification, assertive raises it to an alert that cuts in.",
               preview: <AssertiveScanPreview locale={locale} />,
               code: locale === "ja"
-                ? `import * as React from "react";
+                ? `"use client";
+
+import * as React from "react";
 import { ScanInput, type ScanResult } from "@gunjo/ui";
 
 const PRESCRIBED_JAN = "4901234567894";
@@ -314,7 +318,9 @@ export function MedicationCheckField() {
     </div>
   );
 }`
-                : `import * as React from "react";
+                : `"use client";
+
+import * as React from "react";
 import { ScanInput, type ScanResult } from "@gunjo/ui";
 
 const PRESCRIBED_JAN = "4901234567894";
@@ -354,7 +360,9 @@ export function MedicationCheckField() {
                 : "Passing onScannerOpen turns the decorative barcode into a real button. Open your camera view, and call action.commit(code) when it reads one: the code then travels the same path a scan gun would have used. scannerLabel names that button. This demo commits a fixed code instead of opening a camera.",
               preview: <CameraScanPreview locale={locale} />,
               code: locale === "ja"
-                ? `import * as React from "react";
+                ? `"use client";
+
+import * as React from "react";
 import { ScanInput, type ScanResult } from "@gunjo/ui";
 
 export function TrackingNumberField() {
@@ -383,7 +391,9 @@ export function TrackingNumberField() {
     </div>
   );
 }`
-                : `import * as React from "react";
+                : `"use client";
+
+import * as React from "react";
 import { ScanInput, type ScanResult } from "@gunjo/ui";
 
 export function TrackingNumberField() {
@@ -421,7 +431,9 @@ export function TrackingNumberField() {
                 : "The default is clear the field and wait for the next one, which is right when someone is scanning dozens of items in a row. It gets in the way on a screen that looks one thing up and then shows it. clearOnScan={false} with retainFocus={false} keeps the code visible and lets focus move on.",
               preview: <InspectScanPreview locale={locale} />,
               code: locale === "ja"
-                ? `import * as React from "react";
+                ? `"use client";
+
+import * as React from "react";
 import { ScanInput, type ScanResult } from "@gunjo/ui";
 
 type Asset = { tag: string; name: string; owner: string };
@@ -463,7 +475,9 @@ export function AssetLookupField() {
     </div>
   );
 }`
-                : `import * as React from "react";
+                : `"use client";
+
+import * as React from "react";
 import { ScanInput, type ScanResult } from "@gunjo/ui";
 
 type Asset = { tag: string; name: string; owner: string };

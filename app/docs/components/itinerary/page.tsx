@@ -355,7 +355,9 @@ export default function ItineraryDocPage() {
   const description = content?.description ?? metadata.itinerary.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { Badge, Itinerary, Sheet, SheetContent, SheetHeader, SheetTitle, type ItineraryDay } from "@gunjo/ui";
 import { IconBuildingPavilion, IconPlane } from "@tabler/icons-react";
 
@@ -457,7 +459,9 @@ export function TripItinerary() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { Badge, Itinerary, Sheet, SheetContent, SheetHeader, SheetTitle, type ItineraryDay } from "@gunjo/ui";
 import { IconBuildingPavilion, IconPlane } from "@tabler/icons-react";
 
@@ -748,7 +752,9 @@ export function ItineraryTones() {
               description: locale === "ja" ? "items だけを渡すと、日別見出しなしの短い移動予定として使えます。" : "Pass only items for a short timeline without day headings.",
               preview: <ItineraryPreview locale={locale} flat initialSelectedId="ferry" />,
               code: locale === "ja"
-                ? `import * as React from "react";
+                ? `"use client";
+
+import * as React from "react";
 import { Badge, Itinerary, Sheet, SheetContent, SheetHeader, SheetTitle } from "@gunjo/ui";
 import { IconShip, IconTrain } from "@tabler/icons-react";
 
@@ -789,7 +795,9 @@ const selectedDetail = selectedId ? details[selectedId as keyof typeof details] 
     </SheetContent>
   </Sheet>
 </div>`
-                : `import * as React from "react";
+                : `"use client";
+
+import * as React from "react";
 import { Badge, Itinerary, Sheet, SheetContent, SheetHeader, SheetTitle } from "@gunjo/ui";
 import { IconShip, IconTrain } from "@tabler/icons-react";
 

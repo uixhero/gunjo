@@ -265,7 +265,9 @@ export default function ScheduleGridDocPage() {
   const title = content?.title ?? metadata.scheduleGrid.title ?? "ScheduleGrid";
   const description = content?.description ?? metadata.scheduleGrid.description ?? "";
 
-  const usageCode = locale === "ja" ? String.raw`import * as React from "react";
+  const usageCode = locale === "ja" ? String.raw`"use client";
+
+import * as React from "react";
 import {
   Button,
   Input,
@@ -354,7 +356,9 @@ export function WeeklyTimetable() {
       </Sheet>
     </div>
   );
-}` : String.raw`import * as React from "react";
+}` : String.raw`"use client";
+
+import * as React from "react";
 import {
   Button,
   Input,

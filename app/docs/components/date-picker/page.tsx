@@ -77,7 +77,9 @@ function DatePickerStates({ locale }: { locale: "ja" | "en" }) {
                             </FormDescription>
                         </FormGroup>
                     ),
-                    code: `import * as React from "react";
+                    code: `"use client";
+
+import * as React from "react";
 import {
   DatePicker,
   FormControl,
@@ -122,7 +124,9 @@ export default function PublishDateField() {
                             </FormControl>
                         </FormGroup>
                     ),
-                    code: `import * as React from "react";
+                    code: `"use client";
+
+import * as React from "react";
 import { DatePicker, FormControl, FormGroup, FormLabel } from "@gunjo/ui";
 
 export default function EmptyDateField() {
@@ -168,7 +172,9 @@ export default function EmptyDateField() {
                             </FormDescription>
                         </FormGroup>
                     ),
-                    code: `import * as React from "react";
+                    code: `"use client";
+
+import * as React from "react";
 import {
   DatePicker,
   FormControl,
@@ -228,7 +234,9 @@ export default function PersistentDateField() {
                             </FormDescription>
                         </FormGroup>
                     ),
-                    code: `import * as React from "react";
+                    code: `"use client";
+
+import * as React from "react";
 import {
   DatePicker,
   FormControl,
@@ -344,7 +352,9 @@ export default function LockedDateField() {
 export default function DatePickerPage() {
     const { locale, sectionLabels } = useLocale();
     const code = locale === "ja"
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import {
   DatePicker,
   FormControl,
@@ -366,7 +376,9 @@ export function DatePickerDemo() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import {
   DatePicker,
   FormControl,
@@ -389,7 +401,9 @@ export function DatePickerDemo() {
   );
 }`;
 
-    const usageCode = `import * as React from "react";
+    const usageCode = `"use client";
+
+import * as React from "react";
 import { DatePicker, FormControl, FormGroup, FormLabel } from "@gunjo/ui";
 
 export function DatePickerUsage() {

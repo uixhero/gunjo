@@ -378,7 +378,9 @@ function AccessoryComposerDemo() {
     );
 }
 
-const usageCode = `import * as React from "react";
+const usageCode = `"use client";
+
+import * as React from "react";
 import { ChatComposer } from "@gunjo/ui";
 
 export function ComposerWithChoices() {
@@ -431,7 +433,9 @@ export function ComposerWithChoices() {
   );
 }`;
 
-const workspaceCode = `import * as React from "react";
+const workspaceCode = `"use client";
+
+import * as React from "react";
 import { ChatComposer, Popover, PopoverContent, PopoverTrigger, Switch } from "@gunjo/ui";
 
 export function WorkspaceComposer() {
@@ -496,7 +500,9 @@ export function WorkspaceComposer() {
   );
 }`;
 
-const accessoryCode = `import * as React from "react";
+const accessoryCode = `"use client";
+
+import * as React from "react";
 import { ChatComposer, Switch } from "@gunjo/ui";
 
 export function AccessoryComposer() {

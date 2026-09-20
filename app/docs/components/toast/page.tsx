@@ -51,7 +51,9 @@ function ToastTriggerPreview({
 }
 
 const codeByLocale = {
-    ja: `import { Toast } from "@gunjo/ui"
+    ja: `"use client";
+
+import { Toast } from "@gunjo/ui"
 
 export function SavedToast() {
   return (
@@ -65,7 +67,9 @@ export function SavedToast() {
     />
   )
 }`,
-    en: `import { Toast } from "@gunjo/ui"
+    en: `"use client";
+
+import { Toast } from "@gunjo/ui"
 
 export function SavedToast() {
   return (
@@ -82,7 +86,9 @@ export function SavedToast() {
 };
 
 const successCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client";
+
+import * as React from "react"
 import { Button, Toast } from "@gunjo/ui"
 
 export function SaveToastExample() {
@@ -105,7 +111,9 @@ export function SaveToastExample() {
     </div>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client";
+
+import * as React from "react"
 import { Button, Toast } from "@gunjo/ui"
 
 export function SaveToastExample() {
@@ -131,7 +139,9 @@ export function SaveToastExample() {
 };
 
 const errorCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client";
+
+import * as React from "react"
 import { Button, Toast } from "@gunjo/ui"
 
 export function ErrorToastExample() {
@@ -154,7 +164,9 @@ export function ErrorToastExample() {
     </div>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client";
+
+import * as React from "react"
 import { Button, Toast } from "@gunjo/ui"
 
 export function ErrorToastExample() {
@@ -180,7 +192,9 @@ export function ErrorToastExample() {
 };
 
 const infoCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client";
+
+import * as React from "react"
 import { Button, Toast } from "@gunjo/ui"
 
 export function InfoToastExample() {
@@ -203,7 +217,9 @@ export function InfoToastExample() {
     </div>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client";
+
+import * as React from "react"
 import { Button, Toast } from "@gunjo/ui"
 
 export function InfoToastExample() {
@@ -229,7 +245,9 @@ export function InfoToastExample() {
 };
 
 const fixedCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client";
+
+import * as React from "react"
 import { Button, Toast } from "@gunjo/ui"
 
 export function FloatingToastExample() {
@@ -251,7 +269,9 @@ export function FloatingToastExample() {
     </div>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client";
+
+import * as React from "react"
 import { Button, Toast } from "@gunjo/ui"
 
 export function FloatingToastExample() {
@@ -276,7 +296,9 @@ export function FloatingToastExample() {
 };
 
 const deleteCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client";
+
+import * as React from "react"
 import { Button, Toast } from "@gunjo/ui"
 
 export function DeleteToastExample() {
@@ -300,7 +322,9 @@ export function DeleteToastExample() {
     </div>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client";
+
+import * as React from "react"
 import { Button, Toast } from "@gunjo/ui"
 
 export function DeleteToastExample() {

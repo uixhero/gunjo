@@ -128,7 +128,9 @@ export default function MapControlButtonDocPage() {
     const description = content?.description ?? metadata.mapControlButton.description ?? "";
 
     const usageCode = isJa
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { MapControlButton } from "@gunjo/ui";
 import { IconCircleDot, IconMapPin, IconMinus, IconPlus } from "@tabler/icons-react";
 
@@ -182,7 +184,9 @@ export function MapColumn() {
     </div>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { MapControlButton } from "@gunjo/ui";
 import { IconCircleDot, IconMapPin, IconMinus, IconPlus } from "@tabler/icons-react";
 
@@ -389,7 +393,9 @@ export function Sizes() {
                                 </OnMap>
                             ),
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { MapControlButton } from "@gunjo/ui";
 import { IconMapPin } from "@tabler/icons-react";
 
@@ -401,7 +407,9 @@ export function FollowToggle() {
     </MapControlButton>
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { MapControlButton } from "@gunjo/ui";
 import { IconMapPin } from "@tabler/icons-react";
 

@@ -16,7 +16,9 @@ import { DashboardTemplateDemo } from "@/components/demos/TemplateDemos";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import patternsMetadata from "@design/patterns-metadata.json";
 
-const usageCode = `import { DashboardTemplate, SidebarItem } from "@gunjo/ui";
+const usageCode = `"use client";
+
+import { DashboardTemplate, SidebarItem } from "@gunjo/ui";
 import { IconLayoutDashboard as LayoutDashboard, IconSettings as Settings, IconUser as User } from "@tabler/icons-react";
 
 export function DashboardPage() {
@@ -200,7 +202,9 @@ export default function DashboardPage() {
                                 </DashboardTemplate>
                             ),
                             code: locale === "ja"
-                                ? `import { Card, CardContent, CardHeader, CardTitle, DashboardTemplate, SidebarItem } from "@gunjo/ui";
+                                ? `"use client";
+
+import { Card, CardContent, CardHeader, CardTitle, DashboardTemplate, SidebarItem } from "@gunjo/ui";
 import { IconLayoutDashboard as LayoutDashboard, IconUser as User } from "@tabler/icons-react";
 
 export function CollapsedDashboard() {
@@ -227,7 +231,9 @@ export function CollapsedDashboard() {
     </DashboardTemplate>
   );
 }`
-                                : `import { Card, CardContent, CardHeader, CardTitle, DashboardTemplate, SidebarItem } from "@gunjo/ui";
+                                : `"use client";
+
+import { Card, CardContent, CardHeader, CardTitle, DashboardTemplate, SidebarItem } from "@gunjo/ui";
 import { IconLayoutDashboard as LayoutDashboard, IconUser as User } from "@tabler/icons-react";
 
 export function CollapsedDashboard() {
@@ -267,7 +273,9 @@ export function CollapsedDashboard() {
                                 </DashboardTemplate>
                             ),
                             code: locale === "ja"
-                                ? `import { Card, CardContent, CardHeader, CardTitle, DashboardTemplate, SidebarItem } from "@gunjo/ui";
+                                ? `"use client";
+
+import { Card, CardContent, CardHeader, CardTitle, DashboardTemplate, SidebarItem } from "@gunjo/ui";
 import { IconLayoutDashboard as LayoutDashboard, IconUser as User } from "@tabler/icons-react";
 
 export function FixedRailDashboard() {
@@ -294,7 +302,9 @@ export function FixedRailDashboard() {
     </DashboardTemplate>
   );
 }`
-                                : `import { Card, CardContent, CardHeader, CardTitle, DashboardTemplate, SidebarItem } from "@gunjo/ui";
+                                : `"use client";
+
+import { Card, CardContent, CardHeader, CardTitle, DashboardTemplate, SidebarItem } from "@gunjo/ui";
 import { IconLayoutDashboard as LayoutDashboard, IconUser as User } from "@tabler/icons-react";
 
 export function FixedRailDashboard() {
@@ -340,7 +350,9 @@ export function FixedRailDashboard() {
                                 </DashboardTemplate>
                             ),
                             code: locale === "ja"
-                                ? `import { Card, CardContent, CardHeader, CardTitle, DashboardTemplate, SidebarItem } from "@gunjo/ui";
+                                ? `"use client";
+
+import { Card, CardContent, CardHeader, CardTitle, DashboardTemplate, SidebarItem } from "@gunjo/ui";
 import { IconLayoutDashboard as LayoutDashboard, IconUser as User } from "@tabler/icons-react";
 
 export function PinnedRailDashboard() {
@@ -368,7 +380,9 @@ export function PinnedRailDashboard() {
     </DashboardTemplate>
   );
 }`
-                                : `import { Card, CardContent, CardHeader, CardTitle, DashboardTemplate, SidebarItem } from "@gunjo/ui";
+                                : `"use client";
+
+import { Card, CardContent, CardHeader, CardTitle, DashboardTemplate, SidebarItem } from "@gunjo/ui";
 import { IconLayoutDashboard as LayoutDashboard, IconUser as User } from "@tabler/icons-react";
 
 export function PinnedRailDashboard() {

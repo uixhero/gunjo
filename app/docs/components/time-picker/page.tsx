@@ -68,7 +68,9 @@ function TimePickerStatePreview({
 export default function TimePickerPage() {
     const { locale, sectionLabels } = useLocale();
     const code = locale === "ja"
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -95,7 +97,9 @@ export function TimePickerDemo() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -123,7 +127,9 @@ export function TimePickerDemo() {
   );
 }`;
     const usageCode = locale === "ja"
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { FormControl, FormGroup, FormLabel, TimePicker } from "@gunjo/ui";
 
 export function MeetingTimeField() {
@@ -144,7 +150,9 @@ export function MeetingTimeField() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { FormControl, FormGroup, FormLabel, TimePicker } from "@gunjo/ui";
 
 export function MeetingTimeField() {
@@ -217,7 +225,9 @@ export function MeetingTimeField() {
                             description: locale === "ja" ? "画面上は午前/午後で選べるようにし、保存値は24時間表記に統一します。" : "Show AM/PM in the UI while storing a 24-hour value.",
                             preview: <TimePickerStatePreview hour12 minuteStep={15} />,
                             previewHeight: 170,
-                            code: `import * as React from "react";
+                            code: `"use client";
+
+import * as React from "react";
 import { TimePicker } from "@gunjo/ui";
 
 export function StartTimeField12Hour() {
@@ -234,7 +244,9 @@ export function StartTimeField12Hour() {
                             description: locale === "ja" ? "予約やスケジュールでは分の選択肢を絞れます。" : "Limit minute options for scheduling use cases.",
                             preview: <TimePickerStatePreview minuteStep={15} />,
                             previewHeight: 170,
-                            code: `import * as React from "react";
+                            code: `"use client";
+
+import * as React from "react";
 import { TimePicker } from "@gunjo/ui";
 
 export function StartTimeFieldQuarterHour() {

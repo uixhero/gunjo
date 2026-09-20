@@ -46,7 +46,9 @@ export function CanvasWorkspace() {
 } as const;
 
 const selectionCanvasCode = {
-    en: `import { useMemo, useRef, useState, type PointerEvent } from "react";
+    en: `"use client";
+
+import { useMemo, useRef, useState, type PointerEvent } from "react";
 import { SpatialCanvas } from "@gunjo/ui";
 
 type Point = { x: number; y: number };
@@ -138,7 +140,9 @@ export function SelectionCanvas() {
     </div>
   );
 }`,
-    ja: `import { useMemo, useRef, useState, type PointerEvent } from "react";
+    ja: `"use client";
+
+import { useMemo, useRef, useState, type PointerEvent } from "react";
 import { SpatialCanvas } from "@gunjo/ui";
 
 type Point = { x: number; y: number };

@@ -45,7 +45,9 @@ function getSingleToneRegions(regions: ChoroplethMapRegion[]): ChoroplethMapRegi
 }
 
 const codeByLocale = {
-    en: `import { useState } from "react";
+    en: `"use client";
+
+import { useState } from "react";
 import { ChoroplethMap } from "@gunjo/ui";
 
 const regions = [
@@ -107,7 +109,9 @@ export function TokyoIncidentMap() {
         />
     );
 }`,
-    ja: `import { useState } from "react";
+    ja: `"use client";
+
+import { useState } from "react";
 import { ChoroplethMap } from "@gunjo/ui";
 
 const regions = [
@@ -311,7 +315,9 @@ export function WardDensityMap() {
         />
     );
 }`,
-        markers: `import { useState } from "react";
+        markers: `"use client";
+
+import { useState } from "react";
 import { ChoroplethMap } from "@gunjo/ui";
 
 const regions = [
@@ -530,7 +536,9 @@ export function WardDensityMap() {
         />
     );
 }`,
-        markers: `import { useState } from "react";
+        markers: `"use client";
+
+import { useState } from "react";
 import { ChoroplethMap } from "@gunjo/ui";
 
 const regions = [

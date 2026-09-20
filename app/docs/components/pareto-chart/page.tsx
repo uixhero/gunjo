@@ -33,7 +33,9 @@ function paretoData(locale: Locale) {
 
 const stateCodeByLocale = {
   en: {
-    default: `import { ParetoChart } from "@gunjo/ui";
+    default: `"use client";
+
+import { ParetoChart } from "@gunjo/ui";
 
 const downtimeCauses = [
   { label: "Micro-stops", value: 142 },
@@ -60,7 +62,9 @@ export function DowntimePareto() {
     </div>
   );
 }`,
-    noThreshold: `import { ParetoChart } from "@gunjo/ui";
+    noThreshold: `"use client";
+
+import { ParetoChart } from "@gunjo/ui";
 
 const downtimeCauses = [
   { label: "Micro-stops", value: 142 },
@@ -85,7 +89,9 @@ export function DowntimeParetoWithoutThreshold() {
     </div>
   );
 }`,
-    unsorted: `import { ParetoChart } from "@gunjo/ui";
+    unsorted: `"use client";
+
+import { ParetoChart } from "@gunjo/ui";
 
 const downtimeCauses = [
   { label: "Micro-stops", value: 142 },
@@ -113,7 +119,9 @@ export function DowntimeParetoInInputOrder() {
 }`,
   },
   ja: {
-    default: `import { ParetoChart } from "@gunjo/ui";
+    default: `"use client";
+
+import { ParetoChart } from "@gunjo/ui";
 
 const downtimeCauses = [
   { label: "チョコ停", value: 142 },
@@ -140,7 +148,9 @@ export function DowntimePareto() {
     </div>
   );
 }`,
-    noThreshold: `import { ParetoChart } from "@gunjo/ui";
+    noThreshold: `"use client";
+
+import { ParetoChart } from "@gunjo/ui";
 
 const downtimeCauses = [
   { label: "チョコ停", value: 142 },
@@ -165,7 +175,9 @@ export function DowntimeParetoWithoutThreshold() {
     </div>
   );
 }`,
-    unsorted: `import { ParetoChart } from "@gunjo/ui";
+    unsorted: `"use client";
+
+import { ParetoChart } from "@gunjo/ui";
 
 const downtimeCauses = [
   { label: "チョコ停", value: 142 },
@@ -234,7 +246,9 @@ export default function ParetoChartDocPage() {
   const description = content?.description ?? metadata.paretoChart.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import { ParetoChart } from "@gunjo/ui";
+    ? `"use client";
+
+import { ParetoChart } from "@gunjo/ui";
 
 const downtimeCauses = [
   { label: "チョコ停", value: 142 },
@@ -260,7 +274,9 @@ export function DowntimePareto() {
     </div>
   );
 }`
-    : `import { ParetoChart } from "@gunjo/ui";
+    : `"use client";
+
+import { ParetoChart } from "@gunjo/ui";
 
 const downtimeCauses = [
   { label: "Micro-stops", value: 142 },

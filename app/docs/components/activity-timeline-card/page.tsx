@@ -11,7 +11,9 @@ import { ActivityTimelineCard } from "@gunjo/ui";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
-    en: `import { useState } from "react";
+    en: `"use client";
+
+import { useState } from "react";
 import { ActivityTimelineCard } from "@gunjo/ui";
 
 const metrics = [
@@ -62,7 +64,9 @@ export function ActivityTimelinePanel() {
         />
     );
 }`,
-    ja: `import { useState } from "react";
+    ja: `"use client";
+
+import { useState } from "react";
 import { ActivityTimelineCard } from "@gunjo/ui";
 
 const metrics = [

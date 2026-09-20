@@ -129,7 +129,9 @@ export function OfficeSelectField() {
 }`;
 
     const usageCode = isJa
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { FormControl, FormGroup, FormLabel, Select } from "@gunjo/ui";
 
 export function OfficePicker() {
@@ -152,7 +154,9 @@ export function OfficePicker() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { FormControl, FormGroup, FormLabel, Select } from "@gunjo/ui";
 
 export function OfficePicker() {

@@ -20,7 +20,9 @@ export default function PhoneInputPage() {
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
     const isJa = locale === "ja";
     const code = isJa
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -44,7 +46,9 @@ export function ContactPhoneField() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,

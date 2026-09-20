@@ -468,7 +468,9 @@ function InputPetExample() {
     );
 }
 
-const usageCode = `import * as React from "react";
+const usageCode = `"use client";
+
+import * as React from "react";
 import { ChatInput, Switch } from "@gunjo/ui";
 
 export function SupportComposer() {
@@ -523,7 +525,9 @@ export function SupportComposer() {
   );
 }`;
 
-const choicePromptCode = `import * as React from "react";
+const choicePromptCode = `"use client";
+
+import * as React from "react";
 import { ChatComposer } from "@gunjo/ui";
 
 export function ChoicePromptComposer() {
@@ -559,7 +563,9 @@ export function ChoicePromptComposer() {
   );
 }`;
 
-const workspaceContextCode = `import * as React from "react";
+const workspaceContextCode = `"use client";
+
+import * as React from "react";
 import { ChatComposer } from "@gunjo/ui";
 
 export function WorkspaceComposer() {
@@ -597,7 +603,9 @@ export function WorkspaceComposer() {
   );
 }`;
 
-const tokenStatusCode = `import * as React from "react";
+const tokenStatusCode = `"use client";
+
+import * as React from "react";
 import { ChatComposer, Popover, PopoverContent, PopoverTrigger, Switch } from "@gunjo/ui";
 
 export function TokenStatusComposer() {
@@ -639,7 +647,9 @@ export function TokenStatusComposer() {
   );
 }`;
 
-const inputPetCode = `import * as React from "react";
+const inputPetCode = `"use client";
+
+import * as React from "react";
 import { ChatComposer, Switch } from "@gunjo/ui";
 
 export function InputPetComposer() {

@@ -21,7 +21,9 @@ import {
 import { IconDots as MoreHorizontal, IconFileText as FileText, IconFolder as Folder, IconPhoto as Image, IconSettings as Settings } from "@tabler/icons-react";
 
 const codeByLocale = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { TreeView, type TreeNode } from "@gunjo/ui";
 import { IconFileText as FileText, IconFolder as Folder } from "@tabler/icons-react";
 
@@ -51,7 +53,9 @@ export function Example() {
     />
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { TreeView, type TreeNode } from "@gunjo/ui";
 import { IconFileCode as FileCode2, IconFileText as FileText, IconFolder as Folder } from "@tabler/icons-react";
 
@@ -107,7 +111,9 @@ export function DefaultExpandedTree() {
 } as const;
 
 const selectedCodeByLocale = {
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { TreeView, type TreeNode } from "@gunjo/ui";
 
 const nodes: TreeNode[] = [
@@ -126,7 +132,9 @@ export function SelectedTree() {
     />
   );
 }`,
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { TreeView, type TreeNode } from "@gunjo/ui";
 
 const nodes: TreeNode[] = [
@@ -183,7 +191,9 @@ export function TreeWithoutIcons() {
 } as const;
 
 const metaActionsCodeByLocale = {
-    ja: `import {
+    ja: `"use client";
+
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -249,7 +259,9 @@ export function TreeViewWithSlots() {
     />
   );
 }`,
-    en: `import {
+    en: `"use client";
+
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,

@@ -17,7 +17,9 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import { UixheroRationaleLinks } from "@/components/doc/ComponentHelpers";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
-const code = `import { useState } from "react";
+const code = `"use client";
+
+import { useState } from "react";
 import {
     ActivityTimelineCard,
     AnalyticsCard,

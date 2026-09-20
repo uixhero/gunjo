@@ -187,7 +187,9 @@ export default function DayBandDocPage() {
     const description = content?.description ?? metadata.dayBand.description ?? "";
 
     const usageCode = isJa
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { DayBand, TimeTransport } from "@gunjo/ui";
 
 // 既定の単位は「午前0時からの分」（min 0 / max 1440）。
@@ -253,7 +255,9 @@ export function BandInTransport() {
     />
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { DayBand, TimeTransport } from "@gunjo/ui";
 
 // The default unit is minutes from midnight (min 0 / max 1440).
@@ -538,7 +542,9 @@ export function BandInTransport() {
                                 : "Dropped into the transport's scrubber slot. Grab the band to move time, press return-to-now to come back. This pairing is what the band was extracted for. The unit here is minutes, so TimeTransport's liveTolerance is given in minutes too — the default 1000 is one second of epoch milliseconds.",
                             preview: <TransportDemo locale={locale as Locale} />,
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { DayBand, TimeTransport } from "@gunjo/ui";
 
 const PHASES = [
@@ -571,7 +577,9 @@ export function BandInTransport() {
     />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { DayBand, TimeTransport } from "@gunjo/ui";
 
 const PHASES = [
@@ -623,7 +631,9 @@ export function BandInTransport() {
                                 />
                             ),
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { DayBand } from "@gunjo/ui";
 
 const ROSTER = [
@@ -659,7 +669,9 @@ export function WardRoster() {
     />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { DayBand } from "@gunjo/ui";
 
 const ROSTER = [
@@ -769,7 +781,9 @@ export function OpeningHours() {
                                 />
                             ),
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { DayBand } from "@gunjo/ui";
 
 const PHASES = [
@@ -799,7 +813,9 @@ export function RelativeScrub() {
     />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { DayBand } from "@gunjo/ui";
 
 const PHASES = [
@@ -891,7 +907,9 @@ export function BareBand() {
                                 />
                             ),
                             code: isJa
-                                ? `import { DayBand } from "@gunjo/ui";
+                                ? `"use client";
+
+import { DayBand } from "@gunjo/ui";
 
 const PHASES = [
   { start: 0, end: 322, label: "夜", color: "hsl(var(--gunjo-deepest))" },
@@ -910,7 +928,9 @@ export function FrozenBand() {
     />
   );
 }`
-                                : `import { DayBand } from "@gunjo/ui";
+                                : `"use client";
+
+import { DayBand } from "@gunjo/ui";
 
 const PHASES = [
   { start: 0, end: 322, label: "Night", color: "hsl(var(--gunjo-deepest))" },

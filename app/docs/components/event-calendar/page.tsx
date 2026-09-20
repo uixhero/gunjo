@@ -194,7 +194,9 @@ export default function EventCalendarDocPage() {
   const description = content?.description ?? metadata.eventCalendar.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import {
   EventCalendar,
   Sheet,
@@ -318,7 +320,9 @@ export function EditorialCalendar() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import {
   EventCalendar,
   Sheet,
@@ -470,7 +474,9 @@ export function EditorialCalendar() {
   const overflowCode = usageCode.replace("maxPerDay={3}", "maxPerDay={2}");
 
   const mondayStartCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { EventCalendar, type CalendarEvent } from "@gunjo/ui";
 
 const events: CalendarEvent[] = [
@@ -496,7 +502,9 @@ export function BusinessWeekCalendar() {
     />
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { EventCalendar, type CalendarEvent } from "@gunjo/ui";
 
 const events: CalendarEvent[] = [
@@ -524,7 +532,9 @@ export function BusinessWeekCalendar() {
 }`;
 
   const customEventCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { EventCalendar, type CalendarEvent } from "@gunjo/ui";
 
 const events: CalendarEvent[] = [
@@ -558,7 +568,9 @@ export function CustomChipCalendar() {
     />
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { EventCalendar, type CalendarEvent } from "@gunjo/ui";
 
 const events: CalendarEvent[] = [

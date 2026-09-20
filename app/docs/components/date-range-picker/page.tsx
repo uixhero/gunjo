@@ -65,7 +65,9 @@ function DateRangePickerStates({ locale }: { locale: "ja" | "en" }) {
                             </FormDescription>
                         </FormGroup>
                     ),
-                    code: `import * as React from "react";
+                    code: `"use client";
+
+import * as React from "react";
 import type { DateRange } from "react-day-picker";
 import {
   DateRangePicker,
@@ -113,7 +115,9 @@ export default function CampaignWindowField() {
                             </FormControl>
                         </FormGroup>
                     ),
-                    code: `import * as React from "react";
+                    code: `"use client";
+
+import * as React from "react";
 import type { DateRange } from "react-day-picker";
 import { DateRangePicker, FormControl, FormGroup, FormLabel } from "@gunjo/ui";
 
@@ -162,7 +166,9 @@ export default function EmptyRangeField() {
                             </FormDescription>
                         </FormGroup>
                     ),
-                    code: `import * as React from "react";
+                    code: `"use client";
+
+import * as React from "react";
 import type { DateRange } from "react-day-picker";
 import {
   DateRangePicker,
@@ -259,7 +265,9 @@ export default function LockedRangeField() {
 export default function DateRangePickerPage() {
     const { locale, sectionLabels } = useLocale();
     const code = locale === "ja"
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import type { DateRange } from "react-day-picker";
 import {
   DateRangePicker,
@@ -293,7 +301,9 @@ export function DateRangePickerDemo() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import type { DateRange } from "react-day-picker";
 import {
   DateRangePicker,
@@ -328,7 +338,9 @@ export function DateRangePickerDemo() {
   );
 }`;
 
-    const usageCode = `import * as React from "react";
+    const usageCode = `"use client";
+
+import * as React from "react";
 import type { DateRange } from "react-day-picker";
 import { DateRangePicker, FormControl, FormGroup, FormLabel } from "@gunjo/ui";
 

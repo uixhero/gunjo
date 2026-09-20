@@ -94,7 +94,9 @@ export default function CheckListDocPage() {
   const description = content?.description ?? metadata.checkList.description;
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { IconAlertTriangle, IconCheck } from "@tabler/icons-react";
 import { Badge, CheckList, type CheckListItem } from "@gunjo/ui";
 
@@ -132,7 +134,9 @@ export function RequiredDocumentCheckList() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { IconAlertTriangle, IconCheck } from "@tabler/icons-react";
 import { Badge, CheckList, type CheckListItem } from "@gunjo/ui";
 
@@ -180,7 +184,9 @@ export function RequiredDocumentCheckList() {
 }`;
 
   const mixedRowCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { Badge, CheckList, type CheckListItem } from "@gunjo/ui";
 
 export function MixedRowCheckList() {
@@ -204,7 +210,9 @@ export function MixedRowCheckList() {
     />
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { Badge, CheckList, type CheckListItem } from "@gunjo/ui";
 
 export function MixedRowCheckList() {

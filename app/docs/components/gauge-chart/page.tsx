@@ -11,7 +11,9 @@ import { GaugeChart } from "@gunjo/ui";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
-    en: `import { GaugeChart } from "@gunjo/ui";
+    en: `"use client";
+
+import { GaugeChart } from "@gunjo/ui";
 
 export function PerformanceScoreGauge() {
     return (
@@ -24,7 +26,9 @@ export function PerformanceScoreGauge() {
         />
     );
 }`,
-    ja: `import { GaugeChart } from "@gunjo/ui";
+    ja: `"use client";
+
+import { GaugeChart } from "@gunjo/ui";
 
 export function PerformanceScoreGauge() {
     return (
@@ -40,7 +44,9 @@ export function PerformanceScoreGauge() {
 } as const;
 
 const usageCodeByLocale = {
-    en: `import { GaugeChart } from "@gunjo/ui";
+    en: `"use client";
+
+import { GaugeChart } from "@gunjo/ui";
 
 export function GaugeChartUsage() {
     return (
@@ -63,7 +69,9 @@ export function GaugeChartUsage() {
         </div>
     );
 }`,
-    ja: `import { GaugeChart } from "@gunjo/ui";
+    ja: `"use client";
+
+import { GaugeChart } from "@gunjo/ui";
 
 export function GaugeChartUsage() {
     return (
@@ -90,7 +98,9 @@ export function GaugeChartUsage() {
 
 const stateCodeByLocale = {
     en: {
-        default: `import { GaugeChart } from "@gunjo/ui";
+        default: `"use client";
+
+import { GaugeChart } from "@gunjo/ui";
 
 export function ScoreGauge() {
     return (
@@ -103,7 +113,9 @@ export function ScoreGauge() {
         />
     );
 }`,
-        compact: `import { GaugeChart } from "@gunjo/ui";
+        compact: `"use client";
+
+import { GaugeChart } from "@gunjo/ui";
 
 export function CompactProgressGauge() {
     return (
@@ -117,7 +129,9 @@ export function CompactProgressGauge() {
         />
     );
 }`,
-        capacity: `import { GaugeChart } from "@gunjo/ui";
+        capacity: `"use client";
+
+import { GaugeChart } from "@gunjo/ui";
 
 export function CapacityGauge() {
     return (
@@ -131,7 +145,9 @@ export function CapacityGauge() {
         />
     );
 }`,
-        offsetRange: `import { GaugeChart } from "@gunjo/ui";
+        offsetRange: `"use client";
+
+import { GaugeChart } from "@gunjo/ui";
 
 export function DeltaGauge() {
     return (
@@ -147,7 +163,9 @@ export function DeltaGauge() {
         />
     );
 }`,
-        warning: `import { GaugeChart } from "@gunjo/ui";
+        warning: `"use client";
+
+import { GaugeChart } from "@gunjo/ui";
 
 export function LoadGauge() {
     return (
@@ -160,7 +178,9 @@ export function LoadGauge() {
         />
     );
 }`,
-        critical: `import { GaugeChart } from "@gunjo/ui";
+        critical: `"use client";
+
+import { GaugeChart } from "@gunjo/ui";
 
 export function RiskGauge() {
     return (
@@ -175,7 +195,9 @@ export function RiskGauge() {
 }`,
     },
     ja: {
-        default: `import { GaugeChart } from "@gunjo/ui";
+        default: `"use client";
+
+import { GaugeChart } from "@gunjo/ui";
 
 export function ScoreGauge() {
     return (
@@ -188,7 +210,9 @@ export function ScoreGauge() {
         />
     );
 }`,
-        compact: `import { GaugeChart } from "@gunjo/ui";
+        compact: `"use client";
+
+import { GaugeChart } from "@gunjo/ui";
 
 export function CompactProgressGauge() {
     return (
@@ -202,7 +226,9 @@ export function CompactProgressGauge() {
         />
     );
 }`,
-        capacity: `import { GaugeChart } from "@gunjo/ui";
+        capacity: `"use client";
+
+import { GaugeChart } from "@gunjo/ui";
 
 export function CapacityGauge() {
     return (
@@ -216,7 +242,9 @@ export function CapacityGauge() {
         />
     );
 }`,
-        offsetRange: `import { GaugeChart } from "@gunjo/ui";
+        offsetRange: `"use client";
+
+import { GaugeChart } from "@gunjo/ui";
 
 export function DeltaGauge() {
     return (
@@ -232,7 +260,9 @@ export function DeltaGauge() {
         />
     );
 }`,
-        warning: `import { GaugeChart } from "@gunjo/ui";
+        warning: `"use client";
+
+import { GaugeChart } from "@gunjo/ui";
 
 export function LoadGauge() {
     return (
@@ -245,7 +275,9 @@ export function LoadGauge() {
         />
     );
 }`,
-        critical: `import { GaugeChart } from "@gunjo/ui";
+        critical: `"use client";
+
+import { GaugeChart } from "@gunjo/ui";
 
 export function RiskGauge() {
     return (

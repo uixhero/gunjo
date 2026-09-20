@@ -112,7 +112,9 @@ function AmenitiesPreview({ locale }: { locale: Locale }) {
   );
 }
 
-const usageCode = `import * as React from "react";
+const usageCode = `"use client";
+
+import * as React from "react";
 import { Badge, CheckboxCard, CheckboxCardGroup } from "@gunjo/ui";
 
 const addons = [
@@ -143,7 +145,9 @@ export function AddonPicker() {
   );
 }`;
 
-const conditionsCodeJa = `import * as React from "react";
+const conditionsCodeJa = `"use client";
+
+import * as React from "react";
 import { CheckboxCard, CheckboxCardGroup } from "@gunjo/ui";
 
 const CONDITIONS = [
@@ -163,7 +167,9 @@ export function ConditionFilters() {
   );
 }`;
 
-const conditionsCodeEn = `import * as React from "react";
+const conditionsCodeEn = `"use client";
+
+import * as React from "react";
 import { CheckboxCard, CheckboxCardGroup } from "@gunjo/ui";
 
 const CONDITIONS = [
@@ -183,7 +189,9 @@ export function ConditionFilters() {
   );
 }`;
 
-const amenitiesCodeJa = `import * as React from "react";
+const amenitiesCodeJa = `"use client";
+
+import * as React from "react";
 import {
   IconDeviceTv,
   IconParking,
@@ -221,7 +229,9 @@ export function AmenityPicker() {
   );
 }`;
 
-const amenitiesCodeEn = `import * as React from "react";
+const amenitiesCodeEn = `"use client";
+
+import * as React from "react";
 import {
   IconDeviceTv,
   IconParking,

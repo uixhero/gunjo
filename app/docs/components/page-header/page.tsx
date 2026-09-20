@@ -176,7 +176,9 @@ export default function PageHeaderDocPage() {
   const description = content?.description ?? metadata.pageHeader.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { PageHeader, Toast, TooltipButton } from "@gunjo/ui";
 import { IconRefresh } from "@tabler/icons-react";
 
@@ -229,7 +231,9 @@ export function BaggageHeader() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { PageHeader, Toast, TooltipButton } from "@gunjo/ui";
 import { IconRefresh } from "@tabler/icons-react";
 
@@ -284,7 +288,9 @@ export function BaggageHeader() {
 }`;
 
   const centerStateCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { PageHeader, Toast, TooltipButton } from "@gunjo/ui";
 import { IconX } from "@tabler/icons-react";
 
@@ -335,7 +341,9 @@ export function ReservationReviewHeader() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { PageHeader, Toast, TooltipButton } from "@gunjo/ui";
 import { IconX } from "@tabler/icons-react";
 
@@ -388,7 +396,9 @@ export function ReservationReviewHeader() {
 }`;
 
   const leadingStateCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { Badge, PageHeader, Toast, TooltipButton } from "@gunjo/ui";
 import { IconSettings } from "@tabler/icons-react";
 
@@ -437,7 +447,9 @@ export function PublicLinkHeader() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { Badge, PageHeader, Toast, TooltipButton } from "@gunjo/ui";
 import { IconSettings } from "@tabler/icons-react";
 

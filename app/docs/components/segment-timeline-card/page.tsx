@@ -65,7 +65,9 @@ const segments = [
 const formatDuration = (minutes) => \`\${Math.floor(minutes / 60)}時間\${minutes % 60}分\`;`,
 } as const;
 
-const code = { en: `import { SegmentTimelineCard } from "@gunjo/ui";
+const code = { en: `"use client";
+
+import { SegmentTimelineCard } from "@gunjo/ui";
 
 const metrics = [
     {
@@ -123,7 +125,9 @@ export function SleepStageTimeline() {
             caption="Review categorical time ranges for sleep, uptime, or delivery states."
         />
     );
-}`, ja: `import { SegmentTimelineCard } from "@gunjo/ui";
+}`, ja: `"use client";
+
+import { SegmentTimelineCard } from "@gunjo/ui";
 
 const metrics = [
     { label: "睡眠品質", value: "83%", description: "基準品質 76% と比較した睡眠品質スコアです。" },

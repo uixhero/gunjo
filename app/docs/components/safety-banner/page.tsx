@@ -137,7 +137,9 @@ export default function SafetyBannerDocPage() {
   const description = content?.description ?? metadata.safetyBanner.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { Button, SafetyBanner, Toast, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 
 export function PrescriptionGate() {
@@ -193,7 +195,9 @@ export function PrescriptionGate() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { Button, SafetyBanner, Toast, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 
 export function PrescriptionGate() {
@@ -255,7 +259,9 @@ export function PrescriptionGate() {
     : usageCode.replace("const [acked, setAcked] = React.useState(false);", "const [acked, setAcked] = React.useState(true);");
 
   const warningCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { Button, SafetyBanner, Toast } from "@gunjo/ui";
 
 export function DosageReviewBanner() {
@@ -277,7 +283,9 @@ export function DosageReviewBanner() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { Button, SafetyBanner, Toast } from "@gunjo/ui";
 
 export function DosageReviewBanner() {
@@ -301,7 +309,9 @@ export function DosageReviewBanner() {
 }`;
 
   const infoCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { Button, SafetyBanner, Toast } from "@gunjo/ui";
 
 export function LabResultBanner() {
@@ -323,7 +333,9 @@ export function LabResultBanner() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { Button, SafetyBanner, Toast } from "@gunjo/ui";
 
 export function LabResultBanner() {

@@ -63,7 +63,9 @@ export default function TagInputPage() {
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
     const isJa = locale === "ja";
     const code = isJa
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -93,7 +95,9 @@ export function AssetTagField() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -125,7 +129,9 @@ export function AssetTagField() {
 }`;
 
     const usageCode = isJa
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { FormControl, FormGroup, FormLabel, TagInput } from "@gunjo/ui";
 
 export function ArticleTagField() {
@@ -146,7 +152,9 @@ export function ArticleTagField() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { FormControl, FormGroup, FormLabel, TagInput } from "@gunjo/ui";
 
 export function ArticleTagField() {
@@ -220,7 +228,9 @@ export function ArticleTagField() {
                             description: locale === "ja" ? "タグ数に上限がある場合は補足文で条件を伝えます。" : "When tags are limited, explain the limit in helper text.",
                             preview: <TagInputStatePreview maxTags={3} />,
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -249,7 +259,9 @@ export function LimitedTagInput() {
     </FormGroup>
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -285,7 +297,9 @@ export function LimitedTagInput() {
                             description: locale === "ja" ? "編集できない理由はツールチップと補足文で伝えます。" : "Explain why editing is disabled with a tooltip and helper text.",
                             preview: <TagInputStatePreview disabled />,
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -326,7 +340,9 @@ export function DisabledTagInput() {
     </FormGroup>
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,

@@ -285,7 +285,9 @@ export function StatusRightRail() {
 };
 
 const linksCodeByLocale = {
-    ja: `import { Badge, RightRail } from "@gunjo/ui"
+    ja: `"use client";
+
+import { Badge, RightRail } from "@gunjo/ui"
 
 const pageLinks = [
   { id: "overview", label: "概要" },
@@ -374,7 +376,9 @@ export function LinksRightRail() {
     </div>
   )
 }`,
-    en: `import { Badge, RightRail } from "@gunjo/ui"
+    en: `"use client";
+
+import { Badge, RightRail } from "@gunjo/ui"
 
 const pageLinks = [
   { id: "overview", label: "Overview" },

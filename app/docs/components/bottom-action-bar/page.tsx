@@ -141,7 +141,9 @@ export default function BottomActionBarDocPage() {
   const description = content?.description ?? metadata.bottomActionBar.description;
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { Badge, BottomActionBar, Button, Label, Switch } from "@gunjo/ui";
 
 export function RideBottomActionBar() {
@@ -187,7 +189,9 @@ export function RideBottomActionBar() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { Badge, BottomActionBar, Button, Label, Switch } from "@gunjo/ui";
 
 export function RideBottomActionBar() {

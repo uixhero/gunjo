@@ -194,7 +194,9 @@ export default function ActionQueueDocPage() {
   const description = content?.description ?? metadata.actionQueue.description;
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { ActionQueue, Button, ToggleGroup, ToggleGroupItem, type ActionItem } from "@gunjo/ui";
 
 const items = [
@@ -298,7 +300,9 @@ export function MorningActionQueue() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { ActionQueue, Button, ToggleGroup, ToggleGroupItem, type ActionItem } from "@gunjo/ui";
 
 const items = [

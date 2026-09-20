@@ -12,7 +12,9 @@ export default function PasswordGroupPage() {
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
     const isJa = locale === "ja";
     const code = isJa
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { PasswordGroup } from "@gunjo/ui";
 
 export function NewPasswordGroupField() {
@@ -46,7 +48,9 @@ export function NewPasswordGroupField() {
     />
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { PasswordGroup } from "@gunjo/ui";
 
 export function NewPasswordGroupField() {

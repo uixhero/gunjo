@@ -418,7 +418,9 @@ function TablePaginationPattern() {
 }
 
 const tableCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client";
+
+import * as React from "react"
 import {
   Pagination,
   PaginationContent,
@@ -600,7 +602,9 @@ export function TablePagination() {
     </div>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client";
+
+import * as React from "react"
 import {
   Pagination,
   PaginationContent,
@@ -785,7 +789,9 @@ export function TablePagination() {
 };
 
 const codeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client";
+
+import * as React from "react"
 import {
   Pagination,
   PaginationContent,
@@ -943,7 +949,9 @@ export function PaginationExample() {
     </>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client";
+
+import * as React from "react"
 import {
   Pagination,
   PaginationContent,
@@ -1104,7 +1112,9 @@ export function PaginationExample() {
 };
 
 const controlledCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client";
+
+import * as React from "react"
 import {
   Pagination,
   PaginationContent,
@@ -1260,7 +1270,9 @@ export function ControlledPagination() {
     </div>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client";
+
+import * as React from "react"
 import {
   Pagination,
   PaginationContent,
@@ -1419,7 +1431,9 @@ export function ControlledPagination() {
 };
 
 const boundaryCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client";
+
+import * as React from "react"
 import {
   Pagination,
   PaginationContent,
@@ -1611,7 +1625,9 @@ export function BoundaryPagination() {
     </>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client";
+
+import * as React from "react"
 import {
   Pagination,
   PaginationContent,
@@ -1806,7 +1822,9 @@ export function BoundaryPagination() {
 };
 
 const iconOnlyCodeByLocale = {
-    ja: `import * as React from "react"
+    ja: `"use client";
+
+import * as React from "react"
 import {
   Pagination,
   PaginationContent,
@@ -1998,7 +2016,9 @@ export function IconOnlyPagination() {
     </>
   )
 }`,
-    en: `import * as React from "react"
+    en: `"use client";
+
+import * as React from "react"
 import {
   Pagination,
   PaginationContent,

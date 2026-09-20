@@ -175,7 +175,9 @@ const categoryCopy: Record<CategoryName, CategoryCopy> = {
             en: "One import-status screen assembled from this category. Paste it as-is and it runs.",
         },
         sample: {
-            ja: `import { useState } from "react";
+            ja: `"use client";
+
+import { useState } from "react";
 import {
     Alert,
     Banner,
@@ -271,7 +273,9 @@ export function ImportJobStatus() {
         </Card>
     );
 }`,
-            en: `import { useState } from "react";
+            en: `"use client";
+
+import { useState } from "react";
 import {
     Alert,
     Banner,
@@ -475,7 +479,9 @@ export function ImportJobStatus() {
             en: "One screen assembled from this category, showing where you are and where you can go next. Paste it as-is and it runs.",
         },
         sample: {
-            ja: `import { useState } from "react";
+            ja: `"use client";
+
+import { useState } from "react";
 import {
     IconArchive,
     IconInbox,
@@ -603,7 +609,9 @@ export function ReviewNavigation() {
         </div>
     );
 }`,
-            en: `import { useState } from "react";
+            en: `"use client";
+
+import { useState } from "react";
 import {
     IconArchive,
     IconInbox,
@@ -839,7 +847,9 @@ export function ReviewNavigation() {
             en: "One action bar assembled from this category, with every overlay opening from it. Paste it as-is and it runs.",
         },
         sample: {
-            ja: `import { useState } from "react";
+            ja: `"use client";
+
+import { useState } from "react";
 import {
     AlertDialog,
     AlertDialogAction,
@@ -1019,7 +1029,9 @@ export function AssetActionsBar() {
         </TooltipProvider>
     );
 }`,
-            en: `import { useState } from "react";
+            en: `"use client";
+
+import { useState } from "react";
 import {
     AlertDialog,
     AlertDialogAction,
