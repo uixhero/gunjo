@@ -43,7 +43,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         "/patterns",
         "/cold-tests",
         "/cold-tests/why",
-        "/pack",
         "/privacy",
     ]);
     collectPaths(navigation, paths);

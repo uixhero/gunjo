@@ -42,7 +42,7 @@ import {
 } from "@gunjo/ui";
 import { useTheme } from "next-themes";
 import { HeroBackground } from "@/components/home/HeroBackground";
-import { PackCta } from "@/components/pack/PackCta";
+import { SiteNoticeSlot } from "@/components/notice/SiteNoticeSlot";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { COLD_TEST_ROUND_COUNT } from "@/lib/cold-test-count";
 import { COMPONENT_COUNT } from "@/lib/component-count";
@@ -357,9 +357,7 @@ export default function Home() {
                             );
                         })}
                     </div>
-                    <div className="mt-10">
-                        <PackCta placement="home_ssot" />
-                    </div>
+                    <SiteNoticeSlot placement="home_ssot" className="mt-10" />
                 </div>
             </section>
 

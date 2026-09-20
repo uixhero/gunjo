@@ -1,32 +1,20 @@
-import Link from "next/link";
+// Shared privacy-policy body (SSOT for the policy text). Excludes the
+// page-level container + <h1> (the /privacy page supplies its own). (#555)
+//
+// ⚠️ 本文は 2026年7月 のまま（先行登録フォームを前提に書かれています）。⭐ フォームそのものは
+//    2026-09-20 に下げました（#874 の PR）＝そのときリンクだけ外し、本文は一字も変えていません。
+//    ⛔ ここの文面を勝手に書き換えないこと＝法務の文書で、書き直すかどうかは KeEem の判断です。
 
-// Shared privacy-policy body (SSOT for the policy text). Rendered both on the
-// /privacy page and inside the /pack privacy modal, so the two never drift.
-// Excludes the page-level container + <h1> (the /privacy page and the Modal
-// each supply their own title). (#555, TASK-7)
-
-interface PrivacyPolicyBodyProps {
-    /** When true, links to /pack navigate; inside the modal (already on /pack) we hide that link. */
-    linkToPack?: boolean;
-}
-
-export function PrivacyPolicyBody({ linkToPack = true }: PrivacyPolicyBodyProps) {
+export function PrivacyPolicyBody() {
     return (
         <div className="space-y-8">
             <p className="text-sm text-muted-foreground">最終更新：2026年7月</p>
 
             <p className="leading-relaxed text-muted-foreground">
                 4px合同会社（以下「当社」）は、GunjoUI（gunjo.jp、以下「本サイト」）における個人情報の取り扱いについて、以下のとおり定めます。本ポリシーは主に、本サイトの先行登録フォーム（
-                {linkToPack ? (
-                    <Link
-                        href="/pack"
-                        className="underline underline-offset-4 hover:text-foreground"
-                    >
-                        /pack
-                    </Link>
-                ) : (
-                    <code className="rounded bg-muted px-1 py-0.5 text-sm">/pack</code>
-                )}
+                {/* ⛔ /pack へのリンクは張りません＝2026-09-20 にそのページを下げたので 404 です。
+                    文字としての `/pack` は本文の一部なので残してあります（上のコメント参照）。 */}
+                <code className="rounded bg-muted px-1 py-0.5 text-sm">/pack</code>
                 ）でお預かりする情報を対象とします。
             </p>
 

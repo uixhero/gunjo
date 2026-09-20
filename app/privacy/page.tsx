@@ -2,9 +2,10 @@ import type { Metadata } from "next";
 import { absoluteUrl } from "@/lib/seo/page-metadata";
 import { PrivacyPolicyBody } from "./PrivacyContent";
 
-// Privacy policy. Written primarily to cover the /pack pre-registration form
-// (email + minimal survey, stored/sent via Brevo). Intentionally short and
-// plain. Operator: 4px合同会社 (4px LLC). (#555, TASK-7)
+// Privacy policy. Written primarily to cover the pre-registration form that
+// used to live at /pack (email + minimal survey, stored/sent via Brevo).
+// ⚠️ そのフォームは 2026-09-20 に下げました＝本文は当時のまま（PrivacyContent.tsx の頭注参照）。
+// Intentionally short and plain. Operator: 4px合同会社 (4px LLC). (#555, TASK-7)
 //
 // NOTE(KeEem): if you want a dedicated contact email on this page, add it in
 // the「お問い合わせ」section; it currently routes to the uixhero.com contact

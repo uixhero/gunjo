@@ -32,7 +32,7 @@ import {
 } from "@gunjo/ui";
 import type { AssetCardAsset } from "@gunjo/ui";
 import { useLocale } from "@/components/providers/LocaleProvider";
-import { PackCta } from "@/components/pack/PackCta";
+import { SiteNoticeSlot } from "@/components/notice/SiteNoticeSlot";
 import { LocalNav } from "@/components/layout/TableOfContents";
 import {
     EN_COLD_TEST_BASE,
@@ -754,7 +754,7 @@ export function RoundDetailView({
                 />
             )}
 
-            <PackCta placement="coldtests_article" className="mt-4" />
+            <SiteNoticeSlot placement="coldtests_article" className="mt-4" />
         </article>
     );
 }
