@@ -1,4 +1,4 @@
-import { GuidelinePage } from "./_GuidelinePage";
+import { GuidelinePage } from "../_GuidelinePage";
 
 export default function GuidelinesOverviewPage() {
     return (

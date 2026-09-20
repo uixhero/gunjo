@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import { join } from "node:path";
 import { ROOT } from "./design-sync/shared.mjs";
 import { runVerificationCli, throwLinesError } from "./design-verify-assertions.mjs";
@@ -15,9 +15,16 @@ function findLineNumbers(source, pattern) {
 
 export function verifyDocsContentSsot({ root = ROOT } = {}) {
   const enContentPath = join(root, "app", "lib", "docs-content", "en.ts");
-  const componentsIndexPath = join(root, "app", "docs", "components", "page.tsx");
+  // 部品の索引ページ。`(index)` のルートグループ（URL には出ない）に入って
+  // いるのが今の形で、素の `app/docs/components/page.tsx` は昔の置き場所。
+  const componentsIndexPath = [
+    join(root, "app", "docs", "components", "(index)", "page.tsx"),
+    join(root, "app", "docs", "components", "page.tsx"),
+  ].find((candidate) => existsSync(candidate));
   const enSource = readFileSync(enContentPath, "utf-8");
-  const componentsIndexSource = readFileSync(componentsIndexPath, "utf-8");
+  const componentsIndexSource = componentsIndexPath
+    ? readFileSync(componentsIndexPath, "utf-8")
+    : "";
 
   const duplicatedComponentEntries = findLineNumbers(
     enSource,
@@ -43,7 +50,7 @@ export function verifyDocsContentSsot({ root = ROOT } = {}) {
 
   if (hasManualDescriptionFallback) {
     lines.push(
-      "Remove `getComponentDescription` fallback map from app/docs/components/page.tsx."
+      `Remove \`getComponentDescription\` fallback map from ${componentsIndexPath}.`
     );
   }
 

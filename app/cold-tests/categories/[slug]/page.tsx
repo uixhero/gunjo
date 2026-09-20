@@ -6,6 +6,8 @@ import { publishableJaEntries } from "@/lib/cold-test-drafts";
 import { aggregateFindings } from "@/lib/cold-test-findings";
 import { readFindingsForRounds } from "@/lib/cold-test-findings-server";
 import { CategoryView } from "./CategoryView";
+import { JsonLdScript } from "@/components/seo/StructuredData";
+import { breadcrumbList, coldTestTrail } from "@/lib/seo/structured-data";
 
 interface CategoryCopy {
     title: string;
@@ -135,12 +137,21 @@ export default async function CategoryPage({
         },
     };
 
+    // パンくずの段の名前は業種の名前（cold-test-categories.json の jaCategory）。
+    const breadcrumbNode = breadcrumbList(
+        coldTestTrail({
+            name: category.jaCategory,
+            path: `/cold-tests/categories/${slug}`,
+        })
+    );
+
     return (
         <>
             <script
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
+            {breadcrumbNode ? <JsonLdScript node={breadcrumbNode} /> : null}
             <CategoryView
                 slug={slug}
                 visibleRounds={rounds}

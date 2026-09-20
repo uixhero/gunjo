@@ -1,0 +1,15 @@
+{
+  "$comment": "サイトマップに載せない URL。ビルドが 200 で出すのに載せないものだけをここに書く（転送 307・404 は理由を書かなくても自動で外れる）。scripts/check-sitemap-coverage.mjs が読み、app/sitemap.ts も同じ表を見る。⛔ 足す前に KeEem に確認する。",
+  "exclusions": [
+    {
+      "prefix": "/embed/",
+      "reason": "docs の見本を iframe で出すための断片。単独で読むページではなく、本体（/docs/components/<slug>）と中身が重なるので、検索結果に出すと薄い重複ページになる。",
+      "addedOn": "2026-09-20"
+    },
+    {
+      "path": "/patterns/not-found",
+      "reason": "404 画面そのものの見本。実在する内容のページではないので出さない（2026-07 の sitemap.ts から続く扱いを、ここに明文化した）。",
+      "addedOn": "2026-09-20"
+    }
+  ]
+}
