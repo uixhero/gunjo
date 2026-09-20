@@ -1,3 +1,8 @@
+import type { Metadata } from "next";
+import { pageMetadata } from "@/lib/seo/page-metadata";
+
+export const metadata: Metadata = pageMetadata("/showcase");
+
 export default function ShowcaseLayout({
     children,
 }: {
