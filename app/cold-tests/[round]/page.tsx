@@ -12,6 +12,12 @@ import { EN_COLD_TEST_BASE, JA_COLD_TEST_BASE } from "@/lib/cold-test-paths";
 import { citedRounds } from "@/lib/cold-test-article-links";
 import { readCitedIssues } from "@/lib/github-issues";
 import type { RoundRefCardData } from "@/components/cold-test/HashRefCard";
+import { JsonLdScript } from "@/components/seo/StructuredData";
+import {
+    breadcrumbList,
+    coldTestArticle,
+    coldTestTrail,
+} from "@/lib/seo/structured-data";
 
 const SITE_URL = (
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.gunjo.jp"
@@ -163,12 +169,32 @@ export default async function ColdTestRoundPage({
               }
             : null;
 
+    // 構造化データ。回そのものは Article、上の段は BreadcrumbList。
+    // ⛔ 日付も評価も出さない（回の JSON に公開日は無く、score は自己採点）。
+    const articleNode = coldTestArticle({
+        path: `${JA_COLD_TEST_BASE}/${detail.round}`,
+        headline: `#${detail.round} ${detail.title}`,
+        description: detail.summary,
+        section: detail.category,
+        imageUrl: detail.shots.desktop
+            ? `${SITE_URL}/cold-test-shots/${detail.slug}.desktop.lg.webp`
+            : undefined,
+    });
+    const breadcrumbNode = breadcrumbList(
+        coldTestTrail({
+            name: `#${detail.round} ${detail.title}`,
+            path: `${JA_COLD_TEST_BASE}/${detail.round}`,
+        })
+    );
+
     return (
         <ColdTestShell
             rounds={sidebarRounds}
             categories={sidebarCategories}
             current={round}
         >
+            <JsonLdScript node={articleNode} />
+            {breadcrumbNode ? <JsonLdScript node={breadcrumbNode} /> : null}
             <RoundDetailView
                 detail={detail}
                 previous={toPagerItem(prev)}

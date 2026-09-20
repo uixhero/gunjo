@@ -29,6 +29,7 @@ import { verifySsotPrCommentDocs } from "./design-verify-ssot-pr-comment-docs.mj
 import { verifyNoHardcodedColorClasses } from "./design-verify-hardcoded-color-classes.mjs";
 import { verifyNoLeftEmphasis } from "./check-left-emphasis.mjs";
 import { verifySeoMetadata } from "./design-verify-seo-metadata.mjs";
+import { verifyStructuredData } from "./design-verify-structured-data.mjs";
 import { verifyFictionalNames } from "./check-fictional-names.mjs";
 import { verifyJapaneseLength } from "./check-japanese-length.mjs";
 import { verifyRequirementFindings } from "./check-requirement-findings.mjs";
@@ -124,6 +125,7 @@ function main() {
   verifyNoHardcodedColorClasses({ root: ROOT });
   verifyNoLeftEmphasis({ root: ROOT });
   verifySeoMetadata({ root: ROOT });
+  verifyStructuredData({ root: ROOT });
   verifyFictionalNames({ root: ROOT });
   verifyJapaneseLength({ root: ROOT });
   verifyRequirementFindings({ root: ROOT });

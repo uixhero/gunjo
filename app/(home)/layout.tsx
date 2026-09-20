@@ -3,6 +3,8 @@
 // 題と説明文はサイト既定（app/layout.tsx）＝トップそのものの文言なので触らない。
 import type { Metadata } from "next";
 import { absoluteUrl } from "@/lib/seo/page-metadata";
+import { JsonLdScript } from "@/components/seo/StructuredData";
+import { websiteNode } from "@/lib/seo/structured-data";
 
 const URL = absoluteUrl("/");
 const TITLE = "GunjoUI — Becoming blue.";
@@ -21,10 +23,19 @@ export const metadata: Metadata = {
     twitter: { card: "summary", title: TITLE, description: DESCRIPTION },
 };
 
+// サイト全体を表す node。題も説明文もサイト既定（app/layout.tsx）と同じ文言＝
+// ここでしか出さない（下の面は `isPartOf` でここを指す）。
+const WEBSITE = websiteNode(DESCRIPTION);
+
 export default function HomeLayout({
     children,
 }: {
     children: React.ReactNode;
 }) {
-    return children;
+    return (
+        <>
+            <JsonLdScript node={WEBSITE} />
+            {children}
+        </>
+    );
 }
