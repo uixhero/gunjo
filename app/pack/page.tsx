@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { absoluteUrl } from "@/lib/seo/page-metadata";
 import coldTestCategories from "@/data/cold-test-categories.json";
 import coldTestGallery from "@/data/cold-test-gallery.json";
 import type { IndustryOption } from "@/lib/pack";
@@ -12,6 +13,7 @@ export const metadata: Metadata = {
     title: "AI指示書パック 先行登録 — GunjoUI",
     description:
         "業界別「AI指示書パック」を準備中です。あなたのAIに渡せば @gunjo/ui でその業界の画面が組める指示書。欲しい業界を教えてください。できあがったら最初にお送りします。",
+    alternates: { canonical: absoluteUrl("/pack") },
 };
 
 interface PublishedCategory {

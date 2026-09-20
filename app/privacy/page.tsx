@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { absoluteUrl } from "@/lib/seo/page-metadata";
 import { PrivacyPolicyBody } from "./PrivacyContent";
 
 // Privacy policy. Written primarily to cover the /pack pre-registration form
@@ -13,6 +14,7 @@ export const metadata: Metadata = {
     title: "プライバシーポリシー — GunjoUI",
     description:
         "GunjoUI（gunjo.jp）における個人情報の取り扱いについて。運営者は4px合同会社。",
+    alternates: { canonical: absoluteUrl("/privacy") },
 };
 
 export default function PrivacyPage() {
