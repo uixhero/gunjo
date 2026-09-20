@@ -65,8 +65,17 @@ function AppCard({ app, copy, single }: { app: PromoApp; copy: AppPromoStrings; 
     return (
         <Card className="h-full">
             <CardContent className="p-6">
-                <div className={single ? "flex flex-col gap-8 lg:flex-row lg:items-center lg:gap-12" : "flex flex-col gap-6"}>
-                    <div className={single ? "flex min-w-0 flex-col gap-4 lg:flex-1" : "flex flex-col gap-4"}>
+                {/* ⛔⛔ **横に並べる切り替えを `lg`（1024px）に下げないこと。**
+                    絵の列は 696px を固定で取るので（4×165 ＋ 隙間3×12）、`lg` で横に並べると
+                    読む列に **166px しか残りません**。⚠️ 2026-09-20 実測（KeEem が 1024×800 で発見）＝
+                    日本語のボタンは 168px、英語は 207px 必要で、どちらも 166px の列に押し込まれ、
+                    英語では名前が3行に折れました。1024 は MacBook Air と iPad の横置きの幅です。
+                    ⭐ `xl`（1280px）が、**2つの列がどちらも自然な幅で入る最初の段**です
+                    ＝読む列 422px（696 ＋ 隙間48 ＋ 422 ＝ 1166 が器の中身）。
+                    ⚠️ 1100〜1279 は「たまたま入っていた」だけで、英語のボタン 207px に対して
+                    読む列が 242px しかない幅もありました＝余裕で守られていたわけではありません。 */}
+                <div className={single ? "flex flex-col gap-8 xl:flex-row xl:items-center xl:gap-12" : "flex flex-col gap-6"}>
+                    <div className={single ? "flex min-w-0 flex-col gap-4 xl:flex-1" : "flex flex-col gap-4"}>
                         <div className="flex items-center gap-4">
                             {/* ⛔ ここに小見出し（copy.eyebrow）と説明文（copy.bannerLead）を足さないこと。
                                 すぐ上の見出しと、同じ面の下に出る帯が、同じことを言い直すだけになります

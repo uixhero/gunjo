@@ -22,6 +22,13 @@ import type { AppPromoStrings } from "@/lib/app-promo-copy";
  *
  * ⭐ 塗りのボタン（`primary`）です＝本の帯の販売先リンクと同じ。2枚が縦に並ぶ面で、
  *    押す場所の見た目が2通りにならないようにしています。
+ *
+ * ⛔⛔ **`shrink-0` を外さないこと。** フレックスの子は既定で min-content まで縮みますが、
+ *    **日本語は1文字ごとに改行できるので min-content が「1文字ぶん」**になります＝狭い列に
+ *    置かれると、ボタンが1文字幅まで潰れて札が枠の外へ出ます（issue #874 と同じ型。
+ *    `@gunjo/ui` の `Banner` も PR #1018 で同じ直しをしています）。
+ *    ⭐ `shrink-0` があると、そうなったとき**潰れずに溢れる**ので、横あふれの検査で捕まります
+ *       ＝黙って壊れるのではなく、落ちて分かる形になります。
  */
 export function AppStoreLink({
     app,
@@ -36,7 +43,7 @@ export function AppStoreLink({
     variant?: "primary" | "outline";
 }) {
     return (
-        <Button asChild variant={variant}>
+        <Button asChild variant={variant} className="shrink-0">
             <a
                 href={appStoreHref(app)}
                 target="_blank"
