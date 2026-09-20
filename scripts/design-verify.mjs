@@ -30,6 +30,7 @@ import { verifyNoHardcodedColorClasses } from "./design-verify-hardcoded-color-c
 import { verifyNoLeftEmphasis } from "./check-left-emphasis.mjs";
 import { verifySeoMetadata } from "./design-verify-seo-metadata.mjs";
 import { verifyStructuredData } from "./design-verify-structured-data.mjs";
+import { verifySitemapCheckerSelfTest } from "./check-sitemap-coverage.mjs";
 import { verifyFictionalNames } from "./check-fictional-names.mjs";
 import { verifyJapaneseLength } from "./check-japanese-length.mjs";
 import { verifyRequirementFindings } from "./check-requirement-findings.mjs";
@@ -126,6 +127,9 @@ function main() {
   verifyNoLeftEmphasis({ root: ROOT });
   verifySeoMetadata({ root: ROOT });
   verifyStructuredData({ root: ROOT });
+  // 突き合わせ本体はビルドの出力が要るので CI の build の次の段（`design:verify:sitemap`）。
+  // ここでは門番そのものが壊れていないかだけを見る。
+  verifySitemapCheckerSelfTest();
   verifyFictionalNames({ root: ROOT });
   verifyJapaneseLength({ root: ROOT });
   verifyRequirementFindings({ root: ROOT });

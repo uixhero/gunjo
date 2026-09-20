@@ -132,6 +132,8 @@
     "design:sync:seo-copy": "node scripts/build-seo-page-copy.mjs",
     "design:verify:seo-metadata": "node scripts/design-verify-seo-metadata.mjs",
     "design:verify:structured-data": "node scripts/design-verify-structured-data.mjs",
+    "design:verify:sitemap": "node scripts/check-sitemap-coverage.mjs",
+    "design:verify:sitemap:self-test": "node scripts/check-sitemap-coverage.mjs --self-test",
     "design:verify:left-emphasis": "node scripts/check-left-emphasis.mjs",
     "design:verify:left-emphasis:self-test": "node scripts/check-left-emphasis.mjs --self-test",
     "design:verify:fictional-names": "node scripts/check-fictional-names.mjs",
