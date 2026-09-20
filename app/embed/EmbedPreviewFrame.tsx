@@ -37,6 +37,19 @@ function isTooltipOverlay(element: Element) {
     return element.matches("[role='tooltip']") || element.querySelector("[role='tooltip']") !== null;
 }
 
+/**
+ * An overlay kept inside a clipping box of the demo (e.g. a Drawer portalled
+ * into an `overflow-hidden` container) can never show outside that box, so
+ * growing the frame for it only makes the frame jump while it animates in.
+ */
+function isClippedByDemo(element: Element, root: Element | null) {
+    for (let node = element.parentElement; node && node !== root; node = node.parentElement) {
+        const { overflowX, overflowY } = window.getComputedStyle(node);
+        if (/hidden|clip/.test(overflowX) || /hidden|clip/.test(overflowY)) return true;
+    }
+    return false;
+}
+
 export function EmbedPreviewFrame({ children }: { children: React.ReactNode }) {
     const searchParams = useSearchParams();
     const previewWrap = resolvePreviewWrap(searchParams.get("previewWrap"));
@@ -52,7 +65,7 @@ export function EmbedPreviewFrame({ children }: { children: React.ReactNode }) {
             const rootRect = root?.getBoundingClientRect();
             const floatingOverlays = Array.from(
                 document.querySelectorAll("[data-radix-popper-content-wrapper], [data-radix-popover-content], [role='dialog'], [data-slot='mention-suggestions']")
-            ).filter((element) => !isTooltipOverlay(element));
+            ).filter((element) => !isTooltipOverlay(element) && !isClippedByDemo(element, root));
             setHasFloatingOverlay(floatingOverlays.length > 0);
             const overlayTop = floatingOverlays.reduce((top, element) => {
                 const rect = element.getBoundingClientRect();

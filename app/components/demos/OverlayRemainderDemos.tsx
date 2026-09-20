@@ -15,7 +15,7 @@ import {
     Modal,
     OnboardingFlow,
     Popover,
-    PopoverContent,
+    PopoverContent as GunjoPopoverContent,
     PopoverTrigger,
     ShareModal,
     Sheet,
@@ -55,6 +55,7 @@ import {
     IconShare2 as Share2,
     IconSparkles as Sparkles,
 } from "@tabler/icons-react";
+import { withPreviewPortal } from "@/components/doc/PreviewPortal";
 
 type Locale = "ja" | "en";
 
@@ -502,6 +503,14 @@ export function OnboardingFlowAuditDemo({
         </div>
     );
 }
+
+/**
+ * The docs preview portals the popover into the preview surface, so an open
+ * popover overlays inside the frame instead of on document.body (docs-page
+ * rule ①). Outside a docs preview (the /embed pages) the default body portal
+ * is kept, and the published code sample uses the plain PopoverContent.
+ */
+const PopoverContent = withPreviewPortal(GunjoPopoverContent);
 
 export function PopoverAuditDemo({
     locale,

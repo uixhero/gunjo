@@ -5,6 +5,7 @@ import { ComponentDemoStates, type DemoState } from "@/components/doc/ComponentD
 import { ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";
+import { PopoverAuditDemo } from "@/components/demos/OverlayRemainderDemos";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import type { UixheroLink } from "@/lib/uixhero-links";
 import overlayMetadata from "@design/overlay-metadata.json";
@@ -32,11 +33,19 @@ type PropRow = {
 type OverlayDocConfig = {
     metadataKey: keyof typeof overlayMetadata;
     embed: string;
-    /** "fit" sizes the frame to the content instead of reserving a fixed height. */
-    previewHeight: number | "fit";
+    /**
+     * "fit" sizes the frame to the content instead of reserving a fixed height.
+     * "inline" drops the iframe and renders the demo in the page, for an overlay
+     * that opens as a side effect: it is portalled into the preview surface, so
+     * the frame keeps one height whether the overlay is open or closed
+     * (docs-page rule ①).
+     */
+    previewHeight: number | "fit" | "inline";
     code: Record<Locale, string>;
     props: Record<Locale, PropRow[]>;
     states: Record<Locale, DemoState[]>;
+    /** Demo rendered in the page when `previewHeight` is "inline". */
+    inlinePreview?: (locale: Locale, variant: string) => React.ReactNode;
     usedComponents?: { name: string; href: string }[];
     relatedComponents?: { name: string; href: string }[];
 };
@@ -96,9 +105,22 @@ function overlayState(
     embed: string,
     variant: string,
     code: string,
-    // "fit" = size the frame to the content (docs-page rule ①: do not reserve room for an overlay that opens as a side effect).
-    previewHeight: number | "fit" = 500
+    // "fit" = size the frame to the content, "inline" = render in the page
+    // (docs-page rule ①: do not reserve room for an overlay that opens as a side effect).
+    previewHeight: number | "fit" | "inline" = 500,
+    inlinePreview?: (variant: string) => React.ReactNode
 ): DemoState {
+    if (previewHeight === "inline") {
+        return {
+            key,
+            title,
+            description,
+            preview: inlinePreview?.(variant) ?? <div />,
+            code,
+            previewBodyWidth: "full",
+            previewHeight: "auto",
+        };
+    }
     return {
         key,
         title,
@@ -2100,6 +2122,12 @@ export function LongFormSheet() {
 }`,
 };
 
+// Popover previews render in the page (not in an iframe) so the open popover
+// can overlay inside the preview frame without changing the frame's height.
+const popoverPreview = (locale: Locale) => (variant: string) => (
+    <PopoverAuditDemo locale={locale} variant={variant as "default" | "filter" | "confirm" | "status"} />
+);
+
 const configs: Record<OverlayAuditKind, OverlayDocConfig> = {
     "media-lightbox": {
         metadataKey: "mediaLightbox",
@@ -2272,7 +2300,8 @@ const configs: Record<OverlayAuditKind, OverlayDocConfig> = {
     popover: {
         metadataKey: "popover",
         embed: "/embed/popover",
-        previewHeight: 460,
+        previewHeight: "inline",
+        inlinePreview: (locale, variant) => popoverPreview(locale)(variant),
         code: popoverCode,
         usedComponents: [{ name: "FormGroup", href: "/docs/components/form" }, { name: "Input", href: "/docs/components/input" }],
         relatedComponents: [{ name: "DropdownMenu", href: "/docs/components/dropdown-menu" }, { name: "Tooltip", href: "/docs/components/tooltip" }],
@@ -2294,16 +2323,16 @@ const configs: Record<OverlayAuditKind, OverlayDocConfig> = {
         },
         states: {
             ja: [
-                overlayState("settings", "表示密度の変更", "対象行の表示密度をその場で変更します。", "/embed/popover", "default", popoverCode.ja, 460),
-                overlayState("filter", "絞り込み条件", "対象行の条件ボタンからフィルター入力を開きます。", "/embed/popover", "filter", popoverFilterCode.ja, 460),
-                overlayState("confirm", "公開前の確認", "公開状態の行から、短い説明と確認操作を表示します。", "/embed/popover", "confirm", popoverConfirmCode.ja, 460),
-                overlayState("status", "同期状態の詳細", "同期状態の行から補助情報を表示します。", "/embed/popover", "status", popoverStatusCode.ja, 460),
+                overlayState("settings", "表示密度の変更", "対象行の表示密度をその場で変更します。", "/embed/popover", "default", popoverCode.ja, "inline", popoverPreview("ja")),
+                overlayState("filter", "絞り込み条件", "対象行の条件ボタンからフィルター入力を開きます。", "/embed/popover", "filter", popoverFilterCode.ja, "inline", popoverPreview("ja")),
+                overlayState("confirm", "公開前の確認", "公開状態の行から、短い説明と確認操作を表示します。", "/embed/popover", "confirm", popoverConfirmCode.ja, "inline", popoverPreview("ja")),
+                overlayState("status", "同期状態の詳細", "同期状態の行から補助情報を表示します。", "/embed/popover", "status", popoverStatusCode.ja, "inline", popoverPreview("ja")),
             ],
             en: [
-                overlayState("settings", "Display density", "Changes the display density from the target row.", "/embed/popover", "default", popoverCode.en, 460),
-                overlayState("filter", "Filter criteria", "Opens filter input from the criteria row.", "/embed/popover", "filter", popoverFilterCode.en, 460),
-                overlayState("confirm", "Publish confirmation", "Shows short explanatory copy and a confirmation action from the publish status row.", "/embed/popover", "confirm", popoverConfirmCode.en, 460),
-                overlayState("status", "Sync status details", "Shows supporting status from the sync status row.", "/embed/popover", "status", popoverStatusCode.en, 460),
+                overlayState("settings", "Display density", "Changes the display density from the target row.", "/embed/popover", "default", popoverCode.en, "inline", popoverPreview("en")),
+                overlayState("filter", "Filter criteria", "Opens filter input from the criteria row.", "/embed/popover", "filter", popoverFilterCode.en, "inline", popoverPreview("en")),
+                overlayState("confirm", "Publish confirmation", "Shows short explanatory copy and a confirmation action from the publish status row.", "/embed/popover", "confirm", popoverConfirmCode.en, "inline", popoverPreview("en")),
+                overlayState("status", "Sync status details", "Shows supporting status from the sync status row.", "/embed/popover", "status", popoverStatusCode.en, "inline", popoverPreview("en")),
             ],
         },
     },
@@ -2461,15 +2490,21 @@ export function OverlayAuditDocPage({
             uixheroLinks={uixheroLinks?.[locale]}
         >
             <ComponentPreview
-                embedSrc={config.embed}
+                embedSrc={config.previewHeight === "inline" ? undefined : config.embed}
                 code={code}
                 codeBlock={<CodeBlock code={code} />}
                 previewBodyWidth="full"
-                previewHeight={config.previewHeight === "fit" ? undefined : config.previewHeight}
+                previewHeight={
+                    config.previewHeight === "fit"
+                        ? undefined
+                        : config.previewHeight === "inline"
+                          ? "auto"
+                          : config.previewHeight
+                }
                 fitEmbedHeightContent={config.previewHeight === "fit"}
                 sectionLabels={sectionLabels}
             >
-                <div />
+                {config.previewHeight === "inline" ? config.inlinePreview?.(locale, "default") : <div />}
             </ComponentPreview>
 
             <section className="space-y-4">
