@@ -39,7 +39,9 @@ export function TermsCheckbox() {
 }`;
 
     const usageCode = isJa
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { Checkbox, Label } from "@gunjo/ui";
 
 export function TermsCheckboxWithText() {
@@ -61,7 +63,9 @@ export function TermsCheckboxWithText() {
     </div>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { Checkbox, Label } from "@gunjo/ui";
 
 export function TermsCheckboxWithText() {
@@ -180,7 +184,9 @@ export function EmailUpdatesCheckbox() {
                                 </div>
                             ),
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { Checkbox, Label } from "@gunjo/ui";
 
 export function AcceptedTermsCheckbox() {
@@ -197,7 +203,9 @@ export function AcceptedTermsCheckbox() {
     </div>
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { Checkbox, Label } from "@gunjo/ui";
 
 export function AcceptedTermsCheckbox() {

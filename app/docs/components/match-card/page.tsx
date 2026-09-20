@@ -124,7 +124,9 @@ export default function MatchCardDocPage() {
   const description = content?.description ?? metadata.matchCard.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { Badge, Button, CompanyCell, MatchCard, Toast, type MatchFactor } from "@gunjo/ui";
 
 const factors: MatchFactor[] = [
@@ -169,7 +171,9 @@ export function SubsidyMatch() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { Badge, Button, CompanyCell, MatchCard, Toast, type MatchFactor } from "@gunjo/ui";
 
 const factors: MatchFactor[] = [

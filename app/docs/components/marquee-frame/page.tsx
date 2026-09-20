@@ -10,7 +10,9 @@ import { useLocale } from "@/components/providers/LocaleProvider";
 import layoutMetadata from "@design/layout-metadata.json";
 
 const codeByLocale = {
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { Button, MarqueeFrame } from "@gunjo/ui";
 
 const pathOptions = [
@@ -76,7 +78,9 @@ export function Example() {
     </div>
   );
 }`,
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { Button, MarqueeFrame } from "@gunjo/ui";
 
 const pathOptions = [
@@ -147,7 +151,9 @@ export function Example() {
 const stateCodeByLocale = {
     en: {
         default: codeByLocale.en,
-        mobile: `import { MarqueeFrame } from "@gunjo/ui";
+        mobile: `"use client";
+
+import { MarqueeFrame } from "@gunjo/ui";
 
 export function MobileFirstFrame() {
   return (
@@ -160,7 +166,9 @@ export function MobileFirstFrame() {
     </MarqueeFrame>
   );
 }`,
-        customSizes: `import { MarqueeFrame } from "@gunjo/ui";
+        customSizes: `"use client";
+
+import { MarqueeFrame } from "@gunjo/ui";
 
 const viewportSizes = {
   desktop: { width: 960, height: 540 },
@@ -182,7 +190,9 @@ export function CustomViewportFrame() {
     },
     ja: {
         default: codeByLocale.ja,
-        mobile: `import { MarqueeFrame } from "@gunjo/ui";
+        mobile: `"use client";
+
+import { MarqueeFrame } from "@gunjo/ui";
 
 export function MobileFirstFrame() {
   return (
@@ -195,7 +205,9 @@ export function MobileFirstFrame() {
     </MarqueeFrame>
   );
 }`,
-        customSizes: `import { MarqueeFrame } from "@gunjo/ui";
+        customSizes: `"use client";
+
+import { MarqueeFrame } from "@gunjo/ui";
 
 const viewportSizes = {
   desktop: { width: 960, height: 540 },

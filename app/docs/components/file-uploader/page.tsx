@@ -100,7 +100,9 @@ export default function FileUploaderPage() {
         : "Uploads are paused until storage capacity is confirmed.";
 
     const code = locale === "ja"
-        ? `import { FileUploader, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+        ? `"use client";
+
+import { FileUploader, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
 import { useState } from "react";
 
 export function FileUploaderDemo() {
@@ -131,7 +133,9 @@ export function FileUploaderDemo() {
     </FormGroup>
   );
 }`
-        : `import { FileUploader, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+        : `"use client";
+
+import { FileUploader, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
 import { useState } from "react";
 
 export function FileUploaderDemo() {
@@ -164,7 +168,9 @@ export function FileUploaderDemo() {
 }`;
 
     const usageCode = locale === "ja"
-        ? `import { FileUploader, FormControl, FormGroup, FormLabel, Progress } from "@gunjo/ui";
+        ? `"use client";
+
+import { FileUploader, FormControl, FormGroup, FormLabel, Progress } from "@gunjo/ui";
 import { useState } from "react";
 
 export function ImageUploader() {
@@ -204,7 +210,9 @@ export function ImageUploader() {
     </FormGroup>
   );
 }`
-        : `import { FileUploader, FormControl, FormGroup, FormLabel, Progress } from "@gunjo/ui";
+        : `"use client";
+
+import { FileUploader, FormControl, FormGroup, FormLabel, Progress } from "@gunjo/ui";
 import { useState } from "react";
 
 export function ImageUploader() {
@@ -369,7 +377,9 @@ export function ImageUploader() {
                                     : "The whole dropzone accepts click-to-browse and drag-and-drop input.",
                             preview: <FileUploader labels={labels} maxFiles={3} />,
                             code: locale === "ja"
-                                ? `import { FileUploader } from "@gunjo/ui";
+                                ? `"use client";
+
+import { FileUploader } from "@gunjo/ui";
 
 export function AttachmentUploader() {
   return (
@@ -386,7 +396,9 @@ export function AttachmentUploader() {
     />
   );
 }`
-                                : `import { FileUploader } from "@gunjo/ui";
+                                : `"use client";
+
+import { FileUploader } from "@gunjo/ui";
 
 export function AttachmentUploader() {
   return (
@@ -420,7 +432,9 @@ export function AttachmentUploader() {
                                 />
                             ),
                             code: locale === "ja"
-                                ? `import { FileUploader } from "@gunjo/ui";
+                                ? `"use client";
+
+import { FileUploader } from "@gunjo/ui";
 
 export function ImageUploader() {
   return (
@@ -441,7 +455,9 @@ export function ImageUploader() {
     />
   );
 }`
-                                : `import { FileUploader } from "@gunjo/ui";
+                                : `"use client";
+
+import { FileUploader } from "@gunjo/ui";
 
 export function ImageUploader() {
   return (
@@ -477,7 +493,9 @@ export function ImageUploader() {
                                 </div>
                             ),
                             code: locale === "ja"
-                                ? `import { FileUploader, Progress, Spinner } from "@gunjo/ui";
+                                ? `"use client";
+
+import { FileUploader, Progress, Spinner } from "@gunjo/ui";
 import { useState } from "react";
 
 export function UploadingState() {
@@ -510,7 +528,9 @@ export function UploadingState() {
     </div>
   );
 }`
-                                : `import { FileUploader, Progress, Spinner } from "@gunjo/ui";
+                                : `"use client";
+
+import { FileUploader, Progress, Spinner } from "@gunjo/ui";
 import { useState } from "react";
 
 export function UploadingState() {
@@ -558,7 +578,9 @@ export function UploadingState() {
                                 </div>
                             ),
                             code: locale === "ja"
-                                ? `import { Alert, AlertDescription, AlertTitle, FileUploader } from "@gunjo/ui";
+                                ? `"use client";
+
+import { Alert, AlertDescription, AlertTitle, FileUploader } from "@gunjo/ui";
 import { useState } from "react";
 
 export function UploadSuccessState() {
@@ -586,7 +608,9 @@ export function UploadSuccessState() {
     </div>
   );
 }`
-                                : `import { Alert, AlertDescription, AlertTitle, FileUploader } from "@gunjo/ui";
+                                : `"use client";
+
+import { Alert, AlertDescription, AlertTitle, FileUploader } from "@gunjo/ui";
 import { useState } from "react";
 
 export function UploadSuccessState() {
@@ -629,7 +653,9 @@ export function UploadSuccessState() {
                                 </div>
                             ),
                             code: locale === "ja"
-                                ? `import { Alert, AlertDescription, AlertTitle, FileUploader } from "@gunjo/ui";
+                                ? `"use client";
+
+import { Alert, AlertDescription, AlertTitle, FileUploader } from "@gunjo/ui";
 import { useState } from "react";
 
 export function UploadFailureState() {
@@ -657,7 +683,9 @@ export function UploadFailureState() {
     </div>
   );
 }`
-                                : `import { Alert, AlertDescription, AlertTitle, FileUploader } from "@gunjo/ui";
+                                : `"use client";
+
+import { Alert, AlertDescription, AlertTitle, FileUploader } from "@gunjo/ui";
 import { useState } from "react";
 
 export function UploadFailureState() {
@@ -699,7 +727,9 @@ export function UploadFailureState() {
                                     </DisabledReasonTooltip>
                                 ),
                             code: locale === "ja"
-                                ? `import { FileUploader, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                                ? `"use client";
+
+import { FileUploader, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 
 export function DisabledUploader() {
   return (
@@ -723,7 +753,9 @@ export function DisabledUploader() {
     </Tooltip>
   );
 }`
-                                : `import { FileUploader, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
+                                : `"use client";
+
+import { FileUploader, Tooltip, TooltipContent, TooltipTrigger } from "@gunjo/ui";
 
 export function DisabledUploader() {
   return (

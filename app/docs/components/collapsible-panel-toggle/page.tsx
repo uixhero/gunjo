@@ -11,7 +11,9 @@ import layoutMetadata from "@design/layout-metadata.json";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const usageCodeByLocale = {
-    en: `import { CollapsiblePanelToggle } from "@gunjo/ui";
+    en: `"use client";
+
+import { CollapsiblePanelToggle } from "@gunjo/ui";
 import { useState } from "react";
 
 export function SidebarHandle() {
@@ -53,7 +55,9 @@ export function SidebarHandle() {
     </div>
   );
 }`,
-    ja: `import { CollapsiblePanelToggle } from "@gunjo/ui";
+    ja: `"use client";
+
+import { CollapsiblePanelToggle } from "@gunjo/ui";
 import { useState } from "react";
 
 export function SidebarHandle() {
@@ -100,7 +104,9 @@ export function SidebarHandle() {
 const stateCodeByLocale = {
     en: {
         left: usageCodeByLocale.en,
-        right: `import { CollapsiblePanelToggle } from "@gunjo/ui";
+        right: `"use client";
+
+import { CollapsiblePanelToggle } from "@gunjo/ui";
 import { useState } from "react";
 
 export function InspectorHandle() {
@@ -141,7 +147,9 @@ export function InspectorHandle() {
     </div>
   );
 }`,
-        top: `import { CollapsiblePanelToggle } from "@gunjo/ui";
+        top: `"use client";
+
+import { CollapsiblePanelToggle } from "@gunjo/ui";
 import { useState } from "react";
 
 export function ToolbarHandle() {
@@ -179,7 +187,9 @@ export function ToolbarHandle() {
     },
     ja: {
         left: usageCodeByLocale.ja,
-        right: `import { CollapsiblePanelToggle } from "@gunjo/ui";
+        right: `"use client";
+
+import { CollapsiblePanelToggle } from "@gunjo/ui";
 import { useState } from "react";
 
 export function InspectorHandle() {
@@ -220,7 +230,9 @@ export function InspectorHandle() {
     </div>
   );
 }`,
-        top: `import { CollapsiblePanelToggle } from "@gunjo/ui";
+        top: `"use client";
+
+import { CollapsiblePanelToggle } from "@gunjo/ui";
 import { useState } from "react";
 
 export function ToolbarHandle() {

@@ -126,7 +126,9 @@ export default function ExpiryBadgeDocPage() {
   const description = content?.description ?? metadata.expiryBadge.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { ExpiryBadge, MetadataList, Slider, classifyExpiry } from "@gunjo/ui";
 
 const today = "2026-06-28";
@@ -188,7 +190,9 @@ export function ComplianceExpiryList() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { ExpiryBadge, MetadataList, Slider, classifyExpiry } from "@gunjo/ui";
 
 const today = "2026-06-28";

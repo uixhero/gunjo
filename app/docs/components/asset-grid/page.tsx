@@ -46,7 +46,9 @@ const assets: AssetCardAsset[] = [
 ];
 
 const codeByLocale = {
-    en: `import { AssetGrid, type AssetCardAsset } from "@gunjo/ui";
+    en: `"use client";
+
+import { AssetGrid, type AssetCardAsset } from "@gunjo/ui";
 
 const assets: AssetCardAsset[] = [
   {
@@ -94,7 +96,9 @@ export function MediaAssetGrid() {
     />
   );
 }`,
-    ja: `import { AssetGrid, type AssetCardAsset } from "@gunjo/ui";
+    ja: `"use client";
+
+import { AssetGrid, type AssetCardAsset } from "@gunjo/ui";
 
 const assets: AssetCardAsset[] = [
   {

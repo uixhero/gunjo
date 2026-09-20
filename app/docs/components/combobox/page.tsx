@@ -100,7 +100,9 @@ function ComboboxStatesContent({ locale }: { locale: "ja" | "en" }) {
                             <FormDescription>{locale === "ja" ? "よく使う選択肢を初期表示しています。" : "Common option selected by default."}</FormDescription>
                         </FormGroup>
                     ),
-                    code: `import * as React from "react";
+                    code: `"use client";
+
+import * as React from "react";
 import { Combobox, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
 
 const FRAMEWORKS = [
@@ -153,7 +155,9 @@ export default function FrameworkPicker() {
                         </FormGroup>
                     ),
                     code: isJa
-                        ? `import * as React from "react";
+                        ? `"use client";
+
+import * as React from "react";
 import {
   Combobox,
   FormControl,
@@ -196,7 +200,9 @@ export function RolePicker() {
     </FormGroup>
   );
 }`
-                        : `import * as React from "react";
+                        : `"use client";
+
+import * as React from "react";
 import {
   Combobox,
   FormControl,
@@ -320,7 +326,9 @@ export default function PickyCombobox() {
                         </FormGroup>
                     ),
                     code: isJa
-                        ? `import * as React from "react";
+                        ? `"use client";
+
+import * as React from "react";
 import { Combobox } from "@gunjo/ui";
 
 export function PartnerPicker() {
@@ -347,7 +355,9 @@ export function PartnerPicker() {
     />
   );
 }`
-                        : `import * as React from "react";
+                        : `"use client";
+
+import * as React from "react";
 import { Combobox } from "@gunjo/ui";
 
 export function PartnerPicker() {
@@ -384,7 +394,9 @@ export default function ComboboxPage() {
     const { locale, sectionLabels } = useLocale();
     const isJa = locale === "ja";
     const code = isJa
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import {
   Combobox,
   FormControl,
@@ -422,7 +434,9 @@ export function FrameworkCombobox() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import {
   Combobox,
   FormControl,
@@ -461,7 +475,9 @@ export function FrameworkCombobox() {
   );
 }`;
 
-    const usageCode = `import * as React from "react";
+    const usageCode = `"use client";
+
+import * as React from "react";
 import { Combobox, FormControl, FormGroup, FormLabel } from "@gunjo/ui"
 
 const options = [

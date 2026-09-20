@@ -108,7 +108,9 @@ export default function SeatMapDocPage() {
   const description = content?.description ?? metadata.seatMap.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { SeatMap, type Seat } from "@gunjo/ui";
 
 const columns = ["A", "B", "C", null, "D", "E", "F"];
@@ -160,7 +162,9 @@ export function SeatPicker() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { SeatMap, type Seat, type SeatMapLabels } from "@gunjo/ui";
 
 const columns = ["A", "B", "C", null, "D", "E", "F"];

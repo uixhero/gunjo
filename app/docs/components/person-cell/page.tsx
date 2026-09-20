@@ -275,7 +275,9 @@ export function MinimalPersonCell() {
 }`;
 
   const interactiveStateCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { PersonCell } from "@gunjo/ui";
 
 const people = [
@@ -311,7 +313,9 @@ export function PeopleList() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { PersonCell } from "@gunjo/ui";
 
 const people = [

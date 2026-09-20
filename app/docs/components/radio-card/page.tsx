@@ -118,7 +118,9 @@ export default function RadioCardDocPage() {
   const description = content?.description ?? metadata.radioCard.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { Badge, RadioCard, RadioCardGroup } from "@gunjo/ui";
 
 const tickets = [
@@ -148,7 +150,9 @@ export function TicketChoice() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { Badge, RadioCard, RadioCardGroup } from "@gunjo/ui";
 
 const tickets = [

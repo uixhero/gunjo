@@ -587,7 +587,9 @@ export default function ScanGateDocPage() {
   const description = content?.description ?? metadata.scanGate.description;
 
   const usageCode = locale === "ja"
-      ? `import * as React from "react";
+      ? `"use client";
+
+import * as React from "react";
 import {
   Button,
   Dialog,
@@ -874,7 +876,9 @@ export function PackingGate() {
     </div>
   );
 }`
-      : `import * as React from "react";
+      : `"use client";
+
+import * as React from "react";
 import {
   Button,
   Dialog,
@@ -1304,7 +1308,9 @@ export function PackingGate() {
                 : "advance=\"done\" holds the final stage and passes the verified context to onComplete.",
               preview: <ScanGateDonePreview locale={locale} />,
               code: locale === "ja"
-                  ? `import * as React from "react";
+                  ? `"use client";
+
+import * as React from "react";
 import {
   Dialog,
   DialogContent,
@@ -1389,7 +1395,9 @@ export function BadgeGate() {
     </div>
   );
 }`
-                  : `import * as React from "react";
+                  : `"use client";
+
+import * as React from "react";
 import {
   Dialog,
   DialogContent,

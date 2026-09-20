@@ -172,7 +172,9 @@ export default function AmountBreakdownDocPage() {
   const description = content?.description ?? metadata.amountBreakdown.description;
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { AmountBreakdown, Card, ToggleGroup, ToggleGroupItem, type AmountLine } from "@gunjo/ui";
 
 const certified = [
@@ -237,7 +239,9 @@ export function ClaimPaymentBreakdown() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { AmountBreakdown, Card, ToggleGroup, ToggleGroupItem, type AmountLine } from "@gunjo/ui";
 
 const certified = [

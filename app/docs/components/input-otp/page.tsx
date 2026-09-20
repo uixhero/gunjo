@@ -91,7 +91,9 @@ export default function InputOTPPage() {
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
 
     const code = locale === "ja"
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import {
   FormDescription,
   FormGroup,
@@ -127,7 +129,9 @@ export function InputOTPDemo() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import {
   FormDescription,
   FormGroup,
@@ -164,7 +168,9 @@ export function InputOTPDemo() {
   );
 }`;
 
-    const usageCode = `import * as React from "react";
+    const usageCode = `"use client";
+
+import * as React from "react";
 import { InputOTP, InputOTPGroup, InputOTPSlot } from "@gunjo/ui";
 
 export function VerificationCodeField() {
@@ -265,7 +271,9 @@ export function VerificationCodeField() {
                             description: locale === "ja" ? "短いコードでは、区切りなしで横一列に並べられます。" : "Short codes can be displayed in a single continuous group.",
                             preview: <OTPField locale={locale} grouped={false} defaultValue="2468" />,
                             code: locale === "ja"
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import {
   FormDescription,
   FormGroup,
@@ -294,7 +302,9 @@ export function ContinuousInputOTP() {
     </FormGroup>
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import {
   FormDescription,
   FormGroup,

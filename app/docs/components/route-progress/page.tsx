@@ -20,7 +20,9 @@ export default function RouteProgressDocPage() {
     const title = content?.title ?? metadata.routeProgress.title ?? "RouteProgress";
     const description = content?.description ?? metadata.routeProgress.description ?? "";
 
-    const usageCode = `import * as React from "react";
+    const usageCode = `"use client";
+
+import * as React from "react";
 import { Button, RouteProgress } from "@gunjo/ui";
 
 export function NextPage() {
@@ -60,7 +62,9 @@ export default function Loading() {
   );
 }`;
 
-    const containerCode = `import * as React from "react";
+    const containerCode = `"use client";
+
+import * as React from "react";
 import { Button, RouteProgress } from "@gunjo/ui";
 
 export function ReloadingPanel() {
@@ -90,7 +94,9 @@ export function ReloadingPanel() {
   );
 }`;
 
-    const reducedCode = `import * as React from "react";
+    const reducedCode = `"use client";
+
+import * as React from "react";
 import { Button, Label, RouteProgress, Switch } from "@gunjo/ui";
 
 export function NextPage() {

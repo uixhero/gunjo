@@ -141,7 +141,9 @@ function BreadcrumbMetadataPreview() {
 }
 
 const codeByLocale = {
-    ja: `import {
+    ja: `"use client";
+
+import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
@@ -189,7 +191,9 @@ export function BreadcrumbExample() {
     </div>
   )
 }`,
-    en: `import {
+    en: `"use client";
+
+import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
@@ -240,7 +244,9 @@ export function BreadcrumbExample() {
 };
 
 const iconCodeByLocale = {
-    ja: `import {
+    ja: `"use client";
+
+import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
@@ -277,7 +283,9 @@ export function IconBreadcrumb() {
     </Breadcrumb>
   )
 }`,
-    en: `import {
+    en: `"use client";
+
+import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
@@ -317,7 +325,9 @@ export function IconBreadcrumb() {
 };
 
 const collapsedCodeByLocale = {
-    ja: `import {
+    ja: `"use client";
+
+import {
   Breadcrumb,
   BreadcrumbEllipsis,
   BreadcrumbItem,
@@ -354,7 +364,9 @@ export function CollapsedBreadcrumb() {
     </Breadcrumb>
   )
 }`,
-    en: `import {
+    en: `"use client";
+
+import {
   Breadcrumb,
   BreadcrumbEllipsis,
   BreadcrumbItem,
@@ -394,7 +406,9 @@ export function CollapsedBreadcrumb() {
 };
 
 const slashCodeByLocale = {
-    ja: `import {
+    ja: `"use client";
+
+import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
@@ -431,7 +445,9 @@ export function SlashBreadcrumb() {
     </Breadcrumb>
   )
 }`,
-    en: `import {
+    en: `"use client";
+
+import {
   Breadcrumb,
   BreadcrumbItem,
   BreadcrumbLink,
@@ -471,7 +487,9 @@ export function SlashBreadcrumb() {
 };
 
 const hoverPreviewCodeByLocale = {
-    ja: `import {
+    ja: `"use client";
+
+import {
   Button,
   Breadcrumb,
   BreadcrumbItem,
@@ -566,7 +584,9 @@ export function BreadcrumbWithPreview() {
     </div>
   )
 }`,
-    en: `import {
+    en: `"use client";
+
+import {
   Button,
   Breadcrumb,
   BreadcrumbItem,

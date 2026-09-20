@@ -195,7 +195,9 @@ export function RoomGallery() {
                 : "Passing value with onValueChange moves the active index out to the page. That is what lets a counter track the strip, or a colour choice jump to the matching photo. Omit both and the component keeps the index internally, with defaultIndex picking the first frame.",
               preview: <ControlledGalleryPreview locale={locale} />,
               code: locale === "ja"
-                ? `import * as React from "react";
+                ? `"use client";
+
+import * as React from "react";
 import { Gallery } from "@gunjo/ui";
 
 const images = [
@@ -216,7 +218,9 @@ export function CountedGallery() {
     </div>
   );
 }`
-                : `import * as React from "react";
+                : `"use client";
+
+import * as React from "react";
 import { Gallery } from "@gunjo/ui";
 
 const images = [

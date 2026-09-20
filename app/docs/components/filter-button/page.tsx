@@ -41,7 +41,9 @@ function FilterButtonPreviewSurface({
     );
 }
 
-const usageCode = `import { FilterButton } from "@gunjo/ui";
+const usageCode = `"use client";
+
+import { FilterButton } from "@gunjo/ui";
 import { useState } from "react";
 
 const options = [
@@ -64,7 +66,9 @@ export function StatusFilterButton() {
 }`;
 
 const selectedCodeByLocale = {
-    en: `import { FilterButton } from "@gunjo/ui";
+    en: `"use client";
+
+import { FilterButton } from "@gunjo/ui";
 
 const options = [
   { label: "Todo", value: "todo" },
@@ -83,7 +87,9 @@ export function PreselectedStatusFilter() {
     />
   );
 }`,
-    ja: `import { FilterButton } from "@gunjo/ui";
+    ja: `"use client";
+
+import { FilterButton } from "@gunjo/ui";
 
 const options = [
   { label: "未対応", value: "todo" },
@@ -105,7 +111,9 @@ export function PreselectedStatusFilter() {
 } as const;
 
 const customContentCodeByLocale = {
-    en: `import { FilterButton, Button } from "@gunjo/ui";
+    en: `"use client";
+
+import { FilterButton, Button } from "@gunjo/ui";
 import { useState } from "react";
 
 const tags = [
@@ -148,7 +156,9 @@ export function TagFilter() {
     </FilterButton>
   );
 }`,
-    ja: `import { FilterButton, Button } from "@gunjo/ui";
+    ja: `"use client";
+
+import { FilterButton, Button } from "@gunjo/ui";
 import { useState } from "react";
 
 const tags = [
@@ -363,7 +373,9 @@ export default function FilterButtonDocPage() {
     const title = content?.title ?? inputsMetadata.filterButton.title;
     const description = content?.description ?? inputsMetadata.filterButton.description;
     const localizedUsageCode = locale === "ja"
-        ? `import { FilterButton } from "@gunjo/ui";
+        ? `"use client";
+
+import { FilterButton } from "@gunjo/ui";
 import { useState } from "react";
 
 const options = [

@@ -137,7 +137,9 @@ export default function MeterDocPage() {
   const description = content?.description ?? metadata.meter.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { Button, Meter } from "@gunjo/ui";
 
 const MAX_WEIGHT = 3000;
@@ -191,7 +193,9 @@ export function ShipmentCapacityMeter() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { Button, Meter } from "@gunjo/ui";
 
 const MAX_WEIGHT = 3000;
@@ -247,7 +251,9 @@ export function ShipmentCapacityMeter() {
 }`;
 
   const targetStateCode = locale === "ja"
-    ? `import { Meter } from "@gunjo/ui";
+    ? `"use client";
+
+import { Meter } from "@gunjo/ui";
 
 export function UtilizationMeters() {
   return (
@@ -271,7 +277,9 @@ export function UtilizationMeters() {
     </div>
   );
 }`
-    : `import { Meter } from "@gunjo/ui";
+    : `"use client";
+
+import { Meter } from "@gunjo/ui";
 
 export function UtilizationMeters() {
   return (

@@ -494,7 +494,9 @@ export default function DocumentRowDocPage() {
   const description = content?.description ?? metadata.documentRow.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import {
   Badge,
   Button,
@@ -731,7 +733,9 @@ export function PayrollDocuments() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import {
   Badge,
   Button,

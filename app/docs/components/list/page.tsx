@@ -233,7 +233,9 @@ export function DividedList() {
                                 </List>
                             ),
                             code: locale === "ja"
-                                ? `import { Icon, List, ListItem } from "@gunjo/ui";
+                                ? `"use client";
+
+import { Icon, List, ListItem } from "@gunjo/ui";
 import { IconArrowRight, IconCheck } from "@tabler/icons-react";
 
 export function CustomIconList() {
@@ -244,7 +246,9 @@ export function CustomIconList() {
     </List>
   );
 }`
-                                : `import { Icon, List, ListItem } from "@gunjo/ui";
+                                : `"use client";
+
+import { Icon, List, ListItem } from "@gunjo/ui";
 import { IconArrowRight, IconCheck } from "@tabler/icons-react";
 
 export function CustomIconList() {

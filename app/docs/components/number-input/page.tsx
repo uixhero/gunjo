@@ -63,7 +63,9 @@ export default function NumberInputPage() {
     const { locale, sectionLabels } = useLocale();
     const metadata = inputsMetadata as Record<string, { title: string; description: string }>;
     const code = locale === "ja"
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -93,7 +95,9 @@ export function NumberInputDemo() {
     </FormGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import {
   FormControl,
   FormDescription,
@@ -125,7 +129,9 @@ export function NumberInputDemo() {
 }`;
 
     const usageCode = locale === "ja"
-        ? `import { FormControl, FormGroup, FormLabel, NumberInput } from "@gunjo/ui";
+        ? `"use client";
+
+import { FormControl, FormGroup, FormLabel, NumberInput } from "@gunjo/ui";
 
 export function CountField() {
   const [count, setCount] = React.useState(0);
@@ -148,7 +154,9 @@ export function CountField() {
     </FormGroup>
   );
 }`
-        : `import { FormControl, FormGroup, FormLabel, NumberInput } from "@gunjo/ui";
+        : `"use client";
+
+import { FormControl, FormGroup, FormLabel, NumberInput } from "@gunjo/ui";
 
 export function CountField() {
   const [count, setCount] = React.useState(0);
@@ -279,7 +287,9 @@ export function CountField() {
                                     : "Use a larger step for values that move in fixed increments such as points or currency.",
                             preview: <ControlledNumberInput min={0} max={500} step={25} initialValue={125} />,
                             previewHeight: 170,
-                            code: `import * as React from "react";
+                            code: `"use client";
+
+import * as React from "react";
 import { NumberInput } from "@gunjo/ui";
 
 export function SteppedQuantityField() {

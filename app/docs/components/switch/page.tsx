@@ -58,7 +58,9 @@ export function EmailNotificationSwitch() {
 }`;
 
     const usageCode = isJa
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { Label, Switch } from "@gunjo/ui";
 
 export function NotificationSettingSwitch() {
@@ -75,7 +77,9 @@ export function NotificationSettingSwitch() {
     </div>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { Label, Switch } from "@gunjo/ui";
 
 export function NotificationSettingSwitch() {

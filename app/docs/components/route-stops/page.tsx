@@ -156,7 +156,9 @@ export default function RouteStopsDocPage() {
   const description = content?.description ?? metadata.routeStops.description ?? "";
 
   const usageCode = locale === "ja"
-    ? `import * as React from "react";
+    ? `"use client";
+
+import * as React from "react";
 import { Button, RouteStops, type RouteStopItem } from "@gunjo/ui";
 
 const baseStops: RouteStopItem[] = [
@@ -197,7 +199,9 @@ export function DeliveryRoute() {
     </div>
   );
 }`
-    : `import * as React from "react";
+    : `"use client";
+
+import * as React from "react";
 import { Button, RouteStops, type RouteStopItem } from "@gunjo/ui";
 
 const baseStops: RouteStopItem[] = [

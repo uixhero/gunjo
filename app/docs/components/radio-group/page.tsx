@@ -48,7 +48,9 @@ export function PlanRadioGroup() {
 }`;
 
     const usageCode = isJa
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { Label, RadioGroup, RadioGroupItem } from "@gunjo/ui";
 
 export function PlanPicker() {
@@ -71,7 +73,9 @@ export function PlanPicker() {
     </RadioGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { Label, RadioGroup, RadioGroupItem } from "@gunjo/ui";
 
 export function PlanPicker() {

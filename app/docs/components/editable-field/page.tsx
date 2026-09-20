@@ -12,7 +12,9 @@ import { getDocContent } from "@/lib/docs-content";
 import inputsMetadata from "@design/inputs-metadata.json";
 
 const codeByLocale = {
-    en: `import * as React from "react";
+    en: `"use client";
+
+import * as React from "react";
 import { EditableField } from "@gunjo/ui";
 
 export function AssetTitleField() {
@@ -27,7 +29,9 @@ export function AssetTitleField() {
     />
   );
 }`,
-    ja: `import * as React from "react";
+    ja: `"use client";
+
+import * as React from "react";
 import { EditableField } from "@gunjo/ui";
 
 export function AssetTitleField() {
@@ -249,7 +253,9 @@ export default function EditableFieldPage() {
 	                            ),
 	                            previewHeight: 220,
 	                            code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { EditableField } from "@gunjo/ui";
 
 export function AssetNotesField() {
@@ -267,7 +273,9 @@ export function AssetNotesField() {
     />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { EditableField } from "@gunjo/ui";
 
 export function AssetNotesField() {
@@ -300,7 +308,9 @@ export function AssetNotesField() {
                             ),
                             previewHeight: 180,
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { EditableField, useToast } from "@gunjo/ui";
 
 export function EditableFieldWithFeedback() {
@@ -318,7 +328,9 @@ export function EditableFieldWithFeedback() {
     />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { EditableField, useToast } from "@gunjo/ui";
 
 export function EditableFieldWithFeedback() {
@@ -351,7 +363,9 @@ export function EditableFieldWithFeedback() {
                             ),
                             previewHeight: 240,
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { EditableField, useToast } from "@gunjo/ui";
 
 export function EditableFieldErrorState() {
@@ -372,7 +386,9 @@ export function EditableFieldErrorState() {
     />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { EditableField, useToast } from "@gunjo/ui";
 
 export function EditableFieldErrorState() {
@@ -413,7 +429,9 @@ export function EditableFieldErrorState() {
                                 </div>
                             ),
                             code: isJa
-                                ? `import * as React from "react";
+                                ? `"use client";
+
+import * as React from "react";
 import { EditableField } from "@gunjo/ui";
 
 export function EmptyEditableField() {
@@ -428,7 +446,9 @@ export function EmptyEditableField() {
     />
   );
 }`
-                                : `import * as React from "react";
+                                : `"use client";
+
+import * as React from "react";
 import { EditableField } from "@gunjo/ui";
 
 export function EmptyEditableField() {

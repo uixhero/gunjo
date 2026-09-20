@@ -129,7 +129,9 @@ export function ToggleGroupDemo() {
   );
 }`;
     const usageCode = locale === "ja"
-        ? `import * as React from "react";
+        ? `"use client";
+
+import * as React from "react";
 import { ToggleGroup, ToggleGroupItem } from "@gunjo/ui";
 
 export function AlignControl() {
@@ -147,7 +149,9 @@ export function AlignControl() {
     </ToggleGroup>
   );
 }`
-        : `import * as React from "react";
+        : `"use client";
+
+import * as React from "react";
 import { ToggleGroup, ToggleGroupItem } from "@gunjo/ui";
 
 export function AlignControl() {
@@ -221,7 +225,9 @@ export function AlignControl() {
                             description: locale === "ja" ? "配置や表示モードなど、1つだけ選ぶ操作に使います。" : "Use for mutually exclusive choices such as alignment.",
                             preview: <ToggleGroupStatePreview type="single" />,
                             previewHeight: 150,
-                            code: `import * as React from "react";
+                            code: `"use client";
+
+import * as React from "react";
 import { ToggleGroup, ToggleGroupItem } from "@gunjo/ui";
 
 export function AlignControl() {
