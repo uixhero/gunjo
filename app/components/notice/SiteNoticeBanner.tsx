@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { track } from "@vercel/analytics";
-import { Alert, Button, cn } from "@gunjo/ui";
+import { Alert, Button } from "@gunjo/ui";
 import type { SiteNoticeCopy } from "@/lib/site-notice";
 
 /**
