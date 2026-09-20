@@ -33,6 +33,15 @@ export interface PromoApp {
     storeHrefWidgetPage: string;
     /** アイコン。public/apps/earthmoon/icon-192.webp（192×192・4,806バイト） */
     icon: { src: string; width: number; height: number };
+    /**
+     * アプリの画面。⭐ **docs の実例ページ（/docs/apps/earthmoon）と同じファイルを使い回しています**
+     *    ＝新しく増えるバイトは0で、同じ読み手には2度目から取り直しも起きません。
+     * ⛔ `og-home-ja.jpg` のような**絵の中に文字が焼き込まれている画像を使わないこと**
+     *    （4px.jp と同じ判断・申し送り §5）。
+     * ⚠️ 元は 330×717。表示は最大 165px 幅（下の HomeAppsSection）＝ちょうど2倍で止まります。
+     * ⛔ 代替テキストはここに書かないこと＝正は app/lib/app-promo-copy.ts の shotAlts。
+     */
+    shots: readonly { key: string; src: string; width: number; height: number }[];
 }
 
 /**
@@ -49,6 +58,17 @@ export const PROMO_APPS: readonly PromoApp[] = [
         storeHrefWidgetPage:
             "https://apps.apple.com/app/id6808464474?ppid=6047df08-2da7-443e-842e-bb1717ecafac",
         icon: { src: "/apps/earthmoon/icon-192.webp", width: 192, height: 192 },
+        // ⭐ 4枚の選び方＝アプリの名前が「地球と月」なので地球（01）と月（07）は外せず、
+        //    「いま役に立つ」側として雨雲（03）と予報（05）を足しました。時間の操作（06）だけは
+        //    止まった絵では動きが伝わらないので外し、実例ページに置いてあります。
+        // ⚠️ 枚数は見た目にも効きます＝4枚だと狭い画面で2×2に畳め、広い画面では横1列が
+        //    カードの右半分をちょうど埋めます（3枚だと右が空き、5枚だと2×3が欠けます）。
+        shots: [
+            { key: "earth", src: "/apps/earthmoon/shot-01.webp", width: 330, height: 717 },
+            { key: "rain", src: "/apps/earthmoon/shot-03.webp", width: 330, height: 717 },
+            { key: "forecast", src: "/apps/earthmoon/shot-05.webp", width: 330, height: 717 },
+            { key: "orbits", src: "/apps/earthmoon/shot-07.webp", width: 330, height: 717 },
+        ],
     },
 ];
 

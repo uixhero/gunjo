@@ -41,6 +41,15 @@ export interface AppPromoStrings {
     homeDescription: string;
     /** アプリ自身のサイトへのリンクの文字 */
     siteLabel: string;
+    /**
+     * アプリの画面の代替テキスト。⚠️ 鍵は app/lib/app-promo.ts の `shots[].key`。
+     * ⛔「スクリーンショット」のような情報ゼロの語を入れないこと＝読み上げで何も伝わりません。
+     * ⭐ 文は実例ページ（app/docs/apps/earthmoon/page.tsx）と同じものです
+     *    ＝同じ絵に2通りの説明があると、読み上げの読み手だけ話が食い違います。
+     */
+    shotAlts: Record<string, string>;
+    /** 画面を並べた列そのものの名前（読み上げ用） */
+    shotsLabel: string;
     /** 読み上げ用の補助 */
     newTabTitle: string;
     newTabNotice: string;
@@ -59,6 +68,13 @@ const JA: AppPromoStrings = {
     homeDescription:
         "GUNJO のコンポーネントで組んで、App Store に出しているアプリです。どの画面をどう作ったかと、そこで生まれたコンポーネントは、実例のページにあります。",
     siteLabel: "ブラウザ版を試す",
+    shotAlts: {
+        earth: "夜の日本を見下ろした地球儀に、街の灯り、現在地、ISS の位置と通り道の線が重なっている。",
+        rain: "関東の地図に気象庁の雨雲レーダーを重ねている。下の目盛りで時刻を選べ、現在地には「いま雨。11:50ごろ やみそう」と出ている。",
+        forecast: "上に雨雲を重ねた地図、その下にいまの気温、今日・あす・日曜の予報の格子、週間予報が並ぶ。",
+        orbits: "太陽・地球・月の位置を北から見た図の下に、月の満ち欠けと、ISS の高度・速度、現在地から ISS が見える日時の一覧が並ぶ。",
+    },
+    shotsLabel: "地球と月の画面",
     newTabTitle: "App Store を新しいタブで開く",
     newTabNotice: "（新しいタブで開く）",
 };
@@ -76,6 +92,13 @@ const EN: AppPromoStrings = {
     homeDescription:
         "Apps built from GUNJO components and shipped on the App Store. How each screen is made, and which components came out of it, are on the example page.",
     siteLabel: "Try the browser version",
+    shotAlts: {
+        earth: "A globe looking down on Japan at night, with city lights, your location, and the ISS with the line of its path.",
+        rain: "JMA rain radar over a map of the Kanto area. A scale at the bottom picks the time; at your location it says it is raining now and should stop around 11:50.",
+        forecast: "A map with rain on top, then the current temperature, a grid for today, tomorrow and Sunday, and the week ahead.",
+        orbits: "The Sun, Earth and Moon seen from the north, then the Moon's phase, the ISS's height and speed, and when the ISS is visible from your location.",
+    },
+    shotsLabel: "Earth and Moon screens",
     newTabTitle: "Open the App Store in a new tab",
     newTabNotice: "(opens in a new tab)",
 };
