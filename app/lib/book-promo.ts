@@ -4,7 +4,8 @@
  * ⭐ このファイルが持つのは「販売先が在るか無いか」と「計測に載せる識別子」だけ。
  * ⛔ 文言は持たない＝正は app/lib/book-promo-copy.ts（同じ本でもサイトごとに言い方が違い、
  *    後から差し替わるため）。
- * ⛔ 見た目・器も持たない＝正は app/components/book/BookBanner.tsx と BookBannerSlot.tsx。
+ * ⛔ 見た目・器も持たない＝正は app/components/book/BookBanner.tsx と
+ *    app/components/promo/PromoBannerSlot.tsx。
  */
 
 /**

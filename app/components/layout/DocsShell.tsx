@@ -7,7 +7,7 @@ import { CollapsiblePanelToggle, cn } from "@gunjo/ui";
 import { Sidebar, MobileSidebarDrawer } from "@/components/layout/Sidebar";
 import { DocsPager } from "@/components/layout/DocsPager";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import { BookBannerSlot } from "@/components/book/BookBannerSlot";
+import { PromoBannerSlot } from "@/components/promo/PromoBannerSlot";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import {
     DOCS_SIDEBAR_REVEAL_EVENT,
@@ -175,8 +175,8 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
                     <div className="mt-16 border-t pt-8">
                         <DocsPager />
                     </div>
-                    {/* 本の帯は本文の列の中＝この面の本文はグリッドの右列で、`container` より狭い */}
-                    <BookBannerSlot placement="content" />
+                    {/* 告知の枠は本文の列の中＝この面の本文はグリッドの右列で、`container` より狭い */}
+                    <PromoBannerSlot placement="content" />
                     <SiteFooter placement="content" />
                 </div>
             </main>

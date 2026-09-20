@@ -10,12 +10,14 @@ const TITLE_ID = "book-promo-title";
  *
  * ⛔⛔ **横幅の器をここに持たせないこと。** この帯は自分がどの面に出ているかを知りません
  *    （トップ・コールドテストの回・docs で本文の幅が違います）。器は面を知っている側＝
- *    BookBannerSlot.tsx が外から巻きます。
+ *    app/components/promo/PromoBannerSlot.tsx が外から巻きます。
  *    ⚠️ 「同じ幅の値を書く」ではなく「同じ器を通す」こと。値で写すと必ずずれます。
+ *    ⛔ 上下の空き（`py-*`）もここに戻さないこと＝この枠にはアプリの帯も縦に並ぶので、
+ *       帯ごとに空きを持つと、間だけが足し合わさって広がります（正は PromoBannerSlot）。
  *
  * ⛔ 文言をここに書かないこと＝正は app/lib/book-promo-copy.ts。
  * ⛔⛔ **言語をここで選ばないこと。** この帯は自分がどの言語の面に出ているかも知りません
- *    ＝文言は `copy` で外から渡ります。選ぶのはロケールを持っている側＝BookBannerSlot.tsx
+ *    ＝文言は `copy` で外から渡ります。選ぶのはロケールを持っている側＝PromoBannerSlot.tsx
  *    （そこが `useLocale()` を見て、その言語の文言が無ければ帯ごと出しません）。
  * ⛔ 販売先をここに書かないこと＝正は app/lib/book-promo.ts。
  *
@@ -58,7 +60,7 @@ export function BookBanner({ copy }: { copy: BookPromoStrings }) {
     const stores = availableBookStores();
 
     return (
-        <aside aria-labelledby={TITLE_ID} className="py-10 sm:py-14">
+        <aside aria-labelledby={TITLE_ID}>
             <Card className="p-5 sm:p-7">
                 <div className="flex flex-col gap-6 lg:flex-row lg:items-center lg:gap-10">
                     <div className="flex flex-col gap-5 sm:flex-row sm:items-start sm:gap-7 lg:flex-1">
