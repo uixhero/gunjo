@@ -13,7 +13,7 @@ interface BookStoreLinkProps {
     /** ボタンの文字。正は book-promo-copy.ts */
     label: string;
     href: string;
-    /** その面の言語の文言。⛔ ここで言語を選ばないこと＝選ぶのは BookBannerSlot（ロケールを持つ側） */
+    /** その面の言語の文言。⛔ ここで言語を選ばないこと＝選ぶのは PromoBannerSlot（ロケールを持つ側） */
     copy: BookPromoStrings;
 }
 

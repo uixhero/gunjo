@@ -3,7 +3,7 @@ import { Inter, Shippori_Mincho } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
-import { BookBannerSlot } from "@/components/book/BookBannerSlot";
+import { PromoBannerSlot } from "@/components/promo/PromoBannerSlot";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ThemeOverridesProvider } from "@/components/providers/ThemeOverridesProvider";
 import { LocaleProvider } from "@/components/providers/LocaleProvider";
@@ -74,11 +74,12 @@ export default function RootLayout({
                     <TooltipProvider delayDuration={300}>
                       <SiteHeader />
                       <div className="flex-1">{children}</div>
-                      {/* フッター前の本の帯。⭐ 横幅の器はここ（面を知っている側）で巻きます
-                          ＝BookBannerSlot が `container` を通します。自分でサイドバー付きの
-                          器を持っている面（/docs・/tokens・コールドテストの回）は、その面の
-                          シェルが placement="content" で自分の本文の列に置きます。 */}
-                      <BookBannerSlot />
+                      {/* フッター前の告知の枠（本の帯とアプリの帯を縦に並べます）。
+                          ⭐ 横幅の器はここ（面を知っている側）で巻きます＝PromoBannerSlot が
+                          `container` を通します。自分でサイドバー付きの器を持っている面
+                          （/docs・/tokens・コールドテストの回）は、その面のシェルが
+                          placement="content" で自分の本文の列に置きます。 */}
+                      <PromoBannerSlot />
                       <SiteFooter />
                     </TooltipProvider>
                   </ToastProvider>

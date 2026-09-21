@@ -41,6 +41,7 @@ import {
     TooltipButton,
 } from "@gunjo/ui";
 import { useTheme } from "next-themes";
+import { HomeAppsSection } from "@/components/app-promo/HomeAppsSection";
 import { HeroBackground } from "@/components/home/HeroBackground";
 import { SiteNoticeSlot } from "@/components/notice/SiteNoticeSlot";
 import { useLocale } from "@/components/providers/LocaleProvider";
@@ -251,7 +252,12 @@ export default function Home() {
             {/* ============== Section 4 — PUBLIC PATTERNS ============== */}
             <PatternBrowserCarousel isJa={isJa} />
 
-            {/* ============== Section 5 — THE 群青 STORY ============== */}
+            {/* ============== Section 5 — APPS BUILT WITH GUNJO ============== */}
+            {/* トップから実例ページ（/docs/apps/earthmoon）への導線。
+                ⚠️ 既定では節ごと出ません（旗の正は app/lib/app-promo.ts）。 */}
+            <HomeAppsSection />
+
+            {/* ============== Section 6 — THE 群青 STORY ============== */}
             <section className="bg-muted/30 py-24">
                 <div className="container">
                     <p className="mb-12 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
@@ -298,7 +304,7 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ============== Section 6 — SSOT AND AI HANDOFF ============== */}
+            {/* ============== Section 7 — SSOT AND AI HANDOFF ============== */}
             <section className="border-t border-border/40 bg-gradient-to-b from-background via-accent/20 to-background py-24">
                 <div className="container">
                     <div className="mb-12 space-y-3">
@@ -361,7 +367,7 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ============== Section 7 — FOR ENGINEERS ============== */}
+            {/* ============== Section 8 — FOR ENGINEERS ============== */}
             <section className="border-t border-border/40 bg-background py-20">
                 <div className="container">
                     <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
@@ -392,7 +398,7 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ============== Section 8 — ALPHA SCOPE ============== */}
+            {/* ============== Section 9 — ALPHA SCOPE ============== */}
             <section className="border-t border-border/40 bg-muted/20 py-20">
                 <div className="container text-center">
                     <Badge variant="outline" className="mb-4 gap-1.5">

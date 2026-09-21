@@ -4,7 +4,7 @@ import * as React from "react";
 import { CollapsiblePanelToggle, cn } from "@gunjo/ui";
 import { RoundsSidebar, type SidebarRound } from "./RoundsSidebar";
 import { useLocale } from "@/components/providers/LocaleProvider";
-import { BookBannerSlot } from "@/components/book/BookBannerSlot";
+import { PromoBannerSlot } from "@/components/promo/PromoBannerSlot";
 
 // Mirror of DocsShell's container + collapsible grid so /cold-tests/[round]
 // reads at the same width as /docs/components/* etc. Cold-tests has its own
@@ -79,9 +79,9 @@ export function ColdTestShell({
             <main className="relative min-w-0 py-8 lg:py-10">
                 <div className="w-full min-w-0">
                     {children}
-                    {/* 本の帯は回の本文と同じ列の中＝グリッドの右列。`container` を巻くと
+                    {/* 告知の枠は回の本文と同じ列の中＝グリッドの右列。`container` を巻くと
                         本文より外に出ます（この面のフッターは共通フッターのままです）。 */}
-                    <BookBannerSlot placement="content" />
+                    <PromoBannerSlot placement="content" />
                 </div>
             </main>
         </div>
