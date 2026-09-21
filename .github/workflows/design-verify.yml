@@ -365,3 +365,11 @@ jobs:
           # Lets `prebuild` read the issue tracker without hitting the
           # unauthenticated rate limit shared across runners.
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # Sitemap gate — runs on the build output, so it can only run here.
+      # It compares every page the build actually emitted (with its HTTP
+      # status, read from .next/server/app/<path>.meta) against the URLs in
+      # the generated sitemap, in both directions. Without it, a new page
+      # silently misses the sitemap the way 25 docs pages did until #1016.
+      - name: Sitemap coverage (against the build output)
+        run: npm run design:verify:sitemap

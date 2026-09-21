@@ -1,11 +1,12 @@
 import type { MetadataRoute } from "next";
-import { navigation } from "@/lib/navigation";
 import { PATTERNS, isPublicPatternSlug } from "@/lib/patterns";
 import coldTestGallery from "@/data/cold-test-gallery.json";
 import coldTestCategories from "@/data/cold-test-categories.json";
 import { listEnRounds } from "@/lib/cold-test-en";
 import { publishableJaEntries } from "@/lib/cold-test-drafts";
 import { EN_COLD_TEST_BASE } from "@/lib/cold-test-paths";
+import { listServedAppRoutes } from "@/lib/seo/route-inventory";
+import { isExcludedFromSitemap } from "@/lib/seo/sitemap-exclusions";
 
 interface ColdTestGalleryShape {
     entries: { round: number }[];
@@ -19,64 +20,48 @@ const BASE_URL = (
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.gunjo.jp"
 ).replace(/\/$/, "");
 
-/** Recursively collect internal page paths (href starting with "/") from a nav tree. */
-function collectPaths(node: unknown, acc: Set<string>): void {
-    if (Array.isArray(node)) {
-        for (const item of node) collectPaths(item, acc);
-        return;
-    }
-    if (node && typeof node === "object") {
-        const record = node as Record<string, unknown>;
-        const href = record.href;
-        if (typeof href === "string" && href.startsWith("/") && !href.includes("#")) {
-            acc.add(href);
-        }
-        for (const value of Object.values(record)) collectPaths(value, acc);
-    }
+/**
+ * 本番では 404 になるパターン（`SHOW_ALL_PATTERNS` が false のときに隠れるもの）。
+ * ディレクトリを歩くだけでは「開発中のパターン」と分からないので、公開の可否は
+ * `patterns.ts` の SSOT で判断する。
+ */
+function isHiddenPatternRoute(path: string): boolean {
+    if (path !== "/patterns" && !path.startsWith("/patterns/")) return false;
+    if (path === "/patterns") return false;
+    const slug = path.split("/")[2];
+    return PATTERNS.some((pattern) => pattern.slug === slug) && !isPublicPatternSlug(slug);
 }
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const paths = new Set<string>([
-        "/",
-        "/how-to-read",
-        "/showcase",
-        "/patterns",
-        "/cold-tests",
-        "/cold-tests/why",
-        "/pack",
-        "/privacy",
-    ]);
-    collectPaths(navigation, paths);
-
-    // Public pattern routes only (mirrors production visibility); skip the 404 demo.
-    for (const pattern of PATTERNS) {
-        if (!isPublicPatternSlug(pattern.slug) || pattern.slug === "not-found") continue;
-        for (const route of pattern.routes) {
-            if (route.href.startsWith("/")) paths.add(route.href);
-        }
+    // ⭐ 静的なページは `app/` を歩いて数え上げる（app/lib/seo/route-inventory.ts）。
+    // 以前はここで docs の URL を左メニュー（navigation.ts）からだけ集めていたので、
+    // メニューに載らないページ25件が抜けていた（issue #1016・2026-09-20 実測）。
+    // ⛔ 手で URL を並べ直さないこと。増えたページは歩けば入る。
+    const paths = new Set<string>();
+    for (const route of listServedAppRoutes()) {
+        if (isExcludedFromSitemap(route.path)) continue;
+        if (isHiddenPatternRoute(route.path)) continue;
+        paths.add(route.path);
     }
 
-    // Per-round cold-test detail pages — each is a distinct article with its
-    // own metadata. Without these, Google would only know about the grid.
-    // Draft rounds (cold-test-drafts.ts) 404 in production, so they must not
-    // surface here either.
+    // 動的セグメントのページは、ディレクトリではなく元データが URL を持つ。
+
+    // コールドテストの回。下書き（cold-test-drafts.ts）は本番で 404 になるので
+    // ここにも出さない。
     for (const entry of publishableJaEntries(
         (coldTestGallery as ColdTestGalleryShape).entries
     )) {
         paths.add(`/cold-tests/${entry.round}`);
     }
 
-    // Industry door pages — only the categories that have hand-written copy
-    // (cold-test-categories.json `published[]`) are listed. Slugs with only a
-    // slugMap entry but no published copy 404 by design, so they don't surface
-    // as thin content in Search Console.
+    // 業種の扉ページ。手で書いた文言がある業種（cold-test-categories.json の
+    // `published[]`）だけ。slugMap にしか無い slug は設計どおり 404 になる。
     for (const cat of (coldTestCategories as ColdTestCategoriesShape).published) {
         paths.add(`/cold-tests/categories/${cat.slug}`);
     }
 
-    // English cold-test pages. Only rounds with a publishable translation are
-    // listed, which in production means `status: "reviewed"` — a draft
-    // translation never reaches the sitemap.
+    // 英語のコールドテスト。本番では `status: "reviewed"` の回だけが出るので、
+    // 下書きの訳はサイトマップにも出ない。
     const enRounds = listEnRounds();
     if (enRounds.length > 0) {
         paths.add(EN_COLD_TEST_BASE);
@@ -86,7 +71,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
 
     const lastModified = new Date();
-    return [...paths].map((path) => ({
+    return [...paths].sort().map((path) => ({
         url: path === "/" ? BASE_URL : `${BASE_URL}${path}`,
         lastModified,
         changeFrequency: "weekly" as const,

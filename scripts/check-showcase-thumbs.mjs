@@ -68,6 +68,9 @@ function looksLikePatternChange(path) {
     // The patterns index itself isn't a pattern preview — only nested
     // /patterns/<slug>/** routes contribute to a thumbnail.
     if (!path.startsWith("app/patterns/")) return false;
+    // 索引のページは `(index)` のルートグループ（URL には出ない）に入っている。
+    if (path === "app/patterns/(index)/page.tsx") return false;
+    if (path === "app/patterns/(index)/layout.tsx") return false;
     if (path === "app/patterns/page.tsx") return false;
     if (path === "app/patterns/layout.tsx") return false;
     return path.endsWith(".tsx") || path.endsWith(".ts");

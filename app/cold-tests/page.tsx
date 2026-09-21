@@ -4,6 +4,8 @@ import { ColdTestsClient, type ColdTestEntry } from "./ColdTestsClient";
 import { EN_COLD_TEST_BASE } from "@/lib/cold-test-paths";
 import { listEnRounds } from "@/lib/cold-test-en";
 import { publishableJaEntries } from "@/lib/cold-test-drafts";
+import { JsonLdScript } from "@/components/seo/StructuredData";
+import { breadcrumbList, coldTestTrail } from "@/lib/seo/structured-data";
 
 const SITE_URL = (
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.gunjo.jp"
@@ -77,6 +79,9 @@ const jsonLd = {
     },
 };
 
+// ホーム → コールドテスト。この面の入口なので段はここで終わる。
+const breadcrumbNode = breadcrumbList(coldTestTrail());
+
 export default function ColdTestsPage() {
     return (
         <>
@@ -84,6 +89,7 @@ export default function ColdTestsPage() {
                 type="application/ld+json"
                 dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
             />
+            {breadcrumbNode ? <JsonLdScript node={breadcrumbNode} /> : null}
             <ColdTestsClient entries={publishedEntries} />
         </>
     );
