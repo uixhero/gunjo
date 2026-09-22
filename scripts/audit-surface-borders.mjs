@@ -260,7 +260,7 @@ function collectClassMapEntries(content) {
       const key = entry[1] ?? entry[2] ?? entry[3]
       const literal = entry[4]
       const value = literal.slice(1, -1)
-      if (!/\b(?:bg|border)-/.test(value) && value !== "border") continue
+      if (!/\b(?:bg|border)-/.test(value) && !/(?:^|\s)border(?:\s|$)/.test(value)) continue
       const absoluteIndex = openIndex + entry.index
       entries.push({
         variable: match[1],
@@ -678,6 +678,24 @@ const SOURCE_FIXTURES = [
     // 幅は className 側の `border`、色と塗りは表の側＝2か所に割れている Badge の形。
     // `info` だけが塗り＋見える枠になる（`plain` は border-transparent で消える）。
     expectCount: 1,
+  },
+  {
+    // 2026-09-23 に取りこぼしを見つけた分。`border` が長い文字列の末尾に
+    // 素で入っている variant（Drawer の bottom / top）は、値に `border-` も
+    // 含まれず `"border"` 完全一致でもないので表に採られず、黙って数から
+    // 漏れていた。この固定文は実際に漏れた形をそのまま使っている。
+    name: "長い文字列の末尾の素の border も variant の表として採る",
+    file: "src/components/overlay/Fixture.tsx",
+    content: [
+      'const sideClasses = {',
+      '    bottom: "inset-x-0 bottom-0 mt-24 h-auto rounded-t-[10px] border",',
+      '    right: "inset-y-0 right-0 h-full w-80 rounded-l-[10px] border-l",',
+      '}',
+      'export function Fixture({ side }) {',
+      '    return <div className={cn("fixed z-50 bg-background", sideClasses[side])} />',
+      '}',
+    ].join("\n"),
+    expectCount: 2,
   },
   {
     name: "className に直接書かれた塗り＋枠を数える",
