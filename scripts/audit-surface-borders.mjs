@@ -13,13 +13,15 @@
 //   C. A で外した枠は、ハイコントラストで戻す（`contrast-more:` / `forced-colors:`
 //      を付けた枠は「戻す枠」なので、通常状態の枠としては数えない）
 //
-// ⛔ この検査は落とさない（exit 0）。第1段では Sidebar と Badge だけを直し、
-// 残りが何件あるかを数えるところまでが仕事。数を基線として固定したくなったら
-// --max-remaining を CI に足す。
+// 2026-09-23（第2段）から門番になった。src/components/** の残りは 0 件で、
+// verifySurfaceBorders（design:verify に入っている）が 0 を超えたら落とす。
+// つまり「塗りのある面に枠を足す」変更は、除外ポリシーに理由を書かない限り
+// CI で止まる。件数だけ数えたいときは --max-remaining に数を渡す。
 
 import { readdirSync, readFileSync, writeFileSync } from "node:fs"
 import { join, relative } from "node:path"
 import { ROOT } from "./design-sync/shared.mjs"
+import { runVerificationCli, throwLinesError } from "./design-verify-assertions.mjs"
 
 const TARGET_PATH = "src/components"
 const EXCLUSION_POLICY_PATH = "design/policy/surface-border-exclusions.json"
@@ -794,6 +796,45 @@ export function auditSurfaceBorders({ root = ROOT, write = true } = {}) {
   return report
 }
 
+/**
+ * design:verify から呼ぶ門番。残りが `maxRemaining` を超えたら落ちる。
+ * 既定は 0＝「塗りがあるのに枠もある」箇所を新しく足せない。
+ * 箱 B（枠が意味そのもの）は design/policy/surface-border-exclusions.json に
+ * 理由・追加日・期限つきで登録する。⛔ 許可リストへ足す前に KeEem に確認する。
+ */
+export function verifySurfaceBorders({ root = ROOT, maxRemaining = 0 } = {}) {
+  const selfTestFailures = runSelfTest()
+  if (selfTestFailures.length > 0) {
+    throwLinesError([
+      "audit-surface-borders: 検出器の自己検査に失敗しました（検査自体が壊れています）。",
+      ...selfTestFailures.map((failure) => `- ${failure}`),
+    ])
+  }
+
+  const report = collectSurfaceBorderReport({ root })
+
+  if (report.policyIssues.length > 0) {
+    throwLinesError([
+      `audit-surface-borders: ${EXCLUSION_POLICY_PATH} のエントリが不正です。`,
+      ...report.policyIssues.map((issue) => `- ${issue}`),
+    ])
+  }
+
+  if (report.remaining.length <= maxRemaining) return report
+
+  throwLinesError([
+    `design:verify: 塗りのある面に枠も付いている箇所が ${report.remaining.length} 件あります（上限 ${maxRemaining}）。`,
+    "KeEem の決定（new-4px DECISIONS.md 2026-09-22）: 1px の枠線をやめて面の濃淡で区切る（light も dark も）。",
+    "⚠️ 枠を外す前に、その面が親の面に対して段差を持っているか測ること（1.05:1 未満なら先に塗りを上げる）。",
+    `枠が意味そのもの（表の罫線・入力の境界・破線・格子線など）なら ${EXCLUSION_POLICY_PATH} に理由つきで登録する。`,
+    ...report.remaining.map(
+      (finding) =>
+        `- ${finding.file}:${finding.line}（${finding.state}・${finding.source}）` +
+        ` 塗り ${finding.fills.join(" ")} / 枠 ${finding.borderClasses.join(" ") || "(既定の --border)"}`
+    ),
+  ])
+}
+
 const isCli = process.argv[1] && process.argv[1].endsWith("audit-surface-borders.mjs")
 
 if (isCli) {
@@ -805,6 +846,15 @@ if (isCli) {
       process.exit(1)
     }
     console.log("audit-surface-borders: self-test passed")
+  } else if (process.argv.includes("--verify")) {
+    // 門番として走らせる（design:verify と同じ判定・報告ファイルは書かない）。
+    const index = process.argv.indexOf("--max-remaining")
+    const maxRemaining = index === -1 ? 0 : Number(process.argv[index + 1])
+    runVerificationCli({
+      scriptName: "audit-surface-borders.mjs",
+      verify: () => verifySurfaceBorders({ maxRemaining }),
+      successMessage: "design:verify: surface borders passed",
+    })
   } else {
     auditSurfaceBorders({ write: !process.argv.includes("--no-write") })
   }
