@@ -981,7 +981,10 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
       assertMatch(errors, modalSource, /\bjustify-end\b/, 'Modal footer should include "justify-end"');
     }
     if (footer?.fill) {
-      assertMatch(errors, modalSource, /\bbg-muted\/50\b/, 'Modal footer should include "bg-muted/50"');
+      // 面で区切る第2段（2026-09-23）で bg-muted/50 → bg-muted。カードの上で
+      // 1.139/1.064 しかなく dark が 1.10 を下回っていた（新 1.306/1.139）。
+      // .pen の fill が旧パレットの hex のままな件は #1025。
+      assertMatch(errors, modalSource, /\bbg-muted\b/, 'Modal footer should include "bg-muted"');
     }
     if (footer?.stroke?.thickness === 1) {
       assertMatch(errors, modalSource, /\bborder-t\b/, 'Modal footer should include "border-t"');

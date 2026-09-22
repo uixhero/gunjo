@@ -113,7 +113,7 @@ const PlacePanel = React.forwardRef<HTMLElement, PlacePanelProps>(
                 aria-label={label}
                 aria-busy={loading || undefined}
                 className={cn(
-                    "@container flex flex-col gap-3 rounded-t-2xl border border-b-0 border-border bg-card p-4 pt-2 text-card-foreground shadow-lg",
+                    "@container flex flex-col gap-3 rounded-t-2xl border border-b-0 border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 pt-2 text-card-foreground shadow-lg",
                     className
                 )}
                 {...props}

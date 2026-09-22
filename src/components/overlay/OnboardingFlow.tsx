@@ -90,7 +90,7 @@ const OnboardingFlow = React.forwardRef<HTMLDivElement, OnboardingFlowProps>(
             <div
                 ref={ref}
                 className={cn(
-                    "flex w-full flex-col gap-6 rounded-lg border border-border bg-card p-6 text-card-foreground shadow-sm",
+                    "flex w-full flex-col gap-6 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-6 text-card-foreground shadow-sm",
                     className
                 )}
             >

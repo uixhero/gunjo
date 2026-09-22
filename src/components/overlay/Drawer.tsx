@@ -57,10 +57,10 @@ const DrawerOverlay = React.forwardRef<
 DrawerOverlay.displayName = DrawerPrimitive.Overlay.displayName
 
 const drawerContentSideClasses: Record<DrawerSide, string> = {
-    bottom: "inset-x-0 bottom-0 mt-24 h-auto rounded-t-[10px] border",
-    right: "inset-y-0 right-0 h-full w-80 max-w-[calc(100%_-_2rem)] rounded-l-[10px] border-l",
-    left: "inset-y-0 left-0 h-full w-80 max-w-[calc(100%_-_2rem)] rounded-r-[10px] border-r",
-    top: "inset-x-0 top-0 mb-24 h-auto rounded-b-[10px] border",
+    bottom: "inset-x-0 bottom-0 mt-24 h-auto rounded-t-[10px] border border-transparent contrast-more:border-border forced-colors:border-[CanvasText]",
+    right: "inset-y-0 right-0 h-full w-80 max-w-[calc(100%_-_2rem)] rounded-l-[10px] border-l border-l-transparent contrast-more:border-l-border forced-colors:border-l-[CanvasText]",
+    left: "inset-y-0 left-0 h-full w-80 max-w-[calc(100%_-_2rem)] rounded-r-[10px] border-r border-r-transparent contrast-more:border-r-border forced-colors:border-r-[CanvasText]",
+    top: "inset-x-0 top-0 mb-24 h-auto rounded-b-[10px] border border-transparent contrast-more:border-border forced-colors:border-[CanvasText]",
 }
 
 const DrawerContent = React.forwardRef<

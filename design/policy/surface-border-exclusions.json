@@ -107,9 +107,33 @@
           "^src/components/display/chart-tooltip\\.tsx$",
           "^src/components/overlay/OnboardingFlow\\.tsx$"
         ],
-        "classPattern": "border-2"
+        "classPattern": "border-2|bg-foreground text-background"
       },
       "reason": "輪の印（箱 B）。工程・時系列・図表の「現在地」「未達」を表す丸は、塗り＝完了／輪＝現在・未達で対にしてある（Stepper は completed が bg-foreground の塗り、current が border-2 の輪）。枠を外すと2つの状態が見分けられない＝枠が状態の識別そのもの。Badge の outline variant と同じ理屈。塗りは bg-background で親との段差を持たないことも多い。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "floating-control-over-media",
+      "match": {
+        "files": [
+          "^src/components/overlay/MediaLightbox\\.tsx$",
+          "^src/components/display/AssetCard\\.tsx$",
+          "^src/components/display/ImagePreview\\.tsx$",
+          "^src/components/inputs/MapControlButton\\.tsx$"
+        ],
+        "classPattern": "(?=.*bg-(?:background|foreground)/[0-9])(?=.*shadow-)"
+      },
+      "reason": "画像・地図の上に浮く操作盤（箱 B）。背後は利用者が入れた写真や地図タイル＝どんな色が来るか分からないので、親の面との段差という概念が成り立たない（MediaLightbox は bg-foreground/85 を半透明のまま使うのが設計で、明るい写真の上でも操作が読めるようにしてある）。枠は盤の輪郭を背後の絵から切り離す唯一の手段で、掴める部品の境界として WCAG 1.4.11（3:1）の対象でもある。規則は半透明の塗りと影を両方持つ束にだけ当たる。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "dashed-affordance",
+      "match": {
+        "classPattern": "border-dashed"
+      },
+      "reason": "破線（箱 B）。破線は「空」「置き場（ここに落とせる）」「使用不可」「予定（実績ではない）」を表す語彙で、実線の枠とは別の意味を持つ。面の濃淡は色の差しか作れないので「破線かどうか」を表せない＝置き換えが原理的にできない。対象は EmptyState の空の箱、FileUploader と ShareModal の落とし込み口、ImagePreview の画像なしの札、ScheduleGrid の空き枠、Gantt の予定バー。⚠️ Gantt は7件と数えられるが実体は1つ＝検査が className の束を variant の表の各エントリと合わせて数えるため（予定バーの `border-dashed border-border bg-card/40` が BAR_TONE の7エントリそれぞれに混ざる）。Gantt の実線のバー側（BAR_TONE の border-*）は同じ回で外してある。",
       "addedOn": "2026-09-23",
       "expiresOn": "permanent"
     }

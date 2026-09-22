@@ -423,7 +423,14 @@ export function verifyOrganismDrift({ root = ROOT } = {}) {
       );
     }
     if (defaultVariant?.stroke?.thickness === 1) {
-      assertMatch(errors, shareModalSource, /border border-border/, 'ShareModal should include "border border-border"');
+      // 面で区切る第2段（2026-09-23）。1px の幅は残し、色は通常状態では透明・
+      // ハイコントラストで戻す（箱 C）。
+      assertMatch(
+        errors,
+        shareModalSource,
+        /border border-transparent contrast-more:border-border/,
+        'ShareModal should include "border border-transparent contrast-more:border-border"'
+      );
     }
 
     const header = shareModal.nodes?.header;

@@ -71,7 +71,7 @@ export function Modal({
                 aria-label={title}
                 onClick={(e) => e.stopPropagation()}
                 className={cn(
-                    "mx-4 flex w-[448px] max-w-md max-w-[calc(100%-2rem)] flex-col overflow-hidden rounded-lg border border-border bg-card shadow-xl animate-in zoom-in-95 duration-200",
+                    "mx-4 flex w-[448px] max-w-md max-w-[calc(100%-2rem)] flex-col overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-xl animate-in zoom-in-95 duration-200",
                     className
                 )}
             >
@@ -90,7 +90,7 @@ export function Modal({
                     {children}
                 </div>
                 {footer && (
-                    <div className="px-4 py-3 bg-muted/50 border-t border-border flex justify-end gap-2">
+                    <div className="px-4 py-3 bg-muted border-t border-t-transparent contrast-more:border-t-border forced-colors:border-t-[CanvasText] flex justify-end gap-2">
                         {footer}
                     </div>
                 )}
