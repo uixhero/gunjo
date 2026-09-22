@@ -72,6 +72,18 @@
       "reason": "貼り付く半透明の帯（箱 B）。bg-background/95 + backdrop-blur は背後の内容が透けるのが設計＝親の面との段差は 1.000:1（2026-09-23 実測。/95 でも合成後は地と同値）で、面では区切れない。不透明に上げると backdrop-blur の意味が無くなるので、枠が下の内容と帯を分ける唯一の手段。⛔ この規則は backdrop-blur を持つ束にだけ当たる（同じファイルの不透明な面は対象外＝ちゃんと落ちる）。",
       "addedOn": "2026-09-23",
       "expiresOn": "permanent"
+    },
+    {
+      "id": "drag-handle-on-its-own-rail",
+      "match": {
+        "files": [
+          "^src/components/layout/Resizable\\.tsx$"
+        ],
+        "classPattern": "bg-border"
+      },
+      "reason": "つまみ（箱 B）。Resizable のつまみは bg-border の1pxレールの真上に置かれ、つまみ自身も bg-border＝親との段差は 1.000:1（2026-09-23 実測）。面では区切れないし、レールと同色なのは意図（つまみは罫線の一部として読ませる）。枠はこのつまみを「掴める部品」として縁取る唯一の手段で、WCAG 1.4.11（UI部品の境界は 3:1）の対象でもある。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
     }
   ]
 }

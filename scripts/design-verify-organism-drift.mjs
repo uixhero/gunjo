@@ -301,19 +301,23 @@ export function verifyOrganismDrift({ root = ROOT } = {}) {
         /\bborder-l\b/,
         'InspectorPanel should include "border-l"'
       );
+      // 面で区切る第2段（2026-09-23）。幅は残し、色は通常状態では透明・
+      // ハイコントラストで戻す（箱 C）。
       assertMatch(
         errors,
         inspectorPanelSource,
-        /\bborder-border\b/,
-        'InspectorPanel should include "border-border"'
+        /contrast-more:border-l-border/,
+        'InspectorPanel should restore its stroke with "contrast-more:border-l-border"'
       );
     }
     if (defaultVariant?.fill) {
+      // bg-background は親の地と同値（1.000:1）で、枠を外すとパネルが消えた。
+      // .pen の fill が旧パレットの hex のままな件は #1025。
       assertMatch(
         errors,
         inspectorPanelSource,
-        /\bbg-background\b/,
-        'InspectorPanel should include "bg-background"'
+        /\bbg-card\b/,
+        'InspectorPanel should include "bg-card"'
       );
     }
 
