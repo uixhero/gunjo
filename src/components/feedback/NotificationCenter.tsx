@@ -75,7 +75,7 @@ const NotificationCenter = ({
                 <TooltipContent>{resolvedLabels.toggle}</TooltipContent>
             </Tooltip>
             <PopoverContent portalContainer={portalContainer} align="end" className="w-[320px] p-0" sideOffset={8}>
-                <div className="flex items-center justify-between border-b px-4 py-3 bg-muted/50 backdrop-blur">
+                <div className="flex items-center justify-between border-b border-b-transparent contrast-more:border-b-border forced-colors:border-b-[CanvasText] px-4 py-3 bg-muted">
                     <h4 className="font-semibold text-sm">{resolvedLabels.title}</h4>
                     {unreadCount > 0 && onClearAll && (
                         <Button

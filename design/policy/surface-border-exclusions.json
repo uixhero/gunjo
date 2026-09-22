@@ -84,6 +84,34 @@
       "reason": "つまみ（箱 B）。Resizable のつまみは bg-border の1pxレールの真上に置かれ、つまみ自身も bg-border＝親との段差は 1.000:1（2026-09-23 実測）。面では区切れないし、レールと同色なのは意図（つまみは罫線の一部として読ませる）。枠はこのつまみを「掴める部品」として縁取る唯一の手段で、WCAG 1.4.11（UI部品の境界は 3:1）の対象でもある。",
       "addedOn": "2026-09-23",
       "expiresOn": "permanent"
+    },
+    {
+      "id": "list-row-divider",
+      "match": {
+        "files": [
+          "^src/components/feedback/NotificationCenter\\.tsx$"
+        ],
+        "classPattern": "bg-primary-subtle"
+      },
+      "reason": "一覧の行の区切り（箱 B）。未読の通知は bg-primary-subtle、既読は塗り無しで、未読が続くと同じ面が縦に連なる＝行の境目が面では出ない（隣り合う同色は段差 1.000:1）。border-b は「ここまでが1件」という構造そのもので、表のグリッド線と同じ扱い。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "state-ring-marker",
+      "match": {
+        "files": [
+          "^src/components/feedback/Stepper\\.tsx$",
+          "^src/components/display/Timeline\\.tsx$",
+          "^src/components/display/ParetoChart\\.tsx$",
+          "^src/components/display/chart-tooltip\\.tsx$",
+          "^src/components/overlay/OnboardingFlow\\.tsx$"
+        ],
+        "classPattern": "border-2"
+      },
+      "reason": "輪の印（箱 B）。工程・時系列・図表の「現在地」「未達」を表す丸は、塗り＝完了／輪＝現在・未達で対にしてある（Stepper は completed が bg-foreground の塗り、current が border-2 の輪）。枠を外すと2つの状態が見分けられない＝枠が状態の識別そのもの。Badge の outline variant と同じ理屈。塗りは bg-background で親との段差を持たないことも多い。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
     }
   ]
 }

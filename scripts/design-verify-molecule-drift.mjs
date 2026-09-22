@@ -853,29 +853,31 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
     ) {
       assertMatch(errors, toastSource, /\brounded-xl\b/, 'Toast should include "rounded-xl"');
     }
+    // 面で区切る第2段（2026-09-23）。淡色の面は通常状態では枠を持たず、
+    // 1px の幅だけ残して色を透明にし、ハイコントラストで戻す（箱 C）。
+    // ⚠️ 戻す色に tone ごとの *-border を使わないこと。あの3色は淡かった頃の
+    // *-subtle 向けで、濃くした今の面とは同化する（light の success で
+    // 1.034:1 を実測・stage 1）。全 tone で --border に集約してある。
     if (successVariant?.stroke?.thickness === 1) {
       assertMatch(errors, toastSource, /\bborder\b/, 'Toast should include "border"');
       assertMatch(
         errors,
         toastSource,
-        /\bborder-success-border\b/,
-        'Toast success should include "border-success-border"'
+        /contrast-more:border-border/,
+        'Toast should restore its stroke with "contrast-more:border-border"'
       );
     }
-    if (errorVariant?.stroke?.thickness === 1) {
+    for (const [variant, tone] of [
+      [successVariant, "success"],
+      [errorVariant, "error"],
+      [infoVariant, "info"],
+    ]) {
+      if (variant?.stroke?.thickness !== 1) continue;
       assertMatch(
         errors,
         toastSource,
-        /\bborder-destructive-border\b/,
-        'Toast error should include "border-destructive-border"'
-      );
-    }
-    if (infoVariant?.stroke?.thickness === 1) {
-      assertMatch(
-        errors,
-        toastSource,
-        /\bborder-info-border\b/,
-        'Toast info should include "border-info-border"'
+        new RegExp(`${tone}:\\s*'bg-[a-z-]+ border-transparent`),
+        `Toast ${tone} should carry no visible stroke ("border-transparent")`
       );
     }
 
@@ -1135,8 +1137,8 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
       assertMatch(
         errors,
         notificationCenterSource,
-        /\bclassName="flex items-center justify-between border-b px-4 py-3/,
-        'NotificationCenter header should include "border-b px-4 py-3"'
+        /\bclassName="flex items-center justify-between border-b border-b-transparent[^"]*px-4 py-3/,
+        'NotificationCenter header should include "border-b ... px-4 py-3"'
       );
     }
 

@@ -35,10 +35,15 @@ export interface SafetyBannerProps extends Omit<React.HTMLAttributes<HTMLDivElem
     actions?: React.ReactNode
 }
 
+// 淡色の面は枠を持たない（DECISIONS.md 2026-09-22・Badge と同じ扱い）。
+// 区切りは面の濃淡。カードの上で light 1.24〜1.32 / dark 1.16〜1.25、
+// 地の上で light 1.13〜1.20 / dark 1.40〜1.50（2026-09-23 実測）。
+// ⚠️ ハイコントラストで戻す枠に *-border を使わないこと。あの3色は淡かった
+// 頃の *-subtle 向けで、今の濃さの面とは同化する。全 tone で --border を使う。
 const TONE_CONTAINER: Record<SafetyBannerTone, string> = {
-    destructive: "border-destructive-border bg-destructive-subtle text-destructive-subtle-foreground",
-    warning: "border-warning-border bg-warning-subtle text-warning-subtle-foreground",
-    info: "border-info-border bg-info-subtle text-info-subtle-foreground",
+    destructive: "border-transparent bg-destructive-subtle text-destructive-subtle-foreground",
+    warning: "border-transparent bg-warning-subtle text-warning-subtle-foreground",
+    info: "border-transparent bg-info-subtle text-info-subtle-foreground",
 }
 
 const TONE_ICON: Record<SafetyBannerTone, string> = {
@@ -98,7 +103,7 @@ const SafetyBanner = React.forwardRef<HTMLDivElement, SafetyBannerProps>(
                 role={tone === "destructive" ? "alert" : "status"}
                 aria-live={tone === "destructive" ? "assertive" : "polite"}
                 className={cn(
-                    "flex w-full flex-col gap-2 rounded-lg border px-4 py-3 text-sm shadow-sm",
+                    "flex w-full flex-col gap-2 rounded-lg border contrast-more:border-border forced-colors:border-[CanvasText] px-4 py-3 text-sm shadow-sm",
                     TONE_CONTAINER[tone],
                     acked && "opacity-90",
                     className
