@@ -203,11 +203,21 @@ export function verifyOrganismDrift({ root = ROOT } = {}) {
       assertMatch(errors, rightRailSource, /\bw-64\b/, 'RightRail should include "w-64"');
     }
     if (defaultVariant?.stroke?.thickness === 1) {
+      // 面で区切る第2段（2026-09-23）。1px の幅は残し、色は通常状態では
+      // 透明・ハイコントラストで戻す（箱 C）。幅を残すのはモード間で
+      // レイアウトがずれないため。
       assertMatch(errors, rightRailSource, /\bborder-l\b/, 'RightRail should include "border-l"');
-      assertMatch(errors, rightRailSource, /\bborder-border\b/, 'RightRail should include "border-border"');
+      assertMatch(
+        errors,
+        rightRailSource,
+        /contrast-more:border-l-border/,
+        'RightRail should restore its stroke with "contrast-more:border-l-border"'
+      );
     }
     if (defaultVariant?.fill) {
-      assertMatch(errors, rightRailSource, /\bbg-background\b/, 'RightRail should include "bg-background"');
+      // bg-background は親の地と同値（1.000:1）で、枠を外すとレールが消えた。
+      // .pen の fill は旧パレットの hex のままで追従していない＝#1025。
+      assertMatch(errors, rightRailSource, /\bbg-card\b/, 'RightRail should include "bg-card"');
     }
     },
   });

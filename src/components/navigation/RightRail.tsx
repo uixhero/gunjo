@@ -13,7 +13,7 @@ const RightRail = React.forwardRef<HTMLDivElement, RightRailProps>(
             <div
                 ref={ref}
                 className={cn(
-                    "z-30 flex h-full min-h-0 flex-shrink-0 flex-col border-l border-border bg-background",
+                    "z-30 flex h-full min-h-0 flex-shrink-0 flex-col border-l border-l-transparent contrast-more:border-l-border forced-colors:border-l-[CanvasText] bg-card",
                     width,
                     className
                 )}

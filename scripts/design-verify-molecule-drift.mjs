@@ -1442,7 +1442,10 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
       assertMatch(errors, menubarSource, /\bborder\b/, 'Menubar should include "border"');
     }
     if (defaultVariant?.fill && defaultVariant.fill !== "transparent") {
-      assertMatch(errors, menubarSource, /\bbg-background\b/, 'Menubar should include "bg-background"');
+      // 面で区切る第2段（2026-09-23）で bg-background → bg-card。地と同値
+      // （1.000:1）だったので枠を外すとバーが消えた。.pen の fill は旧パレット
+      // の hex のままで追従していない＝#1025。
+      assertMatch(errors, menubarSource, /\bbg-card\b/, 'Menubar should include "bg-card"');
     }
 
     const trigger = menubar.nodes?.trigger;
