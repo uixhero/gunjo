@@ -65,9 +65,10 @@ export const LoyaltySummaryCard = React.forwardRef<HTMLDivElement, LoyaltySummar
         ref={ref}
         className={cn(
           "w-full overflow-hidden rounded-xl p-5",
+          "border border-transparent contrast-more:border-border forced-colors:border-[CanvasText]",
           brand
-            ? "border border-primary-border bg-primary-strong text-primary-strong-foreground shadow-sm"
-            : "border bg-card text-card-foreground",
+            ? "bg-primary-strong text-primary-strong-foreground shadow-sm"
+            : "bg-card text-card-foreground",
           className
         )}
         {...props}

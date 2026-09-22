@@ -318,7 +318,7 @@ const ConcentricProgressCard = React.forwardRef<
                                 <div
                                     key={`${chartLabelToString(metric.label, "Metric")}-${index}`}
                                     className={cn(
-                                        "min-w-0 rounded-md border bg-card",
+                                        "min-w-0 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card",
                                         styles.metric
                                     )}
                                 >
@@ -505,13 +505,17 @@ const ConcentricProgressCard = React.forwardRef<
                                             <button
                                                 type="button"
                                                 className={cn(
-                                                    "grid min-w-0 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-2 rounded-md border bg-card px-3 py-2 text-left transition-colors",
+                                                    "grid min-w-0 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2 text-left transition-colors",
                                                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                                                     onRingSelect
                                                         ? "cursor-pointer hover:bg-accent/10"
                                                         : "cursor-default",
                                                     isSelected &&
-                                                        "border-foreground shadow-sm"
+                                                                                                            // 選ばれている行は面を一段上げて示す（DECISIONS.md 2026-09-22）。
+                                                    // ⛔ border-foreground の枠で示していたのをやめた＝面の濃淡で伝える方針と
+                                                    // 逆を向いていたため。bg-muted はカードの上で light 1.306 / dark 1.139
+                                                    // （2026-09-23 実測）。shadow-sm は据え置き。
+                                                    "bg-muted shadow-sm"
                                                 )}
                                                 onClick={() => onRingSelect?.(ring, index)}
                                             >
@@ -545,7 +549,7 @@ const ConcentricProgressCard = React.forwardRef<
                     </div>
 
                     {caption ? (
-                        <div className="rounded-md border bg-muted/30 px-3 py-2 text-xs text-muted-foreground">
+                        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-xs text-muted-foreground">
                             {caption}
                         </div>
                     ) : null}

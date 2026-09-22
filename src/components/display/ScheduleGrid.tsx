@@ -80,13 +80,20 @@ export interface ScheduleGridProps
 
 // Literal tone classes so Tailwind v4 keeps them (dynamic class names get tree-shaken).
 const CELL_TONE: Record<ScheduleCellTone, string> = {
-    default: "bg-card border-border",
-    muted: "bg-muted/40 border-border text-muted-foreground",
-    primary: "bg-primary/10 border-primary/40",
-    info: "bg-info-subtle border-info-border",
-    success: "bg-success-subtle border-success-border",
-    warning: "bg-warning-subtle border-warning-border",
-    destructive: "bg-destructive-subtle border-destructive-border ring-1 ring-destructive",
+// 淡色の面は枠を持たない（DECISIONS.md 2026-09-22・Badge と同じ扱い）。
+// 区切りは面の濃淡で、カードの上で 1.14〜1.33 / 地の上で 1.10〜1.50
+// （light・dark 両方の実測・2026-09-23）。⚠️ ハイコントラストで戻す枠に
+// tone ごとの *-border を使わないこと（濃くした面と同化する）。基底クラスの
+// contrast-more:border-border に集約してある。
+// ⛔ 枡は罫線を共有した格子ではなく gap-1.5 で離れた札なので、ここの枠は
+// 格子線ではなく札の輪郭＝箱 A。見出しの札（bg-muted・枠なし）と同じ語彙に揃える。
+    default: "bg-card border-transparent",
+    muted: "bg-muted border-transparent text-muted-foreground",
+    primary: "bg-primary/10 border-transparent",
+    info: "bg-info-subtle border-transparent",
+    success: "bg-success-subtle border-transparent",
+    warning: "bg-warning-subtle border-transparent",
+    destructive: "bg-destructive-subtle border-transparent ring-1 ring-destructive",
 }
 
 function axisText(item: ScheduleAxisItem): string {
@@ -316,7 +323,7 @@ const ScheduleGrid = React.forwardRef<HTMLDivElement, ScheduleGridProps>(
                                         }
                                         onFocus={() => setActive({ r: ri, c: ci })}
                                         className={cn(
-                                            "rounded-md border p-2 text-left text-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                                            "rounded-md border contrast-more:border-border forced-colors:border-[CanvasText] p-2 text-left text-sm outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                                             CELL_TONE[cell?.tone ?? "default"],
                                             interactive && "cursor-pointer hover:border-ring/60",
                                             cell?.selected && "ring-2 ring-primary ring-offset-2 ring-offset-background",

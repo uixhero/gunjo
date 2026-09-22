@@ -406,10 +406,10 @@ const LabeledDonutCard = React.forwardRef<
                                             <button
                                                 type="button"
                                                 className={cn(
-                                                    "grid min-w-0 cursor-pointer grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1 rounded-md border bg-card px-3 py-2 text-left transition-colors",
+                                                    "grid min-w-0 cursor-pointer grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-3 gap-y-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2 text-left transition-colors",
                                                     "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                                                     isActive &&
-                                                        "border-foreground bg-muted/60 shadow-sm"
+                                                        "bg-muted shadow-sm"
                                                 )}
                                                 aria-current={isActive ? "true" : undefined}
                                                 onPointerEnter={() => {
@@ -461,7 +461,7 @@ const LabeledDonutCard = React.forwardRef<
                     </div>
 
                     {caption ? (
-                        <div className="rounded-md border bg-muted/30 px-3 py-2 text-xs text-muted-foreground">
+                        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-xs text-muted-foreground">
                             {caption}
                         </div>
                     ) : null}

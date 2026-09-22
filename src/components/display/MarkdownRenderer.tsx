@@ -113,7 +113,7 @@ const defaultMarkdownComponents: NonNullable<ReactMarkdownOptions["components"]>
         <hr className={cn("my-6 border-border/70", className)} {...withoutNode(props)} />
     ),
     pre: ({ className, ...props }) => (
-        <pre className={cn("my-4 overflow-auto rounded-md border border-border/70 bg-muted p-4 text-sm text-foreground", className)} {...withoutNode(props)} />
+        <pre className={cn("my-4 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 text-sm text-foreground", className)} {...withoutNode(props)} />
     ),
     // `break-words` only reaches backtick spans: code inside a fenced block
     // inherits `white-space: pre` from the `pre` above, which disables wrapping

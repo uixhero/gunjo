@@ -44,12 +44,17 @@ export interface ItineraryProps extends React.HTMLAttributes<HTMLDivElement> {
 }
 
 const MARKER_TONE: Record<ItineraryTone, string> = {
-  default: "border-border bg-secondary text-secondary-foreground",
-  primary: "border-primary/40 bg-primary/15 text-foreground",
-  info: "border-info-border bg-info-subtle text-info",
-  success: "border-success-border bg-success-subtle text-success",
-  warning: "border-warning-border bg-warning-subtle text-warning",
-  muted: "border-border bg-muted text-muted-foreground",
+  // 淡色の面は枠を持たない（DECISIONS.md 2026-09-22・Badge と同じ扱い）。
+  // 区切りは面の濃淡で、カードの上で 1.14〜1.33 / 地の上で 1.10〜1.50
+  // （light・dark 両方の実測・2026-09-23）。⚠️ ハイコントラストで戻す枠に
+  // tone ごとの *-border を使わないこと（濃くした面と同化する）。基底クラスの
+  // contrast-more:border-border に集約してある。
+  default: "border-transparent bg-secondary text-secondary-foreground",
+  primary: "border-transparent bg-primary/15 text-foreground",
+  info: "border-transparent bg-info-subtle text-info",
+  success: "border-transparent bg-success-subtle text-success",
+  warning: "border-transparent bg-warning-subtle text-warning",
+  muted: "border-transparent bg-muted text-muted-foreground",
 }
 
 function ItineraryRow({ item, isLast }: { item: ItineraryItem; isLast: boolean }) {

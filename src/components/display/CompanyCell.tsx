@@ -41,7 +41,7 @@ const CompanyCell = React.forwardRef<HTMLDivElement, CompanyCellProps>(
         <span
           aria-hidden="true"
           className={cn(
-            "flex shrink-0 items-center justify-center overflow-hidden border border-border bg-muted font-semibold text-muted-foreground",
+            "flex shrink-0 items-center justify-center overflow-hidden border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-semibold text-muted-foreground",
             s.tile,
             logoClassName
           )}

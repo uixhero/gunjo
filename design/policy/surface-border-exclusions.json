@@ -143,11 +143,40 @@
       "match": {
         "files": [
           "^src/components/inputs/FilterButton\\.tsx$",
-          "^src/components/inputs/LayerMenu\\.tsx$"
+          "^src/components/inputs/LayerMenu\\.tsx$",
+          "^src/components/display/CheckboxCard\\.tsx$",
+          "^src/components/display/RadioCard\\.tsx$"
         ],
         "classPattern": "border-primary|border-input"
       },
-      "reason": "押せる部品の境界と、その状態（箱 B）。FilterButton の引き金は3つの状態を枠の色で表している（既定＝破線、開いている＝border-primary-border、選択あり＝border-primary）。塗りはどの状態でも bg-primary-subtle で同じなので、面では3つを区別できない。FilterButton:85 と LayerMenu の Mark はチェックの印で、入／切／中間を「塗り＋枠」と「塗り無し＋枠」の対で表す＝Checkbox と同じ形（text-input-family と同じ理屈）。いずれも WCAG 1.4.11（UI部品の境界は 3:1）の対象。",
+      "reason": "押せる部品の境界と、その状態（箱 B）。FilterButton の引き金は3つの状態を枠の色で表している（既定＝破線、開いている＝border-primary-border、選択あり＝border-primary）。塗りはどの状態でも bg-primary-subtle で同じなので、面では3つを区別できない。FilterButton:85 と LayerMenu の Mark はチェックの印で、入／切／中間を「塗り＋枠」と「塗り無し＋枠」の対で表す＝Checkbox と同じ形（text-input-family と同じ理屈）。いずれも WCAG 1.4.11（UI部品の境界は 3:1）の対象。 2026-09-23 追記: CheckboxCard と RadioCard の印を追加した（カード本体は箱 A で枠を外し、ring-1 ring-primary で選択を示す。印の四角・丸だけを残す）。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "grid-and-scale-lines",
+      "match": {
+        "files": [
+          "^src/components/display/Gantt\\.tsx$",
+          "^src/components/display/WeekView\\.tsx$",
+          "^src/components/display/QuadrantMatrix\\.tsx$",
+          "^src/components/display/EventCalendar\\.tsx$"
+        ],
+        "classPattern": "border-[rbtl]\\b|border-[rbtl]-"
+      },
+      "reason": "格子線・目盛り（箱 B）。罫線を共有して並ぶ枡の境目そのもので、表のグリッド線（table-grid-lines）と同じ理屈＝面の濃淡に置き換えると「何行目の何列目か」「どこが1日の区切りか」が読めなくなる。内訳: Gantt は行見出し列と時間軸の境（255・281）と日の格子線・目盛り（262・295）、WeekView は日の列の境（221・265）、QuadrantMatrix は4象限を分ける十字の軸（173・174・175）、EventCalendar は週見出しと本体の境（255）と日の枡の格子（296）。⛔ 同じファイルの外枠パネル（Gantt の器・EventCalendar:252・QuadrantMatrix:164/295/313）は箱 A で、同じ回に枠を外してある＝この規則は片側だけの罫線（border-r / border-b など）にしか当たらないので、全周の枠は今も検査で落ちる。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "knockout-ring-over-image",
+      "match": {
+        "files": [
+          "^src/components/display/Avatar\\.tsx$"
+        ],
+        "classPattern": "border-2 border-background"
+      },
+      "reason": "抜きの輪（箱 B）。Avatar の在席の点は利用者の顔写真の角に重なるので、背後は何色か分からない。border-2 border-background は「枠」ではなく、地の色で写真を抜いて点を写真から切り離す輪＝面の濃淡では代われない（親が画像で、親の background-color という概念が無い）。点そのものの色（bg-success / warning / destructive / muted-foreground）が状態を伝える役で、輪はその点を読めるようにする下敷き。",
       "addedOn": "2026-09-23",
       "expiresOn": "permanent"
     }

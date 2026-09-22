@@ -921,11 +921,15 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
 
     const hasStroke = kbd.variants.some((v) => v?.stroke?.thickness === 1);
     if (hasStroke) {
+      // 面で区切る第2段（2026-09-23）。キーキャップは bg-secondary の面で
+      // 区切る（カードの上で light 1.210 / dark 1.139 の実測）。1px の幅は
+      // 残し、色は通常状態では透明・ハイコントラストで戻す（箱 C）。
+      // ⛔ 旧値の border-input は入力欄用のトークンで、Kbd は入力ではない。
       assertMatch(
         errors,
         kbdSource,
-        /\bborder border-input\b/,
-        'Kbd should include "border border-input"'
+        /\bborder border-transparent contrast-more:border-border\b/,
+        'Kbd should include "border border-transparent contrast-more:border-border"'
       );
     }
 

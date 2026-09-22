@@ -123,7 +123,7 @@ export const TicketStub = React.forwardRef<HTMLDivElement, TicketStubProps>(
     const kindLabel = format === "qr" ? codeKindLabels?.qr ?? "QRコード" : codeKindLabels?.barcode ?? "バーコード"
     const alt = codeAlt ?? (formatCodeAlt ? formatCodeAlt({ kindLabel, value, format }) : `${kindLabel}：${value}`)
     return (
-      <div ref={ref} className={cn("w-full overflow-hidden rounded-xl border bg-card text-card-foreground", className)} {...props}>
+      <div ref={ref} className={cn("w-full overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card text-card-foreground", className)} {...props}>
         {children != null && <div className="p-4">{children}</div>}
         {perforation && children != null && <Perforation />}
         <div className="flex flex-col items-center gap-2 p-4">

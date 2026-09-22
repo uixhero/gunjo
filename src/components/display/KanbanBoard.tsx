@@ -99,7 +99,7 @@ function KanbanBoard<T>({
                     <section
                         key={col.id}
                         aria-labelledby={headingId}
-                        className="flex shrink-0 flex-col rounded-lg border border-border bg-muted/30"
+                        className="flex shrink-0 flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted"
                         style={{ width: columnWidth }}
                     >
                         <div className="flex items-center justify-between gap-2 border-b border-border px-3 py-2">
@@ -123,14 +123,14 @@ function KanbanBoard<T>({
                                             key={getItemId(item)}
                                             type="button"
                                             onClick={() => onCardSelect(item)}
-                                            className="w-full cursor-pointer rounded-md border border-border bg-card p-2 text-left shadow-sm outline-none transition-colors hover:border-ring/60 hover:bg-muted/40 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                                            className="w-full cursor-pointer rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-2 text-left shadow-sm outline-none transition-colors hover:border-ring/60 hover:bg-muted/40 focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                                         >
                                             {renderCard(item)}
                                         </button>
                                     ) : (
                                         <div
                                             key={getItemId(item)}
-                                            className="rounded-md border border-border bg-card p-2 shadow-sm"
+                                            className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-2 shadow-sm"
                                         >
                                             {renderCard(item)}
                                         </div>

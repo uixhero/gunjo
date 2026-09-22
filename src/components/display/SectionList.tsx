@@ -58,7 +58,7 @@ const SectionList = React.forwardRef<HTMLDivElement, SectionListProps>(
           >
             <div
               className={cn(
-                "flex items-baseline justify-between gap-2 border-b border-border bg-muted/60 px-3 py-1.5",
+                "flex items-baseline justify-between gap-2 border-b border-b-transparent contrast-more:border-b-border forced-colors:border-b-[CanvasText] bg-muted px-3 py-1.5",
                 stickyHeaders && "sticky top-0 z-10 backdrop-blur"
               )}
             >
@@ -76,7 +76,7 @@ const SectionList = React.forwardRef<HTMLDivElement, SectionListProps>(
             <div className="min-w-0">{section.content}</div>
 
             {section.footer != null ? (
-              <div className="flex items-baseline justify-between gap-2 border-t border-border bg-accent/40 px-3 py-1.5 text-sm font-medium tabular-nums text-foreground">
+              <div className="flex items-baseline justify-between gap-2 border-t border-t-transparent contrast-more:border-t-border forced-colors:border-t-[CanvasText] bg-accent px-3 py-1.5 text-sm font-medium tabular-nums text-foreground">
                 {section.footer}
               </div>
             ) : null}
