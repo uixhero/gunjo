@@ -14,6 +14,13 @@ import {
 import { readNamedSources } from "./design-verify-source-files.mjs";
 import { readCategorySpec } from "./design-verify-spec-paths.mjs";
 
+// ⚠️ ここの期待クラスは .pen の fill（hex の直値）から導出されたものではなく、
+// 手書きで置いてある。面で区切る方針（DECISIONS.md 2026-09-22）でトークン値が
+// 変わったあと、.pen は旧パレットの hex のまま固まっているので、両者は別のこと
+// を言っている（例: chatTemplate.sidebarList の fill は #f1f5f9 だが、その値は
+// いま --muted ではなく --background）。2026-09-23 の第2段では塗りを上げた分だけ
+// 期待クラスを直し、.pen 側は触っていない＝一時的な穴で、#1025 に切り出した。
+
 const TEMPLATE_SPEC_PATH = "design/component-specs/patterns-core.json";
 
 export function verifyTemplateDrift({ root = ROOT } = {}) {
@@ -460,8 +467,8 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
       assertMatch(
         errors,
         kanbanSource,
-        /bg-muted\/40/,
-        'KanbanTemplate header should include "bg-muted/40"'
+        /bg-muted\b/,
+        'KanbanTemplate header should include "bg-muted"'
       );
     }
 
@@ -507,8 +514,8 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
       assertMatch(
         errors,
         chatSource,
-        /bg-muted\/30/,
-        'ChatTemplate sidebar list should include "bg-muted/30"'
+        /bg-muted\b/,
+        'ChatTemplate sidebar list should include "bg-muted"'
       );
     }
 
@@ -532,8 +539,8 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
       assertMatch(
         errors,
         chatSource,
-        /p-4 border-t bg-background/,
-        'ChatTemplate composer should include "p-4 border-t bg-background"'
+        /p-4 border-t border-t-transparent[^"]*bg-card/,
+        'ChatTemplate composer should include "p-4 border-t ... bg-card"'
       );
     }
 
@@ -702,8 +709,8 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
       assertMatch(
         errors,
         bannalyzeSource,
-        /bg-muted\/10/,
-        'BannalyzeTemplate sidebar should include "bg-muted/10"'
+        /bg-muted\b/,
+        'BannalyzeTemplate sidebar should include "bg-muted"'
       );
     }
 
@@ -802,8 +809,8 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
       assertMatch(
         errors,
         mediaLibrarySource,
-        /bg-muted\/10/,
-        'MediaLibraryTemplate sidebar should include "bg-muted/10"'
+        /bg-muted\b/,
+        'MediaLibraryTemplate sidebar should include "bg-muted"'
       );
     }
 

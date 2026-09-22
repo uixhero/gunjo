@@ -4,7 +4,16 @@
     {
       "id": "table-grid-lines",
       "match": {
-        "tags": ["thead", "tbody", "tfoot", "tr", "th", "td", "caption", "colgroup"]
+        "tags": [
+          "thead",
+          "tbody",
+          "tfoot",
+          "tr",
+          "th",
+          "td",
+          "caption",
+          "colgroup"
+        ]
       },
       "reason": "表のグリッド線（箱 B）。行と列の対応そのものが罫線で伝わるので、面の濃淡に置き換えると何行目のどの列かが読めなくなる。thead/tfoot の帯に塗りがあっても、そこに引く border-t / border-b は区切りではなく表の構造。",
       "addedOn": "2026-09-22",
@@ -13,7 +22,9 @@
     {
       "id": "badge-outline-variant",
       "match": {
-        "files": ["^src/components/display/Badge\\.tsx$"],
+        "files": [
+          "^src/components/display/Badge\\.tsx$"
+        ],
         "sourcePattern": "badgeVariantClasses\\.outline"
       },
       "reason": "outline の Badge（箱 B）。塗りを持たず、枠が variant の identity そのもの。枠を外すと default との見分けが付かなくなる。現状は bg-transparent なのでこの検査には元から出ないが、将来 bg-* を足したときに黙って違反にならないよう規則として書いておく。",
@@ -39,10 +50,27 @@
     {
       "id": "separator",
       "match": {
-        "files": ["^src/components/display/Separator\\.tsx$"]
+        "files": [
+          "^src/components/display/Separator\\.tsx$"
+        ]
       },
       "reason": "Separator（箱 B）。罫線そのものが部品。現状は h-px + bg-border で枠クラスを使っていないのでこの検査には出ないが、規則として書いておく。",
       "addedOn": "2026-09-22",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "translucent-floating-bar",
+      "match": {
+        "files": [
+          "^src/components/patterns/BannalyzeTemplate\\.tsx$",
+          "^src/components/patterns/LandingTemplate\\.tsx$",
+          "^src/components/feedback/StickyNoticeBar\\.tsx$",
+          "^src/components/display/BottomActionBar\\.tsx$"
+        ],
+        "classPattern": "backdrop-blur"
+      },
+      "reason": "貼り付く半透明の帯（箱 B）。bg-background/95 + backdrop-blur は背後の内容が透けるのが設計＝親の面との段差は 1.000:1（2026-09-23 実測。/95 でも合成後は地と同値）で、面では区切れない。不透明に上げると backdrop-blur の意味が無くなるので、枠が下の内容と帯を分ける唯一の手段。⛔ この規則は backdrop-blur を持つ束にだけ当たる（同じファイルの不透明な面は対象外＝ちゃんと落ちる）。",
+      "addedOn": "2026-09-23",
       "expiresOn": "permanent"
     }
   ]

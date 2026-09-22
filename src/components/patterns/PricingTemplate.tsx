@@ -155,10 +155,11 @@ function PricingTemplate({
                         <div
                             key={plan.id}
                             className={cn(
-                                "relative flex flex-col gap-3 rounded-lg border bg-card p-6 text-card-foreground",
-                                plan.featured
-                                    ? "border-primary shadow-lg ring-2 ring-primary"
-                                    : "border-border"
+                                "relative flex flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-6 text-card-foreground",
+                                // 選ばれた案は ring-2 ring-primary で示す（枠ではなく面と輪）。
+                                // 平常の案は枠を持たず、bg-card と地の段差（light 1.098 /
+                                // dark 1.202・2026-09-23 実測）で区切る。
+                                plan.featured && "shadow-lg ring-2 ring-primary"
                             )}
                         >
                             {plan.featured ? (

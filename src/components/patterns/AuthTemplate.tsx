@@ -22,7 +22,7 @@ export function AuthTemplate({
                 under `.dark`, so the panel stays dark in both themes — the
                 design source fills it with a fixed dark (#18181b), not with
                 `foreground`, which flips. Same tokens as CodeBlock. (#693) */}
-            <div className="relative hidden h-full flex-col border-r bg-muted p-10 text-[hsl(var(--pure-white))] lg:flex">
+            <div className="relative hidden h-full flex-col border-r border-r-transparent contrast-more:border-r-border forced-colors:border-r-[CanvasText] bg-muted p-10 text-[hsl(var(--pure-white))] lg:flex">
                 <div className="absolute inset-0 bg-[hsl(var(--pure-black))]" />
                 <div className="relative z-20 flex items-center text-lg font-medium">
                     {logo || (
