@@ -550,7 +550,11 @@ export function collectSurfaceBorderReport({ root = ROOT } = {}) {
     const relativeFilePath = relative(root, filePath)
     const content = readFileSync(filePath, "utf-8")
     for (const missing of collectMissingRestores(relativeFilePath, content)) {
-      if (matchExclusion({ ...missing, tag: null }, restoreExceptions)) continue
+      const exception = matchExclusion({ ...missing, tag: null }, restoreExceptions)
+      if (exception) {
+        exception.hits += 1
+        continue
+      }
       missingRestores.push(missing)
     }
     for (const finding of collectFileFindings(relativeFilePath, content)) {
@@ -599,6 +603,8 @@ function buildMarkdown(report, { root }) {
     `- 走査したファイル: ${report.scannedFiles}（\`${TARGET_PATH}/**/*.tsx\`）`,
     `- **残り: ${report.remaining.length} 件 / ${report.remainingFileCount} ファイル**`,
     `- 箱 B として除外: ${report.excluded.length} 件（\`${EXCLUSION_POLICY_PATH}\`）`,
+    `- 箱 C の戻しが欠けている面: ${report.missingRestores.length} 件` +
+      `（方針と無関係な border-transparent の例外は ${report.restoreExceptionEntries.reduce((sum, entry) => sum + entry.hits, 0)} 件）`,
     "",
     "読み方: `dark` 状態の行は `dark:` の付いたクラスで上書きした後の状態。",
     "`contrast-more:` と `forced-colors:` の枠は「ハイコントラストで戻す枠」（箱 C）なので",
