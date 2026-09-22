@@ -89,7 +89,11 @@ export const FilterChips = React.forwardRef<HTMLDivElement, FilterChipsProps>(
                 "inline-flex h-9 shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap rounded-full border px-3.5 text-sm font-medium transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
                 active
                   ? "border-primary bg-primary text-primary-foreground hover:bg-primary/90"
-                  : "border-border bg-background text-foreground hover:bg-accent hover:text-accent-foreground"
+                  // 未選択の地は bg-card。⛔ bg-background にしないこと＝ページの地と
+                  // 完全同値（1.000:1）になり、枠を外した瞬間にチップが消える
+                  // （2026-09-22 に --background を白から下げた副作用で実際に出た）。
+                  // bg-card なら light 1.096 / dark 1.207 で両モードとも段差が残る。
+                  : "border-border bg-card text-foreground hover:bg-accent hover:text-accent-foreground"
               )}
             >
               {chip.icon != null && (

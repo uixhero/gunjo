@@ -150,6 +150,8 @@
     "design:verify:css-vars": "node scripts/design-verify-css-variable-coverage.mjs",
     "design:verify:scale-tokens": "node scripts/design-verify-scale-tokens.mjs",
     "design:verify:color-contrast": "node scripts/design-verify-color-contrast.mjs",
+    "design:verify:high-contrast-border": "node scripts/design-verify-high-contrast-border.mjs",
+    "design:verify:high-contrast-border:self-test": "node scripts/design-verify-high-contrast-border.mjs --self-test",
     "design:verify:app-globals": "node scripts/design-verify-app-globals-sync.mjs",
     "design:verify:generated-stubs": "node scripts/design-verify-generated-stub-coverage.mjs",
     "design:verify:generated-stubs:report": "node scripts/design-verify-generated-stub-coverage.mjs --report",

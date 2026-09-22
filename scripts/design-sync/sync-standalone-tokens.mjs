@@ -165,7 +165,7 @@ const HIGH_CONTRAST_BORDER = `/* ハイコントラスト（prefers-contrast: mo
 
     .dark,
     [data-theme="dark"] {
-        --border: 215 20% 45%;
+        --border: 215 20% 55%;
     }
 }
 `;
