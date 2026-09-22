@@ -174,7 +174,7 @@ export const StatusLevel = React.forwardRef<HTMLSpanElement, StatusLevelProps>(
         const chip = showLabel ? (
             <span
                 className={cn(
-                    "inline-flex w-fit shrink-0 items-center rounded-full border font-semibold",
+                    "inline-flex w-fit shrink-0 items-center rounded-full border contrast-more:border-border forced-colors:border-[CanvasText] font-semibold",
                     CHIP_SIZE[size],
                     TONE_CHIP[step?.tone ?? "default"],
                     chipClassName

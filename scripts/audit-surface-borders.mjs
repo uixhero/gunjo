@@ -165,6 +165,47 @@ export function analyzeClassBag(classString, { state = "base" } = {}) {
   return { fills, borderClasses, sides: visibleSides }
 }
 
+/**
+ * 箱 C の戻しが束に入っているか。
+ * 箱 A で枠を外した面は、ハイコントラスト（prefers-contrast: more）と
+ * forced-colors（Windows ハイコントラスト）で枠を戻す約束になっている。
+ * 戻しが無いまま枠を透明にすると、面の濃淡しか区切りが無い利用者にとって
+ * 区切りが完全に消える＝この検査が無いと黙って落ちる（2026-09-23 に
+ * StatusLevel / Itinerary / WeekView の3件を実際に落とした）。
+ */
+export function analyzeHighContrastRestore(classString) {
+  let width = false
+  let transparent = false
+  let contrastMore = false
+  let forcedColors = false
+  const fills = []
+
+  for (const token of tokenize(classString)) {
+    const { variants, base } = splitVariants(token)
+    const border = classifyBorderClass(base)
+
+    if (variants.length === 0) {
+      if (isFillClass(base)) { fills.push(token); continue }
+      if (!border) continue
+      if (border.kind === "width" && border.width > 0) width = true
+      if (border.kind === "color" && isTransparentColor(border.color)) transparent = true
+      continue
+    }
+    // ⚠️ classifyBorderClass は `border-[CanvasText]` の角括弧を「幅」と読む
+    // （WIDTH_VALUE が任意値の角括弧に当たるため）。戻しの判定はここで
+    // 文字列のまま見る＝`border-transparent` 以外の色指定なら戻しとみなす。
+    if (!base.startsWith("border")) continue
+    if (/-transparent$|\/0$/.test(base)) continue
+    if (base === "border" || /^border(?:-[trblxyse])?(?:-\d+)?$/.test(base)) continue
+    if (variants.includes("contrast-more")) contrastMore = true
+    if (variants.includes("forced-colors")) forcedColors = true
+  }
+
+  if (fills.length === 0 || !width || !transparent) return null
+  if (contrastMore && forcedColors) return null
+  return { fills, contrastMore, forcedColors }
+}
+
 // ---------------------------------------------------------------------------
 // ソースからクラスの束を取り出す
 // ---------------------------------------------------------------------------
@@ -297,6 +338,40 @@ function expandWithClassMaps(regionSource, classMapEntries) {
   return classMapEntries.filter((entry) => referenced.has(entry.variable))
 }
 
+/**
+ * 箱 C の戻しが欠けている束を集める。findings と同じ region / 表の読み方を
+ * 使うので、検出の取りこぼし方も同じに揃う。
+ */
+export function collectMissingRestores(relativeFilePath, content) {
+  const missing = []
+  const classMapEntries = collectClassMapEntries(content)
+  const seen = new Set()
+
+  const record = (line, classString, source) => {
+    const result = analyzeHighContrastRestore(classString)
+    if (!result) return
+    const key = `${relativeFilePath}:${line}`
+    if (seen.has(key)) return
+    seen.add(key)
+    missing.push({ file: relativeFilePath, line, source, classString, ...result })
+  }
+
+  for (const region of collectClassNameRegions(content)) {
+    const regionSource = content.slice(region.start, region.end)
+    const own = literalsIn(regionSource).join(" ")
+    const inherited = expandWithClassMaps(regionSource, classMapEntries)
+    if (inherited.length === 0) {
+      record(region.line, own, "className")
+      continue
+    }
+    for (const entry of inherited) {
+      record(entry.line, `${own} ${entry.classString}`, `className+${entry.variable}.${entry.key}`)
+    }
+  }
+
+  return missing.sort((a, b) => a.line - b.line)
+}
+
 export function collectFileFindings(relativeFilePath, content) {
   const findings = []
   const classMapEntries = collectClassMapEntries(content)
@@ -373,9 +448,9 @@ function isNonEmptyString(value) {
 //   sourcePattern — 出どころのラベル（`badgeVariantClasses.outline` など）
 //   classPattern  — クラスの束そのもの
 // 複数書いた場合は全部に当たったものだけを除外する。
-export function loadExclusionPolicy(root) {
+export function loadExclusionPolicy(root, { key = "exclusions" } = {}) {
   const policy = JSON.parse(readFileSync(join(root, EXCLUSION_POLICY_PATH), "utf-8"))
-  const rawEntries = Array.isArray(policy?.exclusions) ? policy.exclusions : []
+  const rawEntries = Array.isArray(policy?.[key]) ? policy[key] : []
   const entries = []
   const policyIssues = []
   const today = new Date().toISOString().slice(0, 10)
@@ -463,13 +538,21 @@ function listTsxFiles(rootDir) {
 
 export function collectSurfaceBorderReport({ root = ROOT } = {}) {
   const { entries: exclusions, policyIssues } = loadExclusionPolicy(root)
+  const { entries: restoreExceptions, policyIssues: restorePolicyIssues } = loadExclusionPolicy(root, {
+    key: "highContrastRestoreExceptions",
+  })
   const files = listTsxFiles(join(root, TARGET_PATH))
 
   const remaining = []
   const excluded = []
+  const missingRestores = []
   for (const filePath of files) {
     const relativeFilePath = relative(root, filePath)
     const content = readFileSync(filePath, "utf-8")
+    for (const missing of collectMissingRestores(relativeFilePath, content)) {
+      if (matchExclusion({ ...missing, tag: null }, restoreExceptions)) continue
+      missingRestores.push(missing)
+    }
     for (const finding of collectFileFindings(relativeFilePath, content)) {
       const exclusion = matchExclusion(finding, exclusions)
       if (exclusion) {
@@ -492,8 +575,10 @@ export function collectSurfaceBorderReport({ root = ROOT } = {}) {
     excluded,
     remainingFileCount: byFile.size,
     byFile: [...byFile.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])),
+    missingRestores,
+    restoreExceptionEntries: restoreExceptions.map((entry) => ({ id: entry.id, reason: entry.reason, hits: entry.hits })),
     exclusionEntries: exclusions.map((entry) => ({ id: entry.id, reason: entry.reason, hits: entry.hits })),
-    policyIssues,
+    policyIssues: [...policyIssues, ...restorePolicyIssues],
   }
 }
 
@@ -664,6 +749,43 @@ const SELF_TEST_FIXTURES = [
   },
 ]
 
+// 箱 C の戻しの固定文。1本目は「実際に落とした形」＝StatusLevel が
+// tone 側を border-transparent にしたのに基底に戻しを書かなかった形。
+const RESTORE_FIXTURES = [
+  {
+    name: "枠を透明にして戻しが無い面を検出する（実際に落とした形）",
+    classString: "inline-flex rounded-full border font-semibold border-transparent bg-secondary",
+    expectMissing: true,
+  },
+  {
+    name: "contrast-more と forced-colors の両方があれば通す",
+    classString:
+      "rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-secondary",
+    expectMissing: false,
+  },
+  {
+    name: "contrast-more だけでは足りない（forced-colors で面が OS 色に消える）",
+    classString: "rounded-full border border-transparent contrast-more:border-border bg-secondary",
+    expectMissing: true,
+  },
+  {
+    name: "片側だけの罫線も辺付きの戻しで通す",
+    classString:
+      "border-b border-b-transparent contrast-more:border-b-border forced-colors:border-b-[CanvasText] bg-muted",
+    expectMissing: false,
+  },
+  {
+    name: "塗りが無ければ対象外",
+    classString: "border border-transparent contrast-more:border-border",
+    expectMissing: false,
+  },
+  {
+    name: "枠の幅が無ければ対象外",
+    classString: "border-transparent bg-card",
+    expectMissing: false,
+  },
+]
+
 const SOURCE_FIXTURES = [
   {
     name: "variant の表を className から引いている部品を、エントリごとに数える",
@@ -735,6 +857,17 @@ function runSelfTest({ verbose } = {}) {
     if (!ok) {
       failures.push(
         `${fixture.name}: expected ${fixture.expect === null ? "null" : describe(fixture.expect)} but got ${describe(result)}`
+      )
+    }
+    if (verbose) console.log(`${ok ? "ok" : "NG"} - ${fixture.name}`)
+  }
+
+  for (const fixture of RESTORE_FIXTURES) {
+    const result = analyzeHighContrastRestore(fixture.classString)
+    const ok = fixture.expectMissing ? result !== null : result === null
+    if (!ok) {
+      failures.push(
+        `${fixture.name}: expected ${fixture.expectMissing ? "missing" : "ok"} but got ${result ? "missing" : "ok"}`
       )
     }
     if (verbose) console.log(`${ok ? "ok" : "NG"} - ${fixture.name}`)
@@ -817,6 +950,23 @@ export function verifySurfaceBorders({ root = ROOT, maxRemaining = 0 } = {}) {
     throwLinesError([
       `audit-surface-borders: ${EXCLUSION_POLICY_PATH} のエントリが不正です。`,
       ...report.policyIssues.map((issue) => `- ${issue}`),
+    ])
+  }
+
+  if (report.missingRestores.length > 0) {
+    throwLinesError([
+      `design:verify: 枠を透明にしたのに、ハイコントラストで戻していない面が ${report.missingRestores.length} 件あります。`,
+      "箱 C（DECISIONS.md 2026-09-22）: 箱 A で外した枠は prefers-contrast: more と forced-colors: active で戻す。",
+      "戻しが無いと、面の濃淡が見えない利用者にとって区切りが完全に消える。",
+      "直し方: その要素の基底クラスに contrast-more:border-border と forced-colors:border-[CanvasText] を足す",
+      "（片側だけの罫線なら contrast-more:border-b-border のように辺を付ける）。",
+      "この方針と関係ない border-transparent（選択の対の片方・入り切りのつまみなど）は",
+      `${EXCLUSION_POLICY_PATH} の highContrastRestoreExceptions に理由つきで登録する。`,
+      ...report.missingRestores.map(
+        (missing) =>
+          `- ${missing.file}:${missing.line}（${missing.source}） 塗り ${missing.fills.join(" ")}` +
+          ` / contrast-more:${missing.contrastMore ? "有" : "無"} forced-colors:${missing.forcedColors ? "有" : "無"}`
+      ),
     ])
   }
 

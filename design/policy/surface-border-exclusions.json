@@ -180,5 +180,43 @@
       "addedOn": "2026-09-23",
       "expiresOn": "permanent"
     }
+  ],
+  "$comment2": "highContrastRestoreExceptions＝「border-transparent を持つが、面で区切る方針で枠を外したわけではない」もの。箱 C の戻しを要求しない。ここへ足す前に KeEem に確認する。",
+  "highContrastRestoreExceptions": [
+    {
+      "id": "filled-state-of-a-two-state-control",
+      "match": {
+        "files": [
+          "^src/components/inputs/Checkbox\\.tsx$",
+          "^src/components/inputs/Switch\\.tsx$"
+        ]
+      },
+      "reason": "入り切りの対の「入」側。Checkbox の checked と Switch のつまみ・軌道は塗りで入を示し、切のほうが border-input の枠を持つ（text-input-family＝箱 B）。つまり枠を外したのではなく、元から「入は塗り・切は枠」の対でできている。ハイコントラストでは切側の枠が残るので、入と切は区別できる。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "pagination-dot-hit-area",
+      "match": {
+        "files": [
+          "^src/components/display/Carousel\\.tsx$"
+        ],
+        "classPattern": "bg-muted-foreground/35"
+      },
+      "reason": "送りの点の当たり判定。Carousel の点は bg-primary（現在）と bg-muted-foreground/35（他）の塗りで現在地を示し、border-transparent は指で押せる大きさを稼ぐための余白として使われている＝区切りの枠ではない。ハイコントラストで枠を足すと点ではなく四角に見える。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "ghost-panel-variant",
+      "match": {
+        "files": [
+          "^src/components/overlay/FloatingPanel\\.tsx$"
+        ]
+      },
+      "reason": "ghost variant。FloatingPanel の ghost は「枠も影も持たない」ことが variant の定義で、既定の variant が枠を持つ。枠を外した面ではなく、枠を持たない形を選べるようにしたもの。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    }
   ]
 }

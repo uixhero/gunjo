@@ -78,7 +78,7 @@ function ItineraryRow({ item, isLast }: { item: ItineraryItem; isLast: boolean }
       <div className="flex flex-col items-center">
         <span
           className={cn(
-            "flex size-8 shrink-0 items-center justify-center rounded-full border",
+            "flex size-8 shrink-0 items-center justify-center rounded-full border contrast-more:border-border forced-colors:border-[CanvasText]",
             MARKER_TONE[item.tone ?? "default"]
           )}
           aria-hidden="true"
