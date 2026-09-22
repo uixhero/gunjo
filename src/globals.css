@@ -41,7 +41,7 @@
         --destructive-border: 0 93% 84%;
 
         --overlay: 0 0% 0%;
-        --background: 0 0% 100%;
+        --background: 210 40% 96%;
         --foreground: 240 20% 6%;
 
         --card: 0 0% 100%;
@@ -169,7 +169,7 @@
         --background: 222.2 84% 4.9%;
         --foreground: 210 40% 98%;
 
-        --card: 222.2 84% 4.9%;
+        --card: 217 33% 13%;
         --card-foreground: 210 40% 98%;
 
         --popover: 222.2 84% 4.9%;
@@ -210,6 +210,23 @@
 }
 
 @layer base {
+    /* ハイコントラスト（prefers-contrast: more）では、区切りを面の濃淡ではなく
+       枠線で伝える。--border は通常時 1.3〜1.4:1 しかないので、ここで 3:1 以上
+       まで上げる。新しいトークン名は足さず --border だけを差し替える。 */
+    @media (prefers-contrast: more) {
+        :root {
+            /* 白地に 6.16:1 */
+            --border: 215 20% 40%;
+        }
+
+        .dark {
+            /* dark の地に 3.89:1 */
+            --border: 215 20% 45%;
+        }
+    }
+}
+
+@layer base {
     * {
         @apply border-border;
     }
@@ -221,6 +238,29 @@
 }
 
 @layer components {
+    /* 枠線ではなく面の濃淡で区切る面。
+       ⚠️ 面の濃淡は forced-colors（Windows ハイコントラスト）で OS の色に
+       置き換えられて消えるので、そこでは枠線に戻す。
+       border: 1px solid transparent は必ず残すこと（レイアウトがモード間で
+       ずれないため。transparent は forced-colors で自動的に色が付かないので、
+       明示の border-color: CanvasText が要る）。 */
+    .gunjo-surface {
+        background-color: hsl(var(--card));
+        border: 1px solid transparent;
+    }
+
+    @media (prefers-contrast: more) {
+        .gunjo-surface {
+            border-color: hsl(var(--border));
+        }
+    }
+
+    @media (forced-colors: active) {
+        .gunjo-surface {
+            border-color: CanvasText;
+        }
+    }
+
     [data-tree-view-row] {
         padding-left: var(--tree-view-indent, 0.5rem);
     }
