@@ -96,7 +96,7 @@ function TaskDetail({
   const copy = kanbanCopy(locale);
   const tone = KANBAN_DETAIL_TONE[column?.tone ?? "default"];
   return (
-    <div className={["rounded-lg border border-l-4 p-3 text-sm shadow-sm", tone].join(" ")}>
+    <div className={["rounded-lg border p-3 text-sm shadow-sm", tone].join(" ")}>
       <div className="flex items-start justify-between gap-3">
         <p className="min-w-0 truncate text-base font-semibold text-foreground">{task.title}</p>
         <Badge variant={task.priority === (locale === "ja" ? "高" : "High") ? "destructive" : "outline"} className="shrink-0">
@@ -310,7 +310,7 @@ export function ReviewKanban() {
               <SheetHeader className="pr-8">
                 <SheetTitle>タスク詳細</SheetTitle>
               </SheetHeader>
-              <div className="rounded-lg border border-l-4 border-warning-border bg-warning-subtle/65 p-3 text-sm shadow-sm">
+              <div className="rounded-lg border border-warning-border bg-warning-subtle/65 p-3 text-sm shadow-sm">
                 <div className="flex items-start justify-between gap-3">
                   <p className="min-w-0 truncate text-base font-semibold text-foreground">{selectedTask.title}</p>
                   <Badge variant={selectedTask.priority === "高" ? "destructive" : "outline"}>{selectedTask.priority}</Badge>
@@ -446,7 +446,7 @@ export function ReviewKanban() {
               <SheetHeader className="pr-8">
                 <SheetTitle>Task details</SheetTitle>
               </SheetHeader>
-              <div className="rounded-lg border border-l-4 border-warning-border bg-warning-subtle/65 p-3 text-sm shadow-sm">
+              <div className="rounded-lg border border-warning-border bg-warning-subtle/65 p-3 text-sm shadow-sm">
                 <div className="flex items-start justify-between gap-3">
                   <p className="min-w-0 truncate text-base font-semibold text-foreground">{selectedTask.title}</p>
                   <Badge variant={selectedTask.priority === "High" ? "destructive" : "outline"}>{selectedTask.priority}</Badge>

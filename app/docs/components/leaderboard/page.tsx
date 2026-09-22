@@ -122,7 +122,7 @@ function LeaderboardDetailPanel({
   value: React.ReactNode;
 }) {
   return (
-    <div className="min-w-0 rounded-lg border border-l-4 border-primary bg-background p-3 text-sm shadow-sm">
+    <div className="min-w-0 rounded-lg border border-primary bg-background p-3 text-sm shadow-sm">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="truncate text-base font-semibold text-foreground">{item.label}</p>
@@ -545,7 +545,7 @@ export function IncidentLeaderboard() {
           </SheetHeader>
           {selectedRoute && selectedDetail ? (
             <div className="mt-4">
-              <div className="min-w-0 rounded-lg border border-l-4 border-primary bg-background p-3 text-sm shadow-sm">
+              <div className="min-w-0 rounded-lg border border-primary bg-background p-3 text-sm shadow-sm">
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="truncate text-base font-semibold text-foreground">{selectedRoute.label}</p>
@@ -602,7 +602,7 @@ export function IncidentLeaderboard() {
       {!isCompactLayout && selectedRoute && selectedDetail ? (
         <aside className="hidden min-w-0 rounded-lg border bg-muted/20 p-3 lg:block">
           <h3 className="mb-3 text-sm font-semibold text-foreground">ランキング詳細</h3>
-          <div className="min-w-0 rounded-lg border border-l-4 border-primary bg-background p-3 text-sm shadow-sm">
+          <div className="min-w-0 rounded-lg border border-primary bg-background p-3 text-sm shadow-sm">
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="truncate text-base font-semibold text-foreground">{selectedRoute.label}</p>
@@ -860,7 +860,7 @@ export function IncidentLeaderboard() {
           </SheetHeader>
           {selectedRoute && selectedDetail ? (
             <div className="mt-4">
-              <div className="min-w-0 rounded-lg border border-l-4 border-primary bg-background p-3 text-sm shadow-sm">
+              <div className="min-w-0 rounded-lg border border-primary bg-background p-3 text-sm shadow-sm">
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="truncate text-base font-semibold text-foreground">{selectedRoute.label}</p>
@@ -917,7 +917,7 @@ export function IncidentLeaderboard() {
       {!isCompactLayout && selectedRoute && selectedDetail ? (
         <aside className="hidden min-w-0 rounded-lg border bg-muted/20 p-3 lg:block">
           <h3 className="mb-3 text-sm font-semibold text-foreground">Ranking details</h3>
-          <div className="min-w-0 rounded-lg border border-l-4 border-primary bg-background p-3 text-sm shadow-sm">
+          <div className="min-w-0 rounded-lg border border-primary bg-background p-3 text-sm shadow-sm">
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="truncate text-base font-semibold text-foreground">{selectedRoute.label}</p>

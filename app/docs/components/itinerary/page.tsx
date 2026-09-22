@@ -47,7 +47,7 @@ function ItineraryDetailContent({
   const toneClass = ITINERARY_DETAIL_TONE[item.tone ?? "default"];
 
   return (
-    <div className={["rounded-lg border border-l-4 p-3 text-sm shadow-sm", toneClass].join(" ")}>
+    <div className={["rounded-lg border p-3 text-sm shadow-sm", toneClass].join(" ")}>
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="mt-1 truncate text-base font-semibold text-foreground">{item.title}</p>
@@ -424,7 +424,7 @@ export function TripItinerary() {
           <SheetHeader className="pr-8">
             <SheetTitle>旅程詳細</SheetTitle>
           </SheetHeader>
-          <div className={["rounded-lg border border-l-4 p-3 text-sm shadow-sm", selectedTone].join(" ")}>
+          <div className={["rounded-lg border p-3 text-sm shadow-sm", selectedTone].join(" ")}>
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="mt-1 truncate text-base font-semibold text-foreground">{selectedItem.title}</p>
@@ -528,7 +528,7 @@ export function TripItinerary() {
           <SheetHeader className="pr-8">
             <SheetTitle>Itinerary details</SheetTitle>
           </SheetHeader>
-          <div className={["rounded-lg border border-l-4 p-3 text-sm shadow-sm", selectedTone].join(" ")}>
+          <div className={["rounded-lg border p-3 text-sm shadow-sm", selectedTone].join(" ")}>
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="mt-1 truncate text-base font-semibold text-foreground">{selectedItem.title}</p>
@@ -780,7 +780,7 @@ const selectedDetail = selectedId ? details[selectedId as keyof typeof details] 
           <SheetHeader className="pr-8">
             <SheetTitle>旅程詳細</SheetTitle>
           </SheetHeader>
-          <div className="rounded-lg border border-l-4 border-info-border bg-info-subtle/55 p-3 text-sm shadow-sm">
+          <div className="rounded-lg border border-info-border bg-info-subtle/55 p-3 text-sm shadow-sm">
             <div className="flex items-start justify-between gap-3">
               <p className="truncate text-base font-semibold text-foreground">{selectedItem.title}</p>
               <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">{selectedDetail.status}</Badge>
@@ -823,7 +823,7 @@ const selectedDetail = selectedId ? details[selectedId as keyof typeof details] 
           <SheetHeader className="pr-8">
             <SheetTitle>Itinerary details</SheetTitle>
           </SheetHeader>
-          <div className="rounded-lg border border-l-4 border-info-border bg-info-subtle/55 p-3 text-sm shadow-sm">
+          <div className="rounded-lg border border-info-border bg-info-subtle/55 p-3 text-sm shadow-sm">
             <div className="flex items-start justify-between gap-3">
               <p className="truncate text-base font-semibold text-foreground">{selectedItem.title}</p>
               <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">{selectedDetail.status}</Badge>

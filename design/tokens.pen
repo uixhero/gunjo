@@ -3638,7 +3638,7 @@
   "variables": {
     "background": {
       "type": "color",
-      "value": "#FFFFFF"
+      "value": "#f1f5f9"
     },
     "foreground": {
       "type": "color",
@@ -3670,7 +3670,7 @@
     },
     "secondary": {
       "type": "color",
-      "value": "#f1f5f9"
+      "value": "#e4eaf1"
     },
     "secondary-foreground": {
       "type": "color",
@@ -3678,7 +3678,7 @@
     },
     "muted": {
       "type": "color",
-      "value": "#f1f5f9"
+      "value": "#dae2ec"
     },
     "muted-foreground": {
       "type": "color",

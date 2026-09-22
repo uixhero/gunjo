@@ -1,6 +1,6 @@
 @layer base {
     :root {
-        --primary-subtle: 220 60% 96%;
+        --primary-subtle: 220 70% 90%;
         --primary-subtle-foreground: 220 43% 28%;
         --primary: 220 62% 49%;
         --primary-foreground: 210 40% 98%;
@@ -8,7 +8,7 @@
         --primary-strong-foreground: 210 40% 98%;
         --primary-border: 220 55% 82%;
 
-        --info-subtle: 214 100% 97%;
+        --info-subtle: 214 95% 90%;
         --info-subtle-foreground: 217 91% 28%;
         --info: 217 91% 60%;
         --info-foreground: 222 47% 11%;
@@ -16,7 +16,7 @@
         --info-strong-foreground: 210 40% 98%;
         --info-border: 214 95% 86%;
 
-        --success-subtle: 138 76% 97%;
+        --success-subtle: 141 60% 86%;
         --success-subtle-foreground: 143 64% 24%;
         --success: 142 71% 45%;
         --success-foreground: 144 61% 10%;
@@ -24,7 +24,7 @@
         --success-strong-foreground: 210 40% 98%;
         --success-border: 141 84% 85%;
 
-        --warning-subtle: 48 96% 89%;
+        --warning-subtle: 45 95% 80%;
         --warning-subtle-foreground: 32 95% 20%;
         --warning: 45 93% 47%;
         --warning-foreground: 24 10% 10%;
@@ -32,7 +32,7 @@
         --warning-strong-foreground: 210 40% 98%;
         --warning-border: 45 96% 75%;
 
-        --destructive-subtle: 0 86% 97%;
+        --destructive-subtle: 0 90% 92%;
         --destructive-subtle-foreground: 0 63% 31%;
         --destructive: 0 72% 51%;
         --destructive-foreground: 210 40% 98%;
@@ -41,7 +41,7 @@
         --destructive-border: 0 93% 84%;
 
         --overlay: 0 0% 0%;
-        --background: 0 0% 100%;
+        --background: 210 40% 96%;
         --foreground: 240 20% 6%;
 
         --card: 0 0% 100%;
@@ -50,10 +50,10 @@
         --popover: 0 0% 100%;
         --popover-foreground: 240 20% 6%;
 
-        --secondary: 210 40% 96%;
+        --secondary: 212 32% 92%;
         --secondary-foreground: 240 6% 10%;
 
-        --muted: 210 40% 96%;
+        --muted: 213 32% 89%;
         --muted-foreground: 215 20% 40%;
 
         --accent: 29 31% 87%;
@@ -238,26 +238,24 @@
 }
 
 @layer components {
-    /* 面で区切る面。⚠️ 明暗で区切り方が違う。
-       light は明度が天井に張り付いていて面の段差を作れない（地を下げると
-       --muted や --info-subtle と同値になる）ので、今までどおり枠で区切る。
-       dark は --card が --background から離れているので枠を透明にして面で
-       区切る。
+    /* 枠線ではなく面の濃淡で区切る面。light も dark も同じ扱い
+       （KeEem の訂正・2026-09-22）。light は :root の地を白から
+       210 40% 96%（#f1f5f9）へ下げて、白い --card が浮く形にしてある。
+       ⚠️ light の段差は 1.096:1 しかない（dark は 1.21:1）。枠線の 1.244:1
+       より弱い＝これは承知のうえの代償で、担保はハイコントラストで枠が
+       戻ることと shadow-sm。
        ⚠️ 面の濃淡は forced-colors（Windows ハイコントラスト）で OS の色に
-       置き換えられて消えるので、そこでは dark でも枠線に戻す。
+       置き換えられて消えるので、そこでは枠線に戻す。
        枠は常に 1px 持たせる（レイアウトがモード間でずれないため。transparent
        は forced-colors で自動的に色が付かないので、明示の
        border-color: CanvasText が要る）。
-       .dark を :where() で包んで詳細度を 0,1,0 に揃えてあるのは、下の 2つの
-       メディアクエリ（メディアクエリ自体は詳細度を上げない）が後勝ちで
-       効くようにするため。外すと dark で枠線が戻らなくなる。 */
+       ⚠️ 明暗で分ける必要が出たときは、必ず :where(.dark) で包んで詳細度を
+       0,1,0 に揃えること。包まないと .dark .gunjo-surface（0,2,0）が下の
+       メディアクエリ（メディアクエリ自体は詳細度を上げない）に勝ってしまい、
+       ハイコントラストで枠線が戻らなくなる。 */
     .gunjo-surface {
         background-color: hsl(var(--card));
-        border: 1px solid hsl(var(--border));
-    }
-
-    :where(.dark) .gunjo-surface {
-        border-color: transparent;
+        border: 1px solid transparent;
     }
 
     @media (prefers-contrast: more) {

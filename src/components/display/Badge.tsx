@@ -4,14 +4,26 @@ import { cn } from "../../lib/utils"
 import type { BadgeVariantKey } from "./generated/variant-keys"
 import { badgeDefaultVariantKey } from "./generated/default-variant-keys"
 
+// 塗りのある variant は枠を持たない（DECISIONS.md 2026-09-22）。ピルの形は
+// 装飾で、読むのは文字の色 — その文字コントラストは design:verify:color-contrast
+// が守っているので、面と枠の二重の区切りをやめて面だけにする。
+// ⛔ `outline` だけは別扱い: 塗りが無く、枠が variant の identity そのもの。
+// ハイコントラスト（prefers-contrast: more）では基底クラスの
+// `contrast-more:border-border` で枠が戻り、forced-colors では面が OS 色に
+// 置き換わって消えるので CanvasText の枠を立てる。border の幅は常時 1px の
+// まま（モード間で大きさがずれないため）。
+// ⚠️ info / success / warning を各自の `*-border` で戻さないこと。あの3つは
+// 淡かった頃の `*-subtle` に合わせた色で、面を濃くした今は面と同化する
+// （light の success で 1.034:1 を実測・2026-09-22）。ハイコントラストで
+// 3:1 側へ引き上がる --border を全 variant で使う（同じ実測で 4.948:1）。
 const badgeVariantClasses: Record<BadgeVariantKey, string> = {
-    default: "bg-foreground text-background",
-    secondary: "bg-secondary text-secondary-foreground",
-    destructive: "bg-destructive-strong text-destructive-strong-foreground",
+    default: "border-transparent bg-foreground text-background",
+    secondary: "border-transparent bg-secondary text-secondary-foreground",
+    destructive: "border-transparent bg-destructive-strong text-destructive-strong-foreground",
     outline: "border-border bg-transparent text-foreground",
-    info: "border-info-border bg-info-subtle text-info-subtle-foreground",
-    success: "border-success-border bg-success-subtle text-success-subtle-foreground",
-    warning: "border-warning-border bg-warning-subtle text-warning-subtle-foreground",
+    info: "border-transparent bg-info-subtle text-info-subtle-foreground",
+    success: "border-transparent bg-success-subtle text-success-subtle-foreground",
+    warning: "border-transparent bg-warning-subtle text-warning-subtle-foreground",
 }
 
 const badgeSizeClasses = {
@@ -65,7 +77,7 @@ function Badge({
     return (
         <Comp
             className={cn(
-                "inline-flex items-center w-fit rounded-full border border-transparent font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2",
+                "inline-flex items-center w-fit rounded-full border border-transparent font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 contrast-more:border-border forced-colors:border-[CanvasText]",
                 badgeSizeClasses[size],
                 (icon || onRemove) && "gap-1",
                 onRemove && "pr-1",

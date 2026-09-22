@@ -1,0 +1,49 @@
+{
+  "$comment": "箱 B＝枠が意味そのものなので残すもの。KeEem の決定（new-4px DECISIONS.md 2026-09-22）。行番号ではなく規則で書くこと（行はすぐ古くなる）。ここへ足す前に KeEem に確認する。",
+  "exclusions": [
+    {
+      "id": "table-grid-lines",
+      "match": {
+        "tags": ["thead", "tbody", "tfoot", "tr", "th", "td", "caption", "colgroup"]
+      },
+      "reason": "表のグリッド線（箱 B）。行と列の対応そのものが罫線で伝わるので、面の濃淡に置き換えると何行目のどの列かが読めなくなる。thead/tfoot の帯に塗りがあっても、そこに引く border-t / border-b は区切りではなく表の構造。",
+      "addedOn": "2026-09-22",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "badge-outline-variant",
+      "match": {
+        "files": ["^src/components/display/Badge\\.tsx$"],
+        "sourcePattern": "badgeVariantClasses\\.outline"
+      },
+      "reason": "outline の Badge（箱 B）。塗りを持たず、枠が variant の identity そのもの。枠を外すと default との見分けが付かなくなる。現状は bg-transparent なのでこの検査には元から出ないが、将来 bg-* を足したときに黙って違反にならないよう規則として書いておく。",
+      "addedOn": "2026-09-22",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "text-input-family",
+      "match": {
+        "files": [
+          "^src/components/inputs/Input\\.tsx$",
+          "^src/components/inputs/Select\\.tsx$",
+          "^src/components/inputs/Textarea\\.tsx$",
+          "^src/components/inputs/Checkbox\\.tsx$",
+          "^src/components/inputs/RadioGroup\\.tsx$"
+        ],
+        "classPattern": "border-input"
+      },
+      "reason": "入力系（箱 B）。枠が無いと「ここに入力できる」ことが伝わらない。WCAG 1.4.11（UI部品の境界は 3:1）の対象でもある。現状はどれも bg-transparent なのでこの検査には出ないが、規則として書いておく。⚠️ --input 自体が地との比 dark 1.37:1 / light 1.24:1 で 1.4.11 に足りていない（枠線の話とは別件・issue 起票済み）。",
+      "addedOn": "2026-09-22",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "separator",
+      "match": {
+        "files": ["^src/components/display/Separator\\.tsx$"]
+      },
+      "reason": "Separator（箱 B）。罫線そのものが部品。現状は h-px + bg-border で枠クラスを使っていないのでこの検査には出ないが、規則として書いておく。",
+      "addedOn": "2026-09-22",
+      "expiresOn": "permanent"
+    }
+  ]
+}

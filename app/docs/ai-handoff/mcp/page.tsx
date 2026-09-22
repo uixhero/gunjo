@@ -62,7 +62,7 @@ export default function McpServerPage() {
                        surface that has not been built yet. Make sure
                        readers see that before they start planning around
                        it. */}
-                    <div className="flex items-start gap-3 rounded-lg border-l-4 border-warning-border bg-warning-subtle p-4 text-sm">
+                    <div className="flex items-start gap-3 rounded-lg bg-warning-subtle p-4 text-sm">
                         <Clock className="mt-0.5 h-4 w-4 shrink-0 text-warning" />
                         <div className="space-y-1">
                             <div className="font-semibold text-foreground">
