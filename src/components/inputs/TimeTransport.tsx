@@ -221,7 +221,7 @@ const TimeTransport = React.forwardRef<HTMLDivElement, TimeTransportProps>(
                 role="group"
                 aria-label={t.group}
                 className={cn(
-                    "flex w-full flex-col gap-3 rounded-[var(--radius)] border border-border bg-card p-4 text-card-foreground",
+                    "flex w-full flex-col gap-3 rounded-[var(--radius)] border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-card-foreground",
                     disabled && "opacity-60",
                     className
                 )}

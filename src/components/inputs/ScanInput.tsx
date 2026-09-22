@@ -251,7 +251,7 @@ const ScanInput = React.forwardRef<HTMLInputElement, ScanInputProps>(
                 </p>
 
                 {showFeed ? (
-                    <div className="flex flex-col gap-1.5 rounded-lg border border-border bg-muted/30 p-3">
+                    <div className="flex flex-col gap-1.5 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
                         <p className="text-xs font-medium text-muted-foreground">{labels?.feedTitle ?? "スキャン履歴"}</p>
                         {feed.length === 0 ? (
                             <p className="text-sm text-muted-foreground">{labels?.empty ?? "—"}</p>

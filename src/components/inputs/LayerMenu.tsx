@@ -270,7 +270,7 @@ function LayerMenu({
                 role="group"
                 aria-label={label}
                 className={cn(
-                    "flex w-60 flex-col rounded-lg border bg-popover p-1.5 text-popover-foreground shadow-md",
+                    "flex w-60 flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-popover p-1.5 text-popover-foreground shadow-md",
                     className
                 )}
             >

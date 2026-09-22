@@ -838,7 +838,7 @@ const DateRangePicker = React.forwardRef<HTMLInputElement, DateRangePickerProps>
                         }}
                     />
                     {showTodayButton ? (
-                        <div className="space-y-1.5 border-t bg-card p-1.5">
+                        <div className="space-y-1.5 border-t border-t-transparent contrast-more:border-t-border forced-colors:border-t-[CanvasText] bg-muted p-1.5">
                             <div className="flex items-center gap-2 px-1 text-[11px] text-muted-foreground">
                                 <span
                                     className={cn(

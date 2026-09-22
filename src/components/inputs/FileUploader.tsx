@@ -253,7 +253,7 @@ export const FileUploader = React.forwardRef<HTMLDivElement, FileUploaderProps>(
                             const Icon = status === "complete" ? CheckCircle : status === "error" ? AlertCircle : FileText
 
                             return (
-                                <div key={`${getFileUploaderFileKey(fileState.file)}:${index}`} className="flex items-center gap-2 p-2 rounded-md border bg-background">
+                                <div key={`${getFileUploaderFileKey(fileState.file)}:${index}`} className="flex items-center gap-2 p-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background">
                                     <Icon className={cn("h-4 w-4", status === "error" ? "text-destructive" : status === "complete" ? "text-success-strong" : "text-primary")} />
                                     <div className="flex-1 min-w-0 grid gap-1">
                                         <div className="flex justify-between gap-3 text-xs">

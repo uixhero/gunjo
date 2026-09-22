@@ -39,11 +39,12 @@
           "^src/components/inputs/Select\\.tsx$",
           "^src/components/inputs/Textarea\\.tsx$",
           "^src/components/inputs/Checkbox\\.tsx$",
-          "^src/components/inputs/RadioGroup\\.tsx$"
+          "^src/components/inputs/RadioGroup\\.tsx$",
+          "^src/components/inputs/ChatInput\\.tsx$"
         ],
         "classPattern": "border-input"
       },
-      "reason": "入力系（箱 B）。枠が無いと「ここに入力できる」ことが伝わらない。WCAG 1.4.11（UI部品の境界は 3:1）の対象でもある。現状はどれも bg-transparent なのでこの検査には出ないが、規則として書いておく。⚠️ --input 自体が地との比 dark 1.37:1 / light 1.24:1 で 1.4.11 に足りていない（枠線の話とは別件・issue 起票済み）。",
+      "reason": "入力系（箱 B）。枠が無いと「ここに入力できる」ことが伝わらない。WCAG 1.4.11（UI部品の境界は 3:1）の対象でもある。現状はどれも bg-transparent なのでこの検査には出ないが、規則として書いておく。⚠️ --input 自体が地との比 dark 1.37:1 / light 1.24:1 で 1.4.11 に足りていない（枠線の話とは別件・issue 起票済み）。 2026-09-23 追記: ChatInput の入力の殻を追加した。素は bg-background + border-input で、処理中だけ bg-primary-subtle + border-primary-border に変わる＝塗りを持つので第2段の検査に出たが、これも「ここに書ける」を伝える入力の境界。",
       "addedOn": "2026-09-22",
       "expiresOn": "permanent"
     },
@@ -134,6 +135,19 @@
         "classPattern": "border-dashed"
       },
       "reason": "破線（箱 B）。破線は「空」「置き場（ここに落とせる）」「使用不可」「予定（実績ではない）」を表す語彙で、実線の枠とは別の意味を持つ。面の濃淡は色の差しか作れないので「破線かどうか」を表せない＝置き換えが原理的にできない。対象は EmptyState の空の箱、FileUploader と ShareModal の落とし込み口、ImagePreview の画像なしの札、ScheduleGrid の空き枠、Gantt の予定バー。⚠️ Gantt は7件と数えられるが実体は1つ＝検査が className の束を variant の表の各エントリと合わせて数えるため（予定バーの `border-dashed border-border bg-card/40` が BAR_TONE の7エントリそれぞれに混ざる）。Gantt の実線のバー側（BAR_TONE の border-*）は同じ回で外してある。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "control-boundary-and-state",
+      "match": {
+        "files": [
+          "^src/components/inputs/FilterButton\\.tsx$",
+          "^src/components/inputs/LayerMenu\\.tsx$"
+        ],
+        "classPattern": "border-primary|border-input"
+      },
+      "reason": "押せる部品の境界と、その状態（箱 B）。FilterButton の引き金は3つの状態を枠の色で表している（既定＝破線、開いている＝border-primary-border、選択あり＝border-primary）。塗りはどの状態でも bg-primary-subtle で同じなので、面では3つを区別できない。FilterButton:85 と LayerMenu の Mark はチェックの印で、入／切／中間を「塗り＋枠」と「塗り無し＋枠」の対で表す＝Checkbox と同じ形（text-input-family と同じ理屈）。いずれも WCAG 1.4.11（UI部品の境界は 3:1）の対象。",
       "addedOn": "2026-09-23",
       "expiresOn": "permanent"
     }
