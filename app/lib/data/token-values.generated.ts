@@ -44,7 +44,7 @@ export const TOKEN_VALUES: {
         "--destructive-strong-foreground": "210 40% 98%",
         "--destructive-border": "0 93% 84%",
         "--overlay": "0 0% 0%",
-        "--background": "210 40% 96%",
+        "--background": "0 0% 100%",
         "--foreground": "240 20% 6%",
         "--card": "0 0% 100%",
         "--card-foreground": "240 20% 6%",

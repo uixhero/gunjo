@@ -3638,7 +3638,7 @@
   "variables": {
     "background": {
       "type": "color",
-      "value": "#f1f5f9"
+      "value": "#FFFFFF"
     },
     "foreground": {
       "type": "color",

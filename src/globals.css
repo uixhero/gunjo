@@ -41,7 +41,7 @@
         --destructive-border: 0 93% 84%;
 
         --overlay: 0 0% 0%;
-        --background: 210 40% 96%;
+        --background: 0 0% 100%;
         --foreground: 240 20% 6%;
 
         --card: 0 0% 100%;
@@ -238,15 +238,26 @@
 }
 
 @layer components {
-    /* 枠線ではなく面の濃淡で区切る面。
+    /* 面で区切る面。⚠️ 明暗で区切り方が違う。
+       light は明度が天井に張り付いていて面の段差を作れない（地を下げると
+       --muted や --info-subtle と同値になる）ので、今までどおり枠で区切る。
+       dark は --card が --background から離れているので枠を透明にして面で
+       区切る。
        ⚠️ 面の濃淡は forced-colors（Windows ハイコントラスト）で OS の色に
-       置き換えられて消えるので、そこでは枠線に戻す。
-       border: 1px solid transparent は必ず残すこと（レイアウトがモード間で
-       ずれないため。transparent は forced-colors で自動的に色が付かないので、
-       明示の border-color: CanvasText が要る）。 */
+       置き換えられて消えるので、そこでは dark でも枠線に戻す。
+       枠は常に 1px 持たせる（レイアウトがモード間でずれないため。transparent
+       は forced-colors で自動的に色が付かないので、明示の
+       border-color: CanvasText が要る）。
+       .dark を :where() で包んで詳細度を 0,1,0 に揃えてあるのは、下の 2つの
+       メディアクエリ（メディアクエリ自体は詳細度を上げない）が後勝ちで
+       効くようにするため。外すと dark で枠線が戻らなくなる。 */
     .gunjo-surface {
         background-color: hsl(var(--card));
-        border: 1px solid transparent;
+        border: 1px solid hsl(var(--border));
+    }
+
+    :where(.dark) .gunjo-surface {
+        border-color: transparent;
     }
 
     @media (prefers-contrast: more) {
