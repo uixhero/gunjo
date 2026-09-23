@@ -141,7 +141,9 @@ const DocumentPager = React.forwardRef<HTMLElement, DocumentPagerProps>(
             <nav
                 ref={ref}
                 className={cn(
-                    "grid w-full gap-3 border-t border-border/60 px-0 pb-0 pt-5 xl:grid-cols-2",
+                    // 本文との境目は前後のカード（bg-card）の面が作る＝上の罫線は二重になる
+                    // ので引かない（DECISIONS.md 2026-09-23・大きな境目は面で区切る）。
+                    "grid w-full gap-3 px-0 pb-0 pt-5 xl:grid-cols-2",
                     className
                 )}
                 {...props}

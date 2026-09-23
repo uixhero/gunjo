@@ -209,7 +209,7 @@ export function PatternsChrome({
     return (
         <>
             {!isIndex && !isInIframe && (
-                <div className="sticky top-14 z-40 w-full border-b border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+                <div className="sticky top-14 z-40 w-full border-b border-transparent bg-muted/95 backdrop-blur contrast-more:border-border forced-colors:border-[CanvasText] supports-[backdrop-filter]:bg-muted/80">
                     <div className="container flex h-10 items-center justify-between gap-3 text-sm">
                         <div className="flex shrink-0 items-center gap-2">
                             <Link

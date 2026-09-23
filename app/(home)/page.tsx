@@ -184,7 +184,12 @@ export default function Home() {
             </section>
 
             {/* ============== Section 2 — PRIMARY ENTRY POINTS ============== */}
-            <section className="border-t border-border/40 bg-background py-24">
+            {/* 節の境目は罫線ではなく面の濃淡で区切る（DECISIONS.md 2026-09-23）。
+                地（bg-background）と面（bg-muted）を交互に置き、隣り合う節が同じ面に
+                ならないようにしてある。並びを変えるときはこの交互を崩さないこと。
+                アプリの節（HomeAppsSection）は既定で出ないので第3の面（bg-card）に
+                してあり、出ても出なくても両隣と段差が付く。 */}
+            <section className="bg-muted py-24">
                 <div className="container">
                     <div className="mb-12">
                         <p className="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
@@ -258,7 +263,7 @@ export default function Home() {
             <HomeAppsSection />
 
             {/* ============== Section 6 — THE 群青 STORY ============== */}
-            <section className="bg-muted/30 py-24">
+            <section className="bg-background py-24">
                 <div className="container">
                     <p className="mb-12 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
                         {home.story.label}
@@ -305,7 +310,7 @@ export default function Home() {
             </section>
 
             {/* ============== Section 7 — SSOT AND AI HANDOFF ============== */}
-            <section className="border-t border-border/40 bg-gradient-to-b from-background via-accent/20 to-background py-24">
+            <section className="bg-gradient-to-b from-muted via-accent/20 to-muted py-24">
                 <div className="container">
                     <div className="mb-12 space-y-3">
                         <Badge
@@ -368,7 +373,7 @@ export default function Home() {
             </section>
 
             {/* ============== Section 8 — FOR ENGINEERS ============== */}
-            <section className="border-t border-border/40 bg-background py-20">
+            <section className="bg-background py-20">
                 <div className="container">
                     <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
                         <div className="space-y-3">
@@ -399,7 +404,7 @@ export default function Home() {
             </section>
 
             {/* ============== Section 9 — ALPHA SCOPE ============== */}
-            <section className="border-t border-border/40 bg-muted/20 py-20">
+            <section className="bg-muted py-20">
                 <div className="container text-center">
                     <Badge variant="outline" className="mb-4 gap-1.5">
                         <Sparkles className="h-3 w-3" />
@@ -460,7 +465,7 @@ function LiveComponentWorkbench({ isJa }: { isJa: boolean }) {
                 : "Display";
 
     return (
-        <section className="border-t border-border/40 bg-background py-24">
+        <section className="bg-background py-24">
             <div className="container">
                 <div className="mb-12">
                     <p className="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
@@ -783,7 +788,7 @@ const publicPatternSlides = [
 
 function PatternBrowserCarousel({ isJa }: { isJa: boolean }) {
     return (
-        <section className="border-t border-border/40 bg-muted/20 py-24">
+        <section className="bg-muted py-24">
             <div className="container">
                 <div className="mb-10 grid gap-4 lg:grid-cols-[1fr_auto] lg:items-end">
                     <div>
