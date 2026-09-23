@@ -159,7 +159,7 @@ export default function EarthmoonAppPage() {
             </ul>
 
             <section className="space-y-4">
-                <h2 id="patterns" className="border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight">
+                <h2 id="patterns" className="pb-2 text-2xl font-semibold tracking-tight">
                     {c.patternsHeading}
                 </h2>
                 <div className="grid gap-4 sm:grid-cols-2">
@@ -180,7 +180,7 @@ export default function EarthmoonAppPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 id="components" className="border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight">
+                <h2 id="components" className="pb-2 text-2xl font-semibold tracking-tight">
                     {c.componentsHeading}
                 </h2>
                 <ul className="flex flex-wrap gap-2">

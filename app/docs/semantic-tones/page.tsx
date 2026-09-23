@@ -134,7 +134,7 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
 
             {/* Canonical scale */}
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="scale">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="scale">
                     {isJa ? "正準スケール" : "The canonical scale"}
                 </h2>
                 <p className="text-sm text-muted-foreground">
@@ -161,7 +161,7 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
 
             {/* One status, many surfaces */}
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="one-status">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="one-status">
                     {isJa ? "1 つのステータスを複数サーフェスへ" : "One status, many surfaces"}
                 </h2>
                 <p className="text-sm text-muted-foreground">
@@ -261,7 +261,7 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
 
             {/* Migration */}
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="migration">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="migration">
                     {isJa ? "0.1.x 互換と移行" : "0.1.x compatibility and migration"}
                 </h2>
                 <p className="text-sm text-muted-foreground">
@@ -311,7 +311,7 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
 
             {/* Converters */}
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="converters">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="converters">
                     {isJa ? "変換器" : "Converters"}
                 </h2>
                 <p className="text-sm text-muted-foreground">
@@ -337,7 +337,7 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
 
             {/* Usage */}
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="usage">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="usage">
                     {isJa ? "使い方" : "Usage"}
                 </h2>
                 <CodeBlock code={usageCode} />

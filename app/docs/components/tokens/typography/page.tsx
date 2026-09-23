@@ -9,7 +9,7 @@ export default function TypographyPage() {
             </div>
 
             <section className="space-y-4">
-                <h2 className="text-2xl font-bold border-b pb-2">Font Family</h2>
+                <h2 className="text-2xl font-bold pb-2">Font Family</h2>
                 <div className="space-y-4">
                     <div>
                         <div className="text-sm text-muted-foreground mb-1">Sans (Default)</div>
@@ -27,7 +27,7 @@ export default function TypographyPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="text-2xl font-bold border-b pb-2">Font Weight</h2>
+                <h2 className="text-2xl font-bold pb-2">Font Weight</h2>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-6">
                     <div className="font-light text-2xl">Light (300)</div>
                     <div className="font-normal text-2xl">Normal (400)</div>
@@ -39,7 +39,7 @@ export default function TypographyPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="text-2xl font-bold border-b pb-2">Scale</h2>
+                <h2 className="text-2xl font-bold pb-2">Scale</h2>
                 <div className="space-y-6">
                     <div className="flex items-baseline gap-4">
                         <span className="w-16 text-sm text-muted-foreground">xs</span>

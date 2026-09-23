@@ -309,7 +309,7 @@ export default function NotificationCenterDocPage() {
             </ComponentPreview>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="states">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="states">
                     {statesTitle}
                 </h2>
                 <ComponentDemoStates
@@ -343,14 +343,14 @@ export default function NotificationCenterDocPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="props">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="props">
                     {sectionLabels.props ?? "Props"}
                 </h2>
                 <PropsTable data={propsData} />
             </section>
 
             <section className="space-y-4">
-                <div className="flex items-center justify-between gap-4 border-b pb-2">
+                <div className="flex items-center justify-between gap-4 pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage ?? "Usage"}
                     </h2>
@@ -359,7 +359,7 @@ export default function NotificationCenterDocPage() {
                 <CodeBlock code={usageCode} />
             </section>
             <section className="space-y-4">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
                         {locale === "ja" ? "設計の判断" : "Design decisions"}
                     </h2>

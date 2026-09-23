@@ -33,7 +33,7 @@ export function DocProse({ title, description, body }: DocProseProps) {
             </h1>
           ),
           h2: ({ children }) => (
-            <h2 className="scroll-m-20 mt-10 mb-4 border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
+            <h2 className="scroll-m-20 mt-10 mb-4 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
               {children}
             </h2>
           ),

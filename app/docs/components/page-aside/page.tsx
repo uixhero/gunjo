@@ -681,7 +681,7 @@ export default function PageAsideDocPage() {
             </ComponentPreview>
 
             <div className="space-y-4">
-                <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">
+                <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
                     {isJa ? "状態とバリエーション" : "States and variations"}
                 </h2>
                 <ComponentDemoStates
@@ -724,7 +724,7 @@ export default function PageAsideDocPage() {
             </div>
 
             <div className="space-y-4">
-                <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">{sectionLabels.props}</h2>
+                <h2 id="props" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">{sectionLabels.props}</h2>
                 <PropsTable data={[
                     { name: "title", type: "ReactNode", description: isJa ? "モバイルのアコーディオン見出しと補助領域のラベル。" : "Heading for the mobile accordion and supporting region." },
                     { name: "renderAside", type: "() => ReactNode", description: isJa ? "右レールと折りたたみ領域に表示する補助情報を返します。関数propのため Client Component からのみ渡すこと（Server Component から渡すと next build が落ちる）。JSX を返すため serializable な代替は無く、RSC からは \"use client\" ラッパーで包む。(#338)" : "Returns the supporting information rendered in the rail and collapsible area. Function prop — pass only from a Client Component; from a Server Component it breaks next build. Render props return JSX (no serializable alternative) — wrap in a \"use client\" component to pass from an RSC. (#338)" },
@@ -738,7 +738,7 @@ export default function PageAsideDocPage() {
             </div>
 
             <div className="space-y-4">
-                <div className="flex items-start justify-between gap-3 border-b pb-2">
+                <div className="flex items-start justify-between gap-3 pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{sectionLabels.usage}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>

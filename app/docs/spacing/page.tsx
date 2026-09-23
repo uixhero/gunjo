@@ -67,7 +67,7 @@ export default function SpacingPage() {
             </header>
 
             <section className="space-y-4">
-                <h2 className="border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight">
+                <h2 className="pb-2 text-2xl font-semibold tracking-tight">
                     {c.sections.scale}
                 </h2>
                 <div className="space-y-1.5 rounded-lg border border-border/40 bg-muted/20 p-5">
@@ -92,7 +92,7 @@ export default function SpacingPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight">
+                <h2 className="pb-2 text-2xl font-semibold tracking-tight">
                     {c.sections.common}
                 </h2>
                 <div className="overflow-hidden rounded-lg border border-border/40">

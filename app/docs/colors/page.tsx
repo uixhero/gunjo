@@ -664,7 +664,7 @@ function TokenSection({
 }) {
     return (
         <section className="space-y-4">
-            <h3 className="border-b border-border/60 pb-2 text-xl font-semibold tracking-tight">{title}</h3>
+            <h3 className="pb-2 text-xl font-semibold tracking-tight">{title}</h3>
             <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
                 {tokens.map((token) => (
                     <TokenSwatch key={token.cssVar} token={token} locale={locale} />

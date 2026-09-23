@@ -111,7 +111,7 @@ export default function RadiusPage() {
             </header>
 
             <section className="space-y-4">
-                <h2 className="border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight">
+                <h2 className="pb-2 text-2xl font-semibold tracking-tight">
                     {c.sections.scale}
                 </h2>
                 <div className="grid gap-5 bg-muted/20 p-6 sm:grid-cols-2 lg:grid-cols-4">
@@ -136,7 +136,7 @@ export default function RadiusPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight">
+                <h2 className="pb-2 text-2xl font-semibold tracking-tight">
                     {c.sections.base}
                 </h2>
                 <div className="rounded-lg border border-border/40 bg-muted/20 p-5">

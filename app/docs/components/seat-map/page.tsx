@@ -252,7 +252,7 @@ export function SeatPicker() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">{locale === "ja" ? "状態とバリエーション" : "States and variants"}</h2>
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">{locale === "ja" ? "状態とバリエーション" : "States and variants"}</h2>
         <ComponentDemoStates
           states={[
             { key: "selectable", title: locale === "ja" ? "選択可能" : "Selectable", description: locale === "ja" ? "空席を選択すると selectedIds が更新されます。特別席、予約済、確保中、選択中は Tooltip で理由を示します。" : "Selecting an available seat updates selectedIds. Special, occupied, held, and selected seats are explained by tooltips.", preview: <SeatMapPreview locale={locale} />, code: usageCode, previewBodyWidth: "md" },
@@ -263,12 +263,12 @@ export function SeatPicker() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">{sectionLabels.props}</h2>
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">{sectionLabels.props}</h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">{sectionLabels.usage}</h2>
           <CodeCopyButton code={usageCode} />
         </div>

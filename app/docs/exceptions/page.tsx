@@ -96,7 +96,7 @@ export default function ExceptionsPage() {
 
             {EXCEPTIONS.map((entry, index) => (
                 <section key={entry.id} id={entry.id} className="space-y-4">
-                    <h2 className="border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight">
+                    <h2 className="pb-2 text-2xl font-semibold tracking-tight">
                         {index + 1}. {entry.title[locale]}
                     </h2>
                     <dl className="grid gap-x-6 gap-y-3 text-sm leading-7 sm:grid-cols-[10rem_1fr]">

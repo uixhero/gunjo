@@ -55,7 +55,7 @@ export default function RatingDocPage() {
       </ComponentPreview>
 
       <div className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
           {locale === "ja" ? "状態とバリエーション" : "States and variants"}
         </h2>
         <p className="text-sm leading-relaxed text-muted-foreground">
@@ -204,12 +204,12 @@ export function ProductRating() {
       </div>
 
       <div className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">Props</h2>
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">Props</h2>
         <PropsTable data={propsData} />
       </div>
 
       <div className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">Usage</h2>
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">Usage</h2>
         <div className="rounded-md border bg-muted font-mono text-sm max-h-[350px] overflow-auto">
           <CodeBlock code={usageCode} />
         </div>

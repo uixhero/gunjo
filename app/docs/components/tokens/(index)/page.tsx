@@ -229,7 +229,7 @@ export default function TokensIndexPage() {
             </section>
 
             <section className="mt-10 space-y-3" id="design-decisions">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="text-2xl font-semibold tracking-tight">
                         {isJa ? "設計の判断" : "Design decisions"}
                     </h2>

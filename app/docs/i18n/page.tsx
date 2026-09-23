@@ -91,7 +91,7 @@ export default function I18nPage() {
             <section className="space-y-4">
                 <h2
                     id="live"
-                    className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+                    className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight"
                 >
                     {isJa ? "ライブデモ" : "Live demo"}
                 </h2>
@@ -152,7 +152,7 @@ export default function I18nPage() {
             <section className="space-y-4">
                 <h2
                     id="precedence"
-                    className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+                    className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight"
                 >
                     {isJa ? "優先順位（上書き）" : "Precedence (overrides)"}
                 </h2>
@@ -183,7 +183,7 @@ export default function I18nPage() {
             <section className="space-y-4">
                 <h2
                     id="coverage"
-                    className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+                    className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight"
                 >
                     {isJa ? "カバー範囲" : "Coverage"}
                 </h2>
@@ -202,7 +202,7 @@ export default function I18nPage() {
             <section className="space-y-4">
                 <h2
                     id="api"
-                    className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+                    className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight"
                 >
                     {isJa ? "API" : "API"}
                 </h2>

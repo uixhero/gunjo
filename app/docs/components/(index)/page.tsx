@@ -32,7 +32,7 @@ export default function ComponentsIndexPage() {
             <div className="space-y-16">
                 {componentSections.map((section) => (
                     <section key={section.title} id={section.title.toLowerCase()} className="space-y-6">
-                        <div className="flex items-center justify-between border-b pb-2">
+                        <div className="flex items-center justify-between pb-2">
                             <h2 className="text-2xl font-semibold tracking-tight">{t(section.title)}</h2>
                         </div>
 

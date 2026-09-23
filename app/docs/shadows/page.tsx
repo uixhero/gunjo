@@ -84,7 +84,7 @@ export default function ShadowsPage() {
             </header>
 
             <section className="space-y-4">
-                <h2 className="border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight">
+                <h2 className="pb-2 text-2xl font-semibold tracking-tight">
                     {c.sections.scale}
                 </h2>
                 <div className="grid gap-6 bg-muted/20 p-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
@@ -109,7 +109,7 @@ export default function ShadowsPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight">
+                <h2 className="pb-2 text-2xl font-semibold tracking-tight">
                     {c.sections.behavior}
                 </h2>
                 <p className="text-sm leading-7 text-muted-foreground">
