@@ -449,7 +449,7 @@ export function WhyView({
                     </div>
                 </section>
 
-                <Card className="border-border/70">
+                <Card>
                     <CardContent className="space-y-2 px-6 py-5">
                         <p className="text-sm text-muted-foreground">
                             {isJa

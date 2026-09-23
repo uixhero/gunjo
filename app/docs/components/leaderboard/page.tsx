@@ -128,7 +128,7 @@ function LeaderboardDetailPanel({
           <p className="truncate text-base font-semibold text-foreground">{item.label}</p>
           {item.sublabel != null ? <p className="mt-1 text-xs text-muted-foreground">{item.sublabel}</p> : null}
         </div>
-        <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">
+        <Badge variant="outline" className="shrink-0 bg-background text-foreground shadow-sm">
           {detail.status}
         </Badge>
       </div>
@@ -553,7 +553,7 @@ export function IncidentLeaderboard() {
                   </div>
                   <Badge
                     variant="outline"
-                    className="shrink-0 border-border bg-background text-foreground shadow-sm"
+                    className="shrink-0 bg-background text-foreground shadow-sm"
                   >{selectedDetail.status}</Badge>
                 </div>
                 <dl className="mt-3 grid gap-2 text-xs">
@@ -610,7 +610,7 @@ export function IncidentLeaderboard() {
               </div>
               <Badge
                 variant="outline"
-                className="shrink-0 border-border bg-background text-foreground shadow-sm"
+                className="shrink-0 bg-background text-foreground shadow-sm"
               >{selectedDetail.status}</Badge>
             </div>
             <dl className="mt-3 grid gap-2 text-xs">
@@ -868,7 +868,7 @@ export function IncidentLeaderboard() {
                   </div>
                   <Badge
                     variant="outline"
-                    className="shrink-0 border-border bg-background text-foreground shadow-sm"
+                    className="shrink-0 bg-background text-foreground shadow-sm"
                   >{selectedDetail.status}</Badge>
                 </div>
                 <dl className="mt-3 grid gap-2 text-xs">
@@ -925,7 +925,7 @@ export function IncidentLeaderboard() {
               </div>
               <Badge
                 variant="outline"
-                className="shrink-0 border-border bg-background text-foreground shadow-sm"
+                className="shrink-0 bg-background text-foreground shadow-sm"
               >{selectedDetail.status}</Badge>
             </div>
             <dl className="mt-3 grid gap-2 text-xs">

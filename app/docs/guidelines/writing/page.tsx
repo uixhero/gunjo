@@ -468,7 +468,7 @@ const reviewItems = [
 
 function LocalNav({ isJa }: { isJa: boolean }) {
     return (
-        <Card className="border-muted bg-muted/20">
+        <Card className="bg-muted">
             <CardHeader className="pb-3">
                 <CardTitle className="text-base">{isJa ? "このページで決めること" : "What this page defines"}</CardTitle>
                 <CardDescription>

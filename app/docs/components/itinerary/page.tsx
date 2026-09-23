@@ -52,7 +52,7 @@ function ItineraryDetailContent({
         <div className="min-w-0">
           <p className="mt-1 truncate text-base font-semibold text-foreground">{item.title}</p>
         </div>
-        <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">
+        <Badge variant="outline" className="shrink-0 bg-background text-foreground shadow-sm">
           {detail.status}
         </Badge>
       </div>
@@ -429,7 +429,7 @@ export function TripItinerary() {
               <div className="min-w-0">
                 <p className="mt-1 truncate text-base font-semibold text-foreground">{selectedItem.title}</p>
               </div>
-              <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">
+              <Badge variant="outline" className="shrink-0 bg-background text-foreground shadow-sm">
                 {selectedDetail.status}
               </Badge>
             </div>
@@ -533,7 +533,7 @@ export function TripItinerary() {
               <div className="min-w-0">
                 <p className="mt-1 truncate text-base font-semibold text-foreground">{selectedItem.title}</p>
               </div>
-              <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">
+              <Badge variant="outline" className="shrink-0 bg-background text-foreground shadow-sm">
                 {selectedDetail.status}
               </Badge>
             </div>
@@ -783,7 +783,7 @@ const selectedDetail = selectedId ? details[selectedId as keyof typeof details] 
           <div className="rounded-lg border border-transparent contrast-more:border-info-border forced-colors:border-[CanvasText] bg-info-subtle p-3 text-sm shadow-sm">
             <div className="flex items-start justify-between gap-3">
               <p className="truncate text-base font-semibold text-foreground">{selectedItem.title}</p>
-              <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">{selectedDetail.status}</Badge>
+              <Badge variant="outline" className="shrink-0 bg-background text-foreground shadow-sm">{selectedDetail.status}</Badge>
             </div>
             <dl className="mt-3 grid gap-2 text-xs">
               <div><dt className="text-muted-foreground">場所</dt><dd className="font-medium text-foreground">{selectedDetail.location}</dd></div>
@@ -826,7 +826,7 @@ const selectedDetail = selectedId ? details[selectedId as keyof typeof details] 
           <div className="rounded-lg border border-transparent contrast-more:border-info-border forced-colors:border-[CanvasText] bg-info-subtle p-3 text-sm shadow-sm">
             <div className="flex items-start justify-between gap-3">
               <p className="truncate text-base font-semibold text-foreground">{selectedItem.title}</p>
-              <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">{selectedDetail.status}</Badge>
+              <Badge variant="outline" className="shrink-0 bg-background text-foreground shadow-sm">{selectedDetail.status}</Badge>
             </div>
             <dl className="mt-3 grid gap-2 text-xs">
               <div><dt className="text-muted-foreground">Location</dt><dd className="font-medium text-foreground">{selectedDetail.location}</dd></div>

@@ -199,7 +199,7 @@ export function EntryOverview() {
                             href={screen.href}
                             className="group block focus-visible:outline-none"
                         >
-                            <Card className="flex h-full w-full flex-col overflow-hidden border-border/80 shadow-sm transition-all hover:border-primary-border hover:shadow-md group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-2">
+                            <Card className="flex h-full w-full flex-col overflow-hidden shadow-sm transition-all hover:border-primary-border hover:shadow-md group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-2">
                                 <ScreenShot
                                     slug={screen.slug}
                                     alt={

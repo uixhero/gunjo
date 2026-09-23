@@ -573,7 +573,7 @@ export function RoundDetailView({
                     <h2 className="text-xl font-semibold tracking-tight text-foreground">
                         {td.article}
                     </h2>
-                    <Card className="border-border/80">
+                    <Card>
                         <CardContent className="px-6 py-5">
                             {/* break-words: long unbroken `code` runs (component
                                 names joined by slashes, plus the renderer's CJK

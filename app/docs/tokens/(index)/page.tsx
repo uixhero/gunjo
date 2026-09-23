@@ -166,7 +166,7 @@ export default function DocsTokensOverviewPage() {
                 </CardContent>
             </Card>
 
-            <Card className="border-primary-border bg-primary-subtle">
+            <Card className="bg-primary-subtle">
                 <CardHeader>
                     <div className="mb-2 flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                         <FileText className="h-4 w-4" />

@@ -143,7 +143,7 @@ function GanttDetailPanel({
     <div className={["min-w-0 rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] text-sm shadow-sm", compact ? "p-2" : "p-3", tone.panel].join("  ")}>
       {compact ? (
         <div className="flex justify-end">
-          <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">
+          <Badge variant="outline" className="shrink-0 bg-background text-foreground shadow-sm">
             {detail.status}
           </Badge>
         </div>
@@ -153,7 +153,7 @@ function GanttDetailPanel({
             <h3 className="text-sm font-semibold text-foreground">{copy.detailTitle}</h3>
             <p className="mt-1 truncate text-base font-semibold text-foreground">{item.label}</p>
           </div>
-          <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">
+          <Badge variant="outline" className="shrink-0 bg-background text-foreground shadow-sm">
             {detail.status}
           </Badge>
         </div>
@@ -420,7 +420,7 @@ export function ProductionGantt() {
           </SheetHeader>
           <div className={["mt-4 rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-2 text-sm shadow-sm", selectedTone.panel].join("  ")}>
             <div className="flex justify-end">
-              <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">
+              <Badge variant="outline" className="shrink-0 bg-background text-foreground shadow-sm">
                 {selectedDetail.status}
               </Badge>
             </div>
@@ -537,7 +537,7 @@ export function ProductionGantt() {
           </SheetHeader>
           <div className={["mt-4 rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-2 text-sm shadow-sm", selectedTone.panel].join("  ")}>
             <div className="flex justify-end">
-              <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">
+              <Badge variant="outline" className="shrink-0 bg-background text-foreground shadow-sm">
                 {selectedDetail.status}
               </Badge>
             </div>
@@ -625,7 +625,7 @@ export function SegmentedProductionGantt() {
             <div className="flex justify-end">
               <Badge
                 variant="outline"
-                className="shrink-0 border-border bg-background text-foreground shadow-sm"
+                className="shrink-0 bg-background text-foreground shadow-sm"
               >
                 {detail.status}
               </Badge>
@@ -712,7 +712,7 @@ export function SegmentedProductionGantt() {
             <div className="flex justify-end">
               <Badge
                 variant="outline"
-                className="shrink-0 border-border bg-background text-foreground shadow-sm"
+                className="shrink-0 bg-background text-foreground shadow-sm"
               >
                 {detail.status}
               </Badge>

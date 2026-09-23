@@ -185,7 +185,7 @@ export default function Home() {
 
             {/* ============== Section 2 — PRIMARY ENTRY POINTS ============== */}
             {/* 節の境目は罫線ではなく面の濃淡で区切る（DECISIONS.md 2026-09-23）。
-                地（bg-background）と面（bg-muted）を交互に置き、隣り合う節が同じ面に
+                地（塗りを持たない節＝body の bg-background がそのまま見える）と面（bg-muted）を交互に置き、隣り合う節が同じ面に
                 ならないようにしてある。並びを変えるときはこの交互を崩さないこと。
                 アプリの節（HomeAppsSection）は既定で出ないので第3の面（bg-card）に
                 してあり、出ても出なくても両隣と段差が付く。 */}
@@ -263,7 +263,7 @@ export default function Home() {
             <HomeAppsSection />
 
             {/* ============== Section 6 — THE 群青 STORY ============== */}
-            <section className="bg-background py-24">
+            <section className="py-24">
                 <div className="container">
                     <p className="mb-12 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
                         {home.story.label}
@@ -315,7 +315,7 @@ export default function Home() {
                     <div className="mb-12 space-y-3">
                         <Badge
                             variant="outline"
-                            className="gap-1.5 border-accent-foreground/20 bg-accent text-accent-foreground"
+                            className="gap-1.5 bg-accent text-accent-foreground"
                         >
                             <Cpu className="h-3 w-3" />
                             AI-native
@@ -346,7 +346,7 @@ export default function Home() {
                             return (
                                 <Card
                                     key={key}
-                                    className="w-full border-border/60 bg-background/60 backdrop-blur"
+                                    className="w-full"
                                 >
                                     <CardHeader>
                                         <div className="mb-2 flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground">
@@ -373,7 +373,7 @@ export default function Home() {
             </section>
 
             {/* ============== Section 8 — FOR ENGINEERS ============== */}
-            <section className="bg-background py-20">
+            <section className="py-20">
                 <div className="container">
                     <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
                         <div className="space-y-3">
@@ -465,7 +465,7 @@ function LiveComponentWorkbench({ isJa }: { isJa: boolean }) {
                 : "Display";
 
     return (
-        <section className="bg-background py-24">
+        <section className="py-24">
             <div className="container">
                 <div className="mb-12">
                     <p className="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">

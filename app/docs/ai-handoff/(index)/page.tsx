@@ -65,7 +65,7 @@ export default function AiHandoffPage() {
                 <header className="space-y-4">
                     <Badge
                         variant="outline"
-                        className="gap-1.5 border-accent-foreground/20 bg-accent text-accent-foreground"
+                        className="gap-1.5 bg-accent text-accent-foreground"
                     >
                         <Cpu className="h-3 w-3" />
                         {t.badge}
