@@ -15,6 +15,7 @@
 //
 // 2026-09-23（第2段）から門番になった。src/components/** の残りは 0 件で、
 // verifySurfaceBorders（design:verify に入っている）が 0 を超えたら落とす。
+// 2026-09-23（第3段）から app/（gunjo.jp のページそのもの）も走査し、こちらも 0 件。
 // つまり「塗りのある面に枠を足す」変更は、除外ポリシーに理由を書かない限り
 // CI で止まる。件数だけ数えたいときは --max-remaining に数を渡す。
 
@@ -23,7 +24,10 @@ import { join, relative } from "node:path"
 import { ROOT } from "./design-sync/shared.mjs"
 import { runVerificationCli, throwLinesError } from "./design-verify-assertions.mjs"
 
-const TARGET_PATH = "src/components"
+// 2026-09-23（第3段）から app/ も走査する（issue #1026）。部品を面で区切っても、
+// それを囲むサイト本体（docs の入れ物・ヘッダー・ナビ）が線で仕切っていたので、
+// 部品だけを見ていると「面の部品を線の箱が囲む」状態が検査をすり抜けた。
+const TARGET_PATHS = ["src/components", "app"]
 const EXCLUSION_POLICY_PATH = "design/policy/surface-border-exclusions.json"
 const REPORT_PATH = "docs/surface-border-audit.md"
 
@@ -316,9 +320,72 @@ function collectClassMapEntries(content) {
   return entries
 }
 
+/**
+ * `${...}` を含むテンプレート文字列を「固定部分の文字列リテラル＋式の中身」に
+ * 開く。STRING_LITERAL はテンプレート文字列を `${` の無いものしか採らないので、
+ * `rounded-lg border p-3 ${activeClass}` のような書き方は固定部分ごと黙って
+ * 読み落としていた（2026-09-23 に app/ で 14 か所を見つけた。scan-gate の工程の
+ * 行は通常時も枠が出たままだった）。式の中の "…" は STRING_LITERAL がそのまま拾う。
+ */
+function expandTemplateLiterals(source) {
+  let out = ""
+  let index = 0
+  while (index < source.length) {
+    const char = source[index]
+    if (char === "\\") {
+      out += source.slice(index, index + 2)
+      index += 2
+      continue
+    }
+    if (char !== "`") {
+      out += char
+      index += 1
+      continue
+    }
+    let cursor = index + 1
+    let text = ""
+    const parts = []
+    let closed = false
+    while (cursor < source.length) {
+      const current = source[cursor]
+      if (current === "\\") {
+        text += source.slice(cursor, cursor + 2)
+        cursor += 2
+        continue
+      }
+      if (current === "`") {
+        closed = true
+        break
+      }
+      if (current === "$" && source[cursor + 1] === "{") {
+        let depth = 1
+        let end = cursor + 2
+        while (end < source.length && depth > 0) {
+          if (source[end] === "{") depth += 1
+          else if (source[end] === "}") depth -= 1
+          if (depth > 0) end += 1
+        }
+        parts.push(`"${text.replace(/["\n]/g, " ")}"`, source.slice(cursor + 2, end))
+        text = ""
+        cursor = end + 1
+        continue
+      }
+      text += current
+      cursor += 1
+    }
+    if (!closed) {
+      out += source.slice(index)
+      break
+    }
+    out += parts.length === 0 ? source.slice(index, cursor + 1) : ` ${parts.join(" ")} "${text.replace(/["\n]/g, " ")}" `
+    index = cursor + 1
+  }
+  return out
+}
+
 function literalsIn(source) {
   const values = []
-  for (const match of source.matchAll(STRING_LITERAL)) {
+  for (const match of expandTemplateLiterals(source).matchAll(STRING_LITERAL)) {
     values.push(match[1] ?? match[2] ?? match[3] ?? "")
   }
   return values
@@ -541,7 +608,7 @@ export function collectSurfaceBorderReport({ root = ROOT } = {}) {
   const { entries: restoreExceptions, policyIssues: restorePolicyIssues } = loadExclusionPolicy(root, {
     key: "highContrastRestoreExceptions",
   })
-  const files = listTsxFiles(join(root, TARGET_PATH))
+  const files = TARGET_PATHS.flatMap((targetPath) => listTsxFiles(join(root, targetPath)))
 
   const remaining = []
   const excluded = []
@@ -600,7 +667,7 @@ function buildMarkdown(report, { root }) {
     "KeEem の決定（DECISIONS.md 2026-09-22）で、塗りのある面は枠をやめて面の濃淡で",
     "区切ることになった。この表は「塗りがあるのに枠も持っている」箇所の残りを数える。",
     "",
-    `- 走査したファイル: ${report.scannedFiles}（\`${TARGET_PATH}/**/*.tsx\`）`,
+    `- 走査したファイル: ${report.scannedFiles}（${TARGET_PATHS.map((targetPath) => `\`${targetPath}/**/*.tsx\``).join(" と ")}）`,
     `- **残り: ${report.remaining.length} 件 / ${report.remainingFileCount} ファイル**`,
     `- 箱 B として除外: ${report.excluded.length} 件（\`${EXCLUSION_POLICY_PATH}\`）`,
     `- 箱 C の戻しが欠けている面: ${report.missingRestores.length} 件` +
@@ -826,6 +893,18 @@ const SOURCE_FIXTURES = [
       '}',
     ].join("\n"),
     expectCount: 2,
+  },
+  {
+    // 2026-09-23 に実際に読み落とした形（scan-gate の工程の行）。テンプレート
+    // 文字列の固定部分に幅、式の中の文字列に色と塗りがある。
+    name: "`${…}` を含むテンプレート文字列の固定部分と式の中の文字列を読む",
+    file: "app/docs/components/fixture/page.tsx",
+    content: [
+      'const activeClass = status === "active" ? "border-primary-border bg-primary-subtle/30" : "border-border bg-card"',
+      '<li className={`rounded-lg border p-3 ${activeClass}`} />',
+      '<li className={`rounded-lg border p-3 ${done ? "border-success bg-success-subtle" : "bg-card"}`} />',
+    ].join("\n"),
+    expectCount: 1,
   },
   {
     name: "className に直接書かれた塗り＋枠を数える",
