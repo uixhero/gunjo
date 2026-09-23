@@ -64,7 +64,7 @@ export function Example() {
       >
         {(viewport) => (
           <div className="flex h-full items-center justify-center bg-muted/30 p-6">
-            <div className="w-full max-w-sm rounded-lg border bg-background p-5 shadow-sm">
+            <div className="w-full max-w-sm rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-5 shadow-sm">
               <p className="text-xs font-medium uppercase text-muted-foreground">{path}</p>
               <h3 className="mt-2 text-xl font-semibold text-foreground">{copy.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{copy.description}</p>
@@ -132,7 +132,7 @@ export function Example() {
       >
         {(viewport) => (
           <div className="flex h-full items-center justify-center bg-muted/30 p-6">
-            <div className="w-full max-w-sm rounded-lg border bg-background p-5 shadow-sm">
+            <div className="w-full max-w-sm rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-5 shadow-sm">
               <p className="text-xs font-medium uppercase text-muted-foreground">{path}</p>
               <h3 className="mt-2 text-xl font-semibold text-foreground">{copy.title}</h3>
               <p className="mt-2 text-sm text-muted-foreground">{copy.description}</p>
@@ -320,7 +320,7 @@ export default function MarqueeFrameDocPage() {
                     >
                         {(viewport) => (
                             <div className="flex h-full items-center justify-center bg-muted/30 p-6">
-                                <div className="w-full max-w-sm rounded-lg border bg-background p-5 shadow-sm">
+                                <div className="w-full max-w-sm rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-5 shadow-sm">
                                     <p className="text-xs font-medium uppercase text-muted-foreground">{docsPath}</p>
                                     <h3 className="mt-2 text-xl font-semibold text-foreground">{docsCopy.title}</h3>
                                     <p className="mt-2 text-sm text-muted-foreground">{docsCopy.description}</p>
@@ -378,7 +378,7 @@ export default function MarqueeFrameDocPage() {
                                     >
                                         {(viewport) => (
                                             <div className="flex h-full items-center justify-center bg-muted/30 p-6">
-                                                <div className="w-full max-w-sm rounded-lg border bg-background p-5 shadow-sm">
+                                                <div className="w-full max-w-sm rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-5 shadow-sm">
                                                     <p className="text-xs font-medium uppercase text-muted-foreground">{navigationPath}</p>
                                                     <h3 className="mt-2 text-xl font-semibold text-foreground">{navigationCopy.title}</h3>
                                                     <p className="mt-2 text-sm text-muted-foreground">{navigationCopy.description}</p>
@@ -450,7 +450,7 @@ export default function MarqueeFrameDocPage() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

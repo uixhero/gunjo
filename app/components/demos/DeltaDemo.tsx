@@ -23,7 +23,7 @@ export function DeltaDemo() {
                     step={100}
                     className="max-w-[12rem]"
                 />
-                <div className="flex items-center gap-2 rounded-md border bg-muted/30 px-3 py-2 text-sm">
+                <div className="flex items-center gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm">
                     <span className="text-muted-foreground">現在の差額</span>
                     <Delta
                         value={v}

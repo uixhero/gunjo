@@ -228,7 +228,7 @@ export function ReviewChangesDialog() {
             今回の公開に含まれる変更と影響範囲を要約して確認します。
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-3 rounded-md border bg-muted/30 p-3 text-sm sm:grid-cols-2">
+        <div className="grid gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm sm:grid-cols-2">
           <div>
             <p className="font-medium">含まれる変更</p>
             <p className="mt-1 text-muted-foreground">
@@ -277,7 +277,7 @@ export function ReviewChangesDialog() {
             Review a summary of included changes and impact before publishing.
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-3 rounded-md border bg-muted/30 p-3 text-sm sm:grid-cols-2">
+        <div className="grid gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm sm:grid-cols-2">
           <div>
             <p className="font-medium">Included changes</p>
             <p className="mt-1 text-muted-foreground">
@@ -546,7 +546,7 @@ export default function DialogPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

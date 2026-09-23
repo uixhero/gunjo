@@ -50,7 +50,7 @@ function PageStatus() {
       <h3 className="text-sm font-semibold">ページステータス</h3>
       <dl className="space-y-2">
         {pageStatuses.map((item) => (
-          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border bg-muted/20 px-3 py-2">
+          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
             <dt className="text-xs text-muted-foreground">{item.label}</dt>
             <dd className="shrink-0 text-xs font-medium">
               {item.tone === "default" ? <Badge>{item.value}</Badge> : item.value}
@@ -80,14 +80,14 @@ export function DocsPageWithAside() {
       mobileDescription="狭い画面では、右レールの内容を本文内で開閉します。"
       openLabel="補助情報を開く"
       closeLabel="補助情報を閉じる"
-      contentClassName="space-y-4 bg-muted/30 p-4"
+      contentClassName="space-y-4 bg-muted p-4"
       renderAside={() => <AsideContent />}
     >
       <h3 className="text-base font-semibold">分析レポート</h3>
       <p className="max-w-xl text-sm text-muted-foreground">
         広い画面では補助情報を右側へ、狭い画面では本文内の折りたたみ領域へ配置します。
       </p>
-      <section id="overview" className="rounded-md border bg-background p-3">
+      <section id="overview" className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
         <h4 className="text-sm font-semibold">概要</h4>
       </section>
     </PageAside>
@@ -134,7 +134,7 @@ function PageStatus() {
       <h3 className="text-sm font-semibold">Page status</h3>
       <dl className="space-y-2">
         {pageStatuses.map((item) => (
-          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border bg-muted/20 px-3 py-2">
+          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
             <dt className="text-xs text-muted-foreground">{item.label}</dt>
             <dd className="shrink-0 text-xs font-medium">
               {item.tone === "default" ? <Badge>{item.value}</Badge> : item.value}
@@ -164,14 +164,14 @@ export function DocsPageWithAside() {
       mobileDescription="On narrow screens, the right-rail content collapses inside the content area."
       openLabel="Open supporting information"
       closeLabel="Close supporting information"
-      contentClassName="space-y-4 bg-muted/30 p-4"
+      contentClassName="space-y-4 bg-muted p-4"
       renderAside={() => <AsideContent />}
     >
       <h3 className="text-base font-semibold">Analytics report</h3>
       <p className="max-w-xl text-sm text-muted-foreground">
         Place supporting information on the right on wide screens and in a collapsible content block on narrow screens.
       </p>
-      <section id="overview" className="rounded-md border bg-background p-3">
+      <section id="overview" className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
         <h4 className="text-sm font-semibold">Overview</h4>
       </section>
     </PageAside>
@@ -221,7 +221,7 @@ function PageStatus() {
       <h3 className="text-sm font-semibold">ページステータス</h3>
       <dl className="space-y-2">
         {pageStatuses.map((item) => (
-          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border bg-muted/20 px-3 py-2">
+          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
             <dt className="text-xs text-muted-foreground">{item.label}</dt>
             <dd className="shrink-0 text-xs font-medium">
               {item.tone === "default" ? <Badge>{item.value}</Badge> : item.value}
@@ -247,7 +247,7 @@ export function PageStatusAside() {
     <PageAside
       title="補助情報"
       asideLabel="ページの補助情報"
-      contentClassName="space-y-4 bg-muted/30 p-4"
+      contentClassName="space-y-4 bg-muted p-4"
       renderAside={() => <PageStatus />}
     >
       <h3 className="text-base font-semibold">公開前確認</h3>
@@ -298,7 +298,7 @@ function PageStatus() {
       <h3 className="text-sm font-semibold">Page status</h3>
       <dl className="space-y-2">
         {pageStatuses.map((item) => (
-          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border bg-muted/20 px-3 py-2">
+          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
             <dt className="text-xs text-muted-foreground">{item.label}</dt>
             <dd className="shrink-0 text-xs font-medium">
               {item.tone === "default" ? <Badge>{item.value}</Badge> : item.value}
@@ -324,7 +324,7 @@ export function PageStatusAside() {
     <PageAside
       title="Supporting information"
       asideLabel="Page supporting information"
-      contentClassName="space-y-4 bg-muted/30 p-4"
+      contentClassName="space-y-4 bg-muted p-4"
       renderAside={() => <PageStatus />}
     >
       <h3 className="text-base font-semibold">Release review</h3>
@@ -378,7 +378,7 @@ function PageStatus() {
       <h3 className="text-sm font-semibold">ページステータス</h3>
       <dl className="space-y-2">
         {pageStatuses.map((item) => (
-          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border bg-muted/20 px-3 py-2">
+          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
             <dt className="text-xs text-muted-foreground">{item.label}</dt>
             <dd className="shrink-0 text-xs font-medium">
               {item.tone === "default" ? <Badge>{item.value}</Badge> : item.value}
@@ -427,7 +427,7 @@ export function RelatedLinksAside() {
     <PageAside
       title="補助情報"
       asideLabel="ページの補助情報"
-      contentClassName="space-y-4 bg-muted/30 p-4"
+      contentClassName="space-y-4 bg-muted p-4"
       renderAside={() => (
         <div className="space-y-5">
           <RelatedLinks />
@@ -483,7 +483,7 @@ function PageStatus() {
       <h3 className="text-sm font-semibold">Page status</h3>
       <dl className="space-y-2">
         {pageStatuses.map((item) => (
-          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border bg-muted/20 px-3 py-2">
+          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
             <dt className="text-xs text-muted-foreground">{item.label}</dt>
             <dd className="shrink-0 text-xs font-medium">
               {item.tone === "default" ? <Badge>{item.value}</Badge> : item.value}
@@ -532,7 +532,7 @@ export function RelatedLinksAside() {
     <PageAside
       title="Supporting information"
       asideLabel="Page supporting information"
-      contentClassName="space-y-4 bg-muted/30 p-4"
+      contentClassName="space-y-4 bg-muted p-4"
       renderAside={() => (
         <div className="space-y-5">
           <RelatedLinks />
@@ -589,7 +589,7 @@ export function NarrowPageAside() {
       closeLabel="補助情報を閉じる"
       // 既定は開いた状態。長い補助情報は defaultOpen={false} で畳んで始めます。
       defaultOpen
-      contentClassName="space-y-4 bg-muted/30 p-4"
+      contentClassName="space-y-4 bg-muted p-4"
       renderAside={() => <PageStatus />}
     >
       <h3 className="text-base font-semibold">分析レポート</h3>
@@ -638,7 +638,7 @@ export function NarrowPageAside() {
       closeLabel="Close supporting information"
       // Open by default; pass defaultOpen={false} to start a long aside collapsed.
       defaultOpen
-      contentClassName="space-y-4 bg-muted/30 p-4"
+      contentClassName="space-y-4 bg-muted p-4"
       renderAside={() => <PageStatus />}
     >
       <h3 className="text-base font-semibold">Analytics report</h3>
@@ -742,7 +742,7 @@ export default function PageAsideDocPage() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{sectionLabels.usage}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

@@ -84,7 +84,7 @@ function SidebarExample({
     const { locale } = useLocale();
 
     return (
-        <div className="flex w-full overflow-hidden rounded-md border bg-background">
+        <div className="flex w-full overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
             <SidebarProvider defaultCollapsed={defaultCollapsed}>
                 <SidebarContent
                     initialActive={defaultCollapsed ? "home" : "projects"}
@@ -122,7 +122,7 @@ function ControlledSidebarExample() {
                         : `State: ${collapsed ? "collapsed" : "expanded"}`}
                 </span>
             </div>
-            <div className="flex w-full overflow-hidden rounded-md border bg-background">
+            <div className="flex w-full overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
                 <SidebarProvider collapsed={collapsed} onCollapsedChange={setCollapsed}>
                     <SidebarContent />
                 </SidebarProvider>
@@ -206,7 +206,7 @@ function SidebarContent() {
 
 export function SidebarLayout() {
   return (
-    <div className="flex overflow-hidden rounded-md border bg-background">
+    <div className="flex overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <SidebarProvider>
         <SidebarContent />
       </SidebarProvider>
@@ -287,7 +287,7 @@ function SidebarContent() {
 
 export function SidebarLayout() {
   return (
-    <div className="flex overflow-hidden rounded-md border bg-background">
+    <div className="flex overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <SidebarProvider>
         <SidebarContent />
       </SidebarProvider>
@@ -312,7 +312,7 @@ import { IconHome as Home } from "@tabler/icons-react"
 
 export function SidebarWithHeaderToggle() {
   return (
-    <div className="flex overflow-hidden rounded-md border bg-background">
+    <div className="flex overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <SidebarProvider>
         <Sidebar className="min-h-[360px]">
           <SidebarHeader>
@@ -353,7 +353,7 @@ import { IconHome as Home } from "@tabler/icons-react"
 
 export function SidebarWithHeaderToggle() {
   return (
-    <div className="flex overflow-hidden rounded-md border bg-background">
+    <div className="flex overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <SidebarProvider>
         <Sidebar className="min-h-[360px]">
           <SidebarHeader>
@@ -408,7 +408,7 @@ export function ControlledSidebarLayout() {
       <Button variant="outline" size="sm" onClick={() => setCollapsed((v) => !v)}>
         {collapsed ? "サイドバーを開く" : "サイドバーを畳む"}
       </Button>
-      <div className="flex overflow-hidden rounded-md border bg-background">
+      <div className="flex overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
         <SidebarProvider collapsed={collapsed} onCollapsedChange={setCollapsed}>
           <Sidebar className="min-h-[360px]">
             <SidebarHeader>
@@ -455,7 +455,7 @@ export function ControlledSidebarLayout() {
       <Button variant="outline" size="sm" onClick={() => setCollapsed((v) => !v)}>
         {collapsed ? "Open the sidebar" : "Collapse the sidebar"}
       </Button>
-      <div className="flex overflow-hidden rounded-md border bg-background">
+      <div className="flex overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
         <SidebarProvider collapsed={collapsed} onCollapsedChange={setCollapsed}>
           <Sidebar className="min-h-[360px]">
             <SidebarHeader>
@@ -581,7 +581,7 @@ export default function SidebarPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

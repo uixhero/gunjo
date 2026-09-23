@@ -50,7 +50,7 @@ function PageStatus() {
       <h3 className="text-sm font-semibold">ページステータス</h3>
       <dl className="space-y-2">
         {pageStatuses.map((item) => (
-          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border bg-muted/20 px-3 py-2">
+          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
             <dt className="text-xs text-muted-foreground">{item.label}</dt>
             <dd className="shrink-0 text-xs font-medium">
               {item.tone === "default" ? <Badge>{item.value}</Badge> : item.value}
@@ -64,8 +64,8 @@ function PageStatus() {
 
 export function DesktopRightRail() {
   return (
-    <div className="flex min-h-[360px] min-w-[680px] overflow-x-auto rounded-md border bg-background">
-      <main className="min-w-0 flex-1 space-y-4 bg-muted/30 p-4" aria-label="主コンテンツ">
+    <div className="flex min-h-[360px] min-w-[680px] overflow-x-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
+      <main className="min-w-0 flex-1 space-y-4 bg-muted p-4" aria-label="主コンテンツ">
         <p className="max-w-xl text-sm text-muted-foreground">
           主コンテンツの右側に、参照用の補助情報を固定幅で並べます。
         </p>
@@ -119,7 +119,7 @@ function PageStatus() {
       <h3 className="text-sm font-semibold">Page status</h3>
       <dl className="space-y-2">
         {pageStatuses.map((item) => (
-          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border bg-muted/20 px-3 py-2">
+          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
             <dt className="text-xs text-muted-foreground">{item.label}</dt>
             <dd className="shrink-0 text-xs font-medium">
               {item.tone === "default" ? <Badge>{item.value}</Badge> : item.value}
@@ -133,8 +133,8 @@ function PageStatus() {
 
 export function DesktopRightRail() {
   return (
-    <div className="flex min-h-[360px] min-w-[680px] overflow-x-auto rounded-md border bg-background">
-      <main className="min-w-0 flex-1 space-y-4 bg-muted/30 p-4" aria-label="Main content">
+    <div className="flex min-h-[360px] min-w-[680px] overflow-x-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
+      <main className="min-w-0 flex-1 space-y-4 bg-muted p-4" aria-label="Main content">
         <p className="max-w-xl text-sm text-muted-foreground">
           Supporting information sits beside the main content in a fixed-width rail.
         </p>
@@ -191,7 +191,7 @@ function PageStatus() {
       <h3 className="text-sm font-semibold">ページステータス</h3>
       <dl className="space-y-2">
         {pageStatuses.map((item) => (
-          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border bg-muted/20 px-3 py-2">
+          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
             <dt className="text-xs text-muted-foreground">{item.label}</dt>
             <dd className="shrink-0 text-xs font-medium">
               {item.tone === "default" ? <Badge>{item.value}</Badge> : item.value}
@@ -205,8 +205,8 @@ function PageStatus() {
 
 export function StatusRightRail() {
   return (
-    <div className="flex min-h-[360px] min-w-[680px] overflow-x-auto rounded-md border bg-background">
-      <main className="min-w-0 flex-1 space-y-4 bg-muted/30 p-4">
+    <div className="flex min-h-[360px] min-w-[680px] overflow-x-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
+      <main className="min-w-0 flex-1 space-y-4 bg-muted p-4">
         <h3 className="text-base font-semibold">公開前確認</h3>
       </main>
       <RightRail width="w-72">
@@ -256,7 +256,7 @@ function PageStatus() {
       <h3 className="text-sm font-semibold">Page status</h3>
       <dl className="space-y-2">
         {pageStatuses.map((item) => (
-          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border bg-muted/20 px-3 py-2">
+          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
             <dt className="text-xs text-muted-foreground">{item.label}</dt>
             <dd className="shrink-0 text-xs font-medium">
               {item.tone === "default" ? <Badge>{item.value}</Badge> : item.value}
@@ -270,8 +270,8 @@ function PageStatus() {
 
 export function StatusRightRail() {
   return (
-    <div className="flex min-h-[360px] min-w-[680px] overflow-x-auto rounded-md border bg-background">
-      <main className="min-w-0 flex-1 space-y-4 bg-muted/30 p-4">
+    <div className="flex min-h-[360px] min-w-[680px] overflow-x-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
+      <main className="min-w-0 flex-1 space-y-4 bg-muted p-4">
         <h3 className="text-base font-semibold">Release review</h3>
       </main>
       <RightRail width="w-72">
@@ -326,7 +326,7 @@ function PageStatus() {
       <h3 className="text-sm font-semibold">ページステータス</h3>
       <dl className="space-y-2">
         {pageStatuses.map((item) => (
-          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border bg-muted/20 px-3 py-2">
+          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
             <dt className="text-xs text-muted-foreground">{item.label}</dt>
             <dd className="shrink-0 text-xs font-medium">
               {item.tone === "default" ? <Badge>{item.value}</Badge> : item.value}
@@ -363,8 +363,8 @@ function RelatedLinks() {
 
 export function LinksRightRail() {
   return (
-    <div className="flex min-h-[360px] min-w-[680px] overflow-x-auto rounded-md border bg-background">
-      <main className="min-w-0 flex-1 space-y-4 bg-muted/30 p-4">
+    <div className="flex min-h-[360px] min-w-[680px] overflow-x-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
+      <main className="min-w-0 flex-1 space-y-4 bg-muted p-4">
         <h3 className="text-base font-semibold">仕様ページ</h3>
       </main>
       <RightRail width="w-72">
@@ -417,7 +417,7 @@ function PageStatus() {
       <h3 className="text-sm font-semibold">Page status</h3>
       <dl className="space-y-2">
         {pageStatuses.map((item) => (
-          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border bg-muted/20 px-3 py-2">
+          <div key={item.label} className="flex items-center justify-between gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
             <dt className="text-xs text-muted-foreground">{item.label}</dt>
             <dd className="shrink-0 text-xs font-medium">
               {item.tone === "default" ? <Badge>{item.value}</Badge> : item.value}
@@ -454,8 +454,8 @@ function RelatedLinks() {
 
 export function LinksRightRail() {
   return (
-    <div className="flex min-h-[360px] min-w-[680px] overflow-x-auto rounded-md border bg-background">
-      <main className="min-w-0 flex-1 space-y-4 bg-muted/30 p-4">
+    <div className="flex min-h-[360px] min-w-[680px] overflow-x-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
+      <main className="min-w-0 flex-1 space-y-4 bg-muted p-4">
         <h3 className="text-base font-semibold">Spec page</h3>
       </main>
       <RightRail width="w-72">
@@ -486,7 +486,7 @@ function ScrollingRightRailDemo() {
     const isJa = locale === "ja";
 
     return (
-        <div className="w-full overflow-x-auto rounded-md border bg-background">
+        <div className="w-full overflow-x-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
             <div className="flex min-w-[680px]">
                 <main className="min-w-0 flex-1 space-y-3 bg-muted/30 p-4">
                     <h3 className="text-base font-semibold">{isJa ? "仕様ページ" : "Spec page"}</h3>
@@ -529,7 +529,7 @@ const revisions = [
 
 export function RevisionRail() {
   return (
-    <div className="flex overflow-x-auto rounded-md border bg-background">
+    <div className="flex overflow-x-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <main className="min-w-0 flex-1 bg-muted/30 p-4">
         <h3 className="text-base font-semibold">仕様ページ</h3>
       </main>
@@ -566,7 +566,7 @@ const revisions = [
 
 export function RevisionRail() {
   return (
-    <div className="flex overflow-x-auto rounded-md border bg-background">
+    <div className="flex overflow-x-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <main className="min-w-0 flex-1 bg-muted/30 p-4">
         <h3 className="text-base font-semibold">Spec page</h3>
       </main>
@@ -680,7 +680,7 @@ export default function RightRailDocPage() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{sectionLabels.usage}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

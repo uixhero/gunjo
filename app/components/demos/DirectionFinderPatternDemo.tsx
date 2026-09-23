@@ -381,7 +381,7 @@ export function DirectionFinderDemo({
     return (
         <div className="flex w-full flex-col items-center gap-5 md:flex-row md:items-start md:justify-center">
             <div
-                className="relative flex w-full max-w-[360px] shrink-0 flex-col items-center gap-3 overflow-hidden rounded-2xl border border-border bg-card px-4 pb-4 pt-3 text-card-foreground transition-[filter]"
+                className="relative flex w-full max-w-[360px] shrink-0 flex-col items-center gap-3 overflow-hidden rounded-2xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-4 pb-4 pt-3 text-card-foreground transition-[filter]"
                 style={dim ? { filter: "brightness(0.4)" } : undefined}
             >
                 <div className="flex w-full items-center justify-between">

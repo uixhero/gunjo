@@ -26,7 +26,7 @@ export default function Embed() {
 
     return (
         <div className="flex min-h-screen items-center justify-center p-4">
-            <Command className="w-full max-w-[720px] rounded-lg border shadow-md">
+            <Command className="w-full max-w-[720px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-md">
                 <CommandInput
                     placeholder={isJa ? "コマンドまたは検索語を入力..." : "Type a command or search..."}
                     clearable

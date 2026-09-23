@@ -132,7 +132,7 @@ export default function StabilityPage() {
                     {copy.levels.map((level) => (
                         <div
                             key={level.label}
-                            className="space-y-2 rounded-lg border border-border/40 p-5"
+                            className="space-y-2 rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-5"
                         >
                             <div className="flex items-center gap-3">
                                 <Badge variant={level.variant}>{level.label}</Badge>
@@ -149,7 +149,7 @@ export default function StabilityPage() {
                 </div>
             </section>
 
-            <section className="space-y-3 rounded-xl border border-accent-foreground/20 bg-accent/40 p-6">
+            <section className="space-y-3 rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-accent p-6">
                 <h2 className="text-2xl font-semibold tracking-tight">
                     {copy.alphaHeading}
                 </h2>

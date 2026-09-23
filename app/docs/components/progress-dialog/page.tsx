@@ -171,7 +171,7 @@ export function WithSlot() {
         statusLabel="${t("いまの作業", "Now")}"
         status="${t("移動の順番を考えています", "Working out the order of stops")}"
         aside={
-          <div className="rounded-md border p-4 text-left text-sm">
+          <div className="rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4 text-left text-sm">
             <p className="font-medium">${t("待っているあいだに", "While you wait")}</p>
             <p className="mt-1 text-muted-foreground">
               ${t("できあがった計画は、あとから一覧でも開けます。", "You can reopen the finished plan from the list later.")}
@@ -567,7 +567,7 @@ export function ReduceMotionDemo() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

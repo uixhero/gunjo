@@ -28,10 +28,10 @@ export function RightRailDemo({ variant = "page-support" }: { variant?: RightRai
     const isJa = locale === "ja";
 
     return (
-        <div className="w-full overflow-x-auto rounded-md border bg-background">
+        <div className="w-full overflow-x-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
             <div className="flex min-h-[360px] min-w-[680px]">
-                <main className="min-w-0 flex-1 space-y-4 bg-muted/30 p-4" aria-label={isJa ? "主コンテンツ" : "Main content"}>
-                    <div className="inline-flex rounded-sm border bg-background px-2 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                <main className="min-w-0 flex-1 space-y-4 bg-muted p-4" aria-label={isJa ? "主コンテンツ" : "Main content"}>
+                    <div className="inline-flex rounded-sm border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                         {isJa ? "主コンテンツ" : "Main content"}
                     </div>
                     <p className="max-w-xl text-sm text-muted-foreground">
@@ -67,7 +67,7 @@ function RailContent({ variant, compact = false }: { variant: RightRailDemoVaria
             {variant === "status" ? (
                 <>
                     <PageStatus />
-                    <section className="rounded-md border bg-muted/30 p-3">
+                    <section className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
                         <h4 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                             {isJa ? "ページ状態" : "Page status"}
                         </h4>
@@ -118,7 +118,7 @@ function PageStatus() {
             <h3 className="text-sm font-semibold">{isJa ? "ページステータス" : "Page status"}</h3>
             <dl className="space-y-2">
                 {pageStatuses.map((item) => (
-                    <div key={item.labelEn} className="flex items-center justify-between gap-3 rounded-md border bg-muted/20 px-3 py-2">
+                    <div key={item.labelEn} className="flex items-center justify-between gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
                         <dt className="text-xs text-muted-foreground">{isJa ? item.labelJa : item.labelEn}</dt>
                         <dd className="shrink-0 text-xs font-medium">
                             {item.tone === "default" ? (

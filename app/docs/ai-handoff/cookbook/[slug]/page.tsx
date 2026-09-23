@@ -105,7 +105,7 @@ export default function RecipeDetailPage() {
                             )}
                         </Button>
                     </div>
-                    <pre className="overflow-auto rounded-lg border border-border/40 bg-muted/30 p-5 text-sm leading-relaxed whitespace-pre-wrap">
+                    <pre className="overflow-auto rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-5 text-sm leading-relaxed whitespace-pre-wrap">
                         {recipe.prompt}
                     </pre>
                 </section>

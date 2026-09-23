@@ -58,7 +58,7 @@ function PreviewThumb({
     }, [src]);
 
     return (
-        <div className="relative block h-44 overflow-hidden border-b border-border/60 bg-muted/40 p-3">
+        <div className="relative block h-44 overflow-hidden border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
             {!loaded && !errored && (
                 <Skeleton className="absolute inset-3 h-[calc(100%-1.5rem)] w-[calc(100%-1.5rem)] rounded-md" />
             )}

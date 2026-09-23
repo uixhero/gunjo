@@ -31,7 +31,7 @@ function ChatMessageEmbedPreview() {
 
     return (
         <div className="flex min-h-screen items-center justify-center p-4">
-            <div className="w-full max-w-2xl rounded-lg border bg-background shadow-sm">
+            <div className="w-full max-w-2xl rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-sm">
                 <ChatMessage role="system" content={isJa ? "会話を開始しました。" : "Conversation started."} />
                 <ChatMessage
                     role="assistant"

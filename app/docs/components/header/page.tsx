@@ -47,7 +47,7 @@ function HeaderExample({ compact = false, drawerNav = false }: { compact?: boole
     ];
 
     return (
-        <div className={`w-full overflow-hidden rounded-md border bg-background ${drawerNav ? "!min-h-[560px]" : ""}`}>
+        <div className={`w-full overflow-hidden rounded-md ${drawerNav ? "!min-h-[560px]" : ""}`}>
             <Header className={compact ? "px-4" : undefined}>
                 <HeaderBrand>
                     <GunjoLogo />
@@ -171,7 +171,7 @@ function HeaderManyLinksExample() {
         : ["Dashboard", "Dispatch", "Vehicles", "Drivers", "Trips", "Maintenance", "Billing", "Settings"];
 
     return (
-        <div className="w-full max-w-md overflow-hidden rounded-md border bg-background">
+        <div className="w-full max-w-md overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
             <Header>
                 <HeaderBrand>
                     <GunjoLogo />
@@ -708,7 +708,7 @@ export function DrawerMenuHeader() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

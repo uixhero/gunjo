@@ -53,7 +53,7 @@ function CalendarStatesContent({ locale }: { locale: "ja" | "en" }) {
                             onSelect={setMultiple}
                             defaultMonth={new Date(2026, 4, 1)}
                             locale={calendarLocale}
-                            className="rounded-md border"
+                            className="rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]"
                         />
                     ),
                     code: `"use client";
@@ -74,7 +74,7 @@ export default function MultipleCalendar() {
       selected={dates}
       onSelect={setDates}
       defaultMonth={new Date(2026, 4, 1)}
-      className="rounded-md border"
+      className="rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]"
     />
   );
 }`,
@@ -93,7 +93,7 @@ export default function MultipleCalendar() {
                             selected={range}
                             onSelect={setRange}
                             locale={calendarLocale}
-                            className="rounded-md border"
+                            className="rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]"
                             numberOfMonths={2}
                         />
                     ),
@@ -111,7 +111,7 @@ export default function RangeCalendar() {
       mode="range"
       selected={range}
       onSelect={setRange}
-      className="rounded-md border"
+      className="rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]"
       numberOfMonths={2}
     />
   );
@@ -131,7 +131,7 @@ export default function RangeCalendar() {
                             selected={single}
                             onSelect={setSingle}
                             locale={calendarLocale}
-                            className="rounded-md border"
+                            className="rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]"
                             disabled={{ before: today }}
                             disabledReason={disabledPastReason}
                         />
@@ -152,7 +152,7 @@ export function FutureOnlyCalendar() {
       mode="single"
       selected={date}
       onSelect={setDate}
-      className="rounded-md border"
+      className="rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]"
       disabled={{ before: today }}
       disabledReason="過去日は予約できません。今日以降の日付を選択してください。"
     />
@@ -173,7 +173,7 @@ export function FutureOnlyCalendar() {
       mode="single"
       selected={date}
       onSelect={setDate}
-      className="rounded-md border"
+      className="rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]"
       disabled={{ before: today }}
       disabledReason="Past dates cannot be booked. Choose today or a future date."
     />
@@ -200,7 +200,7 @@ export function CalendarDemo() {
       mode="single"
       selected={date}
       onSelect={setDate}
-      className="rounded-md border"
+      className="rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]"
     />
   )
 }`;
@@ -277,7 +277,7 @@ export function CalendarUsage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="rounded-md border bg-muted font-mono text-sm max-h-[350px] overflow-auto">
+                <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm max-h-[350px] overflow-auto">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

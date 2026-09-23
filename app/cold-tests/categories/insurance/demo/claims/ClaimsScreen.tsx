@@ -267,7 +267,7 @@ function ClaimDetail({
 
           <div>
             <h4 className="mb-2 text-sm font-semibold">契約照会</h4>
-            <div className="rounded-lg border p-3">
+            <div className="rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3">
               <PersonCell
                 name={claim.policyholder}
                 secondary={claim.policyholderKana}
@@ -293,7 +293,7 @@ function ClaimDetail({
           {claim.counterparty && (
             <div>
               <h4 className="mb-2 text-sm font-semibold">事故相手</h4>
-              <div className="rounded-lg border p-3">
+              <div className="rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3">
                 <PersonCell
                   name={claim.counterparty}
                   secondary={
@@ -610,7 +610,7 @@ export function ClaimsScreen() {
                 <button
                   type="button"
                   onClick={() => setSelected(c)}
-                  className="w-full space-y-2 rounded-lg border p-3 text-left transition-colors hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
+                  className="w-full space-y-2 rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3 text-left transition-colors hover:bg-muted/40 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                 >
                   <div className="flex items-center justify-between gap-2">
                     <span className="font-medium tabular-nums">{c.id}</span>

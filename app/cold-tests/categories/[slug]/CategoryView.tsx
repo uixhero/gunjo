@@ -247,7 +247,7 @@ export function CategoryView({
                                         <Link
                                             key={screen.slug}
                                             href={`${demo.href}/${screen.slug}`}
-                                            className="rounded-md border bg-background px-2 py-1 text-xs text-muted-foreground transition-colors hover:border-primary-border hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                            className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-2 py-1 text-xs text-muted-foreground transition-colors hover:border-primary-border hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                                         >
                                             {isJa ? screen.ja : screen.en}
                                         </Link>
@@ -282,7 +282,7 @@ export function CategoryView({
                                 <li key={c.name}>
                                     <Link
                                         href={`/docs/components/${docSlug}`}
-                                        className="group flex h-full flex-col gap-1.5 rounded-md border border-border/60 p-3 transition-colors hover:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                        className="group flex h-full flex-col gap-1.5 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3 transition-colors hover:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                                     >
                                         <div className="flex items-center justify-between gap-2">
                                             <span className="font-mono text-sm font-semibold tracking-tight transition-colors group-hover:text-primary">

@@ -42,7 +42,7 @@ function CoverageLedger({ d }: { d: CoverageDerivation }) {
 
   return (
     <section
-      className="rounded-lg border border-border bg-card p-4"
+      className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4"
       aria-label={`${d.coverage} 支払明細`}
     >
       <div className="mb-3 flex items-center justify-between gap-2">
@@ -72,7 +72,7 @@ export function PaymentDerivation({ paymentCase }: { paymentCase: PaymentCase })
     <div className="space-y-4">
       {/* 計算式の明示 */}
       <div
-        className="rounded-md border border-border bg-muted/30 px-3 py-2 text-xs text-muted-foreground"
+        className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-xs text-muted-foreground"
         aria-label="支払額の計算式"
       >
         <span className="font-medium text-foreground">今回支払額</span>
@@ -84,7 +84,7 @@ export function PaymentDerivation({ paymentCase }: { paymentCase: PaymentCase })
       ))}
 
       {/* 補償横断の支払総額（強調） */}
-      <div className="flex items-center justify-between gap-3 rounded-lg border-2 border-foreground/80 bg-card px-4 py-3">
+      <div className="flex items-center justify-between gap-3 rounded-lg border-2 border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-4 py-3">
         <div>
           <p className="text-sm font-semibold text-foreground">支払総額</p>
           <p className="text-xs text-muted-foreground">

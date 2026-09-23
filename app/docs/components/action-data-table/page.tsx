@@ -368,7 +368,7 @@ function ActionDataTableDemo({
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     {pendingDeleteRows.length > 0 ? (
-                        <div className="rounded-md border bg-muted/30 px-3 py-2 text-sm text-muted-foreground">
+                        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm text-muted-foreground">
                             {pendingDeleteRows.slice(0, 3).map((row) => (
                                 <div key={row.id} className="truncate">
                                     {row.name}

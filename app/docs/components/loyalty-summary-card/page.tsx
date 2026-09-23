@@ -66,7 +66,7 @@ function LoyaltyPreview({ locale, tone = "brand", noAlert = false }: { locale: L
             <DialogTitle>{locale === "ja" ? "会員バーコード" : "Member barcode"}</DialogTitle>
             <DialogDescription>{locale === "ja" ? "レジでこのコードを提示します。" : "Present this code at checkout."}</DialogDescription>
           </DialogHeader>
-          <div className="grid gap-3 rounded-lg border bg-card p-4 text-center">
+          <div className="grid gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-center">
             <p className="text-sm font-medium text-foreground">{locale === "ja" ? "ハッピーズドラッグ メンバーズ" : "Happy's Drug Members"}</p>
             <div
               aria-label={locale === "ja" ? "会員番号 3480 0626 2026 のバーコード" : "Barcode for member number 3480 0626 2026"}
@@ -137,7 +137,7 @@ export function MemberSummary() {
             <DialogTitle>会員バーコード</DialogTitle>
             <DialogDescription>レジでこのコードを提示します。</DialogDescription>
           </DialogHeader>
-          <div className="grid gap-3 rounded-lg border bg-card p-4 text-center">
+          <div className="grid gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-center">
             <p className="text-sm font-medium text-foreground">ハッピーズドラッグ メンバーズ</p>
             <div className="mx-auto h-24 w-full max-w-[260px] rounded bg-[repeating-linear-gradient(90deg,hsl(var(--foreground))_0_2px,transparent_2px_4px,hsl(var(--foreground))_4px_7px,transparent_7px_10px,hsl(var(--foreground))_10px_11px,transparent_11px_14px)]" />
             <p className="font-mono text-sm tracking-widest text-foreground">3480 0626 2026</p>
@@ -194,7 +194,7 @@ export function MemberSummary() {
             <DialogTitle>Member barcode</DialogTitle>
             <DialogDescription>Present this code at checkout.</DialogDescription>
           </DialogHeader>
-          <div className="grid gap-3 rounded-lg border bg-card p-4 text-center">
+          <div className="grid gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-center">
             <p className="text-sm font-medium text-foreground">Happy's Drug Members</p>
             <div className="mx-auto h-24 w-full max-w-[260px] rounded bg-[repeating-linear-gradient(90deg,hsl(var(--foreground))_0_2px,transparent_2px_4px,hsl(var(--foreground))_4px_7px,transparent_7px_10px,hsl(var(--foreground))_10px_11px,transparent_11px_14px)]" />
             <p className="font-mono text-sm tracking-widest text-foreground">3480 0626 2026</p>
@@ -302,7 +302,7 @@ export function MemberSummary() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

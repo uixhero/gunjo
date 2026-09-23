@@ -43,7 +43,7 @@ const rectangleCodeByLocale = {
 
 export function VideoSkeleton() {
   return (
-    <div className="w-full max-w-sm overflow-hidden rounded-lg border bg-card">
+    <div className="w-full max-w-sm overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <div className="relative aspect-video">
         <Skeleton shape="rectangle" className="h-full w-full rounded-none" />
         <Skeleton shape="circle" className="absolute left-1/2 top-1/2 h-12 w-12 -translate-x-1/2 -translate-y-1/2" />
@@ -64,7 +64,7 @@ export function VideoSkeleton() {
 
 export function VideoSkeleton() {
   return (
-    <div className="w-full max-w-sm overflow-hidden rounded-lg border bg-card">
+    <div className="w-full max-w-sm overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <div className="relative aspect-video">
         <Skeleton shape="rectangle" className="h-full w-full rounded-none" />
         <Skeleton shape="circle" className="absolute left-1/2 top-1/2 h-12 w-12 -translate-x-1/2 -translate-y-1/2" />
@@ -88,7 +88,7 @@ const cardCodeByLocale = {
 
 export function CardSkeleton() {
   return (
-    <div className="w-full max-w-sm rounded-lg border p-4">
+    <div className="w-full max-w-sm rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4">
       <Skeleton shape="rectangle" className="mb-4 h-28 w-full rounded-md" />
       <Skeleton shape="text" className="mb-2 w-40" />
       <Skeleton shape="text" className="w-56" />
@@ -99,7 +99,7 @@ export function CardSkeleton() {
 
 export function CardSkeleton() {
   return (
-    <div className="w-full max-w-sm rounded-lg border p-4">
+    <div className="w-full max-w-sm rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4">
       <Skeleton shape="rectangle" className="mb-4 h-28 w-full rounded-md" />
       <Skeleton shape="text" className="mb-2 w-40" />
       <Skeleton shape="text" className="w-56" />
@@ -286,7 +286,7 @@ export default function SkeletonPage() {
                                 ? "カードの読み込みでは、画像領域、見出し、本文の位置を先に確保します。"
                                 : "Reserve the media area, title, and body lines before card content loads.",
                             preview: (
-                                <div className="w-full max-w-sm rounded-lg border p-4">
+                                <div className="w-full max-w-sm rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4">
                                     <Skeleton shape="rectangle" className="mb-4 h-28 w-full rounded-md" />
                                     <Skeleton shape="text" className="mb-2 w-40" />
                                     <Skeleton shape="text" className="w-56" />
@@ -354,7 +354,7 @@ export default function SkeletonPage() {
                                 ? "動画の読み込みでは、プレイヤー領域、再生ボタン、タイトル行をまとめて模倣します。"
                                 : "For video loading, mirror the player area, play control, and title lines together.",
                             preview: (
-                                <div className="w-full max-w-sm overflow-hidden rounded-lg border bg-card">
+                                <div className="w-full max-w-sm overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
                                     <div className="relative aspect-video">
                                         <Skeleton shape="rectangle" className="h-full w-full rounded-none" />
                                         <Skeleton shape="circle" className="absolute left-1/2 top-1/2 h-12 w-12 -translate-x-1/2 -translate-y-1/2" />
@@ -409,7 +409,7 @@ export default function SkeletonPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

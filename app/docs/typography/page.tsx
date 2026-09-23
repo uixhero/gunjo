@@ -105,7 +105,7 @@ export default function TypographyPage() {
                     {fonts.map((font) => (
                         <div
                             key={font.name}
-                            className="space-y-3 rounded-lg border border-border/40 bg-muted/20 p-5"
+                            className="space-y-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-5"
                         >
                             <div className="flex items-baseline justify-between">
                                 <span className="text-sm font-semibold">{font.name}</span>
@@ -128,7 +128,7 @@ export default function TypographyPage() {
                 <h2 className="pb-2 text-2xl font-semibold tracking-tight">
                     {c.sections.scale}
                 </h2>
-                <div className="space-y-3 rounded-lg border border-border/40 bg-muted/20 p-5">
+                <div className="space-y-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-5">
                     {SCALE.map((step) => (
                         <div
                             key={step.name}
@@ -156,7 +156,7 @@ export default function TypographyPage() {
                     {WEIGHTS.map((w) => (
                         <div
                             key={w.name}
-                            className="space-y-2 rounded-lg border border-border/40 bg-muted/20 p-4"
+                            className="space-y-2 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4"
                         >
                             <div className={`text-xl ${w.name}`}>群青 Aa</div>
                             <code className="block font-mono text-[10px] text-muted-foreground">

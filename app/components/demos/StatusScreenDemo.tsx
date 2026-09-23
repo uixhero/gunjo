@@ -76,7 +76,7 @@ export function StatusScreenDemo() {
                     ))}
                 </TabsList>
             </Tabs>
-            <div className="overflow-hidden rounded-lg border bg-background">
+            <div className="overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
                 <StatusScreen
                     key={active.key}
                     variant={active.key}

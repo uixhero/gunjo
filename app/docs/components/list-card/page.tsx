@@ -44,7 +44,7 @@ function ListCardDetail({
   const detail = details[selection];
 
   return (
-    <div className="grid content-start gap-3 rounded-lg border bg-card p-3">
+    <div className="grid content-start gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
       <p className="text-sm font-semibold text-foreground">{detail.title}</p>
       <Badge variant={detail.badgeVariant} className="w-fit">{detail.status}</Badge>
       <p className="text-sm leading-6 text-muted-foreground">{detail.summary}</p>
@@ -83,7 +83,7 @@ function ListCardPreview({ locale, readonly = false }: { locale: Locale; readonl
   };
 
   return (
-    <div ref={rootRef} className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border bg-card p-4">
+    <div ref={rootRef} className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="grid content-start gap-3">
         <ListCard
           leading={<LineChip label="JC" color="#f15a24" />}
@@ -199,7 +199,7 @@ export function RouteResults() {
   };
 
   return (
-    <div ref={rootRef} className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border bg-card p-4">
+    <div ref={rootRef} className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="grid content-start gap-3">
         <ListCard
           leading={<LineChip label="JC" color="#f15a24" />}
@@ -232,7 +232,7 @@ export function RouteResults() {
             <SheetTitle>詳細</SheetTitle>
             <SheetDescription>{detail.title}</SheetDescription>
           </SheetHeader>
-          <div className="grid content-start gap-3 rounded-lg border bg-card p-3">
+          <div className="grid content-start gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
             <p className="text-sm font-semibold text-foreground">{detail.title}</p>
             <Badge variant={detail.variant} className="w-fit">{detail.status}</Badge>
             <p className="text-sm leading-6 text-muted-foreground">{detail.summary}</p>
@@ -276,7 +276,7 @@ export function RouteResults() {
   };
 
   return (
-    <div ref={rootRef} className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border bg-card p-4">
+    <div ref={rootRef} className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="grid content-start gap-3">
         <ListCard
           leading={<LineChip label="JC" color="#f15a24" />}
@@ -309,7 +309,7 @@ export function RouteResults() {
             <SheetTitle>Details</SheetTitle>
             <SheetDescription>{detail.title}</SheetDescription>
           </SheetHeader>
-          <div className="grid content-start gap-3 rounded-lg border bg-card p-3">
+          <div className="grid content-start gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
             <p className="text-sm font-semibold text-foreground">{detail.title}</p>
             <Badge variant={detail.variant} className="w-fit">{detail.status}</Badge>
             <p className="text-sm leading-6 text-muted-foreground">{detail.summary}</p>
@@ -449,7 +449,7 @@ export function LineStatusList() {
 
 export function ServiceStatusListCards() {
   return (
-    <div className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border bg-card p-4">
+    <div className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="grid content-start gap-3">
         <ListCard
           leading={<LineChip label="JC" color="#f15a24" />}
@@ -478,7 +478,7 @@ export function ServiceStatusListCards() {
 
 export function ServiceStatusListCards() {
   return (
-    <div className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border bg-card p-4">
+    <div className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="grid content-start gap-3">
         <ListCard
           leading={<LineChip label="JC" color="#f15a24" />}
@@ -594,7 +594,7 @@ export function ServiceStatusListCards() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

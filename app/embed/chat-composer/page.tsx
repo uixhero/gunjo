@@ -19,7 +19,7 @@ export default function ChatComposerEmbed() {
         <div className="w-full max-w-3xl">
             <ChatComposer
                 prompt={
-                    <div className="rounded-2xl border bg-background p-4 shadow-sm">
+                    <div className="rounded-2xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 shadow-sm">
                         <div className="mb-3 flex items-center justify-between gap-3">
                             <p className="text-sm font-semibold">
                                 {isJa ? "どの整理方針で進めますか？" : "How should this be organized?"}
@@ -34,7 +34,7 @@ export default function ChatComposerEmbed() {
                                     key={choice.id}
                                     type="button"
                                     onClick={() => setSelected(choice.id)}
-                                    className={`flex w-full items-center gap-3 rounded-xl border px-3 py-2 text-left text-sm ${selected === choice.id ? "border-primary-border bg-primary-subtle" : "border-border bg-muted/20"}`}
+                                    className={`flex w-full items-center gap-3 rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-3 py-2 text-left text-sm ${selected === choice.id ? "bg-primary-subtle" : "bg-muted"}`}
                                 >
                                     <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-background font-semibold">
                                         {index + 1}

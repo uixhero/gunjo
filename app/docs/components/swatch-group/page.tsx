@@ -336,7 +336,7 @@ export function StockAwarePicker() {
 
       <div className="space-y-4">
         <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">Usage</h2>
-        <div className="rounded-md border bg-muted font-mono text-sm max-h-[350px] overflow-auto">
+        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm max-h-[350px] overflow-auto">
           <CodeBlock code={usageCode} />
         </div>
       </div>

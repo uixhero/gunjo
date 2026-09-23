@@ -104,7 +104,7 @@ export function ContainedAnnouncement() {
   const [visible, setVisible] = React.useState(true)
 
   return (
-    <div ref={setContainer} className="relative h-72 overflow-hidden rounded-lg border">
+    <div ref={setContainer} className="relative h-72 overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       {container && visible ? (
         <StickyNoticeBar
           edge="bottom"
@@ -135,7 +135,7 @@ export function ContainedAnnouncement() {
   const [visible, setVisible] = React.useState(true)
 
   return (
-    <div ref={setContainer} className="relative h-72 overflow-hidden rounded-lg border">
+    <div ref={setContainer} className="relative h-72 overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       {container && visible ? (
         <StickyNoticeBar
           edge="bottom"
@@ -532,7 +532,7 @@ export default function StickyNoticeBarPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

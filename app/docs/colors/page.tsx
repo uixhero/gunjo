@@ -378,12 +378,12 @@ function CopyChip({
             type="button"
             onClick={() => onCopy(value, id)}
             className={cn(
-                "inline-flex max-w-full items-center gap-1 rounded border px-1.5 py-0.5 font-mono text-[10px] transition-colors",
+                "inline-flex max-w-full items-center gap-1 rounded border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-1.5 py-0.5 font-mono text-[10px] transition-colors",
                 active
-                    ? "border-primary-border bg-primary-subtle text-primary-subtle-foreground"
+                    ? "bg-primary-subtle text-primary-subtle-foreground"
                     : isFailed
-                        ? "border-destructive-border bg-destructive-subtle text-destructive-subtle-foreground"
-                    : "border-border bg-muted/40 text-muted-foreground hover:bg-muted hover:text-foreground"
+                        ? "bg-destructive-subtle text-destructive-subtle-foreground"
+                    : "bg-muted text-muted-foreground hover:text-foreground"
             )}
             title={label}
         >
@@ -403,7 +403,7 @@ function TokenSwatch({ token, locale }: { token: TokenItem; locale: Locale }) {
     const swatchFailed = failed === swatchCopyId;
 
     return (
-        <div className="flex min-w-0 flex-col gap-2 rounded-lg border border-border bg-card p-3">
+        <div className="flex min-w-0 flex-col gap-2 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
             <button
                 ref={value.ref}
                 type="button"
@@ -537,7 +537,7 @@ function SemanticScale({ color, locale }: { color: SemanticColor; locale: Locale
     const prefix = `--${color.key}`;
 
     return (
-        <div className="rounded-xl border border-border bg-card p-4">
+        <div className="rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
             <div className="mb-4 flex flex-wrap items-start justify-between gap-3">
                 <div>
                     <h3 className="text-lg font-semibold">{color.name[locale]}</h3>
@@ -573,7 +573,7 @@ function SemanticScale({ color, locale }: { color: SemanticColor; locale: Locale
 
 function BrandStoryCard({ story, locale }: { story: BrandStory; locale: Locale }) {
     return (
-        <article className="overflow-hidden rounded-xl border border-border bg-card">
+        <article className="overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
             <div className="grid gap-0 lg:grid-cols-[1fr_18rem]">
                 <div className="space-y-4 p-5">
                     <div className="space-y-1">
@@ -585,7 +585,7 @@ function BrandStoryCard({ story, locale }: { story: BrandStory; locale: Locale }
                         {story.usage[locale].map((item) => (
                             <span
                                 key={item}
-                                className="rounded-full border border-border bg-muted/40 px-2.5 py-1 text-xs font-medium text-muted-foreground"
+                                className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground"
                             >
                                 {item}
                             </span>

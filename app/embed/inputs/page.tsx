@@ -15,7 +15,7 @@ import {
 export default function EmbedInputs() {
     return (
         <div className="flex min-h-screen items-center justify-center p-4">
-            <div className="grid w-full max-w-3xl gap-4 rounded-xl border bg-card p-5 shadow-sm sm:grid-cols-2">
+            <div className="grid w-full max-w-3xl gap-4 rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-5 shadow-sm sm:grid-cols-2">
                 <div className="space-y-2">
                     <Label htmlFor="embed-input-name">名前</Label>
                     <Input id="embed-input-name" defaultValue="Gunjo UI" />
@@ -35,11 +35,11 @@ export default function EmbedInputs() {
                     <Label>範囲</Label>
                     <RangeSlider defaultValue={[24, 72]} />
                 </div>
-                <div className="flex items-center gap-3 rounded-lg border p-3">
+                <div className="flex items-center gap-3 rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3">
                     <Checkbox id="embed-input-confirm" defaultChecked />
                     <Label htmlFor="embed-input-confirm">確認済み</Label>
                 </div>
-                <div className="flex items-center justify-between rounded-lg border p-3">
+                <div className="flex items-center justify-between rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3">
                     <Label htmlFor="embed-input-notify">通知</Label>
                     <Switch id="embed-input-notify" defaultChecked />
                 </div>

@@ -15,7 +15,7 @@ export function BottomActionBarDemo() {
       </div>
 
       {/* a phone frame so the sticky bar reads as a dock */}
-      <div className="relative h-72 overflow-hidden rounded-xl border bg-muted/30">
+      <div className="relative h-72 overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
         <div className="h-full overflow-y-auto px-4 pb-28 pt-4 text-sm text-muted-foreground">
           <p className="font-medium text-foreground">配車内容の確認</p>
           <p className="mt-1">乗車地：渋谷駅前 / 行き先：六本木ヒルズ</p>

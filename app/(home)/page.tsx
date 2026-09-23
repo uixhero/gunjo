@@ -388,7 +388,7 @@ export default function Home() {
                             </p>
                         </div>
                         <div className="flex flex-col items-start gap-3 lg:items-end">
-                            <code className="inline-flex items-center gap-2 rounded-lg border border-border bg-muted px-4 py-3 font-mono text-sm">
+                            <code className="inline-flex items-center gap-2 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-4 py-3 font-mono text-sm">
                                 <span className="text-muted-foreground">$</span>
                                 {home.engineers.install}
                             </code>
@@ -670,7 +670,7 @@ function LiveComponentWorkbench({ isJa }: { isJa: boolean }) {
                                 </TabsTrigger>
                             </TabsList>
                             <TabsContent value="preview" className="mt-4">
-                                <div className="rounded-lg border border-border bg-muted/30 p-4">
+                                <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4">
                                     <p className="font-medium">
                                         {isJa
                                             ? categoryLabel + "カテゴリを表示中"
@@ -688,7 +688,7 @@ function LiveComponentWorkbench({ isJa }: { isJa: boolean }) {
                                 </div>
                             </TabsContent>
                             <TabsContent value="code" className="mt-4">
-                                <div className="flex items-center justify-between gap-3 rounded-lg border border-border bg-muted px-3 py-2">
+                                <div className="flex items-center justify-between gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
                                     <code className="truncate text-sm">
                                         npm install @gunjo/ui
                                     </code>
@@ -861,7 +861,7 @@ function PatternBrowserCarousel({ isJa }: { isJa: boolean }) {
                                             </Link>
                                         </Button>
                                     </div>
-                                    <div className="overflow-hidden rounded-xl border border-border/60 bg-background">
+                                    <div className="overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
                                         <PatternSlideContent
                                             kind={slide.key}
                                             title={isJa ? slide.titleJa : slide.titleEn}

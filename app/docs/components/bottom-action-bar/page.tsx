@@ -60,12 +60,12 @@ function BottomActionBarPreview({ locale, initialStack = false }: { locale: Loca
         </Label>
       </div>
 
-      <div className="relative overflow-hidden rounded-xl border bg-muted/30">
+      <div className="relative overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
         <div className={stack ? "px-4 pb-36 pt-4 text-sm text-muted-foreground" : "px-4 pb-28 pt-4 text-sm text-muted-foreground"}>
           <p className="font-medium text-foreground">{copy.title}</p>
           <p className="mt-1">{copy.route}</p>
           <p className="mt-3">{copy.car}</p>
-          <div className="mt-6 rounded-md border bg-background p-3 text-xs">
+          <div className="mt-6 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-xs">
             {copy.statusPrefix}: {called ? copy.statusCalled : copy.statusIdle}
           </div>
         </div>
@@ -110,7 +110,7 @@ function BottomActionBarWidthPreview({ locale }: { locale: Locale }) {
   return (
     <div className="flex w-full max-w-2xl flex-col gap-4">
       <div className="flex flex-col gap-1">
-        <div className="overflow-hidden rounded-xl border bg-muted/30">
+        <div className="overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
           <BottomActionBar sticky={false} actions={<Button size="lg">{copy.call}</Button>}>
             {summary}
           </BottomActionBar>
@@ -120,7 +120,7 @@ function BottomActionBarWidthPreview({ locale }: { locale: Locale }) {
         </span>
       </div>
       <div className="flex flex-col gap-1">
-        <div className="overflow-hidden rounded-xl border bg-muted/30">
+        <div className="overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
           <BottomActionBar sticky={false} maxWidth="md" actions={<Button size="lg">{copy.call}</Button>}>
             {summary}
           </BottomActionBar>
@@ -157,12 +157,12 @@ export function RideBottomActionBar() {
         <Label htmlFor="ride-stack" className="text-xs">stack（料金の下にCTAを全幅で配置）</Label>
       </div>
 
-      <div className="relative overflow-hidden rounded-xl border bg-muted/30">
+      <div className="relative overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
         <div className={stack ? "px-4 pb-36 pt-4 text-sm text-muted-foreground" : "px-4 pb-28 pt-4 text-sm text-muted-foreground"}>
           <p className="font-medium text-foreground">配車内容の確認</p>
           <p className="mt-1">乗車地：渋谷駅前 / 行き先：六本木ヒルズ</p>
           <p className="mt-3">車種：JPNタクシー・到着まで約4分</p>
-          <div className="mt-6 rounded-md border bg-background p-3 text-xs">
+          <div className="mt-6 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-xs">
             状態: {called ? "配車依頼中" : "未確定"}
           </div>
         </div>
@@ -205,12 +205,12 @@ export function RideBottomActionBar() {
         <Label htmlFor="ride-stack" className="text-xs">stack (full-width CTA below fare)</Label>
       </div>
 
-      <div className="relative overflow-hidden rounded-xl border bg-muted/30">
+      <div className="relative overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
         <div className={stack ? "px-4 pb-36 pt-4 text-sm text-muted-foreground" : "px-4 pb-28 pt-4 text-sm text-muted-foreground"}>
           <p className="font-medium text-foreground">Ride details</p>
           <p className="mt-1">Pickup: Shibuya Station / Destination: Roppongi Hills</p>
           <p className="mt-3">Car: JPN Taxi / arrives in about 4 minutes</p>
-          <div className="mt-6 rounded-md border bg-background p-3 text-xs">
+          <div className="mt-6 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-xs">
             Status: {called ? "Requesting ride" : "Not requested"}
           </div>
         </div>
@@ -245,7 +245,7 @@ const FARE = { label: "見積もり料金", price: "¥1,200〜", eta: "到着 4�
 
 export function CappedBottomActionBar() {
   return (
-    <div className="overflow-hidden rounded-xl border bg-muted/30">
+    <div className="overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
       <BottomActionBar
         sticky={false}
         maxWidth="md"
@@ -270,7 +270,7 @@ const FARE = { label: "Estimated fare", price: "¥1,200+", eta: "4 min" };
 
 export function CappedBottomActionBar() {
   return (
-    <div className="overflow-hidden rounded-xl border bg-muted/30">
+    <div className="overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
       <BottomActionBar
         sticky={false}
         maxWidth="md"
@@ -379,7 +379,7 @@ export function CappedBottomActionBar() {
 
 export function StackedRideBottomActionBar() {
   return (
-    <div className="relative overflow-hidden rounded-xl border bg-muted/30">
+    <div className="relative overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
       <div className="px-4 pb-36 pt-4 text-sm text-muted-foreground">
         <p className="font-medium text-foreground">配車内容の確認</p>
         <p className="mt-1">乗車地：渋谷駅前 / 行き先：六本木ヒルズ</p>
@@ -405,7 +405,7 @@ export function StackedRideBottomActionBar() {
 
 export function StackedRideBottomActionBar() {
   return (
-    <div className="relative overflow-hidden rounded-xl border bg-muted/30">
+    <div className="relative overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
       <div className="px-4 pb-36 pt-4 text-sm text-muted-foreground">
         <p className="font-medium text-foreground">Ride details</p>
         <p className="mt-1">Pickup: Shibuya Station / Destination: Roppongi Hills</p>
@@ -457,7 +457,7 @@ export function StackedRideBottomActionBar() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

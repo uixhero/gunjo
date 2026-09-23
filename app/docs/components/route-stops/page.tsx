@@ -97,7 +97,7 @@ function RouteStopsPreview({ locale, mode = "delivery" }: { locale: Locale; mode
 
   if (mode === "shipment") {
     return (
-      <div className="w-full max-w-md rounded-lg border bg-card p-4">
+      <div className="w-full max-w-md rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
         <RouteStops
           stops={shipmentStops(locale)}
           statusLabels={labels.status}
@@ -134,7 +134,7 @@ function RouteStopsPreview({ locale, mode = "delivery" }: { locale: Locale; mode
   });
 
   return (
-    <div className="flex w-full max-w-md flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-md flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <RouteStops
         stops={stops}
         statusLabels={deliveryStatusLabels(locale)}
@@ -194,7 +194,7 @@ export function DeliveryRoute() {
   });
 
   return (
-    <div className="flex w-full max-w-md flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-md flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <RouteStops stops={stops} currentLabel="現在地" timeLabels={{ planned: "予定", actual: "実績" }} />
     </div>
   );
@@ -237,7 +237,7 @@ export function DeliveryRoute() {
   });
 
   return (
-    <div className="flex w-full max-w-md flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-md flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <RouteStops
         stops={stops}
         statusLabels={{ pending: "Pending", current: "In progress", completed: "Done", failed: "Failed", delayed: "Delayed" }}
@@ -263,7 +263,7 @@ const stops: RouteStopItem[] = [
 
 export function ShipmentRouteStops() {
   return (
-    <div className="w-full max-w-md rounded-lg border bg-card p-4">
+    <div className="w-full max-w-md rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <RouteStops stops={stops} currentLabel="現在地" />
     </div>
   );
@@ -288,7 +288,7 @@ const statusLabels: Partial<Record<RouteStopStatus, string>> = {
 
 export function ShipmentRouteStops() {
   return (
-    <div className="w-full max-w-md rounded-lg border bg-card p-4">
+    <div className="w-full max-w-md rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <RouteStops stops={stops} statusLabels={statusLabels} currentLabel="Current stop" />
     </div>
   );
@@ -309,7 +309,7 @@ const baseStops: RouteStopItem[] = [
 
 export function RouteStopsWithoutTimes() {
   return (
-    <div className="flex w-full max-w-md flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-md flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <RouteStops stops={baseStops} currentLabel="現在地" hideTimes />
     </div>
   );
@@ -335,7 +335,7 @@ const statusLabels: Partial<Record<RouteStopStatus, string>> = {
 
 export function RouteStopsWithoutTimes() {
   return (
-    <div className="flex w-full max-w-md flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-md flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <RouteStops stops={stops} statusLabels={statusLabels} currentLabel="Current stop" hideTimes />
     </div>
   );
@@ -413,7 +413,7 @@ export function RouteStopsWithoutTimes() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

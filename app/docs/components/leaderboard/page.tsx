@@ -122,7 +122,7 @@ function LeaderboardDetailPanel({
   value: React.ReactNode;
 }) {
   return (
-    <div className="min-w-0 rounded-lg border border-primary bg-background p-3 text-sm shadow-sm">
+    <div className="min-w-0 rounded-lg border border-transparent contrast-more:border-primary forced-colors:border-[CanvasText] bg-card p-3 text-sm shadow-sm">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="truncate text-base font-semibold text-foreground">{item.label}</p>
@@ -235,8 +235,8 @@ function LeaderboardPreview({ locale, variant = "worst" }: { locale: Locale; var
       ref={setPortalContainer}
       className={
         isCompactLayout
-          ? "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-visible rounded-lg border bg-card p-4"
-          : "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-hidden rounded-lg border bg-card p-4 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]"
+          ? "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-visible rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4"
+          : "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]"
       }
     >
       <Leaderboard
@@ -275,7 +275,7 @@ function LeaderboardPreview({ locale, variant = "worst" }: { locale: Locale; var
         </SheetContent>
       </Sheet>
       {!isCompactLayout && selectedItem && selectedDetail ? (
-        <aside className="hidden min-w-0 rounded-lg border bg-muted/20 p-3 lg:block">
+        <aside className="hidden min-w-0 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 lg:block">
           <h3 className="mb-3 text-sm font-semibold text-foreground">{copy.detailTitle}</h3>
           <LeaderboardDetailPanel copy={copy} item={selectedItem} detail={selectedDetail} value={formattedValue(selectedItem)} />
         </aside>
@@ -515,8 +515,8 @@ export function IncidentLeaderboard() {
       ref={setPortalContainer}
       className={
         isCompactLayout
-          ? "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-visible rounded-lg border bg-card p-4"
-          : "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-hidden rounded-lg border bg-card p-4 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]"
+          ? "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-visible rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4"
+          : "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]"
       }
     >
       <Leaderboard
@@ -545,7 +545,7 @@ export function IncidentLeaderboard() {
           </SheetHeader>
           {selectedRoute && selectedDetail ? (
             <div className="mt-4">
-              <div className="min-w-0 rounded-lg border border-primary bg-background p-3 text-sm shadow-sm">
+              <div className="min-w-0 rounded-lg border border-transparent contrast-more:border-primary forced-colors:border-[CanvasText] bg-card p-3 text-sm shadow-sm">
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="truncate text-base font-semibold text-foreground">{selectedRoute.label}</p>
@@ -600,9 +600,9 @@ export function IncidentLeaderboard() {
         </SheetContent>
       </Sheet>
       {!isCompactLayout && selectedRoute && selectedDetail ? (
-        <aside className="hidden min-w-0 rounded-lg border bg-muted/20 p-3 lg:block">
+        <aside className="hidden min-w-0 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 lg:block">
           <h3 className="mb-3 text-sm font-semibold text-foreground">ランキング詳細</h3>
-          <div className="min-w-0 rounded-lg border border-primary bg-background p-3 text-sm shadow-sm">
+          <div className="min-w-0 rounded-lg border border-transparent contrast-more:border-primary forced-colors:border-[CanvasText] bg-card p-3 text-sm shadow-sm">
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="truncate text-base font-semibold text-foreground">{selectedRoute.label}</p>
@@ -830,8 +830,8 @@ export function IncidentLeaderboard() {
       ref={setPortalContainer}
       className={
         isCompactLayout
-          ? "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-visible rounded-lg border bg-card p-4"
-          : "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-hidden rounded-lg border bg-card p-4 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]"
+          ? "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-visible rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4"
+          : "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]"
       }
     >
       <Leaderboard
@@ -860,7 +860,7 @@ export function IncidentLeaderboard() {
           </SheetHeader>
           {selectedRoute && selectedDetail ? (
             <div className="mt-4">
-              <div className="min-w-0 rounded-lg border border-primary bg-background p-3 text-sm shadow-sm">
+              <div className="min-w-0 rounded-lg border border-transparent contrast-more:border-primary forced-colors:border-[CanvasText] bg-card p-3 text-sm shadow-sm">
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="truncate text-base font-semibold text-foreground">{selectedRoute.label}</p>
@@ -915,9 +915,9 @@ export function IncidentLeaderboard() {
         </SheetContent>
       </Sheet>
       {!isCompactLayout && selectedRoute && selectedDetail ? (
-        <aside className="hidden min-w-0 rounded-lg border bg-muted/20 p-3 lg:block">
+        <aside className="hidden min-w-0 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 lg:block">
           <h3 className="mb-3 text-sm font-semibold text-foreground">Ranking details</h3>
-          <div className="min-w-0 rounded-lg border border-primary bg-background p-3 text-sm shadow-sm">
+          <div className="min-w-0 rounded-lg border border-transparent contrast-more:border-primary forced-colors:border-[CanvasText] bg-card p-3 text-sm shadow-sm">
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="truncate text-base font-semibold text-foreground">{selectedRoute.label}</p>
@@ -1055,7 +1055,7 @@ export function IncidentLeaderboard() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

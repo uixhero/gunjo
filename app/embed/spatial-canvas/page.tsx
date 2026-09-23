@@ -8,7 +8,7 @@ export default function Embed() {
 
     return (
         <div className="flex w-full justify-center p-4">
-            <div className="h-[420px] w-full max-w-4xl overflow-hidden rounded-lg border">
+            <div className="h-[420px] w-full max-w-4xl overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                 <SpatialCanvas gridSize={40}>
                     <FloatingPanel title={locale === "ja" ? "ツール" : "Tools"} className="absolute left-4 top-4 w-48">
                         <div className="p-3 text-sm text-muted-foreground">

@@ -118,7 +118,7 @@ function NavRowPreview({ locale, mode = "grouped" }: { locale: Locale; mode?: "g
             <DialogTitle>{detailContent.title}</DialogTitle>
             <DialogDescription>{detailContent.description}</DialogDescription>
           </DialogHeader>
-          <div className="rounded-md border bg-muted/30 px-3 py-2 text-sm">
+          <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm">
             <span className="text-muted-foreground">{locale === "ja" ? "現在値" : "Current value"}</span>
             <span className="mt-1 block font-medium text-foreground">{detailContent.value}</span>
           </div>
@@ -201,7 +201,7 @@ export function BillingRows() {
             <DialogTitle>{detailContent.title}</DialogTitle>
             <DialogDescription>{detailContent.description}</DialogDescription>
           </DialogHeader>
-          <div className="rounded-md border bg-muted/30 px-3 py-2 text-sm">
+          <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm">
             <span className="text-muted-foreground">現在値</span>
             <span className="mt-1 block font-medium text-foreground">{detailContent.value}</span>
           </div>
@@ -275,7 +275,7 @@ export function BillingRows() {
             <DialogTitle>{detailContent.title}</DialogTitle>
             <DialogDescription>{detailContent.description}</DialogDescription>
           </DialogHeader>
-          <div className="rounded-md border bg-muted/30 px-3 py-2 text-sm">
+          <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm">
             <span className="text-muted-foreground">Current value</span>
             <span className="mt-1 block font-medium text-foreground">{detailContent.value}</span>
           </div>
@@ -451,7 +451,7 @@ export function SecurityStatusRow() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

@@ -13,7 +13,7 @@ const codeByLocale = {
 
 export function AccountFormStack() {
   return (
-    <VStack gap={4} className="w-full max-w-sm rounded-md border bg-background p-4">
+    <VStack gap={4} className="w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <VStack gap={2}>
         <Label htmlFor="name">Name</Label>
         <Input id="name" defaultValue="Gunjo UI" className="w-full" />
@@ -30,7 +30,7 @@ export function AccountFormStack() {
 
 export function AccountFormStack() {
   return (
-    <VStack gap={4} className="w-full max-w-sm rounded-md border bg-background p-4">
+    <VStack gap={4} className="w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <VStack gap={2}>
         <Label htmlFor="name">名前</Label>
         <Input id="name" defaultValue="Gunjo UI" className="w-full" />
@@ -52,7 +52,7 @@ const stateCodeByLocale = {
 
 export function CenteredStack() {
   return (
-    <VStack align="center" gap={3} className="rounded-md border bg-background p-4 text-center">
+    <VStack align="center" gap={3} className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-center">
       <div className="grid h-10 w-10 place-items-center rounded-full bg-primary text-primary-foreground">G</div>
       <div>
         <p className="font-medium">Centered stack</p>
@@ -65,7 +65,7 @@ export function CenteredStack() {
 
 export function ReviewQueueStack() {
   return (
-    <VStack justify="between" className="h-44 rounded-md border bg-background p-4">
+    <VStack justify="between" className="h-44 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div>
         <p className="font-medium">Review queue</p>
         <p className="text-sm text-muted-foreground">12 items waiting</p>
@@ -78,7 +78,7 @@ export function ReviewQueueStack() {
 
 export function EndAlignedStack() {
   return (
-    <VStack align="end" gap={3} className="w-full max-w-sm rounded-md border bg-background p-4 text-right">
+    <VStack align="end" gap={3} className="w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-right">
       <div>
         <p className="font-medium">Billing update</p>
         <p className="text-sm text-muted-foreground">Align actions and short copy to the right edge.</p>
@@ -91,7 +91,7 @@ export function EndAlignedStack() {
 
 export function InlineStack() {
   return (
-    <VStack inline gap={1} align="start" className="rounded-md border bg-muted/40 p-3">
+    <VStack inline gap={1} align="start" className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
       <span className="text-sm font-medium">Inline stack</span>
       <span className="text-xs text-muted-foreground">Fits inside text-like flows.</span>
     </VStack>
@@ -104,7 +104,7 @@ export function InlineStack() {
 
 export function CenteredStack() {
   return (
-    <VStack align="center" gap={3} className="rounded-md border bg-background p-4 text-center">
+    <VStack align="center" gap={3} className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-center">
       <div className="grid h-10 w-10 place-items-center rounded-full bg-primary text-primary-foreground">G</div>
       <div>
         <p className="font-medium">中央揃え</p>
@@ -117,7 +117,7 @@ export function CenteredStack() {
 
 export function ReviewQueueStack() {
   return (
-    <VStack justify="between" className="h-44 rounded-md border bg-background p-4">
+    <VStack justify="between" className="h-44 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div>
         <p className="font-medium">確認キュー</p>
         <p className="text-sm text-muted-foreground">12件が待機中</p>
@@ -130,7 +130,7 @@ export function ReviewQueueStack() {
 
 export function EndAlignedStack() {
   return (
-    <VStack align="end" gap={3} className="w-full max-w-sm rounded-md border bg-background p-4 text-right">
+    <VStack align="end" gap={3} className="w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-right">
       <div>
         <p className="font-medium">請求情報の更新</p>
         <p className="text-sm text-muted-foreground">短い説明と操作を右端に揃えます。</p>
@@ -143,7 +143,7 @@ export function EndAlignedStack() {
 
 export function InlineStack() {
   return (
-    <VStack inline gap={1} align="start" className="rounded-md border bg-muted/40 p-3">
+    <VStack inline gap={1} align="start" className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
       <span className="text-sm font-medium">インラインスタック</span>
       <span className="text-xs text-muted-foreground">テキストに近い流れの中で使えます。</span>
     </VStack>
@@ -182,7 +182,7 @@ export default function VStackPage() {
             ]}
         >
             <ComponentPreview embedSrc="/embed/v-stack" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md">
-                <VStack gap={4} className="w-full max-w-sm rounded-md border bg-background p-4">
+                <VStack gap={4} className="w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
                     <VStack gap={2}>
                         <Label htmlFor="vstack-name">{locale === "ja" ? "名前" : "Name"}</Label>
                         <Input id="vstack-name" defaultValue="Gunjo UI" className="w-full" />
@@ -210,7 +210,7 @@ export default function VStackPage() {
                             previewBodyWidth: "md",
                             code: stateCodeByLocale[locale].form,
                             preview: (
-                                <VStack gap={4} className="w-full max-w-sm rounded-md border bg-background p-4">
+                                <VStack gap={4} className="w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
                                     <VStack gap={2}>
                                         <Label htmlFor="vstack-state-name">{locale === "ja" ? "名前" : "Name"}</Label>
                                         <Input id="vstack-state-name" defaultValue="Gunjo UI" className="w-full" />
@@ -230,7 +230,7 @@ export default function VStackPage() {
                             previewBodyWidth: "md",
                             code: stateCodeByLocale[locale].center,
                             preview: (
-                                <VStack align="center" gap={3} className="rounded-md border bg-background p-4 text-center">
+                                <VStack align="center" gap={3} className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-center">
                                     <div className="grid h-10 w-10 place-items-center rounded-full bg-primary text-primary-foreground">G</div>
                                     <div>
                                         <p className="font-medium">{locale === "ja" ? "中央揃え" : "Centered stack"}</p>
@@ -246,7 +246,7 @@ export default function VStackPage() {
                             previewBodyWidth: "md",
                             code: stateCodeByLocale[locale].between,
                             preview: (
-                                <VStack justify="between" className="h-44 rounded-md border bg-background p-4">
+                                <VStack justify="between" className="h-44 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
                                     <div>
                                         <p className="font-medium">{locale === "ja" ? "確認キュー" : "Review queue"}</p>
                                         <p className="text-sm text-muted-foreground">{locale === "ja" ? "12件が待機中" : "12 items waiting"}</p>
@@ -262,7 +262,7 @@ export default function VStackPage() {
                             previewBodyWidth: "md",
                             code: stateCodeByLocale[locale].end,
                             preview: (
-                                <VStack align="end" gap={3} className="w-full max-w-sm rounded-md border bg-background p-4 text-right">
+                                <VStack align="end" gap={3} className="w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-right">
                                     <div>
                                         <p className="font-medium">{locale === "ja" ? "請求情報の更新" : "Billing update"}</p>
                                         <p className="text-sm text-muted-foreground">
@@ -280,7 +280,7 @@ export default function VStackPage() {
                             previewBodyWidth: "md",
                             code: stateCodeByLocale[locale].inline,
                             preview: (
-                                <VStack inline gap={1} align="start" className="rounded-md border bg-muted/40 p-3">
+                                <VStack inline gap={1} align="start" className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
                                     <span className="text-sm font-medium">{locale === "ja" ? "インラインスタック" : "Inline stack"}</span>
                                     <span className="text-xs text-muted-foreground">{locale === "ja" ? "テキストに近い流れの中で使えます。" : "Fits inside text-like flows."}</span>
                                 </VStack>
@@ -300,7 +300,7 @@ export default function VStackPage() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

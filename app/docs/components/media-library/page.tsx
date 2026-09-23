@@ -67,7 +67,7 @@ export default function MediaLibraryDocPage() {
                 : ["cover.png", "figure-1.png", "figure-2.png", "backdrop.jpg", "logo.svg", "photo.jpg"]
             ).map((name) => (
                 <div key={name} className="space-y-2">
-                    <div className="aspect-video rounded-md border bg-muted" />
+                    <div className="aspect-video rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted" />
                     <p className="truncate text-xs text-muted-foreground">{name}</p>
                 </div>
             ))}
@@ -118,7 +118,7 @@ export default function MediaLibraryDocPage() {
                 codeBlock={<CodeBlock code={usageCode} />}
                 embedSrc="/embed/media-library"
             >
-                <div className="w-full overflow-hidden rounded-lg border shadow-sm">
+                <div className="w-full overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-sm">
                     <MediaLibraryTemplateDemo className="min-h-[900px]" />
                 </div>
             </ComponentPreview>
@@ -187,7 +187,7 @@ export function FullLibrary() {
       <div className="grid grid-cols-3 gap-3 p-4">
         {FILES.map((name) => (
           <div key={name} className="space-y-2">
-            <div className="aspect-video rounded-md border bg-muted" />
+            <div className="aspect-video rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted" />
             <p className="truncate text-xs text-muted-foreground">{name}</p>
           </div>
         ))}
@@ -215,7 +215,7 @@ export function FullLibrary() {
       <div className="grid grid-cols-3 gap-3 p-4">
         {FILES.map((name) => (
           <div key={name} className="space-y-2">
-            <div className="aspect-video rounded-md border bg-muted" />
+            <div className="aspect-video rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted" />
             <p className="truncate text-xs text-muted-foreground">{name}</p>
           </div>
         ))}
@@ -255,7 +255,7 @@ export function LibraryWithoutDetails() {
       <div className="grid grid-cols-3 gap-3 p-4">
         {FILES.map((name) => (
           <div key={name} className="space-y-2">
-            <div className="aspect-video rounded-md border bg-muted" />
+            <div className="aspect-video rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted" />
             <p className="truncate text-xs text-muted-foreground">{name}</p>
           </div>
         ))}
@@ -282,7 +282,7 @@ export function LibraryWithoutDetails() {
       <div className="grid grid-cols-3 gap-3 p-4">
         {FILES.map((name) => (
           <div key={name} className="space-y-2">
-            <div className="aspect-video rounded-md border bg-muted" />
+            <div className="aspect-video rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted" />
             <p className="truncate text-xs text-muted-foreground">{name}</p>
           </div>
         ))}
@@ -313,7 +313,7 @@ export function GridOnlyLibrary() {
       <div className="grid grid-cols-3 gap-3 p-4">
         {FILES.map((name) => (
           <div key={name} className="space-y-2">
-            <div className="aspect-video rounded-md border bg-muted" />
+            <div className="aspect-video rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted" />
             <p className="truncate text-xs text-muted-foreground">{name}</p>
           </div>
         ))}
@@ -331,7 +331,7 @@ export function GridOnlyLibrary() {
       <div className="grid grid-cols-3 gap-3 p-4">
         {FILES.map((name) => (
           <div key={name} className="space-y-2">
-            <div className="aspect-video rounded-md border bg-muted" />
+            <div className="aspect-video rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted" />
             <p className="truncate text-xs text-muted-foreground">{name}</p>
           </div>
         ))}
@@ -344,7 +344,7 @@ export function GridOnlyLibrary() {
                 />
             </div>
 
-            <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-accent-foreground/20 bg-accent/40 p-5">
+            <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-accent p-5">
                 <div className="max-w-md space-y-1">
                     <h3 className="text-base font-semibold">View as a full app</h3>
                     <p className="text-sm text-muted-foreground">

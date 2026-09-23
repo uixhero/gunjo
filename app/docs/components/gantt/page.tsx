@@ -140,7 +140,7 @@ function GanttDetailPanel({
   const tone = GANTT_DETAIL_TONE[item.tone ?? "default"];
 
   return (
-    <div className={["min-w-0 rounded-lg border text-sm shadow-sm", compact ? "p-2" : "p-3", tone.panel].join(" ")}>
+    <div className={["min-w-0 rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] text-sm shadow-sm", compact ? "p-2" : "p-3", tone.panel].join("  ")}>
       {compact ? (
         <div className="flex justify-end">
           <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">
@@ -255,7 +255,7 @@ function GanttPreview({ locale, variant = "default" }: { locale: Locale; variant
   }, []);
 
   return (
-    <div ref={setPreviewNode} className="relative flex w-full max-w-4xl flex-col gap-4 overflow-visible rounded-lg border bg-card p-4">
+    <div ref={setPreviewNode} className="relative flex w-full max-w-4xl flex-col gap-4 overflow-visible rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="grid min-w-0 gap-4">
         <Gantt
           rows={rows}
@@ -387,7 +387,7 @@ export function ProductionGantt() {
   }, []);
 
   return (
-    <div ref={setPreviewNode} className="relative flex w-full max-w-4xl flex-col gap-4 overflow-visible rounded-lg border bg-card p-4">
+    <div ref={setPreviewNode} className="relative flex w-full max-w-4xl flex-col gap-4 overflow-visible rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="grid min-w-0 gap-4">
         <Gantt
           rows={rows}
@@ -418,7 +418,7 @@ export function ProductionGantt() {
           <SheetHeader className="pr-8 text-left">
             <SheetTitle>工程詳細 / {selectedItem.label}</SheetTitle>
           </SheetHeader>
-          <div className={["mt-4 rounded-lg border p-2 text-sm shadow-sm", selectedTone.panel].join(" ")}>
+          <div className={["mt-4 rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-2 text-sm shadow-sm", selectedTone.panel].join("  ")}>
             <div className="flex justify-end">
               <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">
                 {selectedDetail.status}
@@ -504,7 +504,7 @@ export function ProductionGantt() {
   }, []);
 
   return (
-    <div ref={setPreviewNode} className="relative flex w-full max-w-4xl flex-col gap-4 overflow-visible rounded-lg border bg-card p-4">
+    <div ref={setPreviewNode} className="relative flex w-full max-w-4xl flex-col gap-4 overflow-visible rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="grid min-w-0 gap-4">
         <Gantt
           rows={rows}
@@ -535,7 +535,7 @@ export function ProductionGantt() {
           <SheetHeader className="pr-8 text-left">
             <SheetTitle>Job details / {selectedItem.label}</SheetTitle>
           </SheetHeader>
-          <div className={["mt-4 rounded-lg border p-2 text-sm shadow-sm", selectedTone.panel].join(" ")}>
+          <div className={["mt-4 rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-2 text-sm shadow-sm", selectedTone.panel].join("  ")}>
             <div className="flex justify-end">
               <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">
                 {selectedDetail.status}
@@ -599,7 +599,7 @@ export function SegmentedProductionGantt() {
   const selectedItem = items.find((item) => item.id === selectedId);
 
   return (
-    <div className="relative grid gap-4 rounded-lg border bg-card p-4">
+    <div className="relative grid gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Gantt
         rows={rows}
         items={items}
@@ -621,7 +621,7 @@ export function SegmentedProductionGantt() {
           <SheetHeader className="pr-8 text-left">
             <SheetTitle>工程詳細 / {selectedItem?.label}</SheetTitle>
           </SheetHeader>
-	      <div className={["mt-4 rounded-lg border p-3 text-sm shadow-sm", detail.tone.panel].join(" ")}>
+	      <div className={["mt-4 rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3 text-sm shadow-sm", detail.tone.panel].join("  ")}>
             <div className="flex justify-end">
               <Badge
                 variant="outline"
@@ -686,7 +686,7 @@ export function SegmentedProductionGantt() {
   const selectedItem = items.find((item) => item.id === selectedId);
 
   return (
-    <div className="relative grid gap-4 rounded-lg border bg-card p-4">
+    <div className="relative grid gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Gantt
         rows={rows}
         items={items}
@@ -708,7 +708,7 @@ export function SegmentedProductionGantt() {
           <SheetHeader className="pr-8 text-left">
             <SheetTitle>Job details / {selectedItem?.label}</SheetTitle>
           </SheetHeader>
-	      <div className={["mt-4 rounded-lg border p-3 text-sm shadow-sm", detail.tone.panel].join(" ")}>
+	      <div className={["mt-4 rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3 text-sm shadow-sm", detail.tone.panel].join("  ")}>
             <div className="flex justify-end">
               <Badge
                 variant="outline"
@@ -762,7 +762,7 @@ export function VehicleRunGantt() {
   const selectedItem = items.find((item) => item.id === selectedId);
 
   return (
-    <div className="relative grid gap-4 rounded-lg border bg-card p-4">
+    <div className="relative grid gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Gantt
         rows={rows}
         items={items}
@@ -811,7 +811,7 @@ export function VehicleRunGantt() {
   const selectedItem = items.find((item) => item.id === selectedId);
 
   return (
-    <div className="relative grid gap-4 rounded-lg border bg-card p-4">
+    <div className="relative grid gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Gantt
         rows={rows}
         items={items}
@@ -910,7 +910,7 @@ export function VehicleRunGantt() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

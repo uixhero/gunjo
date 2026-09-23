@@ -37,7 +37,7 @@ export function ApprovalWorkflowDemo() {
             />
 
             {value.currentStageId === "docs" && value.status === "in-progress" ? (
-                <label className="flex items-center gap-2 rounded-md border bg-muted/30 px-3 py-2 text-sm">
+                <label className="flex items-center gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm">
                     <Checkbox checked={docsChecked} onCheckedChange={(c) => setDocsChecked(Boolean(c))} />
                     必要書類をすべて確認した（書類審査の advance ゲート）
                 </label>

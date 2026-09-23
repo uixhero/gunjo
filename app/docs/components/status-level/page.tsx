@@ -114,7 +114,7 @@ function StatusLevelPreview({ locale, compact = false }: { locale: Locale; compa
   return (
     <div className="flex w-full max-w-xl flex-col gap-4">
       {!compact ? (
-        <div className="flex flex-col gap-3 rounded-lg border bg-card p-4">
+        <div className="flex flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
           <SegmentedControl
             aria-label={copy.pick}
             size="sm"
@@ -689,7 +689,7 @@ export function SizesAndLayout() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

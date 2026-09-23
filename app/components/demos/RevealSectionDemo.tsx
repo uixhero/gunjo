@@ -13,7 +13,7 @@ export function RevealSectionDemo() {
                 <Switch checked={hasSpouse} onCheckedChange={setHasSpouse} aria-label="配偶者あり" />
             </label>
 
-            <RevealSection open={hasSpouse} label="配偶者控除の申告" className="rounded-md border bg-muted/30 p-4">
+            <RevealSection open={hasSpouse} label="配偶者控除の申告" className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4">
                 <p className="mb-3 text-sm font-medium text-foreground">配偶者控除の申告</p>
                 <div className="flex flex-col gap-3">
                     <label className="flex flex-col gap-1 text-sm">

@@ -31,7 +31,7 @@ function PersonCellPreview({ locale, mode = "list" }: { locale: Locale; mode?: "
     const label = locale === "ja" ? "中野 葵" : "Aoi Nakano";
     const secondary = locale === "ja" ? "エンジニアリング本部" : "Engineering";
     return (
-      <div className="grid w-full max-w-md gap-4 rounded-lg border bg-card p-4">
+      <div className="grid w-full max-w-md gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
         <PersonCell size="sm" name={label} secondary={secondary} avatar={{ fallback: locale === "ja" ? "中" : "A" }} />
         <PersonCell size="md" name={label} secondary={secondary} avatar={{ fallback: locale === "ja" ? "中" : "A" }} />
         <PersonCell size="lg" name={label} secondary={secondary} avatar={{ fallback: locale === "ja" ? "中" : "A" }} />
@@ -41,7 +41,7 @@ function PersonCellPreview({ locale, mode = "list" }: { locale: Locale; mode?: "
 
   if (mode === "minimal") {
     return (
-      <div className="w-full max-w-md rounded-lg border bg-card p-4">
+      <div className="w-full max-w-md rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
         <PersonCell
           name={locale === "ja" ? "小林 トヨ" : "Toyo Kobayashi"}
           secondary={locale === "ja" ? "利用者 / 88歳" : "Client / 88"}
@@ -53,7 +53,7 @@ function PersonCellPreview({ locale, mode = "list" }: { locale: Locale; mode?: "
   }
 
   return (
-    <div className="flex w-full max-w-md flex-col divide-y rounded-lg border bg-card p-3">
+    <div className="flex w-full max-w-md flex-col divide-y rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
       {people(locale).map((person) => (
         <div key={person.name} className="py-2.5">
           <PersonCell
@@ -139,7 +139,7 @@ const people = [
 
 export function DirectoryRows() {
   return (
-    <div className="flex w-full max-w-md flex-col divide-y rounded-lg border bg-card p-3">
+    <div className="flex w-full max-w-md flex-col divide-y rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
       {people.map((person) => (
         <div key={person.name} className="py-2.5">
           <PersonCell {...person} presenceLabel={person.presence} />
@@ -180,7 +180,7 @@ const people = [
 
 export function DirectoryRows() {
   return (
-    <div className="flex w-full max-w-md flex-col divide-y rounded-lg border bg-card p-3">
+    <div className="flex w-full max-w-md flex-col divide-y rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
       {people.map((person) => (
         <div key={person.name} className="py-2.5">
           <PersonCell {...person} presenceLabel={person.presence} />
@@ -195,7 +195,7 @@ export function DirectoryRows() {
 
 export function PersonCellSizes() {
   return (
-    <div className="grid w-full max-w-md gap-4 rounded-lg border bg-card p-4">
+    <div className="grid w-full max-w-md gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <PersonCell
         size="sm"
         name="中野 葵"
@@ -221,7 +221,7 @@ export function PersonCellSizes() {
 
 export function PersonCellSizes() {
   return (
-    <div className="grid w-full max-w-md gap-4 rounded-lg border bg-card p-4">
+    <div className="grid w-full max-w-md gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <PersonCell
         size="sm"
         name="Aoi Nakano"
@@ -249,7 +249,7 @@ export function PersonCellSizes() {
 
 export function MinimalPersonCell() {
   return (
-    <div className="w-full max-w-md rounded-lg border bg-card p-4">
+    <div className="w-full max-w-md rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <PersonCell
         name="小林 トヨ"
         secondary="利用者 / 88歳"
@@ -263,7 +263,7 @@ export function MinimalPersonCell() {
 
 export function MinimalPersonCell() {
   return (
-    <div className="w-full max-w-md rounded-lg border bg-card p-4">
+    <div className="w-full max-w-md rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <PersonCell
         name="Toyo Kobayashi"
         secondary="Client / 88"
@@ -444,7 +444,7 @@ export function PeopleList() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

@@ -116,7 +116,7 @@ function MultiSignerPreview({ locale }: { locale: Locale }) {
           </Button>
         ))}
       </div>
-      <div className="rounded-lg border bg-card p-4">
+      <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
         <SignedRecord
           value={record}
           onChange={setRecord}
@@ -127,7 +127,7 @@ function MultiSignerPreview({ locale }: { locale: Locale }) {
         >
           {({ readOnly }) =>
             readOnly ? (
-              <p className="whitespace-pre-wrap rounded-md border bg-muted/30 px-3 py-2 text-sm leading-6 text-foreground">{body}</p>
+              <p className="whitespace-pre-wrap rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm leading-6 text-foreground">{body}</p>
             ) : (
               <Textarea
                 rows={3}
@@ -168,7 +168,7 @@ function SignedRecordPreview({ locale, mode = "draft" }: { locale: Locale; mode?
   const reason = locale === "ja" ? "記録本文を入力すると署名できます。" : "Enter the record body before signing.";
 
   return (
-    <div className="w-full max-w-xl rounded-lg border bg-card p-4">
+    <div className="w-full max-w-xl p-4">
       <SignedRecord
         value={record}
         onChange={setRecord}
@@ -180,7 +180,7 @@ function SignedRecordPreview({ locale, mode = "draft" }: { locale: Locale; mode?
       >
         {({ readOnly }) =>
           readOnly ? (
-            <p className="whitespace-pre-wrap rounded-md border bg-muted/30 px-3 py-2 text-sm leading-6 text-foreground">{body}</p>
+            <p className="whitespace-pre-wrap rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm leading-6 text-foreground">{body}</p>
           ) : (
             <Textarea
               rows={3}
@@ -216,7 +216,7 @@ export function DischargeRecord() {
   const canSign = body.trim().length > 0;
 
   return (
-    <div className="w-full max-w-xl rounded-lg border bg-card p-4">
+    <div className="w-full max-w-xl p-4">
       <SignedRecord
         value={record}
         onChange={setRecord}
@@ -227,7 +227,7 @@ export function DischargeRecord() {
       >
         {({ readOnly }) =>
           readOnly ? (
-            <p className="whitespace-pre-wrap rounded-md border bg-muted/30 px-3 py-2 text-sm leading-6 text-foreground">
+            <p className="whitespace-pre-wrap rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm leading-6 text-foreground">
               {body}
             </p>
           ) : (
@@ -255,7 +255,7 @@ export function DischargeRecord() {
   const canSign = body.trim().length > 0;
 
   return (
-    <div className="w-full max-w-xl rounded-lg border bg-card p-4">
+    <div className="w-full max-w-xl p-4">
       <SignedRecord
         value={record}
         onChange={setRecord}
@@ -266,7 +266,7 @@ export function DischargeRecord() {
       >
         {({ readOnly }) =>
           readOnly ? (
-            <p className="whitespace-pre-wrap rounded-md border bg-muted/30 px-3 py-2 text-sm leading-6 text-foreground">
+            <p className="whitespace-pre-wrap rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm leading-6 text-foreground">
               {body}
             </p>
           ) : (
@@ -307,7 +307,7 @@ const signedRecord: SignedRecordValue = {
 
 export function SignedDischargeRecord() {
   return (
-    <div className="w-full max-w-xl rounded-lg border bg-card p-4">
+    <div className="w-full max-w-xl p-4">
       <SignedRecord
         value={signedRecord}
         onChange={() => undefined}
@@ -315,7 +315,7 @@ export function SignedDischargeRecord() {
         formatTime={(iso) => iso.slice(0, 16).replace("T", " ")}
       >
         {() => (
-          <p className="whitespace-pre-wrap rounded-md border bg-muted/30 px-3 py-2 text-sm leading-6 text-foreground">
+          <p className="whitespace-pre-wrap rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm leading-6 text-foreground">
             退院時説明を実施。次回外来は7月10日。
           </p>
         )}
@@ -344,7 +344,7 @@ const signedRecord: SignedRecordValue = {
 
 export function SignedDischargeRecord() {
   return (
-    <div className="w-full max-w-xl rounded-lg border bg-card p-4">
+    <div className="w-full max-w-xl p-4">
       <SignedRecord
         value={signedRecord}
         onChange={() => undefined}
@@ -352,7 +352,7 @@ export function SignedDischargeRecord() {
         formatTime={(iso) => iso.slice(0, 16).replace("T", " ")}
       >
         {() => (
-          <p className="whitespace-pre-wrap rounded-md border bg-muted/30 px-3 py-2 text-sm leading-6 text-foreground">
+          <p className="whitespace-pre-wrap rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm leading-6 text-foreground">
             Discharge instructions completed. Follow-up is scheduled for July 10.
           </p>
         )}
@@ -374,7 +374,7 @@ export function MissingBodyDischargeRecord() {
   const canSign = body.trim().length > 0;
 
   return (
-    <div className="w-full max-w-xl rounded-lg border bg-card p-4">
+    <div className="w-full max-w-xl p-4">
       <SignedRecord
         value={record}
         onChange={setRecord}
@@ -406,7 +406,7 @@ export function MissingBodyDischargeRecord() {
   const canSign = body.trim().length > 0;
 
   return (
-    <div className="w-full max-w-xl rounded-lg border bg-card p-4">
+    <div className="w-full max-w-xl p-4">
       <SignedRecord
         value={record}
         onChange={setRecord}
@@ -581,7 +581,7 @@ export function MultiSignedNote() {
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">{sectionLabels.usage}</h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

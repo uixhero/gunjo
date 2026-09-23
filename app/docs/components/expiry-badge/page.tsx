@@ -73,7 +73,7 @@ function ExpiryBadgePreview({ locale, compact = false }: { locale: Locale; compa
   const remainingFormatter = formatExpiryRemaining(locale);
 
   return (
-    <div className="flex w-full max-w-xl flex-col gap-4 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-xl flex-col gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       {!compact ? (
         <div className="grid gap-2">
           <div className="flex items-center justify-between gap-3">
@@ -158,7 +158,7 @@ export function ComplianceExpiryList() {
   const assessment = classifyExpiry("2026-07-20", { today, warnWithinDays });
 
   return (
-    <div className="flex w-full max-w-xl flex-col gap-4 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-xl flex-col gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Slider
         min={7}
         max={90}
@@ -222,7 +222,7 @@ export function ComplianceExpiryList() {
   const assessment = classifyExpiry("2026-07-20", { today, warnWithinDays });
 
   return (
-    <div className="flex w-full max-w-xl flex-col gap-4 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-xl flex-col gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Slider
         min={7}
         max={90}
@@ -660,7 +660,7 @@ export function ExpiryDensityBadges() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

@@ -115,7 +115,7 @@ export default function AiHandoffPage() {
                 {/* Try it */}
                 <section
                     id="try-it"
-                    className="scroll-mt-24 space-y-4 rounded-xl border border-primary-border bg-primary-subtle p-6"
+                    className="scroll-mt-24 space-y-4 rounded-xl border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText] bg-primary-subtle p-6"
                 >
                     <div className="flex flex-wrap items-start justify-between gap-3">
                         <div>
@@ -128,7 +128,7 @@ export default function AiHandoffPage() {
                         </div>
                         <CopySpecButton markdown={sampleSpec} />
                     </div>
-                    <pre className="max-h-80 overflow-auto rounded-lg border border-border/40 bg-background p-4 text-xs leading-relaxed">
+                    <pre className="max-h-80 overflow-auto rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-xs leading-relaxed">
                         {sampleSpec}
                     </pre>
                 </section>
@@ -138,7 +138,7 @@ export default function AiHandoffPage() {
                     <h2 className="text-2xl font-semibold tracking-tight">
                         {t.endpoints.heading}
                     </h2>
-                    <div className="space-y-2 rounded-lg border border-border/40 bg-muted/20 p-4 font-mono text-sm">
+                    <div className="space-y-2 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 font-mono text-sm">
                         <div className="flex flex-wrap items-center gap-3">
                             <Badge variant="outline" className="font-mono">
                                 GET
@@ -190,7 +190,7 @@ export default function AiHandoffPage() {
                     <p className="text-sm text-muted-foreground">
                         {t.noNpm.description}
                     </p>
-                    <ul className="space-y-2 rounded-lg border border-border/40 bg-muted/20 p-4 text-sm">
+                    <ul className="space-y-2 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 text-sm">
                         {(
                             [
                                 { key: "tokensCss", url: "https://www.gunjo.jp/tokens.css", href: "/tokens.css" },
@@ -256,7 +256,7 @@ export default function AiHandoffPage() {
                         <p className="text-xs text-muted-foreground">
                             {t.ssotFiles.fileHint}
                         </p>
-                        <div className="overflow-x-auto rounded-lg border border-border/40">
+                        <div className="overflow-x-auto rounded-lg">
                             <table className="w-full min-w-[38rem] text-sm">
                                 <thead className="bg-muted/40 text-xs font-medium uppercase tracking-wider text-muted-foreground">
                                     <tr>
@@ -320,7 +320,7 @@ export default function AiHandoffPage() {
                         <p className="text-xs text-muted-foreground">
                             {t.ssotFiles.bulkHint}
                         </p>
-                        <pre className="overflow-x-auto rounded-lg border border-border/40 bg-muted/20 p-3 font-mono text-xs">
+                        <pre className="overflow-x-auto rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 font-mono text-xs">
 {`mkdir -p ssot && \\
 curl -fsSL https://gunjo.dev/api/ssot/manifest \\
   | jq -r '.files[] | "\\(.downloadUrl)\\t\\(.fileName)"' \\
@@ -458,7 +458,7 @@ curl -fsSL https://gunjo.dev/api/ssot/manifest \\
                 </section>
 
                 {/* Cookbook callout */}
-                <section className="rounded-xl border border-accent-foreground/20 bg-accent/40 p-6">
+                <section className="rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-accent p-6">
                     <div className="flex flex-wrap items-start justify-between gap-4">
                         <div className="max-w-xl space-y-2">
                             <h2 className="text-2xl font-semibold tracking-tight">

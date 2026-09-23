@@ -47,7 +47,7 @@ export default function ComponentsIndexPage() {
                                     <Link
                                         key={item.href}
                                         href={item.href}
-                                        className="group relative flex flex-col justify-between rounded-xl border bg-card p-6 shadow-sm transition-all hover:shadow-md hover:border-primary-border"
+                                        className="group relative flex flex-col justify-between rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-6 shadow-sm transition-all hover:shadow-md hover:border-primary-border"
                                     >
                                         <div className="space-y-2">
                                             <h3 className="font-semibold leading-none tracking-tight group-hover:text-primary transition-colors">
@@ -67,7 +67,7 @@ export default function ComponentsIndexPage() {
                     </section>
                 ))}
 
-                <section className="space-y-4 rounded-lg border bg-muted/20 p-6">
+                <section className="space-y-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-6">
                     <div className="space-y-2">
                         <h2 className="text-2xl font-semibold tracking-tight">{t("Patterns")}</h2>
                         <p className="text-sm text-muted-foreground">

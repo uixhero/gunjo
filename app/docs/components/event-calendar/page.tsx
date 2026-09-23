@@ -152,7 +152,7 @@ function EventCalendarPreview({
           </SheetHeader>
           {selection ? (
             <div className="mt-4 grid gap-4 text-sm">
-              <div className="rounded-lg border bg-card p-3">
+              <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
                 <p className="font-medium text-foreground">
                   {selection.type === "date" ? copy.dateTitle(selection.iso) : copy.eventTitle(selection.event.label)}
                 </p>
@@ -163,17 +163,17 @@ function EventCalendarPreview({
                   <p className="text-xs font-medium text-muted-foreground">{copy.scheduledEvents}</p>
                   {selection.events.length > 0 ? (
                     selection.events.map((event) => (
-                      <div key={event.id} className="rounded-md border bg-background px-3 py-2">
+                      <div key={event.id} className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2">
                         <p className="font-medium text-foreground">{event.label}</p>
                         <p className="mt-1 text-xs text-muted-foreground">{event.ariaLabel}</p>
                       </div>
                     ))
                   ) : (
-                    <p className="rounded-md border bg-muted/30 px-3 py-2 text-muted-foreground">{copy.noEvents}</p>
+                    <p className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-muted-foreground">{copy.noEvents}</p>
                   )}
                 </div>
               ) : (
-                <div className="rounded-md border bg-muted/30 px-3 py-2">
+                <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
                   <p className="font-medium text-foreground">{selection.event.label}</p>
                   <p className="mt-1 text-muted-foreground">{selection.event.ariaLabel}</p>
                 </div>
@@ -286,7 +286,7 @@ export function EditorialCalendar() {
           </SheetHeader>
           {selection ? (
             <div className="mt-4 grid gap-4 text-sm">
-              <div className="rounded-lg border bg-card p-3">
+              <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
                 <p className="font-medium text-foreground">
                   {selection.type === "date"
                     ? selection.iso + " の予定"
@@ -298,17 +298,17 @@ export function EditorialCalendar() {
                 <div className="grid gap-2">
                   {selection.events.length > 0 ? (
                     selection.events.map((event) => (
-                      <div key={event.id} className="rounded-md border bg-background px-3 py-2">
+                      <div key={event.id} className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2">
                         <p className="font-medium text-foreground">{event.label}</p>
                         <p className="mt-1 text-xs text-muted-foreground">{event.ariaLabel}</p>
                       </div>
                     ))
                   ) : (
-                    <p className="rounded-md border bg-muted/30 px-3 py-2 text-muted-foreground">この日に登録された予定はありません。</p>
+                    <p className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-muted-foreground">この日に登録された予定はありません。</p>
                   )}
                 </div>
               ) : (
-                <div className="rounded-md border bg-muted/30 px-3 py-2">
+                <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
                   <p className="font-medium text-foreground">{selection.event.label}</p>
                   <p className="mt-1 text-muted-foreground">{selection.event.ariaLabel}</p>
                 </div>
@@ -436,7 +436,7 @@ export function EditorialCalendar() {
           </SheetHeader>
           {selection ? (
             <div className="mt-4 grid gap-4 text-sm">
-              <div className="rounded-lg border bg-card p-3">
+              <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
                 <p className="font-medium text-foreground">
                   {selection.type === "date"
                     ? "Schedule for " + selection.iso
@@ -448,17 +448,17 @@ export function EditorialCalendar() {
                 <div className="grid gap-2">
                   {selection.events.length > 0 ? (
                     selection.events.map((event) => (
-                      <div key={event.id} className="rounded-md border bg-background px-3 py-2">
+                      <div key={event.id} className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2">
                         <p className="font-medium text-foreground">{event.label}</p>
                         <p className="mt-1 text-xs text-muted-foreground">{event.ariaLabel}</p>
                       </div>
                     ))
                   ) : (
-                    <p className="rounded-md border bg-muted/30 px-3 py-2 text-muted-foreground">No events are scheduled for this date.</p>
+                    <p className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-muted-foreground">No events are scheduled for this date.</p>
                   )}
                 </div>
               ) : (
-                <div className="rounded-md border bg-muted/30 px-3 py-2">
+                <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
                   <p className="font-medium text-foreground">{selection.event.label}</p>
                   <p className="mt-1 text-muted-foreground">{selection.event.ariaLabel}</p>
                 </div>
@@ -755,7 +755,7 @@ export function CustomChipCalendar() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

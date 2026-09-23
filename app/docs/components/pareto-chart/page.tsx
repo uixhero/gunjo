@@ -48,7 +48,7 @@ const downtimeCauses = [
 
 export function DowntimePareto() {
   return (
-    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ParetoChart
         data={downtimeCauses}
         label="Downtime"
@@ -77,7 +77,7 @@ const downtimeCauses = [
 
 export function DowntimeParetoWithoutThreshold() {
   return (
-    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ParetoChart
         data={downtimeCauses}
         label="Downtime"
@@ -104,7 +104,7 @@ const downtimeCauses = [
 
 export function DowntimeParetoInInputOrder() {
   return (
-    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ParetoChart
         data={[...downtimeCauses].reverse()}
         label="Downtime"
@@ -134,7 +134,7 @@ const downtimeCauses = [
 
 export function DowntimePareto() {
   return (
-    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ParetoChart
         data={downtimeCauses}
         label="停止時間"
@@ -163,7 +163,7 @@ const downtimeCauses = [
 
 export function DowntimeParetoWithoutThreshold() {
   return (
-    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ParetoChart
         data={downtimeCauses}
         label="停止時間"
@@ -190,7 +190,7 @@ const downtimeCauses = [
 
 export function DowntimeParetoInInputOrder() {
   return (
-    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ParetoChart
         data={[...downtimeCauses].reverse()}
         label="停止時間"
@@ -223,7 +223,7 @@ function ParetoChartPreview({ locale, mode = "default" }: { locale: Locale; mode
   const data = mode === "unsorted" ? [...paretoData(locale)].reverse() : paretoData(locale);
 
   return (
-    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ParetoChart
         data={data}
         label={copy.label}
@@ -261,7 +261,7 @@ const downtimeCauses = [
 
 export function DowntimePareto() {
   return (
-    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ParetoChart
         data={downtimeCauses}
         label="停止時間"
@@ -289,7 +289,7 @@ const downtimeCauses = [
 
 export function DowntimePareto() {
   return (
-    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ParetoChart
         data={downtimeCauses}
         label="Downtime"
@@ -377,7 +377,7 @@ export function DowntimePareto() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

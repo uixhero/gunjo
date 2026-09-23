@@ -4,7 +4,7 @@ import { BlogTemplate } from "@gunjo/ui";
 
 export function BlogTemplateDemo() {
     return (
-        <div className="overflow-hidden rounded-md border bg-background">
+        <div className="overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
             <BlogTemplate
                 category="Engineering"
                 title="Building a SSOT-driven design system"

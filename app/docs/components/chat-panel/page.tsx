@@ -137,7 +137,7 @@ export function WelcomeChatPanel() {
       placeholder="何でも聞いてください..."
       welcome={
         <div className="w-full max-w-md space-y-5 px-2 pb-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full border bg-background shadow-sm">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted shadow-sm">
             <IconSparkles className="h-6 w-6" />
           </div>
           <div className="space-y-2">
@@ -180,7 +180,7 @@ function ChatPanelWelcome({ onSelect }: ChatPanelWelcomeProps) {
 
     return (
         <div className="w-full max-w-md space-y-5 px-2 pb-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full border bg-background shadow-sm">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted shadow-sm">
                 <IconSparkles className="h-6 w-6" />
             </div>
             <div className="space-y-2">

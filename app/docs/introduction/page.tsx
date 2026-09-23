@@ -76,7 +76,7 @@ export default function IntroductionPage() {
                 <p className="text-xs font-semibold uppercase tracking-wider text-muted-foreground">
                     {intro.livePreviewLabel}
                 </p>
-                <div className="rounded-lg border border-border/60 bg-muted/20 p-8">
+                <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-8">
                     <div className="flex flex-wrap items-center gap-3">
                         <Button>Primary</Button>
                         <Button variant="secondary">Secondary</Button>
@@ -179,7 +179,7 @@ export default function IntroductionPage() {
                     </h2>
                     <p className="text-muted-foreground">{intro.resourcesDescription}</p>
                 </div>
-                <ul className="divide-y divide-border/40 rounded-lg border border-border/40">
+                <ul className="divide-y divide-border/40 rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                     {intro.resources.map((resource) => {
                         const external = resource.href.startsWith("http");
                         const Icon = external ? ExternalLink : ArrowRight;
@@ -221,7 +221,7 @@ function QuickstartHero() {
     const strings = intro.quickstart;
 
     return (
-        <section className="space-y-5 rounded-xl border border-border/60 bg-muted/20 p-6">
+        <section className="space-y-5 rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-6">
             <div className="space-y-1">
                 <h2 className="text-xl font-semibold tracking-tight">
                     {strings.heading}
@@ -311,7 +311,7 @@ function QuickstartStep({
             </div>
             <div className="relative">
                 <pre
-                    className={`overflow-x-auto rounded-md border border-border/60 bg-background px-4 py-3 pr-12 font-mono ${snippetClass ?? ""}`}
+                    className={`overflow-x-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-4 py-3 pr-12 font-mono ${snippetClass ?? ""}`}
                 >
                     {snippet}
                 </pre>

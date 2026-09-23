@@ -144,7 +144,7 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
                 </p>
                 <ul className="grid gap-2 sm:grid-cols-2">
                     {SEMANTIC_TONES.map((t) => (
-                        <li key={t} className="flex items-center gap-3 rounded-md border p-3">
+                        <li key={t} className="flex items-center gap-3 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3">
                             <span
                                 aria-hidden
                                 className="h-5 w-5 shrink-0 rounded-full border"
@@ -192,7 +192,7 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
                     ))}
                 </div>
 
-                <div className="grid gap-4 rounded-lg border p-5 sm:grid-cols-2">
+                <div className="grid gap-4 p-5 sm:grid-cols-2">
                     <div className="space-y-2">
                         <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                             Badge · toBadgeVariant
@@ -301,7 +301,7 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
                         },
                     ]}
                 />
-                <div className="rounded-lg border p-4">
+                <div className="rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4">
                     <p className="mb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
                         ExpiryBadge · domain state
                     </p>

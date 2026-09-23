@@ -75,13 +75,13 @@ function CurrencyInputPreview({
     );
 
     return (
-        <div className="flex w-full max-w-sm flex-col gap-3 rounded-lg border bg-card p-4">
+        <div className="flex w-full max-w-sm flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4">
             {variant === "disabled" ? (
                 <DisabledReasonTooltip fullWidth reason={disabledReason}>
                     {input}
                 </DisabledReasonTooltip>
             ) : input}
-            <div className="rounded-md border bg-background px-3 py-2 text-sm">
+            <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2 text-sm">
                 <p className="text-xs font-medium text-muted-foreground">
                     {isJa ? "保存される値" : "Stored value"}
                 </p>
@@ -341,7 +341,7 @@ export function LockedInvoiceAmountField() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[420px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[420px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

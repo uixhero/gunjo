@@ -1767,7 +1767,7 @@ function ProjectsPage({
                                 </div>
                                 <Progress value={selected.progress} className="h-2 w-full" aria-label={getProjectName(selected, locale)} />
                             </div>
-                            <div className="rounded-md border bg-muted/40 p-3">
+                            <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
                                 <div className="text-sm font-medium">{t.projects.nextStep}</div>
                                 <p className="mt-1 text-sm text-muted-foreground">
                                     {t.projects.nextStepBody}
@@ -2209,7 +2209,7 @@ function SettingRow({
     value: string;
 }) {
     return (
-        <div className="flex items-center justify-between gap-3 rounded-md border p-3">
+        <div className="flex items-center justify-between gap-3 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 {icon}
                 {label}
@@ -2231,7 +2231,7 @@ function ToggleRow({
     onCheckedChange: (checked: boolean) => void;
 }) {
     return (
-        <div className="flex items-center justify-between gap-3 rounded-md border p-3">
+        <div className="flex items-center justify-between gap-3 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3">
             <div className="flex items-center gap-2 text-sm text-muted-foreground">
                 {icon}
                 {label}

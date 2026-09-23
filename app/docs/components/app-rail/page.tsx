@@ -99,7 +99,7 @@ function AppRailExample({ compact = false }: { compact?: boolean }) {
     const activeItem = allItems.find((item) => item.key === activeKey) ?? allItems[0];
 
     return (
-        <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border bg-background">
+        <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
             <AppRail>
                 {items.map((item) => (
                     <RailAction
@@ -144,7 +144,7 @@ function AppRailUnreadExample() {
     ];
 
     return (
-        <div className="flex w-full max-w-md overflow-hidden rounded-md border bg-background">
+        <div className="flex w-full max-w-md overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
             <AppRail>
                 <span className="relative inline-flex">
                     <RailAction
@@ -268,7 +268,7 @@ export function AppRailExample() {
   const activeItem = allItems.find((item) => item.key === activeKey) ?? allItems[0]
 
   return (
-    <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border bg-background">
+    <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <AppRail>
         {items.map((item) => (
           <RailAction
@@ -389,7 +389,7 @@ export function AppRailExample() {
   const activeItem = allItems.find((item) => item.key === activeKey) ?? allItems[0]
 
   return (
-    <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border bg-background">
+    <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <AppRail>
         {items.map((item) => (
           <RailAction
@@ -497,7 +497,7 @@ export function CompactAppRailExample() {
   const activeItem = allItems.find((item) => item.key === activeKey) ?? allItems[0]
 
   return (
-    <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border bg-background">
+    <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <AppRail>
         {items.map((item) => (
           <RailAction
@@ -602,7 +602,7 @@ export function CompactAppRailExample() {
   const activeItem = allItems.find((item) => item.key === activeKey) ?? allItems[0]
 
   return (
-    <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border bg-background">
+    <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <AppRail>
         {items.map((item) => (
           <RailAction
@@ -867,7 +867,7 @@ export default function AppRailDocPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

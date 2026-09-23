@@ -60,14 +60,14 @@ export function PreviewThumb({
 
     if (!available) {
         return (
-            <div className="grid h-44 place-items-center border-b border-border/60 bg-muted/40 text-xs text-muted-foreground">
+            <div className="grid h-44 place-items-center border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted text-xs text-muted-foreground">
                 {unavailableLabel}
             </div>
         );
     }
 
     return (
-        <div className="relative block h-44 overflow-hidden border-b border-border/60 bg-muted/40">
+        <div className="relative block h-44 overflow-hidden border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
             {!loaded && !errored && (
                 <Skeleton className="absolute inset-0 h-full w-full" />
             )}

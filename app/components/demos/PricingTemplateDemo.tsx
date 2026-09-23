@@ -39,7 +39,7 @@ const PLANS: PricingPlan[] = [
 
 export function PricingTemplateDemo() {
     return (
-        <div className="overflow-hidden rounded-md border bg-background">
+        <div className="overflow-hidden rounded-md">
             <PricingTemplate plans={PLANS} />
         </div>
     );

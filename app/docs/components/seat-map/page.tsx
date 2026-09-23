@@ -81,7 +81,7 @@ function SeatMapPreview({ locale, mode = "default" }: { locale: Locale; mode?: "
   };
 
   return (
-    <div className="flex w-full max-w-lg flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-lg flex-col gap-3 p-4">
       <SeatMap
         columns={mode === "compact" ? ["A", "B", null, "C", "D"] : columns}
         seats={seats(locale).filter((seat) => mode !== "compact" || ["A", "B", "C", "D"].includes(seat.col))}
@@ -93,7 +93,7 @@ function SeatMapPreview({ locale, mode = "default" }: { locale: Locale; mode?: "
         formatFee={(fee) => locale === "ja" ? `¥${fee.toLocaleString("ja-JP")}` : `$${Math.round(fee / 150).toLocaleString("en-US")}`}
         hideLegend={mode === "legendless"}
       />
-      <p className="rounded-md border bg-muted/30 px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
+      <p className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
         {copy.selected}: <span className="font-medium text-foreground">{selectedIds.join(", ") || copy.none}</span>
       </p>
     </div>
@@ -146,7 +146,7 @@ export function SeatPicker() {
     setSelectedIds((current) => current.includes(seatId) ? current.filter((id) => id !== seatId) : [...current, seatId].slice(0, 2));
 
   return (
-    <div className="flex w-full max-w-lg flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-lg flex-col gap-3 p-4">
       <SeatMap
         columns={columns}
         seats={seats}
@@ -156,7 +156,7 @@ export function SeatPicker() {
         label="座席表"
         formatFee={(fee) => "¥" + fee.toLocaleString("ja-JP")}
       />
-      <p className="rounded-md border bg-muted/30 px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
+      <p className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
         選択中: {selectedIds.join(", ") || "未選択"}
       </p>
     </div>
@@ -214,7 +214,7 @@ export function SeatPicker() {
     setSelectedIds((current) => current.includes(seatId) ? current.filter((id) => id !== seatId) : [...current, seatId].slice(0, 2));
 
   return (
-    <div className="flex w-full max-w-lg flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-lg flex-col gap-3 p-4">
       <SeatMap
         columns={columns}
         seats={seats}
@@ -225,7 +225,7 @@ export function SeatPicker() {
         labels={labels}
         formatFee={(fee) => "$" + Math.round(fee / 150)}
       />
-      <p className="rounded-md border bg-muted/30 px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
+      <p className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
         Selected: {selectedIds.join(", ") || "None"}
       </p>
     </div>
@@ -272,7 +272,7 @@ export function SeatPicker() {
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">{sectionLabels.usage}</h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

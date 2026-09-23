@@ -63,7 +63,7 @@ function CompanyCellPreview({ locale, size = "default" }: { locale: Locale; size
   const copy = companyCellCopy(locale);
 
   return (
-    <div className="grid w-full max-w-lg gap-3 rounded-lg border bg-card p-4">
+    <div className="grid w-full max-w-lg gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       {copy.rows.map((row) => (
         <CompanyCell key={row.name} size={size} {...row} />
       ))}
@@ -86,7 +86,7 @@ const uixheroLogoUrl = "https://www.uixhero.com/images/512grid_wh.svg";
 
 export function CompanyDirectory() {
   return (
-    <div className="grid gap-3 rounded-lg border bg-card p-4">
+    <div className="grid gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <CompanyCell
         name="UIXHERO"
         secondary="デザインシステム・UIコンポーネント"
@@ -113,7 +113,7 @@ const uixheroLogoUrl = "https://www.uixhero.com/images/512grid_wh.svg";
 
 export function CompanyDirectory() {
   return (
-    <div className="grid gap-3 rounded-lg border bg-card p-4">
+    <div className="grid gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <CompanyCell
         name="UIXHERO"
         secondary="Design system / UI components"
@@ -350,7 +350,7 @@ export function CompanyCellSizes() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

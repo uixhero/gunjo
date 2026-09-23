@@ -92,7 +92,7 @@ export function BlockingLoader() {
     <div
       role="status"
       aria-live="polite"
-      className="flex h-40 w-full flex-col items-center justify-center gap-3 rounded-lg border bg-muted/40"
+      className="flex h-40 w-full flex-col items-center justify-center gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted"
     >
       <Spinner size="lg" aria-hidden />
       <span className="text-sm text-muted-foreground">
@@ -108,7 +108,7 @@ export function BlockingLoader() {
     <div
       role="status"
       aria-live="polite"
-      className="flex h-40 w-full flex-col items-center justify-center gap-3 rounded-lg border bg-muted/40"
+      className="flex h-40 w-full flex-col items-center justify-center gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted"
     >
       <Spinner size="lg" aria-hidden />
       <span className="text-sm text-muted-foreground">
@@ -238,7 +238,7 @@ export default function SpinnerPage() {
                             title: isJa ? "領域全体の読み込み" : "Blocking loader",
                             description: isJa ? "操作を待たせる場合は、状態文と一緒に role=status の領域で伝えます。" : "For blocking states, announce the status text with role=status.",
                             preview: (
-                                <div role="status" aria-live="polite" className="flex h-40 w-full flex-col items-center justify-center gap-3 rounded-lg border bg-muted/40">
+                                <div role="status" aria-live="polite" className="flex h-40 w-full flex-col items-center justify-center gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
                                     <Spinner size="lg" aria-hidden />
                                     <span className="text-sm text-muted-foreground">{isJa ? "データを読み込んでいます。" : "Loading data."}</span>
                                 </div>
@@ -276,7 +276,7 @@ export default function SpinnerPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="rounded-md border bg-muted font-mono text-sm max-h-[350px] overflow-auto">
+                <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm max-h-[350px] overflow-auto">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

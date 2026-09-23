@@ -123,7 +123,7 @@ export default function I18nPage() {
                 </div>
 
                 <LocaleProvider locale={demo}>
-                    <div className="space-y-6 rounded-lg border border-border bg-card p-4 sm:p-6">
+                    <div className="space-y-6 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 sm:p-6">
                         <div className="space-y-2">
                             <p className="text-sm font-medium">
                                 {isJa ? "検索入力（searchPlaceholder）" : "Search input (searchPlaceholder)"}
@@ -162,7 +162,7 @@ export default function I18nPage() {
                         : "Resolution order is: per-instance prop > provider bundle > built-in default. Passing a string on a single instance wins over the provider’s language. The second input below stays fixed as you toggle the locale."}
                 </p>
                 <LocaleProvider locale={demo}>
-                    <div className="grid gap-4 rounded-lg border border-border bg-card p-4 sm:grid-cols-2 sm:p-6">
+                    <div className="grid gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 sm:grid-cols-2 sm:p-6">
                         <div className="space-y-2">
                             <p className="text-sm font-medium text-muted-foreground">
                                 {isJa ? "プロバイダに従う" : "Follows the provider"}

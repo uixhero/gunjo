@@ -4,7 +4,7 @@ import { Button, StatusScreen } from "@gunjo/ui";
 
 export default function Embed() {
     return (
-        <div className="w-full overflow-hidden rounded-md border bg-background">
+        <div className="w-full overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
             <StatusScreen
                 variant="error"
                 title="問題が発生しました"

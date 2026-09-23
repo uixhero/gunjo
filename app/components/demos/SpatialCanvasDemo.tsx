@@ -4,7 +4,7 @@ import { SpatialCanvas, FloatingPanel } from "@gunjo/ui";
 
 export function SpatialCanvasDemo() {
     return (
-        <div className="relative h-[400px] w-full overflow-hidden rounded-lg border border-border">
+        <div className="relative h-[400px] w-full overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
             <SpatialCanvas>
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                     <span className="font-medium text-muted-foreground">I am the Spatial Canvas Background</span>

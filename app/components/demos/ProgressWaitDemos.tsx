@@ -211,7 +211,7 @@ function ProgressDialogAsideDemo() {
                 statusLabel={isJa ? "いまの作業" : "Now"}
                 status={isJa ? "移動の順番を考えています" : "Working out the order of stops"}
                 aside={
-                    <div className="rounded-md border p-4 text-left text-sm">
+                    <div className="rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4 text-left text-sm">
                         <p className="font-medium">{isJa ? "待っているあいだに" : "While you wait"}</p>
                         <p className="mt-1 text-muted-foreground">
                             {isJa
@@ -459,7 +459,7 @@ export function RouteProgressDemo({
     if (variant === "container") {
         return (
             <div className="w-full max-w-md">
-                <div className="relative overflow-hidden rounded-lg border p-4" aria-busy={loading}>
+                <div className="relative overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4" aria-busy={loading}>
                     {loading ? <RouteProgress placement="container" label={label} /> : null}
                     <p className="text-sm font-medium">{isJa ? `一覧 ${page} ページ目` : `List, page ${page}`}</p>
                     <p className="mt-1 text-sm text-muted-foreground">
@@ -512,7 +512,7 @@ export function ActionProgressTimingFigure() {
     ];
 
     return (
-        <figure className="space-y-3 rounded-lg border p-4">
+        <figure className="space-y-3 rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4">
             <div className="space-y-4">
                 {rows.map((row) => (
                     <div key={row.label} className="grid grid-cols-[6.5rem_1fr] items-center gap-3 text-xs">

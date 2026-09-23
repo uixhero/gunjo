@@ -82,7 +82,7 @@ export function ReloadingPanel() {
 
   return (
     <div className="w-full max-w-md">
-      <div className="relative overflow-hidden rounded-lg border p-4" aria-busy={loading}>
+      <div className="relative overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4" aria-busy={loading}>
         {loading ? <RouteProgress placement="container" label="${t("ページを読み込み中", "Loading page")}" /> : null}
         <p className="text-sm font-medium">${t("一覧 {page} ページ目", "List, page {page}")}</p>
         <p className="mt-1 text-sm text-muted-foreground">${t("この枠の中だけが読み込み直されます。", "Only this panel reloads.")}</p>
@@ -260,7 +260,7 @@ export function ReduceMotionDemo() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

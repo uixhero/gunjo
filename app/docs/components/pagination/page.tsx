@@ -319,7 +319,7 @@ function TablePaginationPattern() {
     }, [pageCount]);
 
     return (
-        <div className="w-full max-w-3xl space-y-4 rounded-md border bg-muted/20 p-3">
+        <div className="w-full max-w-3xl space-y-4 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
             <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
                 <p className="min-w-0 text-sm text-muted-foreground">
                     {isJa
@@ -494,7 +494,7 @@ export function TablePagination() {
   }, [pageCount])
 
   return (
-    <div className="space-y-4 rounded-md border bg-muted/20 p-3">
+    <div className="space-y-4 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
       <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
         <p className="text-sm text-muted-foreground">{rowFrom + " - " + rowTo + " / 全" + totalRows + "件"}</p>
         <label className="flex items-center gap-2 text-sm text-muted-foreground sm:justify-end">
@@ -678,7 +678,7 @@ export function TablePagination() {
   }, [pageCount])
 
   return (
-    <div className="space-y-4 rounded-md border bg-muted/20 p-3">
+    <div className="space-y-4 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
       <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
         <p className="text-sm text-muted-foreground">{rowFrom + " - " + rowTo + " / " + totalRows + " rows"}</p>
         <label className="flex items-center gap-2 text-sm text-muted-foreground sm:justify-end">
@@ -2312,7 +2312,7 @@ export default function PaginationDocPage() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{sectionLabels.usage}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

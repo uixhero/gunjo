@@ -49,7 +49,7 @@ function CarouselSample({ vertical = false, isJa }: { vertical?: boolean; isJa: 
                     {[1, 2, 3, 4].map((item) => (
                         <CarouselItem key={item}>
                             <div className="p-1">
-                                <div className="flex aspect-square items-center justify-center rounded-md border bg-muted">
+                                <div className="flex aspect-square items-center justify-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
                                     <span className="text-3xl font-semibold">
                                         {isJa ? `${item}枚目` : `Slide ${item}`}
                                     </span>
@@ -74,7 +74,7 @@ const cardItems = [
 
 function CarouselCard({ label, index }: { label: string; index: number }) {
     return (
-        <div className="flex aspect-[4/3] flex-col justify-between rounded-lg border bg-card p-4 text-card-foreground shadow-sm">
+        <div className="flex aspect-[4/3] flex-col justify-between rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-card-foreground shadow-sm">
             <span className="text-xs font-medium text-muted-foreground">{String(index + 1).padStart(2, "0")}</span>
             <span className="text-lg font-semibold">{label}</span>
         </div>
@@ -228,7 +228,7 @@ function ControlsPropsSample({ isJa }: { isJa: boolean }) {
                             {[1, 2, 3].map((item) => (
                                 <CarouselItem key={item}>
                                     <div className="p-1">
-                                        <div className="flex aspect-square items-center justify-center rounded-md border bg-muted">
+                                        <div className="flex aspect-square items-center justify-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
                                             <span className="text-xl font-semibold">{item}</span>
                                         </div>
                                     </div>
@@ -451,7 +451,7 @@ export function CarouselDemo() {
         {slides.map((item) => (
           <CarouselItem key={item}>
             <div className="p-1">
-              <div className="flex aspect-square items-center justify-center rounded-md border bg-muted">
+              <div className="flex aspect-square items-center justify-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
                 <span className="text-3xl font-semibold">
                   {item + "枚目"}
                 </span>
@@ -495,7 +495,7 @@ export function CarouselDemo() {
         {slides.map((item) => (
           <CarouselItem key={item}>
             <div className="p-1">
-              <div className="flex aspect-square items-center justify-center rounded-md border bg-muted">
+              <div className="flex aspect-square items-center justify-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
                 <span className="text-3xl font-semibold">
                   {"Slide " + item}
                 </span>
@@ -523,7 +523,7 @@ export function Gallery() {
       <CarouselContent>
         {items.map((item) => (
           <CarouselItem key={item.id}>
-            <div className="flex aspect-[4/3] items-center justify-center rounded-lg border bg-card p-4">
+            <div className="flex aspect-[4/3] items-center justify-center rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
               <span className="text-lg font-semibold">{item.label}</span>
             </div>
           </CarouselItem>
@@ -546,7 +546,7 @@ export function Gallery() {
       <CarouselContent>
         {items.map((item) => (
           <CarouselItem key={item.id}>
-            <div className="flex aspect-[4/3] items-center justify-center rounded-lg border bg-card p-4">
+            <div className="flex aspect-[4/3] items-center justify-center rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
               <span className="text-lg font-semibold">{item.label}</span>
             </div>
           </CarouselItem>
@@ -578,7 +578,7 @@ const cardItems = [
 
 function CarouselCard({ label, index }) {
   return (
-    <div className="flex aspect-[4/3] flex-col justify-between rounded-lg border bg-card p-4 text-card-foreground shadow-sm">
+    <div className="flex aspect-[4/3] flex-col justify-between rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-card-foreground shadow-sm">
       <span className="text-xs font-medium text-muted-foreground">
         {String(index + 1).padStart(2, "0")}
       </span>
@@ -641,7 +641,7 @@ const cardItems = [
 
 function CarouselCard({ label, index }) {
   return (
-    <div className="flex aspect-[4/3] flex-col justify-between rounded-lg border bg-card p-4 text-card-foreground shadow-sm">
+    <div className="flex aspect-[4/3] flex-col justify-between rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-card-foreground shadow-sm">
       <span className="text-xs font-medium text-muted-foreground">
         {String(index + 1).padStart(2, "0")}
       </span>
@@ -704,7 +704,7 @@ const cardItems = [
 
 function CarouselCard({ label, index }) {
   return (
-    <div className="flex aspect-[4/3] flex-col justify-between rounded-lg border bg-card p-4 text-card-foreground shadow-sm">
+    <div className="flex aspect-[4/3] flex-col justify-between rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-card-foreground shadow-sm">
       <span className="text-xs font-medium text-muted-foreground">
         {String(index + 1).padStart(2, "0")}
       </span>
@@ -763,7 +763,7 @@ const cardItems = [
 
 function CarouselCard({ label, index }) {
   return (
-    <div className="flex aspect-[4/3] flex-col justify-between rounded-lg border bg-card p-4 text-card-foreground shadow-sm">
+    <div className="flex aspect-[4/3] flex-col justify-between rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-card-foreground shadow-sm">
       <span className="text-xs font-medium text-muted-foreground">
         {String(index + 1).padStart(2, "0")}
       </span>

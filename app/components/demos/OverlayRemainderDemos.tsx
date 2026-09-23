@@ -129,9 +129,9 @@ function PreviewViewport({
         <div
             ref={ref}
             className={[
-                "relative w-full overflow-hidden rounded-lg border bg-background shadow-sm",
+                "relative w-full overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-sm",
                 className,
-            ].filter(Boolean).join(" ")}
+            ].filter(Boolean).join("  ")}
             style={fillHeight ? { height: `min(${height}px, calc(100vh - 2rem))` } : { minHeight: height }}
         >
             {children(container)}
@@ -176,7 +176,7 @@ export function MediaLightboxAuditDemo({
         <PreviewViewport height={700} fillHeight className="bg-muted/30">
             {(container) => (
                 <div className="flex h-full min-h-0 flex-col items-center justify-center gap-4 p-6">
-                    <div className="grid w-full max-w-sm gap-3 rounded-lg border bg-card p-4 shadow-sm">
+                    <div className="grid w-full max-w-sm gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 shadow-sm">
                         <div className="flex items-center gap-3">
                             <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-md bg-muted">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -242,7 +242,7 @@ export function MediaPickerDialogAuditDemo({
         <PreviewViewport height={620} fillHeight className="bg-muted/30">
             {(container) => (
                 <div className="flex min-h-full flex-col items-center justify-center gap-4 p-6">
-                    <div className="w-full max-w-md rounded-lg border bg-card p-4 shadow-sm">
+                    <div className="w-full max-w-md rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 shadow-sm">
                         <div className="mb-4 flex items-center justify-between gap-3">
                             <div>
                                 <p className="text-sm font-semibold">{isJa ? "記事に使う素材" : "Media for article"}</p>
@@ -258,7 +258,7 @@ export function MediaPickerDialogAuditDemo({
                         </div>
                         <div className="flex gap-2">
                             {selected.slice(0, 3).map((asset) => (
-                                <div key={asset.id} className="h-14 w-14 overflow-hidden rounded-md border bg-muted">
+                                <div key={asset.id} className="h-14 w-14 overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
                                     {/* eslint-disable-next-line @next/next/no-img-element */}
                                     <img src={asset.src} alt="" className="h-full w-full object-contain p-1" />
                                 </div>
@@ -356,19 +356,19 @@ export function ModalAuditDemo({
                                 </TabsList>
                                 <TabsContent value="summary" className="mt-0 space-y-2 text-sm text-muted-foreground">
                                     <p>{isJa ? "公開中のプロジェクト情報と現在の状態を確認できます。" : "Review the published project details and current status."}</p>
-                                    <div className="rounded-md border bg-muted/40 p-3 text-foreground">
+                                    <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-foreground">
                                         {isJa ? "ステータス: 公開中" : "Status: Published"}
                                     </div>
                                 </TabsContent>
                                 <TabsContent value="members" className="mt-0 space-y-2 text-sm text-muted-foreground">
                                     <p>{isJa ? "編集できるメンバーと権限を確認します。" : "Review members and permissions."}</p>
-                                    <div className="rounded-md border bg-muted/40 p-3 text-foreground">
+                                    <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-foreground">
                                         {isJa ? "3人の編集者" : "3 editors"}
                                     </div>
                                 </TabsContent>
                                 <TabsContent value="history" className="mt-0 space-y-2 text-sm text-muted-foreground">
                                     <p>{isJa ? "直近の更新履歴を確認できます。" : "Review recent updates."}</p>
-                                    <div className="rounded-md border bg-muted/40 p-3 text-foreground">
+                                    <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-foreground">
                                         {isJa ? "最終更新: 2026-05-31" : "Last updated: 2026-05-31"}
                                     </div>
                                 </TabsContent>
@@ -436,7 +436,7 @@ const onboardingSteps = (locale: Locale): OnboardingStep[] => {
             title: isJa ? "ワークスペースを設定" : "Set up workspace",
             description: isJa ? "通知と公開範囲を決めます。" : "Choose visibility and notifications.",
             content: (
-                <div className="space-y-3 rounded-md border bg-muted/40 p-3 text-sm">
+                <div className="space-y-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm">
                     <div className="flex items-center justify-between gap-3">
                         <span>{isJa ? "公開リンクを許可" : "Allow public links"}</span>
                         <Switch defaultChecked />
@@ -453,7 +453,7 @@ const onboardingSteps = (locale: Locale): OnboardingStep[] => {
             title: isJa ? "準備完了" : "Ready",
             description: isJa ? "初期設定が完了しました。" : "Initial setup is complete.",
             content: (
-                <div className="flex items-center gap-2 rounded-md border bg-primary-subtle p-3 text-sm">
+                <div className="flex items-center gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-primary-subtle p-3 text-sm">
                     <CheckCircle2 className="h-4 w-4 text-primary" />
                     <span>{isJa ? "すぐにプロジェクトを開始できます。" : "You can start your project now."}</span>
                 </div>
@@ -476,7 +476,7 @@ export function OnboardingFlowAuditDemo({
 
     if (completed) {
         return (
-            <div className="w-full max-w-lg rounded-lg border bg-card p-6 text-sm text-muted-foreground">
+            <div className="w-full max-w-lg rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-6 text-sm text-muted-foreground">
                 <p className="font-medium text-foreground">{isJa ? "オンボーディングが完了しました。" : "Onboarding is complete."}</p>
                 <Button type="button" variant="outline" size="sm" className="mt-3" onClick={() => { setCompleted(false); setIndex(0); }}>
                     {isJa ? "やり直す" : "Restart"}
@@ -573,7 +573,7 @@ export function PopoverAuditDemo({
     );
 
     const shell = (content: React.ReactNode) => (
-        <div className="w-full max-w-md rounded-lg border bg-card p-4 shadow-sm">
+        <div className="w-full max-w-md rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 shadow-sm">
             <div className="flex items-start justify-between gap-4">
                 <div className="min-w-0 space-y-1">
                     <p className="truncate text-sm font-semibold">{config.title}</p>
@@ -603,7 +603,7 @@ export function PopoverAuditDemo({
                                         : "Changes the status from draft to published."}
                             </p>
                         </div>
-                        <div className="rounded-md border bg-muted/40 p-3 text-xs text-muted-foreground">
+                        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-xs text-muted-foreground">
                             {isJa ? "公開先: チームページ" : "Destination: Team page"}
                         </div>
                         <div className="flex justify-end gap-2">
@@ -933,7 +933,7 @@ export function SheetAuditDemo({
                                 </nav>
                             ) : isNotice ? (
                                 <div className="space-y-4 py-4">
-                                    <div className="flex items-center justify-between gap-4 rounded-md border bg-muted/40 p-3">
+                                    <div className="flex items-center justify-between gap-4 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
                                         <Label htmlFor="sheet-email" className="flex flex-col gap-0.5">
                                             <span>{isJa ? "メール通知" : "Email notifications"}</span>
                                             <span className="text-xs font-normal text-muted-foreground">

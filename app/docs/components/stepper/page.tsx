@@ -297,7 +297,7 @@ export default function StepperPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="rounded-md border bg-muted font-mono text-sm max-h-[350px] overflow-auto">
+                <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm max-h-[350px] overflow-auto">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

@@ -609,19 +609,19 @@ export function TabsModalExample() {
           </TabsList>
           <TabsContent value="summary" className="mt-0 space-y-2 text-sm text-muted-foreground">
             <p>公開中のプロジェクト情報と現在の状態を確認できます。</p>
-            <div className="rounded-md border bg-muted/40 p-3 text-foreground">
+            <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-foreground">
               ステータス: 公開中
             </div>
           </TabsContent>
           <TabsContent value="members" className="mt-0 space-y-2 text-sm text-muted-foreground">
             <p>編集できるメンバーと権限を確認します。</p>
-            <div className="rounded-md border bg-muted/40 p-3 text-foreground">
+            <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-foreground">
               3人の編集者
             </div>
           </TabsContent>
           <TabsContent value="history" className="mt-0 space-y-2 text-sm text-muted-foreground">
             <p>直近の更新履歴を確認できます。</p>
-            <div className="rounded-md border bg-muted/40 p-3 text-foreground">
+            <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-foreground">
               最終更新: 2026-05-31
             </div>
           </TabsContent>
@@ -666,19 +666,19 @@ export function TabsModalExample() {
           </TabsList>
           <TabsContent value="summary" className="mt-0 space-y-2 text-sm text-muted-foreground">
             <p>Review the published project details and current status.</p>
-            <div className="rounded-md border bg-muted/40 p-3 text-foreground">
+            <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-foreground">
               Status: Published
             </div>
           </TabsContent>
           <TabsContent value="members" className="mt-0 space-y-2 text-sm text-muted-foreground">
             <p>Review members and permissions.</p>
-            <div className="rounded-md border bg-muted/40 p-3 text-foreground">
+            <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-foreground">
               3 editors
             </div>
           </TabsContent>
           <TabsContent value="history" className="mt-0 space-y-2 text-sm text-muted-foreground">
             <p>Review recent updates.</p>
-            <div className="rounded-md border bg-muted/40 p-3 text-foreground">
+            <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-foreground">
               Last updated: 2026-05-31
             </div>
           </TabsContent>
@@ -723,7 +723,7 @@ const steps = [
     title: "ワークスペースを設定",
     description: "通知と公開範囲を決めます。",
     content: (
-      <div className="flex items-center justify-between rounded-md border p-3">
+      <div className="flex items-center justify-between rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3">
         <span>公開リンクを許可</span>
         <Switch defaultChecked />
       </div>
@@ -785,7 +785,7 @@ const steps = [
     title: "Set up workspace",
     description: "Choose visibility and notifications.",
     content: (
-      <div className="flex items-center justify-between rounded-md border p-3">
+      <div className="flex items-center justify-between rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3">
         <span>Allow public links</span>
         <Switch defaultChecked />
       </div>
@@ -885,7 +885,7 @@ import { Button } from "@gunjo/ui";
 
 export function OnboardingCompleteExample() {
   return (
-    <div className="w-full max-w-lg rounded-lg border bg-card p-6 text-sm text-muted-foreground">
+    <div className="w-full max-w-lg rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-6 text-sm text-muted-foreground">
       <p className="font-medium text-foreground">オンボーディングが完了しました。</p>
       <p className="mt-1">入力した内容でワークスペースを開始できます。</p>
       <Button type="button" variant="outline" size="sm" className="mt-3">
@@ -899,7 +899,7 @@ import { Button } from "@gunjo/ui";
 
 export function OnboardingCompleteExample() {
   return (
-    <div className="w-full max-w-lg rounded-lg border bg-card p-6 text-sm text-muted-foreground">
+    <div className="w-full max-w-lg rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-6 text-sm text-muted-foreground">
       <p className="font-medium text-foreground">Onboarding is complete.</p>
       <p className="mt-1">The workspace can start with the details you entered.</p>
       <Button type="button" variant="outline" size="sm" className="mt-3">
@@ -922,7 +922,7 @@ export function PopoverExample() {
   const [showHelper, setShowHelper] = React.useState(true);
 
   return (
-    <div className="flex items-start justify-between gap-4 rounded-lg border bg-card p-4">
+    <div className="flex items-start justify-between gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div>
         <p className="text-sm font-semibold">表示設定</p>
         <p className="text-xs text-muted-foreground">一覧の見え方をその場で調整します。</p>
@@ -972,7 +972,7 @@ export function PopoverExample() {
   const [showHelper, setShowHelper] = React.useState(true);
 
   return (
-    <div className="flex items-start justify-between gap-4 rounded-lg border bg-card p-4">
+    <div className="flex items-start justify-between gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div>
         <p className="text-sm font-semibold">Display settings</p>
         <p className="text-xs text-muted-foreground">Adjust how the list is displayed in place.</p>
@@ -1025,7 +1025,7 @@ export function FilterPopoverExample() {
   const [draftOwner, setDraftOwner] = React.useState("");
 
   return (
-    <div className="flex items-start justify-between gap-4 rounded-lg border bg-card p-4">
+    <div className="flex items-start justify-between gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div>
         <p className="text-sm font-semibold">レビュー担当者</p>
         <p className="text-xs text-muted-foreground">担当者で一覧を絞り込む条件です。</p>
@@ -1078,7 +1078,7 @@ export function FilterPopoverExample() {
   const [draftOwner, setDraftOwner] = React.useState("");
 
   return (
-    <div className="flex items-start justify-between gap-4 rounded-lg border bg-card p-4">
+    <div className="flex items-start justify-between gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div>
         <p className="text-sm font-semibold">Review owner</p>
         <p className="text-xs text-muted-foreground">Filter condition for the review list.</p>
@@ -1133,7 +1133,7 @@ export function ConfirmPopoverExample() {
   const [published, setPublished] = React.useState(false);
 
   return (
-    <div className="flex items-start justify-between gap-4 rounded-lg border bg-card p-4">
+    <div className="flex items-start justify-between gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div>
         <p className="text-sm font-semibold">公開状態</p>
         <p className="text-xs text-muted-foreground">下書きを公開する前に短く確認します。</p>
@@ -1156,7 +1156,7 @@ export function ConfirmPopoverExample() {
                 {published ? "この項目はすでにチームページへ公開されています。" : "公開状態を下書きから公開中に変更します。"}
               </p>
             </div>
-            <div className="rounded-md border bg-muted/40 p-3 text-xs text-muted-foreground">
+            <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-xs text-muted-foreground">
               公開先: チームページ
             </div>
             {!published ? (
@@ -1180,7 +1180,7 @@ export function ConfirmPopoverExample() {
   const [published, setPublished] = React.useState(false);
 
   return (
-    <div className="flex items-start justify-between gap-4 rounded-lg border bg-card p-4">
+    <div className="flex items-start justify-between gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div>
         <p className="text-sm font-semibold">Publish status</p>
         <p className="text-xs text-muted-foreground">Light confirmation before publishing the draft.</p>
@@ -1203,7 +1203,7 @@ export function ConfirmPopoverExample() {
                 {published ? "This item is already published to the team page." : "Changes the status from draft to published."}
               </p>
             </div>
-            <div className="rounded-md border bg-muted/40 p-3 text-xs text-muted-foreground">
+            <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-xs text-muted-foreground">
               Destination: Team page
             </div>
             {!published ? (
@@ -1225,7 +1225,7 @@ import { IconInfoCircle as Info } from "@tabler/icons-react";
 
 export function StatusPopoverExample() {
   return (
-    <div className="flex items-start justify-between gap-4 rounded-lg border bg-card p-4">
+    <div className="flex items-start justify-between gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div>
         <p className="text-sm font-semibold">同期状態</p>
         <p className="text-xs text-muted-foreground">現在の処理状態を短く補足します。</p>
@@ -1262,7 +1262,7 @@ import { IconInfoCircle as Info } from "@tabler/icons-react";
 
 export function StatusPopoverExample() {
   return (
-    <div className="flex items-start justify-between gap-4 rounded-lg border bg-card p-4">
+    <div className="flex items-start justify-between gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div>
         <p className="text-sm font-semibold">Sync status</p>
         <p className="text-xs text-muted-foreground">Short contextual details for the current process.</p>
@@ -1705,7 +1705,7 @@ export function NotificationSheetExample() {
           </SheetDescription>
         </SheetHeader>
         <div className="space-y-4 py-4">
-          <div className="flex items-center justify-between gap-4 rounded-md border bg-muted/40 p-3">
+          <div className="flex items-center justify-between gap-4 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
             <Label htmlFor="sheet-email" className="flex flex-col gap-0.5">
               <span>メール通知</span>
               <span className="text-xs font-normal text-muted-foreground">
@@ -1754,7 +1754,7 @@ export function NotificationSheetExample() {
           </SheetDescription>
         </SheetHeader>
         <div className="space-y-4 py-4">
-          <div className="flex items-center justify-between gap-4 rounded-md border bg-muted/40 p-3">
+          <div className="flex items-center justify-between gap-4 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
             <Label htmlFor="sheet-email" className="flex flex-col gap-0.5">
               <span>Email notifications</span>
               <span className="text-xs font-normal text-muted-foreground">

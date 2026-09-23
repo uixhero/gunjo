@@ -12,7 +12,7 @@ export function ClusterDemo() {
     const { locale } = useLocale();
 
     return (
-        <div className="w-full rounded-lg border bg-background p-4">
+        <div className="w-full rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
             <Cluster gap={2}>
                 {tagsByLocale[locale].map((tag) => (
                     <Badge key={tag} variant="secondary">

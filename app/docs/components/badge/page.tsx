@@ -50,7 +50,7 @@ function BadgeVariantSummary({ locale }: { locale: "en" | "ja" }) {
     ];
 
     return (
-        <div className="space-y-2 rounded-md border border-border/70 bg-muted/20 p-3">
+        <div className="space-y-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
             {rows.map((row) => (
                 <div key={row.key} className="grid gap-3 rounded-md bg-background p-3 sm:grid-cols-[8rem_minmax(8rem,auto)_minmax(0,1fr)] sm:items-center">
                     <code className="text-xs font-semibold text-muted-foreground">{row.key}</code>
@@ -685,7 +685,7 @@ export function SelectableBadge() {
                         },
                     ]}
                 />
-                <div className="rounded-md border border-border/70 bg-muted/20 p-4">
+                <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4">
                     <h3 className="text-sm font-semibold">
                         {locale === "ja" ? "入力して追加する場合" : "When users need to type new tags"}
                     </h3>

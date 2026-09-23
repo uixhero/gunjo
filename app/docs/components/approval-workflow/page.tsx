@@ -81,7 +81,7 @@ function WorkflowPreview({
   const canAdvance = value.currentStageId === "docs" ? docsChecked : true;
 
   return (
-    <div className="flex w-full max-w-xl flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-xl flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ApprovalWorkflow
         stages={workflowStages(locale)}
         value={value}
@@ -94,7 +94,7 @@ function WorkflowPreview({
       />
 
       {value.currentStageId === "docs" && value.status === "in-progress" ? (
-        <label className="flex items-center gap-2 rounded-md border bg-muted/30 px-3 py-2 text-sm">
+        <label className="flex items-center gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm">
           <Checkbox checked={docsChecked} onCheckedChange={(checked) => setDocsChecked(Boolean(checked))} />
           {copy.docsChecked}
         </label>
@@ -170,7 +170,7 @@ export function ScreeningWorkflow() {
   const canAdvance = value.currentStageId === "docs" ? docsChecked : true;
 
   return (
-    <div className="flex w-full max-w-xl flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-xl flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ApprovalWorkflow
         stages={stages}
         value={value}
@@ -182,7 +182,7 @@ export function ScreeningWorkflow() {
       />
 
       {value.currentStageId === "docs" && value.status === "in-progress" ? (
-        <label className="flex items-center gap-2 rounded-md border bg-muted/30 px-3 py-2 text-sm">
+        <label className="flex items-center gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm">
           <Checkbox checked={docsChecked} onCheckedChange={(checked) => setDocsChecked(Boolean(checked))} />
           必要書類をすべて確認した
         </label>
@@ -234,7 +234,7 @@ export function ScreeningWorkflow() {
   const canAdvance = value.currentStageId === "docs" ? docsChecked : true;
 
   return (
-    <div className="flex w-full max-w-xl flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-xl flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ApprovalWorkflow
         stages={stages}
         value={value}
@@ -259,7 +259,7 @@ export function ScreeningWorkflow() {
       />
 
       {value.currentStageId === "docs" && value.status === "in-progress" ? (
-        <label className="flex items-center gap-2 rounded-md border bg-muted/30 px-3 py-2 text-sm">
+        <label className="flex items-center gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm">
           <Checkbox checked={docsChecked} onCheckedChange={(checked) => setDocsChecked(Boolean(checked))} />
           All required documents checked
         </label>
@@ -584,7 +584,7 @@ export function CompletedWorkflow() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

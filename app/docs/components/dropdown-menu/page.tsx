@@ -134,7 +134,7 @@ import { IconChevronDown as ChevronDown } from "@tabler/icons-react";
 export function PublishSplitButton() {
   return (
     <DropdownMenu>
-      <div className="inline-flex overflow-hidden rounded-md border bg-background shadow-sm">
+      <div className="inline-flex overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-sm">
         <Button variant="ghost" className="h-9 rounded-none border-0 px-3">
           公開
         </Button>
@@ -183,7 +183,7 @@ import { IconChevronDown as ChevronDown } from "@tabler/icons-react";
 export function PublishSplitButton() {
   return (
     <DropdownMenu>
-      <div className="inline-flex overflow-hidden rounded-md border bg-background shadow-sm">
+      <div className="inline-flex overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-sm">
         <Button variant="ghost" className="h-9 rounded-none border-0 px-3">
           Publish
         </Button>
@@ -443,7 +443,7 @@ export default function DropdownMenuPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

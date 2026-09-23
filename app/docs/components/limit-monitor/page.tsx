@@ -60,7 +60,7 @@ function LimitMonitorPreview({ locale, state = "mixed" }: { locale: Locale; stat
   const classified = classifyLimit(rows[0].value, rows[0]);
 
   return (
-    <div className="flex w-full max-w-2xl flex-col gap-4 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-2xl flex-col gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="grid gap-4">
         {rows.map((row) => (
           <LimitMonitor
@@ -72,7 +72,7 @@ function LimitMonitorPreview({ locale, state = "mixed" }: { locale: Locale; stat
           />
         ))}
       </div>
-      <p className="rounded-md border bg-muted/30 px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
+      <p className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
         {copy.classified}: {classified.state} / {formatHours(classified.over)}
       </p>
     </div>
@@ -97,7 +97,7 @@ export function DriverLimitPanel() {
   const result = classifyLimit(13.5, { limit: 13, hardLimit: 16, warnWithin: 1 });
 
   return (
-    <div className="flex w-full max-w-2xl flex-col gap-4 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-2xl flex-col gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <LimitMonitor
         label="拘束時間（当日）"
         value={13.5}
@@ -122,7 +122,7 @@ export function DriverLimitPanel() {
         warnWithin={1}
         formatValue={formatHours}
       />
-      <p className="rounded-md border bg-muted/30 px-3 py-2 text-sm text-muted-foreground">
+      <p className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm text-muted-foreground">
         分類結果: {result.state} / {formatHours(result.over)}
       </p>
     </div>
@@ -144,7 +144,7 @@ export function DriverLimitPanel() {
   const result = classifyLimit(13.5, { limit: 13, hardLimit: 16, warnWithin: 1 });
 
   return (
-    <div className="flex w-full max-w-2xl flex-col gap-4 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-2xl flex-col gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <LimitMonitor
         label="On-duty time"
         value={13.5}
@@ -190,7 +190,7 @@ export function DriverLimitPanel() {
           critical: "Critical",
         }}
       />
-      <p className="rounded-md border bg-muted/30 px-3 py-2 text-sm text-muted-foreground">
+      <p className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm text-muted-foreground">
         Classification: {result.state} / {formatHours(result.over)}
       </p>
     </div>
@@ -206,7 +206,7 @@ function formatHours(value: number) {
 
 export function RestPeriodLimit() {
   return (
-    <div className="flex w-full max-w-2xl flex-col gap-4 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-2xl flex-col gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <LimitMonitor
         label="休息期間"
         value={9.5}
@@ -226,7 +226,7 @@ function formatHours(value: number) {
 
 export function RestPeriodLimit() {
   return (
-    <div className="flex w-full max-w-2xl flex-col gap-4 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-2xl flex-col gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <LimitMonitor
         label="Rest period"
         value={9.5}
@@ -254,7 +254,7 @@ function formatHours(value: number) {
 
 export function CriticalLimit() {
   return (
-    <div className="flex w-full max-w-2xl flex-col gap-4 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-2xl flex-col gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <LimitMonitor
         label="拘束時間（重大超過）"
         value={16.2}
@@ -274,7 +274,7 @@ function formatHours(value: number) {
 
 export function CriticalLimit() {
   return (
-    <div className="flex w-full max-w-2xl flex-col gap-4 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-2xl flex-col gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <LimitMonitor
         label="On-duty time critical"
         value={16.2}
@@ -373,7 +373,7 @@ export function CriticalLimit() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

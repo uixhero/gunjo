@@ -35,7 +35,7 @@ function StatGroupPreview({ locale, mode = "cards" }: { locale: Locale; mode?: "
   const visibleStats = mode === "compact" ? stats(locale).slice(0, 3) : stats(locale);
 
   return (
-    <div className={mode === "bare" ? "w-full max-w-4xl rounded-lg border bg-card p-4" : "w-full max-w-4xl"}>
+    <div className={mode === "bare" ? "w-full max-w-4xl rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4" : "w-full max-w-4xl"}>
       <StatGroup
         items={visibleStats}
         cols={mode === "compact" ? { base: 1, sm: 3 } : { base: 1, sm: 2, md: 4 }}
@@ -100,7 +100,7 @@ const items = [
 
 export function InvoiceSummaryPanel() {
   return (
-    <div className="w-full max-w-4xl rounded-lg border bg-card p-4">
+    <div className="w-full max-w-4xl rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <StatGroup card={false} items={items} cols={{ base: 1, sm: 2, md: 4 }} />
     </div>
   );
@@ -116,7 +116,7 @@ const items = [
 
 export function InvoiceSummaryPanel() {
   return (
-    <div className="w-full max-w-4xl rounded-lg border bg-card p-4">
+    <div className="w-full max-w-4xl rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <StatGroup card={false} items={items} cols={{ base: 1, sm: 2, md: 4 }} />
     </div>
   );
@@ -197,7 +197,7 @@ export function CompactInvoiceSummary() {
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">{sectionLabels.usage}</h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

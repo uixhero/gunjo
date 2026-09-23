@@ -81,7 +81,7 @@ export function CampaignAssetCard() {
 const propsDataByLocale = {
     en: [
         { name: "asset", type: "AssetCardAsset", description: "The media item rendered by the card.", required: true },
-        { name: "selected", type: "boolean", description: "Applies the selected border and ring." },
+        { name: "selected", type: "boolean", description: "Applies the selected border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] and ring." },
         { name: "selectionMode", type: "\"single\" | \"multiple\" | \"none\"", default: "\"single\"", description: "Controls whether a selection indicator is shown." },
         { name: "imageFit", type: "\"cover\" | \"contain\"", default: "\"cover\"", description: "Controls whether the image fills the card surface or is contained for full-asset inspection." },
         { name: "asset.rating", type: "number", description: "Optional 0-5 half-step rating value used by media workflows and inspector editing." },
@@ -352,7 +352,7 @@ export function FileAssetCard() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{locale === "ja" ? "使い方" : "Usage"}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

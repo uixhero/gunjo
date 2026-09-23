@@ -113,7 +113,7 @@ function ButtonVariantSummary({ locale }: { locale: "en" | "ja" }) {
     ];
 
     return (
-        <div className="space-y-2 rounded-md border border-border/70 bg-muted/20 p-3">
+        <div className="space-y-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
             {variants.map((variant) => (
                 <div
                     key={variant.key}
@@ -561,7 +561,7 @@ export function SubmitButton() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="rounded-md border bg-muted font-mono text-sm max-h-[350px] overflow-auto">
+                <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm max-h-[350px] overflow-auto">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

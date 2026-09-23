@@ -51,7 +51,7 @@ function UploadStatusCard({
 }) {
     if (status === "loading") {
         return (
-            <div className="grid gap-3 rounded-md border bg-background p-3 text-sm">
+            <div className="grid gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-sm">
                 <div className="flex items-center gap-2">
                     <Spinner size="sm" />
                     <span className="font-medium">{locale === "ja" ? "アップロード中" : "Uploading"}</span>
@@ -195,7 +195,7 @@ export function ImageUploader() {
       {files.length > 0 && (
         <div className="grid gap-2">
           {files.map((file) => (
-            <div key={file.name} className="grid gap-1 rounded-md border p-2 text-xs">
+            <div key={file.name} className="grid gap-1 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-2 text-xs">
               <div className="flex justify-between gap-3">
                 <span className="truncate font-medium">{file.name}</span>
                 <span className="text-muted-foreground">
@@ -237,7 +237,7 @@ export function ImageUploader() {
       {files.length > 0 && (
         <div className="grid gap-2">
           {files.map((file) => (
-            <div key={file.name} className="grid gap-1 rounded-md border p-2 text-xs">
+            <div key={file.name} className="grid gap-1 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-2 text-xs">
               <div className="flex justify-between gap-3">
                 <span className="truncate font-medium">{file.name}</span>
                 <span className="text-muted-foreground">
@@ -517,7 +517,7 @@ export function UploadingState() {
           maxSize: (sizeMb) => "最大 " + sizeMb + "MB",
         }}
       />
-      <div className="grid gap-3 rounded-md border p-3 text-sm">
+      <div className="grid gap-3 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3 text-sm">
         <div className="flex items-center gap-2">
           <Spinner size="sm" />
           <span>アップロード中</span>
@@ -552,7 +552,7 @@ export function UploadingState() {
           maxSize: (sizeMb) => "Max size " + sizeMb + "MB",
         }}
       />
-      <div className="grid gap-3 rounded-md border p-3 text-sm">
+      <div className="grid gap-3 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3 text-sm">
         <div className="flex items-center gap-2">
           <Spinner size="sm" />
           <span>Uploading</span>
@@ -798,7 +798,7 @@ export function DisabledUploader() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

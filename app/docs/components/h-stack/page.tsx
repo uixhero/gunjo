@@ -44,7 +44,7 @@ export function StatusBar() {
     <HStack
       justify="between"
       align="center"
-      className="w-full rounded-md border bg-background p-3"
+      className="w-full rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3"
     >
       <span className="text-sm font-medium">Project status</span>
       <Button size="sm">Publish</Button>
@@ -63,11 +63,11 @@ const statuses = [
 
 export function StatusPills() {
   return (
-    <HStack gap={2} wrap className="w-56 rounded-md border bg-background p-3">
+    <HStack gap={2} wrap className="w-56 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
       {statuses.map((label) => (
         <span
           key={label}
-          className="shrink-0 rounded-md border bg-muted/50 px-2 py-1 text-sm"
+          className="shrink-0 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-2 py-1 text-sm"
         >
           {label}
         </span>
@@ -95,7 +95,7 @@ export function StatusBar() {
     <HStack
       justify="between"
       align="center"
-      className="w-full rounded-md border bg-background p-3"
+      className="w-full rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3"
     >
       <span className="text-sm font-medium">プロジェクト状態</span>
       <Button size="sm">公開</Button>
@@ -114,11 +114,11 @@ const statuses = [
 
 export function StatusPills() {
   return (
-    <HStack gap={2} wrap className="w-56 rounded-md border bg-background p-3">
+    <HStack gap={2} wrap className="w-56 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
       {statuses.map((label) => (
         <span
           key={label}
-          className="shrink-0 rounded-md border bg-muted/50 px-2 py-1 text-sm"
+          className="shrink-0 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-2 py-1 text-sm"
         >
           {label}
         </span>
@@ -140,7 +140,7 @@ export function ActiveUserCount() {
 } as const;
 
 function Pill({ children }: { children: ReactNode }) {
-    return <span className="shrink-0 rounded-md border bg-muted/50 px-2 py-1 text-sm">{children}</span>;
+    return <span className="shrink-0 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-2 py-1 text-sm">{children}</span>;
 }
 
 export default function HStackPage() {
@@ -211,7 +211,7 @@ export default function HStackPage() {
                             previewBodyWidth: "md",
                             code: stateCodeByLocale[locale].between,
                             preview: (
-                                <HStack justify="between" align="center" className="w-full rounded-md border bg-background p-3">
+                                <HStack justify="between" align="center" className="w-full rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
                                     <span className="text-sm font-medium">{locale === "ja" ? "プロジェクト状態" : "Project status"}</span>
                                     <Button size="sm">{locale === "ja" ? "公開" : "Publish"}</Button>
                                 </HStack>
@@ -224,7 +224,7 @@ export default function HStackPage() {
                             previewBodyWidth: "md",
                             code: stateCodeByLocale[locale].wrap,
                             preview: (
-                                <HStack gap={2} wrap className="w-56 rounded-md border bg-background p-3">
+                                <HStack gap={2} wrap className="w-56 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
                                     {(locale === "ja" ? ["下書き", "公開前確認", "準備完了", "公開済み", "保管済み"] : ["Draft", "Needs review", "Ready", "Published", "Archived"]).map((label) => <Pill key={label}>{label}</Pill>)}
                                 </HStack>
                             ),
@@ -256,7 +256,7 @@ export default function HStackPage() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

@@ -155,7 +155,7 @@ export default function FigmaPluginPage() {
                     </p>
                 </section>
 
-                <section className="space-y-3 rounded-xl border border-primary-border bg-primary-subtle p-6">
+                <section className="space-y-3 rounded-xl border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText] bg-primary-subtle p-6">
                     <div className="flex items-center gap-2">
                         <Sparkles className="h-4 w-4 text-primary" />
                         <h2 className="text-xl font-semibold tracking-tight">

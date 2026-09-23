@@ -22,11 +22,11 @@ export function SidebarHandle() {
 
   return (
     <div
-      className="relative grid h-56 overflow-visible rounded-lg border bg-background transition-[grid-template-columns]"
+      className="relative grid h-56 overflow-visible rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card transition-[grid-template-columns]"
       style={{ gridTemplateColumns: \`\${sidebarWidth}px minmax(0, 1fr)\` }}
     >
       <aside
-        className="relative min-w-0 overflow-visible border-r bg-muted/30"
+        className="relative min-w-0 overflow-visible border-r border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted"
       >
         <div
           className={
@@ -66,11 +66,11 @@ export function SidebarHandle() {
 
   return (
     <div
-      className="relative grid h-56 overflow-visible rounded-lg border bg-background transition-[grid-template-columns]"
+      className="relative grid h-56 overflow-visible rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card transition-[grid-template-columns]"
       style={{ gridTemplateColumns: \`\${sidebarWidth}px minmax(0, 1fr)\` }}
     >
       <aside
-        className="relative min-w-0 overflow-visible border-r bg-muted/30"
+        className="relative min-w-0 overflow-visible border-r border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted"
       >
         <div
           className={
@@ -114,12 +114,12 @@ export function InspectorHandle() {
   const panelWidth = collapsed ? 0 : 160;
 
   return (
-    <div className="relative flex h-48 overflow-visible rounded-lg border bg-background">
+    <div className="relative flex h-48 overflow-visible rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <main className="flex min-w-0 flex-1 items-center justify-center p-4">
         Canvas
       </main>
       <aside
-        className="min-w-0 overflow-hidden border-l bg-muted/30 transition-[width]"
+        className="min-w-0 overflow-hidden border-l border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted transition-[width]"
         style={{ width: panelWidth }}
       >
         <div
@@ -157,9 +157,9 @@ export function ToolbarHandle() {
   const panelHeight = collapsed ? 0 : 56;
 
   return (
-    <div className="relative h-48 overflow-visible rounded-lg border bg-background">
+    <div className="relative h-48 overflow-visible rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <div
-        className="overflow-hidden border-b bg-muted/30 transition-[height,opacity]"
+        className="overflow-hidden border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted transition-[height,opacity]"
         style={{ height: panelHeight, opacity: collapsed ? 0 : 1 }}
         aria-hidden={collapsed}
       >
@@ -197,12 +197,12 @@ export function InspectorHandle() {
   const panelWidth = collapsed ? 0 : 160;
 
   return (
-    <div className="relative flex h-48 overflow-visible rounded-lg border bg-background">
+    <div className="relative flex h-48 overflow-visible rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <main className="flex min-w-0 flex-1 items-center justify-center p-4">
         キャンバス
       </main>
       <aside
-        className="min-w-0 overflow-hidden border-l bg-muted/30 transition-[width]"
+        className="min-w-0 overflow-hidden border-l border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted transition-[width]"
         style={{ width: panelWidth }}
       >
         <div
@@ -240,9 +240,9 @@ export function ToolbarHandle() {
   const panelHeight = collapsed ? 0 : 56;
 
   return (
-    <div className="relative h-48 overflow-visible rounded-lg border bg-background">
+    <div className="relative h-48 overflow-visible rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <div
-        className="overflow-hidden border-b bg-muted/30 transition-[height,opacity]"
+        className="overflow-hidden border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted transition-[height,opacity]"
         style={{ height: panelHeight, opacity: collapsed ? 0 : 1 }}
         aria-hidden={collapsed}
       >
@@ -328,11 +328,11 @@ function LeftPanelPreview({ locale }: { locale: "en" | "ja" }) {
     return (
         <div className="w-full overflow-visible px-5 py-4">
             <div
-                className="relative grid h-56 overflow-visible rounded-lg border bg-background shadow-sm transition-[grid-template-columns] duration-300 ease-out motion-reduce:transition-none"
+                className="relative grid h-56 overflow-visible rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-sm transition-[grid-template-columns] duration-300 ease-out motion-reduce:transition-none"
                 style={{ gridTemplateColumns: `${sidebarWidth}px minmax(0, 1fr)` }}
             >
                 <aside
-                    className="relative min-w-0 overflow-visible border-r bg-muted/30"
+                    className="relative min-w-0 overflow-visible border-r border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted"
                 >
                     <div
                         className={cn(
@@ -370,13 +370,13 @@ function RightPanelPreview({ locale }: { locale: "en" | "ja" }) {
 
     return (
         <div className="w-full overflow-visible px-5 py-4">
-            <div className="relative flex h-48 overflow-visible rounded-lg border bg-background shadow-sm">
+            <div className="relative flex h-48 overflow-visible rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-sm">
                 <main className="flex min-w-0 flex-1 items-center justify-center p-4 text-sm text-muted-foreground">
                     {locale === "ja" ? "キャンバス" : "Canvas"}
                 </main>
                 <aside
                     className={cn(
-                        "min-w-0 overflow-hidden border-l bg-muted/30 transition-[width] duration-300 ease-out motion-reduce:transition-none"
+                        "min-w-0 overflow-hidden border-l border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted transition-[width] duration-300 ease-out motion-reduce:transition-none"
                     )}
                     style={{ width: panelWidth }}
                 >
@@ -414,10 +414,10 @@ function TopPanelPreview({ locale }: { locale: "en" | "ja" }) {
 
     return (
         <div className="w-full overflow-visible px-5 py-6">
-            <div className="relative h-48 overflow-visible rounded-lg border bg-background shadow-sm">
+            <div className="relative h-48 overflow-visible rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-sm">
                 <div
                     className={cn(
-                        "overflow-hidden border-b bg-muted/30 transition-[height,opacity] duration-200 ease-out motion-reduce:transition-none",
+                        "overflow-hidden border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted transition-[height,opacity] duration-200 ease-out motion-reduce:transition-none",
                         collapsed ? "opacity-0" : "opacity-100"
                     )}
                     style={{ height: panelHeight }}
@@ -536,7 +536,7 @@ export default function CollapsiblePanelToggleDocPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

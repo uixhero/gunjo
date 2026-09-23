@@ -159,7 +159,7 @@ export default function DocsTokensOverviewPage() {
                         <p className="text-xs text-muted-foreground">
                             {t.fixedAssets.valuesHint}
                         </p>
-                        <pre className="overflow-x-auto rounded-lg border border-border/40 bg-muted/20 p-3 font-mono text-xs leading-relaxed">
+                        <pre className="overflow-x-auto rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 font-mono text-xs leading-relaxed">
                             {KEY_TOKEN_CSS}
                         </pre>
                     </div>

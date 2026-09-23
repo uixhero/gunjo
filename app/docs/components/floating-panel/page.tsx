@@ -26,7 +26,7 @@ export function CanvasFloatingPanels() {
   ];
 
   return (
-    <div className="relative min-h-[420px] w-full overflow-hidden rounded-lg border bg-muted/30 p-4 sm:p-6">
+    <div className="relative min-h-[420px] w-full overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 sm:p-6">
       <div
         className="grid h-full min-h-[380px] place-items-center rounded-md border border-dashed bg-background/70 text-sm text-muted-foreground"
         style={{
@@ -88,7 +88,7 @@ export function CanvasFloatingPanels() {
   ];
 
   return (
-    <div className="relative min-h-[420px] w-full overflow-hidden rounded-lg border bg-muted/30 p-4 sm:p-6">
+    <div className="relative min-h-[420px] w-full overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 sm:p-6">
       <div
         className="grid h-full min-h-[380px] place-items-center rounded-md border border-dashed bg-background/70 text-sm text-muted-foreground"
         style={{
@@ -141,7 +141,7 @@ export function CanvasFloatingPanels() {
 
 export function DraggableResizableFloatingPanel() {
   return (
-    <div className="relative min-h-[420px] w-full overflow-hidden rounded-lg border bg-muted/30 p-4 sm:p-6">
+    <div className="relative min-h-[420px] w-full overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 sm:p-6">
       <div
         className="grid h-full min-h-[380px] place-items-center rounded-md border border-dashed bg-background/70 text-sm text-muted-foreground"
         style={{
@@ -176,7 +176,7 @@ export function DraggableResizableFloatingPanel() {
 
 export function DraggableResizableFloatingPanel() {
   return (
-    <div className="relative min-h-[420px] w-full overflow-hidden rounded-lg border bg-muted/30 p-4 sm:p-6">
+    <div className="relative min-h-[420px] w-full overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 sm:p-6">
       <div
         className="grid h-full min-h-[380px] place-items-center rounded-md border border-dashed bg-background/70 text-sm text-muted-foreground"
         style={{
@@ -226,7 +226,7 @@ export function FloatingToolbar() {
   ];
 
   return (
-    <div className="relative min-h-[260px] w-full overflow-hidden rounded-lg border bg-muted/30 p-4">
+    <div className="relative min-h-[260px] w-full overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4">
       <div
         className="grid h-full min-h-[220px] place-items-center rounded-md border border-dashed bg-background/70 text-sm text-muted-foreground"
         style={{
@@ -274,7 +274,7 @@ export function FloatingToolbar() {
   ];
 
   return (
-    <div className="relative min-h-[260px] w-full overflow-hidden rounded-lg border bg-muted/30 p-4">
+    <div className="relative min-h-[260px] w-full overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4">
       <div
         className="grid h-full min-h-[220px] place-items-center rounded-md border border-dashed bg-background/70 text-sm text-muted-foreground"
         style={{
@@ -312,7 +312,7 @@ import { IconBell as Bell } from "@tabler/icons-react";
 
 export function StatusFloatingPanel() {
   return (
-    <div className="relative min-h-[300px] w-full overflow-hidden rounded-lg border bg-muted/30 p-4">
+    <div className="relative min-h-[300px] w-full overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4">
       <div
         className="grid h-full min-h-[260px] place-items-center rounded-md border border-dashed bg-background/70 text-sm text-muted-foreground"
         style={{
@@ -349,7 +349,7 @@ import { IconBell as Bell } from "@tabler/icons-react";
 
 export function StatusFloatingPanel() {
   return (
-    <div className="relative min-h-[300px] w-full overflow-hidden rounded-lg border bg-muted/30 p-4">
+    <div className="relative min-h-[300px] w-full overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4">
       <div
         className="grid h-full min-h-[260px] place-items-center rounded-md border border-dashed bg-background/70 text-sm text-muted-foreground"
         style={{
@@ -566,7 +566,7 @@ export default function FloatingPanelPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

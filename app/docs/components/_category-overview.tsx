@@ -908,7 +908,7 @@ export function AssetActionsBar() {
 
     return (
         <TooltipProvider>
-            <div className="flex flex-wrap items-center gap-2 rounded-lg border p-3">
+            <div className="flex flex-wrap items-center gap-2 rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3">
                 <ContextMenu>
                     <ContextMenuTrigger asChild>
                         <span className="mr-auto text-sm font-medium">{title}</span>
@@ -1090,7 +1090,7 @@ export function AssetActionsBar() {
 
     return (
         <TooltipProvider>
-            <div className="flex flex-wrap items-center gap-2 rounded-lg border p-3">
+            <div className="flex flex-wrap items-center gap-2 rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3">
                 <ContextMenu>
                     <ContextMenuTrigger asChild>
                         <span className="mr-auto text-sm font-medium">{title}</span>
@@ -1381,7 +1381,7 @@ export function WorkspaceShell() {
                     ))}
                 </Cluster>
 
-                <ResizablePanelGroup direction="horizontal" className="rounded-lg border">
+                <ResizablePanelGroup direction="horizontal" className="rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                     <ResizablePanel defaultSize={68} minSize={40}>
                         <div className="p-4">
                             <Grid cols={{ base: 1, sm: 2 }} gap={4}>
@@ -1486,7 +1486,7 @@ export function WorkspaceShell() {
                     ))}
                 </Cluster>
 
-                <ResizablePanelGroup direction="horizontal" className="rounded-lg border">
+                <ResizablePanelGroup direction="horizontal" className="rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                     <ResizablePanel defaultSize={68} minSize={40}>
                         <div className="p-4">
                             <Grid cols={{ base: 1, sm: 2 }} gap={4}>
@@ -1708,7 +1708,7 @@ export function CategoryOverviewPage({ category }: { category: CategoryName }) {
                             <Link
                                 key={item.href}
                                 href={item.href}
-                                className="group rounded-md border border-border bg-card p-4 transition-colors hover:border-primary-border hover:bg-primary-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                                className="group rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 transition-colors hover:border-primary-border hover:bg-primary-subtle focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                             >
                                 <div className="flex items-start justify-between gap-3">
                                     <div className="min-w-0 space-y-1">

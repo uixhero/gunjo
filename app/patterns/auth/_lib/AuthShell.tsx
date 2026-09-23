@@ -107,7 +107,7 @@ function FixedAuthLayout({
                     </div>
                 </div>
             ) : (
-                <div className="shrink-0 flex items-center gap-2 border-b border-border/40 px-6 py-4 text-sm font-medium">
+                <div className="shrink-0 flex items-center gap-2 border-b border-transparent bg-card px-6 py-4 text-sm font-medium contrast-more:border-border forced-colors:border-[CanvasText]">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         viewBox="0 0 24 24"

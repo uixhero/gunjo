@@ -787,7 +787,7 @@ export default function ChartsPage() {
                         <Link
                             key={item.href}
                             href={item.href}
-                            className="group flex items-start justify-between gap-4 rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:border-primary-border"
+                            className="group flex items-start justify-between gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-card-foreground transition-colors hover:border-primary-border"
                         >
                             <span className="space-y-1">
                                 <span className="block font-medium">{t(item.titleKey)}</span>

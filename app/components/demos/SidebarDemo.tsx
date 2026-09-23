@@ -60,7 +60,7 @@ function SidebarBodyDemo() {
 
 export function SidebarDemo() {
     return (
-        <div className="flex h-[400px] w-full overflow-hidden rounded-md border">
+        <div className="flex h-[400px] w-full overflow-hidden rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
             <SidebarProvider>
                 <SidebarBodyDemo />
             </SidebarProvider>

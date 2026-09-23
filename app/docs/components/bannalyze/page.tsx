@@ -57,7 +57,7 @@ export default function BannalyzePage() {
     const { locale } = useLocale();
 
     const canvas = (
-        <div className="rounded-md border bg-background px-16 py-12 text-sm text-muted-foreground">
+        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-16 py-12 text-sm text-muted-foreground">
             {locale === "ja" ? "解析する画像" : "Image under analysis"}
         </div>
     );
@@ -100,7 +100,7 @@ export default function BannalyzePage() {
             ]}
         >
             <ComponentPreview embedSrc="/embed/bannalyze" code={usageCode} fullPagePreview codeBlock={<CodeBlock code={usageCode} />}>
-                <div className="w-full overflow-hidden rounded-lg border shadow-sm">
+                <div className="w-full overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-sm">
                     <BannalyzeTemplateDemo />
                 </div>
             </ComponentPreview>
@@ -177,7 +177,7 @@ export function FullAnalysis() {
         </div>
       }
     >
-      <div className="rounded-md border bg-background px-16 py-12 text-sm text-muted-foreground">
+      <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-16 py-12 text-sm text-muted-foreground">
         解析する画像
       </div>
     </BannalyzeTemplate>
@@ -213,7 +213,7 @@ export function FullAnalysis() {
         </div>
       }
     >
-      <div className="rounded-md border bg-background px-16 py-12 text-sm text-muted-foreground">
+      <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-16 py-12 text-sm text-muted-foreground">
         Image under analysis
       </div>
     </BannalyzeTemplate>
@@ -254,7 +254,7 @@ export function AnalysisWithoutInspector() {
         </div>
       }
     >
-      <div className="rounded-md border bg-background px-16 py-12 text-sm text-muted-foreground">
+      <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-16 py-12 text-sm text-muted-foreground">
         解析する画像
       </div>
     </BannalyzeTemplate>
@@ -282,7 +282,7 @@ export function AnalysisWithoutInspector() {
         </div>
       }
     >
-      <div className="rounded-md border bg-background px-16 py-12 text-sm text-muted-foreground">
+      <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-16 py-12 text-sm text-muted-foreground">
         Image under analysis
       </div>
     </BannalyzeTemplate>
@@ -306,7 +306,7 @@ export function AnalysisWithoutInspector() {
 export function ArtworkOnly() {
   return (
     <BannalyzeTemplate className="h-auto">
-      <div className="rounded-md border bg-background px-16 py-12 text-sm text-muted-foreground">
+      <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-16 py-12 text-sm text-muted-foreground">
         解析する画像
       </div>
     </BannalyzeTemplate>
@@ -317,7 +317,7 @@ export function ArtworkOnly() {
 export function ArtworkOnly() {
   return (
     <BannalyzeTemplate className="h-auto">
-      <div className="rounded-md border bg-background px-16 py-12 text-sm text-muted-foreground">
+      <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-16 py-12 text-sm text-muted-foreground">
         Image under analysis
       </div>
     </BannalyzeTemplate>

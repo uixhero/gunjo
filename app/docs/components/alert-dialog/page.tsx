@@ -273,7 +273,7 @@ export function DeleteFolderDialog() {
             このフォルダ内の素材は未分類へ移動します。この操作は取り消せません。
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <div className="rounded-md border bg-muted/50 px-3 py-2 text-sm font-medium">
+        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm font-medium">
           Web サイト素材
         </div>
         <AlertDialogFooter>
@@ -318,7 +318,7 @@ export function DeleteFolderDialog() {
             Assets in this folder will be moved to Uncategorized. This action cannot be undone.
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <div className="rounded-md border bg-muted/50 px-3 py-2 text-sm font-medium">
+        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm font-medium">
           Website assets
         </div>
         <AlertDialogFooter>
@@ -458,7 +458,7 @@ export default function AlertDialogPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

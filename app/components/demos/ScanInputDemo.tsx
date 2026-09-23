@@ -37,7 +37,7 @@ export function ScanInputDemo() {
                 feedLimit={5}
             />
 
-            <ul className="flex flex-col gap-1 rounded-lg border bg-card p-3 text-sm">
+            <ul className="flex flex-col gap-1 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-sm">
                 {lines.map((l) => {
                     const diff = l.scanned - l.ordered;
                     return (

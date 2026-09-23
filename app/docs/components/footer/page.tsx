@@ -29,7 +29,7 @@ function FooterExample({ compact = false, legalSocial = false }: { compact?: boo
     ];
 
     return (
-        <div className="w-full overflow-hidden rounded-md border bg-background">
+        <div className="w-full overflow-hidden rounded-md">
             <Footer className={compact ? "gap-4 px-5 py-6" : undefined}>
                 <FooterColumns className={compact ? "grid-cols-1 gap-5 md:grid-cols-3" : undefined}>
                     <FooterBrand>
@@ -119,7 +119,7 @@ function FooterMinimalExample() {
     ];
 
     return (
-        <div className="w-full overflow-hidden rounded-md border bg-background">
+        <div className="w-full overflow-hidden rounded-md">
             <Footer className="gap-3 px-5 py-5">
                 <div className="flex flex-wrap items-center justify-between gap-3">
                     <p className="text-sm font-semibold">Gunjo UI</p>
@@ -540,7 +540,7 @@ export default function FooterPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

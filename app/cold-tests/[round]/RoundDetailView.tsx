@@ -493,7 +493,7 @@ export function RoundDetailView({
                                 type="button"
                                 onClick={() => openLightbox(desktopAssetIndex)}
                                 aria-label={td.openLightboxLabel(td.desktopPreview)}
-                                className="group block w-full overflow-hidden rounded-md border border-border/60 bg-muted/40 transition-colors hover:border-primary-border focus-visible:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                className="group block w-full overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted transition-colors hover:border-primary-border focus-visible:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                             >
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
@@ -525,7 +525,7 @@ export function RoundDetailView({
                                 type="button"
                                 onClick={() => openLightbox(mobileAssetIndex)}
                                 aria-label={td.openLightboxLabel(td.mobilePreview)}
-                                className="group block max-h-[640px] w-full overflow-y-auto overflow-x-hidden rounded-md border border-border/60 bg-muted/40 transition-colors hover:border-primary-border focus-visible:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                className="group block max-h-[640px] w-full overflow-y-auto overflow-x-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted transition-colors hover:border-primary-border focus-visible:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                             >
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img
@@ -640,7 +640,7 @@ export function RoundDetailView({
                                     href={href}
                                     aria-label={td.componentDocsLabel(name)}
                                     className={cn(
-                                        "group inline-flex items-center gap-1 rounded-md border border-border/60 bg-muted/30 px-2.5 py-1 text-xs font-medium text-foreground transition-colors",
+                                        "group inline-flex items-center gap-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-2.5 py-1 text-xs font-medium text-foreground transition-colors",
                                         "hover:border-primary-border hover:bg-muted/60 hover:text-primary"
                                     )}
                                 >
@@ -683,7 +683,7 @@ export function RoundDetailView({
                             per file and drown out the real section list. */}
                         <Accordion
                             type="multiple"
-                            className="overflow-hidden rounded-md border border-border/60"
+                            className="overflow-hidden rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]"
                         >
                             {detail.code.map((file) => {
                                 const lines = file.source.split("\n").length;

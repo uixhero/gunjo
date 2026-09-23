@@ -71,7 +71,7 @@ export function DocProse({ title, description, body }: DocProseProps) {
           ),
           hr: () => <hr className="my-8 border-border/40" />,
           pre: ({ children }) => (
-            <pre className="my-5 overflow-auto rounded-lg border border-border/40 bg-muted p-4 text-sm">
+            <pre className="my-5 overflow-auto rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 text-sm">
               {children}
             </pre>
           ),

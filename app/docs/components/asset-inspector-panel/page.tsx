@@ -450,7 +450,7 @@ export default function AssetInspectorPanelDocPage() {
             ]}
         >
             <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="sm" previewHeight="auto">
-                <div className="overflow-hidden rounded-lg border bg-background">
+                <div className="overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
                     <AssetInspectorPanel
                         asset={previewAsset}
                         note={note}
@@ -490,7 +490,7 @@ export default function AssetInspectorPanelDocPage() {
                             code: stateCodeByLocale[locale].empty,
                             previewBodyWidth: "sm",
                             preview: (
-                                <div className="overflow-hidden rounded-lg border bg-background">
+                                <div className="overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
                                     <AssetInspectorPanel
                                         title={locale === "ja" ? "詳細" : "Details"}
                                         asset={null}
@@ -507,7 +507,7 @@ export default function AssetInspectorPanelDocPage() {
                             code: stateCodeByLocale[locale].compact,
                             previewBodyWidth: "sm",
                             preview: (
-                                <div className="overflow-hidden rounded-lg border bg-background">
+                                <div className="overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
                                     <AssetInspectorPanel
                                         asset={compactAsset}
                                         variant="compact"
@@ -529,7 +529,7 @@ export default function AssetInspectorPanelDocPage() {
                             code: stateCodeByLocale[locale].default,
                             previewBodyWidth: "sm",
                             preview: (
-                                <div className="overflow-hidden rounded-lg border bg-background">
+                                <div className="overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
                                     <AssetInspectorPanel
                                         asset={previewAsset}
                                         note={note}
@@ -569,7 +569,7 @@ export default function AssetInspectorPanelDocPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

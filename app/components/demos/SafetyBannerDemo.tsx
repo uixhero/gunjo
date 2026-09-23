@@ -30,7 +30,7 @@ export function SafetyBannerDemo() {
                 ワルファリンとの併用で出血リスクが上昇します。INR をモニタリングしてください。
             </SafetyBanner>
 
-            <div className="flex items-center justify-between gap-3 rounded-md border bg-muted/30 px-3 py-2">
+            <div className="flex items-center justify-between gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
                 <span className="text-sm text-muted-foreground">
                     {canSign ? "全ての警告を確認しました" : "未確認の警告があります"}
                 </span>

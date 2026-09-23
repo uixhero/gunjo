@@ -162,7 +162,7 @@ export function WhyView({
                 {HERO_TILES.length > 0 && (
                     <div
                         aria-hidden="true"
-                        className="pointer-events-none relative select-none overflow-hidden rounded-lg border border-border/40 bg-muted/20"
+                        className="pointer-events-none relative select-none overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted"
                     >
                         <div
                             className="flex gap-1.5 opacity-[0.6]"
@@ -313,7 +313,7 @@ export function WhyView({
                             <li key={c.name}>
                                 <Link
                                     href={`/docs/components/${docSlugFor(c.name)}`}
-                                    className="group flex items-start gap-3 rounded-md border border-border/60 bg-muted/20 p-3 transition-colors hover:border-primary-border hover:bg-muted/40"
+                                    className="group flex items-start gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 transition-colors hover:border-primary-border hover:bg-muted/40"
                                 >
                                     <code className="font-mono text-sm font-semibold text-foreground transition-colors group-hover:text-primary">
                                         {c.name}
@@ -404,7 +404,7 @@ export function WhyView({
                                 <Link
                                     key={tile.round}
                                     href={`/cold-tests/${tile.round}`}
-                                    className="group block overflow-hidden rounded-md border border-border/60 bg-card transition-colors hover:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                    className="group block overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card transition-colors hover:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                                     aria-label={`#${tile.round} ${tile.title}`}
                                 >
                                     <div className="aspect-[4/3] overflow-hidden bg-muted/40">
@@ -433,7 +433,7 @@ export function WhyView({
                     <div className="flex flex-wrap gap-3">
                         <Link
                             href="/cold-tests"
-                            className="inline-flex items-center gap-2 rounded-md border border-primary-border bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+                            className="inline-flex items-center gap-2 rounded-md border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText] bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
                         >
                             {tw.ctaGalleryLabel}
                             <Badge variant="secondary" className="bg-primary-foreground/15 text-primary-foreground">
@@ -442,7 +442,7 @@ export function WhyView({
                         </Link>
                         <Link
                             href="/showcase"
-                            className="inline-flex items-center gap-2 rounded-md border border-border/70 px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary-border hover:text-primary"
+                            className="inline-flex items-center gap-2 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-4 py-2 text-sm font-medium text-foreground transition-colors hover:border-primary-border hover:text-primary"
                         >
                             {tw.ctaComponentsLabel}
                         </Link>

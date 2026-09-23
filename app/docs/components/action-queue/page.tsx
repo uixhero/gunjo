@@ -170,10 +170,10 @@ function ActionQueuePreview({ locale, initialSurface = "all", empty = false }: {
       <ActionQueue items={items} emptyLabel={copy.emptyLabel} />
 
       {selectedItem ? (
-        <div className="rounded-md border bg-muted/30 px-3 py-3 text-sm" aria-live="polite">
+        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-3 text-sm" aria-live="polite">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{copy.selectedPrefix}</span>
-            <span className="rounded-full border bg-background px-2 py-0.5 text-xs font-medium text-foreground">{selectedItem.kind}</span>
+            <span className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2 py-0.5 text-xs font-medium text-foreground">{selectedItem.kind}</span>
           </div>
           <p className="mt-2 font-medium text-foreground">{selectedItem.title}</p>
           <p className="mt-1 text-muted-foreground">{selectedItem.detail}</p>
@@ -287,10 +287,10 @@ export function MorningActionQueue() {
       <ActionQueue items={actionItems} emptyLabel="対応が必要な項目はありません" />
 
       {selectedItem ? (
-        <div className="rounded-md border bg-muted/30 px-3 py-3 text-sm" aria-live="polite">
+        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-3 text-sm" aria-live="polite">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">対応対象</span>
-            <span className="rounded-full border bg-background px-2 py-0.5 text-xs font-medium text-foreground">{selectedItem.kind}</span>
+            <span className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2 py-0.5 text-xs font-medium text-foreground">{selectedItem.kind}</span>
           </div>
           <p className="mt-2 font-medium text-foreground">{selectedItem.title}</p>
           <p className="mt-1 text-muted-foreground">{selectedItem.detail}</p>
@@ -393,10 +393,10 @@ export function MorningActionQueue() {
       <ActionQueue items={actionItems} emptyLabel="No action items" />
 
       {selectedItem ? (
-        <div className="rounded-md border bg-muted/30 px-3 py-3 text-sm" aria-live="polite">
+        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-3 text-sm" aria-live="polite">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Active follow-up</span>
-            <span className="rounded-full border bg-background px-2 py-0.5 text-xs font-medium text-foreground">{selectedItem.kind}</span>
+            <span className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2 py-0.5 text-xs font-medium text-foreground">{selectedItem.kind}</span>
           </div>
           <p className="mt-2 font-medium text-foreground">{selectedItem.title}</p>
           <p className="mt-1 text-muted-foreground">{selectedItem.detail}</p>
@@ -557,7 +557,7 @@ export function EmptyActionQueue() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

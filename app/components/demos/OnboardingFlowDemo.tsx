@@ -53,7 +53,7 @@ export function OnboardingFlowDemo() {
 
     if (completed) {
         return (
-            <div className="rounded-lg border border-border bg-card p-6 text-sm text-muted-foreground">
+            <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-6 text-sm text-muted-foreground">
                 Onboarding complete. 🎉
                 <button
                     type="button"

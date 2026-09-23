@@ -70,7 +70,7 @@ export default function SpacingPage() {
                 <h2 className="pb-2 text-2xl font-semibold tracking-tight">
                     {c.sections.scale}
                 </h2>
-                <div className="space-y-1.5 rounded-lg border border-border/40 bg-muted/20 p-5">
+                <div className="space-y-1.5 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-5">
                     {SPACING_SCALE.map((step) => (
                         <div
                             key={step.step}
@@ -95,7 +95,7 @@ export default function SpacingPage() {
                 <h2 className="pb-2 text-2xl font-semibold tracking-tight">
                     {c.sections.common}
                 </h2>
-                <div className="overflow-hidden rounded-lg border border-border/40">
+                <div className="overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                     <table className="w-full text-sm">
                         <thead>
                             <tr className="bg-muted/40 text-left text-xs uppercase tracking-wider text-muted-foreground">

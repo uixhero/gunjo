@@ -84,10 +84,10 @@ export function FloatingPanelDemo() {
 
 export function SpatialCanvasDemo() {
     return (
-        <div className="h-[400px] border rounded-xl overflow-hidden relative">
+        <div className="h-[400px] border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] rounded-xl overflow-hidden relative">
             <SpatialCanvas gridSize={40}>
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div className="bg-background p-6 rounded-xl shadow-xl border border-border pointer-events-auto">
+                    <div className="bg-card p-6 rounded-xl shadow-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] pointer-events-auto">
                         <h3 className="font-bold mb-2">Infinite Canvas</h3>
                         <p className="text-sm text-muted-foreground max-w-[200px]">
                             This component provides a pannable, zoomable-ready background grid optimized for creative tools.
@@ -118,7 +118,7 @@ export function ShareModalDemo() {
     };
 
     return (
-        <div className="flex flex-col items-center justify-center p-10 bg-muted/50 rounded-lg border">
+        <div className="flex flex-col items-center justify-center p-10 bg-muted rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
             <Button onClick={() => setIsOpen(true)}>
                 Open Share Modal
             </Button>
@@ -157,7 +157,7 @@ const ToastTriggerButton = () => {
 export function ToastProviderDemo() {
     return (
         <ToastProvider>
-            <div className="flex flex-col items-center justify-center p-10 bg-muted/50 rounded-lg border">
+            <div className="flex flex-col items-center justify-center p-10 bg-muted rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                 <ToastTriggerButton />
                 <p className="mt-4 text-xs text-muted-foreground">
                     Click buttons to trigger toasts. The provider is wrapping this demo area.
@@ -194,7 +194,7 @@ export function FileUploaderDemo() {
 
 export function InspectorPanelDemo() {
     return (
-        <div className="w-[300px] h-[500px] border rounded-xl overflow-hidden shadow-lg bg-background">
+        <div className="w-[300px] h-[500px] border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] rounded-xl overflow-hidden shadow-lg bg-card">
             <InspectorPanel
                 title="Rectangle 1"
                 footer={
@@ -224,7 +224,7 @@ export function InspectorPanelDemo() {
                 <InspectorSection title="Appearance">
                     <InspectorField label="Fill">
                         <div className="flex items-center gap-2">
-                            <div className="w-6 h-6 rounded border bg-primary"></div>
+                            <div className="w-6 h-6 rounded border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-primary"></div>
                             <Input defaultValue="hsl(var(--primary))" className="flex-1 h-8" />
                         </div>
                     </InspectorField>

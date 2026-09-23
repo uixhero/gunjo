@@ -57,7 +57,7 @@ export function ScreenShot({
     }, [src]);
 
     return (
-        <div className="relative block h-44 overflow-hidden border-b border-border/60 bg-muted/40">
+        <div className="relative block h-44 overflow-hidden border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
             {!loaded && !errored && (
                 <Skeleton className="absolute inset-0 h-full w-full" />
             )}

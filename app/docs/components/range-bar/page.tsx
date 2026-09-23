@@ -35,7 +35,7 @@ function WeekDemo({ locale }: { locale: Locale }) {
 
     return (
         <div className="flex w-full flex-col gap-5">
-            <ul className="divide-y rounded-lg border">
+            <ul className="divide-y rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                 {rows.map(([low, high], i) => (
                     <li key={WEEK[locale][i]} className="grid grid-cols-[4.5rem_2rem_minmax(0,1fr)_2rem] items-center gap-2 px-4 py-2.5 text-sm">
                         <span className="font-medium">{WEEK[locale][i]}</span>
@@ -98,7 +98,7 @@ const MAX = Math.max(...WEEK.map((d) => d.high));
 
 export function WeeklyTemperatures() {
   return (
-    <ul className="divide-y rounded-lg border">
+    <ul className="divide-y rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       {WEEK.map((d) => (
         <li key={d.day} className="grid grid-cols-[4.5rem_2rem_1fr_2rem] items-center gap-2 px-4 py-2.5 text-sm">
           <span>{d.day}</span>
@@ -125,7 +125,7 @@ const MAX = Math.max(...WEEK.map((d) => d.high));
 
 export function WeeklyTemperatures() {
   return (
-    <ul className="divide-y rounded-lg border">
+    <ul className="divide-y rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       {WEEK.map((d) => (
         <li key={d.day} className="grid grid-cols-[4.5rem_2rem_1fr_2rem] items-center gap-2 px-4 py-2.5 text-sm">
           <span>{d.day}</span>
@@ -297,7 +297,7 @@ export function NotYet() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

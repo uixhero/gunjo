@@ -4,7 +4,7 @@ import { DocsTemplate } from "@gunjo/ui";
 
 export function DocsTemplateDemo() {
     return (
-        <div className="overflow-hidden rounded-md border">
+        <div className="overflow-hidden rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
             <div className="h-[420px] overflow-hidden">
                 <DocsTemplate
                     sidebar={

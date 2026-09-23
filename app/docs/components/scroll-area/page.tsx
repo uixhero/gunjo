@@ -47,7 +47,7 @@ const releases = Array.from(
 
 export function ReleaseList() {
   return (
-    <ScrollArea className="h-56 w-full max-w-sm rounded-md border bg-background p-4">
+    <ScrollArea className="h-56 w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="mb-3 text-sm font-medium">Releases</div>
       {releases.map((release) => (
         <div key={release}>
@@ -67,7 +67,7 @@ const releases = Array.from(
 
 export function ReleaseList() {
   return (
-    <ScrollArea className="h-56 w-full max-w-sm rounded-md border bg-background p-4">
+    <ScrollArea className="h-56 w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="mb-3 text-sm font-medium">リリース</div>
       {releases.map((release) => (
         <div key={release}>
@@ -87,7 +87,7 @@ const stateCodeByLocale = {
 
 export function ScrollableNotes() {
   return (
-    <ScrollArea className="h-52 w-full max-w-lg rounded-md border bg-background p-4">
+    <ScrollArea className="h-52 w-full max-w-lg rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <article className="space-y-3 text-sm leading-6 text-muted-foreground">
         <h3 className="text-base font-semibold text-foreground">Scrollable notes</h3>
         <p>Use ScrollArea when the visible region is intentionally constrained.</p>
@@ -106,12 +106,12 @@ const sections = ["Dashboard", "Analytics", "Exports", "Members", "Settings", "B
 export function HorizontalSectionScroller() {
   return (
     <ScrollArea
-      className="w-full max-w-lg rounded-md border bg-background p-3"
+      className="w-full max-w-lg rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3"
       scrollbarOrientation="horizontal"
     >
       <div className="flex w-max gap-3 pb-2">
         {sections.map((item) => (
-          <div key={item} className="w-36 rounded-md border bg-muted/50 p-3 text-sm">
+          <div key={item} className="w-36 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm">
             {item}
           </div>
         ))}
@@ -136,7 +136,7 @@ const rows = [
 export function WideScrollableTable() {
   return (
     <ScrollArea
-      className="h-44 w-full max-w-xl rounded-md border bg-background"
+      className="h-44 w-full max-w-xl rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card"
       scrollbarOrientation="both"
     >
       <table className="min-w-[760px] text-left text-sm">
@@ -162,7 +162,7 @@ export function AlwaysVisibleScrollbar() {
   return (
     <ScrollArea
       type="always"
-      className="h-48 w-full max-w-sm rounded-md border bg-background p-4"
+      className="h-48 w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4"
     >
       {rows.map((row) => (
         <p key={row} className="text-sm text-muted-foreground">Always visible row {row}</p>
@@ -177,7 +177,7 @@ export function AlwaysVisibleScrollbar() {
 
 export function ScrollableNotes() {
   return (
-    <ScrollArea className="h-52 w-full max-w-lg rounded-md border bg-background p-4">
+    <ScrollArea className="h-52 w-full max-w-lg rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <article className="space-y-3 text-sm leading-6 text-muted-foreground">
         <h3 className="text-base font-semibold text-foreground">スクロールする補足</h3>
         <p>表示領域を意図的に制限する時に ScrollArea を使います。</p>
@@ -196,12 +196,12 @@ const sections = ["ダッシュボード", "分析", "書き出し", "メンバ�
 export function HorizontalSectionScroller() {
   return (
     <ScrollArea
-      className="w-full max-w-lg rounded-md border bg-background p-3"
+      className="w-full max-w-lg rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3"
       scrollbarOrientation="horizontal"
     >
       <div className="flex w-max gap-3 pb-2">
         {sections.map((item) => (
-          <div key={item} className="w-36 rounded-md border bg-muted/50 p-3 text-sm">
+          <div key={item} className="w-36 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm">
             {item}
           </div>
         ))}
@@ -226,7 +226,7 @@ const rows = [
 export function WideScrollableTable() {
   return (
     <ScrollArea
-      className="h-44 w-full max-w-xl rounded-md border bg-background"
+      className="h-44 w-full max-w-xl rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card"
       scrollbarOrientation="both"
     >
       <table className="min-w-[760px] text-left text-sm">
@@ -252,7 +252,7 @@ export function AlwaysVisibleScrollbar() {
   return (
     <ScrollArea
       type="always"
-      className="h-48 w-full max-w-sm rounded-md border bg-background p-4"
+      className="h-48 w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4"
     >
       {rows.map((row) => (
         <p key={row} className="text-sm text-muted-foreground">常時表示の行 {row}</p>
@@ -306,7 +306,7 @@ export default function ScrollAreaPage() {
             ]}
         >
             <ComponentPreview embedSrc="/embed/scroll-area" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md" previewHeight={340}>
-                <ScrollArea className="h-56 w-full max-w-sm rounded-md border bg-background p-4">
+                <ScrollArea className="h-56 w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
                     <div className="mb-3 text-sm font-medium">{locale === "ja" ? "リリース" : "Releases"}</div>
                     {releaseItems.map((release) => (
                         <div key={release}>
@@ -331,7 +331,7 @@ export default function ScrollAreaPage() {
                             previewHeight: 340,
                             code: stateCodeByLocale[locale].list,
                             preview: (
-                                <ScrollArea className="h-56 w-full max-w-sm rounded-md border bg-background p-4">
+                                <ScrollArea className="h-56 w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
                                     <div className="mb-3 text-sm font-medium">{locale === "ja" ? "リリース" : "Releases"}</div>
                                     {releaseItems.map((release) => (
                                         <div key={release}>
@@ -350,7 +350,7 @@ export default function ScrollAreaPage() {
                             previewHeight: 340,
                             code: stateCodeByLocale[locale].article,
                             preview: (
-                                <ScrollArea className="h-52 w-full max-w-lg rounded-md border bg-background p-4">
+                                <ScrollArea className="h-52 w-full max-w-lg rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
                                     <article className="space-y-3 text-sm leading-6 text-muted-foreground">
                                         <h3 className="text-base font-semibold text-foreground">{locale === "ja" ? "スクロールする補足" : "Scrollable notes"}</h3>
                                         <p>{locale === "ja" ? "表示領域を意図的に制限する時に ScrollArea を使います。" : "Use ScrollArea when the visible region is intentionally constrained."}</p>
@@ -370,10 +370,10 @@ export default function ScrollAreaPage() {
                             previewHeight: 340,
                             code: stateCodeByLocale[locale].horizontal,
                             preview: (
-                                <ScrollArea className="w-full max-w-lg rounded-md border bg-background p-3" scrollbarOrientation="horizontal">
+                                <ScrollArea className="w-full max-w-lg rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3" scrollbarOrientation="horizontal">
                                     <div className="flex w-max gap-3 pb-2">
                                         {(locale === "ja" ? ["ダッシュボード", "分析", "書き出し", "メンバー", "設定", "請求"] : ["Dashboard", "Analytics", "Exports", "Members", "Settings", "Billing"]).map((item) => (
-                                            <div key={item} className="w-36 rounded-md border bg-muted/50 p-3 text-sm">{item}</div>
+                                            <div key={item} className="w-36 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm">{item}</div>
                                         ))}
                                     </div>
                                 </ScrollArea>
@@ -387,7 +387,7 @@ export default function ScrollAreaPage() {
                             previewHeight: 340,
                             code: stateCodeByLocale[locale].both,
                             preview: (
-                                <ScrollArea className="h-44 w-full max-w-xl rounded-md border bg-background" scrollbarOrientation="both">
+                                <ScrollArea className="h-44 w-full max-w-xl rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card" scrollbarOrientation="both">
                                     <table className="min-w-[760px] text-left text-sm">
                                         <thead className="bg-muted/60 text-muted-foreground">
                                             <tr>
@@ -417,7 +417,7 @@ export default function ScrollAreaPage() {
                             previewHeight: 340,
                             code: stateCodeByLocale[locale].always,
                             preview: (
-                                <ScrollArea type="always" className="h-48 w-full max-w-sm rounded-md border bg-background p-4">
+                                <ScrollArea type="always" className="h-48 w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
                                     {Array.from({ length: 12 }, (_, index) => (
                                         <p key={index} className="text-sm text-muted-foreground">{locale === "ja" ? `常時表示の行 ${index + 1}` : `Always visible row ${index + 1}`}</p>
                                     ))}
@@ -438,7 +438,7 @@ export default function ScrollAreaPage() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

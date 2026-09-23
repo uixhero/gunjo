@@ -52,7 +52,7 @@ function DashboardDemoBrand() {
 
 export function DashboardTemplateDemo() {
     return (
-        <div className="h-[600px] border rounded-xl overflow-hidden shadow-xl transform scale-90 origin-top bg-background flex flex-col">
+        <div className="h-[600px] rounded-xl overflow-hidden shadow-xl transform scale-90 origin-top bg-background flex flex-col">
             <DashboardTemplate
                 // The demo lives in a fixed 600px box, so it overrides the
                 // template's viewport height.
@@ -156,7 +156,7 @@ export function DashboardTemplateDemo() {
 
 export function EditorTemplateDemo() {
     return (
-        <div className="h-[600px] border rounded-xl overflow-hidden shadow-xl transform scale-90 origin-top bg-background flex flex-col">
+        <div className="h-[600px] rounded-xl overflow-hidden shadow-xl transform scale-90 origin-top bg-background flex flex-col">
             <EditorTemplate
                 topBar={
                     <div className="w-full flex items-center px-4 justify-between">
@@ -180,7 +180,7 @@ export function EditorTemplateDemo() {
                     </div>
                 }
                 leftPanel={
-                    <div className="h-full p-2 border-r bg-card space-y-4">
+                    <div className="h-full p-2 space-y-4">
                         <div className="text-xs font-semibold px-2 text-muted-foreground uppercase">Layers</div>
                         <div className="space-y-1">
                             <div className="px-2 py-1 text-sm bg-accent rounded cursor-pointer">Reatangle 1</div>
@@ -190,7 +190,7 @@ export function EditorTemplateDemo() {
                     </div>
                 }
                 rightPanel={
-                    <div className="h-full p-4 border-l bg-card">
+                    <div className="h-full p-4">
                         <div className="text-xs font-semibold text-muted-foreground uppercase mb-4">Properties</div>
                         <div className="space-y-4">
                             <div className="grid gap-2">
@@ -208,13 +208,13 @@ export function EditorTemplateDemo() {
                 <div className="w-full h-full relative">
                     <SpatialCanvas gridSize={20}>
                         <div className="absolute inset-0 flex items-center justify-center">
-                            <div className="w-96 h-64 bg-background shadow-lg rounded-lg border flex items-center justify-center text-muted-foreground">
+                            <div className="w-96 h-64 bg-popover shadow-lg rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] flex items-center justify-center text-muted-foreground">
                                 Artboard
                             </div>
                         </div>
                     </SpatialCanvas>
                     {/* Floating Toolbar */}
-                    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground rounded-full shadow-xl border px-4 py-2 flex gap-4">
+                    <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground rounded-full shadow-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-4 py-2 flex gap-4">
                         <MousePointer2 size={20} className="text-primary" />
                         <Box size={20} className="text-muted-foreground" />
                         <Layers size={20} className="text-muted-foreground" />
@@ -227,7 +227,7 @@ export function EditorTemplateDemo() {
 
 export function SettingsTemplateDemo() {
     return (
-        <div className="h-[600px] border rounded-xl overflow-hidden shadow-xl transform scale-90 origin-top bg-background flex flex-col">
+        <div className="h-[600px] rounded-xl overflow-hidden shadow-xl transform scale-90 origin-top bg-background flex flex-col">
             <SettingsTemplate
                 navigation={
                     <nav className="flex space-x-2 lg:flex-col lg:space-x-0 lg:space-y-1">
@@ -279,7 +279,7 @@ export function SettingsTemplateDemo() {
 
 export function AuthTemplateDemo() {
     return (
-        <div className="h-[600px] border rounded-xl overflow-hidden shadow-xl transform scale-90 origin-top bg-background flex flex-col">
+        <div className="h-[600px] rounded-xl overflow-hidden shadow-xl transform scale-90 origin-top bg-background flex flex-col">
             <AuthTemplate>
                 <div className="flex flex-col space-y-2 text-center">
                     <h1 className="text-2xl font-semibold tracking-tight">
@@ -331,7 +331,7 @@ export function AuthTemplateDemo() {
 
 export function KanbanTemplateDemo() {
     return (
-        <div className="h-[600px] border rounded-xl overflow-hidden shadow-xl transform scale-90 origin-top bg-background flex flex-col">
+        <div className="h-[600px] rounded-xl overflow-hidden shadow-xl transform scale-90 origin-top bg-background flex flex-col">
             <KanbanTemplate
                 sidebar={
                     <div className="h-full py-4 bg-card">
@@ -426,7 +426,7 @@ export function KanbanTemplateDemo() {
 
 export function LandingTemplateDemo() {
     return (
-        <div className="h-[600px] border rounded-xl overflow-hidden shadow-xl transform scale-90 origin-top bg-background flex flex-col">
+        <div className="h-[600px] rounded-xl overflow-hidden shadow-xl transform scale-90 origin-top bg-background flex flex-col">
             <LandingTemplate
                 header={
                     <div className="w-full flex items-center justify-between">
@@ -470,7 +470,7 @@ export function LandingTemplateDemo() {
                             { title: "Modern Stack", desc: "Built with Next.js, Tailwind CSS, and Radix UI." },
                             { title: "Open Source", desc: "Free to use and modify for personal or commercial projects." }
                         ].map((feature, i) => (
-                            <div key={i} className="flex flex-col gap-2 p-6 border rounded-lg bg-card">
+                            <div key={i} className="flex flex-col gap-2 p-6 border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] rounded-lg bg-card">
                                 <div className="h-10 w-10 flex items-center justify-center rounded-lg bg-primary-subtle text-primary-subtle-foreground mb-2">
                                     <Box size={20} />
                                 </div>
@@ -510,7 +510,7 @@ export function LandingTemplateDemo() {
 
 export function ChatTemplateDemo() {
     return (
-        <div className="h-[600px] border rounded-xl overflow-hidden shadow-xl transform scale-90 origin-top bg-background flex flex-col">
+        <div className="h-[600px] rounded-xl overflow-hidden shadow-xl transform scale-90 origin-top bg-background flex flex-col">
             <ChatTemplate
                 sidebarList={
                     <div className="h-full py-4 bg-card flex flex-col gap-2">

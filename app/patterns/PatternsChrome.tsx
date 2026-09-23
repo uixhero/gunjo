@@ -93,13 +93,13 @@ function PatternInfoCard({ pattern }: { pattern: PatternEntry }) {
                             </div>
                         </div>
                         <div className="grid gap-3 sm:grid-cols-2">
-                            <div className="rounded-lg border bg-muted/20 p-3">
+                            <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
                                 <div className="text-xs font-medium text-muted-foreground">
                                     {t.meta.surface}
                                 </div>
                                 <div className="mt-1 text-sm font-medium">{t.surfaces[pattern.surface]}</div>
                             </div>
-                            <div className="rounded-lg border bg-muted/20 p-3">
+                            <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
                                 <div className="text-xs font-medium text-muted-foreground">
                                     {t.meta.complexity}
                                 </div>
@@ -119,7 +119,7 @@ function PatternInfoCard({ pattern }: { pattern: PatternEntry }) {
                                             key={route.href}
                                             href={route.href}
                                             aria-label={t.meta.openRoute(label)}
-                                            className="rounded-md border bg-background px-2 py-1 text-xs text-muted-foreground transition-colors hover:border-primary-border hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                            className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-2 py-1 text-xs text-muted-foreground transition-colors hover:border-primary-border hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                                         >
                                             {label}
                                         </Link>
@@ -136,7 +136,7 @@ function PatternInfoCard({ pattern }: { pattern: PatternEntry }) {
                                         key={component.name}
                                         href={component.href}
                                         aria-label={t.meta.openComponent(component.name)}
-                                        className="rounded-md border bg-background px-2 py-1 text-xs font-medium text-muted-foreground transition-colors hover:border-primary-border hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                        className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-2 py-1 text-xs font-medium text-muted-foreground transition-colors hover:border-primary-border hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                                     >
                                         {component.name}
                                     </Link>
@@ -151,7 +151,7 @@ function PatternInfoCard({ pattern }: { pattern: PatternEntry }) {
                                         <Link
                                             key={ref.round}
                                             href={coldTestHref(ref.round)}
-                                            className="rounded-md border bg-background px-2 py-1 text-xs text-muted-foreground transition-colors hover:border-primary-border hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                            className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-2 py-1 text-xs text-muted-foreground transition-colors hover:border-primary-border hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                                         >
                                             #{ref.round} {locale === "ja" ? ref.ja : ref.en}
                                         </Link>
@@ -276,7 +276,7 @@ export function PatternsChrome({
                                                 className={
                                                     isActive
                                                         ? "shrink-0 rounded-md bg-foreground px-2 py-1 text-xs font-medium text-background"
-                                                        : "shrink-0 rounded-md border border-border bg-background px-2 py-1 text-xs font-medium text-muted-foreground transition-colors hover:border-primary-border hover:text-foreground"
+                                                        : "shrink-0 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-2 py-1 text-xs font-medium text-muted-foreground transition-colors hover:border-primary-border hover:text-foreground"
                                                 }
                                             >
                                                 {getRouteLabel(route)}

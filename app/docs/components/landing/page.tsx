@@ -166,7 +166,7 @@ export default function LandingPage() {
             ]}
         >
             <ComponentPreview embedSrc="/embed/landing" code={usageCode} fullPagePreview codeBlock={<CodeBlock code={usageCode} />}>
-                <div className="w-full overflow-hidden rounded-lg border shadow-sm">
+                <div className="w-full overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-sm">
                     <LandingTemplateDemo />
                 </div>
             </ComponentPreview>

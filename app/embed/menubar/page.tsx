@@ -89,8 +89,8 @@ function AppWindowMenubarExample() {
     const isJa = locale === "ja";
 
     return (
-        <div className="w-full max-w-2xl overflow-hidden rounded-md border bg-background shadow-sm">
-            <div className="flex h-10 items-center justify-between border-b bg-muted/40 px-3">
+        <div className="w-full max-w-2xl overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-sm">
+            <div className="flex h-10 items-center justify-between border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3">
                 <div className="flex items-center gap-1.5" aria-hidden>
                     <span className="h-2.5 w-2.5 rounded-full bg-destructive" />
                     <span className="h-2.5 w-2.5 rounded-full bg-warning" />

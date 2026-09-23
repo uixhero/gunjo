@@ -174,7 +174,7 @@ export function RoundRef({
                     alt=""
                     loading="lazy"
                     decoding="async"
-                    className="h-24 w-full rounded-md border border-border/60 bg-muted/40 object-cover object-top"
+                    className="h-24 w-full rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted object-cover object-top"
                 />
             ) : null}
             <div className="flex flex-wrap items-center gap-1.5">

@@ -14,7 +14,7 @@ type Locale = "ja" | "en";
 
 function LineChipPreview({ locale, compact = false }: { locale: Locale; compact?: boolean }) {
   return (
-    <div className="flex w-full max-w-lg flex-col gap-4 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-lg flex-col gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="flex flex-wrap items-center gap-2">
         <LineChip label="渋88" color="#e60012" icon={<IconBus className="h-3.5 w-3.5" />} size={compact ? "sm" : "default"} />
         <LineChip label="JY" color="#9acd32" icon={<IconTrain className="h-3.5 w-3.5" />} size={compact ? "sm" : "default"} />
@@ -44,7 +44,7 @@ import { IconBus, IconTrain } from "@tabler/icons-react";
 
 export function RouteCandidate() {
   return (
-    <div className="flex w-full max-w-lg flex-col gap-4 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-lg flex-col gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="flex flex-wrap items-center gap-2">
         <LineChip label="渋88" color="#e60012" icon={<IconBus className="h-3.5 w-3.5" />} />
         <LineChip label="JY" color="#9acd32" icon={<IconTrain className="h-3.5 w-3.5" />} />
@@ -65,7 +65,7 @@ import { IconBus, IconTrain } from "@tabler/icons-react";
 
 export function RouteCandidate() {
   return (
-    <div className="flex w-full max-w-lg flex-col gap-4 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-lg flex-col gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="flex flex-wrap items-center gap-2">
         <LineChip label="渋88" color="#e60012" icon={<IconBus className="h-3.5 w-3.5" />} />
         <LineChip label="JY" color="#9acd32" icon={<IconTrain className="h-3.5 w-3.5" />} />
@@ -178,7 +178,7 @@ export function NeutralLineChip() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

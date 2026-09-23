@@ -50,7 +50,7 @@ function FlatItemsExample() {
     const [activeId, setActiveId] = React.useState("home");
 
     return (
-        <div className="w-full max-w-sm space-y-1 rounded-md border bg-background p-2">
+        <div className="w-full max-w-sm space-y-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-2">
             <SidebarItem
                 id="home"
                 icon={<Grid size={16} />}
@@ -79,7 +79,7 @@ function CollapsedItemsExample() {
     const [activeId, setActiveId] = React.useState("favorite");
 
     return (
-        <div className="w-[60px] space-y-1 rounded-md border bg-background p-2">
+        <div className="w-[60px] space-y-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-2">
             {libraryItems.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -127,7 +127,7 @@ function SidebarContentExample({ actions = false, nested = true }: { actions?: b
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     {pendingDelete ? (
-                        <div className="rounded-md border bg-muted/40 px-3 py-2 text-sm font-medium">
+                        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm font-medium">
                             {pendingDelete.label}
                         </div>
                     ) : null}
@@ -146,7 +146,7 @@ function SidebarContentExample({ actions = false, nested = true }: { actions?: b
                     </AlertDialogFooter>
                 </AlertDialogContent>
             </AlertDialog>
-            <div className="w-full max-w-sm rounded-md border bg-muted/30 p-3">
+            <div className="w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
                 <section className="space-y-1">
                     <p className="px-2 text-xs font-bold uppercase tracking-wide text-muted-foreground">
                         {isJa ? "ライブラリ" : "Libraries"}
@@ -284,7 +284,7 @@ export function MediaLibrarySidebarContent() {
   const [campaignExpanded, setCampaignExpanded] = React.useState(true)
 
   return (
-    <div className="w-full max-w-sm rounded-md border bg-muted/30 p-3">
+    <div className="w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
       <section className="space-y-1">
         <p className="px-2 text-xs font-bold uppercase tracking-wide text-muted-foreground">ライブラリ</p>
         {libraryItems.map((item) => {
@@ -414,7 +414,7 @@ export function MediaLibrarySidebarContent() {
   const [campaignExpanded, setCampaignExpanded] = React.useState(true)
 
   return (
-    <div className="w-full max-w-sm rounded-md border bg-muted/30 p-3">
+    <div className="w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
       <section className="space-y-1">
         <p className="px-2 text-xs font-bold uppercase tracking-wide text-muted-foreground">Libraries</p>
         {libraryItems.map((item) => {
@@ -503,7 +503,7 @@ export function FlatNavigationItems() {
   const [activeId, setActiveId] = React.useState("home")
 
   return (
-    <div className="w-full max-w-sm space-y-1 rounded-md border bg-background p-2">
+    <div className="w-full max-w-sm space-y-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-2">
       <SidebarItem
         id="home"
         icon={<Grid size={16} />}
@@ -534,7 +534,7 @@ export function FlatNavigationItems() {
   const [activeId, setActiveId] = React.useState("home")
 
   return (
-    <div className="w-full max-w-sm space-y-1 rounded-md border bg-background p-2">
+    <div className="w-full max-w-sm space-y-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-2">
       <SidebarItem
         id="home"
         icon={<Grid size={16} />}
@@ -581,7 +581,7 @@ export function CollapsedLibraryRail() {
 
   return (
     // 60px＝アイコン1つと左右の余白でちょうど埋まる幅。
-    <div className="w-[60px] space-y-1 rounded-md border bg-background p-2">
+    <div className="w-[60px] space-y-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-2">
       {libraryItems.map((item) => {
         const Icon = item.Icon;
         return (
@@ -626,7 +626,7 @@ export function CollapsedLibraryRail() {
 
   return (
     // 60px is exactly one icon plus its padding.
-    <div className="w-[60px] space-y-1 rounded-md border bg-background p-2">
+    <div className="w-[60px] space-y-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-2">
       {libraryItems.map((item) => {
         const Icon = item.Icon;
         return (
@@ -725,7 +725,7 @@ export function MediaLibrarySidebarContent() {
                 {pendingDelete.label} をサイドバーから削除します。この操作は取り消せません。
               </AlertDialogDescription>
             </AlertDialogHeader>
-            <div className="rounded-md border bg-muted/40 px-3 py-2 text-sm font-medium">
+            <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm font-medium">
               {pendingDelete.label}
             </div>
             <AlertDialogFooter>
@@ -743,7 +743,7 @@ export function MediaLibrarySidebarContent() {
           </AlertDialogContent>
         </AlertDialog>
       ) : null}
-      <div className="w-full max-w-sm rounded-md border bg-muted/30 p-3">
+      <div className="w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
       <section className="space-y-1">
         <p className="px-2 text-xs font-bold uppercase tracking-wide text-muted-foreground">ライブラリ</p>
         {libraryItems.map((item) => {
@@ -906,7 +906,7 @@ export function MediaLibrarySidebarContent() {
                 {pendingDelete.label} will be removed from the sidebar. This action cannot be undone.
               </AlertDialogDescription>
             </AlertDialogHeader>
-            <div className="rounded-md border bg-muted/40 px-3 py-2 text-sm font-medium">
+            <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm font-medium">
               {pendingDelete.label}
             </div>
             <AlertDialogFooter>
@@ -924,7 +924,7 @@ export function MediaLibrarySidebarContent() {
           </AlertDialogContent>
         </AlertDialog>
       ) : null}
-      <div className="w-full max-w-sm rounded-md border bg-muted/30 p-3">
+      <div className="w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
       <section className="space-y-1">
         <p className="px-2 text-xs font-bold uppercase tracking-wide text-muted-foreground">Libraries</p>
         {libraryItems.map((item) => {
@@ -1106,7 +1106,7 @@ export default function SidebarItemPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
