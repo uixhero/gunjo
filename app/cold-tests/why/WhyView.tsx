@@ -124,7 +124,7 @@ export function WhyView({
 
     return (
         <div className="container py-10 md:py-12">
-            <article className="w-full space-y-10">
+            <article className="mx-auto w-full max-w-reading space-y-10">
                 <Breadcrumb>
                     <BreadcrumbList>
                         <BreadcrumbItem>

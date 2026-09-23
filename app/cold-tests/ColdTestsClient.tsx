@@ -127,7 +127,7 @@ function ColdTestsGrid({
 
     return (
         <div className="container space-y-10 py-10 md:py-12">
-            <header className="space-y-4">
+            <header className="max-w-reading space-y-4">
                 <div className="flex items-center gap-2">
                     <Flask className="h-5 w-5 text-primary" />
                     <span className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">

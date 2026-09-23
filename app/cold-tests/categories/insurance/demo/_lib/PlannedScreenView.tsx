@@ -41,7 +41,7 @@ function FlowPosition({ current, isJa }: { current: FlowTarget; isJa: boolean })
 
     return (
         <section aria-labelledby="flow-position" className="mb-6 space-y-2">
-            <h2 id="flow-position" className="text-sm font-semibold text-foreground">
+            <h2 id="flow-position" className="max-w-reading text-sm font-semibold text-foreground">
                 {isJa
                     ? `業務の流れ「${flow.titleJa}」の中で、この画面が出てくるところ`
                     : `Where this screen comes up in ${flow.titleEn}`}
@@ -129,7 +129,7 @@ export function PlannedScreenView({ slug }: { slug: PlannedScreenSlug }) {
 
     return (
         <>
-            <header className="mb-6 space-y-1.5">
+            <header className="mb-6 max-w-reading space-y-1.5">
                 <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
                     {isJa ? planned.ja : planned.en}
                 </h1>

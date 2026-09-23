@@ -73,7 +73,10 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
     return (
         <div
             className={cn(
-                "container flex-1 items-start md:grid md:min-h-[calc(100dvh-3.5rem)] md:transition-[grid-template-columns] md:duration-300 md:ease-out motion-reduce:md:transition-none",
+                // 枠の最大幅＝読み物の列幅（--container-reading・app/globals.css）＋左ナビ 260px
+                // ＋間隔 3rem＋左右の余白 4rem。本文の列（1fr）がちょうど読み物の列幅になる。
+                // グリッドの列は 1fr のまま＝左ナビの開閉のアニメーションは変わらない。
+                "container max-w-[calc(var(--container-reading)+260px+3rem+4rem)] flex-1 items-start md:grid md:min-h-[calc(100dvh-3.5rem)] md:transition-[grid-template-columns] md:duration-300 md:ease-out motion-reduce:md:transition-none",
                 collapsed
                     ? "md:grid-cols-[0_minmax(0,1fr)] md:gap-x-8"
                     : "md:grid-cols-[240px_minmax(0,1fr)] md:gap-x-8 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-x-12"
