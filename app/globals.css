@@ -2,6 +2,16 @@
 @config "../tailwind.config.ts";
 @import "../src/globals.css";
 
+/* 読み物の列幅（1行の長さの上限）の正はここ1箇所（KeEem 2026-09-24）。
+   `max-w-reading` として使う。docs の本文列（DocsShell・ColdTestShell の
+   グリッドの右列）もこの値を上限にしている＝`container` の 1336px から
+   左ナビ 260px と間隔 48px を引いた 1028px と一致させてある。
+   ⛔ src/globals.css（@gunjo/ui が配布するトークン）には置かない＝
+   これは gunjo.jp のサイトの組み方で、部品ライブラリの公開の形ではない。 */
+@theme {
+    --container-reading: 1028px;
+}
+
 @layer base {
     .hero-grid {
         background-image:

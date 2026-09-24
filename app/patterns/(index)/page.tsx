@@ -144,7 +144,7 @@ export default function PatternsIndexPage() {
     return (
         <div className="container py-10 md:py-12">
             <div className="space-y-10">
-                <header className="space-y-4">
+                <header className="max-w-reading space-y-4">
                     <div className="flex items-center gap-2">
                         <Boxes className="h-5 w-5 text-primary" />
                         <span className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
@@ -173,7 +173,7 @@ export default function PatternsIndexPage() {
                     {groupedPatterns.map(({ family, patterns }) => (
                         <section key={family} className="space-y-4">
                             <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
-                                <div className="space-y-1">
+                                <div className="max-w-reading space-y-1">
                                     <h2 className="text-2xl font-semibold tracking-tight">
                                         {t.families[family].title}
                                     </h2>
@@ -196,7 +196,7 @@ export default function PatternsIndexPage() {
                     {/* 業界の見本レーン — カードは業界ページへ。そこに動く見本
                         （架空の会社のデモ）と裏付けのコールドテスト記録が並ぶ。 */}
                     <section className="space-y-4 border-t border-border/60 pt-8">
-                        <div className="space-y-1">
+                        <div className="max-w-reading space-y-1">
                             <h2 className="text-2xl font-semibold tracking-tight">
                                 {t.industryShowcase.title}
                             </h2>
@@ -240,7 +240,7 @@ export default function PatternsIndexPage() {
                     </section>
 
                     <section className="space-y-4 border-t border-border/60 pt-8">
-                        <div className="space-y-1">
+                        <div className="max-w-reading space-y-1">
                             <div className="flex flex-wrap items-center gap-2">
                                 <h2 className="text-2xl font-semibold tracking-tight">
                                     {t.planned.title}

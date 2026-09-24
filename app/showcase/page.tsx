@@ -180,7 +180,7 @@ export default function ShowcasePage() {
     return (
         <div className="space-y-10">
             {/* Heading */}
-            <header className="space-y-4">
+            <header className="max-w-reading space-y-4">
                 <div className="flex items-center gap-2">
                     <LayoutGrid className="h-5 w-5 text-primary" />
                     <span className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">

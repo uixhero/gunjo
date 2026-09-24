@@ -198,7 +198,7 @@ export function CategoryView({
                     </BreadcrumbList>
                 </Breadcrumb>
 
-                <header className="space-y-4">
+                <header className="max-w-reading space-y-4">
                     <div className="flex items-center gap-2">
                         <Flask className="h-5 w-5 text-primary" />
                         <span className="text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
@@ -216,7 +216,7 @@ export function CategoryView({
                     </p>
                 </header>
 
-                <section className="space-y-3">
+                <section className="max-w-reading space-y-3">
                     <h2 className="text-2xl font-semibold tracking-tight">
                         {copy.challengeHeading}
                     </h2>
@@ -226,7 +226,7 @@ export function CategoryView({
                 {/* 動く見本（架空アプリのデモ）。発見リストより上に置く＝
                     見本が表・リストは裏付け（KeEem 2026-08-23）。 */}
                 {demo && demoCopy ? (
-                    <section className="space-y-4">
+                    <section className="max-w-reading space-y-4">
                         <h2 className="text-2xl font-semibold tracking-tight">
                             {demoCopy.heading}
                         </h2>
@@ -268,10 +268,10 @@ export function CategoryView({
                 ) : null}
 
                 <section className="space-y-4">
-                    <h2 className="text-2xl font-semibold tracking-tight">
+                    <h2 className="max-w-reading text-2xl font-semibold tracking-tight">
                         {copy.discoveredHeading}
                     </h2>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="max-w-reading text-sm text-muted-foreground">
                         {copy.discoveredIntro}
                     </p>
                     <ul className="grid gap-3 sm:grid-cols-2">
@@ -304,7 +304,7 @@ export function CategoryView({
                         })}
                     </ul>
                     {copy.discoveredFooter ? (
-                        <p className="text-sm text-muted-foreground">
+                        <p className="max-w-reading text-sm text-muted-foreground">
                             {copy.discoveredFooter}
                         </p>
                     ) : null}
@@ -316,7 +316,7 @@ export function CategoryView({
                 {(requirementCards.length > 0 || pitfallCards.length > 0) && (
                     <>
                         {requirementCards.length > 0 && (
-                            <section className="space-y-4">
+                            <section className="max-w-reading space-y-4">
                                 <h2 className="text-2xl font-semibold tracking-tight">
                                     {tf.categoryRequirementHeading}
                                 </h2>
@@ -327,7 +327,7 @@ export function CategoryView({
                             </section>
                         )}
                         {pitfallCards.length > 0 && (
-                            <section className="space-y-4">
+                            <section className="max-w-reading space-y-4">
                                 <h2 className="text-2xl font-semibold tracking-tight">
                                     {tf.categoryPitfallHeading}
                                 </h2>
@@ -341,10 +341,10 @@ export function CategoryView({
                 )}
 
                 <section className="space-y-4">
-                    <h2 className="text-2xl font-semibold tracking-tight">
+                    <h2 className="max-w-reading text-2xl font-semibold tracking-tight">
                         {tc.allRoundsHeading(categoryLabel)}
                     </h2>
-                    <p className="text-sm text-muted-foreground">
+                    <p className="max-w-reading text-sm text-muted-foreground">
                         {tc.allRoundsIntro(entries.length, categoryLabel)}
                     </p>
                     <div className="grid gap-5 sm:gap-6 grid-cols-[repeat(auto-fill,minmax(260px,1fr))]">
@@ -401,7 +401,7 @@ export function CategoryView({
                     </div>
                 </section>
 
-                <section className="space-y-3">
+                <section className="max-w-reading space-y-3">
                     <h2 className="text-2xl font-semibold tracking-tight">
                         {copy.leftHeading}
                     </h2>
