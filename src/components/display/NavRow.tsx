@@ -106,7 +106,7 @@ const SettingGroup = React.forwardRef<HTMLDivElement, SettingGroupProps>(
         {label != null ? (
           <p className="px-1 text-xs font-medium text-muted-foreground">{label}</p>
         ) : null}
-        <div className="divide-y divide-border overflow-hidden rounded-lg border border-border bg-card">{children}</div>
+        <div className="divide-y divide-border overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">{children}</div>
       </div>
     )
   }

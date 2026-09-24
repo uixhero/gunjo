@@ -92,13 +92,13 @@ export function ChatPanel({
     return (
         <section
             className={cn(
-                "flex w-full max-w-2xl flex-col overflow-hidden rounded-lg border bg-background p-0 shadow-xl",
+                "flex w-full max-w-2xl flex-col overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-0 shadow-xl",
                 chatPanelVariantClassNames[variant],
                 className
             )}
             {...props}
         >
-            <header className="flex items-start gap-3 border-b bg-muted/50 px-4 py-3">
+            <header className="flex items-start gap-3 border-b border-b-transparent contrast-more:border-b-border forced-colors:border-b-[CanvasText] bg-muted px-4 py-3">
                 <div className="min-w-0 flex-1">
                     <h3 className="truncate text-sm font-semibold">{title}</h3>
                     {description ? (

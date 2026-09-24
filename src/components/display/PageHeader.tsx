@@ -66,7 +66,7 @@ export const PageHeader = React.forwardRef<HTMLElement, PageHeaderProps>(
       <header
         ref={ref}
         className={cn(
-          "z-30 w-full border-b border-border bg-background pt-[env(safe-area-inset-top)]",
+          "z-30 w-full border-b border-b-transparent contrast-more:border-b-border forced-colors:border-b-[CanvasText] bg-card pt-[env(safe-area-inset-top)]",
           sticky && "sticky top-0",
           className
         )}

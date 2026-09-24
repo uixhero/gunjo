@@ -28,9 +28,9 @@ export interface ImagePreviewProps extends Omit<React.HTMLAttributes<HTMLDivElem
 }
 
 const imagePreviewVariantClasses: Record<ImagePreviewVariantKey, string> = {
-    default: "bg-muted/40",
-    contain: "bg-muted/30",
-    empty: "bg-muted/30",
+    default: "bg-muted",
+    contain: "bg-muted",
+    empty: "bg-muted",
 }
 
 const imagePreviewAspectRatioClasses: Record<NonNullable<ImgProps["aspectRatio"]>, string> = {
@@ -87,7 +87,7 @@ const ImagePreview = React.forwardRef<HTMLDivElement, ImagePreviewProps>(
             <div
                 ref={ref}
                 className={cn(
-                    "relative flex items-center justify-center overflow-hidden border border-border p-0 shadow-sm transition-colors",
+                    "relative flex items-center justify-center overflow-hidden border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-0 shadow-sm transition-colors",
                     imagePreviewVariantClasses[effectiveVariant],
                     imagePreviewAspectRatioClasses[aspectRatio],
                     className

@@ -853,29 +853,31 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
     ) {
       assertMatch(errors, toastSource, /\brounded-xl\b/, 'Toast should include "rounded-xl"');
     }
+    // 面で区切る第2段（2026-09-23）。淡色の面は通常状態では枠を持たず、
+    // 1px の幅だけ残して色を透明にし、ハイコントラストで戻す（箱 C）。
+    // ⚠️ 戻す色に tone ごとの *-border を使わないこと。あの3色は淡かった頃の
+    // *-subtle 向けで、濃くした今の面とは同化する（light の success で
+    // 1.034:1 を実測・stage 1）。全 tone で --border に集約してある。
     if (successVariant?.stroke?.thickness === 1) {
       assertMatch(errors, toastSource, /\bborder\b/, 'Toast should include "border"');
       assertMatch(
         errors,
         toastSource,
-        /\bborder-success-border\b/,
-        'Toast success should include "border-success-border"'
+        /contrast-more:border-border/,
+        'Toast should restore its stroke with "contrast-more:border-border"'
       );
     }
-    if (errorVariant?.stroke?.thickness === 1) {
+    for (const [variant, tone] of [
+      [successVariant, "success"],
+      [errorVariant, "error"],
+      [infoVariant, "info"],
+    ]) {
+      if (variant?.stroke?.thickness !== 1) continue;
       assertMatch(
         errors,
         toastSource,
-        /\bborder-destructive-border\b/,
-        'Toast error should include "border-destructive-border"'
-      );
-    }
-    if (infoVariant?.stroke?.thickness === 1) {
-      assertMatch(
-        errors,
-        toastSource,
-        /\bborder-info-border\b/,
-        'Toast info should include "border-info-border"'
+        new RegExp(`${tone}:\\s*'bg-[a-z-]+ border-transparent`),
+        `Toast ${tone} should carry no visible stroke ("border-transparent")`
       );
     }
 
@@ -979,7 +981,10 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
       assertMatch(errors, modalSource, /\bjustify-end\b/, 'Modal footer should include "justify-end"');
     }
     if (footer?.fill) {
-      assertMatch(errors, modalSource, /\bbg-muted\/50\b/, 'Modal footer should include "bg-muted/50"');
+      // 面で区切る第2段（2026-09-23）で bg-muted/50 → bg-muted。カードの上で
+      // 1.139/1.064 しかなく dark が 1.10 を下回っていた（新 1.306/1.139）。
+      // .pen の fill が旧パレットの hex のままな件は #1025。
+      assertMatch(errors, modalSource, /\bbg-muted\b/, 'Modal footer should include "bg-muted"');
     }
     if (footer?.stroke?.thickness === 1) {
       assertMatch(errors, modalSource, /\bborder-t\b/, 'Modal footer should include "border-t"');
@@ -1135,8 +1140,8 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
       assertMatch(
         errors,
         notificationCenterSource,
-        /\bclassName="flex items-center justify-between border-b px-4 py-3/,
-        'NotificationCenter header should include "border-b px-4 py-3"'
+        /\bclassName="flex items-center justify-between border-b border-b-transparent[^"]*px-4 py-3/,
+        'NotificationCenter header should include "border-b ... px-4 py-3"'
       );
     }
 
@@ -1442,7 +1447,10 @@ export function verifyMoleculeDrift({ root = ROOT } = {}) {
       assertMatch(errors, menubarSource, /\bborder\b/, 'Menubar should include "border"');
     }
     if (defaultVariant?.fill && defaultVariant.fill !== "transparent") {
-      assertMatch(errors, menubarSource, /\bbg-background\b/, 'Menubar should include "bg-background"');
+      // 面で区切る第2段（2026-09-23）で bg-background → bg-card。地と同値
+      // （1.000:1）だったので枠を外すとバーが消えた。.pen の fill は旧パレット
+      // の hex のままで追従していない＝#1025。
+      assertMatch(errors, menubarSource, /\bbg-card\b/, 'Menubar should include "bg-card"');
     }
 
     const trigger = menubar.nodes?.trigger;

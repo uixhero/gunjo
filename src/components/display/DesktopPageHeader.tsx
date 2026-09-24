@@ -24,7 +24,7 @@ export const DesktopPageHeader = React.forwardRef<HTMLElement, DesktopPageHeader
     <header
       ref={ref}
       className={cn(
-        "flex w-full flex-row flex-wrap items-end justify-between gap-6 gap-y-4 border-b border-border bg-background px-0 pb-4 pt-0",
+        "flex w-full flex-row flex-wrap items-end justify-between gap-6 gap-y-4 border-b border-b-transparent contrast-more:border-b-border forced-colors:border-b-[CanvasText] bg-card px-0 pb-4 pt-0",
         className
       )}
       {...props}

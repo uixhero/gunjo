@@ -15,7 +15,7 @@ const Command = React.forwardRef<
     <CommandPrimitive
         ref={ref}
         className={cn(
-            "flex h-full w-full flex-col overflow-hidden rounded-md border bg-popover text-popover-foreground",
+            "flex h-full w-full flex-col overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-popover text-popover-foreground",
             className
         )}
         {...props}
@@ -60,7 +60,7 @@ const CommandDialog = ({
                 resolvedContainer && "absolute",
                 contentClassName
             )}
-            className={cn("flex h-full w-full flex-col overflow-hidden rounded-lg border bg-popover text-left text-popover-foreground", className)}
+            className={cn("flex h-full w-full flex-col overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-popover text-left text-popover-foreground", className)}
         >
             <DialogPrimitive.Title className="sr-only">{dialogTitle}</DialogPrimitive.Title>
             {!hasExplicitDescription ? (

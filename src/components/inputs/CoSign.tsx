@@ -107,7 +107,7 @@ const CoSign = React.forwardRef<HTMLDivElement, CoSignProps>(
                 <div
                     ref={ref}
                     className={cn(
-                        "flex w-full flex-col gap-1 rounded-lg border border-success-border bg-success-subtle px-3 py-2 text-sm",
+                        "flex w-full flex-col gap-1 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-success-subtle px-3 py-2 text-sm",
                         className
                     )}
                     data-slot="co-sign"

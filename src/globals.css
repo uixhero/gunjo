@@ -125,6 +125,29 @@
     }
 
     .dark {
+        /* ⚠️ このブロックは手書き（sync-tokens.mjs は各変数の最初の1件＝:root
+           側しか書き換えない）。dark の値を直すときはここを直して
+           design:sync で public/tokens.css・starter.html・
+           token-values.generated.ts へ流すこと。
+           ⛔ この注釈の中に「変数名のあとにコロン」を書かないこと。
+           design-verify-color-contrast / high-contrast-border は
+           `--name: 値;` を正規表現で拾うので、注釈の中の書き方が次の宣言を
+           飲み込んで「dark に変数が無い」と誤検出する（2026-09-23 に踏んだ）。
+
+           2026-09-23（面で区切る第2段）で3つの値を上げた。枠を外すと
+           「親の面との段差」だけが区切りになるので、段差が 1.10:1 を
+           下回っていたものを上げてある（実測値は 2026-09-23 取得）。
+           - popover 4.9% → 22%。旧値は background と同値＝浮いた面の段差が
+             1.000:1 で、枠を外すとメニュー・ツールチップ・ダイアログが地に
+             溶けた。新値は地 1.588 / カード 1.321 / muted 1.160 /
+             ダイアログの幕（overlay/80）1.653。
+           - info-subtle 16% → 20%。カードの上で 1.055:1 しかなかった
+             （card が青寄りで輝度が近い）。新値は 1.183、地の上 1.422。
+           - destructive-subtle 16% → 20%。同じくカードの上 1.040:1 →
+             1.163、地の上 1.398。
+           文字とのコントラストはどれも 4.5 以上を保っている
+           （popover 12.02 / info-subtle 10.15 / destructive-subtle 9.43）。
+           ⛔ 新しいトークン名は足していない。 */
         --primary-subtle: 218 50% 18%;
         --primary-subtle-foreground: 218 90% 88%;
         --primary: 218 68% 63%;
@@ -133,7 +156,7 @@
         --primary-strong-foreground: 220 60% 8%;
         --primary-border: 218 50% 38%;
 
-        --info-subtle: 220 47% 16%;
+        --info-subtle: 220 47% 20%;
         --info-subtle-foreground: 213 94% 88%;
         --info: 213 94% 68%;
         --info-foreground: 222 47% 11%;
@@ -157,7 +180,7 @@
         --warning-strong-foreground: 26 83% 14%;
         --warning-border: 40 64% 34%;
 
-        --destructive-subtle: 0 50% 16%;
+        --destructive-subtle: 0 50% 20%;
         --destructive-subtle-foreground: 0 93% 88%;
         --destructive: 0 72% 51%;
         --destructive-foreground: 210 40% 98%;
@@ -172,7 +195,7 @@
         --card: 217 33% 13%;
         --card-foreground: 210 40% 98%;
 
-        --popover: 222.2 84% 4.9%;
+        --popover: 217 33% 22%;
         --popover-foreground: 210 40% 98%;
 
         --secondary: 217.2 32.6% 17.5%;
@@ -257,6 +280,29 @@
        0,1,0 に揃えること。包まないと .dark .gunjo-surface（0,2,0）が下の
        メディアクエリ（メディアクエリ自体は詳細度を上げない）に勝ってしまい、
        ハイコントラストで枠線が戻らなくなる。 */
+    /* ⚠️ この .gunjo-surface は現在どこからも使われていない（定義だけ・
+       2026-09-23 に src/ app/ public/ docs/ を grep して確認）。部品側は
+       Tailwind の `border-transparent` ＋ `contrast-more:border-border` ＋
+       `forced-colors:border-[CanvasText]` を要素ごとに書く形で統一してある
+       （第2段・146 箇所）。
+
+       ⛔ 戻しを「クラスを一括で狙うルール」でやろうとしないこと。2つ理由がある。
+       ⑴ レイヤの順で負ける。このブロックは @layer components だが Tailwind の
+          ユーティリティは @layer utilities ＝ あとに来るので `border-transparent`
+          が勝つ。詳細度ではなくレイヤの順で決まるので、詳細度を上げても効かない
+          （レイヤの外に書けば勝てるが、下の⑵が残る）。
+       ⑵ 一括で当てると「意図して枠を出さない面」にも枠が出る。
+          design/policy/surface-border-exclusions.json の
+          highContrastRestoreExceptions に登録してある3型がそれで、
+          Checkbox の checked・Switch・Carousel の送りの点・FloatingPanel の
+          ghost は枠が出ると壊れる。
+       また `[class~="border-transparent"]` の形は `border-b-transparent` など
+       辺つきの41箇所に当たらない＝安全網としても穴がある。
+
+       「戻し忘れ」はこの層ではなくビルド時に捕まえる＝
+       audit-surface-borders.mjs の verifySurfaceBorders（design:verify 入り）が
+       「塗りがある＋枠の幅がある＋枠の色が透明＋戻しが無い」束を落とす。
+       実際に StatusLevel / Itinerary / WeekView の3件をこれで捕まえた。 */
     .gunjo-surface {
         background-color: hsl(var(--card));
         border: 1px solid transparent;

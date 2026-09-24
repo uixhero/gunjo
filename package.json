@@ -190,6 +190,7 @@
     "docs:audit:mobile-disabled-feedback": "node scripts/audit-mobile-disabled-feedback.mjs",
     "docs:audit:surface-borders": "node scripts/audit-surface-borders.mjs",
     "docs:audit:surface-borders:self-test": "node scripts/audit-surface-borders.mjs --self-test",
+    "design:verify:surface-borders": "node scripts/audit-surface-borders.mjs --verify",
     "docs:audit:public-contrast": "node scripts/audit-public-contrast.mjs",
     "docs:audit:en-locale-sweep": "node scripts/audit-en-locale-sweep.mjs",
     "docs:audit:command-palette": "node scripts/audit-command-palette.mjs",

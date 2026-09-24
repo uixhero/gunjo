@@ -319,7 +319,7 @@ export function ChatInput({
                     {filePreviews.map(({ file, url }, index) => (
                         <div
                             key={`${file.name}-${file.size}-${index}`}
-                            className="group relative flex h-16 min-w-16 max-w-44 items-center gap-2 overflow-hidden rounded-lg border bg-muted/50 p-2"
+                            className="group relative flex h-16 min-w-16 max-w-44 items-center gap-2 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-2"
                         >
                             {url ? (
                                 // eslint-disable-next-line @next/next/no-img-element

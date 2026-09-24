@@ -94,11 +94,11 @@ const ChartLegend = React.forwardRef<HTMLDivElement, ChartLegendProps>(
                     >
                         <div
                             className={cn(
-                                "inline-flex min-w-0 items-center gap-3 rounded-sm border border-transparent px-2 py-1 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                                "inline-flex min-w-0 items-center gap-3 rounded-sm border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-2 py-1 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                                 variant === "vertical"
                                     ? "w-full justify-between"
                                     : "w-auto justify-start",
-                                isActive && "border-border bg-muted/60 text-foreground shadow-sm"
+                                isActive && "bg-muted text-foreground shadow-sm"
                             )}
                             role="listitem"
                             tabIndex={0}

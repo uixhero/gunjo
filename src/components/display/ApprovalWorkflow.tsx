@@ -208,17 +208,17 @@ const ApprovalWorkflow = React.forwardRef<HTMLDivElement, {
                 {terminal ? (
                     <p
                         className={cn(
-                            "rounded-md border px-3 py-2 text-sm font-medium",
+                            "rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-3 py-2 text-sm font-medium",
                             status === "approved"
-                                ? "border-success-border bg-success-subtle text-success-subtle-foreground"
-                                : "border-destructive-border bg-destructive-subtle text-destructive-subtle-foreground"
+                                ? "bg-success-subtle text-success-subtle-foreground"
+                                : "bg-destructive-subtle text-destructive-subtle-foreground"
                         )}
                         role="status"
                     >
                         {status === "approved" ? l.completed : l.rejected}
                     </p>
                 ) : mode === "sendback" ? (
-                    <div className="flex flex-col gap-2 rounded-md border bg-muted/30 p-3">
+                    <div className="flex flex-col gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
                         {priorStages.length > 0 ? (
                             <Select
                                 label={l.sendBackTarget}
@@ -247,7 +247,7 @@ const ApprovalWorkflow = React.forwardRef<HTMLDivElement, {
                         </div>
                     </div>
                 ) : mode === "reject" ? (
-                    <div className="flex flex-col gap-2 rounded-md border border-destructive-border bg-destructive-subtle/40 p-3">
+                    <div className="flex flex-col gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-destructive-subtle p-3">
                         <Textarea
                             label={l.reason}
                             value={reason}

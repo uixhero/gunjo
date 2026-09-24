@@ -464,10 +464,13 @@ const CarouselThumbnail = React.forwardRef<
                     aria-selected={active}
                     aria-label={label}
                     className={cn(
-                        "relative h-14 w-20 shrink-0 overflow-hidden rounded-md border bg-background transition-all",
+                        // 画像の受け皿なので地は bg-muted（親のカードの上で 1.306/1.139・2026-09-23 実測）。
+                        // ⛔ bg-background はページの地と同値（1.000:1）で、枠を外すと消える。
+                        "relative h-14 w-20 shrink-0 overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted transition-all",
                         active
-                            ? "border-primary-border shadow-sm ring-2 ring-primary-border"
-                            : "border-border opacity-70 hover:border-muted-foreground hover:opacity-100",
+                            // 選択は ring-2 で示す。⛔ border-primary-border は二重の印。
+                            ? "shadow-sm ring-2 ring-primary-border"
+                            : "opacity-70 hover:border-muted-foreground hover:opacity-100",
                         className
                     )}
                     onClick={(event) => {

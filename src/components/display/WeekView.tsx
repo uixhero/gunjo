@@ -58,13 +58,18 @@ export interface WeekViewProps extends Omit<React.HTMLAttributes<HTMLDivElement>
 }
 
 const EVENT_TONE: Record<WeekEventTone, string> = {
-    default: "bg-secondary text-secondary-foreground border-border",
-    primary: "bg-primary/15 text-foreground border-primary/40",
-    info: "bg-info-subtle text-info-subtle-foreground border-info-border",
-    success: "bg-success-subtle text-success-subtle-foreground border-success-border",
-    warning: "bg-warning-subtle text-warning-subtle-foreground border-warning-border",
-    destructive: "bg-destructive-subtle text-destructive-subtle-foreground border-destructive-border",
-    muted: "bg-muted text-muted-foreground border-border",
+// 淡色の面は枠を持たない（DECISIONS.md 2026-09-22・Badge と同じ扱い）。
+// 区切りは面の濃淡で、カードの上で 1.14〜1.33 / 地の上で 1.10〜1.50
+// （light・dark 両方の実測・2026-09-23）。⚠️ ハイコントラストで戻す枠に
+// tone ごとの *-border を使わないこと（濃くした面と同化する）。基底クラスの
+// contrast-more:border-border に集約してある。
+    default: "bg-secondary text-secondary-foreground border-transparent",
+    primary: "bg-primary/15 text-foreground border-transparent",
+    info: "bg-info-subtle text-info-subtle-foreground border-transparent",
+    success: "bg-success-subtle text-success-subtle-foreground border-transparent",
+    warning: "bg-warning-subtle text-warning-subtle-foreground border-transparent",
+    destructive: "bg-destructive-subtle text-destructive-subtle-foreground border-transparent",
+    muted: "bg-muted text-muted-foreground border-transparent",
 }
 
 const DEFAULT_WEEKDAYS = ["日", "月", "火", "水", "木", "金", "土"]
@@ -283,7 +288,7 @@ const WeekView = React.forwardRef<HTMLDivElement, WeekViewProps>(
                                                 onClick={() => onSelectEvent?.(p.event)}
                                                 aria-label={name}
                                                 className={cn(
-                                                    "absolute overflow-hidden rounded-md border px-1.5 py-1 text-left text-[11px] leading-tight shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
+                                                    "absolute overflow-hidden rounded-md border contrast-more:border-border forced-colors:border-[CanvasText] px-1.5 py-1 text-left text-[11px] leading-tight shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
                                                     EVENT_TONE[p.event.tone ?? "default"]
                                                 )}
                                                 style={{

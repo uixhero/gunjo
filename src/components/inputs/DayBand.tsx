@@ -498,7 +498,7 @@ const DayBand = React.forwardRef<HTMLDivElement, DayBandProps>(
                     onPointerCancel={onPointerCancel}
                     onKeyDown={onKeyDown}
                     className={cn(
-                        "relative w-full overflow-hidden rounded-[var(--radius)] border border-border bg-muted",
+                        "relative w-full overflow-hidden rounded-[var(--radius)] border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted",
                         size === "sm" ? "h-6" : "h-11",
                         // `pan-y` and not `none`: a vertical swipe that begins on
                         // the band still scrolls the page.

@@ -20,7 +20,7 @@ export function MediaLibraryTemplate({
         <div className={cn("flex h-full min-h-0 w-full flex-col overflow-hidden bg-background", className)} {...props}>
             {/* Header */}
             {header && (
-                <div className="flex-shrink-0 z-20 border-b bg-background">
+                <div className="flex-shrink-0 z-20 border-b border-b-transparent contrast-more:border-b-border forced-colors:border-b-[CanvasText] bg-card">
                     <div className="flex h-14 items-center px-4">
                         {header}
                     </div>
@@ -31,7 +31,7 @@ export function MediaLibraryTemplate({
             <div className="flex flex-1 overflow-hidden relative">
                 {/* Left Sidebar (Folders/Collections) */}
                 {sidebar && (
-                    <aside className="group hidden w-64 flex-shrink-0 overflow-hidden border-r bg-muted/10 md:block">
+                    <aside className="group hidden w-64 flex-shrink-0 overflow-hidden border-r border-r-transparent contrast-more:border-r-border forced-colors:border-r-[CanvasText] bg-muted md:block">
                         {sidebar}
                     </aside>
                 )}
@@ -45,7 +45,7 @@ export function MediaLibraryTemplate({
 
                 {/* Right Details Panel (Asset Metadata) */}
                 {details && (
-                    <aside className="flex-shrink-0 w-80 border-l bg-background hidden lg:block overflow-y-auto">
+                    <aside className="flex-shrink-0 w-80 border-l border-l-transparent contrast-more:border-l-border forced-colors:border-l-[CanvasText] bg-card hidden lg:block overflow-y-auto">
                         {details}
                     </aside>
                 )}

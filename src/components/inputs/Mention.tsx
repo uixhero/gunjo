@@ -238,7 +238,7 @@ const Mention = React.forwardRef<HTMLTextAreaElement, MentionProps>(
                     <div
                         data-slot="mention-suggestions"
                         className={cn(
-                            "absolute left-0 z-50 w-full max-w-xs rounded-md border bg-popover p-1 shadow-md",
+                            "absolute left-0 z-50 w-full max-w-xs rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-popover p-1 shadow-md",
                             suggestionSide === "top" ? "bottom-full mb-1" : "top-full mt-1"
                         )}
                         style={{ maxHeight: suggestionMaxHeight }}

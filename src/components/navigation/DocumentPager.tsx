@@ -44,7 +44,7 @@ function DocumentPagerThumb({
     if (!src && !errored) return null
 
     return (
-        <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-md border border-border/70 bg-muted/40 p-1.5 sm:w-28">
+        <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-1.5 sm:w-28">
             {src && !errored ? (
                 /* eslint-disable-next-line @next/next/no-img-element */
                 <img
@@ -82,7 +82,7 @@ function DocumentPagerCard({
     return (
         <LinkComponent
             href={item.href}
-            className="group block h-full rounded-md border border-border/70 bg-background p-3 transition-colors hover:border-primary-border hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+            className="group block h-full rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 transition-colors hover:border-primary-border hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
             aria-label={ariaLabel}
         >
             <div

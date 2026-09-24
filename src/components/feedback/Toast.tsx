@@ -83,10 +83,13 @@ export function Toast({
         info: <IconInfoCircle className="text-info" size={20} stroke={2} />
     };
 
+    // 淡色の面は枠を持たない（DECISIONS.md 2026-09-22）。Toast は地の上に浮くので
+    // 段差は light 1.13〜1.20 / dark 1.40〜1.50（2026-09-23 実測）。影も持つ。
+    // ⚠️ ハイコントラストで戻す枠は *-border ではなく --border（下の基底クラス）。
     const bgColors: Record<ToastVariantKey, string> = {
-        success: 'bg-success-subtle border-success-border text-success-subtle-foreground',
-        error: 'bg-destructive-subtle border-destructive-border text-destructive-subtle-foreground',
-        info: 'bg-info-subtle border-info-border text-info-subtle-foreground'
+        success: 'bg-success-subtle border-transparent text-success-subtle-foreground',
+        error: 'bg-destructive-subtle border-transparent text-destructive-subtle-foreground',
+        info: 'bg-info-subtle border-transparent text-info-subtle-foreground'
     };
 
     return (
@@ -95,7 +98,7 @@ export function Toast({
             className={cn(
                 placement === "fixed" ? "fixed left-4 right-4 top-[72px] z-[9999] sm:left-auto sm:right-6" : "relative",
                 bgColors[type],
-                "flex w-full max-w-[calc(100vw-2rem)] flex-row items-start gap-3 rounded-xl border px-4 py-3 shadow-2xl duration-300 pointer-events-auto transform-gpu will-change-transform [animation-fill-mode:both] sm:w-[360px] sm:max-w-sm",
+                "flex w-full max-w-[calc(100vw-2rem)] flex-row items-start gap-3 rounded-xl border contrast-more:border-border forced-colors:border-[CanvasText] px-4 py-3 shadow-2xl duration-300 pointer-events-auto transform-gpu will-change-transform [animation-fill-mode:both] sm:w-[360px] sm:max-w-sm",
                 isVisible
                     ? "animate-in slide-in-from-top-5 fade-in-0"
                     : "animate-out slide-out-to-top-5 fade-out-0",

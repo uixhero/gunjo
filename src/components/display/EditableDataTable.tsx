@@ -289,7 +289,7 @@ export function EditableDataTable<TRow>({
                     <div className="rounded-md border p-3 text-muted-foreground">{emptyContent}</div>
                 )}
                 {renderFooterCell || footer ? (
-                    <div className="rounded-md border bg-muted/30 p-3">
+                    <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
                         {renderFooterCell ? (
                             <dl className="flex flex-col gap-1">
                                 {columns.map((column) => {

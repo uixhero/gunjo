@@ -243,7 +243,7 @@ export function ChartTooltip({
                   <div
                       id={tooltipId}
                       role="tooltip"
-                      className="pointer-events-none fixed z-50 w-max overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-left text-sm text-popover-foreground shadow-md"
+                      className="pointer-events-none fixed z-50 w-max overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-popover px-3 py-1.5 text-left text-sm text-popover-foreground shadow-md"
                       style={{
                           left: position.left,
                           top: position.top,
@@ -372,7 +372,7 @@ export function ChartFloatingTooltip({
                 ) : null}
                 <div
                     role="tooltip"
-                    className="pointer-events-none fixed z-50 w-max overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-left text-sm text-popover-foreground shadow-md"
+                    className="pointer-events-none fixed z-50 w-max overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-popover px-3 py-1.5 text-left text-sm text-popover-foreground shadow-md"
                     style={{
                         left,
                         top,
@@ -405,7 +405,7 @@ export function ChartFloatingTooltip({
             ) : null}
             <div
                 role="tooltip"
-                className="pointer-events-none absolute z-50 w-max overflow-hidden rounded-md border bg-popover px-3 py-1.5 text-left text-sm text-popover-foreground shadow-md"
+                className="pointer-events-none absolute z-50 w-max overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-popover px-3 py-1.5 text-left text-sm text-popover-foreground shadow-md"
                 style={{
                     left: `${x}%`,
                     top: `${y}%`,

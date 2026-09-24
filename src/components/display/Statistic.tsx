@@ -83,7 +83,7 @@ const Statistic = React.forwardRef<HTMLDivElement, StatisticProps>(
             <div
                 ref={ref}
                 className={cn(
-                    "flex flex-col gap-1 rounded-lg border border-border bg-card p-4 text-card-foreground",
+                    "flex flex-col gap-1 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-card-foreground",
                     className
                 )}
                 {...props}

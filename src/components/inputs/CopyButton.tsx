@@ -161,7 +161,7 @@ const CopyButton = React.forwardRef<HTMLButtonElement, CopyButtonProps>(
                     </TooltipTrigger>
                     {feedbackOpen ? (
                         <span
-                            className="pointer-events-none absolute bottom-full left-1/2 z-[60] mb-2 w-max max-w-xs -translate-x-1/2 rounded-md border bg-popover px-3 py-1.5 text-center text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 motion-reduce:animate-none"
+                            className="pointer-events-none absolute bottom-full left-1/2 z-[60] mb-2 w-max max-w-xs -translate-x-1/2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-popover px-3 py-1.5 text-center text-sm text-popover-foreground shadow-md animate-in fade-in-0 zoom-in-95 motion-reduce:animate-none"
                             role="status"
                         >
                             {feedbackLabel}

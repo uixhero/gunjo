@@ -28,6 +28,7 @@ import { verifyDocsSpecImports } from "./design-verify-docs-spec-imports.mjs";
 import { verifySsotPrCommentDocs } from "./design-verify-ssot-pr-comment-docs.mjs";
 import { verifyNoHardcodedColorClasses } from "./design-verify-hardcoded-color-classes.mjs";
 import { verifyNoLeftEmphasis } from "./check-left-emphasis.mjs";
+import { verifySurfaceBorders } from "./audit-surface-borders.mjs";
 import { verifySeoMetadata } from "./design-verify-seo-metadata.mjs";
 import { verifyStructuredData } from "./design-verify-structured-data.mjs";
 import { verifySitemapCheckerSelfTest } from "./check-sitemap-coverage.mjs";
@@ -126,6 +127,7 @@ function main() {
   verifyAllComponentDrift({ root: ROOT });
   verifyNoHardcodedColorClasses({ root: ROOT });
   verifyNoLeftEmphasis({ root: ROOT });
+  verifySurfaceBorders({ root: ROOT });
   verifySeoMetadata({ root: ROOT });
   verifyStructuredData({ root: ROOT });
   // 突き合わせ本体はビルドの出力が要るので CI の build の次の段（`design:verify:sitemap`）。

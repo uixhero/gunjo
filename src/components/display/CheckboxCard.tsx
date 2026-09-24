@@ -94,9 +94,10 @@ export const CheckboxCard = React.forwardRef<HTMLButtonElement, CheckboxCardProp
         disabled={disabled}
         onClick={() => ctx?.toggle(value)}
         className={cn(
-          "flex w-full min-h-11 items-start gap-3 rounded-lg border bg-card p-4 text-left transition-colors",
+          "flex w-full min-h-11 items-start gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-left transition-colors",
           "cursor-pointer hover:border-primary/50 hover:bg-muted/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
-          checked ? "border-primary ring-1 ring-primary" : "border-border",
+          // 選択は ring-1 ring-primary で示す。⛔ border-primary は二重の印だったので落とした。
+          checked && "ring-1 ring-primary",
           disabled && "cursor-not-allowed opacity-50",
           className
         )}

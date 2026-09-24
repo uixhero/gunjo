@@ -288,7 +288,7 @@ export function DataTable<TData, TValue>({
                 </div>
             ) : null}
 
-            <div className="rounded-md border bg-muted/20 px-3 py-2">
+            <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
                 <div className="flex flex-wrap items-center justify-between gap-x-2 gap-y-2">
                     {hidePaginationSummary ? (
                         // Keep the row's justify-between layout (pager stays right-aligned).

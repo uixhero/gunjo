@@ -58,7 +58,7 @@ const MatchCard = React.forwardRef<HTMLDivElement, MatchCardProps>(
         ref={ref}
         role="group"
         aria-label={typeof label === "string" ? label : undefined}
-        className={cn("flex w-full flex-col gap-3 rounded-lg border border-border bg-card p-4", className)}
+        className={cn("flex w-full flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4", className)}
         data-slot="match-card"
         {...props}
       >
