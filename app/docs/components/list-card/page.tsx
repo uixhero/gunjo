@@ -44,7 +44,7 @@ function ListCardDetail({
   const detail = details[selection];
 
   return (
-    <div className="grid content-start gap-3 rounded-lg border bg-card p-3">
+    <div className="grid content-start gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
       <p className="text-sm font-semibold text-foreground">{detail.title}</p>
       <Badge variant={detail.badgeVariant} className="w-fit">{detail.status}</Badge>
       <p className="text-sm leading-6 text-muted-foreground">{detail.summary}</p>
@@ -83,7 +83,7 @@ function ListCardPreview({ locale, readonly = false }: { locale: Locale; readonl
   };
 
   return (
-    <div ref={rootRef} className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border bg-card p-4">
+    <div ref={rootRef} className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="grid content-start gap-3">
         <ListCard
           leading={<LineChip label="JC" color="#f15a24" />}
@@ -199,7 +199,7 @@ export function RouteResults() {
   };
 
   return (
-    <div ref={rootRef} className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border bg-card p-4">
+    <div ref={rootRef} className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="grid content-start gap-3">
         <ListCard
           leading={<LineChip label="JC" color="#f15a24" />}
@@ -232,7 +232,7 @@ export function RouteResults() {
             <SheetTitle>詳細</SheetTitle>
             <SheetDescription>{detail.title}</SheetDescription>
           </SheetHeader>
-          <div className="grid content-start gap-3 rounded-lg border bg-card p-3">
+          <div className="grid content-start gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
             <p className="text-sm font-semibold text-foreground">{detail.title}</p>
             <Badge variant={detail.variant} className="w-fit">{detail.status}</Badge>
             <p className="text-sm leading-6 text-muted-foreground">{detail.summary}</p>
@@ -276,7 +276,7 @@ export function RouteResults() {
   };
 
   return (
-    <div ref={rootRef} className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border bg-card p-4">
+    <div ref={rootRef} className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="grid content-start gap-3">
         <ListCard
           leading={<LineChip label="JC" color="#f15a24" />}
@@ -309,7 +309,7 @@ export function RouteResults() {
             <SheetTitle>Details</SheetTitle>
             <SheetDescription>{detail.title}</SheetDescription>
           </SheetHeader>
-          <div className="grid content-start gap-3 rounded-lg border bg-card p-3">
+          <div className="grid content-start gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
             <p className="text-sm font-semibold text-foreground">{detail.title}</p>
             <Badge variant={detail.variant} className="w-fit">{detail.status}</Badge>
             <p className="text-sm leading-6 text-muted-foreground">{detail.summary}</p>
@@ -449,7 +449,7 @@ export function LineStatusList() {
 
 export function ServiceStatusListCards() {
   return (
-    <div className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border bg-card p-4">
+    <div className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="grid content-start gap-3">
         <ListCard
           leading={<LineChip label="JC" color="#f15a24" />}
@@ -478,7 +478,7 @@ export function ServiceStatusListCards() {
 
 export function ServiceStatusListCards() {
   return (
-    <div className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border bg-card p-4">
+    <div className="relative grid w-full max-w-2xl gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="grid content-start gap-3">
         <ListCard
           leading={<LineChip label="JC" color="#f15a24" />}
@@ -545,7 +545,7 @@ export function ServiceStatusListCards() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
           {locale === "ja" ? "状態とバリエーション" : "States and variants"}
         </h2>
         <ComponentDemoStates
@@ -581,25 +581,25 @@ export function ServiceStatusListCards() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
           {sectionLabels.props}
         </h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
             {sectionLabels.usage}
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>
       <section className="space-y-4">
-        <div className="border-b pb-2">
+        <div className="pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
             {locale === "ja" ? "設計の判断" : "Design decisions"}
           </h2>

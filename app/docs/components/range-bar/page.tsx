@@ -35,7 +35,7 @@ function WeekDemo({ locale }: { locale: Locale }) {
 
     return (
         <div className="flex w-full flex-col gap-5">
-            <ul className="divide-y rounded-lg border">
+            <ul className="divide-y rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                 {rows.map(([low, high], i) => (
                     <li key={WEEK[locale][i]} className="grid grid-cols-[4.5rem_2rem_minmax(0,1fr)_2rem] items-center gap-2 px-4 py-2.5 text-sm">
                         <span className="font-medium">{WEEK[locale][i]}</span>
@@ -98,7 +98,7 @@ const MAX = Math.max(...WEEK.map((d) => d.high));
 
 export function WeeklyTemperatures() {
   return (
-    <ul className="divide-y rounded-lg border">
+    <ul className="divide-y rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       {WEEK.map((d) => (
         <li key={d.day} className="grid grid-cols-[4.5rem_2rem_1fr_2rem] items-center gap-2 px-4 py-2.5 text-sm">
           <span>{d.day}</span>
@@ -125,7 +125,7 @@ const MAX = Math.max(...WEEK.map((d) => d.high));
 
 export function WeeklyTemperatures() {
   return (
-    <ul className="divide-y rounded-lg border">
+    <ul className="divide-y rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       {WEEK.map((d) => (
         <li key={d.day} className="grid grid-cols-[4.5rem_2rem_1fr_2rem] items-center gap-2 px-4 py-2.5 text-sm">
           <span>{d.day}</span>
@@ -199,7 +199,7 @@ export function WeeklyTemperatures() {
             <RangeBarRampFigure locale={locale as Locale} />
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
                     {isJa ? "状態とバリエーション" : "States and variants"}
                 </h2>
                 <ComponentDemoStates
@@ -284,26 +284,26 @@ export function NotYet() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
                     {sectionLabels.props}
                 </h2>
                 <PropsTable data={propsData} />
             </section>
 
             <section className="space-y-4">
-                <div className="flex items-start justify-between gap-3 border-b pb-2">
+                <div className="flex items-start justify-between gap-3 pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
                         {sectionLabels.usage}
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>
 
             <section className="space-y-4">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
                         {isJa ? "設計の判断" : "Design decisions"}
                     </h2>

@@ -44,7 +44,7 @@ export function DashboardGrid() {
   return (
     <Grid minItemWidth={180} gap={3} className="w-full">
       {cards.map((card) => (
-        <section key={card.title} className="rounded-md border bg-card p-4">
+        <section key={card.title} className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
           <h3 className="font-medium">{card.title}</h3>
           <p className="mt-1 text-sm text-muted-foreground">{card.meta}</p>
         </section>
@@ -67,7 +67,7 @@ export function DashboardGrid() {
   return (
     <Grid minItemWidth={180} gap={3} className="w-full">
       {cards.map((card) => (
-        <section key={card.title} className="rounded-md border bg-card p-4">
+        <section key={card.title} className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
           <h3 className="font-medium">{card.title}</h3>
           <p className="mt-1 text-sm text-muted-foreground">{card.meta}</p>
         </section>
@@ -87,7 +87,7 @@ export function FixedColumnGrid() {
   return (
     <Grid cols={3} gap={3} className="w-full">
       {cells.map((cell) => (
-        <div key={cell} className="grid min-h-16 place-items-center rounded-md border bg-muted/50 p-3 text-sm font-medium text-muted-foreground">
+        <div key={cell} className="grid min-h-16 place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm font-medium text-muted-foreground">
           {cell}
         </div>
       ))}
@@ -102,7 +102,7 @@ export function ResponsiveAutoFitGrid() {
   return (
     <Grid minItemWidth={160} gap={3} className="w-full">
       {cards.map((card) => (
-        <div key={card} className="grid min-h-16 place-items-center rounded-md border bg-muted/50 p-3 text-sm font-medium text-muted-foreground">
+        <div key={card} className="grid min-h-16 place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm font-medium text-muted-foreground">
           {card}
         </div>
       ))}
@@ -114,18 +114,18 @@ export function ResponsiveAutoFitGrid() {
 export function TwelveColumnGrid() {
   return (
     <Grid cols={12} gap={3} className="w-full">
-      <section className="col-span-12 rounded-md border bg-card p-4 sm:col-span-6 lg:col-span-8">
+      <section className="col-span-12 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 sm:col-span-6 lg:col-span-8">
         <h3 className="font-medium">Main panel</h3>
         <p className="mt-1 text-sm text-muted-foreground">Spans 8 columns on desktop.</p>
       </section>
-      <aside className="col-span-12 rounded-md border bg-card p-4 sm:col-span-6 lg:col-span-4">
+      <aside className="col-span-12 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 sm:col-span-6 lg:col-span-4">
         <h3 className="font-medium">Side panel</h3>
         <p className="mt-1 text-sm text-muted-foreground">Spans 4 columns on desktop.</p>
       </aside>
-      <div className="col-span-6 rounded-md border bg-muted/50 p-3 text-sm text-muted-foreground lg:col-span-3">Metric A</div>
-      <div className="col-span-6 rounded-md border bg-muted/50 p-3 text-sm text-muted-foreground lg:col-span-3">Metric B</div>
-      <div className="col-span-6 rounded-md border bg-muted/50 p-3 text-sm text-muted-foreground lg:col-span-3">Metric C</div>
-      <div className="col-span-6 rounded-md border bg-muted/50 p-3 text-sm text-muted-foreground lg:col-span-3">Metric D</div>
+      <div className="col-span-6 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm text-muted-foreground lg:col-span-3">Metric A</div>
+      <div className="col-span-6 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm text-muted-foreground lg:col-span-3">Metric B</div>
+      <div className="col-span-6 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm text-muted-foreground lg:col-span-3">Metric C</div>
+      <div className="col-span-6 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm text-muted-foreground lg:col-span-3">Metric D</div>
     </Grid>
   );
 }`,
@@ -138,14 +138,14 @@ export function GridGapDensity() {
     <div className="grid w-full gap-5 md:grid-cols-2">
       <Grid minItemWidth={96} gap={1}>
         {cells.map((cell) => (
-          <div key={cell} className="grid min-h-14 place-items-center rounded-md border bg-muted/50 text-sm text-muted-foreground">
+          <div key={cell} className="grid min-h-14 place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted text-sm text-muted-foreground">
             Tight {cell}
           </div>
         ))}
       </Grid>
       <Grid minItemWidth={96} gap={6}>
         {cells.map((cell) => (
-          <div key={cell} className="grid min-h-14 place-items-center rounded-md border bg-muted/50 text-sm text-muted-foreground">
+          <div key={cell} className="grid min-h-14 place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted text-sm text-muted-foreground">
             Loose {cell}
           </div>
         ))}
@@ -163,7 +163,7 @@ export function FixedColumnGrid() {
   return (
     <Grid cols={3} gap={3} className="w-full">
       {cells.map((cell) => (
-        <div key={cell} className="grid min-h-16 place-items-center rounded-md border bg-muted/50 p-3 text-sm font-medium text-muted-foreground">
+        <div key={cell} className="grid min-h-16 place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm font-medium text-muted-foreground">
           {cell}
         </div>
       ))}
@@ -178,7 +178,7 @@ export function ResponsiveAutoFitGrid() {
   return (
     <Grid minItemWidth={160} gap={3} className="w-full">
       {cards.map((card) => (
-        <div key={card} className="grid min-h-16 place-items-center rounded-md border bg-muted/50 p-3 text-sm font-medium text-muted-foreground">
+        <div key={card} className="grid min-h-16 place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm font-medium text-muted-foreground">
           {card}
         </div>
       ))}
@@ -190,18 +190,18 @@ export function ResponsiveAutoFitGrid() {
 export function TwelveColumnGrid() {
   return (
     <Grid cols={12} gap={3} className="w-full">
-      <section className="col-span-12 rounded-md border bg-card p-4 sm:col-span-6 lg:col-span-8">
+      <section className="col-span-12 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 sm:col-span-6 lg:col-span-8">
         <h3 className="font-medium">メインパネル</h3>
         <p className="mt-1 text-sm text-muted-foreground">デスクトップでは8列分を使います。</p>
       </section>
-      <aside className="col-span-12 rounded-md border bg-card p-4 sm:col-span-6 lg:col-span-4">
+      <aside className="col-span-12 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 sm:col-span-6 lg:col-span-4">
         <h3 className="font-medium">補助パネル</h3>
         <p className="mt-1 text-sm text-muted-foreground">デスクトップでは4列分を使います。</p>
       </aside>
-      <div className="col-span-6 rounded-md border bg-muted/50 p-3 text-sm text-muted-foreground lg:col-span-3">指標A</div>
-      <div className="col-span-6 rounded-md border bg-muted/50 p-3 text-sm text-muted-foreground lg:col-span-3">指標B</div>
-      <div className="col-span-6 rounded-md border bg-muted/50 p-3 text-sm text-muted-foreground lg:col-span-3">指標C</div>
-      <div className="col-span-6 rounded-md border bg-muted/50 p-3 text-sm text-muted-foreground lg:col-span-3">指標D</div>
+      <div className="col-span-6 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm text-muted-foreground lg:col-span-3">指標A</div>
+      <div className="col-span-6 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm text-muted-foreground lg:col-span-3">指標B</div>
+      <div className="col-span-6 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm text-muted-foreground lg:col-span-3">指標C</div>
+      <div className="col-span-6 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm text-muted-foreground lg:col-span-3">指標D</div>
     </Grid>
   );
 }`,
@@ -214,14 +214,14 @@ export function GridGapDensity() {
     <div className="grid w-full gap-5 md:grid-cols-2">
       <Grid minItemWidth={96} gap={1}>
         {cells.map((cell) => (
-          <div key={cell} className="grid min-h-14 place-items-center rounded-md border bg-muted/50 text-sm text-muted-foreground">
+          <div key={cell} className="grid min-h-14 place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted text-sm text-muted-foreground">
             密 {cell}
           </div>
         ))}
       </Grid>
       <Grid minItemWidth={96} gap={6}>
         {cells.map((cell) => (
-          <div key={cell} className="grid min-h-14 place-items-center rounded-md border bg-muted/50 text-sm text-muted-foreground">
+          <div key={cell} className="grid min-h-14 place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted text-sm text-muted-foreground">
             広 {cell}
           </div>
         ))}
@@ -234,7 +234,7 @@ export function GridGapDensity() {
 
 function DemoCell({ children }: { children: ReactNode }) {
     return (
-        <div className="grid min-h-16 place-items-center rounded-md border bg-muted/50 p-3 text-sm font-medium text-muted-foreground">
+        <div className="grid min-h-16 place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm font-medium text-muted-foreground">
             {children}
         </div>
     );
@@ -273,7 +273,7 @@ export default function GridPage() {
             <ComponentPreview embedSrc="/embed/grid" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="lg">
                 <Grid minItemWidth={180} gap={3} className="w-full">
                     {dashboardCardsByLocale[locale].map((card) => (
-                        <section key={card.title} className="rounded-md border bg-card p-4">
+                        <section key={card.title} className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
                             <h3 className="font-medium">{card.title}</h3>
                             <p className="mt-1 text-sm text-muted-foreground">{card.meta}</p>
                         </section>
@@ -283,7 +283,7 @@ export default function GridPage() {
 
             <section className="space-y-6">
                 <div className="space-y-1">
-                    <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+                    <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">
                         {locale === "ja" ? "状態とバリエーション" : "States and Variants"}
                     </h2>
                 </div>
@@ -321,20 +321,20 @@ export default function GridPage() {
                             previewBodyWidth: "lg",
                             preview: (
                                 <Grid cols={12} gap={3} className="w-full">
-                                    <section className="col-span-12 rounded-md border bg-card p-4 sm:col-span-6 lg:col-span-8">
+                                    <section className="col-span-12 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 sm:col-span-6 lg:col-span-8">
                                         <h3 className="font-medium">{locale === "ja" ? "メインパネル" : "Main panel"}</h3>
                                         <p className="mt-1 text-sm text-muted-foreground">
                                             {locale === "ja" ? "デスクトップでは8列分を使います。" : "Spans 8 columns on desktop."}
                                         </p>
                                     </section>
-                                    <aside className="col-span-12 rounded-md border bg-card p-4 sm:col-span-6 lg:col-span-4">
+                                    <aside className="col-span-12 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 sm:col-span-6 lg:col-span-4">
                                         <h3 className="font-medium">{locale === "ja" ? "補助パネル" : "Side panel"}</h3>
                                         <p className="mt-1 text-sm text-muted-foreground">
                                             {locale === "ja" ? "デスクトップでは4列分を使います。" : "Spans 4 columns on desktop."}
                                         </p>
                                     </aside>
                                     {(locale === "ja" ? ["指標A", "指標B", "指標C", "指標D"] : ["Metric A", "Metric B", "Metric C", "Metric D"]).map((item) => (
-                                        <div key={item} className="col-span-6 rounded-md border bg-muted/50 p-3 text-sm text-muted-foreground lg:col-span-3">
+                                        <div key={item} className="col-span-6 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm text-muted-foreground lg:col-span-3">
                                             {item}
                                         </div>
                                     ))}
@@ -351,14 +351,14 @@ export default function GridPage() {
                                 <div className="grid w-full gap-5 md:grid-cols-2">
                                     <Grid minItemWidth={96} gap={1}>
                                         {Array.from({ length: 4 }, (_, index) => (
-                                            <div key={index} className="grid min-h-14 place-items-center rounded-md border bg-muted/50 text-sm text-muted-foreground">
+                                            <div key={index} className="grid min-h-14 place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted text-sm text-muted-foreground">
                                                 {locale === "ja" ? `密 ${index + 1}` : `Tight ${index + 1}`}
                                             </div>
                                         ))}
                                     </Grid>
                                     <Grid minItemWidth={96} gap={6}>
                                         {Array.from({ length: 4 }, (_, index) => (
-                                            <div key={index} className="grid min-h-14 place-items-center rounded-md border bg-muted/50 text-sm text-muted-foreground">
+                                            <div key={index} className="grid min-h-14 place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted text-sm text-muted-foreground">
                                                 {locale === "ja" ? `広 ${index + 1}` : `Loose ${index + 1}`}
                                             </div>
                                         ))}
@@ -371,16 +371,16 @@ export default function GridPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "プロパティ" : "Props"}</h2>
+                <h2 id="props" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "プロパティ" : "Props"}</h2>
                 <PropsTable data={propsData} />
             </section>
 
             <section className="space-y-4">
-                <div className="flex items-start justify-between gap-3 border-b pb-2">
+                <div className="flex items-start justify-between gap-3 pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

@@ -15,7 +15,7 @@ type Locale = "ja" | "en";
 
 function PhoneFrame({ children }: { children: React.ReactNode }) {
   return (
-    <div className="relative w-full max-w-sm overflow-hidden rounded-xl border bg-background shadow-sm">
+    <div className="relative w-full max-w-sm overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted shadow-sm">
       {children}
     </div>
   );
@@ -106,7 +106,7 @@ function PageHeaderPreview({ locale, mode = "default" }: { locale: Locale; mode?
           }
         />
         <div className="space-y-3 p-4">
-          <div className="rounded-lg border bg-card p-3 text-sm">
+          <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-sm">
             <span className="text-muted-foreground">{copy.reservation}</span>
             <span className="mt-1 block font-medium text-foreground">{copy.reservationValue}</span>
           </div>
@@ -131,7 +131,7 @@ function PageHeaderPreview({ locale, mode = "default" }: { locale: Locale; mode?
           }
         />
         <div className="space-y-3 p-4">
-          <div className="rounded-lg border bg-card p-3 text-sm">
+          <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-sm">
             <span className="text-muted-foreground">{copy.linkScope}</span>
             <span className="mt-1 block font-medium text-foreground">{copy.linkScopeValue}</span>
           </div>
@@ -155,11 +155,11 @@ function PageHeaderPreview({ locale, mode = "default" }: { locale: Locale; mode?
         }
       />
       <div className="space-y-3 p-4">
-        <div className="rounded-lg border bg-card p-3 text-sm">
+        <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-sm">
           <span className="text-muted-foreground">{copy.route}</span>
           <span className="mt-1 block font-medium text-foreground">{copy.routeValue}</span>
         </div>
-        <div className="rounded-lg border bg-card p-3 text-sm">
+        <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-sm">
           <span className="text-muted-foreground">{copy.status}</span>
           <span className="mt-1 block font-medium text-foreground">{copy.statusValue}</span>
         </div>
@@ -186,7 +186,7 @@ export function BaggageHeader() {
   const [toastMessage, setToastMessage] = React.useState<string | null>(null);
 
   return (
-    <div className="relative w-full max-w-sm overflow-hidden rounded-xl border bg-background">
+    <div className="relative w-full max-w-sm overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
       {toastMessage ? (
         <div className="pointer-events-none absolute right-3 top-16 z-[100] w-[min(320px,calc(100%-1.5rem))]">
           <Toast
@@ -219,11 +219,11 @@ export function BaggageHeader() {
         }
       />
       <div className="space-y-3 p-4">
-        <div className="rounded-lg border bg-card p-3 text-sm">
+        <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-sm">
           <span className="text-muted-foreground">現在地</span>
           <span className="mt-1 block font-medium text-foreground">中部国際空港 第1ターミナル</span>
         </div>
-        <div className="rounded-lg border bg-card p-3 text-sm">
+        <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-sm">
           <span className="text-muted-foreground">配送状態</span>
           <span className="mt-1 block font-medium text-foreground">搭載待ち</span>
         </div>
@@ -241,7 +241,7 @@ export function BaggageHeader() {
   const [toastMessage, setToastMessage] = React.useState<string | null>(null);
 
   return (
-    <div className="relative w-full max-w-sm overflow-hidden rounded-xl border bg-background">
+    <div className="relative w-full max-w-sm overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
       {toastMessage ? (
         <div className="pointer-events-none absolute right-3 top-16 z-[100] w-[min(320px,calc(100%-1.5rem))]">
           <Toast
@@ -274,11 +274,11 @@ export function BaggageHeader() {
         }
       />
       <div className="space-y-3 p-4">
-        <div className="rounded-lg border bg-card p-3 text-sm">
+        <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-sm">
           <span className="text-muted-foreground">Current location</span>
           <span className="mt-1 block font-medium text-foreground">Chubu Centrair Terminal 1</span>
         </div>
-        <div className="rounded-lg border bg-card p-3 text-sm">
+        <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-sm">
           <span className="text-muted-foreground">Delivery status</span>
           <span className="mt-1 block font-medium text-foreground">Awaiting loading</span>
         </div>
@@ -298,7 +298,7 @@ export function ReservationReviewHeader() {
   const [toastMessage, setToastMessage] = React.useState<string | null>(null);
 
   return (
-    <div className="relative w-full max-w-sm overflow-hidden rounded-xl border bg-background">
+    <div className="relative w-full max-w-sm overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
       {toastMessage ? (
         <div className="pointer-events-none absolute right-3 top-16 z-[100] w-[min(320px,calc(100%-1.5rem))]">
           <Toast
@@ -333,7 +333,7 @@ export function ReservationReviewHeader() {
         }
       />
       <div className="space-y-3 p-4">
-        <div className="rounded-lg border bg-card p-3 text-sm">
+        <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-sm">
           <span className="text-muted-foreground">予約番号</span>
           <span className="mt-1 block font-medium text-foreground">RK-718-02</span>
         </div>
@@ -351,7 +351,7 @@ export function ReservationReviewHeader() {
   const [toastMessage, setToastMessage] = React.useState<string | null>(null);
 
   return (
-    <div className="relative w-full max-w-sm overflow-hidden rounded-xl border bg-background">
+    <div className="relative w-full max-w-sm overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
       {toastMessage ? (
         <div className="pointer-events-none absolute right-3 top-16 z-[100] w-[min(320px,calc(100%-1.5rem))]">
           <Toast
@@ -386,7 +386,7 @@ export function ReservationReviewHeader() {
         }
       />
       <div className="space-y-3 p-4">
-        <div className="rounded-lg border bg-card p-3 text-sm">
+        <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-sm">
           <span className="text-muted-foreground">Reservation</span>
           <span className="mt-1 block font-medium text-foreground">RK-718-02</span>
         </div>
@@ -406,7 +406,7 @@ export function PublicLinkHeader() {
   const [toastMessage, setToastMessage] = React.useState<string | null>(null);
 
   return (
-    <div className="relative w-full max-w-sm overflow-hidden rounded-xl border bg-background">
+    <div className="relative w-full max-w-sm overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
       {toastMessage ? (
         <div className="pointer-events-none absolute right-3 top-16 z-[100] w-[min(320px,calc(100%-1.5rem))]">
           <Toast
@@ -439,7 +439,7 @@ export function PublicLinkHeader() {
         }
       />
       <div className="space-y-3 p-4">
-        <div className="rounded-lg border bg-card p-3 text-sm">
+        <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-sm">
           <span className="text-muted-foreground">公開範囲</span>
           <span className="mt-1 block font-medium text-foreground">リンクを知っているチームメンバー</span>
         </div>
@@ -457,7 +457,7 @@ export function PublicLinkHeader() {
   const [toastMessage, setToastMessage] = React.useState<string | null>(null);
 
   return (
-    <div className="relative w-full max-w-sm overflow-hidden rounded-xl border bg-background">
+    <div className="relative w-full max-w-sm overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
       {toastMessage ? (
         <div className="pointer-events-none absolute right-3 top-16 z-[100] w-[min(320px,calc(100%-1.5rem))]">
           <Toast
@@ -490,7 +490,7 @@ export function PublicLinkHeader() {
         }
       />
       <div className="space-y-3 p-4">
-        <div className="rounded-lg border bg-card p-3 text-sm">
+        <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-sm">
           <span className="text-muted-foreground">Link scope</span>
           <span className="mt-1 block font-medium text-foreground">Team members with the link</span>
         </div>
@@ -523,7 +523,7 @@ export function PublicLinkHeader() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
           {locale === "ja" ? "状態とバリエーション" : "States and variants"}
         </h2>
         <ComponentDemoStates
@@ -557,20 +557,20 @@ export function PublicLinkHeader() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
           {sectionLabels.props}
         </h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
             {sectionLabels.usage}
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

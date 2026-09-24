@@ -167,7 +167,7 @@ export default function ByUseCasePage() {
                             <h2 className="text-lg font-semibold tracking-tight">{t(g.title)}</h2>
                             {g.intro ? <span className="text-sm text-muted-foreground">{t(g.intro)}</span> : null}
                         </div>
-                        <div className="overflow-hidden rounded-lg border">
+                        <div className="overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                             {g.items.map((it, i) => (
                                 <div
                                     key={it.comp}

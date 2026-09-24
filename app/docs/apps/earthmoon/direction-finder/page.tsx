@@ -253,7 +253,7 @@ export default function DirectionFinderPatternPage() {
             </DocNote>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
                     {ja ? "状態とバリエーション" : "States and variants"}
                 </h2>
                 <ComponentDemoStates
@@ -394,7 +394,7 @@ export default function DirectionFinderPatternPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="haptics">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="haptics">
                     {ja ? "触覚" : "Haptics"}
                 </h2>
                 <p className="text-sm text-muted-foreground">
@@ -439,7 +439,7 @@ export default function DirectionFinderPatternPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="outdoors">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="outdoors">
                     {ja ? "外で使う前提" : "Built for outdoors"}
                 </h2>
                 <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
@@ -465,26 +465,26 @@ export default function DirectionFinderPatternPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
                     {ja ? "決めている値" : "Values"}
                 </h2>
                 <PropsTable data={propsData} />
             </section>
 
             <section className="space-y-4">
-                <div className="flex items-start justify-between gap-3 border-b pb-2">
+                <div className="flex items-start justify-between gap-3 pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
                         {sectionLabels.usage}
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>
 
             <section className="space-y-4">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
                         {ja ? "設計の判断" : "Design decisions"}
                     </h2>

@@ -319,7 +319,7 @@ function TablePaginationPattern() {
     }, [pageCount]);
 
     return (
-        <div className="w-full max-w-3xl space-y-4 rounded-md border bg-muted/20 p-3">
+        <div className="w-full max-w-3xl space-y-4 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
             <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
                 <p className="min-w-0 text-sm text-muted-foreground">
                     {isJa
@@ -494,7 +494,7 @@ export function TablePagination() {
   }, [pageCount])
 
   return (
-    <div className="space-y-4 rounded-md border bg-muted/20 p-3">
+    <div className="space-y-4 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
       <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
         <p className="text-sm text-muted-foreground">{rowFrom + " - " + rowTo + " / 全" + totalRows + "件"}</p>
         <label className="flex items-center gap-2 text-sm text-muted-foreground sm:justify-end">
@@ -678,7 +678,7 @@ export function TablePagination() {
   }, [pageCount])
 
   return (
-    <div className="space-y-4 rounded-md border bg-muted/20 p-3">
+    <div className="space-y-4 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
       <div className="grid gap-3 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
         <p className="text-sm text-muted-foreground">{rowFrom + " - " + rowTo + " / " + totalRows + " rows"}</p>
         <label className="flex items-center gap-2 text-sm text-muted-foreground sm:justify-end">
@@ -2247,7 +2247,7 @@ export default function PaginationDocPage() {
             </ComponentPreview>
 
             <div className="space-y-4">
-                <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">
+                <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
                     {isJa ? "状態とバリエーション" : "States and variations"}
                 </h2>
                 <ComponentDemoStates
@@ -2293,7 +2293,7 @@ export default function PaginationDocPage() {
             </div>
 
             <div className="space-y-4">
-                <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">
+                <h2 id="props" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
                     {sectionLabels.props}
                 </h2>
                 <PropsTable
@@ -2308,16 +2308,16 @@ export default function PaginationDocPage() {
             </div>
 
             <div className="space-y-4">
-                <div className="flex items-start justify-between gap-3 border-b pb-2">
+                <div className="flex items-start justify-between gap-3 pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{sectionLabels.usage}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
             <section className="space-y-4">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
                         {locale === "ja" ? "設計の判断" : "Design decisions"}
                     </h2>

@@ -104,8 +104,8 @@ function AppWindowMenubarExample() {
     const isJa = locale === "ja";
 
     return (
-        <div className="w-full max-w-2xl overflow-hidden rounded-md border bg-background shadow-sm">
-            <div className="flex h-10 items-center justify-between border-b bg-muted/40 px-3">
+        <div className="w-full max-w-2xl overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-sm">
+            <div className="flex h-10 items-center justify-between border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3">
                 <div className="flex items-center gap-1.5" aria-hidden>
                     <span className="h-2.5 w-2.5 rounded-full bg-destructive" />
                     <span className="h-2.5 w-2.5 rounded-full bg-warning" />
@@ -407,8 +407,8 @@ const appWindowCodeByLocale = {
 
 export function EditorWindowMenubar() {
   return (
-    <div className="overflow-hidden rounded-md border bg-background">
-      <div className="flex h-10 items-center justify-center border-b bg-muted/40 text-xs font-medium text-muted-foreground">
+    <div className="overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
+      <div className="flex h-10 items-center justify-center border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted text-xs font-medium text-muted-foreground">
         キャンバス編集
       </div>
       <Menubar className="h-9 rounded-none border-x-0 border-t-0 bg-background">
@@ -443,8 +443,8 @@ export function EditorWindowMenubar() {
 
 export function EditorWindowMenubar() {
   return (
-    <div className="overflow-hidden rounded-md border bg-background">
-      <div className="flex h-10 items-center justify-center border-b bg-muted/40 text-xs font-medium text-muted-foreground">
+    <div className="overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
+      <div className="flex h-10 items-center justify-center border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted text-xs font-medium text-muted-foreground">
         Canvas editor
       </div>
       <Menubar className="h-9 rounded-none border-x-0 border-t-0 bg-background">
@@ -510,7 +510,7 @@ export default function MenubarPage() {
             </DocNote>
 
             <div className="space-y-4">
-                <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">
+                <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
                     {isJa ? "状態とバリエーション" : "States and variations"}
                 </h2>
                 <ComponentDemoStates
@@ -549,7 +549,7 @@ export default function MenubarPage() {
             </div>
 
             <div className="space-y-4">
-                <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">
+                <h2 id="props" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
                     {sectionLabels.props}
                 </h2>
                 <PropsTable
@@ -565,18 +565,18 @@ export default function MenubarPage() {
             </div>
 
             <div className="space-y-4">
-                <div className="flex items-start justify-between gap-3 border-b pb-2">
+                <div className="flex items-start justify-between gap-3 pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
             <section className="space-y-4">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
                         {locale === "ja" ? "設計の判断" : "Design decisions"}
                     </h2>

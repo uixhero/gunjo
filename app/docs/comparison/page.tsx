@@ -201,7 +201,7 @@ export default function WhyPage() {
                 <h2 className="text-2xl font-semibold tracking-tight">
                     {copy.matrixHeading}
                 </h2>
-                <div className="overflow-x-auto rounded-lg border border-border/40">
+                <div className="overflow-x-auto rounded-lg">
                     <table className="w-full text-sm">
                         <thead className="bg-muted/40 text-xs font-medium uppercase tracking-wider text-muted-foreground">
                             <tr>
@@ -255,7 +255,7 @@ export default function WhyPage() {
                     {strengths.map((item) => (
                         <div
                             key={item.title}
-                            className="rounded-lg border border-border/40 p-5 space-y-2"
+                            className="rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-5 space-y-2"
                         >
                             <h3 className="text-base font-semibold">{item.title}</h3>
                             <p className="text-sm text-muted-foreground">{item.body}</p>
@@ -278,7 +278,7 @@ export default function WhyPage() {
                 </ul>
             </section>
 
-            <section className="rounded-xl border border-accent-foreground/20 bg-accent/40 p-6 space-y-4">
+            <section className="rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-accent p-6 space-y-4">
                 <h2 className="text-2xl font-semibold tracking-tight">
                     {copy.ctaHeading}
                 </h2>

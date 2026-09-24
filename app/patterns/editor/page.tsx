@@ -48,7 +48,7 @@ function EditorPattern({ viewport }: { viewport: MarqueeViewport }) {
             className="h-full w-full"
             style={{ width, height }}
             topBar={
-                <div className="w-full flex items-center px-4 justify-between h-14 border-b bg-background">
+                <div className="w-full flex items-center px-4 justify-between h-14 border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
                     <div className="flex items-center gap-4">
                         <div className="font-bold text-primary mr-2">Gunjo Design</div>
                         <Menubar className="border-none shadow-none h-auto p-0">
@@ -90,7 +90,7 @@ function EditorPattern({ viewport }: { viewport: MarqueeViewport }) {
                 </div>
             }
             rightPanel={
-                <div className="h-full p-4 border-l bg-card overflow-y-auto">
+                <div className="h-full p-4 overflow-y-auto">
                     <div className="text-xs font-bold text-muted-foreground uppercase mb-4 tracking-wider">Layout</div>
                     <div className="grid grid-cols-2 gap-4 mb-6">
                         <div className="space-y-1.5">
@@ -112,8 +112,8 @@ function EditorPattern({ viewport }: { viewport: MarqueeViewport }) {
                     </div>
 
                     <div className="text-xs font-bold text-muted-foreground uppercase mb-4 tracking-wider mt-6">Fill</div>
-                    <div className="flex items-center gap-2 p-1 border rounded-md">
-                        <div className="h-6 w-6 rounded border bg-primary"></div>
+                    <div className="flex items-center gap-2 p-1 border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] rounded-md">
+                        <div className="h-6 w-6 rounded border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-primary"></div>
                         <span className="text-sm font-mono">primary</span>
                     </div>
                 </div>
@@ -128,7 +128,7 @@ function EditorPattern({ viewport }: { viewport: MarqueeViewport }) {
                     </div>
                 </SpatialCanvas>
                 {/* Floating Toolbar */}
-                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground rounded-full shadow-xl border px-2 py-1.5 flex gap-1">
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground rounded-full shadow-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-2 py-1.5 flex gap-1">
                     <Button variant="ghost" size="icon" className="h-10 w-10 rounded-full bg-primary-subtle text-primary-subtle-foreground"><MousePointer2 size={20} /></Button>
                     <Button variant="ghost" size="icon" className="h-10 w-10 rounded-full"><Box size={20} /></Button>
                     <Button variant="ghost" size="icon" className="h-10 w-10 rounded-full"><Layers size={20} /></Button>

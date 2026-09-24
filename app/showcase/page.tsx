@@ -58,7 +58,7 @@ function PreviewThumb({
     }, [src]);
 
     return (
-        <div className="relative block h-44 overflow-hidden border-b border-border/60 bg-muted/40 p-3">
+        <div className="relative block h-44 overflow-hidden border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
             {!loaded && !errored && (
                 <Skeleton className="absolute inset-3 h-[calc(100%-1.5rem)] w-[calc(100%-1.5rem)] rounded-md" />
             )}
@@ -264,7 +264,7 @@ export default function ShowcasePage() {
                                 className="group block focus-visible:outline-none"
                                 aria-label={t.openDocsLabel(title.primary)}
                             >
-                                <Card className="flex h-full w-full flex-col overflow-hidden border-border/80 shadow-sm transition-all hover:border-primary-border hover:shadow-md group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-2">
+                                <Card className="flex h-full w-full flex-col overflow-hidden shadow-sm transition-all hover:border-primary-border hover:shadow-md group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-2">
                                     <PreviewThumb
                                         slug={entry.slug}
                                         title={title.primary}

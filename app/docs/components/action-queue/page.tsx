@@ -170,10 +170,10 @@ function ActionQueuePreview({ locale, initialSurface = "all", empty = false }: {
       <ActionQueue items={items} emptyLabel={copy.emptyLabel} />
 
       {selectedItem ? (
-        <div className="rounded-md border bg-muted/30 px-3 py-3 text-sm" aria-live="polite">
+        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-3 text-sm" aria-live="polite">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{copy.selectedPrefix}</span>
-            <span className="rounded-full border bg-background px-2 py-0.5 text-xs font-medium text-foreground">{selectedItem.kind}</span>
+            <span className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2 py-0.5 text-xs font-medium text-foreground">{selectedItem.kind}</span>
           </div>
           <p className="mt-2 font-medium text-foreground">{selectedItem.title}</p>
           <p className="mt-1 text-muted-foreground">{selectedItem.detail}</p>
@@ -287,10 +287,10 @@ export function MorningActionQueue() {
       <ActionQueue items={actionItems} emptyLabel="対応が必要な項目はありません" />
 
       {selectedItem ? (
-        <div className="rounded-md border bg-muted/30 px-3 py-3 text-sm" aria-live="polite">
+        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-3 text-sm" aria-live="polite">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">対応対象</span>
-            <span className="rounded-full border bg-background px-2 py-0.5 text-xs font-medium text-foreground">{selectedItem.kind}</span>
+            <span className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2 py-0.5 text-xs font-medium text-foreground">{selectedItem.kind}</span>
           </div>
           <p className="mt-2 font-medium text-foreground">{selectedItem.title}</p>
           <p className="mt-1 text-muted-foreground">{selectedItem.detail}</p>
@@ -393,10 +393,10 @@ export function MorningActionQueue() {
       <ActionQueue items={actionItems} emptyLabel="No action items" />
 
       {selectedItem ? (
-        <div className="rounded-md border bg-muted/30 px-3 py-3 text-sm" aria-live="polite">
+        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-3 text-sm" aria-live="polite">
           <div className="flex flex-wrap items-center gap-2">
             <span className="text-xs font-medium uppercase tracking-wide text-muted-foreground">Active follow-up</span>
-            <span className="rounded-full border bg-background px-2 py-0.5 text-xs font-medium text-foreground">{selectedItem.kind}</span>
+            <span className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2 py-0.5 text-xs font-medium text-foreground">{selectedItem.kind}</span>
           </div>
           <p className="mt-2 font-medium text-foreground">{selectedItem.title}</p>
           <p className="mt-1 text-muted-foreground">{selectedItem.detail}</p>
@@ -505,7 +505,7 @@ export function EmptyActionQueue() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
           {locale === "ja" ? "状態とバリエーション" : "States and variants"}
         </h2>
         <ComponentDemoStates
@@ -544,20 +544,20 @@ export function EmptyActionQueue() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
           {sectionLabels.props}
         </h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
             {sectionLabels.usage}
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

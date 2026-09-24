@@ -81,7 +81,7 @@ function SeatMapPreview({ locale, mode = "default" }: { locale: Locale; mode?: "
   };
 
   return (
-    <div className="flex w-full max-w-lg flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-lg flex-col gap-3 p-4">
       <SeatMap
         columns={mode === "compact" ? ["A", "B", null, "C", "D"] : columns}
         seats={seats(locale).filter((seat) => mode !== "compact" || ["A", "B", "C", "D"].includes(seat.col))}
@@ -93,7 +93,7 @@ function SeatMapPreview({ locale, mode = "default" }: { locale: Locale; mode?: "
         formatFee={(fee) => locale === "ja" ? `¥${fee.toLocaleString("ja-JP")}` : `$${Math.round(fee / 150).toLocaleString("en-US")}`}
         hideLegend={mode === "legendless"}
       />
-      <p className="rounded-md border bg-muted/30 px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
+      <p className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
         {copy.selected}: <span className="font-medium text-foreground">{selectedIds.join(", ") || copy.none}</span>
       </p>
     </div>
@@ -146,7 +146,7 @@ export function SeatPicker() {
     setSelectedIds((current) => current.includes(seatId) ? current.filter((id) => id !== seatId) : [...current, seatId].slice(0, 2));
 
   return (
-    <div className="flex w-full max-w-lg flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-lg flex-col gap-3 p-4">
       <SeatMap
         columns={columns}
         seats={seats}
@@ -156,7 +156,7 @@ export function SeatPicker() {
         label="座席表"
         formatFee={(fee) => "¥" + fee.toLocaleString("ja-JP")}
       />
-      <p className="rounded-md border bg-muted/30 px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
+      <p className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
         選択中: {selectedIds.join(", ") || "未選択"}
       </p>
     </div>
@@ -214,7 +214,7 @@ export function SeatPicker() {
     setSelectedIds((current) => current.includes(seatId) ? current.filter((id) => id !== seatId) : [...current, seatId].slice(0, 2));
 
   return (
-    <div className="flex w-full max-w-lg flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-lg flex-col gap-3 p-4">
       <SeatMap
         columns={columns}
         seats={seats}
@@ -225,7 +225,7 @@ export function SeatPicker() {
         labels={labels}
         formatFee={(fee) => "$" + Math.round(fee / 150)}
       />
-      <p className="rounded-md border bg-muted/30 px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
+      <p className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
         Selected: {selectedIds.join(", ") || "None"}
       </p>
     </div>
@@ -252,7 +252,7 @@ export function SeatPicker() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">{locale === "ja" ? "状態とバリエーション" : "States and variants"}</h2>
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">{locale === "ja" ? "状態とバリエーション" : "States and variants"}</h2>
         <ComponentDemoStates
           states={[
             { key: "selectable", title: locale === "ja" ? "選択可能" : "Selectable", description: locale === "ja" ? "空席を選択すると selectedIds が更新されます。特別席、予約済、確保中、選択中は Tooltip で理由を示します。" : "Selecting an available seat updates selectedIds. Special, occupied, held, and selected seats are explained by tooltips.", preview: <SeatMapPreview locale={locale} />, code: usageCode, previewBodyWidth: "md" },
@@ -263,16 +263,16 @@ export function SeatPicker() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">{sectionLabels.props}</h2>
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">{sectionLabels.props}</h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">{sectionLabels.usage}</h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

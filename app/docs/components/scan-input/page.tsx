@@ -230,7 +230,7 @@ function InspectScanPreview({ locale }: { locale: "en" | "ja" }) {
         onScan={handleScan}
       />
       {found ? (
-        <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-md border bg-muted/30 p-3 text-sm">
+        <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm">
           <dt className="text-muted-foreground">{locale === "ja" ? "品名" : "Item"}</dt>
           <dd className="text-foreground">{locale === "ja" ? found.ja : found.en}</dd>
           <dt className="text-muted-foreground">{locale === "ja" ? "管理部署" : "Owner"}</dt>
@@ -267,7 +267,7 @@ export default function ScanInputDocPage() {
       </ComponentPreview>
 
       <div className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
           {locale === "ja" ? "状態とバリエーション" : "States and variants"}
         </h2>
         <p className="text-sm leading-relaxed text-muted-foreground">
@@ -465,7 +465,7 @@ export function AssetLookupField() {
         onScan={handleScan}
       />
       {found ? (
-        <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-md border p-3 text-sm">
+        <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3 text-sm">
           <dt className="text-muted-foreground">品名</dt>
           <dd>{found.name}</dd>
           <dt className="text-muted-foreground">管理部署</dt>
@@ -509,7 +509,7 @@ export function AssetLookupField() {
         onScan={handleScan}
       />
       {found ? (
-        <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-md border p-3 text-sm">
+        <dl className="grid grid-cols-[auto_1fr] gap-x-4 gap-y-1 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3 text-sm">
           <dt className="text-muted-foreground">Item</dt>
           <dd>{found.name}</dd>
           <dt className="text-muted-foreground">Owner</dt>
@@ -525,13 +525,13 @@ export function AssetLookupField() {
       </div>
 
       <div className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">Props</h2>
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">Props</h2>
         <PropsTable data={propsData} />
       </div>
 
       <div className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">Usage</h2>
-        <div className="rounded-md border bg-muted font-mono text-sm max-h-[350px] overflow-auto">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">Usage</h2>
+        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm max-h-[350px] overflow-auto">
           <CodeBlock code={usageCode} />
         </div>
       </div>

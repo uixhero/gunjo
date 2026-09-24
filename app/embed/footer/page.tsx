@@ -28,7 +28,7 @@ export default function Embed() {
     ];
 
     return (
-        <div className="w-full overflow-hidden rounded-md border bg-background">
+        <div className="w-full overflow-hidden rounded-md">
             <Footer className={compact ? "gap-4 px-5 py-6" : undefined}>
                 <FooterColumns className={compact ? "grid-cols-1 gap-5 md:grid-cols-3" : undefined}>
                     <FooterBrand>

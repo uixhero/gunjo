@@ -120,7 +120,7 @@ function StringlinePreview({ locale, mode = "actual" }: { locale: Locale; mode?:
   const detail = runDetails(locale)[String(selectedRun.id)];
 
   return (
-    <div className="flex w-full max-w-4xl flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-4xl flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Stringline
         stops={visibleStops}
         runs={visibleRuns}
@@ -134,7 +134,7 @@ function StringlinePreview({ locale, mode = "actual" }: { locale: Locale; mode?:
         runLabel={locale === "ja" ? "運行" : "Run"}
         directionLabels={locale === "ja" ? undefined : { up: "inbound", down: "outbound" }}
       />
-      <section className="grid min-w-0 gap-3 rounded-md border bg-background p-3" aria-live="polite" aria-label={locale === "ja" ? "選択中運行の詳細" : "Selected run details"}>
+      <section className="grid min-w-0 gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background p-3" aria-live="polite" aria-label={locale === "ja" ? "選択中運行の詳細" : "Selected run details"}>
         <div className="min-w-0 space-y-1.5">
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="text-sm font-semibold text-foreground">{selectedRun.label}</h3>
@@ -258,7 +258,7 @@ export function TrainDiagram() {
   const detail = details[selectedRunId as keyof typeof details];
 
   return (
-    <div className="flex w-full max-w-4xl flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-4xl flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Stringline
         stops={stops}
         runs={selectableRuns}
@@ -271,7 +271,7 @@ export function TrainDiagram() {
         ariaLabel="中央線の運行図表"
       />
       <section
-        className="grid min-w-0 gap-3 rounded-md border bg-background p-3"
+        className="grid min-w-0 gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background p-3"
         aria-live="polite"
         aria-label="選択中運行の詳細"
       >
@@ -392,7 +392,7 @@ export function TrainDiagram() {
   const detail = details[selectedRunId as keyof typeof details];
 
   return (
-    <div className="flex w-full max-w-4xl flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-4xl flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Stringline
         stops={stops}
         runs={selectableRuns}
@@ -407,7 +407,7 @@ export function TrainDiagram() {
         directionLabels={{ up: "inbound", down: "outbound" }}
       />
       <section
-        className="grid min-w-0 gap-3 rounded-md border bg-background p-3"
+        className="grid min-w-0 gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background p-3"
         aria-live="polite"
         aria-label="Selected run details"
       >
@@ -464,7 +464,7 @@ export function TrainDiagram() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
           {locale === "ja" ? "状態とバリエーション" : "States and variants"}
         </h2>
         <ComponentDemoStates
@@ -477,16 +477,16 @@ export function TrainDiagram() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">{sectionLabels.props}</h2>
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">{sectionLabels.props}</h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">{sectionLabels.usage}</h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

@@ -204,7 +204,7 @@ export default function StepperPage() {
             </ComponentPreview>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="states">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="states">
                     {statesTitle}
                 </h2>
                 <ComponentDemoStates
@@ -284,7 +284,7 @@ export default function StepperPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="props">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="props">
                     {sectionLabels.props}
                 </h2>
                 <PropsTable data={propsData} />
@@ -297,7 +297,7 @@ export default function StepperPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="rounded-md border bg-muted font-mono text-sm max-h-[350px] overflow-auto">
+                <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm max-h-[350px] overflow-auto">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

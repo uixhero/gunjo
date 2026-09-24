@@ -761,7 +761,7 @@ function pickText(locale: "ja" | "en", text: Localized) {
 
 function PreviewShell({ children }: { children: React.ReactNode }) {
     return (
-        <div className="flex h-24 w-full min-w-[160px] items-center justify-center rounded-md border bg-muted/20 p-3 sm:w-48">
+        <div className="flex h-24 w-full min-w-[160px] items-center justify-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background p-3 sm:w-48">
             {children}
         </div>
     );
@@ -771,7 +771,7 @@ function MiniCalendar() {
     const days = ["", "", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"];
 
     return (
-        <div className="w-28 rounded-md border bg-background p-2 shadow-sm">
+        <div className="w-28 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-2 shadow-sm">
             <div className="mb-2 flex items-center justify-between text-[10px] font-medium">
                 <span>2026</span>
                 <span>5月</span>
@@ -836,7 +836,7 @@ function ComponentPreview({ kind }: { kind: ComponentPreviewKind }) {
         case "numberInput":
             return (
                 <PreviewShell>
-                    <div className="flex h-8 w-28 items-center justify-between rounded-lg border bg-background px-3 text-sm shadow-sm">
+                    <div className="flex h-8 w-28 items-center justify-between rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 text-sm shadow-sm">
                         <span>12</span>
                         <span className="text-xs text-muted-foreground">+ / -</span>
                     </div>
@@ -845,7 +845,7 @@ function ComponentPreview({ kind }: { kind: ComponentPreviewKind }) {
         case "passwordInput":
             return (
                 <PreviewShell>
-                    <div className="flex h-8 w-36 items-center justify-between rounded-lg border bg-background px-3 text-sm shadow-sm">
+                    <div className="flex h-8 w-36 items-center justify-between rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 text-sm shadow-sm">
                         <span>••••••••</span>
                         <IconEye className="h-4 w-4 text-muted-foreground" />
                     </div>
@@ -855,7 +855,7 @@ function ComponentPreview({ kind }: { kind: ComponentPreviewKind }) {
             return (
                 <PreviewShell>
                     <div className="grid w-40 gap-1.5">
-                        <div className="flex h-8 items-center justify-between rounded-lg border bg-background px-3 text-sm shadow-sm">
+                        <div className="flex h-8 items-center justify-between rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 text-sm shadow-sm">
                             <span>••••••••</span>
                             <IconEye className="h-4 w-4 text-muted-foreground" />
                         </div>
@@ -894,7 +894,7 @@ function ComponentPreview({ kind }: { kind: ComponentPreviewKind }) {
         case "phoneInput":
             return (
                 <PreviewShell>
-                    <div className="flex h-8 w-40 items-center rounded-lg border bg-background text-sm shadow-sm">
+                    <div className="flex h-8 w-40 items-center rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card text-sm shadow-sm">
                         <span className="border-r px-2 text-muted-foreground">+81</span>
                         <span className="truncate px-2">090-1234</span>
                     </div>
@@ -903,7 +903,7 @@ function ComponentPreview({ kind }: { kind: ComponentPreviewKind }) {
         case "postalCodeInput":
             return (
                 <PreviewShell>
-                    <div className="flex h-8 w-36 items-center rounded-lg border bg-background text-sm shadow-sm">
+                    <div className="flex h-8 w-36 items-center rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card text-sm shadow-sm">
                         <span className="border-r px-2 text-muted-foreground">〒</span>
                         <span className="px-2">150-0001</span>
                     </div>
@@ -914,7 +914,7 @@ function ComponentPreview({ kind }: { kind: ComponentPreviewKind }) {
                 <PreviewShell>
                     <div className="flex gap-1.5">
                         {["4", "8", "", ""].map((value, index) => (
-                            <span key={index} className="flex h-8 w-7 items-center justify-center rounded-md border bg-background text-sm shadow-sm">
+                            <span key={index} className="flex h-8 w-7 items-center justify-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card text-sm shadow-sm">
                                 {value}
                             </span>
                         ))}
@@ -933,7 +933,7 @@ function ComponentPreview({ kind }: { kind: ComponentPreviewKind }) {
         case "select":
             return (
                 <PreviewShell>
-                    <div className="flex h-8 w-36 items-center justify-between rounded-lg border bg-background px-3 text-sm shadow-sm">
+                    <div className="flex h-8 w-36 items-center justify-between rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 text-sm shadow-sm">
                         <span>東京</span>
                         <IconChevronDown className="h-4 w-4 text-muted-foreground" />
                     </div>
@@ -943,11 +943,11 @@ function ComponentPreview({ kind }: { kind: ComponentPreviewKind }) {
             return (
                 <PreviewShell>
                     <div className="space-y-1.5">
-                        <div className="flex h-8 w-36 items-center gap-2 rounded-lg border bg-background px-3 text-sm shadow-sm">
+                        <div className="flex h-8 w-36 items-center gap-2 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 text-sm shadow-sm">
                             <IconSearch className="h-4 w-4 text-muted-foreground" />
                             <span>田中</span>
                         </div>
-                        <div className="h-5 w-28 rounded border bg-muted/50" />
+                        <div className="h-5 w-28 rounded border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted" />
                     </div>
                 </PreviewShell>
             );
@@ -1007,7 +1007,7 @@ function ComponentPreview({ kind }: { kind: ComponentPreviewKind }) {
         case "datePicker":
             return (
                 <PreviewShell>
-                    <div className="flex h-8 w-40 items-center justify-between rounded-lg border bg-background px-3 text-sm shadow-sm">
+                    <div className="flex h-8 w-40 items-center justify-between rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 text-sm shadow-sm">
                         <span>2026-05-17</span>
                         <IconCalendar className="h-4 w-4 text-muted-foreground" />
                     </div>
@@ -1016,7 +1016,7 @@ function ComponentPreview({ kind }: { kind: ComponentPreviewKind }) {
         case "dateRangePicker":
             return (
                 <PreviewShell>
-                    <div className="flex h-8 w-44 items-center justify-between rounded-lg border bg-background px-3 text-xs shadow-sm">
+                    <div className="flex h-8 w-44 items-center justify-between rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 text-xs shadow-sm">
                         <span>05-17 - 05-30</span>
                         <IconCalendar className="h-4 w-4 text-muted-foreground" />
                     </div>
@@ -1025,7 +1025,7 @@ function ComponentPreview({ kind }: { kind: ComponentPreviewKind }) {
         case "timePicker":
             return (
                 <PreviewShell>
-                    <div className="flex h-8 w-28 items-center justify-between rounded-lg border bg-background px-3 text-sm shadow-sm">
+                    <div className="flex h-8 w-28 items-center justify-between rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 text-sm shadow-sm">
                         <span>09:30</span>
                         <IconClock className="h-4 w-4 text-muted-foreground" />
                     </div>
@@ -1055,7 +1055,7 @@ function ComponentPreview({ kind }: { kind: ComponentPreviewKind }) {
         case "editableField":
             return (
                 <PreviewShell>
-                    <div className="flex w-40 items-center justify-between rounded-md border bg-background px-3 py-2 text-sm shadow-sm">
+                    <div className="flex w-40 items-center justify-between rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2 text-sm shadow-sm">
                         <span className="truncate">spring_banner.png</span>
                         <IconPencil className="h-4 w-4 text-muted-foreground" />
                     </div>
@@ -1092,7 +1092,7 @@ function ComponentPreview({ kind }: { kind: ComponentPreviewKind }) {
         case "tagInput":
             return (
                 <PreviewShell>
-                    <div className="flex w-40 flex-wrap gap-1.5 rounded-lg border bg-background p-2 shadow-sm">
+                    <div className="flex w-40 flex-wrap gap-1.5 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-2 shadow-sm">
                         <Badge variant="secondary">UI</Badge>
                         <Badge variant="secondary">Docs</Badge>
                     </div>
@@ -1101,7 +1101,7 @@ function ComponentPreview({ kind }: { kind: ComponentPreviewKind }) {
         case "mention":
             return (
                 <PreviewShell>
-                    <div className="flex h-8 w-36 items-center gap-1 rounded-lg border bg-background px-3 text-sm shadow-sm">
+                    <div className="flex h-8 w-36 items-center gap-1 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 text-sm shadow-sm">
                         <IconAt className="h-4 w-4 text-primary" />
                         <span>田中</span>
                     </div>
@@ -1315,7 +1315,7 @@ export default function InputsOverviewPage() {
             </section>
 
             <section className="space-y-3" id="design-decisions">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="text-2xl font-semibold tracking-tight">
                         {isJa ? "設計の判断" : "Design decisions"}
                     </h2>

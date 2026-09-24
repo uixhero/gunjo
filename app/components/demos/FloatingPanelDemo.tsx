@@ -7,11 +7,11 @@ export function FloatingPanelDemo() {
     const [position, setPosition] = useState({ x: 0, y: 0 });
 
     return (
-        <div className="relative h-[400px] w-full overflow-hidden rounded-lg border border-border bg-muted/50">
+        <div className="relative h-[400px] w-full overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted">
             <div className="absolute inset-0 grid grid-cols-[repeat(20,minmax(0,1fr))] grid-rows-[repeat(20,minmax(0,1fr))] opacity-20 pointer-events-none">
                 {/* Simple grid to show movement */}
                 {Array.from({ length: 400 }).map((_, i) => (
-                    <div key={i} className="border-[0.5px] border-border/60" />
+                    <div key={i} className="border-[0.5px] bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]" />
                 ))}
             </div>
 

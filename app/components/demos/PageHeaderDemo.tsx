@@ -8,7 +8,7 @@ export function PageHeaderDemo() {
   const [log, setLog] = React.useState("—");
 
   return (
-    <div className="w-full max-w-sm overflow-hidden rounded-xl border">
+    <div className="w-full max-w-sm overflow-hidden rounded-xl border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <PageHeader
         title="手荷物追跡"
         subtitle="ヤマダ クロウ 様・ABC123"
@@ -33,7 +33,7 @@ export function PageHeaderDemo() {
               <IconX className="size-5" />
             </Button>
           }
-          className="rounded-lg border"
+          className="rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]"
         />
         <p className="text-xs text-muted-foreground">↑ align=&quot;center&quot;（iOS 風・中央タイトル）。上は既定の左寄せ・sticky。</p>
         <Badge variant="secondary">戻る/アクションは 44px のタッチ標的</Badge>

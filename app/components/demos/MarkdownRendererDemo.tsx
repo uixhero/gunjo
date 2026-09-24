@@ -28,7 +28,7 @@ import { Button } from "@gunjo/ui";
 
 export function MarkdownRendererDemo() {
     return (
-        <div className="w-full max-w-md rounded-md border border-border bg-card p-4">
+        <div className="w-full max-w-md rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
             <MarkdownRenderer content={SAMPLE} />
         </div>
     );

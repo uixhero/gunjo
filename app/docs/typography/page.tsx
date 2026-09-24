@@ -98,14 +98,14 @@ export default function TypographyPage() {
             </header>
 
             <section className="space-y-4">
-                <h2 className="border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight">
+                <h2 className="pb-2 text-2xl font-semibold tracking-tight">
                     {c.sections.fonts}
                 </h2>
                 <div className="grid gap-4 lg:grid-cols-3">
                     {fonts.map((font) => (
                         <div
                             key={font.name}
-                            className="space-y-3 rounded-lg border border-border/40 bg-muted/20 p-5"
+                            className="space-y-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-5"
                         >
                             <div className="flex items-baseline justify-between">
                                 <span className="text-sm font-semibold">{font.name}</span>
@@ -125,10 +125,10 @@ export default function TypographyPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight">
+                <h2 className="pb-2 text-2xl font-semibold tracking-tight">
                     {c.sections.scale}
                 </h2>
-                <div className="space-y-3 rounded-lg border border-border/40 bg-muted/20 p-5">
+                <div className="space-y-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-5">
                     {SCALE.map((step) => (
                         <div
                             key={step.name}
@@ -149,14 +149,14 @@ export default function TypographyPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight">
+                <h2 className="pb-2 text-2xl font-semibold tracking-tight">
                     {c.sections.weights}
                 </h2>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
                     {WEIGHTS.map((w) => (
                         <div
                             key={w.name}
-                            className="space-y-2 rounded-lg border border-border/40 bg-muted/20 p-4"
+                            className="space-y-2 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4"
                         >
                             <div className={`text-xl ${w.name}`}>群青 Aa</div>
                             <code className="block font-mono text-[10px] text-muted-foreground">
@@ -171,7 +171,7 @@ export default function TypographyPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight">
+                <h2 className="pb-2 text-2xl font-semibold tracking-tight">
                     {c.sections.density}
                 </h2>
                 <ul className="space-y-2 text-sm leading-7">

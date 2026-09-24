@@ -228,7 +228,7 @@ export function ReviewChangesDialog() {
             今回の公開に含まれる変更と影響範囲を要約して確認します。
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-3 rounded-md border bg-muted/30 p-3 text-sm sm:grid-cols-2">
+        <div className="grid gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm sm:grid-cols-2">
           <div>
             <p className="font-medium">含まれる変更</p>
             <p className="mt-1 text-muted-foreground">
@@ -277,7 +277,7 @@ export function ReviewChangesDialog() {
             Review a summary of included changes and impact before publishing.
           </DialogDescription>
         </DialogHeader>
-        <div className="grid gap-3 rounded-md border bg-muted/30 p-3 text-sm sm:grid-cols-2">
+        <div className="grid gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm sm:grid-cols-2">
           <div>
             <p className="font-medium">Included changes</p>
             <p className="mt-1 text-muted-foreground">
@@ -444,7 +444,7 @@ export default function DialogPage() {
             </ComponentPreview>
 
             <section className="space-y-4">
-                <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+                <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">
                     {isJa ? "状態とバリエーション" : "States and Variations"}
                 </h2>
                 <ComponentDemoStates
@@ -502,7 +502,7 @@ export default function DialogPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">
                     {sectionLabels.props}
                 </h2>
                 <PropsTable
@@ -540,13 +540,13 @@ export default function DialogPage() {
             </section>
 
             <section className="space-y-4">
-                <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
+                <div className="flex flex-wrap items-center justify-between gap-3 pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage}
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

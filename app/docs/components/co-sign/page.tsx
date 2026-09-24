@@ -63,7 +63,7 @@ function CoSignPreview({
   const labels = coSignLabels(locale);
 
   return (
-    <div className="flex w-full max-w-md flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-md flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="flex items-center justify-between gap-3">
         <div className="text-sm">
           <p className="font-medium text-foreground">
@@ -128,7 +128,7 @@ function GatedActionPreview({ locale }: { locale: "ja" | "en" }) {
     : "Complete the second review before running this action.";
 
   return (
-    <div className="flex w-full max-w-md flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-md flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <CoSign
         primaryId={primaryId}
         signerLabel={locale === "ja" ? "確認者ID（2人目）" : "Second reviewer ID"}
@@ -175,7 +175,7 @@ export function MedicationDoubleCheck() {
   const [value, setValue] = React.useState<CoSignValue | undefined>();
 
   return (
-    <div className="flex w-full max-w-md flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-md flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="flex items-center justify-between gap-3">
         <div className="text-sm">
           <p className="font-medium text-foreground">麻薬: モルヒネ 10mg</p>
@@ -219,7 +219,7 @@ export function MedicationDoubleCheck() {
   const [value, setValue] = React.useState<CoSignValue | undefined>();
 
   return (
-    <div className="flex w-full max-w-md flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-md flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <div className="flex items-center justify-between gap-3">
         <div className="text-sm">
           <p className="font-medium text-foreground">Controlled drug: Morphine 10mg</p>
@@ -353,7 +353,7 @@ export function MedicationDoubleCheck() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
           {locale === "ja" ? "状態とバリエーション" : "States and variants"}
         </h2>
         <ComponentDemoStates
@@ -503,7 +503,7 @@ export function GatedMedicationAction() {
   const [value, setValue] = React.useState<CoSignValue | undefined>();
 
   return (
-    <div className="flex w-full max-w-md flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-md flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <CoSign
         primaryId="ns-tanaka"
         signerLabel="確認者ID（2人目）"
@@ -548,7 +548,7 @@ export function GatedMedicationAction() {
   const [value, setValue] = React.useState<CoSignValue | undefined>();
 
   return (
-    <div className="flex w-full max-w-md flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-md flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <CoSign
         primaryId="ns-tanaka"
         signerLabel="Second reviewer ID"
@@ -586,20 +586,20 @@ export function GatedMedicationAction() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
           {sectionLabels.props}
         </h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
             {sectionLabels.usage}
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

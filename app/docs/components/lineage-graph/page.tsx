@@ -62,13 +62,13 @@ const lineageEdges: LineageEdge[] = [
 type LineageTone = NonNullable<LineageNode["tone"]>;
 
 const DETAIL_TONE: Record<LineageTone, { panel: string; badge: "default" | "secondary" | "destructive" | "outline" }> = {
-  default: { panel: "border-border bg-background", badge: "secondary" },
-  primary: { panel: "border-primary-border bg-primary-subtle/70", badge: "outline" },
-  info: { panel: "border-info-border bg-info-subtle/70", badge: "outline" },
-  success: { panel: "border-success-border bg-success-subtle/70", badge: "outline" },
-  warning: { panel: "border-warning-border bg-warning-subtle/70", badge: "outline" },
-  destructive: { panel: "border-destructive-border bg-destructive-subtle/70", badge: "destructive" },
-  muted: { panel: "border-border bg-muted/60", badge: "secondary" },
+  default: { panel: "bg-muted", badge: "secondary" },
+  primary: { panel: "bg-primary-subtle", badge: "outline" },
+  info: { panel: "bg-info-subtle", badge: "outline" },
+  success: { panel: "bg-success-subtle", badge: "outline" },
+  warning: { panel: "bg-warning-subtle", badge: "outline" },
+  destructive: { panel: "bg-destructive-subtle", badge: "destructive" },
+  muted: { panel: "bg-muted", badge: "secondary" },
 };
 
 function LineageDetail({
@@ -86,7 +86,7 @@ function LineageDetail({
   const toneStyle = DETAIL_TONE[tone];
 
   return (
-    <div className={`grid content-start gap-3 rounded-lg border p-3 ${toneStyle.panel}`} aria-live="polite">
+    <div className={`grid content-start gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3 ${toneStyle.panel}`} aria-live="polite">
       <div>
         <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">{copy.detailTitle}</p>
         <p className="mt-1 text-sm font-semibold text-foreground">{node.label}</p>
@@ -136,7 +136,7 @@ function LineageGraphPreview({ locale, direction = "horizontal", custom = false 
   };
 
   return (
-    <div ref={rootRef} className="relative grid w-full max-w-4xl gap-4 overflow-hidden rounded-lg border bg-card p-4">
+    <div ref={rootRef} className="relative grid w-full max-w-4xl gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <LineageGraph
         nodes={copy.nodes}
         edges={lineageEdges}
@@ -230,7 +230,7 @@ export function LotLineage() {
   }, []);
 
   return (
-    <div ref={rootRef} className="relative grid w-full max-w-4xl gap-4 overflow-hidden rounded-lg border bg-card p-4">
+    <div ref={rootRef} className="relative grid w-full max-w-4xl gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <LineageGraph
         nodes={nodes}
         edges={edges}
@@ -252,7 +252,7 @@ export function LotLineage() {
             <SheetTitle>対象ロット</SheetTitle>
             <SheetDescription>{selectedNode.sublabel}</SheetDescription>
           </SheetHeader>
-          <div className="grid gap-3 rounded-lg border border-primary-border bg-primary-subtle/70 p-3">
+          <div className="grid gap-3 rounded-lg border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText] bg-primary-subtle p-3">
             <p className="text-sm font-semibold text-foreground">{selectedNode.label}</p>
             <Badge variant="outline" className="w-fit">{selectedNode.tone}</Badge>
             <dl className="grid grid-cols-2 gap-2 text-xs">
@@ -327,7 +327,7 @@ export function LotLineage() {
   }, []);
 
   return (
-    <div ref={rootRef} className="relative grid w-full max-w-4xl gap-4 overflow-hidden rounded-lg border bg-card p-4">
+    <div ref={rootRef} className="relative grid w-full max-w-4xl gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <LineageGraph
         nodes={nodes}
         edges={edges}
@@ -349,7 +349,7 @@ export function LotLineage() {
             <SheetTitle>Active lot</SheetTitle>
             <SheetDescription>{selectedNode.sublabel}</SheetDescription>
           </SheetHeader>
-          <div className="grid gap-3 rounded-lg border border-primary-border bg-primary-subtle/70 p-3">
+          <div className="grid gap-3 rounded-lg border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText] bg-primary-subtle p-3">
             <p className="text-sm font-semibold text-foreground">{selectedNode.label}</p>
             <Badge variant="outline" className="w-fit">{selectedNode.tone}</Badge>
             <dl className="grid grid-cols-2 gap-2 text-xs">
@@ -543,7 +543,7 @@ export function CustomNodeLotLineage() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
           {locale === "ja" ? "状態とバリエーション" : "States and variants"}
         </h2>
         <ComponentDemoStates
@@ -577,20 +577,20 @@ export function CustomNodeLotLineage() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
           {sectionLabels.props}
         </h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
             {sectionLabels.usage}
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

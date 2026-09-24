@@ -39,7 +39,7 @@ const verticalPushCodeByLocale = {
 
 export function PanelActions() {
   return (
-    <div className="flex h-48 flex-col rounded-lg border p-4">
+    <div className="flex h-48 flex-col rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4">
       <p className="text-sm font-medium">公開前チェック</p>
       <p className="text-sm text-muted-foreground">必要な項目を確認します。</p>
       <Spacer axis="y" />
@@ -51,7 +51,7 @@ export function PanelActions() {
 
 export function PanelActions() {
   return (
-    <div className="flex h-48 flex-col rounded-lg border p-4">
+    <div className="flex h-48 flex-col rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4">
       <p className="text-sm font-medium">Pre-publish checks</p>
       <p className="text-sm text-muted-foreground">Review the required items.</p>
       <Spacer axis="y" />
@@ -151,7 +151,7 @@ export default function SpacerPage() {
                     <div className="text-xs text-muted-foreground">
                         {locale === "ja" ? "Spacer が中央の残り幅を埋め、保存ボタンを右端へ寄せます。" : "Spacer fills the remaining width and pushes Save to the edge."}
                     </div>
-                    <div className="flex w-full items-center gap-2 rounded-lg border p-3">
+                    <div className="flex w-full items-center gap-2 rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3">
                         <Button variant="outline">{locale === "ja" ? "戻る" : "Back"}</Button>
                         <Spacer axis="x" />
                         <Button>{locale === "ja" ? "保存" : "Save"}</Button>
@@ -166,7 +166,7 @@ export default function SpacerPage() {
             </DocNote>
 
             <div className="space-y-4">
-                <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">
+                <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
                     {locale === "ja" ? "状態とバリエーション" : "States and variants"}
                 </h2>
                 <ComponentDemoStates
@@ -178,7 +178,7 @@ export default function SpacerPage() {
                                 ? "ツールバーでは Spacer が残り幅を埋め、主要アクションを右端へ寄せます。"
                                 : "In toolbars, Spacer fills remaining width and pushes the primary action to the far edge.",
                             preview: (
-                                <div className="flex w-full max-w-md items-center gap-2 rounded-lg border p-3">
+                                <div className="flex w-full max-w-md items-center gap-2 rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3">
                                     <Button variant="outline">{locale === "ja" ? "戻る" : "Back"}</Button>
                                     <Spacer axis="x" />
                                     <Button>{locale === "ja" ? "保存" : "Save"}</Button>
@@ -193,7 +193,7 @@ export default function SpacerPage() {
                                 ? "高さが決まっているパネルでは Spacer が残り高さを埋め、アクションを下端へ寄せます。"
                                 : "In fixed-height panels, Spacer fills remaining height and pushes actions to the bottom.",
                             preview: (
-                                <div className="flex h-48 w-full max-w-sm flex-col rounded-lg border p-4">
+                                <div className="flex h-48 w-full max-w-sm flex-col rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4">
                                     <p className="text-sm font-medium">{locale === "ja" ? "公開前チェック" : "Pre-publish checks"}</p>
                                     <p className="text-sm text-muted-foreground">{locale === "ja" ? "必要な項目を確認します。" : "Review the required items."}</p>
                                     <Spacer axis="y" />
@@ -237,20 +237,20 @@ export default function SpacerPage() {
             </div>
 
             <div className="space-y-4">
-                <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">
+                <h2 id="props" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
                     {sectionLabels.props}
                 </h2>
                 <PropsTable data={propsByLocale[locale]} />
             </div>
 
             <div className="space-y-4">
-                <div className="flex items-center justify-between gap-3 border-b pb-2">
+                <div className="flex items-center justify-between gap-3 pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

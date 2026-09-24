@@ -26,7 +26,7 @@ export function AspectRatioDemo() {
                 <div key={asset.label} className="min-w-0 space-y-2">
                     <AspectRatio
                         ratio={asset.ratio}
-                        className={`grid place-items-center rounded-md border ${asset.tone}`}
+                        className={`grid place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] ${asset.tone}`}
                     >
                         <span className="px-2 text-center text-sm font-medium">{asset.label}</span>
                     </AspectRatio>

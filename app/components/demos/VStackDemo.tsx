@@ -7,7 +7,7 @@ export function VStackDemo() {
     const { locale } = useLocale();
 
     return (
-        <VStack gap={4} className="w-full max-w-sm rounded-md border bg-background p-4">
+        <VStack gap={4} className="w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
             <VStack gap={2}>
                 <Label htmlFor="vstack-demo-name">{locale === "ja" ? "名前" : "Name"}</Label>
                 <Input id="vstack-demo-name" defaultValue="Gunjo UI" className="w-full" />

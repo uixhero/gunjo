@@ -231,7 +231,7 @@ export function CategoryView({
                             {demoCopy.heading}
                         </h2>
                         <p className="text-sm text-muted-foreground">{demoCopy.intro}</p>
-                        <Card className="border-border/80">
+                        <Card>
                             <CardContent className="space-y-4 p-5">
                                 <div className="flex flex-wrap items-center gap-2">
                                     <span className="text-lg font-bold tracking-tight">
@@ -247,7 +247,7 @@ export function CategoryView({
                                         <Link
                                             key={screen.slug}
                                             href={`${demo.href}/${screen.slug}`}
-                                            className="rounded-md border bg-background px-2 py-1 text-xs text-muted-foreground transition-colors hover:border-primary-border hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                            className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-2 py-1 text-xs text-muted-foreground transition-colors hover:border-primary-border hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                                         >
                                             {isJa ? screen.ja : screen.en}
                                         </Link>
@@ -282,7 +282,7 @@ export function CategoryView({
                                 <li key={c.name}>
                                     <Link
                                         href={`/docs/components/${docSlug}`}
-                                        className="group flex h-full flex-col gap-1.5 rounded-md border border-border/60 p-3 transition-colors hover:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                        className="group flex h-full flex-col gap-1.5 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3 transition-colors hover:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                                     >
                                         <div className="flex items-center justify-between gap-2">
                                             <span className="font-mono text-sm font-semibold tracking-tight transition-colors group-hover:text-primary">
@@ -355,7 +355,7 @@ export function CategoryView({
                                 aria-label={t.openDetailLabel(entry.round)}
                                 className="group block focus-visible:outline-none"
                             >
-                                <Card className="flex h-full w-full flex-col overflow-hidden border-border/80 shadow-sm transition-all hover:border-primary-border hover:shadow-md group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-2">
+                                <Card className="flex h-full w-full flex-col overflow-hidden shadow-sm transition-all hover:border-primary-border hover:shadow-md group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-2">
                                     <PreviewThumb
                                         slug={entry.slug}
                                         desktopAvailable={entry.shots.desktop}

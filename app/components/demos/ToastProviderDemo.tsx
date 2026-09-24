@@ -24,7 +24,7 @@ const TriggerButtons = () => {
 
 export function ToastProviderDemo() {
     return (
-        <div className="relative rounded-lg border border-border p-8">
+        <div className="relative rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-8">
             <ToastProvider>
                 {/* Note: In a real app ToastProvider wraps the root layout. 
               Here we wrap the demo area, but toasts use fixed positioning so they might appear at the top of the window, 

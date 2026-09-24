@@ -3676,13 +3676,13 @@ export function ChartDataControls({
     const referenceToggleId = "chart-data-reference-toggle";
 
     return (
-        <div className="rounded-md border bg-muted/20 p-3">
+        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
             <div className="space-y-2">
                 <div className="flex flex-wrap items-center justify-between gap-2">
                     <h3 className="text-sm font-semibold">{copy.data}</h3>
                     <div className="flex flex-wrap justify-end gap-2">
                         {hasReferenceToggle ? (
-                            <div className="inline-flex items-center gap-2 rounded-md border bg-background px-2 py-1.5">
+                            <div className="inline-flex items-center gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2 py-1.5">
                                 <Switch
                                     id={referenceToggleId}
                                     checked={showReference}

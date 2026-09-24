@@ -14,12 +14,12 @@ const codeByLocale = {
 
 export function EditorStatusBar() {
   return (
-    <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
-      <div className="border-b bg-muted/40 px-4 py-2 text-sm font-medium">
+    <div className="w-full max-w-[720px] overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
+      <div className="border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-4 py-2 text-sm font-medium">
         記事エディタ
       </div>
       <div className="grid min-h-40 grid-cols-1 text-sm sm:grid-cols-[160px_1fr]">
-        <aside className="border-r bg-muted/20 p-3 text-muted-foreground">
+        <aside className="border-r border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-muted-foreground">
           下書き / 公開設定 / 履歴
         </aside>
         <main className="space-y-3 p-4">
@@ -43,12 +43,12 @@ export function EditorStatusBar() {
 
 export function EditorStatusBar() {
   return (
-    <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
-      <div className="border-b bg-muted/40 px-4 py-2 text-sm font-medium">
+    <div className="w-full max-w-[720px] overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
+      <div className="border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-4 py-2 text-sm font-medium">
         Article editor
       </div>
       <div className="grid min-h-40 grid-cols-1 text-sm sm:grid-cols-[160px_1fr]">
-        <aside className="border-r bg-muted/20 p-3 text-muted-foreground">
+        <aside className="border-r border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-muted-foreground">
           Drafts / Publish / History
         </aside>
         <main className="space-y-3 p-4">
@@ -75,9 +75,9 @@ const workspaceCodeByLocale = {
 
 export function WorkspaceStatusBar() {
   return (
-    <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
+    <div className="w-full max-w-[720px] overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <div className="grid min-h-44 grid-cols-1 sm:grid-cols-[180px_1fr]">
-        <aside className="border-r bg-muted/30 p-3 text-sm text-muted-foreground">
+        <aside className="border-r border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm text-muted-foreground">
           すべて / 画像 / 動画
         </aside>
         <main className="grid grid-cols-2 gap-3 p-4 sm:grid-cols-3">
@@ -101,9 +101,9 @@ export function WorkspaceStatusBar() {
 
 export function WorkspaceStatusBar() {
   return (
-    <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
+    <div className="w-full max-w-[720px] overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <div className="grid min-h-44 grid-cols-1 sm:grid-cols-[180px_1fr]">
-        <aside className="border-r bg-muted/30 p-3 text-sm text-muted-foreground">
+        <aside className="border-r border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm text-muted-foreground">
           All / Images / Videos
         </aside>
         <main className="grid grid-cols-2 gap-3 p-4 sm:grid-cols-3">
@@ -130,7 +130,7 @@ const issueCodeByLocale = {
 
 export function IssueStatusBar() {
   return (
-    <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
+    <div className="w-full max-w-[720px] overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <div className="min-h-36 space-y-3 p-4 text-sm">
         <div className="h-4 w-40 rounded bg-muted" />
         <div className="h-3 w-full rounded bg-muted/70" />
@@ -151,7 +151,7 @@ export function IssueStatusBar() {
 
 export function IssueStatusBar() {
   return (
-    <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
+    <div className="w-full max-w-[720px] overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <div className="min-h-36 space-y-3 p-4 text-sm">
         <div className="h-4 w-40 rounded bg-muted" />
         <div className="h-3 w-full rounded bg-muted/70" />
@@ -175,7 +175,7 @@ const fixedCodeByLocale = {
 
 export function AppShellStatusBar() {
   return (
-    <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
+    <div className="w-full max-w-[720px] overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <div className="flex min-h-40 items-center justify-center bg-muted/20 text-sm text-muted-foreground">
         アプリケーションの作業領域
       </div>
@@ -194,7 +194,7 @@ export function AppShellStatusBar() {
 
 export function AppShellStatusBar() {
   return (
-    <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
+    <div className="w-full max-w-[720px] overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <div className="flex min-h-40 items-center justify-center bg-muted/20 text-sm text-muted-foreground">
         Application workspace
       </div>
@@ -274,12 +274,12 @@ export default function StatusBarDocPage() {
             ]}
         >
             <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewHeight="auto" previewBodyWidth="xl" sectionLabels={sectionLabels}>
-                <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
-                    <div className="border-b bg-muted/40 px-4 py-2 text-sm font-medium">
+                <div className="w-full max-w-[720px] overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
+                    <div className="border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-4 py-2 text-sm font-medium">
                         {isJa ? "記事エディタ" : "Article editor"}
                     </div>
                     <div className="grid min-h-40 grid-cols-1 text-sm sm:grid-cols-[160px_1fr]">
-                        <aside className="border-r bg-muted/20 p-3 text-muted-foreground">
+                        <aside className="border-r border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-muted-foreground">
                             {isJa ? "下書き / 公開設定 / 履歴" : "Drafts / Publish / History"}
                         </aside>
                         <main className="space-y-3 p-4">
@@ -300,7 +300,7 @@ export default function StatusBarDocPage() {
             </ComponentPreview>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="states">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="states">
                     {statesTitle}
                 </h2>
                 <ComponentDemoStates
@@ -310,9 +310,9 @@ export default function StatusBarDocPage() {
                             title: isJa ? "ワークスペース状態" : "Workspace status",
                             description: isJa ? "同期状態や選択数など、画面全体に関わる軽い状態をまとめます。" : "Summarizes lightweight app-wide state such as sync and selection count.",
                             preview: (
-                                <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
+                                <div className="w-full max-w-[720px] overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
                                     <div className="grid min-h-44 grid-cols-1 sm:grid-cols-[180px_1fr]">
-                                        <aside className="border-r bg-muted/30 p-3 text-sm text-muted-foreground">
+                                        <aside className="border-r border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm text-muted-foreground">
                                             {isJa ? "すべて / 画像 / 動画" : "All / Images / Videos"}
                                         </aside>
                                         <main className="grid grid-cols-2 gap-3 p-4 sm:grid-cols-3">
@@ -339,8 +339,8 @@ export default function StatusBarDocPage() {
                             title: isJa ? "エディタ情報" : "Editor information",
                             description: isJa ? "保存状態、文字コード、入力モードなどを短く表示します。" : "Shows save state, encoding, and input mode in a compact line.",
                             preview: (
-                                <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
-                                    <div className="border-b bg-muted/40 px-4 py-2 text-sm font-medium">
+                                <div className="w-full max-w-[720px] overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
+                                    <div className="border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-4 py-2 text-sm font-medium">
                                         {isJa ? "記事エディタ" : "Article editor"}
                                     </div>
                                     <div className="min-h-36 space-y-3 p-4">
@@ -366,7 +366,7 @@ export default function StatusBarDocPage() {
                             title: isJa ? "注意が必要な状態" : "Attention state",
                             description: isJa ? "切断や未保存など、ユーザーが気づくべき状態は色と文言を変えます。" : "Use stronger treatment for disconnection, unsaved work, or other attention states.",
                             preview: (
-                                <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
+                                <div className="w-full max-w-[720px] overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
                                     <div className="min-h-36 space-y-3 p-4 text-sm">
                                         <div className="h-4 w-40 rounded bg-muted" />
                                         <div className="h-3 w-full rounded bg-muted/70" />
@@ -390,7 +390,7 @@ export default function StatusBarDocPage() {
                             title: isJa ? "シェル下部の配置" : "App shell placement",
                             description: isJa ? "docs のような枠内では fixed を false にし、シェルの下部に配置します。実アプリ全体に固定する場合は fixed の既定値を使います。" : "Inside framed regions like docs, set fixed to false and place it at the shell bottom. For app-wide fixed bars, keep the default fixed behavior.",
                             preview: (
-                                <div className="w-full max-w-[720px] overflow-hidden rounded-lg border bg-background">
+                                <div className="w-full max-w-[720px] overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
                                     <div className="flex min-h-40 items-center justify-center bg-muted/20 text-sm text-muted-foreground">
                                         {isJa ? "アプリケーションの作業領域" : "Application workspace"}
                                     </div>
@@ -412,7 +412,7 @@ export default function StatusBarDocPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="props">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="props">
                     {sectionLabels.props}
                 </h2>
                 <PropsTable data={propsData} />
@@ -425,12 +425,12 @@ export default function StatusBarDocPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="rounded-md border bg-muted font-mono text-sm max-h-[350px] overflow-auto">
+                <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm max-h-[350px] overflow-auto">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>
             <section className="space-y-4">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
                         {locale === "ja" ? "設計の判断" : "Design decisions"}
                     </h2>

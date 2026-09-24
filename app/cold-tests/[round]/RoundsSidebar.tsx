@@ -80,7 +80,7 @@ export function RoundsSidebar({
     // collapsible grid and md:sticky wrapper are the single source of truth.
     return (
         <SidebarProvider>
-            <Sidebar className="h-full w-full">
+            <Sidebar className="h-full w-full overflow-hidden rounded-xl bg-card border border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                 <SidebarHeader className="flex-col items-stretch gap-2">
                     <TextLink
                         href={base}

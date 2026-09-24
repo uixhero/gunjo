@@ -118,7 +118,7 @@ export function LocalNav({ maxLevel = 3 }: LocalNavProps = {}) {
     return (
         <nav
             aria-label="On this page"
-            className="rounded-md border border-border/70 bg-muted/20 p-2"
+            className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-2"
         >
             <div className="mb-2 px-1 text-xs font-semibold text-muted-foreground">
                 {locale === "ja" ? "ページ内" : "On this page"}

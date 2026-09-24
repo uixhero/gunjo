@@ -54,11 +54,11 @@ export function StickyNoticeBarViewportDemo({ locale = "en" }: { locale?: Locale
                             {labels.restore}
                         </Button>
                     ) : null}
-                    <section className="space-y-3 rounded-xl border bg-card p-6">
+                    <section className="space-y-3 rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-6">
                         <h1 className="text-2xl font-semibold">{labels.heading}</h1>
                         <p className="text-sm text-muted-foreground">{labels.body}</p>
                     </section>
-                    <section id="sticky-notice-details" className="scroll-mt-28 space-y-3 rounded-xl border bg-card p-6">
+                    <section id="sticky-notice-details" className="scroll-mt-28 space-y-3 rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-6">
                         <h2 className="text-xl font-semibold">{labels.details}</h2>
                         <p className="text-sm text-muted-foreground">{labels.detailsBody}</p>
                     </section>
@@ -76,7 +76,7 @@ export function StickyNoticeBarContainedDemo({ locale = "en" }: { locale?: Local
     return (
         <div
             ref={setContainer}
-            className="relative h-72 w-full overflow-hidden rounded-lg border bg-background text-foreground"
+            className="relative h-72 w-full overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card text-foreground"
         >
             {container && visible ? (
                 <StickyNoticeBar

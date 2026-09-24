@@ -68,7 +68,7 @@ function KanbanPattern({ viewport }: { viewport: MarqueeViewport }) {
             }
         >
             {["Backlog", "In Progress", "In Review", "Done"].map((col) => (
-                <div key={col} className="flex h-full w-[350px] flex-col rounded-lg bg-muted/50 border">
+                <div key={col} className="flex h-full w-[350px] flex-col rounded-lg bg-muted border border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                     <div className="flex items-center justify-between p-4 pb-2">
                         <h3 className="font-semibold text-sm">{col} <span className="ml-2 text-muted-foreground text-xs font-normal">3</span></h3>
                         <TooltipButton

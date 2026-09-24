@@ -98,7 +98,7 @@ const MEMBERS = [
 
 export function MemberList() {
   return (
-    <div className="w-full rounded-lg border">
+    <div className="w-full rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       {MEMBERS.map((member, index) => (
         <div key={member.id}>
           {index > 0 ? <Separator /> : null}
@@ -121,7 +121,7 @@ const MEMBERS = [
 
 export function MemberList() {
   return (
-    <div className="w-full rounded-lg border">
+    <div className="w-full rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       {MEMBERS.map((member, index) => (
         <div key={member.id}>
           {index > 0 ? <Separator /> : null}
@@ -182,7 +182,7 @@ export default function SeparatorPage() {
             </ComponentPreview>
 
             <div className="space-y-4">
-                <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">
+                <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
                     {locale === "ja" ? "状態とバリエーション" : "States and variants"}
                 </h2>
                 <ComponentDemoStates
@@ -225,7 +225,7 @@ export default function SeparatorPage() {
                                 ? "一覧で使うときは、行の数だけ引くのではなく先頭の行を飛ばします。末尾に線が余ると、続きがあるように見えます。"
                                 : "In a list, skip the first row instead of drawing one rule per row — a trailing rule reads as if more rows follow.",
                             preview: (
-                                <div className="w-full rounded-lg border">
+                                <div className="w-full rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                                     {[
                                         { id: "a", name: locale === "ja" ? "受付" : "Front desk", count: 3 },
                                         { id: "b", name: locale === "ja" ? "調理" : "Kitchen", count: 5 },
@@ -251,25 +251,25 @@ export default function SeparatorPage() {
             </div>
 
             <div className="space-y-4">
-                <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">
+                <h2 id="props" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
                     {sectionLabels.props}
                 </h2>
                 <PropsTable data={propsByLocale[locale]} />
             </div>
 
             <div className="space-y-4">
-                <div className="flex items-center justify-between gap-3 border-b pb-2">
+                <div className="flex items-center justify-between gap-3 pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
             <section className="space-y-4">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
                         {locale === "ja" ? "設計の判断" : "Design decisions"}
                     </h2>

@@ -12,7 +12,7 @@ import {
 
 export function HeaderDemo() {
     return (
-        <div className="w-full overflow-hidden rounded-md border">
+        <div className="w-full overflow-hidden rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
             <Header>
                 <HeaderBrand>
                     <div className="h-8 w-8 rounded-md bg-foreground" aria-hidden />

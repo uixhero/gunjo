@@ -36,7 +36,7 @@ export default function GlobalError({
                         {/* eslint-disable-next-line @next/next/no-html-link-for-pages -- global-error replaces the crashed app shell; a full document reload is the recovery path */}
                         <a
                             href="/"
-                            className="inline-flex items-center justify-center rounded-md border border-border px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
+                            className="inline-flex items-center justify-center rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-4 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-muted"
                         >
                             トップへ戻る / Back to home
                         </a>

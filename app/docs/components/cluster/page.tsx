@@ -74,7 +74,7 @@ const centeredCodeByLocale = {
 
 export function CenteredStatusCluster() {
   return (
-    <div className="w-full rounded-lg border bg-background p-4">
+    <div className="w-full rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Cluster gap={3} justify="center">
         <Badge>Selected</Badge>
         <Badge variant="secondary">Reviewing</Badge>
@@ -86,7 +86,7 @@ export function CenteredStatusCluster() {
 
 export function CenteredStatusCluster() {
   return (
-    <div className="w-full rounded-lg border bg-background p-4">
+    <div className="w-full rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Cluster gap={3} justify="center">
         <Badge>選択中</Badge>
         <Badge variant="secondary">レビュー中</Badge>
@@ -131,7 +131,7 @@ export default function ClusterPage() {
             ]}
         >
             <ComponentPreview embedSrc="/embed/cluster" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md">
-                <div className="w-full rounded-lg border bg-background p-4">
+                <div className="w-full rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
                     <Cluster gap={2}>
                         {tagsByLocale[locale].map((tag) => (
                             <Badge key={tag} variant="secondary">{tag}</Badge>
@@ -142,7 +142,7 @@ export default function ClusterPage() {
 
             <section className="space-y-6">
                 <div className="space-y-1">
-                    <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+                    <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">
                         {locale === "ja" ? "状態とバリエーション" : "States and Variants"}
                     </h2>
                 </div>
@@ -155,7 +155,7 @@ export default function ClusterPage() {
                             code: usageCode,
                             previewBodyWidth: "md",
                             preview: (
-                                <div className="w-full rounded-lg border bg-background p-4">
+                                <div className="w-full rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
                                     <Cluster gap={2}>
                                         {tagsByLocale[locale].map((tag) => (
                                             <Badge key={tag} variant="secondary">{tag}</Badge>
@@ -171,7 +171,7 @@ export default function ClusterPage() {
                             code: actionCodeByLocale[locale],
                             previewBodyWidth: "md",
                             preview: (
-                                <div className="w-full rounded-lg border bg-background p-4">
+                                <div className="w-full rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
                                     <Cluster gap={2} justify="end">
                                         <Button variant="outline">{locale === "ja" ? "キャンセル" : "Cancel"}</Button>
                                         <Button>{locale === "ja" ? "保存" : "Save"}</Button>
@@ -186,7 +186,7 @@ export default function ClusterPage() {
                             code: centeredCodeByLocale[locale],
                             previewBodyWidth: "md",
                             preview: (
-                                <div className="w-full rounded-lg border bg-background p-4">
+                                <div className="w-full rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
                                     <Cluster gap={3} justify="center">
                                         <Badge>{locale === "ja" ? "選択中" : "Selected"}</Badge>
                                         <Badge variant="secondary">{locale === "ja" ? "レビュー中" : "Reviewing"}</Badge>
@@ -199,16 +199,16 @@ export default function ClusterPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "プロパティ" : "Props"}</h2>
+                <h2 id="props" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "プロパティ" : "Props"}</h2>
                 <PropsTable data={propsData} />
             </section>
 
             <section className="space-y-4">
-                <div className="flex items-start justify-between gap-3 border-b pb-2">
+                <div className="flex items-start justify-between gap-3 pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

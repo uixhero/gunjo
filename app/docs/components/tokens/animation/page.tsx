@@ -42,7 +42,7 @@ export default function AnimationPage() {
 
 function EasingCard({ label, ease }: { label: string, ease: string }) {
     return (
-        <div className="p-4 border rounded-lg hover:border-primary transition-colors cursor-pointer group">
+        <div className="p-4 border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] rounded-lg hover:border-primary transition-colors cursor-pointer group">
             <div className="mb-2 font-mono text-sm">{label} ({ease})</div>
             <div className="h-2 bg-secondary rounded-full overflow-hidden relative">
                 <div className={`h-full w-4 bg-primary absolute left-0 group-hover:left-[calc(100%-1rem)] transition-all duration-1000 ${ease} infinite alternate`} />

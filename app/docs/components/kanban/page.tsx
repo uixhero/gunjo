@@ -109,12 +109,12 @@ export default function KanbanPage() {
             ]}
         >
             <ComponentPreview embedSrc="/embed/kanban" code={usageCode} fullPagePreview codeBlock={<CodeBlock code={usageCode} />}>
-                <div className="w-full overflow-hidden rounded-lg border shadow-sm">
+                <div className="w-full overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-sm">
                     <KanbanTemplateDemo />
                 </div>
             </ComponentPreview>
 
-            <div className="space-y-3 rounded-lg border bg-muted/30 p-5">
+            <div className="space-y-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-5">
                 <h2 className="text-lg font-semibold tracking-tight">Layout scope</h2>
                 <p className="text-sm leading-relaxed text-muted-foreground">
                     KanbanTemplate provides the responsive shell for sidebar, header, and horizontally
@@ -128,7 +128,7 @@ export default function KanbanPage() {
             </div>
 
             <div className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
                     {locale === "ja" ? "状態とバリエーション" : "States and variants"}
                 </h2>
                 <p className="text-sm leading-relaxed text-muted-foreground">

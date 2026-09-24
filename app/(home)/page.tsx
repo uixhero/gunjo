@@ -184,7 +184,12 @@ export default function Home() {
             </section>
 
             {/* ============== Section 2 — PRIMARY ENTRY POINTS ============== */}
-            <section className="border-t border-border/40 bg-background py-24">
+            {/* 節の境目は罫線ではなく面の濃淡で区切る（DECISIONS.md 2026-09-23）。
+                地（塗りを持たない節＝body の bg-background がそのまま見える）と面（bg-muted）を交互に置き、隣り合う節が同じ面に
+                ならないようにしてある。並びを変えるときはこの交互を崩さないこと。
+                アプリの節（HomeAppsSection）は既定で出ないので第3の面（bg-card）に
+                してあり、出ても出なくても両隣と段差が付く。 */}
+            <section className="bg-muted py-24">
                 <div className="container">
                     <div className="mb-12">
                         <p className="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
@@ -258,7 +263,7 @@ export default function Home() {
             <HomeAppsSection />
 
             {/* ============== Section 6 — THE 群青 STORY ============== */}
-            <section className="bg-muted/30 py-24">
+            <section className="py-24">
                 <div className="container">
                     <p className="mb-12 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
                         {home.story.label}
@@ -305,12 +310,12 @@ export default function Home() {
             </section>
 
             {/* ============== Section 7 — SSOT AND AI HANDOFF ============== */}
-            <section className="border-t border-border/40 bg-gradient-to-b from-background via-accent/20 to-background py-24">
+            <section className="bg-gradient-to-b from-muted via-accent/20 to-muted py-24">
                 <div className="container">
                     <div className="mb-12 space-y-3">
                         <Badge
                             variant="outline"
-                            className="gap-1.5 border-accent-foreground/20 bg-accent text-accent-foreground"
+                            className="gap-1.5 bg-accent text-accent-foreground"
                         >
                             <Cpu className="h-3 w-3" />
                             AI-native
@@ -341,7 +346,7 @@ export default function Home() {
                             return (
                                 <Card
                                     key={key}
-                                    className="w-full border-border/60 bg-background/60 backdrop-blur"
+                                    className="w-full"
                                 >
                                     <CardHeader>
                                         <div className="mb-2 flex h-9 w-9 items-center justify-center rounded-lg bg-accent text-accent-foreground">
@@ -368,7 +373,7 @@ export default function Home() {
             </section>
 
             {/* ============== Section 8 — FOR ENGINEERS ============== */}
-            <section className="border-t border-border/40 bg-background py-20">
+            <section className="py-20">
                 <div className="container">
                     <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
                         <div className="space-y-3">
@@ -383,7 +388,7 @@ export default function Home() {
                             </p>
                         </div>
                         <div className="flex flex-col items-start gap-3 lg:items-end">
-                            <code className="inline-flex items-center gap-2 rounded-lg border border-border bg-muted px-4 py-3 font-mono text-sm">
+                            <code className="inline-flex items-center gap-2 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-4 py-3 font-mono text-sm">
                                 <span className="text-muted-foreground">$</span>
                                 {home.engineers.install}
                             </code>
@@ -399,7 +404,7 @@ export default function Home() {
             </section>
 
             {/* ============== Section 9 — ALPHA SCOPE ============== */}
-            <section className="border-t border-border/40 bg-muted/20 py-20">
+            <section className="bg-muted py-20">
                 <div className="container text-center">
                     <Badge variant="outline" className="mb-4 gap-1.5">
                         <Sparkles className="h-3 w-3" />
@@ -460,7 +465,7 @@ function LiveComponentWorkbench({ isJa }: { isJa: boolean }) {
                 : "Display";
 
     return (
-        <section className="border-t border-border/40 bg-background py-24">
+        <section className="py-24">
             <div className="container">
                 <div className="mb-12">
                     <p className="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
@@ -652,7 +657,7 @@ function LiveComponentWorkbench({ isJa }: { isJa: boolean }) {
                                 Tabs / CopyButton / Kbd
                             </Badge>
                         </div>
-                        <Tabs value={activeTab} onValueChange={setActiveTab}>
+                        <Tabs value={activeTab} onValueChange={setActiveTab} className="border-0">
                             <TabsList>
                                 <TabsTrigger value="preview">
                                     {isJa ? "プレビュー" : "Preview"}
@@ -665,7 +670,7 @@ function LiveComponentWorkbench({ isJa }: { isJa: boolean }) {
                                 </TabsTrigger>
                             </TabsList>
                             <TabsContent value="preview" className="mt-4">
-                                <div className="rounded-lg border border-border bg-muted/30 p-4">
+                                <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4">
                                     <p className="font-medium">
                                         {isJa
                                             ? categoryLabel + "カテゴリを表示中"
@@ -683,7 +688,7 @@ function LiveComponentWorkbench({ isJa }: { isJa: boolean }) {
                                 </div>
                             </TabsContent>
                             <TabsContent value="code" className="mt-4">
-                                <div className="flex items-center justify-between gap-3 rounded-lg border border-border bg-muted px-3 py-2">
+                                <div className="flex items-center justify-between gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
                                     <code className="truncate text-sm">
                                         npm install @gunjo/ui
                                     </code>
@@ -783,7 +788,7 @@ const publicPatternSlides = [
 
 function PatternBrowserCarousel({ isJa }: { isJa: boolean }) {
     return (
-        <section className="border-t border-border/40 bg-muted/20 py-24">
+        <section className="bg-muted py-24">
             <div className="container">
                 <div className="mb-10 grid gap-4 lg:grid-cols-[1fr_auto] lg:items-end">
                     <div>
@@ -856,7 +861,7 @@ function PatternBrowserCarousel({ isJa }: { isJa: boolean }) {
                                             </Link>
                                         </Button>
                                     </div>
-                                    <div className="overflow-hidden rounded-xl border border-border/60 bg-background">
+                                    <div className="overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
                                         <PatternSlideContent
                                             kind={slide.key}
                                             title={isJa ? slide.titleJa : slide.titleEn}

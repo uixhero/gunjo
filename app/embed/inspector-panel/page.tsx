@@ -10,7 +10,7 @@ export default function Embed() {
         <div className="grid place-items-center p-4">
             <InspectorPanel
                 title={locale === "ja" ? "長方形 1" : "Rectangle 1"}
-                className="h-[420px] w-[320px] rounded-lg border shadow-sm"
+                className="h-[420px] w-[320px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-sm"
                 footer={
                     <HStack justify="between" className="w-full">
                         <Button variant="ghost" size="sm">{locale === "ja" ? "リセット" : "Reset"}</Button>

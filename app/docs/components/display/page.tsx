@@ -667,7 +667,7 @@ export default function DisplayOverviewPage() {
             </section>
 
             <section className="space-y-3" id="design-decisions">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="text-2xl font-semibold tracking-tight">
                         {isJa ? "設計の判断" : "Design decisions"}
                     </h2>

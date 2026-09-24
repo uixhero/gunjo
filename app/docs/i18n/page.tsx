@@ -91,7 +91,7 @@ export default function I18nPage() {
             <section className="space-y-4">
                 <h2
                     id="live"
-                    className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+                    className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight"
                 >
                     {isJa ? "ライブデモ" : "Live demo"}
                 </h2>
@@ -123,7 +123,7 @@ export default function I18nPage() {
                 </div>
 
                 <LocaleProvider locale={demo}>
-                    <div className="space-y-6 rounded-lg border border-border bg-card p-4 sm:p-6">
+                    <div className="space-y-6 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 sm:p-6">
                         <div className="space-y-2">
                             <p className="text-sm font-medium">
                                 {isJa ? "検索入力（searchPlaceholder）" : "Search input (searchPlaceholder)"}
@@ -152,7 +152,7 @@ export default function I18nPage() {
             <section className="space-y-4">
                 <h2
                     id="precedence"
-                    className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+                    className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight"
                 >
                     {isJa ? "優先順位（上書き）" : "Precedence (overrides)"}
                 </h2>
@@ -162,7 +162,7 @@ export default function I18nPage() {
                         : "Resolution order is: per-instance prop > provider bundle > built-in default. Passing a string on a single instance wins over the provider’s language. The second input below stays fixed as you toggle the locale."}
                 </p>
                 <LocaleProvider locale={demo}>
-                    <div className="grid gap-4 rounded-lg border border-border bg-card p-4 sm:grid-cols-2 sm:p-6">
+                    <div className="grid gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 sm:grid-cols-2 sm:p-6">
                         <div className="space-y-2">
                             <p className="text-sm font-medium text-muted-foreground">
                                 {isJa ? "プロバイダに従う" : "Follows the provider"}
@@ -183,7 +183,7 @@ export default function I18nPage() {
             <section className="space-y-4">
                 <h2
                     id="coverage"
-                    className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+                    className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight"
                 >
                     {isJa ? "カバー範囲" : "Coverage"}
                 </h2>
@@ -202,7 +202,7 @@ export default function I18nPage() {
             <section className="space-y-4">
                 <h2
                     id="api"
-                    className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight"
+                    className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight"
                 >
                     {isJa ? "API" : "API"}
                 </h2>

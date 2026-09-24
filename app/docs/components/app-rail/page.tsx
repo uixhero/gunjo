@@ -99,7 +99,7 @@ function AppRailExample({ compact = false }: { compact?: boolean }) {
     const activeItem = allItems.find((item) => item.key === activeKey) ?? allItems[0];
 
     return (
-        <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border bg-background">
+        <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
             <AppRail>
                 {items.map((item) => (
                     <RailAction
@@ -144,7 +144,7 @@ function AppRailUnreadExample() {
     ];
 
     return (
-        <div className="flex w-full max-w-md overflow-hidden rounded-md border bg-background">
+        <div className="flex w-full max-w-md overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
             <AppRail>
                 <span className="relative inline-flex">
                     <RailAction
@@ -268,7 +268,7 @@ export function AppRailExample() {
   const activeItem = allItems.find((item) => item.key === activeKey) ?? allItems[0]
 
   return (
-    <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border bg-background">
+    <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <AppRail>
         {items.map((item) => (
           <RailAction
@@ -389,7 +389,7 @@ export function AppRailExample() {
   const activeItem = allItems.find((item) => item.key === activeKey) ?? allItems[0]
 
   return (
-    <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border bg-background">
+    <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <AppRail>
         {items.map((item) => (
           <RailAction
@@ -497,7 +497,7 @@ export function CompactAppRailExample() {
   const activeItem = allItems.find((item) => item.key === activeKey) ?? allItems[0]
 
   return (
-    <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border bg-background">
+    <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <AppRail>
         {items.map((item) => (
           <RailAction
@@ -602,7 +602,7 @@ export function CompactAppRailExample() {
   const activeItem = allItems.find((item) => item.key === activeKey) ?? allItems[0]
 
   return (
-    <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border bg-background">
+    <div className="flex h-[340px] w-full max-w-3xl overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <AppRail>
         {items.map((item) => (
           <RailAction
@@ -801,7 +801,7 @@ export default function AppRailDocPage() {
             </DocNote>
 
             <div className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
                     {statesTitle}
                 </h2>
                 <ComponentDemoStates
@@ -841,7 +841,7 @@ export default function AppRailDocPage() {
             </div>
 
             <div className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
                     {sectionLabels.props}
                 </h2>
                 <PropsTable
@@ -861,18 +861,18 @@ export default function AppRailDocPage() {
             </div>
 
             <div className="space-y-4">
-                <div className="flex items-start justify-between gap-3 border-b pb-2">
+                <div className="flex items-start justify-between gap-3 pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
                         {sectionLabels.usage}
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
             <section className="space-y-4">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
                         {isJa ? "設計の判断" : "Design decisions"}
                     </h2>

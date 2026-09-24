@@ -109,15 +109,12 @@ function NavTree({
                         key={index}
                         className={cn(
                             "relative py-4",
-                            index > 0 && "border-t border-border/40"
+                            index > 0 && "border-t border-border"
                         )}
                     >
-                        {sectionActive ? (
-                            <div
-                                aria-hidden="true"
-                                className="absolute inset-y-4 -left-3 w-0.5 rounded-full bg-primary"
-                            />
-                        ) : null}
+                        {/* いまの節は見出しの色で示す。以前は節の左に縦の色帯を置いていたが、
+                            ナビを面（bg-card）にしたら帯が面の左端に乗り、左端の色帯
+                            （DECISIONS.md 2026-08-16 で禁止）そのものになったので外した。 */}
                         <h4 className="mb-3 px-2 text-[11px] font-bold uppercase tracking-[0.08em]">
                             {sectionLandingHref ? (
                                 <Link
@@ -125,7 +122,7 @@ function NavTree({
                                     onClick={onNavigate}
                                     className={cn(
                                         "inline-flex items-baseline gap-1.5 rounded-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
-                                        sectionActive ? "text-foreground" : "text-foreground/95 hover:text-foreground"
+                                        sectionActive ? "text-primary-strong" : "text-foreground/95 hover:text-foreground"
                                     )}
                                 >
                                     {sectionHeaderContent}
@@ -134,7 +131,7 @@ function NavTree({
                                 <span
                                     className={cn(
                                         "inline-flex items-baseline gap-1.5",
-                                        sectionActive ? "text-foreground" : "text-foreground/95"
+                                        sectionActive ? "text-primary-strong" : "text-foreground/95"
                                     )}
                                 >
                                     {sectionHeaderContent}
@@ -249,13 +246,13 @@ export function Sidebar() {
         <SidebarProvider>
             <UISidebar
                 className={cn(
-                    "hidden h-full w-full shrink-0 border-r-0 border-border/40 bg-transparent md:flex"
+                    "hidden h-full w-full shrink-0 rounded-xl bg-card border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] md:flex"
                 )}
             >
                 <SidebarBody
                     ref={bodyRef}
                     onScroll={handleScroll}
-                    className="min-h-0 gap-0 px-0 py-4 pr-6"
+                    className="min-h-0 gap-0 px-3 py-4"
                 >
                     <NavTree pathname={pathname} />
                 </SidebarBody>

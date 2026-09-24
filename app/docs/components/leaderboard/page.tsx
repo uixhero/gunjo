@@ -122,13 +122,13 @@ function LeaderboardDetailPanel({
   value: React.ReactNode;
 }) {
   return (
-    <div className="min-w-0 rounded-lg border border-primary bg-background p-3 text-sm shadow-sm">
+    <div className="min-w-0 rounded-lg border border-transparent contrast-more:border-primary forced-colors:border-[CanvasText] bg-card p-3 text-sm shadow-sm">
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="truncate text-base font-semibold text-foreground">{item.label}</p>
           {item.sublabel != null ? <p className="mt-1 text-xs text-muted-foreground">{item.sublabel}</p> : null}
         </div>
-        <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">
+        <Badge variant="outline" className="shrink-0 bg-background text-foreground shadow-sm">
           {detail.status}
         </Badge>
       </div>
@@ -235,8 +235,8 @@ function LeaderboardPreview({ locale, variant = "worst" }: { locale: Locale; var
       ref={setPortalContainer}
       className={
         isCompactLayout
-          ? "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-visible rounded-lg border bg-card p-4"
-          : "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-hidden rounded-lg border bg-card p-4 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]"
+          ? "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-visible rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4"
+          : "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]"
       }
     >
       <Leaderboard
@@ -275,7 +275,7 @@ function LeaderboardPreview({ locale, variant = "worst" }: { locale: Locale; var
         </SheetContent>
       </Sheet>
       {!isCompactLayout && selectedItem && selectedDetail ? (
-        <aside className="hidden min-w-0 rounded-lg border bg-muted/20 p-3 lg:block">
+        <aside className="hidden min-w-0 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 lg:block">
           <h3 className="mb-3 text-sm font-semibold text-foreground">{copy.detailTitle}</h3>
           <LeaderboardDetailPanel copy={copy} item={selectedItem} detail={selectedDetail} value={formattedValue(selectedItem)} />
         </aside>
@@ -515,8 +515,8 @@ export function IncidentLeaderboard() {
       ref={setPortalContainer}
       className={
         isCompactLayout
-          ? "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-visible rounded-lg border bg-card p-4"
-          : "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-hidden rounded-lg border bg-card p-4 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]"
+          ? "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-visible rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4"
+          : "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]"
       }
     >
       <Leaderboard
@@ -545,7 +545,7 @@ export function IncidentLeaderboard() {
           </SheetHeader>
           {selectedRoute && selectedDetail ? (
             <div className="mt-4">
-              <div className="min-w-0 rounded-lg border border-primary bg-background p-3 text-sm shadow-sm">
+              <div className="min-w-0 rounded-lg border border-transparent contrast-more:border-primary forced-colors:border-[CanvasText] bg-card p-3 text-sm shadow-sm">
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="truncate text-base font-semibold text-foreground">{selectedRoute.label}</p>
@@ -553,7 +553,7 @@ export function IncidentLeaderboard() {
                   </div>
                   <Badge
                     variant="outline"
-                    className="shrink-0 border-border bg-background text-foreground shadow-sm"
+                    className="shrink-0 bg-background text-foreground shadow-sm"
                   >{selectedDetail.status}</Badge>
                 </div>
                 <dl className="mt-3 grid gap-2 text-xs">
@@ -600,9 +600,9 @@ export function IncidentLeaderboard() {
         </SheetContent>
       </Sheet>
       {!isCompactLayout && selectedRoute && selectedDetail ? (
-        <aside className="hidden min-w-0 rounded-lg border bg-muted/20 p-3 lg:block">
+        <aside className="hidden min-w-0 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 lg:block">
           <h3 className="mb-3 text-sm font-semibold text-foreground">ランキング詳細</h3>
-          <div className="min-w-0 rounded-lg border border-primary bg-background p-3 text-sm shadow-sm">
+          <div className="min-w-0 rounded-lg border border-transparent contrast-more:border-primary forced-colors:border-[CanvasText] bg-card p-3 text-sm shadow-sm">
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="truncate text-base font-semibold text-foreground">{selectedRoute.label}</p>
@@ -610,7 +610,7 @@ export function IncidentLeaderboard() {
               </div>
               <Badge
                 variant="outline"
-                className="shrink-0 border-border bg-background text-foreground shadow-sm"
+                className="shrink-0 bg-background text-foreground shadow-sm"
               >{selectedDetail.status}</Badge>
             </div>
             <dl className="mt-3 grid gap-2 text-xs">
@@ -830,8 +830,8 @@ export function IncidentLeaderboard() {
       ref={setPortalContainer}
       className={
         isCompactLayout
-          ? "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-visible rounded-lg border bg-card p-4"
-          : "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-hidden rounded-lg border bg-card p-4 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]"
+          ? "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-visible rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4"
+          : "relative grid w-full max-w-5xl grid-cols-[minmax(0,1fr)] gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 lg:grid-cols-[minmax(0,1fr)_minmax(260px,320px)]"
       }
     >
       <Leaderboard
@@ -860,7 +860,7 @@ export function IncidentLeaderboard() {
           </SheetHeader>
           {selectedRoute && selectedDetail ? (
             <div className="mt-4">
-              <div className="min-w-0 rounded-lg border border-primary bg-background p-3 text-sm shadow-sm">
+              <div className="min-w-0 rounded-lg border border-transparent contrast-more:border-primary forced-colors:border-[CanvasText] bg-card p-3 text-sm shadow-sm">
                 <div className="flex items-start justify-between gap-3">
                   <div className="min-w-0">
                     <p className="truncate text-base font-semibold text-foreground">{selectedRoute.label}</p>
@@ -868,7 +868,7 @@ export function IncidentLeaderboard() {
                   </div>
                   <Badge
                     variant="outline"
-                    className="shrink-0 border-border bg-background text-foreground shadow-sm"
+                    className="shrink-0 bg-background text-foreground shadow-sm"
                   >{selectedDetail.status}</Badge>
                 </div>
                 <dl className="mt-3 grid gap-2 text-xs">
@@ -915,9 +915,9 @@ export function IncidentLeaderboard() {
         </SheetContent>
       </Sheet>
       {!isCompactLayout && selectedRoute && selectedDetail ? (
-        <aside className="hidden min-w-0 rounded-lg border bg-muted/20 p-3 lg:block">
+        <aside className="hidden min-w-0 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 lg:block">
           <h3 className="mb-3 text-sm font-semibold text-foreground">Ranking details</h3>
-          <div className="min-w-0 rounded-lg border border-primary bg-background p-3 text-sm shadow-sm">
+          <div className="min-w-0 rounded-lg border border-transparent contrast-more:border-primary forced-colors:border-[CanvasText] bg-card p-3 text-sm shadow-sm">
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="truncate text-base font-semibold text-foreground">{selectedRoute.label}</p>
@@ -925,7 +925,7 @@ export function IncidentLeaderboard() {
               </div>
               <Badge
                 variant="outline"
-                className="shrink-0 border-border bg-background text-foreground shadow-sm"
+                className="shrink-0 bg-background text-foreground shadow-sm"
               >{selectedDetail.status}</Badge>
             </div>
             <dl className="mt-3 grid gap-2 text-xs">
@@ -1008,7 +1008,7 @@ export function IncidentLeaderboard() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
           {locale === "ja" ? "状態とバリエーション" : "States and variants"}
         </h2>
         <ComponentDemoStates
@@ -1042,20 +1042,20 @@ export function IncidentLeaderboard() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
           {sectionLabels.props}
         </h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
             {sectionLabels.usage}
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

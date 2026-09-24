@@ -334,7 +334,7 @@ function FilterStateSummary({ locale }: { locale: "ja" | "en" }) {
     ];
 
     return (
-        <div className="space-y-2 rounded-md border border-border/70 bg-muted/20 p-3">
+        <div className="space-y-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
             {states.map((state) => (
                 <div
                     key={state.label}
@@ -347,7 +347,7 @@ function FilterStateSummary({ locale }: { locale: "ja" | "en" }) {
                     </div>
                     <div
                         className={cn(
-                            "inline-flex h-9 w-40 max-w-full items-center justify-between gap-2 justify-self-start rounded-md border px-3 py-2 text-sm font-medium",
+                            "inline-flex h-9 w-40 max-w-full items-center justify-between gap-2 justify-self-start rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-3 py-2 text-sm font-medium",
                             state.className
                         )}
                     >
@@ -451,7 +451,7 @@ export function StatusFilterButton() {
 
             <section className="space-y-4">
                 <div className="space-y-2">
-                    <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+                    <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
                         {locale === "ja" ? "状態とバリエーション" : "States and Variants"}
                     </h2>
                     <p className="text-sm leading-relaxed text-muted-foreground">
@@ -498,25 +498,25 @@ export function StatusFilterButton() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
                     {locale === "ja" ? "プロパティ" : sectionLabels.props}
                 </h2>
                 <PropsTable data={propsData} />
             </section>
 
             <section className="space-y-4">
-                <div className="flex items-start justify-between gap-3 border-b pb-2">
+                <div className="flex items-start justify-between gap-3 pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
                         {locale === "ja" ? "使い方" : sectionLabels.usage}
                     </h2>
                     <CodeCopyButton code={localizedUsageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={localizedUsageCode} />
                 </div>
             </section>
             <section className="space-y-4">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
                         {locale === "ja" ? "設計の判断" : "Design decisions"}
                     </h2>

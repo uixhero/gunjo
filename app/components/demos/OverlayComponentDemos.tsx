@@ -300,7 +300,7 @@ export function AlertDialogAuditDemo({ variant = "destructive" }: AlertDialogAud
                                 : "Assets in this folder will be moved to Uncategorized. This action cannot be undone."}
                         </AlertDialogDescription>
                     </AlertDialogHeader>
-                    <div className="rounded-md border bg-muted/50 px-3 py-2 text-sm font-medium">
+                    <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm font-medium">
                         {isJa ? "Web サイト素材" : "Website assets"}
                     </div>
                     <AlertDialogFooter>
@@ -440,7 +440,7 @@ export function DialogAuditDemo({ variant = "form" }: DialogAuditDemoProps) {
                                     : "Review a summary of included changes and impact before publishing."}
                             </DialogDescription>
                         </DialogHeader>
-                        <div className="grid gap-3 rounded-md border bg-muted/30 p-3 text-sm sm:grid-cols-2">
+                        <div className="grid gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm sm:grid-cols-2">
                             <div>
                                 <p className="font-medium">{isJa ? "含まれる変更" : "Included changes"}</p>
                                 <p className="mt-1 text-muted-foreground">
@@ -596,7 +596,7 @@ export function SplitDropdownMenuAuditDemo() {
 
     return (
         <DropdownMenu>
-            <div className="inline-flex overflow-hidden rounded-md border bg-background shadow-sm">
+            <div className="inline-flex overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-sm">
                 <Button variant="ghost" className="h-9 rounded-none border-0 px-3">
                     {isJa ? "公開" : "Publish"}
                 </Button>
@@ -753,7 +753,7 @@ export function FloatingPanelAuditDemo({ variant = "canvas" }: { variant?: Float
 
     if (variant === "interactive") {
         return (
-            <div className="relative min-h-[420px] w-full overflow-hidden rounded-lg border bg-muted/30 p-4 sm:p-6">
+            <div className="relative min-h-[420px] w-full overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 sm:p-6">
                 <div
                     className="grid h-full min-h-[380px] place-items-center rounded-md border border-dashed bg-background/70 text-sm text-muted-foreground"
                     style={dottedCanvasStyle}
@@ -790,7 +790,7 @@ export function FloatingPanelAuditDemo({ variant = "canvas" }: { variant?: Float
 
     if (variant === "toolbar") {
         return (
-            <div className="relative min-h-[260px] w-full overflow-hidden rounded-lg border bg-muted/30 p-4">
+            <div className="relative min-h-[260px] w-full overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4">
                 <div
                     className="grid h-full min-h-[220px] place-items-center rounded-md border border-dashed bg-background/70 text-sm text-muted-foreground"
                     style={dottedCanvasStyle}
@@ -830,7 +830,7 @@ export function FloatingPanelAuditDemo({ variant = "canvas" }: { variant?: Float
 
     if (variant === "status") {
         return (
-            <div className="relative min-h-[300px] w-full overflow-hidden rounded-lg border bg-muted/30 p-4">
+            <div className="relative min-h-[300px] w-full overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4">
                 <div
                     className="grid h-full min-h-[260px] place-items-center rounded-md border border-dashed bg-background/70 text-sm text-muted-foreground"
                     style={dottedCanvasStyle}
@@ -874,7 +874,7 @@ export function FloatingPanelAuditDemo({ variant = "canvas" }: { variant?: Float
     }
 
     return (
-        <div className="relative min-h-[420px] w-full overflow-hidden rounded-lg border bg-muted/30 p-4 sm:p-6">
+        <div className="relative min-h-[420px] w-full overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 sm:p-6">
             <div
                 className="grid h-full min-h-[380px] place-items-center rounded-md border border-dashed bg-background/70 text-sm text-muted-foreground"
                 style={dottedCanvasStyle}

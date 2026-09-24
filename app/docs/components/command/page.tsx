@@ -32,7 +32,7 @@ function CommandExample() {
     const isJa = locale === "ja";
 
     return (
-        <Command className="w-full max-w-[720px] rounded-lg border shadow-md">
+        <Command className="w-full max-w-[720px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-md">
             <CommandInput
                 placeholder={isJa ? "コマンドまたは検索語を入力..." : "Type a command or search..."}
                 clearable
@@ -87,7 +87,7 @@ function EmptyCommandSearch() {
     }, [isJa]);
 
     return (
-        <Command className="w-full max-w-[720px] rounded-lg border shadow-md">
+        <Command className="w-full max-w-[720px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-md">
             <CommandInput
                 value={search}
                 onValueChange={setSearch}
@@ -124,7 +124,7 @@ function DisabledCommandItems() {
         : "Ask a workspace administrator to grant the admin role before using this item.";
 
     return (
-        <Command className="w-full max-w-[720px] rounded-lg border shadow-md">
+        <Command className="w-full max-w-[720px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-md">
             <CommandInput
                 placeholder={isJa ? "コマンドまたは検索語を入力..." : "Type a command or search..."}
                 clearable
@@ -178,7 +178,7 @@ import {
 
 export function CommandExample() {
   return (
-    <Command className="w-full max-w-[720px] rounded-lg border shadow-md">
+    <Command className="w-full max-w-[720px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-md">
       <CommandInput
         placeholder="コマンドまたは検索語を入力..."
         clearable
@@ -243,7 +243,7 @@ import {
 
 export function CommandExample() {
   return (
-    <Command className="w-full max-w-[720px] rounded-lg border shadow-md">
+    <Command className="w-full max-w-[720px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-md">
       <CommandInput
         placeholder="Type a command or search..."
         clearable
@@ -311,7 +311,7 @@ export function EmptyCommandSearch() {
   const [search, setSearch] = React.useState("存在しない項目")
 
   return (
-    <Command className="w-full max-w-[720px] rounded-lg border shadow-md">
+    <Command className="w-full max-w-[720px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-md">
       <CommandInput
         value={search}
         onValueChange={setSearch}
@@ -360,7 +360,7 @@ export function EmptyCommandSearch() {
   const [search, setSearch] = React.useState("Missing item")
 
   return (
-    <Command className="w-full max-w-[720px] rounded-lg border shadow-md">
+    <Command className="w-full max-w-[720px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-md">
       <CommandInput
         value={search}
         onValueChange={setSearch}
@@ -405,7 +405,7 @@ export function DisabledCommandItems() {
   const disabledReason = "管理者ロールを付与すると選択できます。ワークスペース管理者に依頼してください。"
 
   return (
-    <Command className="w-full max-w-[720px] rounded-lg border shadow-md">
+    <Command className="w-full max-w-[720px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-md">
       <CommandInput
         placeholder="コマンドまたは検索語を入力..."
         clearable
@@ -450,7 +450,7 @@ export function DisabledCommandItems() {
   const disabledReason = "Ask a workspace administrator to grant the admin role before using this item."
 
   return (
-    <Command className="w-full max-w-[720px] rounded-lg border shadow-md">
+    <Command className="w-full max-w-[720px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-md">
       <CommandInput
         placeholder="Type a command or search..."
         clearable
@@ -523,7 +523,7 @@ export default function CommandPage() {
             </ComponentPreview>
 
             <div className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
                     {statesTitle}
                 </h2>
                 <ComponentDemoStates
@@ -563,7 +563,7 @@ export default function CommandPage() {
             </div>
 
             <div className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
                     {sectionLabels.props}
                 </h2>
 
@@ -664,13 +664,13 @@ export default function CommandPage() {
             </div>
 
             <div className="space-y-4">
-                <div className="flex items-start justify-between gap-3 border-b pb-2">
+                <div className="flex items-start justify-between gap-3 pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
                         {sectionLabels.usage}
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

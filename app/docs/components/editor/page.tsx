@@ -14,9 +14,9 @@ const usageCode = `import { EditorTemplate } from "@gunjo/ui";
 export function EditorPage() {
   return (
     <EditorTemplate
-        topBar={<div className="h-14 border-b flex items-center px-4">Toolbar</div>}
-        leftPanel={<div className="w-64 border-r h-full p-4">Layers</div>}
-        rightPanel={<div className="w-72 border-l h-full p-4">Properties</div>}
+        topBar={<div className="h-14 flex items-center px-4">Toolbar</div>}
+        leftPanel={<div className="w-64 h-full p-4">Layers</div>}
+        rightPanel={<div className="w-72 h-full p-4">Properties</div>}
     >
         <div className="flex-1 bg-muted/50 flex items-center justify-center">
             Canvas Area
@@ -58,7 +58,7 @@ export default function EditorPage() {
 
     const canvas = (
         <div className="flex items-center justify-center p-10">
-            <div className="rounded-lg border bg-background px-16 py-12 text-sm text-muted-foreground">
+            <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-16 py-12 text-sm text-muted-foreground">
                 {locale === "ja" ? "アートボード" : "Artboard"}
             </div>
         </div>
@@ -117,13 +117,13 @@ export default function EditorPage() {
             ]}
         >
             <ComponentPreview embedSrc="/embed/editor" code={usageCode} fullPagePreview codeBlock={<CodeBlock code={usageCode} />}>
-                <div className="w-full overflow-hidden rounded-lg border shadow-sm">
+                <div className="w-full overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-sm">
                     <EditorTemplateDemo />
                 </div>
             </ComponentPreview>
 
             <div className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
                     {locale === "ja" ? "状態とバリエーション" : "States and variants"}
                 </h2>
                 <p className="text-sm leading-relaxed text-muted-foreground">
@@ -189,7 +189,7 @@ export function FullEditor() {
       }
     >
       <div className="flex items-center justify-center p-10">
-        <div className="rounded-lg border bg-background px-16 py-12 text-sm text-muted-foreground">
+        <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-16 py-12 text-sm text-muted-foreground">
           アートボード
         </div>
       </div>
@@ -225,7 +225,7 @@ export function FullEditor() {
       }
     >
       <div className="flex items-center justify-center p-10">
-        <div className="rounded-lg border bg-background px-16 py-12 text-sm text-muted-foreground">
+        <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-16 py-12 text-sm text-muted-foreground">
           Artboard
         </div>
       </div>
@@ -265,7 +265,7 @@ export function EditorWithoutInspector() {
       }
     >
       <div className="flex items-center justify-center p-10">
-        <div className="rounded-lg border bg-background px-16 py-12 text-sm text-muted-foreground">
+        <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-16 py-12 text-sm text-muted-foreground">
           アートボード
         </div>
       </div>
@@ -292,7 +292,7 @@ export function EditorWithoutInspector() {
       }
     >
       <div className="flex items-center justify-center p-10">
-        <div className="rounded-lg border bg-background px-16 py-12 text-sm text-muted-foreground">
+        <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-16 py-12 text-sm text-muted-foreground">
           Artboard
         </div>
       </div>
@@ -326,7 +326,7 @@ export function CanvasOnlyEditor() {
       }
     >
       <div className="flex items-center justify-center p-10">
-        <div className="rounded-lg border bg-background px-16 py-12 text-sm text-muted-foreground">
+        <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-16 py-12 text-sm text-muted-foreground">
           アートボード
         </div>
       </div>
@@ -347,7 +347,7 @@ export function CanvasOnlyEditor() {
       }
     >
       <div className="flex items-center justify-center p-10">
-        <div className="rounded-lg border bg-background px-16 py-12 text-sm text-muted-foreground">
+        <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-16 py-12 text-sm text-muted-foreground">
           Artboard
         </div>
       </div>

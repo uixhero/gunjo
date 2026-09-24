@@ -181,13 +181,13 @@ export default function MarkdownRendererPage() {
             ]}
         >
             <ComponentPreview code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="md" previewHeight="auto">
-                <div className="w-full rounded-lg border bg-background p-5">
+                <div className="w-full rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-5">
                     <MarkdownRenderer content={markdownByLocale[locale]} />
                 </div>
             </ComponentPreview>
 
             <div className="space-y-4">
-                <h2 id="gfm-overview" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">
+                <h2 id="gfm-overview" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
                     {locale === "ja" ? "GFM とは" : "What GFM Means"}
                 </h2>
                 <DocNote heading={locale === "ja" ? "GitHub Flavored Markdown の拡張" : "GitHub Flavored Markdown extensions"}>
@@ -198,7 +198,7 @@ export default function MarkdownRendererPage() {
             </div>
 
             <div className="space-y-4">
-                <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">
+                <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
                     {locale === "ja" ? "状態とバリエーション" : "States and variants"}
                 </h2>
                 <ComponentDemoStates
@@ -210,7 +210,7 @@ export default function MarkdownRendererPage() {
                                 ? "表やチェックリストは標準で有効です。"
                                 : "Tables and task lists are enabled by default.",
                             preview: (
-                                <div className="w-full max-w-xl rounded-lg border bg-background p-5">
+                                <div className="w-full max-w-xl p-5">
                                     <MarkdownRenderer content={tableMarkdownByLocale[locale]} />
                                 </div>
                             ),
@@ -223,7 +223,7 @@ export default function MarkdownRendererPage() {
                                 ? "GFM を無効にすると、表は通常のテキストとして残り、チェックリストは [x] / [ ] を含む通常の箇条書きとして表示されます。"
                                 : "When GFM is disabled, tables remain plain text and task lists render as regular list items with [x] / [ ] text.",
                             preview: (
-                                <div className="w-full max-w-xl rounded-lg border bg-background p-5">
+                                <div className="w-full max-w-xl p-5">
                                     <MarkdownRenderer content={tableMarkdownByLocale[locale]} disableGfm />
                                 </div>
                             ),
@@ -236,7 +236,7 @@ export default function MarkdownRendererPage() {
                                 ? "components に渡した要素だけが差し替わり、残りは既定のまま描かれます。引用を DocNote にすると、原稿は Markdown のままで見た目だけがアプリの注意書きになります。"
                                 : "Only the elements named in components are replaced; the rest keep the defaults. Mapping blockquote to DocNote turns quotes into the app's own callout while the source stays plain Markdown.",
                             preview: (
-                                <div className="w-full max-w-xl rounded-lg border bg-background p-5">
+                                <div className="w-full max-w-xl p-5">
                                     <MarkdownRenderer
                                         content={calloutMarkdownByLocale[locale]}
                                         components={{
@@ -252,20 +252,20 @@ export default function MarkdownRendererPage() {
             </div>
 
             <div className="space-y-4">
-                <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">
+                <h2 id="props" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
                     {sectionLabels.props}
                 </h2>
                 <PropsTable data={propsByLocale[locale]} />
             </div>
 
             <div className="space-y-4">
-                <div className="flex items-center justify-between gap-3 border-b pb-2">
+                <div className="flex items-center justify-between gap-3 pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

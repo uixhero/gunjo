@@ -114,7 +114,7 @@ function OpenSlotCard({ locale }: { locale: Locale }) {
 function LessonDetail({ entry, locale }: { entry: ScheduleEntry; locale: Locale }) {
   return (
     <div className="grid gap-4 text-sm">
-      <div className="rounded-md border bg-muted/30 p-3">
+      <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
         <p className="text-xs font-medium text-muted-foreground">{locale === "ja" ? "予定" : "Event"}</p>
         <p className="mt-1 text-base font-semibold text-foreground">{entry.subject}</p>
         <p className="text-muted-foreground">{entry.detail}</p>
@@ -130,7 +130,7 @@ function LessonDetail({ entry, locale }: { entry: ScheduleEntry; locale: Locale 
         </div>
       </dl>
       {entry.tone === "destructive" ? (
-        <div className="rounded-md border border-destructive-border bg-destructive-subtle p-3 text-destructive">
+        <div className="rounded-md border border-transparent contrast-more:border-destructive-border forced-colors:border-[CanvasText] bg-destructive-subtle p-3 text-destructive">
           {locale === "ja" ? "同じ担当者に重複した授業があります。担当者または時限を調整してください。" : "This teacher has a scheduling conflict. Adjust the teacher or period."}
         </div>
       ) : null}
@@ -142,7 +142,7 @@ function LessonDetail({ entry, locale }: { entry: ScheduleEntry; locale: Locale 
 function CreateLessonForm({ entry, locale }: { entry: ScheduleEntry; locale: Locale }) {
   return (
     <div className="grid gap-4">
-      <div className="rounded-md border bg-muted/30 p-3 text-sm text-muted-foreground">
+      <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm text-muted-foreground">
         {locale === "ja" ? "この空き枠に登録する授業を入力します。" : "Enter the lesson to place in this open slot."}
       </div>
       <label className="grid gap-1.5 text-sm font-medium">
@@ -224,7 +224,7 @@ function ScheduleGridPreview({ locale, mode = "default" }: { locale: Locale; mod
     : locale === "ja" ? "予定の詳細" : "Event details";
 
   return (
-    <div ref={rootRef} className="relative flex w-full max-w-3xl flex-col gap-3 overflow-hidden rounded-lg border bg-card p-4">
+    <div ref={rootRef} className="relative flex w-full max-w-3xl flex-col gap-3 overflow-hidden p-4">
       <ScheduleGrid
         label={locale === "ja" ? "2年A組 週間時間割" : "Class 2-A weekly timetable"}
         cornerLabel={locale === "ja" ? "時限" : "Period"}
@@ -331,7 +331,7 @@ export function WeeklyTimetable() {
   ];
 
   return (
-    <div ref={rootRef} className="relative flex w-full max-w-3xl flex-col gap-3 overflow-hidden rounded-lg border bg-card p-4">
+    <div ref={rootRef} className="relative flex w-full max-w-3xl flex-col gap-3 overflow-hidden p-4">
       <ScheduleGrid label="2年A組 週間時間割" cornerLabel="時限" rows={rows} columns={columns} cells={cells} emptyLabel="空き" unavailableLabel="利用不可" />
       <Sheet modal={false} open={selected != null} onOpenChange={(open) => !open && setSelected(null)}>
         <SheetContent side={isLargeViewport ? "right" : "bottom"} portalContainer={portalContainer} className="overflow-y-auto p-4">
@@ -422,7 +422,7 @@ export function WeeklyTimetable() {
   ];
 
   return (
-    <div ref={rootRef} className="relative flex w-full max-w-3xl flex-col gap-3 overflow-hidden rounded-lg border bg-card p-4">
+    <div ref={rootRef} className="relative flex w-full max-w-3xl flex-col gap-3 overflow-hidden p-4">
       <ScheduleGrid label="Class 2-A weekly timetable" cornerLabel="Period" rows={rows} columns={columns} cells={cells} emptyLabel="Empty" unavailableLabel="Unavailable" />
       <Sheet modal={false} open={selected != null} onOpenChange={(open) => !open && setSelected(null)}>
         <SheetContent side={isLargeViewport ? "right" : "bottom"} portalContainer={portalContainer} className="overflow-y-auto p-4">
@@ -469,7 +469,7 @@ export function WeeklyTimetable() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">{locale === "ja" ? "状態とバリエーション" : "States and variants"}</h2>
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">{locale === "ja" ? "状態とバリエーション" : "States and variants"}</h2>
         <ComponentDemoStates
           states={[
             { key: "matrix", title: locale === "ja" ? "予定表" : "Timetable", description: locale === "ja" ? "予定セルは詳細 Sheet、空きセルは予定追加 Sheet を開きます。" : "Scheduled cells open details; open slots open an add-lesson sheet.", preview: <ScheduleGridPreview locale={locale} />, code: usageCode, previewBodyWidth: "xl" },
@@ -480,16 +480,16 @@ export function WeeklyTimetable() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">{sectionLabels.props}</h2>
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">{sectionLabels.props}</h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">{sectionLabels.usage}</h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

@@ -24,7 +24,7 @@ export function ShapeInspector() {
   return (
     <InspectorPanel
       title="Rectangle 1"
-      className="h-[420px] w-[320px] rounded-lg border shadow-sm"
+      className="h-[420px] w-[320px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-sm"
       footer={
         <HStack justify="between" className="w-full">
           <Button variant="ghost" size="sm">Reset</Button>
@@ -64,7 +64,7 @@ export function ShapeInspector() {
   return (
     <InspectorPanel
       title="長方形 1"
-      className="h-[420px] w-[320px] rounded-lg border shadow-sm"
+      className="h-[420px] w-[320px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-sm"
       footer={
         <HStack justify="between" className="w-full">
           <Button variant="ghost" size="sm">リセット</Button>
@@ -105,7 +105,7 @@ export function TextLayerInspector() {
   return (
     <InspectorPanel
       title="Text layer"
-      className="h-[320px] w-[280px] rounded-lg border"
+      className="h-[320px] w-[280px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]"
     >
       <InspectorSection title="Typography">
         <InspectorField label="Font size">
@@ -130,9 +130,9 @@ export function TextLayerInspector() {
 export function ImageSettingsInspector() {
   return (
     <InspectorPanel
-      className="h-[360px] w-[320px] rounded-lg border"
+      className="h-[360px] w-[320px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]"
       header={
-        <HStack justify="between" className="border-b bg-muted/30 px-4 py-3">
+        <HStack justify="between" className="border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-4 py-3">
           <span className="text-sm font-semibold">Image settings</span>
           <Button size="sm" variant="outline">Replace</Button>
         </HStack>
@@ -155,7 +155,7 @@ export function ReadOnlyMetadataInspector() {
   return (
     <InspectorPanel
       title="Read-only metadata"
-      className="h-[280px] w-[320px] rounded-lg border"
+      className="h-[280px] w-[320px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]"
     >
       <InspectorSection title="Details">
         <dl className="grid gap-2 text-sm">
@@ -185,7 +185,7 @@ export function TextLayerInspector() {
   return (
     <InspectorPanel
       title="テキストレイヤー"
-      className="h-[320px] w-[280px] rounded-lg border"
+      className="h-[320px] w-[280px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]"
     >
       <InspectorSection title="タイポグラフィ">
         <InspectorField label="文字サイズ">
@@ -210,9 +210,9 @@ export function TextLayerInspector() {
 export function ImageSettingsInspector() {
   return (
     <InspectorPanel
-      className="h-[360px] w-[320px] rounded-lg border"
+      className="h-[360px] w-[320px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]"
       header={
-        <HStack justify="between" className="border-b bg-muted/30 px-4 py-3">
+        <HStack justify="between" className="border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-4 py-3">
           <span className="text-sm font-semibold">画像設定</span>
           <Button size="sm" variant="outline">差し替え</Button>
         </HStack>
@@ -235,7 +235,7 @@ export function ReadOnlyMetadataInspector() {
   return (
     <InspectorPanel
       title="読み取り専用メタデータ"
-      className="h-[280px] w-[320px] rounded-lg border"
+      className="h-[280px] w-[320px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]"
     >
       <InspectorSection title="詳細">
         <dl className="grid gap-2 text-sm">
@@ -260,7 +260,7 @@ function ShapeInspectorPreview() {
     return (
         <InspectorPanel
             title={locale === "ja" ? "長方形 1" : "Rectangle 1"}
-            className="h-[420px] w-[320px] rounded-lg border shadow-sm"
+            className="h-[420px] w-[320px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-sm"
             footer={
                 <HStack justify="between" className="w-full">
                     <Button variant="ghost" size="sm">{locale === "ja" ? "リセット" : "Reset"}</Button>
@@ -334,7 +334,7 @@ export default function InspectorPanelPage() {
 
             <section className="space-y-6">
                 <div className="space-y-1">
-                    <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+                    <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">
                         {locale === "ja" ? "状態とバリエーション" : "States and Variants"}
                     </h2>
                 </div>
@@ -357,7 +357,7 @@ export default function InspectorPanelPage() {
                             code: stateCodeByLocale[locale].compact,
                             previewBodyWidth: "md",
                             preview: (
-                                <InspectorPanel title={locale === "ja" ? "テキストレイヤー" : "Text layer"} className="h-[320px] w-[280px] rounded-lg border">
+                                <InspectorPanel title={locale === "ja" ? "テキストレイヤー" : "Text layer"} className="h-[320px] w-[280px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                                     <InspectorSection title={locale === "ja" ? "タイポグラフィ" : "Typography"}>
                                         <InspectorField label={locale === "ja" ? "文字サイズ" : "Font size"}><Input defaultValue="16" className="h-8 w-full min-w-0" /></InspectorField>
                                         <InspectorField label={locale === "ja" ? "太さ" : "Weight"}><Input defaultValue="Medium" className="h-8 w-full min-w-0" /></InspectorField>
@@ -373,9 +373,9 @@ export default function InspectorPanelPage() {
                             previewBodyWidth: "md",
                             preview: (
                                 <InspectorPanel
-                                    className="h-[360px] w-[320px] rounded-lg border"
+                                    className="h-[360px] w-[320px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]"
                                     header={
-                                        <HStack justify="between" className="border-b bg-muted/30 px-4 py-3">
+                                        <HStack justify="between" className="border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-4 py-3">
                                             <span className="text-sm font-semibold">{locale === "ja" ? "画像設定" : "Image settings"}</span>
                                             <Button size="sm" variant="outline">{locale === "ja" ? "差し替え" : "Replace"}</Button>
                                         </HStack>
@@ -396,7 +396,7 @@ export default function InspectorPanelPage() {
                             code: stateCodeByLocale[locale].footerless,
                             previewBodyWidth: "md",
                             preview: (
-                                <InspectorPanel title={locale === "ja" ? "読み取り専用メタデータ" : "Read-only metadata"} className="h-[280px] w-[320px] rounded-lg border">
+                                <InspectorPanel title={locale === "ja" ? "読み取り専用メタデータ" : "Read-only metadata"} className="h-[280px] w-[320px] rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                                     <InspectorSection title={locale === "ja" ? "詳細" : "Details"}>
                                         <dl className="grid gap-2 text-sm">
                                             <div className="flex justify-between gap-4"><dt className="text-muted-foreground">{locale === "ja" ? "形式" : "Type"}</dt><dd>PNG</dd></div>
@@ -411,21 +411,21 @@ export default function InspectorPanelPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "プロパティ" : "Props"}</h2>
+                <h2 id="props" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "プロパティ" : "Props"}</h2>
                 <PropsTable data={propsData} />
             </section>
 
             <section className="space-y-4">
-                <div className="flex items-start justify-between gap-3 border-b pb-2">
+                <div className="flex items-start justify-between gap-3 pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>
             <section className="space-y-4">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
                         {locale === "ja" ? "設計の判断" : "Design decisions"}
                     </h2>

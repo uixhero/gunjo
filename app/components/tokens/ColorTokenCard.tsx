@@ -123,7 +123,7 @@ export function ColorTokenCard({
             <div
                 ref={swatchRef}
                 className={cn(
-                    "relative h-24 w-full overflow-hidden rounded-md border border-border/40 shadow-sm",
+                    "relative h-24 w-full overflow-hidden rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-sm",
                     swatchClass
                 )}
             >

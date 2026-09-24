@@ -278,7 +278,7 @@ export function UixheroRationaleLinks({
                         href={item.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-1 rounded-md border border-transparent bg-secondary px-2.5 py-0.5 text-xs font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
+                        className="inline-flex items-center gap-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-secondary px-2.5 py-0.5 text-xs font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2"
                     >
                         {item.label}
                         {item.relation === "nearest" || item.relation === "unwritten" ? (
@@ -295,7 +295,7 @@ export function UixheroRationaleLinks({
 }
 
 const REFERENCE_CHIP =
-    "inline-flex items-center rounded-md border border-transparent bg-secondary px-2.5 py-0.5 text-xs font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2";
+    "inline-flex items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-secondary px-2.5 py-0.5 text-xs font-semibold text-secondary-foreground transition-colors hover:bg-secondary/80 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2";
 
 function ComponentReferenceSection({
     id,
@@ -620,13 +620,13 @@ export function ComponentPreview({ codeBlock, children, className, sectionLabels
                         <TabsList className="min-w-0 shrink justify-start rounded-none bg-transparent p-0">
                             <TabsTrigger
                                 value="preview"
-                                className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+                                className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=active]:shadow-none"
                             >
                                 {previewLabel}
                             </TabsTrigger>
                             <TabsTrigger
                                 value="code"
-                                className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:text-foreground data-[state=active]:shadow-none"
+                                className="relative h-9 rounded-none border-b-2 border-b-transparent bg-transparent px-4 pb-3 pt-2 font-semibold text-muted-foreground shadow-none transition-none data-[state=active]:border-b-primary data-[state=active]:bg-transparent data-[state=active]:text-foreground data-[state=active]:shadow-none"
                             >
                                 {codeLabel}
                             </TabsTrigger>
@@ -716,7 +716,7 @@ export function ComponentPreview({ codeBlock, children, className, sectionLabels
                     value="preview"
                     ref={previewSurfaceRef}
                     className={cn(
-                        "relative mt-0 rounded-md p-4 bg-muted/20 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                        "relative mt-0 rounded-md p-4 bg-muted ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                         // A popover portalled into this surface (PreviewPortal) paints inside the
                         // scaled preview's stacking context; lift the surface while one is open so
                         // the next preview's header does not cover it. Stays under the site header (z-40).
@@ -812,7 +812,7 @@ export function ComponentPreview({ codeBlock, children, className, sectionLabels
                     )}
                 </TabsContent>
                 <TabsContent value="code">
-                    <div className="relative rounded-md border bg-muted font-mono text-sm max-h-[350px] overflow-auto">
+                    <div className="relative rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm max-h-[350px] overflow-auto">
                         {codeBlock}
                     </div>
                 </TabsContent>

@@ -468,7 +468,7 @@ const reviewItems = [
 
 function LocalNav({ isJa }: { isJa: boolean }) {
     return (
-        <Card className="border-muted bg-muted/20">
+        <Card className="bg-muted">
             <CardHeader className="pb-3">
                 <CardTitle className="text-base">{isJa ? "このページで決めること" : "What this page defines"}</CardTitle>
                 <CardDescription>
@@ -484,7 +484,7 @@ function LocalNav({ isJa }: { isJa: boolean }) {
                             <li key={item.id}>
                                 <a
                                     href={`#${item.id}`}
-                                    className="flex items-center justify-between rounded-md border bg-background px-3 py-2 text-sm font-medium transition-colors hover:border-primary-border hover:text-primary"
+                                    className="flex items-center justify-between rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2 text-sm font-medium transition-colors hover:border-primary-border hover:text-primary"
                                 >
                                     <span>{isJa ? item.ja : item.en}</span>
                                     <IconCircleDashed className="h-4 w-4 text-muted-foreground" aria-hidden="true" />
@@ -534,7 +534,7 @@ function MessageAnatomy({ isJa }: { isJa: boolean }) {
 
     return (
         <Card className="overflow-hidden">
-            <CardHeader className="border-b bg-muted/30">
+            <CardHeader className="border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background">
                 <div className="flex flex-wrap items-center gap-2">
                     <Badge variant="secondary">{isJa ? "分解例" : "Anatomy"}</Badge>
                     <Badge variant="outline">Error</Badge>
@@ -554,7 +554,7 @@ function MessageAnatomy({ isJa }: { isJa: boolean }) {
                     <div className="text-sm font-medium text-muted-foreground">
                         {isJa ? "実際のメッセージ例" : "Message example"}
                     </div>
-                    <div className="rounded-lg border bg-background p-4 shadow-sm">
+                    <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 shadow-sm">
                         <div className="flex items-start gap-3">
                             <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-destructive-subtle text-destructive-subtle-foreground">
                                 <IconAlertTriangle className="h-5 w-5" aria-hidden="true" />
@@ -578,7 +578,7 @@ function MessageAnatomy({ isJa }: { isJa: boolean }) {
                     </div>
                     <div className="grid gap-3">
                         {parts.map((part) => (
-                            <div key={part.label.en} className="rounded-lg border bg-muted/20 p-3">
+                            <div key={part.label.en} className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
                                 <div className="flex flex-wrap items-center gap-2">
                                     <Badge variant="outline">{isJa ? part.label.ja : part.label.en}</Badge>
                                     <span className="text-sm font-medium">{isJa ? part.example.ja : part.example.en}</span>
@@ -634,7 +634,7 @@ function PatternPreview({ isJa }: { isJa: boolean }) {
                     <CardDescription>{isJa ? "実行前に対象と不可逆性を確認する。" : "Confirm the object and irreversibility before running."}</CardDescription>
                 </CardHeader>
                 <CardContent>
-                    <div className="rounded-lg border p-4">
+                    <div className="rounded-lg border bg-muted border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4">
                         <div className="flex items-start gap-3">
                             <IconTrash className="mt-1 h-5 w-5 text-destructive" aria-hidden="true" />
                             <div className="space-y-1">
@@ -739,7 +739,7 @@ function AltTextGuidance({ isJa }: { isJa: boolean }) {
                 </CardHeader>
                 <CardContent>
                     <div className="space-y-4">
-                        <div className="overflow-x-auto rounded-lg border">
+                        <div className="overflow-x-auto rounded-lg">
                             <Table striped className="min-w-[760px]">
                                 <TableHeader>
                                     <TableRow>
@@ -812,7 +812,7 @@ export default function WritingGuidelinesPage() {
                         </p>
                     </div>
                 </div>
-                <Card className="bg-muted/30">
+                <Card>
                     <CardHeader>
                         <CardTitle className="flex items-center gap-2 text-base">
                             <IconClipboardCheck className="h-5 w-5 text-primary" aria-hidden="true" />
@@ -882,7 +882,7 @@ export default function WritingGuidelinesPage() {
                 <Card>
                     <CardContent className="grid gap-3 pt-6">
                         {decisionSteps.map((step, index) => (
-                            <div key={step.title.en} className="grid gap-3 rounded-lg border bg-muted/20 p-4 sm:grid-cols-[3rem_minmax(0,1fr)]">
+                            <div key={step.title.en} className="grid gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 sm:grid-cols-[3rem_minmax(0,1fr)]">
                                 <div className="flex h-9 w-9 items-center justify-center rounded-full bg-primary-subtle text-sm font-semibold text-primary-subtle-foreground">
                                     {index + 1}
                                 </div>
@@ -914,7 +914,7 @@ export default function WritingGuidelinesPage() {
                 <div className="grid gap-4">
                     {patterns.map((pattern) => (
                         <Card key={pattern.value}>
-                            <CardHeader className="border-b bg-muted/20">
+                            <CardHeader className="border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background">
                                 <div className="flex flex-wrap items-center gap-2">
                                     <Badge variant="secondary">{isJa ? pattern.label.ja : pattern.label.en}</Badge>
                                 </div>
@@ -923,7 +923,7 @@ export default function WritingGuidelinesPage() {
                             </CardHeader>
                             <CardContent className="grid gap-3 pt-5 md:grid-cols-3">
                                 {pattern.examples.map((example) => (
-                                    <div key={example.en} className="rounded-lg border bg-background p-3">
+                                    <div key={example.en} className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
                                         <div className="text-sm font-semibold">{isJa ? example.ja : example.en}</div>
                                         <p className="mt-3 text-sm leading-6 text-muted-foreground">
                                             {isJa ? example.noteJa : example.noteEn}
@@ -959,14 +959,14 @@ export default function WritingGuidelinesPage() {
                                 <CardDescription>{isJa ? item.reason.ja : item.reason.en}</CardDescription>
                             </CardHeader>
                             <CardContent className="grid gap-3 sm:grid-cols-2">
-                                <div className="rounded-md border border-destructive-border bg-destructive-subtle p-3">
+                                <div className="rounded-md border border-transparent contrast-more:border-destructive-border forced-colors:border-[CanvasText] bg-destructive-subtle p-3">
                                     <div className="mb-2 flex items-center gap-2 text-xs font-medium text-destructive">
                                         <IconX className="h-4 w-4" aria-hidden="true" />
                                         {isJa ? "避ける" : "Don’t"}
                                     </div>
                                     <p className="text-sm">{isJa ? item.dontJa : item.dontEn}</p>
                                 </div>
-                                <div className="rounded-md border border-primary-border bg-primary-subtle p-3">
+                                <div className="rounded-md border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText] bg-primary-subtle p-3">
                                     <div className="mb-2 flex items-center gap-2 text-xs font-medium text-primary">
                                         <IconCircleCheck className="h-4 w-4" aria-hidden="true" />
                                         {isJa ? "推奨" : "Do"}
@@ -996,7 +996,7 @@ export default function WritingGuidelinesPage() {
                         <Badge variant="outline">{isJa ? "追加前提の辞書" : "Expandable catalog"}</Badge>
                     </div>
                     <div
-                        className="inline-flex rounded-md border bg-background p-1"
+                        className="inline-flex rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-1"
                         aria-label={isJa ? "メッセージ一覧の表示言語" : "Message catalog language"}
                     >
                         <Button
@@ -1030,7 +1030,7 @@ export default function WritingGuidelinesPage() {
                                 <p className="mb-3 text-sm leading-6 text-muted-foreground">
                                     {catalogIsJa ? category.description.ja : category.description.en}
                                 </p>
-                                <div className="overflow-x-auto rounded-lg border">
+                                <div className="overflow-x-auto rounded-lg">
                                     <Table striped className="min-w-[860px]">
                                         <TableHeader>
                                             <TableRow>

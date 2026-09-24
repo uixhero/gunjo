@@ -47,12 +47,12 @@ function ItineraryDetailContent({
   const toneClass = ITINERARY_DETAIL_TONE[item.tone ?? "default"];
 
   return (
-    <div className={["rounded-lg border p-3 text-sm shadow-sm", toneClass].join(" ")}>
+    <div className={["rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3 text-sm shadow-sm", toneClass].join("  ")}>
       <div className="flex items-start justify-between gap-3">
         <div className="min-w-0">
           <p className="mt-1 truncate text-base font-semibold text-foreground">{item.title}</p>
         </div>
-        <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">
+        <Badge variant="outline" className="shrink-0 bg-background text-foreground shadow-sm">
           {detail.status}
         </Badge>
       </div>
@@ -294,9 +294,9 @@ function ItineraryPreview({
     <div
       ref={setPortalContainer}
       className={[
-        "relative flex w-full max-w-xl flex-col gap-4 overflow-hidden rounded-lg border bg-card p-4",
+        "relative flex w-full max-w-xl flex-col gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4",
         flat ? "min-h-[340px]" : "",
-      ].join(" ")}
+      ].join("  ")}
     >
       {flat ? <Itinerary items={items} /> : <Itinerary days={days} />}
       <Sheet modal={false} open={selectedItem != null && selectedDetail != null} onOpenChange={(open) => !open && setSelectedId(null)}>
@@ -341,7 +341,7 @@ function ItineraryTonePreview({ locale }: { locale: Locale }) {
       ];
 
   return (
-    <div className="w-full max-w-md rounded-lg border bg-card p-4">
+    <div className="w-full max-w-md rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Itinerary items={items} />
     </div>
   );
@@ -415,7 +415,7 @@ export function TripItinerary() {
   const selectedTone = selectedItem?.tone === "success" ? toneStyles.success : toneStyles.primary;
 
   return (
-    <div ref={setPortalContainer} className="relative flex w-full max-w-xl flex-col gap-4 overflow-hidden rounded-lg border bg-card p-4">
+    <div ref={setPortalContainer} className="relative flex w-full max-w-xl flex-col gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Itinerary days={days} />
       <Sheet modal={false} open={selectedItem != null && selectedDetail != null} onOpenChange={(open) => !open && setSelectedId(null)}>
         <SheetContent portalContainer={portalContainer} overlayClassName="rounded-lg" closeLabel="閉じる" className="w-80 max-w-[calc(100%-1rem)] overflow-y-auto p-4">
@@ -424,12 +424,12 @@ export function TripItinerary() {
           <SheetHeader className="pr-8">
             <SheetTitle>旅程詳細</SheetTitle>
           </SheetHeader>
-          <div className={["rounded-lg border p-3 text-sm shadow-sm", selectedTone].join(" ")}>
+          <div className={["rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3 text-sm shadow-sm", selectedTone].join("  ")}>
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="mt-1 truncate text-base font-semibold text-foreground">{selectedItem.title}</p>
               </div>
-              <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">
+              <Badge variant="outline" className="shrink-0 bg-background text-foreground shadow-sm">
                 {selectedDetail.status}
               </Badge>
             </div>
@@ -519,7 +519,7 @@ export function TripItinerary() {
   const selectedTone = selectedItem?.tone === "success" ? toneStyles.success : toneStyles.primary;
 
   return (
-    <div ref={setPortalContainer} className="relative flex w-full max-w-xl flex-col gap-4 overflow-hidden rounded-lg border bg-card p-4">
+    <div ref={setPortalContainer} className="relative flex w-full max-w-xl flex-col gap-4 overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Itinerary days={days} />
       <Sheet modal={false} open={selectedItem != null && selectedDetail != null} onOpenChange={(open) => !open && setSelectedId(null)}>
         <SheetContent portalContainer={portalContainer} overlayClassName="rounded-lg" closeLabel="Close" className="w-80 max-w-[calc(100%-1rem)] overflow-y-auto p-4">
@@ -528,12 +528,12 @@ export function TripItinerary() {
           <SheetHeader className="pr-8">
             <SheetTitle>Itinerary details</SheetTitle>
           </SheetHeader>
-          <div className={["rounded-lg border p-3 text-sm shadow-sm", selectedTone].join(" ")}>
+          <div className={["rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3 text-sm shadow-sm", selectedTone].join("  ")}>
             <div className="flex items-start justify-between gap-3">
               <div className="min-w-0">
                 <p className="mt-1 truncate text-base font-semibold text-foreground">{selectedItem.title}</p>
               </div>
-              <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">
+              <Badge variant="outline" className="shrink-0 bg-background text-foreground shadow-sm">
                 {selectedDetail.status}
               </Badge>
             </div>
@@ -627,7 +627,7 @@ const ITEMS: ItineraryItem[] = [
 
 export function ItineraryTones() {
   return (
-    <div className="w-full max-w-md rounded-lg border bg-card p-4">
+    <div className="w-full max-w-md rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Itinerary items={ITEMS} />
     </div>
   );
@@ -694,7 +694,7 @@ const ITEMS: ItineraryItem[] = [
 
 export function ItineraryTones() {
   return (
-    <div className="w-full max-w-md rounded-lg border bg-card p-4">
+    <div className="w-full max-w-md rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Itinerary items={ITEMS} />
     </div>
   );
@@ -733,7 +733,7 @@ export function ItineraryTones() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
           {locale === "ja" ? "状態とバリエーション" : "States and variants"}
         </h2>
         <ComponentDemoStates
@@ -771,7 +771,7 @@ const details = {
 const selectedItem = selectedId ? items.find((item) => item.id === selectedId) : undefined;
 const selectedDetail = selectedId ? details[selectedId as keyof typeof details] : undefined;
 
-<div ref={setPortalContainer} className="relative min-h-[340px] overflow-hidden rounded-lg border bg-card p-4">
+<div ref={setPortalContainer} className="relative min-h-[340px] overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
   <Itinerary items={items} />
   <Sheet modal={false} open={selectedItem != null && selectedDetail != null} onOpenChange={(open) => !open && setSelectedId(null)}>
     <SheetContent portalContainer={portalContainer} overlayClassName="rounded-lg" closeLabel="閉じる" className="w-80 max-w-[calc(100%-1rem)] overflow-y-auto p-4">
@@ -780,10 +780,10 @@ const selectedDetail = selectedId ? details[selectedId as keyof typeof details] 
           <SheetHeader className="pr-8">
             <SheetTitle>旅程詳細</SheetTitle>
           </SheetHeader>
-          <div className="rounded-lg border border-info-border bg-info-subtle/55 p-3 text-sm shadow-sm">
+          <div className="rounded-lg border border-transparent contrast-more:border-info-border forced-colors:border-[CanvasText] bg-info-subtle p-3 text-sm shadow-sm">
             <div className="flex items-start justify-between gap-3">
               <p className="truncate text-base font-semibold text-foreground">{selectedItem.title}</p>
-              <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">{selectedDetail.status}</Badge>
+              <Badge variant="outline" className="shrink-0 bg-background text-foreground shadow-sm">{selectedDetail.status}</Badge>
             </div>
             <dl className="mt-3 grid gap-2 text-xs">
               <div><dt className="text-muted-foreground">場所</dt><dd className="font-medium text-foreground">{selectedDetail.location}</dd></div>
@@ -814,7 +814,7 @@ const details = {
 const selectedItem = selectedId ? items.find((item) => item.id === selectedId) : undefined;
 const selectedDetail = selectedId ? details[selectedId as keyof typeof details] : undefined;
 
-<div ref={setPortalContainer} className="relative min-h-[340px] overflow-hidden rounded-lg border bg-card p-4">
+<div ref={setPortalContainer} className="relative min-h-[340px] overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
   <Itinerary items={items} />
   <Sheet modal={false} open={selectedItem != null && selectedDetail != null} onOpenChange={(open) => !open && setSelectedId(null)}>
     <SheetContent portalContainer={portalContainer} overlayClassName="rounded-lg" closeLabel="Close" className="w-80 max-w-[calc(100%-1rem)] overflow-y-auto p-4">
@@ -823,10 +823,10 @@ const selectedDetail = selectedId ? details[selectedId as keyof typeof details] 
           <SheetHeader className="pr-8">
             <SheetTitle>Itinerary details</SheetTitle>
           </SheetHeader>
-          <div className="rounded-lg border border-info-border bg-info-subtle/55 p-3 text-sm shadow-sm">
+          <div className="rounded-lg border border-transparent contrast-more:border-info-border forced-colors:border-[CanvasText] bg-info-subtle p-3 text-sm shadow-sm">
             <div className="flex items-start justify-between gap-3">
               <p className="truncate text-base font-semibold text-foreground">{selectedItem.title}</p>
-              <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">{selectedDetail.status}</Badge>
+              <Badge variant="outline" className="shrink-0 bg-background text-foreground shadow-sm">{selectedDetail.status}</Badge>
             </div>
             <dl className="mt-3 grid gap-2 text-xs">
               <div><dt className="text-muted-foreground">Location</dt><dd className="font-medium text-foreground">{selectedDetail.location}</dd></div>
@@ -855,20 +855,20 @@ const selectedDetail = selectedId ? details[selectedId as keyof typeof details] 
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
           {sectionLabels.props}
         </h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
             {sectionLabels.usage}
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

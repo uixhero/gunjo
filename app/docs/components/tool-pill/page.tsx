@@ -164,7 +164,7 @@ const propsByLocale = {
 
 function ToolPillToolbar({ locale }: { locale: "ja" | "en" }) {
     return (
-        <div className="flex items-center gap-3 rounded-lg border bg-muted/30 p-3">
+        <div className="flex items-center gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
             <ToolPill icon={MousePointer2} label={locale === "ja" ? "選択" : "Select"} isActive onClick={() => undefined} />
             <ToolPill icon={Move} label={locale === "ja" ? "移動" : "Move"} onClick={() => undefined} />
             <ToolPill icon={PenLine} label={locale === "ja" ? "編集" : "Edit"} variant="primary" onClick={() => undefined} />
@@ -201,7 +201,7 @@ export default function ToolPillPage() {
             </ComponentPreview>
 
             <div className="space-y-4">
-                <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">
+                <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
                     {locale === "ja" ? "状態とバリエーション" : "States and variants"}
                 </h2>
                 <ComponentDemoStates
@@ -222,7 +222,7 @@ export default function ToolPillPage() {
                                 ? "縦並びでは tooltipSide を right または left にして、上下のツールを隠さないようにします。"
                                 : "In vertical toolbars, set tooltipSide to right or left so adjacent tools remain visible.",
                             preview: (
-                                <div className="rounded-lg border bg-muted/30 p-3">
+                                <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
                                     <div className="flex flex-col items-center gap-3">
                                         <ToolPill icon={MousePointer2} label={locale === "ja" ? "選択" : "Select"} tooltipSide="right" isActive onClick={() => undefined} />
                                         <ToolPill icon={Move} label={locale === "ja" ? "移動" : "Move"} tooltipSide="right" onClick={() => undefined} />
@@ -308,20 +308,20 @@ export function ActiveToolPill() {
             </div>
 
             <div className="space-y-4">
-                <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">
+                <h2 id="props" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
                     {sectionLabels.props}
                 </h2>
                 <PropsTable data={propsByLocale[locale](variantType)} />
             </div>
 
             <div className="space-y-4">
-                <div className="flex items-center justify-between gap-3 border-b pb-2">
+                <div className="flex items-center justify-between gap-3 pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

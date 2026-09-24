@@ -80,7 +80,7 @@ function ChatPattern({ viewport }: { viewport: MarqueeViewport }) {
                 </div>
             }
             composer={
-                <div className="flex items-center gap-2 bg-muted/30 p-2 rounded-lg border">
+                <div className="flex items-center gap-2 bg-muted p-2 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                     <Button variant="ghost" size="icon" className="text-muted-foreground"><Plus size={20} /></Button>
                     <Input className="border-none bg-transparent shadow-none focus-visible:ring-0" placeholder="Message #general" />
                     <div className="flex items-center gap-1">

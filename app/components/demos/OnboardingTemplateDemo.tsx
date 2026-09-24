@@ -39,7 +39,7 @@ export function OnboardingTemplateDemo() {
     const [done, setDone] = React.useState(false);
 
     return (
-        <div className="overflow-hidden rounded-md border">
+        <div className="overflow-hidden rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
             <div className="h-[440px] overflow-hidden">
                 <OnboardingTemplate
                     hero={

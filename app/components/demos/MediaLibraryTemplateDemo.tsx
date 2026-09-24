@@ -1362,7 +1362,7 @@ export function MediaLibraryTemplateDemo({
         });
     const sidebarContent = (
         <div className="flex h-full w-full flex-col bg-muted/30">
-            <div className="h-12 shrink-0 px-4 border-b border-border flex items-center justify-between bg-background">
+            <div className="h-12 shrink-0 px-4 border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] flex items-center justify-between bg-card">
                 <span className="font-semibold text-foreground">{labels.libraryTitle}</span>
                 <TooltipButton
                     type="button"
@@ -1572,7 +1572,7 @@ export function MediaLibraryTemplateDemo({
         : "";
 
     return (
-        <div ref={setPortalContainer} className={cn("relative h-full w-full border rounded-lg overflow-hidden bg-background text-foreground flex", className)}>
+        <div ref={setPortalContainer} className={cn("relative h-full w-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] rounded-lg overflow-hidden bg-card text-foreground flex", className)}>
             <div className="flex-1 flex overflow-hidden">
                 <MediaLibraryTemplate
                     className="h-full min-h-0 w-full"
@@ -1580,7 +1580,7 @@ export function MediaLibraryTemplateDemo({
                     details={isDesktop && detailsOpen ? detailsContent : null}
                 >
                     <div className="flex h-full min-h-0 flex-col bg-muted/30">
-                        <div className="shrink-0 border-b bg-background">
+                        <div className="shrink-0 border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
                             <div className={cn("flex h-12 items-center justify-between gap-2 border-b", isCompact ? "px-2" : "px-6")}>
                                 <div className="flex min-w-0 flex-1 items-center">
                                     {isCompact ? (
@@ -2034,7 +2034,7 @@ export function MediaLibraryTemplateDemo({
                                                         ))}
                                                     </div>
                                                     {selectedSizes.includes("custom") ? (
-                                                        <div className="space-y-3 rounded-md border bg-muted/20 p-3">
+                                                        <div className="space-y-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
                                                             <div className="flex items-center justify-between text-xs text-muted-foreground">
                                                                 <span>{labels.minSize}: {resolvedCustomSizeRange[0].toFixed(1)}MB</span>
                                                                 <span>{labels.maxSize}: {resolvedCustomSizeRange[1].toFixed(1)}MB</span>
@@ -2192,7 +2192,7 @@ export function MediaLibraryTemplateDemo({
                     ) : null}
                     <div
                         className={cn(
-                            "absolute inset-y-0 left-0 z-50 w-72 max-w-[86%] overflow-hidden border-r bg-background shadow-xl transition-transform duration-200 ease-out",
+                            "absolute inset-y-0 left-0 z-50 w-72 max-w-[86%] overflow-hidden border-r border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-xl transition-transform duration-200 ease-out",
                             sidebarOpen ? "translate-x-0" : "pointer-events-none -translate-x-full"
                         )}
                         aria-hidden={!sidebarOpen}
@@ -2201,7 +2201,7 @@ export function MediaLibraryTemplateDemo({
                     </div>
                     <div
                         className={cn(
-                            "absolute inset-y-0 right-0 z-50 w-80 max-w-[88%] border-l bg-background shadow-xl transition-transform duration-200 ease-out",
+                            "absolute inset-y-0 right-0 z-50 w-80 max-w-[88%] border-l border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-xl transition-transform duration-200 ease-out",
                             detailsSheetOpen ? "translate-x-0" : "pointer-events-none translate-x-full"
                         )}
                         aria-hidden={!detailsSheetOpen}
@@ -2340,7 +2340,7 @@ export function MediaLibraryTemplateDemo({
                             {labels.deleteAssetDescription}
                         </p>
                         {assetToDelete ? (
-                            <div className="rounded-lg border bg-muted/40 px-3 py-2 text-sm font-medium text-foreground">
+                            <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm font-medium text-foreground">
                                 {assetToDelete.title}
                             </div>
                         ) : null}
@@ -2451,7 +2451,7 @@ export function MediaLibraryTemplateDemo({
                             {labels.deleteFolderDescription}
                         </p>
                         {folderToDelete ? (
-                            <div className="rounded-lg border bg-muted/40 px-3 py-2 text-sm font-medium text-foreground">
+                            <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm font-medium text-foreground">
                                 {locale === "ja" ? folderToDelete.nameJa : folderToDelete.name}
                             </div>
                         ) : null}

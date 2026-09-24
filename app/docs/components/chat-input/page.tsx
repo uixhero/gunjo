@@ -119,7 +119,7 @@ function DemoInputOptions({ isJa }: { isJa: boolean }) {
                     {isJa ? "送信前に参照方法を切り替えます。" : "Adjust context before sending."}
                 </p>
             </div>
-            <label className="flex items-center justify-between gap-3 rounded-md border px-3 py-2 text-sm">
+            <label className="flex items-center justify-between gap-3 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-3 py-2 text-sm">
                 <span>
                     <span className="block font-medium">{isJa ? "Web を参照" : "Use web context"}</span>
                     <span className="block text-xs text-muted-foreground">
@@ -128,7 +128,7 @@ function DemoInputOptions({ isJa }: { isJa: boolean }) {
                 </span>
                 <Switch checked={webSearch} onCheckedChange={setWebSearch} />
             </label>
-            <label className="flex items-center justify-between gap-3 rounded-md border px-3 py-2 text-sm">
+            <label className="flex items-center justify-between gap-3 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-3 py-2 text-sm">
                 <span>
                     <span className="block font-medium">{isJa ? "画像を参照" : "Use image context"}</span>
                     <span className="block text-xs text-muted-foreground">
@@ -218,7 +218,7 @@ function WorkspaceContextControls({ isJa }: { isJa: boolean }) {
             <div className="flex flex-wrap gap-2">
                 <Popover>
                     <PopoverTrigger asChild>
-                        <button type="button" className="inline-flex items-center gap-1.5 rounded-md border bg-background px-2.5 py-1.5 text-sm shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                        <button type="button" className="inline-flex items-center gap-1.5 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2.5 py-1.5 text-sm shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                             <DeviceLaptop className="h-4 w-4" />
                             {environment}
                         </button>
@@ -245,7 +245,7 @@ function WorkspaceContextControls({ isJa }: { isJa: boolean }) {
                 </Popover>
                 <Popover>
                     <PopoverTrigger asChild>
-                        <button type="button" className="inline-flex items-center gap-1.5 rounded-md border bg-background px-2.5 py-1.5 text-sm shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                        <button type="button" className="inline-flex items-center gap-1.5 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2.5 py-1.5 text-sm shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                             <Folder className="h-4 w-4" />
                             {workspace}
                         </button>
@@ -270,7 +270,7 @@ function WorkspaceContextControls({ isJa }: { isJa: boolean }) {
                             <button
                                 type="button"
                                 onClick={() => setNote(isJa ? "フォルダ選択ダイアログを開きます。" : "Open folder picker.")}
-                                className="w-full rounded-md border px-2 py-1.5 text-left text-sm hover:bg-muted"
+                                className="w-full rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-2 py-1.5 text-left text-sm hover:bg-muted"
                             >
                                 {isJa ? "フォルダを開く..." : "Open folder..."}
                             </button>
@@ -279,7 +279,7 @@ function WorkspaceContextControls({ isJa }: { isJa: boolean }) {
                 </Popover>
                 <Popover>
                     <PopoverTrigger asChild>
-                        <button type="button" className="inline-flex items-center gap-1.5 rounded-md border bg-background px-2.5 py-1.5 text-sm shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+                        <button type="button" className="inline-flex items-center gap-1.5 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2.5 py-1.5 text-sm shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
                             <GitBranch className="h-4 w-4" />
                             {branch}
                         </button>
@@ -310,14 +310,14 @@ function WorkspaceContextControls({ isJa }: { isJa: boolean }) {
                         setWorktree((current) => !current);
                         setNote(worktree ? (isJa ? "ワークツリーを外しました。" : "Worktree disabled.") : (isJa ? "ワークツリーを有効にしました。" : "Worktree enabled."));
                     }}
-                    className="inline-flex items-center gap-1.5 rounded-md border bg-background px-2.5 py-1.5 text-sm shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                    className="inline-flex items-center gap-1.5 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2.5 py-1.5 text-sm shadow-sm transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                     aria-pressed={worktree}
                 >
                     <Check className={`h-4 w-4 ${worktree ? "text-primary" : "text-muted-foreground"}`} />
                     {isJa ? "ワークツリー" : "Worktree"}
                 </button>
             </div>
-            <div className="rounded-xl border border-primary-border bg-primary-subtle px-3 py-2 text-sm text-primary-subtle-foreground">
+            <div className="rounded-xl border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText] bg-primary-subtle px-3 py-2 text-sm text-primary-subtle-foreground">
                 <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
                     <span className="inline-flex items-center gap-1.5 font-semibold">
                         <GitPullRequest className="h-4 w-4" />
@@ -335,7 +335,7 @@ function InputMascot() {
     return (
         <div className="relative h-12 w-12">
             <div className="absolute left-1/2 top-0 h-3 w-1 -translate-x-1/2 rounded-full bg-primary" />
-            <div className="absolute inset-x-1 bottom-0 flex h-10 items-center justify-center rounded-[1.1rem] border border-primary-border bg-background text-primary shadow-sm">
+            <div className="absolute inset-x-1 bottom-0 flex h-10 items-center justify-center rounded-[1.1rem] border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText] bg-card text-primary shadow-sm">
                 <span className="absolute -left-1 top-4 h-3 w-2 rounded-l-md bg-primary-subtle" />
                 <span className="absolute -right-1 top-4 h-3 w-2 rounded-r-md bg-primary-subtle" />
                 <span className="mt-1 flex items-center gap-1.5">
@@ -361,7 +361,7 @@ function ChoicePromptExample() {
     ];
 
     const prompt = (
-        <div className="rounded-2xl border bg-background p-4 shadow-sm">
+        <div className="rounded-2xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 shadow-sm">
             <div className="mb-3 flex items-center gap-2">
                 <Sparkles className="h-5 w-5 text-primary" />
                 <p className="text-sm font-semibold">
@@ -374,7 +374,7 @@ function ChoicePromptExample() {
                         key={choice.id}
                         type="button"
                         onClick={() => setSelected(choice.id)}
-                        className={`flex w-full items-center gap-3 rounded-xl border px-3 py-2 text-left text-sm transition-colors ${selected === choice.id ? "border-primary-border bg-primary-subtle text-foreground" : "border-border bg-muted/20 text-muted-foreground hover:bg-muted/40"}`}
+                        className={`flex w-full items-center gap-3 rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-3 py-2 text-left text-sm transition-colors ${selected === choice.id ? "bg-primary-subtle text-foreground" : "bg-muted text-muted-foreground hover:text-foreground"}`}
                     >
                         <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-background font-semibold">
                             {selected === choice.id ? <Check className="h-4 w-4" /> : index + 1}
@@ -497,11 +497,11 @@ export function SupportComposer() {
       optionsContent={
         <div className="space-y-3">
           <p className="text-sm font-semibold">入力オプション</p>
-          <label className="flex items-center justify-between gap-3 rounded-md border px-3 py-2 text-sm">
+          <label className="flex items-center justify-between gap-3 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-3 py-2 text-sm">
             <span>Web を参照</span>
             <Switch checked={webSearch} onCheckedChange={setWebSearch} />
           </label>
-          <label className="flex items-center justify-between gap-3 rounded-md border px-3 py-2 text-sm">
+          <label className="flex items-center justify-between gap-3 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-3 py-2 text-sm">
             <span>画像を参照</span>
             <Switch checked={imageContext} onCheckedChange={setImageContext} />
           </label>
@@ -541,7 +541,7 @@ export function ChoicePromptComposer() {
   return (
     <ChatComposer
       prompt={
-        <div className="rounded-2xl border bg-background p-4">
+        <div className="rounded-2xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
           <p className="mb-3 text-sm font-semibold">どの整理方針で進めますか？</p>
           {choices.map((choice) => (
             <button
@@ -576,21 +576,21 @@ export function WorkspaceComposer() {
       context={
         <>
           <div className="flex flex-wrap gap-2">
-            <button type="button" className="rounded-md border bg-background px-2.5 py-1.5 text-sm">
+            <button type="button" className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2.5 py-1.5 text-sm">
               ローカル
             </button>
-            <button type="button" className="rounded-md border bg-background px-2.5 py-1.5 text-sm">
+            <button type="button" className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2.5 py-1.5 text-sm">
               product-dashboard
             </button>
             <button
               type="button"
               onClick={() => setBranch(branch === "main" ? "feature/insights-panel" : "main")}
-              className="rounded-md border bg-background px-2.5 py-1.5 text-sm"
+              className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2.5 py-1.5 text-sm"
             >
               {branch}
             </button>
           </div>
-          <div className="rounded-xl border border-primary-border bg-primary-subtle px-3 py-2 text-sm text-primary-subtle-foreground">
+          <div className="rounded-xl border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText] bg-primary-subtle px-3 py-2 text-sm text-primary-subtle-foreground">
             #24 {branch}
           </div>
         </>
@@ -618,7 +618,7 @@ export function TokenStatusComposer() {
         onSend: () => undefined,
         placeholder: "制限を考慮して依頼...",
         optionsContent: (
-          <label className="flex items-center justify-between gap-3 rounded-md border px-3 py-2 text-sm">
+          <label className="flex items-center justify-between gap-3 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-3 py-2 text-sm">
             <span>Web を参照</span>
             <Switch checked={webSearch} onCheckedChange={setWebSearch} />
           </label>
@@ -658,7 +658,7 @@ export function InputPetComposer() {
   return (
     <ChatComposer
       accessory={
-        <div className="rounded-2xl border bg-background px-3 py-2 shadow-sm">
+        <div className="rounded-2xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2 shadow-sm">
           <span aria-hidden>● ●</span>
         </div>
       }
@@ -666,7 +666,7 @@ export function InputPetComposer() {
         onSend: () => undefined,
         placeholder: "補助キャラクターが入力状態を見守ります...",
         optionsContent: (
-          <label className="flex items-center justify-between gap-3 rounded-md border px-3 py-2 text-sm">
+          <label className="flex items-center justify-between gap-3 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-3 py-2 text-sm">
             <span>Web を参照</span>
             <Switch checked={webSearch} onCheckedChange={setWebSearch} />
           </label>
@@ -712,7 +712,7 @@ export default function ChatInputDocPage() {
             </ComponentPreview>
 
             <section className="space-y-4">
-                <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+                <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">
                     {isJa ? "状態とバリエーション" : "States and Variations"}
                 </h2>
                 <ComponentDemoStates
@@ -785,7 +785,7 @@ export default function ChatInputDocPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">
                     {sectionLabels.props}
                 </h2>
                 <PropsTable
@@ -807,7 +807,7 @@ export default function ChatInputDocPage() {
             </section>
 
             <section className="space-y-4">
-                <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
+                <div className="flex flex-wrap items-center justify-between gap-3 pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
                         {sectionLabels.usage}
                     </h2>

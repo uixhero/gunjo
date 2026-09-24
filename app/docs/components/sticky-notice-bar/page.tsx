@@ -104,7 +104,7 @@ export function ContainedAnnouncement() {
   const [visible, setVisible] = React.useState(true)
 
   return (
-    <div ref={setContainer} className="relative h-72 overflow-hidden rounded-lg border">
+    <div ref={setContainer} className="relative h-72 overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       {container && visible ? (
         <StickyNoticeBar
           edge="bottom"
@@ -135,7 +135,7 @@ export function ContainedAnnouncement() {
   const [visible, setVisible] = React.useState(true)
 
   return (
-    <div ref={setContainer} className="relative h-72 overflow-hidden rounded-lg border">
+    <div ref={setContainer} className="relative h-72 overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       {container && visible ? (
         <StickyNoticeBar
           edge="bottom"
@@ -461,7 +461,7 @@ export default function StickyNoticeBarPage() {
             </DocNote>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="states">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="states">
                     {statesTitle}
                 </h2>
                 <ComponentDemoStates
@@ -519,20 +519,20 @@ export default function StickyNoticeBarPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="props">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="props">
                     {sectionLabels.props ?? "Props"}
                 </h2>
                 <PropsTable data={propsData} />
             </section>
 
             <section className="space-y-4">
-                <div className="flex items-center justify-between gap-4 border-b pb-2">
+                <div className="flex items-center justify-between gap-4 pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage ?? "Usage"}
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

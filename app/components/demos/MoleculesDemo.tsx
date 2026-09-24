@@ -72,7 +72,7 @@ export function SidebarItemDemo() {
     const [activeId, setActiveId] = useState("item-1");
 
     return (
-        <div className="w-64 space-y-1 rounded-lg border bg-background p-2">
+        <div className="w-64 space-y-1 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-2">
             <SidebarItem
                 id="item-1"
                 icon={<Folder size={16} />}

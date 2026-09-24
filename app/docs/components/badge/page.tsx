@@ -50,7 +50,7 @@ function BadgeVariantSummary({ locale }: { locale: "en" | "ja" }) {
     ];
 
     return (
-        <div className="space-y-2 rounded-md border border-border/70 bg-muted/20 p-3">
+        <div className="space-y-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
             {rows.map((row) => (
                 <div key={row.key} className="grid gap-3 rounded-md bg-background p-3 sm:grid-cols-[8rem_minmax(8rem,auto)_minmax(0,1fr)] sm:items-center">
                     <code className="text-xs font-semibold text-muted-foreground">{row.key}</code>
@@ -351,7 +351,7 @@ export function StatusBadges() {
             </ComponentPreview>
 
             <div className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
                     {locale === "ja" ? "状態とバリエーション" : "States and variants"}
                 </h2>
                 <p className="text-sm leading-relaxed text-muted-foreground">
@@ -685,7 +685,7 @@ export function SelectableBadge() {
                         },
                     ]}
                 />
-                <div className="rounded-md border border-border/70 bg-muted/20 p-4">
+                <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4">
                     <h3 className="text-sm font-semibold">
                         {locale === "ja" ? "入力して追加する場合" : "When users need to type new tags"}
                     </h3>
@@ -712,19 +712,19 @@ export function SelectableBadge() {
             </div>
 
             <div className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">{locale === "ja" ? "プロパティ" : "Props"}</h2>
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">{locale === "ja" ? "プロパティ" : "Props"}</h2>
                 <PropsTable data={propsData} />
             </div>
 
             <div className="space-y-4">
-                <div className="flex items-center justify-between gap-3 border-b pb-2">
+                <div className="flex items-center justify-between gap-3 pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{locale === "ja" ? "使い方" : "Usage"}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
                 <CodeBlock code={usageCode} />
             </div>
             <section className="space-y-4">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
                         {locale === "ja" ? "設計の判断" : "Design decisions"}
                     </h2>

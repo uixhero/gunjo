@@ -110,7 +110,7 @@ function StatusBoardPreview({ locale, mode = "grouped" }: { locale: Locale; mode
   const detail = statusDetails(locale)[String(selectedItem?.id ?? "501")];
 
   return (
-    <div className="flex w-full max-w-4xl flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-4xl flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4">
       <StatusBoard
         groups={mode === "grouped" || mode === "selected" ? groups(locale, onSelect) : undefined}
         items={mode === "flat" ? items : undefined}
@@ -119,7 +119,7 @@ function StatusBoardPreview({ locale, mode = "grouped" }: { locale: Locale; mode
         formatProblemCount={formatProblemCount(locale)}
         formatItemCount={formatItemCount(locale)}
       />
-      <section className="grid min-w-0 gap-3 rounded-md border bg-background p-3" aria-live="polite" aria-label={locale === "ja" ? "選択中車両の詳細" : "Selected vehicle details"}>
+      <section className="grid min-w-0 gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background p-3" aria-live="polite" aria-label={locale === "ja" ? "選択中車両の詳細" : "Selected vehicle details"}>
         <div className="min-w-0 space-y-1.5">
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="text-sm font-semibold text-foreground">{selectedItem?.label}</h3>
@@ -200,9 +200,9 @@ export function DispatchBoard() {
   const detail = details[selectedId as keyof typeof details];
 
   return (
-    <div className="flex w-full max-w-4xl flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-4xl flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4">
       <StatusBoard groups={selectableGroups} selectedId={selectedId} formatProblemCount={(count) => count + "件 要対応"} formatItemCount={(count) => count + "台"} />
-      <section className="grid min-w-0 gap-3 rounded-md border bg-background p-3" aria-live="polite" aria-label="選択中車両の詳細">
+      <section className="grid min-w-0 gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background p-3" aria-live="polite" aria-label="選択中車両の詳細">
         <div className="min-w-0 space-y-1.5">
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="text-sm font-semibold text-foreground">{selectedItem.label}</h3>
@@ -264,9 +264,9 @@ export function DispatchBoard() {
   const detail = details[selectedId as keyof typeof details];
 
   return (
-    <div className="flex w-full max-w-4xl flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-4xl flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4">
       <StatusBoard groups={selectableGroups} selectedId={selectedId} formatProblemCount={(count) => count + " needs attention"} formatItemCount={(count) => count + " units"} />
-      <section className="grid min-w-0 gap-3 rounded-md border bg-background p-3" aria-live="polite" aria-label="Selected vehicle details">
+      <section className="grid min-w-0 gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background p-3" aria-live="polite" aria-label="Selected vehicle details">
         <div className="min-w-0 space-y-1.5">
           <div className="flex flex-wrap items-center gap-2">
             <h3 className="text-sm font-semibold text-foreground">{selectedItem.label}</h3>
@@ -308,7 +308,7 @@ export function DispatchBoard() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
           {locale === "ja" ? "状態とバリエーション" : "States and variants"}
         </h2>
         <ComponentDemoStates
@@ -321,16 +321,16 @@ export function DispatchBoard() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">{sectionLabels.props}</h2>
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">{sectionLabels.props}</h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">{sectionLabels.usage}</h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

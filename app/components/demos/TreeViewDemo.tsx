@@ -58,7 +58,7 @@ export function TreeViewDemo() {
                 defaultExpanded={["src", "src/components"]}
                 selectedId={selected}
                 onSelectedIdChange={setSelected}
-                className="rounded-md border bg-background p-2"
+                className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-2"
             />
             {selected ? (
                 <p className="mt-2 text-xs text-muted-foreground">

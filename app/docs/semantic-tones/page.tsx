@@ -134,7 +134,7 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
 
             {/* Canonical scale */}
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="scale">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="scale">
                     {isJa ? "正準スケール" : "The canonical scale"}
                 </h2>
                 <p className="text-sm text-muted-foreground">
@@ -144,7 +144,7 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
                 </p>
                 <ul className="grid gap-2 sm:grid-cols-2">
                     {SEMANTIC_TONES.map((t) => (
-                        <li key={t} className="flex items-center gap-3 rounded-md border p-3">
+                        <li key={t} className="flex items-center gap-3 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3">
                             <span
                                 aria-hidden
                                 className="h-5 w-5 shrink-0 rounded-full border"
@@ -161,7 +161,7 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
 
             {/* One status, many surfaces */}
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="one-status">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="one-status">
                     {isJa ? "1 つのステータスを複数サーフェスへ" : "One status, many surfaces"}
                 </h2>
                 <p className="text-sm text-muted-foreground">
@@ -192,7 +192,7 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
                     ))}
                 </div>
 
-                <div className="grid gap-4 rounded-lg border p-5 sm:grid-cols-2">
+                <div className="grid gap-4 p-5 sm:grid-cols-2">
                     <div className="space-y-2">
                         <p className="text-xs font-medium uppercase tracking-wide text-muted-foreground">
                             Badge · toBadgeVariant
@@ -261,7 +261,7 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
 
             {/* Migration */}
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="migration">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="migration">
                     {isJa ? "0.1.x 互換と移行" : "0.1.x compatibility and migration"}
                 </h2>
                 <p className="text-sm text-muted-foreground">
@@ -301,7 +301,7 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
                         },
                     ]}
                 />
-                <div className="rounded-lg border p-4">
+                <div className="rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4">
                     <p className="mb-2 text-xs font-medium uppercase tracking-wide text-muted-foreground">
                         ExpiryBadge · domain state
                     </p>
@@ -311,7 +311,7 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
 
             {/* Converters */}
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="converters">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="converters">
                     {isJa ? "変換器" : "Converters"}
                 </h2>
                 <p className="text-sm text-muted-foreground">
@@ -337,7 +337,7 @@ const status: SemanticTone = over ? "destructive" : near ? "warning" : "success"
 
             {/* Usage */}
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="usage">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="usage">
                     {isJa ? "使い方" : "Usage"}
                 </h2>
                 <CodeBlock code={usageCode} />

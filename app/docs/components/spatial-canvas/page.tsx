@@ -15,7 +15,7 @@ const codeByLocale = {
 
 export function CanvasWorkspace() {
   return (
-    <div className="h-[420px] overflow-hidden rounded-lg border">
+    <div className="h-[420px] overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <SpatialCanvas gridSize={40}>
         <FloatingPanel title="Tools" className="absolute left-4 top-4 w-48">
           <div className="p-3 text-sm text-muted-foreground">Select, draw, and inspect.</div>
@@ -31,7 +31,7 @@ export function CanvasWorkspace() {
 
 export function CanvasWorkspace() {
   return (
-    <div className="h-[420px] overflow-hidden rounded-lg border">
+    <div className="h-[420px] overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <SpatialCanvas gridSize={40}>
         <FloatingPanel title="ツール" className="absolute left-4 top-4 w-48">
           <div className="p-3 text-sm text-muted-foreground">選択、描画、確認を行います。</div>
@@ -101,7 +101,7 @@ export function SelectionCanvas() {
   };
 
   return (
-    <div className="h-[360px] overflow-hidden rounded-lg border">
+    <div className="h-[360px] overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <SpatialCanvas
         ref={canvasRef}
         gridSize={32}
@@ -123,13 +123,13 @@ export function SelectionCanvas() {
         {nodes.map((node) => (
           <div
             key={node.id}
-            className="absolute grid place-items-center rounded-md border bg-background text-sm font-medium shadow-sm"
+            className="absolute grid place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card text-sm font-medium shadow-sm"
             style={{ left: node.x, top: node.y, width: node.width, height: node.height }}
           >
             {node.label}
           </div>
         ))}
-        <div className="pointer-events-none absolute rounded-md border border-primary-border bg-primary-subtle" style={selection} />
+        <div className="pointer-events-none absolute rounded-md border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText] bg-primary-subtle" style={selection} />
         <div className="pointer-events-none absolute rounded bg-primary px-2 py-1 text-xs text-primary-foreground" style={{
           left: selection.left,
           top: selectionLabelTop,
@@ -195,7 +195,7 @@ export function SelectionCanvas() {
   };
 
   return (
-    <div className="h-[360px] overflow-hidden rounded-lg border">
+    <div className="h-[360px] overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <SpatialCanvas
         ref={canvasRef}
         gridSize={32}
@@ -217,13 +217,13 @@ export function SelectionCanvas() {
         {nodes.map((node) => (
           <div
             key={node.id}
-            className="absolute grid place-items-center rounded-md border bg-background text-sm font-medium shadow-sm"
+            className="absolute grid place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card text-sm font-medium shadow-sm"
             style={{ left: node.x, top: node.y, width: node.width, height: node.height }}
           >
             {node.label}
           </div>
         ))}
-        <div className="pointer-events-none absolute rounded-md border border-primary-border bg-primary-subtle" style={selection} />
+        <div className="pointer-events-none absolute rounded-md border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText] bg-primary-subtle" style={selection} />
         <div className="pointer-events-none absolute rounded bg-primary px-2 py-1 text-xs text-primary-foreground" style={{
           left: selection.left,
           top: selectionLabelTop,
@@ -243,11 +243,11 @@ const stateCodeByLocale = {
 
 export function WorkflowCanvas() {
   return (
-    <div className="h-[360px] overflow-hidden rounded-lg border">
+    <div className="h-[360px] overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <SpatialCanvas gridSize={32}>
-        <div className="absolute left-10 top-10 rounded-md border bg-background p-3 shadow-sm">Start</div>
-        <div className="absolute left-56 top-32 rounded-md border bg-background p-3 shadow-sm">Review</div>
-        <div className="absolute bottom-10 right-12 rounded-md border bg-background p-3 shadow-sm">Publish</div>
+        <div className="absolute left-10 top-10 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 shadow-sm">Start</div>
+        <div className="absolute left-56 top-32 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 shadow-sm">Review</div>
+        <div className="absolute bottom-10 right-12 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 shadow-sm">Publish</div>
       </SpatialCanvas>
     </div>
   );
@@ -257,7 +257,7 @@ export function WorkflowCanvas() {
 
 export function DenseGridCanvas() {
   return (
-    <div className="h-[320px] overflow-hidden rounded-lg border">
+    <div className="h-[320px] overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <SpatialCanvas gridSize={16}>
         <div className="absolute inset-0 grid place-items-center text-sm text-muted-foreground">
           Dense grid for precise placement
@@ -270,7 +270,7 @@ export function DenseGridCanvas() {
 
 export function CoarseGridCanvas() {
   return (
-    <div className="h-[320px] overflow-hidden rounded-lg border">
+    <div className="h-[320px] overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <SpatialCanvas gridSize={64}>
         <div className="absolute inset-0 grid place-items-center text-sm text-muted-foreground">
           Coarse grid for broad layout work
@@ -286,11 +286,11 @@ export function CoarseGridCanvas() {
 
 export function WorkflowCanvas() {
   return (
-    <div className="h-[360px] overflow-hidden rounded-lg border">
+    <div className="h-[360px] overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <SpatialCanvas gridSize={32}>
-        <div className="absolute left-10 top-10 rounded-md border bg-background p-3 shadow-sm">開始</div>
-        <div className="absolute left-56 top-32 rounded-md border bg-background p-3 shadow-sm">確認</div>
-        <div className="absolute bottom-10 right-12 rounded-md border bg-background p-3 shadow-sm">公開</div>
+        <div className="absolute left-10 top-10 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 shadow-sm">開始</div>
+        <div className="absolute left-56 top-32 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 shadow-sm">確認</div>
+        <div className="absolute bottom-10 right-12 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 shadow-sm">公開</div>
       </SpatialCanvas>
     </div>
   );
@@ -300,7 +300,7 @@ export function WorkflowCanvas() {
 
 export function DenseGridCanvas() {
   return (
-    <div className="h-[320px] overflow-hidden rounded-lg border">
+    <div className="h-[320px] overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <SpatialCanvas gridSize={16}>
         <div className="absolute inset-0 grid place-items-center text-sm text-muted-foreground">
           細かい配置向けのグリッド
@@ -313,7 +313,7 @@ export function DenseGridCanvas() {
 
 export function CoarseGridCanvas() {
   return (
-    <div className="h-[320px] overflow-hidden rounded-lg border">
+    <div className="h-[320px] overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <SpatialCanvas gridSize={64}>
         <div className="absolute inset-0 grid place-items-center text-sm text-muted-foreground">
           大きな構成確認向けのグリッド
@@ -376,7 +376,7 @@ function SelectionCanvasPreview({ locale }: { locale: keyof typeof codeByLocale 
     };
 
     return (
-        <div className="h-[360px] w-full overflow-hidden rounded-lg border">
+        <div className="h-[360px] w-full overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
             <SpatialCanvas
                 ref={canvasRef}
                 gridSize={32}
@@ -398,13 +398,13 @@ function SelectionCanvasPreview({ locale }: { locale: keyof typeof codeByLocale 
                 {selectionNodes.map((node) => (
                     <div
                         key={node.id}
-                        className="absolute grid place-items-center rounded-md border bg-background text-sm font-medium shadow-sm"
+                        className="absolute grid place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card text-sm font-medium shadow-sm"
                         style={{ left: node.x, top: node.y, width: node.width, height: node.height }}
                     >
                         {locale === "ja" ? node.labelJa : node.labelEn}
                     </div>
                 ))}
-                <div className="pointer-events-none absolute rounded-md border border-primary-border bg-primary-subtle" style={selection} />
+                <div className="pointer-events-none absolute rounded-md border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText] bg-primary-subtle" style={selection} />
                 <div
                     className="pointer-events-none absolute rounded bg-primary px-2 py-1 text-xs text-primary-foreground"
                     style={{ left: selection.left, top: selectionLabelTop }}
@@ -450,7 +450,7 @@ export default function SpatialCanvasPage() {
             ]}
         >
             <ComponentPreview embedSrc="/embed/spatial-canvas" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="lg" previewHeight="auto">
-                <div className="h-[420px] w-full overflow-hidden rounded-lg border">
+                <div className="h-[420px] w-full overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                     <SpatialCanvas gridSize={40}>
                         <FloatingPanel title={locale === "ja" ? "ツール" : "Tools"} className="absolute left-4 top-4 w-48">
                             <div className="p-3 text-sm text-muted-foreground">{locale === "ja" ? "選択、描画、確認を行います。" : "Select, draw, and inspect."}</div>
@@ -464,7 +464,7 @@ export default function SpatialCanvasPage() {
 
             <section className="space-y-6">
                 <div className="space-y-1">
-                    <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "状態とバリエーション" : "States and Variants"}</h2>
+                    <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "状態とバリエーション" : "States and Variants"}</h2>
                 </div>
                 <ComponentDemoStates
                     states={[
@@ -475,7 +475,7 @@ export default function SpatialCanvasPage() {
                             previewBodyWidth: "lg",
                             code: stateCodeByLocale[locale].panels,
                             preview: (
-                                <div className="h-[420px] w-full overflow-hidden rounded-lg border">
+                                <div className="h-[420px] w-full overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                                     <SpatialCanvas gridSize={40}>
                                         <FloatingPanel title={locale === "ja" ? "ツール" : "Tools"} className="absolute left-4 top-4 w-48"><div className="p-3 text-sm text-muted-foreground">{locale === "ja" ? "選択、描画、確認を行います。" : "Select, draw, and inspect."}</div></FloatingPanel>
                                         <FloatingPanel title={locale === "ja" ? "プロパティ" : "Properties"} className="absolute bottom-4 right-4 w-56"><div className="p-3 text-sm text-muted-foreground">{locale === "ja" ? "選択中ノードの設定です。" : "Selected node settings."}</div></FloatingPanel>
@@ -490,11 +490,11 @@ export default function SpatialCanvasPage() {
                             previewBodyWidth: "lg",
                             code: stateCodeByLocale[locale].nodes,
                             preview: (
-                                <div className="h-[360px] w-full overflow-hidden rounded-lg border">
+                                <div className="h-[360px] w-full overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                                     <SpatialCanvas gridSize={32}>
-                                        <div className="absolute left-10 top-10 rounded-md border bg-background p-3 shadow-sm">{locale === "ja" ? "開始" : "Start"}</div>
-                                        <div className="absolute left-56 top-32 rounded-md border bg-background p-3 shadow-sm">{locale === "ja" ? "確認" : "Review"}</div>
-                                        <div className="absolute bottom-10 right-12 rounded-md border bg-background p-3 shadow-sm">{locale === "ja" ? "公開" : "Publish"}</div>
+                                        <div className="absolute left-10 top-10 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 shadow-sm">{locale === "ja" ? "開始" : "Start"}</div>
+                                        <div className="absolute left-56 top-32 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 shadow-sm">{locale === "ja" ? "確認" : "Review"}</div>
+                                        <div className="absolute bottom-10 right-12 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 shadow-sm">{locale === "ja" ? "公開" : "Publish"}</div>
                                     </SpatialCanvas>
                                 </div>
                             ),
@@ -514,7 +514,7 @@ export default function SpatialCanvasPage() {
                             previewBodyWidth: "lg",
                             code: stateCodeByLocale[locale].dense,
                             preview: (
-                                <div className="h-[320px] w-full overflow-hidden rounded-lg border">
+                                <div className="h-[320px] w-full overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                                     <SpatialCanvas gridSize={16}><div className="absolute inset-0 grid place-items-center text-sm text-muted-foreground">{locale === "ja" ? "細かい配置向けのグリッド" : "Dense grid for precise placement"}</div></SpatialCanvas>
                                 </div>
                             ),
@@ -526,7 +526,7 @@ export default function SpatialCanvasPage() {
                             previewBodyWidth: "lg",
                             code: stateCodeByLocale[locale].coarse,
                             preview: (
-                                <div className="h-[320px] w-full overflow-hidden rounded-lg border">
+                                <div className="h-[320px] w-full overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                                     <SpatialCanvas gridSize={64}><div className="absolute inset-0 grid place-items-center text-sm text-muted-foreground">{locale === "ja" ? "大きな構成確認向けのグリッド" : "Coarse grid for broad layout work"}</div></SpatialCanvas>
                                 </div>
                             ),
@@ -536,21 +536,21 @@ export default function SpatialCanvasPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "プロパティ" : "Props"}</h2>
+                <h2 id="props" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "プロパティ" : "Props"}</h2>
                 <PropsTable data={propsData} />
             </section>
 
             <section className="space-y-4">
-                <div className="flex items-start justify-between gap-3 border-b pb-2">
+                <div className="flex items-start justify-between gap-3 pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>
             <section className="space-y-4">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
                         {locale === "ja" ? "設計の判断" : "Design decisions"}
                     </h2>

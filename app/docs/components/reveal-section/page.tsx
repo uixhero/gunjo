@@ -59,7 +59,7 @@ function QuietRevealPreview({ locale }: { locale: "en" | "ja" }) {
                 open={showNote}
                 announce={false}
                 label={locale === "ja" ? "計算の内訳" : "Calculation breakdown"}
-                className="rounded-md border bg-muted/30 p-4 text-sm text-muted-foreground"
+                className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 text-sm text-muted-foreground"
             >
                 {locale === "ja"
                     ? "課税所得 3,200,000 円 × 税率 10% − 控除額 97,500 円 = 222,500 円"
@@ -88,7 +88,7 @@ function LabelledByPreview({ locale }: { locale: "en" | "ja" }) {
             <RevealSection
                 open={needsInvoice}
                 aria-labelledby="reveal-invoice-heading"
-                className="rounded-md border bg-muted/30 p-4"
+                className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4"
             >
                 <h4 id="reveal-invoice-heading" className="mb-3 text-sm font-medium text-foreground">
                     {locale === "ja" ? "請求書の宛名" : "Billing name"}
@@ -127,7 +127,7 @@ function ChainedRevealPreview({ locale }: { locale: "en" | "ja" }) {
             <RevealSection
                 open={absent}
                 label={locale === "ja" ? "不在時の扱い" : "If nobody is home"}
-                className="flex flex-col gap-3 rounded-md border bg-muted/30 p-4"
+                className="flex flex-col gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4"
             >
                 <div className="flex items-center gap-2">
                     <Checkbox
@@ -183,7 +183,7 @@ export default function RevealSectionDocPage() {
             </ComponentPreview>
 
             <div className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
                     {locale === "ja" ? "状態とバリエーション" : "States and variants"}
                 </h2>
                 <p className="text-sm leading-relaxed text-muted-foreground">
@@ -224,7 +224,7 @@ export function CalculationNote() {
         open={showNote}
         announce={false}
         label="計算の内訳"
-        className="rounded-md border bg-muted/30 p-4 text-sm"
+        className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 text-sm"
       >
         課税所得 3,200,000 円 × 税率 10% − 控除額 97,500 円 = 222,500 円
       </RevealSection>
@@ -254,7 +254,7 @@ export function CalculationNote() {
         open={showNote}
         announce={false}
         label="Calculation breakdown"
-        className="rounded-md border bg-muted/30 p-4 text-sm"
+        className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 text-sm"
       >
         Taxable income 3,200,000 × rate 10% − deduction 97,500 = 222,500
       </RevealSection>
@@ -292,7 +292,7 @@ export function BillingNameSection() {
       <RevealSection
         open={needsInvoice}
         aria-labelledby="invoice-heading"
-        className="rounded-md border bg-muted/30 p-4"
+        className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4"
       >
         <h4 id="invoice-heading" className="mb-3 text-sm font-medium">
           請求書の宛名
@@ -327,7 +327,7 @@ export function BillingNameSection() {
       <RevealSection
         open={needsInvoice}
         aria-labelledby="invoice-heading"
-        className="rounded-md border bg-muted/30 p-4"
+        className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4"
       >
         <h4 id="invoice-heading" className="mb-3 text-sm font-medium">
           Billing name
@@ -372,7 +372,7 @@ export function DeliveryOptions() {
       <RevealSection
         open={absent}
         label="不在時の扱い"
-        className="flex flex-col gap-3 rounded-md border bg-muted/30 p-4"
+        className="flex flex-col gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4"
       >
         <div className="flex items-center gap-2">
           <Checkbox
@@ -418,7 +418,7 @@ export function DeliveryOptions() {
       <RevealSection
         open={absent}
         label="If nobody is home"
-        className="flex flex-col gap-3 rounded-md border bg-muted/30 p-4"
+        className="flex flex-col gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4"
       >
         <div className="flex items-center gap-2">
           <Checkbox
@@ -447,13 +447,13 @@ export function DeliveryOptions() {
             </div>
 
             <div className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">Props</h2>
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">Props</h2>
                 <PropsTable data={propsData} />
             </div>
 
             <div className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">Usage</h2>
-                <div className="rounded-md border bg-muted font-mono text-sm max-h-[420px] overflow-auto">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">Usage</h2>
+                <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm max-h-[420px] overflow-auto">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

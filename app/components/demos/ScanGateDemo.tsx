@@ -79,7 +79,7 @@ export function ScanGateDemo() {
                 </Button>
             </div>
 
-            <ul className="flex flex-col gap-1 rounded-lg border bg-card p-3 text-sm">
+            <ul className="flex flex-col gap-1 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-sm">
                 {lines.map((l) => {
                     const done = l.packed >= l.ordered;
                     return (
