@@ -100,7 +100,13 @@ const Sidebar = React.forwardRef<
             ref={ref}
             data-collapsed={collapsed}
             className={cn(
-                "relative flex flex-col self-stretch overflow-visible border-r bg-muted/40 transition-[width] duration-200",
+                "relative flex flex-col self-stretch overflow-visible bg-muted transition-[width] duration-200",
+                // 区切りは 1px の罫線ではなく面の濃淡で伝える（DECISIONS.md
+                // 2026-09-22）。bg-muted/40 は地との比が dark 1.10:1 / light
+                // 1.04:1 しかなく罫線を外すと消えるので、bg-muted（dark 1.37:1 /
+                // light 1.10:1）まで上げてある。border-r は幅だけ残して透明にし、
+                // ハイコントラストでだけ色を戻す（モード間で幅がずれないため）。
+                "border-r border-r-transparent contrast-more:border-r-border forced-colors:border-r-[CanvasText]",
                 collapsed ? "w-[60px]" : "w-[240px]",
                 className
             )}
@@ -122,7 +128,10 @@ const SidebarHeader = React.forwardRef<
         <div
             ref={ref}
             className={cn(
-                "flex items-center gap-2 overflow-hidden border-b bg-background py-3",
+                "flex items-center gap-2 overflow-hidden bg-background py-3",
+                // 本体（bg-muted）との面の差が境目になる。罫線は幅だけ残して
+                // 透明にし、ハイコントラストで戻す。
+                "border-b border-b-transparent contrast-more:border-b-border forced-colors:border-b-[CanvasText]",
                 collapsed ? "justify-center px-2" : "px-4",
                 className
             )}
@@ -167,7 +176,9 @@ const SidebarFooter = React.forwardRef<
         <div
             ref={ref}
             className={cn(
-                "flex items-center gap-2 overflow-hidden border-t bg-background py-3",
+                "flex items-center gap-2 overflow-hidden bg-background py-3",
+                // ヘッダーと同じ扱い。面の差で区切り、ハイコントラストで罫線に戻す。
+                "border-t border-t-transparent contrast-more:border-t-border forced-colors:border-t-[CanvasText]",
                 collapsed ? "justify-center px-2" : "px-4",
                 className
             )}

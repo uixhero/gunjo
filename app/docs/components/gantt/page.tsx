@@ -140,7 +140,7 @@ function GanttDetailPanel({
   const tone = GANTT_DETAIL_TONE[item.tone ?? "default"];
 
   return (
-    <div className={["min-w-0 rounded-lg border border-l-4 text-sm shadow-sm", compact ? "p-2" : "p-3", tone.panel].join(" ")}>
+    <div className={["min-w-0 rounded-lg border text-sm shadow-sm", compact ? "p-2" : "p-3", tone.panel].join(" ")}>
       {compact ? (
         <div className="flex justify-end">
           <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">
@@ -418,7 +418,7 @@ export function ProductionGantt() {
           <SheetHeader className="pr-8 text-left">
             <SheetTitle>工程詳細 / {selectedItem.label}</SheetTitle>
           </SheetHeader>
-          <div className={["mt-4 rounded-lg border border-l-4 p-2 text-sm shadow-sm", selectedTone.panel].join(" ")}>
+          <div className={["mt-4 rounded-lg border p-2 text-sm shadow-sm", selectedTone.panel].join(" ")}>
             <div className="flex justify-end">
               <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">
                 {selectedDetail.status}
@@ -535,7 +535,7 @@ export function ProductionGantt() {
           <SheetHeader className="pr-8 text-left">
             <SheetTitle>Job details / {selectedItem.label}</SheetTitle>
           </SheetHeader>
-          <div className={["mt-4 rounded-lg border border-l-4 p-2 text-sm shadow-sm", selectedTone.panel].join(" ")}>
+          <div className={["mt-4 rounded-lg border p-2 text-sm shadow-sm", selectedTone.panel].join(" ")}>
             <div className="flex justify-end">
               <Badge variant="outline" className="shrink-0 border-border bg-background text-foreground shadow-sm">
                 {selectedDetail.status}
@@ -621,7 +621,7 @@ export function SegmentedProductionGantt() {
           <SheetHeader className="pr-8 text-left">
             <SheetTitle>工程詳細 / {selectedItem?.label}</SheetTitle>
           </SheetHeader>
-	      <div className={["mt-4 rounded-lg border border-l-4 p-3 text-sm shadow-sm", detail.tone.panel].join(" ")}>
+	      <div className={["mt-4 rounded-lg border p-3 text-sm shadow-sm", detail.tone.panel].join(" ")}>
             <div className="flex justify-end">
               <Badge
                 variant="outline"
@@ -708,7 +708,7 @@ export function SegmentedProductionGantt() {
           <SheetHeader className="pr-8 text-left">
             <SheetTitle>Job details / {selectedItem?.label}</SheetTitle>
           </SheetHeader>
-	      <div className={["mt-4 rounded-lg border border-l-4 p-3 text-sm shadow-sm", detail.tone.panel].join(" ")}>
+	      <div className={["mt-4 rounded-lg border p-3 text-sm shadow-sm", detail.tone.panel].join(" ")}>
             <div className="flex justify-end">
               <Badge
                 variant="outline"
