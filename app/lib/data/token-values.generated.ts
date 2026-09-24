@@ -150,7 +150,7 @@ export const TOKEN_VALUES: {
         "--overlay": "0 0% 0%",
         "--background": "222.2 84% 4.9%",
         "--foreground": "210 40% 98%",
-        "--card": "222.2 84% 4.9%",
+        "--card": "217 33% 13%",
         "--card-foreground": "210 40% 98%",
         "--popover": "222.2 84% 4.9%",
         "--popover-foreground": "210 40% 98%",

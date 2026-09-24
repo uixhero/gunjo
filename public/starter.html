@@ -273,7 +273,7 @@
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 217 33% 13%;
     --card-foreground: 210 40% 98%;
 
     --popover: 222.2 84% 4.9%;
@@ -310,6 +310,19 @@
     --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.4);
     --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.1);
     --shadow-none: none;
+}
+
+/* ハイコントラスト（prefers-contrast: more）では、区切りを面の濃淡ではなく
+   枠線で伝える。--border を 3:1 以上まで上げる。 */
+@media (prefers-contrast: more) {
+    :root {
+        --border: 215 20% 40%;
+    }
+
+    .dark,
+    [data-theme="dark"] {
+        --border: 215 20% 45%;
+    }
 }
 
 /* 最小のベーススタイル（Tailwind preflight の要点だけを純 CSS で再現） */

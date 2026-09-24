@@ -1,5 +1,5 @@
 {
-  "version": "2.13",
+  "version": "2.14",
   "children": [
     {
       "type": "frame",
@@ -3808,5 +3808,6 @@
       "type": "string",
       "value": "cubic-bezier(0.4, 0, 0.2, 1)"
     }
-  }
+  },
+  "fileToken": "c335aec3-c4d3-43e9-bc3e-1549741f307a"
 }
