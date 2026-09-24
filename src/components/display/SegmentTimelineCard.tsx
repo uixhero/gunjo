@@ -267,7 +267,9 @@ const SegmentTimelineCard = React.forwardRef<
                                     >
                                         <div
                                             className={cn(
-                                                "min-w-0 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                                                // カードの中の行は地の色に沈める＝bg-card だとカードと同値（1.000:1）で境目が消える。
+                                                // bg-background でカードとの段差 light 1.098 / dark 1.202、選択中の bg-muted とも分かれる（#1029）。
+                                                "min-w-0 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                                                 styles.metric
                                             )}
                                             tabIndex={0}
@@ -416,7 +418,7 @@ const SegmentTimelineCard = React.forwardRef<
                                         <button
                                             type="button"
                                             className={cn(
-                                                "grid min-w-0 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2 text-left transition-colors",
+                                                "grid min-w-0 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-3 py-2 text-left transition-colors",
                                                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                                                 onSegmentSelect
                                                     ? "cursor-pointer hover:bg-accent/10"

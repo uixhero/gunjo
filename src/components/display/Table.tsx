@@ -13,7 +13,10 @@ const Table = React.forwardRef<
 >(({ className, striped = false, ...props }, ref) => (
     // `[contain:paint]` keeps a wide table's horizontal scroll inside this box
     // instead of leaking page-level h-scroll on mobile (e.g. 375px). (#289)
-    <div className="relative flex w-full flex-col overflow-auto rounded-md rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card [contain:paint]">
+    // 地の上では表の器が bg-card の面になる。Card など bg-card の面の中では
+    // 塗りをやめる＝同じ色を重ねても境目にならない（1.000:1・#1029）ので、
+    // 包む面をそのまま表の地にする。ハイコントラストでは枠が戻る。
+    <div className="relative flex w-full flex-col overflow-auto rounded-md rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card [.bg-card_&]:bg-transparent [contain:paint]">
         <table
             ref={ref}
             className={cn(
@@ -69,7 +72,10 @@ const TableRow = React.forwardRef<
     <tr
         ref={ref}
         className={cn(
-            "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+            // 選択中の行は bg-muted。dark は --secondary = --muted なので、行の中の
+            // secondary の Badge が行と同値（1.000:1）になる。選択中だけ地の色に
+            // 沈める（light 1.190 / dark 1.369・#1029）。
+            "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted data-[state=selected]:[&_.bg-secondary]:bg-background",
             className
         )}
         {...props}

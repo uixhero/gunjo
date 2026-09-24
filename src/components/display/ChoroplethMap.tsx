@@ -518,7 +518,7 @@ const ChoroplethMap = React.forwardRef<HTMLDivElement, ChoroplethMapProps>(
                             </div>
                         </div>
                         {showSelectedRegion && selectedRegionEntry ? (
-                            <div className="grid min-w-0 gap-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
+                            <div className="grid min-w-0 gap-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
                                 <div className="flex min-w-0 items-center justify-between gap-3">
                                     <div className="min-w-0">
                                         <div className="text-xs font-medium text-muted-foreground">
@@ -567,7 +567,9 @@ const ChoroplethMap = React.forwardRef<HTMLDivElement, ChoroplethMapProps>(
                                         <button
                                             type="button"
                                             className={cn(
-                                                "grid w-full min-w-0 gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-2 text-left transition-colors",
+                                                // この部品は自分の面を持たない＝地の上にも Card の中にも置かれる。行が bg-card だと
+                                                // Card と、bg-background だと地と同値（1.000:1）。bg-muted は両方の上で分かれる（地 1.190 / 1.369・カード 1.306 / 1.139・#1029）。
+                                                "grid w-full min-w-0 gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-2 text-left transition-colors",
                                                 canSelectRegions &&
                                                     "cursor-pointer hover:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                                                 !canSelectRegions && "cursor-default",

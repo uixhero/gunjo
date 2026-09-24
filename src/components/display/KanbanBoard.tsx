@@ -110,7 +110,10 @@ function KanbanBoard<T>({
                                 <span className="truncate">{col.title}</span>
                             </div>
                             {showCount ? (
-                                <Badge variant="secondary" className="shrink-0 tabular-nums">
+                                // 列は bg-muted。dark は --secondary = --muted なので secondary の
+                                // 塗りのままだと列と同値（1.000:1）で数のピルが消える。地の色に
+                                // 沈めて列との段差 light 1.190 / dark 1.369（#1029）。
+                                <Badge variant="secondary" className="shrink-0 bg-background tabular-nums">
                                     {cards.length}
                                 </Badge>
                             ) : null}
