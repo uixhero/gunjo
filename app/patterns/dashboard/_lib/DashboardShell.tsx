@@ -2078,7 +2078,7 @@ function SettingsPage({
     return (
         <div className="space-y-6">
             <PageHeading title={t.settings.title} description={t.settings.description} />
-            <Tabs defaultValue="account" className="w-full border-0">
+            <Tabs defaultValue="account" className="w-full">
                 <TabsList className={cn("justify-start", isMobile ? "w-full overflow-x-auto" : "")}>
                     <TabsTrigger value="account">{t.settings.tabs.account}</TabsTrigger>
                     <TabsTrigger value="billing">{t.settings.tabs.billing}</TabsTrigger>

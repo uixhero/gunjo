@@ -113,7 +113,7 @@ function FlowRunCard({ run, isJa }: { run: FlowRun; isJa: boolean }) {
                 >
                     {name}
                     {screen ? null : (
-                        <Badge variant="secondary" className="ml-0.5">
+                        <Badge variant="outline" className="ml-0.5">
                             {isJa ? PLANNED_BADGE_SHORT_JA : PLANNED_BADGE_SHORT_EN}
                         </Badge>
                     )}

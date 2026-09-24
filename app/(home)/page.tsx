@@ -657,7 +657,7 @@ function LiveComponentWorkbench({ isJa }: { isJa: boolean }) {
                                 Tabs / CopyButton / Kbd
                             </Badge>
                         </div>
-                        <Tabs value={activeTab} onValueChange={setActiveTab} className="border-0">
+                        <Tabs value={activeTab} onValueChange={setActiveTab}>
                             <TabsList>
                                 <TabsTrigger value="preview">
                                     {isJa ? "プレビュー" : "Preview"}

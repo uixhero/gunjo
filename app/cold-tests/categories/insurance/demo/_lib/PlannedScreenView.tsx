@@ -94,7 +94,7 @@ function FlowPosition({ current, isJa }: { current: FlowTarget; isJa: boolean })
                                     >
                                         {label}
                                         {isScreen ? null : (
-                                            <Badge variant="secondary">
+                                            <Badge variant="outline">
                                                 {isJa
                                                     ? PLANNED_BADGE_SHORT_JA
                                                     : PLANNED_BADGE_SHORT_EN}

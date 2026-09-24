@@ -319,8 +319,10 @@ export function AlertDemo() {
 }
 
 export function KbdDemo() {
+    // 舞台の面は持たない＝docs のプレビューの面がすでに担っている。muted/50 の
+    // 舞台の上では Kbd（bg-secondary）と 1.009:1 で見分けがつかなかった（#1029）。
     return (
-        <div className="w-full flex justify-center p-10 bg-muted/50 rounded-lg">
+        <div className="w-full flex justify-center p-10">
             <div className="flex items-center gap-2 text-sm">
                 Press <Kbd>⌘</Kbd> + <Kbd>K</Kbd> to search
             </div>
