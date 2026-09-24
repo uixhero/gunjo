@@ -374,7 +374,7 @@ export function PoliciesScreen() {
               <button
                 type="button"
                 onClick={() => setSelected(p)}
-                className="flex w-full flex-col gap-2 rounded-lg border border-border bg-card p-3 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="flex w-full flex-col gap-2 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-left focus:outline-none focus-visible:ring-2 focus-visible:ring-ring"
               >
                 <div className="flex items-start justify-between gap-2">
                   <PersonCell

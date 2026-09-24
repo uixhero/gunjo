@@ -82,7 +82,7 @@ export function ReloadingPanel() {
 
   return (
     <div className="w-full max-w-md">
-      <div className="relative overflow-hidden rounded-lg border p-4" aria-busy={loading}>
+      <div className="relative overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4" aria-busy={loading}>
         {loading ? <RouteProgress placement="container" label="${t("ページを読み込み中", "Loading page")}" /> : null}
         <p className="text-sm font-medium">${t("一覧 {page} ページ目", "List, page {page}")}</p>
         <p className="mt-1 text-sm text-muted-foreground">${t("この枠の中だけが読み込み直されます。", "Only this panel reloads.")}</p>
@@ -201,7 +201,7 @@ export function ReduceMotionDemo() {
             </DocNote>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
                     {t("状態とバリエーション", "States and variants")}
                 </h2>
                 <ComponentDemoStates
@@ -247,26 +247,26 @@ export function ReduceMotionDemo() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
                     {sectionLabels.props}
                 </h2>
                 <PropsTable data={propsData} />
             </section>
 
             <section className="space-y-4">
-                <div className="flex items-start justify-between gap-3 border-b pb-2">
+                <div className="flex items-start justify-between gap-3 pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
                         {sectionLabels.usage}
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>
 
             <section className="space-y-4">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
                         {t("設計の判断", "Design decisions")}
                     </h2>

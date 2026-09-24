@@ -137,7 +137,7 @@ export function WelcomeChatPanel() {
       placeholder="何でも聞いてください..."
       welcome={
         <div className="w-full max-w-md space-y-5 px-2 pb-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-full border bg-background shadow-sm">
+          <div className="flex h-12 w-12 items-center justify-center rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted shadow-sm">
             <IconSparkles className="h-6 w-6" />
           </div>
           <div className="space-y-2">
@@ -180,7 +180,7 @@ function ChatPanelWelcome({ onSelect }: ChatPanelWelcomeProps) {
 
     return (
         <div className="w-full max-w-md space-y-5 px-2 pb-4">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full border bg-background shadow-sm">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted shadow-sm">
                 <IconSparkles className="h-6 w-6" />
             </div>
             <div className="space-y-2">
@@ -341,7 +341,7 @@ export default function ChatPanelDocPage() {
             </ComponentPreview>
 
             <section className="space-y-4">
-                <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+                <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">
                     {isJa ? "状態とバリエーション" : "States and Variations"}
                 </h2>
                 <ComponentDemoStates
@@ -415,7 +415,7 @@ export default function ChatPanelDocPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">
                     {sectionLabels.props}
                 </h2>
                 <PropsTable
@@ -433,7 +433,7 @@ export default function ChatPanelDocPage() {
             </section>
 
             <section className="space-y-4">
-                <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
+                <div className="flex flex-wrap items-center justify-between gap-3 pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
                         {sectionLabels.usage}
                     </h2>

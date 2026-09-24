@@ -90,14 +90,14 @@ function ScannerPanel({
           <DialogTitle>{target.title}</DialogTitle>
           <DialogDescription>{target.description}</DialogDescription>
         </DialogHeader>
-        <div className="relative overflow-hidden rounded-md border bg-foreground p-4 text-background">
+        <div className="relative overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-foreground p-4 text-background">
           <div className="pointer-events-none absolute inset-x-4 top-1/2 h-px bg-success shadow-[0_0_16px_hsl(var(--success))]" />
           <div className="grid gap-2">
             {target.codes.map((item) => (
               <button
                 key={item.code}
                 type="button"
-                className="grid grid-cols-[1fr_auto] items-center gap-3 rounded-md border border-background/20 bg-background/10 px-3 py-2 text-left transition-colors hover:bg-background/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                className="grid grid-cols-[1fr_auto] items-center gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background/10 px-3 py-2 text-left transition-colors hover:bg-background/20 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                 onClick={() => {
                   target.action.commit(item.code);
                   onClose();
@@ -127,13 +127,13 @@ function WorkflowStatusBadge({ status, locale }: { status: WorkflowStatus; local
       : locale === "ja" ? "待機" : "Waiting";
 
   const className = status === "done"
-    ? "border-success bg-success-subtle/50 text-success-strong"
+    ? "bg-success-subtle text-success-strong"
     : status === "active"
-      ? "border-primary-border bg-primary-subtle text-primary-subtle-foreground"
-      : "border-border bg-background text-muted-foreground";
+      ? "bg-card text-primary-subtle-foreground"
+      : "bg-muted text-muted-foreground";
 
   return (
-    <span className={`rounded-full border px-2 py-0.5 text-xs font-medium ${className}`}>
+    <span className={`rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-2 py-0.5 text-xs font-medium ${className}`}>
       {label}
     </span>
   );
@@ -155,17 +155,17 @@ function WorkflowStepCard({
   children: React.ReactNode;
 }) {
   const activeClass = status === "active"
-    ? "border-primary-border bg-primary-subtle/30"
+    ? "bg-primary-subtle"
     : status === "done"
-      ? "border-success bg-success-subtle/20"
-      : "border-border bg-card";
+      ? "bg-success-subtle"
+      : "bg-card";
 
   return (
-    <li className={`rounded-lg border p-3 ${activeClass}`}>
+    <li className={`rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-3 ${activeClass}`}>
       <div className="mb-3 flex items-start justify-between gap-3">
         <div className="min-w-0">
           <div className="flex items-center gap-2">
-            <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full border bg-background text-xs font-semibold text-foreground">
+            <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background text-xs font-semibold text-foreground">
               {number}
             </span>
             <h3 className="text-sm font-semibold text-foreground">{title}</h3>
@@ -297,7 +297,7 @@ function ScanGatePackingPreview({
 
   return (
     <div ref={previewRootRef} className="relative flex w-full max-w-lg flex-col gap-4">
-      <div className="rounded-lg border bg-card p-3">
+      <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
         <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
           <div className="min-w-0">
             <p className="text-xs font-medium text-muted-foreground">
@@ -310,7 +310,7 @@ function ScanGatePackingPreview({
               ) : null}
             </p>
           </div>
-          <span className="rounded-full border bg-background px-2 py-0.5 text-xs font-medium text-muted-foreground">
+          <span className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-2 py-0.5 text-xs font-medium text-muted-foreground">
             {locale === "ja" ? `梱包 ${packedTotal} / ${orderedTotal}` : `Packed ${packedTotal} / ${orderedTotal}`}
           </span>
         </div>
@@ -409,7 +409,7 @@ function ScanGatePackingPreview({
             {["CTN-001", "CTN-002"].map((code) => {
               const selected = openCarton === code;
               return (
-                <div key={code} className={selected ? "rounded-md border border-primary-border bg-background px-3 py-2" : "rounded-md border bg-background px-3 py-2"}>
+                <div key={code} className={selected ? "rounded-md border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText] bg-primary-subtle px-3 py-2" : "rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-3 py-2"}>
                   <div className="flex items-start justify-between gap-2">
                     <div>
                       <p className="font-mono text-sm font-semibold text-foreground">{code}</p>
@@ -443,7 +443,7 @@ function ScanGatePackingPreview({
             {lines.map((line) => {
               const done = line.packed >= line.ordered;
               return (
-                <li key={line.code} className={done ? "grid gap-1 rounded-md border border-success bg-background px-3 py-2" : "grid gap-1 rounded-md border bg-background px-3 py-2"}>
+                <li key={line.code} className={done ? "grid gap-1 rounded-md border border-transparent contrast-more:border-success forced-colors:border-[CanvasText] bg-success-subtle px-3 py-2" : "grid gap-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-3 py-2"}>
                   <div className="flex items-center justify-between gap-3">
                     <span className="min-w-0 truncate font-medium text-foreground">{localizedItemName(line.name, locale)}</span>
                     <span className="shrink-0 tabular-nums text-muted-foreground">
@@ -472,7 +472,7 @@ function ScanGatePackingPreview({
           status={shipmentStatus}
           locale={locale}
         >
-          <div className={shipped ? "rounded-md border border-success bg-background px-3 py-3" : "rounded-md border bg-background px-3 py-3"}>
+          <div className={shipped ? "rounded-md border border-transparent contrast-more:border-success forced-colors:border-[CanvasText] bg-success-subtle px-3 py-3" : "rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-3 py-3"}>
             <div className="flex flex-wrap items-start justify-between gap-3">
               <div className="min-w-0 space-y-1">
                 <h4 className="text-sm font-semibold text-foreground">
@@ -488,7 +488,7 @@ function ScanGatePackingPreview({
                     : locale === "ja" ? `梱包 ${packedTotal} / ${orderedTotal}、残り ${remainingTotal} 点。` : `Packed ${packedTotal} / ${orderedTotal}; ${remainingTotal} remaining.`}
                 </p>
               </div>
-              <span className="rounded-full border bg-background px-2 py-0.5 text-xs font-medium text-muted-foreground">
+              <span className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
                 {openCarton ? `SHIP-${openCarton}` : "SHIP-CTN-001"}
               </span>
             </div>
@@ -650,7 +650,7 @@ function ScannerPanel(props: { target: ScannerTarget; onClose: () => void }) {
           <DialogTitle>{target.title}</DialogTitle>
           <DialogDescription>{target.description}</DialogDescription>
         </DialogHeader>
-        <div className="relative overflow-hidden rounded-md border bg-foreground p-4 text-background">
+        <div className="relative overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-foreground p-4 text-background">
           <div className="pointer-events-none absolute inset-x-4 top-1/2 h-px bg-success" />
           <div className="grid gap-2">
           {target.codes.map((item) => (
@@ -805,24 +805,24 @@ export function PackingGate() {
         <ScannerPanel target={scannerTarget} onClose={() => setScannerTarget(null)} />
       ) : null}
 
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border bg-card px-3 py-2">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2">
         <div className="min-w-0 space-y-0.5">
           <p className="text-xs font-medium text-muted-foreground">次に読み取る</p>
           <p className="text-sm font-medium text-foreground">
             {activeStage === "carton" ? "カートン" : activeStage === "item" ? "商品" : "出荷確認"}
           </p>
         </div>
-        <span className="rounded-full border bg-background px-2 py-0.5 text-xs font-medium text-muted-foreground">
+        <span className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-2 py-0.5 text-xs font-medium text-muted-foreground">
           梱包 {packedTotal} / {orderedTotal}
         </span>
       </div>
 
       <ol className="flex flex-col gap-3">
-        <section className="rounded-lg border bg-muted/20 p-3">
+        <section className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
           <h3 className="mb-2 text-sm font-semibold text-foreground">1. カートン</h3>
           <div className="flex flex-col gap-2">
             {["CTN-001", "CTN-002"].map((code) => (
-              <div key={code} className="rounded-md border bg-background px-3 py-2">
+              <div key={code} className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-3 py-2">
                 <p className="font-mono text-sm font-semibold text-foreground">{code}</p>
                 <p className="text-xs text-muted-foreground">出荷カートン</p>
                 <div className="mt-2 max-w-[144px]">
@@ -833,11 +833,11 @@ export function PackingGate() {
           </div>
         </section>
 
-        <section className="rounded-lg border bg-card p-3">
+        <section className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
           <h3 className="mb-2 text-sm font-semibold text-foreground">2. 商品</h3>
           <ul className="flex flex-col gap-2 text-sm">
             {lines.map((line) => (
-              <li key={line.code} className="grid gap-1 rounded-md border bg-background px-3 py-2">
+              <li key={line.code} className="grid gap-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-3 py-2">
                 <div className="flex items-center justify-between gap-3">
                   <span className="min-w-0 truncate font-medium text-foreground">{line.name}</span>
                   <span className="shrink-0 tabular-nums text-muted-foreground">
@@ -854,7 +854,7 @@ export function PackingGate() {
           </ul>
         </section>
 
-        <section className="rounded-lg border bg-card p-3">
+        <section className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
           <h3 className="mb-2 text-sm font-semibold text-foreground">3. 出荷確認</h3>
           <p className="mb-3 text-xs text-muted-foreground">
             {shipped ? "出荷待ちにしました。" : \`梱包 \${packedTotal} / \${orderedTotal}、残り \${orderedTotal - packedTotal} 点。\`}
@@ -939,7 +939,7 @@ function ScannerPanel(props: { target: ScannerTarget; onClose: () => void }) {
           <DialogTitle>{target.title}</DialogTitle>
           <DialogDescription>{target.description}</DialogDescription>
         </DialogHeader>
-        <div className="relative overflow-hidden rounded-md border bg-foreground p-4 text-background">
+        <div className="relative overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-foreground p-4 text-background">
           <div className="pointer-events-none absolute inset-x-4 top-1/2 h-px bg-success" />
           <div className="grid gap-2">
           {target.codes.map((item) => (
@@ -1094,24 +1094,24 @@ export function PackingGate() {
         <ScannerPanel target={scannerTarget} onClose={() => setScannerTarget(null)} />
       ) : null}
 
-      <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border bg-card px-3 py-2">
+      <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2">
         <div className="min-w-0 space-y-0.5">
           <p className="text-xs font-medium text-muted-foreground">Next scan</p>
           <p className="text-sm font-medium text-foreground">
             {activeStage === "carton" ? "Carton" : activeStage === "item" ? "Item" : "Shipment"}
           </p>
         </div>
-        <span className="rounded-full border bg-background px-2 py-0.5 text-xs font-medium text-muted-foreground">
+        <span className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-2 py-0.5 text-xs font-medium text-muted-foreground">
           Packed {packedTotal} / {orderedTotal}
         </span>
       </div>
 
       <ol className="flex flex-col gap-3">
-        <section className="rounded-lg border bg-muted/20 p-3">
+        <section className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
           <h3 className="mb-2 text-sm font-semibold text-foreground">1. Carton</h3>
           <div className="flex flex-col gap-2">
             {["CTN-001", "CTN-002"].map((code) => (
-              <div key={code} className="rounded-md border bg-background px-3 py-2">
+              <div key={code} className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-3 py-2">
                 <p className="font-mono text-sm font-semibold text-foreground">{code}</p>
                 <p className="text-xs text-muted-foreground">Shipping carton</p>
                 <div className="mt-2 max-w-[144px]">
@@ -1122,11 +1122,11 @@ export function PackingGate() {
           </div>
         </section>
 
-        <section className="rounded-lg border bg-card p-3">
+        <section className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
           <h3 className="mb-2 text-sm font-semibold text-foreground">2. Items</h3>
           <ul className="flex flex-col gap-2 text-sm">
             {lines.map((line) => (
-              <li key={line.code} className="grid gap-1 rounded-md border bg-background px-3 py-2">
+              <li key={line.code} className="grid gap-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-3 py-2">
                 <div className="flex items-center justify-between gap-3">
                   <span className="min-w-0 truncate font-medium text-foreground">{line.name}</span>
                   <span className="shrink-0 tabular-nums text-muted-foreground">
@@ -1143,7 +1143,7 @@ export function PackingGate() {
           </ul>
         </section>
 
-        <section className="rounded-lg border bg-card p-3">
+        <section className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
           <h3 className="mb-2 text-sm font-semibold text-foreground">3. Shipment confirmation</h3>
           <p className="mb-3 text-xs text-muted-foreground">
             {shipped ? "Ready to ship." : \`Packed \${packedTotal} / \${orderedTotal}; \${orderedTotal - packedTotal} remaining.\`}
@@ -1277,7 +1277,7 @@ export function PackingGate() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
           {locale === "ja" ? "状態とバリエーション" : "States and variants"}
         </h2>
         <ComponentDemoStates
@@ -1339,7 +1339,7 @@ function ScannerPanel(props: { target: ScannerTarget; onClose: () => void }) {
           <button
             key={item.code}
             type="button"
-            className="rounded-md border px-3 py-2 text-left font-mono text-sm"
+            className="rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-3 py-2 text-left font-mono text-sm"
             onClick={() => {
               target.action.commit(item.code);
               onClose();
@@ -1426,7 +1426,7 @@ function ScannerPanel(props: { target: ScannerTarget; onClose: () => void }) {
           <button
             key={item.code}
             type="button"
-            className="rounded-md border px-3 py-2 text-left font-mono text-sm"
+            className="rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-3 py-2 text-left font-mono text-sm"
             onClick={() => {
               target.action.commit(item.code);
               onClose();
@@ -1497,20 +1497,20 @@ export function BadgeGate() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
           {sectionLabels.props}
         </h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
             {sectionLabels.usage}
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

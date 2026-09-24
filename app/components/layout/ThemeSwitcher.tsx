@@ -249,7 +249,7 @@ export function ThemeSwitcher() {
                                     : strings.copy}
                             </Button>
                         </div>
-                        <pre className="overflow-x-auto rounded border border-border/40 bg-muted/20 p-2 font-mono text-[10px] leading-relaxed text-muted-foreground">
+                        <pre className="overflow-x-auto rounded border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-2 font-mono text-[10px] leading-relaxed text-muted-foreground">
                             {cssSnippet}
                         </pre>
                         <p className="text-[10px] text-muted-foreground">

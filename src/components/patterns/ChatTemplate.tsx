@@ -22,7 +22,7 @@ export function ChatTemplate({
         <div className={cn("flex h-full min-h-0 w-full overflow-hidden bg-background", className)} {...props}>
             {/* Left Sidebar (Channels) */}
             {sidebarList && (
-                <aside className="hidden w-[280px] flex-col border-r bg-muted/30 md:flex flex-shrink-0">
+                <aside className="hidden w-[280px] flex-col border-r border-r-transparent contrast-more:border-r-border forced-colors:border-r-[CanvasText] bg-muted md:flex flex-shrink-0">
                     {sidebarList}
                 </aside>
             )}
@@ -38,7 +38,7 @@ export function ChatTemplate({
                     {children}
                 </main>
                 {composer && (
-                    <div className="p-4 border-t bg-background">
+                    <div className="p-4 border-t border-t-transparent contrast-more:border-t-border forced-colors:border-t-[CanvasText] bg-card">
                         {composer}
                     </div>
                 )}
@@ -46,7 +46,7 @@ export function ChatTemplate({
 
             {/* Right Sidebar (Details) - Optional */}
             {sidebarDetail && (
-                <aside className="hidden w-[300px] border-l bg-muted/30 xl:block flex-shrink-0">
+                <aside className="hidden w-[300px] border-l border-l-transparent contrast-more:border-l-border forced-colors:border-l-[CanvasText] bg-muted xl:block flex-shrink-0">
                     {sidebarDetail}
                 </aside>
             )}

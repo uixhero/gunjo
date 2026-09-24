@@ -680,7 +680,7 @@ export default function DeviceFrameDocPage() {
 
             <section className="space-y-6">
                 <div className="space-y-1">
-                    <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">
+                    <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
                         {locale === "ja" ? "状態とバリエーション" : "States and Variants"}
                     </h2>
                 </div>
@@ -747,18 +747,18 @@ export default function DeviceFrameDocPage() {
             </section>
 
             <div className="space-y-4">
-                <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">{locale === "ja" ? "プロパティ" : "Props"}</h2>
+                <h2 id="props" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">{locale === "ja" ? "プロパティ" : "Props"}</h2>
                 <PropsTable data={propsDataByLocale[locale]} />
             </div>
 
             <div className="space-y-4">
-                <div className="flex items-start justify-between gap-3 border-b pb-2">
+                <div className="flex items-start justify-between gap-3 pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {locale === "ja" ? "使い方" : "Usage"}
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

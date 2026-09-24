@@ -46,7 +46,7 @@ export default function Embed() {
     ];
 
     return (
-        <div className="w-full overflow-hidden rounded-md border bg-background">
+        <div className="w-full overflow-hidden rounded-md">
             <Header className={compact ? "px-4" : undefined}>
                 <HeaderBrand>
                     <GunjoLogo />

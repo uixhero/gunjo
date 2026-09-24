@@ -267,7 +267,7 @@ const SegmentTimelineCard = React.forwardRef<
                                     >
                                         <div
                                             className={cn(
-                                                "min-w-0 rounded-md border bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
+                                                "min-w-0 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                                                 styles.metric
                                             )}
                                             tabIndex={0}
@@ -296,7 +296,7 @@ const SegmentTimelineCard = React.forwardRef<
                         <div className="min-w-[36rem] space-y-2 sm:min-w-0">
                             <div
                                 className={cn(
-                                    "relative min-w-0 rounded-lg border bg-muted/20 px-3",
+                                    "relative min-w-0 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3",
                                     styles.timeline
                                 )}
                             >
@@ -416,12 +416,12 @@ const SegmentTimelineCard = React.forwardRef<
                                         <button
                                             type="button"
                                             className={cn(
-                                                "grid min-w-0 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-2 rounded-md border bg-card px-3 py-2 text-left transition-colors",
+                                                "grid min-w-0 grid-cols-[auto_minmax(0,1fr)_auto] items-center gap-x-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2 text-left transition-colors",
                                                 "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                                                 onSegmentSelect
                                                     ? "cursor-pointer hover:bg-accent/10"
                                                     : "cursor-default",
-                                                isSelected && "border-foreground shadow-sm"
+                                                isSelected && "bg-muted shadow-sm"
                                             )}
                                             onClick={() =>
                                                 onSegmentSelect?.(segment, item.firstIndex)
@@ -451,7 +451,7 @@ const SegmentTimelineCard = React.forwardRef<
                     ) : null}
 
                     {caption ? (
-                        <div className="rounded-md border bg-muted/30 px-3 py-2 text-xs text-muted-foreground">
+                        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-xs text-muted-foreground">
                             {caption}
                         </div>
                     ) : null}

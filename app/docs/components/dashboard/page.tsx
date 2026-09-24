@@ -174,13 +174,13 @@ export default function DashboardPage() {
             ]}
         >
             <ComponentPreview embedSrc="/embed/dashboard" code={usageCode} fullPagePreview codeBlock={<CodeBlock code={usageCode} />}>
-                <div className="w-full overflow-hidden rounded-lg border shadow-sm">
+                <div className="w-full overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-sm">
                     <DashboardTemplateDemo />
                 </div>
             </ComponentPreview>
 
             <div className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
                     {locale === "ja" ? "状態とバリエーション" : "States and variants"}
                 </h2>
                 <p className="text-sm leading-relaxed text-muted-foreground">
@@ -415,7 +415,7 @@ export function PinnedRailDashboard() {
                 />
             </div>
 
-            <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-accent-foreground/20 bg-accent/40 p-5">
+            <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-accent p-5">
                 <div className="max-w-md space-y-1">
                     <h3 className="text-base font-semibold">View as a full app</h3>
                     <p className="text-sm text-muted-foreground">

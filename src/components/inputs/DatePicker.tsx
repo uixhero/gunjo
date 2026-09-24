@@ -529,7 +529,7 @@ const DatePicker = React.forwardRef<HTMLInputElement, DatePickerProps>(
                         disabledReasonPortalContainer={disabledReasonPortalContainer}
                     />
                     {showTodayButton ? (
-                        <div className="flex items-stretch justify-between gap-2 border-t bg-card p-1.5">
+                        <div className="flex items-stretch justify-between gap-2 border-t border-t-transparent contrast-more:border-t-border forced-colors:border-t-[CanvasText] bg-muted p-1.5">
                             {previousShortcutDate ? (
                                 <Button
                                     type="button"

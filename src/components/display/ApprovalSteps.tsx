@@ -118,7 +118,7 @@ export const ApprovalSteps = React.forwardRef<HTMLDivElement, ApprovalStepsProps
                                 ) : null}
                                 {step.comment ? (
                                     <TimelineDescription>
-                                        <span className="mt-1 block rounded-md border bg-muted/40 px-2 py-1 text-foreground">
+                                        <span className="mt-1 block rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-2 py-1 text-foreground">
                                             {step.comment}
                                         </span>
                                     </TimelineDescription>

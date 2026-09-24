@@ -10,7 +10,7 @@ export default function Embed() {
 
     return (
         <div className="flex w-full justify-center p-4">
-            <ScrollArea className="h-56 w-full max-w-sm rounded-md border bg-background p-4">
+            <ScrollArea className="h-56 w-full max-w-sm rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
                 <div className="mb-3 text-sm font-medium">{locale === "ja" ? "リリース" : "Releases"}</div>
                 {releases.map((release) => (
                     <div key={release}>

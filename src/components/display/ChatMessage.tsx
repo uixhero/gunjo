@@ -353,7 +353,7 @@ export function ChatMessage({
                         "min-w-0 text-sm leading-relaxed",
                         typeof resolvedContent === "string" && "whitespace-pre-wrap",
                         isUser
-                            ? "rounded-2xl rounded-tr-sm border border-border/70 bg-accent/60 px-4 py-3 text-foreground shadow-sm"
+                            ? "rounded-2xl rounded-tr-sm border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-accent/60 px-4 py-3 text-foreground shadow-sm"
                             : "w-full text-foreground"
                     )}
                 >

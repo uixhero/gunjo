@@ -1,6 +1,6 @@
 {
   "repo": "uixhero/gunjo",
-  "fetchedAt": "2026-08-25",
+  "fetchedAt": "2026-09-22",
   "issues": {
     "47": {
       "title": "fix(adoption): smoother cold-adoption — fluid primitive widths + package docs",
@@ -1232,10 +1232,10 @@
       "state": "open",
       "excerpt": "事象 Icon はグリフを呼び出し側から受け取る設計なので、採用側は @tabler/icons-react を自分で import することになる。ところが: - @tabler/icons-react は @gunjo/ui の dependencies に入っている（採用側の package.json には無い） - npm のフラットインストールで hoist されるので import は解決してしまう - ⚠️ 公開ドキュメン…"
     },
-    "826": {
-      "title": "feat: 証券バッチで出た未踏の4形（板の量バー／ルックアップ表／途中式の行／順位を付けない N件比較）— cold-test #216-221 で計550行が自作",
+    "818": {
+      "title": "feat(AmountBreakdown): 単価×数量 — 3体が独立に別解へ（読む=note で足りる／見比べる=列揃えが要る）＋truncate と subtract の赤 — cold-test #211/#213",
       "state": "open",
-      "excerpt": "証券バッチで出た「これが無いと画面が組めない」4つ 証券・資産運用（#216〜#221）は数値の密度が連載で最も高く、この業種で初めて要求された形が4つ出た。どれも既存の部品では代替が効かず、合計で 約550行が自作になった。 --- 1. 板（値段の階段＋数量の棒＋中央で売買が分かれる）— #216・145行 証券の中核。⚠️ cold AI が6部品を順に開いて全部撤退している（記録として価値が高い）。 | 開いた部品 | 撤退の理…"
+      "excerpt": "この issue は #797 の続報です（設計判断が変わる材料） #797 は cold-test #207（介護の利用料明細）1件で「AmountBreakdown に掛け算・割合の行が無い」として立てた。 今回のエネルギーバッチで、同じ形を3体が独立に組み、⚠️ 答えが3通りに割れた。しかも割れ方に規則性がある。 3体の結果 | ラウンド | 立場 | 何を出したか | 結論 | |---|---|---|---| | #207…"
     },
     "829": {
       "title": "design(LimitMonitor): 語彙とトーンが「規制の限度」に固定されていて容量の画面で毎回撤退される — 7画面で4採用4撤退・割れ方の規則が確定",

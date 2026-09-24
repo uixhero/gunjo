@@ -58,7 +58,7 @@ export function ColdTestShell({
                     : "md:grid-cols-[240px_minmax(0,1fr)] md:gap-x-8 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-x-12"
             )}
         >
-            <div className="relative z-40 hidden min-w-0 border-r border-border/60 md:sticky md:top-14 md:block md:h-[calc(100dvh-3.5rem)] md:overflow-visible">
+            <div className="relative z-40 hidden min-w-0 md:sticky md:py-4 md:top-14 md:block md:h-[calc(100dvh-3.5rem)] md:overflow-visible">
                 <div
                     className={cn(
                         "h-full min-h-0 overflow-hidden transition-[opacity,transform] duration-200 ease-out motion-reduce:transition-none",

@@ -15,13 +15,13 @@ export const InspectorPanel = React.forwardRef<HTMLDivElement, InspectorPanelPro
             <div
                 ref={ref}
                 className={cn(
-                    "flex h-full w-full flex-col border-l border-border bg-background w-[320px] h-[420px]",
+                    "flex h-full w-full flex-col border-l border-l-transparent contrast-more:border-l-border forced-colors:border-l-[CanvasText] bg-card w-[320px] h-[420px]",
                     className
                 )}
                 {...props}
             >
                 {header ?? (title && (
-                    <div className="flex items-center h-12 px-4 border-b border-border bg-muted/30">
+                    <div className="flex items-center h-12 px-4 border-b border-b-transparent contrast-more:border-b-border forced-colors:border-b-[CanvasText] bg-muted">
                         <h3 className="text-sm font-semibold text-foreground">{title}</h3>
                     </div>
                 ))}
@@ -29,7 +29,7 @@ export const InspectorPanel = React.forwardRef<HTMLDivElement, InspectorPanelPro
                     {children}
                 </div>
                 {footer && (
-                    <div className="p-4 border-t border-border bg-muted/30">
+                    <div className="p-4 border-t border-t-transparent contrast-more:border-t-border forced-colors:border-t-[CanvasText] bg-muted">
                         {footer}
                     </div>
                 )}

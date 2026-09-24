@@ -41,7 +41,7 @@
  */
 
 :root {
-    --primary-subtle: 220 60% 96%;
+    --primary-subtle: 220 70% 90%;
     --primary-subtle-foreground: 220 43% 28%;
     --primary: 220 62% 49%;
     --primary-foreground: 210 40% 98%;
@@ -49,7 +49,7 @@
     --primary-strong-foreground: 210 40% 98%;
     --primary-border: 220 55% 82%;
 
-    --info-subtle: 214 100% 97%;
+    --info-subtle: 214 95% 90%;
     --info-subtle-foreground: 217 91% 28%;
     --info: 217 91% 60%;
     --info-foreground: 222 47% 11%;
@@ -57,7 +57,7 @@
     --info-strong-foreground: 210 40% 98%;
     --info-border: 214 95% 86%;
 
-    --success-subtle: 138 76% 97%;
+    --success-subtle: 141 60% 86%;
     --success-subtle-foreground: 143 64% 24%;
     --success: 142 71% 45%;
     --success-foreground: 144 61% 10%;
@@ -65,7 +65,7 @@
     --success-strong-foreground: 210 40% 98%;
     --success-border: 141 84% 85%;
 
-    --warning-subtle: 48 96% 89%;
+    --warning-subtle: 45 95% 80%;
     --warning-subtle-foreground: 32 95% 20%;
     --warning: 45 93% 47%;
     --warning-foreground: 24 10% 10%;
@@ -73,7 +73,7 @@
     --warning-strong-foreground: 210 40% 98%;
     --warning-border: 45 96% 75%;
 
-    --destructive-subtle: 0 86% 97%;
+    --destructive-subtle: 0 90% 92%;
     --destructive-subtle-foreground: 0 63% 31%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 210 40% 98%;
@@ -82,7 +82,7 @@
     --destructive-border: 0 93% 84%;
 
     --overlay: 0 0% 0%;
-    --background: 0 0% 100%;
+    --background: 210 40% 96%;
     --foreground: 240 20% 6%;
 
     --card: 0 0% 100%;
@@ -91,10 +91,10 @@
     --popover: 0 0% 100%;
     --popover-foreground: 240 20% 6%;
 
-    --secondary: 210 40% 96%;
+    --secondary: 212 32% 92%;
     --secondary-foreground: 240 6% 10%;
 
-    --muted: 210 40% 96%;
+    --muted: 213 32% 89%;
     --muted-foreground: 215 20% 40%;
 
     --accent: 29 31% 87%;
@@ -223,7 +223,7 @@
     --primary-strong-foreground: 220 60% 8%;
     --primary-border: 218 50% 38%;
 
-    --info-subtle: 220 47% 16%;
+    --info-subtle: 220 47% 20%;
     --info-subtle-foreground: 213 94% 88%;
     --info: 213 94% 68%;
     --info-foreground: 222 47% 11%;
@@ -247,7 +247,7 @@
     --warning-strong-foreground: 26 83% 14%;
     --warning-border: 40 64% 34%;
 
-    --destructive-subtle: 0 50% 16%;
+    --destructive-subtle: 0 50% 20%;
     --destructive-subtle-foreground: 0 93% 88%;
     --destructive: 0 72% 51%;
     --destructive-foreground: 210 40% 98%;
@@ -259,10 +259,10 @@
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
 
-    --card: 222.2 84% 4.9%;
+    --card: 217 33% 13%;
     --card-foreground: 210 40% 98%;
 
-    --popover: 222.2 84% 4.9%;
+    --popover: 217 33% 22%;
     --popover-foreground: 210 40% 98%;
 
     --secondary: 217.2 32.6% 17.5%;
@@ -296,6 +296,19 @@
     --shadow-2xl: 0 25px 50px -12px rgb(0 0 0 / 0.4);
     --shadow-inner: inset 0 2px 4px 0 rgb(0 0 0 / 0.1);
     --shadow-none: none;
+}
+
+/* ハイコントラスト（prefers-contrast: more）では、区切りを面の濃淡ではなく
+   枠線で伝える。--border を 3:1 以上まで上げる。 */
+@media (prefers-contrast: more) {
+    :root {
+        --border: 215 20% 40%;
+    }
+
+    .dark,
+    [data-theme="dark"] {
+        --border: 215 20% 55%;
+    }
 }
 
 /* 最小のベーススタイル（Tailwind preflight の要点だけを純 CSS で再現） */

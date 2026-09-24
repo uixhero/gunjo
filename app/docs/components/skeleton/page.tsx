@@ -43,7 +43,7 @@ const rectangleCodeByLocale = {
 
 export function VideoSkeleton() {
   return (
-    <div className="w-full max-w-sm overflow-hidden rounded-lg border bg-card">
+    <div className="w-full max-w-sm overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <div className="relative aspect-video">
         <Skeleton shape="rectangle" className="h-full w-full rounded-none" />
         <Skeleton shape="circle" className="absolute left-1/2 top-1/2 h-12 w-12 -translate-x-1/2 -translate-y-1/2" />
@@ -64,7 +64,7 @@ export function VideoSkeleton() {
 
 export function VideoSkeleton() {
   return (
-    <div className="w-full max-w-sm overflow-hidden rounded-lg border bg-card">
+    <div className="w-full max-w-sm overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <div className="relative aspect-video">
         <Skeleton shape="rectangle" className="h-full w-full rounded-none" />
         <Skeleton shape="circle" className="absolute left-1/2 top-1/2 h-12 w-12 -translate-x-1/2 -translate-y-1/2" />
@@ -88,7 +88,7 @@ const cardCodeByLocale = {
 
 export function CardSkeleton() {
   return (
-    <div className="w-full max-w-sm rounded-lg border p-4">
+    <div className="w-full max-w-sm rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4">
       <Skeleton shape="rectangle" className="mb-4 h-28 w-full rounded-md" />
       <Skeleton shape="text" className="mb-2 w-40" />
       <Skeleton shape="text" className="w-56" />
@@ -99,7 +99,7 @@ export function CardSkeleton() {
 
 export function CardSkeleton() {
   return (
-    <div className="w-full max-w-sm rounded-lg border p-4">
+    <div className="w-full max-w-sm rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4">
       <Skeleton shape="rectangle" className="mb-4 h-28 w-full rounded-md" />
       <Skeleton shape="text" className="mb-2 w-40" />
       <Skeleton shape="text" className="w-56" />
@@ -274,7 +274,7 @@ export default function SkeletonPage() {
             </ComponentPreview>
 
             <div className="space-y-4">
-                <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">
+                <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
                     {locale === "ja" ? "状態とバリエーション" : "States and variants"}
                 </h2>
                 <ComponentDemoStates
@@ -286,7 +286,7 @@ export default function SkeletonPage() {
                                 ? "カードの読み込みでは、画像領域、見出し、本文の位置を先に確保します。"
                                 : "Reserve the media area, title, and body lines before card content loads.",
                             preview: (
-                                <div className="w-full max-w-sm rounded-lg border p-4">
+                                <div className="w-full max-w-sm rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4">
                                     <Skeleton shape="rectangle" className="mb-4 h-28 w-full rounded-md" />
                                     <Skeleton shape="text" className="mb-2 w-40" />
                                     <Skeleton shape="text" className="w-56" />
@@ -354,7 +354,7 @@ export default function SkeletonPage() {
                                 ? "動画の読み込みでは、プレイヤー領域、再生ボタン、タイトル行をまとめて模倣します。"
                                 : "For video loading, mirror the player area, play control, and title lines together.",
                             preview: (
-                                <div className="w-full max-w-sm overflow-hidden rounded-lg border bg-card">
+                                <div className="w-full max-w-sm overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
                                     <div className="relative aspect-video">
                                         <Skeleton shape="rectangle" className="h-full w-full rounded-none" />
                                         <Skeleton shape="circle" className="absolute left-1/2 top-1/2 h-12 w-12 -translate-x-1/2 -translate-y-1/2" />
@@ -396,20 +396,20 @@ export default function SkeletonPage() {
             </div>
 
             <div className="space-y-4">
-                <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">
+                <h2 id="props" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
                     {sectionLabels.props}
                 </h2>
                 <PropsTable data={propsByLocale[locale]} />
             </div>
 
             <div className="space-y-4">
-                <div className="flex items-center justify-between gap-3 border-b pb-2">
+                <div className="flex items-center justify-between gap-3 pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">
                         {sectionLabels.usage}
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

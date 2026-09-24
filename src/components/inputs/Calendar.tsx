@@ -146,7 +146,7 @@ function Calendar({
                 ...labels,
             }}
             className={cn(
-                "w-[320px] max-w-full rounded-lg border bg-card p-4",
+                "w-[320px] max-w-full rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4",
                 Number(numberOfMonths ?? 1) > 1 && "sm:!w-fit",
                 className
             )}

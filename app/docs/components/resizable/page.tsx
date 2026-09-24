@@ -18,7 +18,7 @@ const codeByLocale = {
 
 export function ResizableWorkspace() {
   return (
-    <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border">
+    <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <ResizablePanelGroup direction="horizontal" defaultLayout={{
         sidebar: 32,
         canvas: 68,
@@ -42,7 +42,7 @@ export function ResizableWorkspace() {
 
 export function ResizableWorkspace() {
   return (
-    <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border">
+    <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <ResizablePanelGroup direction="horizontal" defaultLayout={{
         sidebar: 32,
         canvas: 68,
@@ -71,7 +71,7 @@ const stateCodeByLocale = {
 
 export function VerticalResizableWorkspace() {
   return (
-    <div className="h-72 w-full max-w-2xl overflow-hidden rounded-lg border">
+    <div className="h-72 w-full max-w-2xl overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <ResizablePanelGroup direction="vertical" defaultLayout={{
         preview: 45,
         console: 55,
@@ -95,7 +95,7 @@ export function VerticalResizableWorkspace() {
 
 export function NestedResizableWorkspace() {
   return (
-    <div className="h-72 w-full max-w-2xl overflow-hidden rounded-lg border">
+    <div className="h-72 w-full max-w-2xl overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <ResizablePanelGroup direction="horizontal" defaultLayout={{
         files: 28,
         workspace: 72,
@@ -130,7 +130,7 @@ export function NestedResizableWorkspace() {
 
 export function CollapsibleResizableWorkspace() {
   return (
-    <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border">
+    <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <ResizablePanelGroup direction="horizontal" defaultLayout={{
         support: 25,
         main: 75,
@@ -154,7 +154,7 @@ export function CollapsibleResizableWorkspace() {
 
 export function ThreeColumnResizableWorkspace() {
   return (
-    <div className="h-72 w-full max-w-3xl overflow-hidden rounded-lg border">
+    <div className="h-72 w-full max-w-3xl overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <ResizablePanelGroup direction="horizontal" defaultLayout={{
         navigation: 24,
         content: 48,
@@ -186,7 +186,7 @@ export function ThreeColumnResizableWorkspace() {
 
 export function VerticalResizableWorkspace() {
   return (
-    <div className="h-72 w-full max-w-2xl overflow-hidden rounded-lg border">
+    <div className="h-72 w-full max-w-2xl overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <ResizablePanelGroup direction="vertical" defaultLayout={{
         preview: 45,
         console: 55,
@@ -210,7 +210,7 @@ export function VerticalResizableWorkspace() {
 
 export function NestedResizableWorkspace() {
   return (
-    <div className="h-72 w-full max-w-2xl overflow-hidden rounded-lg border">
+    <div className="h-72 w-full max-w-2xl overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <ResizablePanelGroup direction="horizontal" defaultLayout={{
         files: 28,
         workspace: 72,
@@ -245,7 +245,7 @@ export function NestedResizableWorkspace() {
 
 export function CollapsibleResizableWorkspace() {
   return (
-    <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border">
+    <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <ResizablePanelGroup direction="horizontal" defaultLayout={{
         support: 25,
         main: 75,
@@ -269,7 +269,7 @@ export function CollapsibleResizableWorkspace() {
 
 export function ThreeColumnResizableWorkspace() {
   return (
-    <div className="h-72 w-full max-w-3xl overflow-hidden rounded-lg border">
+    <div className="h-72 w-full max-w-3xl overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <ResizablePanelGroup direction="horizontal" defaultLayout={{
         navigation: 24,
         content: 48,
@@ -345,7 +345,7 @@ export default function ResizablePage() {
             ]}
         >
             <ComponentPreview embedSrc="/embed/resizable" code={usageCode} codeBlock={<CodeBlock code={usageCode} />} previewBodyWidth="lg" previewHeight={360}>
-                <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border">
+                <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                     <ResizablePanelGroup direction="horizontal" defaultLayout={{ sidebar: 32, canvas: 68 }} className="h-full w-full">
                         <ResizablePanel id="sidebar" defaultSize="32%" minSize="20%"><PanelContent>{locale === "ja" ? "サイドバー" : "Sidebar"}</PanelContent></ResizablePanel>
                         <ResizableHandle withHandle />
@@ -356,7 +356,7 @@ export default function ResizablePage() {
 
             <section className="space-y-6">
                 <div className="space-y-1">
-                    <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "状態とバリエーション" : "States and Variants"}</h2>
+                    <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "状態とバリエーション" : "States and Variants"}</h2>
                 </div>
                 <ComponentDemoStates
                     states={[
@@ -368,7 +368,7 @@ export default function ResizablePage() {
                             previewHeight: 380,
                             code: stateCodeByLocale[locale].horizontal,
                             preview: (
-                                <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border">
+                                <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                                     <ResizablePanelGroup direction="horizontal" defaultLayout={{ sidebar: 32, canvas: 68 }} className="h-full w-full">
                                         <ResizablePanel id="sidebar" defaultSize="32%" minSize="20%"><PanelContent>{locale === "ja" ? "サイドバー" : "Sidebar"}</PanelContent></ResizablePanel>
                                         <ResizableHandle withHandle />
@@ -385,7 +385,7 @@ export default function ResizablePage() {
                             previewHeight: 380,
                             code: stateCodeByLocale[locale].vertical,
                             preview: (
-                                <div className="h-72 w-full max-w-2xl overflow-hidden rounded-lg border">
+                                <div className="h-72 w-full max-w-2xl overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                                     <ResizablePanelGroup direction="vertical" defaultLayout={{ preview: 45, console: 55 }} className="h-full w-full">
                                         <ResizablePanel id="preview" defaultSize="45%" minSize="25%"><PanelContent>{locale === "ja" ? "プレビュー" : "Preview"}</PanelContent></ResizablePanel>
                                         <ResizableHandle withHandle />
@@ -402,7 +402,7 @@ export default function ResizablePage() {
                             previewHeight: 380,
                             code: stateCodeByLocale[locale].nested,
                             preview: (
-                                <div className="h-72 w-full max-w-2xl overflow-hidden rounded-lg border">
+                                <div className="h-72 w-full max-w-2xl overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                                     <ResizablePanelGroup direction="horizontal" defaultLayout={{ files: 28, workspace: 72 }} className="h-full w-full">
                                         <ResizablePanel id="files" defaultSize="28%" minSize="18%"><PanelContent>{locale === "ja" ? "ファイル" : "Files"}</PanelContent></ResizablePanel>
                                         <ResizableHandle />
@@ -425,7 +425,7 @@ export default function ResizablePage() {
                             previewHeight: 380,
                             code: stateCodeByLocale[locale].threeColumn,
                             preview: (
-                                <div className="h-72 w-full max-w-3xl overflow-hidden rounded-lg border">
+                                <div className="h-72 w-full max-w-3xl overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                                     <ResizablePanelGroup direction="horizontal" defaultLayout={{ navigation: 24, content: 48, inspector: 28 }} className="h-full w-full">
                                         <ResizablePanel id="navigation" defaultSize="24%" minSize="16%"><PanelContent>{locale === "ja" ? "ナビゲーション" : "Navigation"}</PanelContent></ResizablePanel>
                                         <ResizableHandle withHandle />
@@ -444,7 +444,7 @@ export default function ResizablePage() {
                             previewHeight: 380,
                             code: stateCodeByLocale[locale].collapsible,
                             preview: (
-                                <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border">
+                                <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                                     <ResizablePanelGroup direction="horizontal" defaultLayout={{ support: 25, main: 75 }} className="h-full w-full">
                                         <ResizablePanel id="support" defaultSize="25%" minSize="15%" collapsible><PanelContent>{locale === "ja" ? "折りたたみ可能" : "Collapsible"}</PanelContent></ResizablePanel>
                                         <ResizableHandle withHandle />
@@ -458,21 +458,21 @@ export default function ResizablePage() {
             </section>
 
             <section className="space-y-4">
-                <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "プロパティ" : "Props"}</h2>
+                <h2 id="props" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "プロパティ" : "Props"}</h2>
                 <PropsTable data={propsData} />
             </section>
 
             <section className="space-y-4">
-                <div className="flex items-start justify-between gap-3 border-b pb-2">
+                <div className="flex items-start justify-between gap-3 pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>
             <section className="space-y-4">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
                         {locale === "ja" ? "設計の判断" : "Design decisions"}
                     </h2>

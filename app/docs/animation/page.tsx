@@ -96,7 +96,7 @@ function DurationDemo({
         <button
             type="button"
             onClick={() => setActive((v) => !v)}
-            className="group flex w-full cursor-pointer flex-col gap-2 rounded-lg border border-border/40 bg-muted/20 p-4 text-left transition-colors hover:border-primary-border"
+            className="group flex w-full cursor-pointer flex-col gap-2 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 text-left transition-colors hover:border-primary-border"
         >
             <div className="flex items-baseline justify-between">
                 <code className="font-mono text-xs">{name}</code>
@@ -128,7 +128,7 @@ function EasingDemo({
     const [active, setActive] = React.useState(false);
 
     return (
-        <div className="space-y-3 rounded-lg border border-border/40 bg-muted/20 p-5">
+        <div className="space-y-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-5">
             <div className="flex items-baseline justify-between gap-3">
                 <code className="font-mono text-xs">{name}</code>
                 <code className="break-all font-mono text-[10px] text-muted-foreground">
@@ -143,7 +143,7 @@ function EasingDemo({
             <button
                 type="button"
                 onClick={() => setActive((v) => !v)}
-                className="cursor-pointer rounded-md border border-border/40 bg-background px-3 py-1 text-xs font-medium transition-colors hover:bg-muted"
+                className="cursor-pointer rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-1 text-xs font-medium transition-colors hover:bg-muted"
             >
                 {playButton}
             </button>
@@ -171,7 +171,7 @@ export default function AnimationPage() {
             </header>
 
             <section className="space-y-4">
-                <h2 className="border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight">
+                <h2 className="pb-2 text-2xl font-semibold tracking-tight">
                     {c.sections.durations}
                 </h2>
                 <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
@@ -188,7 +188,7 @@ export default function AnimationPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight">
+                <h2 className="pb-2 text-2xl font-semibold tracking-tight">
                     {c.sections.easings}
                 </h2>
                 <div className="grid gap-4 sm:grid-cols-2">

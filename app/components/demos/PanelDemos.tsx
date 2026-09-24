@@ -72,7 +72,7 @@ export function HoverCardDemo() {
 
 export function ResizableDemo() {
     return (
-        <ResizablePanelGroup direction="horizontal" defaultLayout={{ one: 50, nested: 50 }} className="max-w-md rounded-lg border h-[200px]">
+        <ResizablePanelGroup direction="horizontal" defaultLayout={{ one: 50, nested: 50 }} className="max-w-md rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] h-[200px]">
             <ResizablePanel id="one" defaultSize="50%">
                 <div className="flex h-full items-center justify-center p-6">
                     <span className="font-semibold">One</span>
@@ -100,7 +100,7 @@ export function ResizableDemo() {
 
 export function ScrollAreaDemo() {
     return (
-        <ScrollArea className="h-[200px] w-[350px] rounded-md border p-4">
+        <ScrollArea className="h-[200px] w-[350px] rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4">
             <div className="mb-4 text-sm font-medium leading-none">Tags</div>
             {Array.from({ length: 50 }).map((_, i, a) => (
                 <div key={i}>

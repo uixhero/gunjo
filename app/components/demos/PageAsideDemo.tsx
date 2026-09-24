@@ -28,7 +28,7 @@ export function PageAsideDemo({ variant = "default" }: { variant?: PageAsideDemo
     const isJa = locale === "ja";
 
     return (
-        <div className="w-full overflow-hidden rounded-md border bg-background">
+        <div className="w-full overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
             <PageAside
                 title={isJa ? "補助情報" : "Supporting information"}
                 asideLabel={isJa ? "ページの補助情報" : "Page supporting information"}
@@ -36,10 +36,10 @@ export function PageAsideDemo({ variant = "default" }: { variant?: PageAsideDemo
                 mobileDescription={isJa ? "狭い画面では、右レールの内容を本文内で開閉します。" : "On narrow screens, the right-rail content collapses inside the content area."}
                 openLabel={isJa ? "補助情報を開く" : "Open supporting information"}
                 closeLabel={isJa ? "補助情報を閉じる" : "Close supporting information"}
-                contentClassName="space-y-4 bg-muted/30 p-4"
+                contentClassName="space-y-4 bg-muted p-4"
                 renderAside={() => <AsideContent variant={variant} />}
             >
-                <div className="inline-flex rounded-sm border bg-background px-2 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
+                <div className="inline-flex rounded-sm border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-2 py-1 text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                     {isJa ? "主コンテンツ" : "Main content"}
                 </div>
                 <div className="space-y-1">
@@ -51,13 +51,13 @@ export function PageAsideDemo({ variant = "default" }: { variant?: PageAsideDemo
                     </p>
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
-                    <section id="overview" className="rounded-md border bg-background p-3">
+                    <section id="overview" className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
                         <h4 className="text-sm font-semibold">{isJa ? "概要" : "Overview"}</h4>
                         <p className="mt-1 text-xs text-muted-foreground">
                             {isJa ? "本文側には主な読み物や作業対象を置きます。" : "The content area keeps the primary reading and work surface."}
                         </p>
                     </section>
-                    <section id="quality" className="rounded-md border bg-background p-3">
+                    <section id="quality" className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
                         <h4 className="text-sm font-semibold">{isJa ? "品質指標" : "Quality metrics"}</h4>
                         <p className="mt-1 text-xs text-muted-foreground">
                             {isJa ? "補助情報は、画面幅に応じて右レールまたは折りたたみ領域へ移ります。" : "Supporting context moves between the right rail and the collapsible area."}
@@ -84,7 +84,7 @@ function AsideContent({ variant }: { variant: PageAsideDemoVariant }) {
             {variant === "status" ? (
                 <>
                     <PageStatus />
-                    <section className="rounded-md border bg-muted/30 p-3">
+                    <section className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
                         <h4 className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">
                             {isJa ? "ページ状態" : "Page status"}
                         </h4>
@@ -135,7 +135,7 @@ function PageStatus() {
             <h3 className="text-sm font-semibold">{isJa ? "ページステータス" : "Page status"}</h3>
             <dl className="space-y-2">
                 {pageStatuses.map((item) => (
-                    <div key={item.labelEn} className="flex items-center justify-between gap-3 rounded-md border bg-muted/20 px-3 py-2">
+                    <div key={item.labelEn} className="flex items-center justify-between gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
                         <dt className="text-xs text-muted-foreground">{isJa ? item.labelJa : item.labelEn}</dt>
                         <dd className="shrink-0 text-xs font-medium">
                             {item.tone === "default" ? (

@@ -134,7 +134,7 @@ import { IconChevronDown as ChevronDown } from "@tabler/icons-react";
 export function PublishSplitButton() {
   return (
     <DropdownMenu>
-      <div className="inline-flex overflow-hidden rounded-md border bg-background shadow-sm">
+      <div className="inline-flex overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-sm">
         <Button variant="ghost" className="h-9 rounded-none border-0 px-3">
           公開
         </Button>
@@ -183,7 +183,7 @@ import { IconChevronDown as ChevronDown } from "@tabler/icons-react";
 export function PublishSplitButton() {
   return (
     <DropdownMenu>
-      <div className="inline-flex overflow-hidden rounded-md border bg-background shadow-sm">
+      <div className="inline-flex overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-sm">
         <Button variant="ghost" className="h-9 rounded-none border-0 px-3">
           Publish
         </Button>
@@ -354,7 +354,7 @@ export default function DropdownMenuPage() {
             </ComponentPreview>
 
             <section className="space-y-4">
-                <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+                <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">
                     {isJa ? "状態とバリエーション" : "States and Variations"}
                 </h2>
                 <ComponentDemoStates
@@ -397,7 +397,7 @@ export default function DropdownMenuPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">
                     {sectionLabels.props}
                 </h2>
                 <PropsTable
@@ -437,18 +437,18 @@ export default function DropdownMenuPage() {
             </section>
 
             <section className="space-y-4">
-                <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
+                <div className="flex flex-wrap items-center justify-between gap-3 pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="usage">
                         {sectionLabels.usage}
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>
             <section className="space-y-4">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
                         {isJa ? "設計の判断" : "Design decisions"}
                     </h2>

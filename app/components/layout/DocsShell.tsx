@@ -84,7 +84,7 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
         >
             <div
                 className={cn(
-                    "relative z-40 hidden min-w-0 border-r border-border/60 md:sticky md:top-14 md:block md:h-[calc(100dvh-3.5rem)] md:overflow-visible"
+                    "relative z-40 hidden min-w-0 md:sticky md:py-4 md:top-14 md:block md:h-[calc(100dvh-3.5rem)] md:overflow-visible"
                 )}
             >
                 <div
@@ -175,7 +175,7 @@ export function DocsShell({ children }: { children: React.ReactNode }) {
                         </nav>
                     ) : null}
                     {children}
-                    <div className="mt-16 border-t pt-8">
+                    <div className="mt-16">
                         <DocsPager />
                     </div>
                     {/* 告知の枠は本文の列の中＝この面の本文はグリッドの右列で、`container` より狭い */}

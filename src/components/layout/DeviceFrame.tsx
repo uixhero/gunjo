@@ -60,16 +60,16 @@ interface DeviceFrameClassNames {
 const variantClasses: Record<DeviceFrameVariantKey, DeviceFrameClassNames> = {
     default: {
         root: "p-0",
-        shell: "overflow-hidden rounded-xl border border-border/60 bg-background shadow-2xl",
-        chrome: "border-b border-border/60 bg-muted/40",
+        shell: "overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-2xl",
+        chrome: "border-b border-b-transparent contrast-more:border-b-border forced-colors:border-b-[CanvasText] bg-muted",
         url: "border-border/40 bg-background/60 focus-within:border-primary focus-within:ring-primary-border",
         viewportActive: "bg-foreground/10 text-foreground",
         viewportIdle: "text-muted-foreground hover:bg-foreground/5 hover:text-foreground",
     },
     windows11: {
         root: "p-0",
-        shell: "overflow-hidden rounded-lg border border-border bg-background shadow-xl",
-        chrome: "border-b border-border bg-background",
+        shell: "overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-xl",
+        chrome: "border-b border-b-transparent contrast-more:border-b-border forced-colors:border-b-[CanvasText] bg-background",
         url: "border-border/70 bg-muted/50 focus-within:border-primary focus-within:ring-primary-border",
         viewportActive: "bg-primary-subtle text-primary-subtle-foreground",
         viewportIdle: "text-muted-foreground hover:bg-muted hover:text-foreground",

@@ -21,7 +21,7 @@ export function SignedRecordDemo() {
                     <div className="flex flex-col gap-1.5">
                         <span className="text-sm font-medium text-foreground">退院時サマリ本文</span>
                         {readOnly ? (
-                            <p className="rounded-md border bg-muted/30 p-3 text-sm leading-relaxed text-foreground">
+                            <p className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm leading-relaxed text-foreground">
                                 {body}
                             </p>
                         ) : (

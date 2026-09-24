@@ -56,7 +56,7 @@ const proseCodeByLocale = {
 
 export function ProseContainer() {
   return (
-    <Container size="prose" className="space-y-2 rounded-md border bg-background p-4">
+    <Container size="prose" className="space-y-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <h3 className="font-semibold">Readable article content</h3>
       <p className="text-sm text-muted-foreground">
         Long-form text stays narrower than dashboard surfaces.
@@ -68,7 +68,7 @@ export function ProseContainer() {
 
 export function ProseContainer() {
   return (
-    <Container size="prose" className="space-y-2 rounded-md border bg-background p-4">
+    <Container size="prose" className="space-y-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <h3 className="font-semibold">読みやすい本文</h3>
       <p className="text-sm text-muted-foreground">
         長文は広げすぎず、本文として読みやすい横幅に保ちます。
@@ -86,7 +86,7 @@ export function SectionContainer() {
     <Container
       as="section"
       size="lg"
-      className="space-y-2 rounded-md border bg-background p-4"
+      className="space-y-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4"
     >
       <h3 className="font-semibold">Release notes</h3>
       <p className="text-sm text-muted-foreground">
@@ -102,7 +102,7 @@ export function SectionContainer() {
     <Container
       as="section"
       size="lg"
-      className="space-y-2 rounded-md border bg-background p-4"
+      className="space-y-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4"
     >
       <h3 className="font-semibold">リリースノート</h3>
       <p className="text-sm text-muted-foreground">
@@ -120,7 +120,7 @@ export function FullWidthContainer() {
   return (
     <Container
       size="full"
-      className="rounded-md border bg-muted/40 py-5 text-center text-sm text-muted-foreground"
+      className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted py-5 text-center text-sm text-muted-foreground"
     >
       App surface or horizontally rich area
     </Container>
@@ -132,7 +132,7 @@ export function FullWidthContainer() {
   return (
     <Container
       size="full"
-      className="rounded-md border bg-muted/40 py-5 text-center text-sm text-muted-foreground"
+      className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted py-5 text-center text-sm text-muted-foreground"
     >
       アプリ面や横スクロール可能な領域
     </Container>
@@ -180,7 +180,7 @@ export default function ContainerPage() {
 
             <section className="space-y-6">
                 <div className="space-y-1">
-                    <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+                    <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">
                         {locale === "ja" ? "状態とバリエーション" : "States and Variants"}
                     </h2>
                 </div>
@@ -209,7 +209,7 @@ export default function ContainerPage() {
                             code: proseCodeByLocale[locale],
                             previewBodyWidth: "lg",
                             preview: (
-                                <Container size="prose" className="space-y-2 rounded-md border bg-background p-4">
+                                <Container size="prose" className="space-y-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
                                     <h3 className="font-semibold">{locale === "ja" ? "読みやすい本文" : "Readable article content"}</h3>
                                     <p className="text-sm text-muted-foreground">
                                         {locale === "ja" ? "長文は広げすぎず、本文として読みやすい横幅に保ちます。" : "Long-form text stays narrower than dashboard surfaces."}
@@ -224,7 +224,7 @@ export default function ContainerPage() {
                             code: sectionCodeByLocale[locale],
                             previewBodyWidth: "lg",
                             preview: (
-                                <Container as="section" size="lg" className="space-y-2 rounded-md border bg-background p-4">
+                                <Container as="section" size="lg" className="space-y-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
                                     <h3 className="font-semibold">{locale === "ja" ? "リリースノート" : "Release notes"}</h3>
                                     <p className="text-sm text-muted-foreground">
                                         {locale === "ja" ? "標準的なドキュメントブロックには、セクション幅のコンテナを使います。" : "Use a section-width container for standard documentation blocks."}
@@ -239,7 +239,7 @@ export default function ContainerPage() {
                             code: fullCodeByLocale[locale],
                             previewBodyWidth: "lg",
                             preview: (
-                                <Container size="full" className="rounded-md border bg-muted/40 py-5 text-center text-sm text-muted-foreground">
+                                <Container size="full" className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted py-5 text-center text-sm text-muted-foreground">
                                     {locale === "ja" ? "アプリ面や横スクロール可能な領域" : "App surface or horizontally rich area"}
                                 </Container>
                             ),
@@ -249,16 +249,16 @@ export default function ContainerPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "プロパティ" : "Props"}</h2>
+                <h2 id="props" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "プロパティ" : "Props"}</h2>
                 <PropsTable data={propsData} />
             </section>
 
             <section className="space-y-4">
-                <div className="flex items-start justify-between gap-3 border-b pb-2">
+                <div className="flex items-start justify-between gap-3 pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>

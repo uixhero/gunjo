@@ -368,7 +368,7 @@ function ActionDataTableDemo({
                         </AlertDialogDescription>
                     </AlertDialogHeader>
                     {pendingDeleteRows.length > 0 ? (
-                        <div className="rounded-md border bg-muted/30 px-3 py-2 text-sm text-muted-foreground">
+                        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm text-muted-foreground">
                             {pendingDeleteRows.slice(0, 3).map((row) => (
                                 <div key={row.id} className="truncate">
                                     {row.name}
@@ -866,7 +866,7 @@ export function CampaignTableWithMenu() {
             </ComponentPreview>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="states">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="states">
                     {statesTitle}
                 </h2>
                 <ComponentDemoStates
@@ -909,21 +909,21 @@ export function CampaignTableWithMenu() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="props">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="props">
                     {sectionLabels.props}
                 </h2>
                 <PropsTable data={propsData} />
             </section>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight" id="usage">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight" id="usage">
                     {sectionLabels.usage}
                 </h2>
                 <CodeCopyButton code={usageCode} />
                 <CodeBlock code={usageCode} />
             </section>
             <section className="space-y-4">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
                         {locale === "ja" ? "設計の判断" : "Design decisions"}
                     </h2>

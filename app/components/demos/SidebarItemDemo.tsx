@@ -17,7 +17,7 @@ export function SidebarItemDemo() {
     };
 
     return (
-        <div className="w-64 rounded-lg border border-border bg-muted/50 p-2">
+        <div className="w-64 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-2">
             <SidebarItem
                 id="item-1"
                 icon={<Folder size={16} />}

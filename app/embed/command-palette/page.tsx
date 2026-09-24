@@ -64,7 +64,7 @@ export default function Embed() {
         <div className="flex min-h-screen items-center justify-center p-4">
             <div
                 ref={setPortalContainer}
-                className="relative flex min-h-[28rem] w-full max-w-3xl flex-col items-center justify-center gap-3 overflow-hidden rounded-md border bg-background p-8 text-center"
+                className="relative flex min-h-[28rem] w-full max-w-3xl flex-col items-center justify-center gap-3 overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-8 text-center"
             >
                 <p className="text-sm text-muted-foreground">
                     {isJa ? "キーボードから開く場合は" : "Open from the keyboard with"} <Kbd>⌘K</Kbd>

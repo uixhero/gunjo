@@ -12,9 +12,9 @@ const SAMPLE_CODE = {
     ja: `import { Badge, Button, cn } from "@gunjo/ui";
 
 const TONES = {
-    info: "border-info-border bg-info-subtle text-info-subtle-foreground",
-    success: "border-success-border bg-success-subtle text-success-subtle-foreground",
-    warning: "border-warning-border bg-warning-subtle text-warning-subtle-foreground",
+    info: "border-transparent contrast-more:border-info-border forced-colors:border-[CanvasText] bg-info-subtle text-info-subtle-foreground",
+    success: "border-transparent contrast-more:border-success-border forced-colors:border-[CanvasText] bg-success-subtle text-success-subtle-foreground",
+    warning: "border-transparent contrast-more:border-warning-border forced-colors:border-[CanvasText] bg-warning-subtle text-warning-subtle-foreground",
 };
 
 const NOTICES = [
@@ -63,7 +63,7 @@ export function TokenUsage() {
                 ))}
             </div>
 
-            <div className="rounded-md border bg-card p-4 text-card-foreground">
+            <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-card-foreground">
                 {TYPE_SCALE.map((step) => (
                     <p key={step.id} className={step.className}>
                         {step.label}
@@ -87,9 +87,9 @@ export function TokenUsage() {
     en: `import { Badge, Button, cn } from "@gunjo/ui";
 
 const TONES = {
-    info: "border-info-border bg-info-subtle text-info-subtle-foreground",
-    success: "border-success-border bg-success-subtle text-success-subtle-foreground",
-    warning: "border-warning-border bg-warning-subtle text-warning-subtle-foreground",
+    info: "border-transparent contrast-more:border-info-border forced-colors:border-[CanvasText] bg-info-subtle text-info-subtle-foreground",
+    success: "border-transparent contrast-more:border-success-border forced-colors:border-[CanvasText] bg-success-subtle text-success-subtle-foreground",
+    warning: "border-transparent contrast-more:border-warning-border forced-colors:border-[CanvasText] bg-warning-subtle text-warning-subtle-foreground",
 };
 
 const NOTICES = [
@@ -138,7 +138,7 @@ export function TokenUsage() {
                 ))}
             </div>
 
-            <div className="rounded-md border bg-card p-4 text-card-foreground">
+            <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-card-foreground">
                 {TYPE_SCALE.map((step) => (
                     <p key={step.id} className={step.className}>
                         {step.label}
@@ -197,7 +197,7 @@ export default function TokensIndexPage() {
                     <Link
                         key={token.href}
                         href={token.href}
-                        className="group relative flex flex-col justify-between rounded-xl border bg-card p-6 shadow-sm transition-all hover:shadow-md hover:border-primary-border"
+                        className="group relative flex flex-col justify-between rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-6 shadow-sm transition-all hover:shadow-md hover:border-primary-border"
                     >
                         <div>
                             <h3 className="font-semibold leading-none tracking-tight mb-2 group-hover:text-primary transition-colors">
@@ -229,7 +229,7 @@ export default function TokensIndexPage() {
             </section>
 
             <section className="mt-10 space-y-3" id="design-decisions">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="text-2xl font-semibold tracking-tight">
                         {isJa ? "設計の判断" : "Design decisions"}
                     </h2>

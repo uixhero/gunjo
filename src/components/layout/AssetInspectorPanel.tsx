@@ -203,7 +203,7 @@ const AssetInspectorPanel = React.forwardRef<HTMLDivElement, AssetInspectorPanel
         const { name: editableTitleName, extension: titleExtension } = splitTitleExtension(asset.title)
         const previewLabel = String(labels?.preview ?? "Preview")
         const header = (
-            <div className="flex h-12 items-center justify-between gap-2 border-b border-border bg-background px-3">
+            <div className="flex h-12 items-center justify-between gap-2 border-b border-b-transparent contrast-more:border-b-border forced-colors:border-b-[CanvasText] bg-muted px-3">
                 <TooltipButton
                     type="button"
                     variant="ghost"
@@ -297,7 +297,7 @@ const AssetInspectorPanel = React.forwardRef<HTMLDivElement, AssetInspectorPanel
                                 <button
                                     type="button"
                                     className={cn(
-                                        "relative flex aspect-square w-full cursor-zoom-in items-center justify-center overflow-hidden border bg-muted/40 p-0",
+                                        "relative flex aspect-square w-full cursor-zoom-in items-center justify-center overflow-hidden border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-0",
                                         classes.preview
                                     )}
                                     aria-label={previewLabel}
@@ -317,7 +317,7 @@ const AssetInspectorPanel = React.forwardRef<HTMLDivElement, AssetInspectorPanel
                     ) : (
                         <div
                             className={cn(
-                                "relative flex aspect-square w-full items-center justify-center overflow-hidden border bg-muted/40 p-0",
+                                "relative flex aspect-square w-full items-center justify-center overflow-hidden border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-0",
                                 classes.preview
                             )}
                         >

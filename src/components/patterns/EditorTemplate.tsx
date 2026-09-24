@@ -19,13 +19,13 @@ export function EditorTemplate({
     return (
         <div className={cn("flex h-full min-h-0 w-full flex-col overflow-hidden", className)} {...props}>
             {topBar && (
-                <div className="flex-shrink-0 border-b h-14 flex items-center bg-background z-10">
+                <div className="flex-shrink-0 border-b border-b-transparent contrast-more:border-b-border forced-colors:border-b-[CanvasText] h-14 flex items-center bg-card z-10">
                     {topBar}
                 </div>
             )}
             <div className="flex flex-1 overflow-hidden relative">
                 {leftPanel && (
-                    <aside className="flex-shrink-0 border-r w-64 bg-background z-10 hidden md:block">
+                    <aside className="flex-shrink-0 border-r border-r-transparent contrast-more:border-r-border forced-colors:border-r-[CanvasText] w-64 bg-card z-10 hidden md:block">
                         {leftPanel}
                     </aside>
                 )}
@@ -36,7 +36,7 @@ export function EditorTemplate({
                 </main>
 
                 {rightPanel && (
-                    <aside className="flex-shrink-0 border-l w-72 bg-background z-10 hidden lg:block">
+                    <aside className="flex-shrink-0 border-l border-l-transparent contrast-more:border-l-border forced-colors:border-l-[CanvasText] w-72 bg-card z-10 hidden lg:block">
                         {rightPanel}
                     </aside>
                 )}

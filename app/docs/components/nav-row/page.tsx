@@ -118,7 +118,7 @@ function NavRowPreview({ locale, mode = "grouped" }: { locale: Locale; mode?: "g
             <DialogTitle>{detailContent.title}</DialogTitle>
             <DialogDescription>{detailContent.description}</DialogDescription>
           </DialogHeader>
-          <div className="rounded-md border bg-muted/30 px-3 py-2 text-sm">
+          <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm">
             <span className="text-muted-foreground">{locale === "ja" ? "現在値" : "Current value"}</span>
             <span className="mt-1 block font-medium text-foreground">{detailContent.value}</span>
           </div>
@@ -201,7 +201,7 @@ export function BillingRows() {
             <DialogTitle>{detailContent.title}</DialogTitle>
             <DialogDescription>{detailContent.description}</DialogDescription>
           </DialogHeader>
-          <div className="rounded-md border bg-muted/30 px-3 py-2 text-sm">
+          <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm">
             <span className="text-muted-foreground">現在値</span>
             <span className="mt-1 block font-medium text-foreground">{detailContent.value}</span>
           </div>
@@ -275,7 +275,7 @@ export function BillingRows() {
             <DialogTitle>{detailContent.title}</DialogTitle>
             <DialogDescription>{detailContent.description}</DialogDescription>
           </DialogHeader>
-          <div className="rounded-md border bg-muted/30 px-3 py-2 text-sm">
+          <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm">
             <span className="text-muted-foreground">Current value</span>
             <span className="mt-1 block font-medium text-foreground">{detailContent.value}</span>
           </div>
@@ -404,7 +404,7 @@ export function SecurityStatusRow() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
           {locale === "ja" ? "状態とバリエーション" : "States and variants"}
         </h2>
         <ComponentDemoStates
@@ -438,20 +438,20 @@ export function SecurityStatusRow() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
           {sectionLabels.props}
         </h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
             {sectionLabels.usage}
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

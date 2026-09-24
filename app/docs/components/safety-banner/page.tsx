@@ -66,7 +66,7 @@ function SafetyBannerPreview({ locale, mode = "destructive" }: { locale: Locale;
       };
 
   const signButton = signed ? (
-    <span className="inline-flex min-h-9 w-fit items-center rounded-md border border-success-border bg-success-subtle px-3 text-sm font-medium text-success-subtle-foreground">
+    <span className="inline-flex min-h-9 w-fit items-center rounded-md border border-transparent contrast-more:border-success-border forced-colors:border-[CanvasText] bg-success-subtle px-3 text-sm font-medium text-success-subtle-foreground">
       {copy.signed}
     </span>
   ) : (
@@ -88,7 +88,7 @@ function SafetyBannerPreview({ locale, mode = "destructive" }: { locale: Locale;
   ) : null;
 
   return (
-    <div ref={rootRef} className="relative flex w-full max-w-2xl flex-col gap-3 rounded-lg border bg-card p-4">
+    <div ref={rootRef} className="relative flex w-full max-w-2xl flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       {toastMessage ? (
         <div className="pointer-events-none absolute right-3 top-3 z-[100] w-[min(340px,calc(100%-1.5rem))]">
           <Toast
@@ -154,7 +154,7 @@ export function PrescriptionGate() {
   }, []);
 
   return (
-    <div ref={rootRef} className="relative flex w-full max-w-2xl flex-col gap-3 rounded-lg border bg-card p-4">
+    <div ref={rootRef} className="relative flex w-full max-w-2xl flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       {toastMessage ? (
         <div className="pointer-events-none absolute right-3 top-3 z-[100] w-[min(340px,calc(100%-1.5rem))]">
           <Toast
@@ -181,7 +181,7 @@ export function PrescriptionGate() {
           <TooltipContent>安全確認にチェックすると署名できます。</TooltipContent>
         </Tooltip>
       ) : signed ? (
-        <span className="inline-flex min-h-9 w-fit items-center rounded-md border border-success-border bg-success-subtle px-3 text-sm font-medium text-success-subtle-foreground">
+        <span className="inline-flex min-h-9 w-fit items-center rounded-md border border-transparent contrast-more:border-success-border forced-colors:border-[CanvasText] bg-success-subtle px-3 text-sm font-medium text-success-subtle-foreground">
           署名済み
         </span>
       ) : (
@@ -212,7 +212,7 @@ export function PrescriptionGate() {
   }, []);
 
   return (
-    <div ref={rootRef} className="relative flex w-full max-w-2xl flex-col gap-3 rounded-lg border bg-card p-4">
+    <div ref={rootRef} className="relative flex w-full max-w-2xl flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       {toastMessage ? (
         <div className="pointer-events-none absolute right-3 top-3 z-[100] w-[min(340px,calc(100%-1.5rem))]">
           <Toast
@@ -239,7 +239,7 @@ export function PrescriptionGate() {
           <TooltipContent>Acknowledge the safety notice before signing.</TooltipContent>
         </Tooltip>
       ) : signed ? (
-        <span className="inline-flex min-h-9 w-fit items-center rounded-md border border-success-border bg-success-subtle px-3 text-sm font-medium text-success-subtle-foreground">
+        <span className="inline-flex min-h-9 w-fit items-center rounded-md border border-transparent contrast-more:border-success-border forced-colors:border-[CanvasText] bg-success-subtle px-3 text-sm font-medium text-success-subtle-foreground">
           Signed
         </span>
       ) : (
@@ -268,7 +268,7 @@ export function DosageReviewBanner() {
   const [toastMessage, setToastMessage] = React.useState<string | null>(null);
 
   return (
-    <div className="relative flex w-full max-w-2xl flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="relative flex w-full max-w-2xl flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       {toastMessage ? (
         <div className="pointer-events-none absolute right-3 top-3 z-[100] w-[min(340px,calc(100%-1.5rem))]">
           <Toast message={toastMessage} type="success" isVisible placement="inline" closeLabel="閉じる" onClose={() => setToastMessage(null)} />
@@ -292,7 +292,7 @@ export function DosageReviewBanner() {
   const [toastMessage, setToastMessage] = React.useState<string | null>(null);
 
   return (
-    <div className="relative flex w-full max-w-2xl flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="relative flex w-full max-w-2xl flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       {toastMessage ? (
         <div className="pointer-events-none absolute right-3 top-3 z-[100] w-[min(340px,calc(100%-1.5rem))]">
           <Toast message={toastMessage} type="success" isVisible placement="inline" closeLabel="Close" onClose={() => setToastMessage(null)} />
@@ -318,7 +318,7 @@ export function LabResultBanner() {
   const [toastMessage, setToastMessage] = React.useState<string | null>(null);
 
   return (
-    <div className="relative flex w-full max-w-2xl flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="relative flex w-full max-w-2xl flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       {toastMessage ? (
         <div className="pointer-events-none absolute right-3 top-3 z-[100] w-[min(340px,calc(100%-1.5rem))]">
           <Toast message={toastMessage} type="info" isVisible placement="inline" closeLabel="閉じる" onClose={() => setToastMessage(null)} />
@@ -342,7 +342,7 @@ export function LabResultBanner() {
   const [toastMessage, setToastMessage] = React.useState<string | null>(null);
 
   return (
-    <div className="relative flex w-full max-w-2xl flex-col gap-3 rounded-lg border bg-card p-4">
+    <div className="relative flex w-full max-w-2xl flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       {toastMessage ? (
         <div className="pointer-events-none absolute right-3 top-3 z-[100] w-[min(340px,calc(100%-1.5rem))]">
           <Toast message={toastMessage} type="info" isVisible placement="inline" closeLabel="Close" onClose={() => setToastMessage(null)} />
@@ -381,7 +381,7 @@ export function LabResultBanner() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
           {locale === "ja" ? "状態とバリエーション" : "States and variants"}
         </h2>
         <ComponentDemoStates
@@ -395,16 +395,16 @@ export function LabResultBanner() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">{sectionLabels.props}</h2>
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">{sectionLabels.props}</h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">{sectionLabels.usage}</h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

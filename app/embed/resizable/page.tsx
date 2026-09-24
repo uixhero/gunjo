@@ -8,7 +8,7 @@ export default function Embed() {
 
     return (
         <div className="flex w-full justify-center p-4">
-            <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border">
+            <div className="h-64 w-full max-w-2xl overflow-hidden rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                 <ResizablePanelGroup direction="horizontal" defaultLayout={{ sidebar: 32, canvas: 68 }} className="h-full w-full">
                     <ResizablePanel id="sidebar" defaultSize="32%" minSize="20%">
                         <div className="flex h-full items-center justify-center p-4 text-sm font-medium text-muted-foreground">

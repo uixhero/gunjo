@@ -17,13 +17,13 @@ export function KanbanTemplate({
     return (
         <div className={cn("flex h-full min-h-0 w-full overflow-hidden", className)} {...props}>
             {sidebar && (
-                <aside className="hidden w-64 border-r bg-muted/40 md:block flex-shrink-0">
+                <aside className="hidden w-64 border-r border-r-transparent contrast-more:border-r-border forced-colors:border-r-[CanvasText] bg-muted md:block flex-shrink-0">
                     {sidebar}
                 </aside>
             )}
             <div className="flex flex-col flex-1 h-full min-w-0">
                 {header && (
-                    <header className="flex h-14 items-center gap-4 border-b bg-muted/40 px-6 lg:h-[60px]">
+                    <header className="flex h-14 items-center gap-4 border-b border-b-transparent contrast-more:border-b-border forced-colors:border-b-[CanvasText] bg-muted px-6 lg:h-[60px]">
                         {header}
                     </header>
                 )}

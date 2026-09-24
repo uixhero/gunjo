@@ -112,7 +112,7 @@ export function SiteHeader() {
                 "sticky top-0 z-50 h-14 px-0 py-0 transition-colors duration-300 sm:px-0",
                 overHero
                     ? "gunjo-header-overlay"
-                    : "border-border/40 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+                    : "bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80"
             )}
         >
             <div className="mx-auto flex h-full w-full max-w-[1400px] items-center gap-3 px-4">

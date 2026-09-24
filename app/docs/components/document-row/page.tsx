@@ -329,7 +329,7 @@ function DocumentRowPreview({ locale, lockedOnly = false }: { locale: Locale; lo
       ) : null}
       <div className="flex flex-col gap-4">
         {!lockedOnly ? (
-          <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border bg-card px-3 py-2">
+          <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2">
             <Checkbox
               checked={allSelected}
               onCheckedChange={(checked) => toggleAllSelected(checked === true)}
@@ -375,7 +375,7 @@ function DocumentRowPreview({ locale, lockedOnly = false }: { locale: Locale; lo
           </div>
         ) : null}
         <SectionList sections={sections} label={locale === "ja" ? "書類一覧" : "Document list"} />
-        <p className="rounded-md border bg-muted/30 px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
+        <p className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
           {status}
         </p>
       </div>
@@ -392,7 +392,7 @@ function DocumentRowPreview({ locale, lockedOnly = false }: { locale: Locale; lo
           </DialogHeader>
           {previewDocument ? (
             <div className="grid gap-4">
-              <div className="flex items-start gap-3 rounded-lg border bg-card p-3">
+              <div className="flex items-start gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
                 <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-muted text-muted-foreground">
                   {previewDocument.id.includes("expense") ? <IconFileTypeZip className="h-5 w-5" /> : <IconFileTypePdf className="h-5 w-5" />}
                 </span>
@@ -401,7 +401,7 @@ function DocumentRowPreview({ locale, lockedOnly = false }: { locale: Locale; lo
                   <p className="text-xs text-muted-foreground">{previewDocument.meta}</p>
                 </div>
               </div>
-              <div className="rounded-md border bg-muted/30 p-4 text-sm leading-6 text-foreground">
+              <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 text-sm leading-6 text-foreground">
                 <p className="font-medium">{previewDocument.description}</p>
                 <p className="mt-2 text-muted-foreground">{copy.previewUnavailable}</p>
               </div>
@@ -463,7 +463,7 @@ function DocumentRowAttachmentsPreview({ locale }: { locale: Locale }) {
       ];
 
   return (
-    <div className="w-full max-w-lg divide-y rounded-lg border bg-card">
+    <div className="w-full max-w-lg divide-y rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       {attachments.map((attachment) => (
         <DocumentRow
           key={attachment.id}
@@ -652,7 +652,7 @@ export function PayrollDocuments() {
         </div>
       ) : null}
       <div className="flex flex-col gap-4">
-        <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border bg-card px-3 py-2">
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2">
           <Checkbox
             checked={allSelected}
             onCheckedChange={(checked) => toggleAllSelected(checked === true)}
@@ -701,7 +701,7 @@ export function PayrollDocuments() {
           </div>
         </div>
         <SectionList sections={sections} label="書類一覧" />
-        <p className="rounded-md border bg-muted/30 px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
+        <p className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
           {status}
         </p>
       </div>
@@ -717,7 +717,7 @@ export function PayrollDocuments() {
             <DialogDescription>選択した書類の内容をプレビューします。</DialogDescription>
           </DialogHeader>
           {previewDocument ? (
-            <div className="rounded-md border bg-muted/30 p-4 text-sm leading-6">
+            <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 text-sm leading-6">
               <p className="font-medium">{previewDocument.title}</p>
               <p className="mt-1 text-muted-foreground">{previewDocument.meta}</p>
               <p className="mt-3 text-muted-foreground">このプレビューではサンプル本文を表示しています。</p>
@@ -891,7 +891,7 @@ export function PayrollDocuments() {
         </div>
       ) : null}
       <div className="flex flex-col gap-4">
-        <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border bg-card px-3 py-2">
+        <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2">
           <Checkbox
             checked={allSelected}
             onCheckedChange={(checked) => toggleAllSelected(checked === true)}
@@ -940,7 +940,7 @@ export function PayrollDocuments() {
           </div>
         </div>
         <SectionList sections={sections} label="Document list" />
-        <p className="rounded-md border bg-muted/30 px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
+        <p className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-sm text-muted-foreground" aria-live="polite">
           {status}
         </p>
       </div>
@@ -956,7 +956,7 @@ export function PayrollDocuments() {
             <DialogDescription>Preview the selected document content.</DialogDescription>
           </DialogHeader>
           {previewDocument ? (
-            <div className="rounded-md border bg-muted/30 p-4 text-sm leading-6">
+            <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 text-sm leading-6">
               <p className="font-medium">{previewDocument.title}</p>
               <p className="mt-1 text-muted-foreground">{previewDocument.meta}</p>
               <p className="mt-3 text-muted-foreground">This preview shows sample document content.</p>
@@ -1036,7 +1036,7 @@ const ATTACHMENTS = [
 
 export function AttachmentList() {
   return (
-    <div className="w-full max-w-lg divide-y rounded-lg border bg-card">
+    <div className="w-full max-w-lg divide-y rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       {ATTACHMENTS.map((attachment) => (
         <DocumentRow
           key={attachment.id}
@@ -1090,7 +1090,7 @@ const ATTACHMENTS = [
 
 export function AttachmentList() {
   return (
-    <div className="w-full max-w-lg divide-y rounded-lg border bg-card">
+    <div className="w-full max-w-lg divide-y rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       {ATTACHMENTS.map((attachment) => (
         <DocumentRow
           key={attachment.id}
@@ -1186,7 +1186,7 @@ export function AttachmentList() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
           {locale === "ja" ? "状態とバリエーション" : "States and variants"}
         </h2>
         <ComponentDemoStates
@@ -1226,20 +1226,20 @@ export function AttachmentList() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
           {sectionLabels.props}
         </h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
             {sectionLabels.usage}
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

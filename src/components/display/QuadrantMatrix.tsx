@@ -162,7 +162,7 @@ const QuadrantMatrix = React.forwardRef<HTMLDivElement, QuadrantMatrixProps>(
                 >
                     <div
                         className={cn(
-                            "relative min-w-0 overflow-hidden rounded-md border bg-muted/20",
+                            "relative min-w-0 overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted",
                             quadrantMatrixPanelClasses[variant]
                         )}
                     >
@@ -293,7 +293,7 @@ const QuadrantMatrix = React.forwardRef<HTMLDivElement, QuadrantMatrixProps>(
                                                 <button
                                                     type="button"
                                                     className={cn(
-                                                        "grid w-full min-w-0 gap-1 rounded-md border bg-card p-2 text-left cursor-pointer transition-colors hover:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                                                        "grid w-full min-w-0 gap-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-2 text-left cursor-pointer transition-colors hover:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                                                         isSelected && "ring-1 ring-foreground"
                                                     )}
                                                     aria-current={
@@ -311,7 +311,7 @@ const QuadrantMatrix = React.forwardRef<HTMLDivElement, QuadrantMatrixProps>(
                                             ) : (
                                                 <span
                                                     className={cn(
-                                                        "grid w-full min-w-0 cursor-default gap-1 rounded-md border bg-card p-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                                                        "grid w-full min-w-0 cursor-default gap-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-2 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                                                         isSelected && "ring-1 ring-foreground"
                                                     )}
                                                     tabIndex={0}

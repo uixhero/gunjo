@@ -44,7 +44,7 @@ export function OriginDestinationDemo() {
       <div className="flex flex-col gap-2">
         <p className="text-sm font-medium text-foreground">列車一覧（inline）</p>
         {TRAINS.map((t) => (
-          <div key={t.name} className="flex items-center justify-between rounded-md border px-3 py-2">
+          <div key={t.name} className="flex items-center justify-between rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-3 py-2">
             <span className="text-sm font-medium">{t.name}</span>
             <OriginDestination
               inline

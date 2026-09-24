@@ -61,7 +61,7 @@ const PageAside = React.forwardRef<HTMLDivElement, PageAsideProps>(
                      * whose Radix header renders an <h3>. Summary natively
                      * announces expanded/collapsed state to assistive tech.
                      */}
-                    <aside className={cn("mb-4 rounded-md border bg-background p-3 lg:hidden", mobileClassName)} aria-label={label}>
+                    <aside className={cn("mb-4 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 lg:hidden", mobileClassName)} aria-label={label}>
                         <details open={defaultOpen} className="group w-full">
                             <summary className="flex cursor-pointer list-none items-center justify-between gap-2 text-left [&::-webkit-details-marker]:hidden">
                                 <span className="text-xs font-semibold uppercase tracking-wide text-muted-foreground">

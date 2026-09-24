@@ -27,7 +27,7 @@ function FigureFrame({
 }) {
     return (
         <figure className="space-y-2">
-            <div className="overflow-x-auto rounded-lg border border-border bg-card p-4">
+            <div className="overflow-x-auto rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
                 <div style={{ minWidth }} role="img" aria-label={label}>
                     {children}
                 </div>

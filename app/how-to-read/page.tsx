@@ -235,10 +235,10 @@ function QuadrantCell({
 }) {
     return (
         <div
-            className={`flex flex-col gap-2 rounded-lg border p-4 ${
+            className={`flex flex-col gap-2 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4 ${
                 quadrant.entry
-                    ? "border-primary-border/60 bg-primary-subtle/40"
-                    : "border-border/60 bg-card"
+                    ? "bg-primary-subtle"
+                    : "bg-card"
             }`}
         >
             {/* Axis chips — mobile only; on sm+ the grid headers carry them */}
@@ -308,10 +308,10 @@ function QuadrantMap() {
                         {row.cells.map((cell) => (
                             <div
                                 key={cell.key}
-                                className={`flex min-h-16 flex-col items-center justify-center gap-1 rounded-md border p-2 text-[11px] leading-4 ${
+                                className={`flex min-h-16 flex-col items-center justify-center gap-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-2 text-[11px] leading-4 ${
                                     cell.entry
-                                        ? "border-primary-border/60 bg-primary-subtle/40 font-medium text-foreground"
-                                        : "border-border/60 bg-muted/20 text-muted-foreground"
+                                        ? "bg-primary-subtle font-medium text-foreground"
+                                        : "bg-muted text-muted-foreground"
                                 }`}
                             >
                                 <span>{cell.title}</span>
@@ -577,7 +577,7 @@ export default function HowToReadPage() {
                         {FINDING_STATES.map((state) => (
                             <li
                                 key={state.label}
-                                className="flex flex-col gap-1.5 rounded-md border border-border/60 bg-muted/20 p-3 sm:flex-row sm:items-baseline sm:gap-3"
+                                className="flex flex-col gap-1.5 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 sm:flex-row sm:items-baseline sm:gap-3"
                             >
                                 <Badge
                                     variant="outline"

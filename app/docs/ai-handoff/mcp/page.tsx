@@ -62,7 +62,7 @@ export default function McpServerPage() {
                        surface that has not been built yet. Make sure
                        readers see that before they start planning around
                        it. */}
-                    <div className="flex items-start gap-3 rounded-lg border-l-4 border-warning-border bg-warning-subtle p-4 text-sm">
+                    <div className="flex items-start gap-3 rounded-lg bg-warning-subtle p-4 text-sm">
                         <Clock className="mt-0.5 h-4 w-4 shrink-0 text-warning" />
                         <div className="space-y-1">
                             <div className="font-semibold text-foreground">
@@ -191,7 +191,7 @@ export default function McpServerPage() {
                         No state of its own — the docs site remains the single
                         source of truth.
                     </p>
-                    <pre className="overflow-auto rounded-lg border border-border/40 bg-muted p-4 text-sm">
+                    <pre className="overflow-auto rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 text-sm">
                         {`# Install (when shipped)
 npm install -g gunjo-ui-mcp
 
@@ -202,7 +202,7 @@ npx gunjo-ui-mcp \\
                     </pre>
                 </section>
 
-                <section className="space-y-3 rounded-xl border border-primary-border bg-primary-subtle p-6">
+                <section className="space-y-3 rounded-xl border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText] bg-primary-subtle p-6">
                     <div className="flex items-center gap-2">
                         <Sparkles className="h-4 w-4 text-primary" />
                         <h2 className="text-xl font-semibold tracking-tight">

@@ -9,7 +9,7 @@ const Footer = React.forwardRef<
     <footer
         ref={ref}
         className={cn(
-            "flex w-full flex-col gap-6 border-t border-border bg-background px-6 py-8",
+            "flex w-full flex-col gap-6 border-t border-t-transparent contrast-more:border-t-border forced-colors:border-t-[CanvasText] bg-card px-6 py-8",
             className
         )}
         {...props}

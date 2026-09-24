@@ -27,13 +27,18 @@ export interface StatusLevelStep<V extends string = string> {
 }
 
 const TONE_CHIP: Record<SemanticTone, string> = {
-    default: "border-border bg-secondary text-secondary-foreground",
+// 淡色の面は枠を持たない（DECISIONS.md 2026-09-22・Badge と同じ扱い）。
+// 区切りは面の濃淡で、カードの上で 1.14〜1.33 / 地の上で 1.10〜1.50
+// （light・dark 両方の実測・2026-09-23）。⚠️ ハイコントラストで戻す枠に
+// tone ごとの *-border を使わないこと（濃くした面と同化する）。基底クラスの
+// contrast-more:border-border に集約してある。
+    default: "border-transparent bg-secondary text-secondary-foreground",
     muted: "border-transparent bg-muted text-muted-foreground",
-    primary: "border-primary-border bg-primary-subtle text-primary-subtle-foreground",
-    info: "border-info-border bg-info-subtle text-info-subtle-foreground",
-    success: "border-success-border bg-success-subtle text-success-subtle-foreground",
-    warning: "border-warning-border bg-warning-subtle text-warning-subtle-foreground",
-    destructive: "border-destructive-border bg-destructive-subtle text-destructive-subtle-foreground",
+    primary: "border-transparent bg-primary-subtle text-primary-subtle-foreground",
+    info: "border-transparent bg-info-subtle text-info-subtle-foreground",
+    success: "border-transparent bg-success-subtle text-success-subtle-foreground",
+    warning: "border-transparent bg-warning-subtle text-warning-subtle-foreground",
+    destructive: "border-transparent bg-destructive-subtle text-destructive-subtle-foreground",
 }
 
 const CHIP_SIZE = {
@@ -169,7 +174,7 @@ export const StatusLevel = React.forwardRef<HTMLSpanElement, StatusLevelProps>(
         const chip = showLabel ? (
             <span
                 className={cn(
-                    "inline-flex w-fit shrink-0 items-center rounded-full border font-semibold",
+                    "inline-flex w-fit shrink-0 items-center rounded-full border contrast-more:border-border forced-colors:border-[CanvasText] font-semibold",
                     CHIP_SIZE[size],
                     TONE_CHIP[step?.tone ?? "default"],
                     chipClassName

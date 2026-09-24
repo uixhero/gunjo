@@ -787,7 +787,7 @@ export default function ChartsPage() {
                         <Link
                             key={item.href}
                             href={item.href}
-                            className="group flex items-start justify-between gap-4 rounded-lg border bg-card p-4 text-card-foreground transition-colors hover:border-primary-border"
+                            className="group flex items-start justify-between gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-card-foreground transition-colors hover:border-primary-border"
                         >
                             <span className="space-y-1">
                                 <span className="block font-medium">{t(item.titleKey)}</span>
@@ -802,7 +802,7 @@ export default function ChartsPage() {
             </section>
 
             <section className="space-y-3" id="design-decisions">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="text-2xl font-semibold tracking-tight">
                         {isJa ? "設計の判断" : "Design decisions"}
                     </h2>

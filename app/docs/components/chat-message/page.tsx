@@ -28,7 +28,7 @@ function ConversationPreviewBody() {
   };
 
   return (
-    <div className="w-full max-w-2xl rounded-lg border bg-background">
+    <div className="w-full max-w-2xl rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
       <ChatMessage role="system" content="会話を開始しました。" />
       <ChatMessage
         role="assistant"
@@ -85,7 +85,7 @@ function ChatMessageSet() {
     };
 
     return (
-        <div className="w-full max-w-2xl rounded-lg border bg-background shadow-sm">
+        <div className="w-full max-w-2xl rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-sm">
             <ChatMessage role="system" content={isJa ? "会話を開始しました。" : "Conversation started."} />
             <ChatMessage
                 role="assistant"
@@ -167,7 +167,7 @@ export default function ChatMessageDocPage() {
             </ComponentPreview>
 
             <section className="space-y-4">
-                <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+                <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">
                     {isJa ? "状態とバリエーション" : "States and Variations"}
                 </h2>
                 <ToastProvider labels={{ close: isJa ? "閉じる" : "Close" }}>
@@ -261,7 +261,7 @@ export function UserChatMessage() {
                                     content={
                                         <div className="space-y-3">
                                             <p>{isJa ? "確認結果をまとめました。必要であれば、この草案を保存してから編集できます。" : "I summarized the review. Save this draft before editing it if needed."}</p>
-                                            <div className="rounded-xl border bg-muted/30 p-3 shadow-sm">
+                                            <div className="rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 shadow-sm">
                                                 <p className="text-sm font-semibold">{isJa ? "成果物ドラフト" : "Draft artifact"}</p>
                                                 <p className="mt-1 text-xs text-muted-foreground">drafts/component-audit.md</p>
                                             </div>
@@ -283,7 +283,7 @@ export function AssistantCardChatMessage() {
       content={
         <div className="space-y-3">
           <p>{"確認結果をまとめました。必要であれば、この草案を保存してから編集できます。"}</p>
-          <div className="rounded-xl border bg-muted/30 p-3 shadow-sm">
+          <div className="rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 shadow-sm">
             <p className="text-sm font-semibold">{"成果物ドラフト"}</p>
             <p className="mt-1 text-xs text-muted-foreground">
               drafts/component-audit.md
@@ -306,7 +306,7 @@ export function AssistantCardChatMessage() {
       content={
         <div className="space-y-3">
           <p>{"I summarized the review. Save this draft before editing it if needed."}</p>
-          <div className="rounded-xl border bg-muted/30 p-3 shadow-sm">
+          <div className="rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 shadow-sm">
             <p className="text-sm font-semibold">{"Draft artifact"}</p>
             <p className="mt-1 text-xs text-muted-foreground">
               drafts/component-audit.md
@@ -385,7 +385,7 @@ export function TypingChatMessage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">
                     {sectionLabels.props}
                 </h2>
                 <PropsTable
@@ -406,7 +406,7 @@ export function TypingChatMessage() {
             </section>
 
             <section className="space-y-4">
-                <div className="flex flex-wrap items-center justify-between gap-3 border-b pb-2">
+                <div className="flex flex-wrap items-center justify-between gap-3 pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight">
                 {sectionLabels.usage}
                     </h2>

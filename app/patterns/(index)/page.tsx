@@ -117,7 +117,7 @@ function PatternCard({ pattern }: { pattern: PatternEntry }) {
                                     key={route.href}
                                     href={route.href}
                                     aria-label={t.meta.openRoute(label)}
-                                    className="rounded-md border bg-background px-2 py-1 text-xs text-muted-foreground transition-colors hover:border-primary-border hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                                    className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-2 py-1 text-xs text-muted-foreground transition-colors hover:border-primary-border hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                                 >
                                     {label}
                                 </Link>

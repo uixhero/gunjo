@@ -111,14 +111,14 @@ export default function RadiusPage() {
             </header>
 
             <section className="space-y-4">
-                <h2 className="border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight">
+                <h2 className="pb-2 text-2xl font-semibold tracking-tight">
                     {c.sections.scale}
                 </h2>
                 <div className="grid gap-5 bg-muted/20 p-6 sm:grid-cols-2 lg:grid-cols-4">
                     {radii.map((r) => (
                         <div key={r.name} className="space-y-3">
                             <div
-                                className={`flex h-24 w-full items-center justify-center border-2 border-primary-border bg-primary-subtle text-xs text-primary-subtle-foreground ${r.className}`}
+                                className={`flex h-24 w-full items-center justify-center border-2 border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText] bg-primary-subtle text-xs text-primary-subtle-foreground ${r.className}`}
                             >
                                 {r.name}
                             </div>
@@ -136,10 +136,10 @@ export default function RadiusPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 className="border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight">
+                <h2 className="pb-2 text-2xl font-semibold tracking-tight">
                     {c.sections.base}
                 </h2>
-                <div className="rounded-lg border border-border/40 bg-muted/20 p-5">
+                <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-5">
                     <code className="block font-mono text-sm">
                         --radius: 0.5rem; /* 8px */
                     </code>

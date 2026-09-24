@@ -23,7 +23,7 @@ export default function Embed() {
     // min-h-0 cancels StatusScreen's own min-h-[60vh]. A real status page keeps
     // that full-page floor; the docs frame follows the composition instead.
     return (
-        <div className="w-full overflow-hidden rounded-md border bg-background">
+        <div className="w-full overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card">
             <StatusScreen
                 variant="not-found"
                 title={copy.title}

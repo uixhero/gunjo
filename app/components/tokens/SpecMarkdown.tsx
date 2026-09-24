@@ -14,7 +14,7 @@ export function SpecMarkdown({ content }: { content: string }) {
                     </h1>
                 ),
                 h2: ({ children }) => (
-                    <h2 className="scroll-m-20 mt-10 mb-4 border-b border-border/40 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
+                    <h2 className="scroll-m-20 mt-10 mb-4 pb-2 text-2xl font-semibold tracking-tight first:mt-0">
                         {children}
                     </h2>
                 ),
@@ -52,7 +52,7 @@ export function SpecMarkdown({ content }: { content: string }) {
                 ),
                 hr: () => <hr className="my-10 border-border/40" />,
                 pre: ({ children }) => (
-                    <pre className="my-5 overflow-auto rounded-lg border border-border/40 bg-muted p-4 text-sm">
+                    <pre className="my-5 overflow-auto rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 text-sm">
                         {children}
                     </pre>
                 ),

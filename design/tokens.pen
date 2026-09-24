@@ -1,5 +1,5 @@
 {
-  "version": "2.13",
+  "version": "2.14",
   "children": [
     {
       "type": "frame",
@@ -3638,7 +3638,7 @@
   "variables": {
     "background": {
       "type": "color",
-      "value": "#FFFFFF"
+      "value": "#f1f5f9"
     },
     "foreground": {
       "type": "color",
@@ -3670,7 +3670,7 @@
     },
     "secondary": {
       "type": "color",
-      "value": "#f1f5f9"
+      "value": "#e4eaf1"
     },
     "secondary-foreground": {
       "type": "color",
@@ -3678,7 +3678,7 @@
     },
     "muted": {
       "type": "color",
-      "value": "#f1f5f9"
+      "value": "#dae2ec"
     },
     "muted-foreground": {
       "type": "color",
@@ -3808,5 +3808,6 @@
       "type": "string",
       "value": "cubic-bezier(0.4, 0, 0.2, 1)"
     }
-  }
+  },
+  "fileToken": "c335aec3-c4d3-43e9-bc3e-1549741f307a"
 }

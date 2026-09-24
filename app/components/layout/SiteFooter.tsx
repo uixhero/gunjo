@@ -48,8 +48,8 @@ export function SiteFooter({
             data-site-footer
             className={
                 isContentFooter
-                    ? "mt-10 border-border/40 px-0 py-8"
-                    : "border-border/40 px-0 py-8"
+                    ? "mt-10 rounded-xl px-6 py-8"
+                    : "px-0 py-8"
             }
         >
             <div

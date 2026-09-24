@@ -48,7 +48,7 @@ function MeterPreview({ locale, mode = "capacity" }: { locale: Locale; mode?: "c
 
   if (mode === "target") {
     return (
-      <div className="grid w-full max-w-lg gap-4 rounded-lg border bg-card p-4">
+      <div className="grid w-full max-w-lg gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
         <Meter label={copy.target} value={86} max={100} unit="%" direction="higher-is-better" target={90} />
         <Meter label={copy.coverage} value={87} max={100} unit="%" direction="fill-is-good" />
         <Meter
@@ -70,7 +70,7 @@ function MeterPreview({ locale, mode = "capacity" }: { locale: Locale; mode?: "c
     ];
 
     return (
-      <table className="w-full max-w-lg rounded-lg border bg-card text-sm">
+      <table className="w-full max-w-lg rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card text-sm">
         <tbody>
           {rows.map((row) => (
             <tr key={row.bin} className="border-b last:border-b-0">
@@ -86,7 +86,7 @@ function MeterPreview({ locale, mode = "capacity" }: { locale: Locale; mode?: "c
   }
 
   return (
-    <div className="flex w-full max-w-lg flex-col gap-5 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-lg flex-col gap-5 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Meter
         label={copy.label}
         value={loaded}
@@ -116,11 +116,11 @@ function MeterPreview({ locale, mode = "capacity" }: { locale: Locale; mode?: "c
         </Button>
       </div>
       <div className="grid grid-cols-2 gap-2 text-sm">
-        <div className="rounded-md border bg-muted/30 px-3 py-2">
+        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
           <span className="text-muted-foreground">{copy.current}</span>
           <span className="mt-1 block font-medium tabular-nums text-foreground">{formatWeight(locale)(loaded)}</span>
         </div>
-        <div className={previewIncoming ? "rounded-md border border-primary-border bg-primary-subtle px-3 py-2" : "rounded-md border bg-muted/30 px-3 py-2"}>
+        <div className={previewIncoming ? "rounded-md border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText] bg-primary-subtle px-3 py-2" : "rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2"}>
           <span className={previewIncoming ? "text-primary-subtle-foreground/80" : "text-muted-foreground"}>{copy.projected}</span>
           <span className={previewIncoming ? "mt-1 block font-medium tabular-nums text-primary-subtle-foreground" : "mt-1 block font-medium tabular-nums text-foreground"}>{formatWeight(locale)(projected)}</span>
         </div>
@@ -151,7 +151,7 @@ export function ShipmentCapacityMeter() {
   const projected = Math.min(MAX_WEIGHT, loaded + NEXT_WEIGHT);
 
   return (
-    <div className="flex w-full max-w-lg flex-col gap-5 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-lg flex-col gap-5 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Meter
         label="重量積載率"
         value={loaded}
@@ -181,11 +181,11 @@ export function ShipmentCapacityMeter() {
         </Button>
       </div>
       <div className="grid grid-cols-2 gap-2 text-sm">
-        <div className="rounded-md border bg-muted/30 px-3 py-2">
+        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
           <span className="text-muted-foreground">現在</span>
           <span className="mt-1 block font-medium tabular-nums text-foreground">{loaded.toLocaleString("ja-JP")}kg</span>
         </div>
-        <div className={previewIncoming ? "rounded-md border border-primary-border bg-primary-subtle px-3 py-2" : "rounded-md border bg-muted/30 px-3 py-2"}>
+        <div className={previewIncoming ? "rounded-md border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText] bg-primary-subtle px-3 py-2" : "rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2"}>
           <span className={previewIncoming ? "text-primary-subtle-foreground/80" : "text-muted-foreground"}>反映後</span>
           <span className={previewIncoming ? "mt-1 block font-medium tabular-nums text-primary-subtle-foreground" : "mt-1 block font-medium tabular-nums text-foreground"}>{projected.toLocaleString("ja-JP")}kg</span>
         </div>
@@ -207,7 +207,7 @@ export function ShipmentCapacityMeter() {
   const projected = Math.min(MAX_WEIGHT, loaded + NEXT_WEIGHT);
 
   return (
-    <div className="flex w-full max-w-lg flex-col gap-5 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-lg flex-col gap-5 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Meter
         label="Weight load"
         value={loaded}
@@ -237,11 +237,11 @@ export function ShipmentCapacityMeter() {
         </Button>
       </div>
       <div className="grid grid-cols-2 gap-2 text-sm">
-        <div className="rounded-md border bg-muted/30 px-3 py-2">
+        <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2">
           <span className="text-muted-foreground">Current</span>
           <span className="mt-1 block font-medium tabular-nums text-foreground">{loaded.toLocaleString("en-US")} kg</span>
         </div>
-        <div className={previewIncoming ? "rounded-md border border-primary-border bg-primary-subtle px-3 py-2" : "rounded-md border bg-muted/30 px-3 py-2"}>
+        <div className={previewIncoming ? "rounded-md border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText] bg-primary-subtle px-3 py-2" : "rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2"}>
           <span className={previewIncoming ? "text-primary-subtle-foreground/80" : "text-muted-foreground"}>Projected</span>
           <span className={previewIncoming ? "mt-1 block font-medium tabular-nums text-primary-subtle-foreground" : "mt-1 block font-medium tabular-nums text-foreground"}>{projected.toLocaleString("en-US")} kg</span>
         </div>
@@ -257,7 +257,7 @@ import { Meter } from "@gunjo/ui";
 
 export function UtilizationMeters() {
   return (
-    <div className="grid w-full max-w-lg gap-4 rounded-lg border bg-card p-4">
+    <div className="grid w-full max-w-lg gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Meter
         label="稼働率（目標 90%）"
         value={86}
@@ -283,7 +283,7 @@ import { Meter } from "@gunjo/ui";
 
 export function UtilizationMeters() {
   return (
-    <div className="grid w-full max-w-lg gap-4 rounded-lg border bg-card p-4">
+    <div className="grid w-full max-w-lg gap-4 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <Meter
         label="Utilization target 90%"
         value={86}
@@ -321,7 +321,7 @@ const rows = [
 
 export function BinFillTable() {
   return (
-    <table className="w-full max-w-lg rounded-lg border bg-card text-sm">
+    <table className="w-full max-w-lg rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card text-sm">
       <tbody>
         {rows.map((row) => (
           <tr key={row.bin} className="border-b last:border-b-0">
@@ -350,7 +350,7 @@ const rows = [
 
 export function BinFillTable() {
   return (
-    <table className="w-full max-w-lg rounded-lg border bg-card text-sm">
+    <table className="w-full max-w-lg rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card text-sm">
       <tbody>
         {rows.map((row) => (
           <tr key={row.bin} className="border-b last:border-b-0">
@@ -426,7 +426,7 @@ export function OccupancyMeter() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
           {locale === "ja" ? "状態とバリエーション" : "States and variants"}
         </h2>
         <ComponentDemoStates
@@ -484,20 +484,20 @@ export function OccupancyMeter() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
           {sectionLabels.props}
         </h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
             {sectionLabels.usage}
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

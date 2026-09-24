@@ -48,7 +48,7 @@ function ReferenceValuePreview({ locale, mode = "table" }: { locale: Locale; mod
 
   if (mode === "labels") {
     return (
-      <div className="grid w-full max-w-md gap-3 rounded-lg border bg-card p-4">
+      <div className="grid w-full max-w-md gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
         <ReferenceValue value={38.9} unit={locale === "ja" ? "℃" : "C"} range={{ low: 36, high: 37.5, criticalHigh: 40 }} labels={labels} showLabel showRange rangeLabel={rangeLabel} format={(value) => value.toFixed(1)} />
         <ReferenceValue value={88} unit="%" range={{ low: 96, criticalLow: 90 }} labels={labels} showLabel showRange rangeLabel={rangeLabel} />
         <ReferenceValue value={72} unit={locale === "ja" ? "回/分" : "bpm"} range={{ low: 60, high: 100 }} labels={labels} showLabel showRange rangeLabel={rangeLabel} />
@@ -58,14 +58,14 @@ function ReferenceValuePreview({ locale, mode = "table" }: { locale: Locale; mod
 
   if (mode === "hideFlag") {
     return (
-      <div className="grid w-full max-w-md gap-3 rounded-lg border bg-card p-4">
+      <div className="grid w-full max-w-md gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
         <ReferenceValue value={6.8} unit="mEq/L" range={{ low: 3.5, high: 5.0, criticalHigh: 6.0 }} labels={labels} hideFlag showRange rangeLabel={rangeLabel} />
       </div>
     );
   }
 
   return (
-    <div className="w-full max-w-lg rounded-lg border bg-card p-4">
+    <div className="w-full max-w-lg rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b text-left text-muted-foreground">
@@ -120,7 +120,7 @@ const rows: ResultRow[] = [
 
 export function VitalResultTable() {
   return (
-    <div className="w-full max-w-lg rounded-lg border bg-card p-4">
+    <div className="w-full max-w-lg rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b text-left text-muted-foreground">
@@ -173,7 +173,7 @@ const rows: ResultRow[] = [
 
 export function VitalResultTable() {
   return (
-    <div className="w-full max-w-lg rounded-lg border bg-card p-4">
+    <div className="w-full max-w-lg rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b text-left text-muted-foreground">
@@ -212,7 +212,7 @@ import { ReferenceValue } from "@gunjo/ui";
 
 export function LabeledReferenceValues() {
   return (
-    <div className="grid w-full max-w-md gap-3 rounded-lg border bg-card p-4">
+    <div className="grid w-full max-w-md gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ReferenceValue value={38.9} unit="℃" range={{ low: 36, high: 37.5, criticalHigh: 40 }} showLabel showRange rangeLabel="基準" format={(value) => value.toFixed(1)} />
       <ReferenceValue value={88} unit="%" range={{ low: 96, criticalLow: 90 }} showLabel showRange rangeLabel="基準" />
       <ReferenceValue value={72} unit="回/分" range={{ low: 60, high: 100 }} showLabel showRange rangeLabel="基準" />
@@ -233,7 +233,7 @@ const labels: Partial<Record<RangeFlag, string>> = {
 
 export function LabeledReferenceValues() {
   return (
-    <div className="grid w-full max-w-md gap-3 rounded-lg border bg-card p-4">
+    <div className="grid w-full max-w-md gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ReferenceValue value={38.9} unit="C" range={{ low: 36, high: 37.5, criticalHigh: 40 }} labels={labels} showLabel showRange rangeLabel="Range" format={(value) => value.toFixed(1)} />
       <ReferenceValue value={88} unit="%" range={{ low: 96, criticalLow: 90 }} labels={labels} showLabel showRange rangeLabel="Range" />
       <ReferenceValue value={72} unit="bpm" range={{ low: 60, high: 100 }} labels={labels} showLabel showRange rangeLabel="Range" />
@@ -246,7 +246,7 @@ export function LabeledReferenceValues() {
 
 export function CompactReferenceValue() {
   return (
-    <div className="grid w-full max-w-md gap-3 rounded-lg border bg-card p-4">
+    <div className="grid w-full max-w-md gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ReferenceValue value={6.8} unit="mEq/L" range={{ low: 3.5, high: 5.0, criticalHigh: 6.0 }} hideFlag showRange rangeLabel="基準" />
     </div>
   );
@@ -263,7 +263,7 @@ const labels: Partial<Record<RangeFlag, string>> = {
 
 export function CompactReferenceValue() {
   return (
-    <div className="grid w-full max-w-md gap-3 rounded-lg border bg-card p-4">
+    <div className="grid w-full max-w-md gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ReferenceValue value={6.8} unit="mEq/L" range={{ low: 3.5, high: 5.0, criticalHigh: 6.0 }} labels={labels} hideFlag showRange rangeLabel="Range" />
     </div>
   );
@@ -296,7 +296,7 @@ export function CompactReferenceValue() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
           {locale === "ja" ? "状態とバリエーション" : "States and variants"}
         </h2>
         <ComponentDemoStates
@@ -330,20 +330,20 @@ export function CompactReferenceValue() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
           {sectionLabels.props}
         </h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
             {sectionLabels.usage}
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

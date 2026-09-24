@@ -64,7 +64,7 @@ const usageCodeByLocale = {
 
 export function MediaCard() {
   return (
-    <AspectRatio ratio={16 / 9} className="overflow-hidden rounded-md border">
+    <AspectRatio ratio={16 / 9} className="overflow-hidden rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <img
         src="/example.jpg"
         alt="Dashboard preview"
@@ -77,7 +77,7 @@ export function MediaCard() {
 
 export function MediaCard() {
   return (
-    <AspectRatio ratio={16 / 9} className="overflow-hidden rounded-md border">
+    <AspectRatio ratio={16 / 9} className="overflow-hidden rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
       <img
         src="/example.jpg"
         alt="ダッシュボードのプレビュー"
@@ -97,7 +97,7 @@ export function HeroVideoRatio() {
     <div className="w-full max-w-md">
       <AspectRatio
         ratio={16 / 9}
-        className="grid place-items-center rounded-md border bg-primary-subtle"
+        className="grid place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-primary-subtle"
       >
         <span className="text-sm font-medium">16:9 hero video</span>
       </AspectRatio>
@@ -111,7 +111,7 @@ export function ArticleImageRatio() {
     <div className="w-full max-w-sm">
       <AspectRatio
         ratio={4 / 3}
-        className="grid place-items-center rounded-md border bg-success-subtle"
+        className="grid place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-success-subtle"
       >
         <span className="text-sm font-medium">4:3 article image</span>
       </AspectRatio>
@@ -125,7 +125,7 @@ export function AvatarCropRatio() {
     <div className="w-full max-w-56">
       <AspectRatio
         ratio={1}
-        className="grid place-items-center rounded-md border bg-warning-subtle"
+        className="grid place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-warning-subtle"
       >
         <span className="text-sm font-medium">1:1 avatar crop</span>
       </AspectRatio>
@@ -139,7 +139,7 @@ export function PortraitCardRatio() {
     <div className="w-full max-w-48">
       <AspectRatio
         ratio={3 / 4}
-        className="grid place-items-center rounded-md border bg-muted/70"
+        className="grid place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted"
       >
         <span className="text-sm font-medium">3:4 portrait card</span>
       </AspectRatio>
@@ -155,7 +155,7 @@ export function HeroVideoRatio() {
     <div className="w-full max-w-md">
       <AspectRatio
         ratio={16 / 9}
-        className="grid place-items-center rounded-md border bg-primary-subtle"
+        className="grid place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-primary-subtle"
       >
         <span className="text-sm font-medium">16:9 ヒーロー動画</span>
       </AspectRatio>
@@ -169,7 +169,7 @@ export function ArticleImageRatio() {
     <div className="w-full max-w-sm">
       <AspectRatio
         ratio={4 / 3}
-        className="grid place-items-center rounded-md border bg-success-subtle"
+        className="grid place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-success-subtle"
       >
         <span className="text-sm font-medium">4:3 記事画像</span>
       </AspectRatio>
@@ -183,7 +183,7 @@ export function AvatarCropRatio() {
     <div className="w-full max-w-56">
       <AspectRatio
         ratio={1}
-        className="grid place-items-center rounded-md border bg-warning-subtle"
+        className="grid place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-warning-subtle"
       >
         <span className="text-sm font-medium">1:1 アバター切り抜き</span>
       </AspectRatio>
@@ -197,7 +197,7 @@ export function PortraitCardRatio() {
     <div className="w-full max-w-48">
       <AspectRatio
         ratio={3 / 4}
-        className="grid place-items-center rounded-md border bg-muted/70"
+        className="grid place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted"
       >
         <span className="text-sm font-medium">3:4 縦長カード</span>
       </AspectRatio>
@@ -210,7 +210,7 @@ export function PortraitCardRatio() {
 function RatioBlock({ label, ratio, className }: { label: string; ratio: number; className: string }) {
     return (
         <div className="w-full min-w-0 space-y-2">
-            <AspectRatio ratio={ratio} className={`grid place-items-center rounded-md border ${className}`}>
+            <AspectRatio ratio={ratio} className={`grid place-items-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] ${className}`}>
                 <span className="px-2 text-center text-sm font-medium">{label}</span>
             </AspectRatio>
         </div>
@@ -254,7 +254,7 @@ export default function AspectRatioPage() {
 
             <section className="space-y-6">
                 <div className="space-y-1">
-                    <h2 id="states" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">
+                    <h2 id="states" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">
                         {locale === "ja" ? "状態とバリエーション" : "States and Variants"}
                     </h2>
                 </div>
@@ -313,16 +313,16 @@ export default function AspectRatioPage() {
             </section>
 
             <section className="space-y-4">
-                <h2 id="props" className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "プロパティ" : "Props"}</h2>
+                <h2 id="props" className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight">{locale === "ja" ? "プロパティ" : "Props"}</h2>
                 <PropsTable data={propsData} />
             </section>
 
             <section className="space-y-4">
-                <div className="flex items-start justify-between gap-3 border-b pb-2">
+                <div className="flex items-start justify-between gap-3 pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight">{locale === "ja" ? "使い方" : "Usage"}</h2>
                     <CodeCopyButton code={usageCodeByLocale[locale]} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCodeByLocale[locale]} />
                 </div>
             </section>

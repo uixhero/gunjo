@@ -11,7 +11,7 @@ import {
 
 export function FooterDemo() {
     return (
-        <div className="w-full overflow-hidden rounded-md border">
+        <div className="w-full overflow-hidden rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
             <Footer>
                 <FooterColumns>
                     <FooterBrand>

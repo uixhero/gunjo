@@ -81,7 +81,7 @@ export function CampaignAssetCard() {
 const propsDataByLocale = {
     en: [
         { name: "asset", type: "AssetCardAsset", description: "The media item rendered by the card.", required: true },
-        { name: "selected", type: "boolean", description: "Applies the selected border and ring." },
+        { name: "selected", type: "boolean", description: "Applies the selected border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] and ring." },
         { name: "selectionMode", type: "\"single\" | \"multiple\" | \"none\"", default: "\"single\"", description: "Controls whether a selection indicator is shown." },
         { name: "imageFit", type: "\"cover\" | \"contain\"", default: "\"cover\"", description: "Controls whether the image fills the card surface or is contained for full-asset inspection." },
         { name: "asset.rating", type: "number", description: "Optional 0-5 half-step rating value used by media workflows and inspector editing." },
@@ -157,7 +157,7 @@ export default function AssetCardDocPage() {
             </ComponentPreview>
 
             <div className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
                     {locale === "ja" ? "状態とバリエーション" : "States and variants"}
                 </h2>
                 <ComponentDemoStates
@@ -343,21 +343,21 @@ export function FileAssetCard() {
             </div>
 
             <div className="space-y-4">
-                <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0">{locale === "ja" ? "プロパティ" : "Props"}</h2>
+                <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0">{locale === "ja" ? "プロパティ" : "Props"}</h2>
                 <PropsTable data={propsDataByLocale[locale]} />
             </div>
 
             <div className="space-y-4">
-                <div className="flex items-center justify-between gap-3 border-b pb-2">
+                <div className="flex items-center justify-between gap-3 pb-2">
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{locale === "ja" ? "使い方" : "Usage"}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
             <section className="space-y-4">
-                <div className="border-b pb-2">
+                <div className="pb-2">
                     <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight" id="design-decisions">
                         {locale === "ja" ? "設計の判断" : "Design decisions"}
                     </h2>

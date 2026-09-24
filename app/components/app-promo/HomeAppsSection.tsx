@@ -42,7 +42,7 @@ export function HomeAppsSection() {
     const single = PROMO_APPS.length === 1;
 
     return (
-        <section id="apps" className="border-t border-border/40 bg-background py-24">
+        <section id="apps" className="bg-card py-24">
             <div className="container">
                 <div className="mb-10 max-w-2xl space-y-3">
                     <h2 className="text-3xl font-bold tracking-tight">{copy.homeHeading}</h2>
@@ -63,7 +63,7 @@ export function HomeAppsSection() {
 
 function AppCard({ app, copy, single }: { app: PromoApp; copy: AppPromoStrings; single: boolean }) {
     return (
-        <Card className="h-full">
+        <Card className="h-full bg-muted">
             <CardContent className="p-6">
                 {/* ⛔⛔ **横に並べる切り替えを `lg`（1024px）に下げないこと。**
                     絵の列は 696px を固定で取るので（4×165 ＋ 隙間3×12）、`lg` で横に並べると

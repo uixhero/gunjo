@@ -87,9 +87,16 @@ export interface SeatMapProps extends Omit<React.HTMLAttributes<HTMLDivElement>,
 }
 
 const STATE_CELL: Record<SeatState, string> = {
-  available: "border-border bg-background text-foreground hover:border-primary hover:bg-primary/10",
-  occupied: "border-border bg-muted text-muted-foreground/60",
-  held: "border-warning-border bg-warning-subtle text-warning-subtle-foreground",
+  // 淡色の面は枠を持たない（DECISIONS.md 2026-09-22・Badge と同じ扱い）。
+  // 区切りは面の濃淡で、カードの上で 1.14〜1.33 / 地の上で 1.10〜1.50
+  // （light・dark 両方の実測・2026-09-23）。⚠️ ハイコントラストで戻す枠に
+  // tone ごとの *-border を使わないこと（濃くした面と同化する）。基底クラスの
+  // contrast-more:border-border に集約してある。
+  // ⛔ 席は gap-1 で離れた札なので枠は格子線ではなく札の輪郭＝箱 A。
+  // available は bg-background だと地と同値（1.000:1）なので bg-card へ上げた。
+  available: "border-transparent bg-card text-foreground hover:border-primary hover:bg-primary/10",
+  occupied: "border-transparent bg-muted text-muted-foreground/60",
+  held: "border-transparent bg-warning-subtle text-warning-subtle-foreground",
   blocked: "border-transparent bg-transparent text-transparent",
 }
 
@@ -286,9 +293,10 @@ export const SeatMap = React.forwardRef<HTMLDivElement, SeatMapProps>(
                       onKeyDown={(e) => onKeyDown(e, seat)}
                       onClick={() => interactive && onToggle?.(seat.id)}
                       className={cn(
-                        "relative flex size-8 shrink-0 items-center justify-center rounded-md border text-[10px] font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
+                        "relative flex size-8 shrink-0 items-center justify-center rounded-md border contrast-more:border-border forced-colors:border-[CanvasText] text-[10px] font-medium outline-none transition-colors focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
                         isSelected
-                          ? "border-primary bg-primary text-primary-foreground"
+                          // 選択は bg-primary（地との比 5.08 / 6.23）＝面で十分に伝わる。
+                          ? "border-transparent bg-primary text-primary-foreground"
                           : STATE_CELL[state],
                         seat.type && state === "available" && !isSelected && "border-info-border bg-info-subtle",
                         !interactive && "cursor-default"

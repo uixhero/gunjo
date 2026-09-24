@@ -13,7 +13,7 @@ const Table = React.forwardRef<
 >(({ className, striped = false, ...props }, ref) => (
     // `[contain:paint]` keeps a wide table's horizontal scroll inside this box
     // instead of leaking page-level h-scroll on mobile (e.g. 375px). (#289)
-    <div className="relative flex w-full flex-col overflow-auto rounded-md rounded-lg border bg-card [contain:paint]">
+    <div className="relative flex w-full flex-col overflow-auto rounded-md rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card [contain:paint]">
         <table
             ref={ref}
             className={cn(

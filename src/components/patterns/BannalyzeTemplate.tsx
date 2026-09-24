@@ -31,7 +31,7 @@ export function BannalyzeTemplate({
             <div className="flex flex-1 overflow-hidden relative">
                 {/* Left Sidebar */}
                 {sidebar && (
-                    <aside className="group flex-shrink-0 w-64 border-r bg-muted/10 hidden md:block overflow-y-auto">
+                    <aside className="group flex-shrink-0 w-64 border-r border-r-transparent contrast-more:border-r-border forced-colors:border-r-[CanvasText] bg-muted hidden md:block overflow-y-auto">
                         {sidebar}
                     </aside>
                 )}
@@ -45,7 +45,7 @@ export function BannalyzeTemplate({
 
                 {/* Right Inspector Panel */}
                 {inspector && (
-                    <aside className="flex-shrink-0 w-80 border-l bg-background hidden lg:block overflow-y-auto">
+                    <aside className="flex-shrink-0 w-80 border-l border-l-transparent contrast-more:border-l-border forced-colors:border-l-[CanvasText] bg-card hidden lg:block overflow-y-auto">
                         {inspector}
                     </aside>
                 )}

@@ -266,7 +266,7 @@ export function PaymentsScreen() {
           <button
             type="button"
             onClick={() => openCase(c)}
-            className="block w-full rounded-lg border border-border bg-card p-4 text-left focus:outline-none focus:ring-2 focus:ring-ring"
+            className="block w-full rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 text-left focus:outline-none focus:ring-2 focus:ring-ring"
           >
             <div className="flex items-start justify-between gap-2">
               <div className="min-w-0">
@@ -414,7 +414,7 @@ function PaymentDetail({
                 { label: "支払予定日", value: c.dueDate },
               ]}
             />
-            <div className="rounded-md border border-border bg-card p-3 text-sm leading-relaxed text-foreground">
+            <div className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-sm leading-relaxed text-foreground">
               {c.accident.summary}
             </div>
             <Separator />
@@ -426,7 +426,7 @@ function PaymentDetail({
                 {c.derivations.map((d) => (
                   <div
                     key={d.coverage}
-                    className="flex items-center justify-between gap-2 rounded-md border border-border bg-card px-3 py-2"
+                    className="flex items-center justify-between gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2"
                   >
                     <PersonCell
                       size="sm"

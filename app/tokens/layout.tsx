@@ -26,29 +26,31 @@ export default function TokensLayout({
 
     return (
         <div className="container flex-1 items-start md:grid md:grid-cols-[200px_minmax(0,1fr)] md:gap-8 lg:gap-12">
-            <aside className="sticky top-14 hidden h-[calc(100vh-3.5rem)] shrink-0 border-r border-border/40 py-8 pr-6 md:block">
-                <h4 className="mb-3 px-2 text-[11px] font-bold uppercase tracking-[0.08em] text-foreground/90">
-                    Tokens
-                </h4>
-                <nav className="grid grid-flow-row auto-rows-max text-sm">
-                    {SECTIONS.map((s) => {
-                        const exact = pathname === s.href;
-                        return (
-                            <Link
-                                key={s.href}
-                                href={s.href}
-                                className={cn(
-                                    "rounded-md px-2 py-1.5 transition-colors",
-                                    exact
-                                        ? "bg-muted font-medium text-foreground"
-                                        : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
-                                )}
-                            >
-                                {s.label}
-                            </Link>
-                        );
-                    })}
-                </nav>
+            <aside className="sticky top-14 hidden h-[calc(100vh-3.5rem)] shrink-0 py-4 md:block">
+                <div className="h-full overflow-y-auto rounded-xl border border-transparent bg-card p-4 contrast-more:border-border forced-colors:border-[CanvasText]">
+                    <h4 className="mb-3 px-2 text-[11px] font-bold uppercase tracking-[0.08em] text-foreground/90">
+                        Tokens
+                    </h4>
+                    <nav className="grid grid-flow-row auto-rows-max text-sm">
+                        {SECTIONS.map((s) => {
+                            const exact = pathname === s.href;
+                            return (
+                                <Link
+                                    key={s.href}
+                                    href={s.href}
+                                    className={cn(
+                                        "rounded-md px-2 py-1.5 transition-colors",
+                                        exact
+                                            ? "bg-muted font-medium text-foreground"
+                                            : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                                    )}
+                                >
+                                    {s.label}
+                                </Link>
+                            );
+                        })}
+                    </nav>
+                </div>
             </aside>
             <main className="py-8 lg:py-10">
                 {children}

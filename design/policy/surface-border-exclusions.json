@@ -1,0 +1,279 @@
+{
+  "$comment": "箱 B＝枠が意味そのものなので残すもの。KeEem の決定（new-4px DECISIONS.md 2026-09-22）。行番号ではなく規則で書くこと（行はすぐ古くなる）。ここへ足す前に KeEem に確認する。",
+  "exclusions": [
+    {
+      "id": "table-grid-lines",
+      "match": {
+        "tags": [
+          "thead",
+          "tbody",
+          "tfoot",
+          "tr",
+          "th",
+          "td",
+          "caption",
+          "colgroup"
+        ]
+      },
+      "reason": "表のグリッド線（箱 B）。行と列の対応そのものが罫線で伝わるので、面の濃淡に置き換えると何行目のどの列かが読めなくなる。thead/tfoot の帯に塗りがあっても、そこに引く border-t / border-b は区切りではなく表の構造。",
+      "addedOn": "2026-09-22",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "badge-outline-variant",
+      "match": {
+        "files": [
+          "^src/components/display/Badge\\.tsx$"
+        ],
+        "sourcePattern": "badgeVariantClasses\\.outline"
+      },
+      "reason": "outline の Badge（箱 B）。塗りを持たず、枠が variant の identity そのもの。枠を外すと default との見分けが付かなくなる。現状は bg-transparent なのでこの検査には元から出ないが、将来 bg-* を足したときに黙って違反にならないよう規則として書いておく。",
+      "addedOn": "2026-09-22",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "text-input-family",
+      "match": {
+        "files": [
+          "^src/components/inputs/Input\\.tsx$",
+          "^src/components/inputs/Select\\.tsx$",
+          "^src/components/inputs/Textarea\\.tsx$",
+          "^src/components/inputs/Checkbox\\.tsx$",
+          "^src/components/inputs/RadioGroup\\.tsx$",
+          "^src/components/inputs/ChatInput\\.tsx$"
+        ],
+        "classPattern": "border-input"
+      },
+      "reason": "入力系（箱 B）。枠が無いと「ここに入力できる」ことが伝わらない。WCAG 1.4.11（UI部品の境界は 3:1）の対象でもある。現状はどれも bg-transparent なのでこの検査には出ないが、規則として書いておく。⚠️ --input 自体が地との比 dark 1.37:1 / light 1.24:1 で 1.4.11 に足りていない（枠線の話とは別件・issue 起票済み）。 2026-09-23 追記: ChatInput の入力の殻を追加した。素は bg-background + border-input で、処理中だけ bg-primary-subtle + border-primary-border に変わる＝塗りを持つので第2段の検査に出たが、これも「ここに書ける」を伝える入力の境界。",
+      "addedOn": "2026-09-22",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "separator",
+      "match": {
+        "files": [
+          "^src/components/display/Separator\\.tsx$"
+        ]
+      },
+      "reason": "Separator（箱 B）。罫線そのものが部品。現状は h-px + bg-border で枠クラスを使っていないのでこの検査には出ないが、規則として書いておく。",
+      "addedOn": "2026-09-22",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "translucent-floating-bar",
+      "match": {
+        "files": [
+          "^src/components/patterns/BannalyzeTemplate\\.tsx$",
+          "^src/components/patterns/LandingTemplate\\.tsx$",
+          "^src/components/feedback/StickyNoticeBar\\.tsx$",
+          "^src/components/display/BottomActionBar\\.tsx$"
+        ],
+        "classPattern": "backdrop-blur"
+      },
+      "reason": "貼り付く半透明の帯（箱 B）。bg-background/95 + backdrop-blur は背後の内容が透けるのが設計＝親の面との段差は 1.000:1（2026-09-23 実測。/95 でも合成後は地と同値）で、面では区切れない。不透明に上げると backdrop-blur の意味が無くなるので、枠が下の内容と帯を分ける唯一の手段。⛔ この規則は backdrop-blur を持つ束にだけ当たる（同じファイルの不透明な面は対象外＝ちゃんと落ちる）。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "drag-handle-on-its-own-rail",
+      "match": {
+        "files": [
+          "^src/components/layout/Resizable\\.tsx$"
+        ],
+        "classPattern": "bg-border"
+      },
+      "reason": "つまみ（箱 B）。Resizable のつまみは bg-border の1pxレールの真上に置かれ、つまみ自身も bg-border＝親との段差は 1.000:1（2026-09-23 実測）。面では区切れないし、レールと同色なのは意図（つまみは罫線の一部として読ませる）。枠はこのつまみを「掴める部品」として縁取る唯一の手段で、WCAG 1.4.11（UI部品の境界は 3:1）の対象でもある。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "list-row-divider",
+      "match": {
+        "files": [
+          "^src/components/feedback/NotificationCenter\\.tsx$"
+        ],
+        "classPattern": "bg-primary-subtle"
+      },
+      "reason": "一覧の行の区切り（箱 B）。未読の通知は bg-primary-subtle、既読は塗り無しで、未読が続くと同じ面が縦に連なる＝行の境目が面では出ない（隣り合う同色は段差 1.000:1）。border-b は「ここまでが1件」という構造そのもので、表のグリッド線と同じ扱い。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "state-ring-marker",
+      "match": {
+        "files": [
+          "^src/components/feedback/Stepper\\.tsx$",
+          "^src/components/display/Timeline\\.tsx$",
+          "^src/components/display/ParetoChart\\.tsx$",
+          "^src/components/display/chart-tooltip\\.tsx$",
+          "^src/components/overlay/OnboardingFlow\\.tsx$"
+        ],
+        "classPattern": "border-2|bg-foreground text-background"
+      },
+      "reason": "輪の印（箱 B）。工程・時系列・図表の「現在地」「未達」を表す丸は、塗り＝完了／輪＝現在・未達で対にしてある（Stepper は completed が bg-foreground の塗り、current が border-2 の輪）。枠を外すと2つの状態が見分けられない＝枠が状態の識別そのもの。Badge の outline variant と同じ理屈。塗りは bg-background で親との段差を持たないことも多い。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "floating-control-over-media",
+      "match": {
+        "files": [
+          "^src/components/overlay/MediaLightbox\\.tsx$",
+          "^src/components/display/AssetCard\\.tsx$",
+          "^src/components/display/ImagePreview\\.tsx$",
+          "^src/components/inputs/MapControlButton\\.tsx$",
+          "^app/docs/components/map-status-corner/page\\.tsx$"
+        ],
+        "classPattern": "(?=.*bg-(?:background|foreground)/[0-9])(?=.*shadow-)|rounded-full border border-foreground/30 bg-background/40"
+      },
+      "reason": "画像・地図の上に浮く操作盤（箱 B）。背後は利用者が入れた写真や地図タイル＝どんな色が来るか分からないので、親の面との段差という概念が成り立たない（MediaLightbox は bg-foreground/85 を半透明のまま使うのが設計で、明るい写真の上でも操作が読めるようにしてある）。枠は盤の輪郭を背後の絵から切り離す唯一の手段で、掴める部品の境界として WCAG 1.4.11（3:1）の対象でもある。規則は半透明の塗りと影を両方持つ束にだけ当たる。 2026-09-23 追記（第3段）: map-status-corner の docs の方位の丸（地図の上に半透明で置く）を追加した。影は持たないが、背後が地図タイルである点は同じ。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "dashed-affordance",
+      "match": {
+        "classPattern": "border-dashed"
+      },
+      "reason": "破線（箱 B）。破線は「空」「置き場（ここに落とせる）」「使用不可」「予定（実績ではない）」を表す語彙で、実線の枠とは別の意味を持つ。面の濃淡は色の差しか作れないので「破線かどうか」を表せない＝置き換えが原理的にできない。対象は EmptyState の空の箱、FileUploader と ShareModal の落とし込み口、ImagePreview の画像なしの札、ScheduleGrid の空き枠、Gantt の予定バー。⚠️ Gantt は7件と数えられるが実体は1つ＝検査が className の束を variant の表の各エントリと合わせて数えるため（予定バーの `border-dashed border-border bg-card/40` が BAR_TONE の7エントリそれぞれに混ざる）。Gantt の実線のバー側（BAR_TONE の border-*）は同じ回で外してある。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "control-boundary-and-state",
+      "match": {
+        "files": [
+          "^src/components/inputs/FilterButton\\.tsx$",
+          "^src/components/inputs/LayerMenu\\.tsx$",
+          "^src/components/display/CheckboxCard\\.tsx$",
+          "^src/components/display/RadioCard\\.tsx$",
+          "^app/docs/semantic-tones/page\\.tsx$"
+        ],
+        "classPattern": "border-primary|border-input"
+      },
+      "reason": "押せる部品の境界と、その状態（箱 B）。FilterButton の引き金は3つの状態を枠の色で表している（既定＝破線、開いている＝border-primary-border、選択あり＝border-primary）。塗りはどの状態でも bg-primary-subtle で同じなので、面では3つを区別できない。FilterButton:85 と LayerMenu の Mark はチェックの印で、入／切／中間を「塗り＋枠」と「塗り無し＋枠」の対で表す＝Checkbox と同じ形（text-input-family と同じ理屈）。いずれも WCAG 1.4.11（UI部品の境界は 3:1）の対象。 2026-09-23 追記: CheckboxCard と RadioCard の印を追加した（カード本体は箱 A で枠を外し、ring-1 ring-primary で選択を示す。印の四角・丸だけを残す）。 2026-09-23 追記（第3段）: app/docs/semantic-tones の色の選択チップ（aria-pressed のトグル）を追加した。選ばれていないチップは塗りを持たず枠だけで「押せる」を示し、選ばれたチップは border-primary ＋ bg-primary/10。枠を外すと選ばれていないチップが文字だけになる。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "grid-and-scale-lines",
+      "match": {
+        "files": [
+          "^src/components/display/Gantt\\.tsx$",
+          "^src/components/display/WeekView\\.tsx$",
+          "^src/components/display/QuadrantMatrix\\.tsx$",
+          "^src/components/display/EventCalendar\\.tsx$"
+        ],
+        "classPattern": "border-[rbtl]\\b|border-[rbtl]-"
+      },
+      "reason": "格子線・目盛り（箱 B）。罫線を共有して並ぶ枡の境目そのもので、表のグリッド線（table-grid-lines）と同じ理屈＝面の濃淡に置き換えると「何行目の何列目か」「どこが1日の区切りか」が読めなくなる。内訳: Gantt は行見出し列と時間軸の境（255・281）と日の格子線・目盛り（262・295）、WeekView は日の列の境（221・265）、QuadrantMatrix は4象限を分ける十字の軸（173・174・175）、EventCalendar は週見出しと本体の境（255）と日の枡の格子（296）。⛔ 同じファイルの外枠パネル（Gantt の器・EventCalendar:252・QuadrantMatrix:164/295/313）は箱 A で、同じ回に枠を外してある＝この規則は片側だけの罫線（border-r / border-b など）にしか当たらないので、全周の枠は今も検査で落ちる。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "knockout-ring-over-image",
+      "match": {
+        "files": [
+          "^src/components/display/Avatar\\.tsx$",
+          "^app/components/demos/TemplateDemos\\.tsx$",
+          "^app/patterns/kanban/page\\.tsx$"
+        ],
+        "classPattern": "border-2 border-background"
+      },
+      "reason": "抜きの輪（箱 B）。Avatar の在席の点は利用者の顔写真の角に重なるので、背後は何色か分からない。border-2 border-background は「枠」ではなく、地の色で写真を抜いて点を写真から切り離す輪＝面の濃淡では代われない（親が画像で、親の background-color という概念が無い）。点そのものの色（bg-success / warning / destructive / muted-foreground）が状態を伝える役で、輪はその点を読めるようにする下敷き。 2026-09-23 追記（第3段）: app/ のかんばんの見本（TemplateDemos・patterns/kanban）の担当者の丸の重なりを追加した。丸どうしが半分ずつ重なって並ぶので、border-2 border-background は隣の丸を地の色で抜いて1人ずつに切り離す輪（Avatar の在席の点と同じ働き）。隣が同じ bg-muted の丸なので面の段差では切り離せない。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "kbd-keycap",
+      "match": {
+        "tags": [
+          "kbd"
+        ]
+      },
+      "reason": "キーの形（箱 B）。<kbd> の枠は「これはキーボードのキー」という見た目の identity そのもので、面の濃淡に置き換えるとただの淡い札になり、キーだと読めなくなる。@gunjo/ui の Kbd と同じ扱い。当たるのは app/ の手書きの <kbd> 2 件（CommandMenu の ⌘K・OrganismsDemo）。KeEem の決定（DECISIONS.md 2026-09-23）で kbd は箱 B と明記。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "in-region-group-divider",
+      "match": {
+        "files": [
+          "^app/components/layout/Sidebar\\.tsx$",
+          "^app/\\(home\\)/page\\.tsx$",
+          "^app/components/doc/DocProse\\.tsx$",
+          "^app/docs/_markdown-resource-page\\.tsx$",
+          "^app/docs/ai-handoff/cookbook/\\[slug\\]/page\\.tsx$",
+          "^app/patterns/\\(index\\)/page\\.tsx$",
+          "^app/docs/components/_category-overview\\.tsx$"
+        ],
+        "classPattern": "(?:^|\\s)(?:relative py-4 border-t border-border|space-y-4 border-[tb] border-border/(?:40|60) p[bt]-8|space-y-[12] border-b pb-3)(?:\\s|$)"
+      },
+      "reason": "① 細かい線（KeEem の決定 DECISIONS.md 2026-09-23）。1つの領域の中で項目のまとまりを分ける線で、線しか手がかりが無いので残す。docs の左ナビの群の境目（「トークン」「ガイドライン」「入力」の間）、トップの「触って分かる」の中の小見出しのまとまり、docs 本文（DocProse・markdown の資料ページ・cookbook）の節、パターン一覧の節、カテゴリ一覧の群。⚠️ いまの当たりは 0 件＝どれも塗りを持たないので、この検査（塗り＋枠を数える）には元から出ない。規則として書いておくのは、将来これらに塗りを足したときに「面の上の区切り線」として意図して残すことを明示するため（Separator・badge-outline-variant と同じ書き方）。⛔ classPattern は型の文字列そのものに絞ってある＝同じファイルでもトップの節（section）の塗りに線を足せば落ちる。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "color-swatch-edge",
+      "match": {
+        "files": [
+          "^app/docs/colors/page\\.tsx$"
+        ],
+        "classPattern": "appearance-none"
+      },
+      "reason": "色見本の縁（箱 B）。/docs/colors の見本は塗りそのものが展示している色（inline style の backgroundColor）で、--card や --background と同じ色の見本は親の面と完全同値（1.000:1・2026-09-23 実測）になる＝面の段差という概念が成り立たない（floating-control-over-media と同じ理屈）。枠線の見本（border-4 に色を入れて見せるもの）は枠そのものが展示物。当たりは appearance-none の見本ボタンだけ（見本を並べるカードの枠は同じ回で外してある）。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "option-button-outline",
+      "match": {
+        "files": [
+          "^app/components/layout/ThemeSwitcher\\.tsx$"
+        ],
+        "classPattern": "border-foreground bg-foreground/5"
+      },
+      "reason": "選択肢のボタン（箱 B）。テーマ切り替えの角丸・文字の大きさの選択肢は、選ばれていないボタンが塗りを持たず枠だけで「押せる」を示し、選ばれたボタンは border-foreground ＋ bg-foreground/5。角丸の選択肢は枠の形そのもので角丸の値を見せている（style の borderRadius）＝枠を外すと何の角丸かが見えない。control-boundary-and-state と同じ理屈。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    }
+  ],
+  "$comment2": "highContrastRestoreExceptions＝「border-transparent を持つが、面で区切る方針で枠を外したわけではない」もの。箱 C の戻しを要求しない。ここへ足す前に KeEem に確認する。",
+  "highContrastRestoreExceptions": [
+    {
+      "id": "filled-state-of-a-two-state-control",
+      "match": {
+        "files": [
+          "^src/components/inputs/Checkbox\\.tsx$",
+          "^src/components/inputs/Switch\\.tsx$"
+        ]
+      },
+      "reason": "入り切りの対の「入」側。Checkbox の checked と Switch のつまみ・軌道は塗りで入を示し、切のほうが border-input の枠を持つ（text-input-family＝箱 B）。つまり枠を外したのではなく、元から「入は塗り・切は枠」の対でできている。ハイコントラストでは切側の枠が残るので、入と切は区別できる。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "pagination-dot-hit-area",
+      "match": {
+        "files": [
+          "^src/components/display/Carousel\\.tsx$"
+        ],
+        "classPattern": "bg-muted-foreground/35"
+      },
+      "reason": "送りの点の当たり判定。Carousel の点は bg-primary（現在）と bg-muted-foreground/35（他）の塗りで現在地を示し、border-transparent は指で押せる大きさを稼ぐための余白として使われている＝区切りの枠ではない。ハイコントラストで枠を足すと点ではなく四角に見える。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    },
+    {
+      "id": "ghost-panel-variant",
+      "match": {
+        "files": [
+          "^src/components/overlay/FloatingPanel\\.tsx$"
+        ]
+      },
+      "reason": "ghost variant。FloatingPanel の ghost は「枠も影も持たない」ことが variant の定義で、既定の variant が枠を持つ。枠を外した面ではなく、枠を持たない形を選べるようにしたもの。",
+      "addedOn": "2026-09-23",
+      "expiresOn": "permanent"
+    }
+  ]
+}

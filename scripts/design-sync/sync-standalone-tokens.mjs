@@ -152,6 +152,24 @@ const HEADER = `/*
  */
 `;
 
+// ハイコントラスト時の枠線。src/globals.css の @layer base に置いた
+// prefers-contrast ブロックと同じ値で、面の濃淡だけで区切れない環境に
+// 3:1 以上の枠線を渡す。cleanBlock は :root / .dark の最初のブロックしか
+//読まないので、ここで明示的に付け足す。(#1020)
+const HIGH_CONTRAST_BORDER = `/* ハイコントラスト（prefers-contrast: more）では、区切りを面の濃淡ではなく
+   枠線で伝える。--border を 3:1 以上まで上げる。 */
+@media (prefers-contrast: more) {
+    :root {
+        --border: 215 20% 40%;
+    }
+
+    .dark,
+    [data-theme="dark"] {
+        --border: 215 20% 55%;
+    }
+}
+`;
+
 const BASE_STYLES = `/* 最小のベーススタイル（Tailwind preflight の要点だけを純 CSS で再現） */
 *,
 ::before,
@@ -188,6 +206,7 @@ export function buildStandaloneTokensCss({ root = ROOT } = {}) {
     "",
     `.dark,\n[data-theme="dark"] {\n${darkLines.join("\n")}\n}`,
     "",
+    HIGH_CONTRAST_BORDER,
     BASE_STYLES,
   ].join("\n");
 }

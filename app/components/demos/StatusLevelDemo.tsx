@@ -44,7 +44,7 @@ export function StatusLevelDemo() {
 
   return (
     <div className="w-full max-w-xl space-y-4">
-      <div className="space-y-3 rounded-lg border bg-card p-4">
+      <div className="space-y-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
         <SegmentedControl
           aria-label="いまのレベル"
           size="sm"

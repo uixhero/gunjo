@@ -294,7 +294,7 @@ const SignedRecord = React.forwardRef<HTMLDivElement, SignedRecordProps>(
                 ) : null}
 
                 {readOnly ? (
-                    <p className="inline-flex items-center gap-1.5 rounded-md border border-border bg-muted/40 px-3 py-2 text-xs text-muted-foreground">
+                    <p className="inline-flex items-center gap-1.5 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-xs text-muted-foreground">
                         <IconLock className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
                         {labels?.locked ?? "確定済みの記録は変更できません。修正は追記で行います。"}
                     </p>
@@ -308,7 +308,7 @@ const SignedRecord = React.forwardRef<HTMLDivElement, SignedRecordProps>(
                         {value.addenda.length > 0 ? (
                             <ol className="flex flex-col gap-2">
                                 {value.addenda.map((a) => (
-                                    <li key={a.id} className="rounded-md border border-border bg-card p-3 text-sm">
+                                    <li key={a.id} className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3 text-sm">
                                         <div className="mb-1 flex flex-wrap items-center gap-x-2 text-xs text-muted-foreground">
                                             <span className="font-medium text-foreground">{authorAt(authorName(a.author), formatTime(a.at))}</span>
                                             {a.reason ? <span>／ {a.reason}</span> : null}

@@ -30,7 +30,7 @@ const DocsTemplate = React.forwardRef<HTMLDivElement, DocsTemplateProps>(
              * not pin a fixed sidebar column (it squished content on phones).
              */}
             <div className="grid flex-1 grid-cols-1 lg:grid-cols-[220px_minmax(0,1fr)] xl:grid-cols-[220px_minmax(0,1fr)_180px]">
-                <aside className="hidden lg:block border-r border-border bg-muted/40 p-4 overflow-y-auto">
+                <aside className="hidden lg:block border-r border-r-transparent contrast-more:border-r-border forced-colors:border-r-[CanvasText] bg-muted p-4 overflow-y-auto">
                     {sidebar}
                 </aside>
                 <main className="p-6 md:p-10 overflow-x-auto">{children}</main>

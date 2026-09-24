@@ -9,7 +9,7 @@ export function CoSignDemo() {
     const [value, setValue] = React.useState<CoSignValue | undefined>(undefined);
 
     return (
-        <div className="flex w-full max-w-md flex-col gap-3 rounded-lg border bg-card p-4">
+        <div className="flex w-full max-w-md flex-col gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
             <div className="flex items-center justify-between gap-3">
                 <div className="text-sm">
                     <p className="font-medium text-foreground">麻薬：モルヒネ 10mg</p>

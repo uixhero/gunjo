@@ -170,14 +170,14 @@ export const ShareModal = ({
             onClick={(e) => { e.stopPropagation(); onClose(); }}
         >
             <div
-                className="mx-4 w-[448px] max-w-md max-w-[calc(100%-2rem)] overflow-hidden rounded-xl border border-border bg-background shadow-2xl animate-in zoom-in-95 duration-200"
+                className="mx-4 w-[448px] max-w-md max-w-[calc(100%-2rem)] overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-2xl animate-in zoom-in-95 duration-200"
                 role="dialog"
                 aria-modal="true"
                 aria-labelledby={titleId}
                 onClick={e => e.stopPropagation()}
             >
                 {/* Header */}
-                <div className="flex items-center justify-between px-4 py-3 border-b border-border bg-muted/50">
+                <div className="flex items-center justify-between px-4 py-3 border-b border-b-transparent contrast-more:border-b-border forced-colors:border-b-[CanvasText] bg-muted">
                     <h3 id={titleId} className="text-sm font-semibold text-foreground flex items-center gap-2">
                         <Globe size={16} className="text-primary" />
                         {labels?.title ?? "Share Image"}
@@ -245,7 +245,7 @@ export const ShareModal = ({
                         <div className="space-y-2 animate-in slide-in-from-top-2 duration-200">
                             <label className="text-xs font-medium text-muted-foreground">{labels?.publicUrl ?? "Public URL"}</label>
                             <div className="flex items-center gap-2">
-                                <div className="flex-1 bg-muted border border-border rounded-md px-3 py-2 text-xs text-muted-foreground font-mono truncate select-all">
+                                <div className="flex-1 bg-muted border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] rounded-md px-3 py-2 text-xs text-muted-foreground font-mono truncate select-all">
                                     {shareUrl}
                                 </div>
                                 <TooltipProvider>

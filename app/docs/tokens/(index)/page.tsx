@@ -159,14 +159,14 @@ export default function DocsTokensOverviewPage() {
                         <p className="text-xs text-muted-foreground">
                             {t.fixedAssets.valuesHint}
                         </p>
-                        <pre className="overflow-x-auto rounded-lg border border-border/40 bg-muted/20 p-3 font-mono text-xs leading-relaxed">
+                        <pre className="overflow-x-auto rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 font-mono text-xs leading-relaxed">
                             {KEY_TOKEN_CSS}
                         </pre>
                     </div>
                 </CardContent>
             </Card>
 
-            <Card className="border-primary-border bg-primary-subtle">
+            <Card className="bg-primary-subtle">
                 <CardHeader>
                     <div className="mb-2 flex h-9 w-9 items-center justify-center rounded-lg bg-primary text-primary-foreground">
                         <FileText className="h-4 w-4" />

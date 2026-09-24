@@ -321,7 +321,7 @@ const ChoroplethMap = React.forwardRef<HTMLDivElement, ChoroplethMapProps>(
                     <div className="grid min-w-0 gap-3">
                         <div
                             className={cn(
-                                "relative min-w-0 overflow-hidden rounded-md border bg-muted/20",
+                                "relative min-w-0 overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted",
                                 choroplethMapPanelClasses[variant]
                             )}
                         >
@@ -518,7 +518,7 @@ const ChoroplethMap = React.forwardRef<HTMLDivElement, ChoroplethMapProps>(
                             </div>
                         </div>
                         {showSelectedRegion && selectedRegionEntry ? (
-                            <div className="grid min-w-0 gap-1 rounded-md border bg-card p-3">
+                            <div className="grid min-w-0 gap-1 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
                                 <div className="flex min-w-0 items-center justify-between gap-3">
                                     <div className="min-w-0">
                                         <div className="text-xs font-medium text-muted-foreground">
@@ -567,7 +567,7 @@ const ChoroplethMap = React.forwardRef<HTMLDivElement, ChoroplethMapProps>(
                                         <button
                                             type="button"
                                             className={cn(
-                                                "grid w-full min-w-0 gap-2 rounded-md border bg-card p-2 text-left transition-colors",
+                                                "grid w-full min-w-0 gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-2 text-left transition-colors",
                                                 canSelectRegions &&
                                                     "cursor-pointer hover:border-primary-border focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                                                 !canSelectRegions && "cursor-default",

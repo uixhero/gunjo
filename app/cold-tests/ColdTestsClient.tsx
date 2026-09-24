@@ -225,7 +225,7 @@ function ColdTestsGrid({
                             className="group block focus-visible:outline-none"
                         >
                             <Card
-                                className="flex h-full w-full flex-col overflow-hidden border-border/80 shadow-sm transition-all hover:border-primary-border hover:shadow-md group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-2"
+                                className="flex h-full w-full flex-col overflow-hidden shadow-sm transition-all hover:border-primary-border hover:shadow-md group-focus-visible:ring-2 group-focus-visible:ring-ring group-focus-visible:ring-offset-2"
                             >
                                 <PreviewThumb
                                     slug={entry.slug}

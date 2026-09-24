@@ -127,7 +127,7 @@ export function GuidelinePage({
                                         {section.steps.map((step, index) => (
                                             <li
                                                 key={step.title.en}
-                                                className="grid gap-3 rounded-md border border-border/70 p-4 sm:grid-cols-[2.5rem_1fr]"
+                                                className="grid gap-3 rounded-md border bg-background border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4 sm:grid-cols-[2.5rem_1fr]"
                                             >
                                                 <Badge
                                                     variant="secondary"
@@ -232,7 +232,7 @@ export function GuidelinePage({
                                         {section.checklist.map((item) => (
                                             <li
                                                 key={item.title.en}
-                                                className="rounded-md border border-border/70 p-4"
+                                                className="rounded-md border bg-background border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4"
                                             >
                                                 <p className="font-medium">
                                                     {item.title[lang]}

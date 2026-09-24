@@ -249,7 +249,7 @@ const EventCalendar = React.forwardRef<HTMLDivElement, EventCalendarProps>(
                 <div
                     role="grid"
                     aria-label={typeof label === "string" ? label : monthTitle}
-                    className="w-full overflow-hidden rounded-lg border border-border bg-card"
+                    className="w-full overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card"
                     onKeyDown={onKeyDown}
                 >
                     <div role="row" className="grid grid-cols-7 border-b border-border bg-muted">

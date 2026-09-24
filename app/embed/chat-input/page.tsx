@@ -34,11 +34,11 @@ export default function Embed() {
                     optionsContent={
                         <div className="space-y-3">
                             <p className="text-sm font-semibold">{isJa ? "入力オプション" : "Input options"}</p>
-                            <label className="flex items-center justify-between gap-3 rounded-md border px-3 py-2 text-sm">
+                            <label className="flex items-center justify-between gap-3 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-3 py-2 text-sm">
                                 <span>{isJa ? "Web を参照" : "Use web context"}</span>
                                 <Switch checked={webSearch} onCheckedChange={setWebSearch} />
                             </label>
-                            <label className="flex items-center justify-between gap-3 rounded-md border px-3 py-2 text-sm">
+                            <label className="flex items-center justify-between gap-3 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-3 py-2 text-sm">
                                 <span>{isJa ? "画像を参照" : "Use image context"}</span>
                                 <Switch checked={imageContext} onCheckedChange={setImageContext} />
                             </label>

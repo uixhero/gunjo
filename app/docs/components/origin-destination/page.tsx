@@ -64,10 +64,10 @@ function OriginDestinationPreview({ locale, mode = "default" }: { locale: Locale
 
   if (mode === "inline") {
     return (
-      <div className="flex w-full max-w-lg flex-col gap-2 rounded-lg border bg-card p-4">
+      <div className="flex w-full max-w-lg flex-col gap-2 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4">
         <p className="text-sm font-medium text-foreground">{copy.list}</p>
         {copy.trains.map((train) => (
-          <div key={train.name} className="flex flex-wrap items-center justify-between gap-3 rounded-md border bg-background px-3 py-2">
+          <div key={train.name} className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2">
             <span className="text-sm font-medium text-foreground">{train.name}</span>
             <span className="flex items-center gap-3">
               <OriginDestination inline from={{ label: train.dep, sub: copy.dep }} to={{ label: train.arr, sub: copy.arr }} />
@@ -208,10 +208,10 @@ const trains = [
 
 export function TrainOptionRows() {
   return (
-    <div className="flex w-full max-w-lg flex-col gap-2 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-lg flex-col gap-2 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4">
       <p className="text-sm font-medium text-foreground">列車一覧</p>
       {trains.map((train) => (
-        <div key={train.name} className="flex flex-wrap items-center justify-between gap-3 rounded-md border bg-background px-3 py-2">
+        <div key={train.name} className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2">
           <span className="text-sm font-medium text-foreground">{train.name}</span>
           <span className="flex items-center gap-3">
             <OriginDestination inline from={{ label: train.dep, sub: "発" }} to={{ label: train.arr, sub: "着" }} />
@@ -231,10 +231,10 @@ const trains = [
 
 export function TrainOptionRows() {
   return (
-    <div className="flex w-full max-w-lg flex-col gap-2 rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-lg flex-col gap-2 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4">
       <p className="text-sm font-medium text-foreground">Train options</p>
       {trains.map((train) => (
-        <div key={train.name} className="flex flex-wrap items-center justify-between gap-3 rounded-md border bg-background px-3 py-2">
+        <div key={train.name} className="flex flex-wrap items-center justify-between gap-3 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2">
           <span className="text-sm font-medium text-foreground">{train.name}</span>
           <span className="flex items-center gap-3">
             <OriginDestination inline from={{ label: train.dep, sub: "dep" }} to={{ label: train.arr, sub: "arr" }} />
@@ -269,7 +269,7 @@ export function TrainOptionRows() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
           {locale === "ja" ? "状態とバリエーション" : "States and variants"}
         </h2>
         <ComponentDemoStates
@@ -303,20 +303,20 @@ export function TrainOptionRows() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
           {sectionLabels.props}
         </h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
             {sectionLabels.usage}
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

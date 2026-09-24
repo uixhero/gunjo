@@ -48,7 +48,7 @@ const downtimeCauses = [
 
 export function DowntimePareto() {
   return (
-    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ParetoChart
         data={downtimeCauses}
         label="Downtime"
@@ -77,7 +77,7 @@ const downtimeCauses = [
 
 export function DowntimeParetoWithoutThreshold() {
   return (
-    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ParetoChart
         data={downtimeCauses}
         label="Downtime"
@@ -104,7 +104,7 @@ const downtimeCauses = [
 
 export function DowntimeParetoInInputOrder() {
   return (
-    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ParetoChart
         data={[...downtimeCauses].reverse()}
         label="Downtime"
@@ -134,7 +134,7 @@ const downtimeCauses = [
 
 export function DowntimePareto() {
   return (
-    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ParetoChart
         data={downtimeCauses}
         label="停止時間"
@@ -163,7 +163,7 @@ const downtimeCauses = [
 
 export function DowntimeParetoWithoutThreshold() {
   return (
-    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ParetoChart
         data={downtimeCauses}
         label="停止時間"
@@ -190,7 +190,7 @@ const downtimeCauses = [
 
 export function DowntimeParetoInInputOrder() {
   return (
-    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ParetoChart
         data={[...downtimeCauses].reverse()}
         label="停止時間"
@@ -223,7 +223,7 @@ function ParetoChartPreview({ locale, mode = "default" }: { locale: Locale; mode
   const data = mode === "unsorted" ? [...paretoData(locale)].reverse() : paretoData(locale);
 
   return (
-    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ParetoChart
         data={data}
         label={copy.label}
@@ -261,7 +261,7 @@ const downtimeCauses = [
 
 export function DowntimePareto() {
   return (
-    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ParetoChart
         data={downtimeCauses}
         label="停止時間"
@@ -289,7 +289,7 @@ const downtimeCauses = [
 
 export function DowntimePareto() {
   return (
-    <div className="flex w-full max-w-3xl flex-col rounded-lg border bg-card p-4">
+    <div className="flex w-full max-w-3xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <ParetoChart
         data={downtimeCauses}
         label="Downtime"
@@ -330,7 +330,7 @@ export function DowntimePareto() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
           {locale === "ja" ? "状態とバリエーション" : "States and variants"}
         </h2>
         <ComponentDemoStates
@@ -364,20 +364,20 @@ export function DowntimePareto() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
           {sectionLabels.props}
         </h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
             {sectionLabels.usage}
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

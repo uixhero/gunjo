@@ -29,7 +29,7 @@ export function GridDemo() {
     return (
         <Grid minItemWidth={180} gap={3} className="w-full">
             {cards.map((card) => (
-                <section key={card.title} className="rounded-md border bg-card p-4">
+                <section key={card.title} className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
                     <h3 className="font-medium">{card.title}</h3>
                     <p className="mt-1 text-sm text-muted-foreground">{card.meta}</p>
                 </section>

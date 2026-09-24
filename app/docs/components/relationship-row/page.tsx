@@ -61,7 +61,7 @@ function RelationshipRowPreview({ locale, mode = "list" }: { locale: Locale; mod
 
   if (mode === "small") {
     return (
-      <div className="w-full max-w-xl rounded-lg border bg-card p-4">
+      <div className="w-full max-w-xl rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
         <RelationshipRow from={data[0].from} to={data[0].to} relationshipLabel={data[0].relationshipLabel} trailing={data[0].trailing} size="sm" />
       </div>
     );
@@ -69,7 +69,7 @@ function RelationshipRowPreview({ locale, mode = "list" }: { locale: Locale; mod
 
   if (mode === "custom") {
     return (
-      <div className="w-full max-w-xl rounded-lg border bg-card p-4">
+      <div className="w-full max-w-xl rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
         <RelationshipRow
           from={data[2].from}
           to={data[2].to}
@@ -82,7 +82,7 @@ function RelationshipRowPreview({ locale, mode = "list" }: { locale: Locale; mod
   }
 
   return (
-    <div className="flex w-full max-w-xl flex-col rounded-lg border bg-card p-3">
+    <div className="flex w-full max-w-xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
       {data.map((pair, index) => (
         <React.Fragment key={`${pair.from.name}-${pair.to.name}`}>
           {index > 0 ? <Separator /> : null}
@@ -129,7 +129,7 @@ const pairs = [
 
 export function CareRelationship() {
   return (
-    <div className="flex w-full max-w-xl flex-col rounded-lg border bg-card p-3">
+    <div className="flex w-full max-w-xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
       {pairs.map((pair) => (
         <React.Fragment key={pair.from.name + "-" + pair.to.name}>
           {pair === pairs[0] ? null : <Separator />}
@@ -167,7 +167,7 @@ const pairs = [
 
 export function CareRelationship() {
   return (
-    <div className="flex w-full max-w-xl flex-col rounded-lg border bg-card p-3">
+    <div className="flex w-full max-w-xl flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-3">
       {pairs.map((pair) => (
         <React.Fragment key={pair.from.name + "-" + pair.to.name}>
           {pair === pairs[0] ? null : <Separator />}
@@ -185,7 +185,7 @@ export function CareRelationship() {
 
 export function CompactCareRelationship() {
   return (
-    <div className="w-full max-w-xl rounded-lg border bg-card p-4">
+    <div className="w-full max-w-xl rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <RelationshipRow
         from={{ name: "渡辺 文雄", secondary: "利用者・要介護3", avatar: { fallback: "渡" }, avatarClassName: "bg-info-subtle text-info-subtle-foreground" }}
         to={{ name: "田渕 美和子", secondary: "介護支援専門員", avatar: { fallback: "田" }, presence: "online", presenceLabel: "online" }}
@@ -200,7 +200,7 @@ export function CompactCareRelationship() {
 
 export function CompactCareRelationship() {
   return (
-    <div className="w-full max-w-xl rounded-lg border bg-card p-4">
+    <div className="w-full max-w-xl rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <RelationshipRow
         from={{ name: "Fumio Watanabe", secondary: "Client / care level 3", avatar: { fallback: "F" }, avatarClassName: "bg-info-subtle text-info-subtle-foreground" }}
         to={{ name: "Miwako Tabuchi", secondary: "Care manager", avatar: { fallback: "M" }, presence: "online", presenceLabel: "online" }}
@@ -217,7 +217,7 @@ export function CompactCareRelationship() {
 
 export function VisitRelationship() {
   return (
-    <div className="w-full max-w-xl rounded-lg border bg-card p-4">
+    <div className="w-full max-w-xl rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <RelationshipRow
         from={{ name: "佐藤 健一", secondary: "訪問ヘルパー", avatar: { fallback: "佐" }, presence: "online", presenceLabel: "online" }}
         to={{ name: "小林 トヨ", secondary: "利用者・88歳", avatar: { fallback: "小" } }}
@@ -232,7 +232,7 @@ export function VisitRelationship() {
 
 export function VisitRelationship() {
   return (
-    <div className="w-full max-w-xl rounded-lg border bg-card p-4">
+    <div className="w-full max-w-xl rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4">
       <RelationshipRow
         from={{ name: "Kenichi Sato", secondary: "Home helper", avatar: { fallback: "K" }, presence: "online", presenceLabel: "online" }}
         to={{ name: "Toyo Kobayashi", secondary: "Client / 88", avatar: { fallback: "T" } }}
@@ -265,7 +265,7 @@ export function VisitRelationship() {
       </ComponentPreview>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="states">
           {locale === "ja" ? "状態とバリエーション" : "States and variants"}
         </h2>
         <ComponentDemoStates
@@ -299,20 +299,20 @@ export function VisitRelationship() {
       </section>
 
       <section className="space-y-4">
-        <h2 className="scroll-m-20 border-b pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
+        <h2 className="scroll-m-20 pb-2 text-2xl font-semibold tracking-tight first:mt-0" id="props">
           {sectionLabels.props}
         </h2>
         <PropsTable data={propsData} />
       </section>
 
       <section className="space-y-4">
-        <div className="flex items-start justify-between gap-3 border-b pb-2">
+        <div className="flex items-start justify-between gap-3 pb-2">
           <h2 className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0" id="usage">
             {sectionLabels.usage}
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border bg-muted font-mono text-sm">
+        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

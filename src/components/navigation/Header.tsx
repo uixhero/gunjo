@@ -11,7 +11,7 @@ const Header = React.forwardRef<
     <header
         ref={ref}
         className={cn(
-            "flex w-full flex-wrap items-center justify-between gap-x-4 gap-y-3 border-b border-border bg-background px-4 py-3 sm:px-6",
+            "flex w-full flex-wrap items-center justify-between gap-x-4 gap-y-3 border-b border-b-transparent contrast-more:border-b-border forced-colors:border-b-[CanvasText] bg-card px-4 py-3 sm:px-6",
             className
         )}
         {...props}
