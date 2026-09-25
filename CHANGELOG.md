@@ -11,7 +11,23 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 
+## [0.1.0-beta.3] — 2026-09-25
+
+> `0.1.0-beta.2` 以降の変更。**構造変更を要する破壊的変更（breaking）なし**。公開 API（部品・props・export・トークン名）の削除・改名もない。新しい部品と props はすべて opt-in（影響: none）。影響 **minor** は左端の色帯をやめた4部品（公開 API は不変）。
+
+### 採用先向けの要約（見た目が変わるもの）
+
+コードを直さなくても、依存を上げると**画面の見た目が変わる**。上げたあとに一度目で確かめてほしい点は次の4つ。
+
+1. **枠線をやめて面で区切った**（#1024 / #1027 / #1030 / #1033）— `Card`・`Dialog`・`Popover`・`Badge`・`Sidebar` など、塗りのある部品の 1px の枠を透明にし、区切りは親の面との濃淡だけにした（枠の幅は残すのでレイアウトはずれない）。ハイコントラスト（`prefers-contrast: more`・Windows の `forced-colors`）では枠が戻る。表の罫線・`outline` の Badge など、枠そのものが意味の部品は据え置き。
+2. **light の地が白から淡い灰青に**（#1024）— `--background` が `0 0% 100%` → `210 40% 96%`（#f1f5f9）。`--card` は白のままなので、カードが地から浮いて見える。あわせて `--muted`・`--secondary`・淡色5つ（`--*-subtle`）を濃くした。dark は `--card`・`--popover`・`--secondary`・`--info-subtle`・`--destructive-subtle` を明るくした（#1022 / #1027 / #1034）。
+3. **入力欄の縁 `--input` を、どの面の上でも 3:1 に**（#1034）— light `214 32% 91%` → `215 20% 52%`・dark `217.2 32.6% 17.5%` → `215 20% 51%`。入力欄の縁がはっきり濃くなる。`border-input` / `bg-input` を入力欄以外（飾りの線・溝など）に流用している採用先の画面は、線が濃く見えるので確かめてほしい（`Slider` / `RangeSlider` の溝は `--muted` に移した）。
+4. **自前の画面で `bg-background` と枠線だけで区切っていた箇所**は、地の色が変わるので段差を確かめてほしい。前の値に戻したい場合は、採用先の CSS で `:root { --background: 0 0% 100%; }` のように変数を上書きすれば戻る（トークン名は変えていない）。
+
 ### Added
+
+- **`portalContainer` を5部品に追加**（影響: **none**）— `NotificationCenter`・`ChatInput`（選択肢のポップオーバーとモデルのメニュー）・`Combobox`・`DatePicker`・`DateRangePicker` が、ポップアップを出す先の要素を受け取れるようになった（既定は従来どおり `document.body`）。枠のあるプレビューの中にポップアップを収めたいときに使う。(#1005)
+- **ハイコントラスト時の枠線と、面で区切るクラス `.gunjo-surface`**（影響: **none**）— `@media (prefers-contrast: more)` のとき `--border` と `--input` を 3:1 以上へ上げる（light `215 20% 40%`・dark `215 20% 55%`）。新しいトークン名は足さず、既存の2つを差し替えるだけ。`public/tokens.css`（`@gunjo/ui/tokens.css`）にも同じブロックを入れた。`.gunjo-surface`（`bg-card` ＋透明な 1px の枠・ハイコントラストで `--border`・`forced-colors` で `CanvasText` に戻る）は `@gunjo/ui/styles` に入っているが、部品の中では使っていない（部品は要素ごとに `border-transparent contrast-more:border-border forced-colors:border-[CanvasText]` を書く形）。(#1022 / #1024 / #1034)
 
 - **`RangeBar`**（影響: **none**）— 全体の幅（`min`〜`max`）の中で、区間（`low`〜`high`）がどこにあるかを1本の帯で見せる Display 部品。週間予報の最低〜最高気温、プランごとの価格帯、拠点ごとの営業時間など、**並べる行が同じ `min` / `max` を持つ**ことで位置で比べられる。数字は帯の外に呼び出し側が置く。`variant="gradient"` は**全体に1本の色の段（primary → info → warning）を敷いて区間の部分だけを見せる**＝同じ値はどの行でも同じ色（区間ごとにやり直すと行ごとに色が変わるため）。`solid` は主色。両端が同じでも帯の高さぶんの点を出し、`null` のあいだは下地だけ。`role="img"` で「気温: 20°–28°」と読む。HTML/CSS（SVG なし）。Meter（0から1つの値）・DistributionBar（構成比）・RangeSlider（入力）では描けない形のため新設。(#998)
 - **`MapStatusCorner`**（影響: **none**）— 地図の右上に、いま何を見ているか（視点・昼夜・雲の時刻・地形の出どころ・倍率）を短い行で重ねる Display 部品。**左上の字（`lead`）を float で浮かせ、行は1行ずつ折らない塊にする**＝細い画面では、入りきらない行が左の字の下へ回り、左の字と並ぶのは頭の1〜2行だけになる（左右2列の flex だと、行ごと押し出されたり語の最後の1字が落ちたりする）。`startInset` で左に方位磁針などの場所を空ける。字は地図の上の字の段 `text-canvas-2xs`（特例のページ `/docs/exceptions`・`canvas-text-allowlist.json` に追加）に縁取り。ポインタを受けず、下の地図はそのまま動かせる。(#998)
@@ -45,6 +61,26 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 - **`ActionQueue` の severity 表現から左端の太い色帯を廃止**（影響: **minor**）— 既存の全周の意味境界線＋淡い背景は維持し、`Alert` / `Banner` / `ListCard` と同じ面表現に統一する。重大度のアイコン・読み上げラベル・ソート順と公開 API は不変。
 - **`StatusBoard` の tone 表現を意味トークンの境界線＋淡い背景に変更**（影響: **minor**）— 左端の色帯を廃止し、tone ありのタイルは全周の意味境界線＋淡い背景、neutral / default は従来どおり素の境界線＋カード背景で表す。選択は ring、状態の意味は従来どおりアイコン＋ラベルが担い、公開 API は不変。
 - **`SidebarItem` の祖先パス表現を文字の強調へ変更**（影響: **minor**）— 左端の縦ピルを廃止し、`onPath` は `font-medium` と従来の文字色で示す。アクティブ項目自体の表現、階層・開閉・件数・操作と公開 API は不変。
+
+- **枠をやめて面で区切る**（影響: **none**・見た目が変わる）— 塗りのある面の 1px の枠を、`border-transparent contrast-more:border-border forced-colors:border-[CanvasText]` に置き換えた（`src/components` の 162 か所）。枠の幅は残すので、ハイコントラストで枠が戻ってもレイアウトはずれない。枠そのものが意味の面（表・格子の罫線、`outline` の Badge、Checkbox の checked、Switch など）は `design/policy/surface-border-exclusions.json` に理由つきで登録して据え置いた。枠を外すと親と同じ色で消える面は、先に塗りを上げた。(#1024 / #1027 / #1030 / #1033)
+  - `Dialog`・`AlertDialog`・`Drawer`・`ShareModal` の本体、`Header`・`Footer`・`Menubar`・`RightRail`・`PageAside`・`DocumentPager`・`InspectorPanel`・`DeviceFrame`・`ChatPanel`・`PageHeader`・`DesktopPageHeader`、各テンプレートの上・横の欄：`bg-background` → `bg-card`（dark ではダイアログの本体が自分の幕とほぼ同じ色だった）
+  - 半透明の `bg-muted/10`〜`/60`・`bg-accent/40`・`bg-destructive-subtle/40`（37 か所）：不透明の `bg-muted` などへ。`DatePicker` / `DateRangePicker` の footer も `bg-muted`
+  - `Sidebar`：`border-r` ＋ `bg-muted/40` → 透明な枠 ＋ `bg-muted`。`Badge` の塗りのある6つの variant：`border-transparent`（`outline` は据え置き）
+  - チャートの内訳の行（`ConcentricProgressCard`・`MiniDistributionBarCard`・`SegmentTimelineCard`・`SegmentedGaugeCard`・`LabeledDonutCard`・`ChartLegend`）：選択を枠（`border-foreground`）ではなく `bg-muted` ＋ `shadow-sm` で示す。カードの中の行・小箱は `bg-card` → `bg-background`
+  - 二重の印だった枠を外した：`CheckboxCard`・`RadioCard`・`Carousel`・`PricingTemplate`（ring が残る）、`FilterChips`・`SeatMap`（`bg-primary` が残る）
+  - 入れ子で親と同じ色になっていた面（#1033）：`ChoroplethMap`・`QuadrantMatrix` の行は `bg-muted`、`Table` の器は `bg-card` の中では塗らない、選択中の `TableRow`・`KanbanBoard` の列の件数・`FilterButton` の件数・`ListCard` / `StatusBoard` / `LineageGraph` の調子の面の中の Badge は `bg-background`、`TabsTrigger` の中の `bg-secondary` は `bg-card`
+  - `DocumentPager`：上の罫線を外した（前後のカードの面が境目を作る）
+- **トークンの値を変えた（light）**（影響: **none**・見た目が変わる）— `--background` `0 0% 100%` → `210 40% 96%`、`--muted` `210 40% 96%` → `213 32% 89%`、`--secondary` `210 40% 96%` → `212 32% 92%`、`--primary-subtle` `220 60% 96%` → `220 70% 90%`、`--info-subtle` `214 100% 97%` → `214 95% 90%`、`--success-subtle` `138 76% 97%` → `141 60% 86%`、`--warning-subtle` `48 96% 89%` → `45 95% 80%`、`--destructive-subtle` `0 86% 97%` → `0 90% 92%`、`--input` `214 32% 91%` → `215 20% 52%`。`--card`・`--popover` は白のまま。トークン名は不変。`public/tokens.css` も同じ値。(#1024 / #1034)
+- **トークンの値を変えた（dark）**（影響: **none**・見た目が変わる）— `--card` `222.2 84% 4.9%` → `217 33% 13%`（地と同じ色だった）、`--popover` `222.2 84% 4.9%` → `217 33% 22%`（地 < カード < 浮いた面 の順に）、`--secondary` `217.2 32.6% 17.5%` → `217 32.6% 24%`（`--muted` と同じ色だった）、`--info-subtle` `220 47% 16%` → `220 47% 20%`、`--destructive-subtle` `0 50% 16%` → `0 50% 20%`、`--input` `217.2 32.6% 17.5%` → `215 20% 51%`。文字とのコントラストはどれも 4.5:1 以上を保つ。(#1022 / #1027 / #1034)
+- **`Slider` / `RangeSlider` の空の溝を `--input` から `--muted` へ**（影響: **none**）— `--input` を縁の色として 3:1 まで濃くしたため、溝に使い続けると埋まった部分（primary）との差が縮み、値の位置が読めなくなる。`trackClassName` の受け口は不変。(#1034)
+- **`SidebarItem` の hover を `bg-muted` から `bg-foreground/5` へ**（影響: **none**）— `Sidebar` 本体が `bg-muted` になったので、hover が本体と同じ色で見えなかった。通常の行と、いまいる項目の親の行の2か所。(#1034)
+- **面で区切るのを守る検査を追加**（内部・影響: **none**）— `design:verify` に `high-contrast-border`（ハイコントラストの `--border` が全部の面の上で 3:1 以上）・`input-border`（`--input` が入れ物の面すべての上で 3:1 以上）・`slider-track`（溝と埋まった部分が 3:1 以上）・`surface-steps`（全ページの本番ビルドで、枠を透明にした面が親と 1.05:1 未満になっていない）を足し、`docs:audit:surface-borders`（塗りのある面に枠が残っていない・ハイコントラストで戻す指定が欠けていない）を数えるだけの報告から落ちる門番にした。例外は `design/policy/surface-border-exclusions.json` に理由つきで登録する。(#1022 / #1024 / #1027 / #1030 / #1033 / #1034)
+
+### Fixed
+
+- **`MarkdownRenderer` のほぼ全要素に `node="[object Object]"` が出ていた**（影響: **none**）— react-markdown v10 が渡す `node` を DOM へ展開していた。既定の18部品すべてで取り除いた。(#856)
+- **`MarkdownRenderer` のインライン code の長い1語で、375px 幅のページが横に溢れた**（影響: **none**）— backtick の code に `break-words` を付けた（fenced の code block は従来どおり折らずに横スクロール）。(#895)
+- **`Banner` の `action` が日本語のラベルで1文字幅まで縮み、ボタンから字がはみ出た**（影響: **none**）— `action` の枠を `shrink-0` にし、縮むのは本文（従来どおり1行で省略）だけにした。(#874 / #1018)
 
 ## [0.1.0-beta.2] — 2026-07-27
 

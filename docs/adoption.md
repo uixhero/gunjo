@@ -38,7 +38,7 @@ npm install /absolute/path/to/gunjo
 
 > 旧 alpha（`main: "src/index.ts"` で生 TS を配布していた頃）は `transpilePackages: ["@gunjo/ui"]` が必須だった。dist 配布化以降は削除してよい。
 
-> **⚠️ ただし RSC からのバレル import に既知の制約あり**：Next.js App Router の Server Component から `import { X } from "@gunjo/ui"` すると `next build` が失敗する（`0.1.0-beta.2` 時点でも未解消・Next.js 16 / Turbopack で確認、追跡は [#684](https://github.com/uixhero/gunjo/issues/684)）。[§ Server Component からのバレル import](#server-component-からのバレル-importrsc) の回避シムを参照。
+> **⚠️ ただし RSC からのバレル import に既知の制約あり**：Next.js App Router の Server Component から `import { X } from "@gunjo/ui"` すると `next build` が失敗する（`0.1.0-beta.3` 時点でも未解消・Next.js 16 / Turbopack で確認、追跡は [#684](https://github.com/uixhero/gunjo/issues/684)）。[§ Server Component からのバレル import](#server-component-からのバレル-importrsc) の回避シムを参照。
 
 ### 3. Tailwind プリセット取り込み
 
@@ -145,7 +145,7 @@ JS からの `import "@gunjo/ui/tokens.css";` でもよい（bundler が CSS imp
 
 ### 現象
 
-npm 版 `@gunjo/ui@0.1.0-beta.2`（それ以前の beta も同様）を Next.js 16（Turbopack）の Server Component（`layout.tsx` / `page.tsx` など）からバレル import すると、`next build` の Collecting page data 段階で失敗する：
+npm 版 `@gunjo/ui@0.1.0-beta.3`（それ以前の beta も同様）を Next.js 16（Turbopack）の Server Component（`layout.tsx` / `page.tsx` など）からバレル import すると、`next build` の Collecting page data 段階で失敗する：
 
 ```
 TypeError: i.createContext is not a function
@@ -276,7 +276,7 @@ v3 の場合は `tailwind.config.ts` の `content` に `node_modules/@gunjo/ui/d
 
 ### `createContext is not a function` でビルドが落ちる
 
-Server Component から `@gunjo/ui` をバレル import している（Next.js 16 + Turbopack、`0.1.0-beta.2` 時点でも未解消）。[§ Server Component からのバレル import](#server-component-からのバレル-importrsc) の `"use client"` 再エクスポートシムで回避する。
+Server Component から `@gunjo/ui` をバレル import している（Next.js 16 + Turbopack、`0.1.0-beta.3` 時点でも未解消）。[§ Server Component からのバレル import](#server-component-からのバレル-importrsc) の `"use client"` 再エクスポートシムで回避する。
 
 ### `Functions cannot be passed directly to Client Components` でビルドが落ちる
 
