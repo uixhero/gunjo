@@ -1049,7 +1049,7 @@ export function TabbedHoverCardDemo({ portalContainer }: HoverCardDemoProps = {}
                 </Button>
             </HoverCardTrigger>
             <HoverCardContent portalContainer={portalContainer} sideOffset={8} className="w-[min(24rem,calc(100vw-2rem))] p-3">
-                <Tabs defaultValue="summary" className="w-full border-0">
+                <Tabs defaultValue="summary" className="w-full">
                     <TabsList className="min-h-10 w-full justify-start p-1">
                         <TabsTrigger value="summary" className="h-8 px-3 text-xs">
                             {isJa ? "概要" : "Summary"}

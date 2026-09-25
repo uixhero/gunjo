@@ -29,11 +29,16 @@ export interface ListCardProps extends Omit<React.HTMLAttributes<HTMLDivElement>
   onSelect?: () => void
 }
 
+// 調子の面の中に置かれた「同じ明るさの塗り」の子は地の色に沈める（#1029）。
+// secondary の Badge（light の success 1.027・dark の destructive 1.022）と、
+// 同じ調子のチップ（StatusLevel の destructive を critical の面に置くと 1.000）は
+// 面と見分けがつかない。bg-background なら調子の面すべての上で
+// light 1.132〜1.215 / dark 1.354〜1.497 の段差になる。
 const SEVERITY_SURFACE: Record<ListCardSeverity, string> = {
-  critical: "border-destructive-border bg-destructive-subtle",
-  warning: "border-warning-border bg-warning-subtle",
-  info: "border-info-border bg-info-subtle",
-  success: "border-success-border bg-success-subtle",
+  critical: "border-destructive-border bg-destructive-subtle [&_.bg-destructive-subtle]:bg-background",
+  warning: "border-warning-border bg-warning-subtle [&_.bg-warning-subtle]:bg-background",
+  info: "border-info-border bg-info-subtle [&_.bg-info-subtle]:bg-background",
+  success: "border-success-border bg-success-subtle [&_.bg-success-subtle]:bg-background",
   neutral: "",
 }
 
@@ -82,6 +87,7 @@ export const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
     const base = cn(
       "flex w-full items-start gap-3 rounded-lg border bg-card p-3 text-left",
       severity && SEVERITY_SURFACE[severity],
+      hasSeveritySurface && "[&_.bg-secondary]:bg-background",
       selected && "border-ring ring-1 ring-ring",
       className
     )

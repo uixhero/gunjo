@@ -127,7 +127,10 @@ const FilterButton = React.forwardRef<HTMLButtonElement, FilterButtonProps>(
                         <span className="min-w-0 truncate">{title}</span>
                         <Badge variant="secondary"
                             className={cn(
-                                "ml-0.5 inline-flex h-5 min-w-5 shrink-0 items-center justify-center rounded-full px-1.5 text-xs leading-none",
+                                // 数が見えるのは選択中（bg-primary-subtle の上）だけ。secondary の
+                                // 塗りは dark でその面と 1.011:1 なので、地の色に沈める
+                                // （light 1.215 / dark 1.354・#1029）。
+                                "ml-0.5 inline-flex h-5 min-w-5 shrink-0 items-center justify-center rounded-full bg-background px-1.5 text-xs leading-none",
                                 selectedValues.size === 0 && "invisible"
                             )}
                             aria-hidden={selectedValues.size === 0 ? "true" : undefined}

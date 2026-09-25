@@ -373,3 +373,23 @@ jobs:
       # silently misses the sitemap the way 25 docs pages did until #1016.
       - name: Sitemap coverage (against the build output)
         run: npm run design:verify:sitemap
+
+      # Surface-step gate — also needs the build output (it serves .next and
+      # opens every page). With borders transparent, a surface whose fill
+      # matches its parent has no edge left: #1027 shipped 342 of those (page ×
+      # theme) and only a one-off crawl found them (#1029). Every sitemap URL
+      # plus /embed/*, light and dark, must keep >= 1.05:1 against its parent.
+      # The self-test first proves the detector still catches the #1029 type.
+      - name: Surface steps self-test
+        run: npm run design:verify:surface-steps:self-test
+
+      - name: Surface steps (every page, light / dark)
+        run: npm run design:verify:surface-steps -- --out=artifacts/surface-steps.json
+
+      - name: Upload surface steps report
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: surface-steps
+          path: artifacts/surface-steps.json
+          if-no-files-found: ignore

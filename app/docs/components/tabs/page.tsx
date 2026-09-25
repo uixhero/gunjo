@@ -68,7 +68,7 @@ function UnderlineTabsExample() {
     const isJa = locale === "ja";
 
     return (
-        <Tabs defaultValue="preview" className="w-full max-w-2xl border-0">
+        <Tabs defaultValue="preview" className="w-full max-w-2xl">
             <TabsList className="min-h-0 w-full justify-start overflow-x-auto overflow-y-hidden rounded-none border-b bg-transparent p-0">
                 <TabsTrigger
                     value="preview"
@@ -275,7 +275,7 @@ const underlineTriggerClass =
 
 export function UnderlineTabs() {
   return (
-    <Tabs defaultValue="preview" className="w-full max-w-2xl border-0">
+    <Tabs defaultValue="preview" className="w-full max-w-2xl">
       <TabsList className="min-h-0 w-full justify-start overflow-x-auto overflow-y-hidden rounded-none border-b bg-transparent p-0">
         <TabsTrigger value="preview" className={underlineTriggerClass}>
           プレビュー
@@ -306,7 +306,7 @@ const underlineTriggerClass =
 
 export function UnderlineTabs() {
   return (
-    <Tabs defaultValue="preview" className="w-full max-w-2xl border-0">
+    <Tabs defaultValue="preview" className="w-full max-w-2xl">
       <TabsList className="min-h-0 w-full justify-start overflow-x-auto overflow-y-hidden rounded-none border-b bg-transparent p-0">
         <TabsTrigger value="preview" className={underlineTriggerClass}>
           Preview

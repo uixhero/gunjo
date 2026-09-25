@@ -614,7 +614,7 @@ export function ComponentPreview({ codeBlock, children, className, sectionLabels
 
     return (
         <div className="space-y-4" data-doc-component-preview="true">
-            <Tabs defaultValue="preview" className="relative mr-auto w-full border-0">
+            <Tabs defaultValue="preview" className="relative mr-auto w-full">
                 <div className="grid gap-2 pb-0 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center">
                     <div className="flex min-w-0 items-center gap-2 overflow-hidden">
                         <TabsList className="min-w-0 shrink justify-start rounded-none bg-transparent p-0">
