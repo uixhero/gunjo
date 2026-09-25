@@ -68,13 +68,18 @@ export interface StatusBoardProps extends Omit<React.HTMLAttributes<HTMLDivEleme
   formatItemCount?: (count: number) => React.ReactNode
 }
 
+// 調子の面の中に置かれた「同じ明るさの塗り」の子は地の色に沈める（#1029）。
+// secondary の Badge（light の success 1.027・dark の destructive 1.022）と、
+// 同じ調子のチップ（success の Badge を success の面に置くと 1.000）は
+// 面と見分けがつかない。bg-background なら調子の面すべての上で
+// light 1.132〜1.215 / dark 1.354〜1.497 の段差になる。
 const TONE_TILE: Record<SemanticTone, string> = {
   default: "",
-  primary: "border-primary-border bg-primary-subtle",
-  info: "border-info-border bg-info-subtle",
-  success: "border-success-border bg-success-subtle",
-  warning: "border-warning-border bg-warning-subtle",
-  destructive: "border-destructive-border bg-destructive-subtle",
+  primary: "border-primary-border bg-primary-subtle [&_.bg-primary-subtle]:bg-background",
+  info: "border-info-border bg-info-subtle [&_.bg-info-subtle]:bg-background",
+  success: "border-success-border bg-success-subtle [&_.bg-success-subtle]:bg-background",
+  warning: "border-warning-border bg-warning-subtle [&_.bg-warning-subtle]:bg-background",
+  destructive: "border-destructive-border bg-destructive-subtle [&_.bg-destructive-subtle]:bg-background",
   muted: "",
 }
 
@@ -153,6 +158,7 @@ function Tile({ item, selected }: { item: StatusBoardItem; selected: boolean }) 
   const className = cn(
     "flex flex-col rounded-md border bg-card p-2.5 text-left transition-colors",
     TONE_TILE[tone],
+    hasToneSurface && "[&_.bg-secondary]:bg-background",
     selected && "border-ring ring-1 ring-ring",
     selected && !hasToneSurface && "bg-accent",
     item.onSelect && "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",

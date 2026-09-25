@@ -47,14 +47,18 @@ export interface LineageGraphProps extends Omit<React.HTMLAttributes<HTMLDivElem
     label?: React.ReactNode
 }
 
+// renderNode で置かれた secondary の Badge や同じ調子のチップは、調子の面
+// （と muted）の上では面と同じ明るさになる（dark の info 1.039・light の
+// warning 1.036 等・#1029）。調子の面の中では地の色に沈める。
+const NESTED_SINK = "[&_.bg-secondary]:bg-background"
 const NODE_TONE: Record<LineageNodeTone, string> = {
     default: "bg-card border-border",
-    primary: "bg-primary/10 border-primary/40",
-    info: "bg-info-subtle border-info-border",
-    success: "bg-success-subtle border-success-border",
-    warning: "bg-warning-subtle border-warning-border",
-    destructive: "bg-destructive-subtle border-destructive-border",
-    muted: "bg-muted border-border",
+    primary: `bg-primary/10 border-primary/40 ${NESTED_SINK}`,
+    info: `bg-info-subtle border-info-border ${NESTED_SINK} [&_.bg-info-subtle]:bg-background`,
+    success: `bg-success-subtle border-success-border ${NESTED_SINK} [&_.bg-success-subtle]:bg-background`,
+    warning: `bg-warning-subtle border-warning-border ${NESTED_SINK} [&_.bg-warning-subtle]:bg-background`,
+    destructive: `bg-destructive-subtle border-destructive-border ${NESTED_SINK} [&_.bg-destructive-subtle]:bg-background`,
+    muted: `bg-muted border-border ${NESTED_SINK}`,
 }
 
 function nodeText(n: LineageNode): string {

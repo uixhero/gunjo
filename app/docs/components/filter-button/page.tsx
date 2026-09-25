@@ -353,7 +353,7 @@ function FilterStateSummary({ locale }: { locale: "ja" | "en" }) {
                     >
                         {locale === "ja" ? "フィルター" : "Filter"}
                         {state.label === "selected" ? (
-                            <Badge variant="secondary" className="h-5 min-w-5 rounded-full px-1.5 text-xs">
+                            <Badge variant="secondary" className="h-5 min-w-5 rounded-full bg-background px-1.5 text-xs">
                                 2
                             </Badge>
                         ) : null}

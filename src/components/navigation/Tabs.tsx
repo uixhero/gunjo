@@ -11,7 +11,10 @@ const Tabs = React.forwardRef<
     <TabsPrimitive.Root
         ref={ref}
         className={cn(
-            "flex flex-col w-full max-w-full rounded-lg border",
+            // 平常時は外枠を見せない（#1029）。中の TabsList（bg-muted）と
+            // TabsContent が面なので、塗りの無い root に線を引くと区切りが二重に
+            // なる。ハイコントラストでは他の面と同じく枠が戻る（幅は常に 1px）。
+            "flex flex-col w-full max-w-full rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText]",
             // Vertical orientation lays out as a real left rail + content (no
             // bordered card, no horizontal list) without consumer className
             // surgery. Radix sets data-orientation on the root/list/triggers. (#165)
@@ -50,6 +53,11 @@ const TabsTrigger = React.forwardRef<
         className={cn(
             "inline-flex h-9 cursor-pointer items-center justify-center whitespace-nowrap rounded-md px-4 py-2 text-sm font-medium ring-offset-background transition-all data-[state=inactive]:hover:bg-background/60 data-[state=inactive]:hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 data-[state=active]:bg-background data-[state=active]:text-foreground data-[state=active]:shadow-sm",
             "data-[orientation=vertical]:w-full data-[orientation=vertical]:justify-start",
+            // タブの中の数（Badge secondary 等）は bg-card に上げる。選ばれていない
+            // タブの下は TabsList の bg-muted で、dark は --secondary = --muted＝
+            // 1.000:1 で消える。bg-card なら muted の上 1.306 / 1.139、選ばれた
+            // タブ（bg-background）の上 1.098 / 1.202 で両方と分かれる（#1029）。
+            "[&_.bg-secondary]:bg-card",
             className
         )}
         {...props}

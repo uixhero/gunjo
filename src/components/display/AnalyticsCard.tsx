@@ -65,7 +65,9 @@ const variantClasses: Record<AnalyticsCardVariantKey, AnalyticsCardClassNames> =
         footer: "",
     },
     flatWithFooter: {
-        card: "bg-muted/20",
+        // muted/20 は地の上で 1.036 / 1.042 しか差が無く、枠を外したら面が
+        // 消えた（#1029）。不透明な muted で地の上 1.190 / 1.369。
+        card: "bg-muted",
         header: "",
         content: "",
         footer: "border-t pt-4 text-xs text-muted-foreground",

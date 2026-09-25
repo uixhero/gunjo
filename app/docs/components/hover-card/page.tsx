@@ -232,7 +232,7 @@ export function ReleaseHoverCard() {
         </Button>
       </HoverCardTrigger>
       <HoverCardContent sideOffset={8} className="w-[min(24rem,calc(100vw-2rem))] p-3">
-        <Tabs defaultValue="summary" className="w-full border-0">
+        <Tabs defaultValue="summary" className="w-full">
           <TabsList className="min-h-10 w-full justify-start p-1">
             <TabsTrigger value="summary" className="h-8 px-3 text-xs">概要</TabsTrigger>
             <TabsTrigger value="changes" className="h-8 px-3 text-xs">変更</TabsTrigger>
@@ -266,7 +266,7 @@ export function ReleaseHoverCard() {
         </Button>
       </HoverCardTrigger>
       <HoverCardContent sideOffset={8} className="w-[min(24rem,calc(100vw-2rem))] p-3">
-        <Tabs defaultValue="summary" className="w-full border-0">
+        <Tabs defaultValue="summary" className="w-full">
           <TabsList className="min-h-10 w-full justify-start p-1">
             <TabsTrigger value="summary" className="h-8 px-3 text-xs">Summary</TabsTrigger>
             <TabsTrigger value="changes" className="h-8 px-3 text-xs">Changes</TabsTrigger>
