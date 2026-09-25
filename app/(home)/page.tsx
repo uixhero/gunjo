@@ -191,7 +191,7 @@ export default function Home() {
                 してあり、出ても出なくても両隣と段差が付く。 */}
             <section className="bg-muted py-24">
                 <div className="container">
-                    <div className="mb-12">
+                    <div className="mb-12 max-w-reading">
                         <p className="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
                             {home.showcase.label}
                         </p>
@@ -265,7 +265,7 @@ export default function Home() {
             {/* ============== Section 6 — THE 群青 STORY ============== */}
             <section className="py-24">
                 <div className="container">
-                    <p className="mb-12 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                    <p className="mb-12 max-w-reading text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
                         {home.story.label}
                     </p>
                     <div className="grid gap-12 lg:grid-cols-[1fr_1fr]">
@@ -312,7 +312,7 @@ export default function Home() {
             {/* ============== Section 7 — SSOT AND AI HANDOFF ============== */}
             <section className="bg-gradient-to-b from-muted via-accent/20 to-muted py-24">
                 <div className="container">
-                    <div className="mb-12 space-y-3">
+                    <div className="mb-12 max-w-reading space-y-3">
                         <Badge
                             variant="outline"
                             className="gap-1.5 bg-accent text-accent-foreground"
@@ -376,7 +376,7 @@ export default function Home() {
             <section className="py-20">
                 <div className="container">
                     <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:items-center">
-                        <div className="space-y-3">
+                        <div className="max-w-reading space-y-3">
                             <h2 className="text-3xl font-bold tracking-tight">
                                 {home.engineers.heading}
                             </h2>
@@ -410,10 +410,10 @@ export default function Home() {
                         <Sparkles className="h-3 w-3" />
                         Becoming
                     </Badge>
-                    <h2 className="mb-4 text-3xl font-bold tracking-tight">
+                    <h2 className="mx-auto mb-4 max-w-reading text-3xl font-bold tracking-tight">
                         {home.becoming.heading}
                     </h2>
-                    <p className="mb-8 text-lg leading-relaxed text-muted-foreground">
+                    <p className="mx-auto mb-8 max-w-reading text-lg leading-relaxed text-muted-foreground">
                         {home.becoming.body}
                     </p>
                     <div className="flex flex-wrap justify-center gap-3">
@@ -467,7 +467,7 @@ function LiveComponentWorkbench({ isJa }: { isJa: boolean }) {
     return (
         <section className="py-24">
             <div className="container">
-                <div className="mb-12">
+                <div className="mb-12 max-w-reading">
                     <p className="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
                         Live components
                     </p>
@@ -719,7 +719,7 @@ function LiveComponentWorkbench({ isJa }: { isJa: boolean }) {
                     </div>
 
                     <div className="space-y-4">
-                        <div>
+                        <div className="max-w-reading">
                             <h3 className="text-lg font-semibold">
                                 {isJa
                                     ? "GunjoUI の現在値"
@@ -791,7 +791,7 @@ function PatternBrowserCarousel({ isJa }: { isJa: boolean }) {
         <section className="bg-muted py-24">
             <div className="container">
                 <div className="mb-10 grid gap-4 lg:grid-cols-[1fr_auto] lg:items-end">
-                    <div>
+                    <div className="max-w-reading">
                         <p className="mb-2 text-xs font-semibold uppercase tracking-[0.12em] text-muted-foreground">
                             Public patterns
                         </p>

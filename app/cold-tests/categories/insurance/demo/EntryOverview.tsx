@@ -154,7 +154,7 @@ export function EntryOverview() {
 
     return (
         <div className="space-y-10">
-            <section className="space-y-4">
+            <section className="max-w-reading space-y-4">
                 <h1 className="text-2xl font-bold tracking-tight sm:text-3xl">
                     {isJa ? "業務の全体像と画面一覧" : "The business at a glance"}
                 </h1>
@@ -174,11 +174,11 @@ export function EntryOverview() {
                 <section key={flow.id} aria-labelledby={`flow-${flow.id}`} className="space-y-3">
                     <h2
                         id={`flow-${flow.id}`}
-                        className="text-lg font-semibold text-foreground"
+                        className="max-w-reading text-lg font-semibold text-foreground"
                     >
                         {isJa ? flow.titleJa : flow.titleEn}
                     </h2>
-                    <p className="text-sm leading-7 text-muted-foreground">
+                    <p className="max-w-reading text-sm leading-7 text-muted-foreground">
                         {isJa ? flow.introJa : flow.introEn}
                     </p>
                     <FlowDiagram flow={flow} isJa={isJa} />
@@ -186,10 +186,10 @@ export function EntryOverview() {
             ))}
 
             <section aria-labelledby="demo-sitemap" className="space-y-3">
-                <h2 id="demo-sitemap" className="text-lg font-semibold text-foreground">
+                <h2 id="demo-sitemap" className="max-w-reading text-lg font-semibold text-foreground">
                     {isJa ? "画面一覧" : "Screens"}
                 </h2>
-                <h3 className="text-sm font-semibold text-foreground">
+                <h3 className="max-w-reading text-sm font-semibold text-foreground">
                     {isJa ? "いまある画面" : "Available now"}
                 </h3>
                 <div className="grid gap-5 sm:gap-6 grid-cols-[repeat(auto-fill,minmax(260px,1fr))]">
@@ -238,7 +238,7 @@ export function EntryOverview() {
                     カード5枚で、フロー図の直後にもう一度同じ名前と同じバッジが
                     並んでいた（判定者は5枚とも読まずにスクロールした）。画面一覧
                     としての網羅は残しつつ、小さく畳んで反復を止める。 */}
-                <h3 className="pt-2 text-sm font-semibold text-foreground">
+                <h3 className="max-w-reading pt-2 text-sm font-semibold text-foreground">
                     {isJa ? "まだ作っていない画面" : "Not built yet"}
                 </h3>
                 <div className="grid gap-2 grid-cols-[repeat(auto-fill,minmax(200px,1fr))]">
@@ -265,7 +265,7 @@ export function EntryOverview() {
                 </div>
             </section>
 
-            <section aria-labelledby="demo-provenance" className="space-y-4">
+            <section aria-labelledby="demo-provenance" className="max-w-reading space-y-4">
                 <h2
                     id="demo-provenance"
                     className="text-lg font-semibold text-foreground"
