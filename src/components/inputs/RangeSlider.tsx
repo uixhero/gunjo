@@ -79,8 +79,9 @@ const RangeSlider = React.forwardRef<HTMLDivElement, RangeSliderProps>(
                 data-slot="range-slider"
                 {...props}
             >
+                {/* 空の溝は --muted で塗る（--input は縁の色・Slider.tsx の注を参照） */}
                 <div
-                    className={cn("absolute left-0 right-0 h-2 rounded-full bg-input", trackClassName)}
+                    className={cn("absolute left-0 right-0 h-2 rounded-full bg-muted", trackClassName)}
                     aria-hidden="true"
                 />
                 <div
