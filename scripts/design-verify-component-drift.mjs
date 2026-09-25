@@ -1273,7 +1273,9 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
       );
     }
 
-    assertMatch(errors, sliderSource, /\bbg-input\b/, 'Slider track should include "bg-input"');
+    // 溝は面のトークンで塗る（#1034）。--input は入力欄の縁の色で、3:1 まで濃くしたら
+    // 埋まった部分（primary）と見分けがつかなくなった。比は design:verify:slider-track。
+    assertMatch(errors, sliderSource, /\bbg-muted\b/, 'Slider track should include "bg-muted"');
     assertMatch(
       errors,
       sliderSource,
