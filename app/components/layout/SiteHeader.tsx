@@ -108,6 +108,10 @@ export function SiteHeader() {
 
     return (
         <Header
+            // Off the homepage the header intentionally matches the page ground
+            // (KeEem 2026-09-25), so the surface-steps gate skips it by this
+            // registered marker. See EXEMPTIONS in scripts/audit-surface-steps.mjs.
+            data-surface-step-exempt={isHome ? undefined : "site-header"}
             className={cn(
                 "sticky top-0 z-50 h-14 px-0 py-0 transition-colors duration-300 sm:px-0",
                 // Off the homepage the header takes the page ground so it reads
