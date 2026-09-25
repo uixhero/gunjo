@@ -74,6 +74,7 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 - **トークンの値を変えた（dark）**（影響: **none**・見た目が変わる）— `--card` `222.2 84% 4.9%` → `217 33% 13%`（地と同じ色だった）、`--popover` `222.2 84% 4.9%` → `217 33% 22%`（地 < カード < 浮いた面 の順に）、`--secondary` `217.2 32.6% 17.5%` → `217 32.6% 24%`（`--muted` と同じ色だった）、`--info-subtle` `220 47% 16%` → `220 47% 20%`、`--destructive-subtle` `0 50% 16%` → `0 50% 20%`、`--input` `217.2 32.6% 17.5%` → `215 20% 51%`。文字とのコントラストはどれも 4.5:1 以上を保つ。(#1022 / #1027 / #1034)
 - **`Slider` / `RangeSlider` の空の溝を `--input` から `--muted` へ**（影響: **none**）— `--input` を縁の色として 3:1 まで濃くしたため、溝に使い続けると埋まった部分（primary）との差が縮み、値の位置が読めなくなる。`trackClassName` の受け口は不変。(#1034)
 - **`SidebarItem` の hover を `bg-muted` から `bg-foreground/5` へ**（影響: **none**）— `Sidebar` 本体が `bg-muted` になったので、hover が本体と同じ色で見えなかった。通常の行と、いまいる項目の親の行の2か所。(#1034)
+- **面で区切るのを守る検査を追加**（内部・影響: **none**）— `design:verify` に `high-contrast-border`（ハイコントラストの `--border` が全部の面の上で 3:1 以上）・`input-border`（`--input` が入れ物の面すべての上で 3:1 以上）・`slider-track`（溝と埋まった部分が 3:1 以上）・`surface-steps`（全ページの本番ビルドで、枠を透明にした面が親と 1.05:1 未満になっていない）を足し、`docs:audit:surface-borders`（塗りのある面に枠が残っていない・ハイコントラストで戻す指定が欠けていない）を数えるだけの報告から落ちる門番にした。例外は `design/policy/surface-border-exclusions.json` に理由つきで登録する。(#1022 / #1024 / #1027 / #1030 / #1033 / #1034)
 
 ### Fixed
 
