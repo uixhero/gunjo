@@ -23,7 +23,7 @@ export const contentEn: Record<string, DocContent> = {
     description: "An SSOT-driven React + Tailwind design system for rich, data-dense applications. 200+ components, three-axis verified (Pen / source / docs).",
     body: `GunjoUI is built around a single source of truth: design tokens and component variants are derived from \`.pen\` design files and synchronized into TypeScript implementation, structured JSON specs, and docs registration. Every primitive is verified across Pen / source / docs. It does not fully auto-generate every page from \`.pen\`; instead, it keeps design data, implementation, and documentation aligned through sync and verification.
 
-It uses **Radix UI** primitives for accessibility and **Tailwind CSS** for styling. Distributed as **\`@gunjo/ui\`** on npm — currently beta (\`0.1.0-beta.2\`), API may change before 1.0 stable.
+It uses **Radix UI** primitives for accessibility and **Tailwind CSS** for styling. Distributed as **\`@gunjo/ui\`** on npm — currently beta (\`0.1.0-beta.3\`), API may change before 1.0 stable.
 
 ### Adoption modes
 
@@ -148,7 +148,7 @@ export default function Page() {
 
 ### Using it from Server Components (Next.js App Router / RSC)
 
-Importing \`@gunjo/ui@0.1.0-beta.2\` (and earlier betas) from npm through the barrel (\`import { X } from "@gunjo/ui"\`) inside a Server Component (\`layout.tsx\`, \`page.tsx\`, etc.) on Next.js 16 (Turbopack) makes \`next build\` fail with:
+Importing \`@gunjo/ui@0.1.0-beta.3\` (and earlier betas) from npm through the barrel (\`import { X } from "@gunjo/ui"\`) inside a Server Component (\`layout.tsx\`, \`page.tsx\`, etc.) on Next.js 16 (Turbopack) makes \`next build\` fail with:
 
 \`\`\`
 TypeError: createContext is not a function

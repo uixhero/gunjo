@@ -639,7 +639,7 @@ export const translations: Record<
       },
     },
     intro: {
-      alphaBadge: "Beta · v0.1.0-beta.2",
+      alphaBadge: "Beta · v0.1.0-beta.3",
       componentCountBadge: "200+ components",
       ctaPrimary: "Get started",
       ctaSecondary: "Browse components",
@@ -1367,7 +1367,7 @@ export const translations: Record<
       },
     },
     intro: {
-      alphaBadge: "Beta · v0.1.0-beta.2",
+      alphaBadge: "Beta · v0.1.0-beta.3",
       componentCountBadge: "200+ コンポーネント",
       ctaPrimary: "はじめる",
       ctaSecondary: "コンポーネント一覧",
