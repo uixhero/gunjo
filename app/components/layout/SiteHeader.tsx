@@ -110,9 +110,14 @@ export function SiteHeader() {
         <Header
             className={cn(
                 "sticky top-0 z-50 h-14 px-0 py-0 transition-colors duration-300 sm:px-0",
+                // Off the homepage the header takes the page ground so it reads
+                // as part of the body. The high-contrast bottom edge comes from
+                // the Header primitive (contrast-more / forced-colors).
                 overHero
                     ? "gunjo-header-overlay"
-                    : "bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80"
+                    : isHome
+                      ? "bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80"
+                      : "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80"
             )}
         >
             <div className="mx-auto flex h-full w-full max-w-[1400px] items-center gap-3 px-4">
