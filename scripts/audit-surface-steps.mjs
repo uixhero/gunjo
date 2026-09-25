@@ -28,6 +28,11 @@
 //     → bg-background に沈める（下が bg-background になりうる所は bg-card）
 //   ⛔ 新しいトークン名は足さない。面の組の段差は src/globals.css の値で計算できる。
 //
+// 例外（意図して親と同じ色にしている面）:
+//   要素に data-surface-step-exempt="<型>" を付け、その型を下の EXEMPTIONS に理由つきで
+//   登録したものだけを数えない。⛔ EXEMPTIONS に無い型の目印は無効（今までどおり数える）
+//   ＝目印を付けるだけでは逃げられない。足す前に KeEem の決定があること。
+//
 // 使い方:
 //   node scripts/audit-surface-steps.mjs --start            # .next を next start して測る
 //   node scripts/audit-surface-steps.mjs --base-url=http://127.0.0.1:13030
@@ -47,8 +52,18 @@ const MIN_STEP = 1.05
 const THEMES = ["light", "dark"]
 const VIEWPORT = { width: 1280, height: 900 }
 
+// 数えない面の型。キーは data-surface-step-exempt の値。
+const EXEMPTIONS = {
+  "site-header": {
+    where: "app/components/layout/SiteHeader.tsx（トップ以外のページのときだけ目印を付ける）",
+    reason:
+      "KeEem 2026-09-25＝トップ以外のヘッダーは意図して本体と同じ色（bg-background）。区切りはハイコントラストの下の縁（DECISIONS 2026-09-22 の規則 C＝Header 部品の contrast-more / forced-colors の border-b）で担保",
+  },
+}
+const EXEMPT_KEYS = Object.keys(EXEMPTIONS)
+
 // ⛔ この関数はブラウザの中で動く（page.evaluate に渡す）。外の変数を参照しないこと。
-function probe(minStep) {
+function probe(minStep, exemptKeys) {
   const cv = document.createElement("canvas")
   cv.width = cv.height = 1
   const cx = cv.getContext("2d", { willReadFrequently: true })
@@ -111,7 +126,9 @@ function probe(minStep) {
     if (step >= minStep) continue
     let a = el.parentElement
     while (a && parse(getComputedStyle(a).backgroundColor)[3] === 0) a = a.parentElement
-    weak.push({ el: describe(el), parent: a ? describe(a) : "root", step: +step.toFixed(3) })
+    const mark = el.getAttribute("data-surface-step-exempt")
+    const exempt = mark && exemptKeys.includes(mark) ? mark : null
+    weak.push({ el: describe(el), parent: a ? describe(a) : "root", step: +step.toFixed(3), ...(exempt ? { exempt } : {}) })
   }
   return weak
 }
@@ -170,6 +187,7 @@ async function crawl(base, paths, { concurrency, settleMs }) {
   // protocolTimeout を短くする＝固まったタブで CDP の呼び出しが既定の 180 秒待たないように
   const browser = await puppeteer.launch({ headless: true, args: ["--no-sandbox"], protocolTimeout: 30_000 })
   const results = []
+  const exempted = []
   const errors = []
   let next = 0
   let done = 0
@@ -190,7 +208,7 @@ async function crawl(base, paths, { concurrency, settleMs }) {
             await tab.cdp.send("Emulation.setEmulatedMedia", { features: [{ name: "prefers-color-scheme", value: theme }] })
             await tab.page.goto(base + path, { waitUntil: "load", timeout: 60_000 })
             await new Promise((r) => setTimeout(r, settleMs))
-            for (const w of await tab.page.evaluate(probe, MIN_STEP)) results.push({ path, theme, ...w })
+            for (const w of await tab.page.evaluate(probe, MIN_STEP, EXEMPT_KEYS)) (w.exempt ? exempted : results).push({ path, theme, ...w })
             lastError = null
             break
           } catch (e) {
@@ -208,7 +226,7 @@ async function crawl(base, paths, { concurrency, settleMs }) {
   }
   await Promise.all(Array.from({ length: concurrency }, worker))
   await browser.close()
-  return { results, errors }
+  return { results, exempted, errors }
 }
 
 // 同じ部品の同じ入れ子を1行にまとめる（件数・テーマ・段差・例の URL）
@@ -231,11 +249,15 @@ async function run(options) {
   try {
     const paths = options.only.length ? options.only : await collectPaths(server.base)
     const started = Date.now()
-    const { results, errors } = await crawl(server.base, paths, options)
+    const { results, exempted, errors } = await crawl(server.base, paths, options)
     mkdirSync(dirname(options.out), { recursive: true })
-    writeFileSync(options.out, JSON.stringify({ measuredAt: new Date().toISOString(), minStep: MIN_STEP, pages: paths.length, themes: THEMES, results, errors }, null, 1))
+    writeFileSync(options.out, JSON.stringify({ measuredAt: new Date().toISOString(), minStep: MIN_STEP, pages: paths.length, themes: THEMES, results, exempted, errors }, null, 1))
     const seconds = Math.round((Date.now() - started) / 1000)
     console.log(`${SCRIPT}: ${paths.length} ページ × ${THEMES.join(" / ")}（${seconds} 秒）→ 段差 ${MIN_STEP} 未満の「枠を透明にした面」${results.length} 件・読めなかったページ ${errors.length}`)
+    for (const key of EXEMPT_KEYS) {
+      const n = exempted.filter((e) => e.exempt === key).length
+      console.log(`${SCRIPT}: 例外「${key}」で数えなかった ${n} 件＝${EXEMPTIONS[key].reason}`)
+    }
     console.log(`${SCRIPT}: 詳細 ${options.out}`)
     for (const [key, g] of summarize(results)) {
       console.log(`\n  ${g.count} 件 [${[...g.themes].join("/")}] 段差 ${[...g.steps].sort().join(", ")}\n    ${key}\n    例: ${[...g.paths].slice(0, 4).join(" ")}`)
@@ -290,6 +312,23 @@ const SELF_TEST_CASES = [
     html: `<div class="border border-transparent bg-card p-4"><div class="border border-transparent p-2">箱</div></div>`,
     expect: { light: 0, dark: 0 },
   },
+  // 例外（EXEMPTIONS）が広すぎないことの見張り。3本で1組＝目印と登録の両方が揃ったときだけ外れる。
+  {
+    name: "例外 site-header＝地の上の bg-background の面に透明枠（ヘッダーの形）は数えない",
+    html: `<header data-surface-step-exempt="site-header" class="border border-transparent bg-background-95 p-4">ヘッダー</header>`,
+    expect: { light: 0, dark: 0 },
+    expectExempt: { light: 1, dark: 1 },
+  },
+  {
+    name: "同じ形でも目印が無ければ今までどおり数える",
+    html: `<header class="border border-transparent bg-background-95 p-4">ヘッダー</header>`,
+    expect: { light: 1, dark: 1 },
+  },
+  {
+    name: "EXEMPTIONS に登録の無い型の目印は無効（数える）",
+    html: `<div data-surface-step-exempt="anything" class="border border-transparent bg-background p-4">面</div>`,
+    expect: { light: 1, dark: 1 },
+  },
 ]
 
 function selfTestDocument(body, theme) {
@@ -300,6 +339,7 @@ function selfTestDocument(body, theme) {
     .border-transparent { border-color: transparent }
     .border-border { border-color: hsl(var(--border)) }
     .bg-background { background-color: hsl(var(--background)) }
+    .bg-background-95 { background-color: hsl(var(--background) / 0.95) }
     .bg-card { background-color: hsl(var(--card)) }
     .bg-muted { background-color: hsl(var(--muted)) }
     .bg-muted-20 { background-color: hsl(var(--muted) / 0.2) }
@@ -315,9 +355,12 @@ async function selfTest() {
   for (const c of SELF_TEST_CASES) {
     for (const theme of THEMES) {
       await page.setContent(selfTestDocument(c.html, theme))
-      const found = await page.evaluate(probe, MIN_STEP)
-      const ok = found.length === c.expect[theme]
-      console.log(`  ${ok ? "ok  " : "FAIL"} [${theme}] ${c.name}: 期待 ${c.expect[theme]} 件・実際 ${found.length} 件${found.length ? `（段差 ${found.map((f) => f.step).join(", ")}）` : ""}`)
+      const all = await page.evaluate(probe, MIN_STEP, EXEMPT_KEYS)
+      const found = all.filter((f) => !f.exempt)
+      const exempt = all.length - found.length
+      // 例外の型は「見えていて、例外で外れた」ことまで確かめる（目印を拾えず 0 件、を合格にしない）
+      const ok = found.length === c.expect[theme] && exempt === (c.expectExempt?.[theme] ?? 0)
+      console.log(`  ${ok ? "ok  " : "FAIL"} [${theme}] ${c.name}: 期待 ${c.expect[theme]} 件・実際 ${found.length} 件${found.length ? `（段差 ${found.map((f) => f.step).join(", ")}）` : ""}・例外 ${exempt} 件`)
       if (!ok) failures.push(`${c.name} [${theme}]`)
     }
   }
