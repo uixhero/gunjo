@@ -267,10 +267,13 @@ const SELF_TEST_CASES = [
     html: `<div class="border border-transparent bg-card p-4"><button class="border border-transparent bg-background px-3 py-2">行</button></div>`,
     expect: { light: 0, dark: 0 },
   },
+  // #1034 で dark の --secondary を --muted から離した（1.000 → 1.245）。この型は
+  // トークンで直ったので、両モード 0 件を期待する＝dark の --secondary を muted と
+  // 同じ値に戻すと、ここが 1 件になって自己テストが落ちる（戻したことの見張り）。
   {
-    name: "muted の列の上の secondary の Badge（dark は --secondary = --muted）",
+    name: "muted の列の上の secondary の Badge（#1034 で dark の --secondary を --muted から離した）",
     html: `<section class="border border-transparent bg-muted p-4"><span class="border border-transparent bg-secondary px-2">3</span></section>`,
-    expect: { light: 0, dark: 1 },
+    expect: { light: 0, dark: 0 },
   },
   {
     name: "地の上の半透明の面（bg-muted/20）＝重ねた色で比べる",
