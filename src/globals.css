@@ -60,7 +60,7 @@
         --accent-foreground: 14 22% 19%;
 
         --border: 214 32% 91%;
-        --input: 214 32% 91%;
+        --input: 215 20% 52%;
         --ring: 220 62% 49%;
 
         --radius: 0.5rem;
@@ -198,7 +198,7 @@
         --popover: 217 33% 22%;
         --popover-foreground: 210 40% 98%;
 
-        --secondary: 217.2 32.6% 17.5%;
+        --secondary: 217 32.6% 24%;
         --secondary-foreground: 210 40% 98%;
 
         --muted: 217.2 32.6% 17.5%;
@@ -208,7 +208,11 @@
         --accent-foreground: 29 31% 87%;
 
         --border: 217.2 32.6% 17.5%;
-        --input: 217.2 32.6% 17.5%;
+        /* 入力欄の縁。入れ物の面（地・card・popover・muted）すべての上で 3:1 を
+           超える、いちばん薄い値。最小は popover の上の 3.03:1。⚠️ 50% だと
+           popover（217 33% 22%）の上で 2.92:1 に落ちる（#1023・2026-09-25）。
+           design:verify:input-border が見張っている。 */
+        --input: 215 20% 51%;
         --ring: 218 68% 63%;
 
         --palette-red: 0 84% 60%;
@@ -235,11 +239,15 @@
 @layer base {
     /* ハイコントラスト（prefers-contrast: more）では、区切りを面の濃淡ではなく
        枠線で伝える。--border は通常時 1.3〜1.4:1 しかないので、ここで 3:1 以上
-       まで上げる。新しいトークン名は足さず --border だけを差し替える。 */
+       まで上げる。新しいトークン名は足さず --border と入力欄の縁 --input だけを
+       差し替える。 */
     @media (prefers-contrast: more) {
         :root {
             /* 白地に 6.16:1 */
             --border: 215 20% 40%;
+            /* 入力欄の縁も --border と同じ値まで上げる。上げないと入力欄だけ
+               通常時の 3:1 ちょうどのまま残る（#1023）。 */
+            --input: 215 20% 40%;
         }
 
         .dark {
@@ -249,6 +257,7 @@
                最小が 3.678 になる。design:verify:high-contrast-border が全面を
                見張っている。 */
             --border: 215 20% 55%;
+            --input: 215 20% 55%;
         }
     }
 }
