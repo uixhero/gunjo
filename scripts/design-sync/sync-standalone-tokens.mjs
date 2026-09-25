@@ -154,18 +154,20 @@ const HEADER = `/*
 
 // ハイコントラスト時の枠線。src/globals.css の @layer base に置いた
 // prefers-contrast ブロックと同じ値で、面の濃淡だけで区切れない環境に
-// 3:1 以上の枠線を渡す。cleanBlock は :root / .dark の最初のブロックしか
-//読まないので、ここで明示的に付け足す。(#1020)
+// 3:1 以上の枠線を渡す。入力欄の縁（--input）も同じ値に上げる（#1023）。
+// cleanBlock は :root / .dark の最初のブロックしか読まないので、ここで明示的に付け足す。(#1020)
 const HIGH_CONTRAST_BORDER = `/* ハイコントラスト（prefers-contrast: more）では、区切りを面の濃淡ではなく
-   枠線で伝える。--border を 3:1 以上まで上げる。 */
+   枠線で伝える。--border と入力欄の縁 --input を 3:1 以上まで上げる。 */
 @media (prefers-contrast: more) {
     :root {
         --border: 215 20% 40%;
+        --input: 215 20% 40%;
     }
 
     .dark,
     [data-theme="dark"] {
         --border: 215 20% 55%;
+        --input: 215 20% 55%;
     }
 }
 `;

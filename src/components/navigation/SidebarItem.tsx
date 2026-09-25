@@ -84,15 +84,21 @@ export const SidebarItem = memo(function SidebarItem({
     const collapsedFromSidebar = useSidebarCollapsed();
     const collapsed = collapsedProp ?? collapsedFromSidebar ?? false;
     const baseVariant: SidebarItemVariantKey = isActive ? "active" : sidebarItemDefaultVariantKey;
+    // hover は bg-muted にしない。Sidebar 本体が bg-muted なので段差が 1.000 になり、
+    // 両モードで hover が見えなかった（#1028）。bg-foreground/5 は面を字の色へ少し
+    // 寄せるので、light は暗く（muted の上で 1.109:1）、dark は明るく（1.152:1）なる。
+    // light の active（bg-secondary）は muted より明るい側なので hover とは向きが逆、
+    // dark は active のほうが明るい（hover との比 1.087:1）＝どちらも見分けがつく。
+    // ⚠️ bg-secondary/60 は light で 1.048:1 と 1.05 に届かない（2026-09-25 実測）。
     const variantClasses: Record<SidebarItemVariantKey, string> = {
         active: "bg-secondary text-foreground",
-        default: "text-muted-foreground hover:bg-muted hover:text-foreground",
+        default: "text-muted-foreground hover:bg-foreground/5 hover:text-foreground",
     };
     // On the active path but not the current item: indicate with an accent
     // (medium-weight text + icon), never a fill, so an expanded parent doesn't stack a solid
     // background against its active child's fill.
     const onPath = isCurrentAncestor && !isActive;
-    const stateClass = onPath ? "font-medium text-foreground hover:bg-muted" : variantClasses[baseVariant];
+    const stateClass = onPath ? "font-medium text-foreground hover:bg-foreground/5" : variantClasses[baseVariant];
 
     const dragNestClass =
         dragOverId === id && dragAction === "nest"

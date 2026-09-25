@@ -61,12 +61,16 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
                     }}
                     // Filled track up to the thumb (inline style keeps the class
                     // list — and the drift contract — unchanged). (#193)
+                    // 空の溝は面のトークン（--muted）で塗る。--input は入力欄の「縁」の
+                    // 色で、3:1 まで濃くしたら埋まった部分（primary）との比が light
+                    // 1.39／dark 1.30 まで落ち、値の位置が読めなくなった（#1034）。
+                    // design:verify:slider-track が両モード 3:1 以上を見張っている。
                     style={{
-                        background: `linear-gradient(to right, hsl(var(--primary)) 0%, hsl(var(--primary)) ${pct}%, hsl(var(--input)) ${pct}%, hsl(var(--input)) 100%)`,
+                        background: `linear-gradient(to right, hsl(var(--primary)) 0%, hsl(var(--primary)) ${pct}%, hsl(var(--muted)) ${pct}%, hsl(var(--muted)) 100%)`,
                         ...styleProp,
                     }}
                     className={cn(
-                        "h-5 w-full cursor-pointer appearance-none rounded-[10px] bg-input disabled:cursor-not-allowed disabled:opacity-50",
+                        "h-5 w-full cursor-pointer appearance-none rounded-[10px] bg-muted disabled:cursor-not-allowed disabled:opacity-50",
                         "[&::-webkit-slider-thumb]:h-5 [&::-webkit-slider-thumb]:w-5 [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:border-2 [&::-webkit-slider-thumb]:border-foreground [&::-webkit-slider-thumb]:bg-background [&::-webkit-slider-thumb]:transition-colors [&::-webkit-slider-thumb]:focus-visible:outline-none [&::-webkit-slider-thumb]:focus-visible:ring-1 [&::-webkit-slider-thumb]:focus-visible:ring-ring [&::-webkit-slider-thumb]:focus-visible:ring-offset-1 [&::-webkit-slider-thumb]:focus-visible:ring-offset-background [&::-webkit-slider-thumb]:disabled:pointer-events-none [&::-webkit-slider-thumb]:disabled:opacity-50"
                     )}
                     {...props}

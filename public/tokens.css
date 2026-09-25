@@ -101,7 +101,7 @@
     --accent-foreground: 14 22% 19%;
 
     --border: 214 32% 91%;
-    --input: 214 32% 91%;
+    --input: 215 20% 52%;
     --ring: 220 62% 49%;
 
     --radius: 0.5rem;
@@ -265,7 +265,7 @@
     --popover: 217 33% 22%;
     --popover-foreground: 210 40% 98%;
 
-    --secondary: 217.2 32.6% 17.5%;
+    --secondary: 217 32.6% 24%;
     --secondary-foreground: 210 40% 98%;
 
     --muted: 217.2 32.6% 17.5%;
@@ -275,7 +275,7 @@
     --accent-foreground: 29 31% 87%;
 
     --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
+    --input: 215 20% 51%;
     --ring: 218 68% 63%;
 
     --palette-red: 0 84% 60%;
@@ -299,15 +299,17 @@
 }
 
 /* ハイコントラスト（prefers-contrast: more）では、区切りを面の濃淡ではなく
-   枠線で伝える。--border を 3:1 以上まで上げる。 */
+   枠線で伝える。--border と入力欄の縁 --input を 3:1 以上まで上げる。 */
 @media (prefers-contrast: more) {
     :root {
         --border: 215 20% 40%;
+        --input: 215 20% 40%;
     }
 
     .dark,
     [data-theme="dark"] {
         --border: 215 20% 55%;
+        --input: 215 20% 55%;
     }
 }
 
