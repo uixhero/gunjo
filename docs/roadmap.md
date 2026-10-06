@@ -8,7 +8,7 @@ GunjoUI が 1.0 に届くまでの、機能と版の予定表。
 
 このファイルはリポジトリの中だけに置く。gunjo.jp のページ・ナビ・sitemap・llms.txt には載せない。
 
-最終更新：2026-10-06
+最終更新：2026-10-07
 
 ## 予定表
 
@@ -26,8 +26,8 @@ GunjoUI が 1.0 に届くまでの、機能と版の予定表。
 | `AIChatInput`・`AIChatMessage` を正式な部品にするか、export から外す | 部品 | `0.2.0-beta.1` | 案：2026-11-20 まで | 未着手 |
 | 全部品の状態を決める（`design/stability.json` は Beta 54件・未分類183件） | 部品 | `0.2.0-beta.2` | 案：2026-12-18 まで | 未着手 |
 | [#774](https://github.com/uixhero/gunjo/issues/774) 採用ガイドの最小骨格 | docs | `0.2.0-beta.2` | 案：2026-12-18 まで | 未着手 |
-| デザイン言語の原則を決める | 見た目 | 未定（原則の決定後） | 原則の決定は 2026-10-20 まで（KeEem） | 未着手 |
-| トップ・docs・showcase が原則に沿っている（判定の方法は原則ごとに決める） | 見た目 | 未定（原則の決定後） | 未定（原則の決定後） | 未着手 |
+| デザイン言語の原則を決める（原則7本と判定の方法は [DESIGN.md](../DESIGN.md) の「Design Language」） | 見た目 | ―（版に入る変更ではない） | 2026-10-07 に決定 | 済 |
+| [#1042](https://github.com/uixhero/gunjo/issues/1042) 5画面（トップ・`/docs/introduction`・`/docs/components/data-table`・`/showcase`・`/patterns/dashboard/overview`）が原則7本に沿っている（`npm run design:verify:design-language` で 7/7。2026-10-07 の main は 0/7） | 見た目 | `0.1.0-beta.4` | 案：2026-10-23 まで（見た目を直す PR を KeEem が前後で見てからマージ。マージで1.0 の条件が1つ片付くので、規則2でその時点の版として出す） | 作業中 |
 | `1.0.0-rc.1` を出し、2週間、採用先で問題が出なければ `1.0.0` | 3つすべて | `1.0.0-rc.1` | 未定（見た目の版が決まってから） | 未着手 |
 
 ## 表の読み方と直し方

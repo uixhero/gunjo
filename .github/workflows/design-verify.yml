@@ -393,3 +393,23 @@ jobs:
           name: surface-steps
           path: artifacts/surface-steps.json
           if-no-files-found: ignore
+
+      # Design-language gate (#1042) — the 7 principles in DESIGN.md
+      # ("Design Language"), measured on the 5 judged screens × light / dark
+      # from the build output. Report only for now (main is 0 / 7); the PR that
+      # brings it to 7 / 7 adds --strict so a regression fails the build. The
+      # self-test first proves each detector tells the failing form (the
+      # 2026-10-06 values) from the passing one.
+      - name: Design language self-test
+        run: npm run design:verify:design-language:self-test
+
+      - name: Design language (5 screens, light / dark — report only)
+        run: npm run design:verify:design-language -- --out=artifacts/design-language.json
+
+      - name: Upload design language report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: design-language
+          path: artifacts/design-language.json
+          if-no-files-found: ignore
