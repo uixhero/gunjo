@@ -33,8 +33,6 @@ GunjoUI の semver 運用ルールと、破壊的変更がきたときの採用�
 - 自社の採用先（4px-hq-dashboard・design-qa・uixhero）が待っている変更が入ったとき
 - 前回の版から4週間たち、CHANGELOG の `[Unreleased]` が空でないとき
 
-npm への公開には KeEem の2段階認証が要る。AI の作業エージェントは版番号と CHANGELOG を整える PR までを作り、`npm publish` はしない。
-
 ### 3. 見た目が変わる版の CHANGELOG
 
 画面の見た目が変わる変更を含む版は、CHANGELOG のその版の節に「採用先向けの要約（見た目が変わるもの）」を書く。コードを直さなくても依存を上げるだけで何が変わるか、上げたあとに目で確かめてほしい点、前の見た目に戻す方法（あれば）を並べる。手本は [CHANGELOG.md](../CHANGELOG.md) の `[0.1.0-beta.3]` の節。
