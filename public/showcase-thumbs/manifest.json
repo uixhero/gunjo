@@ -1,13 +1,13 @@
 {
-  "generatedAt": "2026-07-26T03:52:20.690Z",
-  "baseUrl": "http://127.0.0.1:13030",
+  "generatedAt": "2026-10-06T16:23:53.474Z",
+  "baseUrl": "http://127.0.0.1:13182",
   "viewport": {
     "width": 1280,
     "height": 720,
     "deviceScaleFactor": 2
   },
-  "total": 430,
-  "captured": 422,
+  "total": 460,
+  "captured": 452,
   "failed": 8,
   "results": [
     {
@@ -176,9 +176,9 @@
       "file": "public/showcase-thumbs/combobox.light.png",
       "clip": {
         "x": 416,
-        "y": 289,
+        "y": 285,
         "width": 448,
-        "height": 142
+        "height": 149
       },
       "error": null
     },
@@ -190,9 +190,9 @@
       "file": "public/showcase-thumbs/combobox.dark.png",
       "clip": {
         "x": 416,
-        "y": 289,
+        "y": 285,
         "width": 448,
-        "height": 142
+        "height": 149
       },
       "error": null
     },
@@ -288,6 +288,24 @@
     },
     {
       "category": "Inputs",
+      "slug": "day-band",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/day-band.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "day-band",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/day-band.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
       "slug": "editable-field",
       "mode": "light",
       "status": "captured",
@@ -312,9 +330,9 @@
       "file": "public/showcase-thumbs/file-uploader.light.png",
       "clip": {
         "x": 384,
-        "y": 243,
+        "y": 239,
         "width": 512,
-        "height": 234
+        "height": 241
       },
       "error": null
     },
@@ -326,9 +344,9 @@
       "file": "public/showcase-thumbs/file-uploader.dark.png",
       "clip": {
         "x": 384,
-        "y": 243,
+        "y": 239,
         "width": 512,
-        "height": 234
+        "height": 241
       },
       "error": null
     },
@@ -368,9 +386,9 @@
       "file": "public/showcase-thumbs/form.light.png",
       "clip": {
         "x": 416,
-        "y": 252,
+        "y": 245,
         "width": 448,
-        "height": 216
+        "height": 230
       },
       "error": null
     },
@@ -382,9 +400,9 @@
       "file": "public/showcase-thumbs/form.dark.png",
       "clip": {
         "x": 416,
-        "y": 252,
+        "y": 245,
         "width": 448,
-        "height": 216
+        "height": 230
       },
       "error": null
     },
@@ -396,9 +414,9 @@
       "file": "public/showcase-thumbs/input.light.png",
       "clip": {
         "x": 416,
-        "y": 252,
+        "y": 245,
         "width": 448,
-        "height": 216
+        "height": 230
       },
       "error": null
     },
@@ -410,9 +428,9 @@
       "file": "public/showcase-thumbs/input.dark.png",
       "clip": {
         "x": 416,
-        "y": 252,
+        "y": 245,
         "width": 448,
-        "height": 216
+        "height": 230
       },
       "error": null
     },
@@ -424,9 +442,9 @@
       "file": "public/showcase-thumbs/input-otp.light.png",
       "clip": {
         "x": 416,
-        "y": 287,
+        "y": 283,
         "width": 448,
-        "height": 146
+        "height": 153
       },
       "error": null
     },
@@ -438,9 +456,9 @@
       "file": "public/showcase-thumbs/input-otp.dark.png",
       "clip": {
         "x": 416,
-        "y": 287,
+        "y": 283,
         "width": 448,
-        "height": 146
+        "height": 153
       },
       "error": null
     },
@@ -474,15 +492,51 @@
     },
     {
       "category": "Inputs",
+      "slug": "layer-menu",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/layer-menu.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "layer-menu",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/layer-menu.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "map-control-button",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/map-control-button.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "map-control-button",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/map-control-button.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
       "slug": "mention",
       "mode": "light",
       "status": "captured",
       "file": "public/showcase-thumbs/mention.light.png",
       "clip": {
         "x": 416,
-        "y": 266,
+        "y": 264,
         "width": 448,
-        "height": 188
+        "height": 191
       },
       "error": null
     },
@@ -494,9 +548,9 @@
       "file": "public/showcase-thumbs/mention.dark.png",
       "clip": {
         "x": 416,
-        "y": 266,
+        "y": 264,
         "width": 448,
-        "height": 188
+        "height": 191
       },
       "error": null
     },
@@ -508,9 +562,9 @@
       "file": "public/showcase-thumbs/number-input.light.png",
       "clip": {
         "x": 416,
-        "y": 287,
+        "y": 284,
         "width": 448,
-        "height": 145
+        "height": 152
       },
       "error": null
     },
@@ -522,9 +576,9 @@
       "file": "public/showcase-thumbs/number-input.dark.png",
       "clip": {
         "x": 416,
-        "y": 287,
+        "y": 284,
         "width": 448,
-        "height": 145
+        "height": 152
       },
       "error": null
     },
@@ -536,9 +590,9 @@
       "file": "public/showcase-thumbs/password-group.light.png",
       "clip": {
         "x": 416,
-        "y": 230,
+        "y": 226,
         "width": 448,
-        "height": 260
+        "height": 267
       },
       "error": null
     },
@@ -550,9 +604,9 @@
       "file": "public/showcase-thumbs/password-group.dark.png",
       "clip": {
         "x": 416,
-        "y": 230,
+        "y": 226,
         "width": 448,
-        "height": 260
+        "height": 267
       },
       "error": null
     },
@@ -564,9 +618,9 @@
       "file": "public/showcase-thumbs/password-input.light.png",
       "clip": {
         "x": 416,
-        "y": 289,
+        "y": 285,
         "width": 448,
-        "height": 142
+        "height": 149
       },
       "error": null
     },
@@ -578,9 +632,9 @@
       "file": "public/showcase-thumbs/password-input.dark.png",
       "clip": {
         "x": 416,
-        "y": 289,
+        "y": 285,
         "width": 448,
-        "height": 142
+        "height": 149
       },
       "error": null
     },
@@ -620,9 +674,9 @@
       "file": "public/showcase-thumbs/password-strength-meter.light.png",
       "clip": {
         "x": 416,
-        "y": 299,
+        "y": 295,
         "width": 448,
-        "height": 122
+        "height": 129
       },
       "error": null
     },
@@ -634,9 +688,9 @@
       "file": "public/showcase-thumbs/password-strength-meter.dark.png",
       "clip": {
         "x": 416,
-        "y": 299,
+        "y": 295,
         "width": 448,
-        "height": 122
+        "height": 129
       },
       "error": null
     },
@@ -648,9 +702,9 @@
       "file": "public/showcase-thumbs/phone-input.light.png",
       "clip": {
         "x": 416,
-        "y": 288,
+        "y": 284,
         "width": 448,
-        "height": 144
+        "height": 151
       },
       "error": null
     },
@@ -662,9 +716,9 @@
       "file": "public/showcase-thumbs/phone-input.dark.png",
       "clip": {
         "x": 416,
-        "y": 288,
+        "y": 284,
         "width": 448,
-        "height": 144
+        "height": 151
       },
       "error": null
     },
@@ -676,9 +730,9 @@
       "file": "public/showcase-thumbs/postal-code-input.light.png",
       "clip": {
         "x": 416,
-        "y": 288,
+        "y": 284,
         "width": 448,
-        "height": 144
+        "height": 151
       },
       "error": null
     },
@@ -690,9 +744,9 @@
       "file": "public/showcase-thumbs/postal-code-input.dark.png",
       "clip": {
         "x": 416,
-        "y": 288,
+        "y": 284,
         "width": 448,
-        "height": 144
+        "height": 151
       },
       "error": null
     },
@@ -705,7 +759,7 @@
       "clip": {
         "x": 554,
         "y": 308,
-        "width": 171,
+        "width": 172,
         "height": 104
       },
       "error": null
@@ -719,7 +773,7 @@
       "clip": {
         "x": 554,
         "y": 308,
-        "width": 171,
+        "width": 172,
         "height": 104
       },
       "error": null
@@ -732,9 +786,9 @@
       "file": "public/showcase-thumbs/range-slider.light.png",
       "clip": {
         "x": 416,
-        "y": 267,
+        "y": 264,
         "width": 448,
-        "height": 185
+        "height": 192
       },
       "error": null
     },
@@ -746,9 +800,9 @@
       "file": "public/showcase-thumbs/range-slider.dark.png",
       "clip": {
         "x": 416,
-        "y": 267,
+        "y": 264,
         "width": 448,
-        "height": 185
+        "height": 192
       },
       "error": null
     },
@@ -796,9 +850,9 @@
       "file": "public/showcase-thumbs/search-input.light.png",
       "clip": {
         "x": 416,
-        "y": 289,
+        "y": 285,
         "width": 448,
-        "height": 142
+        "height": 149
       },
       "error": null
     },
@@ -810,9 +864,9 @@
       "file": "public/showcase-thumbs/search-input.dark.png",
       "clip": {
         "x": 416,
-        "y": 289,
+        "y": 285,
         "width": 448,
-        "height": 142
+        "height": 149
       },
       "error": null
     },
@@ -842,9 +896,9 @@
       "file": "public/showcase-thumbs/select.light.png",
       "clip": {
         "x": 416,
-        "y": 289,
+        "y": 285,
         "width": 448,
-        "height": 142
+        "height": 149
       },
       "error": null
     },
@@ -856,9 +910,9 @@
       "file": "public/showcase-thumbs/select.dark.png",
       "clip": {
         "x": 416,
-        "y": 289,
+        "y": 285,
         "width": 448,
-        "height": 142
+        "height": 149
       },
       "error": null
     },
@@ -870,9 +924,9 @@
       "file": "public/showcase-thumbs/slider.light.png",
       "clip": {
         "x": 416,
-        "y": 294,
+        "y": 290,
         "width": 448,
-        "height": 132
+        "height": 139
       },
       "error": null
     },
@@ -884,9 +938,9 @@
       "file": "public/showcase-thumbs/slider.dark.png",
       "clip": {
         "x": 416,
-        "y": 294,
+        "y": 290,
         "width": 448,
-        "height": 132
+        "height": 139
       },
       "error": null
     },
@@ -954,9 +1008,9 @@
       "file": "public/showcase-thumbs/tag-input.light.png",
       "clip": {
         "x": 416,
-        "y": 290,
+        "y": 286,
         "width": 448,
-        "height": 140
+        "height": 147
       },
       "error": null
     },
@@ -968,9 +1022,9 @@
       "file": "public/showcase-thumbs/tag-input.dark.png",
       "clip": {
         "x": 416,
-        "y": 290,
+        "y": 286,
         "width": 448,
-        "height": 140
+        "height": 147
       },
       "error": null
     },
@@ -982,9 +1036,9 @@
       "file": "public/showcase-thumbs/textarea.light.png",
       "clip": {
         "x": 416,
-        "y": 267,
+        "y": 263,
         "width": 448,
-        "height": 186
+        "height": 193
       },
       "error": null
     },
@@ -996,10 +1050,28 @@
       "file": "public/showcase-thumbs/textarea.dark.png",
       "clip": {
         "x": 416,
-        "y": 267,
+        "y": 263,
         "width": 448,
-        "height": 186
+        "height": 193
       },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "timeline-scrubber",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/timeline-scrubber.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "timeline-scrubber",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/timeline-scrubber.dark.png",
+      "clip": "docs-preview-surface",
       "error": null
     },
     {
@@ -1010,9 +1082,9 @@
       "file": "public/showcase-thumbs/time-picker.light.png",
       "clip": {
         "x": 416,
-        "y": 289,
+        "y": 285,
         "width": 448,
-        "height": 142
+        "height": 149
       },
       "error": null
     },
@@ -1024,10 +1096,28 @@
       "file": "public/showcase-thumbs/time-picker.dark.png",
       "clip": {
         "x": 416,
-        "y": 289,
+        "y": 285,
         "width": 448,
-        "height": 142
+        "height": 149
       },
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "time-transport",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/time-transport.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Inputs",
+      "slug": "time-transport",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/time-transport.dark.png",
+      "clip": "docs-preview-surface",
       "error": null
     },
     {
@@ -1130,9 +1220,9 @@
       "file": "public/showcase-thumbs/accordion.light.png",
       "clip": {
         "x": 0,
-        "y": 241,
+        "y": 242,
         "width": 1280,
-        "height": 237
+        "height": 236
       },
       "error": null
     },
@@ -1144,9 +1234,9 @@
       "file": "public/showcase-thumbs/accordion.dark.png",
       "clip": {
         "x": 0,
-        "y": 241,
+        "y": 242,
         "width": 1280,
-        "height": 237
+        "height": 236
       },
       "error": null
     },
@@ -1160,7 +1250,7 @@
         "x": 384,
         "y": 197,
         "width": 512,
-        "height": 326
+        "height": 325
       },
       "error": null
     },
@@ -1174,7 +1264,7 @@
         "x": 384,
         "y": 197,
         "width": 512,
-        "height": 326
+        "height": 325
       },
       "error": null
     },
@@ -1340,9 +1430,9 @@
       "file": "public/showcase-thumbs/avatar-group.light.png",
       "clip": {
         "x": 540,
-        "y": 256,
+        "y": 249,
         "width": 200,
-        "height": 208
+        "height": 222
       },
       "error": null
     },
@@ -1354,9 +1444,9 @@
       "file": "public/showcase-thumbs/avatar-group.dark.png",
       "clip": {
         "x": 540,
-        "y": 256,
+        "y": 249,
         "width": 200,
-        "height": 208
+        "height": 222
       },
       "error": null
     },
@@ -1396,9 +1486,9 @@
       "file": "public/showcase-thumbs/card.light.png",
       "clip": {
         "x": 433,
-        "y": 220,
+        "y": 216,
         "width": 414,
-        "height": 280
+        "height": 287
       },
       "error": null
     },
@@ -1410,9 +1500,9 @@
       "file": "public/showcase-thumbs/card.dark.png",
       "clip": {
         "x": 433,
-        "y": 220,
+        "y": 216,
         "width": 414,
-        "height": 280
+        "height": 287
       },
       "error": null
     },
@@ -1505,10 +1595,10 @@
       "status": "captured",
       "file": "public/showcase-thumbs/code.light.png",
       "clip": {
-        "x": 430,
-        "y": 281,
-        "width": 419,
-        "height": 157
+        "x": 424,
+        "y": 275,
+        "width": 431,
+        "height": 170
       },
       "error": null
     },
@@ -1519,10 +1609,10 @@
       "status": "captured",
       "file": "public/showcase-thumbs/code.dark.png",
       "clip": {
-        "x": 430,
-        "y": 281,
-        "width": 419,
-        "height": 157
+        "x": 424,
+        "y": 275,
+        "width": 431,
+        "height": 170
       },
       "error": null
     },
@@ -1708,9 +1798,9 @@
       "file": "public/showcase-thumbs/empty-state.light.png",
       "clip": {
         "x": 416,
-        "y": 209,
+        "y": 205,
         "width": 448,
-        "height": 302
+        "height": 309
       },
       "error": null
     },
@@ -1722,9 +1812,9 @@
       "file": "public/showcase-thumbs/empty-state.dark.png",
       "clip": {
         "x": 416,
-        "y": 209,
+        "y": 205,
         "width": 448,
-        "height": 302
+        "height": 309
       },
       "error": null
     },
@@ -2056,6 +2146,24 @@
     },
     {
       "category": "Display",
+      "slug": "live-badge",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/live-badge.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "live-badge",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/live-badge.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
       "slug": "loyalty-summary-card",
       "mode": "light",
       "status": "captured",
@@ -2074,15 +2182,33 @@
     },
     {
       "category": "Display",
+      "slug": "map-status-corner",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/map-status-corner.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "map-status-corner",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/map-status-corner.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
       "slug": "markdown-renderer",
       "mode": "light",
       "status": "captured",
       "file": "public/showcase-thumbs/markdown-renderer.light.png",
       "clip": {
         "x": 384,
-        "y": 9,
+        "y": 11,
         "width": 512,
-        "height": 701
+        "height": 697
       },
       "error": null
     },
@@ -2094,9 +2220,9 @@
       "file": "public/showcase-thumbs/markdown-renderer.dark.png",
       "clip": {
         "x": 384,
-        "y": 9,
+        "y": 11,
         "width": 512,
-        "height": 701
+        "height": 697
       },
       "error": null
     },
@@ -2228,6 +2354,24 @@
     },
     {
       "category": "Display",
+      "slug": "range-bar",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/range-bar.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "range-bar",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/range-bar.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
       "slug": "rating",
       "mode": "light",
       "status": "captured",
@@ -2318,6 +2462,24 @@
     },
     {
       "category": "Display",
+      "slug": "scale-bar",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/scale-bar.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "scale-bar",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/scale-bar.dark.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
       "slug": "schedule-grid",
       "mode": "light",
       "status": "captured",
@@ -2395,10 +2557,10 @@
       "status": "captured",
       "file": "public/showcase-thumbs/separator.light.png",
       "clip": {
-        "x": 502,
-        "y": 282,
-        "width": 275,
-        "height": 155
+        "x": 497,
+        "y": 279,
+        "width": 285,
+        "height": 162
       },
       "error": null
     },
@@ -2409,10 +2571,10 @@
       "status": "captured",
       "file": "public/showcase-thumbs/separator.dark.png",
       "clip": {
-        "x": 502,
-        "y": 282,
-        "width": 275,
-        "height": 155
+        "x": 497,
+        "y": 279,
+        "width": 285,
+        "height": 162
       },
       "error": null
     },
@@ -2470,9 +2632,9 @@
       "file": "public/showcase-thumbs/spacer.light.png",
       "clip": {
         "x": 384,
-        "y": 246,
+        "y": 239,
         "width": 512,
-        "height": 228
+        "height": 242
       },
       "error": null
     },
@@ -2484,9 +2646,9 @@
       "file": "public/showcase-thumbs/spacer.dark.png",
       "clip": {
         "x": 384,
-        "y": 246,
+        "y": 239,
         "width": 512,
-        "height": 228
+        "height": 242
       },
       "error": null
     },
@@ -2516,9 +2678,9 @@
       "file": "public/showcase-thumbs/statistic.light.png",
       "clip": {
         "x": 272,
-        "y": 216,
+        "y": 195,
         "width": 736,
-        "height": 288
+        "height": 329
       },
       "error": null
     },
@@ -2530,9 +2692,9 @@
       "file": "public/showcase-thumbs/statistic.dark.png",
       "clip": {
         "x": 272,
-        "y": 216,
+        "y": 195,
         "width": 736,
-        "height": 288
+        "height": 329
       },
       "error": null
     },
@@ -2552,6 +2714,34 @@
       "status": "captured",
       "file": "public/showcase-thumbs/status-board.dark.png",
       "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "status-level",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/status-level.light.png",
+      "clip": {
+        "x": 320,
+        "y": 68,
+        "width": 640,
+        "height": 584
+      },
+      "error": null
+    },
+    {
+      "category": "Display",
+      "slug": "status-level",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/status-level.dark.png",
+      "clip": {
+        "x": 320,
+        "y": 68,
+        "width": 640,
+        "height": 584
+      },
       "error": null
     },
     {
@@ -2672,9 +2862,9 @@
       "file": "public/showcase-thumbs/timeline.light.png",
       "clip": {
         "x": 384,
-        "y": 110,
+        "y": 90,
         "width": 512,
-        "height": 500
+        "height": 540
       },
       "error": null
     },
@@ -2686,9 +2876,9 @@
       "file": "public/showcase-thumbs/timeline.dark.png",
       "clip": {
         "x": 384,
-        "y": 110,
+        "y": 90,
         "width": 512,
-        "height": 500
+        "height": 540
       },
       "error": null
     },
@@ -3270,15 +3460,43 @@
     },
     {
       "category": "Feedback",
+      "slug": "action-progress",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/action-progress.light.png",
+      "clip": {
+        "x": 0,
+        "y": 250,
+        "width": 1280,
+        "height": 219
+      },
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "action-progress",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/action-progress.dark.png",
+      "clip": {
+        "x": 0,
+        "y": 250,
+        "width": 1280,
+        "height": 219
+      },
+      "error": null
+    },
+    {
+      "category": "Feedback",
       "slug": "alert",
       "mode": "light",
       "status": "captured",
       "file": "public/showcase-thumbs/alert.light.png",
       "clip": {
         "x": 384,
-        "y": 254,
+        "y": 243,
         "width": 512,
-        "height": 211
+        "height": 233
       },
       "error": null
     },
@@ -3290,9 +3508,9 @@
       "file": "public/showcase-thumbs/alert.dark.png",
       "clip": {
         "x": 384,
-        "y": 254,
+        "y": 243,
         "width": 512,
-        "height": 211
+        "height": 233
       },
       "error": null
     },
@@ -3396,6 +3614,34 @@
       "status": "captured",
       "file": "public/showcase-thumbs/progress-widget.dark.png",
       "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "route-progress",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/route-progress.light.png",
+      "clip": {
+        "x": 0,
+        "y": 288,
+        "width": 1280,
+        "height": 143
+      },
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "route-progress",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/route-progress.dark.png",
+      "clip": {
+        "x": 0,
+        "y": 288,
+        "width": 1280,
+        "height": 143
+      },
       "error": null
     },
     {
@@ -3506,6 +3752,24 @@
         "width": 376,
         "height": 391
       },
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "sticky-notice-bar",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/sticky-notice-bar.light.png",
+      "clip": null,
+      "error": null
+    },
+    {
+      "category": "Feedback",
+      "slug": "sticky-notice-bar",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/sticky-notice-bar.dark.png",
+      "clip": null,
       "error": null
     },
     {
@@ -3698,9 +3962,9 @@
       "file": "public/showcase-thumbs/desktop-page-header.light.png",
       "clip": {
         "x": 0,
-        "y": 281,
+        "y": 278,
         "width": 1280,
-        "height": 157
+        "height": 164
       },
       "error": null
     },
@@ -3712,9 +3976,9 @@
       "file": "public/showcase-thumbs/desktop-page-header.dark.png",
       "clip": {
         "x": 0,
-        "y": 281,
+        "y": 278,
         "width": 1280,
-        "height": 157
+        "height": 164
       },
       "error": null
     },
@@ -3809,7 +4073,7 @@
       "clip": {
         "x": 457,
         "y": 310,
-        "width": 365,
+        "width": 366,
         "height": 100
       },
       "error": null
@@ -3823,7 +4087,7 @@
       "clip": {
         "x": 457,
         "y": 310,
-        "width": 365,
+        "width": 366,
         "height": 100
       },
       "error": null
@@ -3982,9 +4246,9 @@
       "file": "public/showcase-thumbs/tabs.light.png",
       "clip": {
         "x": 408,
-        "y": 153,
+        "y": 146,
         "width": 464,
-        "height": 414
+        "height": 428
       },
       "error": null
     },
@@ -3996,9 +4260,9 @@
       "file": "public/showcase-thumbs/tabs.dark.png",
       "clip": {
         "x": 408,
-        "y": 153,
+        "y": 146,
         "width": 464,
-        "height": 414
+        "height": 428
       },
       "error": null
     },
@@ -4312,9 +4576,9 @@
       "file": "public/showcase-thumbs/onboarding-flow.light.png",
       "clip": {
         "x": 352,
-        "y": 124,
+        "y": 113,
         "width": 576,
-        "height": 472
+        "height": 493
       },
       "error": null
     },
@@ -4326,10 +4590,28 @@
       "file": "public/showcase-thumbs/onboarding-flow.dark.png",
       "clip": {
         "x": 352,
-        "y": 124,
+        "y": 113,
         "width": 576,
-        "height": 472
+        "height": 493
       },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "place-panel",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/place-panel.light.png",
+      "clip": "docs-preview-surface",
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "place-panel",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/place-panel.dark.png",
+      "clip": "docs-preview-surface",
       "error": null
     },
     {
@@ -4340,9 +4622,9 @@
       "file": "public/showcase-thumbs/popover.light.png",
       "clip": {
         "x": 384,
-        "y": 277,
+        "y": 267,
         "width": 512,
-        "height": 166
+        "height": 186
       },
       "error": null
     },
@@ -4354,9 +4636,37 @@
       "file": "public/showcase-thumbs/popover.dark.png",
       "clip": {
         "x": 384,
-        "y": 277,
+        "y": 267,
         "width": 512,
-        "height": 166
+        "height": 186
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "progress-dialog",
+      "mode": "light",
+      "status": "captured",
+      "file": "public/showcase-thumbs/progress-dialog.light.png",
+      "clip": {
+        "x": 0,
+        "y": 25,
+        "width": 1280,
+        "height": 670
+      },
+      "error": null
+    },
+    {
+      "category": "Overlay",
+      "slug": "progress-dialog",
+      "mode": "dark",
+      "status": "captured",
+      "file": "public/showcase-thumbs/progress-dialog.dark.png",
+      "clip": {
+        "x": 0,
+        "y": 25,
+        "width": 1280,
+        "height": 670
       },
       "error": null
     },
