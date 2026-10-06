@@ -79,7 +79,7 @@ const CollapsiblePanelToggle = React.forwardRef<
                 tooltipSide={config.tooltipSide}
                 tooltipCloseOnPress
                 className={cn(
-                    "h-10 w-10 rounded-full border-border bg-background text-muted-foreground shadow-md ring-1 ring-border/70 transition-[background-color,color,box-shadow,transform] duration-200 ease-out hover:bg-background hover:text-foreground motion-reduce:transition-none",
+                    "h-10 w-10 rounded-full border-border bg-background text-muted-foreground ring-1 ring-border/70 transition-[background-color,color,box-shadow,transform] duration-200 ease-out hover:bg-background hover:text-foreground motion-reduce:transition-none",
                     className
                 )}
                 {...props}

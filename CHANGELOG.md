@@ -11,6 +11,31 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 
+> 次の版は `0.1.0-beta.4` の予定（見た目の変更＝docs/versioning.md の規則1で `beta.(N+1)`）。**破壊的変更なし**。公開 API（部品・props・export・トークン名）の削除・改名もない。
+
+### 採用先向けの要約（見た目が変わるもの）
+
+GunjoUI の見た目を、デザイン言語の原則7本（[DESIGN.md](./DESIGN.md) の「Design Language」・#1042）に沿わせた。方向は「紙と墨」。コードを直さなくても、依存を上げると**画面の見た目が変わる**。上げたあとに一度目で確かめてほしい点は次の6つ。
+
+1. **中立色を「紙と墨」に**（P3）— light の地 `--background` が淡い灰青 `210 40% 96%`（#f1f5f9）から鳥の子 `43 41% 90%`（#F0EADB）に、文字 `--foreground` が墨 `229 29% 11%`（#141724）に。`--card`・`--popover` はほぼ白の暖色（#FCFCFA・#FDFDFC）、`--secondary`・`--muted`・`--border`・`--input`・`--muted-foreground` も暖色に寄せた。dark は地が墨 `228 22% 7%`、文字が生成り `40 20% 90%`（shadcn/ui の slate と同じ値だったものを離した）。
+2. **主色を `DESIGN.md` の群青に**（P1）— `--primary` `220 62% 49%`（#2F63CA）→ `232 39% 49%`（#4D5AAF）。`--primary-strong`・`--primary-subtle`・`--primary-border`・`--ring` も同じ色相に。dark は `232 55% 72%`。
+3. **静止した面の影をなくした**（P5）— `--shadow-sm`・`--shadow`・`--shadow-inner` が透明（`0 0 #0000`）に。`Card` など `shadow-sm` を付けた面は、影ではなく地との濃淡だけで区切られる。浮くもの（`md` 以上＝ダイアログ・メニュー・ツールチップ）の影は残し、色を黒から墨寄りの茶に変えた。あわせて `CollapsiblePanelToggle`・`DeviceFrame` の影を外した。
+4. **角丸を 2px にそろえた**（P6）— `--radius` `0.5rem` → `0.125rem`。`rounded-lg` は 2px、`rounded-md`・`rounded-sm` は 0 になる。⚠️ `src/globals.css` で `--radius-xl`・`--radius-2xl`・`--radius-3xl` も 2px にしたので、**採用先の画面の `rounded-xl` などの Tailwind の既定の段も 2px になる**。
+5. **数字を等幅に**（P7）— `body` に `font-variant-numeric: tabular-nums` を入れた。表や件数の桁がそろう。文中で比例数字に戻すときは `proportional-nums` を付ける。
+6. **淡色の面と、いくつかの部品の面**（地を濃くしたことに合わせた）— light の `--*-subtle` 5つ（primary・info・success・warning・destructive）を、地より明るい側（地とカードの間）へ動かした。`PlacePanel` の面を `bg-card` から浮く面の `bg-popover` に、`WeekView` の今日の列を `bg-primary/5` から `bg-card` に、`LineageGraph` の primary の節の中の secondary の札をカードの色に、`HeatmapChart`・`RetentionCohortCard` の値の札の角を `rounded-sm` にした。
+
+- **前の見た目に戻したい場合**：トークン名は変えていないので、採用先の CSS で `:root { --background: 210 40% 96%; --primary: 220 62% 49%; --radius: 0.5rem; }` のように変数を上書きすれば戻る（影は `--shadow-sm` などを、数字は `body { font-variant-numeric: normal; }` を上書き）。
+- **書体は変わらない**：明朝の見出し（Shippori Mincho）・和文の本文（Noto Sans JP）・段落の行送り 1.9 は gunjo.jp のサイトの組み方（`app/globals.css`）で、`@gunjo/ui` の配布物には入っていない。同じ組みにするときは DESIGN.md の 3.3 の並びを自分の CSS に書く。
+- **自社の採用先で見るところ**（2026-10-07 に各リポの `app/globals.css` と `package.json` を確認）：
+  - **4px-hq-dashboard**（`^0.1.0-beta.3`＝beta.4 を自動で拾う・`@gunjo/ui/styles` を読む）— 地・文字・主色・角丸・影がすべて変わる。`body` の書体と行送りは自前で指定しているので変わらない。`theme.css` で上書きしている値があれば、そちらが勝つ。
+  - **design-qa**（`^0.0.1-alpha.2` に固定）— 版を上げるまでは変わらない。上げると、自前で上書きしている `--primary` 系（UIXHERO の紺）は残り、上書きしていない地・面・角丸・影・数字が変わる。
+  - **uixhero**（`~/dev/uixhero`）— `@gunjo/ui` の参照が見つからなかった＝影響なし。
+
+### Changed
+
+- **デザイン言語の物差しを落とす形に**（影響: **none**）— CI の `design:verify:design-language` を `--strict` にした。5画面（トップ・`/docs/introduction`・`/docs/components/data-table`・`/showcase`・`/patterns/dashboard/overview`）× 明暗で原則7本のどれかを割ると落ちる。(#1042)
+- `scripts/design-sync/sync-tokens.mjs` の `--muted-foreground` の固定値（`215 20% 40%`）をやめ、`design/tokens.pen` の値（#5B544D）を使うようにした。(#1042)
+
 ## [0.1.0-beta.3] — 2026-09-25
 
 > `0.1.0-beta.2` 以降の変更。**構造変更を要する破壊的変更（breaking）なし**。公開 API（部品・props・export・トークン名）の削除・改名もない。新しい部品と props はすべて opt-in（影響: none）。影響 **minor** は左端の色帯をやめた4部品（公開 API は不変）。

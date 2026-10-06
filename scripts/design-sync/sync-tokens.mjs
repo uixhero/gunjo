@@ -48,9 +48,10 @@ const VAR_MAP = {
   "ease-in-out": "ease-in-out",
 };
 
+// muted-foreground は tokens.pen の値（墨の控えめな文字 #5B544D）をそのまま使う。
+// 2026-10-07 までは pen の slate-500 では AA に届かないので 215 20% 40% に固定していた（#1042）。
 const TOKEN_OVERRIDES = {
   destructive: "0 72% 51%",
-  "muted-foreground": "215 20% 40%",
 };
 
 function resolveCssVars(variables) {

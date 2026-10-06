@@ -367,7 +367,7 @@ export function BannalyzeTemplateDemo({ className }: { className?: string }) {
                 }
             >
                 {/* Main Canvas Area */}
-                <div className="flex flex-col h-full bg-muted/80">
+                <div className="flex flex-col h-full bg-muted">
                     <div className="flex-1 relative overflow-hidden flex items-center justify-center p-8 bg-dot-pattern">
                         {/* Canvas Image Container */}
                         <div

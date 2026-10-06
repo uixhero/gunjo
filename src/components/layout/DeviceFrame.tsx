@@ -60,7 +60,7 @@ interface DeviceFrameClassNames {
 const variantClasses: Record<DeviceFrameVariantKey, DeviceFrameClassNames> = {
     default: {
         root: "p-0",
-        shell: "overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-2xl",
+        shell: "overflow-hidden rounded-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card",
         chrome: "border-b border-b-transparent contrast-more:border-b-border forced-colors:border-b-[CanvasText] bg-muted",
         url: "border-border/40 bg-background/60 focus-within:border-primary focus-within:ring-primary-border",
         viewportActive: "bg-foreground/10 text-foreground",
@@ -68,7 +68,7 @@ const variantClasses: Record<DeviceFrameVariantKey, DeviceFrameClassNames> = {
     },
     windows11: {
         root: "p-0",
-        shell: "overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card shadow-xl",
+        shell: "overflow-hidden rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card",
         chrome: "border-b border-b-transparent contrast-more:border-b-border forced-colors:border-b-[CanvasText] bg-background",
         url: "border-border/70 bg-muted/50 focus-within:border-primary focus-within:ring-primary-border",
         viewportActive: "bg-primary-subtle text-primary-subtle-foreground",

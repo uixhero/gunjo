@@ -51,9 +51,12 @@ export interface LineageGraphProps extends Omit<React.HTMLAttributes<HTMLDivElem
 // （と muted）の上では面と同じ明るさになる（dark の info 1.039・light の
 // warning 1.036 等・#1029）。調子の面の中では地の色に沈める。
 const NESTED_SINK = "[&_.bg-secondary]:bg-background"
+// primary の面（カードの上の群青 10%）は、light では地とほぼ同じ明るさになる
+// （鳥の子の地・#1042 で 1.004）。ここだけはカードの色に浮かせる。
+const NESTED_LIFT = "[&_.bg-secondary]:bg-card"
 const NODE_TONE: Record<LineageNodeTone, string> = {
     default: "bg-card border-border",
-    primary: `bg-primary/10 border-primary/40 ${NESTED_SINK}`,
+    primary: `bg-primary/10 border-primary/40 ${NESTED_LIFT}`,
     info: `bg-info-subtle border-info-border ${NESTED_SINK} [&_.bg-info-subtle]:bg-background`,
     success: `bg-success-subtle border-success-border ${NESTED_SINK} [&_.bg-success-subtle]:bg-background`,
     warning: `bg-warning-subtle border-warning-border ${NESTED_SINK} [&_.bg-warning-subtle]:bg-background`,

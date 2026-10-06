@@ -220,7 +220,7 @@ const WeekView = React.forwardRef<HTMLDivElement, WeekViewProps>(
                                 key={d.key}
                                 className={cn(
                                     "flex flex-col items-center gap-0.5 border-r border-border px-1 py-1.5 text-center last:border-r-0",
-                                    d.isToday && "bg-primary/5"
+                                    d.isToday && "bg-card"
                                 )}
                             >
                                 <span className="text-xs text-muted-foreground">{d.weekday}</span>
@@ -262,7 +262,7 @@ const WeekView = React.forwardRef<HTMLDivElement, WeekViewProps>(
                             return (
                                 <div
                                     key={d.key}
-                                    className={cn("relative border-r border-border last:border-r-0", d.isToday && "bg-primary/5")}
+                                    className={cn("relative border-r border-border last:border-r-0", d.isToday && "bg-card")}
                                     style={{ height: gridHeight }}
                                 >
                                     {hours.map((h) => (

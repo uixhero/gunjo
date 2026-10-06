@@ -12,6 +12,41 @@
     --container-reading: 1028px;
 }
 
+/* 和文を前提に組む（DESIGN.md「Design Language」P4・issue 1042）。gunjo.jp のサイトの
+   組み方なので、src/globals.css（@gunjo/ui が配布するトークン）には置かない。
+   欧文は Inter、和文は Noto Sans JP（どちらも next/font が自分のオリジンから
+   配信する。app/layout.tsx）。その後ろの名前は、書体の読み込みが終わるまでの
+   つなぎ。font-sans のクラスも同じ並びにする（inline にしないと、body に付いた
+   変数を :root の段で読めずに空になる）。 */
+@theme inline {
+    --font-sans: var(--font-inter), var(--font-noto-sans-jp), "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+}
+
+@layer base {
+    body {
+        font-family: var(--font-inter), var(--font-noto-sans-jp), "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+    }
+}
+
+/* 見出しは明朝、段落の行送りは 1.9（P2・P4）。⚠️ わざと @layer の外に置く＝
+   部品やページが付けた字間・行送りのクラス（tracking-tight・leading-6 など）より
+   後勝ちさせる。和文の段落を欧文の既定（1.43〜1.63）で組ませないため。
+   太さは h1 だけ 700、h2・h3 は 500（明朝の 600 は無いので 700 に寄ってしまう）。 */
+:where(h1, h2, h3) {
+    font-family: var(--font-mincho), "Hiragino Mincho ProN", "Yu Mincho", serif;
+    letter-spacing: 0.02em;
+}
+:where(h1) {
+    font-weight: 700;
+}
+:where(h2, h3) {
+    font-weight: 500;
+}
+:where(p) {
+    line-height: 1.9;
+    letter-spacing: 0.02em;
+}
+
 @layer base {
     .hero-grid {
         background-image:

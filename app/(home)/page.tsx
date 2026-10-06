@@ -271,7 +271,7 @@ export default function Home() {
                     <div className="grid gap-12 lg:grid-cols-[1fr_1fr]">
                         {/* 群青 */}
                         <div className="flex flex-col gap-6">
-                            <div className="gunjo-swatch aspect-[4/3] w-full rounded-2xl shadow-2xl" />
+                            <div className="gunjo-swatch aspect-[4/3] w-full rounded-2xl" />
                             <div className="space-y-2">
                                 <h3
                                     className="text-3xl font-bold tracking-tight"
@@ -289,7 +289,7 @@ export default function Home() {
                         </div>
                         {/* 媚茶 */}
                         <div className="flex flex-col gap-6">
-                            <div className="kobicha-swatch aspect-[4/3] w-full rounded-2xl shadow-xl" />
+                            <div className="kobicha-swatch aspect-[4/3] w-full rounded-2xl" />
                             <div className="space-y-2">
                                 <h3
                                     className="text-3xl font-bold tracking-tight"

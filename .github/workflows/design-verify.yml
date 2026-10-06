@@ -396,15 +396,17 @@ jobs:
 
       # Design-language gate (#1042) — the 7 principles in DESIGN.md
       # ("Design Language"), measured on the 5 judged screens × light / dark
-      # from the build output. Report only for now (main is 0 / 7); the PR that
-      # brings it to 7 / 7 adds --strict so a regression fails the build. The
+      # from the build output. Strict since the screens reached 7 / 7: a static
+      # shadow, a third corner radius, a slate-like neutral, a token primary
+      # that drifts from the declared gunjo, untabulated digits, tight Japanese
+      # paragraphs or a first view without a gunjo origin fails the build. The
       # self-test first proves each detector tells the failing form (the
       # 2026-10-06 values) from the passing one.
       - name: Design language self-test
         run: npm run design:verify:design-language:self-test
 
-      - name: Design language (5 screens, light / dark — report only)
-        run: npm run design:verify:design-language -- --out=artifacts/design-language.json
+      - name: Design language (5 screens, light / dark)
+        run: npm run design:verify:design-language -- --strict --out=artifacts/design-language.json
 
       - name: Upload design language report
         if: always()

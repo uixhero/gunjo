@@ -213,7 +213,7 @@ const RetentionCohortCard = React.forwardRef<
                         <span
                             className="absolute inset-0 z-10 flex items-center justify-center px-0.5 text-center text-foreground"
                         >
-                            <span className="max-w-full truncate rounded-[3px] bg-background/75 px-1 shadow-sm">
+                            <span className="max-w-full truncate rounded-sm bg-background/75 px-1">
                                 {formatValue(rawValue)}
                             </span>
                         </span>

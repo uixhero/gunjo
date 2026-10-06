@@ -173,7 +173,7 @@ export function MediaLightboxAuditDemo({
     const isJa = locale === "ja";
 
     return (
-        <PreviewViewport height={700} fillHeight className="bg-muted/30">
+        <PreviewViewport height={700} fillHeight className="bg-muted/40">
             {(container) => (
                 <div className="flex h-full min-h-0 flex-col items-center justify-center gap-4 p-6">
                     <div className="grid w-full max-w-sm gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 shadow-sm">
@@ -239,7 +239,7 @@ export function MediaPickerDialogAuditDemo({
     const items = variant === "empty" ? [] : mediaAssets;
     const multiSelect = variant !== "single";
     return (
-        <PreviewViewport height={620} fillHeight className="bg-muted/30">
+        <PreviewViewport height={620} fillHeight className="bg-muted/40">
             {(container) => (
                 <div className="flex min-h-full flex-col items-center justify-center gap-4 p-6">
                     <div className="w-full max-w-md rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-4 shadow-sm">
@@ -306,7 +306,7 @@ export function ModalAuditDemo({
     const previewHeight = isTabs ? 480 : 380;
 
     return (
-        <PreviewViewport height={previewHeight} fillHeight className="bg-muted/30">
+        <PreviewViewport height={previewHeight} fillHeight className="bg-muted/40">
             {(container) => (
                 <div className="flex h-full min-h-0 items-center justify-center p-6">
                     <Button type="button" variant={isDestructive ? "destructive" : "outline"} onClick={() => setOpen(true)}>
@@ -711,7 +711,7 @@ export function ShareModalAuditDemo({
     variant?: "default" | "private" | "stats";
 }) {
     return (
-        <PreviewViewport height={520} fillHeight className="bg-muted/30">
+        <PreviewViewport height={520} fillHeight className="bg-muted/40">
             {(container) => (
                 <ToastProvider
                     labels={{ close: locale === "ja" ? "閉じる" : "Close" }}
@@ -841,7 +841,7 @@ export function SheetAuditDemo({
     // header and footer. (#293)
     if (variant === "scroll") {
         return (
-            <PreviewViewport height={520} fillHeight className="bg-muted/30">
+            <PreviewViewport height={520} fillHeight className="bg-muted/40">
                 {(container) => (
                     <div className="flex h-full min-h-0 items-center justify-center p-6">
                         <Sheet>
@@ -885,7 +885,7 @@ export function SheetAuditDemo({
     }
 
     return (
-        <PreviewViewport height={520} fillHeight className="bg-muted/30">
+        <PreviewViewport height={520} fillHeight className="bg-muted/40">
             {(container) => (
                 <div className="flex h-full min-h-0 items-center justify-center p-6">
                     <Sheet>

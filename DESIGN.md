@@ -56,7 +56,7 @@ GunjoUI の見た目は、次の7本の原則で判定する（2026-10-07 決定
 
 - **判定する画面**：トップ `/`・`/docs/introduction`・`/docs/components/data-table`・`/showcase`・`/patterns/dashboard/overview`。5画面で 7/7 になったら、1.0 の条件（[#1040](https://github.com/uixhero/gunjo/issues/1040)）の「見た目」は完成。
 - **方向**：案1「紙と墨」。light の地は鳥の子 `44 42% 90%`（`#F0EADB`）。
-- **動かし方**：`npm run build` のあとで `npm run design:verify:design-language`（ビルドを `next start` して10回読み込む）。`-- --strict` を付けると 7/7 でないときに落ちる。`-- --self-test` は、原則ごとの「落ちる形」と「通る形」を検出器が見分けられるかの自己テスト。⛔ 本番（www.gunjo.jp）には向けない。
+- **動かし方**：`npm run build` のあとで `npm run design:verify:design-language`（ビルドを `next start` して10回読み込む）。`-- --strict` を付けると 7/7 でないときに落ちる（CI は `--strict` で回す＝5画面が 7/7 になった #1042 から）。`-- --self-test` は、原則ごとの「落ちる形」と「通る形」を検出器が見分けられるかの自己テスト。⛔ 本番（www.gunjo.jp）には向けない。
 - ⚠️ P2 の「出自」は、いま GunjoUI にある要素から選んだもの。新しい固有の要素（独自のアイコンや図版など）を足すときは、検出の条件も足す。
 - ⚠️ P3 の「既製の色」は Tailwind の slate と shadcn/ui の中立色だけ。zinc・gray・stone とは比べていない。
 
@@ -72,7 +72,7 @@ GunjoUI の見た目は、次の7本の原則で判定する（2026-10-07 決定
 - **Primary subtle**: `--primary-subtle` / `--primary-subtle-foreground`。淡い選択面、インライン通知、補助ハイライト。
 - **Primary strong**: `--primary-strong` / `--primary-strong-foreground`。主要 CTA と強い実行操作。
 - **Primary border**: `--primary-border`。淡色面の枠線や選択境界。
-- **Primary Dark mode** (`#6571BD` 相当): `hsl(232 47% 65%)`。暗背景上での視認性のため少しライトに。
+- **Primary Dark mode** (`#909BDF` 相当): `hsl(232 55% 72%)`。墨の地（`#0E0F16`）の上での視認性のため明るくした群青。
 
 **補足（デフォルト Button）**: `src/components/inputs/ButtonVariants.ts` の `default` variant は互換性のため **`bg-foreground`（前景＝ほぼ黒）** を維持する。群青 CTA は `variant="primary"` を使う。
 
@@ -106,14 +106,17 @@ Semantic 色は `primary / info / success / warning / destructive` の各色に�
 
 ### Neutral（ニュートラル）
 
-- **Text Primary** (`#020817`): `hsl(222.2 84% 4.9%)`（`--foreground`）。
-- **Text Secondary** (`#526070` 相当): `hsl(215 20% 40%)`（`--muted-foreground`）。淡い面の上でも AA を満たす補助テキスト。
-- **Text Disabled**: 単色トークンはなく、`disabled:opacity-50` 等で **前景色の 50% 不透明度** が一般的。
-- **Border** (`#e2e8f0`): `hsl(214.3 31.8% 91.4%)`（`--border` / `--input` の基準）。
-- **Background** (`#ffffff`): `hsl(0 0% 100%)`（`--background`）。
-- **Surface** (`#ffffff`): カード・ポップオーバー背景は `hsl(0 0% 100%)`（`--card` / `--popover`）。テキストはいずれも `--card-foreground` 等で `--foreground` と同系の濃色。
+中立色は案1「紙と墨」（2026-10-07・Design Language の P3）。light は鳥の子の地に墨の文字、dark は墨の地に生成りの文字。どれも Tailwind slate・shadcn/ui の中立色と ΔE2000 3 以上離してある。
 
-**Surface 上のテキスト補足**: `--primary-foreground` は `hsl(210 40% 98%)` → 実効 **`#f8fafc`**（プライマリ色の上に載せるライト文字）。
+- **Text Primary** (`#141724`・墨): `hsl(229 29% 11%)`（`--foreground`）。dark は `#EBE7E0`（`hsl(40 20% 90%)`）。
+- **Text Secondary** (`#5B544D`): `hsl(30 8% 33%)`（`--muted-foreground`）。淡い面（`--muted`）の上でも AA を満たす補助テキスト。dark は `#B1AAA0`（`hsl(35 10% 66%)`）。
+- **Text Disabled**: 単色トークンはなく、`disabled:opacity-50` 等で **前景色の 50% 不透明度** が一般的。
+- **Border** (`#D5CEC2`): `hsl(38 18% 80%)`（`--border`）。平常時は面で区切るので、部品の枠は透明（ハイコントラストで戻る）。
+- **Input** (`#7F756C`): `hsl(28 8% 46%)`（`--input`）。入力欄の縁。どの面の上でも 3:1 以上。
+- **Background** (`#F0EADB`・鳥の子): `hsl(43 41% 90%)`（`--background`）。Design QA の紙 `#F5F3EF` と ΔE2000 5.35 離した地。dark は墨 `#0E0F16`（`hsl(228 22% 7%)`）。
+- **Surface** (`#FCFCFA`): カード背景は `hsl(60 25% 98%)`（`--card`）、ポップオーバーは `#FDFDFC`（`--popover`）。地との段差だけで区切る。dark のカードは `#21242E`（`hsl(228 16% 15.5%)`）。
+
+**Surface 上のテキスト補足**: `--primary-foreground` は `hsl(40 27% 98%)` → 実効 **`#FBFAF8`**（群青の上に載せるライト文字）。
 
 ---
 
@@ -121,8 +124,9 @@ Semantic 色は `primary / info / success / warning / destructive` の各色に�
 
 ### 3.1 和文フォント
 
-- **ゴシック体**: ベースは Next.js の **Inter**（下記）。和字は Inter に含まれないため、ブラウザが **OS の sans-serif フォールバック**（例: ヒラギノ角ゴ、游ゴシック、Noto Sans CJK 系）を割り当てる。
-- **明朝体**（使用する場合）: Gunjo UI の `app/layout.tsx` では未指定。必要なら別途 `font-serif` またはフォントファイルを追加する。
+- **ゴシック体（本文）**: **Noto Sans JP**。gunjo.jp では `next/font/google` で取り込み、自分のオリジンから配信する（CSP `font-src 'self'` のまま読める）。欧文は Inter が先に当たり、和字だけが Noto Sans JP に落ちる。
+- **明朝体（見出し）**: **Shippori Mincho**。gunjo.jp の `h1`〜`h3` はすべて明朝（Design Language の P2）。h1 は 700、h2・h3 は 500、字間 0.02em。
+- ⚠️ 書体の並びと見出しの明朝は gunjo.jp のサイトの組み方（`app/globals.css`）で、`@gunjo/ui` の配布物（`dist/globals.css`）には入っていない。採用先で同じ組みにするときは、下の 3.3 の並びを自分の CSS に書く。
 
 ### 3.2 欧文フォント
 
@@ -132,18 +136,21 @@ Semantic 色は `primary / info / success / warning / destructive` の各色に�
 
 ### 3.3 font-family 指定
 
-`app/layout.tsx` より、実装は Inter のクラスを `body` に適用:
+`app/layout.tsx` で読み込んだ書体を、`app/globals.css` の `body` で並べる:
 
 ```css
-/* 本文 — Next/font が生成するクラス内（概略） */
-font-family: __Inter_, __Inter_Fallback_, system-ui, sans-serif;
+/* 本文 */
+font-family: var(--font-inter), var(--font-noto-sans-jp), "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", Meiryo, sans-serif;
+
+/* 見出し（h1〜h3） */
+font-family: var(--font-mincho), "Hiragino Mincho ProN", "Yu Mincho", serif;
 
 /* 等幅（Tailwind font-mono 利用時のイメージ） */
 font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 ```
 
 **フォールバックの考え方**:
-- 和文は Inter の外なので **OS/ブラウザのゴシック** に落ちる。日本語品質を固定したい場合は **Noto Sans JP を明示追加**を推奨（現在のライブラリ単体の既定では未導入）。
+- 和文は Inter の外なので Noto Sans JP に落ちる。Noto Sans JP の読み込みが終わるまでは、ヒラギノ角ゴ・游ゴシック・メイリオがつなぐ。
 - `body` には `antialiased` が付与されている（グレースケール Antialiasing）。
 
 ### 3.4 文字サイズ・ウェイト階層
@@ -163,7 +170,7 @@ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
 ### 3.5 行間・字間
 
-- **本文の行間 (line-height)**: 見本段落は `leading-7`（**1.75rem / 28px @16px**）。
+- **本文の行間 (line-height)**: gunjo.jp の段落（`p`）は **1.9**、字間 **0.02em**（Design Language の P4＝和文20字以上の段落は 1.7 以上）。部品やページの `leading-*` より後勝ちさせてある（`app/globals.css`）。
 - **見出しの行間**: Tailwind の見出しユーティリティ既定。`CardTitle` は `leading-none`（**1**）。
 - **本文の字間 (letter-spacing)**: 明示なし（`0`）。見出しは `tracking-tight`（**-0.025em**）。
 - **見出しの字間**: `tracking-tight`。
@@ -189,7 +196,9 @@ line-break: strict;
 
 ### 3.7 OpenType 機能
 
-グローバルでは未設定。必要に応じて:
+**数字は等幅（`tabular-nums`）が既定**（Design Language の P7）。`@gunjo/ui` の `body` に `font-variant-numeric: tabular-nums` を入れてある。文中で比例数字に戻すときは `proportional-nums` のクラスを付ける。
+
+そのほかの機能はグローバルでは未設定。必要に応じて:
 
 ```css
 font-feature-settings: "palt" 1;
@@ -212,19 +221,19 @@ text-orientation: mixed;
 
 ### Buttons
 
-`src/components/inputs/ButtonVariants.ts` より（`--radius` = **0.5rem / 8px**）。
+`src/components/inputs/ButtonVariants.ts` より（`--radius` = **0.125rem / 2px**）。
 
 **Default（互換維持の強い標準操作）**
 
-- Background: `hsl(var(--foreground))` → **`#020817`**
-- Text: `hsl(var(--primary-foreground))` → **`#f8fafc`**
+- Background: `hsl(var(--foreground))` → **`#141724`**（墨）
+- Text: `hsl(var(--primary-foreground))` → **`#FBFAF8`**
 - Hover: `bg-foreground/90`（**90% 不透明度**）
 - Padding: `0.5rem 1rem`（**8px 16px**, `py-2 px-4`）
-- Border Radius: **`8px`**（`rounded-[var(--radius)]`）
+- Border Radius: **`2px`**（`rounded-[var(--radius)]`）
 - Font Size: **`14px`**（`text-sm`）
 - Font Weight: **`500`**（`font-medium`）
 - Height: **`36px`**（`h-9`）
-- Shadow: **`var(--shadow)`**（`shadow` クラス）
+- Shadow: **なし**（`shadow` クラスは残っているが、`--shadow` は透明＝Design Language の P5）
 - Focus: `ring-1` `ring` = `--ring`（プライマリと同色トーン）
 
 **Primary / semantic variants**
@@ -237,16 +246,16 @@ text-orientation: mixed;
 
 **Secondary（outline ではなく `secondary` variant）**
 
-- Background: **`#f1f5f9`**（`--secondary`）
-- Text: **`#0f172a`**（`--secondary-foreground`）
-- Padding / Radius / Font: Default と同系（`shadow-sm`）
+- Background: **`#E6E0D4`**（`--secondary`）
+- Text: **`#141724`**（`--secondary-foreground`）
+- Padding / Radius / Font: Default と同系
 
 **Secondary（`outline` variant — ユーザ文脈のセカンダリに近い）**
 
 - Background: **`transparent`**
-- Text / Border: 境界 **`#e2e8f0`**（`border-border`）
-- Hover: `bg-muted`（**`#f1f5f9`**）、文字は foreground
-- Padding: 同上、`shadow-sm`
+- Text / Border: 境界 **`#D5CEC2`**（`border-border`）
+- Hover: `bg-muted`（**`#DFD9CB`**）、文字は foreground
+- Padding: 同上
 
 ### Inputs
 
@@ -256,7 +265,7 @@ text-orientation: mixed;
 - Border: **`1px solid #e5e7eb`**（`border-gray-200`）
 - Border (dark): **`1px solid #1f2937`**（`dark:border-gray-800`）
 - Border (focus ring): **`1px solid #030712`**（`focus-visible:ring-gray-950`、実質リング）
-- Border Radius: **`0.375rem` / 6px**（`rounded-md` — `calc(var(--radius) - 2px)`）
+- Border Radius: **`0`**（`rounded-md` — `calc(var(--radius) - 2px)`。`--radius` が 2px なので 0 になる）
 - Padding: **`0.25rem 0.75rem`**（`py-1 px-3`）
 - Font Size: **`14px`**（`text-sm`）
 - Height: **`36px`**（`h-9`）
@@ -267,11 +276,11 @@ text-orientation: mixed;
 
 `src/components/display/Card.tsx` より。
 
-- Background: **`#ffffff`**（`bg-card`）
-- Border: **`1px solid #e2e8f0`（相当）**（`border` → `border-border`）
-- Border Radius: **`0.5rem` / 8px**（`rounded-lg` = `var(--radius)`）
+- Background: **`#FCFCFA`**（`bg-card`）
+- Border: **透明の 1px**（`border-transparent`。ハイコントラストで `border-border` に戻る）。区切りは地 `#F0EADB` との段差
+- Border Radius: **`0.125rem` / 2px**（`rounded-lg` = `var(--radius)`）
 - Padding: **ヘッダー・フッター `24px`（`p-6`）**、コンテンツは `p-6 pt-0`
-- Shadow: **`0 1px 2px 0 rgb(0 0 0 / 0.05)`**（`shadow-sm` → `--shadow-sm`）
+- Shadow: **なし**（`shadow-sm` → `--shadow-sm` は透明）
 
 ---
 
@@ -305,10 +314,23 @@ text-orientation: mixed;
 
 ## 6. Depth & Elevation
 
-`app/globals.css` の `--shadow-*`（ライト）＝ `app/docs/shadows/page.tsx` 記載と一致。
+`src/globals.css` の `--shadow-*`（元は `design/tokens.pen`）。**影は浮くものだけに付ける**（Design Language の P5）＝静止した面（カード・ボタン・入力欄・枠の中の面）の段は透明で、区切りは面の濃淡が作る。
 
-| Level | Shadow | 用途 |
+| Level | Shadow（light） | 用途 |
 |-------|--------|------|
+| none | `none` | フラット |
+| sm | `0 0 #0000`（透明） | 静止した面。クラスは残してあるが影は出ない |
+| 1 (base) | `0 0 #0000`（透明） | 同上 |
+| 2 (md) | `0 2px 10px -2px hsl(30 20% 20% / 0.12)` | ドロップダウン・ツールチップ |
+| 3 (lg) | `0 8px 24px -8px hsl(30 20% 20% / 0.18)` | ポップオーバー・メニュー |
+| 4 (xl) | `0 12px 32px -10px hsl(30 20% 20% / 0.2)` | ダイアログ |
+| 5 (2xl) | `0 20px 48px -16px hsl(30 20% 20% / 0.25)` | 強い浮遊 |
+| inner | `0 0 #0000`（透明） | へこみ表現は使わない |
+
+- 透明の段を `none` ではなく `0 0 #0000` にしているのは、`ring-*`（フォーカスの輪）と同じ `box-shadow` に重ねたときに、輪まで消えないようにするため（`none` は重ねると宣言ごと無効になる）。
+- 影の色は黒ではなく、墨に寄せた茶（`hsl(30 20% 20%)`）。dark は同じ形で `hsl(228 40% 2% / 0.5〜0.7)`。
+
+-------|--------|------|
 | none | `none` | フラット |
 | sm | `0 1px 2px 0 rgb(0 0 0 / 0.05)` | カード、小さな浮き |
 | 1 (base) | `0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)` | ボタン等 `shadow` |
@@ -329,7 +351,8 @@ text-orientation: mixed;
 - 色・余白・影は **`hsl(var(--...))` と Tailwind のセマンティッククラス**（`bg-background`, `text-foreground`, `border-border`）を優先し、`app/globals.css` と乖離しないようにする。
 - フォーカス可視化は **`focus-visible:ring-*` と `ring` トークン**に揃える（アクセシビリティ）。
 - アイコンのみのボタン、コンパクトなアイコンボタン、UI 状態を切り替えるボタンには **GunjoUI の `TooltipButton`** を優先して使い、`aria-label` と同じ意味を伝える。ボタン以外をトリガーにする場合は `Tooltip` / `TooltipTrigger` / `TooltipContent` を compose する。
-- 角丸はコンポーネントに合わせ **`rounded-md`（6px）と `rounded-lg`（8px）**を使い分ける（入力は md、カードは lg）。
+- 角丸は **2種類まで**（Design Language の P6）。`rounded-lg`・`rounded-xl`・`rounded-2xl`・`rounded-3xl` は 2px、`rounded-md`・`rounded-sm` は 0。値を直書きした角丸（`rounded-[3px]` のような任意値）を足さない。
+- 影は **浮くもの（ダイアログ・メニュー・ツールチップ）だけ**（P5）。カード・ボタン・枠の中の面には付けず、地との段差で区切る。
 - 日本語の長文では **行間を広め**（例: `leading-7` 以上）に保つ。
 - コントラストは WCAG AA を意識し、**補助テキストは `muted-foreground`** を使う。
 
@@ -338,7 +361,7 @@ text-orientation: mixed;
 - **デフォルト Button が `--primary` ではない**ことを誤解しない。青い CTA は `variant="primary"` を使う。
 - Input は `border-input` / `ring-ring` / `aria-invalid:border-destructive-border` に揃える。
 - 日本語本文に **`leading-none` を本文ブロックに流用**しない（`CardTitle` 専用の短い見出し向け）。
-- **純黒 `#000000` 一色**を背景・文字に使わない（Gunjo は **`#020817` 系の foreground**）。
+- **純黒 `#000000` 一色**を背景・文字に使わない（Gunjo は **墨 `#141724` の foreground**）。
 - Success/Warning/Info/Destructive を **勝手な hex でばら撒かない**。文字を載せる面は `*-subtle`、強い操作は `*-strong`、枠線は `*-border` を使う。
 
 ---

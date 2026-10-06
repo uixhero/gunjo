@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Shippori_Mincho } from "next/font/google";
+import { Inter, Noto_Sans_JP, Shippori_Mincho } from "next/font/google";
 import "./globals.css";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { SiteFooter } from "@/components/layout/SiteFooter";
@@ -12,7 +12,19 @@ import { ToastProvider, TooltipProvider } from "@gunjo/ui";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 
-const inter = Inter({ subsets: ["latin"] });
+// 本文の書体は「Inter（欧文）→ Noto Sans JP（和文）」の順に並べ、並びそのものは
+// app/globals.css の body で組む（DESIGN.md「Design Language」P4・#1042）。
+// next/font はビルドのときに書体を取り込んで自分のオリジンから配信する＝CSP の
+// font-src 'self' のままで読める（Google Fonts へは読みに行かない）。
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+// Noto Sans JP も CJK なので、明朝と同じ理由で preload を切る（下の注釈）。
+const notoSansJp = Noto_Sans_JP({
+  subsets: ["latin"],
+  weight: "variable",
+  variable: "--font-noto-sans-jp",
+  display: "swap",
+  preload: false,
+});
 // Shippori Mincho is a CJK font: next/font can't subset the kanji, so with
 // preload on it emits a <link rel=preload> for every unicode-range chunk
 // (~244 files, 7.6MB) and the browser downloads them all up front — gating
@@ -58,7 +70,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
       <body
-        className={`${inter.className} ${mincho.variable} antialiased min-h-screen bg-background text-foreground`}
+        className={`${inter.variable} ${notoSansJp.variable} ${mincho.variable} antialiased min-h-screen bg-background text-foreground`}
       >
         <div className="relative flex min-h-screen flex-col">
           <ThemeProvider

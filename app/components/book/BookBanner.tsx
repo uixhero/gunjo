@@ -74,7 +74,7 @@ export function BookBanner({ copy }: { copy: BookPromoStrings }) {
                             height={BOOK_COVER.height}
                             loading="lazy"
                             decoding="async"
-                            className="h-auto w-24 shrink-0 self-start rounded-md shadow-[0_0_8px_hsl(var(--foreground)/0.45),0_6px_14px_-3px_hsl(var(--foreground)/0.28)] dark:shadow-none sm:w-28"
+                            className="h-auto w-24 shrink-0 self-start rounded-md outline outline-1 -outline-offset-1 outline-foreground/15 dark:outline-none sm:w-28"
                         />
 
                         <div className="min-w-0">
