@@ -155,6 +155,8 @@
     "design:verify:input-border": "node scripts/design-verify-input-border.mjs",
     "design:verify:input-border:self-test": "node scripts/design-verify-input-border.mjs --self-test",
     "design:verify:slider-track": "node scripts/design-verify-slider-track.mjs",
+    "design:verify:tabular-nums": "node scripts/design-verify-tabular-nums.mjs",
+    "design:verify:tabular-nums:self-test": "node scripts/design-verify-tabular-nums.mjs --self-test",
     "design:verify:slider-track:self-test": "node scripts/design-verify-slider-track.mjs --self-test",
     "design:verify:app-globals": "node scripts/design-verify-app-globals-sync.mjs",
     "design:verify:generated-stubs": "node scripts/design-verify-generated-stub-coverage.mjs",

@@ -9,7 +9,7 @@ interface CodeBlockProps {
 }
 
 const codeBlockClassName =
-    "min-w-0 max-w-full overflow-hidden rounded-md [&>pre]:!m-0 [&>pre]:w-full [&>pre]:max-w-full [&>pre]:overflow-x-auto [&>pre]:p-4 [&>pre]:text-sm [&>pre]:leading-relaxed [&>pre>code]:inline-block [&>pre>code]:min-w-full";
+    "min-w-0 max-w-full overflow-hidden rounded-md tabular-nums [&>pre]:!m-0 [&>pre]:w-full [&>pre]:max-w-full [&>pre]:overflow-x-auto [&>pre]:p-4 [&>pre]:text-sm [&>pre]:leading-relaxed [&>pre>code]:inline-block [&>pre>code]:min-w-full";
 
 export function CodeBlock({ code, language = "tsx" }: CodeBlockProps) {
     const [html, setHtml] = useState<string>("");

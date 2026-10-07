@@ -20,7 +20,7 @@ const Table = React.forwardRef<
         <table
             ref={ref}
             className={cn(
-                "w-full caption-bottom text-sm",
+                "w-full caption-bottom text-sm tabular-nums",
                 striped && "[&_tbody_tr:nth-child(even)]:bg-muted/25",
                 className
             )}

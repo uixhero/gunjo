@@ -88,7 +88,7 @@ export function PropsTable({ data }: PropsTableProps) {
                     className="w-full overflow-x-auto overflow-y-hidden rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText]"
                     onScroll={updateScrollState}
                 >
-                    <table className="w-full min-w-[860px] table-fixed border-collapse">
+                    <table className="w-full min-w-[860px] table-fixed border-collapse tabular-nums">
                         <colgroup>
                             <col className="w-[180px]" />
                             <col className="w-[360px]" />

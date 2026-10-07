@@ -274,7 +274,7 @@ export function DataTable<TData, TValue>({
     }, [pageCount, pageIndex, table])
 
     return (
-        <div className={cn("w-full space-y-4", className)}>
+        <div className={cn("w-full space-y-4 tabular-nums", className)}>
             {filterColumn ? (
                 <div className="flex items-center">
                     <Input

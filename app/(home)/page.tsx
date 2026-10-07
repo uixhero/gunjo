@@ -612,7 +612,7 @@ function LiveComponentWorkbench({ isJa }: { isJa: boolean }) {
                         </div>
                         <div className="grid gap-3 md:grid-cols-[1fr_auto] md:items-center">
                             <div className="space-y-2">
-                                <div className="flex items-center justify-between gap-3 text-sm">
+                                <div className="flex items-center justify-between gap-3 text-sm tabular-nums">
                                     <span>
                                         {isJa ? "監査進捗" : "Audit progress"}
                                     </span>

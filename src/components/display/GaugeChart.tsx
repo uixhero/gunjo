@@ -153,7 +153,7 @@ const GaugeChart = React.forwardRef<HTMLDivElement, GaugeChartProps>(
                 ref={ref}
                 className={cn(
                     gaugeChartVariantClasses[variant],
-                    "flex flex-col items-center justify-end",
+                    "flex flex-col items-center justify-end tabular-nums",
                     className
                 )}
                 {...props}

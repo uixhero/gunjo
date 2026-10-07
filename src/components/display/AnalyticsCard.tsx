@@ -112,7 +112,7 @@ const AnalyticsCard = React.forwardRef<HTMLDivElement, AnalyticsCardProps>(
         const styles = variantClasses[variant]
 
         return (
-            <Card ref={ref} className={cn("w-full min-w-0 p-0", styles.card, className)} {...props}>
+            <Card ref={ref} className={cn("w-full min-w-0 p-0 tabular-nums", styles.card, className)} {...props}>
                 <CardHeader className={cn("flex-row items-start justify-between gap-4 space-y-0", styles.header)}>
                     <div className="min-w-0 space-y-1">
                         <CardTitle as={titleAs} className="text-sm font-medium leading-snug">
