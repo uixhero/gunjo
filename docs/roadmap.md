@@ -20,10 +20,10 @@ GunjoUI が 1.0 に届くまでの、機能と版の予定表。
 | [#690](https://github.com/uixhero/gunjo/issues/690) `/docs/installation` の旧 alpha の記述（`transpilePackages` 必須） | docs | `0.1.0-beta.4` | 案：2026-10-23 まで | 未着手 |
 | 部品の数の表記をそろえる（200+ / 223 / 237） | docs | `0.1.0-beta.4` | 案：2026-10-23 まで | 未着手 |
 | `/api/specs/manifest` に状態ラベルを出す（`/docs/stability` には「出る」と書いてある） | docs | `0.1.0-beta.4` | 案：2026-10-23 まで | 未着手 |
-| `DESIGN.md` の主色の記述（`#4D5AAF`）を、実際に出ている主色（`#2F63CA`）に合わせる | 見た目 | `0.1.0-beta.4` | 案：2026-10-23 まで | 作業中 |
-| 数字の桁をそろえる（`tabular-nums`） | 見た目 | `0.1.0-beta.4` | 案：2026-10-23 まで | 作業中 |
-| 和文の書体を明示し、本文の段落の行送りをそろえる（部品ページの本文が 1.43） | 見た目 | `0.1.0-beta.4` | 案：2026-10-23 まで | 作業中 |
-| dark の中立色5つが shadcn/ui の既定と同じ値なのを、群青寄りに少しずらす | 見た目 | `0.1.0-beta.4` | 案：2026-10-23 まで | 作業中 |
+| `DESIGN.md` の主色の記述（`#4D5AAF`）を、実際に出ている主色（`#2F63CA`）に合わせる | 見た目 | `0.1.0-beta.4` | 案：2026-10-23 まで | 作業中（[#1049](https://github.com/uixhero/gunjo/pull/1049)） |
+| 数字の桁をそろえる（`tabular-nums`） | 見た目 | `0.1.0-beta.4` | 案：2026-10-23 まで | 作業中（[#1049](https://github.com/uixhero/gunjo/pull/1049)） |
+| 和文の書体を明示し、本文の段落の行送りをそろえる（部品ページの本文が 1.43） | 見た目 | `0.1.0-beta.4` | 案：2026-10-23 まで | 作業中（[#1049](https://github.com/uixhero/gunjo/pull/1049)） |
+| dark の中立色5つが shadcn/ui の既定と同じ値なのを、群青寄りに少しずらす | 見た目 | `0.1.0-beta.4` | 案：2026-10-23 まで | 作業中（[#1049](https://github.com/uixhero/gunjo/pull/1049)） |
 | [#492](https://github.com/uixhero/gunjo/issues/492) 重い部品を subpath export に分ける | 部品 | `0.2.0-beta.1` | 案：2026-11-20 まで | 未着手 |
 | [#717](https://github.com/uixhero/gunjo/issues/717) Node から素で import すると `ERR_MODULE_NOT_FOUND` になる（`"type": "module"` が無い・拡張子の無い import） | 部品 | `0.2.0-beta.1` | 案：2026-11-20 まで | 未着手 |
 | [#684](https://github.com/uixhero/gunjo/issues/684) Server Component からのバレル import で「直った」と言える再現手順を作る | 部品 | `0.2.0-beta.1` | 案：2026-11-20 まで | 未着手 |
