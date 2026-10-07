@@ -12,6 +12,51 @@
     --container-reading: 1028px;
 }
 
+/* 本文の書体の並び（KeEem 2026-10-07・1.0 の条件の「見た目」）。Inter は和文の字を持たないので、
+   和文の書体を OS 任せにせず名前で並べる。--font-inter は app/layout.tsx の
+   next/font が入れる（中身は Inter と、読み込み中の字幅をそろえた代わりの書体）。
+   - 先頭のヒラギノ角ゴ ProN は、Mac の Chrome が前から和文に使っていた書体
+     （2026-10-07 に実測）＝見た目は変わらない。Web フォントは足さない。
+   - その後ろは Windows（Yu Gothic UI・Meiryo）、Android と Linux（Noto）。 */
+@layer base {
+    body {
+        font-family:
+            var(--font-inter), "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI",
+            Meiryo, "Noto Sans JP", "Noto Sans CJK JP", sans-serif;
+    }
+}
+
+/* 段落の行送り（KeEem 2026-10-07・1.0 の条件の「見た目」）。text-sm などが持つ既定の行送り
+   （14px なら 20px＝1.43）は欧文の UI 向けで、和文の段落には詰まりすぎる。
+   段落（p）に限って、text-* が読む既定の行送り（Tailwind の --tw-leading）を
+   1.7 にする。leading-* を明示した段落はそちらが勝つ（utilities の層が後勝ち）。
+   - 部品の見本の中（docs のプレビュー・埋め込みのページ全体）は、部品そのままの
+     行送りを見せるために外す。埋め込みはダイアログなどが body の直下へ出るので、
+     枠の中ではなく「枠のあるページ」ごと外す。
+   - 見出しや数字に使う大きな字（text-xl 以上＝20px 以上）の p は外す。1.7 は
+     本文の大きさ（12〜18px）のための値で、24px の一文に効かせると行間が開きすぎた。
+   - 言語では分けない。サーバーは lang="en" を返し、読み込み後に ja へ書き換える
+     ので、:lang(ja) で分けると読み込み直後に段落の高さが跳ねる。
+   ⛔ src/globals.css（@gunjo/ui が配布するトークン）には置かない＝採用先の
+   すべての p を書き換えてしまう。これは gunjo.jp の組み方。 */
+@layer base {
+    p:not(
+            :is(
+                [data-doc-component-preview-surface] *,
+                :root:has([data-embed-preview-wrap]) *,
+                [class*="text-xl"],
+                [class*="text-2xl"],
+                [class*="text-3xl"],
+                [class*="text-4xl"],
+                [class*="text-5xl"],
+                [class*="text-6xl"]
+            )
+        ) {
+        --tw-leading: 1.7;
+        line-height: 1.7;
+    }
+}
+
 @layer base {
     .hero-grid {
         background-image:
