@@ -189,25 +189,35 @@
         --destructive-border: 0 55% 36%;
 
         --overlay: 0 0% 0%;
-        --background: 222.2 84% 4.9%;
-        --foreground: 210 40% 98%;
+        /* 中立色5つ（地・文字・薄い面・控えめな文字・枠）は、もとは shadcn/ui v3
+           slate の既定と小数点まで同じ値だった。2026-10-07 に色相を群青寄りの
+           230 度へずらし、shadcn と Tailwind の既製の色（v3・v4 の全パレット）の
+           どれからも CIEDE2000 で 3.3 以上離した（文字 3.30／地 3.42／薄い面と枠
+           3.50／控えめな文字 4.24）。明るさは地・薄い面・控えめな文字をほぼ
+           据え置き、文字だけは白の近くに既製の色が密集しているので 2 割下げた
+           （地の上 19.09 から 15.45、いちばん低い secondary の上でも 9.08）。
+           面の段差は前とほぼ同じ（地と card 1.202 から 1.200、card と薄い面
+           1.139 から 1.135）。card・popover・secondary の上の
+           文字も同じ値にそろえる。 */
+        --background: 230 88% 6.5%;
+        --foreground: 230 30% 90.5%;
 
         --card: 217 33% 13%;
-        --card-foreground: 210 40% 98%;
+        --card-foreground: 230 30% 90.5%;
 
         --popover: 217 33% 22%;
-        --popover-foreground: 210 40% 98%;
+        --popover-foreground: 230 30% 90.5%;
 
         --secondary: 217 32.6% 24%;
-        --secondary-foreground: 210 40% 98%;
+        --secondary-foreground: 230 30% 90.5%;
 
-        --muted: 217.2 32.6% 17.5%;
-        --muted-foreground: 215 20.2% 65.1%;
+        --muted: 230 20% 18%;
+        --muted-foreground: 230 16% 67%;
 
         --accent: 14 22% 19%;
         --accent-foreground: 29 31% 87%;
 
-        --border: 217.2 32.6% 17.5%;
+        --border: 230 20% 18%;
         /* 入力欄の縁。入れ物の面（地・card・popover・muted）すべての上で 3:1 を
            超える、いちばん薄い値。最小は popover の上の 3.03:1。⚠️ 50% だと
            popover（217 33% 22%）の上で 2.92:1 に落ちる（#1023・2026-09-25）。
