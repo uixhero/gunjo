@@ -18,7 +18,11 @@ import {
     Skeleton,
     cn,
 } from "@gunjo/ui";
-import { navigation } from "@/lib/navigation";
+import {
+    CATALOG_CATEGORIES,
+    CATALOG_COMPONENTS,
+    type CatalogCategory,
+} from "@/lib/component-count";
 import { useLocale } from "@/components/providers/LocaleProvider";
 
 function PreviewThumb({
@@ -86,26 +90,9 @@ function PreviewThumb({
     );
 }
 
-type Category =
-    | "Inputs"
-    | "Display"
-    | "Charts"
-    | "Feedback"
-    | "Navigation"
-    | "Overlay"
-    | "Layout";
+type Category = CatalogCategory;
 
-const CATEGORY_ORDER: Category[] = [
-    "Inputs",
-    "Display",
-    "Charts",
-    "Feedback",
-    "Navigation",
-    "Overlay",
-    "Layout",
-];
-
-const VALID_CATEGORIES = new Set<string>(CATEGORY_ORDER);
+const CATEGORY_ORDER: readonly Category[] = CATALOG_CATEGORIES;
 
 interface ShowcaseEntry {
     category: Category;
@@ -115,28 +102,15 @@ interface ShowcaseEntry {
 }
 
 function buildEntries(): ShowcaseEntry[] {
-    const entries: ShowcaseEntry[] = [];
-    for (const section of navigation) {
-        if (!VALID_CATEGORIES.has(section.title)) continue;
-        const category = section.title as Category;
-        for (const item of section.items) {
-            // Component pages live under /docs/components/<slug>; skip any
-            // external pattern-app links (which navigation also includes).
-            if (!item.href.startsWith("/docs/components/")) continue;
-            // Category overview pages (e.g. "Inputs Overview") are sidebar
-            // landing pages, not individual components — keep them out of the
-            // component grid (they also have no single demo to preview).
-            if (item.title.endsWith("Overview")) continue;
-            const parts = item.href.split("/").filter(Boolean);
-            const slug = parts[parts.length - 1];
-            entries.push({
-                category,
-                slug,
-                title: item.title,
-                docsHref: item.href,
-            });
-        }
-    }
+    const entries: ShowcaseEntry[] = CATALOG_COMPONENTS.map((item) => {
+        const parts = item.href.split("/").filter(Boolean);
+        return {
+            category: item.category,
+            slug: parts[parts.length - 1],
+            title: item.title,
+            docsHref: item.href,
+        };
+    });
     entries.sort((a, b) => a.title.localeCompare(b.title));
     return entries;
 }
