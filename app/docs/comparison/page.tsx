@@ -65,7 +65,7 @@ const MATRIX: MatrixRow[] = [
     },
     {
         label: { en: "Maturity", ja: "成熟度" },
-        gunjo: "Alpha",
+        gunjo: "Beta",
         shadcn: "Stable",
         radix: "Stable",
         mantine: "Stable",

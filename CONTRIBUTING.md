@@ -21,8 +21,8 @@ GunjoUI への貢献に興味を持っていただきありがとうございま
 |---|---|---|
 | **バグ報告** | コンポーネントの視覚崩れ、TypeScript 型エラー、SSR 問題 | 🟢 歓迎 |
 | **ドキュメント改善** | adoption.md / dependencies.md 等の typo / 不正確な記述 | 🟢 歓迎 |
-| **新コンポーネント追加** | 既存 atom / molecule / organism の拡張 | 🟡 alpha 中は要相談（[Issue](https://github.com/uixhero/gunjo/issues) で先に相談） |
-| **API 設計変更** | 既存 prop の rename、compound pattern への移行 | 🔴 alpha 中は控えめに、`1.0.0` 設計議論として |
+| **新コンポーネント追加** | 既存 atom / molecule / organism の拡張 | 🟡 beta 中は [Issue](https://github.com/uixhero/gunjo/issues) で先に相談 |
+| **API 設計変更** | 既存 prop の rename、compound pattern への移行 | 🔴 beta 中は控えめに、`1.0.0` 設計議論として |
 | **採用先での実例** | adoption.md に従った実プロジェクトでの動作報告 | 🟢 大歓迎 |
 | **i18n / 翻訳** | docs サイトの英訳・他言語化 | 🟢 歓迎 |
 
