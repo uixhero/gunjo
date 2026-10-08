@@ -185,7 +185,7 @@ export default function ShowcasePage() {
                                 className="data-[state=active]:border data-[state=active]:border-primary-border data-[state=active]:text-primary data-[state=active]:shadow-md"
                             >
                                 {t.allTab}
-                                <span className="ml-1.5 text-xs text-muted-foreground data-[state=active]:text-primary-strong">
+                                <span className="ml-1.5 text-xs tabular-nums text-muted-foreground data-[state=active]:text-primary-strong">
                                     {counts.all}
                                 </span>
                             </TabsTrigger>
@@ -196,7 +196,7 @@ export default function ShowcasePage() {
                                     className="data-[state=active]:border data-[state=active]:border-primary-border data-[state=active]:text-primary data-[state=active]:shadow-md"
                                 >
                                     {bilingual(c).primary}
-                                    <span className="ml-1.5 text-xs text-muted-foreground">
+                                    <span className="ml-1.5 text-xs tabular-nums text-muted-foreground">
                                         {counts[c]}
                                     </span>
                                 </TabsTrigger>

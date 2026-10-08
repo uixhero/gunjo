@@ -169,7 +169,7 @@ const RadialBarChart = React.forwardRef<HTMLDivElement, RadialBarChartProps>(
                 ref={ref}
                 className={cn(
                     radialBarChartVariantClasses[variant],
-                    "flex flex-col items-center justify-center gap-4",
+                    "flex flex-col items-center justify-center gap-4 tabular-nums",
                     className
                 )}
                 {...props}

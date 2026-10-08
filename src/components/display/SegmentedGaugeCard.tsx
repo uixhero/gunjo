@@ -354,7 +354,7 @@ const SegmentedGaugeCard = React.forwardRef<
         return (
             <Card
                 ref={ref}
-                className={cn("w-full min-w-0 overflow-hidden p-0", styles.card, className)}
+                className={cn("w-full min-w-0 overflow-hidden p-0 tabular-nums", styles.card, className)}
                 {...props}
             >
                 <CardHeader className={styles.header}>

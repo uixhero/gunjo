@@ -1547,8 +1547,8 @@ function MetricCard({
                 </div>
             </CardHeader>
             <CardContent>
-                <div className="text-2xl font-semibold">{value}</div>
-                <div className="text-xs text-muted-foreground">{delta}</div>
+                <div className="text-2xl font-semibold tabular-nums">{value}</div>
+                <div className="text-xs tabular-nums text-muted-foreground">{delta}</div>
             </CardContent>
         </Card>
     );

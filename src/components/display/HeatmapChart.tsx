@@ -93,7 +93,7 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
                 ref={ref}
                 className={cn(
                     heatmapChartVariantClasses[variant],
-                    "min-w-0",
+                    "min-w-0 tabular-nums",
                     className
                 )}
                 {...props}

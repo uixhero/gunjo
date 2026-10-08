@@ -157,7 +157,7 @@ const DonutChart = React.forwardRef<HTMLDivElement, DonutChartProps>(
                 ref={ref}
                 className={cn(
                     donutChartVariantClasses[variant],
-                    "flex flex-col items-center justify-center gap-3",
+                    "flex flex-col items-center justify-center gap-3 tabular-nums",
                     className
                 )}
                 {...props}

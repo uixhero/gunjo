@@ -46,6 +46,7 @@ import { verifyColorContrast } from "./design-verify-color-contrast.mjs";
 import { verifyHighContrastBorder } from "./design-verify-high-contrast-border.mjs";
 import { verifyInputBorder } from "./design-verify-input-border.mjs";
 import { verifySliderTrack } from "./design-verify-slider-track.mjs";
+import { verifyTabularNums } from "./design-verify-tabular-nums.mjs";
 import { METADATA_SYNC_CATEGORY_CONFIGS } from "./design-sync/sync-metadata.mjs";
 import { COMPONENT_SOURCE_CATEGORY_CONFIGS } from "./design-sync/component-source-map.mjs";
 import { runVerificationCli, throwLinesError } from "./design-verify-assertions.mjs";
@@ -148,6 +149,7 @@ function main() {
   verifyHighContrastBorder({ root: ROOT });
   verifyInputBorder({ root: ROOT });
   verifySliderTrack({ root: ROOT });
+  verifyTabularNums({ root: ROOT });
   verifyAppGlobalsSync({ root: ROOT });
 
   const undefinedPatternTokens = findUndefinedPatternTokens({ root: ROOT });

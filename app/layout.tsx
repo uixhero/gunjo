@@ -12,7 +12,12 @@ import { ToastProvider, TooltipProvider } from "@gunjo/ui";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { Analytics } from "@vercel/analytics/next";
 
-const inter = Inter({ subsets: ["latin"] });
+// Inter has no Japanese glyphs. The body font stack (Inter, then the Japanese
+// gothics) is written in app/globals.css on top of this variable, so Japanese
+// is named explicitly instead of left to the OS. ⛔ Don't pass `fallback` here:
+// with Turbopack it replaces next/font's metric-adjusted "Inter Fallback", so
+// Latin would render in Hiragino until Inter loads and then shift.
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 // Shippori Mincho is a CJK font: next/font can't subset the kanji, so with
 // preload on it emits a <link rel=preload> for every unicode-range chunk
 // (~244 files, 7.6MB) and the browser downloads them all up front — gating
@@ -58,7 +63,7 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       {gtmId ? <GoogleTagManager gtmId={gtmId} /> : null}
       <body
-        className={`${inter.className} ${mincho.variable} antialiased min-h-screen bg-background text-foreground`}
+        className={`${inter.variable} ${mincho.variable} antialiased min-h-screen bg-background text-foreground`}
       >
         <div className="relative flex min-h-screen flex-col">
           <ThemeProvider

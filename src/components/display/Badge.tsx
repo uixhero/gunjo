@@ -77,7 +77,7 @@ function Badge({
     return (
         <Comp
             className={cn(
-                "inline-flex items-center w-fit rounded-full border border-transparent font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 contrast-more:border-border forced-colors:border-[CanvasText]",
+                "inline-flex items-center w-fit rounded-full border border-transparent font-semibold tabular-nums transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 contrast-more:border-border forced-colors:border-[CanvasText]",
                 badgeSizeClasses[size],
                 (icon || onRemove) && "gap-1",
                 onRemove && "pr-1",

@@ -34,7 +34,7 @@ npm・ビルドツールが使えない環境（Claude Artifacts などの単一
 
 - **デザイン方針**: 群青 (gunjō) を主軸にした「becoming」のデザインシステム。情報ダッシュボード・業務ツール向けの落ち着いたコントラストの中に、伝統的な日本の色名が持つ詩性を残す。
 - **ブランドストーリー**: 名前の由来である「群青」は **未だ青ならず、青になりつつある色** ── 夜明け前の空、墨のまだ乾かない瞬間。完成された青ではなく、これから青になる、成長と無限の可能性の象徴。プロダクトの beta 段階・AI 時代の design system という「becoming」と重ねている。
-- **配色思想**: primary に **群青** (`#4D5AAF`) を据え、accent に **媚茶** (kobicha, `#E8DDD3`/`#3A2A25`) を温かい土として配置。becoming を支える地。
+- **配色思想**: primary に **群青** を据え（画面に出ている値は `#2F63CA`＝`hsl(220 62% 49%)`。伝統色の群青 `#4D5AAF` そのものではない）、accent に **媚茶** (kobicha, `#E8DDD3`/`#3A2A25`) を温かい土として配置。becoming を支える地。
 - **密度**: コンポーネントは `text-sm`（14px）が多く、コントロール高さ `36px`（`h-9`）前後のコンパクト寄り。
 - **キーワード**: 群青、becoming、クリーン、温度のあるニュートラル、ダークモード対応（`.dark` でトークン切替）。
 
@@ -46,11 +46,11 @@ npm・ビルドツールが使えない環境（Claude Artifacts などの単一
 
 ### Primary（ブランドカラー — 群青 / Gunjō）
 
-- **Primary** (`#4D5AAF`): `hsl(232 39% 49%)`（`--primary`）。アイコン・状態・チャート・選択表示など。becoming する青。
+- **Primary** (`#2F63CA`): `hsl(220 62% 49%)`（`--primary`）。伝統色の群青 `#4D5AAF`（`hsl(232 39% 49%)`）とは別の値で、彩度が高く（62% と 39%）、色相が 12 度ちがう（220 度と 232 度）。アイコン・状態・チャート・選択表示など。becoming する青。
 - **Primary subtle**: `--primary-subtle` / `--primary-subtle-foreground`。淡い選択面、インライン通知、補助ハイライト。
 - **Primary strong**: `--primary-strong` / `--primary-strong-foreground`。主要 CTA と強い実行操作。
 - **Primary border**: `--primary-border`。淡色面の枠線や選択境界。
-- **Primary Dark mode** (`#6571BD` 相当): `hsl(232 47% 65%)`。暗背景上での視認性のため少しライトに。
+- **Primary Dark mode** (`#6090E1` 相当): `hsl(218 68% 63%)`。暗背景上での視認性のため少しライトに。
 
 **補足（デフォルト Button）**: `src/components/inputs/ButtonVariants.ts` の `default` variant は互換性のため **`bg-foreground`（前景＝ほぼ黒）** を維持する。群青 CTA は `variant="primary"` を使う。
 
@@ -99,7 +99,7 @@ Semantic 色は `primary / info / success / warning / destructive` の各色に�
 
 ### 3.1 和文フォント
 
-- **ゴシック体**: ベースは Next.js の **Inter**（下記）。和字は Inter に含まれないため、ブラウザが **OS の sans-serif フォールバック**（例: ヒラギノ角ゴ、游ゴシック、Noto Sans CJK 系）を割り当てる。
+- **ゴシック体**: ベースは Next.js の **Inter**（下記）。和字は Inter に含まれないので、gunjo.jp では Inter の後ろに和文の書体を**名前で並べる**（`app/globals.css` の `body`）。先頭は **ヒラギノ角ゴ ProN**＝Mac の Chrome が前から和文に使っていた書体（2026-10-07 に実測）なので、見た目は変わらない。その後ろに Windows（Yu Gothic UI・Meiryo）、Android と Linux（Noto Sans JP・Noto Sans CJK JP）。Web フォントは足さない。
 - **明朝体**（使用する場合）: Gunjo UI の `app/layout.tsx` では未指定。必要なら別途 `font-serif` またはフォントファイルを追加する。
 
 ### 3.2 欧文フォント
@@ -110,18 +110,21 @@ Semantic 色は `primary / info / success / warning / destructive` の各色に�
 
 ### 3.3 font-family 指定
 
-`app/layout.tsx` より、実装は Inter のクラスを `body` に適用:
+`app/layout.tsx` の next/font が Inter を `--font-inter` に入れ、`app/globals.css` の `body` で和文の書体を後ろに並べる:
 
 ```css
 /* 本文 — Next/font が生成するクラス内（概略） */
-font-family: __Inter_, __Inter_Fallback_, system-ui, sans-serif;
+font-family: var(--font-inter), "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic UI",
+  Meiryo, "Noto Sans JP", "Noto Sans CJK JP", sans-serif;
+/* --font-inter の中身は 'Inter', 'Inter Fallback'（読み込み中の字幅をそろえた代わりの書体） */
 
 /* 等幅（Tailwind font-mono 利用時のイメージ） */
 font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 ```
 
 **フォールバックの考え方**:
-- 和文は Inter の外なので **OS/ブラウザのゴシック** に落ちる。日本語品質を固定したい場合は **Noto Sans JP を明示追加**を推奨（現在のライブラリ単体の既定では未導入）。
+- 和文は Inter の外なので、上の並びの和文の書体で描かれる。⚠️ next/font の `fallback` に和文の書体を渡さないこと＝Turbopack では自動の `Inter Fallback` が外れ、Inter の読み込み中に欧文がヒラギノで出てずれる。
+- ライブラリ（`@gunjo/ui`）は書体を配らない。採用先でも和文の書体を名前で並べることを勧める。
 - `body` には `antialiased` が付与されている（グレースケール Antialiasing）。
 
 ### 3.4 文字サイズ・ウェイト階層
@@ -141,13 +144,13 @@ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
 
 ### 3.5 行間・字間
 
-- **本文の行間 (line-height)**: 見本段落は `leading-7`（**1.75rem / 28px @16px**）。
+- **本文の行間 (line-height)**: **和文の段落は 1.7 前後**。gunjo.jp では `app/globals.css` で、`p` の既定の行送り（`text-sm` などが持つ 1.43 など）を **1.7** にしている。`leading-*` を明示した段落はそちらが勝つ。部品の見本の中（docs のプレビュー・埋め込み）と、`text-xl` 以上の大きな字の `p` は対象外。見本段落は `leading-7`（**1.75rem / 28px @16px**）。
 - **見出しの行間**: Tailwind の見出しユーティリティ既定。`CardTitle` は `leading-none`（**1**）。
 - **本文の字間 (letter-spacing)**: 明示なし（`0`）。見出しは `tracking-tight`（**-0.025em**）。
 - **見出しの字間**: `tracking-tight`。
 
 **ガイドライン**:
-- 日本語長文では `leading-7` 以上を維持しやすい。
+- 日本語の段落は 1.7 前後（14px なら `leading-6`＝1.71、16px なら `leading-7`＝1.75）。採用先で段落を組むときもこの値を使う。
 - `tracking-tight` は欧文 UI 寄り。和文見出しで窮屈に感じる場合は **`tracking-normal` の検討**（現行コンポーネントは tight 前提）。
 
 ### 3.6 禁則処理・改行ルール
@@ -167,7 +170,9 @@ line-break: strict;
 
 ### 3.7 OpenType 機能
 
-グローバルでは未設定。必要に応じて:
+**数字の桁をそろえる（`tabular-nums`）**: 表の数値・日付・件数・バッジの数など、数字を並べて読み比べるところは等幅の数字にする。`font-variant-numeric` は子に継承されるので、部品の根に1つ付ければ中の数字がそろう（文字には効かない）。`Table`・`DataTable`・`Badge`・`AnalyticsCard`・`HeatmapChart`・`DonutChart`・`GaugeChart`・`RadialBarChart`・`MiniDistributionBarCard`・`LabeledDonutCard`・`ConcentricProgressCard`・`SegmentedGaugeCard`・`SegmentTimelineCard` は根に持っている（`npm run design:verify:tabular-nums` が見張る）。部品の外で数字を並べるときは、その要素に `tabular-nums` を付ける。
+
+ほかはグローバルでは未設定。必要に応じて:
 
 ```css
 font-feature-settings: "palt" 1;
@@ -349,7 +354,7 @@ Gunjo UI アプリは Tailwind の **デフォルトブレークポイント**�
 ### クイックリファレンス
 
 ```
-Primary (token, 群青): #4D5AAF (light) / #6571BD (dark)
+Primary (token, 群青): #2F63CA (light) / #6090E1 (dark)
 Primary foreground: #f8fafc
 Accent (媚茶, light): #E8DDD3 / Accent foreground: #3A2A25
 Accent (媚茶, dark): #3A2A25 / Accent foreground: #E8DDD3
@@ -359,8 +364,9 @@ Muted Text: #64748b
 Background: #ffffff
 Card/Surface: #ffffff
 Border: #e2e8f0
-Font: Inter (next/font) + system-ui Japanese fallback
-Body: 16px, leading-7 for prose; controls often 14px (text-sm)
+Font: Inter (next/font) + Hiragino Kaku Gothic ProN / Hiragino Sans / Yu Gothic UI / Meiryo / Noto Sans JP
+Body: 16px; Japanese paragraphs line-height ~1.7 (leading-6 @14px, leading-7 @16px); controls often 14px (text-sm)
+Numbers: tabular-nums for table values, dates, counts and badge numbers
 Radius: 8px (--radius); input md = 6px
 Shadow (card): 0 1px 2px 0 rgb(0 0 0 / 0.05)
 ```
@@ -369,10 +375,11 @@ Shadow (card): 0 1px 2px 0 rgb(0 0 0 / 0.05)
 
 ```
 Gunjo UI（app/globals.css トークン）に従い、ユーザー一覧テーブルを作成してください。
-- ブランドのアクセント: primary 群青 #4D5AAF（リング・選択状態・群青 CTA に使用）/ accent 媚茶 #E8DDD3（温度のあるホバー・選択背景）
+- ブランドのアクセント: primary 群青 #2F63CA（リング・選択状態・群青 CTA に使用）/ accent 媚茶 #E8DDD3（温度のあるホバー・選択背景）
 - 既定のプライマリボタン色が黒基調なら: 背景 #020817 / 文字 #f8fafc
 - テーブル文字: 本文 #020817、補助 #64748b
 - 区切り線: #e2e8f0
 - 行のホバー: bg-muted (#f1f5f9) を検討
-- フォント: Inter + 和文は OS ゴシックフォールバック
+- フォント: Inter + 和文はヒラギノ角ゴ ProN（Windows は Yu Gothic UI / Meiryo）
+- 数字: 表の数値・日付・件数・バッジの数は tabular-nums
 ```

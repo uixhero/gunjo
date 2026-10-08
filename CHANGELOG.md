@@ -11,6 +11,11 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 
+### Changed
+
+- **数字を並べて見せる部品の数字を等幅に**（影響: **none**・見た目が変わる）— `Table`・`DataTable`・`Badge`・`AnalyticsCard`・`HeatmapChart`・`DonutChart`・`GaugeChart`・`RadialBarChart`・`MiniDistributionBarCard`・`LabeledDonutCard`・`ConcentricProgressCard`・`SegmentedGaugeCard`・`SegmentTimelineCard` の根の要素に `tabular-nums` を付けた。表の数値・日付・件数・バッジの数の桁が上下でそろう（数字の幅が少し変わる。文字には効かない）。`npm run design:verify:tabular-nums` が見張る。(#1040)
+- **dark の中立色5つを群青寄りに**（影響: **none**・見た目が変わる）— `--background` `222.2 84% 4.9%` → `230 88% 6.5%`、`--foreground`（と `--card-foreground`・`--popover-foreground`・`--secondary-foreground`）`210 40% 98%` → `230 30% 90.5%`、`--muted` と `--border` `217.2 32.6% 17.5%` → `230 20% 18%`、`--muted-foreground` `215 20.2% 65.1%` → `230 16% 67%`。もとは shadcn/ui v3 slate の既定と同じ値だった。shadcn と Tailwind の既製の色から CIEDE2000 で 3.3 以上離した。面の段差はほぼ同じ。文字は白の近くに既製の色が密集しているので少し暗くなる（地の上で 19.09:1 → 15.45:1）。前の値に戻したい場合は、採用先の CSS で `.dark { … }` の変数を上書きすれば戻る（トークン名は変えていない）。(#1040)
+
 ## [0.1.0-beta.3] — 2026-09-25
 
 > `0.1.0-beta.2` 以降の変更。**構造変更を要する破壊的変更（breaking）なし**。公開 API（部品・props・export・トークン名）の削除・改名もない。新しい部品と props はすべて opt-in（影響: none）。影響 **minor** は左端の色帯をやめた4部品（公開 API は不変）。

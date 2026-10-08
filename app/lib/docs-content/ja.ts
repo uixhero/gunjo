@@ -375,7 +375,7 @@ tokens.css / patterns.css が持つのは**トークンと見た目（色・角�
 
 \`\`\`css
 :root {
-  --background: 0 0% 100%;
+  --background: 210 40% 96%;
   --foreground: 240 20% 6%;
 
   --card: 0 0% 100%;
@@ -387,20 +387,20 @@ tokens.css / patterns.css が持つのは**トークンと見た目（色・角�
   --primary: 220 62% 49%;            /* 群青 */
   --primary-foreground: 210 40% 98%;
 
-  --secondary: 210 40% 96%;
+  --secondary: 212 32% 92%;
   --secondary-foreground: 240 6% 10%;
 
-  --muted: 210 40% 96%;
-  --muted-foreground: 215 16% 47%;
+  --muted: 213 32% 89%;
+  --muted-foreground: 215 20% 40%;
 
   --accent: 29 31% 87%;              /* 媚茶ティント */
   --accent-foreground: 14 22% 19%;
 
-  --destructive: 0 84% 60%;
+  --destructive: 0 72% 51%;
   --destructive-foreground: 210 40% 98%;
 
   --border: 214 32% 91%;
-  --input: 214 32% 91%;
+  --input: 215 20% 52%;
   --ring: 220 62% 49%;
 
   --radius: 0.5rem;
@@ -411,32 +411,32 @@ tokens.css / patterns.css が持つのは**トークンと見た目（色・角�
 
 \`\`\`css
 .dark {
-  --background: 222.2 84% 4.9%;
-  --foreground: 210 40% 98%;
+  --background: 230 88% 6.5%;
+  --foreground: 230 30% 90.5%;
 
-  --card: 222.2 84% 4.9%;
-  --card-foreground: 210 40% 98%;
+  --card: 217 33% 13%;
+  --card-foreground: 230 30% 90.5%;
 
-  --popover: 222.2 84% 4.9%;
-  --popover-foreground: 210 40% 98%;
+  --popover: 217 33% 22%;
+  --popover-foreground: 230 30% 90.5%;
 
   --primary: 218 68% 63%;            /* 暗い背景でコントラストを得るため少し明るめの群青 */
   --primary-foreground: 220 60% 8%;
 
-  --secondary: 217.2 32.6% 17.5%;
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 217 32.6% 24%;
+  --secondary-foreground: 230 30% 90.5%;
 
-  --muted: 217.2 32.6% 17.5%;
-  --muted-foreground: 215 20.2% 65.1%;
+  --muted: 230 20% 18%;
+  --muted-foreground: 230 16% 67%;
 
   --accent: 14 22% 19%;
   --accent-foreground: 29 31% 87%;
 
-  --destructive: 0 62.8% 30.6%;
+  --destructive: 0 72% 51%;
   --destructive-foreground: 210 40% 98%;
 
-  --border: 217.2 32.6% 17.5%;
-  --input: 217.2 32.6% 17.5%;
+  --border: 230 20% 18%;
+  --input: 215 20% 51%;
   --ring: 218 68% 63%;
 }
 \`\`\`
