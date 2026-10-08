@@ -48,8 +48,8 @@ const FEATURES = [
             en: "Drift detection is a later phase",
         },
         description: {
-            ja: "将来的には Figma ファイルと live spec を比較し、古い variant やハードコード色を検知します。アルファ時点では計画として扱います。",
-            en: "A later phase can compare Figma files against the live spec and flag stale variants or hardcoded colors. For alpha, this remains a plan.",
+            ja: "将来的には Figma ファイルと live spec を比較し、古い variant やハードコード色を検知します。",
+            en: "A later phase can compare Figma files against the live spec and flag stale variants or hardcoded colors.",
         },
         Icon: Sparkles,
     },
@@ -80,13 +80,13 @@ export default function FigmaPluginPage() {
                     </h1>
                     <p className="text-lg text-muted-foreground">
                         {isJa
-                            ? "GunjoUI は .pen と design metadata を SSOT とし、Figma はデザイナーが利用する配布面として計画しています。アルファ時点で「全画面が .pen から自動生成される」「Figma が SSOT になる」という意味ではありません。"
-                            : "GunjoUI treats .pen and design metadata as the SSOT. Figma is planned as the designer-facing distribution surface. In alpha, this does not mean every page is generated from .pen or that Figma becomes the source of truth."}
+                            ? "GunjoUI は .pen と design metadata を SSOT とし、Figma はデザイナーが利用する配布面として計画しています。これは「全画面が .pen から自動生成される」という意味ではありません。"
+                            : "GunjoUI treats .pen and design metadata as the SSOT. Figma is planned as the designer-facing distribution surface. This does not mean every page is generated from .pen."}
                     </p>
                     <DocNote heading={isJa ? "現在の位置づけ" : "Current status"}>
                         {isJa
                             ? "Figma ライブラリ / プラグインはロードマップ上の計画です。初期公開では、.pen・core JSON・metadata JSON・docs・export の同期と検証を正とし、Figma 側は同じ分類とトークン名を反映する配布先として扱います。"
-                            : "The Figma library / plugin is on the roadmap. For alpha, .pen, core JSON, metadata JSON, docs, and exports are the verified source chain; Figma is the planned distribution target that should mirror the same taxonomy and token names."}
+                            : "The Figma library / plugin is on the roadmap. During the beta, .pen, core JSON, metadata JSON, docs, and exports are the verified source chain; Figma is the planned distribution target that should mirror the same taxonomy and token names."}
                     </DocNote>
                 </header>
 

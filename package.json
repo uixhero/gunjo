@@ -1,7 +1,7 @@
 {
   "name": "@gunjo/ui",
   "version": "0.1.0-beta.3",
-  "description": "GunjoUI — SSOT-driven React + Tailwind design system. Pen / source / docs three-axis verified. Early alpha: API may change. See docs/adoption.md to consume from another project.",
+  "description": "GunjoUI — SSOT-driven React + Tailwind design system. Pen / source / docs three-axis verified. Beta: API may change before 1.0. See docs/adoption.md to consume from another project.",
   "keywords": [
     "design-system",
     "react",

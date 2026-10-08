@@ -42,7 +42,7 @@ Pick what fits. The npm path is faster; the copy path gives you full control.`,
 - Node.js 20+
 - React 19+ (the package's only React peer is \`^19.0.0\` — React 18 is not supported)
 - Tailwind CSS v3 or v4
-- TypeScript recommended (the package ships TS source directly, so the \`transpilePackages\` setting in step 2 is required)
+- TypeScript recommended
 - Next.js 15+ (16 recommended) or Vite + React
 
 ### 1. Install the package
@@ -63,21 +63,11 @@ npm install @tabler/icons-react
 
 > Under npm's default hoisting, \`import { IconX } from "@tabler/icons-react"\` may resolve through Gunjo UI's own copy even without this line — but that breaks under **pnpm** or npm with strict / \`nohoist\`. Install it yourself so your icon imports don't depend on hoisting.
 
-### 2. Configure Next.js (required)
+### 2. Build config (none needed)
 
-\`@gunjo/ui\` ships TypeScript source directly (\`main: "src/index.ts"\`), so your Next.js project has to transpile it. In \`next.config.ts\`:
+\`@gunjo/ui\` ships compiled JavaScript and type definitions in \`dist/\`, and keeps each component's \`"use client"\` directive.
 
-\`\`\`ts
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  transpilePackages: ["@gunjo/ui"],
-};
-
-export default nextConfig;
-\`\`\`
-
-Skip this and the build dies with \`SyntaxError: Unexpected token\`. For Vite, add \`optimizeDeps.include: ["@gunjo/ui"]\` to \`vite.config.ts\`.
+> Up to \`0.0.1-alpha.2\`, the package shipped raw TypeScript source, so \`next.config.ts\` needed a \`transpilePackages\` entry. From \`0.0.1-alpha.3\` on, you can remove it.
 
 ### 3. Wire up the Tailwind preset
 
@@ -88,7 +78,7 @@ In \`app/globals.css\`:
 \`\`\`css
 @import "tailwindcss";
 @config "../node_modules/@gunjo/ui/tailwind-preset.js";
-@source "../node_modules/@gunjo/ui/src/**/*.{ts,tsx}";
+@source "../node_modules/@gunjo/ui/dist/**/*.js";
 @import "@gunjo/ui/styles";
 \`\`\`
 
@@ -107,7 +97,7 @@ const config: Config = {
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
-    "./node_modules/@gunjo/ui/src/**/*.{ts,tsx}",
+    "./node_modules/@gunjo/ui/dist/**/*.js",
   ],
 };
 
@@ -180,8 +170,8 @@ import { Button } from "@/components/ui";
 ### Troubleshooting
 
 - **\`next build\` fails with \`createContext is not a function\`** → barrel import from a Server Component. Route imports through the \`"use client"\` re-export shim (see "Using it from Server Components" above).
-- **Build fails with \`SyntaxError: Unexpected token\`** → \`transpilePackages\` is missing in \`next.config.ts\` (step 2).
-- **Tailwind classes don't apply** → the \`@source\` (v4) or \`content\` glob (v3) for \`node_modules/@gunjo/ui/src/**/*\` is missing.
+- **Build fails with \`SyntaxError: Unexpected token\`** → you have \`0.0.1-alpha.2\` or earlier. Upgrade to the latest version and remove the \`transpilePackages\` entry (step 2).
+- **Tailwind classes don't apply** → the \`@source\` (v4) or \`content\` glob (v3) for \`node_modules/@gunjo/ui/dist/**/*.js\` is missing.
 - **Everything renders pure black or white** → \`@import "@gunjo/ui/styles"\` is missing or comes before \`@import "tailwindcss"\`.
 - **Icon imports fail (\`Cannot find module '@tabler/icons-react'\`), often only under pnpm** → install \`@tabler/icons-react\` as a direct dependency (step 1). Gunjo UI uses it internally but doesn't re-export the glyphs.
 

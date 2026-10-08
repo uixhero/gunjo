@@ -16,10 +16,10 @@ GunjoUI が 1.0 に届くまでの、機能と版の予定表。
 
 | 機能（issue） | 1.0 の条件 | 予定の版 | 予定時期 | 状態 |
 |---|---|---|---|---|
-| 状態の言葉をそろえる（npm の説明文の `Early alpha` など、alpha と書いた9か所） | docs | `0.1.0-beta.4` | 案：2026-10-23 まで | 未着手 |
-| [#690](https://github.com/uixhero/gunjo/issues/690) `/docs/installation` の旧 alpha の記述（`transpilePackages` 必須） | docs | `0.1.0-beta.4` | 案：2026-10-23 まで | 未着手 |
-| 部品の数の表記をそろえる（200+ / 223 / 237） | docs | `0.1.0-beta.4` | 案：2026-10-23 まで | 未着手 |
-| `/api/specs/manifest` に状態ラベルを出す（`/docs/stability` には「出る」と書いてある） | docs | `0.1.0-beta.4` | 案：2026-10-23 まで | 未着手 |
+| 状態の言葉をそろえる（npm の説明文の `Early alpha` など、alpha と書いた9か所） | docs | `0.1.0-beta.4` | 案：2026-10-23 まで | 済（[#1048](https://github.com/uixhero/gunjo/pull/1048)） |
+| [#690](https://github.com/uixhero/gunjo/issues/690) `/docs/installation` の旧 alpha の記述（`transpilePackages` 必須） | docs | `0.1.0-beta.4` | 案：2026-10-23 まで | 済（[#1048](https://github.com/uixhero/gunjo/pull/1048)） |
+| 部品の数の表記をそろえる（200+ / 223 / 237） | docs | `0.1.0-beta.4` | 案：2026-10-23 まで | 済（[#1048](https://github.com/uixhero/gunjo/pull/1048)） |
+| `/api/specs/manifest` に状態ラベルを出す（`/docs/stability` には「出る」と書いてある） | docs | `0.1.0-beta.4` | 案：2026-10-23 まで | 済（[#1048](https://github.com/uixhero/gunjo/pull/1048)） |
 | `DESIGN.md` の主色の記述（`#4D5AAF`）を、実際に出ている主色（`#2F63CA`）に合わせる | 見た目 | `0.1.0-beta.4` | 案：2026-10-23 まで | 作業中（[#1049](https://github.com/uixhero/gunjo/pull/1049)） |
 | 数字の桁をそろえる（`tabular-nums`） | 見た目 | `0.1.0-beta.4` | 案：2026-10-23 まで | 作業中（[#1049](https://github.com/uixhero/gunjo/pull/1049)） |
 | 和文の書体を明示し、本文の段落の行送りをそろえる（部品ページの本文が 1.43） | 見た目 | `0.1.0-beta.4` | 案：2026-10-23 まで | 作業中（[#1049](https://github.com/uixhero/gunjo/pull/1049)） |

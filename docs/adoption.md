@@ -30,7 +30,7 @@ npm install file:../gunjo            # 相対パス推奨
 npm install /absolute/path/to/gunjo
 ```
 
-> **alpha 段階の注意**：`1.0.0` stable 前は API が変わる可能性あり。本格採用は `0.x` シリーズでのドライラン後に判断推奨。バージョン履歴は [CHANGELOG.md](../CHANGELOG.md)。
+> **beta 段階の注意**：`1.0.0` stable 前は API が変わる可能性あり。本格採用は `0.x` シリーズでのドライラン後に判断推奨。バージョン履歴は [CHANGELOG.md](../CHANGELOG.md)。
 
 ### 2. ビルド設定（不要）
 

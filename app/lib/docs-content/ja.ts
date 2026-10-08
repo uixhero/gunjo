@@ -42,7 +42,7 @@ export const contentJa: Record<string, DocContent> = {
 - Node.js 20 以上
 - React 19 以上（peer は \`^19.0.0\` のみ。React 18 は未サポート）
 - Tailwind CSS v3 または v4
-- TypeScript 推奨（本パッケージは TS ソースを直接配布しているため、後述の \`transpilePackages\` 設定が必須）
+- TypeScript 推奨
 - Next.js 15 以上（推奨 16）または Vite + React
 
 ### 1. パッケージを追加
@@ -63,21 +63,11 @@ npm install @tabler/icons-react
 
 > npm のデフォルト hoisting では、この行が無くても \`import { IconX } from "@tabler/icons-react"\` が Gunjo UI 側のコピー経由で解決されることがあります。ただし **pnpm** や strict / \`nohoist\` の npm では壊れます。hoisting に依存しないよう、自分でインストールしてください。
 
-### 2. Next.js 設定（必須）
+### 2. ビルドの設定（不要）
 
-\`@gunjo/ui\` は **TypeScript ソースを直接配布** しているため（\`main: "src/index.ts"\`）、採用先 Next.js でトランスパイルが必要です。\`next.config.ts\`：
+\`@gunjo/ui\` は、コンパイル済みの JavaScript と型定義を \`dist/\` に入れて配布しています。各コンポーネントの \`"use client"\` も残しています。
 
-\`\`\`ts
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
-  transpilePackages: ["@gunjo/ui"],
-};
-
-export default nextConfig;
-\`\`\`
-
-これを忘れると採用先のビルドが \`SyntaxError: Unexpected token\` で落ちます。Vite の場合は \`optimizeDeps.include: ["@gunjo/ui"]\` を \`vite.config.ts\` に追加してください。
+> \`0.0.1-alpha.2\` までは TypeScript のソースをそのまま配布していたので、\`next.config.ts\` に \`transpilePackages\` の設定が要りました。\`0.0.1-alpha.3\` 以降は消して構いません。
 
 ### 3. Tailwind プリセットを取り込む
 
@@ -88,11 +78,11 @@ export default nextConfig;
 \`\`\`css
 @import "tailwindcss";
 @config "../node_modules/@gunjo/ui/tailwind-preset.js";
-@source "../node_modules/@gunjo/ui/src/**/*.{ts,tsx}";
+@source "../node_modules/@gunjo/ui/dist/**/*.js";
 @import "@gunjo/ui/styles";
 \`\`\`
 
-\`@source\` で GunjoUI 内部のクラスをスキャン対象に追加します（これが無いと Tailwind がライブラリ側のクラスを knwon にできません）。
+\`@source\` が無いと、GunjoUI のコンポーネントが使うクラスの CSS が出力されません。
 
 #### Tailwind v3
 
@@ -107,7 +97,7 @@ const config: Config = {
   content: [
     "./app/**/*.{ts,tsx}",
     "./components/**/*.{ts,tsx}",
-    "./node_modules/@gunjo/ui/src/**/*.{ts,tsx}",
+    "./node_modules/@gunjo/ui/dist/**/*.js",
   ],
 };
 
@@ -180,8 +170,8 @@ import { Button } from "@/components/ui";
 ### トラブルシューティング
 
 - **\`createContext is not a function\` で \`next build\` が落ちる** → Server Component からのバレル import が原因。\`"use client"\` 再エクスポートシムを経由させる（上記「Server Component から使う場合」）。
-- **\`SyntaxError: Unexpected token\` でビルドが落ちる** → \`next.config.ts\` の \`transpilePackages\` 入れ忘れ（手順 2）。
-- **Tailwind クラスが効かない** → v4 の \`@source\` または v3 の \`content\` で \`node_modules/@gunjo/ui/src/**/*\` を指していない。
+- **\`SyntaxError: Unexpected token\` でビルドが落ちる** → \`0.0.1-alpha.2\` 以前を入れている。最新版に上げ、\`transpilePackages\` の設定を消す（手順 2）。
+- **Tailwind クラスが効かない** → v4 の \`@source\` または v3 の \`content\` で \`node_modules/@gunjo/ui/dist/**/*.js\` を指していない。
 - **画面が真っ黒・真っ白** → \`@import "@gunjo/ui/styles"\` が抜けている、または \`@import "tailwindcss"\` の **前** にきている。
 - **アイコンの import が失敗する（\`Cannot find module '@tabler/icons-react'\`。pnpm だけで出ることが多い）** → \`@tabler/icons-react\` を直接の依存として入れる（手順1）。Gunjo UI は内部で使っていますが、グリフを re-export していません。
 
