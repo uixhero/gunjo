@@ -403,7 +403,7 @@ export default function Home() {
                 </div>
             </section>
 
-            {/* ============== Section 9 — ALPHA SCOPE ============== */}
+            {/* ============== Section 9 — BETA SCOPE ============== */}
             <section className="bg-muted py-20">
                 <div className="container text-center">
                     <Badge variant="outline" className="mb-4 gap-1.5">
@@ -443,6 +443,11 @@ export default function Home() {
     );
 }
 
+// The workbench is a hands-on sample, not real audit data. Its denominator is
+// deliberately a different number from COMPONENT_COUNT so "audit progress"
+// here is never read as the real figure in the stats cards further down.
+const DEMO_AUDIT_TOTAL = 40;
+
 function LiveComponentWorkbench({ isJa }: { isJa: boolean }) {
     const [query, setQuery] = React.useState("");
     const [syncEnabled, setSyncEnabled] = React.useState(true);
@@ -450,7 +455,7 @@ function LiveComponentWorkbench({ isJa }: { isJa: boolean }) {
     const [category, setCategory] = React.useState("display");
     const [activeTab, setActiveTab] = React.useState("preview");
 
-    const completeCount = Math.round((progressValue / 100) * COMPONENT_COUNT);
+    const completeCount = Math.round((progressValue / 100) * DEMO_AUDIT_TOTAL);
     const categoryLabel =
         category === "input"
             ? isJa
@@ -617,7 +622,7 @@ function LiveComponentWorkbench({ isJa }: { isJa: boolean }) {
                                         {isJa ? "監査進捗" : "Audit progress"}
                                     </span>
                                     <span className="text-muted-foreground">
-                                        {completeCount} / {COMPONENT_COUNT}
+                                        {completeCount} / {DEMO_AUDIT_TOTAL}
                                     </span>
                                 </div>
                                 <Progress
@@ -728,7 +733,7 @@ function LiveComponentWorkbench({ isJa }: { isJa: boolean }) {
                             <p className="text-sm text-muted-foreground">
                                 {isJa
                                     ? "公開前に確認したコンポーネント、パターン、トークンの規模を表示しています。"
-                                    : "A compact view of the component, pattern, and token scale reviewed for the alpha."}
+                                    : "The number of components, patterns, and tokens checked before release."}
                             </p>
                         </div>
                         <div className="flex flex-col gap-4 md:flex-row">

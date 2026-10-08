@@ -41,6 +41,12 @@ export interface ComponentSpec {
     sourceFile: string;
     specSource: string;
     docsUrl: string;
+    /**
+     * Stability label from design/stability.json (via the generated manifest).
+     * Components not listed there default to "experimental". This is the same
+     * value the docs page shows next to the component title.
+     */
+    stability: StabilityLevel;
 }
 
 export type StabilityLevel = "stable" | "beta" | "experimental";
@@ -102,6 +108,7 @@ export function buildComponentSpec(
         sourceFile: meta.sourceFile,
         specSource: meta.specSource,
         docsUrl: `${docsBaseUrl}/docs/components/${camelToKebab(name)}`,
+        stability: meta.stability ?? "experimental",
     };
 }
 
@@ -150,6 +157,7 @@ export function specToMarkdown(spec: ComponentSpec): string {
     lines.push("");
     lines.push(`**Package**: \`@gunjo/ui\``);
     lines.push(`**Category**: ${spec.category}`);
+    lines.push(`**Stability**: ${spec.stability}`);
     if (spec.description) {
         lines.push("");
         lines.push("## Description");

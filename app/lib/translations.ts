@@ -589,7 +589,7 @@ export const translations: Record<
           },
           patterns: {
             title: "Public patterns",
-            description: "Dashboard, auth, and media library are the ones you can open during the alpha. The rest will return once they are rebuilt.",
+            description: "Only dashboard, auth, and media library are open during the beta. The rest will come back once they are rebuilt.",
             cta: "See patterns",
             href: "/patterns",
           },
@@ -1317,7 +1317,7 @@ export const translations: Record<
           },
           patterns: {
             title: "公開パターン",
-            description: "alpha では dashboard / auth / media library だけを公開対象にし、他は作り直し後に戻します。",
+            description: "beta の間は dashboard / auth / media library だけを公開し、ほかは作り直してから公開し直します。",
             cta: "パターンを見る",
             href: "/patterns",
           },

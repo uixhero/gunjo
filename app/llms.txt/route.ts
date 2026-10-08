@@ -8,7 +8,7 @@ import coldTestGallery from "@/data/cold-test-gallery.json";
 // so they never drift from the catalog. (#553)
 //
 // Voice follows WRITING-RULES.md: state what is true, don't inflate, and be
-// honest that the package is still alpha.
+// honest that the package is still in beta (pre-1.0).
 
 const BASE_URL = (
     process.env.NEXT_PUBLIC_SITE_URL ?? "https://www.gunjo.jp"
