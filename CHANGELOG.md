@@ -11,7 +11,20 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 
+## [0.1.0-beta.4] — 2026-10-08
+
+> `0.1.0-beta.3` 以降の変更。**破壊的変更（breaking）なし**。公開 API（部品・props・export・トークン名）の削除・改名もない。全3項目とも影響 **none**。
+
+### 採用先向けの要約（見た目が変わるもの）
+
+コードを直さなくても、依存を上げると次の2点で画面の見た目が変わる。
+
+1. **dark の地・文字・薄い面・枠・控えめな文字が、わずかに群青寄りになる** — 地が少し青く、文字の白が少し落ち着く。light は変わらない。前の値に戻したい場合は、採用先の CSS で `.dark { … }` の変数を上書きすれば戻る（下の「Changed」に前後の値）。
+2. **数字を並べる部品（`Table`・`DataTable`・`Badge` とグラフのカード）の数字が等幅になる** — 表の数値・日付・件数の桁が上下でそろう。数字の幅が少し変わるので、狭い列で数字が折り返していないかを一度確かめてほしい。
+
 ### Changed
+
+- **npm の説明文の状態の言葉を beta に**（影響: **none**）— `package.json` の `description` の `Early alpha: API may change.` を `Beta: API may change before 1.0.` にした。版の名乗り（`0.1.0-beta.x`）と食い違っていたため。(#1048)
 
 - **数字を並べて見せる部品の数字を等幅に**（影響: **none**・見た目が変わる）— `Table`・`DataTable`・`Badge`・`AnalyticsCard`・`HeatmapChart`・`DonutChart`・`GaugeChart`・`RadialBarChart`・`MiniDistributionBarCard`・`LabeledDonutCard`・`ConcentricProgressCard`・`SegmentedGaugeCard`・`SegmentTimelineCard` の根の要素に `tabular-nums` を付けた。表の数値・日付・件数・バッジの数の桁が上下でそろう（数字の幅が少し変わる。文字には効かない）。`npm run design:verify:tabular-nums` が見張る。(#1040)
 - **dark の中立色5つを群青寄りに**（影響: **none**・見た目が変わる）— `--background` `222.2 84% 4.9%` → `230 88% 6.5%`、`--foreground`（と `--card-foreground`・`--popover-foreground`・`--secondary-foreground`）`210 40% 98%` → `230 30% 90.5%`、`--muted` と `--border` `217.2 32.6% 17.5%` → `230 20% 18%`、`--muted-foreground` `215 20.2% 65.1%` → `230 16% 67%`。もとは shadcn/ui v3 slate の既定と同じ値だった。shadcn と Tailwind の既製の色から CIEDE2000 で 3.3 以上離した。面の段差はほぼ同じ。文字は白の近くに既製の色が密集しているので少し暗くなる（地の上で 19.09:1 → 15.45:1）。前の値に戻したい場合は、採用先の CSS で `.dark { … }` の変数を上書きすれば戻る（トークン名は変えていない）。(#1040)

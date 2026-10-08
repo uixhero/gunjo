@@ -10,7 +10,7 @@ GunjoUI の semver 運用ルールと、破壊的変更がきたときの採用�
 - **MINOR (1.X.0)**：後方互換のあるコンポーネント追加、新 prop 追加
 - **PATCH (1.0.X)**：バグ修正、視覚的微調整、内部リファクタ
 
-現バージョン：`0.1.0-beta.3`（1.0 前・beta）。**0.x（alpha / beta）期間中は上記の互換保証は努力目標**で、破壊的変更がマイナー / プレリリースに入ることがある（全部品 Experimental が既定。各部品の安定性は [/docs/stability](https://gunjo.jp/docs/stability)、1.0 の条件は GitHub issue [#1040](https://github.com/uixhero/gunjo/issues/1040)、各項目がどの版に入る予定かはリポジトリの [docs/roadmap.md](https://github.com/uixhero/gunjo/blob/main/docs/roadmap.md)）。上記 semver の保証は **1.0.0 以降**で正式に有効になる。1.0 までの版の切り方は次の節。
+現バージョン：`0.1.0-beta.4`（1.0 前・beta）。**0.x（alpha / beta）期間中は上記の互換保証は努力目標**で、破壊的変更がマイナー / プレリリースに入ることがある（全部品 Experimental が既定。各部品の安定性は [/docs/stability](https://gunjo.jp/docs/stability)、1.0 の条件は GitHub issue [#1040](https://github.com/uixhero/gunjo/issues/1040)、各項目がどの版に入る予定かはリポジトリの [docs/roadmap.md](https://github.com/uixhero/gunjo/blob/main/docs/roadmap.md)）。上記 semver の保証は **1.0.0 以降**で正式に有効になる。1.0 までの版の切り方は次の節。
 
 ## beta の間の版の切り方
 
