@@ -66,7 +66,7 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 - **Server Component からの root の import で `next build` が落ちるという報告（#684）に、毎回の確かめ方を作った**（影響: **none**）— 報告は `0.1.0-beta.1`・Next.js 16.2.10（Turbopack）で `app/layout.tsx` から `import { TooltipProvider } from "@gunjo/ui"` すると `TypeError: createContext is not a function` になる、というものだった。2026-09-22 と 2026-10-11 に試したが、報告された版でも再現しなかった。CI で変更のたびに、`npm pack` した tarball を空の Next.js アプリ（重い部品の依存は入れない）に入れ、その形で Turbopack と webpack の両方で `next build` する検査（`npm run lib:check:rsc-consumer`）を回す。`/docs/installation`・`/docs/adoption` の「未解消」の注意書きを、この検査の説明に書き換えた（回避シムは「それでも出たら」として残した）。(#684)
 - **素の Node（バンドラを通さない読み込み）で `import("@gunjo/ui")` が `ERR_MODULE_NOT_FOUND` になっていた**（影響: **none**）— `dist/` の相対 import に拡張子が無かった（`./components/inputs/Button` など）。ビルドの最後に `.js` を付けるようにした（`.d.ts` も同じ）。Vitest・Jest を Node の解決で動かすテスト、自前の SSR、TypeScript の `moduleResolution: "nodenext"` から読めるようになる。バンドラ（Next.js・Vite・esbuild など）経由の採用先はコードも出力も変わらない（esbuild で束ねた結果は前後でバイト単位で同じ）。CI で `dist/` の全 subpath を素の Node で読み込む検査（`npm run lib:check:node-esm`）を回す。(#717)
 
-## [0.1.0-beta.4] — 2026-10-08
+## [0.1.0-beta.4] — 2026-10-10
 
 > `0.1.0-beta.3` 以降の変更。**破壊的変更（breaking）なし**。公開 API（部品・props・export・トークン名）の削除・改名もない。全3項目とも影響 **none**。
 
