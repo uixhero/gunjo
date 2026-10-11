@@ -6,7 +6,8 @@ GunjoUI のセキュリティポリシー。脆弱性発見時の報告手順を
 
 | バージョン | サポート状況 |
 |---|---|
-| `0.1.0-beta.x` | 🟢 active（current beta） |
+| `0.2.0-beta.x` | 🟢 active（current beta） |
+| `0.1.0-beta.x` | ⚠️ `0.2.0-beta.x` への upgrade を推奨（back-port なし） |
 | `1.0.0` 以降（将来） | 🟢 active 予定 |
 | `0.0.1-alpha.x`（旧 pre-release） | ⚠️ 最新 beta への upgrade を推奨（back-port なし） |
 
