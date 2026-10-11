@@ -11,6 +11,10 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 
+### Fixed
+
+- **素の Node（バンドラを通さない読み込み）で `import("@gunjo/ui")` が `ERR_MODULE_NOT_FOUND` になっていた**（影響: **none**）— `dist/` の相対 import に拡張子が無かった（`./components/inputs/Button` など）。ビルドの最後に `.js` を付けるようにした（`.d.ts` も同じ）。Vitest・Jest を Node の解決で動かすテスト、自前の SSR、TypeScript の `moduleResolution: "nodenext"` から読めるようになる。バンドラ（Next.js・Vite・esbuild など）経由の採用先はコードも出力も変わらない（esbuild で束ねた結果は前後でバイト単位で同じ）。CI で `dist/` の全 subpath を素の Node で読み込む検査（`npm run lib:check:node-esm`）を回す。(#717)
+
 ## [0.1.0-beta.4] — 2026-10-08
 
 > `0.1.0-beta.3` 以降の変更。**破壊的変更（breaking）なし**。公開 API（部品・props・export・トークン名）の削除・改名もない。全3項目とも影響 **none**。
