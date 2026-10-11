@@ -111,7 +111,7 @@ export const RelationshipRow = React.forwardRef<HTMLDivElement, RelationshipRowP
             "flex shrink-0 text-muted-foreground",
             isStacked
               ? "col-start-1 row-start-2 w-auto flex-row items-center justify-self-start gap-2"
-              : "col-start-2 row-start-1 w-16 flex-col items-center justify-self-center gap-0.5"
+              : "col-start-2 row-start-1 w-16 flex-col items-center justify-self-center gap-1"
           )}
           style={isStacked ? { marginInlineStart: connectorInlineStart } : undefined}
         >

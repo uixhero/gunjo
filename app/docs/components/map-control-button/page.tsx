@@ -277,7 +277,7 @@ export function MapColumn() {
             name: "size",
             type: '"default" | "sm" | "lg"',
             default: '"default"',
-            description: isJa ? "44px／34px（下限）／48px。" : "44px / 34px (the floor) / 48px.",
+            description: isJa ? "44px／40px（下限）／48px。" : "44px / 40px (the floor) / 48px.",
         },
         {
             name: "tooltipSide",
@@ -328,7 +328,7 @@ export function MapColumn() {
 
             <DocNote
                 variant="warning"
-                heading={isJa ? "34px を割りません。現在地と選んだ地点は別のアイコンで描きます" : "Never below 34px — and keep the two place glyphs apart"}
+                heading={isJa ? "40px を割りません。現在地と選んだ地点は別のアイコンで描きます" : "Never below 40px — and keep the two place glyphs apart"}
             >
                 {isJa
                     ? "現在地はピン、地図で選んだ地点は輪と点（◎）で描き分けます。どちらも「そこへ動く」ボタンなので、同じ印にすると、押す前にどちらへ飛ぶのか分かりません。"
@@ -345,8 +345,8 @@ export function MapColumn() {
                             key: "sizes",
                             title: isJa ? "大きさ" : "Sizes",
                             description: isJa
-                                ? "sm は 34px（下限）、default は 44px、lg は 48px。スマートフォンでボタンを縦にいくつも並べるときは sm、タブレットは lg。"
-                                : "sm is 34px (the floor), default 44px, lg 48px. sm for a dense phone column, lg for tablets.",
+                                ? "sm は 40px（下限）、default は 44px、lg は 48px。スマートフォンでボタンを縦にいくつも並べるときは sm、タブレットは lg。"
+                                : "sm is 40px (the floor), default 44px, lg 48px. sm for a dense phone column, lg for tablets.",
                             preview: (
                                 <OnMap>
                                     <MapControlButton size="sm" label={isJa ? "拡大" : "Zoom in"}><IconPlus /></MapControlButton>

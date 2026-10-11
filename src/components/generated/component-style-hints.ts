@@ -954,7 +954,7 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col items-center w-[192px] p-1 gap-0.5 rounded-md border",
+      "baseClasses": "flex flex-col items-center w-[192px] p-1 gap-1 rounded-md border",
       "baseColorHint": "fill=#ffffff | stroke=#e2e8f0@1px",
       "slotIds": [
         "contextMenuLabelText",
@@ -963,7 +963,7 @@ export const componentStyleHints = {
         "contextMenuSubTrigger"
       ],
       "variantClasses": {
-        "default": "flex flex-col items-center w-[192px] p-1 gap-0.5 rounded-md border"
+        "default": "flex flex-col items-center w-[192px] p-1 gap-1 rounded-md border"
       },
       "variantColorHints": {
         "default": "fill=#ffffff | stroke=#e2e8f0@1px"
@@ -1191,14 +1191,14 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-row w-[168px] py-1.5 px-3 rounded-md border",
+      "baseClasses": "flex flex-row w-[168px] py-1 px-3 rounded-md border",
       "baseColorHint": "fill=#ffffff | stroke=#e2e8f0@1px",
       "slotIds": [
         "tooltipText",
         "tooltipHintText"
       ],
       "variantClasses": {
-        "default": "flex flex-row w-[168px] py-1.5 px-3 rounded-md border"
+        "default": "flex flex-row w-[168px] py-1 px-3 rounded-md border"
       },
       "variantColorHints": {
         "default": "fill=#ffffff | stroke=#e2e8f0@1px"
@@ -1415,17 +1415,17 @@ export const componentStyleHints = {
         "warning"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "inline-flex items-center h-5 py-1 px-2.5 rounded-full text-xs font-semibold",
+      "baseClasses": "inline-flex items-center h-5 py-1 px-2 rounded-full text-xs font-semibold",
       "baseColorHint": "fill=#0c0c12 | text=#f8fafc",
       "slotIds": [],
       "variantClasses": {
-        "default": "inline-flex items-center h-5 py-1 px-2.5 rounded-full text-xs font-semibold",
-        "secondary": "inline-flex items-center h-5 py-1 px-2.5 rounded-full text-xs font-semibold",
-        "destructive": "inline-flex items-center h-5 py-1 px-2.5 rounded-full text-xs font-semibold",
-        "outline": "inline-flex items-center h-5 py-1 px-2.5 rounded-full border bg-transparent text-xs font-semibold",
-        "info": "inline-flex items-center h-5 py-1 px-2.5 rounded-full border text-xs font-semibold",
-        "success": "inline-flex items-center h-5 py-1 px-2.5 rounded-full border text-xs font-semibold",
-        "warning": "inline-flex items-center h-5 py-1 px-2.5 rounded-full border text-xs font-semibold"
+        "default": "inline-flex items-center h-5 py-1 px-2 rounded-full text-xs font-semibold",
+        "secondary": "inline-flex items-center h-5 py-1 px-2 rounded-full text-xs font-semibold",
+        "destructive": "inline-flex items-center h-5 py-1 px-2 rounded-full text-xs font-semibold",
+        "outline": "inline-flex items-center h-5 py-1 px-2 rounded-full border bg-transparent text-xs font-semibold",
+        "info": "inline-flex items-center h-5 py-1 px-2 rounded-full border text-xs font-semibold",
+        "success": "inline-flex items-center h-5 py-1 px-2 rounded-full border text-xs font-semibold",
+        "warning": "inline-flex items-center h-5 py-1 px-2 rounded-full border text-xs font-semibold"
       },
       "variantColorHints": {
         "default": "fill=#0c0c12 | text=#f8fafc",
@@ -1981,11 +1981,11 @@ export const componentStyleHints = {
         "key"
       ],
       "defaultVariantKey": "key",
-      "baseClasses": "h-5 py-1 px-1.5 rounded border",
+      "baseClasses": "h-5 p-1 rounded border",
       "baseColorHint": "fill=#f1f5f9 | stroke=#e2e8f0@1px",
       "slotIds": [],
       "variantClasses": {
-        "key": "h-5 py-1 px-1.5 rounded border"
+        "key": "h-5 p-1 rounded border"
       },
       "variantColorHints": {
         "key": "fill=#f1f5f9 | stroke=#e2e8f0@1px"
@@ -2228,14 +2228,14 @@ export const componentStyleHints = {
         "default"
       ],
       "defaultVariantKey": "default",
-      "baseClasses": "flex flex-col items-center w-full gap-1.5",
+      "baseClasses": "flex flex-col items-center w-full gap-2",
       "baseColorHint": null,
       "slotIds": [
         "ibxXb",
         "KQNAO"
       ],
       "variantClasses": {
-        "default": "flex flex-col items-center w-full gap-1.5"
+        "default": "flex flex-col items-center w-full gap-2"
       },
       "variantColorHints": {}
     },
@@ -2807,13 +2807,13 @@ export const componentStyleHints = {
         "danger"
       ],
       "defaultVariantKey": "primary",
-      "baseClasses": "w-10 h-10 p-2.5 rounded-xl",
+      "baseClasses": "w-10 h-10 p-2 rounded-xl",
       "baseColorHint": "fill=#eff6ff",
       "slotIds": [],
       "variantClasses": {
-        "primary": "w-10 h-10 p-2.5 rounded-xl",
-        "secondary": "w-10 h-10 p-2.5 rounded-xl",
-        "danger": "w-10 h-10 p-2.5 rounded-xl"
+        "primary": "w-10 h-10 p-2 rounded-xl",
+        "secondary": "w-10 h-10 p-2 rounded-xl",
+        "danger": "w-10 h-10 p-2 rounded-xl"
       },
       "variantColorHints": {
         "primary": "fill=#eff6ff",

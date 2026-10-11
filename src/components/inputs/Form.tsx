@@ -4,9 +4,9 @@ import * as React from "react"
 import { cva } from "class-variance-authority"
 import { cn } from "../../lib/utils"
 
-const formFieldVariants = cva("flex flex-col gap-1.5 p-4")
+const formFieldVariants = cva("flex flex-col gap-2 p-4")
 const formGroupVariants = cva(
-    "flex flex-col gap-1.5 p-0 [&_[data-slot=combobox]]:!w-full [&_[data-slot=date-picker]]:!w-full [&_[data-slot=date-range-picker]]:!w-full [&_[data-slot=editable-field]]:!w-full [&_[data-slot=file-uploader]]:!w-full [&_[data-slot=form-control]]:w-full [&_[data-slot=input]]:!w-full [&_[data-slot=input-otp]]:!w-full [&_[data-slot=mention]]:!w-full [&_[data-slot=number-input]]:!w-full [&_[data-slot=password-group]]:!w-full [&_[data-slot=password-input]]:!w-full [&_[data-slot=phone-input]]:!w-full [&_[data-slot=postal-code-input]]:!w-full [&_[data-slot=range-slider]]:!w-full [&_[data-slot=search-input]]:!w-full [&_[data-slot=select-control]]:!w-full [&_[data-slot=slider]]:!w-full [&_[data-slot=tag-input]]:!w-full [&_[data-slot=textarea]]:!w-full [&_[data-slot=time-picker]]:!w-full"
+    "flex flex-col gap-2 p-0 [&_[data-slot=combobox]]:!w-full [&_[data-slot=date-picker]]:!w-full [&_[data-slot=date-range-picker]]:!w-full [&_[data-slot=editable-field]]:!w-full [&_[data-slot=file-uploader]]:!w-full [&_[data-slot=form-control]]:w-full [&_[data-slot=input]]:!w-full [&_[data-slot=input-otp]]:!w-full [&_[data-slot=mention]]:!w-full [&_[data-slot=number-input]]:!w-full [&_[data-slot=password-group]]:!w-full [&_[data-slot=password-input]]:!w-full [&_[data-slot=phone-input]]:!w-full [&_[data-slot=postal-code-input]]:!w-full [&_[data-slot=range-slider]]:!w-full [&_[data-slot=search-input]]:!w-full [&_[data-slot=select-control]]:!w-full [&_[data-slot=slider]]:!w-full [&_[data-slot=tag-input]]:!w-full [&_[data-slot=textarea]]:!w-full [&_[data-slot=time-picker]]:!w-full"
 )
 
 interface FormFieldContextValue {
@@ -117,7 +117,7 @@ const FormLabel = React.forwardRef<HTMLLabelElement, FormLabelProps>(
             >
                 {children}
                 {field?.required ? (
-                    <span aria-hidden="true" className="ml-0.5 text-destructive">*</span>
+                    <span aria-hidden="true" className="ml-1 text-destructive">*</span>
                 ) : null}
             </label>
         )

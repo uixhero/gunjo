@@ -220,7 +220,7 @@ export function ForecastDayGridDemo({
         <div className={cn("flex w-full flex-col gap-4", controls && "max-w-[480px]")}>
             {controls ? (
                 <div className="grid gap-3 sm:grid-cols-2">
-                    <div className="space-y-1.5">
+                    <div className="space-y-2">
                         <p className="text-sm font-medium">{ja ? "開いた時刻" : "Opened at"}</p>
                         <SegmentedControl
                             aria-label={ja ? "開いた時刻" : "Opened at"}
@@ -234,7 +234,7 @@ export function ForecastDayGridDemo({
                             ]}
                         />
                     </div>
-                    <div className="space-y-1.5">
+                    <div className="space-y-2">
                         <p className="text-sm font-medium">{ja ? "予報の1日目" : "First forecast day"}</p>
                         <SegmentedControl
                             aria-label={ja ? "予報の1日目" : "First forecast day"}

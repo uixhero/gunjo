@@ -349,7 +349,7 @@ const AssetInspectorPanel = React.forwardRef<HTMLDivElement, AssetInspectorPanel
                             <InspectorField label={String(labels?.rating ?? "Rating")}>
                                 <div className="space-y-2">
                                     <div className="flex items-center gap-2">
-                                        <div className="flex items-center gap-0.5">
+                                        <div className="flex items-center gap-1">
                                             {[1, 2, 3, 4, 5].map((index) => (
                                                 <RatingStar
                                                     key={index}

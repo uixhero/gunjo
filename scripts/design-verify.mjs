@@ -28,6 +28,7 @@ import { verifyDocsSpecImports } from "./design-verify-docs-spec-imports.mjs";
 import { verifySsotPrCommentDocs } from "./design-verify-ssot-pr-comment-docs.mjs";
 import { verifyNoHardcodedColorClasses } from "./design-verify-hardcoded-color-classes.mjs";
 import { verifyNoLeftEmphasis } from "./check-left-emphasis.mjs";
+import { verifyGrid4 } from "./check-grid4.mjs";
 import { verifySurfaceBorders } from "./audit-surface-borders.mjs";
 import { verifySeoMetadata } from "./design-verify-seo-metadata.mjs";
 import { verifyStructuredData } from "./design-verify-structured-data.mjs";
@@ -133,6 +134,7 @@ function main() {
   verifyAllComponentDrift({ root: ROOT });
   verifyNoHardcodedColorClasses({ root: ROOT });
   verifyNoLeftEmphasis({ root: ROOT });
+  verifyGrid4({ root: ROOT });
   verifySurfaceBorders({ root: ROOT });
   verifySeoMetadata({ root: ROOT });
   verifyStructuredData({ root: ROOT });

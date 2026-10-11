@@ -51,19 +51,23 @@ const TimelineItem = React.forwardRef<HTMLLIElement, TimelineItemProps>(
                 className={cn("relative flex items-start gap-3", className)}
                 {...props}
             >
-                <div className={cn("flex self-stretch flex-col items-center", hasTime ? "pt-1" : "pt-0.5")}>
-                    {marker ? (
-                        <div className="flex h-4 w-4 items-center justify-center">
-                            {marker}
-                        </div>
-                    ) : (
-                        <span
-                            aria-hidden
-                            className={cn("h-4 w-4 rounded-full", VARIANT_CLASS[variant])}
-                        />
-                    )}
+                <div className="flex self-stretch flex-col items-center">
+                    {/* The marker sits centred in a box the height of the first line (24px
+                        with a time, 20px for TimelineTitle's text-sm without), instead of a
+                        2px nudge (#1057). The connector overlaps the box's slack so it still
+                        meets the marker. */}
+                    <div className={cn("flex w-4 shrink-0 items-center justify-center", hasTime ? "h-6" : "h-5")}>
+                        {marker ? (
+                            marker
+                        ) : (
+                            <span
+                                aria-hidden
+                                className={cn("h-4 w-4 rounded-full", VARIANT_CLASS[variant])}
+                            />
+                        )}
+                    </div>
                     {connector ? (
-                        <span aria-hidden className={cn("min-h-4 w-0.5 flex-1 bg-border", hasTime ? "-mb-1" : "-mb-0.5")} />
+                        <span aria-hidden className={cn("min-h-4 w-0.5 flex-1 bg-border", hasTime ? "-my-1" : "-my-0.5")} />
                     ) : null}
                 </div>
                 <div className={cn("min-w-0 pb-6", connector ? "" : "pb-0")}>

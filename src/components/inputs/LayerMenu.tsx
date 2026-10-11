@@ -99,7 +99,7 @@ function Mark({ state }: { state: "on" | "off" | "mixed" }) {
 }
 
 const rowClass =
-    "flex min-h-9 w-full items-center gap-2.5 rounded-md px-2 text-left text-sm text-foreground outline-none transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:hover:bg-transparent"
+    "flex min-h-9 w-full items-center gap-2 rounded-md px-2 text-left text-sm text-foreground outline-none transition-colors hover:bg-muted focus-visible:ring-2 focus-visible:ring-ring disabled:cursor-not-allowed disabled:hover:bg-transparent"
 
 /**
  * LayerMenu — choose what is drawn on top of a map: clouds, rain, borders,
@@ -219,7 +219,7 @@ function LayerMenu({
                         <div
                             id={headingId}
                             className={cn(
-                                    "px-2 pb-0.5 pt-1.5 font-medium tracking-wide text-muted-foreground",
+                                    "px-2 pt-2 font-medium tracking-wide text-muted-foreground",
                                     // The canvas tier is for text over the map; the inline list sits off it.
                                     inline ? "text-xs" : "text-canvas-sm"
                                 )}
@@ -270,7 +270,7 @@ function LayerMenu({
                 role="group"
                 aria-label={label}
                 className={cn(
-                    "flex w-60 flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-popover p-1.5 text-popover-foreground shadow-md",
+                    "flex w-60 flex-col rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-popover p-1 text-popover-foreground shadow-md",
                     className
                 )}
             >
@@ -326,7 +326,7 @@ function LayerMenu({
                 align={align}
                 sideOffset={8}
                 portalContainer={portalContainer}
-                className="w-60 gap-0 overflow-y-auto p-1.5 backdrop-blur-md"
+                className="w-60 gap-0 overflow-y-auto p-1 backdrop-blur-md"
             >
                 {list}
             </PopoverContent>

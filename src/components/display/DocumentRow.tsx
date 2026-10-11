@@ -65,7 +65,7 @@ const DocumentRow = React.forwardRef<HTMLDivElement, DocumentRowProps>(
       <div
         ref={ref}
         data-slot="document-row"
-        className={cn("flex w-full items-center gap-3 px-3 py-2.5", className)}
+        className={cn("flex min-h-10 w-full items-center gap-3 px-3 py-2", className)}
         {...props}
       >
         {control != null ? <span className="flex shrink-0 items-center">{control}</span> : null}

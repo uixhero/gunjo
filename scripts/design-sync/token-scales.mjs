@@ -39,17 +39,23 @@ export const SPACING_BASE_REM = 0.25;
  * Fractional steps are spelled with a hyphen (`--space-0-5`): a bare `.` is not
  * valid in a custom property name without escaping, and `var(--space-0\.5)` is
  * a trap to type.
+ *
+ * GunjoUI sits on a 4px grid (KeEem 2026-10-11, #1057): spacing between items,
+ * padding and the size of controls, chips and icons use the integer steps only.
+ * The fractional steps and `px` stay published but are `detailOnly` — for
+ * hairlines, dots, ticks and centring nudges, never for spacing.
+ * `scripts/check-grid4.mjs` holds the components to it.
  */
 export const SPACING_STEPS = [
     { step: "0", name: "--space-0", multiplier: 0 },
-    { step: "px", name: "--space-px", literal: "1px" },
-    { step: "0.5", name: "--space-0-5", multiplier: 0.5 },
+    { step: "px", name: "--space-px", literal: "1px", detailOnly: true },
+    { step: "0.5", name: "--space-0-5", multiplier: 0.5, detailOnly: true },
     { step: "1", name: "--space-1", multiplier: 1 },
-    { step: "1.5", name: "--space-1-5", multiplier: 1.5 },
+    { step: "1.5", name: "--space-1-5", multiplier: 1.5, detailOnly: true },
     { step: "2", name: "--space-2", multiplier: 2 },
-    { step: "2.5", name: "--space-2-5", multiplier: 2.5 },
+    { step: "2.5", name: "--space-2-5", multiplier: 2.5, detailOnly: true },
     { step: "3", name: "--space-3", multiplier: 3 },
-    { step: "3.5", name: "--space-3-5", multiplier: 3.5 },
+    { step: "3.5", name: "--space-3-5", multiplier: 3.5, detailOnly: true },
     { step: "4", name: "--space-4", multiplier: 4 },
     { step: "5", name: "--space-5", multiplier: 5 },
     { step: "6", name: "--space-6", multiplier: 6 },
@@ -225,9 +231,12 @@ export function buildScaleDeclarations() {
     const lines = [];
 
     lines.push("    /* 余白 — 段階名は Tailwind と同じ（--space-2 は gap-2 と同じ 8px）。");
-    lines.push("       小数の段は \"-\" で書く（--space-0-5 = 0.5 段 = 2px）。 */");
+    lines.push("       小数の段は \"-\" で書く（--space-0-5 = 0.5 段 = 2px）。");
+    lines.push("       4px グリッド：余白・並びの間・大きさは整数の段だけを使う。");
+    lines.push("       「細部専用」の段は線・点・中心合わせのためのもので、余白には使わない。 */");
     for (const entry of SPACING_STEPS) {
-        lines.push(declaration(entry.name, spacingValue(entry), spacingPx(entry)));
+        const px = spacingPx(entry);
+        lines.push(declaration(entry.name, spacingValue(entry), entry.detailOnly ? `${px}・細部専用` : px));
     }
 
     lines.push("");

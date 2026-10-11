@@ -7,7 +7,7 @@ import { ratingDefaultVariantKey } from "./generated/default-variant-keys"
 
 // Star pixel size per size variant. (#168)
 const ratingSizeClasses: Record<RatingVariantKey, string> = {
-    sm: "h-3.5 w-3.5",
+    sm: "h-3 w-3",
     default: "h-4 w-4",
     lg: "h-5 w-5",
 }

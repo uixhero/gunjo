@@ -219,7 +219,7 @@ const WeekView = React.forwardRef<HTMLDivElement, WeekViewProps>(
                             <div
                                 key={d.key}
                                 className={cn(
-                                    "flex flex-col items-center gap-0.5 border-r border-border px-1 py-1.5 text-center last:border-r-0",
+                                    "flex flex-col items-center gap-1 border-r border-border px-1 py-2 text-center last:border-r-0",
                                     d.isToday && "bg-primary/5"
                                 )}
                             >
@@ -288,7 +288,7 @@ const WeekView = React.forwardRef<HTMLDivElement, WeekViewProps>(
                                                 onClick={() => onSelectEvent?.(p.event)}
                                                 aria-label={name}
                                                 className={cn(
-                                                    "absolute overflow-hidden rounded-md border contrast-more:border-border forced-colors:border-[CanvasText] px-1.5 py-1 text-left text-[11px] leading-tight shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
+                                                    "absolute overflow-hidden rounded-md border contrast-more:border-border forced-colors:border-[CanvasText] px-2 py-1 text-left text-[11px] leading-tight shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
                                                     EVENT_TONE[p.event.tone ?? "default"]
                                                 )}
                                                 style={{

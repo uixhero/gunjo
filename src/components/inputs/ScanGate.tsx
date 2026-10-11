@@ -196,7 +196,7 @@ const ScanGate = React.forwardRef<ScanGateHandle, ScanGateProps>(
                                     <li
                                         aria-current={state === "active" ? "step" : undefined}
                                         className={cn(
-                                            "inline-flex items-center gap-1.5",
+                                            "inline-flex items-center gap-2",
                                             state === "active" ? "font-medium text-foreground" : "text-muted-foreground"
                                         )}
                                     >

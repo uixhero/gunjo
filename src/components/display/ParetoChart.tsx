@@ -283,7 +283,7 @@ const ParetoChart = React.forwardRef<HTMLDivElement, ParetoChartProps>(
                     {points.map((point) => (
                         <span
                             key={`label-${chartLabelToString(point.label, String(point.index))}-${point.index}`}
-                            className="min-w-0 truncate px-0.5 text-center"
+                            className="min-w-0 truncate px-1 text-center"
                         >
                             {point.label}
                         </span>
@@ -292,7 +292,7 @@ const ParetoChart = React.forwardRef<HTMLDivElement, ParetoChartProps>(
 
                 {showLegend ? (
                     <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-muted-foreground">
-                        <span className="inline-flex items-center gap-1.5">
+                        <span className="inline-flex items-center gap-2">
                             <span
                                 className="h-2.5 w-2.5 rounded-sm"
                                 style={{ backgroundColor: getChartColor(undefined, 0) }}
@@ -300,12 +300,12 @@ const ParetoChart = React.forwardRef<HTMLDivElement, ParetoChartProps>(
                             />
                             {label ?? "Count"}
                         </span>
-                        <span className="inline-flex items-center gap-1.5">
+                        <span className="inline-flex items-center gap-2">
                             <span className="h-0.5 w-4 rounded-full bg-foreground" aria-hidden="true" />
                             {cumulativeLabel}
                         </span>
                         {thresholdPercent !== null ? (
-                            <span className="inline-flex items-center gap-1.5">
+                            <span className="inline-flex items-center gap-2">
                                 <span className="h-0 w-4 border-t-2 border-dashed border-warning" aria-hidden="true" />
                                 {resolvedThresholdLabel}
                             </span>

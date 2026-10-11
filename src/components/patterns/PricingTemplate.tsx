@@ -165,7 +165,7 @@ function PricingTemplate({
                             {plan.featured ? (
                                 <Badge
                                     as="span"
-                                    className="absolute -top-2.5 left-6 bg-primary text-primary-foreground"
+                                    className="absolute left-6 top-0 -translate-y-1/2 bg-primary text-primary-foreground"
                                 >
                                     {plan.featuredLabel ?? "Most popular"}
                                 </Badge>
@@ -198,17 +198,19 @@ function PricingTemplate({
                                                 !included && "text-muted-foreground"
                                             )}
                                         >
-                                            {included ? (
-                                                <Check
-                                                    className="mt-0.5 h-3.5 w-3.5 shrink-0 text-primary"
-                                                    aria-hidden
-                                                />
-                                            ) : (
-                                                <X
-                                                    className="mt-0.5 h-3.5 w-3.5 shrink-0 text-muted-foreground"
-                                                    aria-hidden
-                                                />
-                                            )}
+                                            <span className="flex h-5 shrink-0 items-center">
+                                                {included ? (
+                                                    <Check
+                                                        className="h-4 w-4 shrink-0 text-primary"
+                                                        aria-hidden
+                                                    />
+                                                ) : (
+                                                    <X
+                                                        className="h-4 w-4 shrink-0 text-muted-foreground"
+                                                        aria-hidden
+                                                    />
+                                                )}
+                                            </span>
                                             <span>
                                                 <span className="sr-only">
                                                     {included ? "Included: " : "Not included: "}

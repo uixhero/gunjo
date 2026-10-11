@@ -116,7 +116,7 @@
           "height": null,
           "layout": "vertical",
           "padding": null,
-          "gap": 6,
+          "gap": 8,
           "cornerRadius": null,
           "fill": null,
           "stroke": null,
@@ -736,9 +736,9 @@
           "width": 168,
           "height": null,
           "padding": [
-            6,
+            4,
             12,
-            6,
+            4,
             12
           ],
           "gap": null,
@@ -765,9 +765,9 @@
           "width": 168,
           "height": null,
           "padding": [
-            6,
+            4,
             12,
-            6,
+            4,
             12
           ],
           "gap": null,
@@ -1173,7 +1173,7 @@
             4,
             4
           ],
-          "gap": 2,
+          "gap": 4,
           "cornerRadius": 6,
           "fill": "#ffffff",
           "stroke": {
@@ -1204,7 +1204,7 @@
             4,
             4
           ],
-          "gap": 2,
+          "gap": 4,
           "cornerRadius": 6,
           "fill": "#ffffff",
           "stroke": {
@@ -1253,11 +1253,11 @@
           "type": "frame",
           "name": null,
           "width": null,
-          "height": null,
+          "height": 32,
           "padding": [
-            6,
+            4,
             8,
-            6,
+            4,
             8
           ],
           "gap": 8,
@@ -1323,11 +1323,11 @@
           "type": "frame",
           "name": null,
           "width": null,
-          "height": null,
+          "height": 32,
           "padding": [
-            6,
+            4,
             8,
-            6,
+            4,
             8
           ],
           "gap": null,

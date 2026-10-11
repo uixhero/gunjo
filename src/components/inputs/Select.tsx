@@ -45,7 +45,7 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
         if (!hasWrap) return control
 
         return (
-            <div className="flex w-full flex-col gap-1.5">
+            <div className="flex w-full flex-col gap-2">
                 {label ? (
                     <label htmlFor={controlId} className="text-sm font-medium leading-none text-foreground">
                         {label}

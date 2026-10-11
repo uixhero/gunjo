@@ -20,6 +20,13 @@ function escapeRegex(value) {
   return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 }
 
+// A .pen padding (px) as the Tailwind step the source must carry. GunjoUI sits
+// on a 4px grid (#1057), so the step is an integer and `px-2` must not also
+// match an off-grid `px-2.5` — hence the `(?![\w.])` tail.
+function spacingStepPattern(prefixes, px) {
+  return new RegExp(`(?<![\\w-])(?:${prefixes.join("|")})-${escapeRegex(String(px / 4))}(?![\\w.])`);
+}
+
 export function verifyComponentDrift({ root = ROOT } = {}) {
   const { spec: feedbackSpec, sourceDirPath: feedbackSourceDirPath } =
     readCategorySpec({ root, category: "feedback" });
@@ -306,8 +313,14 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
         'Badge default should include "rounded-full"'
       );
     }
-    if (Array.isArray(defaultVariant?.padding) && defaultVariant.padding[1] === 10) {
-      assertMatch(errors, badgeSource, /\bpx-2\.5\b/, 'Badge default should include "px-2.5"');
+    if (Array.isArray(defaultVariant?.padding)) {
+      const inline = defaultVariant.padding[1];
+      assertMatch(
+        errors,
+        badgeSource,
+        spacingStepPattern(["px"], inline),
+        `Badge default should include "px-${inline / 4}" (.pen padding ${inline}px)`
+      );
     }
     if (Array.isArray(defaultVariant?.padding) && defaultVariant.padding[0] === 4) {
       assertAnyMatch(
@@ -934,11 +947,17 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
     }
 
     const defaultVariant = kbd.variants.find((v) => v?.key === "key");
-    if (Array.isArray(defaultVariant?.padding)) {
-      if (defaultVariant.padding[1] === 6) {
-        assertMatch(errors, kbdSource, /\bpx-1\.5\b/, 'Kbd should include "px-1.5"');
-      }
-      if (defaultVariant.padding[0] === 4) {
+    if (defaultVariant?.padding !== undefined) {
+      const [block, inline] = Array.isArray(defaultVariant.padding)
+        ? defaultVariant.padding
+        : [defaultVariant.padding, defaultVariant.padding];
+      assertMatch(
+        errors,
+        kbdSource,
+        spacingStepPattern(block === inline ? ["p", "px"] : ["px"], inline),
+        `Kbd should include "${block === inline ? "p" : "px"}-${inline / 4}" (.pen padding ${inline}px)`
+      );
+      if (block === 4) {
         assertMatch(
           errors,
           kbdSource,
@@ -1511,9 +1530,10 @@ export function verifyComponentDrift({ root = ROOT } = {}) {
       "ToolPill should apply state classes from variant map"
     );
 
-    assertMatch(errors, toolPillSource, /\bp-1\.5\b/, 'ToolPill should include "p-1.5" size class');
-    assertMatch(errors, toolPillSource, /\bp-2\.5\b/, 'ToolPill should include "p-2.5" size class');
-    assertMatch(errors, toolPillSource, /\bp-3\.5\b/, 'ToolPill should include "p-3.5" size class');
+    // 32 / 40 / 48 boxes with a 16 / 20 / 24 glyph, all on the 4px grid (#1057).
+    assertMatch(errors, toolPillSource, /\bh-8 w-8 rounded-lg p-2(?![\w.])/, 'ToolPill sm should be "h-8 w-8 rounded-lg p-2"');
+    assertMatch(errors, toolPillSource, /\bh-10 w-10 rounded-xl p-2(?![\w.])/, 'ToolPill md should be "h-10 w-10 rounded-xl p-2"');
+    assertMatch(errors, toolPillSource, /\bh-12 w-12 rounded-xl p-3(?![\w.])/, 'ToolPill lg should be "h-12 w-12 rounded-xl p-3"');
 
     if (
       primaryVariant?.children?.length ||

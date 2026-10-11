@@ -85,7 +85,7 @@ const CELL_TONE: Record<ScheduleCellTone, string> = {
 // （light・dark 両方の実測・2026-09-23）。⚠️ ハイコントラストで戻す枠に
 // tone ごとの *-border を使わないこと（濃くした面と同化する）。基底クラスの
 // contrast-more:border-border に集約してある。
-// ⛔ 枡は罫線を共有した格子ではなく gap-1.5 で離れた札なので、ここの枠は
+// ⛔ 枡は罫線を共有した格子ではなく gap-2 で離れた札なので、ここの枠は
 // 格子線ではなく札の輪郭＝箱 A。見出しの札（bg-muted・枠なし）と同じ語彙に揃える。
     default: "bg-card border-transparent",
     muted: "bg-muted border-transparent text-muted-foreground",
@@ -201,7 +201,7 @@ const ScheduleGrid = React.forwardRef<HTMLDivElement, ScheduleGridProps>(
                     aria-label={typeof label === "string" ? label : undefined}
                     aria-rowcount={rows.length + 1}
                     aria-colcount={columns.length + 1}
-                    className="grid min-w-min gap-1.5"
+                    className="grid min-w-min gap-2"
                     style={{
                         gridTemplateColumns: `${rowHeaderWidth}px repeat(${columns.length}, minmax(${minColumnWidth}px, 1fr))`,
                     }}
@@ -223,7 +223,7 @@ const ScheduleGrid = React.forwardRef<HTMLDivElement, ScheduleGridProps>(
                                 role="columnheader"
                                 aria-rowindex={1}
                                 aria-colindex={ci + 2}
-                                className="sticky top-0 z-20 flex flex-col items-center justify-center gap-0.5 rounded-md bg-muted px-2 py-2 text-center text-sm font-semibold"
+                                className="sticky top-0 z-20 flex flex-col items-center justify-center gap-1 rounded-md bg-muted px-2 py-2 text-center text-sm font-semibold"
                             >
                                 <span>{col.label}</span>
                                 {col.sublabel != null ? (
@@ -246,7 +246,7 @@ const ScheduleGrid = React.forwardRef<HTMLDivElement, ScheduleGridProps>(
                             >
                                 <span className="text-sm font-semibold">{row.label}</span>
                                 {row.sublabel != null ? (
-                                    <span className="mt-0.5 text-[10px] leading-tight text-muted-foreground">
+                                    <span className="mt-1 text-[10px] leading-tight text-muted-foreground">
                                         {row.sublabel}
                                     </span>
                                 ) : null}

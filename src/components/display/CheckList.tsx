@@ -61,7 +61,7 @@ const CheckList = React.forwardRef<HTMLUListElement, CheckListProps>(
                         <li
                             key={item.id}
                             className={cn(
-                                "flex items-center justify-between gap-3 px-3 py-2.5",
+                                "flex min-h-10 items-center justify-between gap-3 px-3 py-2",
                                 item.disabled && "opacity-60"
                             )}
                         >

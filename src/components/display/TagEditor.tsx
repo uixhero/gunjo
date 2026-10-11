@@ -92,7 +92,7 @@ const TagEditor = React.forwardRef<HTMLDivElement, TagEditorProps>(
                     className={classes.input}
                 />
                 {availableSuggestions.length > 0 ? (
-                    <div className="flex flex-wrap gap-1.5">
+                    <div className="flex flex-wrap gap-2">
                         {availableSuggestions.slice(0, 6).map((suggestion) => {
                             const suggestionDisabled = disabled || isAtMax
                             const button = (

@@ -1,5 +1,5 @@
 {
-  "version": "2.13",
+  "version": "2.18",
   "children": [
     {
       "type": "frame",
@@ -752,8 +752,8 @@
                     {
                       "type": "icon",
                       "id": "toastSuccessClose",
-                      "width": 14,
-                      "height": 14,
+                      "width": 16,
+                      "height": 16,
                       "icon": "x",
                       "library": "lucide",
                       "fill": "#6b7280"
@@ -1865,9 +1865,11 @@
                   "stroke": "#e2e8f0",
                   "strokeWidth": 1,
                   "strokeAlignment": "inner",
-                  "layout": "horizontal",
                   "gap": 12,
-                  "padding": [8, 16],
+                  "padding": [
+                    8,
+                    16
+                  ],
                   "justifyContent": "space_between",
                   "alignItems": "center",
                   "children": [
@@ -1905,8 +1907,7 @@
                       "content": "View details",
                       "fontFamily": "Inter",
                       "fontSize": 14,
-                      "fontWeight": "500",
-                      "underline": true
+                      "fontWeight": "500"
                     },
                     {
                       "type": "frame",
@@ -1939,9 +1940,11 @@
                   "stroke": "#e2e8f0",
                   "strokeWidth": 1,
                   "strokeAlignment": "inner",
-                  "layout": "horizontal",
                   "gap": 12,
-                  "padding": [8, 16],
+                  "padding": [
+                    8,
+                    16
+                  ],
                   "justifyContent": "space_between",
                   "alignItems": "center",
                   "children": [
@@ -1979,8 +1982,7 @@
                       "content": "View details",
                       "fontFamily": "Inter",
                       "fontSize": 14,
-                      "fontWeight": "500",
-                      "underline": true
+                      "fontWeight": "500"
                     },
                     {
                       "type": "frame",
@@ -2395,5 +2397,6 @@
         }
       ]
     }
-  ]
+  ],
+  "fileToken": "7d6bb75e-cce9-4d49-a354-4624cad21831"
 }

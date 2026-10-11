@@ -704,8 +704,8 @@
           "id": "toastSuccessClose",
           "type": "icon_font",
           "name": null,
-          "width": 14,
-          "height": 14,
+          "width": 16,
+          "height": 16,
           "padding": null,
           "gap": null,
           "cornerRadius": null,
@@ -1482,7 +1482,6 @@
           "type": "frame",
           "width": "fill_container",
           "height": null,
-          "layout": "horizontal",
           "padding": [
             8,
             16,
@@ -1513,7 +1512,6 @@
           "type": "frame",
           "width": "fill_container",
           "height": null,
-          "layout": "horizontal",
           "padding": [
             8,
             16,
@@ -1545,7 +1543,6 @@
           "name": "StickyNoticeBar/Top",
           "width": "fill_container",
           "height": null,
-          "layout": "horizontal",
           "padding": [
             8,
             16,
@@ -1648,7 +1645,6 @@
           "name": "StickyNoticeBar/Bottom",
           "width": "fill_container",
           "height": null,
-          "layout": "horizontal",
           "padding": [
             8,
             16,

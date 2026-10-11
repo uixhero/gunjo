@@ -28,7 +28,7 @@ const badgeVariantClasses: Record<BadgeVariantKey, string> = {
 
 const badgeSizeClasses = {
     sm: "h-4 px-2 py-0 text-[11px]",
-    default: "h-5 px-2.5 py-1 text-xs",
+    default: "h-5 px-2 py-1 text-xs",
     lg: "h-6 px-3 py-1 text-sm",
 } as const
 
@@ -97,7 +97,7 @@ function Badge({
                     type="button"
                     onClick={onRemove}
                     aria-label={removeLabel}
-                    className="-mr-0.5 flex h-3.5 w-3.5 shrink-0 items-center justify-center rounded-full opacity-70 outline-none transition-opacity hover:opacity-100 focus-visible:ring-1 focus-visible:ring-ring"
+                    className="-mr-0.5 flex h-3 w-3 shrink-0 items-center justify-center rounded-full opacity-70 outline-none transition-opacity hover:opacity-100 focus-visible:ring-1 focus-visible:ring-ring"
                 >
                     <X className="h-3 w-3" />
                 </button>

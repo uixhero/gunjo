@@ -212,7 +212,7 @@ const ActivityTimelineCard = React.forwardRef<
                                             {metric.label}
                                         </div>
                                         {metric.description ? (
-                                            <div className="mt-0.5 truncate text-xs text-muted-foreground">
+                                            <div className="mt-1 truncate text-xs text-muted-foreground">
                                                 {metric.description}
                                             </div>
                                         ) : null}
@@ -302,7 +302,7 @@ const ActivityTimelineCard = React.forwardRef<
                                             </span>
                                         ) : null}
                                         {showSlotValues ? (
-                                            <span className="absolute inset-x-0 top-1 z-10 truncate px-0.5 text-center text-[10px] font-medium text-background">
+                                            <span className="absolute inset-x-0 top-1 z-10 truncate px-1 text-center text-[10px] font-medium text-background">
                                                 {formatValue(value)}
                                             </span>
                                         ) : null}
@@ -457,7 +457,7 @@ const ActivityTimelineCard = React.forwardRef<
                                             aria-pressed={selectedSegmentIndex === index}
                                             aria-label={`${chartLabelToString(segment.label, "Segment")}: ${chartLabelToString(formatValue(value), "Value")}`}
                                         >
-                                            <span className="flex min-w-0 items-center gap-1.5">
+                                            <span className="flex min-w-0 items-center gap-2">
                                                 <span
                                                     className="h-2 w-2 shrink-0 rounded-full"
                                                     style={{

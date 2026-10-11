@@ -4,7 +4,7 @@ import { cn } from "../../lib/utils"
 
 const SIZE = {
   sm: { tile: "size-7 text-xs rounded", name: "text-sm", gap: "gap-2" },
-  default: { tile: "size-9 text-sm rounded-md", name: "text-sm", gap: "gap-2.5" },
+  default: { tile: "size-9 text-sm rounded-md", name: "text-sm", gap: "gap-3" },
   lg: { tile: "size-11 text-base rounded-md", name: "text-base", gap: "gap-3" },
 } as const
 

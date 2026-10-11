@@ -838,7 +838,7 @@ const DateRangePicker = React.forwardRef<HTMLInputElement, DateRangePickerProps>
                         }}
                     />
                     {showTodayButton ? (
-                        <div className="space-y-1.5 border-t border-t-transparent contrast-more:border-t-border forced-colors:border-t-[CanvasText] bg-muted p-1.5">
+                        <div className="space-y-2 border-t border-t-transparent contrast-more:border-t-border forced-colors:border-t-[CanvasText] bg-muted p-2">
                             <div className="flex items-center gap-2 px-1 text-[11px] text-muted-foreground">
                                 <span
                                     className={cn(
@@ -890,7 +890,7 @@ const DateRangePicker = React.forwardRef<HTMLInputElement, DateRangePickerProps>
         if (!hasWrap) return picker
 
         return (
-            <div className="flex w-full flex-col gap-1.5">
+            <div className="flex w-full flex-col gap-2">
                 {label ? (
                     <label htmlFor={controlId} className="text-sm font-medium leading-none text-foreground">
                         {label}

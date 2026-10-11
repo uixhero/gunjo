@@ -90,7 +90,7 @@ const variantClasses: Record<ConcentricProgressCardVariantKey, ConcentricProgres
         header: "p-5 pb-3",
         content: "px-5 pb-5",
         chart: "max-w-64",
-        metric: "px-3 py-2.5",
+        metric: "px-3 py-3",
         title: "text-base",
     },
 }

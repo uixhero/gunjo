@@ -132,18 +132,18 @@ export const ExpiryBadge = React.forwardRef<HTMLSpanElement, ExpiryBadgeProps>(
     const stateChip = (
       <span
         className={cn(
-          "inline-flex items-center gap-1 rounded px-1.5 py-0.5 text-xs font-medium",
+          "inline-flex min-h-5 items-center gap-1 rounded px-2 text-xs font-medium",
           TONE_PILL[tone],
           stateClassName
         )}
       >
-        <Icon className="size-3.5" aria-hidden="true" />
+        <Icon className="size-3" aria-hidden="true" />
         {label}
       </span>
     )
 
     return (
-      <span ref={ref} className={cn("inline-flex items-center gap-1.5 align-middle", className)} {...props}>
+      <span ref={ref} className={cn("inline-flex items-center gap-2 align-middle", className)} {...props}>
         {statePosition === "start" ? stateChip : null}
         {showDate && date != null && (
           <span className="text-xs tabular-nums text-muted-foreground">{formatDate(date)}</span>

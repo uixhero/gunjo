@@ -113,7 +113,7 @@ const CoSign = React.forwardRef<HTMLDivElement, CoSignProps>(
                     data-slot="co-sign"
                     {...props}
                 >
-                    <span className="inline-flex items-center gap-1.5 font-medium text-success-subtle-foreground">
+                    <span className="inline-flex items-center gap-2 font-medium text-success-subtle-foreground">
                         <IconCheck className="h-4 w-4 shrink-0" aria-hidden="true" />
                         {labels?.signed ?? "2人確認 済"}
                     </span>
@@ -174,7 +174,7 @@ const CoSign = React.forwardRef<HTMLDivElement, CoSignProps>(
                     </div>
                 ) : null}
 
-                <div className="flex flex-col gap-1.5">
+                <div className="flex flex-col gap-2">
                     <label htmlFor={`${reactId}-signer`} className="text-sm font-medium leading-none text-foreground">
                         {signerLabel}
                     </label>

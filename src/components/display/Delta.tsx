@@ -78,7 +78,7 @@ const Delta = React.forwardRef<HTMLSpanElement, DeltaProps>(
                 className={cn("inline-flex items-center gap-1 font-medium tabular-nums", TONE_CLASS[tone], className)}
                 {...props}
             >
-                {hideArrow ? null : <Icon className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />}
+                {hideArrow ? null : <Icon className="h-4 w-4 shrink-0" aria-hidden="true" />}
                 <span>{format(value)}</span>
                 {label != null ? (
                     showLabel ? (

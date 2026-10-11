@@ -160,7 +160,7 @@ const ScanInput = React.forwardRef<HTMLInputElement, ScanInputProps>(
         const describedBy = [descId, resultId].filter(Boolean).join(" ") || undefined
 
         return (
-            <div className={cn("flex w-full flex-col gap-1.5", className)} data-slot="scan-input">
+            <div className={cn("flex w-full flex-col gap-2", className)} data-slot="scan-input">
                 {label != null ? (
                     <label htmlFor={inputId} className="text-sm font-medium text-foreground">
                         {label}
@@ -236,7 +236,7 @@ const ScanInput = React.forwardRef<HTMLInputElement, ScanInputProps>(
                     {result ? (
                         <span
                             className={cn(
-                                "inline-flex items-center gap-1.5",
+                                "inline-flex items-center gap-2",
                                 result.ok ? "text-success-strong" : "text-destructive"
                             )}
                         >
@@ -251,7 +251,7 @@ const ScanInput = React.forwardRef<HTMLInputElement, ScanInputProps>(
                 </p>
 
                 {showFeed ? (
-                    <div className="flex flex-col gap-1.5 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
+                    <div className="flex flex-col gap-2 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
                         <p className="text-xs font-medium text-muted-foreground">{labels?.feedTitle ?? "スキャン履歴"}</p>
                         {feed.length === 0 ? (
                             <p className="text-sm text-muted-foreground">{labels?.empty ?? "—"}</p>
@@ -261,7 +261,7 @@ const ScanInput = React.forwardRef<HTMLInputElement, ScanInputProps>(
                                     <li key={entry.id} className="flex items-center gap-2 text-sm">
                                         <span
                                             className={cn(
-                                                "shrink-0 rounded px-1.5 py-0.5 text-xs font-medium",
+                                                "shrink-0 rounded px-2 text-xs font-medium leading-5",
                                                 entry.ok
                                                     ? "bg-success-subtle text-success-subtle-foreground"
                                                     : "bg-destructive-subtle text-destructive-subtle-foreground"

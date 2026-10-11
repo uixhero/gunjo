@@ -81,7 +81,7 @@ const defaultMarkdownComponents: NonNullable<ReactMarkdownOptions["components"]>
         return (
             <ul
                 className={cn(
-                    "my-4 ml-5 list-disc space-y-1.5 text-foreground",
+                    "my-4 ml-5 list-disc space-y-2 text-foreground",
                     isTaskList && "ml-0 list-none space-y-2",
                     className
                 )}
@@ -90,7 +90,7 @@ const defaultMarkdownComponents: NonNullable<ReactMarkdownOptions["components"]>
         )
     },
     ol: ({ className, ...props }) => (
-        <ol className={cn("my-4 ml-5 list-decimal space-y-1.5 text-foreground", className)} {...withoutNode(props)} />
+        <ol className={cn("my-4 ml-5 list-decimal space-y-2 text-foreground", className)} {...withoutNode(props)} />
     ),
     li: ({ className, ...props }) => {
         const isTaskItem = String(className ?? "").includes("task-list-item")
@@ -121,7 +121,7 @@ const defaultMarkdownComponents: NonNullable<ReactMarkdownOptions["components"]>
     // `pre` instead. Without it a span holding one long unbreakable token — a
     // path, a URL — has no break opportunity and widens the whole page (#893).
     code: ({ className, ...props }) => (
-        <code className={cn("rounded bg-muted px-1 py-0.5 font-mono text-sm text-foreground break-words", className)} {...withoutNode(props)} />
+        <code className={cn("rounded bg-muted px-1 font-mono text-sm text-foreground break-words", className)} {...withoutNode(props)} />
     ),
     table: ({ className, ...props }) => (
         <div className="my-4">

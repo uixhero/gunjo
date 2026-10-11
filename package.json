@@ -140,6 +140,8 @@
     "design:verify:sitemap:self-test": "node scripts/check-sitemap-coverage.mjs --self-test",
     "design:verify:left-emphasis": "node scripts/check-left-emphasis.mjs",
     "design:verify:left-emphasis:self-test": "node scripts/check-left-emphasis.mjs --self-test",
+    "design:verify:grid4": "node scripts/check-grid4.mjs",
+    "design:verify:grid4:self-test": "node scripts/check-grid4.mjs --self-test",
     "design:verify:fictional-names": "node scripts/check-fictional-names.mjs",
     "design:verify:fictional-names:self-test": "node scripts/check-fictional-names.mjs --self-test",
     "design:verify:japanese-length": "node scripts/check-japanese-length.mjs",

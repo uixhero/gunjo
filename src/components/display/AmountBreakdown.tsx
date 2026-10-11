@@ -101,7 +101,7 @@ export const AmountBreakdown = React.forwardRef<HTMLDivElement, AmountBreakdownP
                 key={i}
                 role="row"
                 className={cn(
-                  "flex items-baseline justify-between gap-4 px-1 py-1.5",
+                  "flex items-baseline justify-between gap-4 px-1 py-1 leading-6",
                   isSubtotal && "mt-1 border-t border-dashed border-border pt-2 font-medium"
                 )}
               >

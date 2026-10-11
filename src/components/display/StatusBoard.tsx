@@ -136,7 +136,7 @@ function Tile({ item, selected }: { item: StatusBoardItem; selected: boolean }) 
   const body = (
     <>
       <div className="flex items-start justify-between gap-2">
-        <div className="flex min-w-0 items-center gap-1.5">
+        <div className="flex min-w-0 items-center gap-2">
           {item.icon != null && <span className="shrink-0 text-muted-foreground">{item.icon}</span>}
           <span className="truncate text-sm font-semibold text-foreground">{item.label}</span>
         </div>
@@ -144,7 +144,7 @@ function Tile({ item, selected }: { item: StatusBoardItem; selected: boolean }) 
       </div>
       <span
         className={cn(
-          "mt-1.5 inline-flex w-fit items-center gap-1 rounded px-1.5 py-0.5 text-xs font-medium",
+          "mt-2 inline-flex min-h-5 w-fit items-center gap-1 rounded px-2 text-xs font-medium",
           TONE_PILL[tone]
         )}
       >
@@ -152,11 +152,11 @@ function Tile({ item, selected }: { item: StatusBoardItem; selected: boolean }) 
         {item.status}
       </span>
       {item.location != null && <div className="mt-1 truncate text-xs text-muted-foreground">{item.location}</div>}
-      {item.note != null && <div className="mt-0.5 truncate text-xs text-muted-foreground">{item.note}</div>}
+      {item.note != null && <div className="mt-1 truncate text-xs text-muted-foreground">{item.note}</div>}
     </>
   )
   const className = cn(
-    "flex flex-col rounded-md border bg-card p-2.5 text-left transition-colors",
+    "flex flex-col rounded-md border bg-card p-3 text-left transition-colors",
     TONE_TILE[tone],
     hasToneSurface && "[&_.bg-secondary]:bg-background",
     selected && "border-ring ring-1 ring-ring",

@@ -175,7 +175,7 @@ const Leaderboard = React.forwardRef<HTMLDivElement, LeaderboardProps>(
                 ) : null}
 
                 <span className="min-w-[4.75rem] flex-[1_1_4.75rem]">
-                  <span className="flex min-w-0 flex-col gap-0.5">
+                  <span className="flex min-w-0 flex-col gap-1">
                     <span className="truncate text-sm font-medium text-foreground">{it.label}</span>
                     {it.sublabel != null ? (
                       <span className="truncate text-xs text-muted-foreground">{it.sublabel}</span>

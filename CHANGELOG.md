@@ -11,6 +11,45 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 
+### 採用先向けの要約（見た目が変わるもの）
+
+コードを直さなくても、依存を上げると部品の余白とアイコンの大きさが変わる（部品のファイル 120 個）。公開 API（部品・props・export・トークン名）は変わらない。
+
+1. **余白・並びの間・大きさを 4px の倍数にそろえた**：6px の間は 8px に、2px の間は 4px になる。題と説明の間や、ラベルと入力の間で、縦が 2〜4px 伸びる。1行の行とバッジの高さは保った（メニューの項目は 32px、バッジは 20px のまま）。
+2. **14px のアイコンを 16px にした**：text-xs のバッジの中だけは 12px にした。
+3. **4つの部品は大きさが変わる**：`MapControlButton` の `sm`、`Tooltip`、`PlacePanel` の閉じる釦、`SegmentedControl` の `sm`。
+
+### Added
+
+- **4px グリッドの検査 `npm run design:verify:grid4`**（影響: **none**）：部品のクラスと、アイコンの `size={N}` を読む。`gap`・`space`・`padding`・`margin`・位置・大きさが 4 の倍数でなければ落とす。例外は、12px 未満の線・点・目盛りと、4px 未満の位置ずらし（中心合わせ）だけ。`design:verify` に含まれる。(#1057)
+
+### Changed
+
+- **部品を 4px グリッドにそろえた**（影響: **none**・見た目が変わる）(#1057)
+  - **大きさが変わる4部品**：
+    - `MapControlButton` の `sm`：34px から 40px（アイコンは 17px から 16px）
+    - `Tooltip`：上下の余白が 6px から 4px になり、高さが 32px から 28px になる
+    - `PlacePanel` の閉じる釦：44px から 48px（見出しの行の高さは変わらない）
+    - `SegmentedControl` の `sm`：区分が 28px から 24px（溝は 32px のまま）
+  - **地図の部品**：
+    - `MapStatusCorner` の外余白：横 14px・上 10px から、どちらも 12px
+    - `LayerMenu`：行の間が 10px から 8px、外枠の余白が 6px から 4px
+    - `TimeTransport`・`DayBand` の間：6px から 8px
+    - `TimelineScrubber` の針の上端：18px から 20px
+  - **メニューの項目**：高さ 32px を `min-h-8` で決め、上下の余白を 6px から 4px にした。アイコンの箱は 14px から 16px にした。
+    - 対象：`DropdownMenu`・`ContextMenu`・`Menubar`・`Command`・`Mention`・`TreeView`
+  - **`Badge`・`Kbd`・`Tag` の横の余白**：
+    - `Badge`：10px から 8px
+    - `Kbd`：6px から 4px
+    - `Tag` の `sm`：6px から 8px
+    - `Tag` の `lg`：10px から 12px
+  - **`ToolPill`**：余白を 6／10／14px から 8／8／12px にした。アイコンは 14／18／22px から 16／20／24px。
+  - **`Code`**：インラインのコードの余白を、横 6.4px・上下 2.4px から、横 4px・上下なしにした。Markdown の中のコードと同じ形。
+  - **`NumberInput` の増減の釦**：前は 18px＋罫 1px＋18px で、入力の 36px から 1px はみ出していた。いまは入力の高さを半分ずつ分ける。
+  - **アイコンを1行目の字の中心に置く部品**：`mt-0.5` で 2px ずらす作りをやめ、1行目の高さの箱に置く作りにした。
+    - 対象：`SafetyBanner`・`CheckboxCard`・`RadioCard`・`Itinerary`・`MetadataList`・`Timeline`・`PasswordRequirementList` など
+- **`--space-0-5`・`--space-1-5`・`--space-2-5`・`--space-3-5`・`--space-px` に「細部専用」と注記した**（影響: **none**）：線・点・中心合わせに使い、余白には使わない。`public/tokens.css` の行末と `/docs/spacing` の表に出る。(#1057)
+
 ## [0.2.0-beta.1] — 2026-10-11
 
 > `0.1.0-beta.4` 以降の変更。**破壊的変更が2件**（どちらも影響 **minor**＝import の書き換えと依存の追加で済む）あるので、真ん中の数字を上げた。見た目の変更は無い。

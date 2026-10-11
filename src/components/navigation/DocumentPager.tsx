@@ -44,7 +44,7 @@ function DocumentPagerThumb({
     if (!src && !errored) return null
 
     return (
-        <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-1.5 sm:w-28">
+        <div className="relative h-20 w-24 shrink-0 overflow-hidden rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-1 sm:w-28">
             {src && !errored ? (
                 /* eslint-disable-next-line @next/next/no-img-element */
                 <img
@@ -87,11 +87,11 @@ function DocumentPagerCard({
         >
             <div
                 className={cn(
-                    "mb-2.5 flex items-center",
+                    "mb-2 flex items-center",
                     direction === "next" ? "justify-end" : "justify-start"
                 )}
             >
-                <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-muted-foreground transition-colors group-hover:text-primary">
+                <span className="inline-flex items-center gap-2 text-sm font-semibold text-muted-foreground transition-colors group-hover:text-primary">
                     {direction === "previous" ? <ChevronLeft className="h-4 w-4" /> : null}
                     {item.directionLabel}
                     {direction === "next" ? <ChevronRight className="h-4 w-4" /> : null}
@@ -105,8 +105,8 @@ function DocumentPagerCard({
                     fallback={item.thumbnailFallback}
                 />
                 <div className="min-w-0 flex-1 space-y-2">
-                    <div className="flex min-w-0 flex-col items-start gap-1.5">
-                        <span className="min-w-0 max-w-full space-y-0.5 text-sm font-semibold tracking-tight transition-colors group-hover:text-primary">
+                    <div className="flex min-w-0 flex-col items-start gap-2">
+                        <span className="min-w-0 max-w-full space-y-1 text-sm font-semibold tracking-tight transition-colors group-hover:text-primary">
                             <span className="block break-words leading-snug">{item.title}</span>
                             {item.subtitle ? (
                                 <span className="block break-words text-[10px] font-normal leading-snug text-muted-foreground">
@@ -115,7 +115,7 @@ function DocumentPagerCard({
                             ) : null}
                         </span>
                         {item.categoryLabel ? (
-                            <span className="inline-flex min-h-5 max-w-full shrink-0 items-center rounded-full border border-border/60 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
+                            <span className="inline-flex min-h-5 max-w-full shrink-0 items-center rounded-full border border-border/60 px-2 text-[10px] font-semibold uppercase tracking-wider text-muted-foreground">
                                 {item.categoryLabel}
                             </span>
                         ) : null}

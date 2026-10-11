@@ -1,5 +1,5 @@
 {
-  "version": "2.14",
+  "version": "2.18",
   "children": [
     {
       "type": "frame",
@@ -61,7 +61,7 @@
                   "cornerRadius": 9999,
                   "padding": [
                     4,
-                    10
+                    8
                   ],
                   "justifyContent": "center",
                   "alignItems": "center",
@@ -87,7 +87,7 @@
                   "cornerRadius": 9999,
                   "padding": [
                     4,
-                    10
+                    8
                   ],
                   "justifyContent": "center",
                   "alignItems": "center",
@@ -113,7 +113,7 @@
                   "cornerRadius": 9999,
                   "padding": [
                     4,
-                    10
+                    8
                   ],
                   "justifyContent": "center",
                   "alignItems": "center",
@@ -142,7 +142,7 @@
                   "strokeAlignment": "inner",
                   "padding": [
                     4,
-                    10
+                    8
                   ],
                   "justifyContent": "center",
                   "alignItems": "center",
@@ -171,7 +171,7 @@
                   "strokeAlignment": "inner",
                   "padding": [
                     4,
-                    10
+                    8
                   ],
                   "justifyContent": "center",
                   "alignItems": "center",
@@ -201,7 +201,7 @@
                   "strokeAlignment": "inner",
                   "padding": [
                     4,
-                    10
+                    8
                   ],
                   "justifyContent": "center",
                   "alignItems": "center",
@@ -231,7 +231,7 @@
                   "strokeAlignment": "inner",
                   "padding": [
                     4,
-                    10
+                    8
                   ],
                   "justifyContent": "center",
                   "alignItems": "center",
@@ -538,17 +538,14 @@
                   "stroke": "#e2e8f0",
                   "strokeWidth": 1,
                   "strokeAlignment": "inner",
-                  "padding": [
-                    4,
-                    6
-                  ],
+                  "padding": 4,
                   "justifyContent": "center",
                   "alignItems": "center",
                   "children": [
                     {
                       "type": "frame",
                       "id": "kbdKeyInset",
-                      "gap": 2,
+                      "gap": 4,
                       "justifyContent": "center",
                       "alignItems": "center",
                       "children": [
@@ -880,15 +877,15 @@
                   "height": 40,
                   "fill": "#eff6ff",
                   "cornerRadius": 12,
-                  "padding": 10,
+                  "padding": 8,
                   "justifyContent": "center",
                   "alignItems": "center",
                   "children": [
                     {
                       "type": "icon",
                       "id": "toolPillPrimaryIcon",
-                      "width": 18,
-                      "height": 18,
+                      "width": 20,
+                      "height": 20,
                       "icon": "plus",
                       "library": "lucide",
                       "fill": "#1d4ed8"
@@ -904,15 +901,15 @@
                   "height": 40,
                   "fill": "#ffffff80",
                   "cornerRadius": 12,
-                  "padding": 10,
+                  "padding": 8,
                   "justifyContent": "center",
                   "alignItems": "center",
                   "children": [
                     {
                       "type": "icon",
                       "id": "toolPillSecondaryIcon",
-                      "width": 18,
-                      "height": 18,
+                      "width": 20,
+                      "height": 20,
                       "icon": "copy",
                       "library": "lucide",
                       "fill": "#4b5563"
@@ -928,15 +925,15 @@
                   "height": 40,
                   "fill": "#fef2f2",
                   "cornerRadius": 12,
-                  "padding": 10,
+                  "padding": 8,
                   "justifyContent": "center",
                   "alignItems": "center",
                   "children": [
                     {
                       "type": "icon",
                       "id": "toolPillDangerIcon",
-                      "width": 18,
-                      "height": 18,
+                      "width": 20,
+                      "height": 20,
                       "icon": "trash-2",
                       "library": "lucide",
                       "fill": "#dc2626"
@@ -1780,7 +1777,7 @@
                       "id": "cardHeader",
                       "name": "CardHeader",
                       "layout": "vertical",
-                      "gap": 6,
+                      "gap": 8,
                       "padding": 24,
                       "children": [
                         {
@@ -3356,7 +3353,7 @@
                   "reusable": true,
                   "width": "fill_container",
                   "layout": "vertical",
-                  "gap": 6,
+                  "gap": 8,
                   "children": [
                     {
                       "type": "frame",
@@ -3523,6 +3520,7 @@
                     "bottom": 1
                   },
                   "strokeAlignment": "inner",
+                  "strokeLinejoin": "round",
                   "gap": 24,
                   "padding": [
                     0,

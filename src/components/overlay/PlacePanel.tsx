@@ -128,7 +128,7 @@ const PlacePanel = React.forwardRef<HTMLElement, PlacePanelProps>(
                             type="button"
                             onClick={onClose}
                             aria-label={closeLabel}
-                            className="-my-2.5 -mr-3 inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+                            className="-my-3 -mr-3 inline-flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
                         >
                             <IconX className="h-4 w-4" />
                         </button>

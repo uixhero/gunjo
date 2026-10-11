@@ -42,7 +42,7 @@ const PasswordRequirementList = React.forwardRef<
         return (
             <ul
                 ref={ref}
-                className={cn("grid gap-1.5 text-sm", className)}
+                className={cn("grid gap-2 text-sm", className)}
                 data-slot="password-requirement-list"
                 {...props}
             >
@@ -72,10 +72,12 @@ const PasswordRequirementList = React.forwardRef<
                                 state === "pending" && "text-muted-foreground"
                             )}
                         >
-                            <Icon
-                                className="mt-0.5 h-4 w-4 shrink-0"
-                                aria-label={label}
-                            />
+                            <span className="flex h-5 shrink-0 items-center">
+                                <Icon
+                                    className="h-4 w-4 shrink-0"
+                                    aria-label={label}
+                                />
+                            </span>
                             <span className="min-w-0">
                                 <span>{requirement.label}</span>
                                 {requirement.description ? (
