@@ -49,6 +49,9 @@ export function runVerificationCli({ scriptName, verify, successMessage }) {
     console.log(successMessage);
   } catch (error) {
     console.error(error.message);
-    process.exit(1);
+    // Not process.exit(1): when stderr is a pipe (`… 2>&1 | grep`) the write is
+    // async, and exit() drops whatever has not drained — a long report was cut
+    // at 64 KiB and read as "0 left". exitCode lets Node exit after the flush.
+    process.exitCode = 1;
   }
 }
