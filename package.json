@@ -161,6 +161,8 @@
     "design:verify:tabular-nums:self-test": "node scripts/design-verify-tabular-nums.mjs --self-test",
     "design:verify:slider-track:self-test": "node scripts/design-verify-slider-track.mjs --self-test",
     "design:verify:app-globals": "node scripts/design-verify-app-globals-sync.mjs",
+    "design:verify:subpath-entries": "node scripts/design-verify-subpath-entries.mjs",
+    "design:verify:subpath-entries:self-test": "node scripts/design-verify-subpath-entries.mjs --self-test",
     "design:verify:generated-stubs": "node scripts/design-verify-generated-stub-coverage.mjs",
     "design:verify:generated-stubs:report": "node scripts/design-verify-generated-stub-coverage.mjs --report",
     "design:verify:generated-docs-pages": "node scripts/design-verify-generated-docs-page-coverage.mjs",
@@ -211,9 +213,35 @@
     "design:verify:templates": "node scripts/design-verify-template-drift.mjs"
   },
   "peerDependencies": {
+    "@tanstack/react-table": "^8.21.3",
+    "embla-carousel-react": "^8.6.0",
+    "framer-motion": "^12.0.0",
     "react": "^19.0.0",
+    "react-day-picker": "^9.13.0",
     "react-dom": "^19.0.0",
-    "tailwindcss": "^3.0.0 || ^4.0.0"
+    "react-markdown": "^10.1.0",
+    "tailwindcss": "^3.0.0 || ^4.0.0",
+    "vaul": "^1.1.2"
+  },
+  "peerDependenciesMeta": {
+    "@tanstack/react-table": {
+      "optional": true
+    },
+    "embla-carousel-react": {
+      "optional": true
+    },
+    "framer-motion": {
+      "optional": true
+    },
+    "react-day-picker": {
+      "optional": true
+    },
+    "react-markdown": {
+      "optional": true
+    },
+    "vaul": {
+      "optional": true
+    }
   },
   "dependencies": {
     "@radix-ui/react-accordion": "^1.2.12",
@@ -234,42 +262,42 @@
     "@radix-ui/react-tooltip": "^1.2.8",
     "@radix-ui/react-visually-hidden": "^1.2.4",
     "@tabler/icons-react": "^3.44.0",
-    "@tanstack/react-table": "^8.21.3",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "cmdk": "^1.1.1",
     "date-fns": "^4.1.0",
-    "embla-carousel-react": "^8.6.0",
-    "framer-motion": "^12.0.0",
     "input-otp": "^1.4.2",
-    "react-day-picker": "^9.13.0",
-    "react-markdown": "^10.1.0",
     "react-resizable-panels": "^4.0.11",
     "remark-gfm": "^4.0.1",
     "tailwind-merge": "^3.4.0",
-    "tailwindcss-animate": "^1.0.7",
-    "vaul": "^1.1.2"
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@next/third-parties": "^16.2.9",
     "@tailwindcss/postcss": "^4.1.18",
+    "@tanstack/react-table": "^8.21.3",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "@types/react-syntax-highlighter": "^15.5.13",
     "@vercel/analytics": "^2.0.1",
+    "embla-carousel-react": "^8.6.0",
     "eslint": "^9",
     "eslint-config-next": "16.1.0",
+    "framer-motion": "^12.0.0",
     "lighthouse": "^12.8.2",
     "next": "16.1.0",
     "next-themes": "^0.4.6",
     "postcss": "^8.5.6",
     "puppeteer": "^24.41.0",
     "react": "^19.0.0",
+    "react-day-picker": "^9.13.0",
     "react-dom": "^19.0.0",
+    "react-markdown": "^10.1.0",
     "schema-dts": "^2.0.0",
     "shiki": "^3.20.0",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "vaul": "^1.1.2"
   }
 }

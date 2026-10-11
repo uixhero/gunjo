@@ -8,7 +8,8 @@ import { GunjoLogo } from "@/components/layout/GunjoLogo";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import navigationMetadata from "@design/navigation-metadata.json";
-import { Avatar, AvatarFallback, Button, CommandPalette, Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger, Header, HeaderActions, HeaderBrand, HeaderNav, HeaderNavLink, TooltipButton } from "@gunjo/ui";
+import { Avatar, AvatarFallback, Button, CommandPalette, Header, HeaderActions, HeaderBrand, HeaderNav, HeaderNavLink, TooltipButton } from "@gunjo/ui";
+import { Drawer, DrawerClose, DrawerContent, DrawerDescription, DrawerFooter, DrawerHeader, DrawerTitle, DrawerTrigger } from "@gunjo/ui/drawer";
 import {
     IconLanguage as Languages,
     IconMenu2 as Menu,
@@ -480,6 +481,12 @@ import {
   AvatarFallback,
   Button,
   CommandPalette,
+  Header,
+  HeaderActions,
+  HeaderBrand,
+  TooltipButton,
+} from "@gunjo/ui";
+import {
   Drawer,
   DrawerClose,
   DrawerContent,
@@ -488,11 +495,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-  Header,
-  HeaderActions,
-  HeaderBrand,
-  TooltipButton,
-} from "@gunjo/ui"
+} from "@gunjo/ui/drawer";
 
 type Locale = "ja" | "en"
 

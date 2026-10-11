@@ -41,6 +41,11 @@ function createDrawerCode(locale: "ja" | "en", side: DrawerSide = "bottom") {
 import * as React from "react";
 import {
   Button,
+  Input,
+  Label,
+  Textarea,
+} from "@gunjo/ui";
+import {
   Drawer,
   DrawerClose,
   DrawerContent,
@@ -49,10 +54,7 @@ import {
   DrawerHeader,
   DrawerTitle,
   DrawerTrigger,
-  Input,
-  Label,
-  Textarea,
-} from "@gunjo/ui";
+} from "@gunjo/ui/drawer";
 
 export function ${t.name}() {
   const [

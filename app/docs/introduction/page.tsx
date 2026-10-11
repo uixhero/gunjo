@@ -11,15 +11,17 @@ import {
     IconSparkles as Sparkles,
 } from "@tabler/icons-react";
 import {
-    Badge,
-    Button,
-    Card,
-    CardContent,
-    CardDescription,
-    CardHeader,
-    CardTitle,
-    MarkdownRenderer,
+  Badge,
+  Button,
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
 } from "@gunjo/ui";
+import {
+  MarkdownRenderer,
+} from "@gunjo/ui/markdown";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 

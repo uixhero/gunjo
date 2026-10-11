@@ -4,12 +4,34 @@ import React from "react";
 import { enUS } from "date-fns/locale/en-US";
 import { ja } from "date-fns/locale/ja";
 import {
-    Tabs, TabsList, TabsTrigger, TabsContent,
-    Accordion, AccordionItem, AccordionTrigger, AccordionContent,
-    Command, CommandInput, CommandList, CommandEmpty, CommandGroup, CommandItem, CommandShortcut,
-    Calendar,
-    Button, Input, Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, Label
+  Tabs,
+  TabsList,
+  TabsTrigger,
+  TabsContent,
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+  Command,
+  CommandInput,
+  CommandList,
+  CommandEmpty,
+  CommandGroup,
+  CommandItem,
+  CommandShortcut,
+  Button,
+  Input,
+  Card,
+  CardHeader,
+  CardTitle,
+  CardDescription,
+  CardContent,
+  CardFooter,
+  Label,
 } from "@gunjo/ui";
+import {
+  Calendar,
+} from "@gunjo/ui/calendar";
 import {
     IconCalculator as Calculator,
     IconCalendar as CalendarIcon,

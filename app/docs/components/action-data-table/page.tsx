@@ -14,30 +14,32 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
 import {
-    ActionDataTable,
-    AlertDialog,
-    AlertDialogAction,
-    AlertDialogCancel,
-    AlertDialogContent,
-    AlertDialogDescription,
-    AlertDialogFooter,
-    AlertDialogHeader,
-    AlertDialogTitle,
-    Badge,
-    Button,
-    Dialog,
-    DialogContent,
-    DialogDescription,
-    DialogFooter,
-    DialogHeader,
-    DialogTitle,
-    Form,
-    FormGroup,
-    FormLabel,
-    Input,
-    Select,
-    type ActionDataTableLabels,
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  Badge,
+  Button,
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  Form,
+  FormGroup,
+  FormLabel,
+  Input,
+  Select,
 } from "@gunjo/ui";
+import {
+  ActionDataTable,
+  type ActionDataTableLabels,
+} from "@gunjo/ui/table";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Campaign = {
@@ -406,7 +408,8 @@ export default function ActionDataTablePage() {
 import * as React from "react"
 import type { ColumnDef } from "@tanstack/react-table"
 import { IconArchive, IconPencil, IconTrash } from "@tabler/icons-react"
-import { ActionDataTable, Badge, type ActionDataTableLabels } from "@gunjo/ui"
+import { Badge } from "@gunjo/ui";
+import { ActionDataTable, type ActionDataTableLabels } from "@gunjo/ui/table";
 
 type Campaign = {
   id: string
@@ -552,7 +555,8 @@ export function CampaignTable() {
 import * as React from "react"
 import type { ColumnDef } from "@tanstack/react-table"
 import { IconArchive, IconPencil, IconTrash } from "@tabler/icons-react"
-import { ActionDataTable, Badge, type ActionDataTableLabels } from "@gunjo/ui"
+import { Badge } from "@gunjo/ui";
+import { ActionDataTable, type ActionDataTableLabels } from "@gunjo/ui/table";
 
 type Campaign = {
   id: string
@@ -701,7 +705,7 @@ export function CampaignTable() {
 
 import type { ColumnDef } from "@tanstack/react-table"
 import { IconArchive, IconPencil, IconTrash } from "@tabler/icons-react"
-import { ActionDataTable } from "@gunjo/ui"
+import { ActionDataTable } from "@gunjo/ui/table";
 
 type Campaign = { id: string; name: string; owner: string; updatedAt: string }
 
@@ -738,7 +742,7 @@ export function CampaignTableWithMenu() {
 
 import type { ColumnDef } from "@tanstack/react-table"
 import { IconArchive, IconPencil, IconTrash } from "@tabler/icons-react"
-import { ActionDataTable } from "@gunjo/ui"
+import { ActionDataTable } from "@gunjo/ui/table";
 
 type Campaign = { id: string; name: string; owner: string; updatedAt: string }
 

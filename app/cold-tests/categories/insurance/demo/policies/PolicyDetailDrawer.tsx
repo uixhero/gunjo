@@ -4,13 +4,6 @@ import * as React from "react";
 import {
   AmountBreakdown,
   type AmountLine,
-  Drawer,
-  DrawerContent,
-  DrawerHeader,
-  DrawerTitle,
-  DrawerDescription,
-  DrawerFooter,
-  DrawerClose,
   Button,
   Tabs,
   TabsList,
@@ -28,6 +21,15 @@ import {
   TimelineTime,
   formatCurrency,
 } from "@gunjo/ui";
+import {
+  Drawer,
+  DrawerContent,
+  DrawerHeader,
+  DrawerTitle,
+  DrawerDescription,
+  DrawerFooter,
+  DrawerClose,
+} from "@gunjo/ui/drawer";
 import { IconFileText } from "@tabler/icons-react";
 import {
   type Policy,

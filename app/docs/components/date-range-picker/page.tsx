@@ -11,7 +11,8 @@ import inputsMetadata from "@design/inputs-metadata.json";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { DateRangePickerDemo } from "@/components/demos/DateRangePickerDemo";
 import { CodeBlock } from "@/components/doc/CodeBlock";
-import { DateRangePicker as GunjoDateRangePicker, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+import { FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+import { DateRangePicker as GunjoDateRangePicker } from "@gunjo/ui/calendar";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { withPreviewPortal } from "@/components/doc/PreviewPortal";
 
@@ -70,12 +71,14 @@ function DateRangePickerStates({ locale }: { locale: "ja" | "en" }) {
 import * as React from "react";
 import type { DateRange } from "react-day-picker";
 import {
-  DateRangePicker,
   FormControl,
   FormDescription,
   FormGroup,
   FormLabel,
 } from "@gunjo/ui";
+import {
+  DateRangePicker,
+} from "@gunjo/ui/calendar";
 
 export default function CampaignWindowField() {
   const [range, setRange] = React.useState<DateRange | undefined>();
@@ -119,7 +122,8 @@ export default function CampaignWindowField() {
 
 import * as React from "react";
 import type { DateRange } from "react-day-picker";
-import { DateRangePicker, FormControl, FormGroup, FormLabel } from "@gunjo/ui";
+import { FormControl, FormGroup, FormLabel } from "@gunjo/ui";
+import { DateRangePicker } from "@gunjo/ui/calendar";
 
 export default function EmptyRangeField() {
   const [range, setRange] = React.useState<DateRange | undefined>();
@@ -171,12 +175,14 @@ export default function EmptyRangeField() {
 import * as React from "react";
 import type { DateRange } from "react-day-picker";
 import {
-  DateRangePicker,
   FormControl,
   FormDescription,
   FormGroup,
   FormLabel,
 } from "@gunjo/ui";
+import {
+  DateRangePicker,
+} from "@gunjo/ui/calendar";
 
 export default function PersistentRangeField() {
   const [range, setRange] = React.useState<DateRange | undefined>();
@@ -228,12 +234,14 @@ export default function PersistentRangeField() {
                     code: `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
 import type { DateRange } from "react-day-picker";
 import {
-  DateRangePicker,
   FormControl,
   FormDescription,
   FormGroup,
   FormLabel,
 } from "@gunjo/ui";
+import {
+  DateRangePicker,
+} from "@gunjo/ui/calendar";
 
 const range: DateRange = {
   from: new Date(2026, 5, 1),
@@ -270,12 +278,14 @@ export default function DateRangePickerPage() {
 import * as React from "react";
 import type { DateRange } from "react-day-picker";
 import {
-  DateRangePicker,
   FormControl,
   FormDescription,
   FormGroup,
   FormLabel,
 } from "@gunjo/ui";
+import {
+  DateRangePicker,
+} from "@gunjo/ui/calendar";
 
 export function DateRangePickerDemo() {
   const today = new Date();
@@ -306,12 +316,14 @@ export function DateRangePickerDemo() {
 import * as React from "react";
 import type { DateRange } from "react-day-picker";
 import {
-  DateRangePicker,
   FormControl,
   FormDescription,
   FormGroup,
   FormLabel,
 } from "@gunjo/ui";
+import {
+  DateRangePicker,
+} from "@gunjo/ui/calendar";
 
 export function DateRangePickerDemo() {
   const today = new Date();
@@ -342,7 +354,8 @@ export function DateRangePickerDemo() {
 
 import * as React from "react";
 import type { DateRange } from "react-day-picker";
-import { DateRangePicker, FormControl, FormGroup, FormLabel } from "@gunjo/ui";
+import { FormControl, FormGroup, FormLabel } from "@gunjo/ui";
+import { DateRangePicker } from "@gunjo/ui/calendar";
 
 export function DateRangePickerUsage() {
   const [range, setRange] = React.useState<DateRange | undefined>();

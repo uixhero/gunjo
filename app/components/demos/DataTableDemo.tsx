@@ -2,7 +2,8 @@
 
 import * as React from "react";
 import type { ColumnDef } from "@tanstack/react-table";
-import { Badge, DataTable } from "@gunjo/ui";
+import { Badge } from "@gunjo/ui";
+import { DataTable } from "@gunjo/ui/table";
 
 type Person = {
     id: string;

@@ -18,6 +18,7 @@ import {
   getComponentFileName,
   getComponentSourceCategoryConfig,
 } from "./component-source-map.mjs";
+import { getImportPathForComponent } from "./subpath-entries.mjs";
 import {
   DOCS_PAGE_PLACEHOLDER_PATTERNS,
   GENERATED_DOCS_PAGE_MARKER,
@@ -138,7 +139,10 @@ function buildPreviewTargets(definition) {
     const componentExportName = toComponentExportName(fileName);
     // The docs site dogfoods the published package, not the raw source tree
     // (the `@/*` alias maps to `app/*`, where these components don't live).
-    const componentImportPath = "@gunjo/ui";
+    // Heavy components come from their subpath entry, not the root. (#492)
+    const componentImportPath = getImportPathForComponent(
+      `${definition.category}/${componentExportName}`
+    );
     return { componentKey, componentExportName, componentImportPath };
   });
 }
@@ -167,7 +171,7 @@ function buildPreviewMeta(definition) {
       importSnippet: importLines.join("\n"),
       previewSetupSnippet: `const PreviewComponent = ${componentExportName} as React.ComponentType<Record<string, unknown>>;`,
       previewNodeSnippet: `<PreviewComponent${variantProp} />`,
-      usageCode: `import { ${componentExportName} } from "@gunjo/ui"
+      usageCode: `import { ${componentExportName} } from "${target.componentImportPath}"
 
 export function Example() {
   return <${componentExportName}${variantProp} />
@@ -186,7 +190,15 @@ export function Example() {
             </div>
           ))}
         </div>`;
-  const usageCode = `import { ${componentNames.join(", ")} } from "@gunjo/ui"
+  const usageImports = [...new Set(targets.map((target) => target.componentImportPath))]
+    .map((importPath) => {
+      const names = targets
+        .filter((target) => target.componentImportPath === importPath)
+        .map((target) => target.componentExportName);
+      return `import { ${names.join(", ")} } from "${importPath}"`;
+    })
+    .join("\n");
+  const usageCode = `${usageImports}
 
 export function Example() {
   return (

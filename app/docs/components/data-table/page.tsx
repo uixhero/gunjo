@@ -8,7 +8,8 @@ import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/
 import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
-import { Badge, Button, DataTable, type DataTableLabels, Input } from "@gunjo/ui";
+import { Badge, Button, Input } from "@gunjo/ui";
+import { DataTable, type DataTableLabels } from "@gunjo/ui/table";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 type Member = {
@@ -236,7 +237,8 @@ export default function DataTablePage() {
         ? `"use client";
 
 import type { ColumnDef } from "@tanstack/react-table"
-import { Badge, DataTable, type DataTableLabels } from "@gunjo/ui"
+import { Badge } from "@gunjo/ui";
+import { DataTable, type DataTableLabels } from "@gunjo/ui/table";
 
 type Member = {
   id: string
@@ -331,7 +333,8 @@ export function MembersTable() {
         : `"use client";
 
 import type { ColumnDef } from "@tanstack/react-table"
-import { Badge, DataTable, type DataTableLabels } from "@gunjo/ui"
+import { Badge } from "@gunjo/ui";
+import { DataTable, type DataTableLabels } from "@gunjo/ui/table";
 
 type Member = {
   id: string
@@ -434,7 +437,7 @@ export function MembersTable() {
         ? `"use client";
 
 import type { ColumnDef, Table } from "@tanstack/react-table";
-import { DataTable } from "@gunjo/ui";
+import { DataTable } from "@gunjo/ui/table";
 
 type Invoice = { id: string; item: string; qty: number; amount: number };
 
@@ -475,7 +478,7 @@ export function InvoiceTotalsTable() {
         : `"use client";
 
 import type { ColumnDef, Table } from "@tanstack/react-table";
-import { DataTable } from "@gunjo/ui";
+import { DataTable } from "@gunjo/ui/table";
 
 type Invoice = { id: string; item: string; qty: number; amount: number };
 

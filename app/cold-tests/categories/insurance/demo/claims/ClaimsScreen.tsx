@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import type { ColumnDef } from "@gunjo/ui"
+import type { ColumnDef } from "@gunjo/ui/table";
 import {
   IconAlertTriangle,
   IconClockExclamation,
@@ -13,7 +13,6 @@ import {
 import {
   AmountBreakdown,
   StatGroup,
-  DataTable,
   PersonCell,
   Badge,
   Banner,
@@ -43,7 +42,10 @@ import {
   type WorkflowValue,
   type CoSignValue,
   type SignedRecordValue,
-} from "@gunjo/ui"
+} from "@gunjo/ui";
+import {
+  DataTable,
+} from "@gunjo/ui/table";
 import {
   claims as seedClaims,
   STAGES,

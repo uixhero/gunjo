@@ -10,11 +10,20 @@ GunjoUI の peer dependency 範囲、テスト済み組み合わせ、内部依�
 {
   "react": "^19.0.0",
   "react-dom": "^19.0.0",
-  "tailwindcss": "^3.0.0 || ^4.0.0"
+  "tailwindcss": "^3.0.0 || ^4.0.0",
+  // ↓ optional（peerDependenciesMeta で optional: true）。使う subpath の分だけ入れる
+  "@tanstack/react-table": "^8.21.3", // @gunjo/ui/table
+  "react-day-picker": "^9.13.0",      // @gunjo/ui/calendar
+  "vaul": "^1.1.2",                   // @gunjo/ui/drawer
+  "embla-carousel-react": "^8.6.0",   // @gunjo/ui/carousel
+  "react-markdown": "^10.1.0",        // @gunjo/ui/markdown
+  "framer-motion": "^12.0.0"          // @gunjo/ui/motion
 }
 ```
 
 採用先は **同じ React と React DOM のバージョン**を持つこと（mismatch は React 内部で警告）。
+
+下の6つは **optional peer**（`0.2.0` から）。それぞれ1つの subpath の部品だけが使う重い runtime で、root（`@gunjo/ui`）の入口はどれにも届かない。使う subpath の依存だけを採用先で入れる（npm 7 以降も optional peer は自動では入らない）。部品と入口の対応は [adoption.md](./adoption.md) の「重い部品は subpath から import し、依存を自分で入れる」、SSOT は `scripts/design-sync/subpath-entries.mjs`。
 
 > **React 18 サポートについて**：当初は `^18 || ^19` で peer 宣言していたが、内部で React 19 専用 API を採用したため `^19` のみに縮小済。npm 未公開期間中の調整として、初回 publish `0.0.1-alpha.0` の Removed 欄で正式記載（[CHANGELOG.md](../CHANGELOG.md#0010-alpha0--2026-05-04)）。
 
@@ -39,7 +48,9 @@ GunjoUI の peer dependency 範囲、テスト済み組み合わせ、内部依�
 - `class-variance-authority`（variant 管理）
 - `clsx`、`tailwind-merge`（class 結合）
 - `cmdk`、`input-otp`、`react-resizable-panels` などのコンポーネント primitive
-- `react-day-picker`、`@tanstack/react-table`、`embla-carousel-react`、`framer-motion`、`vaul`、`react-markdown`、`remark-gfm` などの部品専用 runtime
+- `date-fns`（`@gunjo/ui/calendar` の3部品だけが使う）、`remark-gfm`（`@gunjo/ui/markdown` の `MarkdownRenderer` だけが使う）
+
+`react-day-picker`・`@tanstack/react-table`・`embla-carousel-react`・`framer-motion`・`vaul`・`react-markdown` は `0.2.0` から runtime dependency ではなく optional peer（上の節）。GUNJO 本体の docs では使うので dev dependency にも置く。
 
 `react` / `react-dom` / `tailwindcss` は採用先と単一インスタンスを共有する必要があるため peer dependency に置き、GUNJO 本体の docs / build 用には dev dependency にも置く。
 

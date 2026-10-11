@@ -11,7 +11,7 @@ import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const floatingPanelCodes = {
     canvas: {
-        ja: `import { FloatingPanel } from "@gunjo/ui";
+        ja: `import { FloatingPanel } from "@gunjo/ui/motion";
 import {
   IconBox as Box,
   IconPointer as MousePointer2,
@@ -73,7 +73,7 @@ export function CanvasFloatingPanels() {
     </div>
   );
 }`,
-        en: `import { FloatingPanel } from "@gunjo/ui";
+        en: `import { FloatingPanel } from "@gunjo/ui/motion";
 import {
   IconBox as Box,
   IconPointer as MousePointer2,
@@ -137,7 +137,7 @@ export function CanvasFloatingPanels() {
 }`,
     },
     interactive: {
-        ja: `import { FloatingPanel } from "@gunjo/ui";
+        ja: `import { FloatingPanel } from "@gunjo/ui/motion";
 
 export function DraggableResizableFloatingPanel() {
   return (
@@ -172,7 +172,7 @@ export function DraggableResizableFloatingPanel() {
     </div>
   );
 }`,
-        en: `import { FloatingPanel } from "@gunjo/ui";
+        en: `import { FloatingPanel } from "@gunjo/ui/motion";
 
 export function DraggableResizableFloatingPanel() {
   return (
@@ -209,7 +209,8 @@ export function DraggableResizableFloatingPanel() {
 }`,
     },
     toolbar: {
-        ja: `import { FloatingPanel, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@gunjo/ui";
+        ja: `import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@gunjo/ui";
+import { FloatingPanel } from "@gunjo/ui/motion";
 import {
   IconBox as Box,
   IconPointer as MousePointer2,
@@ -257,7 +258,8 @@ export function FloatingToolbar() {
     </div>
   );
 }`,
-        en: `import { FloatingPanel, Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@gunjo/ui";
+        en: `import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@gunjo/ui";
+import { FloatingPanel } from "@gunjo/ui/motion";
 import {
   IconBox as Box,
   IconPointer as MousePointer2,
@@ -307,7 +309,7 @@ export function FloatingToolbar() {
 }`,
     },
     status: {
-        ja: `import { FloatingPanel } from "@gunjo/ui";
+        ja: `import { FloatingPanel } from "@gunjo/ui/motion";
 import { IconBell as Bell } from "@tabler/icons-react";
 
 export function StatusFloatingPanel() {
@@ -344,7 +346,7 @@ export function StatusFloatingPanel() {
     </div>
   );
 }`,
-        en: `import { FloatingPanel } from "@gunjo/ui";
+        en: `import { FloatingPanel } from "@gunjo/ui/motion";
 import { IconBell as Bell } from "@tabler/icons-react";
 
 export function StatusFloatingPanel() {
@@ -383,7 +385,7 @@ export function StatusFloatingPanel() {
 }`,
     },
     solid: {
-        ja: `import { FloatingPanel } from "@gunjo/ui";
+        ja: `import { FloatingPanel } from "@gunjo/ui/motion";
 
 export function SolidFloatingPanel() {
   return (
@@ -395,7 +397,7 @@ export function SolidFloatingPanel() {
     </FloatingPanel>
   );
 }`,
-        en: `import { FloatingPanel } from "@gunjo/ui";
+        en: `import { FloatingPanel } from "@gunjo/ui/motion";
 
 export function SolidFloatingPanel() {
   return (

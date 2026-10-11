@@ -1,6 +1,7 @@
 "use client";
 
-import { SpatialCanvas, FloatingPanel } from "@gunjo/ui";
+import { SpatialCanvas } from "@gunjo/ui";
+import { FloatingPanel } from "@gunjo/ui/motion";
 
 export function SpatialCanvasDemo() {
     return (

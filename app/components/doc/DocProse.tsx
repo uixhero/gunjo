@@ -1,6 +1,6 @@
 "use client";
 
-import { MarkdownRenderer } from "@gunjo/ui";
+import { MarkdownRenderer } from "@gunjo/ui/markdown";
 import { LocalNav } from "@/components/layout/TableOfContents";
 
 interface DocProseProps {

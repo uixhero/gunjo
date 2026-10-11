@@ -75,9 +75,7 @@ export * from './components/overlay/AlertDialog';
 export * from './components/overlay/ChatPanel';
 export * from './components/overlay/ContextMenu';
 export * from './components/overlay/Dialog';
-export * from './components/overlay/Drawer';
 export * from './components/overlay/DropdownMenu';
-export * from './components/overlay/FloatingPanel';
 export * from './components/overlay/HoverCard';
 export * from './components/overlay/MediaLightbox';
 export * from './components/overlay/MediaPickerDialog';
@@ -93,7 +91,6 @@ export * from './components/overlay/Tooltip';
 /** Display */
 export * from './components/display/Accordion';
 export * from './components/display/AccordionGroup';
-export * from './components/display/ActionDataTable';
 export * from './components/display/ActionQueue';
 export * from './components/display/ActivityTimelineCard';
 export * from './components/display/AmountBreakdown';
@@ -108,7 +105,6 @@ export * from './components/display/Badge';
 export * from './components/display/BarChart';
 export * from './components/display/BottomActionBar';
 export * from './components/display/Card';
-export * from './components/display/Carousel';
 export * from './components/display/ChartLegend';
 export * from './components/display/ChatMessage';
 export * from './components/display/CheckboxCard';
@@ -119,7 +115,6 @@ export * from './components/display/CodeBlock';
 export * from './components/display/ColorSwatch';
 export * from './components/display/CompanyCell';
 export * from './components/display/ConcentricProgressCard';
-export * from './components/display/DataTable';
 export * from './components/display/Delta';
 export * from './components/display/DesktopPageHeader';
 export * from './components/display/DistributionBar';
@@ -153,7 +148,6 @@ export * from './components/display/ListCard';
 export * from './components/display/LiveBadge';
 export * from './components/display/LoyaltySummaryCard';
 export * from './components/display/MapStatusCorner';
-export * from './components/display/MarkdownRenderer';
 export * from './components/display/MatchCard';
 export * from './components/display/MetadataList';
 export * from './components/display/Meter';
@@ -207,7 +201,6 @@ export * from './components/display/WeekView';
 
 /** Inputs */
 export * from './components/inputs/Button';
-export * from './components/inputs/Calendar';
 export * from './components/inputs/ChatComposer';
 export * from './components/inputs/ChatInput';
 export * from './components/inputs/Checkbox';
@@ -215,8 +208,6 @@ export * from './components/inputs/Combobox';
 export * from './components/inputs/CopyButton';
 export * from './components/inputs/CoSign';
 export * from './components/inputs/CurrencyInput';
-export * from './components/inputs/DatePicker';
-export * from './components/inputs/DateRangePicker';
 export * from './components/inputs/DayBand';
 export * from './components/inputs/EditableField';
 export * from './components/inputs/FileUploader';
@@ -261,9 +252,6 @@ export { SEMANTIC_TONES, isSemanticTone, toChartTone, toMeterTone, toBadgeVarian
 
 /** Chart Types */
 export type { ChartColor, ChartDataPoint, ChartTone } from './components/display/chart-utils';
-
-/** Table Types */
-export type { ColumnDef } from '@tanstack/react-table';
 
 /** Variant Key Types */
 export type * from './components/display/generated/variant-keys';

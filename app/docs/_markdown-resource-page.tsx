@@ -1,6 +1,6 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
-import { MarkdownRenderer } from "@gunjo/ui";
+import { MarkdownRenderer } from "@gunjo/ui/markdown";
 
 const internalMarkdownRoutes: Record<string, string> = {
     "adoption.md": "/docs/adoption",

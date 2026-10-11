@@ -21,6 +21,7 @@
     "paths": {
       "@/*": ["./app/*"],
       "@gunjo/ui": ["./src/index.ts"],
+      "@gunjo/ui/*": ["./src/entries/*"],
       "@design/*": ["./design/*"]
     }
   },
