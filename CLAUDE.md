@@ -38,6 +38,16 @@ KeEemルール（new-4px DECISIONS.md 2026-08-16）。gunjo.jp のUI（`app/` �
 - 機械検査: `npm run design:verify:left-emphasis`（`design:verify` に含まれ、CI で走る）。既存分は `design/policy/left-emphasis-exceptions.json` に理由つきで基線化済み＝新規の追加はここで落ちる。許可リストへ追加する前に KeEem に確認する。
 - `@gunjo/ui` `ListCard` の `severity` は、PR #871（2026-08-22 マージ）で左罫から全周の境界線＋淡い背景に変わった＝左端強調ではなくなったので、この規則の対象外（かつての app 内使用禁止の条項は撤去済み）。
 
+## 4px grid for spacing and sizes
+
+KeEem decision (new-4px DECISIONS.md 2026-10-11, #1057). Applies to `@gunjo/ui` (`src/components/**`) and to anything new in `app/`:
+
+- The gap between items (`gap-*`, `space-*`), padding and margin, and the size of controls, chips and icons are multiples of 4px. Use integer Tailwind steps only. Icons are 12 / 16 / 20 / 24px, never 14 (this includes `size={N}` props).
+- Exempt details (the checker passes them automatically): a size under 12px (hairlines, dots, ticks) and a position nudge under 4px (centring). The fractional steps (`0.5` `1.5` `2.5` `3.5`) and `px` exist for these only. `--space-*-5` stays published, marked detail-only.
+- For a one-line row or chip, fix the height first, then put the padding on the grid: a menu item is `min-h-8 py-1` (32px), not `py-1.5`. Centre an icon on the first text line with a box the line's height (`flex h-5 items-center`), not with `mt-0.5`.
+- Machine check: `npm run design:verify:grid4` (in `design:verify`, runs in CI). `src/components` is strict. `app/` has a per-file baseline in `design/policy/grid4-site-baseline.json` that may only shrink: after removing off-grid values, run `npm run design:verify:grid4 -- --shrink-site-baseline`. Anything else that must stay off the grid goes in `design/policy/grid4-exceptions.json` with a reason. Ask KeEem before adding to it.
+- A `.pen` value that a drift check reads (e.g. Badge padding) has to move with the component, or `design:verify` stays red.
+
 ## Verification before declaring done
 
 Use the `mcp__Claude_Preview__*` tools to verify UI changes in the running dev server before reporting work as complete. Server name in `.claude/launch.json`: `gunjo-docs (Next.js dev)` on port 13030. Do not ask the user to verify visually — verify and share proof.

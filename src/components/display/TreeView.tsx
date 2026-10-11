@@ -196,7 +196,7 @@ const TreeView = React.forwardRef<HTMLUListElement, TreeViewProps>(
                 ref={treeRef}
                 role="tree"
                 aria-multiselectable={selectionMode === "multiple" ? true : undefined}
-                className={cn("flex flex-col gap-0.5", className)}
+                className={cn("flex flex-col gap-1", className)}
                 onKeyDown={handleKeyDown}
                 {...props}
             >
@@ -309,9 +309,9 @@ function TreeViewItem({
                         className="flex w-4 shrink-0 items-center justify-center self-stretch rounded-sm text-muted-foreground outline-none hover:text-foreground focus-visible:ring-2 focus-visible:ring-ring"
                     >
                         {isOpen ? (
-                            <ChevronDown className="h-3.5 w-3.5" />
+                            <ChevronDown className="h-4 w-4" />
                         ) : (
-                            <ChevronRight className="h-3.5 w-3.5" />
+                            <ChevronRight className="h-4 w-4" />
                         )}
                     </button>
                 ) : (
@@ -331,7 +331,7 @@ function TreeViewItem({
                             onToggle(node.id)
                         }
                     }}
-                    className="flex min-w-0 flex-1 items-center gap-1.5 rounded-sm py-1.5 pl-1 pr-2 text-left outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1"
+                    className="flex min-h-8 min-w-0 flex-1 items-center gap-2 rounded-sm py-1 pl-1 pr-2 text-left outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1"
                 >
                     {node.icon ? (
                         <span className="flex shrink-0 items-center" aria-hidden>
@@ -352,7 +352,7 @@ function TreeViewItem({
                 ) : null}
             </div>
             {hasChildren && isOpen ? (
-                <ul role="group" className="flex flex-col gap-0.5">
+                <ul role="group" className="flex flex-col gap-1">
                     {node.children!.map((child) => (
                         <TreeViewItem
                             key={child.id}

@@ -69,8 +69,8 @@ export const ListCard = React.forwardRef<HTMLDivElement, ListCardProps>(
         {leading != null && <div className="flex shrink-0 items-center">{leading}</div>}
         <div className="min-w-0 flex-1">
           <div className="font-medium text-foreground">{title}</div>
-          {description != null && <p className="mt-0.5 text-sm text-muted-foreground">{description}</p>}
-          {tags != null && <div className="mt-1.5 flex flex-wrap items-center gap-1.5">{tags}</div>}
+          {description != null && <p className="mt-1 text-sm text-muted-foreground">{description}</p>}
+          {tags != null && <div className="mt-2 flex flex-wrap items-center gap-2">{tags}</div>}
         </div>
         {(status != null || meta != null) && (
           <div className="flex shrink-0 flex-col items-end gap-1 text-right">

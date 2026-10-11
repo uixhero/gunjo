@@ -128,13 +128,13 @@ const DeviceFrame = React.forwardRef<HTMLDivElement, DeviceFrameProps>(
         const isCompact = viewport === "mobile"
         const chromeOuter = cn(
             isCompact
-                ? "flex items-center gap-2 px-2 py-2.5"
-                : "flex items-center gap-3 px-4 py-2.5",
+                ? "flex min-h-12 items-center gap-2 px-2 py-2"
+                : "flex min-h-12 items-center gap-3 px-4 py-2",
             classes.chrome
         )
         const urlBoxClass = cn(
             isCompact
-                ? "flex min-w-0 w-full items-center gap-1.5 rounded-md border px-2 py-1 text-xs focus-within:ring-1"
+                ? "flex min-w-0 w-full items-center gap-2 rounded-md border px-2 py-1 text-xs focus-within:ring-1"
                 : "flex min-w-0 w-full max-w-md items-center gap-2 rounded-md border px-3 py-1 text-xs focus-within:ring-1",
             classes.url
         )
@@ -145,7 +145,7 @@ const DeviceFrame = React.forwardRef<HTMLDivElement, DeviceFrameProps>(
                 <div className={classes.shell}>
                     <div className={chromeOuter}>
                         {!isCompact && !isWindows11 ? (
-                            <div className="flex items-center gap-1.5" aria-hidden="true">
+                            <div className="flex items-center gap-2" aria-hidden="true">
                                 <span className="h-3 w-3 rounded-full bg-destructive" />
                                 <span className="h-3 w-3 rounded-full bg-warning" />
                                 <span className="h-3 w-3 rounded-full bg-success" />
@@ -184,7 +184,7 @@ const DeviceFrame = React.forwardRef<HTMLDivElement, DeviceFrameProps>(
                                 />
                             </div>
                         </form>
-                        <div className="flex shrink-0 items-center gap-0.5">
+                        <div className="flex shrink-0 items-center gap-1">
                             {VIEWPORTS.map(({ key, Icon, labelKey, fallback }) => {
                                 const label = labels?.[labelKey] ?? fallback
                                 return (
@@ -199,11 +199,11 @@ const DeviceFrame = React.forwardRef<HTMLDivElement, DeviceFrameProps>(
                                         variant="ghost"
                                         size="icon"
                                         className={cn(
-                                            "h-7 w-7 rounded-md p-1.5",
+                                            "h-7 w-7 rounded-md",
                                             viewport === key ? classes.viewportActive : classes.viewportIdle
                                         )}
                                     >
-                                        <Icon className="h-3.5 w-3.5" />
+                                        <Icon className="h-4 w-4" />
                                     </TooltipButton>
                                 )
                             })}

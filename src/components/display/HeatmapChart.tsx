@@ -197,7 +197,7 @@ const HeatmapChart = React.forwardRef<HTMLDivElement, HeatmapChartProps>(
                                         {showValues ? (
                                             <span
                                                 className={cn(
-                                                    "absolute inset-0 z-10 flex items-center justify-center px-0.5 text-center text-foreground"
+                                                    "absolute inset-0 z-10 flex items-center justify-center px-1 text-center text-foreground"
                                                 )}
                                             >
                                                 <span className="rounded-[3px] bg-background/75 px-1 shadow-sm">

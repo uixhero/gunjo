@@ -35,15 +35,15 @@ export const ToolPill: React.FC<ToolPillProps> = ({
 }) => {
     const { disabled, "aria-label": ariaLabel } = props;
     const sizeClasses = {
-        sm: 'h-8 w-8 rounded-lg p-1.5',
-        md: 'h-10 w-10 rounded-xl p-2.5',
-        lg: 'h-12 w-12 rounded-xl p-3.5',
+        sm: 'h-8 w-8 rounded-lg p-2',
+        md: 'h-10 w-10 rounded-xl p-2',
+        lg: 'h-12 w-12 rounded-xl p-3',
     };
 
     const iconSizes = {
-        sm: 14,
-        md: 18,
-        lg: 22,
+        sm: 16,
+        md: 20,
+        lg: 24,
     };
 
     const variantClasses: Record<ToolPillVariantKey, { inactive: string; active: string }> = {

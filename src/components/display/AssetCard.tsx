@@ -56,7 +56,7 @@ const densityClasses: Record<AssetCardVariantKey, { root: string; image: string;
         meta: "text-sm",
     },
     compact: {
-        root: "gap-1.5",
+        root: "gap-1",
         image: "rounded-md",
         title: "text-sm",
         meta: "text-xs",
@@ -226,7 +226,7 @@ const AssetCard = React.forwardRef<HTMLDivElement, AssetCardProps>(
                         </div>
                     ) : null}
                 </ImagePreview>
-                <div className="min-w-0 px-0.5">
+                <div className="min-w-0 px-1">
                     <div className={cn("truncate font-medium leading-tight text-foreground", classes.title)}>
                         {asset.title}
                     </div>

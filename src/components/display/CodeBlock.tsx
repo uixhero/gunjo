@@ -250,7 +250,7 @@ const CodeBlock = React.forwardRef<HTMLDivElement, CodeBlockProps>(
                     <div className={cn("flex items-center justify-between gap-3 border-b px-3 py-2 text-xs", styles.header)}>
                         <div className={cn("flex min-w-0 items-center gap-2", styles.meta)}>
                             {language ? (
-                                <span className={cn("shrink-0 rounded border px-1.5 py-0.5 text-[10px] uppercase", styles.badge)}>
+                                <span className={cn("shrink-0 rounded border px-2 text-[10px] leading-4 uppercase", styles.badge)}>
                                     {language}
                                 </span>
                             ) : null}

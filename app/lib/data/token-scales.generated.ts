@@ -15,6 +15,8 @@ export type SpacingStep = {
     px: string;
     /** Tailwind width utility that draws this step. */
     widthClass: string;
+    /** Off the 4px grid: hairlines, dots, ticks and centring only — never spacing (#1057). */
+    detailOnly: boolean;
 };
 
 export type TextStep = {
@@ -41,34 +43,34 @@ export type DensityToken = {
 };
 
 export const SPACING_SCALE: SpacingStep[] = [
-    { step: "0", token: "--space-0", value: "0px", px: "0px", widthClass: "w-0" },
-    { step: "px", token: "--space-px", value: "1px", px: "1px", widthClass: "w-px" },
-    { step: "0.5", token: "--space-0-5", value: "0.125rem", px: "2px", widthClass: "w-0.5" },
-    { step: "1", token: "--space-1", value: "0.25rem", px: "4px", widthClass: "w-1" },
-    { step: "1.5", token: "--space-1-5", value: "0.375rem", px: "6px", widthClass: "w-1.5" },
-    { step: "2", token: "--space-2", value: "0.5rem", px: "8px", widthClass: "w-2" },
-    { step: "2.5", token: "--space-2-5", value: "0.625rem", px: "10px", widthClass: "w-2.5" },
-    { step: "3", token: "--space-3", value: "0.75rem", px: "12px", widthClass: "w-3" },
-    { step: "3.5", token: "--space-3-5", value: "0.875rem", px: "14px", widthClass: "w-3.5" },
-    { step: "4", token: "--space-4", value: "1rem", px: "16px", widthClass: "w-4" },
-    { step: "5", token: "--space-5", value: "1.25rem", px: "20px", widthClass: "w-5" },
-    { step: "6", token: "--space-6", value: "1.5rem", px: "24px", widthClass: "w-6" },
-    { step: "7", token: "--space-7", value: "1.75rem", px: "28px", widthClass: "w-7" },
-    { step: "8", token: "--space-8", value: "2rem", px: "32px", widthClass: "w-8" },
-    { step: "9", token: "--space-9", value: "2.25rem", px: "36px", widthClass: "w-9" },
-    { step: "10", token: "--space-10", value: "2.5rem", px: "40px", widthClass: "w-10" },
-    { step: "12", token: "--space-12", value: "3rem", px: "48px", widthClass: "w-12" },
-    { step: "14", token: "--space-14", value: "3.5rem", px: "56px", widthClass: "w-14" },
-    { step: "16", token: "--space-16", value: "4rem", px: "64px", widthClass: "w-16" },
-    { step: "20", token: "--space-20", value: "5rem", px: "80px", widthClass: "w-20" },
-    { step: "24", token: "--space-24", value: "6rem", px: "96px", widthClass: "w-24" },
-    { step: "28", token: "--space-28", value: "7rem", px: "112px", widthClass: "w-28" },
-    { step: "32", token: "--space-32", value: "8rem", px: "128px", widthClass: "w-32" },
-    { step: "36", token: "--space-36", value: "9rem", px: "144px", widthClass: "w-36" },
-    { step: "40", token: "--space-40", value: "10rem", px: "160px", widthClass: "w-40" },
-    { step: "48", token: "--space-48", value: "12rem", px: "192px", widthClass: "w-48" },
-    { step: "56", token: "--space-56", value: "14rem", px: "224px", widthClass: "w-56" },
-    { step: "64", token: "--space-64", value: "16rem", px: "256px", widthClass: "w-64" },
+    { step: "0", token: "--space-0", value: "0px", px: "0px", widthClass: "w-0", detailOnly: false },
+    { step: "px", token: "--space-px", value: "1px", px: "1px", widthClass: "w-px", detailOnly: true },
+    { step: "0.5", token: "--space-0-5", value: "0.125rem", px: "2px", widthClass: "w-0.5", detailOnly: true },
+    { step: "1", token: "--space-1", value: "0.25rem", px: "4px", widthClass: "w-1", detailOnly: false },
+    { step: "1.5", token: "--space-1-5", value: "0.375rem", px: "6px", widthClass: "w-1.5", detailOnly: true },
+    { step: "2", token: "--space-2", value: "0.5rem", px: "8px", widthClass: "w-2", detailOnly: false },
+    { step: "2.5", token: "--space-2-5", value: "0.625rem", px: "10px", widthClass: "w-2.5", detailOnly: true },
+    { step: "3", token: "--space-3", value: "0.75rem", px: "12px", widthClass: "w-3", detailOnly: false },
+    { step: "3.5", token: "--space-3-5", value: "0.875rem", px: "14px", widthClass: "w-3.5", detailOnly: true },
+    { step: "4", token: "--space-4", value: "1rem", px: "16px", widthClass: "w-4", detailOnly: false },
+    { step: "5", token: "--space-5", value: "1.25rem", px: "20px", widthClass: "w-5", detailOnly: false },
+    { step: "6", token: "--space-6", value: "1.5rem", px: "24px", widthClass: "w-6", detailOnly: false },
+    { step: "7", token: "--space-7", value: "1.75rem", px: "28px", widthClass: "w-7", detailOnly: false },
+    { step: "8", token: "--space-8", value: "2rem", px: "32px", widthClass: "w-8", detailOnly: false },
+    { step: "9", token: "--space-9", value: "2.25rem", px: "36px", widthClass: "w-9", detailOnly: false },
+    { step: "10", token: "--space-10", value: "2.5rem", px: "40px", widthClass: "w-10", detailOnly: false },
+    { step: "12", token: "--space-12", value: "3rem", px: "48px", widthClass: "w-12", detailOnly: false },
+    { step: "14", token: "--space-14", value: "3.5rem", px: "56px", widthClass: "w-14", detailOnly: false },
+    { step: "16", token: "--space-16", value: "4rem", px: "64px", widthClass: "w-16", detailOnly: false },
+    { step: "20", token: "--space-20", value: "5rem", px: "80px", widthClass: "w-20", detailOnly: false },
+    { step: "24", token: "--space-24", value: "6rem", px: "96px", widthClass: "w-24", detailOnly: false },
+    { step: "28", token: "--space-28", value: "7rem", px: "112px", widthClass: "w-28", detailOnly: false },
+    { step: "32", token: "--space-32", value: "8rem", px: "128px", widthClass: "w-32", detailOnly: false },
+    { step: "36", token: "--space-36", value: "9rem", px: "144px", widthClass: "w-36", detailOnly: false },
+    { step: "40", token: "--space-40", value: "10rem", px: "160px", widthClass: "w-40", detailOnly: false },
+    { step: "48", token: "--space-48", value: "12rem", px: "192px", widthClass: "w-48", detailOnly: false },
+    { step: "56", token: "--space-56", value: "14rem", px: "224px", widthClass: "w-56", detailOnly: false },
+    { step: "64", token: "--space-64", value: "16rem", px: "256px", widthClass: "w-64", detailOnly: false },
 ];
 
 export const TEXT_SCALE: TextStep[] = [

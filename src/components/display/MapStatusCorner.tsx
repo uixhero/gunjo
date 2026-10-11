@@ -52,7 +52,7 @@ const MapStatusCorner = React.forwardRef<HTMLDivElement, MapStatusCornerProps>(
             <div
                 ref={ref}
                 className={cn(
-                    "pointer-events-none w-full px-3.5 pb-6 pt-2.5 font-mono text-canvas-2xs",
+                    "pointer-events-none w-full px-3 pb-6 pt-3 font-mono text-canvas-2xs",
                     scrim &&
                         "bg-gradient-to-b from-background/70 via-background/30 via-55% to-transparent",
                     className

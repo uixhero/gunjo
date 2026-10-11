@@ -63,6 +63,8 @@ export type SpacingStep = {
     px: string;
     /** Tailwind width utility that draws this step. */
     widthClass: string;
+    /** Off the 4px grid: hairlines, dots, ticks and centring only — never spacing (#1057). */
+    detailOnly: boolean;
 };
 
 export type TextStep = {
@@ -95,6 +97,7 @@ ${rows(SPACING_STEPS, (entry) => ({
   value: spacingValue(entry),
   px: spacingPx(entry),
   widthClass: widthClass(entry),
+  detailOnly: entry.detailOnly === true,
 }))}
 ];
 

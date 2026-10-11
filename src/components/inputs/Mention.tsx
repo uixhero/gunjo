@@ -254,7 +254,7 @@ const Mention = React.forwardRef<HTMLTextAreaElement, MentionProps>(
                                         onMouseDown={(event) => event.preventDefault()}
                                         onClick={() => insertMention(option)}
                                         className={cn(
-                                            "flex w-full items-center justify-between rounded-sm px-2 py-1.5 text-sm",
+                                            "flex min-h-8 w-full items-center justify-between rounded-sm px-2 py-1 text-sm",
                                             idx === activeIndex && "bg-muted"
                                         )}
                                     >

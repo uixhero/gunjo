@@ -47,7 +47,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
                 )}
                 data-slot="search-input"
             >
-                <Search className="pointer-events-none absolute left-2.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+                <Search className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
                 <input
                     ref={ref}
                     type="search"
@@ -67,7 +67,7 @@ const SearchInput = React.forwardRef<HTMLInputElement, SearchInputProps>(
                                 className="absolute right-2 top-1/2 -translate-y-1/2 flex h-5 w-5 items-center justify-center rounded text-muted-foreground hover:text-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
                                 aria-label={clearLabel}
                             >
-                                <X className="h-3.5 w-3.5" />
+                                <X className="h-4 w-4" />
                             </button>
                         </TooltipTrigger>
                         <TooltipContent>{clearLabel}</TooltipContent>

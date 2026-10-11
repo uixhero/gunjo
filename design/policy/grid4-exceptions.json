@@ -1,0 +1,20 @@
+{
+  "exceptions": [
+    {
+      "file": "src/components/inputs/Switch.tsx",
+      "className": "p-0.5",
+      "count": 1,
+      "reason": "地（h-6＝24px）の中に玉（h-5＝20px）を置く中心合わせ。2px は（24−20）÷2 から出る数で、余白として決めた値ではない。design/inputs.pen の Switch も padding 2。",
+      "addedOn": "2026-10-11",
+      "expiresOn": "permanent"
+    },
+    {
+      "file": "src/components/layout/ScrollArea.tsx",
+      "className": "p-[1px]",
+      "count": 2,
+      "reason": "幅 10px（w-2.5／h-2.5）のスクロールバーの中で、つまみを 1px 内側へ寄せる細部。消すとつまみが 7px から 9px に太り、端の隙間が無くなる。部品の余白ではなく線の太さの調整。",
+      "addedOn": "2026-10-11",
+      "expiresOn": "permanent"
+    }
+  ]
+}

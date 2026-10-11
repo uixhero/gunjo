@@ -103,7 +103,7 @@ const TagInput = React.forwardRef<HTMLInputElement, TagInputProps>(
                     onBlur={commit}
                     placeholder={tags.length === 0 ? placeholder : ""}
                     disabled={disabled}
-                    className="min-w-[80px] flex-1 bg-transparent px-1 py-0.5 outline-none placeholder:text-muted-foreground"
+                    className="min-w-[80px] flex-1 bg-transparent px-1 leading-6 outline-none placeholder:text-muted-foreground"
                 />
             </div>
         )

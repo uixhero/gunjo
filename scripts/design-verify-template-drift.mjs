@@ -413,12 +413,12 @@ export function verifyTemplateDrift({ root = ROOT } = {}) {
     }
 
     const formContainer = authTemplate.nodes?.formContainer;
-    if (formContainer?.width === 350) {
+    if (formContainer?.width === 352) {
       assertMatch(
         errors,
         authSource,
-        /sm:w-\[350px\]/,
-        'AuthTemplate form container should include "sm:w-[350px]"'
+        /sm:w-88(?![\w.])/,
+        'AuthTemplate form container should include "sm:w-88" (352px)'
       );
     }
     if (formContainer?.gap === 24) {

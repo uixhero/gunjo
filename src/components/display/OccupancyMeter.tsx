@@ -61,7 +61,7 @@ export const OccupancyMeter = React.forwardRef<HTMLDivElement, OccupancyMeterPro
     const fmt = (n: number) => (formatValue ? formatValue(n) : `${Math.round(n * 10) / 10}`)
     const readout = caption ?? `${fmt(value)} / ${fmt(max)}${unit}`
     return (
-      <div ref={ref} className={cn("flex w-full flex-col gap-1.5", className)} {...props}>
+      <div ref={ref} className={cn("flex w-full flex-col gap-2", className)} {...props}>
         <div className="flex items-center justify-between gap-2">
           <span className="text-sm font-medium text-foreground">{label}</span>
           <span className="shrink-0 text-sm tabular-nums text-muted-foreground">{readout}</span>

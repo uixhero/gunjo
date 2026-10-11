@@ -94,7 +94,7 @@ export function ChatMessageActions({
                     variant="ghost"
                     size="xs"
                     className={cn(
-                        "h-7 gap-1.5 px-2 text-xs text-muted-foreground hover:text-foreground",
+                        "h-7 gap-2 px-2 text-xs text-muted-foreground hover:text-foreground",
                         action.disabled && "opacity-50 hover:bg-transparent hover:text-muted-foreground"
                     )}
                     onClick={(event) => {
@@ -108,7 +108,7 @@ export function ChatMessageActions({
                         }
                     }}
                 >
-                    {action.icon ? <span className="flex h-3.5 w-3.5 items-center justify-center">{action.icon}</span> : null}
+                    {action.icon ? <span className="flex h-4 w-4 items-center justify-center">{action.icon}</span> : null}
                     <span>{action.label}</span>
                 </TooltipButton>
             ))}
@@ -280,29 +280,29 @@ export function ChatMessage({
             {
                 key: "copy",
                 label: actionLabels.copy,
-                icon: <Copy className="h-3.5 w-3.5" />,
+                icon: <Copy className="h-4 w-4" />,
             },
             {
                 key: "edit",
                 label: actionLabels.edit,
-                icon: <Pencil className="h-3.5 w-3.5" />,
+                icon: <Pencil className="h-4 w-4" />,
             },
         ]
         : [
             {
                 key: "copy",
                 label: actionLabels.copy,
-                icon: <Copy className="h-3.5 w-3.5" />,
+                icon: <Copy className="h-4 w-4" />,
             },
             {
                 key: "branch",
                 label: actionLabels.branch,
-                icon: <GitBranch className="h-3.5 w-3.5" />,
+                icon: <GitBranch className="h-4 w-4" />,
             },
             {
                 key: "raw",
                 label: actionLabels.raw,
-                icon: <Code className="h-3.5 w-3.5" />,
+                icon: <Code className="h-4 w-4" />,
             },
         ];
     const resolvedActions = actions ?? defaultActions;
@@ -315,7 +315,7 @@ export function ChatMessage({
                 className
             )}
         >
-            <div className={cn("shrink-0", isUser ? "mt-1" : "mt-0.5")}>
+            <div className="mt-1 shrink-0">
                 <Avatar
                     className={cn(
                         "h-8 w-8",

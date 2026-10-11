@@ -237,7 +237,7 @@ const TimeTransport = React.forwardRef<HTMLDivElement, TimeTransportProps>(
                             {formatValue ? formatValue(value) : String(value)}
                         </div>
                         {secondary ? (
-                            <div className="mt-1.5 truncate text-xs text-muted-foreground">
+                            <div className="mt-2 truncate text-xs text-muted-foreground">
                                 {secondary}
                             </div>
                         ) : null}
@@ -289,7 +289,7 @@ const TimeTransport = React.forwardRef<HTMLDivElement, TimeTransportProps>(
                             type="button"
                             variant="secondary"
                             size="touch"
-                            className="gap-1.5 px-3"
+                            className="gap-2 px-3"
                             disabled={disabled || isLive === true}
                             onClick={returnToNow}
                         >

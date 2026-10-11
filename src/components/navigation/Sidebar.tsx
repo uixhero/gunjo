@@ -148,7 +148,7 @@ const SidebarBody = React.forwardRef<
     <div
         ref={ref}
         className={cn(
-            "flex-1 overflow-y-auto flex flex-col gap-0.5 p-2",
+            "flex-1 overflow-y-auto flex flex-col gap-1 p-2",
             // Scrollbar UX: hide by default, reveal a thin, track-less
             // thumb only while the cursor is inside the sidebar. Firefox
             // uses `scrollbar-width` / `scrollbar-color`; WebKit uses

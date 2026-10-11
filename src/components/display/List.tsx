@@ -55,7 +55,7 @@ const List = React.forwardRef<HTMLElement, ListProps>(
                     "text-muted-foreground",
                     divided ? "flex flex-col divide-y divide-border/70" : customMarkerLayout,
                     divided && spacing === "default" && "[&>li]:py-2",
-                    divided && spacing === "tight" && "[&>li]:py-1.5",
+                    divided && spacing === "tight" && "[&>li]:py-1",
                     divided && spacing === "loose" && "[&>li]:py-3",
                     divided && "[&>li:first-child]:pt-0 [&>li:last-child]:pb-0",
                     !divided && spacing === "default" && (usesCustomMarker ? "gap-2" : "space-y-2"),

@@ -11,6 +11,36 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 
+### 採用先向けの要約（見た目が変わるもの）
+
+コードを直さなくても、依存を上げると約120部品の余白と印の大きさが少し変わる。公開 API（部品・props・export・トークン名）は変わらない。
+
+1. **余白・並びの間・大きさを 4px の倍数にそろえた**：6px の間は 8px、2px の間は 4px になる。題と説明の間、ラベルと入力の間などで、縦が数 px 伸びる。1行の行と札の高さは保った（メニューの項目は 32px、札は 20px のまま）。
+2. **14px のアイコンを 16px にした**：text-xs の札の中だけは 12px にした。メニューの印、パンくずの区切り、ツリーの開閉の印などが少し大きくなる。
+3. **大きさが変わる部品**：`MapControlButton` の `sm` が 34px から 40px になった（印は 17px から 16px）。ほかに `Tooltip` の高さ（32px から 28px）、`PlacePanel` の閉じる釦（44px から 48px）、`SegmentedControl` の `sm` の区分（28px から 24px。溝は 32px のまま）が変わる。下の「Changed」に一覧がある。
+
+### Added
+
+- **4px グリッドの検査 `npm run design:verify:grid4`**（影響: **none**）：部品のクラスと、アイコンの `size={N}` を読む。`gap`・`space`・`padding`・`margin`・位置・大きさが 4 の倍数でないと落とす。例外は2つで、12px 未満の線・点・目盛りと、4px 未満の位置ずらし（中心合わせ）だけ。`design:verify` に含まれ、CI で走る。gunjo.jp のサイト（`app/`）は今ある分をファイルごとの基線にしてあり、新しく増えた分だけを落とす（減らす作業は #1058）。(#1057)
+
+### Changed
+
+- **@gunjo/ui の部品を 4px グリッドにそろえた**（影響: **none**・見た目が変わる）：KeEem の決定（2026-10-11）に従った。直した部品と値は次のとおり。(#1057)
+  - **地図の部品（地球と月から来た部品）**：地球と月で決めた数に合わせた。
+    - `MapControlButton` の `sm`：34px から 40px（印は 17px から 16px）
+    - `MapStatusCorner` の外余白：横 14px・上 10px から、どちらも 12px
+    - `LayerMenu`：行の間 10px から 8px、外枠の余白 6px から 4px
+    - `TimeTransport`・`DayBand` の間：6px から 8px
+    - `TimelineScrubber` の針の上端：18px から 20px
+  - **メニューの項目**（`DropdownMenu`・`ContextMenu`・`Menubar`・`Command`・`Mention`・`TreeView`）：高さ 32px を `min-h-8` で決め、上下の余白を 6px から 4px にした。1行なら見た目は変わらない。印の箱は 14px から 16px にした。
+  - **`Badge`・`Kbd`・`Tag`**：`Badge` の横の余白は 10px から 8px。`Kbd` は 6px から 4px。`Tag` の `sm` は 6px から 8px、`lg` は 10px から 12px。
+  - **`Tooltip`**：上下の余白を 6px から 4px にした。高さは 32px から 28px になる。
+  - **`ToolPill`**：余白を 6／10／14px から 8／8／12px にした。印は 14／18／22px から 16／20／24px。
+  - **`Code`**：インラインのコードの余白を、横 6.4px・上下 2.4px から、横 4px・上下なしにした。Markdown の中のコードと同じ。
+  - **`NumberInput`**：上下の増減の釦（各 18px）は、入力の高さを半分ずつ分ける形にした。外枠が 1px 縮む。
+  - **アイコンを 1行目の字の中心に置く部品**：`mt-0.5` で 2px ずらす作りから、1行目の高さの箱に置く作りに変えた。対象は `SafetyBanner`・`CheckboxCard`・`RadioCard`・`Itinerary`・`MetadataList`・`Timeline`・`PasswordRequirementList` など。
+- **半端な段の札 `--space-0-5`・`--space-1-5`・`--space-2-5`・`--space-3-5`・`--space-px` に「細部専用」と注記した**（影響: **none**）：札は残す。線・点・中心合わせだけに使い、余白には使わない。`public/tokens.css` の行末の注記と `/docs/spacing` の表に出る。(#1057)
+
 ## [0.2.0-beta.1] — 2026-10-11
 
 > `0.1.0-beta.4` 以降の変更。**破壊的変更が2件**（どちらも影響 **minor**＝import の書き換えと依存の追加で済む）あるので、真ん中の数字を上げた。見た目の変更は無い。

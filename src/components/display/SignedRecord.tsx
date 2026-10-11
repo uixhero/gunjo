@@ -279,11 +279,11 @@ const SignedRecord = React.forwardRef<HTMLDivElement, SignedRecordProps>(
                         {requiredSigners.map((s) => {
                             const sig = signatures.find((x) => x.signerId === s.id)
                             return (
-                                <li key={s.id} className="flex items-center gap-1.5">
+                                <li key={s.id} className="flex items-center gap-2">
                                     {sig ? (
-                                        <IconCheck className="h-3.5 w-3.5 shrink-0 text-success-strong" aria-hidden="true" />
+                                        <IconCheck className="h-4 w-4 shrink-0 text-success-strong" aria-hidden="true" />
                                     ) : (
-                                        <IconClock className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                                        <IconClock className="h-4 w-4 shrink-0" aria-hidden="true" />
                                     )}
                                     <span className={cn(sig && "font-medium text-foreground")}>{s.label ?? s.id}</span>
                                     <span>{sig ? formatTime(sig.at) : (labels?.pendingSignature ?? "未署名")}</span>
@@ -294,8 +294,8 @@ const SignedRecord = React.forwardRef<HTMLDivElement, SignedRecordProps>(
                 ) : null}
 
                 {readOnly ? (
-                    <p className="inline-flex items-center gap-1.5 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-xs text-muted-foreground">
-                        <IconLock className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                    <p className="inline-flex items-center gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-3 py-2 text-xs text-muted-foreground">
+                        <IconLock className="h-4 w-4 shrink-0" aria-hidden="true" />
                         {labels?.locked ?? "確定済みの記録は変更できません。修正は追記で行います。"}
                     </p>
                 ) : null}
@@ -355,7 +355,7 @@ const SignedRecord = React.forwardRef<HTMLDivElement, SignedRecordProps>(
                                     className="self-start"
                                     onClick={() => setComposing(true)}
                                 >
-                                    <IconPlus className="h-3.5 w-3.5" aria-hidden="true" />
+                                    <IconPlus className="h-4 w-4" aria-hidden="true" />
                                     {labels?.addendum ?? "追記する"}
                                 </Button>
                             )

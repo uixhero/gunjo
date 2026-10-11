@@ -162,7 +162,7 @@ const StickyNoticeBar = React.forwardRef<HTMLDivElement, StickyNoticeBarProps>(
                 >
                     <div className="flex min-w-0 flex-1 items-start gap-2">
                         {icon ? (
-                            <span className="mt-0.5 flex shrink-0 items-center" aria-hidden="true">
+                            <span className="flex h-5 shrink-0 items-center" aria-hidden="true">
                                 {icon}
                             </span>
                         ) : null}

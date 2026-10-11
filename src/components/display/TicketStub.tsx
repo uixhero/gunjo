@@ -102,9 +102,9 @@ function QrCode({ value, alt }: { value: string; alt: string }) {
 function Perforation() {
   return (
     <div className="relative flex items-center py-1" aria-hidden="true">
-      <span className="-ml-[10px] size-4 shrink-0 rounded-full bg-background" />
+      <span className="-ml-2 size-4 shrink-0 rounded-full bg-background" />
       <span className="flex-1 border-t border-dashed border-border" />
-      <span className="-mr-[10px] size-4 shrink-0 rounded-full bg-background" />
+      <span className="-mr-2 size-4 shrink-0 rounded-full bg-background" />
     </div>
   )
 }

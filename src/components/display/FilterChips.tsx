@@ -69,7 +69,7 @@ export const FilterChips = React.forwardRef<HTMLDivElement, FilterChipsProps>(
         aria-label={ariaLabel}
         onKeyDown={onKeyDown}
         className={cn(
-          "flex w-full gap-2 overflow-x-auto pb-0.5 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
+          "flex w-full gap-2 overflow-x-auto pb-1 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden",
           className
         )}
         {...props}
@@ -86,7 +86,7 @@ export const FilterChips = React.forwardRef<HTMLDivElement, FilterChipsProps>(
               disabled={chip.disabled}
               onClick={() => onValueChange(chip.value)}
               className={cn(
-                "inline-flex h-9 shrink-0 cursor-pointer items-center gap-1.5 whitespace-nowrap rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-3.5 text-sm font-medium transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
+                "inline-flex h-9 shrink-0 cursor-pointer items-center gap-2 whitespace-nowrap rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-3 text-sm font-medium transition-colors outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50",
                 active
                   // 選択は bg-primary（地との比 light 5.08 / dark 6.23）＝面で十分に伝わる。
                   ? "bg-primary text-primary-foreground hover:bg-primary/90"
@@ -106,7 +106,7 @@ export const FilterChips = React.forwardRef<HTMLDivElement, FilterChipsProps>(
               {chip.count != null && (
                 <span
                   className={cn(
-                    "ml-0.5 inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1.5 text-xs tabular-nums",
+                    "inline-flex h-5 min-w-5 items-center justify-center rounded-full px-1 text-xs tabular-nums",
                     active
                       ? "bg-primary-foreground/20 text-primary-foreground"
                       : "bg-muted text-muted-foreground"

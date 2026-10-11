@@ -174,7 +174,7 @@ function Calendar({
                 dropdowns: "flex items-center justify-center gap-0 text-sm font-semibold",
                 dropdown_root: "relative inline-flex items-center",
                 dropdown:
-                    "h-8 cursor-pointer appearance-none rounded-md bg-transparent px-1.5 py-1 text-center font-semibold text-foreground outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
+                    "h-8 cursor-pointer appearance-none rounded-md bg-transparent px-2 py-1 text-center font-semibold text-foreground outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50",
                 months_dropdown: "w-12",
                 years_dropdown: "w-[4.25rem]",
                 nav: "pointer-events-none absolute inset-x-0 top-0 z-10 flex items-center justify-between",

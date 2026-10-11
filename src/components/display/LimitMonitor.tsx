@@ -154,27 +154,27 @@ const LimitMonitor = React.forwardRef<HTMLDivElement, LimitMonitorProps>(
               <span className="text-muted-foreground"> / {fmt(limit)}</span>
             </span>
             <span
-              className={cn("inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-medium", STATE_PILL[state])}
+              className={cn("inline-flex min-h-5 items-center gap-1 rounded-full px-2 text-xs font-medium", STATE_PILL[state])}
             >
-              <Icon className="size-3.5 shrink-0" aria-hidden="true" />
+              <Icon className="size-3 shrink-0" aria-hidden="true" />
               {stateLabel}
             </span>
           </span>
         </div>
 
-        <div className="relative mt-1.5 h-2 w-full rounded-full bg-muted">
+        <div className="relative mt-2 h-2 w-full rounded-full bg-muted">
           <div className={cn("h-full rounded-full", STATE_BAR[state])} style={{ width: pct(value) }} />
           {/* soft limit line */}
           <span
             aria-hidden="true"
-            className="absolute top-1/2 h-3.5 w-0.5 -translate-y-1/2 rounded-full bg-foreground/50"
+            className="absolute top-1/2 h-4 w-0.5 -translate-y-1/2 rounded-full bg-foreground/50"
             style={{ left: pct(limit) }}
           />
           {/* hard limit line */}
           {hardLimit != null ? (
             <span
               aria-hidden="true"
-              className="absolute top-1/2 h-3.5 w-0.5 -translate-y-1/2 rounded-full bg-destructive"
+              className="absolute top-1/2 h-4 w-0.5 -translate-y-1/2 rounded-full bg-destructive"
               style={{ left: pct(hardLimit) }}
             />
           ) : null}

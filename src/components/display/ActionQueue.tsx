@@ -85,23 +85,23 @@ export const ActionQueue = React.forwardRef<HTMLUListElement, ActionQueueProps>(
           const Icon = sev.Icon
           const body = (
             <>
-              <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-0.5">
+              <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1">
                 {item.kind != null && (
-                  <span className="inline-flex shrink-0 items-center rounded bg-background/70 px-1.5 py-0.5 text-xs font-medium">
+                  <span className="inline-flex min-h-5 shrink-0 items-center rounded bg-background/70 px-2 text-xs font-medium">
                     {item.kind}
                   </span>
                 )}
                 <span className="min-w-0 font-medium text-foreground">{item.title}</span>
               </div>
-              {item.detail != null && <p className="mt-0.5 text-sm text-muted-foreground">{item.detail}</p>}
+              {item.detail != null && <p className="mt-1 text-sm text-muted-foreground">{item.detail}</p>}
             </>
           )
           return (
             <li
               key={item.id ?? i}
-              className={cn("flex items-start gap-3 rounded-md border px-3 py-2.5", sev.row)}
+              className={cn("flex items-start gap-3 rounded-md border px-3 py-2", sev.row)}
             >
-              <span className={cn("mt-0.5 shrink-0", sev.icon)} aria-hidden="true">
+              <span className={cn("flex h-6 shrink-0 items-center", sev.icon)} aria-hidden="true">
                 {item.icon ?? <Icon className="size-5" />}
               </span>
               <span className="sr-only">{(severityLabels?.[item.severity ?? "neutral"] ?? sev.label)}：</span>
@@ -119,9 +119,9 @@ export const ActionQueue = React.forwardRef<HTMLUListElement, ActionQueueProps>(
                 )}
               </div>
               {(item.meta != null || item.actions != null) && (
-                <div className="flex shrink-0 flex-col items-end gap-1.5 text-right">
+                <div className="flex shrink-0 flex-col items-end gap-2 text-right">
                   {item.meta != null && <span className="whitespace-nowrap text-xs text-muted-foreground">{item.meta}</span>}
-                  {item.actions != null && <div className="flex items-center gap-1.5">{item.actions}</div>}
+                  {item.actions != null && <div className="flex items-center gap-2">{item.actions}</div>}
                 </div>
               )}
             </li>

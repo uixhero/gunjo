@@ -61,7 +61,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
         const describedBy = [descriptionId, ariaDescribedby].filter(Boolean).join(" ") || undefined
         const wrap = (control: React.ReactElement) =>
             hasWrap ? (
-                <div className="flex w-full flex-col gap-1.5">
+                <div className="flex w-full flex-col gap-2">
                     {label ? (
                         <label htmlFor={controlId} className="text-sm font-medium leading-none text-foreground">
                             {label}
@@ -196,13 +196,13 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
                     className="h-9 w-full rounded-l-md bg-transparent px-3 py-1 text-sm placeholder:text-muted-foreground focus-visible:outline-none [appearance:textfield] [&::-webkit-outer-spin-button]:appearance-none [&::-webkit-inner-spin-button]:appearance-none"
                     {...props}
                 />
-                <div className="flex flex-col border-l border-input">
+                <div className="flex flex-col self-stretch border-l border-input">
                     <button
                         type="button"
                         tabIndex={-1}
                         onClick={() => adjust(step)}
                         disabled={disabled || (max !== undefined && (value ?? 0) >= max)}
-                        className="flex h-[18px] w-7 items-center justify-center text-muted-foreground hover:bg-muted disabled:opacity-50"
+                        className="flex w-7 flex-1 items-center justify-center text-muted-foreground hover:bg-muted disabled:opacity-50"
                         aria-label={incrementLabel}
                     >
                         <ChevronUp className="h-3 w-3" />
@@ -213,7 +213,7 @@ const NumberInput = React.forwardRef<HTMLInputElement, NumberInputProps>(
                         tabIndex={-1}
                         onClick={() => adjust(-step)}
                         disabled={disabled || (min !== undefined && (value ?? 0) <= min)}
-                        className="flex h-[18px] w-7 items-center justify-center text-muted-foreground hover:bg-muted disabled:opacity-50"
+                        className="flex w-7 flex-1 items-center justify-center text-muted-foreground hover:bg-muted disabled:opacity-50"
                         aria-label={decrementLabel}
                     >
                         <ChevronDown className="h-3 w-3" />

@@ -109,7 +109,7 @@ export function Toast({
             <div className="min-w-0 flex-1">
                 <p className="break-words text-sm font-medium [overflow-wrap:anywhere]">{message}</p>
                 {description ? (
-                    <p className="mt-0.5 break-words text-sm opacity-80 [overflow-wrap:anywhere]">{description}</p>
+                    <p className="mt-1 break-words text-sm opacity-80 [overflow-wrap:anywhere]">{description}</p>
                 ) : null}
             </div>
             {action ? (
@@ -120,7 +120,7 @@ export function Toast({
                         onClose();
                     }}
                     aria-label={action.altText}
-                    className="shrink-0 self-start rounded-md border border-current/25 px-2.5 py-1 text-xs font-semibold transition-colors hover:bg-current/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-current/40"
+                    className="shrink-0 self-start rounded-md border border-current/25 px-2 py-1 text-xs font-semibold transition-colors hover:bg-current/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-current/40"
                 >
                     {action.label}
                 </button>
@@ -134,7 +134,7 @@ export function Toast({
                             aria-label={closeLabel}
                             className="ml-auto shrink-0 rounded-lg p-1 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
                         >
-                            <IconX size={14} stroke={2} />
+                            <IconX size={16} stroke={2} />
                         </button>
                     </TooltipTrigger>
                     <TooltipContent portalContainer={tooltipPortalContainer}>{closeLabel}</TooltipContent>

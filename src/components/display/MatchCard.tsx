@@ -65,7 +65,7 @@ const MatchCard = React.forwardRef<HTMLDivElement, MatchCardProps>(
         {/* Pairing: left | score | right */}
         <div className="flex items-center gap-3">
           <div className="min-w-0 flex-1">{left}</div>
-          <div className="flex shrink-0 flex-col items-center gap-0.5">
+          <div className="flex shrink-0 flex-col items-center gap-1">
             {score ?? <IconArrowsExchange className="size-5 text-muted-foreground" aria-hidden="true" />}
           </div>
           <div className="flex min-w-0 flex-1 justify-end text-right">{right}</div>
@@ -73,7 +73,7 @@ const MatchCard = React.forwardRef<HTMLDivElement, MatchCardProps>(
 
         {/* Factor-by-factor breakdown */}
         {factors != null && factors.length > 0 ? (
-          <div className="flex flex-col gap-1.5 border-t border-border pt-3">
+          <div className="flex flex-col gap-2 border-t border-border pt-3">
             {factorsLabel != null ? (
               <p className="text-xs font-medium text-muted-foreground">{factorsLabel}</p>
             ) : (
@@ -90,7 +90,7 @@ const MatchCard = React.forwardRef<HTMLDivElement, MatchCardProps>(
                   </span>
                   <span
                     className={cn(
-                      "inline-flex shrink-0 items-center rounded px-1.5 py-0.5 text-xs font-medium",
+                      "inline-flex min-h-5 shrink-0 items-center rounded px-2 text-xs font-medium",
                       FACTOR_TONE[f.tone ?? "default"]
                     )}
                   >

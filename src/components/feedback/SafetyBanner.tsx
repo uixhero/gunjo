@@ -111,12 +111,12 @@ const SafetyBanner = React.forwardRef<HTMLDivElement, SafetyBannerProps>(
                 {...props}
             >
                 <div className="flex items-start gap-3">
-                    <span className={cn("mt-0.5 shrink-0", TONE_ICON[tone])} aria-hidden="true">
+                    <span className={cn("flex h-5 shrink-0 items-center", TONE_ICON[tone])} aria-hidden="true">
                         {icon ?? <DefaultIcon className="h-5 w-5" />}
                     </span>
                     <div className="min-w-0 flex-1">
                         <TitleTag className="font-semibold leading-snug">{title}</TitleTag>
-                        {children != null ? <div className="mt-0.5 leading-relaxed">{children}</div> : null}
+                        {children != null ? <div className="mt-1 leading-relaxed">{children}</div> : null}
                     </div>
                     {actions != null ? <div className="shrink-0">{actions}</div> : null}
                 </div>
@@ -125,7 +125,7 @@ const SafetyBanner = React.forwardRef<HTMLDivElement, SafetyBannerProps>(
                     <div className="flex items-center justify-end gap-2">
                         {acked ? (
                             <span className="inline-flex items-center gap-1 text-xs font-medium">
-                                <IconCheck className="h-3.5 w-3.5 shrink-0" aria-hidden="true" />
+                                <IconCheck className="h-3 w-3 shrink-0" aria-hidden="true" />
                                 {acknowledgedLabel}
                             </span>
                         ) : (

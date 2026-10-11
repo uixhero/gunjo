@@ -333,7 +333,7 @@ const Gantt = React.forwardRef<HTMLDivElement, GanttProps>(
                                                     "absolute z-20 overflow-hidden rounded border text-left text-[11px] leading-[20px] shadow-sm outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background",
                                                     isSegmented
                                                         ? "border-dashed border-border bg-card/40"
-                                                        : cn("px-1.5", BAR_TONE[p.item.tone ?? "default"])
+                                                        : cn("px-2", BAR_TONE[p.item.tone ?? "default"])
                                                 )}
                                                 style={{
                                                     top: p.lane * laneHeight + 4,

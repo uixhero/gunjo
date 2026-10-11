@@ -105,7 +105,7 @@ export const ApprovalSteps = React.forwardRef<HTMLDivElement, ApprovalStepsProps
                                 aria-current={step.state === "current" ? "step" : undefined}
                                 aria-label={`${typeof step.label === "string" ? step.label : `Step ${index + 1}`}: ${stateLabel}`}
                             >
-                                <div className="flex flex-wrap items-center gap-x-2 gap-y-0.5">
+                                <div className="flex flex-wrap items-center gap-x-2 gap-y-1">
                                     <TimelineTitle>{step.label}</TimelineTitle>
                                     <span className={cn("text-xs font-medium", config.toneClass)}>{stateLabel}</span>
                                 </div>

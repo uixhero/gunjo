@@ -81,7 +81,7 @@ const Slider = React.forwardRef<HTMLInputElement, SliderProps>(
         if (!label && !showValue) return slider
 
         return (
-            <div className="flex w-full flex-col gap-1.5">
+            <div className="flex w-full flex-col gap-2">
                 <div className="flex items-baseline justify-between gap-2 text-sm">
                     {label ? (
                         <label htmlFor={controlId} className="font-medium leading-none text-foreground">

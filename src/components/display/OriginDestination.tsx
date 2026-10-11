@@ -77,7 +77,7 @@ const OriginDestination = React.forwardRef<HTMLDivElement, OriginDestinationProp
           ref={ref}
           role="group"
           aria-label={ariaLabel}
-          className={cn("inline-flex flex-wrap items-center gap-x-1.5 gap-y-0.5 text-sm tabular-nums", className)}
+          className={cn("inline-flex flex-wrap items-center gap-x-2 gap-y-1 text-sm tabular-nums", className)}
           data-slot="origin-destination"
           {...props}
         >
@@ -112,7 +112,7 @@ const OriginDestination = React.forwardRef<HTMLDivElement, OriginDestinationProp
       >
         {renderEndpoint(from, "end")}
 
-        <span className="flex shrink-0 flex-col items-center gap-0.5">
+        <span className="flex shrink-0 flex-col items-center gap-1">
           {canSwap ? (
             <TooltipButton
               type="button"
