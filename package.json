@@ -76,6 +76,8 @@
     "build:lib": "rm -rf dist && tsc -p tsconfig.build.json && node scripts/build-lib-finalize.mjs",
     "lib:check:node-esm": "node scripts/check-lib-node-esm.mjs",
     "lib:check:node-esm:self-test": "node scripts/check-lib-node-esm.mjs --self-test",
+    "lib:check:rsc-consumer": "node scripts/check-pack-consumer-rsc.mjs",
+    "lib:check:rsc-consumer:self-test": "node scripts/check-pack-consumer-rsc.mjs --self-test",
     "dev": "next dev -p 13030",
     "prebuild": "node scripts/fetch-github-issues.mjs",
     "build": "next build",

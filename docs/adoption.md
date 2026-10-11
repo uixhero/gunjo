@@ -62,7 +62,7 @@ npm install @tanstack/react-table
 
 > 旧 alpha（`main: "src/index.ts"` で生 TS を配布していた頃）は `transpilePackages: ["@gunjo/ui"]` が必須だった。dist 配布化以降は削除してよい。
 
-> **⚠️ ただし RSC からのバレル import に既知の制約あり**：Next.js App Router の Server Component から `import { X } from "@gunjo/ui"` すると `next build` が失敗する（`0.1.0-beta.4` 時点でも未解消・Next.js 16 / Turbopack で確認、追跡は [#684](https://github.com/uixhero/gunjo/issues/684)）。[§ Server Component からのバレル import](#server-component-からのバレル-importrsc) の回避シムを参照。
+> Next.js App Router の Server Component から `import { X } from "@gunjo/ui"` しても、追加の設定なしで `next build` が通る（`0.2.0` から CI で毎回確かめている）。経緯は [§ Server Component からのバレル import](#server-component-からのバレル-importrsc)。
 
 ### 3. Tailwind プリセット取り込み
 
@@ -167,23 +167,21 @@ JS からの `import "@gunjo/ui/tokens.css";` でもよい（bundler が CSS imp
 
 ## Server Component からのバレル import（RSC）
 
-### 現象
+`0.2.0` からは、Server Component（`layout.tsx` / `page.tsx` など）から `import { TooltipProvider } from "@gunjo/ui"` しても、そのまま `next build` が通る。CI（design-verify）が変更のたびに、`npm pack` した tarball を空の Next.js App Router アプリに入れ、Turbopack と webpack の両方で `next build` して確かめている（`npm run lib:check:rsc-consumer`。重い部品の optional peer は入れない状態・`transpilePackages` なし）。
 
-npm 版 `@gunjo/ui@0.1.0-beta.4`（それ以前の beta も同様）を Next.js 16（Turbopack）の Server Component（`layout.tsx` / `page.tsx` など）からバレル import すると、`next build` の Collecting page data 段階で失敗する：
+### 経緯（#684）
+
+`0.1.0-beta.1` と Next.js 16.2.10（Turbopack）で、Server Component からバレル import すると `next build` の Collecting page data 段階で失敗するという報告があった（2026-07-24・[#684](https://github.com/uixhero/gunjo/issues/684)）：
 
 ```
 TypeError: i.createContext is not a function
 ```
 
-`next dev` では発生せず、`transpilePackages` の有無も無関係（2026-07-24 実測。詳細は [#684](https://github.com/uixhero/gunjo/issues/684)）。
+同じ手順を 2026-09-22（7通り）と 2026-10-11（`0.1.0-beta.1`・`0.1.0-beta.4`・`0.2.0` の形 × Turbopack・webpack）に試したが、報告された版でも再現しなかった。当時の条件は再現できず、`0.2.0` の形で上の検査が通ることを確かめて #684 を閉じた。
 
-### 原因
+### それでも同じエラーが出たら
 
-Turbopack がバレル（`dist/index.js`）経由でモジュールを解決する際、leaf 側の `"use client"` 境界を正しく扱えず、`createContext` を含む client 専用モジュールが Server 側で評価されるため。
-
-### 回避策：`"use client"` 再エクスポートシム
-
-利用側プロジェクトに `"use client"` を付けた再エクスポートファイルを 1 枚作り、アプリからの import はすべてそこを経由させる：
+Next.js の版・`next.config`・落ちたファイルを添えて [#684](https://github.com/uixhero/gunjo/issues/684) に報告してほしい。その間は、利用側に `"use client"` を付けた再エクスポートを 1 枚作り、アプリからの import をそこ経由にすると通る（シム自体が client 境界になる）：
 
 ```tsx
 // components/ui.ts
@@ -202,10 +200,6 @@ export {
 // app/layout.tsx（Server Component のまま）
 import { TooltipProvider } from "@/components/ui";
 ```
-
-シム自体が client 境界になるため、Server Component からでもビルドが通る。
-
-> **今後の予定**：コンポーネント単位の subpath exports（`@gunjo/ui/table` など、[#677](https://github.com/uixhero/gunjo/issues/677)）の npm 公開と推奨経路化を予定している。公開後はバレル一括解決を避けられるため、このシムは不要になる見込み。進捗は [#684](https://github.com/uixhero/gunjo/issues/684) を参照。
 
 ## Server Components と関数prop（RSC）
 
@@ -300,7 +294,7 @@ v3 の場合は `tailwind.config.ts` の `content` に `node_modules/@gunjo/ui/d
 
 ### `createContext is not a function` でビルドが落ちる
 
-Server Component から `@gunjo/ui` をバレル import している（Next.js 16 + Turbopack、`0.1.0-beta.4` 時点でも未解消）。[§ Server Component からのバレル import](#server-component-からのバレル-importrsc) の `"use client"` 再エクスポートシムで回避する。
+`0.2.0` 以降は CI で出ないことを確かめている（[§ Server Component からのバレル import](#server-component-からのバレル-importrsc)）。出たら [#684](https://github.com/uixhero/gunjo/issues/684) に報告し、その間は同じ節の `"use client"` 再エクスポートで通す。
 
 ### `Functions cannot be passed directly to Client Components` でビルドが落ちる
 

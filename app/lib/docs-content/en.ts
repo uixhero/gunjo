@@ -160,15 +160,11 @@ export default function Page() {
 
 ### Using it from Server Components (Next.js App Router / RSC)
 
-Importing \`@gunjo/ui@0.1.0-beta.4\` (and earlier betas) from npm through the barrel (\`import { X } from "@gunjo/ui"\`) inside a Server Component (\`layout.tsx\`, \`page.tsx\`, etc.) on Next.js 16 (Turbopack) makes \`next build\` fail with:
+From \`0.2.0\`, importing from a Server Component (\`layout.tsx\`, \`page.tsx\`, etc.) as \`import { TooltipProvider } from "@gunjo/ui"\` builds with \`next build\` as is. GUNJO's CI checks this on every change: it installs the same tarball that goes to npm into an empty Next.js app and builds it with both Turbopack and webpack (without the heavy components' dependencies installed).
 
-\`\`\`
-TypeError: createContext is not a function
-\`\`\`
+> **History**: with \`0.1.0-beta.1\` and Next.js 16.2.10 (Turbopack), importing from a Server Component was reported to fail \`next build\` with \`TypeError: createContext is not a function\` (2026-07-24, [#684](https://github.com/uixhero/gunjo/issues/684)). Later runs of the same steps did not reproduce it, even on the reported version (2026-09-22, 2026-10-11).
 
-The cause: when Turbopack resolves through the package barrel, it does not honor the internal \`"use client"\` boundaries, so client-only modules get evaluated on the server side. \`next dev\` does not surface this — it only shows up in \`next build\`.
-
-As a workaround, create one re-export file marked \`"use client"\` and route all app imports through it:
+If you still hit that error, tell us in [#684](https://github.com/uixhero/gunjo/issues/684) with your Next.js version and the failing file. Meanwhile, one re-export file marked \`"use client"\` gets the build through:
 
 \`\`\`tsx
 // components/ui.ts
@@ -187,11 +183,9 @@ export {
 import { Button } from "@/components/ui";
 \`\`\`
 
-> Per-component subpath exports (\`@gunjo/ui/table\` and friends) are planned for npm release as the recommended import path. Once published, this shim should no longer be needed.
-
 ### Troubleshooting
 
-- **\`next build\` fails with \`createContext is not a function\`** → barrel import from a Server Component. Route imports through the \`"use client"\` re-export shim (see "Using it from Server Components" above).
+- **\`next build\` fails with \`createContext is not a function\`** → from \`0.2.0\`, CI checks that this does not happen. If it does, tell us in [#684](https://github.com/uixhero/gunjo/issues/684) and route imports through a \`"use client"\` re-export meanwhile (see "Using it from Server Components" above).
 - **Build fails with \`SyntaxError: Unexpected token\`** → you have \`0.0.1-alpha.2\` or earlier. Upgrade to the latest version and remove the \`transpilePackages\` entry (step 2).
 - **Tailwind classes don't apply** → the \`@source\` (v4) or \`content\` glob (v3) for \`node_modules/@gunjo/ui/dist/**/*.js\` is missing.
 - **Everything renders pure black or white** → \`@import "@gunjo/ui/styles"\` is missing or comes before \`@import "tailwindcss"\`.
