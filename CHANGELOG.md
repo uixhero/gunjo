@@ -13,16 +13,16 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ### Removed
 
-- **⚠️ 破壊的変更：重いライブラリを使う9部品を root（`@gunjo/ui`）の入口から外し、その依存6つを optional peer にした**（影響: **minor**）— `Button` だけを使う採用先にも `@tanstack/react-table` などが入っていた（#492）。9部品は `0.1.0-beta.2` から出していた subpath（`@gunjo/ui/table` など）からだけ import できる。root から import しても重い依存を解決しに行かないので、使わない部品の依存は入れなくてよくなる（空のプロジェクトに root だけ入れた実測で、入るパッケージ 202 → 146・`node_modules` 188.6MB → 146.7MB。2026-10-11）。
+- **⚠️ 破壊的変更：重いライブラリを使う9部品を root（`@gunjo/ui`）の入口から外し、その依存8つを optional peer にした**（影響: **minor**）— `Button` だけを使う採用先にも `@tanstack/react-table` などが入っていた（#492）。9部品は `0.1.0-beta.2` から出していた subpath（`@gunjo/ui/table` など）からだけ import できる。root から import しても重い依存を解決しに行かないので、使わない部品の依存は入れなくてよくなる（空のプロジェクトに root だけ入れた実測で、入るパッケージ 202 → 146・`node_modules` 188.6MB → 146.7MB。2026-10-11）。
   - 移行手順：⑴ 下の表のとおり import の入口を書き換える。⑵ 使う入口の依存を `npm install` する（optional peer は自動では入らない）。部品の props・見た目は変わらない。
 
     | 部品・型 | 書き換え先 | 入れる依存 |
     |---|---|---|
     | `DataTable`・`ActionDataTable`・型 `ColumnDef`・`DataTableProps` など | `@gunjo/ui/table` | `@tanstack/react-table` |
-    | `Calendar`・`DatePicker`・`DateRangePicker` | `@gunjo/ui/calendar` | `react-day-picker` |
+    | `Calendar`・`DatePicker`・`DateRangePicker` | `@gunjo/ui/calendar` | `react-day-picker`・`date-fns` |
     | `Drawer`・`DrawerContent` などの `Drawer*` | `@gunjo/ui/drawer` | `vaul` |
     | `Carousel`・`CarouselContent` などの `Carousel*` | `@gunjo/ui/carousel` | `embla-carousel-react` |
-    | `MarkdownRenderer` | `@gunjo/ui/markdown` | `react-markdown` |
+    | `MarkdownRenderer` | `@gunjo/ui/markdown` | `react-markdown`・`remark-gfm` |
     | `FloatingPanel` | `@gunjo/ui/motion` | `framer-motion` |
 
     ```tsx
