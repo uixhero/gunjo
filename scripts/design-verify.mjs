@@ -36,6 +36,8 @@ import { verifyFictionalNames } from "./check-fictional-names.mjs";
 import { verifyJapaneseLength } from "./check-japanese-length.mjs";
 import { verifyRequirementFindings } from "./check-requirement-findings.mjs";
 import { verifyAppGlobalsSync } from "./design-verify-app-globals-sync.mjs";
+import { verifySubpathEntries } from "./design-verify-subpath-entries.mjs";
+import { SUBPATH_ENTRIES } from "./design-sync/subpath-entries.mjs";
 import { verifyTailwindColorTokens } from "./design-verify-tailwind-color-tokens.mjs";
 import { verifyTailwindFoundationTokens } from "./design-verify-tailwind-foundation-tokens.mjs";
 import { verifyTailwindPresetPlugins } from "./design-verify-tailwind-preset-plugins.mjs";
@@ -77,6 +79,7 @@ function buildGeneratedFiles() {
 
   return dedupe([
     ...STATIC_GENERATED_FILES,
+    ...SUBPATH_ENTRIES.map((entry) => `src/entries/${entry.name}.ts`),
     ...metadataFiles,
     ...componentSpecFiles,
     ...generatedVariantKeyFiles,
@@ -151,6 +154,7 @@ function main() {
   verifySliderTrack({ root: ROOT });
   verifyTabularNums({ root: ROOT });
   verifyAppGlobalsSync({ root: ROOT });
+  verifySubpathEntries({ root: ROOT });
 
   const undefinedPatternTokens = findUndefinedPatternTokens({ root: ROOT });
   if (undefinedPatternTokens.length > 0) {

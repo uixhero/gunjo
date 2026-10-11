@@ -1,7 +1,7 @@
 "use client";
 
 import * as React from "react";
-import type { ColumnDef } from "@gunjo/ui";
+import type { ColumnDef } from "@gunjo/ui/table";
 import {
   StatGroup,
   Card,
@@ -9,7 +9,6 @@ import {
   CardTitle,
   CardDescription,
   CardContent,
-  DataTable,
   PersonCell,
   RelationshipRow,
   Badge,
@@ -23,6 +22,9 @@ import {
   formatCurrency,
   formatPercent,
 } from "@gunjo/ui";
+import {
+  DataTable,
+} from "@gunjo/ui/table";
 import {
   IconAlertTriangle,
   IconChevronRight,

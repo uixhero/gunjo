@@ -1,6 +1,6 @@
 "use client";
 
-import { FloatingPanel } from "@gunjo/ui";
+import { FloatingPanel } from "@gunjo/ui/motion";
 import { useState } from "react";
 
 export function FloatingPanelDemo() {

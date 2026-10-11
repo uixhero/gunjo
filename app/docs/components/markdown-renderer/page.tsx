@@ -7,7 +7,8 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { getDocContent } from "@/lib/docs-content";
 import displayMetadata from "@design/display-metadata.json";
-import { DocNote, MarkdownRenderer } from "@gunjo/ui";
+import { DocNote } from "@gunjo/ui";
+import { MarkdownRenderer } from "@gunjo/ui/markdown";
 
 const markdownByLocale = {
     ja: `# リリースノート
@@ -45,14 +46,14 @@ const tableMarkdownByLocale = {
 
 function markdownRendererCode(content: string, disableGfm = false) {
     return disableGfm
-        ? `import { MarkdownRenderer } from "@gunjo/ui";
+        ? `import { MarkdownRenderer } from "@gunjo/ui/markdown";
 
 const content = \`${content}\`;
 
 export function ReleaseNotes() {
   return <MarkdownRenderer content={content} disableGfm />;
 }`
-        : `import { MarkdownRenderer } from "@gunjo/ui";
+        : `import { MarkdownRenderer } from "@gunjo/ui/markdown";
 
 const content = \`${content}\`;
 
@@ -94,7 +95,8 @@ const calloutMarkdownByLocale = {
 const calloutCodeByLocale = {
     ja: `"use client";
 
-import { DocNote, MarkdownRenderer } from "@gunjo/ui";
+import { DocNote } from "@gunjo/ui";
+import { MarkdownRenderer } from "@gunjo/ui/markdown";
 
 const content = \`## 移行の手順
 
@@ -117,7 +119,8 @@ export function MigrationNotes() {
 }`,
     en: `"use client";
 
-import { DocNote, MarkdownRenderer } from "@gunjo/ui";
+import { DocNote } from "@gunjo/ui";
+import { MarkdownRenderer } from "@gunjo/ui/markdown";
 
 const content = \`## Migration steps
 

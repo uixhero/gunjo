@@ -4,12 +4,14 @@ import * as React from "react";
 import { enUS } from "date-fns/locale/en-US";
 import { ja } from "date-fns/locale/ja";
 import {
-    DatePicker as GunjoDatePicker,
-    FormControl,
-    FormDescription,
-    FormGroup,
-    FormLabel,
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
 } from "@gunjo/ui";
+import {
+  DatePicker as GunjoDatePicker,
+} from "@gunjo/ui/calendar";
 import { withPreviewPortal } from "@/components/doc/PreviewPortal";
 import { useLocale } from "@/components/providers/LocaleProvider";
 

@@ -5,12 +5,14 @@ import { enUS } from "date-fns/locale/en-US";
 import { ja } from "date-fns/locale/ja";
 import type { DateRange } from "react-day-picker";
 import {
-    DateRangePicker as GunjoDateRangePicker,
-    FormControl,
-    FormDescription,
-    FormGroup,
-    FormLabel,
+  FormControl,
+  FormDescription,
+  FormGroup,
+  FormLabel,
 } from "@gunjo/ui";
+import {
+  DateRangePicker as GunjoDateRangePicker,
+} from "@gunjo/ui/calendar";
 import { withPreviewPortal } from "@/components/doc/PreviewPortal";
 import { useLocale } from "@/components/providers/LocaleProvider";
 

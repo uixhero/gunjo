@@ -1,7 +1,8 @@
 "use client";
 
 import { useMemo, useRef, useState, type PointerEvent } from "react";
-import { FloatingPanel, SpatialCanvas } from "@gunjo/ui";
+import { SpatialCanvas } from "@gunjo/ui";
+import { FloatingPanel } from "@gunjo/ui/motion";
 import { CodeCopyButton, ComponentLayout, ComponentPreview } from "@/components/doc/ComponentHelpers";
 import { ComponentDemoStates } from "@/components/doc/ComponentDemoStates";
 import { CodeBlock } from "@/components/doc/CodeBlock";
@@ -11,7 +12,8 @@ import layoutMetadata from "@design/layout-metadata.json";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const codeByLocale = {
-    en: `import { FloatingPanel, SpatialCanvas } from "@gunjo/ui";
+    en: `import { SpatialCanvas } from "@gunjo/ui";
+import { FloatingPanel } from "@gunjo/ui/motion";
 
 export function CanvasWorkspace() {
   return (
@@ -27,7 +29,8 @@ export function CanvasWorkspace() {
     </div>
   );
 }`,
-    ja: `import { FloatingPanel, SpatialCanvas } from "@gunjo/ui";
+    ja: `import { SpatialCanvas } from "@gunjo/ui";
+import { FloatingPanel } from "@gunjo/ui/motion";
 
 export function CanvasWorkspace() {
   return (

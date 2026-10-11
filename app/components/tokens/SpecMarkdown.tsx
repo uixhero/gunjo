@@ -1,6 +1,6 @@
 "use client";
 
-import { MarkdownRenderer } from "@gunjo/ui";
+import { MarkdownRenderer } from "@gunjo/ui/markdown";
 
 export function SpecMarkdown({ content }: { content: string }) {
     return (

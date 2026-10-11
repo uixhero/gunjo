@@ -1,7 +1,7 @@
 "use client"
 
 import * as React from "react"
-import type { ColumnDef } from "@gunjo/ui"
+import type { ColumnDef } from "@gunjo/ui/table";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -17,13 +17,6 @@ import {
   Card,
   CoSign,
   type CoSignValue,
-  DataTable,
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerHeader,
-  DrawerTitle,
   MetadataList,
   PersonCell,
   Select,
@@ -39,7 +32,18 @@ import {
   TimelineTitle,
   TimelineDescription,
   formatCurrency,
-} from "@gunjo/ui"
+} from "@gunjo/ui";
+import {
+  DataTable,
+} from "@gunjo/ui/table";
+import {
+  Drawer,
+  DrawerClose,
+  DrawerContent,
+  DrawerDescription,
+  DrawerHeader,
+  DrawerTitle,
+} from "@gunjo/ui/drawer";
 
 import { PaymentDerivation } from "./PaymentDerivation"
 import {

@@ -1,6 +1,7 @@
 "use client";
 
-import { FloatingPanel, SpatialCanvas } from "@gunjo/ui";
+import { SpatialCanvas } from "@gunjo/ui";
+import { FloatingPanel } from "@gunjo/ui/motion";
 import { useLocale } from "@/components/providers/LocaleProvider";
 
 export default function Embed() {

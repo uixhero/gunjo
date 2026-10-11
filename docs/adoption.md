@@ -32,6 +32,30 @@ npm install /absolute/path/to/gunjo
 
 > **beta 段階の注意**：`1.0.0` stable 前は API が変わる可能性あり。本格採用は `0.x` シリーズでのドライラン後に判断推奨。バージョン履歴は [CHANGELOG.md](../CHANGELOG.md)。
 
+#### 重い部品は subpath から import し、依存を自分で入れる（`0.2.0` から）
+
+重いライブラリを使う9部品は、root（`@gunjo/ui`）からは export していない。部品ごとの入口から import し、その依存（optional peer）を採用先で入れる。使わない部品の依存は入れなくてよい（root から import しても解決しに行かない）。
+
+| import する入口 | 部品 | 採用先で入れる依存 |
+|---|---|---|
+| `@gunjo/ui/table` | `DataTable`・`ActionDataTable`（型 `ColumnDef` も） | `@tanstack/react-table` |
+| `@gunjo/ui/calendar` | `Calendar`・`DatePicker`・`DateRangePicker` | `react-day-picker` |
+| `@gunjo/ui/drawer` | `Drawer` | `vaul` |
+| `@gunjo/ui/carousel` | `Carousel` | `embla-carousel-react` |
+| `@gunjo/ui/markdown` | `MarkdownRenderer` | `react-markdown` |
+| `@gunjo/ui/motion` | `FloatingPanel` | `framer-motion` |
+
+```tsx
+import { Button } from "@gunjo/ui";
+import { DataTable, type ColumnDef } from "@gunjo/ui/table";
+```
+
+```bash
+npm install @tanstack/react-table
+```
+
+部品と入口の対応の SSOT は `scripts/design-sync/subpath-entries.mjs`（`npm run design:verify` が `package.json` の `exports`・peer の宣言・root から重い依存に届かないことを見張る）。`0.1.x` から上げるときの書き換えは [CHANGELOG.md](../CHANGELOG.md) の `[Unreleased]`（出たあとは `[0.2.0-beta.1]`）の移行手順。
+
 ### 2. ビルド設定（不要）
 
 `@gunjo/ui` は **コンパイル済みの ESM + 型定義を `dist/` から配布** している（`exports "." → ./dist/index.js`、各コンポーネントの `"use client"` 境界も保持）。そのため **`transpilePackages` は不要**で、`npm install` してそのまま import できる（Next.js / Vite いずれも追加設定なし）。

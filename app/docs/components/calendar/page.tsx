@@ -10,7 +10,7 @@ import inputsMetadata from "@design/inputs-metadata.json";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { CalendarDemo } from "@/components/demos/NavigationDemos";
 import { CodeBlock } from "@/components/doc/CodeBlock";
-import { Calendar } from "@gunjo/ui";
+import { Calendar } from "@gunjo/ui/calendar";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
@@ -58,7 +58,7 @@ function CalendarStatesContent({ locale }: { locale: "ja" | "en" }) {
                     ),
                     code: `"use client";
 
-import { Calendar } from "@gunjo/ui";
+import { Calendar } from "@gunjo/ui/calendar";
 import * as React from "react";
 
 export default function MultipleCalendar() {
@@ -99,7 +99,7 @@ export default function MultipleCalendar() {
                     ),
                     code: `"use client";
 
-import { Calendar } from "@gunjo/ui";
+import { Calendar } from "@gunjo/ui/calendar";
 import * as React from "react";
 import type { DateRange } from "react-day-picker";
 
@@ -140,7 +140,7 @@ export default function RangeCalendar() {
                         ? `"use client";
 
 import * as React from "react";
-import { Calendar } from "@gunjo/ui";
+import { Calendar } from "@gunjo/ui/calendar";
 
 export function FutureOnlyCalendar() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
@@ -161,7 +161,7 @@ export function FutureOnlyCalendar() {
                         : `"use client";
 
 import * as React from "react";
-import { Calendar } from "@gunjo/ui";
+import { Calendar } from "@gunjo/ui/calendar";
 
 export function FutureOnlyCalendar() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
@@ -189,7 +189,7 @@ export default function CalendarPage() {
     const { locale, sectionLabels } = useLocale();
     const code = `"use client";
 
-import { Calendar } from "@gunjo/ui"
+import { Calendar } from "@gunjo/ui/calendar";
 import React from "react"
 
 export function CalendarDemo() {
@@ -205,7 +205,7 @@ export function CalendarDemo() {
   )
 }`;
 
-    const usageCode = `import { Calendar } from "@gunjo/ui"
+    const usageCode = `import { Calendar } from "@gunjo/ui/calendar";
 
 export function CalendarUsage() {
   return <Calendar mode="single" />

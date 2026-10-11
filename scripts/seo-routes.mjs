@@ -9,6 +9,7 @@ import { existsSync, readdirSync } from "node:fs";
 import { createRequire } from "node:module";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
+import { SUBPATH_ENTRIES } from "./design-sync/subpath-entries.mjs";
 
 export const ROOT = fileURLToPath(new URL("..", import.meta.url));
 
@@ -27,6 +28,10 @@ export function loadTsModule(relativePath, root = ROOT) {
         alias: {
             "@": join(root, "app"),
             "@design": join(root, "design"),
+            // Subpath entries first (more specific), then the root barrel. (#492)
+            ...Object.fromEntries(
+                SUBPATH_ENTRIES.map((entry) => [`@gunjo/ui/${entry.name}`, join(root, `src/entries/${entry.name}.ts`)]),
+            ),
             "@gunjo/ui": join(root, "src/index.ts"),
         },
         interopDefault: true,

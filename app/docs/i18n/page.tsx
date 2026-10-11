@@ -3,12 +3,14 @@
 import * as React from "react";
 import type { ColumnDef } from "@tanstack/react-table";
 import {
-    LocaleProvider,
-    SearchInput,
-    DataTable,
-    ToggleGroup,
-    ToggleGroupItem,
+  LocaleProvider,
+  SearchInput,
+  ToggleGroup,
+  ToggleGroupItem,
 } from "@gunjo/ui";
+import {
+  DataTable,
+} from "@gunjo/ui/table";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { CodeBlock } from "@/components/doc/CodeBlock";
 import { PropsTable } from "@/components/doc/PropsTable";

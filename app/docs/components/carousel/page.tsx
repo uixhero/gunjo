@@ -7,18 +7,20 @@ import { PropsTable } from "@/components/doc/PropsTable";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import displayMetadata from "@design/display-metadata.json";
 import {
-    Carousel,
-    CarouselAutoplayToggle,
-    CarouselContent,
-    CarouselDots,
-    CarouselItem,
-    CarouselNext,
-    CarouselPrevious,
-    CarouselThumbnail,
-    CarouselThumbnails,
-    Img,
-    ImagePreview,
+  Img,
+  ImagePreview,
 } from "@gunjo/ui";
+import {
+  Carousel,
+  CarouselAutoplayToggle,
+  CarouselContent,
+  CarouselDots,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  CarouselThumbnail,
+  CarouselThumbnails,
+} from "@gunjo/ui/carousel";
 import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 function CarouselSample({ vertical = false, isJa }: { vertical?: boolean; isJa: boolean }) {
@@ -425,7 +427,7 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "@gunjo/ui"
+} from "@gunjo/ui/carousel";
 
 const slides = [1, 2, 3, 4]
 
@@ -469,7 +471,7 @@ import {
   Carousel,
   CarouselContent,
   CarouselItem,
-} from "@gunjo/ui"
+} from "@gunjo/ui/carousel";
 
 const slides = [1, 2, 3, 4]
 
@@ -509,7 +511,7 @@ export function CarouselDemo() {
 }`;
 
     const usageCode = isJa
-        ? `import { Carousel, CarouselContent, CarouselItem } from "@gunjo/ui"
+        ? `import { Carousel, CarouselContent, CarouselItem } from "@gunjo/ui/carousel";
 
 const items = [
   { id: "plan", label: "企画" },
@@ -532,7 +534,7 @@ export function Gallery() {
     </Carousel>
   )
 }`
-        : `import { Carousel, CarouselContent, CarouselItem } from "@gunjo/ui"
+        : `import { Carousel, CarouselContent, CarouselItem } from "@gunjo/ui/carousel";
 
 const items = [
   { id: "plan", label: "Plan" },
@@ -566,7 +568,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@gunjo/ui"
+} from "@gunjo/ui/carousel";
 
 const cardItems = [
   { label: "企画" },
@@ -629,7 +631,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@gunjo/ui"
+} from "@gunjo/ui/carousel";
 
 const cardItems = [
   { label: "Plan" },
@@ -691,7 +693,7 @@ export function PeekCarousel() {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@gunjo/ui"
+} from "@gunjo/ui/carousel";
 
 const cardItems = [
   { label: "企画" },
@@ -750,7 +752,7 @@ export function MultiVisibleCarousel() {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from "@gunjo/ui"
+} from "@gunjo/ui/carousel";
 
 const cardItems = [
   { label: "Plan" },
@@ -808,14 +810,16 @@ export function MultiVisibleCarousel() {
         ? `"use client";
 
 import {
+  ImagePreview,
+} from "@gunjo/ui";
+import {
   Carousel,
   CarouselContent,
   CarouselDots,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-  ImagePreview,
-} from "@gunjo/ui"
+} from "@gunjo/ui/carousel";
 
 const galleryImages = [
   {
@@ -867,14 +871,16 @@ export function ImageCarousel() {
         : `"use client";
 
 import {
+  ImagePreview,
+} from "@gunjo/ui";
+import {
   Carousel,
   CarouselContent,
   CarouselDots,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-  ImagePreview,
-} from "@gunjo/ui"
+} from "@gunjo/ui/carousel";
 
 const galleryImages = [
   {
@@ -926,6 +932,10 @@ export function ImageCarousel() {
 
     const thumbnailCarouselCode = isJa
         ? `import {
+  ImagePreview,
+  Img,
+} from "@gunjo/ui";
+import {
   Carousel,
   CarouselContent,
   CarouselItem,
@@ -933,9 +943,7 @@ export function ImageCarousel() {
   CarouselPrevious,
   CarouselThumbnail,
   CarouselThumbnails,
-  ImagePreview,
-  Img,
-} from "@gunjo/ui"
+} from "@gunjo/ui/carousel";
 
 const galleryImages = [
   {
@@ -997,6 +1005,10 @@ export function ThumbnailCarousel() {
   )
 }`
         : `import {
+  ImagePreview,
+  Img,
+} from "@gunjo/ui";
+import {
   Carousel,
   CarouselContent,
   CarouselItem,
@@ -1004,9 +1016,7 @@ export function ThumbnailCarousel() {
   CarouselPrevious,
   CarouselThumbnail,
   CarouselThumbnails,
-  ImagePreview,
-  Img,
-} from "@gunjo/ui"
+} from "@gunjo/ui/carousel";
 
 const galleryImages = [
   {
@@ -1072,6 +1082,9 @@ export function ThumbnailCarousel() {
         ? `"use client";
 
 import {
+  ImagePreview,
+} from "@gunjo/ui";
+import {
   Carousel,
   CarouselAutoplayToggle,
   CarouselContent,
@@ -1079,8 +1092,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-  ImagePreview,
-} from "@gunjo/ui"
+} from "@gunjo/ui/carousel";
 
 const galleryImages = [
   {
@@ -1139,6 +1151,9 @@ export function AutoplayCarousel() {
         : `"use client";
 
 import {
+  ImagePreview,
+} from "@gunjo/ui";
+import {
   Carousel,
   CarouselAutoplayToggle,
   CarouselContent,
@@ -1146,8 +1161,7 @@ import {
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-  ImagePreview,
-} from "@gunjo/ui"
+} from "@gunjo/ui/carousel";
 
 const galleryImages = [
   {

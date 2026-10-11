@@ -10,7 +10,8 @@ import inputsMetadata from "@design/inputs-metadata.json";
 import { PropsTable } from "@/components/doc/PropsTable";
 import { DatePickerDemo } from "@/components/demos/DatePickerDemo";
 import { CodeBlock } from "@/components/doc/CodeBlock";
-import { DatePicker as GunjoDatePicker, FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+import { FormControl, FormDescription, FormGroup, FormLabel } from "@gunjo/ui";
+import { DatePicker as GunjoDatePicker } from "@gunjo/ui/calendar";
 import { useLocale } from "@/components/providers/LocaleProvider";
 import { withPreviewPortal } from "@/components/doc/PreviewPortal";
 
@@ -81,12 +82,14 @@ function DatePickerStates({ locale }: { locale: "ja" | "en" }) {
 
 import * as React from "react";
 import {
-  DatePicker,
   FormControl,
   FormDescription,
   FormGroup,
   FormLabel,
 } from "@gunjo/ui";
+import {
+  DatePicker,
+} from "@gunjo/ui/calendar";
 
 export default function PublishDateField() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
@@ -127,7 +130,8 @@ export default function PublishDateField() {
                     code: `"use client";
 
 import * as React from "react";
-import { DatePicker, FormControl, FormGroup, FormLabel } from "@gunjo/ui";
+import { FormControl, FormGroup, FormLabel } from "@gunjo/ui";
+import { DatePicker } from "@gunjo/ui/calendar";
 
 export default function EmptyDateField() {
   const [date, setDate] = React.useState<Date | undefined>();
@@ -176,12 +180,14 @@ export default function EmptyDateField() {
 
 import * as React from "react";
 import {
-  DatePicker,
   FormControl,
   FormDescription,
   FormGroup,
   FormLabel,
 } from "@gunjo/ui";
+import {
+  DatePicker,
+} from "@gunjo/ui/calendar";
 
 export default function PersistentDateField() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
@@ -238,12 +244,14 @@ export default function PersistentDateField() {
 
 import * as React from "react";
 import {
-  DatePicker,
   FormControl,
   FormDescription,
   FormGroup,
   FormLabel,
 } from "@gunjo/ui";
+import {
+  DatePicker,
+} from "@gunjo/ui/calendar";
 
 export default function BookingDateField() {
   const [date, setDate] = React.useState<Date | undefined>();
@@ -318,12 +326,14 @@ export default function BookingDateField() {
                     ),
                     code: `import { DisabledReasonTooltip } from "@/components/doc/DisabledReasonTooltip";
 import {
-  DatePicker,
   FormControl,
   FormDescription,
   FormGroup,
   FormLabel,
 } from "@gunjo/ui";
+import {
+  DatePicker,
+} from "@gunjo/ui/calendar";
 
 const date = new Date(2026, 5, 30);
 
@@ -356,12 +366,14 @@ export default function DatePickerPage() {
 
 import * as React from "react";
 import {
-  DatePicker,
   FormControl,
   FormDescription,
   FormGroup,
   FormLabel,
 } from "@gunjo/ui";
+import {
+  DatePicker,
+} from "@gunjo/ui/calendar";
 
 export function DatePickerDemo() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
@@ -380,12 +392,14 @@ export function DatePickerDemo() {
 
 import * as React from "react";
 import {
-  DatePicker,
   FormControl,
   FormDescription,
   FormGroup,
   FormLabel,
 } from "@gunjo/ui";
+import {
+  DatePicker,
+} from "@gunjo/ui/calendar";
 
 export function DatePickerDemo() {
   const [date, setDate] = React.useState<Date | undefined>(new Date());
@@ -404,7 +418,8 @@ export function DatePickerDemo() {
     const usageCode = `"use client";
 
 import * as React from "react";
-import { DatePicker, FormControl, FormGroup, FormLabel } from "@gunjo/ui";
+import { FormControl, FormGroup, FormLabel } from "@gunjo/ui";
+import { DatePicker } from "@gunjo/ui/calendar";
 
 export function DatePickerUsage() {
   const [date, setDate] = React.useState<Date | undefined>();

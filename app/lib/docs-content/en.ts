@@ -63,6 +63,28 @@ npm install @tabler/icons-react
 
 > Under npm's default hoisting, \`import { IconX } from "@tabler/icons-react"\` may resolve through Gunjo UI's own copy even without this line — but that breaks under **pnpm** or npm with strict / \`nohoist\`. Install it yourself so your icon imports don't depend on hoisting.
 
+#### Heavy components (import from a subpath, install the dependency you use)
+
+The nine components that pull a heavy library are imported from their own entry (subpath), not from \`@gunjo/ui\`. Install only the dependency of the components you use — if you use none of them, install nothing (from \`0.2.0\`).
+
+| Import from | Components | Install yourself |
+|---|---|---|
+| \`@gunjo/ui/table\` | \`DataTable\`, \`ActionDataTable\` (and the \`ColumnDef\` type) | \`@tanstack/react-table\` |
+| \`@gunjo/ui/calendar\` | \`Calendar\`, \`DatePicker\`, \`DateRangePicker\` | \`react-day-picker\` |
+| \`@gunjo/ui/drawer\` | \`Drawer\` | \`vaul\` |
+| \`@gunjo/ui/carousel\` | \`Carousel\` | \`embla-carousel-react\` |
+| \`@gunjo/ui/markdown\` | \`MarkdownRenderer\` | \`react-markdown\` |
+| \`@gunjo/ui/motion\` | \`FloatingPanel\` | \`framer-motion\` |
+
+\`\`\`tsx
+import { Button } from "@gunjo/ui";
+import { DataTable, type ColumnDef } from "@gunjo/ui/table";
+\`\`\`
+
+\`\`\`bash
+npm install @tanstack/react-table
+\`\`\`
+
 ### 2. Build config (none needed)
 
 \`@gunjo/ui\` ships compiled JavaScript and type definitions in \`dist/\`, and keeps each component's \`"use client"\` directive.
