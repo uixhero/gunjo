@@ -11,6 +11,16 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 
+## [0.2.0-beta.1] — 2026-10-11
+
+> `0.1.0-beta.4` 以降の変更。**破壊的変更が2件**（どちらも影響 **minor**＝import の書き換えと依存の追加で済む）あるので、真ん中の数字を上げた。見た目の変更は無い。
+
+### 採用先向けの要約（書き換えが要るもの）
+
+1. **表・カレンダー・ドロワー・カルーセル・Markdown・`FloatingPanel` を `@gunjo/ui` から読んでいる場合**は、それぞれの入口（`@gunjo/ui/table` など）に書き換え、その依存を自分で入れる。下の「Removed」の表のとおり。書き換え忘れは型検査、依存の入れ忘れはバンドラが止める。
+2. **`AIChatInput`・`AIChatMessage` を使っている場合**は、`ChatInput`・`ChatMessage` に名前を書き換える。
+3. どちらも使っていなければ、書き換えは要らない。root の入口だけを使う採用先は、入る依存が減る（空のプロジェクトで 202 → 146 パッケージ）。
+
 ### Removed
 
 - **⚠️ 破壊的変更：重いライブラリを使う9部品を root（`@gunjo/ui`）の入口から外し、その依存8つを optional peer にした**（影響: **minor**）— `Button` だけを使う採用先にも `@tanstack/react-table` などが入っていた（#492）。9部品は `0.1.0-beta.2` から出していた subpath（`@gunjo/ui/table` など）からだけ import できる。root から import しても重い依存を解決しに行かないので、使わない部品の依存は入れなくてよくなる（空のプロジェクトに root だけ入れた実測で、入るパッケージ 202 → 146・`node_modules` 188.6MB → 146.7MB。2026-10-11）。
