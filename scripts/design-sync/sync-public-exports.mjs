@@ -20,7 +20,7 @@ const EXTRA_EXPORTS_BY_CATEGORY = {
   feedback: [],
   layout: [],
   navigation: [],
-  overlay: ["AIChatInput", "AIChatMessage"],
+  overlay: [],
   display: [],
   inputs: ["ButtonVariants"],
 };

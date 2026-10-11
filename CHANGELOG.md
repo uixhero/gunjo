@@ -11,6 +11,23 @@ GunjoUI の変更履歴。フォーマットは [Keep a Changelog](https://keepa
 
 ## [Unreleased]
 
+### Removed
+
+- **⚠️ 破壊的変更：`AIChatInput`・`AIChatMessage` を export から外した**（影響: **minor**）— 中身は `ChatInput`・`ChatMessage` の別名の再 export だけで、デザインソース・metadata・docs を持たない部品だった。採用先3つ（4px-hq-dashboard・design-qa・uixhero）では使われていない（2026-10-11 に各リポの既定の枝を読んで確認）。
+  - 移行手順：名前を書き換えるだけ。props も見た目も同じ。
+
+    | 外した名前 | 書き換え先 |
+    |---|---|
+    | `AIChatInput` | `ChatInput` |
+    | `AIChatInputProps`（型） | `ChatInputProps` |
+    | `AIChatInputLabels`（型） | `ChatInputLabels` |
+    | `AIChatMessage` | `ChatMessage` |
+    | `AIChatMessageProps`（型） | `ChatMessageProps` |
+    | `AIChatMessageRole`（型） | `ChatMessageRole` |
+    | `AIChatMessageLabels`（型） | `ChatMessageLabels` |
+
+    `git grep -lE 'AIChat(Input|Message)' | xargs sed -i '' -E 's/AIChat(Input|Message)/Chat\1/g'`（macOS の sed。GNU sed は `-i ''` を `-i` に）で置き換えられる。
+
 ### Fixed
 
 - **素の Node（バンドラを通さない読み込み）で `import("@gunjo/ui")` が `ERR_MODULE_NOT_FOUND` になっていた**（影響: **none**）— `dist/` の相対 import に拡張子が無かった（`./components/inputs/Button` など）。ビルドの最後に `.js` を付けるようにした（`.d.ts` も同じ）。Vitest・Jest を Node の解決で動かすテスト、自前の SSR、TypeScript の `moduleResolution: "nodenext"` から読めるようになる。バンドラ（Next.js・Vite・esbuild など）経由の採用先はコードも出力も変わらない（esbuild で束ねた結果は前後でバイト単位で同じ）。CI で `dist/` の全 subpath を素の Node で読み込む検査（`npm run lib:check:node-esm`）を回す。(#717)
