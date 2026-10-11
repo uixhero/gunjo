@@ -36,7 +36,7 @@ const COPY = {
     en: {
         eyebrow: "Tokens · Spacing",
         heading: "Spacing",
-        subtitle: "Tailwind's scale, held to a 4px grid. Spacing and sizes use the whole steps; the fractional steps are for hairlines, dots and centring only.",
+        subtitle: "Tailwind's scale, with spacing and sizes held to a 4px grid.",
         sections: { grid: "The 4px grid", scale: "Scale", common: "Common uses" },
         tableHeaders: { token: "Token", value: "Value", purpose: "Purpose" },
         detailOnly: "Detail only",
@@ -45,10 +45,10 @@ const COPY = {
             items: [
                 "The gap between items (gap, space-x, space-y).",
                 "The padding and margin an element is pushed in by.",
-                "The size of controls, chips and icons. An icon is 12, 16, 20 or 24px, never 14.",
+                "The size of controls, badges and icons. An icon is 12, 16, 20 or 24px.",
             ],
             sizeFirst: {
-                before: "For a one-line row or chip, set the height first and keep the padding on the grid. A menu item is ",
+                before: "For a one-line row or badge, set the height first and keep the padding on the grid. A menu item is ",
                 code: "min-h-8 py-1",
                 after: " (32px tall, 4px padding), not 6px padding.",
             },
@@ -61,7 +61,7 @@ const COPY = {
     ja: {
         eyebrow: "Tokens · Spacing",
         heading: "Spacing",
-        subtitle: "Tailwind のスケールを 4px グリッドに固定しています。余白と大きさには整数の段を使い、小数の段は線・点・中心合わせだけに使います。",
+        subtitle: "Tailwind のスケールを使い、余白と大きさは 4px グリッドにそろえます。",
         sections: { grid: "4px グリッド", scale: "Scale", common: "よく使う組み合わせ" },
         tableHeaders: { token: "Token", value: "値", purpose: "用途" },
         detailOnly: "細部専用",
@@ -70,10 +70,10 @@ const COPY = {
             items: [
                 "並んだ物どうしの間（gap、space-x、space-y）。",
                 "要素を内側へ寄せる余白（padding、margin）。",
-                "操作部品・札・アイコンの大きさ。アイコンは 12・16・20・24px で、14px は使いません。",
+                "操作部品・バッジ・アイコンの大きさ。アイコンは 12・16・20・24px です。",
             ],
             sizeFirst: {
-                before: "1行の行や札は、先に高さを決めてから余白を整数の段にします。メニューの項目は、上下 6px の余白ではなく ",
+                before: "1行の行やバッジは、先に高さを決めてから余白を整数の段にします。メニューの項目は、上下 6px の余白ではなく ",
                 code: "min-h-8 py-1",
                 after: "（高さ 32px・余白 4px）です。",
             },
