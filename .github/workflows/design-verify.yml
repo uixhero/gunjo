@@ -393,3 +393,19 @@ jobs:
           name: surface-steps
           path: artifacts/surface-steps.json
           if-no-files-found: ignore
+
+      # Library build + plain-Node load gate (last, so dist/ never exists while
+      # the docs build and type check run). The docs build above compiles
+      # src/ through Next, never dist/, so nothing else in CI loads what npm
+      # actually ships. tsc emits extensionless relative imports that Node ESM
+      # cannot resolve (#717); build-lib-finalize adds the extensions and this
+      # step proves every `exports` entry loads without a bundler. The
+      # self-test first proves the check still catches the #717 shape.
+      - name: Library build (dist)
+        run: npm run build:lib
+
+      - name: Library loads in plain Node ESM (self-test)
+        run: npm run lib:check:node-esm:self-test
+
+      - name: Library loads in plain Node ESM
+        run: npm run lib:check:node-esm

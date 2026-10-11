@@ -17,7 +17,7 @@ GunjoUI が 1.0 に届くまでの、機能と版の予定表。
 | 機能（issue） | 1.0 の条件 | 予定の版 | 予定時期 | 状態 |
 |---|---|---|---|---|
 | [#492](https://github.com/uixhero/gunjo/issues/492) 重い部品を subpath export に分ける | 部品 | `0.2.0-beta.1` | 案：2026-11-20 まで | 未着手 |
-| [#717](https://github.com/uixhero/gunjo/issues/717) Node から素で import すると `ERR_MODULE_NOT_FOUND` になる（`"type": "module"` が無い・拡張子の無い import） | 部品 | `0.2.0-beta.1` | 案：2026-11-20 まで | 未着手 |
+| [#717](https://github.com/uixhero/gunjo/issues/717) Node から素で import すると `ERR_MODULE_NOT_FOUND` になる（`"type": "module"` が無い・拡張子の無い import） | 部品 | `0.2.0-beta.1` | 案：2026-11-20 まで | 作業中（[#1051](https://github.com/uixhero/gunjo/pull/1051)） |
 | [#684](https://github.com/uixhero/gunjo/issues/684) Server Component からのバレル import で「直った」と言える再現手順を作る | 部品 | `0.2.0-beta.1` | 案：2026-11-20 まで | 未着手 |
 | `AIChatInput`・`AIChatMessage` を正式な部品にするか、export から外す | 部品 | `0.2.0-beta.1` | 案：2026-11-20 まで | 未着手 |
 | 全部品の状態を決める（`design/stability.json` は Beta 54件・未分類183件） | 部品 | `0.2.0-beta.2` | 案：2026-12-18 まで | 未着手 |
