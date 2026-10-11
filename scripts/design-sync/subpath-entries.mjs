@@ -24,7 +24,7 @@ export const SUBPATH_ENTRIES = [
   },
   {
     name: "calendar",
-    peerDependencies: ["react-day-picker"],
+    peerDependencies: ["react-day-picker", "date-fns"],
     components: ["inputs/DatePicker", "inputs/DateRangePicker", "inputs/Calendar"],
     extraExports: [],
   },
@@ -42,7 +42,7 @@ export const SUBPATH_ENTRIES = [
   },
   {
     name: "markdown",
-    peerDependencies: ["react-markdown"],
+    peerDependencies: ["react-markdown", "remark-gfm"],
     components: ["display/MarkdownRenderer"],
     extraExports: [],
   },
