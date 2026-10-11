@@ -409,3 +409,21 @@ jobs:
 
       - name: Library loads in plain Node ESM
         run: npm run lib:check:node-esm
+
+      # Packed-tarball consumer gate (#684). Installs `npm pack` of this
+      # checkout into an empty Next.js App Router app — no source aliases, no
+      # transpilePackages, none of the optional peers — whose Server Component
+      # layout imports `TooltipProvider` from the root barrel (the #684 repro),
+      # then runs `next build` with Turbopack and with webpack. #684 could not
+      # be reproduced on demand, so the only way to keep saying "fixed" is to
+      # build that shape on every change. The self-test first proves a broken
+      # RSC import (a client hook called from a Server Component) fails it.
+      - name: Packed tarball in a Next.js Server Component (self-test)
+        run: npm run lib:check:rsc-consumer:self-test
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"
+
+      - name: Packed tarball in a Next.js Server Component
+        run: npm run lib:check:rsc-consumer
+        env:
+          NEXT_TELEMETRY_DISABLED: "1"

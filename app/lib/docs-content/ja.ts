@@ -160,15 +160,11 @@ export default function Page() {
 
 ### Server Component から使う場合（Next.js App Router / RSC）
 
-npm 版 \`@gunjo/ui@0.1.0-beta.4\`（それ以前の beta も同様）を Next.js 16（Turbopack）の Server Component（\`layout.tsx\` / \`page.tsx\` など）から \`import { X } from "@gunjo/ui"\` の形（バレル import）で使うと、\`next build\` が次のエラーで失敗します：
+\`0.2.0\` からは、Server Component（\`layout.tsx\` / \`page.tsx\` など）から \`import { TooltipProvider } from "@gunjo/ui"\` の形で使っても、そのまま \`next build\` が通ります。GUNJO の CI が変更のたびに、npm に出すのと同じ tarball を空の Next.js アプリに入れて、Turbopack と webpack の両方でビルドして確かめています（重い部品の依存は入れない状態）。
 
-\`\`\`
-TypeError: createContext is not a function
-\`\`\`
+> **経緯**：\`0.1.0-beta.1\` と Next.js 16.2.10（Turbopack）で、Server Component からの import が \`next build\` を \`TypeError: createContext is not a function\` で落とすという報告がありました（2026-07-24・[#684](https://github.com/uixhero/gunjo/issues/684)）。のちに同じ手順を試しましたが、報告された版でも再現しませんでした（2026-09-22・2026-10-11）。
 
-原因は、Turbopack がパッケージ本体（バレル）経由の解決時に内部の \`"use client"\` 境界を正しく扱えず、client 専用モジュールが Server 側で評価されるためです。\`next dev\` では発生せず、\`next build\` で顕在化します。
-
-回避策として、\`"use client"\` を付けた再エクスポートファイルを 1 枚作り、アプリからの import はそこを経由させてください：
+それでも同じエラーが出たときは、Next.js の版と落ちたファイルを添えて [#684](https://github.com/uixhero/gunjo/issues/684) に知らせてください。その間は、\`"use client"\` を付けた再エクスポートを1枚挟むと通ります：
 
 \`\`\`tsx
 // components/ui.ts
@@ -187,11 +183,9 @@ export {
 import { Button } from "@/components/ui";
 \`\`\`
 
-> コンポーネント単位の subpath exports（\`@gunjo/ui/table\` など）の npm 公開と推奨経路化を予定しています。公開後はこのシムは不要になる見込みです。
-
 ### トラブルシューティング
 
-- **\`createContext is not a function\` で \`next build\` が落ちる** → Server Component からのバレル import が原因。\`"use client"\` 再エクスポートシムを経由させる（上記「Server Component から使う場合」）。
+- **\`createContext is not a function\` で \`next build\` が落ちる** → \`0.2.0\` 以降では CI で出ないことを確かめています。出たら [#684](https://github.com/uixhero/gunjo/issues/684) に知らせ、その間は \`"use client"\` の再エクスポートを挟む（上記「Server Component から使う場合」）。
 - **\`SyntaxError: Unexpected token\` でビルドが落ちる** → \`0.0.1-alpha.2\` 以前を入れている。最新版に上げ、\`transpilePackages\` の設定を消す（手順 2）。
 - **Tailwind クラスが効かない** → v4 の \`@source\` または v3 の \`content\` で \`node_modules/@gunjo/ui/dist/**/*.js\` を指していない。
 - **画面が真っ黒・真っ白** → \`@import "@gunjo/ui/styles"\` が抜けている、または \`@import "tailwindcss"\` の **前** にきている。
