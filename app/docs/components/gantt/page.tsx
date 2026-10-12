@@ -158,7 +158,7 @@ function GanttDetailPanel({
           </Badge>
         </div>
       )}
-      <dl className={compact ? "mt-1.5 grid gap-1 text-xs" : "mt-3 grid gap-2 text-xs"}>
+      <dl className={compact ? "mt-2 grid gap-1 text-xs" : "mt-3 grid gap-2 text-xs"}>
         <div>
           <dt className="text-muted-foreground">{copy.rowLabel}</dt>
           <dd className="font-medium text-foreground">{row?.label}</dd>
@@ -424,7 +424,7 @@ export function ProductionGantt() {
                 {selectedDetail.status}
               </Badge>
             </div>
-            <dl className="mt-1.5 grid gap-1 text-xs">
+            <dl className="mt-2 grid gap-1 text-xs">
               <div><dt className="text-muted-foreground">担当ライン</dt><dd className="font-medium text-foreground">{selectedRow?.label}</dd></div>
               <div><dt className="text-muted-foreground">期間</dt><dd className="font-medium text-foreground">{String(selectedItem.start)} - {String(selectedItem.end)}</dd></div>
               <div><dt className="text-muted-foreground">責任者</dt><dd className="font-medium text-foreground">{selectedDetail.owner}</dd></div>
@@ -541,7 +541,7 @@ export function ProductionGantt() {
                 {selectedDetail.status}
               </Badge>
             </div>
-            <dl className="mt-1.5 grid gap-1 text-xs">
+            <dl className="mt-2 grid gap-1 text-xs">
               <div><dt className="text-muted-foreground">Line</dt><dd className="font-medium text-foreground">{selectedRow?.label}</dd></div>
               <div><dt className="text-muted-foreground">Window</dt><dd className="font-medium text-foreground">{String(selectedItem.start)} - {String(selectedItem.end)}</dd></div>
               <div><dt className="text-muted-foreground">Owner</dt><dd className="font-medium text-foreground">{selectedDetail.owner}</dd></div>
@@ -910,7 +910,7 @@ export function VehicleRunGantt() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+        <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

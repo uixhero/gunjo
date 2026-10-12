@@ -100,7 +100,7 @@ export function ResizableDemo() {
 
 export function ScrollAreaDemo() {
     return (
-        <ScrollArea className="h-[200px] w-[350px] rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4">
+        <ScrollArea className="h-[200px] w-88 rounded-md border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-4">
             <div className="mb-4 text-sm font-medium leading-none">Tags</div>
             {Array.from({ length: 50 }).map((_, i, a) => (
                 <div key={i}>

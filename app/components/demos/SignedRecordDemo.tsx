@@ -18,7 +18,7 @@ export function SignedRecordDemo() {
                 canSign={body.trim().length > 0}
             >
                 {({ readOnly }) => (
-                    <div className="flex flex-col gap-1.5">
+                    <div className="flex flex-col gap-2">
                         <span className="text-sm font-medium text-foreground">退院時サマリ本文</span>
                         {readOnly ? (
                             <p className="rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 text-sm leading-relaxed text-foreground">

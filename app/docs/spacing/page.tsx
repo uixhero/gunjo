@@ -143,8 +143,12 @@ export default function SpacingPage() {
                             <code className="w-16 shrink-0 font-mono text-[10px] text-muted-foreground">
                                 {step.px}
                             </code>
+                            {/* The ruler draws each step at its own shipped value, so the bar
+                                width comes from the token, not from a w-* class (a w-3.5 class
+                                would itself be off the 4px grid). */}
                             <div
-                                className={`h-3 ${step.widthClass} rounded-sm ${step.detailOnly ? "bg-muted-foreground/40" : "bg-primary"}`}
+                                className={`h-3 rounded-sm ${step.detailOnly ? "bg-muted-foreground/40" : "bg-primary"}`}
+                                style={{ width: step.value }}
                                 aria-hidden
                             />
                             {step.detailOnly ? (

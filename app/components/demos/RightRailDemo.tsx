@@ -98,7 +98,7 @@ function PageLinks() {
                 <ul className="space-y-1">
                     {pageLinks.map((item) => (
                         <li key={item.id}>
-                            <a className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" href={`#${item.id}`}>
+                            <a className="block rounded-sm px-2 py-1 text-sm leading-6 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground" href={`#${item.id}`}>
                                 {isJa ? item.labelJa : item.labelEn}
                             </a>
                         </li>
@@ -144,7 +144,7 @@ function RelatedLinks() {
             <ul className="space-y-1">
                 {relatedLinks.map((item) => (
                     <li key={item.labelEn}>
-                        <a href={item.href} onClick={(event) => event.preventDefault()} className="block rounded-sm px-2 py-1.5 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
+                        <a href={item.href} onClick={(event) => event.preventDefault()} className="block rounded-sm px-2 py-1 text-sm leading-6 text-muted-foreground transition-colors hover:bg-muted hover:text-foreground">
                             {isJa ? item.labelJa : item.labelEn}
                         </a>
                     </li>

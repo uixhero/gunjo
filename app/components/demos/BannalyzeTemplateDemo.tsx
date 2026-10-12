@@ -195,7 +195,7 @@ export function BannalyzeTemplateDemo({ className }: { className?: string }) {
                 header={
                     <div className="flex items-center justify-between w-full h-14 bg-card px-4 text-card-foreground border-b border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                         <div className="flex items-center gap-4">
-                            <div className="flex items-center gap-2 bg-primary text-primary-foreground px-3 py-1.5 rounded-lg">
+                            <div className="flex min-h-10 items-center gap-2 bg-primary text-primary-foreground px-3 py-1 rounded-lg">
                                 <span className="font-bold text-lg tracking-tight">B</span>
                                 <span className="font-medium">{copy.productName}</span>
                             </div>
@@ -239,7 +239,7 @@ export function BannalyzeTemplateDemo({ className }: { className?: string }) {
                         </div>
 
                         <div className="flex items-center gap-2">
-                            <div className="flex items-center gap-1 bg-primary-subtle text-primary-subtle-foreground px-3 py-1.5 rounded-full border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText]">
+                            <div className="flex min-h-7 items-center gap-1 bg-primary-subtle text-primary-subtle-foreground px-3 py-1 rounded-full border border-transparent contrast-more:border-primary-border forced-colors:border-[CanvasText]">
                                 <CheckCircle2 className="h-4 w-4" />
                                 <span className="text-xs font-bold">{copy.saved}</span>
                             </div>
@@ -294,9 +294,9 @@ export function BannalyzeTemplateDemo({ className }: { className?: string }) {
                                         <p className="text-sm text-foreground leading-relaxed mb-3">
                                             {copy.suitabilityReason}
                                         </p>
-                                        <div className="flex flex-wrap gap-1.5">
+                                        <div className="flex flex-wrap gap-2">
                                             {copy.audience.map(tag => (
-                                                <span key={tag} className="px-2 py-0.5 bg-muted text-muted-foreground text-[10px] rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] font-medium">
+                                                <span key={tag} className="px-2 bg-muted text-muted-foreground text-[10px] leading-5 rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] font-medium">
                                                     #{tag}
                                                 </span>
                                             ))}
@@ -404,13 +404,13 @@ export function BannalyzeTemplateDemo({ className }: { className?: string }) {
                             <div className="relative group cursor-pointer border-2 border-transparent hover:border-primary rounded-md overflow-hidden opacity-50 hover:opacity-100 transition-all">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=100&q=80" alt={copy.thumbnailAlt} className="w-20 h-14 object-cover" />
-                                <div className="absolute inset-x-0 bottom-0 bg-foreground/60 text-[10px] text-background p-0.5 text-center">{copy.versionLabel(1)}</div>
+                                <div className="absolute inset-x-0 bottom-0 bg-foreground/60 text-[10px] text-background px-1 leading-5 text-center">{copy.versionLabel(1)}</div>
                             </div>
                             <div className="relative group cursor-pointer border-2 border-primary rounded-md overflow-hidden ring-2 ring-primary-border">
                                 {/* eslint-disable-next-line @next/next/no-img-element */}
                                 <img src="https://images.unsplash.com/photo-1557683316-973673baf926?auto=format&fit=crop&w=100&q=80" alt={copy.thumbnailAlt} className="w-20 h-14 object-cover" />
                                 <div className="absolute top-1 right-1 w-2 h-2 rounded-full bg-primary"></div>
-                                <div className="absolute inset-x-0 bottom-0 bg-primary text-[10px] text-primary-foreground p-0.5 text-center font-bold">{copy.versionLabel(2)}</div>
+                                <div className="absolute inset-x-0 bottom-0 bg-primary text-[10px] text-primary-foreground px-1 leading-5 text-center font-bold">{copy.versionLabel(2)}</div>
                             </div>
                         </div>
 

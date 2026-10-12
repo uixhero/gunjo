@@ -378,7 +378,7 @@ function CopyChip({
             type="button"
             onClick={() => onCopy(value, id)}
             className={cn(
-                "inline-flex max-w-full items-center gap-1 rounded border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-1.5 py-0.5 font-mono text-[10px] transition-colors",
+                "inline-flex min-h-5 max-w-full items-center gap-1 rounded border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-2 font-mono text-[10px] transition-colors",
                 active
                     ? "bg-primary-subtle text-primary-subtle-foreground"
                     : isFailed
@@ -446,7 +446,7 @@ function TokenSwatch({ token, locale }: { token: TokenItem; locale: Locale }) {
                         {copied === `${token.cssVar}:var` ? COPY[locale].copied : failed === `${token.cssVar}:var` ? COPY[locale].copyFailed : token.cssVar}
                     </button>
                 </div>
-                <div className="flex min-w-0 flex-wrap gap-1.5 pt-1">
+                <div className="flex min-w-0 flex-wrap gap-2 pt-1">
                     <CopyChip value={value.hex} id={`${token.cssVar}:hex`} label={COPY[locale].copyHex} copiedLabel={COPY[locale].copied} failedLabel={COPY[locale].copyFailed} copied={copied} failed={failed} onCopy={copy} />
                     <CopyChip value={value.hsl} id={`${token.cssVar}:hsl`} label={COPY[locale].copyHsl} copiedLabel={COPY[locale].copied} failedLabel={COPY[locale].copyFailed} copied={copied} failed={failed} onCopy={copy} />
                 </div>
@@ -487,7 +487,7 @@ function PairPreview({
             {label}
             <span
                 className={cn(
-                    "absolute bottom-1 right-1 rounded bg-background/90 px-1.5 py-0.5 text-[10px] font-medium text-foreground opacity-0 shadow-sm transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100",
+                    "absolute bottom-1 right-1 rounded bg-background/90 px-2 text-[10px] leading-5 font-medium text-foreground opacity-0 shadow-sm transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100",
                     (active || isFailed) && "opacity-100",
                     isFailed && "bg-destructive-subtle text-destructive-subtle-foreground"
                 )}
@@ -521,7 +521,7 @@ function ColorBorderPreview({ cssVar, locale }: { cssVar: string; locale: Locale
             {cssVar}
             <span
                 className={cn(
-                    "absolute bottom-1 right-1 rounded bg-background/90 px-1.5 py-0.5 text-[10px] font-medium text-foreground opacity-0 shadow-sm transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100",
+                    "absolute bottom-1 right-1 rounded bg-background/90 px-2 text-[10px] leading-5 font-medium text-foreground opacity-0 shadow-sm transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100",
                     (active || isFailed) && "opacity-100",
                     isFailed && "bg-destructive-subtle text-destructive-subtle-foreground"
                 )}
@@ -585,7 +585,7 @@ function BrandStoryCard({ story, locale }: { story: BrandStory; locale: Locale }
                         {story.usage[locale].map((item) => (
                             <span
                                 key={item}
-                                className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-2.5 py-1 text-xs font-medium text-muted-foreground"
+                                className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-2 py-1 text-xs font-medium text-muted-foreground"
                             >
                                 {item}
                             </span>
@@ -624,7 +624,7 @@ function BrandColorTile({ token, locale }: { token: TokenItem; locale: Locale })
             </div>
             <span
                 className={cn(
-                    "absolute right-2 top-2 rounded bg-background/90 px-1.5 py-0.5 text-[10px] font-medium text-foreground opacity-0 shadow-sm transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100",
+                    "absolute right-2 top-2 rounded bg-background/90 px-2 text-[10px] leading-5 font-medium text-foreground opacity-0 shadow-sm transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100",
                     (active || isFailed) && "opacity-100",
                     isFailed && "bg-destructive-subtle text-destructive-subtle-foreground"
                 )}

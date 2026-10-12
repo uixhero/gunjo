@@ -50,14 +50,14 @@ export default function RecipeDetailPage() {
             <div className="space-y-10">
                 <Link
                     href="/docs/ai-handoff/cookbook"
-                    className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
                 >
-                    <ArrowLeft className="h-3.5 w-3.5" />
+                    <ArrowLeft className="h-4 w-4" />
                     Back to cookbook
                 </Link>
 
                 <header className="space-y-4 border-b border-border/40 pb-8">
-                    <Badge variant="outline" className="gap-1.5">
+                    <Badge variant="outline" className="gap-1">
                         <BookOpen className="h-3 w-3" />
                         Recipe
                     </Badge>
@@ -89,16 +89,16 @@ export default function RecipeDetailPage() {
                             variant="outline"
                             size="sm"
                             onClick={onCopy}
-                            className="gap-1.5"
+                            className="gap-2"
                         >
                             {copied ? (
                                 <>
-                                    <Check className={cn("h-3.5 w-3.5 text-primary")} />
+                                    <Check className={cn("h-4 w-4 text-primary")} />
                                     Copied
                                 </>
                             ) : (
                                 <>
-                                    <Sparkles className="h-3.5 w-3.5" />
+                                    <Sparkles className="h-4 w-4" />
                                     Copy prompt
                                     <Copy className="h-3 w-3 opacity-60" />
                                 </>
@@ -124,7 +124,7 @@ export default function RecipeDetailPage() {
                             </CardTitle>
                         </CardHeader>
                         <CardContent>
-                            <div className="flex flex-wrap gap-1.5">
+                            <div className="flex flex-wrap gap-2">
                                 {recipe.referencedComponents.map((c) => (
                                     <Badge
                                         key={c}

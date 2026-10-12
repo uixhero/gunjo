@@ -380,7 +380,7 @@ export function DialogAuditDemo({ variant = "form" }: DialogAuditDemoProps) {
                         </DialogHeader>
                         <DialogBody className="space-y-4">
                             {Array.from({ length: 10 }).map((_, index) => (
-                                <div key={index} className="space-y-1.5">
+                                <div key={index} className="space-y-2">
                                     <Label htmlFor={`dialog-scroll-${index}`}>
                                         {(isJa ? "項目 " : "Field ") + (index + 1)}
                                     </Label>
@@ -849,7 +849,9 @@ export function FloatingPanelAuditDemo({ variant = "canvas" }: { variant?: Float
                 >
                     <div className="space-y-3 text-sm">
                         <div className="flex items-start gap-3">
-                            <Bell className="mt-0.5 h-4 w-4 text-primary" />
+                            <span className="flex h-5 shrink-0 items-center">
+                                <Bell className="h-4 w-4 text-primary" />
+                            </span>
                             <div className="min-w-0">
                                 <p className="font-medium">{isJa ? "レビューが完了しました" : "Review complete"}</p>
                                 <p className="text-muted-foreground">

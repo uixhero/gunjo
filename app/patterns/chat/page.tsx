@@ -86,7 +86,7 @@ function ChatPattern({ viewport }: { viewport: MarqueeViewport }) {
                     <div className="flex items-center gap-1">
                         <Button variant="ghost" size="icon" className="text-muted-foreground"><Smile size={20} /></Button>
                         <Button variant="ghost" size="icon" className="text-muted-foreground"><Paperclip size={20} /></Button>
-                        <Button size="icon"><Send size={18} /></Button>
+                        <Button size="icon"><Send size={20} /></Button>
                     </div>
                 </div>
             }

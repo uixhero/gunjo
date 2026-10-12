@@ -100,7 +100,7 @@ function LandingPattern({ viewport }: { viewport: MarqueeViewport }) {
                         </CardContent>
                     </Card>
                     <Card className="ring-2 ring-primary shadow-lg scale-105 relative w-full">
-                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-3 py-0.5 rounded-full text-xs font-bold">POPULAR</div>
+                        <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-primary text-primary-foreground px-3 rounded-full text-xs leading-5 font-bold">POPULAR</div>
                         <CardContent className="p-6 space-y-4">
                             <h3 className="font-bold text-xl">Pro</h3>
                             <div className="text-3xl font-bold">$29</div>

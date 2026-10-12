@@ -128,7 +128,7 @@ export default function DocsTokensOverviewPage() {
                         {FIXED_ASSETS.map((asset) => (
                             <li
                                 key={asset.key}
-                                className="flex flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-2"
+                                className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:gap-2"
                             >
                                 <a
                                     href={asset.href}
@@ -177,10 +177,10 @@ export default function DocsTokensOverviewPage() {
                 <CardContent>
                     <Link
                         href="/docs/tokens/spec"
-                        className="inline-flex items-center gap-1.5 text-sm font-medium text-primary hover:underline"
+                        className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
                     >
                         {t.designMd.cta}
-                        <ArrowRight className="h-3.5 w-3.5" />
+                        <ArrowRight className="h-4 w-4" />
                     </Link>
                 </CardContent>
             </Card>

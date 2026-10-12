@@ -72,7 +72,7 @@ export function PropsTable({ data }: PropsTableProps) {
     return (
         <div className="my-6 space-y-2">
             <div className="flex items-center justify-end">
-                <span className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-2.5 py-1 text-xs text-muted-foreground md:hidden">
+                <span className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-2 py-1 text-xs text-muted-foreground md:hidden">
                     {scrollHint}
                 </span>
             </div>

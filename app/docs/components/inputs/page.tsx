@@ -854,7 +854,7 @@ function ComponentPreview({ kind }: { kind: ComponentPreviewKind }) {
         case "passwordGroup":
             return (
                 <PreviewShell>
-                    <div className="grid w-40 gap-1.5">
+                    <div className="grid w-40 gap-2">
                         <div className="flex h-8 items-center justify-between rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 text-sm shadow-sm">
                             <span>••••••••</span>
                             <IconEye className="h-4 w-4 text-muted-foreground" />
@@ -912,7 +912,7 @@ function ComponentPreview({ kind }: { kind: ComponentPreviewKind }) {
         case "inputOTP":
             return (
                 <PreviewShell>
-                    <div className="flex gap-1.5">
+                    <div className="flex gap-2">
                         {["4", "8", "", ""].map((value, index) => (
                             <span key={index} className="flex h-8 w-7 items-center justify-center rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card text-sm shadow-sm">
                                 {value}
@@ -942,7 +942,7 @@ function ComponentPreview({ kind }: { kind: ComponentPreviewKind }) {
         case "combobox":
             return (
                 <PreviewShell>
-                    <div className="space-y-1.5">
+                    <div className="space-y-2">
                         <div className="flex h-8 w-36 items-center gap-2 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 text-sm shadow-sm">
                             <IconSearch className="h-4 w-4 text-muted-foreground" />
                             <span>田中</span>
@@ -1046,7 +1046,7 @@ function ComponentPreview({ kind }: { kind: ComponentPreviewKind }) {
         case "form":
             return (
                 <PreviewShell>
-                    <div className="space-y-1.5">
+                    <div className="space-y-2">
                         <div className="h-2 w-14 rounded bg-muted-foreground/30" />
                         <Input className="pointer-events-none h-7 w-36" value="you@example.com" readOnly tabIndex={-1} />
                     </div>
@@ -1076,7 +1076,7 @@ function ComponentPreview({ kind }: { kind: ComponentPreviewKind }) {
                     <Button size="sm" variant="outline" tabIndex={-1}>
                         <IconFilter className="h-4 w-4" />
                         条件
-                        <Badge variant="secondary" className="ml-1 h-5 px-1.5">2</Badge>
+                        <Badge variant="secondary" className="ml-1 h-5 px-2">2</Badge>
                     </Button>
                 </PreviewShell>
             );
@@ -1092,7 +1092,7 @@ function ComponentPreview({ kind }: { kind: ComponentPreviewKind }) {
         case "tagInput":
             return (
                 <PreviewShell>
-                    <div className="flex w-40 flex-wrap gap-1.5 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-2 shadow-sm">
+                    <div className="flex w-40 flex-wrap gap-2 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card p-2 shadow-sm">
                         <Badge variant="secondary">UI</Badge>
                         <Badge variant="secondary">Docs</Badge>
                     </div>
@@ -1221,7 +1221,7 @@ export default function InputsOverviewPage() {
                             <Card key={rule.title.en}>
                                 <CardHeader>
                                     <div className="flex items-start gap-3">
-                                        <div className="mt-0.5 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-subtle text-primary-subtle-foreground">
+                                        <div className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-primary-subtle text-primary-subtle-foreground">
                                             <IconCheck className="h-4 w-4" />
                                         </div>
                                         <div className="space-y-1">
@@ -1288,7 +1288,9 @@ export default function InputsOverviewPage() {
                             </div>
                             <Separator />
                             <div className="flex items-start gap-2 text-sm text-muted-foreground">
-                                <IconListCheck className="mt-0.5 h-4 w-4 shrink-0" />
+                                <span className="flex h-5 shrink-0 items-center">
+                                    <IconListCheck className="h-4 w-4 shrink-0" />
+                                </span>
                                 <p>
                                     {isJa
                                         ? "候補の追加は、SSOT、docs、デモ、アクセシビリティ、無効化理由、入力幅ルールまで含めて扱います。"

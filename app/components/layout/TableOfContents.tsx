@@ -123,7 +123,7 @@ export function LocalNav({ maxLevel = 3 }: LocalNavProps = {}) {
             <div className="mb-2 px-1 text-xs font-semibold text-muted-foreground">
                 {locale === "ja" ? "ページ内" : "On this page"}
             </div>
-            <div className="-mx-2 flex gap-1.5 overflow-x-auto px-2 pb-1 md:mx-0 md:flex-wrap md:overflow-visible md:px-0 md:pb-0">
+            <div className="-mx-2 flex gap-2 overflow-x-auto px-2 pb-1 md:mx-0 md:flex-wrap md:overflow-visible md:px-0 md:pb-0">
                 {headings.map((item) => {
                     const active = item.url === `#${activeId}`;
                     return (
@@ -132,10 +132,10 @@ export function LocalNav({ maxLevel = 3 }: LocalNavProps = {}) {
                             href={item.url}
                             aria-current={active ? "location" : undefined}
                             className={cn(
-                                "inline-flex max-w-[70vw] shrink-0 items-center rounded-sm px-1.5 transition-colors underline-offset-4 hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:max-w-full md:shrink",
+                                "inline-flex max-w-[70vw] shrink-0 items-center rounded-sm px-2 transition-colors underline-offset-4 hover:text-foreground hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 md:max-w-full md:shrink",
                                 item.level === 2
-                                    ? "min-h-8 px-2.5 text-sm font-medium"
-                                    : "min-h-7 gap-1.5 px-2 text-xs text-muted-foreground",
+                                    ? "min-h-8 px-3 text-sm font-medium"
+                                    : "min-h-7 gap-2 px-2 text-xs text-muted-foreground",
                                 active
                                     ? "font-semibold text-foreground"
                                     : "text-muted-foreground"

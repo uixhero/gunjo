@@ -38,7 +38,7 @@ export function PersonCellDemo() {
             {PEOPLE.map((p, i) => (
                 <React.Fragment key={p.name}>
                     {i > 0 ? <Separator /> : null}
-                    <div className="py-2.5">
+                    <div className="py-2">
                         <PersonCell
                             name={p.name}
                             secondary={p.secondary}

@@ -577,7 +577,7 @@ export default function TablePage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+                <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
@@ -593,10 +593,10 @@ export default function TablePage() {
                             <strong>縦線を1本も引かない。</strong>資料は「セルを縦横の太い線で囲むエクセル風の罫線は可読性を著しく下げる」を禁止に挙げています。GUNJO の Table は行の下の線だけを持ち、列を仕切る線は初めから持っていません。列の区別は余白と、見出しの行の薄い背景で付けます。
                         </li>
                         <li>
-                            <strong>横スクロールをこの箱の中に閉じ込めた。</strong>表は溢れたらスクロールする入れ物で包み、さらに <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">[contain:paint]</code> を付けています。これが無いと、幅の広い表がスマホ（375px）でページ全体の横スクロールを引き起こしていました（#289）。切れ目の無い長い語も、セルの中で折り返します。
+                            <strong>横スクロールをこの箱の中に閉じ込めた。</strong>表は溢れたらスクロールする入れ物で包み、さらに <code className="rounded bg-muted px-1 font-mono text-xs">[contain:paint]</code> を付けています。これが無いと、幅の広い表がスマホ（375px）でページ全体の横スクロールを引き起こしていました（#289）。切れ目の無い長い語も、セルの中で折り返します。
                         </li>
                         <li>
-                            <strong>揃えは部品が決めません。</strong>資料は「文字の種類でセルの揃えを変え、見出しの揃えはデータの揃えと必ず一致させる」を最優先に挙げています。GUNJO の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">TableHead</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">TableCell</code> はどちらも左揃えで始まり、数値の列を右に寄せるのは呼ぶ側の <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">className</code> の仕事です。行の縞（<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">striped</code>）も既定では入れず、密な表で頼まれたときだけ足します。
+                            <strong>揃えは部品が決めません。</strong>資料は「文字の種類でセルの揃えを変え、見出しの揃えはデータの揃えと必ず一致させる」を最優先に挙げています。GUNJO の <code className="rounded bg-muted px-1 font-mono text-xs">TableHead</code> と <code className="rounded bg-muted px-1 font-mono text-xs">TableCell</code> はどちらも左揃えで始まり、数値の列を右に寄せるのは呼ぶ側の <code className="rounded bg-muted px-1 font-mono text-xs">className</code> の仕事です。行の縞（<code className="rounded bg-muted px-1 font-mono text-xs">striped</code>）も既定では入れず、密な表で頼まれたときだけ足します。
                         </li>
                     </ul>
                 ) : (
@@ -605,10 +605,10 @@ export default function TablePage() {
                             <strong>Not one vertical rule.</strong> The article forbids the spreadsheet look of heavy borders boxing in every cell, on the grounds that it badly hurts readability. GUNJO draws only the line under each row and has no column rules at all; columns are separated by spacing and by the faint background on the header row.
                         </li>
                         <li>
-                            <strong>Horizontal scrolling is contained in this box.</strong> The table is wrapped in a scrolling container and marked <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">[contain:paint]</code>. Without that, a wide table leaked page-level horizontal scroll on a 375px phone (#289). Long unbroken words wrap inside their cell.
+                            <strong>Horizontal scrolling is contained in this box.</strong> The table is wrapped in a scrolling container and marked <code className="rounded bg-muted px-1 font-mono text-xs">[contain:paint]</code>. Without that, a wide table leaked page-level horizontal scroll on a 375px phone (#289). Long unbroken words wrap inside their cell.
                         </li>
                         <li>
-                            <strong>Alignment is not decided by the component.</strong> The article makes alignment its first principle: align by the kind of value, and always match the header alignment to the data. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">TableHead</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">TableCell</code> both start left aligned, and pushing a numeric column right is the job of the caller through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">className</code>. Zebra striping (<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">striped</code>) is likewise off by default and added only where a dense table asks for it.
+                            <strong>Alignment is not decided by the component.</strong> The article makes alignment its first principle: align by the kind of value, and always match the header alignment to the data. <code className="rounded bg-muted px-1 font-mono text-xs">TableHead</code> and <code className="rounded bg-muted px-1 font-mono text-xs">TableCell</code> both start left aligned, and pushing a numeric column right is the job of the caller through <code className="rounded bg-muted px-1 font-mono text-xs">className</code>. Zebra striping (<code className="rounded bg-muted px-1 font-mono text-xs">striped</code>) is likewise off by default and added only where a dense table asks for it.
                         </li>
                     </ul>
                 )}

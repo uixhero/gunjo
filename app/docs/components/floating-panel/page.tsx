@@ -332,7 +332,9 @@ export function StatusFloatingPanel() {
       >
         <div className="space-y-3 text-sm">
           <div className="flex items-start gap-3">
-            <Bell className="mt-0.5 h-4 w-4 text-primary" />
+            <span className="flex h-5 shrink-0 items-center">
+              <Bell className="h-4 w-4 text-primary" />
+            </span>
             <div className="min-w-0">
               <p className="font-medium">レビューが完了しました</p>
               <p className="text-muted-foreground">2件のコメントを反映できます。</p>
@@ -369,7 +371,9 @@ export function StatusFloatingPanel() {
       >
         <div className="space-y-3 text-sm">
           <div className="flex items-start gap-3">
-            <Bell className="mt-0.5 h-4 w-4 text-primary" />
+            <span className="flex h-5 shrink-0 items-center">
+              <Bell className="h-4 w-4 text-primary" />
+            </span>
             <div className="min-w-0">
               <p className="font-medium">Review complete</p>
               <p className="text-muted-foreground">Two comments are ready to apply.</p>
@@ -568,7 +572,7 @@ export default function FloatingPanelPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+                <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </section>
@@ -581,25 +585,25 @@ export default function FloatingPanelPage() {
                 {isJa ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>つかむところを題の行に限る。</strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dragEnabled</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">title</code> の両方があるとき、動かせるのは題の行だけになります。中身の上でドラッグしても動かないので、パネルの中の文字を選んだりボタンを押したりできます。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dragMomentum</code> は切ってあるので、離した場所で止まります。
+                            <strong>つかむところを題の行に限る。</strong><code className="rounded bg-muted px-1 font-mono text-xs">dragEnabled</code> と <code className="rounded bg-muted px-1 font-mono text-xs">title</code> の両方があるとき、動かせるのは題の行だけになります。中身の上でドラッグしても動かないので、パネルの中の文字を選んだりボタンを押したりできます。<code className="rounded bg-muted px-1 font-mono text-xs">dragMomentum</code> は切ってあるので、離した場所で止まります。
                         </li>
                         <li>
                             <strong>動かしているあいだ、影や角を遅らせない。</strong>遅れを付けているのは影・枠線・背景の3つだけです。位置の変化にも遅れを付けるとパネルがカーソルに付いてこないので、そこは外してあります。
                         </li>
                         <li>
-                            <strong>資料に対して足りていないところ。</strong>資料は「画面の外にはみ出さないよう境界を必ず入れる」「折りたたみを付けて <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-expanded</code> で伝える」「<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="dialog"'}</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code> を付ける」を挙げていますが、いまの <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">FloatingPanel</code> はどれも持っていません。引っぱって画面の外に出すと戻せなくなります。#937 で追っています。
+                            <strong>資料に対して足りていないところ。</strong>資料は「画面の外にはみ出さないよう境界を必ず入れる」「折りたたみを付けて <code className="rounded bg-muted px-1 font-mono text-xs">aria-expanded</code> で伝える」「<code className="rounded bg-muted px-1 font-mono text-xs">{'role="dialog"'}</code> と <code className="rounded bg-muted px-1 font-mono text-xs">aria-label</code> を付ける」を挙げていますが、いまの <code className="rounded bg-muted px-1 font-mono text-xs">FloatingPanel</code> はどれも持っていません。引っぱって画面の外に出すと戻せなくなります。#937 で追っています。
                         </li>
                     </ul>
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>Only the title bar is a handle.</strong> When both <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dragEnabled</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">title</code> are set, dragging starts from the title row alone. The body stays inert to dragging, so text inside can be selected and buttons inside can be pressed. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dragMomentum</code> is off, so the panel stops where you let go.
+                            <strong>Only the title bar is a handle.</strong> When both <code className="rounded bg-muted px-1 font-mono text-xs">dragEnabled</code> and <code className="rounded bg-muted px-1 font-mono text-xs">title</code> are set, dragging starts from the title row alone. The body stays inert to dragging, so text inside can be selected and buttons inside can be pressed. <code className="rounded bg-muted px-1 font-mono text-xs">dragMomentum</code> is off, so the panel stops where you let go.
                         </li>
                         <li>
                             <strong>Do not put a delay on the movement itself.</strong> Only the shadow, the border colour and the background are transitioned. Transitioning the transform as well would make the panel lag behind the pointer, so it is left out.
                         </li>
                         <li>
-                            <strong>Where this falls short of the article.</strong> The article asks for drag bounds so the panel cannot leave the screen, a collapse control reported through <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-expanded</code>, and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="dialog"'}</code> with an <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">aria-label</code>. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">FloatingPanel</code> has none of them today, and a panel dragged off-screen cannot be recovered. Tracked in #937.
+                            <strong>Where this falls short of the article.</strong> The article asks for drag bounds so the panel cannot leave the screen, a collapse control reported through <code className="rounded bg-muted px-1 font-mono text-xs">aria-expanded</code>, and <code className="rounded bg-muted px-1 font-mono text-xs">{'role="dialog"'}</code> with an <code className="rounded bg-muted px-1 font-mono text-xs">aria-label</code>. <code className="rounded bg-muted px-1 font-mono text-xs">FloatingPanel</code> has none of them today, and a panel dragged off-screen cannot be recovered. Tracked in #937.
                         </li>
                     </ul>
                 )}

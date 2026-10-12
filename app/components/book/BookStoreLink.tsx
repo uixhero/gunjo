@@ -56,7 +56,7 @@ export function BookStoreLink({ id, name, label, href, copy }: BookStoreLinkProp
                 }
             >
                 {label}
-                <IconExternalLink className="size-3.5 shrink-0 opacity-70" aria-hidden />
+                <IconExternalLink className="size-4 shrink-0 opacity-70" aria-hidden />
                 <span className="sr-only">{copy.newTabNotice}</span>
             </a>
         </Button>

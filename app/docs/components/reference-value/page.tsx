@@ -69,8 +69,8 @@ function ReferenceValuePreview({ locale, mode = "table" }: { locale: Locale; mod
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b text-left text-muted-foreground">
-            <th scope="col" className="py-1.5 pr-3 font-medium">{locale === "ja" ? "項目" : "Metric"}</th>
-            <th scope="col" className="py-1.5 font-medium">{locale === "ja" ? "結果" : "Result"}</th>
+            <th scope="col" className="py-1 pr-3 font-medium leading-6">{locale === "ja" ? "項目" : "Metric"}</th>
+            <th scope="col" className="py-1 font-medium leading-6">{locale === "ja" ? "結果" : "Result"}</th>
           </tr>
         </thead>
         <tbody>
@@ -124,8 +124,8 @@ export function VitalResultTable() {
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b text-left text-muted-foreground">
-            <th scope="col" className="py-1.5 pr-3 font-medium">項目</th>
-            <th scope="col" className="py-1.5 font-medium">結果</th>
+            <th scope="col" className="py-1 pr-3 font-medium leading-6">項目</th>
+            <th scope="col" className="py-1 font-medium leading-6">結果</th>
           </tr>
         </thead>
         <tbody>
@@ -177,8 +177,8 @@ export function VitalResultTable() {
       <table className="w-full text-sm">
         <thead>
           <tr className="border-b text-left text-muted-foreground">
-            <th scope="col" className="py-1.5 pr-3 font-medium">Metric</th>
-            <th scope="col" className="py-1.5 font-medium">Result</th>
+            <th scope="col" className="py-1 pr-3 font-medium leading-6">Metric</th>
+            <th scope="col" className="py-1 font-medium leading-6">Result</th>
           </tr>
         </thead>
         <tbody>
@@ -343,7 +343,7 @@ export function CompactReferenceValue() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+        <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

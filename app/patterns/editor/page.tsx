@@ -76,15 +76,15 @@ function EditorPattern({ viewport }: { viewport: MarqueeViewport }) {
                         <Input placeholder="Search layers..." className="h-8" />
                     </div>
                     <div className="flex-1 overflow-y-auto p-2 space-y-1">
-                        <div className="px-2 py-1.5 text-sm font-medium text-muted-foreground mb-2">Artboard 1</div>
-                        <div className="px-2 py-1.5 text-sm bg-accent rounded cursor-pointer gap-2 flex items-center">
-                            <Box size={14} /> Rectangle 1
+                        <div className="px-2 py-1 text-sm leading-6 font-medium text-muted-foreground mb-2">Artboard 1</div>
+                        <div className="px-2 py-1 text-sm bg-accent rounded cursor-pointer gap-2 flex min-h-8 items-center">
+                            <Box size={16} /> Rectangle 1
                         </div>
-                        <div className="px-2 py-1.5 text-sm cursor-pointer gap-2 flex items-center hover:bg-muted/50 rounded">
-                            <Box size={14} /> Ellipse 2
+                        <div className="px-2 py-1 text-sm cursor-pointer gap-2 flex min-h-8 items-center hover:bg-muted/50 rounded">
+                            <Box size={16} /> Ellipse 2
                         </div>
-                        <div className="px-2 py-1.5 text-sm cursor-pointer gap-2 flex items-center hover:bg-muted/50 rounded">
-                            <Layers size={14} /> Group 1
+                        <div className="px-2 py-1 text-sm cursor-pointer gap-2 flex min-h-8 items-center hover:bg-muted/50 rounded">
+                            <Layers size={16} /> Group 1
                         </div>
                     </div>
                 </div>
@@ -93,19 +93,19 @@ function EditorPattern({ viewport }: { viewport: MarqueeViewport }) {
                 <div className="h-full p-4 overflow-y-auto">
                     <div className="text-xs font-bold text-muted-foreground uppercase mb-4 tracking-wider">Layout</div>
                     <div className="grid grid-cols-2 gap-4 mb-6">
-                        <div className="space-y-1.5">
+                        <div className="space-y-2">
                             <Label className="text-xs">X</Label>
                             <Input defaultValue="10" className="h-8" />
                         </div>
-                        <div className="space-y-1.5">
+                        <div className="space-y-2">
                             <Label className="text-xs">Y</Label>
                             <Input defaultValue="240" className="h-8" />
                         </div>
-                        <div className="space-y-1.5">
+                        <div className="space-y-2">
                             <Label className="text-xs">W</Label>
                             <Input defaultValue="100" className="h-8" />
                         </div>
-                        <div className="space-y-1.5">
+                        <div className="space-y-2">
                             <Label className="text-xs">H</Label>
                             <Input defaultValue="100" className="h-8" />
                         </div>
@@ -128,7 +128,7 @@ function EditorPattern({ viewport }: { viewport: MarqueeViewport }) {
                     </div>
                 </SpatialCanvas>
                 {/* Floating Toolbar */}
-                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground rounded-full shadow-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-2 py-1.5 flex gap-1">
+                <div className="absolute bottom-8 left-1/2 -translate-x-1/2 bg-popover text-popover-foreground rounded-full shadow-xl border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] p-2 flex gap-1">
                     <Button variant="ghost" size="icon" className="h-10 w-10 rounded-full bg-primary-subtle text-primary-subtle-foreground"><MousePointer2 size={20} /></Button>
                     <Button variant="ghost" size="icon" className="h-10 w-10 rounded-full"><Box size={20} /></Button>
                     <Button variant="ghost" size="icon" className="h-10 w-10 rounded-full"><Layers size={20} /></Button>

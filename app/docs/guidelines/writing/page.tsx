@@ -556,7 +556,7 @@ function MessageAnatomy({ isJa }: { isJa: boolean }) {
                     </div>
                     <div className="rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-4 shadow-sm">
                         <div className="flex items-start gap-3">
-                            <div className="mt-0.5 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-destructive-subtle text-destructive-subtle-foreground">
+                            <div className="mt-1 flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-destructive-subtle text-destructive-subtle-foreground">
                                 <IconAlertTriangle className="h-5 w-5" aria-hidden="true" />
                             </div>
                             <div className="min-w-0 space-y-1">
@@ -1076,7 +1076,9 @@ export default function WritingGuidelinesPage() {
                         <ul className="grid gap-3 md:grid-cols-2">
                             {reviewItems.map((item) => (
                                 <li key={item.en} className="flex gap-3">
-                                    <IconCircleCheck className="mt-0.5 h-5 w-5 shrink-0 text-primary" aria-hidden="true" />
+                                    <span className="flex h-6 shrink-0 items-center">
+                                        <IconCircleCheck className="h-5 w-5 text-primary" aria-hidden="true" />
+                                    </span>
                                     <span className="text-sm leading-6">{isJa ? item.ja : item.en}</span>
                                 </li>
                             ))}

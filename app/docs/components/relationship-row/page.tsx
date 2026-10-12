@@ -86,7 +86,7 @@ function RelationshipRowPreview({ locale, mode = "list" }: { locale: Locale; mod
       {data.map((pair, index) => (
         <React.Fragment key={`${pair.from.name}-${pair.to.name}`}>
           {index > 0 ? <Separator /> : null}
-          <div className="py-2.5">
+          <div className="py-2">
             <RelationshipRow from={pair.from} to={pair.to} relationshipLabel={pair.relationshipLabel} trailing={pair.trailing} />
           </div>
         </React.Fragment>
@@ -133,7 +133,7 @@ export function CareRelationship() {
       {pairs.map((pair) => (
         <React.Fragment key={pair.from.name + "-" + pair.to.name}>
           {pair === pairs[0] ? null : <Separator />}
-          <div className="py-2.5">
+          <div className="py-2">
             <RelationshipRow from={pair.from} to={pair.to} relationshipLabel={pair.relationshipLabel} trailing={pair.trailing} />
           </div>
         </React.Fragment>
@@ -171,7 +171,7 @@ export function CareRelationship() {
       {pairs.map((pair) => (
         <React.Fragment key={pair.from.name + "-" + pair.to.name}>
           {pair === pairs[0] ? null : <Separator />}
-          <div className="py-2.5">
+          <div className="py-2">
             <RelationshipRow from={pair.from} to={pair.to} relationshipLabel={pair.relationshipLabel} trailing={pair.trailing} />
           </div>
         </React.Fragment>
@@ -312,7 +312,7 @@ export function VisitRelationship() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+        <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

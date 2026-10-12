@@ -147,7 +147,7 @@ function ColdTestsGrid({
                             className="inline-flex items-center gap-1 text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                         >
                             {t.whyLink}
-                            <ArrowUpRight className="h-3.5 w-3.5" />
+                            <ArrowUpRight className="h-4 w-4" />
                         </Link>
                     )}
                     {secondaryLink && (
@@ -156,7 +156,7 @@ function ColdTestsGrid({
                             className="inline-flex items-center gap-1 text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                         >
                             {secondaryLink.label}
-                            <ArrowUpRight className="h-3.5 w-3.5" />
+                            <ArrowUpRight className="h-4 w-4" />
                         </Link>
                     )}
                 </div>
@@ -180,7 +180,7 @@ function ColdTestsGrid({
                                 className="data-[state=active]:border data-[state=active]:border-primary-border data-[state=active]:text-primary data-[state=active]:shadow-md"
                             >
                                 {t.allTab}
-                                <span className="ml-1.5 text-xs text-muted-foreground data-[state=active]:text-primary-strong">
+                                <span className="ml-2 text-xs text-muted-foreground data-[state=active]:text-primary-strong">
                                     {counts.all}
                                 </span>
                             </TabsTrigger>
@@ -193,7 +193,7 @@ function ColdTestsGrid({
                                         className="data-[state=active]:border data-[state=active]:border-primary-border data-[state=active]:text-primary data-[state=active]:shadow-md"
                                     >
                                         {t.categories[c] ?? c}
-                                        <span className="ml-1.5 text-xs text-muted-foreground">
+                                        <span className="ml-2 text-xs text-muted-foreground">
                                             {counts[c]}
                                         </span>
                                     </TabsTrigger>
@@ -254,7 +254,7 @@ function ColdTestsGrid({
                                             <span className="line-clamp-2 font-semibold tracking-tight transition-colors group-hover:text-primary">
                                                 {entry.title}
                                             </span>
-                                            <ArrowUpRight className="h-3.5 w-3.5 shrink-0 opacity-40 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
+                                            <ArrowUpRight className="h-4 w-4 shrink-0 opacity-40 transition-all group-hover:translate-x-0.5 group-hover:-translate-y-0.5 group-hover:opacity-100" />
                                         </div>
                                         <div className="mt-1 text-xs text-muted-foreground">
                                             <code className="font-mono">{entry.route}</code>

@@ -1051,7 +1051,7 @@ function NotificationsPopover({
                 >
                     <Bell className="h-4 w-4" />
                     {unreadCount > 0 ? (
-                        <span className="absolute right-1.5 top-1.5 h-2 w-2 rounded-full bg-destructive" />
+                        <span className="absolute right-2 top-2 h-2 w-2 rounded-full bg-destructive" />
                     ) : null}
                 </TooltipButton>
             </PopoverTrigger>
@@ -1096,7 +1096,7 @@ function NotificationsPopover({
                             >
                                 <span
                                     className={cn(
-                                        "mt-1.5 h-2 w-2 shrink-0 rounded-full",
+                                        "h-2 w-2 shrink-0 rounded-full",
                                         notice.unread ? "bg-primary" : "bg-muted"
                                     )}
                                 />
@@ -1206,7 +1206,7 @@ function DashboardSidebarNav({
                 <SidebarItem
                     key={id}
                     id={id}
-                    icon={<Icon size={18} />}
+                    icon={<Icon size={16} />}
                     label={t.nav[id]}
                     count={id === "projects" ? projects.length : id === "overview" ? riskCount : undefined}
                     isActive={page === id}

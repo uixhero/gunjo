@@ -120,7 +120,7 @@ export function CommandDemo() {
     const { locale } = useLocale();
 
     return (
-        <Command className="rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-md w-[450px]">
+        <Command className="rounded-lg border bg-card border-transparent contrast-more:border-border forced-colors:border-[CanvasText] shadow-md w-112">
             <CommandInput
                 placeholder={locale === "ja" ? "コマンドまたは検索語を入力..." : "Type a command or search..."}
                 clearable

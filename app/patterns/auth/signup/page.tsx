@@ -173,9 +173,8 @@ export default function SignupPage() {
                                     <RadioGroupItem
                                         value={opt.value}
                                         id={`plan-${opt.value}`}
-                                        className="mt-0.5"
                                     />
-                                    <span className="space-y-0.5">
+                                    <span className="space-y-1">
                                         <span className="block font-medium leading-none">
                                             {opt.label}
                                         </span>

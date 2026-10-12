@@ -242,7 +242,7 @@ function QuadrantCell({
             }`}
         >
             {/* Axis chips — mobile only; on sm+ the grid headers carry them */}
-            <div className="flex flex-wrap gap-1.5 sm:hidden">
+            <div className="flex flex-wrap gap-2 sm:hidden">
                 <Badge variant="outline" className="text-[10px]">
                     {quadrant.row}
                 </Badge>
@@ -273,7 +273,7 @@ function QuadrantCell({
             >
                 <Link href={quadrant.href}>
                     {quadrant.linkLabel}
-                    <ArrowRight className="h-3.5 w-3.5 shrink-0" aria-hidden />
+                    <ArrowRight className="h-4 w-4 shrink-0" aria-hidden />
                 </Link>
             </Button>
         </div>
@@ -288,10 +288,10 @@ function QuadrantMap() {
         >
             <div className="grid grid-cols-[3.25rem_1fr_1fr] gap-1 text-center">
                 <div aria-hidden />
-                <div className="pb-0.5 text-xs font-semibold text-foreground">
+                <div className="pb-1 text-xs font-semibold text-foreground">
                     見本
                 </div>
-                <div className="pb-0.5 text-xs font-semibold text-foreground">
+                <div className="pb-1 text-xs font-semibold text-foreground">
                     試験
                 </div>
                 {QUADRANT_MAP_ROWS.map((row) => (
@@ -316,7 +316,7 @@ function QuadrantMap() {
                             >
                                 <span>{cell.title}</span>
                                 {cell.entry && (
-                                    <span className="rounded-sm bg-primary-subtle px-1.5 py-0.5 text-[10px] font-semibold text-primary">
+                                    <span className="rounded-sm bg-primary-subtle px-2 text-[10px] leading-5 font-semibold text-primary">
                                         入口
                                     </span>
                                 )}
@@ -577,7 +577,7 @@ export default function HowToReadPage() {
                         {FINDING_STATES.map((state) => (
                             <li
                                 key={state.label}
-                                className="flex flex-col gap-1.5 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 sm:flex-row sm:items-baseline sm:gap-3"
+                                className="flex flex-col gap-2 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3 sm:flex-row sm:items-baseline sm:gap-3"
                             >
                                 <Badge
                                     variant="outline"

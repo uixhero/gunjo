@@ -133,7 +133,7 @@ function WorkflowStatusBadge({ status, locale }: { status: WorkflowStatus; local
       : "bg-muted text-muted-foreground";
 
   return (
-    <span className={`rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-2 py-0.5 text-xs font-medium ${className}`}>
+    <span className={`rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] px-2 text-xs leading-5 font-medium ${className}`}>
       {label}
     </span>
   );
@@ -310,7 +310,7 @@ function ScanGatePackingPreview({
               ) : null}
             </p>
           </div>
-          <span className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-2 py-0.5 text-xs font-medium text-muted-foreground">
+          <span className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-2 text-xs leading-5 font-medium text-muted-foreground">
             {locale === "ja" ? `梱包 ${packedTotal} / ${orderedTotal}` : `Packed ${packedTotal} / ${orderedTotal}`}
           </span>
         </div>
@@ -418,7 +418,7 @@ function ScanGatePackingPreview({
                       </p>
                     </div>
                     {selected ? (
-                      <span className="rounded-full bg-primary-subtle px-2 py-0.5 text-xs font-medium text-primary-subtle-foreground">
+                      <span className="rounded-full bg-primary-subtle px-2 text-xs leading-5 font-medium text-primary-subtle-foreground">
                         {locale === "ja" ? "選択中" : "Selected"}
                       </span>
                     ) : null}
@@ -488,7 +488,7 @@ function ScanGatePackingPreview({
                     : locale === "ja" ? `梱包 ${packedTotal} / ${orderedTotal}、残り ${remainingTotal} 点。` : `Packed ${packedTotal} / ${orderedTotal}; ${remainingTotal} remaining.`}
                 </p>
               </div>
-              <span className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground">
+              <span className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted px-2 text-xs leading-5 font-medium text-muted-foreground">
                 {openCarton ? `SHIP-${openCarton}` : "SHIP-CTN-001"}
               </span>
             </div>
@@ -806,13 +806,13 @@ export function PackingGate() {
       ) : null}
 
       <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2">
-        <div className="min-w-0 space-y-0.5">
+        <div className="min-w-0 space-y-1">
           <p className="text-xs font-medium text-muted-foreground">次に読み取る</p>
           <p className="text-sm font-medium text-foreground">
             {activeStage === "carton" ? "カートン" : activeStage === "item" ? "商品" : "出荷確認"}
           </p>
         </div>
-        <span className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-2 py-0.5 text-xs font-medium text-muted-foreground">
+        <span className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-2 text-xs leading-5 font-medium text-muted-foreground">
           梱包 {packedTotal} / {orderedTotal}
         </span>
       </div>
@@ -1095,13 +1095,13 @@ export function PackingGate() {
       ) : null}
 
       <div className="flex flex-wrap items-center justify-between gap-3 rounded-lg border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-card px-3 py-2">
-        <div className="min-w-0 space-y-0.5">
+        <div className="min-w-0 space-y-1">
           <p className="text-xs font-medium text-muted-foreground">Next scan</p>
           <p className="text-sm font-medium text-foreground">
             {activeStage === "carton" ? "Carton" : activeStage === "item" ? "Item" : "Shipment"}
           </p>
         </div>
-        <span className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-2 py-0.5 text-xs font-medium text-muted-foreground">
+        <span className="rounded-full border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-background px-2 text-xs leading-5 font-medium text-muted-foreground">
           Packed {packedTotal} / {orderedTotal}
         </span>
       </div>
@@ -1510,7 +1510,7 @@ export function BadgeGate() {
           </h2>
           <CodeCopyButton code={usageCode} />
         </div>
-        <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+        <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
           <CodeBlock code={usageCode} />
         </div>
       </section>

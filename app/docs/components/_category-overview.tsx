@@ -1668,7 +1668,9 @@ export function CategoryOverviewPage({ category }: { category: CategoryName }) {
                     <CardContent className="space-y-3 text-sm leading-relaxed text-muted-foreground">
                         {copy.rules.map((rule) => (
                             <div key={rule.en} className="flex gap-2">
-                                <Columns3 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                                <span className="flex h-6 shrink-0 items-center">
+                                    <Columns3 className="h-4 w-4 shrink-0 text-primary" />
+                                </span>
                                 <p>{rule[locale]}</p>
                             </div>
                         ))}
@@ -1686,7 +1688,9 @@ export function CategoryOverviewPage({ category }: { category: CategoryName }) {
                     <CardContent className="space-y-3 text-sm leading-relaxed text-muted-foreground">
                         {copy.decisions.map((decision) => (
                             <div key={decision.en} className="flex gap-2">
-                                <Layers3 className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                                <span className="flex h-6 shrink-0 items-center">
+                                    <Layers3 className="h-4 w-4 shrink-0 text-primary" />
+                                </span>
                                 <p>{decision[locale]}</p>
                             </div>
                         ))}
@@ -1719,7 +1723,9 @@ export function CategoryOverviewPage({ category }: { category: CategoryName }) {
                                             {item.description[locale]}
                                         </p>
                                     </div>
-                                    <ArrowRight className="mt-0.5 h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
+                                    <span className="flex h-6 shrink-0 items-center">
+                                        <ArrowRight className="h-4 w-4 shrink-0 text-muted-foreground transition-transform group-hover:translate-x-0.5 group-hover:text-primary" />
+                                    </span>
                                 </div>
                             </Link>
                         ))}
@@ -1736,7 +1742,9 @@ export function CategoryOverviewPage({ category }: { category: CategoryName }) {
                     <CardContent className="space-y-3 text-sm leading-relaxed text-muted-foreground">
                         {copy.avoids.map((avoid) => (
                             <div key={avoid.en} className="flex gap-2">
-                                <BadgeCheck className="mt-0.5 h-4 w-4 shrink-0 text-primary" />
+                                <span className="flex h-6 shrink-0 items-center">
+                                    <BadgeCheck className="h-4 w-4 shrink-0 text-primary" />
+                                </span>
                                 <p>{avoid[locale]}</p>
                             </div>
                         ))}

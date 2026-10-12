@@ -353,11 +353,12 @@ export function ActionProgressDemo({
 
     if (variant === "form") {
         return (
-            // Reserve the open dialog's height (measured: 135px ja / 155px en, 375–1280px)
-            // and stack the controls and the dialog in one grid cell, so the frame never jumps.
+            // Reserve the open dialog's height (measured after #1060: 156.5px en / 136.5px ja, 2026-10-11),
+            // rounded up to the 4px grid as 160px, and stack the controls and the dialog in one grid cell,
+            // so the frame never jumps.
             <div
                 ref={setContainer}
-                className="relative grid min-h-[155px] w-full place-items-center [&>*]:[grid-area:1/1]"
+                className="relative grid min-h-40 w-full place-items-center [&>*]:[grid-area:1/1]"
             >
                 <div className="flex w-full flex-col items-center gap-4">
                     <form
@@ -367,7 +368,7 @@ export function ActionProgressDemo({
                             setSaved((n) => n + 1);
                         }}
                     >
-                        <div className="space-y-1.5">
+                        <div className="space-y-2">
                             <Label htmlFor="action-progress-name">{isJa ? "表示名" : "Display name"}</Label>
                             <Input id="action-progress-name" name="name" defaultValue={isJa ? "青木" : "Aoki"} />
                         </div>
@@ -387,7 +388,7 @@ export function ActionProgressDemo({
     }
 
     return (
-        <div ref={setContainer} className="relative grid min-h-[155px] w-full place-items-center [&>*]:[grid-area:1/1]">
+        <div ref={setContainer} className="relative grid min-h-40 w-full place-items-center [&>*]:[grid-area:1/1]">
             <div className="flex flex-col items-center gap-4">
                 <div className="flex flex-wrap justify-center gap-2">
                     {variant === "just-after" ? (
@@ -557,11 +558,11 @@ export function ActionProgressTimingFigure() {
                 </div>
             </div>
             <figcaption className="flex flex-wrap gap-x-4 gap-y-1 text-xs text-muted-foreground">
-                <span className="inline-flex items-center gap-1.5">
+                <span className="inline-flex items-center gap-2">
                     <span className="inline-block h-2.5 w-5 rounded-full bg-muted-foreground/40" aria-hidden="true" />
                     {isJa ? "処理中" : "Work in progress"}
                 </span>
-                <span className="inline-flex items-center gap-1.5">
+                <span className="inline-flex items-center gap-2">
                     <span className="inline-block h-2.5 w-5 rounded-full bg-primary" aria-hidden="true" />
                     {isJa ? "ダイアログが出ている" : "Dialog visible"}
                 </span>

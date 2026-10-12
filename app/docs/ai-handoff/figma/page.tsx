@@ -64,14 +64,14 @@ export default function FigmaPluginPage() {
             <div className="space-y-12">
                 <Link
                     href="/docs/ai-handoff"
-                    className="inline-flex items-center gap-1.5 text-sm text-muted-foreground transition-colors hover:text-foreground"
+                    className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
                 >
-                    <ArrowLeft className="h-3.5 w-3.5" />
+                    <ArrowLeft className="h-4 w-4" />
                     {isJa ? "AI 連携に戻る" : "Back to AI Handoff"}
                 </Link>
 
                 <header className="space-y-4">
-                    <Badge variant="outline" className="gap-1.5">
+                    <Badge variant="outline" className="gap-1">
                         <Palette className="h-3 w-3" />
                         {isJa ? "Phase 7 · 計画中" : "Phase 7 · planned"}
                     </Badge>

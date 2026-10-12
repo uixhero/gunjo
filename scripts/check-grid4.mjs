@@ -1,4 +1,4 @@
-import { existsSync, readdirSync, readFileSync, writeFileSync } from "node:fs"
+import { existsSync, readdirSync, readFileSync } from "node:fs"
 import { join, relative } from "node:path"
 import { ROOT } from "./design-sync/shared.mjs"
 import { throwLinesError } from "./design-verify-assertions.mjs"
@@ -17,20 +17,20 @@ import { throwLinesError } from "./design-verify-assertions.mjs"
 // Icons are NOT exempt: 14px (`size-3.5`) goes to 16 or 12. Anything else that
 // must stay off-grid is listed with a reason in EXCEPTION_POLICY_PATH.
 //
-// Scope: `src/components/**` (the published @gunjo/ui parts) is held strictly.
-// `app/**` (the gunjo.jp site) is held by a per-file baseline: what is there
-// today is recorded and may only shrink, a new off-grid value fails. Clearing
-// the baseline is tracked separately.
+// Scope: `src/components/**` (the published @gunjo/ui parts) and `app/**` (the
+// gunjo.jp site, which dogfoods them) are both held strictly. The site first
+// shipped with a per-file baseline (#1057); it was cleared to zero in #1058.
 //
 // What this reads: Tailwind class tokens in source text (comments stripped).
 // Not read: inline `style={{ … }}` numbers and values computed in JS — those
 // are charts' coordinate maths or real-world sizes (a 375×667 device frame),
 // and a regex cannot tell them apart from layout.
 
-const STRICT_TARGET = "src/components"
-const SITE_TARGET = "app"
+const TARGETS = [
+  { dir: "src/components", label: "部品" },
+  { dir: "app", label: "サイト" },
+]
 const EXCEPTION_POLICY_PATH = "design/policy/grid4-exceptions.json"
-const SITE_BASELINE_PATH = "design/policy/grid4-site-baseline.json"
 
 const SPACING_UTILITIES = [
   "p", "px", "py", "pt", "pr", "pb", "pl", "ps", "pe",
@@ -205,22 +205,6 @@ function loadExceptionPolicy(root) {
   return { entries, policyIssues }
 }
 
-function loadSiteBaseline(root) {
-  const absolutePath = join(root, SITE_BASELINE_PATH)
-  const baseline = JSON.parse(readFileSync(absolutePath, "utf-8"))
-  const files = baseline?.files && typeof baseline.files === "object" ? baseline.files : {}
-  const policyIssues = []
-  for (const [file, count] of Object.entries(files)) {
-    if (!file.startsWith(`${SITE_TARGET}/`)) {
-      policyIssues.push(`${file} は ${SITE_TARGET}/ の外です（基線はサイトだけに使う）`)
-    }
-    if (!Number.isInteger(count) || count < 1) {
-      policyIssues.push(`${file} の件数は 1 以上の整数で記録してください`)
-    }
-  }
-  return { baseline, files, policyIssues }
-}
-
 function collectIssuesByFile(root, target) {
   const byFile = new Map()
   for (const filePath of listSourceFiles(join(root, target))) {
@@ -238,8 +222,7 @@ function formatIssue(issue) {
 const KIND_LABEL = { spacing: "余白", position: "位置", size: "大きさ" }
 
 export function collectGrid4Report(root) {
-  const { entries: exceptionEntries, policyIssues: exceptionPolicyIssues } = loadExceptionPolicy(root)
-  const { files: siteBaseline, policyIssues: baselinePolicyIssues } = loadSiteBaseline(root)
+  const { entries: exceptionEntries, policyIssues } = loadExceptionPolicy(root)
   const allowedCountByKey = new Map(
     exceptionEntries.map((entry) => [`${entry.file}::${entry.className}`, entry.count])
   )
@@ -247,14 +230,13 @@ export function collectGrid4Report(root) {
   const violations = []
   let violationCount = 0
   const exceptionDrift = []
-  const baselineDrift = []
   const seenExceptionKeys = new Set()
 
-  const strictIssues = collectIssuesByFile(root, STRICT_TARGET)
-  const siteIssues = collectIssuesByFile(root, SITE_TARGET)
+  const issuesByTarget = TARGETS.map((target) => ({ ...target, byFile: collectIssuesByFile(root, target.dir) }))
+  const allFiles = issuesByTarget.flatMap((target) => [...target.byFile])
 
-  for (const [file, issues] of [...strictIssues, ...siteIssues].sort((a, b) => a[0].localeCompare(b[0]))) {
-    // Reasoned exceptions apply everywhere and are taken out first.
+  for (const [, issues] of allFiles.sort((a, b) => a[0].localeCompare(b[0]))) {
+    // Reasoned exceptions are taken out first.
     const remaining = []
     const byKey = new Map()
     for (const issue of issues) {
@@ -278,24 +260,8 @@ export function collectGrid4Report(root) {
         )
       }
     }
-
-    if (remaining.length === 0) continue
-    if (file.startsWith(`${SITE_TARGET}/`)) {
-      const allowed = siteBaseline[file] ?? 0
-      if (remaining.length > allowed) {
-        violationCount += remaining.length - allowed
-        violations.push(
-          allowed === 0
-            ? remaining.map(formatIssue)
-            : [`${file} が基線 ${allowed} 件を超えて ${remaining.length} 件あります:`, ...remaining.map(formatIssue)]
-        )
-      } else if (remaining.length < allowed) {
-        baselineDrift.push(`${file} は基線 ${allowed} 件に対し実測 ${remaining.length} 件です`)
-      }
-    } else {
-      violationCount += remaining.length
-      violations.push(remaining.map(formatIssue))
-    }
+    violationCount += remaining.length
+    violations.push(remaining.map(formatIssue))
   }
 
   for (const [key, allowed] of allowedCountByKey) {
@@ -303,54 +269,8 @@ export function collectGrid4Report(root) {
       exceptionDrift.push(`${key} は実測 0 件です（例外 ${allowed} 件のエントリを削除してください）`)
     }
   }
-  for (const [file, allowed] of Object.entries(siteBaseline)) {
-    if (!siteIssues.has(file)) {
-      baselineDrift.push(`${file} は実測 0 件です（基線 ${allowed} 件のエントリを削除してください）`)
-    }
-  }
 
-  return {
-    violations: violations.flat(),
-    violationCount,
-    exceptionDrift,
-    baselineDrift,
-    policyIssues: [...exceptionPolicyIssues, ...baselinePolicyIssues],
-    siteIssues,
-    strictIssues,
-  }
-}
-
-// Recount the site baseline downwards. Refuses to raise any file's count or to
-// add a file: the baseline only ever shrinks, so it cannot be used to wave a new
-// off-grid value through.
-export function shrinkSiteBaseline({ root = ROOT } = {}) {
-  const { baseline, files } = loadSiteBaseline(root)
-  const { siteIssues } = collectGrid4Report(root)
-  const { entries: exceptionEntries } = loadExceptionPolicy(root)
-  const excepted = new Map(exceptionEntries.map((entry) => [`${entry.file}::${entry.className}`, entry.count]))
-
-  const next = {}
-  const refused = []
-  for (const [file, issues] of siteIssues) {
-    const counts = new Map()
-    for (const issue of issues) counts.set(issue.className, (counts.get(issue.className) ?? 0) + 1)
-    let remaining = 0
-    for (const [className, count] of counts) {
-      remaining += Math.max(0, count - (excepted.get(`${file}::${className}`) ?? 0))
-    }
-    if (remaining === 0) continue
-    const allowed = files[file] ?? 0
-    if (remaining > allowed) refused.push(`${file}: 基線 ${allowed} 件 → 実測 ${remaining} 件（増やせません）`)
-    next[file] = Math.min(remaining, allowed)
-  }
-  if (refused.length > 0) {
-    throwLinesError(["check-grid4: 基線は減らす向きにしか書き換えません。", ...refused.map((line) => `- ${line}`)])
-  }
-  const sorted = Object.fromEntries(Object.entries(next).filter(([, count]) => count > 0).sort((a, b) => a[0].localeCompare(b[0])))
-  writeFileSync(join(root, SITE_BASELINE_PATH), `${JSON.stringify({ ...baseline, files: sorted }, null, 2)}\n`)
-  const before = Object.values(files).reduce((total, count) => total + count, 0)
-  const after = Object.values(sorted).reduce((total, count) => total + count, 0)
-  console.log(`check-grid4: ${SITE_BASELINE_PATH} を ${before} 件 → ${after} 件に更新しました`)
+  return { violations: violations.flat(), violationCount, exceptionDrift, policyIssues, issuesByTarget }
 }
 
 // The detector proves itself on every run. The first fixtures are the values
@@ -437,12 +357,12 @@ export function verifyGrid4({ root = ROOT } = {}) {
     ])
   }
 
-  const { violations, violationCount, exceptionDrift, baselineDrift, policyIssues } = collectGrid4Report(root)
-  if (violations.length === 0 && exceptionDrift.length === 0 && baselineDrift.length === 0 && policyIssues.length === 0) return
+  const { violations, violationCount, exceptionDrift, policyIssues } = collectGrid4Report(root)
+  if (violations.length === 0 && exceptionDrift.length === 0 && policyIssues.length === 0) return
 
   const lines = []
   if (violations.length > 0) {
-    lines.push(`design:verify: 4px グリッドから外れた余白・位置・大きさを ${violationCount} 件検出しました（新しく増えた分）。`)
+    lines.push(`design:verify: 4px グリッドから外れた余白・位置・大きさを ${violationCount} 件検出しました。`)
     lines.push(
       "KeEem 決定（new-4px DECISIONS.md 2026-10-11・#1057）: 並びの間・寄せの余白・操作部品と札と印の大きさは 4 の倍数。"
     )
@@ -454,20 +374,13 @@ export function verifyGrid4({ root = ROOT } = {}) {
   }
   if (policyIssues.length > 0) {
     if (lines.length > 0) lines.push("")
-    lines.push(`design:verify: ${EXCEPTION_POLICY_PATH} / ${SITE_BASELINE_PATH} のエントリが不正です。`)
+    lines.push(`design:verify: ${EXCEPTION_POLICY_PATH} のエントリが不正です。`)
     lines.push(...policyIssues.map((entry) => `- ${entry}`))
   }
   if (exceptionDrift.length > 0) {
     if (lines.length > 0) lines.push("")
     lines.push(`design:verify: ${EXCEPTION_POLICY_PATH} が実測とずれています。`)
     lines.push(...exceptionDrift.map((entry) => `- ${entry}`))
-  }
-  if (baselineDrift.length > 0) {
-    if (lines.length > 0) lines.push("")
-    lines.push(
-      `design:verify: ${SITE_BASELINE_PATH} の基線が実測より多いままです（減った分は \`npm run design:verify:grid4 -- --shrink-site-baseline\` で書き戻す）。`
-    )
-    lines.push(...baselineDrift.map((entry) => `- ${entry}`))
   }
   throwLinesError(lines)
 }
@@ -482,16 +395,9 @@ if (isCli && process.argv.includes("--self-test")) {
     process.exit(1)
   }
   console.log("check-grid4: self-test passed")
-} else if (isCli && process.argv.includes("--shrink-site-baseline")) {
-  try {
-    shrinkSiteBaseline()
-  } catch (error) {
-    console.error(error.message)
-    process.exit(1)
-  }
 } else if (isCli && process.argv.includes("--report")) {
-  const { strictIssues, siteIssues } = collectGrid4Report(ROOT)
-  for (const [label, byFile] of [["部品（厳格）", strictIssues], ["サイト（基線）", siteIssues]]) {
+  const { issuesByTarget } = collectGrid4Report(ROOT)
+  for (const { label, byFile } of issuesByTarget) {
     const total = [...byFile.values()].reduce((sum, issues) => sum + issues.length, 0)
     console.log(`${label}: ${byFile.size} ファイル・${total} 件`)
   }

@@ -111,7 +111,7 @@ function PatternInfoCard({ pattern }: { pattern: PatternEntry }) {
                     <div className="space-y-5">
                         <div className="space-y-2">
                             <h3 className="text-sm font-semibold">{t.meta.includes}</h3>
-                            <div className="flex flex-wrap gap-1.5">
+                            <div className="flex flex-wrap gap-2">
                                 {pattern.routes.map((route) => {
                                     const label = getRouteLabel(route);
                                     return (
@@ -130,7 +130,7 @@ function PatternInfoCard({ pattern }: { pattern: PatternEntry }) {
 
                         <div className="space-y-2">
                             <h3 className="text-sm font-semibold">{t.meta.usedComponents}</h3>
-                            <div className="flex flex-wrap gap-1.5">
+                            <div className="flex flex-wrap gap-2">
                                 {components.map((component) => (
                                     <Link
                                         key={component.name}
@@ -146,7 +146,7 @@ function PatternInfoCard({ pattern }: { pattern: PatternEntry }) {
                         {coldTests.length > 0 && (
                             <div className="space-y-2">
                                 <h3 className="text-sm font-semibold">{t.meta.fieldTested}</h3>
-                                <div className="flex flex-wrap gap-1.5">
+                                <div className="flex flex-wrap gap-2">
                                     {coldTests.map((ref) => (
                                         <Link
                                             key={ref.round}
@@ -221,7 +221,7 @@ export function PatternsChrome({
                             {label ? (
                                 <>
                                     <ChevronRight
-                                        className="h-3.5 w-3.5 text-muted-foreground"
+                                        className="h-4 w-4 text-muted-foreground"
                                         aria-hidden="true"
                                     />
                                     <span className="font-medium text-foreground">{label}</span>
@@ -251,7 +251,7 @@ export function PatternsChrome({
                                         onChange={(event) => {
                                             router.push(event.currentTarget.value);
                                         }}
-                                        className="h-8 w-[8.75rem] rounded-md py-1 pl-2 pr-7 text-xs [&+svg]:right-2 [&+svg]:top-2 [&+svg]:h-3.5 [&+svg]:w-3.5"
+                                        className="h-8 w-[8.75rem] rounded-md py-1 pl-2 pr-7 text-xs [&+svg]:right-2"
                                     >
                                         {routeGroup.map((route) => (
                                             <option key={route.href} value={route.href}>

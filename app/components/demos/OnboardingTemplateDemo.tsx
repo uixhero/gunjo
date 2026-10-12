@@ -16,7 +16,7 @@ const STEPS: OnboardingStep[] = [
         description: "Tell us a bit about yourself.",
         content: (
             <div className="flex flex-col gap-3">
-                <div className="flex flex-col gap-1.5">
+                <div className="flex flex-col gap-2">
                     <Label htmlFor="ot-name">Display name</Label>
                     <Input id="ot-name" placeholder="alice" />
                 </div>

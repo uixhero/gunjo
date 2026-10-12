@@ -56,7 +56,7 @@ export function DemoShell({ children }: { children: React.ReactNode }) {
             </Alert>
 
             <header className="mb-4 flex flex-wrap items-center justify-between gap-x-4 gap-y-2">
-                <div className="flex items-center gap-2.5">
+                <div className="flex items-center gap-2">
                     <span
                         className="flex h-9 w-9 items-center justify-center rounded-lg bg-primary/10 text-primary"
                         aria-hidden
@@ -82,7 +82,7 @@ export function DemoShell({ children }: { children: React.ReactNode }) {
                     className="inline-flex items-center gap-1 text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
                 >
                     {isJa ? "保険UIのコールドテストに戻る" : "Back to the insurance cold tests"}
-                    <IconArrowUpRight className="h-3.5 w-3.5" aria-hidden />
+                    <IconArrowUpRight className="h-4 w-4" aria-hidden />
                 </Link>
             </header>
 
@@ -99,7 +99,7 @@ export function DemoShell({ children }: { children: React.ReactNode }) {
                                     href={item.href}
                                     aria-current={active ? "page" : undefined}
                                     className={cn(
-                                        "inline-flex items-center whitespace-nowrap border-b-2 px-3 py-2.5 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
+                                        "inline-flex min-h-10 items-center whitespace-nowrap border-b-2 px-3 py-2 text-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2",
                                         active
                                             ? "border-primary font-semibold text-foreground"
                                             : "border-transparent text-muted-foreground hover:border-border hover:text-foreground"

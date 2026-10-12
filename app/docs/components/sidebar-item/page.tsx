@@ -86,7 +86,7 @@ function CollapsedItemsExample() {
                     <SidebarItem
                         key={item.id}
                         id={item.id}
-                        icon={<Icon size={18} />}
+                        icon={<Icon size={16} />}
                         label={item.label[locale]}
                         count={item.count}
                         countLabel={(n) => (isJa ? `${n}件` : `${n} items`)}
@@ -157,7 +157,7 @@ function SidebarContentExample({ actions = false, nested = true }: { actions?: b
                             <SidebarItem
                                 key={item.id}
                                 id={item.id}
-                                icon={<Icon size={18} />}
+                                icon={<Icon size={16} />}
                                 label={item.label[locale]}
                                 count={item.count}
                                 isActive={activeId === item.id}
@@ -183,7 +183,7 @@ function SidebarContentExample({ actions = false, nested = true }: { actions?: b
                                     tooltip={isJa ? "フォルダを追加" : "Add folder"}
                                     aria-label={isJa ? "フォルダを追加" : "Add folder"}
                                 >
-                                    <Plus size={14} />
+                                    <Plus size={16} />
                                 </TooltipButton>
                                 <TooltipButton
                                     type="button"
@@ -194,7 +194,7 @@ function SidebarContentExample({ actions = false, nested = true }: { actions?: b
                                     aria-label={foldersExpanded ? (isJa ? "フォルダを閉じる" : "Collapse folders") : (isJa ? "フォルダを開く" : "Expand folders")}
                                     onClick={() => setFoldersExpanded((open) => !open)}
                                 >
-                                    <ChevronRight size={14} className={foldersExpanded ? "rotate-90 transition-transform" : "transition-transform"} />
+                                    <ChevronRight size={16} className={foldersExpanded ? "rotate-90 transition-transform" : "transition-transform"} />
                                 </TooltipButton>
                             </div>
                         </div>
@@ -207,7 +207,7 @@ function SidebarContentExample({ actions = false, nested = true }: { actions?: b
                                         <SidebarItem
                                             key={item.id}
                                             id={item.id}
-                                            icon={<Icon size={18} />}
+                                            icon={<Icon size={16} />}
                                             label={item.label[locale]}
                                             count={item.count}
                                             level={item.level ?? 0}
@@ -294,7 +294,7 @@ export function MediaLibrarySidebarContent() {
             <SidebarItem
               key={item.id}
               id={item.id}
-              icon={<Icon size={18} />}
+              icon={<Icon size={16} />}
               label={item.label}
               count={item.count}
               isActive={activeId === item.id}
@@ -310,7 +310,7 @@ export function MediaLibrarySidebarContent() {
           <p className="text-xs font-bold uppercase tracking-wide text-muted-foreground">フォルダ</p>
           <div className="grid w-14 grid-cols-[1.5rem_1.5rem] items-center justify-end">
             <TooltipButton type="button" variant="ghost" size="icon" className="h-6 w-6 text-muted-foreground" tooltip="フォルダを追加" aria-label="フォルダを追加">
-              <Plus size={14} />
+              <Plus size={16} />
             </TooltipButton>
             <TooltipButton
               type="button"
@@ -322,7 +322,7 @@ export function MediaLibrarySidebarContent() {
               onClick={() => setFoldersExpanded((open) => !open)}
             >
               <ChevronRight
-                size={14}
+                size={16}
                 className={foldersExpanded ? "rotate-90 transition-transform" : "transition-transform"}
               />
             </TooltipButton>
@@ -339,7 +339,7 @@ export function MediaLibrarySidebarContent() {
                 <SidebarItem
                   key={item.id}
                   id={item.id}
-                  icon={<Icon size={18} />}
+                  icon={<Icon size={16} />}
                   label={item.label}
                   count={item.count}
                   level={item.level ?? 0}
@@ -424,7 +424,7 @@ export function MediaLibrarySidebarContent() {
             <SidebarItem
               key={item.id}
               id={item.id}
-              icon={<Icon size={18} />}
+              icon={<Icon size={16} />}
               label={item.label}
               count={item.count}
               isActive={activeId === item.id}
@@ -440,7 +440,7 @@ export function MediaLibrarySidebarContent() {
           <p className="text-xs font-bold uppercase tracking-wide text-muted-foreground">Folders</p>
           <div className="grid w-14 grid-cols-[1.5rem_1.5rem] items-center justify-end">
             <TooltipButton type="button" variant="ghost" size="icon" className="h-6 w-6 text-muted-foreground" tooltip="Add folder" aria-label="Add folder">
-              <Plus size={14} />
+              <Plus size={16} />
             </TooltipButton>
             <TooltipButton
               type="button"
@@ -452,7 +452,7 @@ export function MediaLibrarySidebarContent() {
               onClick={() => setFoldersExpanded((open) => !open)}
             >
               <ChevronRight
-                size={14}
+                size={16}
                 className={foldersExpanded ? "rotate-90 transition-transform" : "transition-transform"}
               />
             </TooltipButton>
@@ -469,7 +469,7 @@ export function MediaLibrarySidebarContent() {
                 <SidebarItem
                   key={item.id}
                   id={item.id}
-                  icon={<Icon size={18} />}
+                  icon={<Icon size={16} />}
                   label={item.label}
                   count={item.count}
                   level={item.level ?? 0}
@@ -588,7 +588,7 @@ export function CollapsedLibraryRail() {
           <SidebarItem
             key={item.id}
             id={item.id}
-            icon={<Icon size={18} />}
+            icon={<Icon size={16} />}
             label={item.label}
             count={item.count}
             countLabel={(n) => n + "件"}
@@ -633,7 +633,7 @@ export function CollapsedLibraryRail() {
           <SidebarItem
             key={item.id}
             id={item.id}
-            icon={<Icon size={18} />}
+            icon={<Icon size={16} />}
             label={item.label}
             count={item.count}
             countLabel={(n) => n + " items"}
@@ -753,7 +753,7 @@ export function MediaLibrarySidebarContent() {
             <SidebarItem
               key={item.id}
               id={item.id}
-              icon={<Icon size={18} />}
+              icon={<Icon size={16} />}
               label={item.label}
               count={item.count}
               isActive={activeId === item.id}
@@ -769,7 +769,7 @@ export function MediaLibrarySidebarContent() {
           <p className="text-xs font-bold uppercase tracking-wide text-muted-foreground">フォルダ</p>
           <div className="grid w-14 grid-cols-[1.5rem_1.5rem] items-center justify-end">
             <TooltipButton type="button" variant="ghost" size="icon" className="h-6 w-6 text-muted-foreground" tooltip="フォルダを追加" aria-label="フォルダを追加">
-              <Plus size={14} />
+              <Plus size={16} />
             </TooltipButton>
             <TooltipButton
               type="button"
@@ -781,7 +781,7 @@ export function MediaLibrarySidebarContent() {
               onClick={() => setFoldersExpanded((open) => !open)}
             >
               <ChevronRight
-                size={14}
+                size={16}
                 className={foldersExpanded ? "rotate-90 transition-transform" : "transition-transform"}
               />
             </TooltipButton>
@@ -798,7 +798,7 @@ export function MediaLibrarySidebarContent() {
                 <SidebarItem
                   key={item.id}
                   id={item.id}
-                  icon={<Icon size={18} />}
+                  icon={<Icon size={16} />}
                   label={item.label}
                   count={item.count}
                   level={item.level ?? 0}
@@ -934,7 +934,7 @@ export function MediaLibrarySidebarContent() {
             <SidebarItem
               key={item.id}
               id={item.id}
-              icon={<Icon size={18} />}
+              icon={<Icon size={16} />}
               label={item.label}
               count={item.count}
               isActive={activeId === item.id}
@@ -950,7 +950,7 @@ export function MediaLibrarySidebarContent() {
           <p className="text-xs font-bold uppercase tracking-wide text-muted-foreground">Folders</p>
           <div className="grid w-14 grid-cols-[1.5rem_1.5rem] items-center justify-end">
             <TooltipButton type="button" variant="ghost" size="icon" className="h-6 w-6 text-muted-foreground" tooltip="Add folder" aria-label="Add folder">
-              <Plus size={14} />
+              <Plus size={16} />
             </TooltipButton>
             <TooltipButton
               type="button"
@@ -962,7 +962,7 @@ export function MediaLibrarySidebarContent() {
               onClick={() => setFoldersExpanded((open) => !open)}
             >
               <ChevronRight
-                size={14}
+                size={16}
                 className={foldersExpanded ? "rotate-90 transition-transform" : "transition-transform"}
               />
             </TooltipButton>
@@ -979,7 +979,7 @@ export function MediaLibrarySidebarContent() {
                 <SidebarItem
                   key={item.id}
                   id={item.id}
-                  icon={<Icon size={18} />}
+                  icon={<Icon size={16} />}
                   label={item.label}
                   count={item.count}
                   level={item.level ?? 0}
@@ -1106,7 +1106,7 @@ export default function SidebarItemPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+                <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>

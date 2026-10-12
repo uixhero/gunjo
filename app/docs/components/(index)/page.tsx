@@ -81,7 +81,7 @@ export default function ComponentsIndexPage() {
                         className="inline-flex items-center text-sm font-medium text-primary hover:underline"
                     >
                         {locale === "ja" ? "パターン集を見る" : "View patterns"}
-                        <ArrowRight className="ml-1 h-3.5 w-3.5" />
+                        <ArrowRight className="ml-1 h-4 w-4" />
                     </Link>
                 </section>
             </div>

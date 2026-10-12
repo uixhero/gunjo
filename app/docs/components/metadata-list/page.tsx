@@ -13,16 +13,16 @@ import { UIXHERO_BASE_URL } from "@/lib/uixhero-links";
 
 const itemsByLocale = {
     ja: [
-        { label: "サイズ", value: "1920 x 1080", icon: <Ruler className="h-3.5 w-3.5" /> },
-        { label: "形式", value: "JPG", icon: <FileImage className="h-3.5 w-3.5" /> },
-        { label: "容量", value: "1.4MB", icon: <HardDrive className="h-3.5 w-3.5" /> },
-        { label: "作成日", value: "2026-05-12", icon: <CalendarDays className="h-3.5 w-3.5" /> },
+        { label: "サイズ", value: "1920 x 1080", icon: <Ruler className="h-4 w-4" /> },
+        { label: "形式", value: "JPG", icon: <FileImage className="h-4 w-4" /> },
+        { label: "容量", value: "1.4MB", icon: <HardDrive className="h-4 w-4" /> },
+        { label: "作成日", value: "2026-05-12", icon: <CalendarDays className="h-4 w-4" /> },
     ],
     en: [
-        { label: "Dimensions", value: "1920 x 1080", icon: <Ruler className="h-3.5 w-3.5" /> },
-        { label: "File type", value: "JPG", icon: <FileImage className="h-3.5 w-3.5" /> },
-        { label: "Size", value: "1.4MB", icon: <HardDrive className="h-3.5 w-3.5" /> },
-        { label: "Created", value: "2026-05-12", icon: <CalendarDays className="h-3.5 w-3.5" /> },
+        { label: "Dimensions", value: "1920 x 1080", icon: <Ruler className="h-4 w-4" /> },
+        { label: "File type", value: "JPG", icon: <FileImage className="h-4 w-4" /> },
+        { label: "Size", value: "1.4MB", icon: <HardDrive className="h-4 w-4" /> },
+        { label: "Created", value: "2026-05-12", icon: <CalendarDays className="h-4 w-4" /> },
     ],
 } as const;
 
@@ -31,10 +31,10 @@ const codeByLocale = {
 import { IconCalendarEvent as CalendarDays, IconDatabase as HardDrive, IconFileTypeJpg as FileImage, IconRuler as Ruler } from "@tabler/icons-react";
 
 const items = [
-  { label: "サイズ", value: "1920 x 1080", icon: <Ruler className="h-3.5 w-3.5" /> },
-  { label: "形式", value: "JPG", icon: <FileImage className="h-3.5 w-3.5" /> },
-  { label: "容量", value: "1.4MB", icon: <HardDrive className="h-3.5 w-3.5" /> },
-  { label: "作成日", value: "2026-05-12", icon: <CalendarDays className="h-3.5 w-3.5" /> },
+  { label: "サイズ", value: "1920 x 1080", icon: <Ruler className="h-4 w-4" /> },
+  { label: "形式", value: "JPG", icon: <FileImage className="h-4 w-4" /> },
+  { label: "容量", value: "1.4MB", icon: <HardDrive className="h-4 w-4" /> },
+  { label: "作成日", value: "2026-05-12", icon: <CalendarDays className="h-4 w-4" /> },
 ];
 
 export function Example() {
@@ -44,10 +44,10 @@ export function Example() {
 import { IconCalendarEvent as CalendarDays, IconDatabase as HardDrive, IconFileTypeJpg as FileImage, IconRuler as Ruler } from "@tabler/icons-react";
 
 const items = [
-  { label: "Dimensions", value: "1920 x 1080", icon: <Ruler className="h-3.5 w-3.5" /> },
-  { label: "File type", value: "JPG", icon: <FileImage className="h-3.5 w-3.5" /> },
-  { label: "Size", value: "1.4MB", icon: <HardDrive className="h-3.5 w-3.5" /> },
-  { label: "Created", value: "2026-05-12", icon: <CalendarDays className="h-3.5 w-3.5" /> },
+  { label: "Dimensions", value: "1920 x 1080", icon: <Ruler className="h-4 w-4" /> },
+  { label: "File type", value: "JPG", icon: <FileImage className="h-4 w-4" /> },
+  { label: "Size", value: "1.4MB", icon: <HardDrive className="h-4 w-4" /> },
+  { label: "Created", value: "2026-05-12", icon: <CalendarDays className="h-4 w-4" /> },
 ];
 
 export function Example() {
@@ -231,7 +231,7 @@ export default function MetadataListDocPage() {
                     </h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+                <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
@@ -244,13 +244,13 @@ export default function MetadataListDocPage() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong><code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ul</code> ではなく <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dl</code> にした。</strong>資料は順序と操作の有無でリストの種類を選べと書いています。ここは「名前と値の組」なので、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dl</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dt</code> と <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dd</code> を使います。項目に順序の意味は無く、押すこともありません。
+                            <strong><code className="rounded bg-muted px-1 font-mono text-xs">ul</code> ではなく <code className="rounded bg-muted px-1 font-mono text-xs">dl</code> にした。</strong>資料は順序と操作の有無でリストの種類を選べと書いています。ここは「名前と値の組」なので、<code className="rounded bg-muted px-1 font-mono text-xs">dl</code> と <code className="rounded bg-muted px-1 font-mono text-xs">dt</code> と <code className="rounded bg-muted px-1 font-mono text-xs">dd</code> を使います。項目に順序の意味は無く、押すこともありません。
                         </li>
                         <li>
-                            <strong>既定は切り詰めで、伸ばすのは宣言で。</strong>値は既定で1行に切り詰め、<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">title</code> 属性に全文を入れます。折り返したいときは <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">wrap</code> を渡し、項目ごとの上書きもできます（#284）。行の高さが揃うことを既定にしたのは、詳細パネルに縦に並べたときに読み飛ばしやすくするためです。
+                            <strong>既定は切り詰めで、伸ばすのは宣言で。</strong>値は既定で1行に切り詰め、<code className="rounded bg-muted px-1 font-mono text-xs">title</code> 属性に全文を入れます。折り返したいときは <code className="rounded bg-muted px-1 font-mono text-xs">wrap</code> を渡し、項目ごとの上書きもできます（#284）。行の高さが揃うことを既定にしたのは、詳細パネルに縦に並べたときに読み飛ばしやすくするためです。
                         </li>
                         <li>
-                            <strong>空のときは何も描かずに済ませない。</strong>項目が0件のときは破線の枠に <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">emptyMessage</code> を出します。資料も「空状態を必ず設計する」を挙げています。何も描かないと、読み込み中なのか本当に無いのかが分かりません。
+                            <strong>空のときは何も描かずに済ませない。</strong>項目が0件のときは破線の枠に <code className="rounded bg-muted px-1 font-mono text-xs">emptyMessage</code> を出します。資料も「空状態を必ず設計する」を挙げています。何も描かないと、読み込み中なのか本当に無いのかが分かりません。
                             <br />
                             一般のリストの設計は UIXHERO の「リスト」にあります。
                         </li>
@@ -258,13 +258,13 @@ export default function MetadataListDocPage() {
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>A <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dl</code>, not a <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ul</code>.</strong> The article picks the list element from order and interactivity. These are name-and-value pairs with no meaningful order and nothing to click, so they render as <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dl</code> with <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dt</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">dd</code>.
+                            <strong>A <code className="rounded bg-muted px-1 font-mono text-xs">dl</code>, not a <code className="rounded bg-muted px-1 font-mono text-xs">ul</code>.</strong> The article picks the list element from order and interactivity. These are name-and-value pairs with no meaningful order and nothing to click, so they render as <code className="rounded bg-muted px-1 font-mono text-xs">dl</code> with <code className="rounded bg-muted px-1 font-mono text-xs">dt</code> and <code className="rounded bg-muted px-1 font-mono text-xs">dd</code>.
                         </li>
                         <li>
-                            <strong>Truncation is the default; wrapping is opt-in.</strong> Values truncate to one line and carry the full text in <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">title</code>. Pass <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">wrap</code> to let them wrap, with a per-item override (#284). Equal row heights are the default because a details panel is read by skimming down the column.
+                            <strong>Truncation is the default; wrapping is opt-in.</strong> Values truncate to one line and carry the full text in <code className="rounded bg-muted px-1 font-mono text-xs">title</code>. Pass <code className="rounded bg-muted px-1 font-mono text-xs">wrap</code> to let them wrap, with a per-item override (#284). Equal row heights are the default because a details panel is read by skimming down the column.
                         </li>
                         <li>
-                            <strong>Empty is drawn, not skipped.</strong> With no items the list renders <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">emptyMessage</code> inside a dashed frame. The article calls for designing the empty state explicitly; drawing nothing leaves &ldquo;still loading&rdquo; and &ldquo;genuinely empty&rdquo; indistinguishable.
+                            <strong>Empty is drawn, not skipped.</strong> With no items the list renders <code className="rounded bg-muted px-1 font-mono text-xs">emptyMessage</code> inside a dashed frame. The article calls for designing the empty state explicitly; drawing nothing leaves &ldquo;still loading&rdquo; and &ldquo;genuinely empty&rdquo; indistinguishable.
                             <br />
                             The general design of lists is covered by UIXHERO&rsquo;s list article.
                         </li>

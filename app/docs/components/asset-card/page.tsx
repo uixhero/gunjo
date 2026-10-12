@@ -352,7 +352,7 @@ export function FileAssetCard() {
                     <h2 id="usage" className="scroll-m-20 text-2xl font-semibold tracking-tight first:mt-0">{locale === "ja" ? "使い方" : "Usage"}</h2>
                     <CodeCopyButton code={usageCode} />
                 </div>
-                <div className="max-h-[350px] overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
+                <div className="max-h-88 overflow-auto rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted font-mono text-sm">
                     <CodeBlock code={usageCode} />
                 </div>
             </div>
@@ -365,13 +365,13 @@ export function FileAssetCard() {
                 {locale === "ja" ? (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>画像の比率を固定して、揃うのは枠のほうにした。</strong>資料は「画像は比率を固定してグリッドのガタつきをなくす」を挙げています。GUNJO は <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ImagePreview</code> に比率を持たせ、写真が縦でも横でも枠の大きさが変わらないようにしました。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">imageFit</code> で「切り抜く（cover）」か「収める（contain）」かを選べます。素材の管理画面では、切り抜かれると困る絵があるためです。
+                            <strong>画像の比率を固定して、揃うのは枠のほうにした。</strong>資料は「画像は比率を固定してグリッドのガタつきをなくす」を挙げています。GUNJO は <code className="rounded bg-muted px-1 font-mono text-xs">ImagePreview</code> に比率を持たせ、写真が縦でも横でも枠の大きさが変わらないようにしました。<code className="rounded bg-muted px-1 font-mono text-xs">imageFit</code> で「切り抜く（cover）」か「収める（contain）」かを選べます。素材の管理画面では、切り抜かれると困る絵があるためです。
                         </li>
                         <li>
-                            <strong>お気に入りのボタンだけはカードの中に置いた。</strong>資料は「カード全体を押せるようにするなら、中にボタンを入れない」を挙げています。この部品はカード全体が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="button"'}</code> ですが、お気に入りだけは例外として中に置き、クリックの伝播を止めて選択と切り分けています。一覧のまま星を付ける操作を、詳細を開かずに済ませたいからです。
+                            <strong>お気に入りのボタンだけはカードの中に置いた。</strong>資料は「カード全体を押せるようにするなら、中にボタンを入れない」を挙げています。この部品はカード全体が <code className="rounded bg-muted px-1 font-mono text-xs">{'role="button"'}</code> ですが、お気に入りだけは例外として中に置き、クリックの伝播を止めて選択と切り分けています。一覧のまま星を付ける操作を、詳細を開かずに済ませたいからです。
                         </li>
                         <li>
-                            <strong>選択の印は色ではなく形で出す。</strong>選ばれたカードは枠の色だけでなく、右上に丸のチェックが出ます。<code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">selectionMode</code> が <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">multiple</code> のときは、選ばれていなくても空の丸を先に出して「ここは複数選べる」を見せます。
+                            <strong>選択の印は色ではなく形で出す。</strong>選ばれたカードは枠の色だけでなく、右上に丸のチェックが出ます。<code className="rounded bg-muted px-1 font-mono text-xs">selectionMode</code> が <code className="rounded bg-muted px-1 font-mono text-xs">multiple</code> のときは、選ばれていなくても空の丸を先に出して「ここは複数選べる」を見せます。
                             <br />
                             一般のカードの設計は UIXHERO の「カード」にあります。
                         </li>
@@ -379,13 +379,13 @@ export function FileAssetCard() {
                 ) : (
                     <ul className="ml-4 list-disc space-y-2 text-sm text-muted-foreground">
                         <li>
-                            <strong>The aspect ratio is pinned so the frames line up.</strong> The article asks for a fixed image ratio to stop grids from jittering. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">ImagePreview</code> owns that ratio, so portrait and landscape assets occupy the same box. <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">imageFit</code> chooses between <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">cover</code> and <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">contain</code>, because in an asset manager some artwork must not be cropped.
+                            <strong>The aspect ratio is pinned so the frames line up.</strong> The article asks for a fixed image ratio to stop grids from jittering. <code className="rounded bg-muted px-1 font-mono text-xs">ImagePreview</code> owns that ratio, so portrait and landscape assets occupy the same box. <code className="rounded bg-muted px-1 font-mono text-xs">imageFit</code> chooses between <code className="rounded bg-muted px-1 font-mono text-xs">cover</code> and <code className="rounded bg-muted px-1 font-mono text-xs">contain</code>, because in an asset manager some artwork must not be cropped.
                         </li>
                         <li>
-                            <strong>The favourite button is the one control allowed inside the card.</strong> The article warns against putting buttons inside a card that is itself clickable. The card shell here is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">{'role="button"'}</code>, and the favourite toggle is the deliberate exception: it stops propagation so it never triggers selection. Starring an asset should not require opening it.
+                            <strong>The favourite button is the one control allowed inside the card.</strong> The article warns against putting buttons inside a card that is itself clickable. The card shell here is <code className="rounded bg-muted px-1 font-mono text-xs">{'role="button"'}</code>, and the favourite toggle is the deliberate exception: it stops propagation so it never triggers selection. Starring an asset should not require opening it.
                         </li>
                         <li>
-                            <strong>Selection is shown by shape, not only by colour.</strong> A selected card gets a circular check in the top-right corner as well as the coloured frame. When <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">selectionMode</code> is <code className="rounded bg-muted px-1 py-0.5 font-mono text-xs">multiple</code>, an empty circle appears even before anything is selected, so the multi-select affordance is visible up front.
+                            <strong>Selection is shown by shape, not only by colour.</strong> A selected card gets a circular check in the top-right corner as well as the coloured frame. When <code className="rounded bg-muted px-1 font-mono text-xs">selectionMode</code> is <code className="rounded bg-muted px-1 font-mono text-xs">multiple</code>, an empty circle appears even before anything is selected, so the multi-select affordance is visible up front.
                             <br />
                             The general design of cards is covered by UIXHERO&rsquo;s card article.
                         </li>

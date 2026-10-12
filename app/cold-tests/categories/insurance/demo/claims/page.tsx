@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function InsuranceDemoClaimsPage() {
     return (
         <>
-            <header className="mb-6 space-y-1.5">
+            <header className="mb-6 space-y-2">
                 <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-muted-foreground">
                     <span>{officeName}</span>
                     <span aria-hidden>·</span>

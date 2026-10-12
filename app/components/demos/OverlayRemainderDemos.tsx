@@ -565,7 +565,7 @@ export function PopoverAuditDemo({
 
     const triggerButton = (
         <PopoverTrigger asChild>
-            <Button variant="outline" size="sm" className="shrink-0 gap-1.5">
+            <Button variant="outline" size="sm" className="shrink-0 gap-2">
                 {config.icon}
                 {config.action}
             </Button>
@@ -860,7 +860,7 @@ export function SheetAuditDemo({
                                 </SheetHeader>
                                 <SheetBody className="space-y-4 py-4">
                                     {Array.from({ length: 10 }).map((_, index) => (
-                                        <div key={index} className="space-y-1.5">
+                                        <div key={index} className="space-y-2">
                                             <Label htmlFor={`sheet-scroll-${index}`}>
                                                 {(isJa ? "項目 " : "Field ") + (index + 1)}
                                             </Label>
@@ -934,7 +934,7 @@ export function SheetAuditDemo({
                             ) : isNotice ? (
                                 <div className="space-y-4 py-4">
                                     <div className="flex items-center justify-between gap-4 rounded-md border border-transparent contrast-more:border-border forced-colors:border-[CanvasText] bg-muted p-3">
-                                        <Label htmlFor="sheet-email" className="flex flex-col gap-0.5">
+                                        <Label htmlFor="sheet-email" className="flex flex-col gap-1">
                                             <span>{isJa ? "メール通知" : "Email notifications"}</span>
                                             <span className="text-xs font-normal text-muted-foreground">
                                                 {isJa ? "重要な更新だけをメールで受け取ります。" : "Receive important updates by email."}
@@ -958,12 +958,12 @@ export function SheetAuditDemo({
                                 </div>
                             ) : (
                                 <div className="space-y-4 py-4">
-                                    <div className="space-y-1.5">
+                                    <div className="space-y-2">
                                         <Label htmlFor="sheet-name">{isJa ? "プロジェクト名" : "Project name"}</Label>
                                         <Input id="sheet-name" defaultValue={isJa ? "春キャンペーン" : "Spring campaign"} />
                                     </div>
                                     <div className="flex items-center justify-between gap-4">
-                                        <Label htmlFor="sheet-public" className="flex flex-col gap-0.5">
+                                        <Label htmlFor="sheet-public" className="flex flex-col gap-1">
                                             <span>{isJa ? "公開リンク" : "Public link"}</span>
                                             <span className="text-xs font-normal text-muted-foreground">
                                                 {isJa ? "リンクを知っている人が閲覧できます。" : "Anyone with the link can view."}

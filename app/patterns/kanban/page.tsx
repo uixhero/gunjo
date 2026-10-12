@@ -68,7 +68,7 @@ function KanbanPattern({ viewport }: { viewport: MarqueeViewport }) {
             }
         >
             {["Backlog", "In Progress", "In Review", "Done"].map((col) => (
-                <div key={col} className="flex h-full w-[350px] flex-col rounded-lg bg-muted border border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
+                <div key={col} className="flex h-full w-88 flex-col rounded-lg bg-muted border border-transparent contrast-more:border-border forced-colors:border-[CanvasText]">
                     <div className="flex items-center justify-between p-4 pb-2">
                         <h3 className="font-semibold text-sm">{col} <span className="ml-2 text-muted-foreground text-xs font-normal">3</span></h3>
                         <TooltipButton
@@ -86,7 +86,7 @@ function KanbanPattern({ viewport }: { viewport: MarqueeViewport }) {
                             <CardContent className="p-4 space-y-2">
                                 <div className="text-sm font-medium leading-none">Implement Authentication</div>
                                 <div className="flex items-center gap-2 mt-2">
-                                    <span className="px-2 py-0.5 rounded text-[10px] bg-primary-subtle text-primary-subtle-foreground font-medium">Frontend</span>
+                                    <span className="px-2 rounded text-[10px] leading-5 bg-primary-subtle text-primary-subtle-foreground font-medium">Frontend</span>
                                 </div>
                             </CardContent>
                         </Card>
@@ -94,7 +94,7 @@ function KanbanPattern({ viewport }: { viewport: MarqueeViewport }) {
                             <CardContent className="p-4 space-y-2">
                                 <div className="text-sm font-medium leading-none">Design System Updates</div>
                                 <div className="flex items-center gap-2 mt-2">
-                                    <span className="px-2 py-0.5 rounded text-[10px] bg-secondary text-secondary-foreground font-medium">Design</span>
+                                    <span className="px-2 rounded text-[10px] leading-5 bg-secondary text-secondary-foreground font-medium">Design</span>
                                 </div>
                             </CardContent>
                         </Card>
@@ -102,7 +102,7 @@ function KanbanPattern({ viewport }: { viewport: MarqueeViewport }) {
                             <CardContent className="p-4 space-y-2">
                                 <div className="text-sm font-medium leading-none">Fix Mobile Layout</div>
                                 <div className="flex items-center gap-2 mt-2">
-                                    <span className="px-2 py-0.5 rounded text-[10px] bg-destructive-subtle text-destructive-subtle-foreground font-medium">Bug</span>
+                                    <span className="px-2 rounded text-[10px] leading-5 bg-destructive-subtle text-destructive-subtle-foreground font-medium">Bug</span>
                                 </div>
                             </CardContent>
                         </Card>

@@ -110,7 +110,7 @@ export function ColorTokenCard({
 
     const chipClasses = (active: boolean, isFailed = false) =>
         cn(
-            "inline-flex items-center gap-1 rounded border px-1.5 py-0.5 font-mono text-[10px] cursor-pointer transition-colors",
+            "inline-flex min-h-5 items-center gap-1 rounded border px-2 font-mono text-[10px] cursor-pointer transition-colors",
             active
                 ? "border-primary-border bg-primary-subtle text-primary-subtle-foreground"
                 : isFailed
@@ -160,7 +160,7 @@ export function ColorTokenCard({
                 {description && (
                     <p className="text-xs text-muted-foreground">{description}</p>
                 )}
-                <div className="flex flex-wrap gap-1.5 pt-1">
+                <div className="flex flex-wrap gap-2 pt-1">
                     {hex && (
                         <button
                             onClick={() => copy(hex, "hex")}

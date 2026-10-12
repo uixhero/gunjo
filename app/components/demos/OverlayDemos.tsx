@@ -22,7 +22,7 @@ export function DialogDemo() {
             <DialogTrigger asChild>
                 <Button variant="outline">Edit Profile</Button>
             </DialogTrigger>
-            <DialogContent className="sm:max-w-[425px]">
+            <DialogContent className="sm:max-w-106">
                 <DialogHeader>
                     <DialogTitle>Edit profile</DialogTitle>
                     <DialogDescription>

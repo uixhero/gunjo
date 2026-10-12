@@ -59,16 +59,16 @@ export function CopySpecButton({
             tooltipSide="bottom"
             tooltipAlign="end"
             tooltipContentClassName="max-w-[260px] text-left leading-5"
-            className={cn("gap-1.5", className)}
+            className={cn("gap-2", className)}
         >
             {copied ? (
                 <>
-                    <Check className="h-3.5 w-3.5 text-primary" />
+                    <Check className="h-4 w-4 text-primary" />
                     {copiedLabel}
                 </>
             ) : (
                 <>
-                    <Sparkles className="h-3.5 w-3.5" />
+                    <Sparkles className="h-4 w-4" />
                     {label}
                     <Copy className="h-3 w-3 opacity-60" />
                 </>

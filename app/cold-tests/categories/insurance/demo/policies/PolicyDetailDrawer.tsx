@@ -180,7 +180,7 @@ export function PolicyDetailDrawer({
                       >
                         付帯特約
                       </h3>
-                      <div className="flex flex-wrap gap-1.5">
+                      <div className="flex flex-wrap gap-2">
                         {policy.riders.map((r) => (
                           <Tag key={r}>{r}</Tag>
                         ))}

@@ -82,7 +82,7 @@ export function ThemeSwitcher() {
                             className="h-9 w-9 px-0 relative"
                             aria-label={tooltip("themeSwitcher")}
                         >
-                            <Palette className="h-[1.2rem] w-[1.2rem]" />
+                            <Palette className="h-5 w-5" />
                             {active ? (
                                 <span
                                     className="absolute right-1 top-1 h-1.5 w-1.5 rounded-full bg-primary"
@@ -126,7 +126,7 @@ export function ThemeSwitcher() {
                                 {overrides.primaryHue !== null ? "°" : ""}
                             </span>
                         </div>
-                        <div className="flex flex-wrap gap-1.5">
+                        <div className="flex flex-wrap gap-2">
                             {HUE_PRESETS.map((preset) => {
                                 const isActive = overrides.primaryHue === preset.hue;
                                 return (
